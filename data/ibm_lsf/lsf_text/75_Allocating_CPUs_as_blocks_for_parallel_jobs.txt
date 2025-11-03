@@ -1,0 +1,28 @@
+SCHED_METRIC_ENABLE=Y 
+SIMPLIFIED_GURANTEE=Y
+Take note before conﬁguring the following parameters:
+DEFAULT_PROJECT
+If a user submits a job without specifying any project name and the LSB_DEFAULTPROJECT environment variable is not set, LSF automatically
+assigns the job to this speciﬁed project.
+DEFAULT_USER_GROUP=staff
+When DEFAULT_USER_GROUP is deﬁned, all submitted jobs must be associated with a user group. Jobs that do not have a speciﬁed user
+group are associated with default_user_group, where default_user_group is a group that is conﬁgured in the lsb.users ﬁle and contains all as
+a direct member. DEFAULT_USER_GROUP can only contain one user group.
+EVALUATE_JOB_DEPENDENCY=100
+Sets the maximum number of job dependencies that mbatchd evaluates in one scheduling cycle. LSF evaluates all dependent jobs every 10
+minutes regardless of this conﬁguration.
+JOB_SCHEDULING_INTERVAL=0
+Minimum interval between scheduling cycles. Specify the value in seconds or in milliseconds with the ms keyword.
+SCHED_METIC_ENABLE=Y
+Enables scheduling metric collection. You also specify a value for the SCHED_METRIC_SAMPLE_PERIOD parameter, or leave it undeﬁned to
+use the default value of 60 seconds.
+Allocating CPUs as blocks for parallel jobs
+Parallel jobs always ask for more than one CPU to run. Some jobs can run faster if the assigned CPUs can be allocated as blocks.
+About this task
+For example, parallelJobA asks for 16 CPUs in a cluster with 4 hosts and 8 slots per host. The job will have the best performance if CPUs can be
+allocated in groups of 4.
+Note: The term slot in LSF represents the computing capacity of a host. By default, the number of CPU cores on one host is the number of slots for
+the host. In this topic, 1 CPU is treated as 1 slot.
+Procedure
+Method 1: The allocated slots are grouped as 4, but one host has one slot group at most.
+2396    IBM Spectrum LSF

@@ -1,0 +1,151 @@
+Installing IBM Spectrum LSF Session Scheduler
+LSF Session Scheduler must be deployed on an LSF server host.
+Before you begin
+Before you install LSF Session Scheduler, you must know the following information:
+The following installation parameters (in the install.conﬁg ﬁle) for the LSF cluster: LSF_TOP, LSF_ADMINS, LSF_CLUSTER_NAME,
+LSF_MASTER_LIST, and LSF_ENTITLEMENT_FILE
+OS account name and group of the primary LSF administrator
+In addition, the ed application must be installed. If ed is not installed, use the yum install ed command to install it.
+Procedure
+1. Log in to the LSF Session Scheduler installation server as root.
+If you are not root, see If you install LSF as a non-root user for more details.
+2. Get the LSF Session Scheduler installer script package and extract it.
+zcat lsf10.1_ssched_install.tar.Z | tar xvf -
+3. Navigate to the extracted lsf10.1.0_ssched_install/ directory.
+4. Get the LSF Session Scheduler distribution packages for all host types that you need and put them in the lsf10.1.0_ssched_install/ directory
+without extracting the packages.
+For example, for Linux kernel 2.6 glibc version 2.3, the distribution package is lsf10.1.0_ssched_lnx26-x64.tar.Z.
+5. Edit the install.conﬁg ﬁle and specify the installation variables that you want.
+Uncomment the options that you want in the install.conﬁg template ﬁle and replace the example values with your own settings.
+Note: The sample values in the install.conﬁg template ﬁles are examples only. They are not default installation values.
+LSF_TOP, LSF_ADMINS, LSF_CLUSTER_NAME, LSF_MASTER_LIST, and LSF_ENTITLEMENT_FILE: Use the same parameter values as the
+LSF cluster on which you plan to install LSF Session Scheduler.
+LSF_TARDIR: Set this parameter to the location in which you put the LSF Session Scheduler distribution ﬁles.
+6. Run the ssinstall script command while specifying the install.conﬁg ﬁle to install the cluster.
+ssinstall -f install.config
+How LSF Session Scheduler runs tasks
+Once a LSF Session Scheduler session job has been dispatched and starts running, LSF Session Scheduler parses the task deﬁnition ﬁle speciﬁed on
+the ssched command. Each line of the task deﬁnition ﬁle is one task. Tasks run on the hosts in the allocation in any order. Dependencies between
+tasks are not supported.
+LSF Session Scheduler status is posted to the LSF Session Scheduler session job through the LSF bpost command. Use bread or bjobs -l to view LSF
+Session Scheduler status. The status includes the current number of pending, running and completed tasks. LSF administrators can conﬁgure how
+often the status is updated.
+When all tasks are completed, the LSF Session Scheduler exits normally.
+ssched runs under the submission user account. Any processes it creates, either locally or remotely, also run under the submission user account.
+LSF Session Scheduler does not require any privileges beyond those normally granted a user.
+LSF Session Scheduler job sessions
+The LSF Session Scheduler session job is compatible with all currently supported LSF job submission and execution parameters, including pre-
+execution, post-execution, job-starters, I/O redirection, queue and application proﬁle conﬁguration.
+Run limits are interpreted and enforced as normal LSF parallel jobs. Application-level checkpointing is also supported. Job chunking is not relevant
+to LSF Session Scheduler jobs since a single LSF Session Scheduler session is generally long running and should not be chunked.
+If the LSF Session Scheduler session is killed (bkill) or re-queued (brequeue), the LSF Session Scheduler kills all running tasks, execution agents,
+and any other processes it has started, both local and remote. The session scheduler also cleans up any temporary ﬁles created and then exits. If the
+LSF Session Scheduler is then re-queued and restarted, all tasks are rerun.
+IBM Spectrum LSF 2111
+
+If the LSF Session Scheduler session is suspended (bstop), the LSF Session Scheduler and all local and remote components will be stopped until the
+session is resumed (bresume).
+LSF Session Scheduler tasks
+ssched and sservice and sschild execution agents ensure that the user submission environment variables are set correctly for each task. In order to
+minimize the load on the LSF, mbatchd does not have any knowledge of individual tasks.
+Task deﬁnition ﬁle format
+The task deﬁnition ﬁle is an ASCII ﬁle. Each line represents one task, or an array of tasks. Each line has the following format.
+[task_options] command [arguments] 
+Session and task accounting
+Jobs corresponding to the LSF Session Scheduler session have one record in lsb.acct. This record represents the aggregate resource usage of all
+tasks in the allocation.
+If task accounting is enabled with SSCHED_ACCT_DIR in lsb.params, Session Scheduler creates task accounting ﬁles for each LSF Session Scheduler
+session job and appends an accounting record to the end of the ﬁle. This record follows a similar format to the LSF accounting ﬁle lsb.acct format, but
+with additional ﬁelds/
+The accounting ﬁle is named jobID.ssched.acct. If no directory is speciﬁed, accounting records are not written.
+The LSF Session Scheduler accounting directory must be accessible and writable from all hosts in the cluster. Each LSF Session Scheduler session
+(each ssched instance) creates one accounting ﬁle. Each ﬁle contains one accounting entry for each task. Each completed task index has one line in
+the ﬁle. Each line records the resource usage of one task.
+Task accounting ﬁle format
+Task accounting records have a similar format as the lsb.acct JOB_FINISH event record.
+Field Description
+Event type (%s)TASK_FINISH
+Version Number
+(%s)10.1.0
+Event Time (%d)Time the event was logged (in seconds since the epoch)
+jobId (%d) ID for the job
+userId (%d) UNIX user ID of the submitter
+options (%d) Always 0
+numProcessors
+(%d)Always 1
+submitTime
+(%d)Task enqueue time
+beginTime (%d)Always 0
+termTime (%d) Always 0
+startTime (%d) Task start time
+userName (%s)User name of the submitter
+queue (%s) Always empty
+resReq (%s) Always empty
+dependCond
+(%s)Always empty
+preExecCmd
+(%s)Task pre-execution command
+fromHost (%s) Submission host name
+cwd (%s) Execution host current working directory (up to 4094 characters)
+inFile (%s) Task input ﬁle name (up to 4094 characters)
+outFile (%s) Task output ﬁle name (up to 4094 characters)
+errFile (%s) Task error output ﬁle name (up to 4094 characters)
+jobFile (%s) Task script ﬁle name
+numAskedHosts
+(%d)Always 0
+askedHosts
+(%s)Name of the asked execution host for the task. When numAskedHosts is 0, this value can be ignored.
+numExHosts
+(%d)Always 1
+2112    IBM Spectrum LSF
+
+Field Description
+execHosts (%s)Name of task execution host
+jStatus (%d) 64 indicates task completed normally. 32 indicates task exited abnormally
+hostFactor (%f)CPU factor of the task execution host
+jobName (%s) Always empty
+command (%s)Complete batch task command speciﬁed by the user (up to 4094 characters)
+lsfRusage (%f) All rusage ﬁelds contain resource usage information for the task. The resource usage information is similar to lsfRuage logged
+in the lsf.acct ﬁle; the difference is that some ﬁelds use the %1.0f format.
+mailUser (%s) Always empty
+projectName
+(%s)Always empty
+exitStatus (%d)UNIX exit status of the task
+maxNumProces
+sors (%d)Always 1
+loginShell (%s) Always empty
+timeEvent (%s)Always empty
+idx (%d) Session job index
+maxRMem (%d)Always 0
+maxRSwap (%d)Always 0
+inFileSpool (%s)Always empty
+commandSpool
+(%s)Always empty
+rsvId (%s) Always empty
+sla (%s) Always empty
+exceptMask
+(%d)Always 0
+additionalInfo
+(%s)Always empty
+exitInfo (%d) Always 0
+warningAction
+(%s)Always empty
+warningTimePer
+iod (%d)Always 0
+chargedSAAP
+(%s)Always empty
+licenseProject
+(%s)Always empty
+app (%s) Always empty
+taskID (%d) Task ID
+taskIdx (%d) Task index
+taskName (%s)Task name
+taskOptions
+(%d)Bit mask of task options:
+TASK_IN_FILE (0x01): specify input ﬁle
+TASK_OUT_FILE (0x02): specify output ﬁle
+TASK_ERR_FILE (0x04): specify error ﬁle
+TASK_PRE_EXEC (0x08): specify pre-execution command
+TASK_POST_EXEC (0x10): specify post-execution command
+TASK_NAME (0x20): specify task name
+IBM Spectrum LSF 2113

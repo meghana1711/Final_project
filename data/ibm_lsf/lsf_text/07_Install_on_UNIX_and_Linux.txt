@@ -1,0 +1,1290 @@
+Install or upgrade IBM Spectrum LSF
+Plan your UNIX, Linux, or Microsoft Windows installation of a new production IBM® Spectrum LSF cluster. If you have an existing installation of LSF,
+then you can plan your upgrade of it and migration your cluster and conﬁguration to the upgraded version.
+To bring your cluster up to date, apply the latest Fix Pack from IBM Fix Central.
+Important:
+You might upload or download ﬁles to and from a central disk place to your LSF environment. For security, always run a virus scan on these
+ﬁles prior to introducing them to your LSF cluster environment.
+Ensure that you use encrypted storage to protect your LSF conﬁguration information.
+Install IBM Spectrum LSF on UNIX and Linux
+ Plan your installation and install a new production IBM Spectrum LSF cluster on UNIX or Linux hosts.
+Install IBM Spectrum LSF on Windows
+ Plan your installation and install a new production IBM Spectrum LSF cluster on Microsoft Windows hosts.
+Upgrade IBM Spectrum LSF
+ Upgrade an existing LSF cluster, and migrate cluster conﬁguration to the latest version of LSF 10.1.0.
+Install IBM Spectrum LSF on UNIX and Linux
+Plan your installation and install a new production IBM Spectrum LSF cluster on UNIX or Linux hosts.
+Example installation directory structure
+ The following diagram illustrates an example directory structure after the LSF installation is complete.
+Planning your installation
+ Plan your installation to determine the required parameters for the install.conﬁg ﬁle.
+Preparing your systems for installation
+ Follow these steps to plan and prepare for installation.
+Installing a new LSF cluster
+ Run the lsﬁnstall script to install a new LSF cluster
+Getting ﬁxes from IBM Fix Central
+ After you install or upgrade LSF, use IBM Fix Central to ﬁnd and download the ﬁxes that are recommended by IBM Support for LSF products.
+From Fix Central, you can search, select, order, and download ﬁx packs and interim ﬁxes for your system with a choice of delivery options.
+Conﬁguring a cluster
+ Set your LSF environment, enable LSF for users, start your cluster, and run some basic commands to test your installation. You can optionally
+run the hostsetup script to set up LSF to start automatically.
+If you install LSF as a non-root user
+ If you install without root permissions, you must choose either a single-user cluster or a multi-user cluster, then set ﬁle ownership and
+permissions for speciﬁc ﬁles. You must also enable LSF to start daemons as a non-root user.
+Adding hosts to the cluster
+ Run the hostsetup command on a host to add that host to the cluster.
+LSF HPC features
+ HPC features are installed on UNIX or Linux hosts as part of the PARALLEL template.
+Registering service ports
+ By default, port numbers for LSF services are deﬁned in the lsf.conf ﬁle. You can also conﬁgure ports by modifying the /etc/services ﬁle or the
+NIS or NIS+ database. If you deﬁne port numbers in the lsf.conf ﬁle, port numbers that are deﬁned in the service database are ignored.
+install.conﬁg
+ The install.conﬁg ﬁle contains options for LSF installation and conﬁguration. Use the lsﬁnstall -f install.conﬁg command to install LSF with
+the options that are speciﬁed in the install.conﬁg ﬁle.
+server.conﬁg
+ The server.conﬁg ﬁle contains options for installing and conﬁguring a server host that can be dynamically added or removed.
+Example installation directory structure
+The following diagram illustrates an example directory structure after the LSF installation is complete.
+IBM Spectrum LSF 207
+
+Planning your installation
+Plan your installation to determine the required parameters for the install.conﬁg ﬁle.
+Choose a primary LSF administrator (owns the LSF and EGO conﬁguration ﬁles and log ﬁles). For example,
+LSF_ADMINS="lsfadmin"
+Choose a shared LSF installation directory. For example,
+LSF_TOP="/usr/share/lsf"
+Choose LSF hosts (management host, management candidates, server hosts, and client-only hosts). For example,
+LSF_ADD_SERVERS="hostm hostb hostc hostd" 
+LSF_MASTER_LIST="hostm hostd" 
+LSF_ADD_CLIENTS="hoste hostf"
+Important: Do not use the name of any host, user, or user group as the name of your cluster.
+Choose LSF server hosts that are candidates to become the management host for the cluster, if you are installing a new host to be dynamically
+added to the cluster. For example,
+LSF_MASTER_LIST="hosta hostb"
+Choose a cluster name that has 39 characters or less with no white spaces. For example,
+LSF_CLUSTER_NAME="cluster1"
+208    IBM Spectrum LSF
+
+If you are installing LSF Standard Edition, choose a conﬁguration template to determine the initial conﬁguration of your new cluster. For
+example,
+CONFIGURATION_TEMPLATE="HIGH_THROUGHPUT"
+Select one of the following templates, depending on the type of jobs that your cluster will run:
+DEFAULT
+Select this template for clusters with mixed workload. This conﬁguration can serve different types of workload with good performance,
+but is not tuned for a particular type of cluster.
+PARALLEL
+Select this template for clusters that are running large parallel jobs. This conﬁguration is designed for long running parallel jobs and not
+for clusters that mainly run short jobs due to the longer reporting time for each job.
+HIGH_THROUGHPUT
+This template is used for clusters that mainly run short jobs, where over 80% of jobs ﬁnish within one minute. This high turnover rate
+requires LSF to be more responsive and fast acting, but will use more resources as the daemons become busier.
+Note: Do not specify the CONFIGURATION_TEMPLATE parameter for LSF Express Edition and Advanced Edition. These editions have their own
+default conﬁguration templates for all installations.
+If you are planning to use IBM® Spectrum LSF Analytics or IBM Spectrum LSF Application Center, set ENABLE_STREAM="Y" to enable LSF
+event streaming.
+If you made any custom changes to your existing esubs, create a backup of these changes.
+If you are planning to run an unattended installation, set SILENT_INSTALL="Y" and LSF_SILENT_INSTALL_TARLIST="ALL |
+Package_Name ...". The silent installation is a non-interactive installation without any input and output. Installation log ﬁles show output
+and error messages during the installation.
+If you are planning to run a quiet installation, set LSF_QUIET_INSTALL="Y". The quiet installation shows all messages but does not prompt
+for conﬁrmations.
+EGO in the LSF cluster
+ Enable EGO in the cluster to allow EGO to control services for components.
+Management host selection
+ To achieve the highest degree of performance and scalability, use a powerful management host.
+EGO in the LSF cluster
+Enable EGO in the cluster to allow EGO to control services for components.
+When EGO is enabled in the cluster, EGO can control services for components. EGO allows failover among multiple management hosts, and allows
+EGO cluster commands to start, stop, and restart the services.
+See Manage LSF on EGO for more details on the beneﬁts of enabling EGO and using EGO to control the services.
+Installation choices
+When you install the cluster and enable EGO, you can conﬁgure the following separately:
+EGO control of the sbatchd and res daemons.
+Management host selection
+To achieve the highest degree of performance and scalability, use a powerful management host.
+LSF has no minimum CPU requirement. For the systems that LSF is supported on, any host with sufﬁcient physical memory can run LSF as
+management host. Swap space is normally conﬁgured as twice the physical memory. LSF daemons in a cluster on Linux x86-64 use about 488 MB of
+memory when no jobs are running. Active jobs use most of the memory that LSF requires.
+Table 1. Management host requirements
+Cluster size Active jobs Minimum required memory (typical)Recommended server CPU
+(Intel, AMD, OpenPower, or equivalent)
+Small (less than 100 hosts) 1,000 1 GB (32 GB) Any server CPU
+10,000 2 GB (32 GB) Recent server CPU
+Medium (100 to 1000 hosts)10,000 4 GB (64 GB) Multi-core CPU (2 cores)
+50,000 8 GB (64 GB) Multi-core CPU (4 cores)
+Large (more than 1000 hosts)50,000 16 GB (128 GB) Multi-core CPU (4 cores)
+500,000 32 GB (256 GB) Multi-core CPU (8 cores)
+IBM Spectrum LSF 209
+
+Preparing your systems for installation
+Follow these steps to plan and prepare for installation.
+Make sure that you have a supported operating system and any prerequisites installed before you install LSF. Also note any known issues
+related to the operating system used with LSF.
+Make sure that the installation ﬁle system on the ﬁle server host has enough disk space for all host types.
+Make sure that the top level LSF installation directory (that is, the LSF_TOP directory, which is the same a the EGO_TOP directory) is accessible
+with the same path name from all hosts in the LSF cluster (for example, the /usr/share/lsf directory).
+Make sure that the installation ﬁle system that contains the LSF_TOP directory (EGO_TOP) is writable by the user account that is running the
+lsﬁnstall script.
+Create user accounts for LSF administrators (for example, create the lsfadmin user account).
+Get the LSF entitlement ﬁle for the edition you are installing:
+lsf_std_entitlement.dat ﬁle for LSF Standard Edition
+lsf_exp_entitlement.dat ﬁle for LSF Express Edition
+Select the appropriate LSF installer script package:
+lsf<version>_lsﬁnstall_linux_x86_64.tar.Z ﬁle for Linux x86_64 platforms that require the Linux JRE. Requires approximately 120 MB.
+lsf<version>_lsﬁnstall.tar.Z ﬁle for all other platforms that require the JRE. Requires approximately 1300 MB.
+lsf<version>_no_jre_lsﬁnstall.tar.Z ﬁle for all platforms not requiring the JRE. JRE version 1.4 or higher must already be installed on the
+system. Requires approximately 1 MB.
+Get the LSF installer script package that you selected and extract it.
+Linux x86_64 platforms:
+# zcat lsf<version>_lsfinstall_linux_x86_64.tar.Z | tar xvf -
+Other platforms:
+# zcat lsf<version>_lsfinstall.tar.Z | tar xvf -
+No JRE required:
+# zcat lsf<version>_no_jre_lsfinstall.tar.Z | tar xvf -
+Get the LSF distribution packages for all host types you need and put them in the same directory as the extracted LSF installer script.
+For example, for Linux 2.6 kernel glibc version 2.3, the distribution package is lsf<version>_linux2.6-glibc2.3-x86_64.tar.Z.
+Do not extract the distribution packages.
+If you are installing LSF on MacOS, obtain the JRE from the Apple support website or through software update and install the JRE on the
+MacOS host ﬁrst. You can also set the $JAVA_HOME environment variable to point to the JRE installation directory. The LSF installation
+program will search for the JRE in $JAVA_HOME. If $JAVA_HOME is not set or LSF cannot ﬁnd the JRE in $JAVA_HOME, LSF searches for the
+JRE in $PATH.
+UNIX and Linux installer packages
+The same installer packages are used for LSF editions on UNIX and Linux.
+lsf<version>_lsﬁnstall.tar.Z
+The standard installer package. Use this package in a heterogeneous cluster with a mix of systems other than x86-64. Requires approximately
+1 GB free space.
+lsf<version>_lsﬁnstall_linux_x86_64.tar.Z
+Use this smaller installer package in a homogeneous x86-64 cluster. If you add other non-x86-64 hosts, you must use the standard installer
+package. Requires approximately 100 MB free space.
+lsf<version>_no_jre_lsﬁnstall.tar.Z
+For all platforms not requiring the JRE. JRE version 1.4 or higher must already be installed on the system. Requires approximately 1 MB free
+space.
+lsf<version>_lsﬁnstall_linux_ppc64le.tar.Z
+Installer package for Linux on IBM Power 6, 7, and 8 Little-Endian (LE) systems
+IBM Spectrum LSF entitlement ﬁles
+LSF uses entitlement ﬁles to determine which feature set is enabled or disabled based on the edition of the product.
+The following LSF entitlement conﬁguration ﬁles are available for each edition:
+LSF Standard Edition
+lsf_std_entitlement.dat
+LSF Express Edition
+lsf_exp_entitlement.dat
+210    IBM Spectrum LSF
+
+The entitlement ﬁle is installed as <LSF_TOP>/conf/lsf.entitlement.
+You must download the entitlement ﬁle for the edition of the product you are running, and set the LSF_ENTITLEMENT_FILE parameter in the
+install.conﬁg ﬁle to the full path to the entitlement ﬁle you downloaded.
+If you are installing LSF Express Edition, you can later upgrade to LSF Standard Edition to take advantage of the additional functionality of LSF
+Standard Edition. Reinstall the cluster with the LSF Standard Edition entitlement ﬁle (lsf_std_entitlement.dat).
+You can also manually upgrade from LSF Express Edition to Standard Edition. Get the LSF Standard entitlement conﬁguration ﬁle
+lsf_std_entitlement.dat or lsf_adv_entitlement.dat, copy it to <LSF_TOP>/conf/lsf.entitlement, and restart your cluster. The new entitlement
+conﬁguration enables extra functionality, but you might need to change some of the default LSF Express Edition conﬁguration parameters to use the
+LSF Standard Edition features.
+After LSF is installed and running, run the lsid command to see which edition of LSF is enabled.
+Integrating LDAP with LSF
+To install LSF in an LDAP environment, check that the following are satisﬁed:
+The LSF administrator is a deﬁned user in LDAP.
+The OS is conﬁgured to use LDAP for authentication.
+The LDAP administrator grants privileges to the LSF installer user (usually root) to retrieve the user list from the LDAP server.
+Installing a new LSF cluster
+Run the lsﬁnstall script to install a new LSF cluster
+Before you begin
+The ed application must be installed.
+If ed is not installed, use the yum install ed command to install it.
+Procedure
+1. Log in to the LSF installation ﬁle server as root.
+If you are not root, see If you install LSF as a non-root user.
+2. Change to the lsf10.1.0_lsﬁnstall/ directory.
+3. Edit the ./install.conﬁg or ./server.conﬁg ﬁle to specify the installation variables you want.
+Uncomment the options that you want in the template ﬁle, and replace the example values with your own settings.
+Tip: The sample values in the install.conﬁg and server.conﬁg template ﬁles are examples only. They are not default installation values.
+The following install.conﬁg parameters are required for installation:
+LSF_TOP
+LSF_ADMINS
+LSF_CLUSTER_NAME
+LSF_MASTER_LIST
+LSF_ENTITLEMENT_FILE
+LSF_TARDIR
+If you do not specify this parameter, the default value is the parent directory of the current working directory from which the lsﬁnstall
+script is run.
+CONFIGURATION_TEMPLATE (LSF Standard Edition only)
+If you do not specify this parameter, the default value is DEFAULT.
+If you intend to include some servers in your cluster that do not share the speciﬁed LSF_TOP ﬁle path in the server.conﬁg ﬁle, then you must
+complete the server.conﬁg ﬁle and run the following command:
+lsfinstall -f -s server.config
+4. Run the lsﬁnstall script command while specifying the install.conﬁg ﬁle to install the cluster.
+lsfinstall -f install.config
+5. Test your cluster by running some basic LSF commands.
+For example, run the lsid, lshosts, and bhosts commands.
+IBM Spectrum LSF 211
+
+Getting ﬁxes from IBM Fix Central
+After you install or upgrade LSF, use IBM Fix Central to ﬁnd and download the ﬁxes that are recommended by IBM Support for LSF products. From
+Fix Central, you can search, select, order, and download ﬁx packs and interim ﬁxes for your system with a choice of delivery options.
+About this task
+Before you download a ﬁx from IBM Fix Central (www.ibm.com/support/ﬁxcentral), have the following information at hand:
+Know your IBMid and password. You must log in to the Fix Central website before you can download a ﬁx.
+If you know exactly which ﬁx you need, you can search for it directly from the Search Fix Central ﬁeld on the IBM Fix Central website.
+To get information about the download process, or help during the process, see Fix Central help
+(www.ibm.com/systems/support/ﬁxes/en/ﬁxcentral/help/faq_sw.html).
+Note: Fix Packs are only available for the following systems:
+Linux 64-bit
+Linux x86_64
+Linux PPC64LE
+Interim ﬁxes are available for the systems that are affected by the ﬁx.
+Procedure
+1. On the Fix Central page, decide how you want to select the product information for the ﬁx that you need:
+Use the Find product tab to ﬁnd ﬁxes by product (for example, IBM® Spectrum LSF).
+Use the Select product tab to ﬁnd ﬁxes by product group (for example, IBM Spectrum Computing).
+a. On the Find product tab, enter IBM Spectrum LSF in the Product selector ﬁeld.
+b. For Installed Version, select the version that is installed on your system.
+Select All to see all available versions.
+c. For Platform, select the operating system that you run your IBM Spectrum LSF product on.
+Select All to see all available versions.
+a. On the Select product tab, select Product group > IBM Spectrum Computing.
+Tip:
+If you searched for LSF family products before, they are conveniently listed in the My product history box.
+b. Select your product from the Product list.
+For example, the core LSF product is IBM Spectrum LSF. Other IBM Spectrum LSF products, including the IBM Spectrum LSF suites, are
+listed in the Select product list.
+c. For Installed Version, select the version that is installed on your system.
+Select All to see all available versions.
+d. For Platform, select the operating system that you run your IBM Spectrum LSF product on.
+Select All to see all available versions.
+2. On the Identify ﬁxes page, specify how you want to search for the ﬁx.
+Browse all the ﬁxes for the speciﬁed product, version, and operating system.
+Enter the APAR or SPR numbers that you want to search for. Enter one or more APAR or SPR numbers, which are separated by a
+comma; for example, P101887.
+Enter an individual ﬁx ID. Search for updates by entering one or more ﬁx IDs, each separated by a comma; for example, lsf-10.1-
+build420903.
+Enter text for your search keywords, such as problem area, exception, or message ID, in any order, for example, lsb_readjobinfo
+API.
+Search a list of the recommended ﬁxes.
+For IBM Power Systems™ ﬁxes, you can use the Fix Level Recommendation Tool (FLRT) (www.ibm.com/support/customercare/flrt/) to identify
+the ﬁxes you want. This tool provides information about the minimum recommended ﬁx levels and compatibility on the key components of
+IBM Power Systems running the AIX®, IBM i and Linux operating systems. FLRT is especially useful when you plan to upgrade the key
+components of your system, or you want to verify the current health of the system.
+3. On the Select ﬁxes page, browse the list of ﬁxes for your product, version, and operating system.
+Tip: To ﬁnd the latest ﬁxes, sort the list of ﬁxes by Release date.
+Mark the check box next to any ﬁx that you want to download.
+To create a new query and a new list of ﬁxes to choose from, clear the list of ﬁxes and return to the Identify ﬁxes page.
+Filter the content of the Select ﬁxes page by platform, ﬁx status, version, or ﬁx type.
+4. On the Download options page, specify how you want to download the ﬁx and any other required information.
+Click Back to change your download options.
+5. Download the ﬁles that implement the ﬁx.
+When you download the ﬁle, make sure that the name of the ﬁle is not changed. Do not change the name of the ﬁle yourself, and check that
+the web browsers or download utility did not inadvertently change the ﬁle name.
+212    IBM Spectrum LSF
+
+6. To apply the ﬁx, follow the instructions in the readme ﬁle that is downloaded with the ﬁx.
+7. Optional: Subscribe to notiﬁcations about LSF ﬁxes on Fix Central.
+To receive information about product solution and patch updates automatically, go to the My notiﬁcations page on the IBM Support website:
+(www.ibm.com/support/my notiﬁcations). You can edit your subscription settings to choose the types of information you want to get
+notiﬁcation about, for example, security bulletins, ﬁxes, troubleshooting, and product enhancements or documentation changes.
+Related information
+IBM Fix Central: IBM Spectrum LSF 10.1 Fix Pack 13
+IBM Fix Central: IBM Spectrum LSF Predictor 10.1 Fix Pack 13
+IBM Fix Central: IBM Spectrum LSF Simulator 10.1 Fix Pack 13
+Conﬁguring a cluster
+Set your LSF environment, enable LSF for users, start your cluster, and run some basic commands to test your installation. You can optionally run the
+hostsetup script to set up LSF to start automatically.
+About this task
+To complete your LSF installation and get your cluster up and running, follow the steps in the lsf_getting_started.html ﬁle. After you set up your LSF
+server hosts and verify that your cluster is running correctly, see the lsf_quick_admin.html ﬁle to learn more about your new LSF cluster. After
+installation, remember to bring your cluster up to date by applying the latest updates and bug ﬁxes.
+Procedure
+1. Log in to the LSF management host as root, and set your LSF environment:
+In the csh or tcsh shell, run the source command:
+% source <LSF_TOP>/conf/cshrc.lsf
+In the sh, ksh, or bash shell run the following command:
+$ . <LSF_TOP>/conf/profile.lsf
+2. Optional. Enable LSF for users.
+Ensure that all users include <LSF_TOP>/conf/cshrc.lsf or <LSF_TOP>/conf/proﬁle.lsf in their .cshrc or .proﬁle ﬁles.
+3. Run the lsfstartup command to start the cluster.
+The lsfstartup command uses RSH to connect to all nodes in the cluster and start LSF. If RSH is not conﬁgured in your environment, you can
+conﬁgure the lsfstartup command to use SSH by adding the following line to your lsf.conf ﬁle:
+LSF_RSH=ssh
+4. Optional. Run the hostsetup command to set up LSF hosts and automatic LSF startup.
+Note: Running the hostsetup command is only required if you will be running IBM POE jobs by using IBM® Parallel Environment (IBM PE).
+a. Log in to each LSF server host as root. Start with the LSF management host.
+Note: If you are integrating LSF with IBM PE, you must log in as root.
+Otherwise, if you are not root, you can continue with host setup, but by default, only root can start the LSF daemons.
+b. Run the hostsetup command on each LSF server host.
+Important: Before you run the hostsetup command, make sure that the hosts you want to set up are in the lsf.cluster.cluster_name ﬁle.
+For example, run the following commands to use the LSF cluster that is installed in the /usr/share/lsf directory and conﬁgure LSF
+daemons to start automatically at boot time:
+# cd /usr/share/lsf/10.1.0/install 
+# ./hostsetup --top="/usr/share/lsf" --boot="y" 
+For complete usage of the hostsetup command, run the hostsetup -h command.
+5. Test your cluster by running some basic LSF commands.
+For example, run the lsid, lshosts, and bhosts commands.
+After you test your cluster, be sure that all LSF users include the LSF_CONFDIR/cshrc.lsf or LSF_CONFDIR/proﬁle.lsf commands in their .cshrc
+or .proﬁle ﬁles.
+If you install LSF as a non-root user
+IBM Spectrum LSF 213
+
+If you install without root permissions, you must choose either a single-user cluster or a multi-user cluster, then set ﬁle ownership and permissions
+for speciﬁc ﬁles. You must also enable LSF to start daemons as a non-root user.
+Single user
+Your user account must be the primary LSF administrator. This account will be able to start LSF daemons, but it is the only user account that
+can submit jobs to the cluster. To display load information this user account must also be able to read the system kernel information, such as
+the /dev/kmem device.
+Multi-user
+By default, only root can start the LSF daemons. Any user can submit jobs to your cluster. To make the cluster available to other users, you
+must manually change the ownership and setuid bit for the lsadmin and badmin binary ﬁles to root, and the ﬁle permission mode to -rwsr-
+xr-x (4755) so that the user ID bit for the owner is setuid.
+Use the following commands to set the correct owner, user ID bit, and ﬁle permission mode for a multi-user cluster:
+# hostsetup --setuid 
+# chown root lsadmin badmin eauth swtbl_api ntbl_api 
+# chmod 4755 lsadmin badmin eauth swtbl_api ntbl_api
+Since this allows the LSF commands to run with root privileges, do not enable the setuid bit if you do not want these LSF commands to run
+with root privileges.
+The hostsetup --setuid command enables the setuid bit for the following LSF executable ﬁles: badmin, lsadmin, egosh, utmpreg, swtbl_api,
+ntbl_api, lstbl_nid, and swtbl_poe.
+Running IBM POE jobs in LSF
+Single-user
+To run IBM POE jobs, you must manually change the ownership and setuid bit for the swtbl_api and ntbl_api binary ﬁles to root, and the ﬁle
+permission mode to -rwsr-xr-x (4755) so that the user ID bit for the owner is setuid.
+Use the following commands to set the correct owner, user ID bit, and ﬁle permission mode:
+# hostsetup --setuid 
+# chown root swtbl_api ntbl_api 
+# chmod 4755 swtbl_api ntbl_api
+Since this allows the LSF commands to run with root privileges, do not enable the setuid bit if you do not want these LSF commands to run
+with root privileges.
+The hostsetup --setuid command enables the setuid bit for the following LSF executable ﬁles: badmin, lsadmin, egosh, utmpreg, swtbl_api,
+ntbl_api, lstbl_nid, and swtbl_poe.
+Adding hosts to the cluster
+Run the hostsetup command on a host to add that host to the cluster.
+About this task
+Note: If you plan to run IBM POE jobs by using IBM Parallel Environment Runtime Edition (or IBM PE Runtime Edition), you must run the hostsetup
+command.
+If you are integrating LSF with IBM® Parallel Environment (IBM PE), you must run the hostsetup command as the root user.
+Procedure
+# hostsetup --top="/usr/share/lsf" --boot="y"
+This command sets up a host to use the cluster that is installed in the /usr/share/lsf directory. It also conﬁgures the LSF daemons to start
+automatically (with the --boot="y" option).
+# hostsetup --top="/usr/share/lsf" --silent
+This command is the silent installation option, which does not display any output messages.
+Adding a remote host with the rhostsetup command
+Before you begin
+Before you use the rhostsetup command, you must conﬁgure the following parameters at the top of the script:
+LSF_RSHCMD is the remote shell command (for example, the rsh or ssh commands) accessing the remote host.
+LSF_HOSTS lists hosts on which to run the hostsetup command.
+LSF_TOPDIR sets the hostsetup --top option. Specify the full path to the top-level installation directory. If the path is not deﬁned here,
+rhostsetup attempts to detect the top-level installation directory from the lsf.conf ﬁle.
+LSF_BOOT sets the hostsetup --boot option. Default is no (n).
+214    IBM Spectrum LSF
+
+LSF_QUIET sets the hostsetup --quiet option. Default is no (n).
+About this task
+Use the rhostsetup script to start hostsetup on remote hosts.
+If you are integrating LSF with IBM Parallel Environment (IBM PE), you must run the rhostsetup script as the root user.
+The rhostsetup script uses either ssh or rsh. It is included in the installer script package lsf<version>_lsﬁnstall.tar.Z and is located in the
+lsf10.1.0_lsﬁnstall directory, which is created when you decompress and extract the installer script package.
+After installation, the rhostsetup script is located in the <LSF_TOP>/version/install/ directory.
+Procedure
+Run the rhostsetup script.
+Example
+LSF_RSHCMD="ssh -n" 
+LSF_HOSTS="hostA hostB hostC" 
+LSF_TOPDIR=/usr/local/ls 
+LSF_BOOT=y 
+LSF_QUIET=n
+LSF HPC features
+HPC features are installed on UNIX or Linux hosts as part of the PARALLEL template.
+Note: HPC integration is now deprecated and might be removed in a future version of LSF.
+When you install, some changes are made for you automatically. Add the appropriate resource names under the RESOURCES column of the Host
+section of the lsf.cluster.cluster_name ﬁle.
+The HPC feature installation automatically conﬁgures the following ﬁles:
+lsb.modules
+lsb.resources
+lsb.queues
+lsf.cluster
+lsf.conf
+lsf.shared
+lsb.modules
+The HPC feature installation adds the external scheduler plug-in module names to the PluginModule section of the lsb.modules ﬁle:
+Begin PluginModule 
+SCH_PLUGIN          RB_PLUGIN   SCH_DISABLE_PHASES  
+schmod_default        ()                 () 
+schmod_fcfs           ()                 () 
+schmod_fairshare      ()                 () 
+schmod_limit          ()                 () 
+schmod_parallel       ()                 () 
+schmod_reserve        ()                 () 
+schmod_mc             ()                 () 
+schmod_preemption     ()                 () 
+schmod_advrsv         ()                 () 
+schmod_ps             ()                 () 
+schmod_affinity       ()                 () 
+#schmod_dc            ()                 () 
+#schmod_demand        ()                 () 
+schmod_aps            ()                 () 
+schmod_cpuset         ()                 () 
+End PluginModule
+Note:
+The HPC plug-in names must be conﬁgured after the standard LSF plug-in names in the PluginModule list.
+lsb.resources
+For IBM POE jobs, the HPC feature installation conﬁgures the ReservationUsage section in the lsb.resources ﬁle to reserve HPS resources on a
+per-slot basis.
+IBM Spectrum LSF 215
+
+Resource usage that is deﬁned in the ReservationUsage section overrides the cluster-wide RESOURCE_RESERVE_PER_TASK parameter that is
+deﬁned in the lsb.params ﬁle if it also exists.
+Begin ReservationUsage 
+RESOURCE           METHOD 
+adapter_windows    PER_TASK 
+nrt_windows        PER_TASK 
+End ReservationUsage
+lsb.queues
+The HPC feature installation conﬁgures hpc_ibm queue for IBM POE jobs and the hpc_ibm_tv queue for debugging IBM POE jobs:
+Begin Queue 
+QUEUE_NAME   = hpc_linux 
+PRIORITY     = 30 
+NICE         = 20 
+#RUN_WINDOW   = 5:19:00-1:8:30 20:00-8:30 
+#r1m         = 0.7/2.0   # loadSched/loadStop 
+#r15m         = 1.0/2.5 
+#pg           = 4.0/8 
+#ut           = 0.2 
+#io           = 50/240 
+#CPULIMIT     = 180/hostA # 3 hours of host hostA 
+#FILELIMIT    = 20000 
+#DATALIMIT    = 20000     # jobs data segment limit 
+#CORELIMIT    = 20000 
+#TASKLIMIT    = 5         # job processor limit 
+#USERS        = all       # users who can submit jobs to this queue 
+#HOSTS        = all       # hosts on which jobs in this queue can run 
+#PRE_EXEC     = /usr/local/lsf/misc/testq_pre >> /tmp/pre.out 
+#POST_EXEC    = /usr/local/lsf/misc/testq_post |grep -v Hey 
+DESCRIPTION  = IBM Spectrum LSF 10.1 for linux. 
+End Queue 
+  
+Begin Queue 
+QUEUE_NAME   = hpc_linux_tv 
+PRIORITY     = 30 
+NICE         = 20 
+#RUN_WINDOW   = 5:19:00-1:8:30 20:00-8:30 
+#r1m         = 0.7/2.0    # loadSched/loadStop 
+#r15m         = 1.0/2.5 
+#pg           = 4.0/8 
+#ut           = 0.2 
+#io           = 50/240 
+#CPULIMIT     = 180/hostA # 3 hours of host hostA 
+#FILELIMIT    = 20000 
+#DATALIMIT    = 20000     # jobs data segment limit 
+#CORELIMIT    = 20000 
+#TASKLIMIT    = 5         # job processor limit 
+#USERS        = all       # users who can submit jobs to this queue 
+#HOSTS        = all       # hosts on which jobs in this queue can run 
+#PRE_EXEC     = /usr/local/lsf/misc/testq_pre >> /tmp/pre.out 
+#POST_EXEC    = /usr/local/lsf/misc/testq_post |grep -v Hey 
+TERMINATE_WHEN = LOAD PREEMPT WINDOW 
+RERUNNABLE = NO 
+INTERACTIVE = NO 
+DESCRIPTION  = IBM Spectrum LSF 10.1 for linux debug queue. 
+End Queue 
+  
+Begin Queue 
+QUEUE_NAME   = hpc_ibm 
+PRIORITY     = 30 
+NICE         = 20 
+#RUN_WINDOW   = 5:19:00-1:8:30 20:00-8:30 
+#r1m         = 0.7/2.0    # loadSched/loadStop 
+#r15m         = 1.0/2.5 
+#pg           = 4.0/8 
+#ut           = 0.2 
+#io           = 50/240 
+#CPULIMIT     = 180/hostA  # 3 hours of host hostA 
+#FILELIMIT    = 20000 
+#DATALIMIT    = 20000      # jobs data segment limit 
+#CORELIMIT    = 20000 
+#TASKLIMIT    = 5          # job processor limit 
+#USERS        = all        # users who can submit jobs to this queue 
+#HOSTS        = all        # hosts on which jobs in this queue can run 
+#PRE_EXEC     = /usr/local/lsf/misc/testq_pre >> /tmp/pre.out 
+#POST_EXEC    = /usr/local/lsf/misc/testq_post |grep -v Hey 
+RES_REQ = select[ poe > 0 ] 
+EXCLUSIVE = Y 
+REQUEUE_EXIT_VALUES = 133 134 135 
+216    IBM Spectrum LSF
+
+DESCRIPTION  = IBM Spectrum LSF 10.1 for IBM. This queue is to run POE jobs ONLY. 
+End Queue 
+  
+Begin Queue 
+QUEUE_NAME   = hpc_ibm_tv 
+PRIORITY     = 30 
+NICE         = 20 
+#RUN_WINDOW   = 5:19:00-1:8:30 20:00-8:30 
+#r1m         = 0.7/2.0    # loadSched/loadStop 
+#r15m         = 1.0/2.5 
+#pg           = 4.0/8 
+#ut           = 0.2 
+#io           = 50/240 
+#CPULIMIT     = 180/hostA  # 3 hours of host hostA 
+#FILELIMIT    = 20000 
+#DATALIMIT    = 20000      # jobs data segment limit 
+#CORELIMIT    = 20000 
+#TASKLIMIT    = 5          # job processor limit 
+#USERS        = all        # users who can submit jobs to this queue 
+#HOSTS        = all        # hosts on which jobs in this queue can run 
+#PRE_EXEC     = /usr/local/lsf/misc/testq_pre >> /tmp/pre.out 
+#POST_EXEC    = /usr/local/lsf/misc/testq_post |grep -v Hey 
+RES_REQ = select[ poe > 0 ] 
+REQUEUE_EXIT_VALUES = 133 134 135 
+TERMINATE_WHEN = LOAD PREEMPT WINDOW 
+RERUNNABLE = NO 
+INTERACTIVE = NO 
+DESCRIPTION  = IBM Spectrum LSF 10.1 for IBM debug queue. This queue is to run POE jobs ONLY. 
+End Queue
+lsf.cluster. c l u s t e r _ n a m e
+For IBM POE jobs, the HPC feature installation conﬁgures the ResourceMap section of the lsf.cluster.cluster_name ﬁle to map the following shared
+resources for POE jobs to all hosts in the cluster:
+Begin ResourceMap 
+RESOURCENAME        LOCATION 
+poe                 [default] 
+adapter_windows     [default] 
+nrt_windows         [default] 
+dedicated_tasks     (0@[default]) 
+ip_tasks            (0@[default]) 
+us_tasks            (0@[default]) 
+End ResourceMap
+lsf.conf
+The HPC feature installation deﬁnes the following parameters in the lsf.conf ﬁle:
+LSB_SUB_COMMANDNAME=Y
+Enables the LSF_SUB_COMMANDLINE environment variable that is required by the esub script.
+LSF_ENABLE_EXTSCHEDULER=Y
+LSF uses an external scheduler for topology-aware external scheduling.
+LSB_CPUSET_BESTCPUS=Y
+LSF schedules jobs based on the shortest CPU radius in the processor topology by using a best-ﬁt algorithm. On HP-UX hosts, sets the full
+path to the HP vendor MPI library (libmpirm.sl): LSF_VPLUGIN="/opt/mpi/lib/pa1.1/libmpirm.sl"
+LSB_RLA_PORT=port_number
+Deﬁnes the TCP port that is used for communication between the LSF HPC topology adapter (RLA) and the sbatchd daemon. The default port
+number is 6883.
+LSB_SHORT_HOSTLIST=1
+Displays an abbreviated list of hosts in the bjobs and bhist commands for a parallel job where multiple processes of a job are running on a
+host. Multiple processes are displayed in the format processes*hostA.
+lsf.shared
+The HPC feature installation deﬁnes the following shared resources that are required by HPC features in the lsf.shared ﬁle:
+Begin Resource 
+RESOURCENAME    TYPE    INTERVAL INCREASING  DESCRIPTION       # Keywords 
+slurm           Boolean    ()    ()          (SLURM) 
+cpuset          Boolean    ()    ()          (CPUSET) 
+mpich_gm        Boolean    ()    ()          (MPICH GM MPI) 
+lammpi          Boolean    ()    ()          (LAM MPI) 
+mpichp4         Boolean    ()    ()          (MPICH P4 MPI) 
+mvapich         Boolean    ()    ()          (Infiniband MPI) 
+sca_mpimon      Boolean    ()    ()          (SCALI MPI) 
+ibmmpi          Boolean    ()    ()          (IBM POE MPI) 
+hpmpi           Boolean    ()    ()          (HP MPI) 
+IBM Spectrum LSF 217
+
+intelmpi        Boolean    ()    ()          (Intel MPI) 
+crayxt3         Boolean    ()    ()          (Cray XT3 MPI) 
+crayx1          Boolean    ()    ()          (Cray X1 MPI) 
+fluent          Boolean    ()    ()          (fluent availability) 
+ls_dyna         Boolean    ()    ()          (ls_dyna availability) 
+nastran         Boolean    ()    ()          (nastran availability) 
+pvm             Boolean    ()    ()          (pvm availability) 
+openmp          Boolean    ()    ()          (openmp availability) 
+ansys           Boolean    ()    ()          (ansys availability) 
+blast           Boolean    ()    ()          (blast availability) 
+gaussian        Boolean    ()    ()          (gaussian availability) 
+lion            Boolean    ()    ()          (lion availability) 
+scitegic        Boolean    ()    ()          (scitegic availability) 
+schroedinger    Boolean    ()    ()          (schroedinger availability) 
+hmmer           Boolean    ()    ()          (hmmer availability) 
+adapter_windows Numeric    30    N    (free adapter windows on css0 on IBM SP) 
+nrt_windows     Numeric    30    N    (The number of free nrt windows on IBM systems) 
+poe             Numeric    30    N    (poe availability) 
+css0            Numeric    30    N    (free adapter windows on css0 on IBM SP) 
+csss            Numeric    30    N    (free adapter windows on csss on IBM SP) 
+dedicated_tasks Numeric    ()    Y    (running dedicated tasks) 
+ip_tasks        Numeric    ()    Y    (running IP tasks) 
+us_tasks        Numeric    ()    Y    (running US tasks) 
+End Resource
+Registering service ports
+By default, port numbers for LSF services are deﬁned in the lsf.conf ﬁle. You can also conﬁgure ports by modifying the /etc/services ﬁle or the NIS or
+NIS+ database. If you deﬁne port numbers in the lsf.conf ﬁle, port numbers that are deﬁned in the service database are ignored.
+About this task
+LSF uses dedicated UDP and TCP ports for communication. All hosts in the cluster must use the same port numbers to communicate with each other.
+The service port numbers can be any numbers 1024 - 65535 that are not already used by other services.
+Procedure
+Ensure that the port numbers you supply are not already used by applications that are registered in your service database by checking the
+/etc/services ﬁle or by using the command ypcat services
+lsf.conf
+About this task
+By default, port numbers for LSF services are deﬁned in the lsf.conf ﬁle. You can also conﬁgure ports by modifying the /etc/services ﬁle or the NIS or
+NIS+ database. If you deﬁne port numbers in the lsf.conf ﬁle, port numbers that are deﬁned in the service database are ignored.
+Procedure
+1. Log on to any host as root.
+2. Edit the lsf.conf ﬁle and add the following lines:
+LSF_RES_PORT=3878 
+LSB_MBD_PORT=3881 
+LSB_SBD_PORT=3882
+3. Add the same entries to the lsf.conf ﬁle on every host.
+4. Save the lsf.conf ﬁle.
+5. Run the lsadmin reconﬁg command to reconﬁgure LIM.
+6. Run the badmin mbdrestart command to restart the mbatchd daemon.
+7. Run the lsfstartup command to restart all daemons in the cluster.
+/etc/services
+Conﬁguring services manually
+About this task
+Tip: During installation, use the hostsetup --boot="y" option to set up the LSF port numbers in the service database.
+218    IBM Spectrum LSF
+
+Procedure
+1. Use the LSF_TOP/version/install/instlib/example.services ﬁle as a guide for adding LSF entries to the services database.
+If any other service that is listed in your services database has the same port number as one of the LSF services, you must change the port
+number for the LSF service. You must use the same port numbers on every LSF host.
+2. Log on to any host as root.
+3. Edit the /etc/services ﬁle and add the contents of the LSF_TOP/version/install/instlib/example.services ﬁle:
+# /etc/services entries for LSF daemons 
+# 
+res     3878/tcp # remote execution server 
+lim     3879/udp # load information manager 
+mbatchd 3881/tcp # management lsbatch daemon 
+sbatchd 3882/tcp # server lsbatch daemon 
+# 
+# Add this if ident is not already defined 
+# in your /etc/services file 
+ident 113/tcp auth tap # identd
+4. Run the lsadmin reconﬁg command to reconﬁgure LIM.
+5. Run the badmin reconﬁg command to reconﬁgure mbatchd.
+6. Run the lsfstartup command to restart all daemons in the cluster.
+NIS or NIS+ databases
+About this task
+If you are running NIS, you need to modify the services database only one time per NIS management host. On some hosts, the NIS database and
+commands are in the /var/yp directory; on others, NIS is found in the /etc/yp directory.
+Procedure
+1. Log on to any host as root.
+2. Run the lsfshutdown command to shut down all the daemons in the cluster.
+3. To ﬁnd the name of the NIS management host, use the ypwhich -m servicescommand.
+4. Log on to the NIS management host as root.
+5. Edit the /var/yp/src/services or /etc/yp/src/services ﬁle on the NIS management host and add the contents of the
+LSF_TOP/version/install/instlib/example.services ﬁle:
+# /etc/services entries for LSF daemons. 
+# 
+res     3878/tcp # remote execution server 
+lim     3879/udp # load information manager 
+mbatchd 3881/tcp # management lsbatch daemon 
+sbatchd 3882/tcp # server lsbatch daemon 
+# 
+# Add this if ident is not already defined 
+# in your /etc/services file 
+ident 113/tcp auth tap # identd
+Ensure that all the lines you add either contain valid service entries or begin with a comment character (#). Blank lines are not allowed.
+6. Change the directory to /var/yp or /etc/yp.
+7. Run the ypmake services command.
+On some hosts, the primary copy of the services database is stored in a different location.
+On systems that run NIS+, the procedure is similar. For more information, see your system documentation.
+8. Run the lsadmin reconﬁg command to reconﬁgure LIM.
+9. Run the badmin reconﬁg command to reconﬁgure the mbatchd daemon.
+10. Run the lsfstartup command to restart all daemons in the cluster.
+install.conﬁg
+The install.conﬁg ﬁle contains options for LSF installation and conﬁguration. Use the lsﬁnstall -f install.conﬁg command to install LSF with the
+options that are speciﬁed in the install.conﬁg ﬁle.
+Template location
+A template install.conﬁg is included in the installer script package lsf<version>_lsﬁnstall.tar.Z and is located in the lsf<version>_lsﬁnstall directory
+that is created when you decompress and extract the installer script package. Edit the ﬁle and uncomment the options that you want in the template
+IBM Spectrum LSF 219
+
+ﬁle. Replace the example values with your own settings to specify the options for your new installation.
+Important: The sample values in the install.conﬁg template ﬁle are examples only. They are not default installation values.
+After installation, the install.conﬁg ﬁle that contains the options that you speciﬁed is located in the LSF_TOP/<version>/install/ directory.
+Format
+Each entry in the install.conﬁg ﬁle has the following format:
+NAME="STRING1 STRING2 ..."
+The equal sign = must follow each NAME parameter even if no value follows and there must be no spaces around the equal sign.
+A value that contains multiple strings that are separated by spaces must be enclosed in quotation marks.
+Blank lines and lines that start with a number sign (#) are ignored.
+Parameters
+CONFIGURATION_TEMPLATE
+EGO_DAEMON_CONTROL
+ENABLE_CGROUP
+ENABLE_DYNAMIC_HOSTS
+ENABLE_EGO
+ENABLE_STREAM
+LSF_ADD_SERVERS
+LSF_ADD_CLIENTS
+LSF_ADMINS
+LSF_CLUSTER_NAME
+LSF_DYNAMIC_HOST_WAIT_TIME
+LSF_ENTITLEMENT_FILE
+LSF_MASTER_LIST
+LSF_QUIET_INST
+LSF_SILENT_INSTALL_TARLIST
+LSF_TARDIR
+LSF_TOP
+PATCH_BACKUP_DIR
+PATCH_HISTORY_DIR
+SILENT_INSTALL
+CONFIGURATION_TEMPLATE
+Syntax
+CONFIGURATION_TEMPLATE="DEFAULT" | "PARALLEL" | "HIGH_THROUGHPUT"
+Description
+LSF Standard Edition on UNIX or Linux only. Selects the conﬁguration template for this installation, which determines the initial LSF conﬁguration
+parameters that are speciﬁed when the installation is complete. The following are valid values for this parameter:
+DEFAULT
+Use this template for clusters with mixed workload. This conﬁguration can serve different types of workload with good performance, but is not
+tuned for a particular type of cluster.
+PARALLEL
+This template provides extra support for large parallel jobs. Since this conﬁguration is designed for long running parallel jobs, do not use this
+conﬁguration for clusters that mainly run short jobs due to the longer reporting time for each job.
+HIGH_THROUGHPUT
+This template is used for clusters that mainly run short jobs, where over 80% of jobs ﬁnish within one minute. This high turnover rate requires
+LSF to be more responsive and fast acting. However, this conﬁguration uses more resources as the daemons become busier.
+The installer uses the DEFAULT conﬁguration template when installing LSF Standard Edition on Windows.
+Note: Do not specify the CONFIGURATION_TEMPLATE parameter for LSF Express Edition and LSF Advanced Edition. These editions have their own
+default conﬁguration templates for all installations.
+The installer speciﬁes the following initial conﬁguration ﬁle parameter values based on the selected conﬁguration template:
+DEFAULT
+lsf.conf
+DAEMON_SHUTDOWN_DELAY=180 
+LSF_LINUX_CGROUP_ACCT=Y 
+LSF_PROCESS_TRACKING=Y  
+220    IBM Spectrum LSF
+
+lsb.params
+JOB_DEP_LAST_SUB=1 
+JOB_SCHEDULING_INTERVAL=1 
+MAX_JOB_NUM=10000 
+NEWJOB_REFRESH=Y 
+SBD_SLEEP_TIME=7
+PARALLEL
+lsf.conf
+LSB_SHORT_HOSTLIST=1 
+LSF_LINUX_CGROUP_ACCT=Y 
+LSF_PROCESS_TRACKING=Y 
+LSF_ENABLE_EXTSCHEDULER=Y 
+LSF_HPC_EXTENSIONS="CUMULATIVE_RUSAGE LSB_HCLOSE_BY_RES SHORT_EVENTFILE"
+For a full description of the PARALLEL conﬁguration template, refer to Enable LSF HPC Features.
+lsb.params
+JOB_DEP_LAST_SUB=1 
+JOB_SCHEDULING_INTERVAL=1 
+NEWJOB_REFRESH=Y 
+TRACK_ELIGIBLE_PENDINFO=Y
+HIGH_THROUGHPUT
+lsf.conf
+LSB_MAX_PACK_JOBS=300 
+LSB_SHORT_HOSTLIST=1
+lsb.params
+JOB_SCHEDULING_INTERVAL=50ms 
+MAX_INFO_DIRS=500 
+MAX_JOB_ARRAY_SIZE=10000 
+MAX_JOB_NUM=100000 
+MIN_SWITCH_PERIOD=1800 
+NEWJOB_REFRESH=YSBD_SLEEP_TIME=3
+The installer speciﬁes the following initial conﬁguration parameters for all conﬁguration templates:
+lsf.conf:
+EGO_ENABLE_AUTO_DAEMON_SHUTDOWN=Y 
+LSB_DISABLE_LIMLOCK_EXCL=Y 
+LSB_MOD_ALL_JOBS=Y 
+LSF_DISABLE_LSRUN=Y 
+LSB_SUBK_SHOW_EXEC_HOST=Y 
+LSF_PIM_LINUX_ENHANCE=Y 
+LSF_PIM_SLEEPTIME_UPDATE=Y 
+LSF_UNIT_FOR_LIMITS=MB
+lsb.params:
+ABS_RUNLIMIT=Y 
+DEFAULT_QUEUE=normal interactive 
+JOB_ACCEPT_INTERVAL=0 
+MAX_CONCURRENT_QUERY=100 
+MAX_JOB_NUM=10000 
+MBD_SLEEP_TIME=10 
+PARALLEL_SCHED_BY_SLOT=Y 
+RELAX_JOB_DISPATCH_ORDER=Y
+In addition, the installer enables the following features for all conﬁguration templates:
+Fair share scheduling (LSF Standard Edition and LSF Advanced Edition): The following example for the lsb.queues ﬁle enables fair share
+scheduling for all queues except admin and license:
+Begin Queue 
+... 
+FAIRSHARE=USER_SHARES[[default, 1]] 
+... 
+End Queue
+Host groups (LSF Standard Edition on UNIX or Linux): Management candidate hosts are assigned to the management_hosts host group.
+User groups (LSF Standard Edition on UNIX or Linux): LSF administrators are assigned to the lsfadmins user group.
+Afﬁnity scheduling in both the lsb.modules and lsb.hosts ﬁles.
+IBM Spectrum LSF 221
+
+Example
+CONFIGURATION_TEMPLATE="HIGH_THROUGHPUT"
+Default
+DEFAULT (the default conﬁguration template is used)
+EGO_DAEMON_CONTROL
+Syntax
+EGO_DAEMON_CONTROL="Y" | "N"
+Description
+Enables EGO to control the LSF res and sbatchd daemons. Set the value to "Y" if you want the EGO service controller to start the res and sbatchd
+daemons, and restart if they fail. To avoid conflicts, leave this parameter undeﬁned if you use a script to start LSF daemons.
+Note: If you specify EGO_ENABLE="N", this parameter is ignored.
+Example
+EGO_DAEMON_CONTROL="N"
+Default
+N (the res and sbatchd are started manually)
+ENABLE_CGROUP
+Syntax
+ENABLE_CGROUP=Y | N
+Description
+Enables LSF to track processes' CPU and memory accounting based on Linux cgroup memory and cpuacct subsystems.
+Set the value to Y if you want to use Linux cgroup to track process accounting. The installer sets the following initial conﬁguration ﬁle parameter
+values in the lsf.conf ﬁle:
+LSB_RESOURCE_ENFORCE="cpu memory" 
+LSF_PROCESS_TRACKING=Y 
+LSF_LINUX_CGROUP_ACCT=Y
+Example
+ENABLE_CGROUP=Y
+Default
+N (do not use Linux cgroup to track process accounting)
+ENABLE_DYNAMIC_HOSTS
+Syntax
+ENABLE_DYNAMIC_HOSTS="Y" | "N"
+Description
+Enables dynamically adding and removing hosts. Set the value to "Y" if you want to allow dynamically added hosts.
+If you enable dynamic hosts, any host can connect to cluster. To enable security, conﬁgure the LSF_HOST_ADDR_RANGE parameter in the
+lsf.cluster.cluster_name ﬁle after installation and restrict the hosts that can connect to your cluster.
+Example
+ENABLE_DYNAMIC_HOSTS="N"
+Default
+N (dynamic hosts not allowed)
+222    IBM Spectrum LSF
+
+ENABLE_EGO
+Syntax
+ENABLE_EGO="Y" | "N"
+Description
+Enables EGO functions in the LSF cluster.
+ENABLE_EGO="Y" causes the lsﬁnstall command to uncomment the LSF_EGO_ENVDIR parameter and sets the LSF_ENABLE_EGO="Y" parameter in
+the lsf.conf ﬁle.
+ENABLE_EGO="N" causes the lsﬁnstall command to comment out the LSF_EGO_ENVDIR parameter and sets the LSF_ENABLE_EGO="N" parameter
+in the lsf.conf ﬁle.
+Set the value to ENABLE_EGO="Y" if you want to take advantage of the following LSF features that depend on EGO:
+LSF daemon control by EGO service controller
+SLA scheduling with EGO enabled
+Default
+N (EGO is disabled in the LSF cluster)
+ENABLE_GPU
+Syntax
+ENABLE_GPU=Y | N
+Description
+Enables LSF to support GPUs so that applications can use GPU resources in a Linux environment. LSF supports parallel jobs that require GPUs based
+on availability.
+Set the value to Y if you want to run parallel jobs that request GPU resources in Linux environments. The installer sets the following initial
+conﬁguration ﬁle parameter values in the following conﬁguration ﬁles:
+lsf.conf:
+LSB_RESOURCE_ENFORCE="gpu"
+lsf.cluster.cluster_name:
+Begin ResourceMap 
+  RESOURCENAME      LOCATION 
+  ngpus             ([default]) 
+  ngpus_shared      ([default]) 
+  ngpus_excl_t      ([default]) 
+  ngpus_excl_p      ([default]) 
+  ... 
+  gpu_topology      ([default]) 
+End ResourceMap
+There are also several resources that are added to the ﬁle, but are commented out by default. The resources that are commented out are not
+shown here.
+lsf.shared:
+Begin Resource 
+RESOURCENAME  TYPE    INTERVAL INCREASING  CONSUMABLE  DESCRIPTION            # Keywords    
+   ngpus             Numeric         60     N           N           (Number of GPUs) 
+   ngpus_shared      Numeric         60     N           Y           (Number of GPUs in Shared Mode) 
+   ngpus_excl_t      Numeric         60     N           Y           (Number of GPUs in Exclusive  Thread 
+Mode) 
+   ngpus_excl_p      Numeric         60     N           Y           (Number of GPUs in Exclusive  Process 
+Mode) 
+   ... 
+   gpu_topology      String          60     ()          ()          (GPU topology on host) 
+End Resource
+There are also several resources that are added to the ﬁle, but are commented out by default. The resources that are commented out are not
+shown here.
+Example
+ENABLE_GPU=Y
+IBM Spectrum LSF 223
+
+Default
+N (do not support GPUs)
+ENABLE_STREAM
+Syntax
+ENABLE_STREAM="Y" | "N"
+Description
+Enables LSF event streaming.
+Enable LSF event streaming if you intend to install IBM Spectrum LSF Analytics or IBM Spectrum LSF Application Center.
+Default
+N (Event streaming is disabled)
+LSF_ADD_SERVERS
+Syntax
+LSF_ADD_SERVERS="host_name [host_name...]"
+Description
+List of extra LSF server hosts.
+The hosts in the LSF_MASTER_LIST parameter are always LSF server hosts. Use the LSF_ADD_SERVERS parameter to specify extra server hosts.
+Specify a list of host names two ways:
+Host names that are separated by spaces
+The name of a ﬁle that contains a list of host names, one host per line.
+Valid values
+Any valid LSF host name.
+Example 1
+List of host names:
+LSF_ADD_SERVERS="hosta hostb hostc hostd"
+Example 2
+Host list ﬁle:
+LSF_ADD_SERVERS=:lsf_server_hosts
+The lsf_server_hosts ﬁle contains a list of hosts:
+hosta 
+hostb 
+hostc 
+hostd
+Default
+Only hosts in the LSF_MASTER_LIST parameter are LSF server hosts.
+LSF_ADD_CLIENTS
+Syntax
+LSF_ADD_CLIENTS="host_name [host_name...]"
+Description
+List of LSF client-only hosts.
+Tip: After installation, you must manually edit the lsf.cluster.cluster_name ﬁle to include the host model and type of each client that is listed in the
+LSF_ADD_CLIENTS parameter.
+224    IBM Spectrum LSF
+
+Valid values
+Any valid LSF host name.
+Example 1
+List of host names:
+LSF_ADD_CLIENTS="hoste hostf"
+Example 2
+Host list ﬁle:
+LSF_ADD_CLIENTS=:lsf_client_hosts
+The lsf_client_hosts ﬁle contains a list of hosts:
+hoste 
+hostf
+Default
+No client hosts installed.
+LSF_ADMINS
+Syntax
+LSF_ADMINS="user_name [user_name ... ]"
+Description
+Required. List of LSF administrators.
+The ﬁrst user account name in the list is the primary LSF administrator. This user name cannot be the root user account.
+Typically, this account is named lsfadmin. This account owns the LSF conﬁguration ﬁles and log ﬁles for job events. This account also has
+permission to reconﬁgure LSF and to control batch jobs that are submitted by other users. The primary LSF administrator typically does not have
+authority to start LSF daemons. Usually, only root has permission to start LSF daemons.
+All the LSF administrator accounts must exist on all hosts in the cluster before you install LSF. Secondary LSF administrators are optional.
+CAUTION:
+You cannot conﬁgure the root account as the primary LSF administrator.
+Valid values
+Existing user accounts
+Example
+LSF_ADMINS="lsfadmin user1 user2"
+Default
+None. This is a required variable.
+LSF_CLUSTER_NAME
+Syntax
+LSF_CLUSTER_NAME="cluster_name"
+Description
+Required. The name of the LSF cluster.
+Example
+LSF_CLUSTER_NAME="cluster1"
+Valid values
+Any alphanumeric string that contains no more than 39 characters. The name cannot contain white spaces.
+Important: Do not use the name of any host, user, or user group as the name of your cluster.
+IBM Spectrum LSF 225
+
+Default
+None. This is a required variable.
+LSF_DYNAMIC_HOST_WAIT_TIME
+Syntax
+LSF_DYNAMIC_HOST_WAIT_TIME=seconds
+Description
+Time in seconds that the server host LIM waits after startup before it calls the management host LIM to dynamically add the server host.
+This parameter takes effect only if you set ENABLE_DYNAMIC_HOSTS="Y" in this ﬁle. If the server host LIM receives the management host LIM
+announcement while it is waiting, it does not call the management host LIM to add itself.
+Specify a value up to 60 seconds for every 1000 hosts in the cluster, for a maximum of 15 minutes. Selecting a smaller value will result in a quicker
+response time for new hosts at the expense of an increased load on the management host LIM.
+Example
+LSF_DYNAMIC_HOST_WAIT_TIME=60
+Hosts will wait 60 seconds from startup to receive an acknowledgment from the management host LIM. If it does not receive the acknowledgment
+within the 60 seconds, it will send a request for the management host LIM to add it to the cluster.
+Default
+Server host LIM waits forever
+LSF_ENTITLEMENT_FILE
+Syntax
+LSF_ENTITLEMENT_FILE=path
+Description
+Full path to the LSF entitlement ﬁle. LSF uses the entitlement to determine which feature set to enable or disable based on the edition of the
+product. The entitlement ﬁle for LSF Standard Edition is lsf_std_entitlement.dat. For LSF Express Edition, the ﬁle is lsf_exp_entitlement.dat. For LSF
+Advanced Edition, the ﬁle is lsf_adv_entitlement.dat. The entitlement ﬁle is installed as <LSF_TOP>/conf/lsf.entitlement.
+You must download the entitlement ﬁle for the edition of the product you are running, and set the LSF_ENTITLEMENT_FILE parameter to the full path
+to the entitlement ﬁle you downloaded.
+After LSF is installed and running, run the lsid command to see which edition of LSF is enabled.
+Example
+LSF_ENTITLEMENT_FILE=/usr/share/lsf_distrib/lsf.entitlement
+Default
+None. This is a required variable.
+LSF_MASTER_LIST
+Syntax
+LSF_MASTER_LIST="host_name [host_name ...]"
+Description
+Required for a ﬁrst-time installation. List of LSF server hosts to be management or management candidates in the cluster.
+You must specify at least one valid server host to start the cluster. The ﬁrst host that is listed is the LSF management host.
+During upgrade, specify the existing value.
+Valid values
+LSF server host names
+226    IBM Spectrum LSF
+
+Example
+LSF_MASTER_LIST="hosta hostb hostc hostd"
+Default
+None - required variable
+LSF_QUIET_INST
+Syntax
+LSF_QUIET_INST="Y" | "N"
+Description
+Enables quiet installation.
+Set the value to Y if you want to hide the LSF installation messages.
+Example
+LSF_QUIET_INST="Y"
+Default
+N (installer displays messages during installation)
+LSF_SILENT_INSTALL_TARLIST
+Syntax
+LSF_SILENT_INSTALL_TARLIST="ALL" | "Package_Name ..."
+Description
+A string that contains all LSF package names to be installed. This name list applies only to the silent installation mode. Supports keywords all, ALL,
+and All, which can install all packages in the directory that is speciﬁed by the LSF_TARDIR parameter.
+Example
+LSF_SILENT_INSTALL_TARLIST="ALL" | "lsf<version>_linux2.6-glibc2.3-x86_64.tar.Z"
+Default
+None
+LSF_TARDIR
+Syntax
+LSF_TARDIR="/path"
+Description
+Full path to the directory that contains the LSF distribution TAR ﬁles.
+Example
+LSF_TARDIR="/usr/share/lsf_distrib"
+Default
+The parent directory of the current working directory. For example, if the lsﬁnstall command is running under the usr/share/lsf_distrib/lsf_lsﬁnstall
+directory, the default value of the LSF_TARDIR parameter is usr/share/lsf_distrib.
+LSF_TOP
+Syntax
+LSF_TOP="/path"
+Description
+IBM Spectrum LSF 227
+
+Required. Full path to the top level LSF installation directory.
+Valid values
+The path to the LSF_TOP directory must be shared and accessible to all hosts in the cluster. It cannot be the root directory (/). The ﬁle system that
+contains the LSF_TOP directory must have enough disk space for all host types (approximately 300 MB per host type).
+Example
+LSF_TOP="/usr/share/lsf"
+Default
+None. This is a required variable.
+PATCH_BACKUP_DIR
+Syntax
+PATCH_BACKUP_DIR="/path"
+Description
+Full path to the patch backup directory. This parameter is used when you install a new cluster for the ﬁrst time, and is ignored for all other cases.
+The ﬁle system that contains the patch backup directory must have sufﬁcient disk space to back up your ﬁles, which is approximately 400 MB per
+binary type if you want to be able to install and roll back one enhancement pack and a few more ﬁxes. It cannot be the root directory (/).
+If the directory exists, it must be writable by the cluster administrator (lsfadmin).
+If you need to change the directory after installation, edit the PATCH_BACKUP_DIR parameter in the LSF_TOP/patch.conf directory and move the
+saved backup ﬁles to the new directory manually.
+Example
+PATCH_BACKUP_DIR="/usr/share/lsf/patch/backup"
+Default
+LSF_TOP/patch/backup
+PATCH_HISTORY_DIR
+Syntax
+PATCH_HISTORY_DIR="/path"
+Description
+Full path to the patch history directory. This parameter is used when you install a new cluster for the ﬁrst time, and is ignored for all other cases.
+It cannot be the root directory (/). If the directory exists, it must be writable by lsfadmin.
+The location is saved as the PATCH_HISTORY_DIR parameter in the LSF_TOP/patch.conf directory. Do not change the directory after installation.
+Example
+PATCH_BACKUP_DIR="/usr/share/lsf/patch"
+Default
+LSF_TOP/patch
+SILENT_INSTALL
+Syntax
+SILENT_INSTALL="Y" | "N"
+Description
+Enabling the silent installation (setting this parameter to Y) means that you want to do the silent installation and accept the license agreement.
+Default
+228    IBM Spectrum LSF
+
+N
+server.conﬁg
+The server.conﬁg ﬁle contains options for installing and conﬁguring a server host that can be dynamically added or removed.
+Dynamically added LSF hosts that are not management candidate hosts are server hosts. Each dynamic server host has its own LSF binary ﬁles, local
+lsf.conf ﬁle, and shell environment script ﬁles (cshrc.lsf and proﬁle.lsf). You must install LSF on each server host.
+Use the lsﬁnstall -s -f server.conﬁg command to install LSF with the options that are speciﬁed in theserver.conﬁg ﬁle.
+Template location
+A template server.conﬁg ﬁle is located in the installation script directory that is created when you extract the installer script package. Edit the ﬁle and
+uncomment the options that you want in the template ﬁle. Replace the example values with your own settings to specify the options for your new LSF
+installation.
+Important:
+The sample values in the server.conﬁg template ﬁle are examples only. They are not default installation values.
+Format
+Each entry in the server.conﬁg ﬁle has the form:
+NAME="STRING1 STRING2 ..."
+Do not use spaces around the equal sign =, which must follow each NAME even if no value follows.
+A value that contains multiple strings that are separated by spaces must be enclosed in quotation marks.
+Blank lines and lines that begin with a number sign (#) are ignored.
+Parameters
+EGO_DAEMON_CONTROL
+ENABLE_EGO
+EP_BACKUP
+LSF_ADMINS
+LSF_ENTITLEMENT_FILE
+LSF_LIM_PORT
+LSF_SERVER_HOSTS
+LSF_TARDIR
+LSF_LOCAL_RESOURCES
+LSF_TOP
+SILENT_INSTALL
+LSF_SILENT_INSTALL_TARLIST
+EGO_DAEMON_CONTROL
+Enables EGO to control the LSF res and sbatchd daemons.
+Syntax
+EGO_DAEMON_CONTROL="Y" | "N"
+Description
+Set the value to "Y" if you want the EGO service controller to start the res and sbatchd daemons, and restart if they fail.
+All hosts in the cluster must use the same value for this parameter. Therefore, the value of the EGO_DAEMON_CONTROL parameter in the
+server.conﬁg ﬁle must be the same as the speciﬁcation for the EGO_DAEMON_CONTROL parameter in the install.conﬁg ﬁle).
+To avoid conflicts, leave this parameter undeﬁned if you use a script to start the LSF daemons.
+Note: If you specify ENABLE_EGO="N", this parameter is ignored.
+Example
+EGO_DAEMON_CONTROL="N"
+IBM Spectrum LSF 229
+
+Default
+N (the res and sbatchd daemons are started manually)
+ENABLE_EGO
+Enables EGO functions in the LSF cluster.
+Syntax
+ENABLE_EGO="Y" | "N"
+Description
+ENABLE_EGO="Y"
+Causes the lsﬁnstall command to uncomment the LSF_EGO_ENVDIR parameter and sets the LSF_ENABLE_EGO parameter to "Y" in the
+lsf.conf ﬁle.
+ENABLE_EGO="N"
+Causes the lsﬁnstall command to comment out the LSF_EGO_ENVDIR parameter and sets the LSF_ENABLE_EGO parameter to "N" in the
+lsf.conf ﬁle.
+Set the value to "Y" to take advantage of the following LSF features that depend on EGO:
+LSF daemon control by the EGO service controller
+EGO enabled SLA scheduling
+Default
+N (EGO is disabled in the LSF cluster)
+EP_BACKUP
+Enables backup and rollback for enhancement packs.
+Syntax
+EP_BACKUP="Y" | "N"
+Description
+Set the value to "N" to disable backups when you install enhancement packs. You will not be able to roll back to the previous patch level after you
+install an enhancement pack, but you will still be able to roll back any ﬁxes that are installed on the new enhancement pack.
+You might disable backups to speed up installation time, to save disk space, or because you have your own methods to back up the cluster.
+Default
+Y (backup and rollback are fully enabled)
+LSF_ADMINS
+Required. List of LSF administrators.
+Syntax
+LSF_ADMINS="user_name [ user_name ... ]"
+Description
+The ﬁrst user account name in the list is the primary LSF administrator. It cannot be the root user account.
+Typically this account is named lsfadmin. It owns the LSF conﬁguration ﬁles and log ﬁles for job events. It also has permission to reconﬁgure LSF and
+to control batch jobs that are submitted by other users. It typically does not have authority to start LSF daemons. Usually, only root has permission to
+start LSF daemons.
+All the LSF administrator accounts must exist on all hosts in the cluster before you install LSF. Secondary LSF administrators are optional.
+Valid values
+Existing user accounts
+Example
+LSF_ADMINS="lsfadmin user1 user2"
+230    IBM Spectrum LSF
+
+Default
+None. This is a required variable.
+LSF_ENTITLEMENT_FILE
+Full path to the LSF entitlement ﬁle.
+Syntax
+LSF_ENTITLEMENT_FILE=path
+Description
+LSF uses the entitlement to determine which feature set to enable or disable based on the edition of the product. The entitlement ﬁle for LSF
+Standard Edition is lsf_std_entitlement.dat. For LSF Express Edition, the ﬁle is lsf_exp_entitlement.dat. For LSF Advanced Edition, the ﬁle is
+lsf_adv_entitlement.dat. The entitlement ﬁle is installed as <LSF_TOP>/conf/lsf.entitlement.
+You must download the entitlement ﬁle for the edition of the product you are running, and set LSF_ENTITLEMENT_FILE to the full path to the
+entitlement ﬁle you downloaded.
+After LSF is installed and running, run the lsid command to see which edition of LSF is enabled.
+Example
+LSF_ENTITLEMENT_FILE=/usr/share/lsf_distrib/lsf.entitlement
+Default
+None. This is a required variable.
+LSF_LIM_PORT
+TCP service port for the server host.
+Syntax
+LSF_LIM_PORT="port_number"
+Description
+Use the same port number as the value of the LSF_LIM_PORT parameter in the lsf.conf ﬁle on the management host.
+Default
+7869
+LSF_SERVER_HOSTS
+Required for non-shared server host installation. This parameter deﬁnes a list of hosts that can provide host and load information to client hosts.
+Syntax
+LSF_SERVER_HOSTS="host_name [ host_name ...]"
+Description
+If you do not deﬁne this parameter, clients contact the management host LIM for host and load information. List of LSF server hosts in the cluster to
+be contacted.
+Deﬁne this parameter for large clusters to decrease the load on the management host LIM. Do not specify the management host in the list. Client
+commands query the instances of LIM on these deﬁned hosts, which offload trafﬁc from the management host LIM.
+Deﬁne this parameter to ensure that commands run successfully when no LIM is running on the local host, or when the local LIM is started.
+Include the list of hosts that are deﬁned in the LSF_MASTER_LIST parameter in the lsf.conf ﬁle; specify the primary management host last. For
+example:
+LSF_MASTER_LIST="lsfmanagement hostE"
+LSF_SERVER_HOSTS="hostB hostC hostD hostE lsfmanagement"
+Specify a list of host names two ways:
+Host names that are separated by spaces
+IBM Spectrum LSF 231
+
+Name of a ﬁle that contains a list of host names, one host per line.
+Valid values
+Any valid LSF host name
+Examples
+The following deﬁnition speciﬁes a list of host names:
+LSF_SERVER_HOSTS="hosta hostb hostc hostd"
+The following deﬁnition speciﬁes a host list ﬁle:
+LSF_SERVER_HOSTS=:lsf_server_hosts
+The lsf_server_hosts ﬁle contains a list of hosts:
+hosta hostb hostc hostd
+Default
+None
+LSF_TARDIR
+Full path to the directory that contains the LSF distribution .tar ﬁles.
+Syntax
+LSF_TARDIR="/path"
+Example
+LSF_TARDIR="/usr/local/lsf_distrib"
+Default
+The parent directory of the current working directory. For example, if the lsﬁnstall command is running under the usr/share/lsf_distrib/lsf_lsﬁnstall
+directory, the default value for the LSF_TARDIR parameter is usr/share/lsf_distrib.
+LSF_LOCAL_RESOURCES
+Deﬁnes instances of local resources on the server host.
+Syntax
+LSF_LOCAL_RESOURCES="resource ..."
+Description
+For numeric resources, deﬁne name-value pairs:
+"[resourcemap value*resource_name]"
+For Boolean resources, deﬁne the resource name in the form:
+"[resource resource_name]"
+When the server host calls the management host to add itself, it also reports its local resources. The local resources to be added must be deﬁned in
+the lsf.shared ﬁle.
+If the same resource is already deﬁned in the lsf.shared ﬁle as default or all, it cannot be added as a local resource. The shared resource overrides
+the local one.
+Tip: The LSF_LOCAL_RESOURCES parameter is set in the server.conﬁg ﬁle during installation. If the LSF_LOCAL_RESOURCES parameter is already
+deﬁned in a local lsf.conf ﬁle on the server host, the lsﬁnstall command does not add resources that you deﬁne in the LSF_LOCAL_RESOURCES
+parameter in the server.conﬁg ﬁle. Do not have duplicate LSF_LOCAL_RESOURCES entries in the lsf.conf ﬁle. If local resources are deﬁned more than
+once, only the last deﬁnition is valid.
+Important: Resources must already be mapped to hosts in the ResourceMap section of the lsf.cluster.cluster_name ﬁle. If the ResourceMap section
+does not exist, local resources are not added.
+Example
+LSF_LOCAL_RESOURCES="[resourcemap 1*verilog] [resource linux]"
+Default
+232    IBM Spectrum LSF

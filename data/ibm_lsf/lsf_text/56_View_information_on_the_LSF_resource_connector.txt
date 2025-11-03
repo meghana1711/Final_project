@@ -1,0 +1,170 @@
+bctrld stop sbd all 
+bctrld stop res all 
+bctrld stop lim all 
+6. Restart the cluster:
+bctrld start lim all 
+bctrld start res all 
+bctrld start sbd all
+7. Open hosts and queues again:
+badmin hopen all 
+badmin qact all
+Remember: Remove the most recent ﬁx and return the cluster to the previous ﬁx level. To roll back multiple versions, you must roll back one ﬁx level
+at a time, in the reverse order of installation.
+To roll back the same version of the ﬁx applied on multiple platforms, you must roll back the same ﬁx for multiple packages you applied, in the
+reverse order of installation, so that the resource connector common ﬁles are also rolled back to previous version.
+For more information about rolling back a ﬁx, see the -r option of the patchinstall command.
+View information on the LSF resource connector
+View information on the LSF resource connector by checking the status of the ebrokerd daemon, running the badmin rc subcommand, or by viewing
+the log ﬁles.
+Checking the LSF resource connector status
+ To submit jobs that borrow resources from a resource provider, the LSF resource connector status must be enabled and the ebrokerd daemon
+process must be running.
+Use the badmin command to view LSF resource connector information
+ Use the badmin rc subcommand to view information on the LSF resource connector.
+Viewing LSF resource connector job events
+ The JOB_FINISH2 LSF event contains details about LSF resource connector jobs. The LSF lsb.stream ﬁle can then capture and stream actions
+about the JOB_FINISH2 event. Starting in Fix Pack 14, to provide more details in the JOB_FINISH2 event logs, LSF includes the
+RC_ACCOUNT and VM_TYPE ﬁelds with the JOB_FINISH2 event.
+Logging and troubleshooting the LSF resource connector
+ Log ﬁles for the resource connector are located in the log directory that is deﬁned by the LSF_LOGDIR parameter in the lsf.conf ﬁle.
+Checking the LSF resource connector status
+To submit jobs that borrow resources from a resource provider, the LSF resource connector status must be enabled and the ebrokerd daemon
+process must be running.
+Procedure
+On the LSF management host, verify that the ebrokerd daemon process is running after the resource connector is enabled.
+# ps -ef | grep ebrokerd
+Use the badmin command to view LSF resource connector information
+Use the badmin rc subcommand to view information on the LSF resource connector.
+Procedure
+1. Use the badmin rc view command to view LSF resource connector information from the speciﬁed host providers.
+rc view [-c "instances | policies | templates …"] [-p " provider …"]
+Use the -p option to specify the host provider from which to view information. Use a space to separate multiple host providers.
+Use the -c option to specify whether you want to view information on instances, policies, or templates. Use a space to separate multiple types
+of information. By default, this command shows information on instances only.
+2. Use the badmin rc error command to view LSF resource connector error messages from the speciﬁed host providers.
+IBM Spectrum LSF 2255
+
+To get the error messages, the third-party mosquitto message queue application must be running on the host.
+rc error [-t daysd | hoursh | minutesm] [-p " provider …"]
+Use the -p option to specify the host provider from which to view information. Use a space to separate multiple host providers.
+Use the -t option to specify the earliest time from which to review the error messages.
+Note: When specifying days, badmin retrieves messages from this time at midnight. For example, when running badmin rc error -t 1d,
+badmin retrieves messages from today at midnight, and when running badmin rc error -t 2d, badmin retrieves messages from
+yesterday at midnight.
+Viewing LSF resource connector job events
+The JOB_FINISH2 LSF event contains details about LSF resource connector jobs. The LSF lsb.stream ﬁle can then capture and stream actions about
+the JOB_FINISH2 event. Starting in Fix Pack 14, to provide more details in the JOB_FINISH2 event logs, LSF includes the RC_ACCOUNT and
+VM_TYPE ﬁelds with the JOB_FINISH2 event.
+Procedure
+1. Enable JOB_FINISH2 LSF events:
+a. Log on to the host as the primary LSF administrator.
+b. Edit lsb.params conﬁguration ﬁle to these include these conﬁgurations:
+ENABLE_EVENT_STREAM=Y
+ALLOW_EVENT_TYPE=JOB_FINISH2
+c. Save your changes to the lsb.params ﬁle and reconﬁgure the cluster for your changes to take effect:
+badmin reconfig
+2. Starting in Fix Pack 14, to provide more details in the JOB_FINISH2 event logs, the RC_ACCOUNT ﬁeld is included with the JOB_FINISH2
+event. This ﬁeld will reflect the RC_ACCOUNT value assigned to the job, and follow existing override policies if speciﬁed for the job, project,
+application, or queue level. (If not speciﬁed at any of these levels, then the RC_ACCOUNT value shows the RC_ACCOUNT ﬁeld, with a value of 
+default).
+a. The RC_ACCOUNT values speciﬁed for each of these levels are located in different conﬁguration ﬁles; if required, set the value within
+the appropriate parameter and conﬁguration ﬁle:
+For RC_ACCOUNT at the job level, see the ENABLE_RC_ACCOUNT_REQUEST_BY_USER parameter in the lsb.params ﬁle.
+For RC_ACCOUNT at the project level, see the DEFAULT_RC_ACCOUNT_PER_PROJECT parameter in the lsb.params ﬁle.
+For RC_ACCOUNT at the application level, see the RC_ACCOUNT parameter in the lsb.applications ﬁle.
+For RC_ACCOUNT at the queue level, see the RC_ACCOUNT parameter in the lsb.queues ﬁle.
+b. If you made changes to any of the conﬁguration ﬁles, save your changes to the ﬁles and reconﬁgure the cluster for your changes to take
+effect:
+badmin reconfig
+Tip: If you do not set these resource connector account parameters, or if the LSF resource connector is not enabled, the RC_ACCOUNT ﬁeld
+cannot be retrieved, but the JOB_FINISH2 event still shows the RC_ACCOUNT ﬁeld as a value of default.
+3. Starting in Fix Pack 14, to provide the JOB_FINISH2 event logs more detail, include the VM_TYPE ﬁeld with the JOB_FINISH2 event. To show
+the VM_TYPE ﬁeld:
+a. Edit the lsf.shared ﬁle:
+i. Deﬁne the vm_type resource in the lsf.shared ﬁle. For example, to deﬁne a String resource called vm_type, specify:
+Begin Resource 
+RESOURCENAME  TYPE    INTERVAL INCREASING  DESCRIPTION                       # Keywords 
+... 
+vm_type       String  ()       ()          (The type of VM) 
+... 
+End Resource
+ii. Reconﬁgure LIM and restart the mbatchd daemon for your lsf.shared ﬁle change to take effect:
+lsadmin reconfig 
+badmin mbdrestart
+b. Edit the user_data.sh script ﬁle for each cloud provider:
+i. LIM on the LSF management host retrieves the VM_TYPE ﬁeld. A resource connector host them sends this information to the
+management host by way of the LSF_TOP/10.1/resource_connector/provider/scripts/user_data.sh script vm_type setting in the
+LSF_LOCAL_RESOURCES parameter within the lsf.conf ﬁle.
+Enable the user_data.sh script of each cloud provider to modify the value of the LSF_LOCAL_RESOURCES parameter in the
+lsf.conf ﬁle, by adding the following lines to the ﬁle:
+if [ -n "${vm_type}" ]; then 
+  sed -i "s/\(LSF_LOCAL_RESOURCES=.*\)\"/\1 [resourcemap ${vm_type}*vm_type]\"/" $LSF_CONF_FILE 
+fi
+2256    IBM Spectrum LSF
+
+Note that the method of getting this VM_TYPE ﬁeld varies depending on the cloud provider. For example:
+Example IBM® Cloud user_data.sh script
+vm_type=$(dmidecode |grep Manufacturer|grep IBM| cut -d ':' -f 4) 
+if [ -n "$vm_type" ]; then 
+    sed -i "s/\(LSF_LOCAL_RESOURCES=.*\)\"/\1 [resourcemap $vm_type*vm_type]\"/" 
+$LSF_CONF_FILE 
+    echo "Update LSF_LOCAL_RESOURCES in $LSF_CONF_FILE successfully, add [resourcemap 
+${vm_type}*vm_type]" >> $logfile 
+else 
+    echo "Can not get instance VM type" >> $logfile 
+fi
+Example Amazon Web Services (AWS) user_data.sh script
+vm_type=$(curl http://169.254.169.254/latest/meta-data/instance-type) 
+#Note that this is cloud provider specific 
+if [ -n "$vm_type" ]; then 
+sed -i "s/\(LSF_LOCAL_RESOURCES=.*\)\"/\1 [resourcemap $vm_type*vm_type]\"/" $LSF_CONF_FILE 
+else 
+echo "vm_type doesn't exist in envrionment variable" >> $logfile 
+fi
+Example Google Cloud Platform user_data.sh script
+vm_type=$(dmidecode |grep Manufacturer|grep IBM| cut -d ':' -f 4) 
+if [ -n "$vm_type" ]; then 
+    sed -i "s/\(LSF_LOCAL_RESOURCES=.*\)\"/\1 [resourcemap $vm_type*vm_type]\"/" 
+$LSF_CONF_FILE 
+    echo "Update LSF_LOCAL_RESOURCES in $LSF_CONF_FILE successfully, add [resourcemap 
+${vm_type}*vm_type]" >> $logfile 
+else 
+    echo "Can not get instance VM type" >> $logfile 
+fi
+Example Microsoft Azure CycleCloud user_data.sh script
+vm_type=$(curl -H Metadata:true "http://169.254.169.254/metadata/instance/compute/vmSize?
+api-version=2018-10-01&format=text") 
+#Note that this is cloud provider specific 
+if [ -n "$vm_type" ]; then 
+sed -i "s/\(LSF_LOCAL_RESOURCES=.*\)\"/\1 [resourcemap $vm_type*vm_type]\"/" $LSF_CONF_FILE 
+else 
+echo "vm_type doesn't exist in envrionment variable" >> $logfile 
+fi
+Example Microsoft Azure user_data.sh script
+vm_type=$(curl -H Metadata:true "http://169.254.169.254/metadata/instance/compute/vmSize?
+api-version=2018-10-01&format=text") 
+#Note that this is cloud provider specific 
+if [ -n "$vm_type" ]; then 
+sed -i "s/\(LSF_LOCAL_RESOURCES=.*\)\"/\1 [resourcemap $vm_type*vm_type]\"/" $LSF_CONF_FILE 
+else 
+echo "vm_type doesn't exist in envrionment variable" >> $logfile 
+fi
+Results
+The following JOB_FINISH2 event log shows the addition of the rc_account and vm_type ﬁelds:
+"JOB_FINISH2" "10.11" 1666989002 2321 45 "userId" "0" "userName" "root" "numProcessors" "1"  
+"options" "33816578" "jStatus" "64" "submitTime" "1666988304" "termTime" "0" "startTime" "1666988401"  
+"endTime" "1666989002" "queue" "normal" "resReq" "profile==cx2_4x8" "fromHost" "rhel7x-mgmt-1" "cwd"  
+"/share/10.1/lsf_rc" "jobFile" "1666988304.2321" "numExHosts" "1" "execHosts" "icgen2host-10-240-0-10"  
+"slotUsages" "1" "cpuTime" "0.441864" "command" "sleep 600" "ru_utime" "0.229670" "ru_stime" "0.212194"  
+"ru_maxrss" "3072" "ru_nswap" "0" "projectName" "default" "exitStatus" "0" "maxNumProcessors" "1"  
+"exitInfo" "0" "chargedSAAP" "/root" "numhRusages" "0" "runtime" "601" "maxMem" "3072" "avgMem" "2048"  
+"effectiveResReq" "select[(profile == cx2_4x8 ) && (type == any)] order[r15s:pg] " "subcwd"  
+"/share/10.1/lsf_rc" "serial_job_energy" "0.000000" "numAllocSlots" "1" "allocSlots"  
+"icgen2host-10-240-0-10" "ineligiblePendingTime" "-1" "options2" "1040" "hostFactor" "12.500000"  
+"cpuPeak" "0.000000" "cpuEfficiency" "0.000000" "memEfficiency" "0.000000"  
+"rc_account" "default" "vm_type" "cx2-4x8"
+Related reference
+lsb.params
+lsb.applications
+lsb.queues
+IBM Spectrum LSF 2257

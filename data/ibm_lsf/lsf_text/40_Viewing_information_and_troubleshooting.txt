@@ -1,0 +1,288 @@
+Administrators can control who can run what project. By default, such authentication is not enabled for compatibility with the previous versions of
+LSF License Scheduler. When enabled, user authentication has the following behavior:
+If the user belongs to the project, LSF License Scheduler allows the license request.
+If the user does not belong to the project or the project does not match any projects in the conﬁguration, LSF License Scheduler rejects the
+request.
+If a default project is conﬁgured in the LSF License Scheduler user authentication conﬁguration ﬁle ls.users, LSF License Scheduler changes
+the project to default and allows the license request.
+If the project is default, no authentication is needed and LSF License Scheduler allows the request.
+Enable user authentication
+Procedure
+1. To enable user authentication for LSF jobs, conﬁgure LSF to use authentication esub (esub.ls_auth).
+Deﬁne LSB_ESUB_METHOD=lsauth in lsf.conf.
+2. To enable user authentication for taskman jobs, deﬁne AUTH=Y in lsf.licensescheduler.
+3. Conﬁgure users and their associated projects in the LSF_CONFDIR/ls.users ﬁle.
+The ﬁle deﬁnes one project per line using the following format:
+project_name:::[user_name][,user_name2 ...]
+For example,
+Project1:::user1,user2 
+default:::
+Important: Ensure that projects in ls.users, including the default project, conform to the lsf.licensescheduler conﬁguration.
+Viewing information and troubleshooting
+About viewing available licenses
+ About error logs
+ Troubleshooting
+ 
+About viewing available licenses
+The license server collects license feature information from physical servers and merges this data together into a service domain. After merging the
+data, the individual license server information is retained and you can view this information together with the physical server information.
+The licenses in use are checked out from FlexNet by your projects. Free licenses and licenses that are reserved by a project are not yet checked out
+from FlexNet.
+The total number of licenses could change as licenses expire or are added. As non-LSF users check out licenses, the OTHERS count in blstat
+increases and the TOTAL_FREE count decreases. The number of licenses for each project changes whenever LSF redistributes license tokens among
+competing projects.
+View license server and license feature information passed to jobs
+ Customize dynamic license information output
+ 
+View license server and license feature information passed to jobs
+About this task
+You can display the license servers that are used by each service domain that is allocated to the license features.
+Procedure
+Run blstat -S.
+blstat -S 
+FEATURE: feature1 
+SERVICE_DOMAIN: domain1 
+IBM Spectrum LSF 2041
+
+SERVERS     INUSE  FREE 
+ server1      1      0 
+ server2      0      1 
+ TOTAL        1      1 
+SERVICE_DOMAIN: domain2 
+SERVERS     INUSE  FREE 
+ server3      1      0 
+ TOTAL        1      0 
+The license feature feature1 is assigned to server1 and server2 in the domain1 service domain and server3 in the domain2 service domain. A job
+uses the feature1 license feature when the job is submitted with "rusage[feature1=1]" as the rusage string.
+View license usage
+Procedure
+Run blstat -s to display license usage.
+blstat -s 
+FEATURE: p1_f2 
+SERVICE_DOMAIN: app_1 TOTAL_LICENSE: 10 
+LSF_USE LSF_DESERVE LSF_FREE   NON_LSF_USE NON_LSF_DESERVE  NON_LSF_FREE 
+     0       10         10          0           0                 0  
+FEATURE: p1_f1 
+SERVICE_DOMAIN: app_1 TOTAL_LICENSE: 5   
+LSF_USE LSF_DESERVE LSF_FREE   NON_LSF_USE NON_LSF_DESERVE  NON_LSF_FREE 
+     0       5          5           0           0                 0  
+If there are any distribution policy violations, blstat marks these violations with an asterisk (*) at the beginning of the line.
+View workload distribution information
+Procedure
+Run blinfo -a to display WORKLOAD_DISTRIBUTION information.
+blinfo -a 
+FEATURE      MODE       SERVICE_DOMAIN  TOTAL  DISTRIBUTION 
+g1           Project    LS              10     [p1, 50.0%] [p2, 50.0%] 
+                                  WORKLOAD_DISTRIBUTION 
+                                  [LSF 66.7%, NON_LSF 33.3%] 
+Sort license feature information
+About this task
+You can sort license feature information alphabetically, by total licenses, or by available licenses.
+The value of total licenses is calculated with the number of licenses LSF workload deserves from all service domains that supply licenses to the
+feature, regardless of whether non-LSF workload borrowed licenses from LSF workload.
+Procedure
+Sort alphabetically:
+blstat -o alpha
+Sort by total licenses:
+blstat -o total
+The feature with the largest number of total licenses displays ﬁrst.
+Sort by available licenses:
+blstat -o avail
+The feature with the largest number of available licenses displays ﬁrst.
+You can also run blstat -o with options -Lp, -t, -D, -G, -s, -S.
+Note:
+The values of "total licenses" and "licenses available" are calculated differently when blstat -o is used with different options:
+Options -Lp, -t, -D, -G: Total licenses means the sum of licenses that are allocated to LSF workload from all the service domains that
+are conﬁgured to supply licenses to the feature. Licenses that are borrowed by non-LSF workload are subtracted from this sum.
+Options-s, -S: Total licenses means all the licenses (supplied by the license vendor daemon) from all the service domains that are
+conﬁgured to supply licenses to that feature.
+2042    IBM Spectrum LSF
+
+Limitations with viewing multiple jobs running on an execution host
+If there are multiple jobs submitted by a user that run on the same execution host, blstat might not display the correct license usage information.
+This is because lmstat only provides the user and host information of each license checkout, but does not provide additional information for LSF
+License Scheduler to match the license checkout to a speciﬁc LSF job.
+LSF License Scheduler attempts to match the license checkout to each LSF job based on the user, execution host, and rusage string. If the multiple
+jobs running on the same execution host are submitted by the same user and request the same license, the information that lmstat provides is
+insufﬁcient for LSF License Scheduler to provide an exact match for each LSF job. LSF License Scheduler estimates the job, but this may be incorrect.
+For example,
+There are multiple service domains providing the same feature and a user submits multiple jobs that run on the same execution host.
+Although LSF License Scheduler dispatches the tokens correctly, blstat might not show the correct token usage (such as TOTAL_INUSE,
+TOTAL_RESERVE, or TOTAL_FREE). Incorrect tokens are counted in OTHERS.
+There is one license server with multiple projects and a user submits multiple jobs with some jobs reserving tokens for a time. The jobs that
+reserve tokens are running on the same host as other LSF License Scheduler jobs.
+Although LSF License Scheduler dispatches the tokens correctly, blstat may show reversed token usage, so that some INUSE tokens are
+counted in RESERVED, and some RESERVED tokens are counted in INUSE.
+Customize dynamic license information output
+By default, the blstat command displays a predeﬁned set of dynamic license information. While you can use various blstat options to display speciﬁc
+dynamic license information, you can also customize the speciﬁc ﬁelds that blstat displays using the -f option. Use the -f option to create a speciﬁc
+blstat output format, allowing you to easily parse the information you need by using custom scripts or to display the information in a predeﬁned
+format.
+blstat ... -f "field_name[:[-][output_width]] ... [delimiter='character']"
+Specify which blstat ﬁelds (or aliases instead of the full ﬁeld names), in which order, and with what width to display.
+Specify only the blstat ﬁeld name or alias to set its output to unlimited width and left justiﬁcation.
+Specify the colon (:) without a width to set the output width to the recommended width for that ﬁeld.
+Specify the colon (:) with a width to set the maximum number of characters to display for the ﬁeld. When the value exceeds this width, blstat
+truncates the output.
+Specify a hyphen (-) to set right justiﬁcation when blstat displays the output for the speciﬁc ﬁeld. If not speciﬁed, the default is to set left
+justiﬁcation.
+Use delimiter= to set the delimiting character to display between different headers and ﬁelds. This delimiter must be a single character. By
+default, the delimiter is a space.
+Output customization applies only to the blstat command with no options, and to output for blstat with the following options: -Lp, -D, -t. The -f
+option does not work with any other blstat option.
+The following are the ﬁeld names used to specify the blstat ﬁelds to display, recommended width, aliases you can use instead of ﬁeld names, the
+applicable LSF License Scheduler modes, and a brief description of the ﬁeld:
+Table 1. Output ﬁelds for blstat
+Field name Width Alias Mode Description
+service_domain_name 19 sd_name all Name of the service domain
+service_domain_others 9 sd_others Total number of "others" tokens in the service domain
+service_domain_lsf_total12 sd_lsf_total Total number of tokens that LSF can use from the service
+domain
+service_domain_alloc 8 sd_alloc cluster mode Total number of allocated tokens from the service domain
+service_domain_use 7 sd_use Total number of used tokens from the service domain
+service_domain_inuse 8 sd_inuse project mode Total number of tokens in use from the service domain
+service_domain_reserve 7 sd_rsv Total number of reserved tokens from the service domain
+service_domain_free 7 sd_free Total number of free tokens from the service domain
+project_name 15 proj_name Name of the project
+project_share 7 proj_share Number of shares for the project
+project_own 7 proj_own Number of tokens that are owned by the project
+project_inuse 7 proj_inuse Number of tokens that are in use by the project
+project_reserve 7 proj_rsv Number of tokens that are reserved by the project
+project_free 7 proj_free Number of free tokens for the project
+project_demand 8 proj_demand Number of tokens that are demanded by the project
+project_limit 7 proj_limit The project limit
+project_non_share 11 proj_non_share Number of non-shared tokens for the project
+IBM Spectrum LSF 2043
+
+Field name Width Alias Mode Description
+cluster_name 15 cl_name all Name of the cluster
+cluster_share 7 cl_share cluster mode Number of shares in the cluster
+cluster_alloc 7 cl_alloc all Number of tokens that are allocated to the cluster
+cluster_target 8 cl_target Target number of tokens for the cluster
+cluster_inuse 7 cl_inuse all Number of tokens that are in use in the cluster
+cluster_reserve 7 cl_rsv Number of tokens that are reserved in the cluster
+cluster_free 7 cl_free Number of free tokens in the cluster
+cluster_over 7 cl_over all Number of overused tokens in the cluster
+cluster_demand 8 cl_demand all Demand of the cluster
+cluster_peak 7 cl_peak cluster mode Peak number of used tokens in the cluster
+cluster_buffer 8 cl_buff Allocate buffer in the cluster
+cluster_acum_use 10 cl_acum_use project mode Accumulated number of used tokens in the cluster
+cluster_scaled_acum 13 cl_scaled_acum Scaled number of accumulated used tokens in the cluster
+cluster_avail 7 cl_avail Number of available tokens in the cluster
+feature_name 18 feat_name all Name of the feature
+feature_mode 20 feat_mode Feature mode
+feature_lm_license_nam
+e17 feat_lm_lic_nam
+eName of the license feature in the FlexNet server
+Note: Field names and aliases are not case-sensitive. Valid values for the output width are any positive integer 1 - 4096.
+About error logs
+Error logs maintain important information about License Scheduler operations.
+Tip: Log ﬁles grow over time. Occasionally clear or back up these ﬁles (manually or using automatic scripts).
+Log ﬁles are reopened each time that a message is logged, so if you rename or remove a daemon log ﬁle, the daemons automatically create a new log
+ﬁle.
+The location of log ﬁles is speciﬁed with the parameter LSF_LOGDIR in lsf.conf.
+The error log ﬁle names for the LSF License Scheduler system daemons are:
+bld.log.host_name
+blcollect.log.host_name
+About blcollect log messages
+Messages that are logged by blcollect include the following information:
+Time: The message log time.
+blcollect name: The service domain name, which is the license server host name, accessed by blcollect as deﬁned in lsf.licensescheduler.
+Status report for feature collection: blcollect information that gathered successfully or not.
+Detailed information: The number of tokens, the name of tokens, the license server name for license tokens that are collected by blcollect.
+Manage log ﬁles
+ Temporarily change the log level
+ 
+Manage log ﬁles
+About this task
+License Scheduler logs error messages at different levels so that you can choose to log all messages or only log messages that are deemed critical.
+Procedure
+1. Set LS_LOG_MASK in lsf.licensescheduler to the wanted logging level.
+Note:
+2044    IBM Spectrum LSF
+
+If LS_LOG_MASK is not deﬁned, the value of LSF_LOG_MASK in lsf.conf is used. If LS_LOG_MASK or LSF_LOG_MASK are not deﬁned, the
+default is LOG_WARNING.
+Log levels (highest to lowest):
+LOG_WARNING: Default. Essential error messages only.
+LOG_DEBUG: Fewest number of debug messages, useful for debugging a problem.
+LOG_DEBUG1: More debug messages than LOG_DEBUG.
+LOG_DEBUG2: Most frequently used debug level.
+LOG_DEBUG3: All debug messages. Use sparingly.
+Messages that are logged at the speciﬁed level and higher are recorded, while lower-level messages are discarded.
+2. Clean up or back up log ﬁles periodically.
+Temporarily change the log level
+Before you begin
+You must submit the commands from the host on which the daemon is running (only applicable to the bld).
+About this task
+You can temporarily change the class or message log level for the bld and blcollect daemons without changing lsf.licensescheduler.
+The message log level that you set is in effect from the time you set it until you turn it off or the daemon stops running, whichever is sooner. If the
+daemon is restarted, its message log level is reset back to the value of LS_LOG_MASK and the log ﬁle is stored in the directory that is speciﬁed by
+LSF_LOGDIR.
+Procedure
+1. Set the log level for the bld.
+bladmin blddebug [-l debug_level] [-c class_name]
+For example:
+bladmin blddebug -l 1 -c "LC_TRACE LC_FLEX" 
+Logs messages for bld running on the local host and sets the log message level to LOG_DEBUG1. The log class is LC_TRACE LC_FLEX.
+2. Set the log level for blcollect.
+bladmin blcdebug [-l debug_level] collector_name ... | all
+For example:
+bladmin blcdebug -l 3 all
+The log mask of all collectors is changed to LOG_DEBUG3.
+3. Return the debug settings to their conﬁgured values (set with LS_LOG_MASK in lsf.licensescheduler).
+bladmin blddebug -o
+bladmin blcdebug -o
+Example
+For a detailed description of these commands and their options, see the IBM® Spectrum LSF Command Reference.
+Troubleshooting
+Techniques
+Run blstat to check the current license usage information.
+IBM Spectrum LSF 2045
+
+Run blusers to check the current job and license usage. This information is the set intersection of License Scheduler Jobs and FlexNet
+information.
+Run blinfo command to check the current License Scheduler conﬁguration.
+Run bld -c to check that the conﬁguration is correct. This action, with LOG_DEBUG, writes detailed conﬁguration settings to the debug log.
+Turn on debugging by setting LSF_LOG_MASK=LOG_DEBUG and reconﬁguring the daemon with bladmin reconﬁg all.
+Set the log class for mbatchd debug (LSB_DEBUG_MBD) in lsf.conf: LC_LICSCHED.
+Use LSB_TIME_SCH=timelevel (similar to LSB_TIME_MBD) in lsf.conf to enable the logging of timing information.
+Run bhosts -s to check that the resources are being reported correctly to LSF.
+File locations
+ The following ﬁles are useful for troubleshooting purposes.
+Check that lmstat is supported by blcollect
+ Some problems are due to the license manager not being supported by the LSF License Scheduler collector.
+Do not delete lsb.tokens unless you deﬁned a LSF License Scheduler elim
+ The lsb.tokens ﬁle contains allocation and usage information on features that are allocated to the cluster. Do not remove or modify this ﬁle
+unless you deﬁned an elim for LSF License Scheduler to ensure that LSF can still schedule LSF License Scheduler jobs even if the connection
+between mbatchd and bld is broken.
+File locations
+The following ﬁles are useful for troubleshooting purposes.
+BLD logs are in the standard $LSF_LOGDIR.
+BLCOLLECT logs are in /tmp or $LSF_LOGDIR on the hosts the daemon is running.
+Core ﬁles from BLD, BLCOLLECT, mbatchd, lim, and mbsched are in /tmp on the daemon local hosts.
+Check that lmstat is supported by blcollect
+Some problems are due to the license manager not being supported by the LSF License Scheduler collector.
+Procedure
+1. Create shell script to output (for example, echo) target lmstat output.
+2. Point LMSTAT_PATH in lsf.licensescheduler to the shell script.
+3. If LIC_COLLECTOR is not set, restart the bld to restart blcollect. If LIC_COLLECTOR is set, kill blcollect and restart blcollect manually.
+4. Observe the blcollect log to view if there are any errors to determine whether blcollect is able to parse lmstat output properly.
+Do not delete lsb.tokens unless you deﬁned a LSF License Scheduler elim
+The lsb.tokens ﬁle contains allocation and usage information on features that are allocated to the cluster. Do not remove or modify this ﬁle unless
+you deﬁned an elim for LSF License Scheduler to ensure that LSF can still schedule LSF License Scheduler jobs even if the connection between
+mbatchd and bld is broken.
+When mbatchd connects with the bld to obtain load updates, mbatchd gets the license usage information from bld and creates the lsb.tokens ﬁle
+(located in LSB_SHAREDIR/cluster_name/logdir) to save the allocation and usage of all features that are allocated to the cluster. The
+MBD_REFRESH_INTERVAL parameter in lsf.licensescheduler, which controls the minimum interval between load updates, also speciﬁes the interval
+between updates for the lsb.tokens ﬁle.
+This ﬁle ensures that even if the connection between mbatchd and bld is broken, LSF can still use the last license usage information in lsb.tokens to
+schedule new LSF License Scheduler jobs. If you delete lsb.tokens, LSF is unable to schedule LSF License Scheduler jobs.
+Creating a LSF License Scheduler elim
+If the connection between mbatchd and bld is broken because of a bad network or because bld is down, you can also deﬁne a dynamic resource
+with the same name as the LSF License Scheduler feature and create an elim to get the number of free licenses to ensure that LSF can still schedule
+pending LSF License Scheduler jobs.
+In this case, if bld is down or disconnected, the LSF License Scheduler resource overrides the LSF dynamic resource even though bld is down, and
+cannot be reserved by any job.
+To avoid this problem, remove the lsb.tokens ﬁle when LSF License Scheduler is down or disconnected.
+2046    IBM Spectrum LSF

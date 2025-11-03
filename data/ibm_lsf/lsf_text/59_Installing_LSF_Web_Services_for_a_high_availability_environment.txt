@@ -1,0 +1,295 @@
+19821   user1   PEND  normal     pacvnc1.fyr             *932088005 Sep  5 12:41 
+20661   user1   PEND  normal     fp14-rh9x-1             *t-starcd1 Feb 16 14:03
+Installing LSF Web Services for a high availability environment
+High availability (HA) for LSF Web Services involves installing multiple instances of LSF Web Services on LSF servers or management hosts. A
+gateway provides a single URL for users to access LSF Web Services and balances the load among the instances. After you have installed your
+instances of LSF Web Services, you then conﬁgure a load balancer that meets your business needs, such as Apache HTTP Server, HA Proxy, or
+NGINX. The following information illustrates how to conﬁgure Apache HTTP Server as a load balancer for LSF Web Services with HA: either as your
+HTTP proxy or HTTPS proxy for LSF Web Services. Instead of Apache HTTP Server, you can use a different load balancer, and use this information as
+a guide to conﬁgure your load balancer for your HA environment. Moreover, the steps illustrate conﬁguring the Apache HTTP Server without
+redundancy in load balancer itself; however, a common approach with HA is to run multiple load balancers in an active-passive deployment (for
+example, you can use Keepalived so that multiple daemons run on different hosts and read from a common IP address, but only one of these is
+active at any point in time). Consider the best option for your HA environment as you use the guidance provided here.
+Before you begin
+Tip: If you are not using a failover environment for LSF Web Services, then you do not have to install multiple instances of LSF Web Services. Refer to
+the installation steps in Installing LSF Web Services instead.
+Before installing multiple instances of LSF Web Services and enabling high availability, note these prerequisite criteria:
+If you want to use LSF Web Services in a high availability environment, you must enable high availability during the LSF Web Services
+installation. If you want to use high availability after your installation, uninstall and reinstall your LSF Web Services instances.
+Select at least two hosts on which to install LSF Web Services. The hosts must:
+Have access to the LSF environment.
+Be LSF management or LSF server hosts with the appropriate system requirements.
+Have clocks set to the same time as the LSF management host. The times must be synchronized.
+Select a separate host to install Apache HTTP Server 2.4.37 or later. Ensure that this remote server is accessible from each host in your high
+availability environment.
+You require conﬁguring a shared ﬁle system for the hosts for your high availability environment. The shared disk is used to store conﬁguration
+ﬁles and the work directory. On this shared ﬁle system:
+Ensure a uniform access path from each host.
+Ensure that the root user has permission to the shared ﬁle system.
+You require root privileges to install LSF Web Services.
+The path to the home directory set in the repository of the LSF Web Services environment must use NFS sharing or a NAS, SAN, or Cloud
+storage sharing directory.
+Download the LSF Web Services installation package from the same site where you downloaded Fix Pack 15: IBM Fix Central. Select the
+operating system type that matches your LSF installation (Linux ARM, Linux on POWER LE, or Linux x64). Once you have the installation
+package downloaded, you can install it. Download to your shared ﬁle system.
+Procedure
+1. As root, log on to the ﬁrst host where you will install LSF Web Services.
+2. Extract the downloaded package from your shared ﬁle system; one of:
+lws10.1.0.15_linux-aarch64.tar.Z
+lws10.1.0.15_linux-ppc64le.tar.Z
+lws10.1.0.15_linux-x86_64.tar.Z
+Change to that directory: For example:
+[root@lsfhostA ~]# tar xvf lws10.1.0.15_linux-x86_64.tar.Z  
+[root@lsfhostA ~]# cd lws10.1.0.15_linux-x86_64
+3. Edit the lwsinstall.sh LSF Web Services installation ﬁle to set your high availability installation environment variables. The following required
+environment variables are required to install LSF Web Services with high availability:
+Environment
+variable nameDescription and example value
+INSTALLATION_T
+OPThe LSF Web Services installation directory. The default installation path is the /opt/ibm/ directory. For best
+performance, specify a local path for the INSTALLATION_TOP value.
+For example, INSTALLATION_TOP="/opt/ibm".
+All hosts used in your high availability environment must use the same INSTALLATION_TOP value.
+$LSF_ENVDIR/pr
+oﬁle.lsfThe environment directory to source LSF Web Services proﬁle:
+For example, .$LSF_ENVDIR/profile.lsf.
+SSL_VALID_HOS
+TSThe hostnames for each host in your high availability environment. Separate each entry with a space.
+For example, SSL_VALID_HOSTS=lsfhostA-shortname lsfhostA-FQDN lsfhostA-IP lsfhostB-shortname
+lsfhostB-FQDN lsfhostB-IP lsfhostC-short-name lsfhostC-FQDN lsfhostC-IP
+2304    IBM Spectrum LSF
+
+Environment
+variable nameDescription and example value
+LWS_CLUSTER_N
+AMEThe name of your LSF Web Services cluster.
+For example, LWS_CLUSTER_NAME=lwsHAcluster.
+SHARED_CONFI
+GURATION_DIRThe directory of your shared ﬁle system.
+For example, SHARED_CONFIGURATION_DIR="/lsfshare/shared/lws/".
+4. Save the changes to your lwsinstall.sh ﬁle.
+5. Run the lwsinstall.sh ﬁle to install the LSF Web Services package using your set environment variables.
+# ./lwsinstall.sh
+a. Run the installer:
+b. Enter 1 to accept the LSF license agreement.
+c. Support for HTTPS is enabled by default so that server side, self signed certiﬁcates are installed automatically. Enter N to keep it
+enabled, or Y to disable it.
+6. Check that all LSF Web Services have been installed by running the ls command against the installation directory (for example, in
+/opt/ibm/lsfsuite/ext):
+This output shows all the installed LSF Web Services ﬁles for high availability:
+# cd /opt/ibm/lsfsuite/ext 
+# ls -l 
+total 12 
+-rw-rw-rw- 1 root root 2875 Apr  8 23:46 install.log 
+drwxr-xr-x 2 root root 4096 Apr  8 23:46 LA 
+-rwxr-xr-x 1 root root  575 Apr  8 23:46 profile.platform 
+drwxr-xr-x 4 root root   53 Apr  9 01:53 ws 
+You can also check the installation log ﬁle (install.log) created in the LSF Web Services installation directory (for example, in
+/opt/ibm/lsfsuite/ext).
+7. Check that LSF Web Services has started :
+For example, run:
+# systemctl status lwsd
+8. From a browser, connect to LSF Web Services:
+For HTTP: http://LWS_hostname_or_IP_address:8088
+For HTTPS: https://LWS_hostname_or_IP_address:8448
+9. Log on to the other hosts in your high availability environment and repeat the previous installation steps. Ensure that all hosts used in your
+high availability environment use the same INSTALLATION_TOP value.
+What to do next
+After you have installed LSF Web Services with high availability, you can conﬁgure Apache HTTP Server as your HTTP or HTTPS proxy for LSF Web
+Services.
+Conﬁguring Apache HTTP Server as an HTTP proxy for LSF Web Services
+ If you installed multiple instances of LSF Web Services for high availability, you are ready to conﬁgure Apache HTTP Server as a proxy for LSF
+Web Services. Follow these steps to conﬁgure an HTTP proxy.
+Conﬁguring Apache HTTP Server as an HTTPS proxy for LSF Web Services
+ If you installed multiple instances of LSF Web Services for high availability, you are ready to conﬁgure Apache HTTP Server as a proxy for LSF
+Web Services. Follow these steps to conﬁgure an HTTPS proxy.
+Conﬁguring Apache HTTP Server as an HTTP proxy for LSF Web Services
+If you installed multiple instances of LSF Web Services for high availability, you are ready to conﬁgure Apache HTTP Server as a proxy for LSF Web
+Services. Follow these steps to conﬁgure an HTTP proxy.
+Before you begin
+Tip: To conﬁgure an HTTPS proxy, see Conﬁguring Apache HTTP Server as an HTTPS proxy for LSF Web Services.
+Ensure that you have installed Apache HTTP Server 2.4.37 or later on a dedicated host.
+Procedure
+1. As root, log on to the Apache HTTP Server host.
+2. Edit the Apache HTTP Server conﬁguration ﬁle (/etc/httpd/conf/httpd.conf):
+IBM Spectrum LSF 2305
+
+a. Since you are enabling an HTTP proxy, disable SSL by commenting out the following HTTPS and Apache HTTP Server mod_ssl module
+lines from the ﬁle, and leaving the HTTP line, as follows:
+Listen 80 http 
+#Listen 443 https 
+#loadModule ssl_module /usr/lib64/httpd/modules/mod_ssl.so
+b. Add HTTP proxy settings for your LSF Web Services hosts by adding the following lines to the ﬁle.
+Specify hostnames using their long names with FQDN; the names must be the same as the transport hostnames for the LSF Web
+Services server, and specify port 8088 for HTTP:
+<VirtualHost *:80> 
+        ProxyRequests Off 
+        ProxyPreserveHost On 
+        <Proxy balancer://lwsclusterin> 
+                BalancerMember http://FQDN_hostname_for_host1:8088  
+route=FQDN_hostname_for_host1.ibm.com 
+                BalancerMember http://FQDN_hostname_for_host2:8088  
+route=FQDN_hostname_for_host2.ibm.com 
+                BalancerMember http://FQDN_hostname_for_hostn:8088  
+route=FQDN_hostname_for_hostn.ibm.com 
+        </Proxy> 
+        ProxyPass /lsf balancer://lwsclusterin/lsf 
+        ProxyPassReverse /lsf balancer://lwsclusterin/lsf 
+         
+</VirtualHost> 
+The following example /etc/httpd/conf/httpd.conf ﬁle shows conﬁguring two LSF Web Services hosts (lsfhost1 and lsfhost2) for an HTTP
+proxy:
+Listen 80 http 
+#Listen 443 https 
+#loadModule ssl_module /usr/lib64/httpd/modules/mod_ssl.so 
+<VirtualHost *:80> 
+        ProxyRequests Off 
+        ProxyPreserveHost On 
+        <Proxy balancer://lwsclusterin> 
+                BalancerMember http://lsfhostA.ibm.com:8088  route=lsfhostA.ibm.com 
+                BalancerMember http://lsfhostB.ibm.com:8088  route=lsfhostB.ibm.com 
+        </Proxy> 
+        ProxyPass /lsf balancer://lwsclusterin/lsf 
+        ProxyPassReverse /lsf balancer://lwsclusterin/lsf 
+         
+</VirtualHost> 
+3. Save the changes to your /etc/httpd/conf/httpd.conf ﬁle.
+4. Restart the Apache HTTP Server:
+# systemctl stop httpd 
+# systemctl start httpd
+5. Verify the validity of your HTTP proxy:
+a. Log on to the HTTP proxy server:
+#lsf cluster logon –username xxxxxx --password xxxxxx --url http://LWS_hostname_proxy:port
+Note: When connecting to the proxy server, the port should be the same as the listening port conﬁgured in your Apache HTTP Server
+conﬁguration ﬁle.
+For example:
+#lsf cluster logon –username lsfadmin --password xxxxxx --url http://lws_ha.ibm.com:80
+b. List all logged in LSF clusters:
+# lsf cluster list 
+ Default Name    Version                                           URL 
+ *       lws_ha  IBM Spectrum LSF Standard 10.1.0.14, Jun 11 2023  http://lws_ha.ibm.com:80
+c. Submit jobs to the LSF cluster through the HTTP proxy.
+For example:
+#lsf cluster logon --username lsfadmin --password xxxxxx --url https://lws_ha.ibm.com:80 
+ OK 
+#lsf bsub sleep 100                          
+ Job <358> is submitted to default queue <normal>. 
+#lsf bjobs -a 
+JOBID   USER     STATUS  QUEUE   FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME 
+358     lsfadmin DONE    normal  hostA       hostB       sleep 100  May 21 23:01
+2306    IBM Spectrum LSF
+
+d. Stop one of the LSF Web Services hosts (for example, stop lsfhostA):
+# systemctl stop lwsd 
+e. Submit another job.
+For example:
+# lsf bsub -n2 -R "rusage[mem=500]" sleep 200 
+Job <109> is submitted to default queue <normal>. 
+# lsf bjobs -l 109
+f. Verify that the job submitted successfully. If the job is successful submitted, the HTTP proxy is conﬁgured properly.
+What to do next
+For your LSF Web Services high availability environment, you can optionally enable single sign-on for LSF Web Services high availability.
+Conﬁguring Apache HTTP Server as an HTTPS proxy for LSF Web Services
+If you installed multiple instances of LSF Web Services for high availability, you are ready to conﬁgure Apache HTTP Server as a proxy for LSF Web
+Services. Follow these steps to conﬁgure an HTTPS proxy.
+Before you begin
+Tip: To conﬁgure an HTTP proxy, see Conﬁguring Apache HTTP Server as an HTTP proxy for LSF Web Services.
+Ensure that you have installed Apache HTTP Server 2.4.37 or later on a dedicated host.
+Procedure
+1. As root, log on to each host where you installed an each LSF Web Services instance, stop LSF Web Services, source the environment, and
+disable HTTPS, as follows:
+# systemctl stop lwsd 
+# . /opt/ibm/lsfsuite/ext/ws/conf/profile.lws 
+# lwsadmin https disable
+2. On one of the LSF Web Services hosts, generate a certiﬁcate and key using the following command. Specify hostnames using their short
+names, FQDN, and IP address. Separate each entry with a comma (,).
+For example:
+lwsadmin https enable --password xxxxxxxx --validhosts lsfhostA-shortname lsfhostA-FQDN lsfhostA-IP 
+lsfhostB-shortname lsfhostB-FQDN lsfhostB-IP --certificatename lwsproxy 
+...
+3. As root, log on to the LSF Web Services host and start LSF Web Services:
+# systemctl start lwsd
+4. As root, log on to the Apache HTTP Server host and install the Apache HTTP Server mod_ssl module:
+# dnf install -y mod_ssl
+5. Determine the .cert, .key, and cacert.pem ﬁlenames and locations for the generated proxy. You will use this information in the next step.
+For example:
+# pwd 
+/opt/ibm/lsfsuite/ext/ws/conf/https/work 
+# cp lwsproxy.cert  lwsproxy.key  cacert.pem   /lsfshare/ssl
+6. Edit the Apache HTTP Server conﬁguration ﬁle (/etc/httpd/conf/httpd.conf):
+a. Since you are enabling an HTTPS proxy, disable HTTP by commenting out the HTTP line from the ﬁle, and leaving the HTTPS and 
+mod_ssl lines, as follows:
+# Listen 80 http 
+Listen 443 https 
+loadModule ssl_module /usr/lib64/httpd/modules/mod_ssl.so
+b. Add HTTP proxy settings for your LSF Web Services hosts by adding the following lines to the ﬁle.
+Specify hostnames using their long names with FQDN; the names must be the same as the transport hostnames for the LSF Web
+Services server, and specify port 8448 for HTTPS:
+<VirtualHost *:443> 
+        ProxyRequests Off 
+IBM Spectrum LSF 2307
+
+        ProxyPreserveHost On 
+        <Proxy balancer://lwsclusterin> 
+                BalancerMember https://FQDN_hostname_for_host1:8448  
+route=FQDN_hostname_for_host1.ibm.com 
+                BalancerMember https://FQDN_hostname_for_host2:8448  
+route=FQDN_hostname_for_host2.ibm.com 
+                BalancerMember https://FQDN_hostname_for_hostn:8448  
+route=FQDN_hostname_for_hostn.ibm.com 
+        </Proxy> 
+        ProxyPass /lsf balancer://lwsclusterin/lsf 
+        ProxyPassReverse /lsf balancer://lwsclusterin/lsf 
+         
+</VirtualHost>
+Specify the .cert, .key, and cacert.pem ﬁlenames and locations for the generated proxy. Use the information from the previous
+step.
+For example:
+<VirtualHost> 
+... 
+        SSLCertificateFile "/lsfshare/ssl/lwsproxy.cert" 
+        SSLCertificateKeyFile "/lsfshare/ssl/lwsproxy.key" 
+        SSLProxyCACertificateFile "/lsfshare/ssl/cacert.pem" 
+</VirtualHost>
+To avoid port conflicts, comment out the line to include ssl.conf, as follows:
+#IncludeOptional conf.d/*.conf
+The following example /etc/httpd/conf/httpd.conf ﬁle shows conﬁguring two LSF Web Services hosts (lsfhost1 and lsfhost2) for an HTTPS
+proxy:
+#Listen 80 http 
+Listen 443 https 
+loadModule ssl_module /usr/lib64/httpd/modules/mod_ssl.so 
+<VirtualHost *:443> 
+        SSLEngine On 
+        SSLProxyVerify On 
+        SSLProxyEngine On 
+        ProxyPreserveHost On 
+        SSLProxyCheckPeerName On 
+        <Proxy balancer://lwsclusterin> 
+                BalancerMember https://lsfhostA.ibm.com:8448  route=lsfhostA.ibm.com 
+                BalancerMember https://lsfhostB.ibm.com:8448  route=lsfhostB.ibm.com 
+        </Proxy> 
+        ProxyPass /lsf balancer://lwsclusterin/lsf 
+        ProxyPassReverse /lsf balancer://lwsclusterin/lsf 
+         
+        SSLCertificateFile "/lsfshare/ssl/lwsproxy.cert" 
+        SSLCertificateKeyFile "/lsfshare/ssl/lwsproxy.key" 
+        SSLProxyCACertificateFile "/lsfshare/ssl/cacert.pem" 
+</VirtualHost> 
+#IncludeOptional conf.d/*.conf
+7. Save the changes to your /etc/httpd/conf/httpd.conf ﬁle.
+8. Restart the Apache HTTP Server:
+systemctl stop httpd 
+systemctl start httpd
+9. Verify the validity of your HTTPS proxy:
+a. Log on to the HTTPS proxy server:
+# lsf cluster logon –username xxxxxx --password xxxxxx --url https://LWS_hostname_proxy:port
+Note: When connecting to the proxy server, the port should be the same as the listening port conﬁgured in your Apache HTTP Server
+conﬁguration ﬁle.
+For example:
+# lsf cluster logon –username lsfadmin --password xxxxxx --url https://lws_ha.ibm.com:443
+Tip: You can use an IP address (instead of a hostname) to log in to the proxy. This requires modifying the SSLProxyCheckPeerName
+value to off in your Apache HTTP Server conﬁguration ﬁle (/etc/httpd/conf/httpd.conf). By default, this value is set to 
+SSLProxyCheckPeerName On.
+Be aware that a setting of SSLProxyCheckPeerName Off reduce security and can pose certain risks.
+b. List all logged in LSF clusters:
+2308    IBM Spectrum LSF

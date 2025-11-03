@@ -1,0 +1,61 @@
+job_submission_log_jobﬁle
+LSF creates a job ﬁle under the LSF working directory at job submission. The job_submission_log_jobﬁle item is a sub item of job_submission.
+Typically, administrators put the LSF working directory on a shared ﬁle system. If the network or the shared ﬁle system has performance
+issues, you should see a large amount of time spent on this item. A reasonable time should be within a few ms for an individual
+job_submission_log_jobﬁle.
+job_status_update
+Job status updates from sbatchd. The job_status_update item writes one event into lsb.events. The lsb.events ﬁle is kept open. If the
+maximum runtime of one call is greater than 50 ms, or the total runtime is longer than %15 of the logging period, mbatchd logs this item. In a
+large high throughput computing cluster, a large number of invocations of is normal.
+job_rusage_update
+Running job resource usage updates from sbatchd. If the maximum runtime of one call is greater than 50 ms, or the total runtime is longer
+than %15 of the logging period, mbatchd logs this item. In a large high throughput computing cluster, a large number of invocations of is
+normal.
+job_dependency_eval
+Evaluate job dependency conditions If the maximum runtime of one call is greater than 2 seconds, mbatchd logs this item.
+sched_get_new_job
+mbschd requests to get new jobs from mbatchd. If the maximum runtime of one call is greater than 2 seconds, mbatchd logs this item.
+sched_get_resource
+mbschd requests to get resources from mbatchd. If the maximum runtime of one call is greater than 2 seconds, mbatchd logs this item.
+sched_publish_decision
+Publish the job scheduling decision from mbschd to mbatchd. The sched_publish_decision item includes the job_dispatch and
+job_dispatch_read_jobﬁle sub items. If the maximum runtime of one call is greater than 2 seconds, mbatchd logs this item.
+job_dispatch
+Dispatch one job. Job dispatch can be slow if there is network issue. The job_dispatch item includes the job_dispatch_read_jobﬁle sub item. If
+the maximum runtime of one call is greater than 2 seconds, mbatchd logs this item.
+job_dispatch_read_jobﬁle
+mbatchd reads the job ﬁle when dispatching a job. Reading the job ﬁle can be slow if the network or the shared ﬁle system has performance
+issues. If the maximum runtime of one call is greater than 50 ms, mbatchd logs this item.
+sched_publish_pending_reason
+Publish the job pending reason from mbschd to mbatchd. If the maximum runtime of one call is greater than 2 seconds, mbatchd logs this
+item.
+mbd_clean_job
+Clean jobs from mbatchd memory. This operation triggers removing of job ﬁle. If the maximum runtime of one call is greater than 2 seconds,
+mbatchd logs this item.
+mbd_event_switch
+lsb.events ﬁle switching operation. If the maximum runtime of one call is greater than 2 seconds, mbatchd logs this item.
+mbd_update_load
+mbatchd calls LIM to update load. If the maximum runtime of one call is greater than 2 seconds, mbatchd logs this item. A reasonable time
+should be within a few hundred ms.
+mbd_query_xxx
+Client queries trigger mbatchd to fork, which can be slow if mbatchd has a very large memory footprint. If the maximum runtime of one call is
+greater than 50 ms, or the total runtime is longer than %15 of the logging period, mbatchd logs this item.
+mbd_channel
+mbatchd processeses requests from the client, sbatchd or scheduler. This is the mbatchd idle time. mbatchd always logs this item.
+Placing jobs based on available job slots of hosts
+LSF has built-in host-based resource slots to support the placement of jobs based on available job slots. Learn how to conﬁgure and use the slots
+resource with existing LSF resource requirements according to a packing or spreading policy.
+About this task
+Packing always places jobs on the hosts with the least available slots ﬁrst. Packing jobs can make room for bigger parallel jobs.
+Spreading tries to spread jobs out and places jobs on the hosts with the most available slots ﬁrst. Spreading jobs maximizes the performance
+of individual jobs.
+The slots keyword represents available slots on each host and it is a built-in numeric decreasing resource. When a job occupies some of the job slots
+on the host, the slots resource value is decreased accordingly. For example, if the MXJ of an LSF host is deﬁned as 8, the slots value will be 8 when
+the host is empty. When 6 LSF job slots have been occupied, slots becomes 2. The slots resource can only be used in select[] and order[] sections of
+a job resource requirement string. To apply a job packing or spreading policy, you can use the order[] section in the job resource requirement. For
+example, -R “order[-slots]” will order candidate hosts based on the least available slots, while –R “order[slots]” will order candidate hosts based on
+the hosts with the most available slots.
+As part of resource requirement, the order[] section can be used in following contexts:
+In a queue RES_REQ in the lsb.queues ﬁle
+In an application proﬁle level RES_REQ in the lsb.applications ﬁle
+2422    IBM Spectrum LSF

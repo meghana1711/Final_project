@@ -1,0 +1,439 @@
+However, because the mbatchd logs token status every minute in $LSF_TOP/work/data/feature_name.service_domain_name.dat ﬁle, if the
+connection is lost, the mbatchd uses the last logged information to schedule jobs.
+f3.LanServer1.dat  
+# f3 LanServer1 3 2 
+# p1 50 p2 50   
+  12/3         14:20:38        2    0    2    0         1    0    1    0     
+  12/3         14:21:39        2    0    2    0         1    0    1    0     
+  12/3         14:22:40        3    3    0    0         0    0    0    0     
+  12/3         14:23:41        3    3    0    0         0    0    0    0     
+  12/3         14:24:42        1    0    1    0         2    0    2    0     
+  12/3         14:25:43        1    0    1    0         2    0    2    0     
+  12/3         14:26:44        1    0    1    0         2    0    2    0     
+  12/3         14:27:55        1    0    1    0         2    0    2    0     
+f3 on LanServer1 has three tokens and two projects. Projects p1 and p2 share licenses 50:50.
+At 14:27:55, the bld dispatched one token to p1, which has zero in use, one free, zero reserved. At the same time, the bld dispatched two tokens to 
+p2, which has zero in use, two free, and zero reserved.
+The mbatchd continues to schedule jobs that are based on the token distribution that is logged at 14:27:55 until the connection with the bld is re-
+established.
+Installing and starting License Scheduler
+Install License Scheduler
+ Start License Scheduler
+ LSF parameters in License Scheduler
+ Submitting LSF License Scheduler jobs
+ When you submit an LSF License Scheduler job, you must reserve the license with resource usage (rusage) when you run the bsub command
+to submit jobs; that is, run bsub -R "rusage...". You cannot successfully reserve a license by simply running bsub -R "select".
+After conﬁguration changes
+ Add a cluster to License Scheduler
+ Conﬁgure multiple administrators
+ Upgrade License Scheduler
+ Firewalls
+ Conﬁguration for LSF, License Scheduler, and taskman interoperability.
+Install License Scheduler
+1. Perform the pre-installation steps.
+2. Choose an installation plan:
+UNIX: License Scheduler manages licenses for jobs that run through LSF and through applications other than LSF.
+Windows, in a mixed cluster:
+A Licenser Scheduler installation requires UNIX hosts to run the bld. Windows hosts in a mixed cluster can run License Scheduler
+commands.
+When you have License Scheduler UNIX hosts working with LSF, run License Scheduler on Windows hosts as well.
+Before you install
+ What the License Scheduler setup script does
+ Install License Scheduler with LSF (UNIX)
+ Install License Scheduler on Windows
+ You can install License Scheduler on Windows hosts when your cluster includes both Windows and UNIX hosts.
+Troubleshoot
+ Conﬁgure LSF License Scheduler Basic Edition
+ Conﬁgure LSF and LSF License Scheduler Basic Edition.
+Before you install
+About this task
+LSF must be installed and running before you install License Scheduler.
+IBM Spectrum LSF 1989
+
+Procedure
+Log on to any LSF host as root and use lsid to make sure that the cluster is running. If you see the message "Cannot open lsf.conf ﬁle", verify that the
+$LSF_ENVDIR environment variable is set correctly.
+To set your LSF environment:
+For csh or tcsh:
+% source LSF_TOP/conf/cshrc.lsf
+For sh, ksh, or bash:
+$ . LSF_TOP/conf/profile.lsf
+What the License Scheduler setup script does
+Finds the appropriate lsf.conf for the running cluster.
+Copies the License Scheduler ﬁles to your LSF directories:
+$LSF_ENVDIR:
+lsf.licensescheduler
+ls.users
+$LSF_SERVERDIR:
+bld
+blcollect
+globauth
+esub.ls_auth
+$LSF_BINDIR:
+blstat
+blcstat
+blusers
+blinfo
+bladmin
+blstartup
+blhosts
+blkill
+bltasks
+blparams
+taskman
+$LSF_LIBDIR:
+libglb.a
+libglb.so
+liblic.so
+$LSF_MANDIR: various man pages
+Finds the appropriate lsf.cluster.cluster_name ﬁle for the running cluster.
+Creates the following additional directories:
+$LSB_SHAREDIR/cluster_name/db
+$LSB_SHAREDIR/cluster_name/data
+Sets your License Scheduler administrators list in the lsf.licensescheduler ﬁle.
+1990    IBM Spectrum LSF
+
+Conﬁgures LSF to use License Scheduler.
+Install License Scheduler with LSF (UNIX)
+Before you begin
+Make sure that you have a supported operating system and any prerequisites installed before you install LSF. Also note any known issues
+related to the operating system used with LSF.
+You must have write access to the LSF_TOP directories.
+Procedure
+1. Log on as root to the installation ﬁle server host.
+2. Download, decompress, and extract the LSF License Scheduler packages for the platforms you need.
+For example, for x86 64-bit systems that run Linux kernel 3.10, download lsf10.1.0_licsched_lnx310-x64.tar.Z.
+3. Extract the distribution ﬁle.
+For example:
+# zcat lsf10.1.0_licsched_lnx310-x64.tar.Z | tar xvf -
+4. Change to the extracted distribution directory.
+5. Run the setup script as root:
+# ./setup
+Note: If you are installing License Scheduler into a non-LSF environment or doing a silent install, edit ./setup.conﬁg prior to your installation.
+6. Enter y (yes) to conﬁrm that the path to lsf.conf is correct.
+To enter a path to a different lsf.conf, type n (no) and specify the full path to the lsf.conf ﬁle you want to use.
+7. Enter y to conﬁrm that the path to lsf.cluster.cluster_name is correct.
+To enter a path to a different lsf.cluster.cluster_name ﬁle, type n (no) and specify the full path to the lsf.cluster.cluster_name ﬁle you want to
+use.
+8. Enter y to conﬁrm that you want to use the LSF Administrators list for License Scheduler with LSF.
+To enter a different list of administrators for License Scheduler, enter a space-separated list of administrator user names. You can change your
+License Scheduler administrators list later, if necessary.
+9. If you are installing LSF License Scheduler Standard Edition, copy the LSF License Scheduler entitlement ﬁle (ls.entitlement) to the
+$LSF_ENVDIR directory.
+If you do not copy the entitlement ﬁle to $LSF_ENVDIR before starting LSF License Scheduler, LSF License Scheduler runs as Basic Edition.
+What to do next
+Start License Scheduler
+Note: Before starting LSF License Scheduler, if you are installing LSF License Scheduler Basic Edition, conﬁgure License Scheduler Basic Edition and
+LSF as described in Conﬁgure License Scheduler Basic Edition . If you are installing LSF License Scheduler Standard Edition, conﬁgure LSF License
+Scheduler Standard Edition and LSF as described in Conﬁguring License Scheduler.
+Install License Scheduler on Windows
+You can install License Scheduler on Windows hosts when your cluster includes both Windows and UNIX hosts.
+The License Scheduler Windows Client package includes:
+README
+Commands:
+blstat.exe
+blcstat.exe
+blinfo.exe
+blusers.exe
+bladmin.exe
+blhosts.exe
+blkill.exe
+bltasks.exe
+blparams.exe
+IBM Spectrum LSF 1991
+
+taskman.exe
+lsf.licensescheduler: License Scheduler conﬁguration ﬁle
+lsf.conf: LSF conﬁguration ﬁle
+Install License Scheduler with LSF (Windows)
+ 
+Install License Scheduler with LSF (Windows)
+Before you begin
+You must already have LSF installed on all Windows hosts you intend to install License Scheduler on.
+About this task
+This installation option means that License Scheduler manages licenses for jobs that are submitted through LSF and through any other applications.
+Install License Scheduler on Windows hosts only when your LSF cluster includes both UNIX and Windows hosts.
+Procedure
+1. Download the License Scheduler Client for Windows package.
+2. Copy all commands to $LSF_BINDIR (the bin subdirectory in your LSF installation directory) on your Windows hosts.
+3. Copy lsf.licensescheduler to $LSF_ENVDIR.
+4. Edit lsf.licensescheduler to suit your License Scheduler management host conﬁguration.
+Troubleshoot
+Procedure
+1. If you receive the following message, conﬁgure your Windows host name and IP address in the /etc/hosts ﬁle on the management host:
+Failed in an LSF library call: Failed in sending/receiving a message: error 0: The operation completed
+successfully.
+2. To enable the blhosts command, make sure that your Windows host can resolve the management host IP address correctly.
+Conﬁgure LSF License Scheduler Basic Edition
+Conﬁgure LSF and LSF License Scheduler Basic Edition.
+Conﬁguring LSF License Scheduler Basic Edition and LSF
+About this task
+Conﬁgure LSF to use LSF License Scheduler Basic Edition as a replacement for an elim to collect external load indices where the external resources
+are licenses managed by FlexNet or Reprise License Manager.
+The following example assumes that LSF cluster named cluster1 uses an elim for a license resource named f1.
+Procedure
+1. In the LSF environment, disable the existing elim for the license resource by removing the license feature conﬁguration from the lsf.shared
+and lsf.cluster.cluster_name ﬁles.
+For example, remove the conﬁguration for f1 from the lsf.shared and lsf.cluster.cluster_name ﬁles.
+2. Conﬁgure the lsf.licenscheduler ﬁle with the appropriate hosts and the license feature.
+For example, conﬁgure the following sections in lsf.licenscheduler:
+Begin Parameters 
+PORT=1700 
+HOSTS=hostA 
+ADMIN=lsadmin 
+LM_STAT_INTERVAL=15 
+LMSTAT_PATH=/usr/bin 
+1992    IBM Spectrum LSF
+
+End Parameters 
+Begin Clusters 
+CLUSTERS 
+cluster1 
+End Clusters 
+Begin ServiceDomain 
+NAME=LanServer 
+LIC_SERVERS=((19999@hostA)) 
+End ServiceDomain 
+Begin Feature 
+NAME=f1 
+CLUSTER_MODE=Y 
+CLUSTER_DISTRIBUTION=LanServer(cluster1) 
+End Feature
+3. Start LSF License Scheduler and LSF.
+For more details, refer to Start License Scheduler.
+What to do next
+From LSF, use bsub to submit a job without a duration requesting the f1 resource. For example,
+bsub -R "rusage[f1=1]" myjob
+Upgrading from LSF License Scheduler Basic Edition to Standard Edition
+About this task
+If you use LSF License Scheduler Basic Edition and wish to upgrade to LSF License Scheduler Standard Edition, obtain the LSF License Scheduler
+entitlement ﬁle, then upgrade LSF License Scheduler as follows:
+Procedure
+1. Copy the LSF License Scheduler entitlement ﬁle (ls.entitlement) to the LSF_ENVDIR directory.
+2. Restart LSF License Scheduler.
+bladmin reconfig
+3. Restart the mbatchd on the LSF management host.
+badmin mbdrestart
+Supported parameters for LSF License Scheduler Basic Edition
+The following is a list of speciﬁc lsf.licensescheduler parameters that LSF License Scheduler Basic Edition supports:
+Parameters section:
+ADMIN
+BLC_HEARTBEAT_FACTOR
+CLUSTER_MODE (LSF License Scheduler Basic Edition only supports CLUSTER_MODE=Y)
+HEARTBEAT_INTERVAL
+HEARTBEAT_TIMEOUT
+HOSTS
+LIB_CONNTIMEOUT
+LIB_RECVTIMEOUT
+LM_STAT_INTERVAL
+LM_STAT_TIMEOUT
+LM_TYPE
+LMSTAT_PATH
+LOG_EVENT
+LOG_INTERVAL
+LS_DEBUG_BLC
+LS_DEBUG_BLD
+LS_DEBUG_CMD
+LS_LOG_MASK
+LS_MAX_STREAM_FILE_NUMBER
+LS_MAX_STREAM_SIZE
+LS_STREAM_SIZE
+LS_STREAM_FILE
+MBD_HEARTBEAT_INTERVAL
+MBD_REFRESH_INTERVAL
+RLMSTAT_PATH
+STANDBY_CONNTIMEOUT
+Clusters section:
+IBM Spectrum LSF 1993
+
+CLUSTERS (one cluster only, LSF License Scheduler Basic Edition ignores additional clusters)
+ServiceDomain section (one ServiceDomain section per license feature only, LSF License Scheduler Basic Edition ignores additional
+ServiceDomain sections in the same license feature):
+NAME
+LIC_SERVERS
+LM_STAT_INTERVAL
+LM_STAT_TIMEOUT
+LM_TYPE
+LIC_COLLECTOR
+Feature section:
+NAME
+CLUSTER_MODE (Optional. This parameter may be speciﬁed in the Parameters section instead, but LSF License Scheduler Basic Edition
+only supports CLUSTER_MODE=Y)
+LM_LICENSE_NAME (Optional. LSF License Scheduler Basic Edition does not support the speciﬁcation of multiple license manager
+feature names to combine into a single alias)
+CLUSTER_DISTRIBUTION (LSF License Scheduler Basic Edition supports a single cluster with a single service domain only, and ignores
+any additional clusters or service domains).
+Tip: A speciﬁc lsf.licensescheduler conﬁguration template for LSF License Scheduler Basic Edition is available and contains speciﬁcations for all
+supported parameters. This ﬁle is named lsf.licensescheduler.basic and is included in the LSF License Scheduler installation package. LSF License
+Scheduler uses the Standard Edition conﬁguration ﬁle by default, but LSF License Scheduler Basic Edition ignores unsupported Standard Edition
+parameters with a warning message. To ensure that LSF License Scheduler Basic Edition uses only supported parameters and to prevent the logging
+of the warning messages, back up the lsf.licensescheduler conﬁguration ﬁle, then move the lsf.licensescheduler.basic ﬁle to the $LSF_ENVDIR
+directory and rename it to lsf.licensescheduler.
+Start License Scheduler
+About this task
+You can conﬁgure LSF to start the License Scheduler daemon (bld) on the License Scheduler host as well as on candidate License Scheduler hosts
+that can take over license distribution in the case of a network failure. The LSF LIM daemon starts bld automatically.
+Procedure
+1. Log on as the primary LSF administrator.
+2. Set your LSF environment:
+For csh or tcsh:
+% source LSF_TOP/conf/cshrc.lsf
+For sh, ksh, or bash:
+$ . LSF_TOP/conf/profile.lsf
+3. In LSF_CONFDIR/lsf.conf, specify a space-separated list of hosts for the LSF_LIC_SCHED_HOSTS parameters:
+LSF_LIC_SCHED_HOSTS="hostname_1 hostname_2 ... hostname_n"
+Where:
+hostname_1, hostname_2, hostname_n are hosts on which the LSF LIM daemon starts the License Scheduler daemon. The order of the host
+names is ignored.
+Note: Set the LSF_LIC_SCHED_HOSTS parameter to the same list of candidate hosts you used in the lsf.licensescheduler HOSTS parameter.
+The LSF_LIC_SCHED_HOSTS parameter is not used in any other function.
+4. Run lsadmin reconﬁg to reconﬁgure the LIM.
+5. Use ps -ef to make sure that bld is running on the candidate hosts.
+6. Run badmin mbdrestart to restart mbatchd.
+7. If you speciﬁed a LIC_COLLECTOR name in your service domains, start each license collector manually:
+blcollect -m "host_list" -p lic_scheduler_port -c lic_collector_name
+Where:
+host_list
+Speciﬁes a space-separated list of License Scheduler candidate hosts to which license information is sent. Use fully qualiﬁed host
+names.
+lic_scheduler_port
+Corresponds to the License Scheduler listening port, which is set in lsf.licensescheduler.
+1994    IBM Spectrum LSF
+
+lic_collector_name
+Speciﬁes the name of the license collector you set for LIC_COLLECTOR in the service domain section of lsf.licensescheduler.
+For example:
+blcollect -m "hostD.designcenter_b.com hostA.designcenter_a.com" -p 9581 -c CenterB
+A ﬁle named collectors/CenterB is created in your LSF_WORKDIR.
+Note:
+If you do not specify a license collector name in a License Scheduler service domain, the bld management host starts a default
+blcollect.
+LSF parameters in License Scheduler
+Parameters in lsf.conf that start with LSF_LIC_SCHED are relevant to both LSF and License Scheduler:
+LSF_LIC_SCHED_HOSTS: LIM starts the License Scheduler daemon (bld) on candidate License Scheduler hosts.
+CAUTION:
+You cannot use LSF_LIC_SCHED_HOSTS if your cluster was installed with UNIFORM_DIRECTORY_PATH or
+UNIFORM_DIRECTORY_PATH_EGO. Do not set UNIFORM_DIRECTORY_PATH or UNIFORM_DIRECTORY_PATH_EGO for new or upgrade
+installations. They are for compatibility with earlier versions only.
+LSF_LIC_SCHED_PREEMPT_REQUEUE: Requeues a job whose license is preempted by License Scheduler. The job is killed and requeued
+instead of suspended.
+LSF_LIC_SCHED_PREEMPT_SLOT_RELEASE: Releases memory and slot resources of a License Scheduler job that is suspended. These
+resources are only available to pending License Scheduler jobs that request at least one license that is the same as the suspended job.
+Job slots are released by default, but memory resources are also released if memory preemption is enabled (that is,
+PREEMPTABLE_RESOURCES = mem is set in lsb.params).
+LSF_LIC_SCHED_PREEMPT_STOP: Uses job controls to stop a job that is preempted. When this parameter is set, a UNIX SIGSTOP signal is
+sent to suspend a job instead of a UNIX SIGTSTP.
+LSF_LIC_SCHED_STRICT_PROJECT_NAME: Enforces strict checking of the License Scheduler project name upon job submission. If the project
+named is misspelled (case sensitivity applies), the job is rejected.
+LSF parameters used by License Scheduler
+LSB_SHAREDIR: Directory where the job history and accounting logs are kept for each cluster
+LSF_LOG_MASK: Logging level of error messages for LSF daemons
+LSF_LOGDIR: LSF system log ﬁle directory
+Submitting LSF License Scheduler jobs
+When you submit an LSF License Scheduler job, you must reserve the license with resource usage (rusage) when you run the bsub command to
+submit jobs; that is, run bsub -R "rusage...". You cannot successfully reserve a license by simply running bsub -R "select".
+For example, this command submits a job named myjob to license project Lp1 and requests one AppB license:
+bsub -R "rusage[AppB=1]" -Lp Lp1 myjob
+This command submits a job named myjob and requests one AppC license:
+bsub -R "rusage[AppC=1]" myjob
+Additionally, normally, having a duration on a job's rusage tells LSF to reserve a resource for a period of time. Take the following example:
+bsub -R "rusage[lic=1:duration=1]" ./a.out
+This syntax tells LSF to reserve one unit of the resource license for a period of one minute. This is a common usage pattern for when license
+represents the available number of licenses as reported by an elim. LSF will reserve the license for a minute or two in its own internal counters.
+During this time, it is expected that the job will check out a license from the license server. Then, LSF stops reserving the license, but the job is
+already held by another job (and the new availability reflected by elim).
+LSF License Scheduler is not required to use duration on rusage at all, since license checkouts will be matched to the jobs. The amount reserved for
+a job will be decreased by the number of licenses checked out.
+IBM Spectrum LSF 1995
+
+For both cluster mode and FAST_DISPATCH project modes, LSF will ignore the rusage duration altogether on these features.
+Additionally, be aware of the following rules when submitting LSF License Scheduler jobs:
+Specify the license token name (which is the same as specifying a shared resource).
+If you use project mode, specify a license project name with the bsub -Lp option.
+Jobs will be rejected if you have LSF_LIC_SCHED_STRICT_PROJECT_NAME=y conﬁgured in the lsf.confﬁle, and do not conﬁgure a default
+project for the required feature.
+Tip: Use the blstat command to view information about the default license project.
+If your queue or job starter scripts request a license that is managed by an LSF elim, you must update the job submission scripts to request
+that license that uses the license token name.
+After conﬁguration changes
+About this task
+If you make conﬁguration changes to License Scheduler, you must reconﬁgure License Scheduler to apply the changes. If you make conﬁguration
+changes to LSF, you must also reconﬁgure LSF.
+Procedure
+1. Run bld -C to test for conﬁguration errors.
+2. Run bladmin reconfig all.
+3. If you changed lsf.conf or other LSF conﬁguration ﬁles, run badmin mbdrestart and lsadmin reconfig.
+Note:
+After certain License Scheduler conﬁguration changes, you must run badmin mbdrestart for the changes to take effect. The following
+conﬁguration changes require you to run badmin mbdrestart:
+Project changes, additions, or deletions
+Feature changes, additions, or deletions, including mode changes
+Cluster locations changes
+You must also run lsadmin reconﬁg for any changes to the LIM to take effect (for example, if you changed LSF_LIC_SCHED_HOSTS).
+Add a cluster to License Scheduler
+Before you begin
+You must be a License Scheduler administrator.
+About this task
+You can add a new cluster to an existing License Scheduler implementation.
+Procedure
+1. Download the License Scheduler package.
+Note: Acquire the same version of bld binary ﬁles and other architectures that are used in existing member clusters.
+2. Install the License Scheduler package on the new cluster.
+3. Use an existing lsf.licensescheduler from $LSF_ENVDIR of another cluster with the same bld management host.
+4. Add new cluster name to the Clusters section of lsf.licensescheduler.
+5. Add or modify license distribution policies that are deﬁned in lsf.licensescheduler.
+6. Maintain one central lsf.licensescheduler ﬁle and have all the clusters access it.
+Remember: The lsf.licensescheduler ﬁle in each cluster must be identical.
+You can accomplish this using either of the following methods:
+Create a symbolic link from each cluster’s $LSF_ENVDIR to the central lsf.licensescheduler ﬁle.
+Use a CRON-based synchronization script to synchronize the changes that are made from the central lsf.licensescheduler ﬁle to the
+corresponding lsf.licensescheduler ﬁles in all the clusters.
+7. Check that there is no ﬁrewall or network issue with communication from the PORT in the lsf.licensescheduler ﬁle
+8. Run bladmin reconfig on all hosts where bld is running.
+1996    IBM Spectrum LSF
+
+9. On the newly added cluster, run bctrld restart lim and then badmin mbdrestart.
+Conﬁgure multiple administrators
+Before you begin
+The primary License Scheduler admin account must have write permissions in the LSF working directory of the primary LSF admin account.
+About this task
+The administrator account uses a list of users that you speciﬁed when you installed License Scheduler. Edit this parameter if you want to add or
+change administrators. The ﬁrst user name in the list is the primary License Scheduler administrator. By default, all the working ﬁles and directories
+that are created by License Scheduler are owned by the primary License Scheduler account.
+Procedure
+1. Log on as the primary License Scheduler administrator.
+2. In lsf.licensescheduler, edit the ADMIN parameter if you want to change the License Scheduler administrator. You can specify multiple
+administrators that are separated by spaces.
+For example:
+ADMIN = lsfadmin user1 user2 
+root
+3. Run bld -C to test for conﬁguration errors.
+4. Run bladmin reconﬁg all to apply your changes.
+Upgrade License Scheduler
+Before you begin
+You must have License Scheduler installed before you can upgrade. You must be a cluster administrator.
+About this task
+You can upgrade to a new version of License Scheduler without uninstalling and reinstalling.
+Procedure
+1. Download the new version of the License Scheduler distribution tar ﬁles.
+2. Deactivate all queues.
+Deactivating all queues pends any running jobs and prevents new jobs from being dispatched.
+badmin qinact all
+3. If you have the IBM® Spectrum LSF Application Center installed, shut it down.
+pmcadmin stop
+4. Back up your existing LSF_CONFDIR, LSB_CONFDIR, and LSB_SHAREDIR according to the procedures at your site.
+5. Use the setup script to upgrade LSF License Scheduler.
+a. Source cshrc.lsf or proﬁle.lsf in old LSF cluster.
+b. Navigate to the location of your tar ﬁles and extract.
+c. Run the setup script.
+6. If you are installing License Scheduler Standard Edition, copy the License Scheduler entitlement ﬁle (ls.entitlement) to the $LSF_ENVDIR
+directory.
+If you do not copy the entitlement ﬁle to $LSF_ENVDIR before starting License Scheduler, License Scheduler runs as Basic Edition.
+7. Start License Scheduler.
+a. Source cshrc.lsf or proﬁle.lsf.
+b. Run bladmin reconfig.
+c. Run ps -ef to make sure the bld is running on the candidate hosts.
+d. Run badmin mbdrestart.
+e. Activate the queues.
+badmin qact all
+IBM Spectrum LSF 1997

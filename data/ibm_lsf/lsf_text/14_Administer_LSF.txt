@@ -1,0 +1,45 @@
+Currently active process group ID of a job
+Currently active processes of a job
+Display resource allocation limits
+Use the blimits command to display resource allocation limits.
+The blimits command displays the following information:
+Conﬁgured policy name and information for limits that are being applied to running jobs.
+Conﬁgured policy name and information for all limits, even if they are not being applied to running jobs (-a option).
+Users (-u option)
+Queues (-q option)
+Hosts (-m option)
+Project names (-P option)
+All resource conﬁgurations in lsb.resources (-c option). This option is the same as bresources with no options.
+Resources that have no conﬁgured limits or no limit usage are indicated by a dash (-). Limits are displayed in a USED/LIMIT format. For example, if a
+limit of 10 slots is conﬁgured and 3 slots are in use, then blimits displays the limit for SLOTS as 3/10.
+If limits MEM, SWP, or TMP are conﬁgured as percentages, both the limit and the amount that is used are displayed in MB. For example, lshosts
+displays maximum memory (maxmem) of 249 MB, and MEM is limited to 10% of available memory. If 10 MB out of are used, blimits displays the
+limit for MEM as 10/25 (10 MB USED from a 25 MB LIMIT).
+Conﬁgured limits and resource usage for built-in resources (slots, mem, tmp, and swp load indices) are displayed as INTERNAL RESOURCE LIMITS
+separately from custom external resources, which are shown as EXTERNAL RESOURCE LIMITS.
+Limits are displayed for both the vertical tabular format and the horizontal format for Limit sections. If a vertical format Limit section has no name,
+blimits displays NONAMEnnn under the NAME column for these limits, where the unnamed limits are numbered in the order the vertical-format Limit
+sections appear in the lsb.resources ﬁle.
+If a resource consumer is conﬁgured as all, the limit usage for that consumer is indicated by a dash (-).
+PER_HOST slot limits are not displayed. The bhosts command displays these limits as MXJ limits.
+In MultiCluster, blimits returns the information about all limits in the local cluster.
+View information about resource allocation limits
+ 
+View information about resource allocation limits
+About this task
+Your job may be pending because some conﬁgured resource allocation limit has been reached. You can display the dynamic counters of resource
+allocation limits conﬁgured in the Limit sections in lsb.resources.
+Procedure
+Run blimits to display the current resource usage, including any limits that may be blocking your job.
+Administer IBM Spectrum LSF
+Learn how to manage your IBM® Spectrum LSF cluster, control daemons, change cluster conﬁgurations, and work with hosts and queues. Manage
+your LSF jobs and job scheduling policies. View job information and control jobs. Learn how to conﬁgure and allocate resources to your LSF jobs.
+Learn how to submit, monitor, and control high throughput and parallel workload in your LSF cluster. Learn about LSF error and event logging and
+how LSF handles job exceptions. Tune the performance and scalability of your LSF cluster.
+IBM Spectrum LSF cluster management essentials
+ Learn how to manage your LSF cluster, control daemons, change cluster conﬁgurations, and work with hosts, queues, and users.
+Monitoring IBM Spectrum LSF cluster operations and health
+ Learn how to monitor cluster performance, job resource usage, and other information about queues, jobs, and users.
+Managing IBM Spectrum LSF job execution
+ Learn how to manage your LSF jobs and job scheduling policies. View job information, control jobs, and manage job dependencies, job
+IBM Spectrum LSF 281

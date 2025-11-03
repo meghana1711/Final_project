@@ -1,0 +1,66 @@
+==> 2025-09-16 14:02:36 <==
+# cmd: C:\Users\20236193\AppData\Local\anaconda3\Scripts\conda-script.py create -p venv python==3.12
+# conda version: 24.7.1
++defaults/noarch::pip-25.2-pyhc872135_0
++defaults/noarch::tzdata-2025b-h04d1e81_0
++defaults/win-64::bzip2-1.0.8-h2bbff1b_6
++defaults/win-64::ca-certificates-2025.9.9-haa95532_0
++defaults/win-64::expat-2.7.1-h8ddb27b_0
++defaults/win-64::libffi-3.4.4-hd77b12b_1
++defaults/win-64::libzlib-1.3.1-h02ab6af_0
++defaults/win-64::openssl-3.0.17-h35632f6_0
++defaults/win-64::python-3.12.0-h1d929f7_0
++defaults/win-64::setuptools-78.1.1-py312haa95532_0
++defaults/win-64::sqlite-3.50.2-hda9a48d_1
++defaults/win-64::tk-8.6.15-hf199647_0
++defaults/win-64::ucrt-10.0.22621.0-haa95532_0
++defaults/win-64::vc-14.3-h2df5915_10
++defaults/win-64::vc14_runtime-14.44.35208-h4927774_10
++defaults/win-64::vs2015_runtime-14.44.35208-ha6b5a95_10
++defaults/win-64::wheel-0.45.1-py312haa95532_0
++defaults/win-64::xz-5.6.4-h4754444_1
++defaults/win-64::zlib-1.3.1-h02ab6af_0
+# update specs: ['python==3.12']
+==> 2025-09-16 14:58:30 <==
+# cmd: C:\Users\20236193\AppData\Local\anaconda3\Scripts\conda-script.py install -c conda-forge --prefix c:/Users/20236193/Final_project/venv ipykernel -y
+# conda version: 24.7.1
+-defaults/win-64::openssl-3.0.17-h35632f6_0
++conda-forge/noarch::asttokens-3.0.0-pyhd8ed1ab_1
++conda-forge/noarch::colorama-0.4.6-pyhd8ed1ab_1
++conda-forge/noarch::comm-0.2.3-pyhe01879c_0
++conda-forge/noarch::decorator-5.2.1-pyhd8ed1ab_0
++conda-forge/noarch::exceptiongroup-1.3.0-pyhd8ed1ab_0
++conda-forge/noarch::executing-2.2.1-pyhd8ed1ab_0
++conda-forge/noarch::importlib-metadata-8.7.0-pyhe01879c_1
++conda-forge/noarch::ipykernel-6.30.1-pyh3521513_0
++conda-forge/noarch::ipython-9.5.0-pyh6be1c34_0
++conda-forge/noarch::ipython_pygments_lexers-1.1.1-pyhd8ed1ab_0
++conda-forge/noarch::jedi-0.19.2-pyhd8ed1ab_1
++conda-forge/noarch::jupyter_client-8.6.3-pyhd8ed1ab_1
++conda-forge/noarch::matplotlib-inline-0.1.7-pyhd8ed1ab_1
++conda-forge/noarch::nest-asyncio-1.6.0-pyhd8ed1ab_1
++conda-forge/noarch::packaging-25.0-pyh29332c3_1
++conda-forge/noarch::parso-0.8.5-pyhcf101f3_0
++conda-forge/noarch::pickleshare-0.7.5-pyhd8ed1ab_1004
++conda-forge/noarch::platformdirs-4.4.0-pyhcf101f3_0
++conda-forge/noarch::prompt-toolkit-3.0.52-pyha770c72_0
++conda-forge/noarch::pure_eval-0.2.3-pyhd8ed1ab_1
++conda-forge/noarch::pygments-2.19.2-pyhd8ed1ab_0
++conda-forge/noarch::python-dateutil-2.9.0.post0-pyhe01879c_2
++conda-forge/noarch::six-1.17.0-pyhe01879c_1
++conda-forge/noarch::stack_data-0.6.3-pyhd8ed1ab_1
++conda-forge/noarch::traitlets-5.14.3-pyhd8ed1ab_1
++conda-forge/noarch::typing_extensions-4.15.0-pyhcf101f3_0
++conda-forge/noarch::wcwidth-0.2.13-pyhd8ed1ab_1
++conda-forge/noarch::zipp-3.23.0-pyhd8ed1ab_0
++conda-forge/win-64::krb5-1.21.3-hdf4eb48_0
++conda-forge/win-64::libsodium-1.0.20-hc70643c_0
++conda-forge/win-64::openssl-3.5.2-h725018a_0
++conda-forge/win-64::zeromq-4.3.5-h5bddc39_9
++defaults/win-64::debugpy-1.8.16-py312h885b0b7_0
++defaults/win-64::jupyter_core-5.8.1-py312haa95532_0
++defaults/win-64::psutil-7.0.0-py312h02ab6af_0
++defaults/win-64::pywin32-311-py312h885b0b7_0
++defaults/win-64::pyzmq-26.2.0-py312h5da7b33_0
++defaults/win-64::tornado-6.5.1-py312h827c3e9_0
+# update specs: ['ipykernel']

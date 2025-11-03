@@ -1,0 +1,242 @@
+None. Optional on management host. Required on the server host for interactive installation
+Upgrade IBM Spectrum LSF
+Upgrade an existing LSF cluster, and migrate cluster conﬁguration to the latest version of LSF 10.1.0.
+To bring your cluster up to date, apply the latest LSF 10.1.0ﬁx pack from IBM Fix Central.
+Upgrading IBM Spectrum LSF on UNIX and Linux
+ Upgrade a UNIX or Linux cluster to LSF Version 10.1.0.
+Upgrading your LSF cluster to the latest version on Windows
+ You can upgrade an existing LSF cluster to LSF 10.1.0 on Windows by backing up the original cluster, installing a new cluster, and then
+transferring workload and conﬁguration from the original cluster to the new one.
+Upgrading IBM® Spectrum LSF on UNIX and Linux
+Upgrade a UNIX or Linux cluster to LSF Version 10.1.0.
+Upgrading your LSF cluster to the latest version on UNIX or Linux
+ Run the lsﬁnstall script to upgrade your LSF cluster.
+Getting ﬁxes from IBM Fix Central
+ After you install or upgrade LSF, use IBM Fix Central to ﬁnd and download the ﬁxes that are recommended by IBM Support for LSF products.
+From Fix Central, you can search, select, order, and download ﬁx packs and interim ﬁxes for your system with a choice of delivery options.
+Upgrading your LSF cluster to the latest version on UNIX or Linux
+Run the lsﬁnstall script to upgrade your LSF cluster.
+Complete the following steps to upgrade to LSF Version 10.1.0 on UNIX and Linux.
+Download LSF distribution ﬁles.
+Prepare the cluster for upgrading.
+Use the lsﬁnstall script to upgrade LSF.
+Use the hostsetup script to set up LSF hosts.
+Restart your cluster.
+Downloading LSF distribution ﬁles
+Before you upgrade LSF, download the LSF appropriate installer script package, LSF distribution packages for all host types you need, and the LSF
+entitlement ﬁle for the LSF edition you are upgrading.
+Procedure
+1. Log on to the LSF ﬁle server host as root.
+2. Select the appropriate LSF installer script package:
+lsf_lsﬁnstall_linux_x86_64.tar.Z for Linux x86_64 operating systems that require the Linux JRE. Requires approximately 120 MB.
+lsf_lsﬁnstall.tar.Z for all other operating systems that require the JRE. Requires approximately 1300 MB.
+lsf_no_jre_lsﬁnstall.tar.Z for all operating systems that do not require the JRE. JRE version 1.4 or higher must already be installed on
+the system. Requires approximately 1 MB.
+3. Download and read Release Notes for IBM® Spectrum LSF (Version 10.1.0) for detailed information about what's new in LSF 10.1.0, 10.1.0
+product packages, product compatibility, and known issues and limitations in LSF 10.1.0.
+4. Get the LSF installation script package that you selected and extract it.
+For example,
+Linux x86_64 platforms
+# zcat lsf10.1.0_lsfinstall_linux_x86_64.tar.Z | tar xvf -
+Other platforms
+# zcat lsf10.1.0_lsfinstall.tar.Z | tar xvf -
+No JRE required
+# zcat lsf10.1.0_no_jre_lsfinstall.tar.Z | tar xvf -
+IBM Spectrum LSF 243
+
+5. Get the LSF distribution packages for all host types you need and put them in the same directory as the extracted LSF installation script.
+For example, for Linux 2.6 kernel glibc version 2.3, the distribution package is lsf_linux2.6-glibc2.3-x86_64.tar.Z.
+Important: DO NOT extract the distribution ﬁles.
+6. Get the LSF entitlement ﬁle for the LSF edition you are upgrading:
+lsf_std_entitlement.dat ﬁle for LSF Standard Edition
+lsf_exp_entitlement.dat ﬁle for LSF Express Edition
+lsf_adv_entitlement.dat ﬁle for LSF Advanced Edition
+Preparing the cluster for upgrade
+Before you upgrade LSF, deactivate all queues, shut down IBM Spectrum LSF Application Center if necessary, and back up important conﬁguration
+ﬁles.
+Procedure
+1. Deactivate all queues to make sure that no new jobs can be dispatched during the upgrade. After you complete the upgrade, remember to
+activate the queues again so pending jobs can be dispatched.
+Deactivate all LSF queues by running the following command:
+badmin qinact all
+Reactivate all LSF queues after you complete the upgrade by running the following command:
+badmin qact all
+2. If you installed IBM Spectrum LSF Application Center, shut it down.
+If IBM Spectrum LSF Application Center is controlled by the enterprise grid orchestrator (EGO), run the following commands:
+egosh service stop plc
+egosh service stop purger
+egosh service stop jobdt
+egosh service stop derbydb
+egosh service stop WEBGUI
+If IBM Spectrum LSF Application Center is not controlled by EGO, run the following commands:
+perfadmin stop all
+pmcadmin stop
+3. Back up your existing LSF_CONFDIR, LSB_CONFDIR, and LSB_SHAREDIR parameters according to the procedures at your site.
+Upgrading LSF with the lsﬁnstall script
+Use the lsﬁnstall script to upgrade LSF.
+Procedure
+1. Download the LSF 10.1.0 installation package.
+2. Go to the downloaded installation package and extract it.
+3. Change to directory lsf10.1.0_lsﬁnstall/.
+4. Open the lsf10.1.0_lsﬁnstall/install.conﬁg ﬁle to set the installation variables you need.
+5. Follow the instructions in the lsf_unix_install.pdf ﬁle to use the installation command:
+./lsfinstall -f install.config
+Important: You must run the lsﬁnstall command as root.
+Results
+The lsﬁnstall command backs up the following conﬁguration ﬁles for your current installation in the LSF_CONFDIR directory:
+cshrc.lsf
+lsf.cluster.cluster_name
+lsf.conf
+lsf.shared
+proﬁle.lsf
+What to do next
+244    IBM Spectrum LSF
+
+Important: If the LSF_STARTUP_PATH parameter in the /etc/lsf.sudoers ﬁle is set to an earlier LSF version, you must update the LSF_STARTUP_PATH
+parameter to the LSF_SERVERDIR directory for LSF 10.1.0 on all the hosts where it is conﬁgured.
+Setting up LSF hosts with the hostsetup script
+Use the hostsetup script to set up LSF hosts after upgrade.
+Procedure
+1. Follow the steps in the $LSF_TOP/10.1.0/install/lsf_getting_started.html ﬁle to set up your LSF hosts by running the hostsetup script.
+a. Log on to each LSF server host as root. Start with the LSF management host.
+b. Use the hostsetup script on each LSF server host.
+For example,
+cd /usr/share/lsf/10.1.0/install 
+./hostsetup --top="/usr/share/lsf/"
+2. Set your LSF environment:
+For csh or tcsh, run the following command: source LSF_TOP/conf/cshrc.lsf
+For sh, ksh, or bash, run the following command: . LSF_TOP/conf/profile.lsf
+Restarting your cluster
+After you upgrade, shut down the original LSF daemons, restart LSF with the newer daemons, and reactivate your queues to accept jobs.
+Procedure
+1. Set the original LSF environment:
+For the csh or tcsh shell, run the following command:
+source LSF_TOP/conf/cshrc.lsf.<version>
+For example,
+source LSF_TOP/conf/cshrc.lsf.8.0
+For the sh, ksh, or bash shell, run the following command:
+. LSF_TOP/conf/profile.lsf.<version>
+For example,
+source LSF_TOP/conf/profile.lsf.8.0
+2. Use the following commands to shut down the original LSF daemons:
+bctrld stop sbd all
+bctrld stop res all
+bctrld stop lim all
+3. Set your LSF environment:
+For the csh or tcsh shell, run the following command:
+source LSF_TOP/conf/cshrc.lsf
+For the sh, ksh, or bash shell, run the following command:
+. LSF_TOP/conf/profile.lsf
+4. Use the following commands to start LSF with the newer daemons:
+bctrld start lim all
+bctrld start res all
+bctrld start sbd all
+5. Use the following command to reactivate all LSF queues completing the upgrade:
+badmin qact all
+6. Follow the steps in $LSF_TOP/10.1.0/lsf_quick_admin.html to verify that your upgraded cluster is operating correctly.
+Getting ﬁxes from IBM Fix Central
+IBM Spectrum LSF 245
+
+After you install or upgrade LSF, use IBM Fix Central to ﬁnd and download the ﬁxes that are recommended by IBM Support for LSF products. From
+Fix Central, you can search, select, order, and download ﬁx packs and interim ﬁxes for your system with a choice of delivery options.
+About this task
+Before you download a ﬁx from IBM Fix Central (www.ibm.com/support/ﬁxcentral), have the following information at hand:
+Know your IBMid and password. You must log in to the Fix Central website before you can download a ﬁx.
+If you know exactly which ﬁx you need, you can search for it directly from the Search Fix Central ﬁeld on the IBM Fix Central website.
+To get information about the download process, or help during the process, see Fix Central help
+(www.ibm.com/systems/support/ﬁxes/en/ﬁxcentral/help/faq_sw.html).
+Note: Fix Packs are only available for the following systems:
+Linux 64-bit
+Linux x86_64
+Linux PPC64LE
+Interim ﬁxes are available for the systems that are affected by the ﬁx.
+Procedure
+1. On the Fix Central page, decide how you want to select the product information for the ﬁx that you need:
+Use the Find product tab to ﬁnd ﬁxes by product (for example, IBM® Spectrum LSF).
+Use the Select product tab to ﬁnd ﬁxes by product group (for example, IBM Spectrum Computing).
+a. On the Find product tab, enter IBM Spectrum LSF in the Product selector ﬁeld.
+b. For Installed Version, select the version that is installed on your system.
+Select All to see all available versions.
+c. For Platform, select the operating system that you run your IBM Spectrum LSF product on.
+Select All to see all available versions.
+a. On the Select product tab, select Product group > IBM Spectrum Computing.
+Tip:
+If you searched for LSF family products before, they are conveniently listed in the My product history box.
+b. Select your product from the Product list.
+For example, the core LSF product is IBM Spectrum LSF. Other IBM Spectrum LSF products, including the IBM Spectrum LSF suites, are
+listed in the Select product list.
+c. For Installed Version, select the version that is installed on your system.
+Select All to see all available versions.
+d. For Platform, select the operating system that you run your IBM Spectrum LSF product on.
+Select All to see all available versions.
+2. On the Identify ﬁxes page, specify how you want to search for the ﬁx.
+Browse all the ﬁxes for the speciﬁed product, version, and operating system.
+Enter the APAR or SPR numbers that you want to search for. Enter one or more APAR or SPR numbers, which are separated by a
+comma; for example, P101887.
+Enter an individual ﬁx ID. Search for updates by entering one or more ﬁx IDs, each separated by a comma; for example, lsf-10.1-
+build420903.
+Enter text for your search keywords, such as problem area, exception, or message ID, in any order, for example, lsb_readjobinfo
+API.
+Search a list of the recommended ﬁxes.
+For IBM Power Systems™ ﬁxes, you can use the Fix Level Recommendation Tool (FLRT) (www.ibm.com/support/customercare/flrt/) to identify
+the ﬁxes you want. This tool provides information about the minimum recommended ﬁx levels and compatibility on the key components of
+IBM Power Systems running the AIX®, IBM i and Linux operating systems. FLRT is especially useful when you plan to upgrade the key
+components of your system, or you want to verify the current health of the system.
+3. On the Select ﬁxes page, browse the list of ﬁxes for your product, version, and operating system.
+Tip: To ﬁnd the latest ﬁxes, sort the list of ﬁxes by Release date.
+Mark the check box next to any ﬁx that you want to download.
+To create a new query and a new list of ﬁxes to choose from, clear the list of ﬁxes and return to the Identify ﬁxes page.
+Filter the content of the Select ﬁxes page by platform, ﬁx status, version, or ﬁx type.
+4. On the Download options page, specify how you want to download the ﬁx and any other required information.
+Click Back to change your download options.
+5. Download the ﬁles that implement the ﬁx.
+When you download the ﬁle, make sure that the name of the ﬁle is not changed. Do not change the name of the ﬁle yourself, and check that
+the web browsers or download utility did not inadvertently change the ﬁle name.
+6. To apply the ﬁx, follow the instructions in the readme ﬁle that is downloaded with the ﬁx.
+7. Optional: Subscribe to notiﬁcations about LSF ﬁxes on Fix Central.
+To receive information about product solution and patch updates automatically, go to the My notiﬁcations page on the IBM Support website:
+(www.ibm.com/support/my notiﬁcations). You can edit your subscription settings to choose the types of information you want to get
+246    IBM Spectrum LSF
+
+notiﬁcation about, for example, security bulletins, ﬁxes, troubleshooting, and product enhancements or documentation changes.
+Related information
+IBM Fix Central: IBM Spectrum LSF 10.1 Fix Pack 13
+IBM Fix Central: IBM Spectrum LSF Predictor 10.1 Fix Pack 13
+IBM Fix Central: IBM Spectrum LSF Simulator 10.1 Fix Pack 13
+Upgrading your LSF cluster to the latest version on Windows
+You can upgrade an existing LSF cluster to LSF 10.1.0 on Windows by backing up the original cluster, installing a new cluster, and then transferring
+workload and conﬁguration from the original cluster to the new one.
+Upgrade flow
+A direct upgrade of an LSF Windows cluster to the most current LSF ﬁx pack level is not supported. Instead, you transfer both workload and
+conﬁguration from the back up versions of the original cluster to an newly installed LSF cluster. The upgrade flow is as follow:
+1. Back up existing conﬁguration ﬁles and work directories.
+2. Uninstall the existing LSF cluster.
+3. Install LSF 10.1 with the most current ﬁx pack level.
+4. Copy and edit LSF conﬁguration and work ﬁles.
+5. Copy EGO conﬁguration and work ﬁles.
+6. Start the new LSF cluster and use it going forward.
+It is important to follow this procedure exactly, to avoid issues with the new cluster. Do not remove or rename any ﬁles or directories from the
+original cluster unless otherwise mentioned.
+Backing up existing conﬁguration ﬁles and work directories
+About this task
+You must back up ﬁles and directories. The shared directory is indicated by share_dir in the following procedure.
+Procedure
+1. Does your existing cluster use the share_dir directory to store conﬁguration ﬁles and work directories?
+If no, go to step 2.
+If yes, back up directories in the share_dir directory.
+For example, your existing directories can have the following structure:
+LSF_ENVDIR: share_dir\conf
+LSB_CONFDIR: share_dir\conf\lsbatch
+LSB_SHAREDIR: share_dir\work\
+EGO_CONFDIR: share_dir\conf\ego\cluster_name\kernel
+EGO_WORKDIR: share_dir\work\cluster_name\ego
+2. If your existing cluster conﬁguration ﬁles are not in the share_dir directory, back up the conf and work directories from your existing cluster.
+Uninstalling the existing cluster
+Before you begin
+If your existing cluster does not use the share_dir directory, you must back up existing conﬁguration ﬁles and work directories before you uninstall
+the cluster.
+Procedure
+1. Uninstall the current cluster.
+2. Restart the Management hosts.
+3. Remove the old installation directories within LSF_TOP.
+IBM Spectrum LSF 247

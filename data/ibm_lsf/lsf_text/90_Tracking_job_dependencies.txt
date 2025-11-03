@@ -1,0 +1,53 @@
+About this task
+Procedure
+1. Open the dlmgr.pro ﬁle in a text editor.
+The dlmgr.pro ﬁle is in the DownloadDirect directory that is used to download the LSF software.
+2. In the text editor, search for the ﬁle name that you want to check.
+For example,
+.file=CM/OS/0401m/0/lsf9.1.1_linux2.6-glibc2.3-x86_64-221645.tar.Z 
+..size=4604099 
+..sha=0D3FAE8AD8FDA110C479EB78572143B40467CA3C 
+..stat=1 
+..name=lsf9.1.1_linux2.6-glibc2.3-x86_64-221645.tar.Z 
+..path=C:\DownloadDirector
+3. Open a command prompt window and run the sha1.exe ﬁle using the following arguments:
+C:\DownloadDirector>Sha1.exe -r lsf9.1.1_linux2.6-glibc2.3-x86_64-221645.tar.Z 
+prefetch lsf9.1.1_linux2.6-glibc2.3-x86_64-221645.tar.Z sha1:0d3fae8ad8fda110c479eb78572143b40467ca3c 
+size:4604099
+4. Ensure that the SHA1.exe output and sha1 matches.
+For example,
+dlmgr.pro 
+sha= 0D3FAE8AD8FDA110C479EB78572143B40467CA3C 
+Sha1.exe output 
+SHA1:0D3FAE8AD8FDA110C479EB78572143B40467CA3C
+Tracking job dependencies in IBM® Spectrum LSF
+Use LSF job dependencies to specify the job execution flow during job submission.
+About this task
+LSF will hold those jobs, periodically evaluating the dependency conditions. When the dependency condition becomes true, LSF will start looking for
+resources for the job.
+As more and more jobs are added into a dependency flow, or when dependency conditions are complicated, it can be hard to monitor a flow with the
+bjobs command. Use bjdepinfo to see a hierarchical view of job dependency relationships.
+Procedure
+1. Submit a simple job flow with job dependency.
+For example,
+% bsub -J "pre-process 1" … 
+ Job <8021> is submitted to default queue <normal>. 
+% bsub -J "pre-process 2" … 
+ Job <8022> is submitted to default queue <normal>. 
+% bsub -J "execution[1-4]" -w "done(8021) && done(8022)" … 
+ Job <8023> is submitted to default queue <normal>. 
+% bsub -J "post-process" -w "ended(8023)" … 
+ Job <8024> is submitted to default queue <normal>. 
+% bjobs 
+JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME 
+8021    userA   RUN   normal     hostA       hostB       *process 1 Oct  1 14:59 
+8022    userA   RUN   normal     hostA       hostB       *process 2 Oct  1 14:59 
+8023    userA   PEND  normal     hostA                   *cution[1] Oct  1 14:59 
+8023    userA   PEND  normal     hostA                   *cution[2] Oct  1 14:59 
+8023    userA   PEND  normal     hostA                   *cution[3] Oct  1 14:59 
+8023    userA   PEND  normal     hostA                   *cution[4] Oct  1 14:59 
+8024    userA   PEND  normal     hostA                   *t-process Oct  1 15:00
+2. Check parent jobs to see what blocks the dependency condition.
+Use the –p option to get the job parent’s status. Use the -l option to see its dependency conditions and pending reasons. If the job has
+grandparents, -r level reaches grandparents recursively up to the level speciﬁed.
+2424    IBM Spectrum LSF

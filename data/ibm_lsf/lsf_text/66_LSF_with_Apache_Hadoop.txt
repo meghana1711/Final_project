@@ -1,0 +1,87 @@
+Use the bsub command to submit the Spark application to LSF.
+Procedure
+1. Use the bsub command to submit the Spark application to LSF through the lsf-spark-submit.sh connector script.
+bsub bsub_options lsf-spark-submit.sh spark-submit_options
+For example, the following job requests 16 tasks from two hosts, eight tasks on each host, in interactive mode, and speciﬁes hostA as the ﬁrst
+execution host (that is, where the driver program starts). In the background, LSF starts the Spark driver and worker using the LSF blaunch
+framework.
+bsub -m "hostA! others" -n16 -R "span[ptile=8]" -I lsf-spark-submit.sh --class "SimpleApp" target/scala-
+2.10/simple-project_2.10-1.0.jar ../myfile.txt
+2. To view the job in the Spark GUI, navigate to the URL of the ﬁrst execution host using a web browser.
+http://ﬁrst_execution_hostname:port_number
+where ﬁrst_execution_hostname is the host name of the ﬁrst execution host and port_number is the port number set using the
+SPARK_MASTER_PORT environment variable in the lsf-spark-submit.sh connector script ﬁle.
+For example, http://hostA:7077
+Run a Spark shell on LSF
+Use the bsub -I command to run the Spark shell as an interactive job.
+Procedure
+1. Use the bsub -I command to submit the lsf-spark-shell.sh connector script to LSF as an interactive job.
+bsub -I bsub_options lsf-spark-shell.sh
+For example,
+bsub -I -m "hostA! others" -R "span[ptile=4]" -n 8 lsf-spark-shell.sh
+This command launches the Spark shell, which you can use to specify the Spark environment and run Spark commands.
+2. To view the job in the Spark GUI, navigate to the URL of the ﬁrst execution host using a web browser.
+http://ﬁrst_execution_hostname:port_number
+where ﬁrst_execution_hostname is the host name of the ﬁrst execution host and port_number is the port number set using the
+SPARK_MASTER_PORT environment variable in the lsf-spark-shell.sh connector script ﬁle.
+For example, http://hostA:7077
+IBM Spectrum LSF with Apache Hadoop
+Conﬁgure and use IBM Spectrum LSF with Apache Hadoop applications.
+About LSF with Apache Hadoop
+ The IBM Spectrum LSF integration with Apache Hadoop provides a connector script that allows users to submit Hadoop applications as
+regular LSF jobs.
+Conﬁgure the Apache Hadoop integration
+ Deploy Apache Hadoop and prepare LSF for the integration package
+Run a Hadoop application on LSF
+ Use the bsub command to submit the Hadoop application to LSF.
+About LSF with Apache Hadoop
+The IBM® Spectrum LSF integration with Apache Hadoop provides a connector script that allows users to submit Hadoop applications as regular LSF
+jobs.
+Apache Hadoop ("Hadoop") is a framework for large-scale distributed data storage and processing on computer clusters that uses the Hadoop
+Distributed File System ("HDFS") for the data storage and MapReduce programming model for the data processing. Since MapReduce workloads
+2332    IBM Spectrum LSF
+
+might only represent a small fraction of overall workload, but typically requires their own standalone environment, MapReduce is difﬁcult to support
+within traditional HPC clusters. However, HPC clusters typically use parallel ﬁle systems that are sufﬁcient for initial MapReduce workloads, so you
+can run MapReduce workloads as regular parallel jobs running in an HPC cluster environment. Use the IBM Spectrum LSF integration with Apache
+Hadoop to submit Hadoop MapReduce workloads as regular LSF parallel jobs.
+To run your Hadoop application through LSF, submit it as an LSF job. Once the LSF job starts to run, the Hadoop connector script (lsfhadoop.sh)
+automatically provisions an open source Hadoop cluster within LSF allocated resources, then submits actual MapReduce workloads into this Hadoop
+cluster. Since each LSF Hadoop job has its own resource (cluster), the integration provides a multi-tenancy environment to allow multiple users to
+share the common pool of HPC cluster resources. LSF is able to collect resource usage of MapReduce workloads as normal LSF parallel jobs and has
+full control of the job life cycle. After the job is complete, LSF shuts down the Hadoop cluster.
+By default, the Apache Hadoop integration conﬁgures the Hadoop cluster with direct access to shared ﬁle systems and does not require HDFS. This
+allows you to use existing ﬁle systems in your HPC cluster without having to immediately invest in a new ﬁle system. Through the existing shared ﬁle
+system, data can be stored in common share locations, which avoids the typical data stage-in and stage-out steps with HDFS.
+Conﬁgure the Apache Hadoop integration
+Deploy Apache Hadoop and prepare LSF for the integration package
+Before you begin
+The Apache Hadoop integration supports the following platforms:
+x86_64
+ppc64
+ppc64le
+Procedure
+1. Download and deploy Apache Hadoop.
+The latest version is available from the ofﬁcial Apache Hadoop site: http://hadoop.apache.org/releases
+This integration supports Hadoop, Versions 1 and 2, and is tested on Open Source Hadoop, Versions 1.2.1 and 2.7.2; however, this integration
+should also work with other versions and other Hadoop distributions.
+Note: You do not need to conﬁgure Apache Hadoop after installation. The Hadoop connector scripts automatically conﬁgure Apache Hadoop
+for you.
+2. Set the $HADOOP_HOME environment variable as the ﬁle path to the Hadoop installation directory.
+If you do not set the $HADOOP_HOME environment before using the integration, you must run the lsfhadoop.sh connector script with the --
+hadoop-dir option to specify the ﬁle path to the Hadoop installation directory.
+3. Set the $JAVA_HOME environment variable as the ﬁle path to the Java runtime installation directory.
+If you do not set the $JAVA_HOME environment before using the integration, you must run the lsfhadoop.sh connector script with the --java-
+home option to specify the ﬁle path to the Hadoop installation directory.
+Note: Running the --java-home option allows you to overwrite the value of the $JAVA_HOME environment variable on the command line. For
+more details, refer to Run a Hadoop application on LSF.
+What to do next
+You must ensure that the $HADOOP_HOME and $JAVA_HOME directories are accessible to each LSF server host.
+You can overwrite the $HADOOP_HOME and $JAVA_HOME environment variables at job submission time by using the --hadoop-dir and --
+java-home options with lsfhadoop.sh. For more details, refer to Run a Hadoop application on LSF.
+Run a Hadoop application on LSF
+Use the bsub command to submit the Hadoop application to LSF.
+Before you begin
+You must have a Hadoop application compiled and ready to run as a JAR ﬁle.
+Procedure
+IBM Spectrum LSF 2333

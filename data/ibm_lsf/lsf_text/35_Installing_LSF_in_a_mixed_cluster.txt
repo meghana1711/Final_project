@@ -1,0 +1,200 @@
+The bsub option -o out_ﬁle is not supported for tssub.
+Only Windows bsub options are supported for tssub. For example, you cannot use the options -Ip, -Is, -L login_shell of bsub with tssub.
+2. View job output:
+tspeek job_ID
+You can use tspeek from any LSF Windows to view the output of a Remote Desktop Services job:
+You can also use tspeek to monitor job output from a Linux host with rdesktop installed. You cannot use tspeek to monitor job output from
+UNIX.
+3. Monitor the job:
+bjobs -l
+If you use to monitor the job, you see a message:
+External Message 2 was posted from LSF\lsfadmin to message box 2
+The body of the message contains the ID of the terminal session that was created.
+Limit the number of Remote Desktop Services jobs on a host
+About this task
+The msts resource indicates to LSF whether an execution host has Remote Desktop Server installed or not.
+To limit the number of Remote Desktop Services jobs that run on a host and keep track of how many jobs are running, deﬁne a numeric resource in
+addition to the msts boolean resource. Alternatively, use an elim to report how many terminal servers are available for each host.
+Procedure
+1. Conﬁgure a numeric Remote Desktop Server resource.
+Deﬁne the resource in LSF_CONFDIR\lsf.shared. For example:
+Begin Resource 
+RESOURCENAME TYPE INTERVAL INCREASING DESCRIPTION 
+... 
+term_server  Numeric 60   N      (Terminal Server) 
+... 
+End Resource
+2. Submit a job with rusage . When submitting a job, use the rusage resource requirement string:
+tssub -R"rusage[term_server=1]" myjob
+Submit a Remote Desktop Services job from UNIX
+About this task
+In mixed cluster environments, it is possible to submit a Remote Desktop Services job with bsub from a UNIX host. You can use tspeek to monitor
+job output from a Linux host with rdesktop installed. You cannot use tspeek to monitor job output from UNIX.
+Procedure
+1. On the UNIX submission host, deﬁne the environment variables LSF_LOGON_DESKTOP=1 and LSB_TSJOB=1.
+When LSF_LOGON_DESKTOP=1, it allows GUIs to be displayed on the submission host.
+When the LSB_TSJOB variable is deﬁned to any value, it indicates the job is a Remote Desktop Services job.
+2. Submit the job with bsub and indicate the msts resource requirement. For example:
+bsub -R"msts" myjob
+Installing LSF in a mixed cluster
+Set up a Linux cluster with Windows compute nodes
+About this task
+Complete the following steps to set up a Linux cluster with Windows compute nodes.
+Procedure
+1982    IBM Spectrum LSF
+
+1. Install the Linux cluster on a shared ﬁle system.
+2. Conﬁgure the Linux cluster.
+3. Restart the LSF cluster.
+4. Install the Windows compute node.
+5. Start the Windows compute node.
+Install the Linux cluster on a shared ﬁle system
+Procedure
+Install the Linux cluster as described in Installing IBM® Spectrum LSF on UNIX and Linux, with exceptions to allow for Windows compute nodes.
+Edit install.conf and specify the following:
+a. Enable dynamic hosts.
+Enable or add the following line:
+ENABLE_DYNAMIC_HOSTS=Y
+b. Optional. Allow EGO to control the LSF daemons.
+Enable or add the following line:
+EGO_DAEMON_CONTROL=Y
+c. Specify the cluster administrator.
+LSF_ADMIN=user_account
+For example:
+LSF_ADMIN=lsfadmin
+d. Specify the installation directory.
+LSF_TOP=directory
+For example:
+LSF_TOP=$SHARE/LSF_10.1.0
+Conﬁgure the Linux cluster
+Procedure
+1. Optional. If you allowed EGO to control the LSF daemons, add Windows compute node information to the LSF service conﬁguration ﬁles.
+a. Edit LSF_TOP/conf/ego/cluster_name/eservice/esc/conf/services/res.xml
+b. Navigate to the section with the correct Windows host type.
+For 64-bit compute hosts, navigate to NTX64. For IA hosts, navigate to NTIA64. For other Windows compute hosts, navigate to NTX86.
+c. Add the proper Windows compute node information for the Command and ExecutionUser tags.
+For example:
+<sc:ActivityDescription> 
+  <ego:Attribute name="hostType" type="xsd:string">NTX86</ego:Attribute> 
+  <ego:ActivitySpecification> 
+  <ego:Command>C:\LSF_10.1.0\10.1.0\etc\res.exe -3</ego:Command> 
+  <ego:ExecutionUser>LSF\lsfadmin</ego:ExecutionUser> 
+  <ego:EnvironmentVariable name="LSF_ENVDIR">C:\LSF_10.1.0\conf</ego:EnvironmentVariable> 
+  ... 
+d. Edit LSF_TOP/conf/ego/cluster_name/eservice/esc/conf/services/ sbatchd.xml
+e. Navigate to the section with the correct Windows host type.
+For 64-bit compute hosts, navigate to NTX64. For IA hosts, navigate to NTIA64. For other Windows compute hosts, navigate to NTX86.
+f. Add the proper Windows compute node information for the Command and ExecutionUser tags.
+For example:
+<sc:ActivityDescription> 
+  <ego:Attribute name="hostType" type="xsd:string">NTX86</ego:Attribute> 
+  <ego:ActivitySpecification> 
+  <ego:Command>C:\LSF_10.1.0\10.1.0\etc\sbatchd.exe -3</ego:Command> 
+  <ego:ExecutionUser>LSF\lsfadmin</ego:ExecutionUser> 
+  ...
+2. Add the Windows cluster administrator account to the your cluster ﬁle.
+a. Edit LSF_CONFDIR/lsf.cluster.cluster_name
+b. In the ClusterAdmins section, add LSF\lsfadmin to the Administrators list.
+For example:
+Begin ClusterAdmins 
+Administrators = lsfadmin LSF\lsfadmin 
+IBM Spectrum LSF 1983
+
+End ClusterAdmins
+3. Add the LSF user domain to the lsf.conf ﬁle.
+a. Edit LSF_TOP/conf/lsf.conf
+b. Add the LSF user domain.
+LSF_USER_DOMAIN=lsf_user_domain
+For example:
+LSF_USER_DOMAIN=LSF
+4. Register the Windows execution password to your Linux cluster.
+a. If not using EGO to control the LSF daemons:
+Register Windows user passwords to your cluster password ﬁle for all users submitting jobs to LSF.
+lspasswd -u "domain\admin" -p password
+For example:
+lspasswd -u "LSF\lsfadmin" -p lsfpasswd
+Passwords must be 31 characters or less.
+b. If using EGO to control the LSF daemons:
+Log on to any host in the cluster as egoadmin.
+Log on to EGO as the cluster administrator.
+For example:
+egosh user logon -u Admin -x mypasswd
+Register Windows user passwords to your cluster password ﬁle for all users submitting jobs to LSF.
+egosh ego execpasswd -u "domain\admin" -x password -noverify
+For example:
+egosh ego execpasswd -u "LSF\lsfadmin" -x lsfpasswd -noverify
+The password must be 31 characters or less.
+The -noverify option is required since only a Windows host can verify the password for a Windows user.
+Restart the LSF cluster
+Procedure
+Restart the LSF cluster.
+lsfstartup
+Install the Windows compute node
+Procedure
+1. Install the Windows compute node as described in Installing IBM Spectrum LSF on Windows, with exceptions to be part of a Linux cluster.
+Specify the following options during installation:
+a. Specify the Linux management host as your management host name.
+Master_Name=linux_master_name
+b. If you allowed EGO to control the LSF daemons in your cluster management host, allow EGO to control the LSF daemons in your
+compute node.
+EGO_DAEMON_CONTROL=Y
+c. Specify the same port number as that of the Linux management host.
+Port_Number=base_port_number
+d. Specify the cluster administrator to be the same as on your management host.
+LSF_ADMIN=domain\user_account
+For example:
+LSF_ADMIN=LSF\lsfadmin
+e. Specify the installation directory.
+LSF_TOP=directory
+For example:
+LSF_TOP=C:\LSF_10.1.0
+2. Register the Windows execution user password to your cluster password ﬁle.
+1984    IBM Spectrum LSF
+
+lspasswd -u "domain\admin" -p password
+For example:
+lspasswd -u "LSF\lsfadmin" -p lsfpasswd
+The password must be 31 characters or less.
+Start the Windows compute node
+Procedure
+1. Start the Windows compute node:
+lsadmin limstartup
+2. If you did not allow EGO to control the LSF daemons, manually start the LSF services:
+lsfadmin resstartup
+badmin hstartup
+Set up a Windows cluster with Linux compute nodes
+About this task
+Complete the following steps to set up a Windows cluster with Linux compute nodes if Ego is not controlling the LSF daemons.
+Procedure
+1. Install the Windows cluster management host as described in the Windows installation guide.
+a. Add the LSF user domain to the lsf.conf ﬁle.
+Edit C:\LSF10.1.0\conf\lsf.conf
+Add the LSF user domain.
+LSF_USER_DOMAIN=lsf_user_domain
+For example:
+LSF_USER_DOMAIN=LSF
+b. Restart the Windows cluster.
+lsfrestart
+c. Register Windows execution user passwords to your cluster password ﬁle for all users submitting jobs to LSF.
+lspasswd -u "domain\admin" -p password
+For example:
+lspasswd -u "LSF\lsfadmin" -p lsfpasswd
+Passwords must be 31 characters or less.
+2. Install the Linux compute nodes as described in the Linux installation guide.
+a. Specify the Windows management host as your management host name.
+Master_Name=windows_master_name
+b. Start the Linux compute nodes
+Set up a Windows cluster with Linux compute nodes and EGO controlling LSF
+daemons
+About this task
+Complete the following steps to set up a Windows cluster with Linux compute nodes and EGO controlling the LSF daemons.
+Procedure
+1. Install the Windows cluster management host as described in the Windows installation guide and allow EGO to control the LSF daemons.
+a. Specify the following option:
+EGO_DAEMON_CONTROL=Y
+b. Add the LSF user domain to the lsf.conf ﬁle.
+Edit C:\LSF10.1.0\conf\lsf.conf
+Add the LSF user domain.
+LSF_USER_DOMAIN=lsf_user_domain
+For example:
+IBM Spectrum LSF 1985

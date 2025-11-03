@@ -1,0 +1,56 @@
+# bjobs -o "jobid exec_host" 
+JOBID EXEC_HOST 
+2593  lsfrhel02:lsfrhel02:lsfrhel02 
+2594  lsfrhel02:lsfrhel02:lsfrhel02 
+2595  lsfrhel02:lsfrhel02:lsfrhel01:lsfrhel01:lsfrhel01
+bjobs -o "jobid exec_host:-50"
+A single line output to display all spanning execution hosts for every job. Field exec_host is displayed right justiﬁed with a 50 character width.
+# bjobs -o "jobid exec_host:-50" 
+JOBID EXEC_HOST 
+2593  lsfrhel02:lsfrhel02:lsfrhel02 
+2594  lsfrhel02:lsfrhel02:lsfrhel02 
+2595  lsfrhel02:lsfrhel02:lsfrhel01:lsfrhel01:lsfrhel01
+bjobs -o "jobid exec_host delimiter=’/’"
+A single line output to display all spanning execution hosts for every job. Slash (/) is used as the delimiter for each ﬁeld.
+# bjobs -o "jobid exec_host delimiter='/'" 
+JOBID/EXEC_HOST 
+2593/lsfrhel02:lsfrhel02:lsfrhel02 
+2594/lsfrhel02:lsfrhel02:lsfrhel02 
+2595/lsfrhel02:lsfrhel02:lsfrhel01:lsfrhel01:lsfrhel01
+bjobs
+With LSB_BJOBS_FORMAT deﬁned in lsf.conf or deﬁned as environment variable, the default output display of bjobs can be customized to
+show only the ﬁelds you want.
+LSB_BJOBS_FORMAT="ID: STAT: QUEUE: USER: NAME: MAX_REQ_PROC: FIRST_HOST: CPU_USED:12 MEM: "
+# bjobs 
+JOBID STAT QUEUE  USER  JOB_NAME   MAX_REQ_PROC FIRST_HOST CPU_USED     MEM 
+2596  RUN  normal user1 testrun    4            lsfrhel01  26 second(s) 2 Mbytes 
+2597  RUN  normal user1 bigmem_run 100          lsfrhel02  1 second(s)  2 Mbytes
+Deﬁning external host-based resources in IBM® Spectrum LSF
+This article describes how to deﬁne site-speciﬁc external resources on hosts in the cluster for scheduling purposes.
+Before you begin
+You must be an LSF administrator.
+About this task
+LSF supports three types of external resources: boolean, string and numeric. Use the following steps to deﬁne and use external host-based
+resources in LSF.
+Procedure
+1. Deﬁne external resources in lsf.shared.
+You must specify at least a name and a brief description in the RESOURCENAME and DESCRIPTION columns. The following example has three
+resources of different types. All are static resources. For dynamic resources, you must use INTERVAL to deﬁne how frequently the resource is
+updated.
+Begin Resource 
+RESOURCENAME  TYPE    INTERVAL INCREASING  DESCRIPTION        
+   bigmem     Boolean ()       ()          (Hosts with very big memory) 
+   switch     String  ()       ()          (network switch) 
+   appA       Numeric ()       N           (Application Licenses) 
+End Resource
+2. Deﬁne resources in the RESOURCES column of the Host section of lsf.cluster.cluster_name.
+Deﬁne all host-based resources in the RESOURCES column. Boolean resources use the resource name directly, while numeric and string
+resources use the <resource_name>=<resource_value> format.
+For example,
+Begin Host 
+HOSTNAME  model    type        server r1m  mem  swp   RESOURCES    
+fatnode   !        !           1      3.5   ()   ()   (bigmem appA=4) 
+s1node1   !        !           1      3.5   ()   ()   (switch=s1) 
+s1node2   !        !           1      3.5   ()   ()   (switch=s1) 
+s1node3   !        !           1      3.5   ()   ()   (switch=s1) 
+2402    IBM Spectrum LSF

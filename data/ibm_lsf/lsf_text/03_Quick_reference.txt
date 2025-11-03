@@ -1,0 +1,167 @@
+To install and run LSF License Scheduler Basic Edition, download and install the LSF License Scheduler packages. Follow any speciﬁc steps for
+installing and conﬁguring LSF License Scheduler Basic Edition instead of Standard Edition.
+LSF License Scheduler Standard Edition is assumed in all LSF License Scheduler documentation unless it is explicitly stated as describing Basic
+Edition.
+Install IBM Spectrum LSF License Scheduler
+The following topics summarize the installation procedures for IBM® Spectrum LSF License Scheduler
+Installing LSF License Scheduler involves the following steps:
+1. Get the entitlement ﬁle (LSF License Scheduler Standard Edition only).
+2. Run the installation program.
+Note: For detailed installation steps, please refer to Install License Scheduler.
+Run the LSF License Scheduler installation
+See Using IBM Spectrum LSF License Scheduler for installation and conﬁguration steps.
+IBM Spectrum LSF Application Center 10.1
+IBM Spectrum LSF Application Center provides a web-based user interface for job submission, job and LSF host monitoring, and reporting. LSF
+License Scheduler monitoring and reporting is now included in IBM Spectrum LSF Application Center.
+You must install LSF before you install IBM Spectrum LSF Application Center. See Installing IBM Spectrum LSF Application Center for installation and
+conﬁguration steps.
+Release notes for IBM Spectrum LSF Session Scheduler Version 10.1
+Read this document to ﬁnd out what's new in IBM Spectrum LSF Session Scheduler Version 10.1.
+What's new in IBM Spectrum LSF Session Scheduler
+ Review the new and changed behavior for each version of LSF Session Scheduler.
+What’s new in IBM Spectrum LSF Session Scheduler Version 10.1.0 Fix Pack 15
+ The following topics summarize the new and changed behavior in LSF Session Scheduler 10.1 Fix Pack 15.
+What's new in IBM Spectrum LSF Session Scheduler
+Review the new and changed behavior for each version of LSF Session Scheduler.
+What’s new in IBM Spectrum LSF Session Scheduler Version 10.1.0 Fix
+Pack 15
+The following topics summarize the new and changed behavior in LSF Session Scheduler 10.1 Fix Pack 15.
+Release date: May 2025
+LSF Session Scheduler 10.1 Fix Pack 15 provides ﬁxes to address issues tracked between 8 May 2021 and 12 February 2025. It also contains some
+solution enhancements. For a full list and more details, refer to the README ﬁle for Fix Pack 15.
+You can obtain Fix Pack 15 from IBM Fix Central.
+IBM Spectrum LSF quick reference
+Quick reference to LSF commands, daemons, conﬁguration ﬁles, log ﬁles, and important cluster conﬁguration parameters.
+154    IBM Spectrum LSF
+
+Sample UNIX and Linux installation directories
+Daemon error log ﬁles
+Daemon error log ﬁles are stored in the directory that is deﬁned by LSF_LOGDIR in the lsf.conf ﬁle.
+LSF base system daemon log ﬁlesLSF batch system daemon log ﬁles
+pim.log.host_name mbatchd.log.host_name
+res.log.host_name sbatchd.log.host_name
+lim.log.host_name mbschd.log.host_name
+If the EGO_LOGDIR parameter is deﬁned in the ego.conf ﬁle, the lim.log.host_name ﬁle is stored in the directory that is deﬁned by the EGO_LOGDIR
+parameter.
+Conﬁguration ﬁles
+The lsf.conf, lsf.shared, and lsf.cluster.cluster_name ﬁles are located in the directory that is speciﬁed by the LSF_CONFDIR parameter in the lsf.conf
+ﬁle.
+The lsb.params, lsb.queues, lsb.modules, and lsb.resources ﬁles are located in the LSB_CONFDIR/cluster_name/conﬁgdir/ directory.
+File Description
+install.conﬁg Options for LSF installation and conﬁguration
+lsf.conf Generic environment conﬁguration ﬁle that describes the conﬁguration and operation of the cluster
+lsf.shared Deﬁnition ﬁle that is shared by all clusters. Used to deﬁne cluster name, host types, host models, and site-deﬁned
+resources
+IBM Spectrum LSF 155
+
+File Description
+lsf.cluster.cluster_nam
+eCluster conﬁguration ﬁles that are used to deﬁne hosts, administrators, and locality of site-deﬁned shared resources
+lsb.applications Deﬁnes application proﬁles to deﬁne common parameters for the same types of jobs
+lsb.params Conﬁgures LSF batch parameters
+lsb.queues Batch queue conﬁguration ﬁle
+lsb.resources Conﬁgures resource allocation limits, exports, and resource usage limits
+lsb.serviceclasses Deﬁnes service-level agreements (SLAs) in an LSF cluster as service classes, which deﬁne the properties of the SLA
+lsb.users Conﬁgures user groups, hierarchical fair share for users and user groups, and job slot limits for users and user groups
+Cluster conﬁguration parameters in the lsf.conf ﬁle
+Parameter Description UNIX Default
+LSF_BINDIR Directory containing LSF user commands, which are shared by all hosts of the same type LSF_TOP/version/OStyp
+e/bin
+LSF_CONFDIR Directory for all LSF conﬁguration ﬁles LSF_TOP/conf
+LSF_ENVDIR Directory containing the lsf.conf ﬁle. Must be owned by root. /etc (if LSF_CONFDIR is
+not deﬁned)
+LSF_INCLUDEDI
+RDirectory containing LSF API header ﬁles lsf.h and lsbatch.h LSF_TOP/version/includ
+e
+LSF_LIBDIR LSF libraries, which are shared by all hosts of the same type LSF_TOP/version/OStyp
+e/lib
+LSF_LOGDIR (Optional) Directory for LSF daemon logs. Must be owned by root. /tmp
+LSF_LOG_MASKLogging level of error messages from LSF commands LOG_WARNING
+LSF_MANDIR Directory containing LSF man pages LSF_TOP/version/man
+LSF_MISC Sample C programs and shell scripts, and a template for an external LIM (elim) LSF_TOP/version/misc
+LSF_SERVERDIRDirectory for all server binary ﬁles and shell scripts, and external executable ﬁles that are started by
+LSF daemons, must be owned by root, and shared by all hosts of the same typeLSF_TOP/version/OStyp
+e/etc
+LSF_TOP Top-level installation directory. The path to LSF_TOP must be shared and accessible to all hosts in the
+cluster. It cannot be the root directory (/).Not deﬁned
+Required for installation
+LSB_CONFDIR Directory for LSF Batch conﬁguration directories, containing user and host lists, operation parameters,
+and batch queuesLSF_CONFDIR/lsbatch
+LSF_LIVE_CONF
+DIRDirectory for LSF live reconﬁguration directories that are written by the bconf command. LSB_SHAREDIR/cluster
+_name/live_confdir
+LSF_SHAREDIR Directory for LSF batch job history and accounting log ﬁles for each cluster, must be owned by primary
+LSF administratorLSF_TOP/work
+LSF_LIM_PORT TCP service port that is used for communication with the lim daemon 7879
+LSF_RES_PORT TCP service port that is used for communication with the res daemon 6878
+LSF_MBD_PORTTCP service port that is used for communication with the mbatchd daemon 6881
+LSF_SBD_PORT TCP service port that is used for communication with the sbatchd daemon 6882
+Administration and accounting commands
+Only LSF administrators and root users can use these commands.
+Command Description
+lsadmin LSF administrator tool to control the operation of the LIM and RES daemons in an LSF cluster, lsadmin help shows all
+subcommands
+lsﬁnstall Install LSF with the install.conﬁg input ﬁle
+lsfrestart Restart the LSF daemons on all hosts in the local cluster
+lsfshutdown Shut down the LSF daemons on all hosts in the local cluster
+lsfstartup Start the LSF daemons on all hosts in the local cluster
+badmin LSF administrative tool to control the operation of the LSF batch system (sbatchd, mbatchd, hosts, and queues) badmin help
+shows all subcommands
+bconf Changes LSF conﬁguration in active memory
+Daemons
+Daemon Name Description
+156    IBM Spectrum LSF
+
+Daemon Name Description
+lim Load Information Manager (LIM): collects load and resource information about all server hosts in the cluster and provides host
+selection services to applications through LSLIB. LIM maintains information on static system resources and dynamic load
+indexes
+mbatchd Management Batch Daemon (MBD): accepts and holds all batch jobs. MBD periodically checks load indexes on all server hosts by
+contacting the management host LIM.
+mbschd Management Batch Scheduler Daemon: performs the scheduling functions of LSF and sends job scheduling decisions to MBD for
+dispatch. Runs on the LSF management host
+sbatchd Server Batch Daemon (SBD): accepts job execution requests from MBD, and monitors the progress of jobs. Controls job
+execution, enforces batch policies, reports job status to MBD, and starts MBD.
+pim Process Information Manager (PIM): monitors resources that are used by submitted jobs while they are running. PIM is used to
+enforce resource limits and load thresholds, and for fair share scheduling
+res Remote Execution Server (RES): accepts remote execution requests from all load-sharing applications and handles I/O on the
+remote host for load sharing processes.
+User commands
+View information about your cluster.
+Command Description
+bhosts Displays hosts and their static and dynamic resources
+blimits Displays information about resource allocation limits of running jobs
+bparams Displays information about tunable batch system parameters
+bqueues Displays information about batch queues
+busers Displays information about users and user groups
+lshosts Displays hosts and their static resource information
+lsid Displays the current LSF version number, cluster name, and management host name
+lsinfo Displays load-sharing conﬁguration information
+lsload Displays dynamic load indexes for hosts
+Monitor jobs and tasks.
+Command Description
+bacct Reports accounting statistics on completed LSF jobs
+bapp Displays information about jobs that are attached to application proﬁles
+bhist Displays historical information about jobs
+bjobs Displays information about jobs
+bpeek Displays stdout and stderr of unﬁnished jobs
+bsla Displays information about service class conﬁguration for goal-oriented service-level agreement scheduling
+bstatus Reads or sets external job status messages and data ﬁles
+Submit and control jobs.
+Command Description
+bbot Moves a pending job relative to the last job in the queue
+bchkpnt Checkpoints a checkpoint-able job
+bkill Sends a signal to a job
+bmig Migrates a checkpoint-able or re-runnable job
+bmod Modiﬁes job submission options
+brequeue Kills and re-queues a job
+bresize Releases slots and cancels pending job resize allocation requests
+brestart Restarts a check-pointed job
+bresume Resumes a suspended job
+bstop Suspends a job
+bsub Submits a job
+bswitch Moves unﬁnished jobs from one queue to another
+btop Moves a pending job relative to the ﬁrst job in the queue
+bsub command
+Selected options for the bsub [options] command[arguments] command
+IBM Spectrum LSF 157

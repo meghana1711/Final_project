@@ -1,0 +1,796 @@
+The following job requests 2 AMD GPUs:
+bsub -gpu "num=2:gvendor=amd" ./app
+The following job requests 2 Vega GPUs with xGMI connections:
+bsub -gpu "num=2:gmodel=Vega:glink=yes" ./app
+The following job requests 2 Nvidia GPUs:
+bsub -gpu "num=2:gvendor=nvidia" ./app
+The following job requests 2 Tesla C2050/C2070 GPUs:
+bsub -gpu "num=2:gmodel=C2050_C2070"
+The following job requests 2 Tesla GPUs of any model with a total memory size of 12 GB on each GPU:
+bsub -gpu "num=2:gmodel=Tesla-12G"
+The following job requests 2 Tesla GPUs of any model with a total memory size of 12 GB on each GPU, but with relaxed GPU afﬁnity
+enforcement:
+bsub -gpu "num=2:gmodel=Tesla-12G":aff=no
+The following job requests 2 Tesla GPUs of any model with a total memory size of 12 GB on each GPU and reserves 8 GB of GPU memory on
+each GPU:
+bsub -gpu "num=2:gmodel=Tesla-12G:gmem=8G"
+The following job requests 4 Tesla K80 GPUs per host and 2 GPUs on each socket:
+bsub -gpu "num=4:gmodel=K80:gtile=2"
+The following job requests 4 Tesla K80 GPUs per host and the GPUs are spread evenly on each socket:
+bsub -gpu "num=4:gmodel=K80:gtile='!'"
+The following job requests 4 Tesla P100 GPUs per host with NVLink connections and the GPUs are spread evenly on each socket:
+bsub -gpu "num=4:gmodel=TeslaP100:gtile='!':glink=yes"
+The following job uses 2 Nvidia MIG devices with a GPU instance size of 3 and a compute instance size of 2.
+bsub -gpu "num=2:mig=3/2" ./app
+The following job uses 4 EXCLUSIVE_PROCESS GPUs that cannot be used by other jobs. The j_exclusive option defaults to yes for this job.
+bsub -gpu "num=4:mode=exclusive_process" ./app
+The following job requires two tasks. Each task requires 2 EXCLUSIVE_PROCESS GPUs on two hosts. The GPUs are allocated in the same
+NUMA as the allocated CPU.
+bsub -gpu "num=2:mode=exclusive_process" -n2 -R "span[ptile=1] affinity[core(1)]" ./app
+The following job ignores the simple GPU resource requirements that are speciﬁed in the -gpu option because the -R option is specifying the
+ngpus_physical GPU resource:
+bsub -gpu "num=2:mode=exclusive_process" -n2 -R "span[ptile=1] 
+rusage[ngpus_physical=2:gmodel=TeslaP100:glink=yes]" ./app
+Since you can only request EXCLUSIVE_PROCESS GPUs with the -gpu option, move the rusage[] string contents to the -gpu option arguments.
+The following corrected job submission requires two tasks, and each task requires 2 EXCLUSIVE_PROCESS Tesla P100 GPUs with NVLink
+connections on two hosts:
+bsub -gpu "num=2:mode=exclusive_process:gmodel=TeslaP100:glink=yes" -n2 -R "span[ptile=1]" ./app
+Conﬁguring containers with LSF
+Conﬁgure and use LSF integrations for containers.
+A container is a lightweight operating system level virtualization that is based on Linux control groups (cgroups) and namespace. A container runs
+efﬁciently and starts based on a predeﬁned image. You can pack an application and release it as a container image. A container is portable and can
+run on any Linux distribution for any image. LSF supports Docker, Singularity, and Shifter container runtimes.
+When used with LSF GPU scheduling, LSF can use the nvidia-docker runtime to make allocated GPUs work in the container for application
+accelerations. LSF starts a job-based container for the job, and the life cycle of the container is the same as the job's. For parallel jobs, LSF starts a
+set of containers for a job. When the job is ﬁnished, LSF destroys all containers.
+IBM Spectrum LSF 629
+
+LSF conﬁgures container runtime control in the application proﬁle. It is the LSF administrator's responsibility to conﬁgure container runtime in the
+application proﬁle, and end users do not need to consider which containers are used for their jobs. End users submit their jobs to the application
+proﬁle and LSF automatically manages the container runtime control.
+IBM Spectrum LSF with Docker
+ Conﬁgure and use LSF to run jobs in Docker containers on demand. LSF manages the entire lifecycle of jobs that run in the container as
+common jobs.
+IBM Spectrum LSF with Shifter
+ Conﬁgure and use LSF to run jobs in Shifter containers on demand. LSF manages the entire lifecycle of jobs that run in the container as
+common jobs.
+IBM Spectrum LSF with Singularity
+ Conﬁgure and use LSF to run jobs in Singularity containers on demand. LSF manages the entire lifecycle of jobs that run in the container as
+common jobs.
+IBM Spectrum LSF with Podman
+ Conﬁgure and use LSF to run jobs in Pod Manager (podman) OCI containers on demand. LSF manages the entire lifecycle of jobs that run in
+the container as common jobs.
+IBM Spectrum LSF with Enroot
+ Conﬁgure and use LSF to run jobs in Enroot containers on demand. LSF manages the entire lifecycle of jobs that run in the container as
+common jobs.
+IBM Spectrum LSF with Docker
+Conﬁgure and use LSF to run jobs in Docker containers on demand. LSF manages the entire lifecycle of jobs that run in the container as common
+jobs.
+LSF provides the following beneﬁts when using Docker containers:
+Resolves Docker security concerns
+The most serious security concern with Docker is its privilege escalation in a container. A user that starts a Docker container can be root within that
+container. LSF takes over permission management for docker containers, ensuring that jobs are launched within the container and only has
+permissions of the execution user.
+LSF also enables administrators to conﬁgure Docker images and runtime options in an application proﬁle. Administrators have full control of the
+images, including the register from where the image originated, the conﬁgured image name, and the image version to be used. LSF forbids common
+cluster users from using arbitrary images to avoid potential security risks.
+Schedules Docker jobs on Docker hosts
+LSF uses a boolean resource named docker to identify a host in which the Docker service is started. LSF automatically attaches the docker boolean
+resource to Docker jobs and schedules Docker jobs to hosts with Docker available.
+Automatically sets the Docker runtime environment
+Before an LSF job starts on the execution host, LSF sets the execution context similar to the submission environment and settings. This includes
+current environment variables, CPU afﬁnity, process limits, and the execution user. In Docker environments, LSF automatically sets the job execution
+context in the container.
+Launches containers for parallel jobs
+A parallel job might have several ranks across hosts. For container parallel jobs, LSF launches a container on each host for tasks. The task container
+has the same execution environment settings as the job container. LSF ensures that the MPI environment that is used for the job is packed in the
+image. Therefore, there are no dependencies on the host MPI environment.
+Supports ofﬁcial cgroup drivers
+Docker supports both cgroupfs and systemd cgroup drivers to manage container resources with Linux control groups. Docker uses cgroupfs by
+default, but RHEL releases now use systemd as the default cgroup driver. LSF supports both cgroups with execution driver scripts.
+Uses GPUs for application acceleration
+When submitting a Docker job with GPU resource requirements, LSF schedules GPUs for such jobs. LSF schedules the jobs with GPUs allocated and
+dispatched onto the Docker host. While the Docker container is starting up, LSF uses the nvidia-docker runtime to start the container with the
+allocated GPU attached.
+630    IBM Spectrum LSF
+
+Preparing LSF to run Docker jobs
+Prepare LSF to run jobs in Docker containers.
+Conﬁguring LSF to run Docker jobs
+Conﬁgure the Docker application proﬁle or queue in LSF to run Docker jobs.
+Conﬁguring LSF to run NVIDIA Docker jobs
+Conﬁgure the NVIDIA Docker application proﬁle or queue in LSF to run NVIDIA Docker jobs.
+Submitting Docker jobs to LSF
+Use the Docker application proﬁles or queues to submit Docker jobs to LSF.
+Submitting NVIDIA Docker jobs to LSF
+Use the NVIDIA Docker application proﬁles or queues to submit NVIDIA Docker jobs to LSF.
+Preparing LSF to run Docker jobs
+Prepare LSF to run jobs in Docker containers.
+Before you begin
+The Docker Engine, Version 1.12, or later, must be installed on an LSF server host. The Docker daemon must be started on this host and can
+successfully start containers.
+Procedure
+1. Edit the lsf.conf ﬁle and conﬁgure the following parameters:
+LSF_PROCESS_TRACKING=Y 
+LSF_LINUX_CGROUP_ACCT=Y 
+LSB_RESOURCE_ENFORCE="cpu memory"
+2. Edit the lsf.shared ﬁle and conﬁgure a new Boolean resource named docker.
+... 
+Begin Resource 
+RESOURCENAME  TYPE    INTERVAL INCREASING CONSUMABLE DESCRIPTION  # Keywords 
+... 
+   docker     Boolean ()       ()         ()         (Docker container) 
+... 
+End Resource 
+3. Edit the lsf.cluster ﬁle and attach the docker Boolean resource to the LSF server host that is running Docker Engine.
+This conﬁguration enables LSF to automatically dispatch Docker jobs to the LSF server host that is running Docker Engine.
+... 
+Begin Host 
+    HOSTNAME  model  type  server  r1m  mem  swp  RESOURCES 
+    ... 
+    host1     !      !     1       3.5  ()   ()   (docker) 
+    ... 
+End Host
+4. Check if /usr/bin/python is linked to the proper Python interpreter.
+In some versions of Linux (such as RHEL 8.x), there is no /usr/bin/python executable ﬁle on the host.
+Since the execution driver uses /usr/bin/python to execute the Python script, you must create a link from /usr/bin/python linking to the
+available Python executable ﬁle (both python2.x and python3.x are available).
+For example, to link to python3,
+$ ln -s /usr/bin/python3 /usr/bin/python
+Conﬁguring LSF to run Docker jobs
+Conﬁgure the Docker application proﬁle or queue in LSF to run Docker jobs.
+About this task
+You cannot run pre-execution and post-execution scripts in container jobs. The following are workarounds for speciﬁc pre-execution and post-
+execution operations:
+IBM Spectrum LSF 631
+
+To prepare data for the container as a pre-execution or post-execution operation, put this data into a directory that is mounted to a job
+container.
+To customize the internal job container, you can customize the starter scripts to prepare the appropriate environment.
+Procedure
+1. Edit the lsb.applications or lsb.queues ﬁle and deﬁne the CONTAINER parameter for the application proﬁle or queue to run Docker jobs.
+If this parameter is speciﬁed in both ﬁles, the parameter value in the lsb.applications ﬁle overrides the value in the lsb.queues ﬁle.
+Use this syntax:
+CONTAINER=docker[image(image_name) options(docker_run_options)]
+Starting in Fix Pack 15, you can also use the container_io() and job_pre_post() keywords:
+CONTAINER=docker[image(image_name) options(docker_run_options) container_io() job_pre_post()]
+Restriction:
+The container_io() keyword cannot be used with parallel jobs or spanning host jobs.
+The pipe operator (|) cannot be used as part of the job command in a queue or application proﬁle with container_io() enabled.
+For example, this command syntax is not supported:
+bsub -q container -o /tmp/outfile "cmd1.sh | cmd2.sh"
+Use this command syntax instead:
+bsub -q container -o /tmp/outfile "cmd1.sh ; cmd2.sh"
+Nested quotations marks (' ' or " ") cannot be used as part of the job command in a queue or application proﬁle with 
+container_io enabled.
+For example, this command syntax is not supported:
+bsub -q container -o /tmp/outfile "cmd1.sh 'argument'"
+Use this command syntax instead:
+bsub -q container -o /tmp/outfile "cmd1.sh argument"
+Note: Do not use the following options when conﬁguring Docker options in the options keyword conﬁguration or the options script:
+The --cgroup-parent, --user, -u, and --name options are reserved for LSF internal use. Do not use these options in the options keyword
+conﬁguration or in the options script.
+The -w and --ulimit options are automatically set for LSF. Do not use these options in the options keyword conﬁguration or options
+script because the speciﬁcations here override the LSF settings.
+For more details, refer to the CONTAINER parameter in the lsb.applications ﬁle or the CONTAINER parameter in the lsb.queues ﬁle.
+You can enable LSF to automatically assign a name to a Docker container when it creates the Docker container. To enable this feature, set the
+ENABLE_CONTAINER_NAME parameter to True in the lsfdockerlib.py ﬁle.
+The container name uses the following naming conventions:
+Normal jobs and blaunch parallel job containers: <cluster_name>.job.<job_id>
+Array jobs and array blaunch parallel job containers: <cluster_name>.job.<job_id>.<job_index>
+blaunch parallel job task containers: <cluster_name>.job.<job_id>.task.<task_id>
+Array blaunch parallel job task containers: <cluster_name>.job.<job_id>.<job_index>.task.<task_id>
+In the following examples, LSF uses the ubuntu image to run the job in the Docker container.
+For sequential jobs:
+CONTAINER=docker[image(ubuntu) options(--rm)]
+The container for the job is removed after the job is done, which is enabled with the docker run --rm option.
+For parallel jobs:
+CONTAINER = docker[image(ubuntu)  options(--rm --net=host --ipc=host -v 
+/path/to/my/passwd:/etc/passwd)]
+This command uses the following docker run options:
+--rm
+The container for the job is removed after the job is done
+--net=host
+LSF needs the host network for launching parallel tasks.
+-v
+LSF needs the user ID and user name for launching parallel tasks.
+Note: The passwd ﬁle must be in the standard format for UNIX and Linux password ﬁles, such as the following format:
+632    IBM Spectrum LSF
+
+user1:x:10001:10001::: 
+user2:x:10002:10002:::
+2. Edit the lsb.applications or lsb.queues ﬁle and deﬁne the EXEC_DRIVER parameter for the application proﬁle or queue to run Docker jobs.
+If this parameter is speciﬁed in both ﬁles, the parameter value in the lsb.applications ﬁle overrides the value in the lsb.queues ﬁle.
+EXEC_DRIVER=context[user(lsfadmin)] 
+            starter[/path/to/serverdir/docker-starter.py] 
+            controller[/path/to/serverdir/docker-control.py] 
+            monitor[/path/to/serverdir/docker-monitor.py]
+Replace /path/to/serverdir with the actual ﬁle path of the LSF_SERVERDIR directory.
+For more details, refer to the EXEC_DRIVER parameter in the lsb.applications ﬁle or the EXEC_DRIVER parameter in the lsb.queues ﬁle.
+3. Optional: Enable Docker image afﬁnity by deﬁning DOCKER_IMAGE_AFFINITY=Y in the lsb.applications ﬁle for the application proﬁle to run
+Docker jobs, the lsb.queues ﬁle for the queue to run Docker jobs, or the lsb.params ﬁle for the entire cluster.
+Docker image afﬁnity enables LSF to give preference for execution hosts that have already have the requested Docker image. This reduces
+network bandwidth and the job start time because the execution host does not have to pull the Docker image from the repository and the job
+can immediately start on the execution host.
+If this parameter is speciﬁed in both ﬁles, the parameter value in the lsb.applications ﬁle overrides the value in the lsb.queues ﬁle, which
+overrides the value in the lsb.params ﬁle.
+For more details, refer to the DOCKER_IMAGE_AFFINITY parameter in the lsb.applications ﬁle, the DOCKER_IMAGE_AFFINITY parameter in
+the lsb.queues ﬁle, or the DOCKER_IMAGE_AFFINITY parameter in the lsb.params ﬁle.
+Conﬁguring LSF to run NVIDIA Docker jobs
+Conﬁgure the NVIDIA Docker application proﬁle or queue in LSF to run NVIDIA Docker jobs.
+About this task
+If you are using the NVIDIA Docker integration, you need to conﬁgure separate application proﬁles or queues to run NVIDIA Docker jobs.
+You cannot run pre-execution and post-execution scripts in container jobs. The following are workarounds for speciﬁc pre-execution and post-
+execution operations:
+To prepare data for the container as a pre-execution or post-execution operation, put this data into a directory that is mounted to a job
+container.
+To customize the internal job container, you can customize the starter scripts to prepare the appropriate environment.
+Procedure
+Edit the lsb.applications or lsb.queues ﬁle and deﬁne the CONTAINER parameter for the application proﬁle or queue to run NVIDIA Docker jobs.
+If this parameter is speciﬁed in both ﬁles, the parameter value in the lsb.applications ﬁle overrides the value in the lsb.queues ﬁle.
+CONTAINER=nvidia-docker[image(image_name) options(docker_run_options)]
+In the following examples, LSF uses the ubuntu image to run the job in the Docker container.
+For sequential jobs:
+CONTAINER=nvidia-docker[image(ubuntu) options(--rm)]
+The container for the job is removed after the job is done, which is enabled with the docker run --rm option.
+For parallel jobs:
+CONTAINER = nvidia-docker[image(ubuntu)  options(--rm --net=host --ipc=host -v --runtime=nvidia 
+/path/to/my/passwd:/etc/passwd)
+This command uses the following docker run options:
+--rm
+The container for the job is removed after the job is done
+--net=host
+LSF needs the host network for launching parallel tasks.
+-v
+LSF needs the user ID and user name for launching parallel tasks.
+--runtime=nvidia
+You must specify this option if the container image is using NVIDIA Docker, version 2.0.
+IBM Spectrum LSF 633
+
+Note: The passwd ﬁle must be in the standard format for UNIX and Linux password ﬁles, such as the following format:
+user1:x:10001:10001::: 
+user2:x:10002:10002:::
+For more details, refer to the CONTAINER parameter in the lsb.applications ﬁle or lsb.queues ﬁle.
+Submitting Docker jobs to LSF
+Use the Docker application proﬁles or queues to submit Docker jobs to LSF.
+About this task
+The following job submission (bsub) options are not supported for container jobs: -E, -Ep.
+Procedure
+1. Submit a job to a Docker application proﬁle or queue.
+Use the bsub -app option to submit a job to a Docker application proﬁle (that is, an application proﬁle with a speciﬁed value for the
+CONTAINER parameter).
+For example, if CONTAINER is deﬁned in the dockerapp application proﬁle, run the following command to submit a Docker job:
+bsub -app dockerapp ./myjob.sh
+Use the bsub -q option to submit a job to a Docker queue (that is, a queue with a speciﬁed value for the CONTAINER parameter).
+For example, if CONTAINER is deﬁned in the dockerq queue, run the following command to submit a Docker job:
+bsub -q dockerq ./myjob.sh
+If you specify both the application proﬁle and the queue in the same job submission, the CONTAINER, EXEC_DRIVER, and
+DOCKER_IMAGE_AFFINITY parameter settings in the application proﬁle take precedence over the same parameter settings in the queue.
+For example, if you submit a job with the following command, the parameters in the dockerapp application proﬁle override the corresponding
+parameters in the dockerq queue:
+bsub -app dockerapp -q dockerq ./myjob.sh
+2. If users are allowed to specify image names for Docker container jobs at job submission time (that is, if the $LSB_CONTAINER_IMAGE
+environment variable is used as the image name when specifying the image keyword), set the LSB_CONTAINER_IMAGE environment variable
+at job submission time to specify the Docker image name.
+Specify a container image name (such as ubuntu) at the job submission time by setting the LSB_CONTAINER_IMAGE environment using one of
+the following methods:
+Specify the LSB_CONTAINER_IMAGE environment variable according to your shell environment. For example, to specify the Docker
+image named ubuntu, set the environment variable as follows:
+In csh or tcsh:
+setenv LSB_CONTAINER_IMAGE ubuntu
+In sh, ksh, or bash:
+export LSB_CONTAINER_IMAGE=ubuntu
+Use the bsub -env option. For example, to specify the Docker image named ubuntu
+bsub -env LSB_CONTAINER_IMAGE=ubuntu -app udocker a.out -in in.dat -out out.dat
+Use an esub script to set the LSB_CONTAINER_IMAGE environment variable, then call the esub with the bsub command:
+For example, create an esub.docker script in the $LSF_SERVERDIR directory with the following contents:
+#!/bin/sh 
+exec 1>&2 
+echo "LSB_CONTAINER_IMAGE=\"$1\"" >> $LSB_SUB_MODIFY_ENVFILE
+Submit a job to call the esub.docker script by running the following command:
+bsub -a "docker(ubuntu)" -app udocker a.out -in in.dat -out out.dat
+3. To submit a job with a Docker entry point image, but no command, use the LSB_DOCKER_PLACE_HOLDER keyword instead of the command.
+For example, run the following command to submit a Docker job with a Docker entry point image:
+bsub -app dockerapp LSB_DOCKER_PLACE_HOLDER
+4. Optional: To override the Docker image afﬁnity settings at the cluster, queue, or application level, deﬁne the LSB_DOCKER_IMAGE_AFFINITY
+environment variable with the -env option when submitting the Docker job.
+LSB_DOCKER_IMAGE_AFFINITY=Y | y | N | n
+634    IBM Spectrum LSF
+
+The job level environment variable overrides application level, which overrides queue level, which overrides the cluster level conﬁguration.
+bsub -env LSB_DOCKER_IMAGE_AFFINITY=N -app udocker a.out -in in.dat -out out.dat
+Submitting NVIDIA Docker jobs to LSF
+Use the NVIDIA Docker application proﬁles or queues to submit NVIDIA Docker jobs to LSF.
+About this task
+The following job submission (bsub) options are not supported for container jobs: -E, -Ep.
+Procedure
+1. Submit a job to an NVIDIA Docker application proﬁle or queue.
+Use the bsub -app option to submit a job to an NVIDIA Docker application proﬁle (that is, an application proﬁle with a speciﬁed value
+for the CONTAINER parameter).
+For example, if CONTAINER is deﬁned in the ndockerapp application proﬁle, run the following command to submit a Docker job:
+bsub -app ndockerapp ./myjob.sh
+Use the bsub -q option to submit a job to an NVIDIA Docker queue (that is, a queue with a speciﬁed value for the CONTAINER
+parameter).
+For example, if CONTAINER is deﬁned in the ndockerq queue, run the following command to submit a Docker job:
+bsub -queue ndockerq ./myjob.sh
+If you specify both the application proﬁle and the queue in the same job submission, the CONTAINER and EXEC_DRIVER parameter settings in
+the application proﬁle take precedence over the same parameter settings in the queue.
+For example, if you submit a job with the following command, the parameters in the ndockerapp application proﬁle override the
+corresponding parameters in the ndockerq queue:
+bsub -app ndockerapp -q ndockerq ./myjob.sh
+2. If users need GPUs for the job, use the -gpu option to specify GPU resources.
+For example, if CONTAINER is deﬁned in the ndockerapp application proﬁle, run the following command to request 1 GPU exclusively for the
+Docker job:
+bsub -gpu "num=1:j_exclusive=yes" -app ndockerapp ./myjob.sh
+Submitting Docker jobs to LSF
+Use the Docker application proﬁles or queues to submit Docker jobs to LSF.
+About this task
+The following job submission (bsub) options are not supported for container jobs: -E, -Ep.
+Procedure
+1. Submit a job to a Docker application proﬁle or queue.
+Use the bsub -app option to submit a job to a Docker application proﬁle (that is, an application proﬁle with a speciﬁed value for the
+CONTAINER parameter).
+For example, if CONTAINER is deﬁned in the dockerapp application proﬁle, run the following command to submit a Docker job:
+bsub -app dockerapp ./myjob.sh
+Use the bsub -q option to submit a job to a Docker queue (that is, a queue with a speciﬁed value for the CONTAINER parameter).
+For example, if CONTAINER is deﬁned in the dockerq queue, run the following command to submit a Docker job:
+bsub -q dockerq ./myjob.sh
+If you specify both the application proﬁle and the queue in the same job submission, the CONTAINER, EXEC_DRIVER, and
+DOCKER_IMAGE_AFFINITY parameter settings in the application proﬁle take precedence over the same parameter settings in the queue.
+For example, if you submit a job with the following command, the parameters in the dockerapp application proﬁle override the corresponding
+parameters in the dockerq queue:
+bsub -app dockerapp -q dockerq ./myjob.sh
+IBM Spectrum LSF 635
+
+2. If users are allowed to specify image names for Docker container jobs at job submission time (that is, if the $LSB_CONTAINER_IMAGE
+environment variable is used as the image name when specifying the image keyword), set the LSB_CONTAINER_IMAGE environment variable
+at job submission time to specify the Docker image name.
+Specify a container image name (such as ubuntu) at the job submission time by setting the LSB_CONTAINER_IMAGE environment using one of
+the following methods:
+Specify the LSB_CONTAINER_IMAGE environment variable according to your shell environment. For example, to specify the Docker
+image named ubuntu, set the environment variable as follows:
+In csh or tcsh:
+setenv LSB_CONTAINER_IMAGE ubuntu
+In sh, ksh, or bash:
+export LSB_CONTAINER_IMAGE=ubuntu
+Use the bsub -env option. For example, to specify the Docker image named ubuntu
+bsub -env LSB_CONTAINER_IMAGE=ubuntu -app udocker a.out -in in.dat -out out.dat
+Use an esub script to set the LSB_CONTAINER_IMAGE environment variable, then call the esub with the bsub command:
+For example, create an esub.docker script in the $LSF_SERVERDIR directory with the following contents:
+#!/bin/sh 
+exec 1>&2 
+echo "LSB_CONTAINER_IMAGE=\"$1\"" >> $LSB_SUB_MODIFY_ENVFILE
+Submit a job to call the esub.docker script by running the following command:
+bsub -a "docker(ubuntu)" -app udocker a.out -in in.dat -out out.dat
+3. To submit a job with a Docker entry point image, but no command, use the LSB_DOCKER_PLACE_HOLDER keyword instead of the command.
+For example, run the following command to submit a Docker job with a Docker entry point image:
+bsub -app dockerapp LSB_DOCKER_PLACE_HOLDER
+4. Optional: To override the Docker image afﬁnity settings at the cluster, queue, or application level, deﬁne the LSB_DOCKER_IMAGE_AFFINITY
+environment variable with the -env option when submitting the Docker job.
+LSB_DOCKER_IMAGE_AFFINITY=Y | y | N | n
+The job level environment variable overrides application level, which overrides queue level, which overrides the cluster level conﬁguration.
+bsub -env LSB_DOCKER_IMAGE_AFFINITY=N -app udocker a.out -in in.dat -out out.dat
+IBM Spectrum LSF with Shifter
+Conﬁgure and use LSF to run jobs in Shifter containers on demand. LSF manages the entire lifecycle of jobs that run in the container as common jobs.
+LSF launches containers for a parallel job. LSF also launches the related MPI service (such as orted) inside the container instead of launching only
+the task in the container and not the MPI service. This ensures that the container uses a pure image MPI environment, which is easier to maintain.
+Conﬁguring LSF to run Shifter jobs
+ Conﬁgure a Shifter application proﬁle or queue in LSF to run Shifter container jobs.
+Submitting Shifter jobs to LSF
+ Use the Shifter application proﬁles or queues to submit Shifter jobs to LSF.
+Conﬁguring LSF to run Shifter jobs
+Conﬁgure a Shifter application proﬁle or queue in LSF to run Shifter container jobs.
+Before you begin
+Shifter, Version 16.08.3, or later (that is, built from code later than 3 August 2016), must be installed on an LSF server host.
+Add the path to the Shifter executable ﬁle to the $PATH environment variable before submitting jobs, and ensure that it is accessible on each
+execution host.
+The required Shifter images that you intend to use must be prepared before running LSF jobs in containers. Ensure that these images are
+accessible to each execution host.
+If you use mounted ﬁle systems for LSF, other software installations, or for input/output directories, you must also bind required directories
+into containers to ensure that LSF works properly. To bind directories for Shifter containers, add the pre-mount hook script sitePreMountHook
+to the udiRoot.conf ﬁle. You can deﬁne which directories to bind to the container in your script.
+To run jobs with bsub -L login_shell or where the execution user is changed by user mapping, the execution user must be able to execute the
+shifter command under its $PATH environment variable. You can install the shifter binary ﬁle in the /usr/bin directory or add a symbolic link to
+636    IBM Spectrum LSF
+
+the installation path of shifter.
+About this task
+You cannot run pre-execution and post-execution scripts in container jobs. The following are workarounds for speciﬁc pre-execution and post-
+execution operations:
+To prepare data for the container as a pre-execution or post-execution operation, put this data into a directory that is mounted to a job
+container.
+To customize the internal job container, you can customize the starter scripts to prepare the appropriate environment.
+Procedure
+Edit the lsb.applications or lsb.queues ﬁle and deﬁne the CONTAINER parameter for the application proﬁle or queue to run Shifter container jobs.
+If this parameter is speciﬁed in both ﬁles, the parameter value in the lsb.applications ﬁle overrides the value in the lsb.queues ﬁle.
+CONTAINER=shifter[image(image_name) options(container_options)]
+image
+Required. This keyword speciﬁes the Shifter image name that is used in running jobs.
+options
+Optional. This keyword speciﬁes the Shifter job run options, which are passed to the job container with the shifter command in LSF.
+To enable a pre-execution script to run, specify an at sign (@) and a full ﬁle path to the script, which the execution host must be able to access.
+Before the container job runs, LSF runs this script with LSF administrator privileges. While the script is running, the jobs' environment
+variables are passed to the script. When the script ﬁnishes running, the output is used as container startup options. The script must provide
+this output on one line.
+Note:
+Run shifter --help in the command line to view the options that the shifter command supports.
+Before you specify the Shifter job run options, make sure that these options work with the shifter command in the command line.
+The $LD_LIBRARY_PATH directory is cleaned according to the setuid bit that Shifter uses to work. Therefore, for programs that depend
+on $LD_LIBRARY_PATH to work (such as openmpi), ensure that you added LD_LIBRARY_PATH to the siteEnvAppend section of the
+udiRoot.conf ﬁle.
+For example, to specify the ubuntu:latest image for use with Shifter container jobs without specifying any optional keywords,
+Begin Application 
+NAME = shifterapp 
+CONTAINER = shifter[image(ubuntu:latest)] 
+DESCRIPTION = Shifter User Service 
+End Application
+To specify the pre-execution script /share/usr/shifter-options.sh, which generates the container startup options,
+Begin Application 
+NAME = shifterappoptions 
+CONTAINER = shifter[image(ubuntu:latest) options(@/share/usr/shifter-options.sh)] 
+DESCRIPTION = Shifter User Service with pre-execution script for options 
+End Application
+For more details, refer to the CONTAINER parameter in the lsb.applications ﬁle or lsb.queues ﬁle.
+Submitting Shifter jobs to LSF
+Use the Shifter application proﬁles or queues to submit Shifter jobs to LSF.
+Before you begin
+Ensure that you conﬁgured the Shifter application proﬁle or queue before submitting Shifter jobs.
+About this task
+The following job submission (bsub) options are not supported for container jobs: -E, -Ep.
+Procedure
+Submit a job to a Shifter application proﬁle or queue.
+IBM Spectrum LSF 637
+
+Use the bsub -app option to submit a job to a Shifter application proﬁle (that is, an application proﬁle with a speciﬁed value for the
+CONTAINER parameter).
+For example, if CONTAINER is deﬁned in the shifterapp application proﬁle, run the following command to submit a Shifter job:
+bsub -app shifterapp ./myjob.sh
+Use the bsub -q option to submit a job to a Shifter queue (that is, a queue with a speciﬁed value for the CONTAINER parameter).
+For example, if CONTAINER is deﬁned in the shifterq queue, run the following command to submit a Shifter job:
+bsub -q shifterq ./myjob.sh
+If you specify both the application proﬁle and the queue in the same job submission, the CONTAINER and EXEC_DRIVER parameter settings in the
+application proﬁle take precedence over the same parameter settings in the queue.
+For example, if you submit a job with the following command, the parameters in the shifterapp application proﬁle override the corresponding
+parameters in the shifterq queue:
+bsub -app shifterapp -q shifterq ./myjob.sh
+Note:
+If the CWD is not accessible inside the container, the CWD is automatically set to the root directory in the container.
+IBM® Spectrum LSF Session Scheduler cannot run in Shifter containers.
+IBM Spectrum LSF with Singularity
+Conﬁgure and use LSF to run jobs in Singularity containers on demand. LSF manages the entire lifecycle of jobs that run in the container as common
+jobs.
+Note: Apptainer is the re-branded product name for Singularity. As of Fix Pack 13, to accommodate this name change, LSF supports running LSF jobs
+in either named containers, accepting either singular[] or the apptainer[] keyword as a value for the CONTAINER parameter conﬁguration in LSF
+application proﬁles and batch queues. See lsb.applications and lsb.queues for container conﬁguration details.
+LSF launches containers for a parallel job. LSF also launches the related MPI service (such as orted) inside the container instead of launching only
+the task in the container and not the MPI service. This ensures that the container uses a pure image MPI environment, which is easier to maintain.
+Conﬁguring LSF to run Singularity jobs
+ Conﬁgure a Singularity application proﬁle or queue in LSF to run Singularity container jobs.
+Submitting Singularity jobs
+ Use the Singularity application proﬁles or queues to submit Singularity jobs to LSF.
+Conﬁguring LSF to run Singularity jobs
+Conﬁgure a Singularity application proﬁle or queue in LSF to run Singularity container jobs.
+Before you begin
+Singularity, Version 2.2, or later, must be installed on an LSF server host.
+Add the path to the Singularity executable ﬁle to the $PATH environment variable before submitting jobs, and ensure that it is accessible on
+each execution host.
+The required Singularity images that you intend to use must be prepared before running LSF jobs in containers. Ensure that these images are
+accessible to each execution host.
+If you use mounted ﬁle systems for LSF, other software installations, or for input/output directories, you must also bind required directories
+into containers to ensure that LSF works properly. To bind directories for Singularity containers, add mount hostfs = yes to the
+singularity.conf ﬁle. This parameter deﬁnition binds all mounted ﬁle systems to the container.
+To run jobs with bsub -L login_shell or where the execution user is changed by user mapping, the execution user must be able to execute the
+singularity command under its $PATH environment variable. You can install the singularity binary ﬁle in the /usr/bin directory or add a
+symbolic link to the installation path of singularity.
+About this task
+You cannot run pre-execution and post-execution scripts in container jobs. The following are workarounds for speciﬁc pre-execution and post-
+execution operations:
+To prepare data for the container as a pre-execution or post-execution operation, put this data into a directory that is mounted to a job
+container.
+To customize the internal job container, you can customize the starter scripts to prepare the appropriate environment.
+638    IBM Spectrum LSF
+
+Procedure
+Edit the lsb.applications or lsb.queues ﬁle and deﬁne the CONTAINER parameter for the application proﬁle or queue to run Singularity container jobs.
+If this parameter is speciﬁed in both ﬁles, the parameter value in the lsb.applications ﬁle overrides the value in the lsb.queues ﬁle.
+CONTAINER=singularity[image(image_name) options(container_options)]
+image
+Required. This keyword speciﬁes the Singularity image name that is used in running jobs.
+options
+Optional. This keyword speciﬁes the Singularity job run options, which are passed to the job container with the singularity exec command in
+LSF.
+To enable a pre-execution script to run, specify an at sign (@) and a full ﬁle path to the script, which the execution host must be able to access.
+Before the container job runs, LSF runs this script with LSF administrator privileges. While the script is running, the jobs' environment
+variables are passed to the script. When the script ﬁnishes running, the output is used as container startup options. The script must provide
+this output on one line.
+Note:
+Run singularity exec --help in the command line to view the options that the singularity command supports.
+Before you specify the Singularity job run options, make sure that these options work with the singularity exec command in the
+command line.
+The $LD_LIBRARY_PATH directory is cleaned according to the setuid bit that Singularity uses to work. Therefore, for programs that
+depend on $LD_LIBRARY_PATH to work (such as openmpi), ensure that you add $LD_LIBRARY_PATH to the ld.so.conf ﬁle and run
+ldconﬁg.
+For example, to specify the ubuntu.img image for use with Singularity container jobs without specifying any optional keywords,
+Begin Application 
+NAME = singapp 
+CONTAINER = singularity[image(/file/path/ubuntu.img)] 
+DESCRIPTION = Singularity User Service 
+End Application
+To specify the pre-execution script /share/usr/sing-options.sh, which generates the container startup options,
+Begin Application 
+NAME = singappoptions 
+CONTAINER = singularity[image(/file/path/ubuntu.img) options(@/share/usr/sing-options.sh)] 
+DESCRIPTION = Singularity User Service with pre-execution script for options 
+End Application
+For more details, refer to the CONTAINER parameter in the lsb.applications ﬁle or lsb.queues ﬁle.
+Submitting Singularity jobs
+Use the Singularity application proﬁles or queues to submit Singularity jobs to LSF.
+Before you begin
+Ensure that you conﬁgured the Singularity application proﬁle or queue before submitting Singularity jobs.
+About this task
+The following job submission (bsub) options are not supported for container jobs: -E, -Ep.
+Procedure
+Submit a job to a Singularity application proﬁle or queue.
+Use the bsub -app option to submit a job to a Singularity application proﬁle (that is, an application proﬁle with a speciﬁed value for the
+CONTAINER parameter).
+For example, if CONTAINER is deﬁned in the singapp application proﬁle, run the following command to submit a Singularity job:
+bsub -app singapp ./myjob.sh
+Use the bsub -q option to submit a job to a Singularity queue (that is, a queue with a speciﬁed value for the CONTAINER parameter).
+For example, if CONTAINER is deﬁned in the singq queue, run the following command to submit a Singularity job:
+bsub -q singq ./myjob.sh
+IBM Spectrum LSF 639
+
+If you specify both the application proﬁle and the queue in the same job submission, the CONTAINER and EXEC_DRIVER parameter settings in the
+application proﬁle take precedence over the same parameter settings in the queue.
+For example, if you submit a job with the following command, the parameters in the singapp application proﬁle override the corresponding
+parameters in the singq queue:
+bsub -app singapp -q singq ./myjob.sh
+Note:
+If the CWD is not accessible inside the container, the CWD is automatically set to the root directory in the container.
+IBM® Spectrum LSF Session Scheduler cannot run in Shifter containers.
+IBM Spectrum LSF with Podman
+Conﬁgure and use LSF to run jobs in Pod Manager (podman) OCI containers on demand. LSF manages the entire lifecycle of jobs that run in the
+container as common jobs.
+You cannot use LSF to run Docker jobs if you are using LSF to run Podman jobs.
+Preparing LSF to run Podman jobs
+ Prepare LSF to run jobs in Podman containers.
+Conﬁguring LSF to run Podman jobs
+ Conﬁgure the Podman application proﬁle or queue in LSF to run jobs in Podman containers.
+Submitting Podman jobs to LSF
+ Use the Podman application proﬁles or queues to submit Podman jobs to LSF.
+Preparing LSF to run Podman jobs
+Prepare LSF to run jobs in Podman containers.
+Before you begin
+You cannot run Docker container jobs on LSF if you are also using LSF to run Podman jobs.
+Get the following podman and podman-docker packages for the Podman 3.3.1 container engine.
+The Podman installation packages will be installed on the LSF server hosts where you intend to run Podman container jobs. The minimum
+Podman version is Podman 3.3.1 on a RHEL 8.2 host. For optimal performance, use Podman 3.3.1, or newer, on a RHEL 8.2.1 host.
+All LSF server hosts for Podman container jobs must be using the same version of the Podman packages.
+cgroups v1 or v2 is enabled on the LSF server hosts where you intend to run Podman container jobs. Since Podman does not use cgroups
+when running in daemon-less mode, all Podman-related processes (podman, fuse-overlayfs, and common) are put in the job or task cgroup.
+Procedure
+1. Set up the Podman container engine on each LSF server host that will run Podman container jobs.
+a. Log in to the LSF server host as root.
+b. Install the podman and podman-docker packages on the LSF server host.
+For example, for Podman 3.3.1:
+# rpm -qa |grep podman 
+podman-3.3.1.module_el8.2.0+305+5e198a41.x86_64 
+podman-docker-3.3.1.module_el8.2.0+305+5e198a41.noarch
+c. Create /etc/subuid and /etc/subgid ﬁles for LSF users.
+For example, the following ﬁles set subordinate UIDs and GIDs for the lsfadmin user for Podman containers:
+# cat /etc/subuid 
+lsfadmin:100000:65536 
+# cat /etc/subgid 
+lsfadmin:100000:65536
+For a user to submit an LSF Podman job, the subordinate UID and GID for that user must be in these ﬁles.
+d. Enable the user linger state for the LSF users.
+$ sudo systemctl restart systemd-logind.service 
+$ sudo loginctl enable-linger user_name
+640    IBM Spectrum LSF
+
+The user linger state is required because LSF runs Podman jobs on execution hosts even if the user is not logged in to the execution
+host. This is required for LSF to kill Podman jobs.
+e. Update the UID and GID values.
+Run the following commands to update the newuidmap cap value, the newgidmap cap value, and the Podman subuid and subgid
+settings:
+$ sudo setcap cap_setuid+eip /usr/bin/newuidmap 
+$ sudo setcap cap_setgid+eip /usr/bin/newgidmap
+f. Create a symbolic link from /usr/bin/python to the Python executable ﬁle.
+In RHEL 8.x, python3 is default installed version, and there is no /usr/bin/python executable ﬁle on the host. Since the execution driver
+uses /usr/bin/python to execute the Python script, you must create a link from /usr/bin/python linking to the available Python
+executable ﬁle (both python2.x and python3.x are available).
+For example, to link to python3,
+$ ln -s /usr/bin/python3 /usr/bin/python
+g. Edit the /etc/containers/registries.conf ﬁle and remove redundant entries to optimize the container image download time.
+For example, comment out all the registries except docker.io.
+[registries.search] 
+#registries = ['registry.redhat.io', 'registry.access.redhat.com', 'quay.io', 'docker.io']  
+registries = ['docker.io']
+h. Create a /etc/containers/nodocker ﬁle to suppress redundant Docker messages.
+# touch /etc/containers/nodocker
+i. Log in to the LSF server host as a user that will submit Podman jobs.
+j. If you use an LDAP server to manage the LSF users and the user home directories are on an NFS server, change the Podman user
+conﬁguration ﬁle to save Podman images to a local ﬁle system instead of an NFS directory.
+Podman does not support building or loading container images on NFS home directories. For more details, refer to the Podman
+troubleshooting website (https://github.com/containers/podman/blob/master/troubleshooting.md#14-rootless-podman-build-fails-
+eperm-on-nfs).
+For example, perform the following steps to save Podman images to a local ﬁle system:
+i. Run the podman system reset command to reset the Podman conﬁguration.
+ii. Create Podman conﬁguration ﬁles from the templates.
+$ mkdir -p $HOME/.config/containers 
+$ cp /usr/share/containers/containers.conf $HOME/.config/containers 
+$ cp /etc/containers/storage.conf $HOME/.config/containers
+iii. Create a directory on the local ﬁle system, then conﬁrm that your current user name is the owner of the directory and has
+read/write permissions for that directory.
+$ ls -l -d /podmanfs/userA/ 
+drwxr-xr-x 3 userA groupA 20 Nov 11 22:30 /podmanfs/userA/
+iv. Update the volume_path, tmp_dir, and static_dir parameters in the containers.conf ﬁle, and update the graphroot, runroot, and
+[storage.options] parameters in the storage.conf ﬁle.
+For example, if you are using the bash shell, run the following commands:
+$ podmandir="/podmanfs/userA/" 
+$ userconf=$HOME/.config/containers/containers.conf 
+$ storageconf=$HOME/.config/containers/storage.conf 
+$ userid=`id -u` 
+$ sed -i "s|^#.*volume_path.*|volume_path=\"$podmandir/volumes\"|g" $userconf 
+$ sed -i "s|.*tmp_dir =.*|tmp_dir =\"/tmp/run-$userid\"|g" $userconf 
+$ sed -i "s|^#.*static_dir =.*|static_dir =\"$podmandir/libpod/\"|g" $userconf 
+$ sed -i "s|graphroot =.*|graphroot=\"$podmandir/storage\"|g"  $storageconf 
+$ sed -i "s|runroot =.*|runroot=\"/run/user/$userid\"|g"  $storageconf 
+$ sed -i '/\[storage.options\]/amount_program = "/usr/bin/fuse-overlayfs"'  $storageconf
+v. Run the podman system migrate command to apply the changes.
+vi. Run the podman info command to conﬁrm that the changes are applied:
+$ podman info |grep -niE 'volumepath|graphroot|runroot' 
+73:  graphRoot: /podmanfs/username/storage 
+81:  runRoot: /run/user/userid 
+82:  volumePath: /podmanfs/username/volumes
+k. Check to see if Podman is running correctly.
+Pull a Docker image and run a Podman job to check if the container ID is created.
+For example, to pull a CentOS image and run a Podman job, run the following commands:
+IBM Spectrum LSF 641
+
+$ podman pull centos 
+$ podman run --rm --detach centos sleep 200 
+15ec62cece2cc2fa5b9fae6c114e97d655240623994814c9a97c64b9635c607c 
+$ podman ps 
+CONTAINER ID IMAGE                           COMMAND   CREATED       STATUS PORTS NAMES 
+15ec62cece2c docker.io/library/centos:latest sleep 200 7 seconds ago Up     12345 fervent_sutherland
+The Podman job output is the container ID. Verify that the container ID directory is created:
+$ find /sys/fs/cgroup/ -iname 15ec62cece2cc2fa5b9fae6c114e97d655240623994814c9a97c64b9635c607c
+If the container ID directory is not created, log out, then log back in and try to start the container again.
+2. Edit the lsf.conf ﬁle and conﬁgure the following parameters:
+LSF_PROCESS_TRACKING=Y 
+LSF_LINUX_CGROUP_ACCT=Y 
+LSB_RESOURCE_ENFORCE="cpu memory"
+3. Edit the lsf.shared ﬁle and conﬁgure a new Boolean resource named docker. For example, copy and paste the following snippet into your
+lsf.shared ﬁle:
+... 
+Begin Resource 
+RESOURCENAME  TYPE    INTERVAL INCREASING DESCRIPTION  # Keywords 
+... 
+   docker     Boolean ()       ()         (Podman-Docker container) 
+... 
+End Resource 
+4. Edit the lsf.cluster ﬁle and attach the docker Boolean resource to the LSF server hosts that are running the Podman container engine.
+This conﬁguration enables LSF to automatically dispatch Podman jobs to the LSF server hosts that are running the Podman container engine.
+... 
+Begin Host 
+    HOSTNAME  model  type  server  r1m  mem  swp  RESOURCES 
+    ... 
+    host1     !      !     1       3.5  ()   ()   (docker) 
+    ... 
+End Host
+Conﬁguring LSF to run Podman jobs
+Conﬁgure the Podman application proﬁle or queue in LSF to run jobs in Podman containers.
+About this task
+You cannot run pre-execution and post-execution scripts in container jobs. The following are workarounds for speciﬁc pre-execution and post-
+execution operations:
+To prepare data for the container as a pre-execution or post-execution operation, put this data into a directory that is mounted to a job
+container.
+To customize the internal job container, you can customize the starter scripts to prepare the appropriate environment.
+Procedure
+1. Edit the lsb.applications or lsb.queues ﬁle and deﬁne the CONTAINER parameter for the application proﬁle or queue to run Podman jobs:
+CONTAINER=podman[image(image_name) options(podman_run_options)]
+If this parameter is speciﬁed in both ﬁles, the parameter value in the lsb.applications ﬁle overrides the value in the lsb.queues ﬁle.
+For more details, refer to the CONTAINER parameter in the lsb.applications ﬁle or the CONTAINER parameter in the lsb.queues ﬁle.
+In the following examples, LSF uses the centos image to run the job in the Podman container.
+For sequential jobs:
+CONTAINER=podman[image(centos) options(--rm)]
+The container for the job is removed after the job is done, which is enabled with the podman run --rm option.
+For parallel jobs:
+CONTAINER=podman[image(centos)  options(--rm --net=host --ipc=host -v 
+/path/to/my/passwd:/etc/passwd)]
+642    IBM Spectrum LSF
+
+This command uses the following podman run options:
+--rm
+The container for the job is removed after the job is done
+--net=host
+LSF needs the host network for launching parallel tasks.
+-v
+LSF needs the user ID and user name for launching parallel tasks.
+Note: The passwd ﬁle must be in the standard format for UNIX and Linux password ﬁles, such as the following format:
+user1:x:10001:10001::: 
+user2:x:10002:10002:::
+2. Edit the lsb.applications or lsb.queues ﬁle and deﬁne the EXEC_DRIVER parameter for the application proﬁle or queue to run Podman jobs.
+For Podman jobs, you must specify context[user(default)] as the user account for starting scripts.
+If this parameter is speciﬁed in both ﬁles, the parameter value in the lsb.applications ﬁle overrides the value in the lsb.queues ﬁle.
+EXEC_DRIVER=context[user(default)] \ 
+            starter[/path/to/serverdir/docker-starter.py] \ 
+            controller[/path/to/serverdir/docker-control.py]
+Replace /path/to/serverdir with the actual ﬁle path of the LSF_SERVERDIR directory.
+The ﬁle permissions of the starter and controller scripts must be 0755 for Podman jobs.
+For more details, refer to the EXEC_DRIVER parameter in the lsb.applications ﬁle or the EXEC_DRIVER parameter in the lsb.queues ﬁle.
+Submitting Podman jobs to LSF
+Use the Podman application proﬁles or queues to submit Podman jobs to LSF.
+About this task
+The following job submission (bsub) options are not supported for container jobs: -E, -Ep.
+Procedure
+1. Submit a job to a Podman application proﬁle or queue.
+Use the bsub -app option to submit a job to a Podman application proﬁle (that is, an application proﬁle with a speciﬁed value for the
+CONTAINER parameter).
+For example, if CONTAINER is deﬁned in the podmanapp application proﬁle, run the following command to submit a Podman job:
+bsub -app podmanapp ./myjob.sh
+Use the bsub -q option to submit a job to a Podman queue (that is, a queue with a speciﬁed value for the CONTAINER parameter).
+For example, if CONTAINER is deﬁned in the podmanq queue, run the following command to submit a Podman job:
+bsub -q podmanq ./myjob.sh
+If you specify both the application proﬁle and the queue in the same job submission, the CONTAINER and EXEC_DRIVER parameter settings in
+the application proﬁle take precedence over the same parameter settings in the queue.
+For example, if you submit a job with the following command, the parameters in the podmanapp application proﬁle override the corresponding
+parameters in the podmanq queue:
+bsub -app podmanapp -q podmanq ./myjob.sh
+2. If users are allowed to specify image names for Podman container jobs at job submission time (that is, if the $LSB_CONTAINER_IMAGE
+environment variable is used as the image name when specifying the image keyword), set the LSB_CONTAINER_IMAGE environment variable
+at job submission time to specify the Podman image name.
+Specify a container image name (such as centos) at the job submission time by setting the LSB_CONTAINER_IMAGE environment using one of
+the following methods:
+Specify the LSB_CONTAINER_IMAGE environment variable according to your shell environment. For example, to specify the Podman
+image named centos, set the environment variable as follows:
+In csh or tcsh:
+setenv LSB_CONTAINER_IMAGE centos
+In sh, ksh, or bash:
+export LSB_CONTAINER_IMAGE=centos
+IBM Spectrum LSF 643
+
+Use the bsub -env option. For example, to specify the Podman image named centos
+bsub -env LSB_CONTAINER_IMAGE=centos -app podmanapp a.out -in in.dat -out out.dat
+Use an esub script to set the LSB_CONTAINER_IMAGE environment variable, then call the esub with the bsub command:
+For example, create an esub.podman script in the $LSF_SERVERDIR directory with the following contents:
+#!/bin/sh 
+exec 1>&2 
+echo "LSB_CONTAINER_IMAGE=\"$1\"" >> $LSB_SUB_MODIFY_ENVFILE
+Submit a job to call the esub.podman script by running the following command:
+bsub -a "docker(centos)" -app podmanapp a.out -in in.dat -out out.dat
+IBM Spectrum LSF with Enroot
+Conﬁgure and use LSF to run jobs in Enroot containers on demand. LSF manages the entire lifecycle of jobs that run in the container as common jobs.
+Submit Enroot container jobs in LSF in the same way as Docker execution driver jobs.
+Conﬁguring LSF to run Enroot jobs
+ Conﬁgure the Enroot application proﬁle or queue in LSF to run jobs in Enroot containers.
+Submitting Enroot jobs to LSF
+ Use the Enroot application proﬁles or queues to submit Enroot jobs to LSF.
+Conﬁguring LSF to run Enroot jobs
+Conﬁgure the Enroot application proﬁle or queue in LSF to run jobs in Enroot containers.
+Before you begin
+The enroot or enroot-hardened package, Version 3.10, or later must be installed and conﬁgured correctly on an LSF server host, for example:
+enroot-3.1.0-1.el7.x86_64 or
+enroot-hardened-3.1.0-1.el7.x86_64
+The execution driver ﬁle for Enroot (enroot-starter.py) is owned by the primary LSF administrator and the ﬁle permission is 0755.
+About this task
+You cannot run pre-execution and post-execution scripts in container jobs. The following are workarounds for speciﬁc pre-execution and post-
+execution operations:
+To prepare data for the container as a pre-execution or post-execution operation, put this data into a directory that is mounted to a job
+container.
+To customize the internal job container, you can customize the starter scripts to prepare the appropriate environment.
+Procedure
+1. Edit the lsb.applications or lsb.queues ﬁle and deﬁne the CONTAINER parameter for the application proﬁle or queue to run Enroot jobs.
+If this parameter is speciﬁed in both ﬁles, the parameter value in the lsb.applications ﬁle overrides the value in the lsb.queues ﬁle.
+CONTAINER=enroot[image(image_name) options(enroot_start_options)]
+For more details, refer to the CONTAINER parameter in the lsb.applications ﬁle or the CONTAINER parameter in the lsb.queues ﬁle.
+For example, to use the centos image to run the job in the Enroot container:
+CONTAINER=enroot[image(centos) options(--mount /mydir:/mydir2)]
+This command uses the enroot start --mount option to perform a mount from the host inside the container.
+2. Optional. Edit the lsb.applications or lsb.queues ﬁle and deﬁne the EXEC_DRIVER parameter for the application proﬁle or queue to run Enroot
+jobs.
+If this parameter is not deﬁned, LSF sets context[user(default)] as the user account for starting scripts and sets the driver starter to
+$LSF_SERVERDIR/enroot-starter.py to start the Enroot container job.
+If this parameter is speciﬁed in both ﬁles, the parameter value in the lsb.applications ﬁle overrides the value in the lsb.queues ﬁle.
+644    IBM Spectrum LSF

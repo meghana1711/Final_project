@@ -1,0 +1,540 @@
+1. Log in to a Linux host that has gcc installed.
+2. From the LSF Simulator directory, navigate to the workload snapshot modiﬁcation plug-in directory.
+$ cd lsf_cognitive_top/lsf_simulator/sim_run/lsf/10.1/{OS_ARCH}/plugin
+3. Edit the wconvert_plugin.c ﬁle to implement conversion logic in the four interfaces.
+4. Edit the Makeﬁle to specify a name for the dynamic library.
+The default dynamic library name is libwlt.so.
+5. Run the make command to compile the plug-in library.
+What to do next
+After you compile the workload snapshot modiﬁcation plug-in, the bsim command uses this plug-in with the following command (assuming the
+default dynamic library name):
+bsim wconvert -p file_path/libwlt.so -o new_snapshot_file old_snapshot_file
+Updating the IBM Spectrum LSF Simulator service
+To update the LSF Simulator service, stop the current service and extract the new package.
+Procedure
+1. Log in to the LSF Simulator host as the LSF Simulator user.
+For example, log in to the LSF Simulator host as lsfadmin.
+2. Navigate to the installation directory.
+For example,
+# cd /sharedir
+3. Copy the new installation package to the directory.
+For example,
+# cp /tmp/lsf_cognitive_v1.tar.gz .
+4. Remove the previous LSF Simulator image from the local registry by running the following command:
+./lsf_cognitive_v1/bcogn stop -f
+5. Extract the new installation package to overwrite the old installation.
+$ tar -zxvf lsf_cognitive_v1.tar.gz
+6. Use the bcogn start -u command to start the new version of the LSF Simulator service.
+./lsf_cognitive_v1/bcogn start -u
+IBM Spectrum LSF Predictor
+LSF Predictor is a machine learning system that uses historical LSF job data to provide a prediction capability for job resource usage, such as memory
+usage.
+IBM Spectrum LSF Predictor release notes
+ Discover what's new, the known issues, and limitations in LSF Predictor 10.1.
+Installing IBM Spectrum LSF Predictor
+ Install LSF Predictor.
+Connecting the IBM Spectrum LSF Predictor service
+ The IBM Spectrum LSF Predictor service uses the IBM Cloud Pak for Data AutoAI as the predictor engine. You must conﬁgure connection
+settings to connect to Cloud Pak for Data before starting to work with LSF Predictor.
+Managing the IBM Spectrum LSF Predictor service
+ Use the bcogn command to manage the LSF Predictor service.
+Using IBM Spectrum LSF Predictor
+ This document gives an outline about how to typically use the LSF Predictor service.
+Updating the IBM Spectrum LSF Predictor service
+ To update the LSF Predictor service, stop the current service and extract the new package.
+Data and logs of IBM Spectrum LSF Predictor
+ LSF Predictor preserves the data that you conﬁgured while using the service. Service daemon logs are also saved.
+IBM Spectrum LSF 2381
+
+IBM Spectrum LSF Predictor release notes
+Discover what's new, the known issues, and limitations in LSF Predictor 10.1.
+What's new in IBM Spectrum LSF Predictor
+ What's new in LSF Predictor 10.1.
+Known issues and limitations for IBM Spectrum LSF Predictor
+ Known issues and limitations for LSF Predictor 10.1.
+What's new in IBM Spectrum LSF Predictor
+What's new in LSF Predictor 10.1.
+Download any Fix Pack from IBM Fix Central. For more information, see Getting ﬁxes from IBM Fix Central.
+Download location
+Download any IBM Spectrum LSF Predictor 10.1 ﬁx pack from IBM Fix Central. For more information, see Getting ﬁxes from IBM Fix Central.
+Support for previous LSF versions
+To ensure the latest Fix Pack for IBM Spectrum LSF Predictor 10.1 works properly with your previous version of IBM Spectrum LSF 10.1, you
+must conﬁgure the following parameters in the lsf.conf ﬁle that was imported from the production cluster:
+LSF_STRICT_CHECKING=N 
+LSF_AUTH_QUERY_COMMANDS=N
+Determine the installed version of IBM Spectrum LSF Predictor
+To verify the version of IBM Spectrum LSF Predictor, run the bcogn command with the -V option; for example, this output shows IBM
+Spectrum LSF Predictor 10.1 Fix Pack 14:
+$ ./bcogn -V 
+IBM Spectrum 
+LSF Predictor 10.1.0.14  Build 230525, 
+Copyright International Business Machines Corp. 1992, 2023 
+US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule 
+Contract with IBM Corp. 
+Portions Copyright 1991, 1999 Free Software Foundation, Inc.
+Fix Pack 14
+Operating system versions
+As of Fix Pack 14, RHEL 8.x and 9.x are newly certiﬁed for LSF Predictor on Linux x64 kernel. You can also continue to use RHEL 7.9.
+Client browser
+As of Fix Pack 14, you can use LSF Predictor on these upgraded browsers:
+Linux:
+Mozilla Firefox 113
+Google Chrome 102
+Windows:
+Mozilla Firefox 111
+Google Chrome 111
+Display version in LSF Predictor web console header
+You can now see the LSF Predictor version (such as IBM Spectrum LSF Predictor 10.1.0.14) in the header of LSF Predictor web console.
+Support for IBM Cloud Pak for Data 4.6
+As of Fix Pack 14, LSF Predictor supports IBM Cloud Pak for Data 4.6, which includes various software, required for IBM Cloud Pak for Data to
+work with LSF Predictor:
+Software name Software version
+ibm-watson-machine-learining1.0.280
+autoai-libs 1.14.11
+click 8.0.4
+joblib 1.0.0
+lale 0.6.16
+lightgbm 3.2.2
+numpy 1.23.1
+pandas 1.0.5
+python 3.9.16
+requests 2.26
+2382    IBM Spectrum LSF
+
+Software name Software version
+scikit 1.1.1
+scipy 1.8.0
+snapml 1.12.0
+urllib3 1.26.7
+xgboots 1.6.1
+List of ﬁxes
+LSF Predictor 10.2 Fix Pack 14 resolves the following reported issues:
+Description
+Upgrade fails when there are existing stopped containers.
+Symbolic linking support required for ﬁles under the lsf/conf directory.
+Importing LSF conﬁguration fails when the root user does not have writer permission to the conf directory.
+Special directories are excluded when importing LSF conﬁguration.
+Fix Pack 13
+Password change at ﬁrst logon of the LSF Predictor web console
+For added security, the ﬁrst time you log on to the LSF Predictor web console, you will now be prompted to change your password, rather than
+use the preset default password (Admin).
+Experiment graphs
+To show a graphical representation of your experiments, use the new Graphs tab view in the IBM Spectrum LSF Predictor web console.
+Symbolic linking for loading LSF conﬁguration
+Now, when IBM Spectrum LSF Predictor loads LSF conﬁguration, it can process and handle symbolic links. If there are symbolic links in the
+LSF conf/ directory, when IBM Spectrum LSF Predictor loads the LSF conﬁguration, it takes it from each symbolic link and loads that content to
+IBM Spectrum LSF Predictor. IBM Spectrum LSF Predictor no longer requires connecting to the original LSF conf/ directory, as it uses the
+symbolic link to connect instead.
+Upgraded software support
+IBM Spectrum LSF Predictor requires or includes various software, for use with IBM Spectrum LSF components, as applicable for each
+operating system. IBM Spectrum LSF Predictor 10.1 Fix Pack 13 upgraded the support for the following software:
+Software nameSoftware version in
+Fix Pack 13Previous
+software version
+IBM Cloud Pak for Data
+Additionally, IBM Spectrum LSF Predictor 10.1 Fix Pack 13 supports AutoAI IBM Cloud Pak for
+Data to run in a public cloud environment.4.0 3.5
+ibm-watson-machine-learning API 1.0.175 1.0.79
+Elasticsearch 7.16.3 7.10
+Elasticsearch JDK 17.0.3.1 17.0.1
+Python 3.7.11 3.7.9
+Fix Pack 12
+Public and private clouds
+Use IBM Cloud Pak for Data AutoAI running in public and private cloud environments.
+General availability (version 10.1 with no ﬁx packs)
+Job management
+Load LSF historical job data, choose job features, clean up job data, and much more.
+Model training
+Start model training with clean job data.
+Pipelines
+View training pipelines, and publish the best pipeline as a model.
+Optimize workloads
+Optimize workload snapshots by selected model.
+Compare optimized workloads
+Start an experiment with an optimized workload snapshot and compare the results of the following parameters:
+Total throughput
+Average wait time
+Cluster memory usage
+Model deployment and job optimization
+IBM Spectrum LSF 2383
+
+Deploy models to LSF production cluster, and optimize future job submissions.
+Improved performance of bsim command
+The performance of the bsim command that is used to modify a workload trace was improved. For more information, see the
+<INSTALLATION_DIR>/lsf_cognitive_v1/lsf_simulator/sim_run/lsf/10.1/linux2.6-glibc2.3-x86_64/README.wconvert ﬁle.
+Known issues and limitations for IBM® Spectrum LSF Predictor
+Known issues and limitations for LSF Predictor 10.1.
+Known issues
+Jobs remain in Pending state
+To resolve this issue, give all users Read and Execute permissions to all levels of the path to the /opt/test/lsf_cognitive_v1 installation
+directory.
+Experiment result not accurate if system decides time compression factor
+When starting a simulation in the LSF cluster, which has LSF License Scheduler enabled, select Specify Factor for the Time Compression
+Factor option. If you select Let System Decide, the experiment result will not be accurate.
+Limitations
+Supported delimiter set
+You can use the following data delimiters to ﬁnd job names, project names, job directories, and more:delimitCharSet = ['#', '-', 
+'_', '%', '+', '@', '/', '!', ' ', '.', ':']
+Job names
+The new job feature name is abstracted from the project name and the job name cannot consist of numerical values. If the abstracted features
+name values are numerical for all jobs in the training data, AutoAI converts it to a Number type and model inference will fail. All of the
+customized new features are expected as a String type.
+Dynamic hosts are not supported
+Dynamic hosts are not recognized: If the LSF cluster to be simulated contains dynamic hosts, the simulator data collecting tool tries to convert
+those dynamic hosts to static in the collected data so that they show up as static hosts in the simulated cluster. The conversion adds those
+hosts to the lsf.cluster.<cluster_name> ﬁle in the conf directory in the collected data and add the dynamic hosts into the hostlist line. This
+adds the hosts as static hosts and be recognized by the simulator.
+LSF Data Manager leads to improper results
+If LSF Data Manager is enabled in LSF production environment, the experiments will count 1024 CPUs for the data manager master host,
+which leads to improper results. Suggest to disable the LSF Data Manager before loading the LSF conﬁguration into the LSF Cognitive system.
+Dynamic resources converted to ﬁxed resources
+Dynamic resources reported from elim are converted to ﬁxed resources when loading LSF conﬁguration.
+Predictor does not support multicluster mode
+LSF Predictor 10.1 only works with a single LSF cluster. Predictor doesn't support LSF multi-cluster mode.
+Fair share user groups not imported with workload snapshot
+User groups deﬁned in queue level as fairshare are not imported when you import a workload snapshot. User groups deﬁned in bsub -G
+are imported properly.
+Installing IBM Spectrum LSF Predictor
+Install LSF Predictor.
+Before you begin
+IBM Spectrum LSF Predictor uses AutoAI in IBM Cloud Pak for Data 4.0 as the training engine. It is required to have Cloud Pak for Data installed and
+running for LSF Predictor. For more information, see Preparing IBM Cloud Pak for Data.
+Consider the following prerequisites when selecting a host for installing LSF Predictor:
+LSF Predictor supports the following Linux® operating systems running on x64 platforms:
+Red Hat Enterprise Linux 7.2, or later.
+CentOS 7.2, or later.
+Ubuntu 18.04.
+Docker CE (docker-ce) 19.03, or later, must be installed and running.
+The following ports must not be in use: 2222, 5050, 9200, 20022.
+Internet access to download the Docker-in-Docker (dind) and CentOS 7 (centos:7) images for starting the LSF prediction Docker container.
+LSF server or client in a production environment to directly load the LSF conﬁguration ﬁles.
+2384    IBM Spectrum LSF
+
+The intended host for LSF Predictor must have at least 32 GB of memory.
+The installation directory that you use to extract the installation package will be the working directory. Therefore, ensure that the installation
+directory has at least 100 GB of free space.
+Note: The installation directory must be speciﬁed as an absolute path and cannot include a symbolic link in the path.
+The installer assumes that you agreed to the license terms before starting the LSF Predictor service. View the license agreement in the
+License/ directory within the installation package.
+Procedure
+1. Log in to the intended Linux host as root.
+2. Check that the maximum virtual memory setting is larger than 262144 by running the following command:
+# sysctl -n vm.max_map_count
+3. Add the user for LSF Predictor to the docker user group.
+For example, to add lsfadmin to the docker user group,
+# usermod -aG docker lsfadmin
+4. Log back in to the intended host as the user for LSF Predictor.
+For example, log in to the intended host as lsfadmin.
+5. Navigate to the intended installation directory and extract the lsf-cognitive-predictor_v1 installation package.
+For example,
+$ cd /opt/ibm
+$ tar -zxvf lsf_cognitive_predictor_v1.tar.gz
+6. To start the service as lsfadmin or root, change to the installation directory by running the following command:
+$ cd lsf_cognitive_v1/
+7. Start the LSF Predictor service.
+For example, start the LSF Predictor service with directory mapping like the following:
+$ ./bcogn start -v "LSF_TOP_OUTSIDE_CONTAINER:LSF_TOP_INSIDE_CONTAINER"
+where LSF_TOP_OUTSIDE_CONTAINER is the real LSF cluster top level ﬁle path and LSF_TOP_INSIDE_CONTAINER is the mapping point
+from inside the Docker container that is created automatically when starting the prediction. You must specify the same ﬁle path both times.
+For more information about the bcogn start command, refer to Managing the IBM Spectrum LSF Predictor service.
+8. Log in to the LSF Predictor Console from a web browser.
+a. Import the LSF Predictor certiﬁcate to the web browser as a Trusted Root Certiﬁcate.
+The certiﬁcate is located in lsf_cognitive_v1/conﬁg/https/cacert_lsf.pem.
+b. From the web browser, log in to the LSF Predictor Console.
+https://<lsf_predictor_host>:5050
+Enter Admin as both the default user name and password.
+Important: For security reasons, it is highly recommended that you change the Admin password after the ﬁrst web console login.
+Figure 1. Changing Admin password after ﬁrst web console login
+9. Check that the t_shirt_size parameter value is set to l for "large" in the lsf_cognitive_v1/conﬁg/conﬁg.json ﬁle.
+{ 
+"debug": false, 
+"feature": { 
+"predictor": { 
+"enabled": false, 
+"url": "", 
+"username": "", 
+"password": "", 
+"project": "", 
+"version": "3.5", 
+"sample_rate": 1, 
+"max_samples": 2000000, 
+IBM Spectrum LSF 2385
+
+"RegressionAlgorithms":["RandomForestRegressorEstimator", "ExtraTreesRegressorEstimator", 
+"XGBRegressorEstimator", "GradientBoostingRegressorEstimator"], 
+"ClassificationAlgorithms":["ExtraTreesClassifierEstimator", "GradientBoostingClassifierEstimator", 
+"DecisionTreeClassifierEstimator", "RandomForestClassifierEstimator"], 
+"ranking_metric_regression": "MAE", 
+"ranking_metric_classification":"Accuracy", 
+"transformers": ["sum","max"], 
+"test_size": 0.1, 
+"t_shirt_size": "l" 
+}, 
+"optimizer": { 
+"enabled": false 
+} 
+} 
+} 
+Preparing IBM Cloud Pak for Data
+ IBM Spectrum LSF Predictor uses AutoAI in IBM Cloud Pak for Data 4.0 as the training engine. It is required to have Cloud Pak for Data
+installed and running for LSF Predictor.
+Preparing IBM Cloud Pak for Data
+IBM Spectrum LSF Predictor uses AutoAI in IBM Cloud Pak for Data 4.0 as the training engine. It is required to have Cloud Pak for Data installed and
+running for LSF Predictor.
+Procedure
+Choose one of the following cloud options for AutoAI installation and preparation instructions:
+IBM Cloud Pak for Data AutoAI on private cloud: Go to step 1.
+IBM Cloud Pak for Data AutoAI on public cloud: Go to step 5.
+AutoAI on private cloud:
+1. Install IBM Cloud Pak for Data on premises if not already done.
+For product information, see Cloud Pak for Data.
+2. Log in to Cloud Pak for Data as administrator.
+3. Create an empty project for IBM Spectrum LSF Predictor.
+a. Click on hamburger drop-down menu.
+Figure 1. IBM Cloud Pak for Data hamburger menu
+b. Select Projects.
+c. Click New project.
+d. Select Create an empty project .
+e. Deﬁne the project details. Click Create.
+4. Record the following information for LSF Predictor settings that you must conﬁgure from which a connection can be made to the IBM Cloud
+Pak for Data instance:
+IBM Cloud Pak for Data main web console URL
+IBM Cloud Pak for Data empty project name
+IBM Cloud Pak for Data administrator user name and password
+AutoAI on public cloud:
+5. Install IBM Cloud Pak for Data on IBM Cloud® if not already done.
+For product information, see Cloud Pak for Data.
+6. Log in to your IBM Cloud account.
+7. Provision a Watson Studio service on IBM Cloud.
+Search for "Watson Studio" and select Watson Studio listed under Catalog results.
+8. On the Watson Studio service page, select a region, select the Lite (Free) plan, and give your instance a unique service name. Click Create.
+9. When the service instance is ready, the Watson Studio page opens. Click Get Started.
+10. Under the Work with data heading, click the Create a project link. Click Create an empty project. Give your new project a name.
+Take note of the project name as this name is added on the LSF Predictor settings page.
+2386    IBM Spectrum LSF
+
+11. Associate an IBM Cloud Object Storage instance in which to store your data set.
+Under Select storage service, click Add. On the IBM Cloud Object Store service page, leave the service on the Lite tier and click Create. Next,
+name the service and choose a resource group. Click Create.
+12. When your Cloud Object Storage instance is ready, click Refresh on the project page to see your instance under Storage.
+13. To create your project, click Create.
+14. To add data to your project, click Add to project and select Data.
+You can drag and drop data ﬁles under the Load tab, or select browse to navigate to your the location of your data ﬁle.
+15. To verify that your data ﬁle was successfully loaded into your project, select the Assets tab and look for your data ﬁle listed under Data assets.
+16. Create a deployment space.
+From the main Watson Studio console menu, select View all spaces and click New deployment space +. Fill in the ﬁelds, then click Create.
+17. In the list of spaces, click on the new deployment space name to open the Space Details page.
+18. Copy and save the Space GUID as this space ID is added on the LSF Predictor settings page.
+19. Generate an IBM Cloud API key from your IBM Cloud dashboard.
+From the Manage tab, select Access (IAM).
+Figure 2. IBM Cloud dashboard
+20. Select API keys in left-side menu bar.
+Click Create an IBM Cloud API key. Name the API key and click Create.
+21. Download the IBM Cloud API key and save it.
+What to do next
+Install IBM Spectrum LSF Predictor.
+Connecting the IBM Spectrum LSF Predictor service
+The IBM Spectrum LSF Predictor service uses the IBM Cloud Pak for Data AutoAI as the predictor engine. You must conﬁgure connection settings to
+connect to Cloud Pak for Data before starting to work with LSF Predictor.
+Procedure
+1. Select the Prediction tab in the web console.
+The connection setup window opens for you to input the required information that was recorded during the preparation in Preparing IBM
+Cloud Pak for Data.
+You can select the following supported IBM Cloud Region values:
+private - private cloud. IBM Cloud Pak for Data is installed in your private cloud.
+us-east - IBM public cloud located in Washington, D.C.
+us-south - IBM public cloud located in Dallas, TX.
+a. For private cloud connections to IBM Cloud Pak for Data, the following connection settings are made:
+IBM Cloud Region
+IBM Cloud Pak for Data URL
+User Name
+IBM Spectrum LSF 2387
+
+Password
+Working Project Name
+Figure 1. IBM Cloud Pak for Data connection setup window for private cloud
+b. For public cloud connections to IBM Cloud Pak for Data, the following connection settings are made:
+IBM Cloud Region
+IBM Cloud API Key
+IBM Cloud Space ID
+Working Project Name
+Figure 2. IBM Cloud Pak for Data connection setup window for public cloud
+Note: When switching between private cloud and any other public cloud in this connection setting dialog, you must stop and restart the
+LSF Cognitive service by using the bcogn command to make the change effective.
+2. Test the connection.
+3. Save the connection conﬁguration settings.
+Managing the IBM Spectrum LSF Predictor service
+Use the bcogn command to manage the LSF Predictor service.
+Procedure
+1. Log in to the LSF Predictor host as the LSF Predictor user.
+For example, log in to the LSF Predictor host as lsfadmin.
+2. Navigate to the LSF Predictor directory.
+For example,
+# cd /opt/ibm/lsf_cognitive_v1/
+3. Use the bcogn command to manage the LSF Predictor service.
+2388    IBM Spectrum LSF
+
+Use the bcogn start command to start the LSF Predictor service.
+./bcogn start [-v "LSF_TOP_OUTSIDE_CONTAINER:LSF_TOP_INSIDE_CONTAINER"]
+Specify the -v option if you want to load the LSF conﬁguration directly into the LSF Predictor web console. The
+LSF_TOP_OUTSIDE_CONTAINER is the real LSF cluster top level ﬁle path and the LSF_TOP_INSIDE_CONTAINER is the mapping point
+from inside the Docker container that is created automatically when starting the prediction. You must specify the same ﬁle path for the
+pair.
+For example,
+$ ./bcogn start -v "/production_cluster_sharedir/lsf:/production_cluster_sharedir/lsf"
+If you do not specify the -v option, the default mapping location between the ﬁle system and the LSF Predictor is lsf_cognitive_v1/work.
+If you want to import LSF cluster information from a remote server, create a tar.z ﬁle containing the contents of the remote LSF conf
+directory and copy it to this location. When you import this from the LSF Predictor web console, specify the appropriate .tar.z ﬁle name
+and LSF Predictor searches this default location to import the ﬁle.
+The service provides default ﬁle volume mountings, which you can use as a bridge to transfer ﬁles to the service container. The
+following volume mountings are the defaults from the service:
+Table 1. Default volume mountings
+Volume path outside the containerVolume path inside the container
+$PACKAGE_TOP $PACKAGE_TOP
+$PACKAGE_TOP/work /opt/ibm/prediction/work
+$PACKAGE_TOP/logs /opt/ibm/prediction/logs
+$PACKAGE_TOP/conﬁg /opt/ibm/prediction/conﬁg
+Note:
+$PACKAGE_TOP is the full directory that is created when extracting the original installation package. For example,
+/opt/ibm/lsf_cognitive_v1
+To accurately analyze and tune your LSF cluster conﬁguration, import LSF conﬁguration ﬁles and workload snapshots (job
+submission and completion records that are imported from the lsb.events ﬁle) from your LSF production cluster.
+If your LSF production cluster is installed with one of the LSF Suites, there might be a symbolic link from /opt/ibm/lsftsuite/lsf to
+/sharedir/lsf. To directly import the LSF conﬁguration from this production cluster, you must map both directories when starting
+the LSF Predictor service. For example,
+$ ./bcogn start -v "/opt/ibm/lsfsuite:/opt/ibm/lsfsuite;/sharedir/lsf:/sharedir/lsf"
+Use the bcogn stop command to stop the LSF Predictor service.
+./bcogn stop
+Use the bcogn status command to view the current status of the LSF Predictor service.
+./bcogn status
+$ ./bcogn status 
+SERVICE             STATUS             ID                  PORT 
+lsf_cognitive:v1    STARTED            e370e9723742        5050, 9200, 20022 
+docker:dind         STARTED            c420d5ad63e2        2375,2376 
+webssh              STARTED            22651               2222 
+Using IBM Spectrum LSF Predictor
+This document gives an outline about how to typically use the LSF Predictor service.
+About this task
+The following list contains the basic concepts associated with the Predictor service:
+Experiment
+An experiment is an LSF simulation run that uses a selected LSF conﬁguration and workload snapshot.
+Cluster conﬁguration
+An LSF conﬁguration is a full set of LSF cluster conﬁgurations and workload policies.
+Workload snapshot
+A workload snapshot is a set of job submissions and completion records that are imported from the LSF cluster events ﬁles (lsb.events*).
+Prediction
+An AI model training process that includes data selecting, data cleaning, starting and stopping training, pipeline viewing and publishing,
+model testing, workload snapshot optimizing, and more.
+IBM Spectrum LSF 2389
+
+Procedure
+The following is an example outline of a typical Predictor service workflow by using samples that are provided for you on which you can practice and
+learn.
+Workflow example 1:
+Start by optimizing the sample data and then rerunning a sample experiment. You can then compare the results of the original (baseline) and
+the new experiment. This example does not require IBM Cloud Pak for Data to be running.
+1. Select the Workload Snapshots tab.
+2. In the WL_clusterA_small row, click the Optimize action.
+Select the default sample_model_max_mem.model (local) prediction model. Click Optimize.
+3. Select the Experiments tab.
+4. In the Sample Experiment row, click the Rerun action.
+In the Modify and Rerun Experiment wizard, select the Workload Snapshot tab. Select the newly-generated workload snapshot. You can click
+Next to review your experiment selections. Click Rerun. The progress of the Sample Experiment job can be tracked. Click Refresh to update
+the progress bar in the table. The experiment is completed when the progress bar shows 100% jobs are completed.
+5. To view the prediction results charts, click on the Sample Experiment name and select the Prediction Results tab.
+Workflow example 2:
+Use a small job data set to practise how to create a model with the LSF Predictor.
+Train a model to predict the amount of memory required for a job.
+Note: This example does require IBM Cloud Pak for Data to be running.
+6. To create a prediction regarding the amount of memory required for a job, select the Prediction tab.
+Click Create +. Enter a prediction name such as Job_memory. Leave the default selections of max-mem prediction target and Regression
+prediction type. You can add a description of the prediction if you want. Click Next.
+7. To select historical job data in lsb.acct ﬁles, enter a data source location and your LSF cluster name.
+Select the workload start and end times. Click Next.
+8. Select job attributes for the model training data under the Job Features tab.
+Previews of the data update dynamically as you make changes to the job attributes and ﬁlters.
+9. To start the model training, click Create.
+The model training time depends on the amount of the training data. For example, training with 10000 jobs and 6 attributes takes about 20
+minutes.
+To display the pipeline details when the model training completes, click on the prediction name, then the Pipelines tab.
+10. To publish the pipeline as a model, locate the pipeline with rank 1 and click Publish.
+11. Test the model interactively by clicking Test.
+To discover the predicted job memory size, enter job attributes and click Predict.
+Workflow example 3:
+Tune your model to improve prediction accuracy.
+12. Click the completed prediction name, check the MAE (for Regression type) or Accuracy (for Classiﬁcation type) value for each pipeline of the
+prediction.
+If the MAE value is too big relative to the real job memory, or the Accuracy value is too small, it's time to tune the model.
+13. To tune the model, the important task is to ﬁnd the most relevant job features.
+The feature importance column in the pipeline table shows the importance number as determined from the last training run. Select the job
+features with the largest importance numbers for the next tuning practise run.
+14. Click the Tune action to start tuning the prediction.
+Carefully select the important job features. The following general rules can result in better predictions:
+a. Find the relevant information using a tag from the long string instead of the whole string.
+b. Remove the irrelevant job features.
+c. Use a smaller job data set to reduce the tuning-process time.
+It's advisable to select the number of jobs to be less than 100k for tuning.
+15. After the tuning is done, recheck the MAE or Accuracy value.
+If the value is still not good enough, return to step 12 and tune it again.
+16. If the MAE or Accuracy value is good enough, apply the features selection to a large data set to improve the accuracy of the prediction.
+Create a new prediction or tune an existing prediction by selecting a large number of jobs. However, based on benchmark results, when the
+number of jobs is too big, for example 10 million, it does not result in an improvement in model accuracy.
+Results
+To deploy the model to your LSF production environment, see Deploying models to IBM Spectrum LSF production environment.
+Tuning IBM Cloud Pak for Data model training parameters
+ There are a few training parameters in the conﬁg.json ﬁle that can be tuned to improve the IBM Cloud Pak for Data model training
+performance and accuracy.
+Deploying models to IBM Spectrum LSF production environment
+ You can deploy your trained model to your LSF production environment.
+2390    IBM Spectrum LSF
+
+Tuning IBM Cloud Pak for Data model training parameters
+There are a few training parameters in the conﬁg.json ﬁle that can be tuned to improve the IBM Cloud Pak for Data model training performance and
+accuracy.
+The following model training parameters are found in the lsf_cognitive_v1/conﬁg/conﬁg.json ﬁle:
+"enabled":true|false
+If false, prediction feature is disabled.
+"sample_rate":1
+Sub-sample rate. A value of 0.5 means that 1/0.5 = 2 jobs are handled to produce 1 record. To handle large amounts of data with 10
+million jobs, the value must be smaller, such as 0.01.
+"max_samples": 2000000
+Maximum number of records to keep for clean data.
+"RegressionAlgorithms":[ "RandomForestRegressorEstimator", 
+"ExtraTreesRegressorEstimator", "XGBRegressorEstimator", "GradientBoostingRegressorEstimator" 
+]
+Default settings.
+"ClassificationAlgorithms":[ "ExtraTreesClassifierEstimator", 
+"GradientBoostingClassifierEstimator", "DecisionTreeClassifierEstimator", 
+"RandomForestClassifierEstimator" ]
+Default settings.
+"ranking_metric_regression":"MAE"
+Training score metric for regression. Also used by pipeline table to rank the pipelines.
+"ranking_metric_classification":"Accuracy"
+Training score metric for classiﬁcation. Also used by pipeline table to rank the pipelines.
+"transformers":[ "sum", "max" ]
+IBM Cloud Pak for Data training data converting method list. The more transformers, the longer it takes for training.
+"test_size":0.1
+Hold-out threshold. The value 0.1 means that 10% of the input data is used for model testing and 90% of data is used for training.
+"t_shirt_size":"l"
+Deﬁnes the amount of training pod resources. Ensure that IBM Cloud Pak for Data supports the size speciﬁed, otherwise the training fails. The
+following sizes are supported:
+"s": small (2 vCPUs; 8 GB of RAM)
+"m": medium (4 vCPUs; 16 GB of RAM)
+"l": large (8 vCPUs; 32 GB of RAM)
+"xl": extra large (16 vCPUs; 64 GB of RAM)
+For more information about IBM Cloud Pak for Data AutoAI parameters, see IBM Watson Machine Learning (V4).
+Deploying models to IBM Spectrum LSF production environment
+You can deploy your trained model to your LSF production environment.
+About this task
+When you publish a pipeline as a model, an esub script is generated. The esub script calls the LSF Predictor REST API to do inference, then applies
+the predicted max_mem and run time values in the job’s resource requirement rusage string and estimated run time parameters during the job
+submission. The esub script is responsible for doing the following items for a newly submitted job in the LSF production environment:
+Organizing the required model input data.
+Calling the LSF Predictor REST API to get predicted values.
+Replacing the memory value in the job resource requirement rusage string or the value of the estimated run time with the predicted one.
+Procedure
+1. Download the esub script.
+After publishing your model pipeline found under the Pipelines tab, you can download the esub script by clicking the Esub action.
+2. Optional: Modify the contents of the esub script if you have some customized requirements.
+3. Log in to the LSF server host as root.
+IBM Spectrum LSF 2391

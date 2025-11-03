@@ -1,0 +1,144 @@
+Field Description
+taskExitReason
+(%d)Task exit reason:
+TASK_EXIT_NORMAL = 0: normal exit
+TASK_EXIT_INIT = 1: generic task initialization failure
+TASK_EXIT_PATH = 2: failed to initialize path
+TASK_EXIT_NO_FILE = 3: failed to create task ﬁle
+TASK_EXIT_PRE_EXEC = 4: task pre-execution failed
+TASK_EXIT_NO_PROCESS = 5: fork failed
+TASK_EXIT_XDR = 6: XDR communication error
+TASK_EXIT_NOMEM = 7: no memory
+TASK_EXIT_SYS = 8: system call failed
+TASK_EXIT_TSCHILD_EXEC = 9: failed to run sschild
+TASK_EXIT_RUNLIMIT = 10: task reached its run limit
+TASK_EXIT_IO = 11: input or output failure
+TASK_EXIT_RSRC_LIMIT = 12: set task resource limit failed
+Running and monitoring LSF Session Scheduler jobs
+Run LSF Session Scheduler jobs for various scenarios.
+Create an LSF Session Scheduler session and run tasks
+Procedure
+1. Create task deﬁnition ﬁle.
+For example:
+cat my.tasks 
+sleep 10 
+hostname 
+uname 
+ls
+2. Use bsub with the ssched application proﬁle to submit an LSF Session Scheduler job with the task deﬁnition.
+bsub -app ssched bsub_options ssched [task_options] [-tasks task_definition_file] 
+ [command [arguments]]
+For example:
+bsub -app ssched ssched -tasks my.tasks
+Results
+When all tasks ﬁnish, LSF Session Scheduler exits, all temporary ﬁles are deleted, the session job is cleaned from the system, and LSF Session
+Scheduler output is captured and included in the standard LSF job e-mail.
+You can also submit an LSF Session Scheduler job without a task deﬁnition ﬁle to specify a single task.
+Note: The submission directory path can contain up to 4094 characters.
+See the ssched command reference for detailed information about all task options.
+Submit an LSF Session Scheduler job as a parallel LSF job
+Procedure
+Use the -n option of bsub to submit an LSF Session Scheduler job as a parallel LSF job.
+bsub -app ssched -n num_hosts ssched [task_options] [-tasks task_definition_file] 
+ [command [arguments]]
+For example:
+bsub -app ssched -n 2 ssched -tasks my.tasks
+Submit task array jobs
+Procedure
+2114    IBM Spectrum LSF
+
+Use the -J option to submit a task array via the command line, and no task deﬁnition ﬁle is needed:
+-J task_name[index_list]
+The index list must be enclosed in square brackets. The index list is a comma-separated list whose elements have the syntax start[-
+end[:step]] where start, end and step are positive integers. If the step is omitted, a step of one (1) is assumed. The task array index starts at one
+(1).
+All tasks in the array share the same option parameters. Each element of the array is distinguished by its array index.
+See the ssched command reference for detailed information about all task options.
+Submit tasks with automatic task re-queuing
+Procedure
+Use the -Q option to specify re-queuing exit values for the tasks:
+-Q "exit_code ..."
+-Q enables automatic task re-queue and sets the LSB_EXIT_REQUEUE environment variable. Use spaces to separate multiple exit codes. LSF does
+not save the output from the failed task, and does not notify the user that the task failed.
+If a job is killed by a signal, the exit value is 128+signal_value. Use the sum of 128 and the signal value as the exit code in the parameter. For
+example, if you want a task to rerun if it is killed with a signal 9 (SIGKILL), the exit value is 128+9=137.
+The SSCHED_REQUEUE_LIMIT setting limits the number of times a task can be re-queued.
+See the ssched command reference for detailed information about all task options.
+Integrate LSF Session Scheduler with the bsub command
+Integrate LSF Session Scheduler with bsub to make the execution of LSF Session Scheduler jobs transparent. You can then use bsub to submit LSF
+Session Scheduler jobs without specifying the LSF Session Scheduler application proﬁle and options.
+The bsub command recognizes two environment variables to support LSF Session Scheduler job submission: LSB_TASKLIST (the task deﬁnition ﬁle)
+and LSB_BSUB_MODE (the current bsub mode). If LSB_BSUB_MODE is ssched, running bsub does not submit a job to mbatchd. Instead, running
+bsub opens the task deﬁnition ﬁle (LSB_TASKLIST) and inserts the submitted job as a task into the task deﬁnition ﬁle.
+This integration supports the following bsub options: -E, -Ep, -e, -i, -J, -j, -o, -M, -Q, and -W.
+Other bsub options are ignored.
+Set up the integrated execution environment
+Create the script ﬁles necessary for setting up the execution environment to integrate LSF Session Scheduler with bsub.
+Procedure
+1. Create the begin_ssched.sh script, which creates an LSF Session Scheduler job and sets the necessary environment variables.
+#!/bin/sh -x 
+TMPDIR=~/.ssched 
+LSB_TASKLIST=$TMPDIR/task.lst.$$ 
+export LSB_TASKLIST 
+if [ ! -d $TMPDIR ]  
+then 
+    mkdir -p $TMPDIR 
+fi 
+# 
+# make sure no two sessions conflict each other 
+# 
+i=0 
+while [ -f $LSB_TASKLIST ] 
+do 
+    let i=i+1 
+    LSB_TASKLIST=$TMPDIR/task.lst.$$.$i 
+    export LSB_TASKLIST 
+done 
+JID=`bsub -H -Ep "rm -f $LSB_TASKLIST" $* ssched -tasks $LSB_TASKLIST | cut -f2 -d'<' | cut -f1 -d'>'` 
+export JID 
+IBM Spectrum LSF 2115
+
+LSB_BSUB_MODE=ssched 
+export LSB_BSUB_MODE 
+2. Create the end_ssched.sh script, to schedule and execute the LSF Session Scheduler job.
+#!/bin/sh 
+bresume $JID > /dev/null 2>&1 
+unset LSB_BSUB_MODE 
+unset LSB_TASKLIST
+3. Copy the two script ﬁles into the LSF_BINDIR directory.
+4. Set the ﬁle permissions of the two script ﬁles to be executable for all users.
+Use the integrated execution environment
+Use bsub to submit LSF Session Scheduler jobs without specifying the LSF Session Scheduler application proﬁle and options.
+Procedure
+1. Run the begin_ssched.sh script to create an LSF Session Scheduler job and set up the environment variables.
+You can use standard bsub options with begin_ssched.sh to apply to the session.
+For example, to create a session job with two slots and send the output to a.out:
+. begin_ssched.sh -n2 -o a.out
+2. Run bsub for each batch job you want to include in the session.
+You can run bsub with the following options:-E, -Ep, -e, -i, -J, -j, -o, -M, -Q, and -W.
+3. Run the end_ssched.sh script to have LSFcreate an LSF Session Scheduler job and set up the environment variables:
+. end_ssched.sh
+The task deﬁnition ﬁle is automatically deleted after the LSF Session Scheduler job is complete.
+What to do next
+You can also run these commands entirely from a script. For example:
+#!/bin/sh 
+. begin_ssched.sh -n2 
+bsub task1 
+bsub task2 
+. end_ssched.sh
+Monitor LSF Session Scheduler jobs
+Procedure
+1. Run bjobs -ss to get summary information for LSF Session Scheduler jobs and tasks.
+JOBID OWNER    JOB_NAME NTASKS PEND DONE  RUN EXIT 
+1     lsfadmin job1      10     4    4    2    0 
+2     lsfadmin job2      10    10    0    0    0 
+3     lsfadmin job3      10    10    0    0    0
+Information displays about your LSF Session Scheduler job, including Job ID, the owner, the job name, the number of total tasks, and the
+number of tasks in any of the following states: pend, run, done, exit.
+2. Use bjobs -l -ss or bread to track the progress of the Session Scheduler job.
+Kill an LSF Session Scheduler session
+Procedure
+Use bkill to kill the LSF Session Scheduler session. All temporary ﬁles are deleted, and the session job is cleaned from the system.
+Check your job submission
+Procedure
+2116    IBM Spectrum LSF

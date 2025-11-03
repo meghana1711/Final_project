@@ -1,0 +1,1012 @@
+brequeue causes TotalView to display all jobs in error status. Click Go and the jobs will rerun.
+Job rerun within TotalView is not supported. Do not submit jobs for debugging to a rerunnable queue.
+Register LSF host names and IP addresses to LSF servers
+Register the IP address and host name of your local LSF host with LSF servers so that LSF servers do not need to use the DNS server to resolve your
+local host.
+This addresses the issues of resolving the host name and IP address of LSF hosts with non-static IP addresses in environments where the DNS
+server is not able to properly resolve these hosts after their IP addresses change.
+To enable host registration, specify LSF_REG_FLOAT_HOSTS=Y in the lsf.conf ﬁle on each LSF server, or on one LSF server if all servers have access
+to the LSB_SHAREDIR directory. This parameter enables LSF daemons to look for records in the reghostscache ﬁle when attempting to look up host
+names or IP addresses.
+By default, the reghostscache ﬁle is stored in the ﬁle path as deﬁned by the LSB_SHAREDIR parameter in the lsf.conf ﬁle. Deﬁne the LSB_SHAREDIR
+parameter so that the reghostscache ﬁle can be shared with as many LSF servers as possible. For all LSF servers that have access to the shared
+directory deﬁned by LSB_SHAREDIR, only one of these servers need to receive the registration request from the local host. This reduces network
+load by reducing the number of servers to which the registration request must be sent. If all hosts in the cluster can access LSB_SHAREDIR, the
+registration only needs to be sent to the management host LIM, which records the host information in the shared reghostscache ﬁle that all other
+servers can access. If LSB_SHAREDIR is not deﬁned, the reghostscache ﬁle is placed in the LSF_TOP directory.
+A typical record in the reghostscache ﬁle might look like the following:
+MyHost1    192.168.1.2    S-1-5-21-5615612300-9789239785-9879786971
+Windows hosts that register have their computer SID included as part of the record. If a registration request is received from an already registered
+host but its SID does not match with the corresponding record's SID in the reghostscache ﬁle. This new registration request is rejected, which
+prevents malicious hosts from imitating another host's name and registering itself as another host.
+After enabling host registration, you can register LSF hosts by running the lsreghost command from the local host while specifying a path to the
+hostregsetup ﬁle:
+UNIX: lsreghost -s ﬁle_path/hostregsetup
+You must run the UNIX command with root privileges. If you want to register the local host at regular intervals, set up a cron job to run this
+command.
+Windows: lsreghost -i ﬁle_path\hostregsetup
+The Windows command installs lsreghost as a Windows service that automatically starts up when the host starts up.
+The hostregsetup ﬁle is a text ﬁle with the names of the LSF servers to which the local host must register itself. Each line in the ﬁle contains the host
+name of one LSF server. Empty lines and #comment text are ignored.
+For example:
+# Rack 1 hosts 
+host1A 
+host1B 
+host1C 
+# Rack 2 hosts 
+host2A 
+host2B 
+host2C
+FLOAT_CLIENTS
+The floating clients feature is optional and is an add-on to normal static clients. FLOAT_CLIENTS_ADDR_RANGE only applies to floating clients. This
+includes client hosts with DHCP assigned IP addresses (i.e. laptops).
+When LSF is started, the static servers and clients deﬁned under the Host section in the lsf.cluster ﬁle are added to the cluster. A floating client can
+be joined only when an LSF command is run from this host and LSF has veriﬁed it against FLOAT_CLIENTS (total number of floating clients) and
+FLOAT_CLIENTS_ADDR_RANGE (IP range). After veriﬁcation, they are listed by the lshosts command. A floating client expires at 12:00 midnight or
+when the management host LIM is reconﬁgured or restarted.
+IBM Spectrum LSF performance tuning
+Tune the performance and scalability of your LSF cluster.
+IBM Spectrum LSF 887
+
+Tune your IBM Spectrum LSF cluster
+Tune LIM policies and parameters to improve performance. Use badmin mbdrestart -p to enable parallel restart to Improve mbatchd response
+time after mbatchd restart. On UNIX platforms that support thread programming, change default mbatchd behavior to use multithreading and
+increase performance of bjobs query requests. Conﬁgure Hard CPU afﬁnity to specify the management host CPUs on which mbatchd child
+query processes can run. Use the JOB_SWITCH2_EVENT parameter in lsb.params to log mbatchd performance metrics. Enable
+DISPATCH_BY_QUEUE to increase queue responsiveness.
+Achieve performance and scalability
+Tune LSF for large clusters and monitor performance metrics in real time. Optimize performance in large sites by tuning queries, scheduling,
+and event logging.
+Tune your IBM Spectrum LSF cluster
+Tune LIM policies and parameters to improve performance. Use badmin mbdrestart -p to enable parallel restart to Improve mbatchd response time
+after mbatchd restart. On UNIX platforms that support thread programming, change default mbatchd behavior to use multithreading and increase
+performance of bjobs query requests. Conﬁgure Hard CPU afﬁnity to specify the management host CPUs on which mbatchd child query processes
+can run. Use the JOB_SWITCH2_EVENT parameter in lsb.params to log mbatchd performance metrics. Enable DISPATCH_BY_QUEUE to increase
+queue responsiveness.
+Tune LIM
+ Improve mbatchd response time after mbatchd restart
+ Improve performance of mbatchd query requests on UNIX
+ Improve mbatchd query performance on UNIX systems by using mbatchd multithreading, hard CPU afﬁnity, or by conﬁguring the query proxy
+daemon (lsproxyd).
+Logging mbatchd performance metrics
+ Logging mbatchd and mbschd proﬁling information
+ Improve performance of mbatchd for job array switching events
+ Increase queue responsiveness
+ Automatically bind LSF daemons to speciﬁc CPU cores
+ Bind a deﬁned set of LSF daemons to CPU cores to distribute CPU resources among critical functions and improve scheduling performance.
+Use LSF Explorer to improve the performance of the bacct and bhist commands, or to retrieve additional data
+ Use LSF Explorer to get information for the bacct and bhist commands more efﬁciently, or to retrieve additional data for LSF Explorer energy
+accounting or IBM® Spectrum Scale I/O accounting.
+Improve slot utilization by preventing bwait from running in jobs
+ 
+Tune LIM
+LIM provides critical services to all LSF components. In addition to the timely collection of resource information, LIM provides host selection and job
+placement policies. If you are using IBM® MultiCluster, LIM determines how different clusters should exchange load and resource information. You
+can tune LIM policies and parameters to improve performance.
+LIM uses load thresholds to determine whether to place remote jobs on a host. If one or more LSF load indices exceeds the corresponding threshold
+(too many users, not enough swap space, etc.), then the host is regarded as busy and LIM will not recommend jobs to that host. You can also tune
+LIM load thresholds.
+Load thresholds
+ How LSF works with LSF_MASTER_LIST
+ 
+Adjust LIM Parameters
+There are two main goals in adjusting LIM conﬁguration parameters: improving response time, and reducing interference with interactive use. To
+improve response time, tune LSF to correctly select the best available host for each job. To reduce interference, tune LSF to avoid overloading any
+host.
+LIM policies are advisory information for applications. Applications can either use the placement decision from LIM, or make further decisions that
+are based on information from LIM.
+Most of the LSF interactive tools use LIM policies to place jobs on the network. LSF uses load and resource information from LIM and makes its own
+placement decisions based on other factors in addition to load information.
+Files that affect LIM are lsf.shared, lsf.cluster.cluster_name, where cluster_name is the name of your cluster.
+RUNWINDOW parameter
+LIM thresholds and run windows affect the job placement advice of LIM. Job placement advice is not enforced by LIM.
+888    IBM Spectrum LSF
+
+The RUNWINDOW parameter deﬁned in lsf.cluster.cluster_name speciﬁes one or more time windows during which a host is considered available. If
+the current time is outside all the deﬁned time windows, the host is considered locked and LIM will not advise any applications to run jobs on the
+host.
+Load thresholds
+Load threshold parameters deﬁne the conditions beyond which a host is considered busy by LIM and are a major factor in influencing performance.
+No jobs will be dispatched to a busy host by LIM’s policy. Each of these parameters is a load index value, so that if the host load goes beyond that
+value, the host becomes busy.
+LIM uses load thresholds to determine whether to place remote jobs on a host. If one or more LSF load indices exceeds the corresponding threshold
+(too many users, not enough swap space, etc.), then the host is regarded as busy and LIM will not recommend jobs to that host.
+Thresholds can be set for any load index supported internally by the LIM, and for any external load index.
+If a particular load index is not speciﬁed, LIM assumes that there is no threshold for that load index. Deﬁne looser values for load thresholds if you
+want to aggressively run jobs on a host.
+Load indices that affect LIM performance
+Load index Description
+r15s 15-second CPU run queue length
+r1m 1-minute CPU run queue length
+r15m 15-minute CPU run queue length
+pg Paging rate in pages per second
+swp Available swap space
+it Interactive idle time
+ls Number of users logged in
+Compare LIM load thresholds
+ LIM reports a host as busy
+ Interactive jobs
+ Multiprocessor systems
+ On multiprocessor systems, CPU run queue lengths (r15s, r1m, r15m) are compared to the effective run queue lengths as displayed by the
+lsload -E command.
+Compare LIM load thresholds
+About this task
+Tune LIM load thresholds, compare the output of lsload to the thresholds reported by lshosts -l.
+Procedure
+1. Run lshosts -l
+2. Run lsload
+The lsload command displays an asterisk * next to each load index that exceeds its threshold.
+Example
+Consider the following output from lshosts -l and lsload:
+lshosts -l 
+HOST_NAME:  hostD  
+...  
+LOAD_THRESHOLDS:  
+     r15s   r1m  r15m   ut   pg    io   ls   it   tmp   swp   mem  
+     -      3.5  -      -    15    -    -    -    -     2M    1M  
+  
+HOST_NAME:  hostA  
+...  
+LOAD_THRESHOLDS:  
+     r15s   r1m  r15m   ut   pg    io   ls   it   tmp   swp   mem  
+IBM Spectrum LSF 889
+
+     -      3.5  -      -    15    -    -    -    -     2M    1M 
+  
+lsload   
+HOST_NAME status r15s  r1m  r15m   ut    pg   ls  it  tmp  swp  mem  
+hostD     ok     0.0   0.0  0.0    0%    0.0  6   0   30M  32M  10M  
+hostA     busy   1.9   2.1  1.9    47%  *69.6 21  0   38M  96M  60M 
+In this example, the hosts have the following characteristics:
+hostD is ok.
+hostA is busy, the pg (paging rate) index is 69.6, above the threshold of 15.
+LIM reports a host as busy
+If LIM often reports a host as busy when the CPU utilization and run queue lengths are relatively low and the system is responding quickly, the most
+likely cause is the paging rate threshold. Try raising the pg threshold.
+Different operating systems assign subtly different meanings to the paging rate statistic, so the threshold needs to be set at different levels for
+different host types. In particular, HP-UX systems need to be conﬁgured with signiﬁcantly higher pg values; try starting at a value of 50.
+There is a point of diminishing returns. As the paging rate rises, eventually the system spends too much time waiting for pages and the CPU utilization
+decreases. Paging rate is the factor that most directly affects perceived interactive response. If a system is paging heavily, it feels very slow.
+Interactive jobs
+If you ﬁnd that interactive jobs slow down system response while LIM still reports your host as ok, reduce the CPU run queue lengths (r15s, r1m,
+r15m). Likewise, increase CPU run queue lengths if hosts become busy at low loads.
+Multiprocessor systems
+On multiprocessor systems, CPU run queue lengths (r15s, r1m, r15m) are compared to the effective run queue lengths as displayed by the lsload -E
+command.
+CPU run queue lengths should be conﬁgured as the load limit for a single processor. Sites with a variety of uniprocessor and multiprocessor machines
+can use a standard value for r15s, r1m and r15m in the conﬁguration ﬁles, and the multiprocessor machines will automatically run more jobs.
+Note that the normalized run queue length displayed by lsload -N is scaled by the number of processors.
+How LSF works with LSF_MASTER_LIST
+The ﬁles lsf.shared and lsf.cluster.cluster_name are shared only among LIMs on hosts that are listed as candidates to be elected the management
+host with the parameter LSF_MASTER_LIST.
+The preferred management host is no longer the ﬁrst host in the cluster list in lsf.cluster.cluster_name, but the ﬁrst host in the list speciﬁed by
+LSF_MASTER_LIST in lsf.conf.
+Whenever you reconﬁgure, only LIMs on the management host candidates read lsf.shared and lsf.cluster.cluster_name to get updated information.
+The LIM on the elected management host sends conﬁguration information to child LIMs on the server hosts.
+The order in which you specify hosts in LSF_MASTER_LIST is the preferred order for selecting hosts to become the management host.
+Non-shared ﬁle considerations
+Generally, the ﬁles lsf.cluster.cluster_name and lsf.shared for hosts that are management candidates should be identical.
+When the cluster is started up or reconﬁgured, LSF rereads conﬁguration ﬁles and compares lsf.cluster.cluster_name and lsf.shared for hosts that are
+management candidates.
+In some cases in which identical ﬁles are not shared, ﬁles may be out of sync. This section describes situations that may arise should
+lsf.cluster.cluster_name and lsf.shared for hosts that are management candidates not be identical to those of the elected management host.
+890    IBM Spectrum LSF
+
+LSF_MASTER_LIST host eligibility
+LSF only rejects candidate management hosts listed in LSF_MASTER_LIST from the cluster if the number of load indices in lsf.cluster.cluster_nameor
+lsf.shared for management candidates is different from the number of load indices in the lsf.cluster.cluster_name or lsf.shared ﬁles of the elected
+management host.
+A warning is logged in the log ﬁle lim.log.management_host_name and the cluster continue to run, but without the hosts that were rejected.
+If you want the hosts that were rejected to be part of the cluster, ensure the number of load indices in lsf.cluster.cluster_name and lsf.shared are
+identical for all management candidates and restart LIMs on the management and all management candidates:
+bctrld restart lim hostA hostB hostC
+Failover with ineligible management host candidates
+If the elected management host goes down and if the number of load indices in lsf.cluster.cluster_name or lsf.shared for the new elected
+management host is different from the number of load indices in the ﬁles of the management host that went down, LSF will reject all management
+candidates that do not have the same number of load indices in their ﬁles as the newly elected management host. LSF will also reject all server-only
+hosts. This could cause a situation in which only the newly elected management host is considered part of the cluster.
+A warning is logged in the log ﬁle lim.log.new_management_host_name and the cluster continue to run, but without the hosts that were rejected.
+To resolve this, from the current management host, restart all LIMs:
+lsadmin limrestart all
+All server-only hosts will be considered part of the cluster. Candidate management hosts with a different number of load indices in their
+lsf.cluster.cluster_nameor lsf.shared ﬁles will be rejected.
+When the management host that was down comes back up, you need to ensure load indices deﬁned in lsf.cluster.cluster_name and lsf.shared for all
+management candidates are identical and restart LIMs on all management candidates.
+Using a DNS host cache
+A cluster-wide DNS host cache is used to improve cluster startup performance.
+To mitigate the burden on the DNS server when starting an LSF cluster, a cluster-based cache ﬁle ($LSF_ENVDIR/.hosts.dnscache) is used by all
+daemons on each host to reduce the number of times that LSF daemons directly call the DNS server.
+The format of the cache ﬁle is the same as $LSF_ENVDIR/hosts:
+IPAddress OfficialName AliasName
+For shared installations, the management host LIM creates the DNS host cache ﬁle $LSF_ENVDIR/.hosts.dnscache if the ﬁle does not exist. The
+mbatchd daemon periodically flushes the local host cache information into the DNS host cache ﬁle.
+For non-shared installations, LIM creates the DNS host cache ﬁle $LSF_TMPDIR/.hosts.dnscache if the ﬁle does not exist. LIM periodically flushes
+local host cache information into the DNS host cache ﬁle.
+When the IP address or hostname is changed on the DNS server side, LSF daemons can directly call the DNS server to obtain the updated
+information before the DNS host cache ﬁle is flushed with the updated information.
+Use the parameter LSF_HOST_CACHE_DISABLE in lsf.conf to disable the use of a cluster-wide DNS host cache ﬁle.
+Improve mbatchd response time after mbatchd restart
+Parallel restart is a mechanism to minimize the LSF downtime (i.e., not responding to user requests) for mbatchd restart. The root mbatchd is forked,
+creating a child mbatchd process to help with mbatchd restart performance. The child mbatchd processes regular start up logic, including reading
+conﬁguration ﬁles and replaying events. Meanwhile, the old mbatchd can respond to client commands (bsub, bjobs, etc.), handle job scheduling and
+status updates, dispatching, and updating new events to event ﬁles. When complete, the child mbatchd process takes over as parent mbatchd, and
+the old parent mbatchd process dies.
+While the new mbatchd is initializing, the old mbatchd is still able to respond to client commands. badmin showstatus will display the parallel
+restart status. It helps the administrator know that there is a background mbatchd (by PID) doing a parallel restart.
+Use badmin mbdrestart -p to enable parallel restart.
+IBM Spectrum LSF 891
+
+Improve performance of mbatchd query requests on UNIX
+Improve mbatchd query performance on UNIX systems by using mbatchd multithreading, hard CPU afﬁnity, or by conﬁguring the query proxy
+daemon (lsproxyd).
+Conﬁguring mbatchd to use multithreading
+ On UNIX platforms that support thread programming, you can change default mbatchd behavior to use multithreading and increase
+performance of query requests when you use the bjobs command. Multithreading is beneﬁcial for busy clusters with many jobs and frequent
+query requests. This may indirectly increase overall mbatchd performance.
+Specify hard CPU afﬁnity
+ You can also specify the management host CPUs on which mbatchd child daemon query processes can run. This so-called hard CPU afﬁnity
+improves mbatchd daemon scheduling and dispatch performance by binding query processes to speciﬁc CPUs so that higher priority
+mbatchd daemon processes can run more efﬁciently.
+Offloading the mbatchd daemon using the LSF rate limiter (lsfproxyd daemon)
+ By default, all LSF batch commands contact the mbatchd daemon (or the mbatchd query child, if conﬁgured). When there are excessive
+requests, such as scripts with tight loop running bjobs commands, mbatchd can become overloaded, negatively affecting cluster
+performance. Starting in Fix Pack 14, to protect mbatchd from heavy loads, enable the LSF rate limiter (controlled by the lsfproxyd
+daemon), which acts as a gatekeeper between the commands and the mbatchd daemon. The rate limiter is supported on Linux.
+Conﬁguring mbatchd to use multithreading
+On UNIX platforms that support thread programming, you can change default mbatchd behavior to use multithreading and increase performance of
+query requests when you use the bjobs command. Multithreading is beneﬁcial for busy clusters with many jobs and frequent query requests. This
+may indirectly increase overall mbatchd performance.
+About this task
+By default, mbatchd uses the port deﬁned by the parameter LSB_MBD_PORT in the lsf.conf ﬁle or looks into the system services database for port
+numbers to communicate with LIM and job request commands.
+It uses this port number to receive query requests from clients.
+For every query service request received, mbatchd forks a child mbatchd to service the request. Each child mbatchd processes the request and
+then exits.
+When mbatchd has a dedicated port speciﬁed by the parameter LSB_QUERY_PORT in the lsf.conf ﬁle, it forks a child mbatchd which in turn creates
+threads to process bjobs query requests.
+As soon as mbatchd has forked a child mbatchd, the child mbatchd takes over, and listens on the port to process more bjobs query requests. For
+each query request, the child mbatchd creates a thread to process it.
+If you specify LSB_QUERY_ENH=Y in lsf.conf, batch query multithreading is extended to all mbatchd query commands except for the following:
+bread
+bstatus
+tspeek
+The child mbatchd continues to listen to the port number speciﬁed by LSB_QUERY_PORT and creates threads to service requests until the job status
+changes, a new job is submitted, or until the time speciﬁed in MBD_REFRESH_TIME in lsb.params has passed. For pending jobs that changed state
+(e.g., from PEND to EXIT caused by the automatic orphan job termination feature), a new child mbatchd is created based only on the time conﬁgured
+by the MBD_REFRESH_TIME parameter.
+Specify a time interval, in seconds, when mbatchd will fork a new child mbatchd to service query requests to keep information sent back to clients
+updated. A child mbatchd processes query requests creating threads.
+MBD_REFRESH_TIME has the following syntax:
+MBD_REFRESH_TIME=seconds [min_refresh_time]
+where min_refresh_time deﬁnes the minimum time (in seconds) that the child mbatchd will stay to handle queries. The valid range is 0 - 300. The
+default is 5 seconds.
+If MBD_REFRESH_TIME is < min_refresh_time, the child mbatchd exits at MBD_REFRESH_TIME even if the job changes status or a new job is
+submitted before MBD_REFRESH_TIME expires.
+If MBD_REFRESH_TIME > min_refresh_time
+the child mbatchd exits at min_refresh_time if a job changes status or a new job is submitted before the min_refresh_time
+the child mbatchd exits after the min_refresh_time when a job changes status or a new job is submitted
+892    IBM Spectrum LSF
+
+If MBD_REFRESH_TIME > min_refresh_time and no job changes status or a new job is submitted, the child mbatchd exits at
+MBD_REFRESH_TIME
+The default for min_refresh_time is 10 seconds.
+If you extend multithreaded query support to batch query requests (by specifying LSB_QUERY_ENH=Y in lsf.conf), the child mbatchd will also exit if
+any of the following commands are run in the cluster:
+bconf
+badmin reconﬁg
+badmin commands to change a queue's status (badmin qopen, badmin qclose, badmin qact, and badmin qinact)
+badmin commands to change a host's status (badmin hopen and badmin hclose)
+badmin perfmon start
+If you use the bjobs command and do not get up-to-date information, you may want to decrease the value of MBD_REFRESH_TIME or
+min_refresh_time in lsb.params to make it likely that successive job queries could get the newly submitted job information.
+Note: Lowering the value of MBD_REFRESH_TIME or min_refresh_time increases the load on mbatchd and might negatively affect performance.
+Procedure
+1. Specify a query-dedicated port for the mbatchd by setting LSB_QUERY_PORT in lsf.conf.
+2. Optional: Set an interval of time to indicate when a new child mbatchd is to be forked by setting MBD_REFRESH_TIME in lsb.params. The
+default value of MBD_REFRESH_TIME is 5 seconds, and valid values are 0-300 seconds.
+3. Optional: Use NEWJOB_REFRESH=Y in lsb.params to enable a child mbatchd to get up to date new job information from the parent mbatchd.
+Multithread batch queries
+ LSF supports multithread batch queries for several common batch query commands.
+Setting a dedicated query port for mbatchd
+ To change the default mbatchd behavior so that mbatchd forks a child mbatchd that can create threads, specify a port number with the
+LSB_QUERY_PORT parameter in the lsf.conf ﬁle.
+Specify an expiry time for child mbatchds (optional)
+ Conﬁgure mbatchd to push new job information to child mbatchd
+ 
+Multithread batch queries
+LSF supports multithread batch queries for several common batch query commands.
+Earlier versions of LSF supported multithread for bjobs queries only, but not for other query commands. The following batch query commands do not
+support multithread batch queries:
+bread
+bstatus
+tspeek
+The LSB_QUERY_ENH parameter in the lsf.conf ﬁle extends multithreaded query support to other batch query commands in addition to bjobs. In
+addition, the mbatchd system query monitoring mechanism starts automatically instead of being triggered by a query request. This ensures a
+consistent query response time within the system.
+To extend multithread queries to other batch query commands, set the LSB_QUERY_ENH=Y parameterin the lsf.conf ﬁle and use badmin mbdrestart
+to make the change take effect.
+Setting a dedicated query port for mbatchd
+To change the default mbatchd behavior so that mbatchd forks a child mbatchd that can create threads, specify a port number with the
+LSB_QUERY_PORT parameter in the lsf.conf ﬁle.
+About this task
+Tip:
+The LSB_QUERY_PORT parameter conﬁguration works only on UNIX and Linux systems that support thread programming.
+Procedure
+1. Log on to the host as the primary LSF administrator.
+IBM Spectrum LSF 893
+
+2. Edit the lsf.conf ﬁle.
+3. Add the LSB_QUERY_PORT parameter and specify a port number that is dedicated to receiving requests from hosts.
+4. Save the lsf.conf ﬁle.
+5. Reconﬁgure the cluster:
+badmin mbdrestart
+Specify an expiry time for child mbatchds (optional)
+About this task
+Use MBD_REFRESH_TIME in the lsb.params ﬁle to deﬁne how often the mbatchd daemon forks a new child mbatchd instance.
+Procedure
+1. Log on to the host as the primary LSF administrator.
+2. Edit lsb.params.
+3. Add the MBD_REFRESH_TIME parameter and specify a time interval in seconds to fork a child mbatchd instance.
+The default value for this parameter is 5 seconds. Valid values are 0 - 300 seconds.
+4. Save the lsb.params ﬁle.
+5. Reconﬁgure the cluster:
+badmin reconfig
+Conﬁgure mbatchd to push new job information to child mbatchd
+Before you begin
+The LSB_QUERY_PORT must be deﬁned in the lsf.conf ﬁle.
+About this task
+If you have enabled multithreaded mbatchd support, the bjobs command might not display up-to-date information if two consecutive query
+commands are issued before a child mbatchd expires because child mbatchd job information is not updated. Use the NEWJOB_REFRESH=Y in the
+lsb.params ﬁle to enable a child mbatchd to get up-to-date new job information from the parent mbatchd.
+When the NEWJOB_REFRESH=Y parameter is conﬁgured, the parent mbatchd daemon pushes new job information to a child mbatchd daemon. Job
+queries with the bjobs command display new jobs submitted after the child mbatchd was created.
+Procedure
+1. Log on to the host as the primary LSF administrator.
+2. Edit the lsb.params ﬁle.
+3. Add the NEWJOB_REFRESH=Y parameter .
+You should set the MBD_REFRESH_TIME parameter in the lsb.params ﬁle to a value greater than 10 seconds.
+4. Save the lsb.params ﬁle.
+5. Reconﬁgure the cluster as follows:
+badmin reconfig
+Specify hard CPU afﬁnity
+You can also specify the management host CPUs on which mbatchd child daemon query processes can run. This so-called hard CPU afﬁnity
+improves mbatchd daemon scheduling and dispatch performance by binding query processes to speciﬁc CPUs so that higher priority mbatchd
+daemon processes can run more efﬁciently.
+About this task
+You can specify the management host CPUs on which mbatchd child query processes can run (hard CPU afﬁnity). This improves mbatchd daemon
+scheduling and dispatch performance by binding query processes to speciﬁc CPUs so that higher priority mbatchd processes can run more
+efﬁciently.
+894    IBM Spectrum LSF
+
+When you deﬁne the MBD_QUERY_CPUS parameter in the lsb.params ﬁle, LSF runs mbatchd child query processes only on the speciﬁed CPUs. The
+operating system can assign other processes to run on the same CPU, however, if utilization of the bound CPU is lower than utilization of the unbound
+CPUs.
+Procedure
+1. Identify the CPUs on the management host that will run mbatchd child query processes.
+On Linux, get a list of valid CPUs with the following command:
+/proc/cpuinfo
+On Solaris, get a list of valid CPUs with the following command:
+psrinfo
+2. In the ﬁle lsb.params, deﬁne the parameter MBD_QUERY_CPUS.
+For example, the following parameter speciﬁes that the mbatchd child query processes run only on CPU numbers 1 and 2 on the management
+host:
+MBD_QUERY_CPUS=1 2
+You can specify CPU afﬁnity only for management hosts that use one of the following operating systems:
+Linux 2.6 or higher
+Solaris 10 or higher
+If failover to a management host candidate occurs, LSF maintains the hard CPU afﬁnity, provided that the management host candidate has the
+same CPU conﬁguration as the original management host. If the conﬁguration differs, LSF ignores the CPU list and reverts to default behavior.
+3. Enable the LSF to bind a deﬁned set of LSF daemons to CPUs by deﬁning LSF_INTELLIGENT_CPU_BIND=Y in the lsf.conf ﬁle.
+4. Verify that the mbatchd child query processes are bound to the correct CPUs on the management host.
+a. Start up a query process by running a query command such as bjobs.
+b. Check to see that the query process is bound to the correct CPU.
+On Linux, run the command taskset -p <pid>
+On Polaris, run the command ps -AP
+Offloading the mbatchd daemon using the LSF rate limiter (lsfproxyd
+daemon)
+By default, all LSF batch commands contact the mbatchd daemon (or the mbatchd query child, if conﬁgured). When there are excessive requests,
+such as scripts with tight loop running bjobs commands, mbatchd can become overloaded, negatively affecting cluster performance. Starting in Fix
+Pack 14, to protect mbatchd from heavy loads, enable the LSF rate limiter (controlled by the lsfproxyd daemon), which acts as a gatekeeper
+between the commands and the mbatchd daemon. The rate limiter is supported on Linux.
+The rate limiter and the lsfproxyd  daemon
+The rate limiter is managed by the lsfproxyd daemon, which monitors and controls the number of requests and connections that can reach the 
+mbatchd daemon, protecting it from excess requests. For a request to contact mbatchd, it must ﬁrst obtain a request token from lsfproxyd. After
+completing the request, the token returns to lsfproxyd. The lsfproxyd daemon distributes tokens in a round-robin fashion, ensuring that each
+user connection has an fair chance to be served and processed, even under heavy loads.
+You can conﬁgure to have multiple lsfproxyd daemons run within a single cluster; use the LSF_PROXY_HOSTS parameter to list the hosts on which
+you want lsfproxyd daemons to run. When multiple lsfproxyd daemons are deﬁned for a cluster, they work together to balance workload and
+provide high availability: the client command ﬁrst randomly picks one to use, and if an lsfproxyd daemon is unavailable, then the command locates
+another one to use.
+LIM controls starting and restarting the lsfproxyd daemon on the LSF hosts speciﬁed in the LSF_PROXY_HOSTS parameter in the lsf.conf ﬁle.
+When the lsfproxyd daemon starts, it binds to the listening port speciﬁed by the LSF_PROXY_PORT parameter in the lsf.conf ﬁle. LIM restarts the 
+lsfproxyd daemon if it dies.
+To control the number of connections to the mbatchd daemon, the lsfproxyd policy is governed by three attributes set in the PROXYD_POLICIES
+parameter of the lsb.params conﬁguration ﬁle: max, nominal, and throttle. With the PROXYD_POLICIES conﬁguration, the lsfproxyd policy
+ensures that users don't monopolize the rate limiter system.
+For details on setting up your system for the rate limiter, and using it, see Enabling and conﬁguring the LSF rate limiter.
+Daemon log ﬁles for diagnosing jobs
+To troubleshoot the rate limiter and its interactions with the lsfproxyd daemon, see Diagnostics for the LSF rate limiter and lsfproxyd daemon.
+IBM Spectrum LSF 895
+
+Temporarily block users and hosts for performance
+Furthermore, to allow an administrator to temporarily block non-administrator and non-root users, hosts, or both, from performing mbatchd daemon
+operations when using the rate limiter, the badmin command has been extended to support badmin lsfproxyd block. Administrators can run this
+command to temporarily stop abusive or misbehaving users from interacting with the LSF cluster, and to avoid performance impact on other users.
+Enabling and conﬁguring the LSF rate limiter
+ To use the LSF rate limiter, ﬁrst set parameters in the lsf.conf ﬁle to conﬁgure interaction with the lsfproxyd daemon, then conﬁgure the
+number of connections to the rate limiter, and ﬁnally, run the badmin lsfproxyd command to control and check the rate limiter. The rate
+limiter is supported on Linux.
+Diagnostics for the LSF rate limiter and lsfproxyd daemon
+ To troubleshoot the rate limiter and its interactions with the lsfproxyd daemon, you have various diagnostic options.
+Related concepts
+LSF daemons
+Related tasks
+Enabling daemon log ﬁles for diagnostics
+Related reference
+lsf.conf
+DIAGNOSE_LOGDIR
+ENABLE_DIAGNOSE
+lsb.params
+Enabling and conﬁguring the LSF rate limiter
+To use the LSF rate limiter, ﬁrst set parameters in the lsf.conf ﬁle to conﬁgure interaction with the lsfproxyd daemon, then conﬁgure the number of
+connections to the rate limiter, and ﬁnally, run the badmin lsfproxyd command to control and check the rate limiter. The rate limiter is supported on
+Linux.
+Procedure
+1. Deﬁne the hosts and ports that the lsfproxyd daemon will connect to for the rate limiter. In the lsf.conf ﬁle:
+a. Set the LSF_PROXYD_HOSTS="hostname ..."
+For example:
+LSF_PROXYD_HOSTS="hostA hostB"
+See LSF_PROXYD_HOSTS for details.
+b. Set LSF_PROXYD_PORT=port_number
+For example:
+LSF_PROXYD_PORT=1234
+See LSF_PROXYD_PORT for details.
+c. After setting the lsf.conf parameters, restart LIM on all hosts deﬁned in your LSF_PROXYD_HOSTS parameter by running lsdamin
+limrestart.
+2. The lsfproxyd policy ensures that users don't monopolize the rate limiter system, and that you can control the number of connections to
+between the lsfproxyd daemon and the mbatchd daemon (or the mbatchd query child, if conﬁgured). The lsfproxyd policy is governed
+by three attributes set in the PROXYD_POLICIES parameter of the lsb.params conﬁguration ﬁle: max, nominal, and throttle:
+a. Set the PROXYD_POLICIES="QUERY[max=maximum_request_tokens nominal=nominal_request_tokens
+throttle=request_throttle_time]"
+For example, a policy of PROXYD_POLICIES="QUERY[max=50 nominal=15 THROTTLE=100]" speciﬁes:
+A maximum of 50 available tokens to be distributed from the lsfproxyd daemon.
+A token is distributed immediately if the number of existing tokens used less than 15.
+The rate limiter waits 100 milliseconds before granting new tokens, when there are currently more than 15 in-use tokens.
+Once an in-use token reaches its max value, a request (from the same category) from an non-root or non-cluster administrator
+user will not be granted a token. After a certain number of retries (set by the LSF_PROXYD_NOTOKEN_NTRIES parameter value
+in the lsf.conf ﬁle), the command will then not contact mbatchd and will fail with an error message. Note that requests from root
+896    IBM Spectrum LSF
+
+or LSF cluster administrators are exempt from this policy as they are always granted a token and their requests are always
+counted towards the tokens currently in use.
+b. After setting the PROXYD_POLICIES parameter attributes, restart mbatchd (by running badmin mbdrestart) or reconﬁgure mbatchd
+(by running badmin reconﬁg).
+3. Enable the rate limiter by running the badmin lsfproxyd enable all|query|sub|other command.
+Once enabled, the lsfproxyd daemon distributes tokens for the speciﬁed request type. For example, to use the rate limiter for queries, run
+badmin lsfproxyd enable query. If disabled, or if all lsfproxyd daemons are down, then requests without tokens will be accepted by the 
+mbatchd daemon instead.
+Tip: To see which type of request type is enabled for the rate limiter, run badmin lsfproxyd status. Here is an example output:
+$ badmin lsfproxyd status 
+lsfproxyd service status: 
+  QUERY:ENABLED 
+  SUBMISSION:ENABLED 
+  OTHER:ENABLED 
+lsfproxyd host status: 
+  HOSTNAME:host1 
+  STATUS:CONNECTED 
+             TOKEN_LIMIT  TOKENS_IN_USE 
+  QUERY      100          20 
+  SUBMISSION -            - 
+  OTHER      -            - 
+What to do next
+Additionally, you can set up log ﬁles to help diagnose the rate limiter, according to Diagnostics for the LSF rate limiter and lsfproxyd daemon.
+You can also further manage the rate limiter with these optional lsf.conf conﬁguration parameters:
+LSF_PROXYD_BYPASS
+Determine how the mbatchd daemon responds to requests without tokens for rate limiter (lsfproxyd) requests.
+LSF_PROXYD_HEARTBEAT_INTERVAL
+Sets the frequency that the rate limiter sends a heartbeat message to the mbatchd daemon.
+LSF_PROXYD_TOKEN_WAIT_TIME
+Sets the amount of time that a rate limiter token request can age before it is considered too old.
+LSF_ADDON_HOSTS
+Sets any requests for tokens received from the speciﬁed hosts as privileged requests. A request for a token will be granted regardless of the
+current token in use count unless the user or host has been explicitly blocked.
+LSF_PROXYD_NTOKEN_NTRIES
+Sets the number of times that the LSF command attempts to contact the lsfproxyd daemon after it is not granted a token before quitting.
+Diagnostics for the LSF rate limiter and lsfproxyd daemon
+To troubleshoot the rate limiter and its interactions with the lsfproxyd daemon, you have various diagnostic options.
+Use the query_info.queryproxylog.hostname log ﬁle for diagnosing the lsfproxyd daemon. The log ﬁle shows who issued these requests, where the
+requests came from, the data size of the query, the receiving and processing times, and whether the request was rejected or accepted. To enable the
+logs, either statically conﬁgure the ENABLE_DIAGNOSE parameter in the lsb.parms conﬁguration ﬁle (if not deﬁned, the default LSF is used), or
+dynamically enable the diagnostic logs by running the badmin diagnose -c query command, as described in Enabling daemon log ﬁles for
+diagnostics.
+To further help debug the lsfproxyd daemon, you can also set the debugging log class (level) for the lsfproxyd daemon, by conﬁguring the
+LSF_DEBUG_PROXYD parameter in the lsf.conf ﬁle. For example, to set to the log level to log signiﬁcant program walk steps, run:
+LSF_DEBUG_PROXYD="LC_TRACE"
+To specify multiple log classes, use a space-separated list enclosed in quotation marks. For example:
+LSF_DEBUG_PROXYD="LC_TRACE LC_EXEC"
+Additionally, if LSB_DEBUG_MBD="LC2_LSF_PROXDY" is set in the lsf.conf ﬁle, the mbatchd daemon captures information about the rate limiter 
+lsfproxyd daemon requests received without a token, and logs them at the LOG_WARNING level. These warnings include the user, the request
+operation code, the LSF header version, and the host from where the request originated. This can be useful information for identifying the user of old
+binaries.
+Related concepts
+Offloading the mbatchd daemon using the LSF rate limiter (lsfproxyd daemon)
+IBM Spectrum LSF 897
+
+Logging mbatchd performance metrics
+LSF provides a feature that lets you log performance metrics for mbatchd. This feature is useful for troubleshooting large clusters where a cluster
+has performance problems. In such cases, mbatchd performance may be slow in handling high volume request such as:
+Job submission
+Job status requests
+Job rusage requests
+Client info requests causing mbatchd to fork
+For example, the output for a large cluster may appear as follows:
+Nov 14 20:03:25 2012 25408 4 10.1.0 sample period: 120 120 
+Nov 14 20:03:25 2012 25408 4 10.1.0 job_submission_log_jobfile logJobInfo: 14295 0  
+                                 179 0 3280 0 10 0 160 0 10 0 990 
+Nov 14 20:03:25 2012 25408 4 10.1.0 job_submission do_submitReq: 14295 0 180 0 9409  
+                                 0 100 0 4670 0 10 0 1750 
+Nov 14 20:03:25 2012 25408 4 10.1.0 job_status_update statusJob: 2089 0 1272 1 2840  
+                                 0 10 0 170 0 10 0 120 
+Nov 14 20:03:25 2012 25408 4 10.1.0 job_dispatch_read_jobfile readLogJobInfo: 555 0  
+                                 256 0 360 0 10 0 70 0 10 0 50 
+Nov 14 20:03:25 2012 25408 4 10.1.0 mbd_query_job fork: 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Nov 14 20:03:25 2012 25408 4 10.1.0 mbd_channel chanSelect/chanPoll: 30171 0 358 0 30037  
+                                 0 10 0 3930 0 10 0 1270 
+Nov 14 20:03:25 2012 25408 4 10.1.0 mbd_query_host fork: 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Nov 14 20:03:25 2012 25408 4 10.1.0 mbd_query_queue fork: 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Nov 14 20:03:25 2012 25408 4 10.1.0 mbd_query_child fork: 19 155 173 160 3058 0 0 0 0  
+                                 150 170 160 3040 
+Nov 14 20:03:25 2012 25408 4 10.1.0 mbd_other_query fork: 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Nov 14 20:03:25 2012 25408 4 10.1.0 mbd_non_query_fork fork: 0 0 0 0 0 0 0 0 0 0 0 0 0 
+In the ﬁrst line (sample period: 120 120) the ﬁrst value is the conﬁgured sample period in seconds. The second value is the real sample period in
+seconds.
+The format for each remaining line is:
+metricsCategoryName functionName count rt_min rt_max rt_avg rt_total ut_min ut_max ut_avg ut_total st_min st_max
+st_avg st_total
+Where:
+Count: Total number of calls to this function in this sample period
+rt_min: Min runtime of one call to the function in this sample period
+rt_max: Maximum runtime of one call to the function in this sample period
+rt_avg: Average runtime of the calls to the function in this sample period
+rt_total: Total runtime of all the calls to the function in this sample period
+ut_min: Minimum user mode CPU time of one call to the function in this sample period
+ut_max: Max user mode CPU time of one call to the function in this sample period
+ut_avg: Average user mode CPU time of the calls to the function in this sample period
+ut_total: Total user mode CPU time of all the calls to the function in this sample period
+st_min: Min system mode CPU time of one call to the function in this sample period
+st_max: Max system mode CPU time of one call to the function in this sample period
+st_avg: Average system mode CPU time of the calls to the function in this sample period
+st_total: Total system mode CPU time of all the calls to the function in this sample period
+All time values are in milliseconds.
+The mbatchd performance logging feature can be enabled and controlled statically through the following parameters in lsf.conf:
+LSB_ENABLE_PERF_METRICS_LOG: Lets you enable or disable this feature.
+LSB_PERF_METRICS_LOGDIR: Sets the directory in which performance metric data is logged.
+LSB_PERF_METRICS_SAMPLE_PERIOD: Determines the sampling period for performance metric data.
+For more information on these parameters, see the IBM Platform Conﬁguration Reference.
+You can also enable the mbatchd performance metric logging feature dynamically with the badmin perflog command. The -t, -d and -f command
+options let you specify the sample period, the duration for data logging, and the output directory. To turn off mbatchd performance metric logging,
+use the badmin perflog -o command.
+For more information, see badmin.
+898    IBM Spectrum LSF
+
+If you deﬁne this feature statically, performance metrics are logged in the mbatchd.perflog.<hostname> ﬁle. If you deﬁne the feature dynamically,
+performance metrics are logged in the log ﬁle deﬁned in the command. If you deﬁne the feature statically, then dynamically, the data sample period,
+the log ﬁle directory, and the duration will be those deﬁned by the command. After the duration expires, or you turn off the feature dynamically, the
+statically deﬁned settings are restored.
+Logging mbatchd and mbschd proﬁling information
+LSF provides a feature to log proﬁling information for the mbatchd and mbschd daemons to track the time that the daemons spend on key functions.
+This can assist IBM Support with diagnosing daemon performance problems.
+To enable daemon proﬁling with the default settings, edit the lsf.conf ﬁle, then specify LSB_PROFILE_MBD=Y for the mbatchd daemon or specify
+LSB_PROFILE_SCH=Y for the mbschd daemon. You can also add keywords within these parameters to further customize the daemon proﬁlers.
+The proﬁle dump includes one line for each tracked function call stack, and for each thread. The format of the proﬁle dump is as follows:
+PROFILE "functionName": count rt_min rt_max rt_avg rt_total ut_min ut_max ut_avg ut_total st_min st_max st_avg
+st_total start_time end_time thread_id stack_depth "stack"
+The following is a description of each ﬁeld:
+functionName: The name of the tracked function.
+count: The number of times that the function is invoked within the stack corresponding to this record, within the last sampling interval.
+rt_min: The minimum runtime of one call to the function in this sampling interval.
+rt_max: The maximum runtime of one call to the function in this sampling interval.
+rt_avg: The average runtime of the calls to the function in this sampling interval.
+rt_total: The total runtime of all the calls to the function in this sampling interval.
+ut_min: The minimum user mode CPU time of one call to the function in this sampling interval.
+ut_max: The maximum user mode CPU time of one call to the function in this sampling interval.
+ut_avg: The average user mode CPU time of the calls to the function in this sampling interval.
+ut_total: The total user mode CPU time of all the calls to the function in this sampling interval.
+st_min: The minimum system mode CPU time of one call to the function in this sampling interval.
+st_max: The maximum system mode CPU time of one call to the function in this sampling interval.
+st_avg: The average system mode CPU time of the calls to the function in this sampling interval.
+st_total: The total system mode CPU time of all the calls to the function in this sampling interval.
+start_time: The start time of this sampling interval in UTC time.
+end_time: The end time of this sampling interval in UTC time.
+thread_id: The thread ID.
+stack_depth: The depth of the stack.
+stack: The stack trace. This is a list of function names separated by # characters.
+All time values are in milliseconds.
+Improve performance of mbatchd for job array switching events
+You can improve mbatchd performance when switching large job arrays to another queue by enabling the JOB_SWITCH2_EVENT in lsb.params. This
+lets mbatchd generate the JOB_SWITCH2 event log. JOB_SWITCH2 logs the switching of the array to another queue as one event instead of logging
+the switching of each individual array element. If this parameter is not enabled, mbatchd generates the old JOB_SWITCH event instead. The
+JOB_SWITCH event is generated for each array element. If the job array is very large, many JOB_SWITCH events are generated. mbatchd then
+requires large amounts of memory to replay all the JOB_SWITCH events, which can cause performance problems when mbatchd starts up.
+JOB_SWITCH2 has the following advantages:
+Reduces memory usage of mbatchd when replaying bswitch destination_queue job_ID, where job_ID is the job ID of the job array on which to
+operate.
+Reduces the time for reading records from lsb.events when mbatchd starts up.
+Reduces the size of lsb.events.
+Management batch scheduler performance is also improved when switching large job arrays to another queue. When you bswitch a large job array,
+mbatchd no longer signals mbschd to switch each job array element individually, which meant thousands of signals for a job array with thousands of
+elements. The flood of signals would block mbschd from dispatching pending jobs. Now, mbatchd only sends one signal to mbschd: to switch the
+whole array. mbschd is then free to dispatch pending jobs.
+Increase queue responsiveness
+IBM Spectrum LSF 899
+
+You can enable DISPATCH_BY_QUEUE to increase queue responsiveness. The scheduling decision for the speciﬁed queue will be published without
+waiting for the whole scheduling session to ﬁnish. The scheduling decision for the jobs in the speciﬁed queue is ﬁnal and these jobs cannot be
+preempted within the same scheduling cycle.
+Tip:
+Only set this parameter for your highest priority queue (such as for an interactive queue) to ensure that this queue has the highest responsiveness.
+Automatically bind LSF daemons to speciﬁc CPU cores
+Bind a deﬁned set of LSF daemons to CPU cores to distribute CPU resources among critical functions and improve scheduling performance.
+You can bind LSF daemons to speciﬁc CPU cores by setting the LSF_INTELLIGENT_CPU_BIND parameter to Y in the lsf.conf ﬁle.
+LSF binds LSF daemons to CPU cores according to the CPU binding conﬁguration ﬁle for that host. If a CPU binding ﬁle does not exist for the host,
+LIM automatically detects the topology of that host and binds the LSF daemons according to the automatic binding policy.
+LSF initially detects the topology of each management host and management candidate, binds the LSF daemons according to the automatic binding
+policy, and generates a CPU binding conﬁguration ﬁle for that host. These conﬁguration ﬁles are in the LSF_ENVDIR/cpu_binding directory and the ﬁle
+names are in the format of host_name.cluster_name and are in the LSF_ENVDIR/cpu_binding directory. LSF binds LSF daemons to CPU cores
+according to this CPU binding conﬁguration ﬁle.
+If the CPU binding conﬁguration ﬁle no longer exists for the host, LIM automatically detects the topology of that host again and binds the LSF
+daemons according to the automatic binding policy.
+If the CPU binding conﬁguration ﬁle is changed, you must restart the LSF daemons by running the following commands in the following order to apply
+the new CPU binding settings:
+1. bctrld restart lim
+2. bctrld restart sbd
+3. badmin mbdrestart
+Note: CPU binding conﬁguration ﬁles do not support comments. LSF removes any comments in the CPU binding conﬁguration ﬁles after LIM restarts.
+The LSF_INTELLIGENT_CPU_BIND parameter takes precedence over other CPU binding parameters. If you enable LSF_INTELLIGENT_CPU_BIND,
+LSF ignores the following parameters:
+EGO_DAEMONS_CPUS
+ESTIMATOR_CPUS
+LSF_DAEMONS_CPUS
+MBD_QUERY_CPUS
+Note: Because this feature binds LSF daemons to eight CPU cores, the LSF_INTELLIGENT_CPU_BIND parameter is ignored if the management and
+management candidate hosts have fewer than eight CPU cores.
+Use LSF Explorer to improve the performance of the bacct and bhist
+commands, or to retrieve additional data
+Use LSF Explorer to get information for the bacct and bhist commands more efﬁciently, or to retrieve additional data for LSF Explorer energy
+accounting or IBM Spectrum Scale I/O accounting.
+You can improve the performance of the bacct and bhist commands by using IBM Spectrum LSF Explorer ("LSF Explorer") to get information instead
+of parsing the lsb.acct and lsb.events ﬁles. Using LSF Explorer improves the performance of the bacct and bhist commands by avoiding the need for
+parsing large log ﬁles whenever you run these commands.
+You can also integrate LSF Explorer energy accounting into LSF. LSF uses LSF Explorer to collect energy data from each host by the LSF Beats
+services (lsfbeat tool). The bjobs and bhosts commands can then query the data from LSF Explorer and display the job level or host level energy to
+users.
+If you are using IBM Spectrum Scale as the ﬁle system with LSF, you can integrate IBM Spectrum Scale job I/O accounting into LSF. LSF uses LSF
+Explorer to collect IBM Spectrum Scale process-level I/O consumption and combines this LSF job information to provide job-level IBM Spectrum
+Scale I/O statistics. This allows you to use LSF commands to show job level IBM Spectrum Scale disk consumption or to use LSF Explorer reports to
+provide job I/O statistics over time.
+To use LSF Explorer to retrieve data, you must have LSF Explorer, Version 10.2, or later, installed and working.
+To enable this improvement, edit the lsf.conf ﬁle to deﬁne the LSF_QUERY_ES_SERVERS and LSF_QUERY_ES_FUNCTIONS parameters:
+1. Set LSF_QUERY_ES_SERVERS="[http://ip:port|http://host_name:port]..."
+If you have HTTPS enabled for Elasticsearch, then specifyLSF_QUERY_ES_SERVERS="[https://ip:port|https://ip:port]..."
+900    IBM Spectrum LSF
+
+For the ip and port values, provide a space-separated list of IP addresses and port numbers of the LSF Explorer servers that retrieve log
+records.
+2. Set LSF_QUERY_ES_FUNCTIONS with either of the following syntax:
+LSF_QUERY_ES_FUNCTIONS="[acct]|[jobs]|[energy]|[gpfsio]
+LSF_QUERY_ES_FUNCTIONS="all"
+Specify the functions that are permitted to use LSF Explorer to retrieve data:
+acct
+If the acct function is deﬁned, the bacct command uses LSF Explorer to retrieve the accounting log records.
+jobs
+If the jobs function is deﬁned, the bhist command uses LSF Explorer to retrieve the event log records.
+energy
+If the energy function is deﬁned and LSF_ENABLE_BEAT_SERVICE="energy" is deﬁned in the lsf.conf ﬁle, the bhosts and bjobs
+commands use LSF Explorer to retrieve energy data. For more details, refer to LSF_ENABLE_BEAT_SERVICE.
+gpfsio
+If the gpfsio function is deﬁned, the bjobs and bacct commands use LSF Explorer to retrieve IBM Spectrum Scale job accounting I/O
+data.
+Speciﬁcally, the bjobs -l command shows approximate accumulated job disk usage (I/O) data, the bjobs -o "gpfsio" command shows
+job disk usage (I/O) data, and the bacct -l command shows the total approximate number of read/write bytes of all storage pools, all on
+IBM Spectrum Scale
+all
+If the all keyword is deﬁned, all supported functions use LSF Explorer to retrieve data.
+Note:
+The bhist -cname, -t, and -T options always bypass LSF Explorer and get the information from the lsb.events ﬁle.
+Use the bacct -f or bhist -f options to manually bypass LSF Explorer and instead use the speciﬁed log ﬁles. Alternatively, use the bacct
+-f - or bhist -f - options to manually bypass LSF Explorer and use the lsb.acct or lsb.events log ﬁle, respectively.
+Improve slot utilization by preventing bwait from running in jobs
+You can deﬁne LSB_BWAIT_IN_JOBS=N in the lsf.conf ﬁle to prevent LSF from using the bwait command within a job. This prevents running jobs
+from blocking slots with the bwait command, since blocking slots leads to low slot utilization. Both the bwait command and the mbatchd daemon
+read this parameter, so ensure that you conﬁgure this parameter on all lsf.conf ﬁles if you have non-shared installed servers.
+If the bwait command is allowed to run within a job, LSF posts the wait condition as an external status message, which means that running a query
+on the job shows the wait condition.
+Achieve performance and scalability
+Tune LSF for large clusters and monitor performance metrics in real time. Optimize performance in large sites by tuning queries, scheduling, and
+event logging.
+Optimize performance in large sites
+ Tune UNIX for large clusters
+ Tune LSF for large clusters
+ 
+Optimize performance in large sites
+As your site grows, you must tune your LSF cluster to support a large number of hosts and an increased workload.
+This chapter discusses how to efﬁciently tune querying, scheduling, and event logging in a large cluster that scales to 6000 hosts and 500,000
+pending jobs at any one time.
+LSF performance enhancement features
+LSF provides parameters for tuning your cluster, which you will learn about in this chapter. However, before you calculate the values to use for tuning
+your cluster, consider the following enhancements to the general performance of LSF daemons, job dispatching, and event replaying:
+Both scheduling and querying are much faster
+Switching and replaying the events log ﬁle, lsb.events, is much faster. The length of the events ﬁle no longer impacts performance
+Restarting and reconﬁguring your cluster is much faster
+IBM Spectrum LSF 901
+
+Job submission time is constant. It does not matter how many jobs are in the system. The submission time does not vary.
+The scalability of load updates from the server hosts to the server host has increased
+Load update intervals are scaled automatically
+Tune UNIX for large clusters
+The following hardware and software speciﬁcations are requirements for a large cluster that supports 5,000 hosts and 100,000 jobs at any one time.
+Hardware recommendation
+LSF management host:
+Four processors, one each for:
+mbatchd
+mbschd
+lim
+Operating system
+10-GB RAM
+Software requirement
+To meet the performance requirements of a large cluster, increase the ﬁle descriptor limit of the operating system.
+The ﬁle descriptor limit of most operating systems used to be ﬁxed, with a limit of 1024 open ﬁles. Some operating systems, such as Linux and AIX,
+have removed this limit, allowing you to increase the number of ﬁle descriptors.
+Increase the ﬁle descriptor limit
+ 
+Increase the ﬁle descriptor limit
+Procedure
+To achieve efﬁciency of performance in LSF, follow the instructions in your operating system documentation to increase the number of ﬁle
+descriptors on the LSF management host.
+Tip:
+To optimize your conﬁguration, set your ﬁle descriptor limit to a value at least as high as the number of hosts in your cluster.
+The following is an example conﬁguration. The instructions for different operating systems, kernels, and shells are varied. You may have already
+conﬁgured the host to use the maximum number of ﬁle descriptors that are allowed by the operating system. On some operating systems, the limit is
+conﬁgured dynamically.
+Your cluster size is 5000 hosts. Your management host is on Linux, kernel version 2.6:
+a. Log in to the LSF management host as the root user.
+b. Add the following line to your /etc/rc.d/rc.local startup script:
+echo -n "5120" > /proc/sys/fs/file-max 
+c. Restart the operating system to apply the changes.
+d. In the bash shell, instruct the operating system to use the new ﬁle limits:
+# ulimit -n unlimited 
+Tune LSF for large clusters
+To enable and sustain large clusters, you need to tune LSF for efﬁcient querying, dispatching, and event log management.
+Manage scheduling performance
+ The LSB_MAX_JOB_DISPATCH_PER_SESSION parameter in the lsf.conf ﬁle, and the MAX_SBD_CONNS parameter in the lsb.params ﬁle are
+set automatically during mbatchd daemon startup, to enable the fastest possible job dispatch.
+Limit the number of batch queries
+ Improve the speed of host status updates
+902    IBM Spectrum LSF
+
+Limit your user’s ability to move jobs in a queue
+Control whether users can use btop and bbot to move jobs to the top and bottom of queues
+Manage the number of pending reasons
+Condense all the host-based pending reasons into one generic pending reason for efﬁcient, scalable management of pending reasons.
+Achieve efﬁcient event switching
+Automatic load updates
+Manage I/O performance of the info directory
+In large clusters, the large numbers of jobs results in a large number of job ﬁles stored in the LSF_SHAREDIR/cluster_name/logdir/info
+directory at any time. When the total size of the job ﬁles reaches a certain point, you will notice a signiﬁcant delay when performing I/O
+operations in the info directory due to ﬁle server directory limits dependent on the ﬁle system implementation.
+Job ID limit
+Manage scheduling performance
+The LSB_MAX_JOB_DISPATCH_PER_SESSION parameter in the lsf.conf ﬁle, and the MAX_SBD_CONNS parameter in the lsb.params ﬁle are set
+automatically during mbatchd daemon startup, to enable the fastest possible job dispatch.
+The LSB_MAX_JOB_DISPATCH_PER_SESSION value is the maximum number of job decisions that the mbschd daemon can make during one job
+scheduling session. The default value is LSB_MAX_JOB_DISPATCH_PER_SESSION = Min (MAX(300, Total CPUs), 
+3000).
+Sets the maximum number of open ﬁle connections between the mbatchd and sbatchd daemons.
+The MAX_SBD_CONNS setting is the maximum number of open ﬁle connections between the mbatchd and sbatchd daemons. The default value is
+MAX_SBD_CONNS = 2 * 
+number_of_hosts + 300. This formula does not provide the exact number of sbatchd connections because it also calculates the lost and found
+hosts. Therefore, the calculated number of connections might be a few more than this theoretical number.
+Tip: If you enabled the IBM® Spectrum LSF resource connector, there can be many LSF server nodes joining and leaving from the LSF clusters
+frequently. In this case, rather than use the default value for MAX_SBD_CONNS, deﬁne a more reasonable value. For example, set it as
+MAX_SBD_CONNS = 2 * maximum_number_of_hosts + 300.
+The LSB_MAX_JOB_DISPATCH_PER_SESSION and MAX_SBD_CONNS settings affect the number of ﬁle descriptors. Although the system sets the
+default values for both parameters automatically when the mbatchd daemon starts, you can adjust them manually.
+To decrease the load on the management host LIM, you should not to conﬁgure the management host as the ﬁrst host for the LSF_SERVER_HOSTS
+parameter.
+The values for LSB_MAX_JOB_DISPATCH_PER_SESSION and MAX_SBD_CONNS are not changed dynamically. If hosts are added dynamically,
+mbatchd does not increase their values. Once all the hosts are added, you must run the badmin mbdrestart command to set the correct values. If
+you know in advance that the number of hosts in your cluster will dynamically grow or shrink, then you should conﬁgure these parameters
+beforehand.
+Enable fast job dispatch
+ Enable continuous scheduling
+ Use scheduler threads to evaluate resource requirement matching
+ In large-scale clusters with large numbers of hosts, you can enable resource evaluation for hosts concurrently by enabling multithreaded
+resource evaluation. Set the number of threads the scheduler uses for resource requirement evaluation with the SCHEDULER_THREADS . To
+set an effective value for this parameter, consider the number of available CPUs on the management host, the number of hosts in the cluster,
+and the scheduling performance metrics.
+Limit job dependency evaluation
+ 
+Related tasks
+Updating LSF conﬁguration for resource connector
+Enable fast job dispatch
+Procedure
+1. Log in to the LSF management host as the root user.
+2. Set LSB_MAX_JOB_DISPATCH_PER_SESSION = Min(Max(300, Total CPUs), 3000).
+3. Set MAX_SBD_CONNS equal to the number of hosts in the cluster plus 2*LSB_MAX_JOB_DISPATCH_PER_SESSION plus a buffer of 200.
+Note: The system has automatically set this for you. If not suitable, you can manually adjust it.
+4. In lsf.conf, set the parameter LSB_MAX_JOB_DISPATCH_PER_SESSION to a value greater than 300 and less than or equal to one-half the
+value of MAX_SBD_CONNS. Total File Descriptors = Max (Available FDs, MAX_SBD_CONNS+100)
+Note: The system has automatically set this for you. If not suitable, you can still manually adjust it.
+IBM Spectrum LSF 903
+
+5. In lsf.conf, deﬁne the parameter LSF_SERVER_HOSTS to decrease the load on the management host LIM.
+6. In the shell you used to increase the ﬁle descriptor limit, shut down the LSF batch daemons on the management host:
+bctrld stop sbd
+7. Run badmin mbdrestart to restart the LSF batch daemons on the management host.
+8. Run bctrld restart sbd all to restart every sbatchd in the cluster:
+Note: When you shut down the batch daemons on the management host, all LSF services are temporarily unavailable, but existing jobs are not
+affected. When mbatchd is later started by sbatchd, its previous status is restored and job scheduling continues.
+Enable continuous scheduling
+Procedure
+The scheduler is always running in a production cluster, so setting JOB_SCHEDULING_INTERVAL=0 means there is no interval between job
+scheduling.
+Use scheduler threads to evaluate resource requirement matching
+In large-scale clusters with large numbers of hosts, you can enable resource evaluation for hosts concurrently by enabling multithreaded resource
+evaluation. Set the number of threads the scheduler uses for resource requirement evaluation with the SCHEDULER_THREADS . To set an effective
+value for this parameter, consider the number of available CPUs on the management host, the number of hosts in the cluster, and the scheduling
+performance metrics.
+Before you begin
+Conﬁguring the SCHEDULER_THREADS parameter requires that you ﬁrst have the LSF_STRICT_RESREQ parameter set to Y in the lsf.conf ﬁle.
+About this task
+This conﬁguration is especially useful for large-scale clusters with numerous hosts. The idea is to evaluate resources for hosts concurrently. For
+example, there are 6000 hosts in a cluster, so the scheduler may create six threads to complete the evaluation concurrently. Each thread is in charge
+of 1000 hosts.
+Procedure
+1. Edit the lsb.params ﬁle.
+2. Specify the value of the SCHEDULER_THREADS parameter to a number between 1 and the number of cores on the management host:
+SCHEDULER_THREADS=number_of_threads
+Setting this parameter to 0 means that the scheduler does not create any threads to evaluate resource requirements. This is the default
+behavior.
+Related reference
+LSF_STRICT_RESREQ
+Limit job dependency evaluation
+About this task
+You can set the maximum number of job dependencies mbatchd evaluates in one scheduling cycle. The EVALUATE_JOB_DEPENDENCY parameter
+limits the amount of time mbatchd spends on evaluating job dependencies in a scheduling cycle, which limits the amount of time the job
+dependency evaluation blocks services. Job dependency evaluation is a process that is used to check if each job's dependency condition is satisﬁed.
+When a job's dependency condition is satisﬁed, it sets a ready flag and allows itself to be scheduled by mbschd.
+When EVALUATE_JOB_DEPENDENCY is set, a conﬁgured number of jobs are evaluated.
+Limit the number of job dependencies mbatchd evaluates in a scheduling cycle as follows:
+904    IBM Spectrum LSF
+
+Procedure
+1. Edit the lsb.params ﬁle.
+2. Specify the value of the EVALUATE_JOB_DEPENDENCY parameter.
+EVALUATE_JOB_DEPENDENCY=integer
+Results
+Starting a scheduling session triggers LSF to do job dependency evaluation. The number of jobs evaluated corresponds to the conﬁguration and the
+endpoint is kept. LSF starts the job dependency evaluation from the endpoint in the next session. LSF evaluates all dependent jobs every 10 minutes
+regardless of the conﬁguration for EVALUATE_JOB_DEPENDENCY.
+Limit the number of batch queries
+About this task
+In large clusters, job querying can grow quickly. If your site sees a lot of high trafﬁc job querying, you can tune LSF to limit the number of job queries
+that mbatchd can handle. This helps decrease the load on the management host.
+If a job information query is sent after the limit has been reached, an error message ("Batch system concurrent query limit exceeded") is displayed
+and mbatchd keeps retrying, in one second intervals. If the number of job queries later drops below the limit, mbatchd handles the query.
+Procedure
+1. Deﬁne the maximum number of concurrent jobs queries to be handled by mbatchd in the parameter MAX_CONCURRENT_QUERY in
+lsb.params:
+If mbatchd is not using multithreading, the value of MAX_CONCURRENT_QUERY is always the maximum number of job queries in the
+cluster.
+If mbatchd is using multithreading (deﬁned by the parameter LSB_QUERY_PORT in lsf.conf ), the number of job queries in the cluster
+can temporarily become higher than the number speciﬁed by MAX_CONCURRENT_QUERY.
+This increase in the total number of job queries is possible because the value of MAX_CONCURRENT_QUERY actually sets the maximum
+number of queries that can be handled by each child mbatchd that is forked by mbatchd. When the new child mbatchd starts, it handles
+new queries, but the old child mbatchd continues to run until all the old queries are ﬁnished. It is possible that the total number of job
+queries can be as high as MAX_CONCURRENT_QUERY multiplied by the number of child daemons forked by mbatchd.
+2. To limit all batch queries (in addition to job queries), specify LSB_QUERY_ENH=Y in lsf.conf.
+Enabling this parameter extends multithreaded query support to all batch query requests and extends the MAX_CONCURRENT_QUERY
+parameter to limit all batch queries in addition to job queries.
+Improve the speed of host status updates
+LSF improves the speed of host status updates as follows:
+Fast host status discovery after cluster startup
+Multi-threaded UDP communications
+Fast response to static or dynamic host status change
+Simultaneously accepts new host registration
+LSF features the following performance enhancements to achieve this improvement in speed:
+LSB_SYNC_HOST_STAT_LIM (in lsb.params) is now enabled by default (previously, this was disabled by default), so there is no need to
+conﬁgure it in the conﬁguration ﬁle. This parameter improves the speed with which mbatchd obtains host status, and therefore the speed with
+which LSF reschedules rerunnable jobs: the sooner LSF knows that a host has become unavailable, the sooner LSF reschedules any
+rerunnable jobs executing on that host. For example, during maintenance operations, the cluster administrator might need to shut down half
+of the hosts at once. LSF can quickly update the host status and reschedule any rerunnable jobs that were running on the unavailable hosts.
+Note: If you previously speciﬁed LSB_SYNC_HOST_STAT_LIM=N (to disable this parameter), change the parameter value to Y to improve
+performance.
+The default setting for LSB_MAX_PROBE_SBD (in lsf.conf) was increased from 2 to 20. This parameter speciﬁes the maximum number of
+sbatchd instances polled by mbatchd in the interval MBD_SLEEP_TIME/10. Use this parameter in large clusters to reduce the time it takes for
+mbatchd to probe all sbatchds.
+Note: If you previously speciﬁed a value for LSB_MAX_PROBE_SBD that is less than 20, remove your custom deﬁnition to use the default
+value of 20.
+You can set a limit with MAX_SBD_FAIL (in lsb.params) for the maximum number of retries for reaching a non-responding server batch
+daemon, sbatchd. If mbatchd fails to reach a host after the deﬁned number of tries, the host is considered unavailable or unreachable.
+IBM Spectrum LSF 905
+
+Limit your user’s ability to move jobs in a queue
+Control whether users can use btop and bbot to move jobs to the top and bottom of queues
+Procedure
+Set JOB_POSITION_CONTROL_BY_ADMIN=Y in lsb.params.
+Remember:
+You must be an LSF administrator to set this parameter.
+Results
+When set, only the LSF administrator (including any queue administrators) can use bbot and btop to move jobs within a queue. A user attempting to
+user bbot or btop receives the error “User permission denied.”
+Manage the number of pending reasons
+Condense all the host-based pending reasons into one generic pending reason for efﬁcient, scalable management of pending reasons.
+Procedure
+Set CONDENSE_PENDING_REASONS=Y in lsb.params.
+If a job has no other main pending reason, bjobs -p or bjobs -l will display the following:
+Individual host based reasons 
+If you condense host-based pending reasons, but require a full pending reason list, you can run the following command:
+badmin diagnose <job_ID>
+Remember:
+You must be an LSF administrator or a queue administrator to run this command.
+Achieve efﬁcient event switching
+About this task
+Periodic switching of the event ﬁle can weaken the performance of mbatchd, which automatically backs up and rewrites the events ﬁle after every
+1000 batch job completions. The old lsb.events ﬁle is moved to lsb.events.1, and each old lsb.events.n ﬁle is moved to lsb.events.n+1.
+Procedure
+Change the frequency of event switching with the following two parameters in lsb.params:
+MAX_JOB_NUM speciﬁes the number of batch jobs to complete before lsb.events is backed up and moved to lsb.events.1. The default value is
+1000.
+MIN_SWITCH_PERIOD controls how frequently mbatchd checks the number of completed batch jobs
+The two parameters work together. Specify the MIN_SWITCH_PERIOD value in seconds.
+Tip:
+For large clusters, set the MIN_SWITCH_PERIOD to a value equal to or greater than 600. This causes mbatchd to fork a child process that handles
+event switching, thereby reducing the load on mbatchd. mbatchd terminates the child process and appends delta events to new events after the
+MMIN_SWITCH_PERIOD has elapsed. If you deﬁne a value less than 600 seconds, mbatchd will not fork a child process for event switching.
+Example
+This instructs mbatchd to check if the events ﬁle has logged 1000 batch job completions every two hours. The two parameters can control the
+frequency of the events ﬁle switching as follows:
+906    IBM Spectrum LSF
+
+After two hours, mbatchd checks the number of completed batch jobs. If 1000 completed jobs have been logged (MAX_JOB_NUM=1000), it
+starts a new event log ﬁle. The old event log ﬁle is saved as lsb.events.n, with subsequent sequence number sufﬁxes incremented by 1 each
+time a new log ﬁle is started. Event logging continues in the new lsb.events ﬁle.
+If 1000 jobs complete after ﬁve minutes, mbatchd does not switch the events ﬁle until till the end of the two-hour period
+(MIN_SWITCH_PERIOD=7200).
+Automatic load updates
+Periodically, the LIM daemons exchange load information. In large clusters, let LSF automatically load the information by dynamically adjusting the
+period that is based on the load.
+Important:
+For automatic tuning of the loading interval, make sure the parameter EXINTERVAL in lsf.cluster.cluster_name ﬁle is not deﬁned. Do not conﬁgure
+your cluster to load the information at speciﬁc intervals.
+Manage I/O performance of the info directory
+In large clusters, the large numbers of jobs results in a large number of job ﬁles stored in the LSF_SHAREDIR/cluster_name/logdir/info directory at
+any time. When the total size of the job ﬁles reaches a certain point, you will notice a signiﬁcant delay when performing I/O operations in the info
+directory due to ﬁle server directory limits dependent on the ﬁle system implementation.
+About this task
+By dividing the total ﬁle size of the info directory among subdirectories, your cluster can process more job operations before reaching the total size
+limit of the job ﬁles.
+Note: Job script ﬁles for jobs that are stored in the jobinfo cache are not stored in the info directory, but are stored in lsb.jobinfo.events ﬁle.
+Procedure
+1. Use MAX_INFO_DIRS in lsb.params to create subdirectories and enable mbatchd to distribute the job ﬁles evenly throughout the
+subdirectories.
+MAX_INFO_DIRS=num_subdirs 
+Where num_subdirs speciﬁes the number of subdirectories that you want to create under the LSF_SHAREDIR/cluster_name/logdir/info
+directory. Valid values are positive integers between 1 and 1024. By default, MAX_INFO_DIRS is not deﬁned.
+2. Run badmin reconﬁg to create and use the subdirectories.
+Note: If you enabled duplicate event logging, you must run badmin mbdrestart instead of badmin reconﬁg to restart mbatchd.
+3. Run bparams -l to display the value of the MAX_INFO_DIRS parameter.
+Example
+MAX_INFO_DIRS=10 
+mbatchd creates ten subdirectories from LSB_SHAREDIR/cluster_name/logdir/info/0 to LSB_SHAREDIR/cluster_name/logdir/info/9.
+Conﬁgure a job information directory
+Job ﬁle I/O operations may impact cluster performance when there are millions of jobs in a LSF cluster. You can conﬁgure LSB_JOBINFO_DIR on high
+performance I/O ﬁle systems to improve cluster performance. This is separate from the LSB_SHAREDIR directory in lsf.conf. LSF will access the
+directory to get the job information ﬁles. If the directory does not exist, mbatchd will try to create it. If that fails, mbatchd exits.
+The LSB_JOBINFO_DIR directory must be:
+Owned by the primary LSF administrator
+Accessible from all hosts that can potentially become the management host
+Accessible from the management host with read and write permission
+Set for 700 permission
+Note: Using the LSB_JOBINFO_DIR parameter will require draining the whole cluster.
+IBM Spectrum LSF 907

@@ -1,0 +1,405 @@
+None
+LSF_TOP
+Required. Full path to the top level LSF installation directory.
+Syntax
+LSF_TOP="/path"
+Description
+Important: You must use the same path for every server host you install.
+Valid value
+The LSF_TOP ﬁle path cannot be the root directory (/).
+Example
+LSF_TOP="/usr/local/lsf"
+Default
+None. This is a required variable. 
+SILENT_INSTALL
+Enables silent installation.
+Syntax
+SILENT_INSTALL="Y" | "N"
+Description
+Enabling the silent installation (that is, setting this parameter to Y) means that you want to do the silent installation and accept the license
+agreement.
+Default
+N
+LSF_SILENT_INSTALL_TARLIST
+A string that contains all LSF package names to be installed.
+Syntax
+LSF_SILENT_INSTALL_TARLIST="ALL" | "Package_Name ..."
+Description
+This name list applies only to the silent installation mode. Supports keywords all, ALL, and All, which can install all packages in the LSF_TARDIR
+directory.
+Example
+LSF_SILENT_INSTALL_TARLIST="ALL" | "lsf<version>_linux2.6-glibc2.3-x86_64.tar.Z"
+Default
+None
+Install IBM Spectrum LSF on Windows
+Plan your installation and install a new production IBM Spectrum LSF cluster on Microsoft Windows hosts.
+Example installation directory structures
+ The following diagrams illustrate example directory structures after the LSF installation is complete.
+The enterprise grid orchestrator in the LSF cluster
+ When the enterprise grid orchestrator (EGO) is enabled in the cluster, EGO can control services for components.
+IBM Spectrum LSF 233
+
+Planning and preparing your systems for installation
+Follow these steps to plan and prepare for installation.
+Installing a new IBM Spectrum LSF cluster
+Run the LSF installer to install the management host and to install other hosts.
+LSF on Windows installation parameter quick reference
+Use this reference to learn about the installation parameters or dialog windows.
+Example installation directory structures
+The following diagrams illustrate example directory structures after the LSF installation is complete.
+Shared directory
+The shared directory is conﬁgured if you run the egoconﬁg command on a host after installation:
+The enterprise grid orchestrator in the LSF cluster
+When the enterprise grid orchestrator (EGO) is enabled in the cluster, EGO can control services for components.
+234    IBM Spectrum LSF
+
+Enabling EGO allows failover among multiple management hosts, and allows EGO cluster commands to start, stop, and restart the services.
+See Manage LSF on EGO for more details on the beneﬁts of enabling EGO and controlling the services by using EGO.
+Installation choices
+When you install the cluster and enable EGO, you can conﬁgure EGO control of the sbatchd and res daemons separately.
+Planning and preparing your systems for installation
+Follow these steps to plan and prepare for installation.
+Before you begin
+MSI version 2.0 or later is required.
+Procedure
+1. Choose LSF hosts (management host, management candidates, server hosts, and client-only hosts).
+2. Choose an installation directory that is available on every host.
+3. For failover purposes, create and share the shared directory (for example, \\HostF\EGOshare).
+a. Make sure that the shared directory is accessible with the same path name from all hosts in the cluster.
+b. Make sure that the installation user has Full Control permission for the shared directory.
+4. Review the installation parameter reference, and make sure the connection ports and LSF sbatchd, res, and mbatchd ports are available on
+all hosts.
+5. Choose a primary LSF administrator (owns the LSF and EGO conﬁguration ﬁles and log ﬁles, such as DOMAIN\lsfadmin).
+Create the primary LSF administrator account with the following privileges on each host:
+Act as part of the operating system
+Debug programs
+Replace a process level token
+Log on as a service
+Adjust memory quotas for a process
+Note:
+The account must belong to the Local Administrators group on each host.
+6. Obtain the necessary ﬁles for installing LSF.
+You need the LSF distribution ﬁle to install LSF.
+See the IBM Spectrum LSF Release Notes for detailed steps for downloading the distribution ﬁles.
+7. For Windows Server 2012, conﬁgure the Remote Desktop Services deployment scenario to support terminal services:
+a. Log on to the host as a domain user.
+b. Start the Add Roles and Features Wizard (Control pannel >Turn Windows features on or off).
+c. In Install Type, choose Remote Desktop Services installation.
+d. In Deployment Type, choose Quick start.
+e. In Server Selection, choose the host that installs LSF.
+f. In Deployment Scenario, choose Session-based desktop deployment.
+g. In Conﬁrmation, choose deploy.
+Management host selection
+ To achieve the highest degree of performance and scalability, use a powerful management host.
+IBM Spectrum LSF entitlement ﬁles
+ LSF uses entitlement ﬁles to determine which feature set is enabled or disabled based on the edition of the product.
+Management host selection
+To achieve the highest degree of performance and scalability, use a powerful management host.
+LSF has no minimum CPU requirement. For the systems that LSF is supported on, any host with sufﬁcient physical memory can run LSF as
+management host. Swap space is normally conﬁgured as twice the physical memory. LSF daemons in a cluster on Linux x86-64 use about 488 MB of
+memory when no jobs are running. Active jobs use most of the memory that LSF requires.
+Note: If a Windows host must be installed as the management host, use only hosts with Windows 2008 R2 Server and Windows 2012 R2 Server as
+LSF management hosts.
+IBM Spectrum LSF 235
+
+Table 1. Management host requirements
+Cluster size Active jobs Minimum required memory (typical)Recommended server CPU
+(Intel, AMD, OpenPower, or equivalent)
+Small (<100 hosts) 1,000 1 GB (32 GB) Any server CPU
+10,000 2 GB (32 GB) Recent server CPU
+Medium (100 - 1000 hosts)10,000 4 GB (64 GB) Multi-core CPU (2 cores)
+50,000 8 GB (64 GB) Multi-core CPU (4 cores)
+Large (>1000 hosts) 50,000 16 GB (128 GB) Multi-core CPU (4 cores)
+500,000 32 GB (256 GB) Multi-core CPU (8 cores)
+IBM Spectrum LSF entitlement ﬁles
+LSF uses entitlement ﬁles to determine which feature set is enabled or disabled based on the edition of the product.
+The following LSF entitlement conﬁguration ﬁles are available for each edition:
+LSF Standard Edition
+lsf_std_entitlement.dat
+LSF Express Edition
+lsf_exp_entitlement.dat
+You must download the entitlement ﬁle for the edition of the product you are running. Set the ENTITLEMENTFILE parameter (which is for silent
+installation) in the shared directory to the full path to the entitlement ﬁle you downloaded.
+If you are installing LSF Express Edition, you can later upgrade to LSF Standard Edition to take advantage of the additional features of LSF Standard
+Edition. Reinstall the cluster with the LSF Standard entitlement ﬁle (lsf_std_entitlement.dat).
+You can also manually upgrade from LSF Express Edition to Standard Edition. Get the LSF Standard entitlement conﬁguration ﬁle
+lsf_std_entitlement.dat, copy it to <LSF_TOP>/conf/lsf.entitlement and restart your cluster. The new entitlement conﬁguration enables extra features,
+but you might need to change some of the default LSF Express Edition conﬁguration parameters to use the LSF Standard Edition features.
+After LSF is installed and running, run the lsid command to see which edition of LSF is enabled.
+Installing a new IBM Spectrum LSF cluster
+Run the LSF installer to install the management host and to install other hosts.
+Procedure
+1. Install the management host.
+a. Log on as the primary LSF administrator (DOMAIN\lsfadmin) to the management host (or use an installation account that belongs to
+the Local Administrators group).
+b. Run the installer (that is, the lsf<version>_win-x64.msi ﬁle) to create a new cluster.
+After the management host installation is complete, the LSF installer creates a batch ﬁle (install.bat) that you can use to silently install hosts
+in this cluster. The batch ﬁle sets the installation parameters and runs the installer.
+You must customize this batch ﬁle for speciﬁc hosts (management candidates, LSF server hosts, and LSF client hosts) in the cluster before
+installation.
+2. Install other hosts.
+a. Install management candidates.
+b. Install LSF server hosts.
+c. Install LSF client hosts.
+3. If you disabled automatic startup of LSF after installation, log on to the management host as lsfadmin and run lsfstartup to start the cluster.
+4. Test your cluster by running some basic LSF commands (for example, lsid, lshosts, bhosts).
+LSF on Windows installation parameter quick reference
+Use this reference to learn about the installation parameters or dialog windows.
+236    IBM Spectrum LSF
+
+LSF installation parameters
+The installation parameters for LSF are conﬁgured automatically by the interactive installer. The related interactive installation dialog window name
+is shown for each parameter.
+If you do not use the interactive installer, specify command-line installation options as needed. The syntax is shown for each parameter.
+For silent installation with msiexec, the syntax is:
+msiexec 
+/i package_file [parameter_value ...] /quiet 
+For example, to install a server host and specify the installation directory:
+msiexec /i 
+\\hostB\download\lsf<version>_win-x64.msi SERVERHOSTS=hostM HOSTTYPE=Server 
+INSTALLDIR=C:\LSF /quiet
+For silent uninstall, the msiexec syntax is:
+msiexec 
+/x package_file /quiet
+Initial conﬁguration template
+The installer uses a conﬁguration template to specify initial LSF conﬁguration parameters when the installation is complete. For Windows, the
+installer speciﬁes the following initial conﬁguration ﬁle parameter values based on the default conﬁguration template:
+lsf.conf (LSF Standard Edition)
+DAEMON_SHUTDOWN_DELAY=180 
+EGO_ENABLE_AUTO_DAEMON_SHUTDOWN=Y 
+LSB_DISABLE_LIMLOCK_EXCL=Y 
+LSB_INDEX_BY_JOB="JOBNAME" 
+LSB_MOD_ALL_JOBS=Y 
+LSF_DISABLE_LSRUN=Y 
+LSF_PIM_SLEEPTIME_UPDATE=Y 
+LSF_UNIT_FOR_LIMITS=MB
+lsf.conf (LSF Advanced Edition)
+LSB_DISABLE_LIMLOCK_EXCL=Y 
+LSB_INDEX_BY_JOB="JOBNAME" 
+LSF_DISABLE_LSRUN=Y 
+LSF_PIM_SPEEPTIME_UPDATE=Y
+lsb.params (LSF Standard Edition)
+ABS_RUNLIMIT=Y 
+DEFAULT_QUEUE=normal interactive 
+JOB_ACCEPT_INTERVAL=0 
+JOB_DEP_LAST_SUB=1 
+JOB_SCHEDULING_INTERVAL=1 
+MAX_CONCURRENT_QUERY=100 
+MAX_JOB_NUM=10000 
+MBD_SLEEP_TIME=10 
+NEWJOB_REFRESH=Y 
+PARALLEL_SCHED_BY_SLOT=Y 
+SBD_SLEEP_TIME=7 
+lsb.params (LSF Advanced Edition)
+SBD_SLEEP_TIME=7
+In addition, for LSF Standard Edition and LSF Advanced Edition, the installer enables fair share scheduling for all queues except owner and license
+as follows in lsb.queues:
+Begin Queue 
+... 
+FAIRSHARE=USER_SHARES[[default, 1]] 
+... 
+End Queue
+Parameter reference
+The installer might require the following parameters.
+SHAREDIR (Shared Directory window)
+Description
+IBM Spectrum LSF 237
+
+Full path to the shared directory. The shared directory contains shared conﬁguration ﬁles and is used for management host failover. Management
+host failover is recommended for production clusters.
+Note:
+Specify a shared directory when both your management and all management candidate hosts are Windows hosts. You cannot mix Windows and
+UNIX management and management candidate hosts.
+Syntax
+SHAREDIR="\\fileserver\path"
+Example
+SHAREDIR="\\HostF\EGOshare"
+Default
+No shared directory
+ENTITLEMENTFILE
+Description
+Full path to the LSF entitlement ﬁle. LSF uses the entitlement to determine which feature set to enable or disable based on the edition of the
+product. You must download the entitlement ﬁle for the edition of the product you are running, and set ENTITLEMENTFILE to the full path to the
+entitlement ﬁle you downloaded.
+LSF on Windows uses the following entitlement ﬁles:
+LSF Standard Edition: lsf_std_entitlement.dat
+LSF Advanced Edition Advanced Edition: adv_entitlement.dat
+Syntax
+ENTITLEMENTFILE=path
+Default
+None
+HOSTTYPE (Installation Options window)
+Description
+The type of host you want to install. Install one of the following kinds of host: LSF management host (new cluster), management candidate, server, or
+client host.
+Syntax
+HOSTTYPE= Master | Candidate | Server | Client
+Example
+HOSTTYPE=Server
+Default
+LSF management host (new cluster)
+The management host always gets full package
+SERVICETYPE (SBD  and RES  Control window)
+Description
+Set the value to EGO if you want EGO service controller to start LSF res and sbatchd, and restart if they fail.
+Syntax
+SERVICETYPE=EGO | LSF
+Example
+238    IBM Spectrum LSF
+
+SERVICETYPE=EGO
+Default
+LSF, res and res are managed as Windows services
+CLUSTERNAME (Cluster Name window)
+Description
+Name of the LSF cluster. Do not use the same name as any LSF host, user, or user group.
+Syntax
+CLUSTERNAME=cluster_name
+Example
+CLUSTERNAME=Research
+Default
+Cluster1
+INSTALLDIR (Installation Directory window)
+Description
+Full path to the top level LSF installation directory.
+Syntax
+INSTALLDIR=path
+Default
+C:\LSF_10.1.0
+CLUSTERID (Cluster ID window)
+Description
+This parameter is not required for normal installation of a new cluster. Specify the unique cluster ID of your cluster.
+Cluster ID is used to identify different clusters when one host belongs to multiple clusters. It is appended to Windows service names.
+Syntax
+CLUSTERID=cluster_ID
+Example
+CLUSTERID=research
+Default
+Not deﬁned
+CLUSTERADMIN (Cluster Administrator window)
+Description
+Cluster administrator (lsfadmin).
+Syntax
+CLUSTERADMIN="domain\user_name"
+or
+CLUSTERADMIN=".\user_name"
+Example
+IBM Spectrum LSF 239
+
+CLUSTERADMIN="DOMAIN\lsfadmin"
+Default
+Windows installation account is the default cluster administrator
+ADMINPASSWD (Cluster Administrator window)
+Description
+Actual password of the cluster administrator account (lsfadmin).
+Syntax
+ADMINPASSWD="password"
+Applies to the management host only
+Example
+ADMINPASSWD="mypasswd"
+Default
+None. Required parameter
+Conﬁguration Options window
+Description
+Default (quick installation) or custom conﬁguration. Select default conﬁguration to use default values for all remaining installation options. This
+dialog window has no corresponding installation parameter.
+Default
+Default conﬁguration (quick installation)
+SERVICEUSERNAME (Windows Service Account window)
+Description
+Name of the system services execution user OS account. This account is used to run LSF system services.
+Syntax
+SERVICEUSERNAME="domain\user_name"
+or
+SERVICEUSERNAME=".\user_name"
+Example
+SERVICEUSERNAME="DOMAIN\lsfadmin"
+Default
+The local system account
+SERVICEPASSWORD (Windows Service Account window)
+Description
+Actual password of the system services execution user OS account.
+Syntax
+SERVICEPASSWORD="password"
+Applies to the local server host only
+Example
+SERVICEPASSWORD="mypasswd"
+240    IBM Spectrum LSF
+
+Default
+None. The default systems service execution user OS account is the local system account, which does not require a password
+BASEPORT (LSF Ports window)
+Description
+Base connection port. LSF uses four consecutive ports that start from the base port.
+Syntax
+BASEPORT=port_number
+Example
+BASEPORT=7869
+Default
+7869, which indicates ports 7869-7872
+RESPORT (LSF Ports window)
+Description
+LSF res service port.
+Syntax
+RESPORT=port_number
+Example
+RESPORT=6878
+Default
+6878
+SBDPORT (LSF Ports window)
+Description
+LSF sbatchd service port.
+Syntax
+SBDPORT=port_number
+Example
+SBDPORT=6882
+Default
+6882
+MBDPORT (LSF Ports window)
+Description
+LSF mbatchd port.
+Syntax
+MBDPORT=port_number
+Example
+MBDPORT=6881
+Default
+IBM Spectrum LSF 241
+
+6881
+DYNAMICHOST (Dynamic Hosts window)
+Description
+Set the value to Yes to enable dynamic hosts in LSF. After installation, conﬁgure security for dynamic hosts.
+Syntax
+DYNAMICHOST=Yes | No
+Example
+DYNAMICHOST=Yes
+Default
+No, hosts cannot join the cluster dynamically
+STARTUP (Startup window)
+Description
+Set the value to No to disable automatic startup of LSF after installation.
+Syntax
+STARTUP=Yes | No
+Example
+STARTUP=Yes
+For management candidates and shared server hosts, specify No.
+Default
+Yes, start LSF automatically
+ENABLEEGO (Enable EGO window)
+Description
+Set the value to Yes if you want to enable advanced EGO features.
+Syntax
+ENABLEEGO=Yes | No
+Example
+ENABLEEGO=Yes
+Default
+No, disable advanced EGO features
+SERVERHOSTS (Server Hosts window)
+Description
+Deﬁne LSF server hosts that this host can contact.
+Syntax
+SERVERHOSTS=host_name ...
+Example
+SERVERHOSTS=HostM HostW
+Default
+242    IBM Spectrum LSF

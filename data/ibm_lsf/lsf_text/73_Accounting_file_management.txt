@@ -1,0 +1,120 @@
+IBM Spectrum LSF accounting ﬁle management
+LSF uses accounting ﬁles to track resource allocation and usage for all ﬁnished jobs. This is the primary purpose of the lsb.acct ﬁle.
+Additional conﬁguration settings
+This topic describes additional conﬁguration settings that you can use as an example for your own cluster. Some of the following parameters
+are explicitly set to the default value, but you can edit these to suit your own cluster.
+Allocating CPUs as blocks for parallel jobs
+Parallel jobs always ask for more than one CPU to run. Some jobs can run faster if the assigned CPUs can be allocated as blocks.
+Cleaning up IBM Spectrum LSF parallel job execution problems
+The LSF distributed application integration framework blaunch offers full control of parallel jobs running across multiple execution hosts.
+Conﬁguring IBM Aspera as a data transfer tool
+IBM Aspera is a data transfer tool that makes efﬁcient, policy-based use of network bandwidth in high latency networks.
+Customizing output format and reducing network trafﬁc for IBM Spectrum LSF job queries
+The default bjobs command output provides basic job information. When you need additional job information, you might prefer to have the job
+output displayed line by line. Controlling the format of bjobs output can also make the output easily parsed by scripts and also reduce network
+trafﬁc by transferring only the required information from mbatchd to the bjobs command.
+Deﬁning external host-based resources in IBM Spectrum LSF
+This article describes how to deﬁne site-speciﬁc external resources on hosts in the cluster for scheduling purposes.
+Enforcing IBM Spectrum LSF job memory and swap with Linux cgroups
+Enable cgroup memory and swap enforcement in LSF.
+Applying job access control in IBM Spectrum LSF to protect information privacy
+The LSF access control level (ACL) feature supports different levels of access control in job information queries.
+IBM Spectrum LSF job directories
+LSF uses different types of directories for jobs to use during execution.
+Using IBM Spectrum LSF with Andrew File System (AFS)
+Learn how LSF integrates with Andrew File System (AFS) so you can conﬁgure LSF to suit your needs.
+Maintaining cluster performance under high query load
+LSF provides basic performance metrics (badmin perfmon), which samples three major query operations (bjobs, bhosts, and bqueues). LSF
+also provides the badmin diagnose -c query command option to trace query sources for further troubleshooting.
+Managing floating software licenses in LSF
+Typically, a pool of floating software licenses is represented by numeric resources in LSF. Every job that requires licenses must include the
+license requirement in its rusage expression to ensure that enough licenses are free for the job at the time that the job is dispatched.
+Maintaining cluster performance under high query load
+Optimize LSF job processing when jobs have a long run time in LSF when CPU frequency governors are enabled, but run faster when executed
+directly on the machine.
+Operating system partitioning and virtualization on Oracle Solaris and IBM AIX
+This describes how LSF works in an OS partitioning and virtualization environment, focusing on Oracle Solaris containers and IBM AIX
+partitions.
+Performance metrics for mbatchd
+LSF mbatchd performance metrics help administrators to identify the root causes of mbatchd performance issues when they occur, so that
+administrators can take appropriate corrective actions. These performance metrics are particularly useful when the cause of issue is related to
+the cluster environment; for example, the performance of shared storage or a network connection.
+Placing jobs based on available job slots of hosts
+LSF has built-in host-based resource slots to support the placement of jobs based on available job slots. Learn how to conﬁgure and use the
+slots resource with existing LSF resource requirements according to a packing or spreading policy.
+Locating the sha1 checksum after downloading the IBM Spectrum LSF installers
+Use the sha1 executable ﬁle to verify the LSF installation ﬁles.
+Tracking job dependencies in IBM Spectrum LSF
+Use LSF job dependencies to specify the job execution flow during job submission.
+Using compute units to have IBM Spectrum LSF consider cluster topology when scheduling
+Use the LSF compute unit (CU) feature to have LSF consider a tree-like network topology when scheduling jobs.
+Using lsmake to accelerate building Android source code
+The LSF lsmake tool is a parallel GNU make that is tightly integrated with LSF.
+Using NVIDIA DGX systems with IBM Spectrum LSF
+The following guide is an example of how to use LSF with GPU resources on NVIDIA DGX systems.
+Using ssh X11 forwarding with IBM Spectrum LSF
+For X-enabled applications to function as desired, the X connection must be tunneled over ssh, which is the secure method.
+Using the IBM Spectrum LSF API Python wrapper
+The Python wrapper for IBM® Spectrum LSF APIs allows users to call the LSF APIs from Python. You create a Python wrapper using the
+Simpliﬁed Wrapper and Interface Generator (SWIG), which is the tool used for interfacing the LSF C APIs and Python.
+IBM® Spectrum LSF accounting ﬁle management
+LSF uses accounting ﬁles to track resource allocation and usage for all ﬁnished jobs. This is the primary purpose of the lsb.acct ﬁle.
+This accounting ﬁle is a plain text ﬁle with one job record per line. Each job record includes job submission options, allocation information, start time,
+end time and resource usage. By default, there is only one lsb.acct accounting ﬁle per cluster, located in the LSF working directory, which is deﬁned
+by ${LSB_SHAREDIR}/<cluster_name>/logdir.
+IBM Spectrum LSF 2393
+
+LSF logs all ﬁnished job records to lsb.acct. By default, no automatic ﬁle archiving or rollover mechanism enabled, The lsb.acct ﬁle can grow very
+large, taking up space in the LSF working directory and affecting the performance of commands that query the accounting ﬁle (bacct, for instance).
+LSF offers several features to help manage account ﬁles automatically, including automatic accounting ﬁle archiving and automatic deletion of old
+accounting ﬁles.
+Automatic accounting ﬁle archiving
+Automatic accounting ﬁle archiving can be triggered by several conditions: time of day, size of the accounting ﬁle, and age of accounting ﬁles. All of
+these are conﬁgured through parameters in lsb.params.
+ACCT_ARCHIVE_AGE=<days> deﬁnes an archiving interval. LSF archives the current accounting ﬁle if the length of time from its creation date
+exceeds the speciﬁed number of days.
+ACCT_ARCHIVE_SIZE=<kilobytes> deﬁnes an accounting ﬁle size threshold. LSF archives the current accounting ﬁle if its size exceeds the
+speciﬁed number of kilobytes.
+ACCT_ARCHIVE_TIME=<hh:mm> deﬁnes a time of day for LSF to automatically archive the current accounting ﬁle.
+ACCT_ARCHIVE_AGE and ACCT_ARCHIVE_TIME are mutually exclusive, since ACCT_ARCHIVE_AGE is conﬁgured in days, while
+ACCT_ARCHIVE_TIME sets a speciﬁc time of day. If ACCT_ARCHIVE_TIME is deﬁned, ACCT_ARCHIVE_AGE is ignored. ACCT_ARCHIVE_SIZE can
+coexist with the other two parameters. Run badmin reconﬁg after you change any of the parameters.
+When LSF archives the accounting ﬁle, it saves the old accounting ﬁle as lsb.acct.n, where n is an index number of archived ﬁles. The bigger the index
+number, the older the archived ﬁle. lsb.acct.1 always represents the latest archived accounting ﬁle.
+Automatic deletion of old accounting ﬁles
+Conﬁgure MAX_ACCT_ARCHIVE_FILE in lsb.params to enable automatic deletion of archived accounting ﬁles. Automatic ﬁle deletion controls the
+total number of archived ﬁles, and prevents LSF from archiving accounting ﬁles indeﬁnitely. MAX_ACCT_ARCHIVE_FILE deﬁnes the maximum
+number of archived ﬁles under the LSF working directory. When the total number of archived ﬁles reaches the conﬁgured threshold, LSF
+automatically removes the oldest archived ﬁle. With this feature, you can control the total number of accounting archives stored under the working
+directory and make sure accounting ﬁles don't consume too much disk space.
+Guidelines and best practices for automatic archiving
+In a real production environment, you need to choose parameters and values based on the speciﬁc needs of your site. Here are some general
+guidance and best practices:
+The size of job ﬁnish records can vary depending on job characteristics, ranging from a few hundred bytes to tens of thousands of bytes. By
+default, the bacct command only reads the current lsb.acct ﬁle, and scans all accounting records in the accounting ﬁle to generate its output.
+The size and the total number of records in lsb.acct affects the performance of bacct. For example, an accounting ﬁle with 400,000 job ﬁnish
+records could be as large as 1 GB. bacct may take as much as 1 minute to complete. To ensure good performance of bacct, the recommended
+setting for ACCT_ARCHIVE_SIZE is 500 MB (500,000 KB).
+If your cluster runs a large number of jobs on a daily basis (say, a million or more), use ACCT_ARCHIVE_TIME, so it won't accumulate too many
+job records in the current accounting ﬁle. Set ACCT_ARCHIVE_TIME to midnight, so that accounting ﬁle archiving does not affect user queries.
+If the daily job throughput of your cluster is within a few thousands or even tens of thousands of jobs, use ACCT_ARCHIVE_AGE. Base the
+value on the rough total number of job ﬁnish records you want to keep in the accounting ﬁle. You need to balance bacct command
+performance and the number of days of records you want to maintain. For instance, if cluster daily throughput is 50,000 jobs, and you want to
+maintain 1 month of job ﬁnish records in current accounting ﬁle, total number of ﬁnish records in current accounting ﬁle will be around 1.5
+million. In this case, the bacct command could take several minutes to complete.
+Set MAX_ACCT_ARCHIVE_FILE based on the total number of archives you plan to maintain in the working directory. Some of bacct command
+options, like -C, -D, or -S, make bacct search through the entire accounting ﬁle archive. When these options are used, bacct runs slower the
+more archives you keep in the directory. Furthermore, since LSF needs to rename archive ﬁles during archiving process, keeping a large
+number of archives can also impact user interaction. You should consider these performance implications when setting a reasonable value
+MAX_ACCT_ARCHIVE_FILE.
+Examples
+Site A has a high throughput cluster, and daily throughput reaches 800,000 jobs. The administrator wants to maintain current accounting ﬁles to
+reflect only the current day's information and to maintain accounting archives for 10 days. Here is the conﬁguration:
+ACCT_ARCHIVE_TIME=23:00 
+MAX_ACCT_ARCHIVE_FILE=10
+Site B runs lots of parallel workload but runs less than 10,000 jobs daily. The administrator wants to maintain 1 month of accounting records. Each
+accounting ﬁle should be kept within 500 MB in size, and archived for 2 years. Here is the conﬁguration:
+ACCT_ARCHIVE_AGE=30 
+ACCT_ARCHIVE_SIZE=500000 
+MAX_ACCT_ARCHIVE_FILE=24
+2394    IBM Spectrum LSF

@@ -1,0 +1,394 @@
+8. If you have the IBM Spectrum LSF Application Center installed, restart it.
+pmcadmin start
+Note:
+IBM Spectrum LSF Application Center displays License Scheduler workload for both project mode and cluster mode.
+Firewalls
+Conﬁguration for LSF, License Scheduler, and taskman interoperability.
+Set up ﬁrewall communication
+About this task
+The mbatchd and bld listening ports (inbound connections) must be open on either side of the ﬁrewall.
+mbatchd: Set by LSB_MBD_PORT in lsf.conf
+bld: Set by PORT in lsf.licensescheduler
+Procedure
+If a ﬁrewall is between the mbatchd and bld hosts, both listening ports must be open.
+If a ﬁrewall is between bld and blcollect hosts (for example, blcollect is conﬁgured to run locally on the license servers and bld is on the LSF
+management host), the bld listening port must be open.
+If a ﬁrewall is between taskman and bld (where jobs use taskman to interface with License Scheduler), the bld listening port must be open.
+LSF License Scheduler concepts
+License Scheduler modes
+ Project groups
+ When you are conﬁguring your installation of License Scheduler in project mode, you can choose to conﬁgure projects, or extend your project
+conﬁguration further to form hierarchical project groups.
+Service domains in License Scheduler
+ Distribution policies
+ Project mode preemption
+ Preemption occurs only when there are no free licenses. During preemption, a project releases a borrowed license to the project that owns the
+license (and now has demand).
+License usage with FlexNet and Reprise License Manager
+ 
+License Scheduler modes
+When you conﬁgure your installation of License Scheduler, you must choose which of project mode and cluster mode best suits your needs for each
+license you use. Both project mode and cluster mode can be conﬁgured in one installation, however, all different licenses that are required by a job
+must belong to the same mode.
+cluster mode
+Distributes license tokens to clusters, where LSF scheduling takes over.
+Cluster mode emphasizes high utilization of license tokens over other considerations such as ownership. License ownership and sharing can
+still be conﬁgured, but within each cluster instead of across multiple clusters. Preemption of jobs (and licenses) also occurs within each
+cluster instead of across clusters.
+License tokens are reused by LSF when a job ﬁnishes, without waiting for conﬁrmation from lmstat or rlmstat that license tokens are available
+and reported in the next blcollect cycle. This results in higher license utilization for short jobs.
+1998    IBM Spectrum LSF
+
+Cluster mode was introduced in License Scheduler 8.0.
+project mode
+Distributes license token to projects conﬁgured across all clusters.
+Project mode emphasizes ownership of license tokens by speciﬁc projects which span multiple clusters. When License Scheduler is running in
+project mode, License Scheduler checks demand from license owners across all LSF clusters before allocating license tokens in project mode.
+The process of collecting and evaluating demand for all projects in all clusters slows down each scheduling cycle. License tokens are
+distributed in the next scheduling cycle after lmstat or rlmstat conﬁrms license token availability.
+Project mode was the only choice available before License Scheduler 8.0.
+Difference between cluster mode and project mode
+The following ﬁgure illustrates license utilization in cluster mode for short jobs with the corresponding lmstat or rlmstat reporting times:
+In cluster mode, when one job ﬁnishes running, the next job gets its license immediately without having to wait for the next lmstat or rlmstat
+interval. For example, four jobs that require license 2 are able to run without waiting for lmstat or rlmstat to report token distribution.
+The following ﬁgure illustrates license utilization in project mode for short jobs with the lmstat or rlmstat reporting times:
+In project mode, each job must wait for lmstat or rlmstat to report token distribution before it can get a license and start running. In this example,
+three jobs that require license 2 are able to start within the lmstat or rlmstat intervals illustrated.
+When to use cluster mode
+Cluster mode is most appropriate for your needs if:
+Your primary goal is to maximize license use.
+Ownership of licenses is a secondary consideration.
+Many jobs are short relative to the blcollect cycle (60 seconds by default, set by LM_STAT_INTERVAL).
+When to use project mode
+Project mode is most appropriate for your needs if the following applies:
+Your primary goal is to ensure ownership of the group.
+Maximizing license use is a secondary consideration.
+Most jobs are long relative to the blcollect cycle (60 seconds by default, set by LM_STAT_INTERVAL).
+Project groups
+IBM Spectrum LSF 1999
+
+When you are conﬁguring your installation of License Scheduler in project mode, you can choose to conﬁgure projects, or extend your project
+conﬁguration further to form hierarchical project groups.
+Project groups pool multiple service domains together and treat them as one source for licenses, and distribute them in a hierarchical fair share tree.
+The leaves of the policy tree are the license projects that jobs can belong to. Each project group in the tree has a set of values, including shares and
+limits.
+License ownership is applied at the leaf level; that is, on individual license projects. Ownership of a given internal node equals to sum of the
+ownership of all of its direct children.
+Each feature has its own hierarchical group, but features can share hierarchy. The hierarchical scheduling is done per feature across service domains.
+projects
+Projects alone apply one distribution policy within one service domain. The same local distribution policy can be applied to more than one
+service domain, but is implemented locally.
+groups of projects
+Groups of projects apply one distribution policy within one service domain, but assign shares and ownership to groups of projects for greater
+flexibility. With group license ownership, projects trigger preemption either when the project is using fewer licenses than it owns or when the
+group to which the project belongs is using fewer licenses than the group owns.
+project groups
+Projects groups apply one distribution policy across multiple service domains following the conﬁgured hierarchical structure. You can also use
+project groups to apply hard limits to the number of licenses that are distributed to each project.
+After conﬁguration, the same project group hierarchy can be used for more than one feature.
+When to use groups of projects
+Grouping projects together in project mode is most appropriate for your needs if:
+Licenses are owned at multiple levels, for example by a department and also by projects within the department.
+License ownership is within one service domain. As for projects that are not grouped, distribution policies are implemented locally for groups
+of projects.
+When to use project groups
+Extending your conﬁguration to include project groups is most appropriate for your needs if:
+License ownership spans service domains.
+One distribution policy must be applied across several service domains.
+Project limits must be applied across clusters.
+Note: If required, use LSF to conﬁgure license project limits within one cluster.
+Service domains in License Scheduler
+A service domain is a group of one or more license servers. License Scheduler manages the scheduling of the license tokens, but the license server
+actually supplies the licenses. You conﬁgure the service domain with the license server names and port numbers that serve licenses to a network.
+LAN: a service domain that serves licenses to a single cluster
+WAN: a sevice domain that serves licenses to multiple clusters
+License Scheduler assumes that any license in the service domain is available to any user who can receive a token from License Scheduler.
+Therefore, every user that is associated with a project speciﬁed in the distribution policy must meet the following requirements:
+The user is able to make a network connection to every license server host in the service domain.
+The user environment is conﬁgured with permissions to check out the license from every license server host in the service domain.
+You must conﬁgure at least one service domain for License Scheduler. It groups license server hosts that serve licenses to LSF jobs and is used when
+you deﬁne a policy for sharing software licenses among your projects.
+If a license server is not part of a License Scheduler service domain, its licenses are not managed by License Scheduler (the license distribution
+policies you conﬁgure in LSF do not apply to these licenses and usage of these licenses does not influence LSF scheduling decisions).
+Service domain locality
+You can use license feature locality to limit features from different service domains to a speciﬁc cluster so that License Scheduler does not grant
+tokens to jobs from license that legally cannot be used on the cluster that requested the token. The LAN service domains that are used in cluster
+mode are conﬁgured with single-cluster locality.
+2000    IBM Spectrum LSF
+
+Project mode
+In project mode, a cluster can access the same license feature from multiple service domains.
+If your license servers restrict the serving of license tokens to speciﬁc geographical locations, use LOCAL_TO to specify the locality of a license token
+for any features that cannot be shared across all the locations. This parameter avoids having to deﬁne different distribution and allocation policies for
+different service domains, and allows hierarchical project group conﬁgurations.
+To use License Scheduler tokens in project mode, a job submission must specify the -Lp (license project) option. The project must be deﬁned for the
+requested feature in lsf.licensescheduler.
+Cluster mode
+In cluster mode, each license feature in a cluster can access a single license feature from at most one WAN and one LAN service domain.
+License Scheduler does not control application checkout behavior. If the same license is available from both the LAN and WAN service domains,
+License Scheduler expects jobs to try to obtain the license from the LAN ﬁrst.
+Parallel jobs
+When LSF dispatches a parallel job, LSF License Scheduler attempts to check out user@host keys in the parallel job constructed using the user
+name and all execution host names, and merges the corresponding checkout information on the service domain if found.
+For example, in project mode, for feature F1 with two projects (P1 and P2) in service domain sd1, with ten tokens, a parallel job is dispatched to four
+execution hosts using the following command:
+bsub -n 4 -Lp P1 -R "rusage[F1=4]" mycmd
+The job on each execution host checks out one F1 license from the sd1 service domain. If the four execution hosts are hostA, hostB, hostC, and
+hostD, there are checkout keys for user@hostA, user@hostB, user@hostC, and user@hostD, and each entry contributes corresponds with one
+token checked out. These tokens all merge into data for the P1 project in the F1 feature. Therefore, running blstat displays the following information
+for the F1 feature:
+FEATURE: F1 
+ SERVICE_DOMAIN: LanServer 
+ TOTAL_INUSE: 4    TOTAL_RESERVE: 0    TOTAL_FREE: 6    OTHERS: 0 
+  PROJECT                 SHARE     OWN       INUSE     RESERVE   FREE      DEMAND 
+  P1                      50.0 %    0         4         0         1         0 
+  P2                      50.0 %    0         0         0         5         0
+The four checkout keys from the four execution hosts are merged into the P1 project.
+If MERGE_BY_SERVICE_DOMAIN=Y is deﬁned, LSF License Scheduler also merges multiple user@host data for parallel jobs across different service
+domains.
+For example, if you have the same setup as the previous example, but with an additional service domain sd2 also with two projects (P1 and P2) and
+ten tokens, and you have MERGE_BY_SERVICE_DOMAIN=Y deﬁned, running blstat displays the following information for the F1 feature:
+blstat 
+FEATURE: F1 
+ SERVICE_DOMAIN: sd1 
+ TOTAL_INUSE: 2    TOTAL_RESERVE: 0    TOTAL_FREE: 8    OTHERS: 0 
+  PROJECT                 SHARE     OWN       INUSE     RESERVE   FREE      DEMAND 
+  P1                      50.0 %    0         2         0         3         0 
+  P2                      50.0 %    0         0         0         5         0 
+ SERVICE_DOMAIN: sd2 
+ TOTAL_INUSE: 2    TOTAL_RESERVE: 0    TOTAL_FREE: 8    OTHERS: 0 
+  PROJECT                 SHARE     OWN       INUSE     RESERVE   FREE      DEMAND 
+  P1                      50.0 %    0         2         0         3         0 
+  P2                      50.0 %    0         0         0         5         0
+Two checkout keys are merged into the P1 project in the sd1 domain, while two checkout keys are merged into the P1 project under the sd2 domain.
+If CHECKOUT_FROM_FIRST_HOST_ONLY=Y is deﬁned, LSF License Scheduler only considers user@host information for the ﬁrst execution host of a
+parallel job when merging the license usage data. Setting in individual Feature sections overrides the global setting in the Parameters section.
+If a feature has multiple Feature sections (using LOCAL_TO), each section must have the same setting for CHECKOUT_FROM_FIRST_HOST_ONLY.
+Distribution policies
+The most important part of License Scheduler is license token distribution. The license distribution policy determines how license tokens are shared
+among projects or clusters. Whenever there is competition, the conﬁgured share assignment determines the portion of license tokens each project or
+IBM Spectrum LSF 2001
+
+cluster is entitled to.
+We refer to both licenses and license tokens because License Scheduler does not control licenses directly. Instead, it controls the dispatch of jobs
+that require licenses that are submitted through LSF or taskman by tracking license tokens.
+Total license tokens
+The total number of license tokens that are managed by License Scheduler for a single feature in one service domain depends on the following
+factors:
+The number of active license servers in the service domain
+The number of licenses that are checked out by applications that are not managed by LSF
+License shares
+License shares that are assigned in the distribution policy determine what portion of total licenses a project (in project mode) or cluster (in cluster
+mode) receives. Each project or cluster able to use a license feature must have a share of the license feature in the service domain.
+The formula for converting a number of shares to a number of licenses for any license feature is:
+(shares assigned to project or cluster) 
+______________________________          x (total number of licenses)  
+(sum of all shares assigned) 
+The number of shares that are assigned to a license project or cluster is only meaningful when you compare it to the number assigned to other
+projects or clusters, or to the total number of shares.
+When there are no jobs in the system, each project or cluster is assigned license tokens that are based on share assignments.
+Cluster mode distribution policies
+static
+A portion of the total licenses is allocated to the cluster based on the conﬁgured share. The amount is static, and does not depend on the
+workload in the system.
+dynamic
+Shares of the total licenses are assigned to each cluster, along with a buffer size. The conﬁgured shares set the number of licenses each
+cluster receives initially, but this number is adjusted regularly based on demand from the cluster.
+License distribution changes whenever a cluster requests an allocation update, by default every 15 seconds. In each update, the allocation
+can increase by as much as the buffer size. There is no restriction on decreasing cluster allocation.
+When dynamic license distribution is used in cluster mode, minimum and maximum allocation values can be conﬁgured for each cluster. The
+minimum allocation is like the number of non-shared licenses for project mode, as this number of tokens is reserved for the exclusive use of
+the cluster.
+If the minimum value conﬁgured exceeds the share assignment for the cluster, only the assigned share is reserved for the cluster.
+Cluster shares take precedence over minimum allocations conﬁgured. If the minimum allocation exceeds the cluster's share of the total
+tokens, a cluster's allocation as given by bld may be less than the conﬁgured minimum allocation.
+guarantees within a cluster
+Guaranteed shares of licenses are assigned to projects within a cluster that use LSF guarantee-type SLAs. Optionally, sharing of guaranteed
+licenses not in use can be conﬁgured.
+Guarantees are like ownership for cluster mode, and can be used with both static and dynamic distribution policies.
+Note: Guarantee-type SLAs are only available in LSF version 8.0 or newer.
+When to use static license distribution
+Conﬁgure shares for all license features in cluster mode. Static license distribution is the basic license distribution policy, and is built on by adding
+more conﬁguration.
+The basic static conﬁguration can meet your needs if the demand for licenses across clusters is predictable and unchanging, or licenses are strictly
+owned by clusters, or you always have extra licenses.
+When to use dynamic license distribution
+Dynamic license allocation can meet your needs if the demand for licenses changes across clusters.
+When to use LSF guarantee SLAs with License Scheduler
+Conﬁguring guarantee SLAs within LSF clusters can meet your needs if the licenses within a cluster are owned, and used either preferentially or
+exclusively by the license owners.
+2002    IBM Spectrum LSF
+
+Project mode distribution policies
+fair share
+Shares of the total licenses are assigned to each license project.
+Unused licenses are shared wherever there is demand, however, when demand exceeds the number of licenses, share assignments are
+followed. Jobs are not preempted to redistribute licenses; instead licenses are redistributed when jobs ﬁnish running.
+ownership and preemption
+Shares of the total licenses are assigned to each license project. Owned shares of licenses are also assigned.
+Unused licenses are shared wherever there is demand, however, when demand exceeds the number of licenses, the owned share is reclaimed
+using preemption.
+Preemption occurs only while the speciﬁed number of owned licenses are not yet in use, and no free licenses are available. Once all owned
+licenses are used, License Scheduler waits for licenses to become free (instead of using preemption) and then distributes more tokens until
+the share is reached.
+Jobs that are preempted by License Scheduler are automatically resumed once licenses become available.
+By default, LSF releases the job slot of a suspended job when License Scheduler preempts the license from the job.
+Note: For License Scheduler to give a license token to another project, the applications must be able to release their licenses upon job
+suspension.
+active ownership
+Active ownership allows ownership to automatically adjust based on project activity. Ownership is expressed as a percent of the total
+ownership for active projects. The actual ownership for each project decreases as more projects become active. Set percentage ownership
+values to total more than 100% to beneﬁt from active ownership.
+non-shared licenses
+Some licenses are designated as non-shared, and are reserved for exclusive use instead of being shared when not in use.
+The number of non-shared licenses is contained by the number of owned licenses, but this number is not included in share calculations for the
+project. To designate some licenses as non-shared, add the non-shared number to both the owned and the non-shared values.
+When to use fair share with project mode
+Conﬁgure fair share for all license features in project mode. Fair share is the basic license distribution policy, and is built on by adding additional
+conﬁguration.
+The basic fair share conﬁguration can meet your needs without conﬁguring additional distribution policies if the licenses are assigned to speciﬁc
+license projects, but not strictly owned.
+When to add ownership (and preemption)
+Conﬁgure licenses as owned when:
+Licenses are owned by licenses projects, but can be loaned out when not in use.
+Maximizing license usage and license ownership are both important considerations. Loaned licenses must be returned to the owners as
+quickly as possible when needed (using preemption).
+Jobs borrowing licenses can be preempted.
+When to add active ownership
+Conﬁgure active ownership for owned licenses when:
+Ownership values are dynamic instead of being ﬁxed values, and usually decrease as more projects actively seek licenses.
+When to add non-shared licenses
+Conﬁgure licenses as non-shared when:
+Licenses are owned.
+Licenses are used exclusively by the owners.
+Having licenses always available to the owners is more important than maximizing license use.
+Project mode preemption
+Preemption occurs only when there are no free licenses. During preemption, a project releases a borrowed license to the project that owns the
+license (and now has demand).
+Jobs that use licenses that support job suspension release their tokens and automatically resume from where they were suspended. Jobs that use
+licenses that do not support suspension are killed and restarted from the beginning.
+IBM Spectrum LSF 2003
+
+Preemption applies only to project mode, and depending on your conﬁguration takes the following into consideration:
+Run time (a job that has the smallest run time gets preempted ﬁrst, in general)
+Fair share settings
+Ownership
+Priority
+Minimal job preemption
+Depending on how your projects are set up (regardless of whether they are all at the same level) your preemption is either flat or hierarchical.
+Preemption restrictions
+ LSF preemption with License Scheduler preemption
+ 
+Basic preemption with projects conﬁgured
+When preemption occurs, License Scheduler calculates token usage for each project. The calculation considers tokens in use, tokens that are
+required, and token ownership value.
+Based on the token usage, License Scheduler determines the projects that require tokens, and the projects that have too many.
+Jobs belonging to projects that require tokens are scheduled ﬁrst, ordered by project fair share settings.
+Jobs belonging to projects with extra tokens are preempted ﬁrst, if needed, ordered by project fair share settings and the length of time each
+job is running.
+With PRIORITY
+If project PRIORITY is conﬁgured in the Project section, the sort order of projects is based on priority, where a higher priority project is preempted
+last.
+With PREEMPT_ORDER
+If PREEMPT_ORDER is set to BY_OWNERSHIP in the Feature section, the projects are sorted by ownership.
+Projects with the highest ownership are scheduled ﬁrst.
+Projects with the smallest ownership are preempted ﬁrst.
+This setting overrides basic preemption and PRIORITY.
+With ENABLE_MINJOB_PREEMPTION
+If ENABLE_MINJOB_PREEMPTION=Y, the number of preempted jobs is minimized. Projects with extra tokens are sorted by PRIORITY (if conﬁgured)
+or fair share. The jobs are then sorted by RUSAGE.
+Jobs with higher RUSAGE are preempted ﬁrst to minimize the number of jobs preempted.
+This setting is used in addition to basic preemption or PRIORITY.
+Hierarchical preemption with project groups conﬁgured
+When project groups are conﬁgured, introducing a hierarchy into the project conﬁguration, hierarchical preemption applies.
+There are two methods of hierarchical preemption:
+1. Top-down (default): Preemption occurs between cousins rather than siblings. The result is to balance preemption between the entire
+hierarchy of projects.
+2. Bottom-up (if LS_PREEMPT_PEER=Y): Siblings can preempt each other. The result is to balance preemption within a family of projects ﬁrst.
+For example, your projects are set up as follows:
+In top-down preemption, if P8 needs a token, it preempts from P1, P2, or P3 (who are more distant relations), not from P6 or P7 (siblings of P8).
+In bottom-up preemption, P8 preempts instead from its siblings (P6 or P7).
+2004    IBM Spectrum LSF
+
+Limits
+Hierarchical preemption is also affected by any limits that are placed on the projects. If a limit is already reached (at any level of the hierarchy),
+License Scheduler considers the next possible node for preemption instead.
+Preemption restrictions
+A job cannot be preempted if:
+Preemption is restricted by a parameter such as: MAX_JOB_PREEMPT, PREEMPT_RESERVE, or LM_REMOVE_INTERVAL.
+The preemptable job's server is not the current checking service domain.
+The job was submitted with a time duration and this time duration is expired.
+Both LSF jobs and taskman jobs using licenses that are managed by License Scheduler can be preempted. To ensure that lower priority jobs are not
+preempted too many times, maximum preemption time limits can be enabled with LS_ENABLE_MAX_PREEMPT.
+License Scheduler taskman job preemption limits are controlled by the parameter LS_MAX_TASKMAN_PREEMPT in lsf.licensescheduler.
+LSF preemption with License Scheduler preemption
+For LSF jobs the parameter MAX_JOB_PREEMPT sets the maximum number of times a job can be preempted. MAX_JOB_PREEMPT can be deﬁned in
+lsb.params, lsb.queues, or lsb.applications, with the application setting overriding the queue setting and the queue setting overriding the cluster-
+wide lsb.params deﬁnition.
+Jobs belonging to a license project that has ownership in License Scheduler can trigger preemption even when no more slots are available in LSF.
+Conﬁgured together with LSF_LIC_SCHED_PREEMPT_SLOT_RELEASE=Y in lsf.conf, license job preemption works together with LSF slot-based
+preemption. Conﬁgured together PREEMPTABLE_RESOURCES=mem in lsb.params and LSF_LIC_SCHED_PREEMPT_SLOT_RELEASE=Y in lsf.conf,
+license job preemption works together with LSF memory resource preemption.
+Example
+Project proj1 has ownership of 3 of the license AppX.
+MXJ = 5, and LSF_LIC_SCHED_PREEMPT_SLOT_RELEASE=Y is conﬁgured in lsf.conf.
+Five jobs are submitted and started with AppX, in proj2. Then, two jobs are submitted to proj1, and pend waiting for a AppX license token.
+Although the slots are full, the request is sent to License Scheduler, which recognizes the ownership and preempts two jobs in proj2. The jobs are
+suspended, both their licenses and slots are released, and the two jobs in proj1 can run.
+LSF JOB_CONTROLS conﬁguration
+If the LSF administrator deﬁnes JOB_CONTROLS in lsb.queues so that job controls (such as the signal SIGTSTP) take effect when License Scheduler
+preemption occurs, LSF_LIC_SCHED_PREEMPT_STOP=Y in lsf.conf must also be deﬁned for License Scheduler preemption to work.
+License usage with FlexNet and Reprise License Manager
+License Scheduler works differently with different types of applications, depending on how the application uses the license features and whether
+these license features are known at the start of the job.
+Known license requirements
+ Unknown license requirements
+ Project mode
+ Cluster mode
+ Reserved FlexNet Manager licenses
+ 
+Known license requirements
+For many applications, all license features needed to run its jobs are known before the start of the job.
+1. The job submission passes a license usage request to the LSF cluster.
+IBM Spectrum LSF 2005
+
+2. LSF sends a query to License Scheduler to see if the license token can be given to the application.
+3. When License Scheduler grants permission, LSF gives authorization to the user application.
+4. The user application sends a request to the license manager to check out a license.
+Unknown license requirements
+Some applications require an initial feature license to start a job and more feature or subfeature licenses during job execution. The user who submits
+the job knows the main license feature that is needed to start the job, but might not know the additional feature names or the number of more
+features required. This additional license feature not speciﬁed at job submission is considered unknown license use.
+At any time, the user application can either make a request to LSF without requesting veriﬁcation from License Scheduler, or it can bypass LSF
+entirely by sending the license request directly to the license servers.
+1. The user application makes a request to LSF without requesting veriﬁcation from License Scheduler.
+2. LSF gives authorization to the user application because the request did not specify the need for License Scheduler veriﬁcation.
+3. The user application sends a request to the license manager to check out a license.
+Project mode
+Known license requirements
+Project mode supports known license requirements that are speciﬁed in the rusage section of job submissions. By default, each license feature is
+reserved for the full length of the job.
+Optionally, use the Feature section parameter DYNAMIC=Y to enable the use of duration in the rusage string, and release license features after a
+speciﬁed duration.
+Unknown license requirements
+Unknown license requirements not in the rusage string are counted as jobs not managed by LSF, and license distribution policies are not applied by
+default.
+Optionally, license requirements not included in the rusage string can be tracked as part of the managed workload in project mode if there is at least
+one license feature that is speciﬁed in the job’s rusage string. Set the parameter ENABLE_DYNAMIC_RUSAGE=Y in the Feature section to apply
+project distribution policies even when license rusage is not speciﬁed.
+Cluster mode
+Known license requirements
+Cluster mode supports known license requirements that are speciﬁed in the rusage section of job submissions. Each license feature is reserved for
+the full length of the job.
+In cluster mode, license requirements cannot be submitted with duration speciﬁed. If you have known license requirements for only a
+predetermined part of your job, you must choose between including them in the rusage and reserving for the entire job, or leaving them as unknown
+requirements.
+Unknown license requirements
+Unknown license requirements not in the rusage string are counted as part of the managed workload in cluster mode. License features not in the
+rusage string are not reserved for the job, however, distribution policies do apply. This behavior is equivalent to ENABLE_DYNAMIC_RUSAGE=Y in
+project mode.
+Reserved FlexNet Manager licenses
+LSF License Scheduler supports the FlexNet Manager license reservation keyword (RESERVE), which allows LSF License Scheduler to include these
+reserved licenses. License tokens that are reserved by FlexNet Manager are counted as being in use (as OTHERS tokens) instead of being free (as
+FREE tokens). Therefore, the RESERVE value is included in the OTHERS value in the blstat command output and is not included in the FREE value.
+2006    IBM Spectrum LSF

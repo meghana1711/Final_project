@@ -1,0 +1,614 @@
+#IBM 
+Spectrum Scale Per Host Resources 
+gstatus            ([hostgpfs01] [hostgpfs02] [hostgpfs03]) 
+gbytesin           ([hostgpfs01] [hostgpfs02] [hostgpfs03]) 
+gbytesout          ([hostgpfs01] [hostgpfs02] [hostgpfs03]) 
+gopens             ([hostgpfs01] [hostgpfs02] [hostgpfs03]) 
+gcloses            ([hostgpfs01] [hostgpfs02] [hostgpfs03]) 
+greads             ([hostgpfs01] [hostgpfs02] [hostgpfs03]) 
+gwrites            ([hostgpfs01] [hostgpfs02] [hostgpfs03]) 
+grdir              ([hostgpfs01] [hostgpfs02] [hostgpfs03]) 
+giupdate           ([hostgpfs01] [hostgpfs02] [hostgpfs03]) 
+gbytesin_gpfs01    ([hostgpfs01] [hostgpfs02] [hostgpfs03]) 
+gbytesout_gpfs01   ([hostgpfs01] [hostgpfs02] [hostgpfs03]) 
+gbytesin_gpfs02    ([hostgpfs01] [hostgpfs02] [hostgpfs03]) 
+gbytesout_gpfs02   ([hostgpfs01] [hostgpfs02] [hostgpfs03])
+#IBM 
+Spectrum Scale shared resources 
+gtotalin      [all] 
+gtotalout     [all] 
+End ResourceMap
+4. Copy the ELIM executable ﬁles to your cluster($LSF_SERVERDIR).
+# cp elim.gpfshost elim.gpfsglobal $LSF_SERVERDIR
+By default, the ELIM executable ﬁles are stored in 10.1/util/gpfs.
+5. Reconﬁgure your cluster.
+#lsfadmin reconfig 
+#badmin mbdrestart
+LSF jobs using JSDL
+The Job Submission Description Language (JSDL) provides a convenient format for describing job requirements. You can save a set of job
+requirements in a JSDL XML ﬁle, and then reuse that ﬁle as needed to submit jobs to LSF.
+For detailed information about JSDL, see the Job Submission Description Language (JSDL) Speciﬁcation from http://www.gridforum.org.
+Using JSDL ﬁles with LSF
+ LSF complies with the JSDL speciﬁcation by supporting most valid JSDL elements and POSIX extensions. The LSF extension schema allows
+you to use LSF features not included in the JSDL standard schema.
+Collect resource values using elim.jsdl
+ To support the use of JSDL ﬁles at job submission, LSF collects the following load indices:
+Using JSDL ﬁles with LSF
+LSF complies with the JSDL speciﬁcation by supporting most valid JSDL elements and POSIX extensions. The LSF extension schema allows you to
+use LSF features not included in the JSDL standard schema.
+The following sections describe how LSF supports the use of JSDL ﬁles for job submission.
+Where to ﬁnd the JSDL schema ﬁles
+The JSDL schema (jsdl.xsd), the POSIX extension (jsdl-posix.xsd), and the LSF extension (jsdl-lsf.xsd) are located in the LSF_LIBDIR directory.
+Supported JSDL and POSIX extension elements
+The following table maps the supported JSDL standard and POSIX extension elements to LSF submission options.
+Note: For information about how to specify JSDL element types such as range values, see the "Job Submission Description Language (JSDL)
+Speciﬁcation" at http://www.gridforum.org/documents/GFD.56.pdf.
+Table 1. Supported JSDL and POSIX extension elements
+Element bsub Option Description Example
+Job Structure
+Elements
+IBM Spectrum LSF 2353
+
+Element bsub Option Description Example
+JobDefinitio
+nNot applicable Root element of the JSDL document. Contains the mandatory child element 
+JobDescription.<JobDefiniti
+on> 
+<JobDescript
+ion>  
+... 
+</JobDescrip
+tion> 
+</JobDefinit
+ion>
+JobDescripti
+on-P High-level container element that holds more speciﬁc description elements.
+Job Identity
+Elements
+JobName -J String used to name the job. <jsdl:JobNam
+e>myjob</jsd
+l:JobName> 
+JobProject -P String that speciﬁes the project to which the job belongs. <jsdl:JobPro
+ject> 
+myproject 
+</jsdl:JobPr
+oject>
+Application 
+Elements
+Application Not applicable High-level container element that holds more speciﬁc application deﬁnition elements.
+ApplicationN
+ame-app String that deﬁnes the name of an application proﬁle deﬁned in lsb.applications. <jsdl:Applic
+ation>  
+<jsdl:Applic
+ationName>Ap
+plicationX  
+</jsdl:Appli
+cationName>  
+</jsdl:Appli
+cation>
+ApplicationV
+ersion-app String that deﬁnes the version of the application deﬁned in lsb.applications. <jsdl:Applic
+ation> 
+<jsdl:Applic
+ationName> 
+ApplicationX
+</jsdl:Appli
+cationName> 
+<jsdl:Applic
+ationVersion
+>5.5  
+</jsdl:Appli
+cationVersio
+n>  
+... 
+</jsdl:Appli
+cation>
+Resource
+Elements
+CandidateHos
+ts-m Complex type element that speciﬁes the set of named hosts that can be selected to run the
+job.<jsdl:Candid
+ateHosts>  
+<jsdl:HostNa
+me>host1 
+</jsdl:HostN
+ame> 
+<jsdl:HostNa
+me>host2 
+</jsdl:HostN
+ame>  
+</jsdl:Candi
+dateHosts>
+HostName -m Contains a single name of a host or host group. See the previous example
+(CandidateHosts).
+ExclusiveExe
+cution-x Boolean that designates whether the job must have exclusive access to the resources it
+uses.<jsdl:Exclus
+iveExecution
+>true  
+</jsdl:Exclu
+siveExecutio
+n> 
+OperatingSys
+temName-R A token type that contains the operating system name. LSF uses the external resource 
+osname.<jsdl:Operat
+ingSystemNam
+e>LINUX  
+</jsdl:Opera
+tingSystemNa
+me> 
+2354    IBM Spectrum LSF
+
+Element bsub Option Description Example
+OperatingSys
+temVersion-R A token type that contains the operating system version. LSF uses the external resource 
+osver.<jsdl:Operat
+ingSystemVer
+sion>5.7 
+  
+</jsdl:Opera
+tingSystemVe
+rsion> 
+CPUArchitect
+ureName-R Token that speciﬁes the CPU architecture required by the job in the execution environment.
+LSF uses the external resource cpuarch.<jsdl:CPUArc
+hitectureNam
+e>sparc  
+</jsdl:CPUAr
+chitectureNa
+me> 
+IndividualCP
+USpeed-R Range value that speciﬁes the speed of each CPU required by the job in the execution
+environment, in Hertz (Hz). LSF uses the external resource cpuspeed.<jsdl:Indivi
+dualCPUSpeed
+>  
+<jsdl:LowerB
+oundedRange> 
+1073741824.0 
+</jsdl: 
+LowerBounded
+Range> 
+ 
+</jsdl:Indiv
+idualCPUSpee
+d> 
+IndividualCP
+UCount-n Range value that speciﬁes the number of CPUs for each resource. <jsdl:Indivi
+dualCPUCount
+>   
+<jsdl:exact>
+2.0</jsdl:ex
+act> 
+</jsdl:Indiv
+idualCPUCoun
+t> 
+IndividualPh
+ysicalMemory-R Range value that speciﬁes the amount of physical memory required on each resource, in
+bytes.<jsdl:Indivi
+dualPhysical
+Memory> 
+<jsdl:LowerB
+oundedRange> 
+1073741824.0 
+</jsdl:  
+LowerBounded
+Range> 
+</jsdl:Indiv
+idualPhysica
+lMemory> 
+IndividualVi
+rtualMemory-R Range value that speciﬁes the amount of virtual memory required for each resource, in
+bytes.<jsdl:Indivi
+dualVirtualM
+emory>    
+<jsdl:LowerB
+oundedRange> 
+1073741824.0 
+</jsdl:Lower
+BoundedRange
+> 
+</jsdl:Indiv
+idualVirtual
+Memory> 
+IndividualNe
+tworkBandwid
+th-R Range value that speciﬁes the bandwidth requirements of each resource, in bits per second
+(bps). LSF uses the external resource bandwidth.<jsdl:Indivi
+dualNetworkB
+andwidth>  
+<jsdl:LowerB
+oundedRange> 
+104857600.0 
+</jsdl:  
+LowerBounded
+Range> 
+</jsdl:Indiv
+idualNetwork 
+Bandwidth>
+TotalCPUCoun
+t-n Range value that speciﬁes the total number of CPUs required for the job. <jsdl:TotalC
+PUCount>
+<jsdl: 
+exact>2.0  
+</jsdl:exact
+></jsdl: 
+TotalCPUCoun
+t>
+IBM Spectrum LSF 2355
+
+Element bsub Option Description Example
+TotalPhysica
+lMemory-R Range value that speciﬁes the required amount of physical memory for all resources for the
+job, in bytes.<jsdl:TotalP
+hysicalMemor
+y>   
+<jsdl:LowerB
+oundedRange> 
+10737418240.
+0 </jsdl: 
+LowerBounded
+Range> 
+</jsdl:Total
+PhysicalMemo
+ry> 
+TotalVirtual
+Memory-R Range value that speciﬁes the required amount of virtual memory for the job, in bytes.<jsdl:TotalV
+irtualMemory
+>  
+<jsdl:LowerB
+oundedRange> 
+1073741824.0 
+</jsdl:  
+LowerBounded
+Range> 
+</jsdl:Total
+VirtualMemor
+y> 
+TotalResourc
+eCount-n Range value that speciﬁes the total number of resources required by the job. <jsdl:Resour
+ces>...    
+<jsdl:TotalR
+esourceCount
+> 
+<jsdl:exact>
+5.0</jsdl:ex
+act> 
+</jsdl:Total
+ResourceCoun
+t> 
+Data Staging
+Elements
+FileName -f String that speciﬁes the local name of the ﬁle or directory on the execution host. For a
+directory, you must specify the relative path.<jsdl:DataSt
+aging>
+<jsdl:FileNa
+me>    
+job1/input/c
+ontrol.txt 
+</jsdl:FileN
+ame> 
+...
+</jsdl:DataS
+taging> 
+CreationFlag-f Speciﬁes whether the ﬁle created on the local execution system overwrites or append to an
+existing ﬁle.<jsdl:DataSt
+aging> 
+<jsdl:  
+CreationFlag
+> 
+overwrite 
+</jsdl:Creat
+ionFlag> ... 
+</jsdl:DataS
+taging>
+Source Not applicable Contains the location of the ﬁle or directory on the remote system. In LSF, the ﬁle location is
+speciﬁed by the URI element. The ﬁle is staged in before the job is executed. See the
+example for the Target element.
+URI -f Speciﬁes the location used to stage in (Source) or stage out (Target) a ﬁle. For use with LSF,
+the URI must be a ﬁle path only, without a protocol.
+2356    IBM Spectrum LSF
+
+Element bsub Option Description Example
+Target Not applicable Contains the location of the ﬁle or directory on the remote system. In LSF, the ﬁle location is
+speciﬁed by the URI element. The ﬁle is staged out after the job is executed.<jsdl:DataSt
+aging>
+<jsdl:Source
+>  
+<jsdl:URI>   
+//input/myjo
+bs/ 
+control.txt 
+</jsdl:URI> 
+</jsdl:Sourc
+e> 
+<jsdl:Target
+> 
+<jsdl:URI> 
+//output/myj
+obs/control.
+txt 
+</jsdl:URI>
+</jsdl:Targe
+t>  
+...
+</jsdl:DataS
+taging> 
+POSIX
+Extension
+Elements
+Executable Not applicable String that speciﬁes the command to execute. <jsdl-
+posix:Execut
+able>myscrip
+t  
+</jsdl-
+posix:Execut
+able> 
+Argument Not applicable Constrained normalized string that speciﬁes an argument for the application or command.<jsdl-
+posix:Argume
+nt>10  
+</jsdl-
+posix:Argume
+nt> 
+Input -i String that speciﬁes the Standard Input for the command. ...<jsdl-
+posix:Input>
+input.txt 
+</jsdl-
+posix:Input>
+... 
+Output -o String that speciﬁes the Standard Output for the command. ...<jsdl-
+posix:Output
+>output.txt  
+</jsdl-
+posix:Output
+>... 
+Error -e String that speciﬁes the Standard Error for the command. ...<jsdl-
+posix:Error>
+error.txt  
+</jsdl-
+posix:Error>
+... 
+WorkingDirec
+toryNot applicable String that speciﬁes the starting directory required for job execution. If no directory is
+speciﬁed, LSF sets the starting directory on the execution host to the current working
+directory on the submission host. If the current working directory is not accessible on the
+execution host, LSF runs the job in the /tmp directory on the execution host....<jsdl-
+posix:  
+WorkingDirec
+tory> 
+./home</jsdl
+-
+posix:Workin
+gDirectory> 
+.. 
+Environment Not applicable Speciﬁes the name and value of an environment variable deﬁned for the job in the execution
+environment. LSF maps the JSDL element deﬁnitions to the matching LSF environment
+variables.<jsdl-
+posix:Enviro
+nment   
+name="SHELL"
+> 
+/bin/bash</j
+sdl-
+posix:Enviro
+nment> 
+IBM Spectrum LSF 2357
+
+Element bsub Option Description Example
+WallTimeLimi
+t-W Positive integer that speciﬁes the soft limit on the duration of the application’s execution, in
+seconds.<jsdl-
+posix:WallTi
+meLimit>60  
+</jsdl-
+posix:WallTi
+meLimit> 
+FileSizeLimi
+t-F Positive integer that speciﬁes the maximum size of any ﬁle associated with the job, in bytes.<jsdl-
+posix:FileSi
+zeLimit> 
+1073741824 
+</jsdl-
+posix: 
+FileSizeLimi
+t> 
+CoreDumpLimi
+t-C Positive integer that speciﬁes the maximum size of core dumps a job may create, in bytes.<jsdl-
+posix:CoreDu
+mpLimit>0  
+</jsdl-
+posix:CoreDu
+mpLimit> 
+DataSegmentL
+imit-D Positive integer that speciﬁes the maximum data segment size, in bytes. <jsdl-
+posix:DataSe
+gmentLimit> 
+32768  
+</jsdl-
+posix:DataSe
+gmentLimit> 
+MemoryLimit -M Positive integer that speciﬁes the maximum amount of physical memory that the job can use
+during execution, in bytes.<jsdl-
+posix:Memory
+Limit>  
+67108864 
+</jsdl-
+posix:Memory
+Limit> 
+StackSizeLim
+it-S Positive integer that speciﬁes the maximum size of the execution stack for the job, in bytes.<jsdl-
+posix:StackS
+izeLimit> 
+1048576 
+</jsdl-
+posix:StackS
+izeLimit> 
+CPUTimeLimit-c Positive integer that speciﬁes the number of CPU time seconds a job can consume before a
+SIGXCPU signal is sent to the job.<jsdl-
+posix:CPUTim
+eLimit>30  
+</jsdl-
+posix:CPUTim
+eLimit> 
+ProcessCount
+Limit-p Positive integer that speciﬁes the maximum number of processes the job can spawn.<jsdl-
+posix:Proces
+sCountLimit>
+8 
+</jsdl-
+posix:Proces
+sCountLimit> 
+VirtualMemor
+yLimit-v Positive integer that speciﬁes the maximum amount of virtual memory the job can allocate,
+in bytes.<jsdl-
+posix:Virtua
+lMemoryLimit
+>  
+134217728  
+</jsdl-
+posix:Virtua
+lMemoryLimit
+> 
+ThreadCountL
+imit-T Positive integer that speciﬁes the number of threads the job can create. <jsdl-
+posix:Thread
+CountLimit>8  
+</jsdl-
+posix:Virtua
+lMemoryLimit
+> 
+LSF extension elements
+To use all available LSF features, add the elements described in the following table to your JSDL ﬁle.
+Table 2. LSF extension elements
+2358    IBM Spectrum LSF
+
+Element bsub Option Description Element bsub Option Description
+SchedulerPar
+amsNot applicable Complex type element that speciﬁes various scheduling parameters (starting with Queue and ending with
+JobGroup).
+<jsdl-lsf:SchedulerParams>  
+<jsdl-lsf:ResourceRequirements> 
+"select[swp>15 && hpux] order[ut]" 
+</jsdl-lsf:ResourceRequirements> 
+<jsdl-lsf:Start>12:06:09:55 
+</jsdl-lsf:Start> 
+<jsdl-lsf:Deadline>8:22:15:50 
+</jsdl-lsf:Deadline> 
+<jsdl-lsf:ReservationID>"user1#0" 
+</jsdl-lsf:ReservationID> 
+<jsdl-lsf:Dependencies>’done myjob1’ 
+</jsdl-lsf:Dependencies> 
+<jsdl-lsf:Rerunnable>true 
+</jsdl-lsf:Rerunnable> 
+<jsdl-lsf:UserPriority>3 
+</jsdl-lsf:UserPriority> 
+<jsdl-lsf:ServiceClass>platinum 
+</jsdl-lsf:ServiceClass> 
+<jsdl-lsf:Group>sysadmin</jsdl-lsf:Group> 
+<jsdl-lsf:ExternalScheduler>pset 
+</jsdl-lsf:ExternalScheduler> 
+<jsdl-lsf:Hold>true </jsdl-lsf:Hold>  
+<jsdl-lsf:JobGroup>/risk_group/portfolio1 
+/current 
+</jsdl-lsf:JobGroup> 
+</jsdl-lsf:SchedulerParams>
+Queue -q String that speciﬁes the queue in which the job runs.
+ResourceRequ
+irements-R String that speciﬁes one or more resource requirements of the job. Multiple rusage sections are not
+supported.
+Start -b String that speciﬁes the earliest time that the job can start.
+Deadline -t String that speciﬁes the job termination deadline.
+ReservationI
+D-U String that speciﬁes the reservation ID returned when you use brsvadd to add a reservation.
+Dependencies-w String that speciﬁes a dependency expression. LSF does not run your job unless the dependency expression
+evaluates to TRUE.
+Rerunnable -r Boolean value that speciﬁes whether to reschedule a job on another host if the execution host becomes
+unavailable while the job is running.
+UserPriority-sp Positive integer that speciﬁes the user-assigned job priority. This allows users to order their own jobs within a
+queue.
+ServiceClass-sla String that speciﬁes the service class where the job is to run.
+Group -G String that associates the job with the speciﬁed group for fair share scheduling.
+ExternalSche
+duler-ext [sched] String used to set application-speciﬁc external scheduling options for the job.
+Hold -H Boolean value that tells LSF to hold the job in the PSUSP state when the job is submitted. The job is not
+scheduled until you tell the system to resume the job.
+JobGroup -g String that speciﬁes the job group to which the job is submitted.
+Notification
+ParamsNot applicable Complex type element that tells LSF when and where to send notiﬁcation email for a job. See the following
+example:
+<jsdl-lsf:NotificationParams> 
+<jsdl-lsf:NotifyAtStart> 
+true</jsdl-lsf:NotifyAtStart> 
+<jsdl-lsf:NotifyAtFinish> 
+true</jsdl-lsf:NotifyAtFinish> 
+<jsdl-lsf:NotificationEmail> 
+-u user10</jsdl-lsf:NotificationEmail> 
+</jsdl-lsf:NotificationParams> 
+NotifyAtStar
+t-B Boolean value that tells LSF to notify the user who submitted the job that the job has started.
+NotifyAtFini
+sh-N Boolean value that tells LSF to notify the user who submitted the job that the job has ﬁnished.
+Notification
+Email-u String that speciﬁes the user who receives notiﬁcation emails.
+IBM Spectrum LSF 2359
+
+Element bsub Option Description
+RuntimeParam
+sNot applicable Complex type element that contains values for LSF runtime parameters.
+<jsdl-lsf:RuntimeParams>  
+<jsdl-lsf:Interactive>I</jsdl-lsf:Interactive>  
+<jsdl-lsf:Block>true 
+</jsdl-lsf:Block><jsdl-lsf:PreExec>myscript 
+</jsdl-lsf:PreExec><jsdl-lsf:Checkpoint> 
+myjobs/checkpointdir</jsdl-lsf:Checkpoint> 
+<jsdl-lsf:LoginShell>/csh</jsdl-lsf:LoginShell> 
+<jsdl-lsf:SignalJob> 
+18</jsdl-lsf:SignalJob> 
+<jsdl-lsf:WarningAction> 
+’URG’</jsdl-lsf:WarningAction> 
+<jsdl-lsf:WarningTime> 
+’2’</jsdl-lsf:WarningTime> 
+<jsdl-lsf:SpoolCommand>true 
+</jsdl-lsf:SpoolCommand> 
+ <jsdl-lsf:Checkpoint></jsdl-lsf:RuntimeParams>
+Interactive -I[s|p] String that speciﬁes an interactive job with a deﬁned pseudo-terminal mode.
+Block -K Boolean value that tells LSF to complete the submitted job before allowing the user to submit another job.
+PreExec -E String that speciﬁes a pre-exec command to run on the batch job’s execution host before actually running the
+job. For a parallel job, the pre-exec command runs on the ﬁrst host selected for the parallel job.
+Checkpoint -k String that makes a job checkpoint-able and speciﬁes the checkpoint directory.
+LoginShell -L For UNIX jobs, string that tells LSF to initialize the execution environment using the speciﬁed login shell.
+SignalJob -s String that speciﬁes the signal to send when a queue-level run window closes. Use this to override the default
+signal that suspends jobs running in the queue.
+WarningActio
+n-wa String that speciﬁes the job action prior to the job control action. Requires that you also specify the job action
+warning time.
+WarningTime -wt Positive integer that speciﬁes the amount of time prior to a job control action that the job warning action
+should occur.
+SpoolCommand-is Boolean value that spools a job command ﬁle to the directory speciﬁed by JOB_SPOOL_DIR, and uses the
+spooled ﬁle as the command ﬁle for the job.
+Submit a job using a JSDL ﬁle
+ 
+Unsupported JSDL and POSIX extension elements
+The current version of LSF does not support the following elements:
+Job structure elements
+Description
+Job identity elements
+JobAnnotation
+Resource elements
+FileSystem
+MountPoint
+MountSource
+DiskSpace
+FileSystemType
+OperatingSystemType
+IndividualCPUTime
+IndividualDiskSpace
+TotalCPUTime
+TotalDiskSpace
+Data staging elements
+FileSystemName
+DeleteOnTermination
+POSIX extension elements
+LockedMemoryLimit
+OpenDescriptorsLimit
+PipeSizeLimit
+2360    IBM Spectrum LSF

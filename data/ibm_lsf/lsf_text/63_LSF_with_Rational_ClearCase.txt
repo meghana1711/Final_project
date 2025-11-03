@@ -1,0 +1,218 @@
+"9.30.199.99/32" 
+        ], 
+        "users" : ["u3"], 
+        "ttl" : 99999 
+    } 
+]
+Extend IBM Spectrum LSF
+Conﬁgure and use IBM Spectrum LSF integrations.
+IBM Spectrum LSF with IBM Rational ClearCase
+ Many sites use the IBM® Rational® ClearCase® (ClearCase) environment for revision source control and development. Learn how to install,
+conﬁgure, and use IBM Spectrum LSF with IBM Rational ClearCase software.
+IBM Spectrum LSF on Cray Linux
+ The IBM Spectrum LSF integration with Cray Linux applies to LSF Version 8.0 or later, and supports integration with Cray Linux Environment
+4.0 or later. You must have LSF Standard Edition. The Cray Linux integration is not supported on LSF Express Edition.
+IBM Spectrum LSF with Apache Spark
+ Conﬁgure and use IBM Spectrum LSF with Apache Spark applications.
+IBM Spectrum LSF with Apache Hadoop
+ Conﬁgure and use IBM Spectrum LSF with Apache Hadoop applications.
+IBM Spectrum LSF with IBM Cluster Systems Manager
+IBM Cluster Systems Manager (CSM) is a systems management tool that is designed for simple, low-cost management of distributed and
+clustered IBM Power Systems. Learn how to install, conﬁgure, and use IBM Spectrum LSF with IBM Cluster Systems Manager.
+IBM Spectrum LSF ELIM for IBM Spectrum Scale
+ Conﬁgure and use the LSF ELIMs for IBM Spectrum Scale.
+LSF jobs using JSDL
+ IBM Spectrum LSF Simulator
+ Use the LSF Simulator to analyze and tune your LSF conﬁguration by simulating an LSF cluster in a separate, internal environment. LSF
+Simulator allows you to run experiments with different and workload traces without interrupting the LSF production environment.
+IBM Spectrum LSF Predictor
+ LSF Predictor is a machine learning system that uses historical LSF job data to provide a prediction capability for job resource usage, such as
+memory usage.
+IBM Spectrum LSF with IBM Rational ClearCase
+Many sites use the IBM® Rational® ClearCase® (ClearCase) environment for revision source control and development. Learn how to install, conﬁgure,
+and use IBM Spectrum LSF with IBM Rational ClearCase software.
+About the LSF Integration for Rational ClearCase
+ Use the cleartool command to start a ClearCase view.
+Submitting LSF jobs in ClearCase
+ Use the bsub command to submit a job.
+Submitting interactive LSF tasks in ClearCase
+ Submit interactive LSF tasks with tools such as lsrun, and lsgrun.
+LSF environment variables for ClearCase
+ Environment variables required by the LSF integration with Rational ClearClase.
+About the LSF Integration for Rational ClearCase
+Use the cleartool command to start a ClearCase view.
+After the view is created, you are presented with a ﬁle system containing your sources and binaries. The ﬁle system is not accessible outside the
+view. The cleartool command has an option to start a view and run a command under the view.
+Integration components
+The LSF integration for ClearCase consists of the following daemon wrapper ﬁles in LSF_SERVERDIR:
+daemons.wrap
+Daemon wrapper for ClearCase on UNIX and Linux
+daemons.wrap.exe
+Daemon wrapper for ClearCase on Windows
+IBM Spectrum LSF 2319
+
+The source code for the daemon wrapper is in the LSF examples directory, LSF_TOP/10.1/misc/examples/clearcase/daemons.wrap.c.
+Retry the cleartool setview command if it fails
+In the ClearCase daemon wrapper, the cleartool setview command creates a process that is set to a speciﬁed ClearCase view for sbatchd daemons.
+If the setview command fails, sbatchd cannot start and the job will fail or exit.
+You can enable a retry mechanism to resolve failures with the cleartool setview command so that LSF can tolerate temporary cleartool setview
+command failures. To control setview retry, set both of the following parameters in the lsf.conf ﬁle:
+The LSF_CLEARCASE_WRAPPER_RETRY parameter speciﬁes the maximum number of times that daemon wrapper retries the setview
+command in case of failure.
+The LSF_CLEARCASE_WRAPPER_RETRY_INTERVAL parameter speciﬁes a time interval, in seconds, between retries.
+After setting or changing the value of these parameters, run the badmin mbdrestart and bctrld restart sbd all commands to apply your changes
+Debug ClearCase issues
+To enable debugging of ClearCase issues, set the DAEMON_WRAP_DEBUG environment variable. When the DAEMON_WRAP_DEBUG environment
+variable is set to 1, the daemon wrapper captures and logs the ClearCase stdout and stderr streams to /tmp/daemons.wrap.log.
+Submitting LSF jobs in ClearCase
+Use the bsub command to submit a job.
+About this task
+LSF determines whether the user is in a ClearCase environment and executes the job accordingly. You do not need any special conﬁgurations or
+special bsub options.
+Procedure
+1. Conﬁgure the LSF integration for ClearCase.
+a. Add the following parameters to the lsf.conf ﬁle:
+LSF_DAEMON_WRAP=y  # turns on the daemons.wrap facility 
+LSB_BSUBI_OLD=y    # activate this parameter if using 
+                   # interactive jobs in ClearCase (bsub -I) 
+                   # Without it,interactive jobs can only be 
+                   # modified (e.g., killed, suspended, etc.) 
+                   # from the terminal and not by bkill, 
+                   # bstop, etc. 
+b. Restart sbatchd on each server host:
+bctrld restart sbd all
+2. Set the ClearCase environment.
+a. Windows: Set the CLEARCASE_ROOT environment variable.
+CLEARCASE_ROOT must deﬁne an absolute path starting with the default ClearCase drive and ending with the view name without a
+trailing backslash (\).
+CLEARCASE_ROOT=F:\myview 
+b. (Optional) Windows: Set the CLEARCASE_DRIVE environment variable.
+Specify the virtual drive letter for a ClearCase view to the drive. This is useful if you wish to map a ClearCase view to a virtual drive as an
+alias.
+CLEARCASE_DRIVE=F: 
+c. (Optional) UNIX: Set the CLEARCASE_MOUNTDIR environment variable to the Rational ClearCase mount directory.
+Use CLEARCASE_MOUNTDIR if:
+A job is submitted from a UNIX host but runs on a Windows host
+The Rational ClearCase mount directory is not the default /vobs
+CLEARCASE_MOUNTDIR=/myvobs 
+Submitting interactive LSF tasks in ClearCase
+2320    IBM Spectrum LSF
+
+Submit interactive LSF tasks with tools such as lsrun, and lsgrun.
+Before you begin
+The LSF_JOB_STARTER environment variable must be set to the ClearCase job starter.
+About this task
+The RES daemon on the remote host runs the job with the job starter. After the job starter is set, tasks can run transparently in ClearCase views.
+Procedure
+1. (UNIX) Create a ClearCase job starter to set up a view and run the task.
+The following sample job starter script clearstarter does the following:
+Sets up a view for the user on the execution host. This is the same view as on the submission host
+Changes the directory on the execution host to match that of the submission host
+Executes the task
+#!/bin/sh if [ x_$CLEARCASE_ROOT = x_ ]; then 
+    cd $LS_SUBCWD 
+    $* 
+else 
+    if [ $1 = /bin/sh ]; then 
+        shift 2 
+        SHELL=/bin/sh 
+        export SHELL 
+    fi 
+    /usr/atria/bin/cleartool setview \ 
+        -exec "cd $LS_SUBCWD;$*" \ 
+        `basename $CLEARCASE_ROOT`  
+fi 
+2. Set the LSF_JOB_STARTER environment variable.
+Each user can set the LSF_JOB_STARTER environment variable it can be set as part of the login process.
+% setenv LSF_JOB_STARTER clearstarter 
+3. Run tasks in a ClearCase view.
+To execute a task, use the clearstarter script.
+% lsrun -m hostA clearstarter mytask 
+LSF environment variables for ClearCase
+Environment variables required by the LSF integration with Rational ClearClase.
+CLEARCASE_DRIVE
+ Deﬁnes the virtual drive letter for a ClearCase view to the drive. CLEARCASE_DRIVE is useful if you want to map a ClearCase view to a virtual
+drive as an alias.
+CLEARCASE_MOUNTDIR
+ Deﬁnes the Rational ClearCase mount directory.
+CLEARCASE_ROOT
+ Deﬁnes the path to the Rational ClearCase view.
+DAEMON_WRAP_DEBUG
+ Enables daemon wrapper debugging for the LSF integration for Rational ClearCase.
+NOCHECKVIEW_POSTEXEC (Obsolete)
+ Obsolete. As of LSF 10.1 Fix Pack 3, the daemon wrappers no longer run the checkView function.
+CLEARCASE_DRIVE
+Deﬁnes the virtual drive letter for a ClearCase view to the drive. CLEARCASE_DRIVE is useful if you want to map a ClearCase view to a virtual drive as
+an alias.
+Syntax
+IBM Spectrum LSF 2321
+
+CLEARCASE_DRIVE=drive_letter: 
+Description
+Optional, Windows only.
+If this letter is unavailable, Windows attempts to map to another drive. Therefore, CLEARCASE_DRIVE only deﬁnes the default drive letter to which
+the ClearCase view is mapped, not the ﬁnal selected drive letter. However, the PATH value is automatically updated to the ﬁnal drive letter if it is
+different from CLEARCASE_DRIVE.
+Notes:
+CLEARCASE_DRIVE is not case sensitive.
+Where deﬁned
+From the command line
+Example
+CLEARCASE_DRIVE=F: 
+CLEARCASE_DRIVE=f: 
+CLEARCASE_MOUNTDIR
+Deﬁnes the Rational ClearCase mount directory.
+Syntax
+CLEARCASE_MOUNTDIR=path 
+Description
+Optional, UNIX only
+CLEARCASE_MOUNTDIR is used if:
+A job is submitted from a UNIX host but runs on a Windows host
+The Rational ClearCase mount directory is not the default /vobs
+Default
+/vobs 
+Where deﬁned
+From the command line
+Example
+CLEARCASE_MOUNTDIR=/myvobs 
+CLEARCASE_ROOT
+Deﬁnes the path to the Rational ClearCase view.
+Syntax
+CLEARCASE_ROOT=path 
+2322    IBM Spectrum LSF
+
+Description
+On Windows, this path must deﬁne an absolute path starting with the default ClearCase drive and ending with the view name without a trailing
+backslash (\).
+CLEARCASE_ROOT must be deﬁned if you want to submit a batch job from a ClearCase view.
+For interactive jobs, use bsub -I to submit the job.
+Where deﬁned
+In the job starter, or from the command line
+Example
+On UNIX:
+CLEARCASE_ROOT=/view/myview 
+On Windows:
+CLEARCASE_ROOT=F:\myview 
+DAEMON_WRAP_DEBUG
+Enables daemon wrapper debugging for the LSF integration for Rational ClearCase.
+Syntax
+DAEMON_WRAP_DEBUG=1
+Description
+When DAEMON_WRAP_DEBUG is set to 1, LSF logs the ClearCase stdout and stderr streams to /tmp/daemons.wrap.log. Use one of the following
+shell commands to set the DAEMON_WRAP_DEBUG environment variable:
+In csh or tcsh:
+setenv DAEMON_WRAP_DEBUG 1
+In sh, ksh, or bash:
+export DAEMON_WRAP_DEBUG=1
+NOCHECKVIEW_POSTEXEC (Obsolete)
+Obsolete. As of LSF 10.1 Fix Pack 3, the daemon wrappers no longer run the checkView function.
+Syntax
+NOCHECKVIEW_POSTEXEC=1
+Description
+Setting the NOCHECKVIEW_POSTEXEC environment variable to 1 conﬁgures the daemon wrapper to skip running the checkView function during the
+post-execution phase of a job.
+Use one of the following shell commands to set the NOCHECKVIEW_POSTEXEC environment variable:
+In csh or tcsh:
+setenv NOCHECKVIEW_POSTEXEC 1
+In sh, ksh, or bash:
+IBM Spectrum LSF 2323

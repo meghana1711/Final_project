@@ -1,0 +1,996 @@
+accounts in a local cluster to user accounts in one or more remote clusters. Cross-cluster mapping in LSF Data Manager is supported at the system
+level, and requires conﬁguring your lsb.users conﬁguration ﬁle on the remote and local clusters in your multicluster environment.
+Before you begin
+To use cross-cluster user account mapping in LSF Data Manager:
+You must ﬁrst conﬁgure LSF Data Manager for a multicluster environment.
+For SCP (Secure Copy Protocol) of data in LSF Data Manager, the SSH public key must be shared between cross-cluster mapped user
+accounts. For example, if you have user1 from cluster1 with SSH key1, and user2 from cluster2 with SSH key2, data transfer jobs
+between these two users will be unsuccessful if they each have separate SSH public keys that are different. Therefore, ensure that both users
+share the same SSH public key users from either clusters can map SCP and SSH key information from each other.
+Procedure
+1. As an LSF administrator, map user accounts at the system level in the UserMap section of the lsb.users ﬁle to conﬁgure account mappings in a
+multicluster environment at the system level. Both the remote and local clusters must have corresponding mappings in their respective
+lsb.users ﬁles.
+The required ﬁelds are LOCAL, REMOTE, and DIRECTION. These values map a user name on a local host to a different user name on a remote
+host so that jobs that execute on a remote host run using a mapped user name rather than the job submission user name.
+For example, here are the lsb.users UserMap conﬁguration for two clusters:
+On cluster1:
+Begin UserMap 
+LOCAL    REMOTE                             DIRECTION 
+user1    user2@lsfcluster2                  export 
+End UserMap
+On cluster2:
+Begin UserMap 
+LOCAL    REMOTE                             DIRECTION 
+user2    user1@lsfcluster1                  import 
+End UserMap
+2. Run the bdata admin reconﬁg command from one LSF Data Manager hosts in the submission cluster, for the changes to take effect.
+Results
+Once you have lsb.users conﬁgured, you can run the bsub, bjobs, and bhist, as described in Cross-cluster user account mapping commands.
+Related concepts
+Cross-cluster user account mapping
+Command reference for IBM Spectrum LSF Data Manager
+Use the bsub command to submit a job with data requirements to LSF. Use the bdata command to query and manage IBM Spectrum LSF Data
+Manager. The bjobs command displays and ﬁlters information about LSF jobs. Use the bstage command to stage data ﬁles for jobs with data
+requirements.
+For detailed information about the commands that are used for IBM Spectrum LSF Data Manager, see the IBM Spectrum LSF Command Reference.
+bsub
+ Use the bsub command to submit a job with data requirements to LSF by running the speciﬁed command and its arguments.
+bdata
+ Provides a set of subcommands to query and manage IBM Spectrum LSF Data Manager. If no subcommands are supplied, bdata displays the
+command usage.
+bjobs
+ Use the bjobs command to display and ﬁlter information about LSF jobs. Specify one or more job IDs to display information about speciﬁc
+jobs.
+bstage
+ Stages data ﬁles for jobs with data requirements by copying ﬁles or creating symbolic links for them between the local staging cache and the
+job execution environment. You must run bstage only within the context of an LSF job (like blaunch). To access a ﬁle with the bstage
+command, you must have permission to read it.
+IBM Spectrum LSF 2159
+
+bsub
+Use the bsub command to submit a job with data requirements to LSF by running the speciﬁed command and its arguments.
+Options
+ List of LSF Data Manager options for the bsub command.
+Options
+List of LSF Data Manager options for the bsub command.
+-data
+ Speciﬁes data requirements for a job.
+-datagrp
+ Speciﬁes user group for job data requirements.
+-stage
+ Speciﬁes the options for direct data staging (for example, IBM CAST burst buffer).
+-data
+Speciﬁes data requirements for a job.
+Categories
+properties, resource
+Synopsis
+-data "[host_name:]abs_ﬁle_path [[host_name:/]abs_ﬁle_path ...]" ... [-datagrp "user_group_name"] [-datachk] | -data "tag:[tag_owner@]tag_name
+[tag:[tag_owner@]tag_name ...]" ...
+-data "[host_name:]abs_folder_path[/[*]] [[host_name:/]abs_folder_path/[*] ...]" ... [-datagrp "user_group_name"] [-datachk] | -data "tag:
+[tag_owner@]tag_name [tag:[tag_owner@]tag_name ...]" ...
+Description
+You can specify data requirements for the job three ways:
+As a list of ﬁles for staging.
+An absolute path to a folder that contains ﬁles for staging.
+As a list of arbitrary tag names.
+Your job can specify multiple -data options, but all the requested data requirements must be either tags, ﬁles, or folders. You can specify individual
+ﬁles, folders, or data speciﬁcation ﬁles in each -data clause. You cannot mix tag names with ﬁle speciﬁcations in the same submission. The combined
+requirement of all -data clauses, including the requirements that are speciﬁed inside speciﬁcation ﬁles, are combined into a single space-separated
+string of ﬁle requirements.
+Valid ﬁle or tag names can contain only alphanumeric characters ([A-z|a-z|0-9]), and a period (.), underscore (_), and dash (-). The tag or ﬁle
+name cannot contain the special operating system names for parent directory (../), current directory (./), or user home directory (~/). File, folder,
+and tag names cannot contain spaces. Tag names cannot begin with a dash character.
+A list of ﬁles must contain absolute paths to the required source ﬁles. The list of ﬁles can refer to actual data ﬁles your job requires or to a data
+speciﬁcation ﬁle that contains a list of the data ﬁles. The ﬁrst line of a data speciﬁcation ﬁle must be #@dataspec.
+A data requirement that is a folder must contain an absolute path to the folder. The colon character (:) is supported in the path of a job requirement.
+A host name is optional. The default host name is the submission host. The host name is the host that LSF attempts to stage the required data ﬁle
+from. You cannot substitute IP addresses for host names.
+By default, if the CACHE_PERMISSIONS=group parameter is speciﬁed in lsf.datamanager, the data manager uses the primary group of the user who
+submitted the job to control access to the cached ﬁles. Only users that belong to that group can access the ﬁles in the data requirement. Use the -
+datagrp option to specify a particular user group for access to the cache. The user who submits the job must be a member of the speciﬁed group. You
+can specify only one -datagrp option per job.
+2160    IBM Spectrum LSF
+
+The tag_name element is any string that can be used as a valid data tag.
+If the CACHE_ACCESS_CONTROL = Y parameter is conﬁgured in the lsf.datamanager ﬁle, you can optionally specify a user name for the tag owner
+tag:[tag_owner@]tag_name.
+The sanity check for the existence of ﬁles or folders and whether the user can access them, discovery of the size and modiﬁcation of the ﬁles or
+folders, and generation of the hash from the bsub command occurs in the transfer job. This equalizes submission performance between jobs with
+and without data requirements. The -datachk option forces the bsub and bmod commands to perform these operations. If the data requirement is
+for a tag, the -datachk option has no effect.
+You can use the %I runtime variable in ﬁle paths. The variable resolves to an array index in a job array submission. If the job is not an array, %I in the
+data speciﬁcation is interpreted as 0. You cannot use the %I variable in tag names.
+The path to the data requirement ﬁles or the ﬁles that are listed inside data speciﬁcation ﬁles can contain wildcard characters. All paths that are
+resolved from wildcard characters are interpreted as ﬁles to transfer. The path to a data speciﬁcation ﬁle cannot contain wildcard characters.
+The use of wildcard characters has the following rules:
+A path that ends in a slash followed by an asterisk (/*) is interpreted as a directory. For example, a path like /data/august/*. Transfers only
+the ﬁles in the august directory without recursion into subdirectories.
+A path that ends in a slash (/) means that you want to transfer all of the ﬁles in the folder and all ﬁles in all of its sub folders, recursively.
+You can use the asterisk (*) wildcard character only at the end of the path. For example, a path like /data/*/file_*.* is not supported. The
+following path is correct: /data/august/*. The * is subject to expansion by the shell and must be quoted properly.
+When wildcard characters are expanded, symbolic links in a path are expanded. If a broken symbolic link is detected, the job submission fails.
+When you use the asterisk character at the end of the path, the data ﬁle requirements must be in quotation marks.
+Examples
+The following job requests three data ﬁles for staging, listing in the -data option:
+bsub -o %J.out -data "hostA:/proj/std/model.tar  
+hostA:/proj/user1/case02341.dat hostB:/data/human/seq342138.dna" /share/bin/job_copy.sh 
+ Job <1962> is submitted to default queue <normal>.  
+The following job requests the same data ﬁles for staging. Instead of listing them individually in the -data option, the required ﬁles are listed in a data
+speciﬁcation ﬁle named /tmp/dataspec.user1:
+bsub -o %J.out -data “/tmp/dataspec.user1” /share/bin/job_copy.sh 
+ Job <1963> is submitted to default queue <normal>.  
+The data speciﬁcation ﬁle /tmp/dataspec.user1 contains the paths to the required ﬁles:
+cat /tmp/dataspec.user1 
+ #@dataspec 
+ hostA:/proj/std/model.tar 
+ hostA:/proj/user1/case02341.dat 
+ hostB:/data/human/seq342138.dna 
+The following job requests all data ﬁles in the folder /proj/std/on hostA. Only the contents of the top level of the folder are requested.
+bsub -o %J.out -data "hostA:/proj/std/*" /share/bin/job_copy.sh 
+ Job <1964> is submitted to default queue <normal>.  
+The following job requests all data ﬁles in the folder /proj/std/, including on hostA. All ﬁles in all subfolders are requested recursively as the required
+data ﬁles.
+bsub -o %J.out -data "hostA:/proj/std/" /share/bin/job_copy.sh 
+ Job <1964> is submitted to default queue <normal>.  
+The following command submits an array job that requests data ﬁles by array index. All data ﬁles must exist.
+bsub -o %J.out -J "A[1-10]" -data "hostA:/proj/std/input_%I.dat"  
+/share/bin/job_copy.sh 
+ Job <1965> is submitted to default queue <normal>.  
+The following job requests data ﬁles by tag name.
+bsub -o %J.out -J "A[1-10]" -data "tag:SEQ_DATA_READY" "tag:SEQ_DATA2"  
+/share/bin/job_copy.sh 
+ Job <1966> is submitted to default queue <normal>.  
+The following job requests the data ﬁle /proj/std/model.tar, which belongs to the user group design1:
+bsub -o %J.out -data "hostA:/proj/std/model.tar" -datagrp "design1" my_job.sh 
+ Job <1962> is submitted to default queue <normal>.  
+-datagrp
+IBM Spectrum LSF 2161
+
+Speciﬁes user group for job data requirements.
+Categories
+properties, resource
+Synopsis
+[-datagrp "user_group_name "]
+Description
+By default, if the CACHE_PERMISSIONS=group parameter is speciﬁed in lsf.datamanager, the data manager uses the primary group of the user who
+submitted the job to control access to the cached ﬁles. Only users who belong to that group can access the ﬁles in the data requirement. Use the -
+datagrp option to specify a particular user group for access to the cache. The user who submits the job must be a member of the speciﬁed group. You
+can specify only one -datagrp option per job.
+The job must have a data requirement to use -datagrp.
+Normally, if you submit a data job with the -datagrp option, you must belong to the data group speciﬁed. If you do not belong to the speciﬁed group,
+the mbatchd daemon rejects the job submission. If the LSF_DATA_SKIP_GROUP_CHECK=Y parameter is conﬁgured in the lsf.conf ﬁle, mbatchd does
+no user group checking, and just accepts the job submission. The parameter LSF_DATA_SKIP_GROUP_CHECK=Y affects only the mbatchd daemon.
+User group checking is not affected by how the CACHE_ACCESS_CONTROL parameter is conﬁgured in the lsf.datamanager ﬁle.
+Examples
+The following job requests the data ﬁle /proj/std/model.tar, which belongs to the user group design1:
+bsub -o %J.out -data "hostA:/proj/std/model.tar" -datagrp "design1" my_job.sh 
+ Job <1962> is submitted to default queue <normal>.  
+-stage
+Speciﬁes the options for direct data staging (for example, IBM CAST burst buffer).
+Categories
+properties
+Synopsis
+bsub -stage " [storage= min_size [ , max_size ] ] [:in=path_to_stage_in_script ] [:out=path_to_stage_out_script ]"
+Description
+The -stage option uses the following keywords:
+storage=min_size[,max_size]
+Speciﬁes the minimum required and (optionally) maximum available storage space on the allocation.
+in=ﬁle_path
+Speciﬁes the ﬁle path to the user stage in script. This is launched by the stage in script as speciﬁed by the LSF_STAGE_IN_EXEC parameter in
+the lsf.conf ﬁle.
+out=ﬁle_path
+Speciﬁes the ﬁle path to the user stage out script. This is launched by the stage out script as speciﬁed by the LSF_STAGE_OUT_EXEC
+parameter in the lsf.conf ﬁle.
+You can specify one or more keywords. Use a colon (:) to separate multiple keywords.
+Example
+bsub -stage "storage=5:in=/u/usr1/mystagein.pl:out=/home/mystagein.pl" -q bbq myjob
+2162    IBM Spectrum LSF
+
+bdata
+Provides a set of subcommands to query and manage IBM® Spectrum LSF Data Manager. If no subcommands are supplied, bdata displays the
+command usage.
+Synopsis
+ LSF data management subcommands and option syntax synopsis.
+Subcommands
+ LSF data management subcommands and options.
+Help and version options
+ IBM Spectrum LSF Data Manager help and version display options.
+See also
+ bhist, bjobs, bmod, bstage, bsub, lsf.conf, lsf.datamanager
+Synopsis
+LSF data management subcommands and option syntax synopsis.
+bdata subcommand options
+bdata [-h[elp] | -V]
+Subcommands
+LSF data management subcommands and options.
+File-based cache query:
+bdata cache [-w | -l] [-u all | -u user_name] [-g all | -g user_group_name] [-dmd cluster_name] [host_name:]abs_ﬁle_path
+Job-based cache query:
+bdata cache [-dmd cluster_name] [-w | -l] job_ID[@cluster_name]
+Job-based cache query:
+bdata cache [-dmd cluster_name] [-w | -l] job_ID[@cluster_name]
+Change group after stage out:
+bdata chgrp [-dmd cluster_name] -g user_group_name [host_name:]abs_ﬁle_path
+Change group after stage in:
+bdata chgrp [-dmd cluster_name] -g user_group_name -tag tag_name
+Change the ﬁle permission mode of a ﬁle:
+bdata chmod [-dmd cluster_name] -mode octal_mode -mode [host_name:]abs_ﬁle_path
+Tag query:
+bdata tags list [-w] [-u all | -u user_name] [-dmd cluster_name]
+Tag cleanup:
+bdata tags clean [-u user_name] [-dmd cluster_name] tag_name
+Effective conﬁguration query:
+bdata showconf
+Connections query:
+bdata connections [-w]
+Administration - reconﬁgure and shut down LSF data manager:
+bdata admin reconﬁg
+bdata admin shutdown [host_name]
+Common options
+-w
+Wide format. Displays the information in a wide format. Use this option only with the cache, connections, and tags list subcommands.
+-l
+IBM Spectrum LSF 2163
+
+Long format. Displays additional information about LSF data management ﬁles. Use this option only with the cache subcommand.
+-dmd cluster_name
+Query the LSF data manager corresponding to the speciﬁed remote cluster. Use this option only with the cache, and tags subcommands.
+-u all | -u user_name
+Query ﬁles in the cache for the speciﬁed user. Use -u all or -u user_name with ﬁle-based bdata cache and bdata tags list. You can use only -u
+user_name with bdata tags clean.
+cache
+ Queries the LSF data management cache.
+chgrp
+ Changes the user group of a ﬁle in the LSF data management cache.
+chmod
+ Changes the ﬁle permission mode of a ﬁle that is staged in to the LSF data management cache.
+tags
+ LSF data management tag query and cleanup options
+showconf
+ LSF data management effective conﬁguration query option
+connections
+ Query LSF data management connections. Lists currently connected mbatchd daemons, with LSF data manager management host names,
+their status, and the outgoing and incoming connections for remote LSF data managers.
+admin
+ Reconﬁgure and shut down the LSF data manager daemon (dmd).
+cache
+Queries the LSF data management cache.
+Options
+File-based query
+bdata cache [-w | -l] [-u all | -u user_name] [-g all | -g user_group_name] [-dmd cluster_name] "[host_name:/]abs_ﬁle_path"
+bdata cache [-w | -l] [-u all | -u user_name] [-g all | -g user_group_name] [-dmd cluster_name] "[host_name:/]abs_folder_path/[*]"
+Job-based query
+bdata cache [-dmd cluster_name] [-w | -l] job_ID[@cluster_name]
+Description
+File-based and folder-based query
+Use the bdata cache abs_file_path or bdata cache "abs_folder_path/[*]" command to determine whether the ﬁles or folders
+that are required for your job are already staged in to the cache.
+LSF data manager administrators can see information about staged-in ﬁles in the cache for all users (with the -u all option) or for a speciﬁc
+user (with the -u user_name option). The CACHE_PERMISSIONS parameter in the lsf.datamanager ﬁle determines which cache is accessible
+to non-administrator users.
+CACHE_PERMISSIONS=user
+Each user has a cache in the staging area. Ordinary users can request information only about their own cached ﬁles. user is the default.
+CACHE_PERMISSIONS=all
+The staging area is a single cache. All users can see all ﬁles in the cache.
+CACHE_PERMISSIONS=group
+Each UNIX group has cache in the staging area. By default, only users that belong to the same primary group can see the ﬁles for their
+group.
+If CACHE_PERMISSIONS=group is speciﬁed, the -g option shows the cached ﬁles that belong to the speciﬁed user group.
+If you specify a host name (host_name:abs_file_path or host_name:abs_folder_path/), the bdata cache command shows the ﬁles
+or folders that are staged in from the speciﬁed host. The path must match the bjobs -data command output exactly.
+If a host name is not speciﬁed, the bdata cache command shows ﬁles that are staged in from the current local host.
+Job-based query
+Use the bdata cache job_ID command to show ﬁles that are referenced by the speciﬁed job ID. If a cluster name (with the
+@cluster_nameoption) is not speciﬁed with the job ID, the current cluster name is assumed.
+Cache cleanup for input and output ﬁle records
+You can use ﬁle-based query to see input ﬁle records until LSF data manager cleans up the job record and input ﬁles. After the job is ﬁnished
+and the grace period that is speciﬁed by the CACHE_INPUT_GRACE_PERIOD parameter in the lsf.datamanager ﬁle expires, LSF data manager
+2164    IBM Spectrum LSF
+
+cleans up the job record and input ﬁles cannot be queried.
+You can use job-based query to see input ﬁle records only until those jobs ﬁnish (DONE or EXIT status).
+You can query output ﬁle records until the following events occur:
+All of the output ﬁle records associated with the job have TRANSFERRED or ERROR status.
+And the grace period that is speciﬁed by the CACHE_OUTPUT_GRACE_PERIOD parameter expires for all ﬁles.
+If both output and input job records exist, you can query the cache until all of these conditions are met.
+Output: Default format
+By default, the following information is shown for each ﬁle:
+HASH
+The hash key of the particular copy of the ﬁle.
+STATUS
+The status of the ﬁle.
+NEW
+LSF data manager received a requirement for the ﬁle, but a transfer job is not submitted for it yet.
+STAGING
+For input ﬁles, the ﬁle is requested but is not yet in the cache. For output ﬁles, the ﬁle is in the cache and is either waiting to be
+transferred out or is being transferred out.
+TRANSFERRED
+For input ﬁles, the ﬁle is in the cache. For output ﬁles, the transfer job for the ﬁle is complete.
+ERROR
+Output ﬁle transfer failed.
+UNKNOWN
+During recovery, it's possible that previously transferred ﬁles might show up as unknown for a short period while data manager recovers
+its state.
+LINKED
+If LSF data manager can directly access the required ﬁle in the cache, no transfer job is needed and the ﬁle is not copied into the cache.
+LSF data manager creates a symbolic link from the cache to the required ﬁle. The LINKED status shows that the ﬁle was symbolically
+linked.
+REF_JOB
+For ﬁle-based query only. List of job IDs of jobs that request the ﬁle. REF_JOB is not displayed for job-based query.
+XFER_JOB
+The job ID of the transfer job. If LSF data manager can directly access the required ﬁle in the cache, no transfer job is needed and the ﬁle is not
+copied into the cache. A dash (-) indicates that no transfer job is associated with the ﬁle.
+GRACE
+After ﬁles are no longer needed by any job, unused input and output ﬁles in the data manager cache are cleaned up after a conﬁgurable grace
+period (CACHE_INPUT_GRACE_PERIOD and CACHE_OUTPUT_GRACE_PERIOD parameters in lsf.datamanager). GRACE shows the remaining
+hours and minutes of the grace period.
+Input ﬁle records enter grace period after ﬁle transfer is complete (STATUS is TRANSFERRED), and the list of jobs for REF_JOB
+becomes empty. After the grace period expires, the ﬁles are cleaned up and can no longer be queried by ﬁle name. The default input
+grace period is 1440 minutes (one day).
+Output ﬁle records enter grace period immediately after their status becomes TRANSFERRED. However, the ﬁles and job records are not
+cleaned up until the grace periods expire for all stage-out requirements that are associated with the same job. Output ﬁles can be
+queried by ﬁle name until the grace period expires for all output ﬁle records associated with the job. The default output grace period is
+180 minutes (3 hours). Files that are uploaded to the cache with the bstage out -tag command must be cleaned manually with the
+bdata tags clean command.
+Output: long format
+In a long format display, the following additional information is displayed:
+PERMISSION
+Access permissions for the ﬁle, which is deﬁned by the CACHE_PERMISSIONS parameter in lsf.datamanager.
+When CACHE_PERMISSIONS=all, the PERMISSION ﬁeld shows all.
+When the CACHE_ACCESS_CONTROL=Y parameter is conﬁgured in lsf.datamanager, the PERMISSION ﬁeld shows the user group and the ﬁle
+permissions.
+SIZE
+Units for ﬁle size.
+nnn B if ﬁle size is less than 1 KB
+nnn[.n] KB if ﬁle size is less than 1 MB
+nnn[.n] MB if ﬁle size is less than 1 GB
+IBM Spectrum LSF 2165
+
+nnn[.n] GB if ﬁle size is 1 GB or larger
+nnn[.n] EB is displayed if ﬁle size is 1 EB or larger
+MODIFIED
+The last modiﬁed time of the ﬁle, as it was at job submission time or at the time of the stage out request.
+CACHE_LOCATION
+The full location of the ﬁle in the cache, as mounted on the data manager hosts.
+bdata cache -l hostA:/home/user1/job.sh 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hostA:/home/user1/job.sh 
+PERMISSION          user:user1 
+HASH                7fb71a04569b51c851122553e2c728c5 
+SIZE                5 MB 
+STATUS              TRANSFERRED 
+REF_JOB             1435@cluster1 
+XFER_JOB            1906@cluster2 FINISHED Mon Aug 18 09:05:25 2014 
+GRACE               - 
+MODIFIED            Thu Aug 14 17:01:57 2014 
+CACHE_LOCATION: 
+/scratch/user1/staging/stgin/user/user1/hostA/home/user1/job.sh/e2cc059b47c094544791664a51489c8c 
+Examples: query by ﬁle or folder
+The ﬁle is in the cache with one shared copy that is cached for different jobs:
+bdata cache hostA:/home/user1/transfer_tool.sh 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hostA:/home/user1/transfer_tool.sh 
+HASH     STATUS   REF_JOB        XFER_JOB       GRACE 
+ab7dc9*  STAGING  2947@cluster1  2949@cluster1  -  
+                  2952@cluster1 
+                  2954@cluster1 
+The following job requests a ﬁle that is owned by the user group design1:
+bsub -data /home/user1/data/file1.txt -datagrp design1 sleep 9999 
+Job <11297> is submitted to default queue <normal>. 
+Use the -g option to query ﬁles that belong to the speciﬁed group:
+bdata cache -g designl /home/user1/data/file1.txt 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hosta:/home/user1/data/file1.txt 
+HASH    STATUS       REF_JOB                XFER_JOB               GRACE       
+fbea85* LINKED       11297@cluster1         -                      -           
+Note: The status of the ﬁle /home/user1/data/ﬁle1.txt is LINKED, and XFER_JOB is shown as a dash (-). LSF data manager can directly access the
+required ﬁle in the cache, so no transfer job is needed and the ﬁle is not copied into the cache. LSF data manager created a symbolic link from the
+cache to the required ﬁle. The LINKED status shows that the ﬁle was symbolically linked. A dash (-) indicates that no transfer job is associated with
+the ﬁle.
+When the input path ends in a slash (/), information about folders that were recursively copied into the cache are displayed.
+bdata cache "/home/user1/folder1/" -l 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hb05b10:/home/user1/folder1/ 
+PERMISSION          group:lsf    rwx------    [manual] 
+HASH                eb72d80f6deeeaf51e7f2913451bb9da 
+SIZE                4 KB 
+STATUS              TRANSFERRED 
+REF_JOB             44843@lsf913 
+XFER_JOB            44844@lsf913 FINISHED Wed May 10 14:51:47 2017 
+GRACE               - 
+MODIFIED            Tue May  9 09:53:32 2017 
+CACHE_LOCATION: 
+/home/user1/scratch/staging/stgin/all/hosta/home/user1/folder1//eb72d80f6deeeaf51e7f2913451bb9da 
+When the input path ends in a slash and an asterisk (/*) only the top-level folder was requested.
+bdata cache "/home/user1/folder1/*" -l 
+-------------------------------------------------------------------------------- 
+INPUT: 
+2166    IBM Spectrum LSF
+
+hb05b10:/home/user1/folder1/* 
+PERMISSION          group:lsf    rwx------    [manual] 
+HASH                f63ec6dc849a7390fc622620d88129f3 
+SIZE                4 KB 
+STATUS              TRANSFERRED 
+REF_JOB             44845@lsf913 
+XFER_JOB            44846@lsf913 FINISHED Wed May 10 14:51:48 2017 
+GRACE               - 
+MODIFIED            Tue May  9 09:53:32 2017 
+CACHE_LOCATION: 
+/home/user1/scratch/staging/stgin/all/hb05b10/home/user1/folder1/*/f63ec6dc849a7390fc622620d88129f3 
+When you use the asterisk character (*) at the end of the path, the data requirements string must be in quotation marks.
+Examples: query by job
+The job requests two input ﬁles. During job execution, ﬁle data2 is copied to two other locations. Files being staged out are listed as OUTPUT and
+show their destinations:
+bdata cache 84044 
+Job <84044@cluster1> has the following file records in LSF data manager: 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hostA:/home/user1/data2 
+HASH    STATUS       XFER_JOB               GRACE 
+68990b* TRANSFERRED  84045@cluster1         - 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hostA:/home/user1/data3 
+HASH    STATUS       XFER_JOB               GRACE 
+e2fff4* TRANSFERRED  84056@cluster1         - 
+-------------------------------------------------------------------------------- 
+OUTPUT: 
+hostB:/home/user1/data2 
+TO: 
+hostA:/scratch/user1/workspace 
+HASH    STATUS       XFER_JOB               GRACE 
+68990b* TRANSFERRED  84091@cluster1         - 
+Examples: query a single ﬁle, long output
+bdata cache -l hostA:/home/user1/testDATA/rt/rt1/ada2 -u user1 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hostA:/home/user1/testDATA/rt/rt1/ada2 
+PERMISSION          user:user1 
+HASH                7fb71a05130b51c673953948e2c397c5 
+SIZE                50 MB 
+STATUS              TRANSFERRED 
+REF_JOB             1435@cluster1 
+XFER_JOB            1906@cluster1 FINISHED Mon Aug 18 09:05:25 2014 
+GRACE               - 
+MODIFIED            Wed Apr 30 14:41:22 2014 
+CACHE_LOCATION: 
+/data/cache/stgin/user/user1/hostA/home/user1/testDATA/rt/rt1/ada2/7fb71a05130b51c673953948e2c397c5
+The following example uses the -g option to query a ﬁle that belongs to the user group design1:
+bdata cache -l -g design1 /home/user1/data/file1.txt  
+-------------------------------------------------------------------------------- 
+INPUT: 
+hosta:/home/user1/data/file1.txt 
+PERMISSION          group:design1 
+HASH                fbea858bdf6ddefc6c7f44dc6a08f1a6 
+SIZE                4 B 
+STATUS              LINKED 
+REF_JOB             11297@cluster1 
+XFER_JOB            - 
+GRACE               - 
+MODIFIED            Thu Oct  9 07:54:19 2014 
+IBM Spectrum LSF 2167
+
+CACHE_LOCATION: 
+/scratch/data/user1/staging1/stgin/group/design1/hosta/home/user1/data/file1.txt/fbea858bdf6ddefc6c7f44dc6a08f1
+a6
+Examples: query multiple ﬁles for the same job, long output
+bdata cache -l 1909 
+Job <1909@cluster1> has the following file records in LSF data manager: 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hostA:/home/user1/testDATA/status.1 
+PERMISSION          user:user1 
+HASH                0f9267a79de4bb2f9143b61ab741afda 
+SIZE                290 B 
+STATUS              TRANSFERRED 
+XFER_JOB            1908@cluster1 FINISHED Mon Aug 18 10:01:51 2014 
+GRACE               - 
+MODIFIED            Thu Jul  3 10:50:53 2014 
+CACHE_LOCATION: 
+/data/cache/stgin/user/user1/hostB/home/user1/testDATA/status.1/0f9267a79de4bb2f9143b61ab741afda 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hostA:/home/user1/testDATA/status.2 
+PERMISSION          user:user1 
+HASH                2b992669d4ce96902cd639dda190a586 
+SIZE                0 B 
+STATUS              TRANSFERRED 
+XFER_JOB            1910@cluster1 FINISHED Mon Aug 18 10:02:27 2014 
+GRACE               - 
+MODIFIED            Thu Jul  3 10:49:36 2014 
+CACHE_LOCATION: 
+/data/cache/stgin/user/user1/hostB/home/user1/testDATA/status.2/2b992669d4ce96902cd639dda190a586 
+-------------------------------------------------------------------------------- 
+OUTPUT: 
+hostA:/home/user1/testDATA/status.1 
+TO: 
+hostA:/scratch/user1/data/out 
+HASH                0f9267a79de4bb2f9143b61ab741afda 
+SIZE                290 B 
+STATUS              STAGING 
+XFER_JOB            1911@cluster1 
+GRACE               - 
+MODIFIED            Thu Jul  3 10:50:53 2014 
+CACHE_LOCATION: 
+/data/cluster1cache/stgout/cluster1/hostA/1909/home/user1/testDATA/status.1/0f9267a79de4bb2f9143b61ab741afda 
+-------------------------------------------------------------------------------- 
+OUTPUT: 
+hostA:/home/user1/testDATA/status.2 
+TO: 
+hostA:/scratch/user1/data/out 
+HASH                2b992669d4ce96902cd639dda190a586 
+SIZE                0 B 
+STATUS              STAGING 
+XFER_JOB            1912@cluster1 
+GRACE               - 
+MODIFIED            Thu Jul  3 10:49:36 2014 
+CACHE_LOCATION: 
+/data/cache/stgin/user/user1/hostB/home/user1/testDATA/status.2/2b992669d4ce96902cd639dda190a586
+Examples: query the same ﬁle for multiple jobs, long output
+bdata cache -l /home/user1/testDATA/status.1 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hostA:/home/user1/testDATA/status.1 
+PERMISSION          user:user1 
+HASH                0f9267a79de4bb2f9143b61ab741afda 
+SIZE                290 B 
+STATUS              TRANSFERRED 
+REF_JOB             1909@cluster1 
+2168    IBM Spectrum LSF
+
+                    1913@cluster1 
+XFER_JOB            1908@cluster1 FINISHED Mon Aug 18 10:01:51 2014 
+GRACE               - 
+MODIFIED            Thu Jul  3 10:50:53 2014 
+CACHE_LOCATION: 
+/data/cluster1cache/stgin/user/user1/hostA/home/user1/testDATA/status.1/0f9267a79de4bb2f9143b61ab741afda 
+Examples: query by cluster with the -dmd option
+The following example queries all instances of the ﬁle /newshare/scal/user1/data_ﬁles/seqdata.0 on host hostA for cluster cluster1.
+bdata cache -dmd cluster1 hostA:/newshare/scal/user1/data_files/seqdata.0 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hostA:/newshare/scal/user1/data_files/seqdata.0 
+HASH    STATUS       REF_JOB                XFER_JOB               GRACE 
+6e91e3* TRANSFERRED  15@cluster1            5@cluster1             - 
+                     16@cluster1 
+The following example queries data requirements for job 15 on cluster cluster1.
+bdata cache -dmd cluster1 15 
+Job <15@cluster1> has the following file records in LSF data manager: 
+-------------------------------------------------------------------------------- 
+OUTPUT: 
+hostA:/newshare/scal/user1/data_files/15/seqdata.1 
+TO: 
+hostB:/newshare/scal/user1/data_files/seqdata.15 
+HASH    STATUS       XFER_JOB               GRACE 
+e21557* STAGING      5@cluster1            - 
+Examples: ﬁle query when user group cache access is enabled
+When the CACHE_ACCESS_CONTROL=Y parameter is conﬁgured in lsf.datamanager, the bdata cache -l command shows the user group and the
+ﬁle permissions.
+bdata cache -l 1152 
+Job <1152@dm1> has the following file records in LSF data manager: 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hostA:/newshare/scal/user1/data_files/15/seqdata.1 
+PERMISSION          group:pcl   rwxr-x---   [manual] 
+HASH                b7202f200c0240a66493f81f0e2e8875 
+SIZE                1 KB 
+STATUS              TRANSFERRED 
+XFER_JOB            1153@dm1 FINISHED Tue Nov 17 10:42:25 2015 
+GRACE               - 
+MODIFIED            Tue Apr 19 15:59:28 2015  
+CACHE_LOCATION: 
+/data/cluster1cache/stgin/user/user1/hostA/home/user1/testDATA/seqdata.1/b7202f200c0240a66493f81f0e2e8875 
+chgrp
+Changes the user group of a ﬁle in the LSF data management cache.
+Options
+Change user group after stage out.
+bdata chgrp [-dmd cluster_name] -g user_group_name "[host_name:]abs_ﬁle_path"
+bdata chgrp [-dmd cluster_name] -g user_group_name "[host_name:]abs_folder_path/[*]"
+Change user group after stage in.
+bdata chgrp [-dmd cluster_name] -g user_group_name -tag tag_name
+Description
+IBM Spectrum LSF 2169
+
+Note: The CACHE_ACCESS_CONTROL = Y parameter must be conﬁgured in the lsf.datamanager ﬁle to use the bdata chgrp command. Only the
+owner of the ﬁle, folder, or data tag can change the group access with the bdata chgrp command.
+Change group after stage out
+Use the bdata chgrp -g group_name command and specify the name of a data ﬁle or folder that is already staged in to the cache. The chgrp
+command changes the user group of a transferred data ﬁle and the directory it is in. The ﬁle must be in the transferred state or idle state for
+the command to succeed.
+If you specify a folder, either recursive (abs_folder_path/) or non-recursive (abs_folder_path/*), the folder must be in the transferred
+state or idle state. The user group of both the folder and its contents are changed. The top-level folder permissions are set to 0770 (rwxrwx--
+-). The permissions of other directories under the top-level directory are set to 0750 (rwxr-x---).
+When you use the asterisk character (*) at the end of the path, the data requirements string must be in quotation marks.
+If you specify an optional host name (host_name:abs_file_path), the bdata chgrp command changes the user group of the ﬁles or
+folders that are staged in from the speciﬁed host.
+Change group after stage in
+Use the bdata chgrp -g group_name command and specify a tag name to change the group of all the ﬁles in the cache that is associated with
+the tag to the group name speciﬁed by group_name. The group of the tag directory and its contents is changed. The command sets the
+permissions of the top-level tag directory to 0770 (rwxrwx---). The permission of other directories in the top-level tag directory is set to
+0750 (rwxr-x---).
+The command is equivalent to the chmod ug+r, o-rwx command, and sets the owner and group read permissions of all ﬁles (not directories).
+chmod
+Changes the ﬁle permission mode of a ﬁle that is staged in to the LSF data management cache.
+Options
+bdata chmod [-dmd cluster_name] -mode octal_mode -mode [host_name:]abs_ﬁle_path
+Description
+Note: The CACHE_ACCESS_CONTROL = Y parameter must be conﬁgured in the lsf.datamanager ﬁle to use the bdata chmod command. Only the
+owner of the ﬁle or data tag can change the group access with the bdata chmod command.
+Use the bdata chmod command to change the permission mode of ﬁles that are required for your job that are already staged in to the cache.
+The ﬁle must be in the transferred or idle state for the chmod command to succeed.
+The chmod command interacts with the PERMISSION_MASK parameter in the lsf.datamanager ﬁle. The permission mask controls which
+permissions on a ﬁle can be changed by the bdata chmod command.
+PERMISSION_MASK=750
+File owners can modify user rwx bits, group rw bits, but not global bits.
+PERMISSION_MASK=777
+File owners can modify all the bits.
+PERMISSION_MASK=000
+FIle owners cannot modify any permissions.
+The permissions on the directory that the ﬁle is in are changed to be consistent with the ﬁle permission, but the owner always has full access at the
+directory level. If the permissions on the ﬁle allow the group or others permission to read, write, or execute, the same permissions are enabled on
+the directory. For example, if PERMISSION_MASK=777 and the ﬁle mode is 570 (r-xrwx---), the permissions on the directory are changed to 770
+(rwxrwxr---).
+The value of the octal-mode argument is three octal digits (0-7), derived by adding up the bits with values 4, 2, and 1. The ﬁrst digit selects
+permissions for the user who owns the ﬁle: read (4), write (2), and execute (1). The second digit selects the permissions for other users in the group
+that is associated with the ﬁle. The third digit selects the permissions for other users not in the group that is associated with the ﬁle.
+tags
+LSF data management tag query and cleanup options
+Options
+2170    IBM Spectrum LSF
+
+Tag query:
+bdata tags list [-w] [-u all | -u user_name] [-dmd cluster_name]
+Tag cleanup:
+bdata tags clean [-u user_name] [-dmd cluster_name] tag_name
+Description
+The list command displays the names of the known tags.
+When the CACHE_ACCESS_CONTROL=Y parameter is conﬁgured in lsf.datamanager, the list command displays the user group that the ﬁle belongs
+to. All users (not just the administsrator) can specify the –u option to see tags that are owned by other users.
+bdata tags list 
+NAME      USER    GROUP     LAST_UPLOAD          LAST_DOWNLOAD 
+code      user1   pcl       06/12/2015 15:50:10  - 
+tag1      user1   <error>   03/12/2015 13:51:59  - 
+tag2      user2   test      03/12/2015 13:52:06  - 
+tag3      user2   test      03/12/2015 13:52:09  - 
+If a bdata chgrp command did not successfully change the user group of the ﬁle, the GROUP column shows <error>.
+A dash (-) in the GROUP column of a tag query indicates that CACHE_ACCESS_CONTROL=Y is not conﬁgured.
+The clean command deletes the tag and all its containing ﬁles. Data manager administrators can clean any tags. Ordinary users can clean only their
+own tags. Each LSF data manager manages its own cache area. You can query and manage tags through -dmd cluster_name option, which redirects
+the request to the dmd that serves the speciﬁed cluster.
+Examples
+Query known local tags:
+bdata tags list -u all 
+NAME       USER   LAST_UPLOAD           LAST_DOWNLOAD 
+tag_name1  user1  06/27/2015 16:37:52   06/28/2015 16:37:52 
+tag_name2  user2  06/23/2015 16:37:52   06/28/2015 16:37:52 
+tag_name3  user3  06/25/2015 16:37:52   06/30/2015 16:37:52 
+... 
+A dash (-) in the LAST_UPLOAD column of a tag query indicates tags that were created, but not ﬁnished their ﬁrst upload:
+bdata tags list -u all 
+NAME       USER   LAST_UPLOAD       LAST_DOWNLOAD 
+tag_name1  user1  -                 - 
+tag_name2  user2  -                 - 
+tag_name3  user3  -                 - 
+... 
+In this state, the scheduler does not schedule the job to use the tags until the ﬁrst upload to the staging area is ﬁnished and the LAST_UPLOAD time
+is set. If the upload fails, the tag stays this way. Use bdata tags clean to clean up the tags for failed uploads.
+showconf
+LSF data management effective conﬁguration query option
+bdata showconf
+List the effective values of LSF data manager conﬁguration parameters from lsf.datamanager and lsf.conf.
+Example
+Query the current LSF data manager conﬁguration:
+ bdata showconf 
+LSF data management configuration at Wed Aug 20 16:03:40 2014 
+        ADMINS = lsfadmin admin1 
+        CACHE_INPUT_GRACE_PERIOD = 1440 (minutes) 
+        CACHE_OUTPUT_GRACE_PERIOD = 100 (minutes) 
+        CACHE_PERMISSIONS = group 
+        FILE_TRANSFER_CMD = /usr/bin/scp 
+        LSB_TIME_DMD = 0 
+        LSF_DATA_HOSTS = hostA hostB 
+        LSF_DATA_PORT = 39486 
+        LSF_LOGDIR = /opt/lsf/LSF913/cluster1/log 
+IBM Spectrum LSF 2171
+
+        LSF_LOG_MASK = LOG_WARNING 
+        CACHE_ACCESS_CONTROL = Y 
+        QUERY_NTHREADS = 4 
+        STAGING_AREA = nfs1:/mnt/zfsvol/hostC/user1/LSF913/cluster1 
+connections
+Query LSF data management connections. Lists currently connected mbatchd daemons, with LSF data manager management host names, their
+status, and the outgoing and incoming connections for remote LSF data managers.
+bdata connections [-w]
+Output
+The bdata connections output has the following sections.
+The LOCAL section displays two tables:
+The ﬁrst table displays the conﬁguration of the LSF_DATA_HOSTS and LSF_DATA_PORT parameters for the local LSF data manager. The
+currently active LSF data manager management host name is marked with an asterisk ([*]).
+The second table displays the connection status of registered mbatchd daemons.
+CLUSTER
+Displays the cluster name.
+MASTER
+Displays the name of the LSF cluster management host that is connected to this data manager.
+STATUS
+Displays the connection status for the cluster (ok or disc).
+The OUTGOING REMOTE section displays the connection status of remote LSF data managers for stage out jobs that are conﬁgured in the
+RemoteDataManagers section of the lsf.datamanager ﬁle:
+CLUSTER
+Corresponds to the CLUSTER column in the lsf.datamanager ﬁle, and displays the name of the remote LSF cluster.
+LSF_DATA_HOSTS
+Displays the data hosts conﬁgured in the RemoteDataManagers section of the lsf.datamanager ﬁle. The currently active LSF data manager
+management host name is marked with an asterisk ([*]).
+LSF_DATA_PORT
+Displays the LSF data manager connection port that is speciﬁed by the LSF_DATA_PORT parameter in the lsf.conf ﬁle.
+STATUS
+Displays the connection status (ok or disc).
+The INCOMING REMOTE section displays the status of remote LSF data managers that connect to the local LSF data manager to query for ﬁle
+availability.
+CLUSTER
+Corresponds to the CLUSTER column in the lsf.datamanager ﬁle, and displays the name of the remote LSF cluster.
+DMD_MASTER
+Displays the connected LSF data manager management host name for the cluster.
+LSF_DATA_PORT
+Displays the LSF data manager connection port that is speciﬁed by the LSF_DATA_PORT parameter in the lsf.conf ﬁle.
+STATUS
+Displays the connection status (ok or disc).
+If the RemoteDataManagers section is conﬁgured in the lsf.datamanager ﬁle in the local cluster, the OUTGOING REMOTE section is displayed. If the
+RemoteDataManagers section is conﬁgured in the lsf.datamanager ﬁle in the remote cluster, the local cluster displays the INCOMING REMOTE
+section. Only the cluster that is sending jobs needs to conﬁgure the RemoteDataManagers section.
+Example
+Query LSF data manager connections:
+bdata connections 
+LOCAL: (LSF_DATA_PORT=2960) 
+LSF_DATA_HOSTS  
+[*]hostB 
+CLUSTER             MASTER              STATUS 
+cluster1            hostB               ok 
+OUTGOING REMOTE: 
+CLUSTER             LSF_DATA_HOSTS      LSF_DATA_PORT  STATUS 
+hamburg             [*]dmd1.hamburg     4104           ok  
+2172    IBM Spectrum LSF
+
+toulouse            dmd2.toulouse       12058          disc  
+INCOMING REMOTE: 
+CLUSTER             DMD_MASTER          LSF_DATA_PORT  STATUS 
+waterloo            dmd3.waterloo       33994          ok 
+venice              dmd5.venice         13514          ok 
+admin
+Reconﬁgure and shut down the LSF data manager daemon (dmd).
+Options
+Reconﬁgure
+bdata admin reconﬁg
+Shut down
+bdata admin shutdown [host_name]
+Description
+Only the LSF data manager administrator or root can run these commands.
+Use the reconﬁg subcommand after you change conﬁguration in the lsf.datamanager ﬁle. The conﬁguration ﬁles are checked before dmd is
+reconﬁgured. If the conﬁguration is not correct, reconﬁguration does not start.
+The shutdown subcommand kills the lsf.datamanager data manager daemon processes on the speciﬁed host. The request is rejected if the LIM on
+the node is running.
+To shut down the lsf.datamanager data manager, you must ﬁrst shut down LIM with the bctrld stop lim command.
+If a host name is not speciﬁed, lsf.datamanager data manager attempts to shut down all candidate lsf.datamanager data manager hosts.
+The output of the bdata admin command is similar in format to the bctrld stop lim commands and the lsadmin reconﬁg and bctrld stop sbd and
+badmin reconﬁg commands.
+Examples
+Reconﬁguration
+bdata admin reconfig  
+Checking configuration files ... 
+No errors found. 
+LSF data manager daemon (dmd) on <hostA> is reconfiguring ... Initiated. 
+Shutdown
+bdata admin shutdown 
+LSF data manager daemon (dmd) on <hostA> is shutting down... Done. 
+LSF data manager daemon (dmd) on <hostB> is shutting down... Host unreachable. 
+LSF data manager daemon (dmd) on <hostc> is shutting down... Cannot shut down LSF data  
+manager daemon (dmd) when the local lim is running. 
+Help and version options
+IBM® Spectrum LSF Data Manager help and version display options.
+bdata [-h[elp] | -V]
+-h[help]
+Displays the command usage of the bdata command to stderr and exits.
+-V
+Prints the IBM Spectrum LSF Data Manager release version to stderr and exits.
+See also
+IBM Spectrum LSF 2173
+
+bhist, bjobs, bmod, bstage, bsub, lsf.conf, lsf.datamanager
+bjobs
+Use the bjobs command to display and ﬁlter information about LSF jobs. Specify one or more job IDs to display information about speciﬁc jobs.
+Options
+ List of LSF Data Manager options for the bjobs command.
+Options
+List of LSF Data Manager options for the bjobs command.
+-data
+ Displays the data ﬁle requirements for the job. The -data option acts as a ﬁlter to show only jobs with data requirements. For example, the
+option lists jobs that are submitted with -data. The option also lists ﬁles or data requirement tags that are requested by the job.
+-data
+Displays the data ﬁle requirements for the job. The -data option acts as a ﬁlter to show only jobs with data requirements. For example, the option
+lists jobs that are submitted with -data. The option also lists ﬁles or data requirement tags that are requested by the job.
+Categories
+ﬁlter
+Synopsis
+bjobs -data [jobID]
+Conflicting options
+Do not use the -data option with the following options: -A, -sum.
+Description
+The following units are displayed for ﬁle size:
+nnn B if ﬁle size is less than 1 KB
+nnn[.n] KB if ﬁle size is less than 1 MB
+nnn[.n] MB if ﬁle size is less than 1 GB
+nnn[.n] GB if ﬁle size is 1 GB or larger
+nnn[.n] EB if ﬁle size is 1 EB or larger
+A dash (-) indicates that a size or modiﬁcation time stamp value is not available.
+For jobs with data requirements that are speciﬁed as tags, the -data option shows the tag names.
+Examples
+bjobs -data 1962 
+JOBID   USER    STAT  QUEUE  FROM_HOST  EXEC_HOST  JOB_NAME   SUBMIT_TIME 
+1962    user1   PEND  normal hostA                 *p 1000000 Sep 20 16:31  
+FILE                                 SIZE   MODIFIED  
+datahost:/proj/user1/input1.dat      500 M   Jun 27 16:37:52  
+datahost:/proj/user1/input2.dat      100 M   Jun 27 16:37:52  
+datahost:/proj/user1/input3.dat      -      - 
+For jobs with data requirements speciﬁed as tags, the -data option shows the tag names:
+bjobs -data 1962 
+JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME 
+2174    IBM Spectrum LSF
+
+1962    user1   PEND  normal     hostA                   *p 1000000 Sep 20 16:31  
+TAG 
+OUTPUT_FROM_J1  
+OUTPUT_FROM_J2 
+For jobs with a folder as data requirement, the -data shows the folder name. Individual ﬁles in the folder are not shown. For example, for the
+following data requirement
+bsub -data "/home/user/folder1/" myjob
+the -data option shows the folder name /home/user/folder1/:
+bjobs -data 44843 
+JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME 
+44843   user1   PEND  normal     hosta                   myjob      May 10 14:42 
+ FILE                                                 SIZE         MODIFIED     
+ hosta:/home/user1/folder1/                           4 KB         May  9 09:53          
+bstage
+Stages data ﬁles for jobs with data requirements by copying ﬁles or creating symbolic links for them between the local staging cache and the job
+execution environment. You must run bstage only within the context of an LSF job (like blaunch). To access a ﬁle with the bstage command, you
+must have permission to read it.
+bstage in
+ Stages in data ﬁles for jobs with data requirements. bstage copies or symbolically links ﬁles from the data manager staging area to the job
+execution host.
+bstage out
+ Stages out data ﬁles for jobs with data requirements. The bstage command copies or creates symbolic links to ﬁles from the job current
+working directory to the data management cache, then requests a transfer job to copy the ﬁle or folder to a host.
+Help and version options
+ IBM Spectrum LSF Data Manager help and version display options
+See also
+ bdata, bhist, bjobs, bmod, bsub, lsf.conf, lsf.datamanager
+bstage in
+Stages in data ﬁles for jobs with data requirements. bstage copies or symbolically links ﬁles from the data manager staging area to the job execution
+host.
+Synopsis
+bstage in -all [-dst path] [-link]
+bstage in -src "[host_name:]/abs_ﬁle_path/ﬁle_name" [-dst path[/ﬁle_name]] [-link]
+bstage in -src "[host_name:]/abs_folder_path/[*]" [-dst path[/ﬁle_name]] [-link]
+bstage in -tag tag_name [-u user_name] [-dst path] [-link]
+Description
+Copy or symbolically link ﬁles from the data manager staging cache to the job execution host. You must specify one of the following options: -all, -
+src, or -tag tag_name.
+If the containing job is an array element, the bstage command checks that a subdirectory exists in the job staging area that corresponds to the array
+index of the containing job.
+By default, the required ﬁles are staged into the local staging area cache as soon as the job is submitted. The bstage in command inside the job ﬁnds
+the location of the ﬁle in the cache. bstage in copies (cp or scp) or links (ln) the ﬁle from the cache location to the job current working directory.
+Options
+-all
+Copy all the ﬁles that are requested with the job submission to the job current working directory. The command ﬁnds the location of each
+requested stage in ﬁle in the cache. All ﬁles are copied to the folder in a flat directory structure. Input ﬁles with the same name overwrite one
+another.
+Essentially this option is a shortcut for the following command:
+IBM Spectrum LSF 2175
+
+bstage in -src "host_name:/abs_file_path/file_name" -dst path/file_name
+To copy entire folders but preserve the directory structure, use the -src option with a directory wildcard (either / or /*).
+When you use the asterisk character (*) at the end of the path, the data requirements string must be in quotation marks.
+-dst path
+The destination folder for the staged ﬁles.
+The target of the copy can be a relative path to the job current working directory, or an absolute path. If any directories in the path do not exist,
+bstage in attempts to create them. If you do not specify -dst, the default is the job execution current working directory.
+If the path does not exist and -src speciﬁes a single ﬁle, the path is interpreted as the destination ﬁle to copy to.
+If the path exists and -src is a single ﬁle, the ﬁle is either copied or replaced:
+If path is a ﬁle, the ﬁle is replaced with the new ﬁle.
+If path is a directory, the ﬁle is copied into the directory under its original name.
+If you specify -tag or -all, or you specify -src with a directory wildcard, the destination is interpreted as a folder name relative to the job
+current working directory. If this directory does not exist, LSF attempts to create it.
+-src "[host_name:]/abs_ﬁle_path/ﬁle_name"
+Copy only the ﬁle that is requested with the host_name:abs_file_path option in the job submission to your current working directory. The
+host and ﬁle path speciﬁcation must match the requirement that was speciﬁed when the job was submitted. Use the bjobs -data command to
+see the exact host and ﬁle path speciﬁcation:
+bjobs -data 1962 
+JOBID   USER    STAT  QUEUE  FROM_HOST  EXEC_HOST  JOB_NAME   SUBMIT_TIME 
+1962    user1   PEND  normal hostA                 *p 1000000 Sep 20 16:31  
+FILE                                 SIZE   MODIFIED  
+datahost:/proj/user1/input1.dat      500 M   Jun 27 16:37:52  
+datahost:/proj/user1/input2.dat      100 M   Jun 27 16:37:52  
+datahost:/proj/user1/input3.dat      -      - 
+You can omit the host name to request ﬁles locally accessible on the submission host.
+-src "[host_name:]/abs_folder_path/[*]"
+Copy the contents of the folder that is requested with the host_name:/abs_folder_path/ option in the job submission to your current
+working directory. The host and ﬁle path speciﬁcation must match the requirement that was speciﬁed when the job was submitted.
+You can omit the host name to request ﬁles locally accessible on the submission host.
+If you specify a folder name without a ﬁle name, the absolute path must terminate in a directory (/*) or recursive directory (/) wildcard
+character. In this case, the -dst option is interpreted as a folder, and all ﬁles are downloaded to the appropriate subdirectories, replicating the
+underlying structure.
+When you use the asterisk character (*) at the end of the path, the data requirements string must be in quotation marks.
+For example, the following job has a data requirement that requests a recursive directory:
+ bsub -data “hostA:/tmp/” ...
+LSF stages the entire /tmp directory and all subdirectories on hostA. Your job can then call that directory with the bstage in command:
+bstage in -src "hostA:/tmp/" -dst directory
+LSF replicates the entire subdirectory structure under directory in the job execution current working directory.
+-link
+Create symbolic links to the requested source ﬁles from the staging area cache location instead of copying them. Use the -link option to avoid
+unnecessary ﬁle copying between the execution host and the staging area. The staging area must be directly mounted on the job execution
+host to create the link.
+-tag tag_name
+Copy all ﬁles in the local cache that are associated with the speciﬁed tag name to the folder speciﬁed by the destination option (-dst). If the -
+dst option is speciﬁed, the destination is interpreted as a folder, and the entire directory structure under this tag folder is replicated in the
+destination.
+Use the -tag option when a job uses an intermediate data ﬁle that is created by an earlier job. You must have read permission on the tag
+directory.
+Valid tag names can contain only alphanumeric characters ([A-z|a-z|0-9]), and a period (.), underscore (_), and dash (-). The tag name
+cannot contain the special operating system names for parent directory (../), current directory (./), or user home directory (~/). Tag names
+cannot contain spaces. Tag names cannot begin with a dash (-).
+Use the bdata tags clean command to remove tags.
+2176    IBM Spectrum LSF
+
+Important: You are responsible for the name space of your tags. LSF does not check whether a tag is valid. Use strings like the job ID, array
+index, and cluster name as part of your tag names to make sure that your tag is unique.
+-u user_name
+By default, your job can stage in ﬁles that are associated only with your own tags. Use the -u option to stage in ﬁles that are associated with
+tags that belong to another user name. The CACHE_ACCESS_CONTROL = Y parameter must be conﬁgured in the lsf.datamanager ﬁle to use
+the -u option.
+You must make sure that the tag exists and that you have appropriate permission to use the ﬁles associated with that tag before you submit
+your job.
+bstage out
+Stages out data ﬁles for jobs with data requirements. The bstage command copies or creates symbolic links to ﬁles from the job current working
+directory to the data management cache, then requests a transfer job to copy the ﬁle or folder to a host.
+Synopsis
+bstage out -src ﬁle_path/ﬁle_name [-dst [host_name:]path[/ﬁle_name]] [-link]
+bstage out -src folder_path/ [-dst [host_name:]path[/ﬁle_name]] [-link]
+bstage out -src ﬁle_path/ﬁle_name -tag tag_name [-link | -g user_group_name]
+Description
+Copy or symbolically link a ﬁle or folder from the job current working directory to the data manager staging cache.
+The bstage out command uses the value of the LSB_DATA_CACHE_TOP environment variable to ﬁnd the staging area.
+By default (if you specify the -src option, but not the -tag option), a transfer job is submitted by the LSF data manager to stage the ﬁle out from the
+staging area to the remote destination speciﬁed in the -dst option. If you specify the -tag option, the ﬁle or folder is copied only to the tag folder in
+the staging area and no transfer job is submitted.
+Note: With the -src option, the transfer job that is submitted to LSF runs asynchronously even after the command returns. When you are staging out
+different ﬁles or folders, use a different destination for each one since the order in which the ﬁles are transferred is not guaranteed.
+Options
+-src ﬁle_path/ﬁle_name
+Required. Path to the ﬁle to be copied from the job execution environment. Relative paths are resolved relative to the job current working
+directory.
+If the -tag option is not speciﬁed, the path must be to a ﬁle. LSF contacts the LSF data manager to determine whether the ﬁle exists in the
+STAGING_AREA/stgout directory for the job. If the ﬁle does not exist, the ﬁle is ﬁrst copied to the job stgout directory in the cache. LSF data
+manager then contacts LSF to submit a transfer job to LSF to stage the ﬁle out to the destination.
+If the path contains symbolic links, LSF data manager uses the symbolic link name and copies the contents of the ﬁle to the staging area. For
+example, if the path is /tmp/linkdir1/outﬁle1, and linkdir1 is a symbolic link to /home/user1, the contents of the ﬁle outﬁle1 are copied to the
+cache in the appropriate stage out or tag folder under the relative path tmp/linkdir1/outﬁle1/, not tmp/home/user1/outﬁle1/.
+-src folder_path/
+Required. Path to the folder to be copied from the job execution environment. Relative paths are resolved relative to the job current working
+directory.
+The asterisk (*) wildcard character -src folder_path/* is not supported for the bstage out command.
+LSF contacts the LSF data manager to determine whether the folder exists in the STAGING_AREA/stgout directory for the job. If the folder
+does not exist, the folder is ﬁrst copied to the job stgout directory in the cache. LSF data manager then contacts LSF to submit a transfer job to
+LSF to stage the folder out to the destination.
+If the path contains symbolic links, LSF data manager uses the symbolic link name and copies the contents of the folder to the staging area.
+For example, if the path is /tmp/linkdir1/, and linkdir1 is a symbolic link to /home/user1, the contents of the folder linkdir1 are copied to the
+cache in the appropriate stage out or tag folder under the relative path tmp/linkdir1/, not tmp/home/user1/outﬁle1/.
+-dst [host_name:]path][/ﬁle_name]
+Path to the ﬁnal destination of the transfer job that copies the ﬁle out of the staging area. If you do not specify the -dst option, the submission
+host and directory that is speciﬁed by the LSB_OUTDIR environment variable is assumed to be the root and the path that is provided to the -
+src option is appended to this root. The default host_name is the submission host.
+The following table shows the mapping of the -dst argument and ultimate destination sent to the transfer tool command to stage out the job:
+IBM Spectrum LSF 2177

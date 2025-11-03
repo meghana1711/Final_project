@@ -1,0 +1,266 @@
+# lsf cluster list 
+ Default Name    Version                                           URL 
+ *       lws_ha  IBM Spectrum LSF Standard 10.1.0.14, Jun 11 2023  https://lws_ha.ibm.com:443
+c. Submit jobs to the LSF cluster through the HTTPS proxy.
+For example:
+# lsf config set –-cacert cacert.pem 
+# lsf cluster logon --username lsfadmin --password xxxxxx --url https://lws_ha.ibm.com:443 
+ OK 
+# lsf bsub sleep 100                          
+ Job <358> is submitted to default queue <normal>. 
+# lsf bjobs -a 
+JOBID   USER     STATUS  QUEUE   FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME 
+358     lsfadmin DONE    normal  hostA       hostB       sleep 100  May 21 23:01
+d. Stop one of the LSF Web Services hosts (for example, stop lsfhostA) by running:
+# lwsstop.sh
+e. Submit another job.
+For example:
+# lsf bjobs -a 
+JOBID   USER     STATUS  QUEUE   FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME 
+359     lsfadmin RUN     normal  lsfhostB    lsfhostB    sleep 10   May 22 00:32
+f. Verify that the job submitted successfully. If the job is successful submitted, the HTTPS proxy is conﬁgured properly.
+What to do next
+For your LSF Web Services high availability environment, you can optionally enable single sign-on for LSF Web Services high availability.
+Enabling OAuth 2.0 for LSF Web Services single sign-on
+The OAuth 2.0 protocol enables users to safely give LSF Web Services access to data without having to share credentials. You integrate OAuth for LSF
+Web Services through an authentication server (such as Keycloak) as an OpenID Connect (OIDC) identity provider (IdP).
+Tip: If you are using LSF Web Services on a high availability environment, then refer to the single sign-on steps in Enabling OAuth 2.0 for LSF Web
+Services single sign-on for an high availability environment instead.
+The process for enabling OAuth for LSF Web Services involves several tasks:
+1. You ﬁrst install the authentication server and conﬁgure it for single sign-on for LSF Web Services. This way, users only needs to log in once to
+access all trusted LSF Web Services.
+2. Then, conﬁgure single sign-on using the OAuth 2 protocol on the LSF Web Services host.
+3. Next, you integrate the authentication server with LDAP or Active Directory.
+4. Finally, you authenticate and test the OAuth 2 connection.
+Installing Keycloak to conﬁgure single sign-on with LSF Web Services
+ You install Keycloak-OIDC (Open ID Connect) and conﬁgure it for single sign-on for LSF Web Services. This way, users only need to log in once
+to access all trusted LSF Web Services.
+Conﬁguring the OAuth protocol for single sign-on with LSF Web Services
+ After you have installed Keycloak and conﬁgure it for single sign-on for LSF Web Services, you conﬁgure single sign-on through the OAuth 2.0
+protocol for LSF Web Services. This process includes setting Keycloak access on the client so that users can single sign-on to LSF Web
+Services using the single sign-on server for authentication.
+Integrating Keycloak with LDAP for single sign-on with LSF Web Services
+ The Keycloak user federation feature provides access to external databases and directories, such as Active Directory and LDAP. Follow these
+steps to conﬁgure user federation using an OpenLDAP service.
+Integrating Keycloak with Active Directory for single sign-on with LSF Web Services
+ The Keycloak user federation feature provides access to external databases and directories, such as Active Directory and LDAP. Follow these
+steps to conﬁgure user federation using an Active Directory service.
+Authenticating the OAuth single sign-on connection
+ After you have conﬁgure single sign-on through the OAuth 2.0 protocol and integrated Keycloak with LDAP or Active Directory, your ﬁnal step
+is to authenticate and test your OAuth single sign-on connection.
+Installing Keycloak to conﬁgure single sign-on with LSF Web Services
+You install Keycloak-OIDC (Open ID Connect) and conﬁgure it for single sign-on for LSF Web Services. This way, users only need to log in once to
+access all trusted LSF Web Services.
+IBM Spectrum LSF 2309
+
+Procedure
+Install Keycloak 24 on any Linux host:
+#podman pull quay.io/keycloak/keycloak:24.0  
+#podman run -it -d -p 8180:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin 
+quay.io/keycloak/keycloak:24.0 start-dev  
+ 6d59be101e02c3b58935608a1ccec9c77bba6d0031cc8071aa1419c28d687622  
+  
+#podman exec -it 6d59be101e02 bash  
+ bash-5.1$  
+  
+#cd /opt/keycloak/bin/  
+#./kcadm.sh config credentials --server http://0.0.0.0:8080 --realm master --user admin  
+#./kcadm.sh update realms/master -s sslRequired=NONE 
+What to do next
+After you have installed Keycloak-OIDC, you can access the Keycloak Admin Console from a web browser: sign into the Keycloak Admin Console
+using the hostname or IP and port:
+http://Keycloak_hostname_or_IP:port
+From the Admin Console, you can complete any of the following tasks:
+View the server information for the master realm by navigating to Keycloak > Realm roles > master realm roles > Server info.
+Create a realm. You require a realm when you conﬁgure Keycloak single sign-on on the LSF Web Services.
+For details on creating a realm, see the Keycloak documentation: https://www.keycloak.org/docs/latest/server_admin/#proc-creating-a-
+realm_server_administration_guide
+Create a user (such as lsfadmin) in the current realm.
+For details on creating users, see the Keycloak documentation: https://www.keycloak.org/docs/latest/server_admin/#proc-creating-
+user_server_administration_guide
+Create user credentials (password) for the realm.
+For details on deﬁning user credentials, see the Keycloak documentation: https://www.keycloak.org/docs/latest/server_admin/#ref-user-
+credentials_server_administration_guide
+Create an OpenID Connect client for the realm.
+For details on managing and creating OpenID Connect clients, see the Keycloak documentation:
+https://www.keycloak.org/docs/latest/server_admin/#proc-creating-oidc-client_server_administration_guide
+Generate credentials for the client. For the Keycloak Admin Console Client Authenticator (type of credential to use for your client) list, select
+Client ID and Secret. The secret is automatically generated; you can click Regenerate to recreate the secret if necessary.
+For details about client credentials, see the Keycloak documentation: https://www.keycloak.org/docs/latest/server_admin/#_client-
+credentials
+Set URIs to be redirected for the client. Use the Root URL, Home URL, Valid Redirect URIs, Web Origins, and Admin URL ﬁelds in the Keycloak
+Admin Console.
+For details about conﬁguring OpenID Connect clients, see the Keycloak documentation:
+https://www.keycloak.org/docs/latest/server_admin/#con-basic-settings_server_administration_guide
+You can also verify users and realms:
+1. From a web browser, access the realm you created previously:
+http://hostname_or_IP:port/realms/realm_name/account
+For example, to log into a realm called ABCRealm:
+http://lwshost:8180/realms/ABCRealm/account
+2. Once in the ABCRealm realm, log in as the user and password you created previously, and click Sign In.
+After you have installed Keycloak on your Linux host, you can conﬁgure single sign-on using the OAuth protocol for LSF Web Services.
+Conﬁguring the OAuth protocol for single sign-on with LSF Web Services
+2310    IBM Spectrum LSF
+
+After you have installed Keycloak and conﬁgure it for single sign-on for LSF Web Services, you conﬁgure single sign-on through the OAuth 2.0
+protocol for LSF Web Services. This process includes setting Keycloak access on the client so that users can single sign-on to LSF Web Services using
+the single sign-on server for authentication.
+Procedure
+1. As root, source the LSF Web Services environment.
+For example:
+For csh or tcsh:
+# source /opt/ibm/lsfsuite/ext/cshrc.platform
+For sh, ksh, or bash:
+# . /opt/ibm/lsfsuite/ext/cshrc.platform
+2. Edit the lws.conf conﬁguration ﬁle to include the following parameters:
+# ENABLE_OAUTH="true"  
+# OAuth2_ClientId="Select from keycloak's Client list"  
+# OAuth2_ClientSecret=" Select from credentials"  
+# OAuth2_TokenUri="http://Keycloak_HOSTNAME or IP:Port/realms/Test(Enter your new Create realm 
+name)/protocol/openid-connect/token"  
+# _RedirectUri="https://LWS_HOSTNAME:8448/lsf/v1/*"  
+# OAuth2_AuthScope=" openid microprofile-jwt "  
+# OAuth2_IntrospectUri="http://Keycloak_HOSTNAME or IP:8180/realms/Test/protocol/openid-
+connect/token/introspect"  
+# _UsernameAttr="preferred_username" 
+For example:
+ENABLE_OAUTH="true"  
+OAuth2_ClientId="lws-oauth"  
+OAuth2_ClientSecret="ziQhZCTThd5pYkRd8EP7RI8DlthniMH2"  
+OAuth2_TokenUri="http://lwshost:8180/realms/ABCRealm/protocol/openid-connect/token"  
+OAuth2_AuthUri="http://lwshost:8180/realms/ABCRealm/protocol/openid-connect/auth"  
+OAuth2_RedirectUri="https://lwshost:8448/lsf/v1/*"  
+OAuth2_AuthScope="openid microprofile-jwt"  
+OAuth2_IntrospectUri=http://lwshost:8180/realms/ABCRealm/protocol/openid-connect/token/introspect  
+OAuth2_UsernameAttr="preferred_username"
+3. Restart LSF Web Services services so that the conﬁguration ﬁle changes take effect:
+#. /opt/ibm/lsfsuite/ext/profile.platform  
+# systemctl stop lwsd  
+# systemctl start lwsd  
+# systemctl status lwsd 
+4. Authenticate OAuth single sign-on connection:
+a. Log on to LSF Web Services through your single sign-on realm account. Use the username and password created for the realm you
+created in Keycloak (for example, lsfadmin):
+# lsf cluster logon --username username --password password --url 
+https://LWS_proxy_hostname_or_IP_address:port
+For example:
+# lsf cluster logon --username lsfadmin --password xxxxxx --url 
+https://LWS_proxy_hostname_or_IP_address:8448
+b. List the logged clusters:
+For example:
+  
+#lsf cluster list  
+Default   Name     Version                                            URL  
+*         lws_ha   IBM Spectrum LSF Standard 10.1.0.14, Jun 11 2023   https://lwshost.ibm.com:8448
+c. Submit jobs to the LSF cluster.
+For example:
+#lsf bsub sleep 20                                                                                    
+Job <364> is submitted to default queue <normal>.  
+#lsf bjobs -a      
+JOBID  USER     STAT  QUEUE   FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME  
+364    lsfadmin DONE  normal  lwshost     lwsexec     sleep 20   May 25 05:46 
+What to do next
+IBM Spectrum LSF 2311
+
+After you have conﬁgured the OAuth protocol for single sign-on with LSF Web Services, your next step is to integrate Keycloak with an LDAP or Active
+Directory service.
+Integrating Keycloak with LDAP for single sign-on with LSF Web Services
+The Keycloak user federation feature provides access to external databases and directories, such as Active Directory and LDAP. Follow these steps to
+conﬁgure user federation using an OpenLDAP service.
+About this task
+Tip: To conﬁgure Keycloak user federation using an Active Directory service, see Integrating Keycloak with Active Directory for single sign-on with
+LSF Web Services.
+See the Keycloak documentation for more information about user federation: https://www.keycloak.org/docs/latest/server_admin/#_user-storage-
+federation
+Procedure
+1. Install OpenLDAP according to OpenLDAP documentation: https://www.openldap.org/.
+2. Access the Keycloak Admin Console from a web browser: sign into the Keycloak Admin Console as an administrative user, using the hostname
+or IP and port:
+http://Keycloak_hostname_or_IP:port
+3. Select the realm you created (for example, realm ABCRealm).
+4. Click User federation > Add Ldap providers.
+5. Provide the following LDAP settings:
+Field name Specify
+UI display name ldap
+Vendor Other
+Connection URL The LDAP server URL you created, such as ldap://myhost.ibm.com/
+Bind type simple
+Bind DN The Bind DN you set on the LDAP server. For example: cn=admin,ou=Users,dc=ibm,dc=org.
+Bind credentials The administrator user's password.
+Edit mode WRITABLE
+Username LDAP attributecn
+RDN LDAP attribute cn
+UUID LDAP attribute uid
+User object classes inetOrgPerson, organizationalPerson
+6. Save your LDAP settings.
+7. Click Actions > Sync all users.
+A success message displays.
+8. Click Users, and then select all users listed and verify that the LDAP provider was successfully added for the users.
+Results
+You can verify LDAP settings by using LSF commands.
+Ensure that you can successfully log on to LSF Web Services using your OpenLDAP user. For example:
+#lsf cluster logon --username user1 --password ******** --url https://lwshost.ibm.com:443 
+OK
+Ensure that you can successfully submit an LSF job. For example:
+#lsf bsub sleep 20 
+ Job <664> is submitted to default queue <normal>.
+Ensure that you can successfully display LSF job information. For example:
+#lsf bjobs -a 
+JOBID USER STAT QUEUE  FROM_HOST EXEC_HOST JOB_NAME SUBMIT_TIME  
+664   wt1  RUN  normal lwshost   lwsexec   sleep 20 Jun 12 00:10 
+What to do next
+After you have integrated Keycloak with LDAP or Active Directory, your ﬁnal step in the flow of enabling single sign-on for LSF Web Services is to
+authenticating and testing your OAuth single sign-on connection.
+2312    IBM Spectrum LSF
+
+Integrating Keycloak with Active Directory for single sign-on with LSF Web
+Services
+The Keycloak user federation feature provides access to external databases and directories, such as Active Directory and LDAP. Follow these steps to
+conﬁgure user federation using an Active Directory service.
+About this task
+Tip: To conﬁgure Keycloak user federation using an LDAP service, see Integrating Keycloak with LDAP for single sign-on with LSF Web Services.
+For detailed information about Keycloak user federation, see the Keycloak documentation :
+https://www.keycloak.org/docs/latest/server_admin/#_user-storage-federation
+Procedure
+1. Install Active Directory, according to your Active Directory documentation.
+2. Access the Keycloak Admin Console from a web browser: sign into the Keycloak Admin Console as an administrative user, using the hostname
+or IP and port:
+http://Keycloak_hostname_or_IP:port
+3. Select the realm you created (for example, realm ABCRealm).
+4. Click User federation > Add Ldap providers.
+5. Provide the following LDAP settings:
+Field name Specify
+UI display name ldap
+Vendor Active Directory
+Connection URL The Active Directory server URL you created and port, such as ldap://winad.ibm.com:389
+Bind type simple
+Bind DN The Bind DN you set on the Active Directory server. For example:
+CN=Administrator,CN=Users,DC=ibm,DC=com.
+Bind credentials The administrator user's password.
+Edit mode WRITABLE
+Users DN DC=ibm,DC=com
+Username LDAP
+attributecn
+RDN LDAP attribute cn
+UUID LDAP attribute ObjectGUID
+User object classes Person, organizationalPerson, user
+Import users On
+Sync registrations On
+6. Save your Acgtive Directory settings.
+7. Click Actions > Sync all users.
+A success message displays.
+8. Click Users, and then select all users listed and verify that the LDAP provider was successfully added for the users.
+Results
+You can verify Active Directory settings by using LSF commands.
+Ensure that you can successfully log on to LSF Web Services using your Active Directory user. For example:
+#lsf cluster logon --username user1 --password ******** –url https://lwshost.ibm.com:443 
+OK
+Ensure that you can successfully submit an LSF job. For example:
+#lsf bsub sleep 20 
+ Job <664> is submitted to default queue <normal>.
+Ensure that you can successfully display LSF job information. For example:
+#lsf bjobs -a 
+JOBID USER STAT QUEUE  FROM_HOST EXEC_HOST JOB_NAME SUBMIT_TIME  
+664   wt1  RUN  normal lwshost   lwsexec   sleep 20 Jun 12 00:10 
+What to do next
+IBM Spectrum LSF 2313

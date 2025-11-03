@@ -1,0 +1,88 @@
+In both cases, the taskman command accepts only the rusage[f2=2] string.
+-h
+Prints command usage to stderr and exits.
+-V
+Prints the LSF License Scheduler release version to stderr and exits.
+IBM Spectrum LSF Session Scheduler
+Install, manage, and use IBM® Spectrum LSF Session Scheduler. Run large collections of short duration tasks within the allocation of a single LSF job
+by using a job-level task scheduler that allocates resources for the job once, and reuses the allocated resources for each task. IBM Spectrum LSF
+Session Scheduler is ideal for running short jobs, whether they are a list of tasks, or job arrays with parametric execution.
+About IBM Spectrum LSF Session Scheduler
+ LSF Session Scheduler enables users to run large collections of short duration tasks within the allocation of a single LSF job using a job-level
+task scheduler that allocates resources for the job once, and reuses the allocated resources for each task. LSF Session Scheduler implements
+a hierarchical, personal scheduling paradigm that provides very low-latency execution. With very low latency per job, LSF Session Scheduler is
+ideal for executing very short jobs, whether they are a list of tasks, or job arrays with parametric execution.
+Installing IBM Spectrum LSF Session Scheduler
+ LSF Session Scheduler must be deployed on an LSF server host.
+How LSF Session Scheduler runs tasks
+ Running and monitoring LSF Session Scheduler jobs
+ Run LSF Session Scheduler jobs for various scenarios.
+Troubleshooting
+ Use any of the following methods to troubleshoot your LSF Session Scheduler jobs.
+About IBM Spectrum LSF Session Scheduler
+LSF Session Scheduler enables users to run large collections of short duration tasks within the allocation of a single LSF job using a job-level task
+scheduler that allocates resources for the job once, and reuses the allocated resources for each task. LSF Session Scheduler implements a
+hierarchical, personal scheduling paradigm that provides very low-latency execution. With very low latency per job, LSF Session Scheduler is ideal for
+executing very short jobs, whether they are a list of tasks, or job arrays with parametric execution.
+While traditional LSF job submission, scheduling, and dispatch methods such as job arrays or job chunking are well suited to a mix of long and short
+running jobs, or jobs with dependencies on each other, LSF Session Scheduler is ideal for large volumes of independent jobs with short run times.
+As clusters grow and the volume of workload increases, the need to delegate scheduling decisions increases. LSF Session Scheduler improves
+throughput and performance of the LSF scheduler by enabling multiple tasks to be submitted as a single LSF job.
+Each LSF Session Scheduler is dynamically scheduled in a similar manner to a parallel job. Each instance of the ssched command then manages its
+own workload within its assigned allocation. Work is submitted as a task array or a task deﬁnition ﬁle.
+LSF Session Scheduler satisﬁes the following goals for running a large volume of short jobs:
+Minimize the latency when scheduling short jobs
+Improve overall cluster utilization and system performance
+Allocate resources according to LSF policies
+Support existing LSF pre-execution, post-execution programs, job starters, resources limits, etc.
+Handle thousands of users and more than 50000 short jobs per user
+System requirements
+Supported operating systems
+LSF Session Scheduler is delivered in the following distribution:
+lsf10.1.0_ssched_lnx26-libc23-x64.tar.Z
+Required libraries
+Note: These libraries may not be installed by default by all Linux distributions.
+On Linux 2.6 (x86_64), the following external libraries are required:
+libstdc++.so.6
+libpthread-2.3.4.so or later
+Compatible Linux distributions
+Certiﬁed compatible distributions include:
+IBM Spectrum LSF 2109
+
+Red Hat Enterprise Linux AS 3 or later
+SUSE Linux Enterprise Server 10
+IBM Spectrum LSF
+LSF Session Scheduler terminology
+Job
+A traditional LSF job that is individually scheduled and dispatched to sbatchd by mbatchd and mbschd
+Task
+Similar to a job, a unit of workload that describes an executable and its environment that runs on an execution node. Tasks are managed and
+dispatched by the LSF Session Scheduler.
+Job Session
+An LSF job that is individually scheduled by mbatchd, but is not dispatched as an LSF job. Instead, a running LSF Session Scheduler job
+session represents an allocation of nodes for running large collections of tasks
+Scheduler
+The component that accepts and dispatches tasks within the nodes allocated for a job session.
+Architecture
+LSF Session Scheduler jobs are submitted, scheduled, and dispatched like normal LSF jobs.
+When the LSF Session Scheduler begins running, it starts one LSF Session Scheduler execution agent on each host in its allocation.
+The LSF Session Scheduler then reads in the task deﬁnition ﬁle, which contains a list of tasks to run. Tasks are sent to an execution agent and run.
+When a task ﬁnishes, the next task in the list is dispatched to the available host. This continues until all tasks have been run.
+Tasks submitted through LSF Session Scheduler bypass the LSF mbatchd and mbschd. The LSF mbatchd is unaware of individual tasks.
+Components
+LSF Session Scheduler comprises the following components.
+LSF Session Scheduler command (ssched)
+The ssched command accepts and dispatches tasks within the nodes allocated for a job session. It reads the task deﬁnition ﬁle and sends tasks to
+the execution agents. ssched also logs errors, performs task accounting, and requeues tasks as necessary.
+sservice and sschild
+These components are the execution agents. They run on each remote host in the allocation. They set up the task execution environment, run the
+tasks, and enable task monitoring and resource usage collection.
+Performance
+LSF Session Scheduler has been tested to support up to 50,000 tasks. Based on performance tests, the best maximum allocation size (speciﬁed by
+bsub -n) depends on the average runtime of the tasks. Here are some typical results:
+Average Runtime (seconds)Recommended maximum allocation size (slots)
+0 12
+5 64
+15 256
+30 512
+2110    IBM Spectrum LSF

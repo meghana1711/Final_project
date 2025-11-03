@@ -1,0 +1,1646 @@
+To enable support for the FlexNet Manager license reservation keyword, deﬁne the LM_RESERVATION parameter in the lsf.licensescheduler ﬁle.
+Deﬁne LM_RESERVATION=Y in the Parameters section to enable support globally, or deﬁne LM_RESERVATION=Y in the Features section to enable
+support for an individual feature.
+This support cannot be used in a time based conﬁguration, nor can it be used if the WORKLOAD_DISTRIBUTION parameter is deﬁned in a feature.
+Note: The license tokens that are reserved with FlexNet Manager must be used outside of LSF License Scheduler.
+Conﬁguring License Scheduler
+Conﬁgure cluster mode
+ Conﬁgure cluster mode with guarantees
+ Project mode with projects
+ You can conﬁgure license distribution when you are running license projects in project mode. Each distribution policy is applied locally, within
+service domains.
+Project mode with project groups
+ Project mode optional settings
+ After you conﬁgure LSF License Scheduler in project mode with projects or project groups, you can include some additional conﬁguration that
+is not required, but can be useful.
+Automatic time-based conﬁguration
+ Failover
+ User authentication
+ When a user claims a job belongs to a project, LSF License Scheduler checks if this user belongs to this project, since projects assign fair share
+priority and preemption is based on ownership. When users submit jobs to license projects they do not belong to, the request is refused or the
+job gets put in a "default" bucket with a low number of shares or no shares at all.
+Conﬁgure cluster mode
+Use cluster mode to distribute licenses across LSF clusters, leaving the scheduler for each LSF cluster to schedule jobs, allocate licenses to projects
+within the cluster, and preempt jobs.
+Conﬁgure parameters
+Procedure
+1. Cluster mode can be set globally, or for individual license features. Set individually when using cluster mode for some features and project
+mode for some features.
+a. If you are using cluster mode for all license features, deﬁne CLUSTER_MODE=Y in the Parameters section of lsf.licensescheduler.
+b. If you are using cluster mode for some license features, deﬁne CLUSTER_MODE=Y for individual license features in the Feature section
+of lsf.licensescheduler.
+The Feature section setting of CLUSTER_MODE overrides the global Parameter section setting.
+2. List the License Scheduler hosts.
+By default with an LSF installation, the HOSTS parameter is set to the LSF_MASTER_LIST.
+List the hosts in order from most preferred to least preferred. The ﬁrst host is the license scheduler management host.
+Specify a fully qualiﬁed host name such as hostX.mycompany.com unless all your License Scheduler clients run in the same DNS
+domain.
+HOSTS=host1 host2
+3. Specify the data collection frequency between License Scheduler and the license manager.
+The default is 60 seconds.
+LM_STAT_INTERVAL=seconds
+4. Specify the ﬁle paths to the commands for the license managers that you are using.
+a. If you are using FlexNet, specify the path to the lmutil (or lmstat) command.
+For example, if lmstat is in /etc/flexlm/bin:
+LMSTAT_PATH=/etc/flexlm/bin 
+b. If you are using Reprise License Manager, specify the path to the rlmutil (or rlmstat) command.
+For example, if the commands are in /etc/rlm/bin:
+RLMSTAT_PATH=/etc/rlm/bin 
+IBM Spectrum LSF 2007
+
+Conﬁgure clusters
+About this task
+Conﬁgure the clusters that are permitted to use License Scheduler in the Clusters section of the lsf.licensescheduler ﬁle.
+Conﬁguring the clusters is only required if you are using more than one cluster.
+Procedure
+In the Clusters section, list all clusters that can use License Scheduler.
+For example:
+Begin Clusters 
+CLUSTERS 
+cluster1 
+cluster2 
+End Clusters  
+Cluster mode service domains
+A service domain is a group of one or more license servers. License Scheduler manages the scheduling of the license tokens, but the license server
+actually supplies the licenses.
+In cluster mode, each cluster can access licenses from one WAN and one LAN service domain.
+License Scheduler does not control application checkout behavior. If the same license is available from both the LAN and WAN service domains,
+License Scheduler expects jobs to try to obtain the license from the LAN ﬁrst.
+Conﬁgure ServiceDomain sections
+About this task
+You conﬁgure each service domain, with the license server names and port numbers that serve licenses to a network, in the ServiceDomain section
+of the lsf.licensescheduler ﬁle.
+Whether the service domain is a WAN or LAN service domain is speciﬁed later in the Feature section.
+Procedure
+1. Add a ServiceDomain section, and deﬁne NAME for each service domain.
+For example:
+Begin ServiceDomain  
+NAME=DesignCenterA  
+End ServiceDomain 
+2. Specify the license server hosts for that domain, including the host name and license manager port number.
+For example:
+Begin ServiceDomain  
+NAME=DesignCenterA  
+LIC_SERVERS=((1700@hostA)) 
+End ServiceDomain 
+For multiple license servers:
+LIC_SERVERS=((1700@hostA)(1700@hostB)) 
+For redundant servers, the parentheses are used to group the three hosts that share the same license.dat ﬁle:
+LIC_SERVERS=((1700@hostD 1700@hostE 1700@hostF))
+2008    IBM Spectrum LSF
+
+Note: If FlexNet uses a port from the default range, you can specify the host name without the port number. See the FlexNet documentation
+for the values of the default port range.
+LIC_SERVERS=((@hostA))
+Conﬁgure remote license server hosts
+Before you begin
+If you are using FlexNet as a license manager, the FlexNet license server hosts must have lmutil (or lmstat) in the LMSTAT_PATH directory before
+conﬁguring these hosts with LSF License Scheduler.
+If you are using Reprise License Manager, the Reprise License Manager license server hosts must have rlmutil (or rlmstat) directory before
+conﬁguring these hosts with LSF License Scheduler.
+About this task
+The license collector (blcollect) is a multi-threaded daemon that queries all license servers under LSF License Scheduler for license usage
+information.
+The license collector calls lmutil or lmstat (for FlexNet), or rlmutil or rlmstat (for Reprise License Manager) to collect information from each license
+server. When there are both local and remote license servers (that is, license servers that are in a different subnet from the host running blcollect),
+the threads that collect information from the remote license servers are slower than the threads that collect information from local license servers.
+If there are remote license servers, designate at least one remote license server within each domain as a remote agent host. The license collector
+connects to the remote agent host and calls lmutil, lmstat, rlmutil, or rlmstat on the remote agent host and gets license information from all license
+servers that the remote agent host serves. The remote agent host and the remote license servers should be in the same domain to improve access.
+Procedure
+1. Select the connection method for the license collector to connect to remote hosts.
+LSF License Scheduler supports the use of ssh, rsh, and lsrun to connect to remote hosts. If using lsrun as the connection method, the agent
+host must be a server host in the LSF cluster and RES must be started on this host. Otherwise, if using ssh or rsh as the connection method,
+the agent host does not have to be a server host in the LSF cluster.
+a. In the Parameters section, deﬁne the REMOTE_LMSTAT_PROTOCOL parameter and specify the connection command (and command
+options, if required) to connect to remote servers.
+REMOTE_LMSTAT_PROTOCOL=ssh [ssh_command_options] | rsh [rsh_command_options] | lsrun [lsrun_command_options]
+The default connection method is ssh with no command options. LSF License Scheduler uses the speciﬁed command (and optional
+command options) to connect to the agent host. LSF License Scheduler automatically appends the name of the agent host to the
+command, so there is no need to specify the host with the command.
+Note: LSF License Scheduler does not validate the speciﬁed command, so you must ensure that you correctly specify the command.
+Any connection errors are noted in the blcollect log ﬁle.
+b. If the connection method is ssh or rsh, verify that this connection method is conﬁgured so the host running the license collector can
+connect to remote hosts without specifying a password.
+2. Deﬁne remote license servers and remote agent hosts.
+In the ServiceDomain section, deﬁne the REMOTE_LMSTAT_SERVERS parameter:
+REMOTE_LMSTAT_SERVERS=host_name[(host_name ...)] [host_name[(host_name ...)] ...]
+Specify a remote agent host, then any license servers that it serves in parentheses. The remote agent host and the license servers that it
+serves must be in the same subnet. If you specify a remote agent host by itself without any license servers (for example,
+REMOTE_LMSTAT_SERVERS=hostA), the remote agent host is considered to be a remote license server with itself as the remote agent host.
+That is, the license collector connects to the remote agent host and only gets license information on the remote agent host. You can specify
+multiple remote agent hosts to serve multiple subnets, or multiple remote agent hosts to serve speciﬁc license servers within the same
+subnet.
+Any host that you specify here must be a license server deﬁned in LIC_SERVERS. Any hosts deﬁned in REMOTE_LMSTAT_SERVERS that are not
+also deﬁned in LIC_SERVERS are ignored.
+The following examples assume that the license collector (blcollect) is running on LShost1. That is, the following parameter is speciﬁed in the
+Parameters section:
+Begin Parameters 
+... 
+HOSTS=LShost1 
+... 
+End Parameters 
+One local license server (hostA) and one remote license server (hostB):
+LIC_SERVERS=((1700@hostA)(1700@hostB)) 
+REMOTE_LMSTAT_SERVERS=hostB
+IBM Spectrum LSF 2009
+
+The license collector runs lmutil, lmstat, rlmutil, or rlmstat directly on hostA to get license information on hostA.
+Because hostB is deﬁned without additional license servers, hostB is a remote agent host that only serves itself. The license
+collector connects to hostB (using the command speciﬁed by the REMOTE_LMSTAT_PROTOCOL parameter) and runs lmutil,
+lmstat, rlmutil, or rlmstat to get license information on 1700@hostB.
+One local license server (hostA), one remote agent host (hostB) that serves one remote license server (hostC), and one remote agent
+host (hostD) that serves two remote license servers (hostE and hostF):
+LIC_SERVERS=((1700@hostA)(1700@hostB)(1700@hostC)(1700@hostD)(1700@hostE)(1700@hostF)) 
+REMOTE_LMSTAT_SERVERS=hostB(hostC) hostD(hostE hostF)
+The license collector runs lmutil, lmstat, rlmutil, or rlmstat directly to get license information from 1700@hostA, 1700@hostB,
+and 1700@hostD.
+The license collector connects to hostB (using the command speciﬁed by the REMOTE_LMSTAT_PROTOCOL parameter) and
+runs lmutil, lmstat, rlmutil, or rlmstat to get license information on 1700@hostC.
+hostB and hostC should be in the same subnet to improve access.
+The license collector connects to hostD (using the command speciﬁed by the REMOTE_LMSTAT_PROTOCOL parameter) and
+runs lmutil, lmstat, rlmutil, or rlmstat to get license information on 1700@hostE and 1700@hostF.
+hostD, hostE, and hostF should be in the same subnet to improve access.
+One local license server (hostA), one remote license server (hostB), and one remote agent host (hostC) that serves two remote
+license servers (hostD and hostE):
+LIC_SERVERS=((1700@hostA)(1700@hostB)(1700@hostC)(1700@hostD)(1700@hostE)) 
+REMOTE_LMSTAT_SERVERS=hostB hostC(hostD hostE)
+The license collector runs lmutil, lmstat, rlmutil, or rlmstat directly to get license information on 1700@hostA and
+1700@hostC.
+The license collector connects to hostB (using the command speciﬁed by the REMOTE_LMSTAT_PROTOCOL parameter) and
+runs lmutil, lmstat, rlmutil, or rlmstat to get license information on 1700@hostB.
+The license collector connects to hostC (using the command speciﬁed by the REMOTE_LMSTAT_PROTOCOL parameter) and
+runs lmutil, lmstat, rlmutil, or rlmstat to get license information on 1700@hostD and 1700@hostE.
+hostC, hostD, and hostE should be in the same subnet to improve access.
+Conﬁgure LAN service domain
+About this task
+You conﬁgure LAN service domains in the Feature section of lsf.licensescheduler. Only a single cluster and service domain can be speciﬁed in each
+LAN Feature section. Licenses from the LAN service domain are statically allocated to the cluster.
+Procedure
+In the Feature section, set
+CLUSTER_DISTRIBUTION=service_domain(cluster_name share) 
+Use the service domain name that is deﬁned in the ServiceDomain section.
+For example:
+Begin Feature 
+NAME=verilog 
+CLUSTER_DISTRIBUTION=MyLanServer(tokyo_cluster 1) 
+End Feature 
+Conﬁgure WAN service domain
+About this task
+WAN conﬁguration includes all clusters that are sharing the WAN service domain. As for a LAN service domain, you set this conﬁguration in the
+CLUSTER_DISTRIBUTION parameter in the Feature section of the lsf.licensescheduler ﬁle.
+For a WAN service domain, you can optionally conﬁgure dynamic license sharing based on past license use across all clusters that are served by the
+WAN service domain, and if required set minimum and maximum allocations for each cluster.
+Procedure
+1. Set the WAN service domain name in the CLUSTER_DISTRIBUTION parameter.
+CLUSTER_DISTRIBUTION = service_domain(cluster share/min/max...) 
+Use the service domain name that is deﬁned in the ServiceDomain section.
+2. Conﬁgure each cluster.
+All clusters with access to the WAN service domain licenses must be included.
+2010    IBM Spectrum LSF
+
+a. Set the cluster name.
+b. Set the share for each cluster.
+The share is a non-negative integer representing the share of licenses each cluster receives in a static license allocation, and the
+starting share in a dynamic license allocation.
+3. Optionally, set ALLOC_BUFFER in the Feature section of the lsf.licensescheduler ﬁle. When set, this parameter enables a dynamic sharing
+policy.
+ALLOC_BUFFER = buffer 
+or
+ALLOC_BUFFER = cluster1 buffer1 cluster2 buffer2...default buffer 
+When extra license tokens are available, each cluster’s allocation increases to as much as PEAK+BUFFER.
+The value BUFFER is set by ALLOC_BUFFER in the Feature section, and the value PEAK is the peak value of dynamic license token use
+over a time interval that is set by PEAK_INUSE_PERIOD in the Parameters or Feature section.
+When allocated tokens are not being use in a cluster, the cluster’s allocation goes down to PEAK+BUFFER.
+Since tokens are not being used in the cluster, the peak use value PEAK decreases, thus PEAK+BUFFER also decreases.
+The allocation buffer sets both the rate at which the cluster allocation can grow, and the number of licenses that can go unused, depending on
+demand.
+Allocation buffers help determine the maximum rate at which tokens can be transferred to a cluster as demand increases in the cluster. The
+maximum rate of transfer to a cluster is given by the allocation buffer that is divided by MBD_REFRESH_INTERVAL. Be careful not to set the
+allocation buffer too large so that licenses are not wasted because they are allocated to a cluster that cannot use them.
+4. Optionally, when dynamic sharing is enabled (ALLOC_BUFFER is deﬁned) you can set the minimum and maximum allocation for each cluster.
+The minimum allocation reserves license tokens for exclusive use by the cluster; the maximum allocation limits the total number of license
+tokens that are received by the cluster.
+Cluster shares take precedence over minimum allocations conﬁgured. If the minimum allocation exceeds the cluster's share of the total
+tokens, a cluster's allocation as given by bld may be less than the conﬁgured minimum allocation.
+Results
+To allow a cluster to be able to use licenses only when another cluster does not need them, you can set the cluster distribution for the cluster to 0,
+and specify an allocation buffer for the number of tokens that the cluster can request.
+For example:
+Begin Feature 
+CLUSTER_DISTRIBUTION=Wan(CL1 0 CL2 1) 
+ALLOC_BUFFER=5 
+End Feature 
+When no jobs are running, the token allocation for CL1 is ﬁve. If CL2 does not require the tokens, CL1 can get more than ﬁve.
+Examples
+Static example (no allocation buffer set):
+Begin Feature 
+NAME=verilog 
+CLUSTER_DISTRIBUTION=MyWanServer(tokyo_cl 1 newyork_cl 1 toronto_cl 2) 
+End Feature 
+In this example, licenses are statically allocated based solely on the number of shares that are assigned to each cluster. If the number of licenses is
+not evenly divisible by the number of shares, the additional licenses are distributed round-robin to clusters in the speciﬁed order in
+CLUSTER_DISTRIBUTION. Thus if there are 98 licenses in total, tokyo_cl receives 25, newyork_cl receives 25, and toronto_cl receives 48. Each
+cluster limits the total rusage of running jobs that are based on the allocated license tokens.
+Dynamic example (allocation buffer set):
+Begin Feature 
+NAME=verilog 
+CLUSTER_DISTRIBUTION=MyWanServer(tokyo_cl 1 newyork_cl 1 toronto_cl 2/10/50) 
+ALLOC_BUFFER=tokyo_cl 5 newyork_cl 1 toronto_cl 2 
+End Feature 
+In this example, licenses are initially distributed according to the assigned shares. Since allocation buffers are set, dynamic sharing that is based on
+past use is enabled. Based on the allocation buffers, toyko_cl receives license tokens the fastest when there is demand within the cluster. Minimum
+and maximum allocations of 10 and 50 are set for toronto_cl, which also has the largest share.
+LAN and dynamic WAN example:
+IBM Spectrum LSF 2011
+
+Begin Feature 
+NAME=verilog 
+CLUSTER_DISTRIBUTION=MyWan(c1 1/1/25 c2 1/1/30 c3 2/5/100) MyLan(c1 1) 
+ALLOC_BUFFER=c3 5 default 2 
+End Feature 
+In this example, the verilog license feature is available from both WAN and LAN service domain, however only cluster c1 receives the license feature
+from both servers. Licenses from the WAN service domain are initially distributed according to the assigned shares. Since allocation buffers are set,
+dynamic sharing that is based on past use is enabled. Based on the allocation buffers cluster c3 receives license tokens the fastest when there is
+demand within the cluster.
+Conﬁgure license features
+About this task
+Each type of license requires a Feature section in the lsf.licensescheduler ﬁle.
+Procedure
+1. Deﬁne the feature name that is used by the license manager to identify the type of license by using the NAME parameter.
+Optionally, deﬁne an alias between LSF License Scheduler and the license manager feature names by using the LM_LICENSE_NAME
+parameter to specify the license manager feature name and the NAME parameter to deﬁne the LSF License Scheduler alias.
+You only need to specify LM_LICENSE_NAME if the LSF License Scheduler token name is not identical to the license manager feature name, or
+for license manager feature names that either start with a number or contain a hyphen character (-), which are not supported in LSF.
+If the license manager feature name is AppZ201 and you intend to use this same name as the LSF License Scheduler token name, deﬁne the
+NAME parameter as follows:
+Begin Feature 
+NAME=AppZ201  
+End Feature 
+If the license manager feature name 201-AppZ, this is not supported in LSF because the feature name starts with a number and contains a
+hyphen. Therefore, deﬁne AppZ201 as an alias of the 201-AppZ license manager feature name as follows:
+Begin Feature 
+NAME=AppZ201 
+LM_LICENSE_NAME=201-AppZ  
+End Feature 
+2. Optionally, combine multiple interchangeable license manager features into one LSF License Scheduler alias by specifying multiple license
+manager feature names in LM_LICENSE_NAME as a space-delimited list.
+In this example, two license manager features named 201-AppZ and 202-AppZ are combined into an alias named AppZ201.
+Begin Feature 
+NAME=AppZ201 
+LM_LICENSE_NAME=201-AppZ 202-AppZ 
+End Feature 
+AppZ201 is a combined feature that uses both 201-AppZ and 202-AppZ tokens. Submitting a job with AppZ201 in the rusage string (for
+example, bsub -Lp Lp1 -R "rusage[AppZ201=2]" myjob) means that the job checks out tokens for either 201-AppZ or 202-AppZ.
+Conﬁgure taskman jobs in cluster mode
+About this task
+Optionally, to run taskman (interactive) jobs in cluster mode, include the dummy cluster interactive in your service domain conﬁguration.
+Procedure
+In the Feature section:
+1. Include the dummy cluster interactive in the CLUSTER_DISTRIBUTION parameter.
+2. Set a share for the dummy cluster interactive.
+3. Optionally, set an allocation buffer for the dummy cluster interactive to enable dynamic allocation.
+Examples
+Begin Feature 
+NAME=licenseA 
+CLUSTER_DISTRIBUTION=MyLanServer(tokyo_cl 1 interactive 1) 
+End Feature 
+  
+Begin Feature 
+NAME=licenseB 
+2012    IBM Spectrum LSF
+
+CLUSTER_DISTRIBUTION=MyWanServer(tokyo_cl 1 newyork_cl 1 interactive 2) 
+End Feature 
+Allocate licenses to non-LSF jobs
+About this task
+Applies to WAN service domains only.
+Procedure
+Set WORKLOAD_DISTRIBUTION in the Feature section to allocate licenses for non-LSF use.
+WORKLOAD_DISTRIBUTION=service_domain_name(LSF lsf_distribution NON_LSF non_lsf_distribution) 
+If WORKLOAD_DISTRIBUTION is set for a LAN service domain in cluster mode, the parameter is ignored.
+Example
+For example, to set aside 20% of licenses for use outside of LSF:
+Begin Feature 
+NAME=licenseB 
+CLUSTER_DISTRIBUTION=MyWanServer(tokyo_cl 1 newyork_cl 1) 
+WORKLOAD_DISTRIBUTION=MyWanServer(LSF 8 NON_LSF 2) 
+End Feature 
+Restart to implement conﬁguration changes
+Procedure
+1. Run bladmin reconfig to restart the bld.
+2. If you deleted any Feature sections, restart mbatchd. In this case, a message is written to the log ﬁle, prompting the restart.
+If required, run badmin mbdrestart to restart each LSF cluster.
+View license allocation
+Procedure
+Run blstat -t token_name to view information for a speciﬁc license token (as conﬁgured in a Feature section).
+blstat output differs for cluster mode and project mode.
+Conﬁgure cluster mode with guarantees
+Cluster mode distributes licenses across LSF clusters. To guarantee license resources to projects within a cluster and allow loaning of license
+resources when not in use, use LSF guarantee-type SLAs. Guarantees and loans in cluster mode are similar to non-shared licenses and ownership in
+project mode.
+A guarantee provides jobs that belong to set consumers with speciﬁc resources (such as hosts). Jobs run with guaranteed resources when possible.
+When the guaranteed resources are used, jobs run outside the guarantee following whatever other scheduling features are conﬁgured. Guarantees
+are conﬁgured within a guaranteed resource pool.
+Guarantee SLAs are conﬁgured in LSF. For more information, see Administering IBM® Spectrum LSF and the IBM Spectrum LSF Conﬁguration
+Reference.
+Conﬁgure service classes
+About this task
+Service classes allow access to guaranteed resources. Conﬁgure a service class for each license project in the cluster.
+Procedure
+Conﬁgure each ServiceClass section in the lsb.serviceclasses ﬁle. Begin with the line Begin ServiceClass and end with the line End ServiceClass. For
+each service class, you must specify:
+a. NAME: the name of the service class.
+b. GOALS = [GUARANTEE]
+c. Optional parameters for the ServiceClass section are ACCESS_CONTROL, AUTO_ATTACH, and DESCRIPTION.
+IBM Spectrum LSF 2013
+
+You can conﬁgure as many service class sections as you need.
+Important:
+The name that you use for your service class cannot be the same as an existing host partition or user group name.
+Begin ServiceClass 
+NAME = sla1 
+GOALS = [GUARANTEE] 
+ACCESS_CONTROL=LIC_PROJECTS[ proj1 ] 
+DESCRIPTION = A guarantee SLA with access restricted to the license project proj1. 
+End ServiceClass 
+Automatically attach jobs to service classes
+About this task
+When the optional parameter AUTO_ATTACH is set, jobs are automatically attached to the service class.
+When automatic attachment is not set, jobs can be submitted to the service class by running bsub -sla serviceclass_name.
+If a job can access more than one SLA with automatic attachment set, it is attached to the ﬁrst valid SLA in the order of the conﬁguration ﬁle.
+Procedure
+Set AUTO_ATTACH=Y in the ServiceClass section in the lsb.serviceclasses ﬁle.
+Begin ServiceClass 
+NAME = sla1 
+GOALS = [GUARANTEE] 
+ACCESS_CONTROL=LIC_PROJECTS[ proj1 ] 
+AUTO_ATTACH=Y 
+DESCRIPTION = A guarantee SLA with access restricted to the license project proj1. 
+Jobs submitted to proj1 are attached to the SLA automatically and run on guaranteed 
+resources if possible. 
+End ServiceClass 
+Conﬁgure a resource pool of license tokens
+About this task
+Guaranteed resource pools provide a minimum resource guarantee to consumers, and can optionally loan out guaranteed resources not in use.
+Guaranteed resource pools are deﬁned in lsb.resources and used by consumers that are deﬁned within ServiceClass sections in lsb.serviceclasses.
+Procedure
+Conﬁgure a GuaranteedResourcePool section in lsb.resources. Begin with the line Begin GuaranteedResourcePool and end with the line End
+GuaranteedResourcePool. Specify the following parameters:
+a. NAME: the name of the guaranteed resource pool.
+b. TYPE: the guarantee type. For licenses, use the type resources and include the name of the license feature.
+c. DISTRIBUTION: share assignments for all service classes using the resource pool. Can be percent or absolute numbers.
+d. Optional parameters for GuaranteedResourcePool sections of resources are LOAN_POLICIES, and DESCRIPTION.
+You can conﬁgure as many resource pools as you need. One resource pool can be used by several SLAs, and one SLA can access multiple resource
+pools.
+Begin GuaranteedResourcePool 
+NAME = hspice_guarantees 
+TYPE = resource[hspice] 
+DISTRIBUTION = ([proj1_sc,50%][proj2_sc,50%]) 
+DESCRIPTION = A resource pool of hspice licenses controlled by License Scheduler 
+and used by proj1_sc and proj2_sc. 
+End GuaranteedResourcePool 
+Conﬁgure loans
+About this task
+Loans from unused guarantees are recommended when you are using cluster mode. When loans are disabled, use a static license distribution policy.
+When conﬁgured, unused license resources are loaned out based on the loan policy. The loan policy allows speciﬁc queues to access unused
+resources from guaranteed resource pools.
+Procedure
+2014    IBM Spectrum LSF
+
+1. Conﬁgure a guaranteed resource pool in lsb.resources with the required NAME, TYPE, and DISTRIBUTION parameters.
+2. Add a loan policy to the guaranteed resource pool.
+Use LOAN_POLICIES= QUEUES[queue_name] to specify which queues can access loaned resources. Use the keyword all to loan to jobs from
+any queue.
+For example, the following policy allows loans to jobs from the queue my_queue:
+Begin GuaranteedResourcePool 
+... 
+LOAN_POLICIES = QUEUES[my_queue] 
+... 
+End GuaranteedResourcePool 
+Conﬁgure loans to short jobs
+About this task
+Loans can be restricted based on job run time, or estimated run time.
+Procedure
+Add the policy DURATION[minutes] to the guaranteed resource pool conﬁguration in lsb.resources, where minutes is an integer.
+Use DURATION to set a maximum job runtime limit (or estimated run time, whichever is shorter) for jobs to borrow resources. Omit DURATION
+completely to allow jobs with any run time to borrow from the guarantee.
+For example, the following policy allows loans to jobs from any queue with a run time of 10 minutes or less:
+Begin GuaranteedResourcePool 
+... 
+LOAN_POLICIES = QUEUES[all] DURATION[10] 
+... 
+End GuaranteedResourcePool 
+Conﬁgure loans to stop when jobs are waiting for guaranteed resources
+About this task
+Loans can be restricted so that jobs have access to the loaned resources only when consumers with unused guaranteed resources do not have
+pending loads.
+Restricting loans is useful when running jobs that require several licenses. With restricted loans enabled, loaning out single licenses does not delay
+jobs that are waiting for license resources to accumulate.
+Procedure
+Add the policy CLOSE_ON_DEMAND to the guaranteed resource pool conﬁguration in lsb.resources.
+Begin GuaranteedResourcePool 
+... 
+LOAN_POLICIES = QUEUES[queue1] CLOSE_ON_DEMAND 
+... 
+End GuaranteedResourcePool 
+Conﬁgure a queue with access to all guaranteed resources
+About this task
+Queues with high priority (such as administrator test queues) can be conﬁgured with access to all guaranteed resources, regardless of SLA demand.
+Procedure
+Conﬁgure a queue in the lsb.queues ﬁle with the SLA_GUARANTEES_IGNORE = Y parameter.
+Note:
+Using SLA_GUARANTEES_IGNORE = Y defeats the purpose of guaranteeing resources. Use this parameter sparingly for low trafﬁc queues only.
+Restart for changes to take effect
+About this task
+Cluster mode must be enabled, and LSF clusters must be restarted for LSF conﬁguration changes to take effect.
+Procedure
+1. In the Parameters section of lsf.licensescheduler, conﬁrm cluster mode is enabled (CLUSTER_MODE=Y).
+2. Run badmin mbdrestart to restart each LSF cluster.
+IBM Spectrum LSF 2015
+
+3. Run bladmin reconfig to restart the bld.
+View guaranteed resource pools
+About this task
+Guaranteed resource pool conﬁguration includes the resource type, and distribution among consumers that are deﬁned in the corresponding service
+classes.
+Procedure
+Run bresources -g -l -m to see details of the guaranteed resource pool conﬁguration, including a list of hosts currently in the resource pool.
+Project mode with projects
+You can conﬁgure license distribution when you are running license projects in project mode. Each distribution policy is applied locally, within service
+domains.
+Tip: Although license projects are not the same as LSF projects, you can map your license project names to LSF project names for easier monitoring.
+Conﬁgure parameters
+Procedure
+1. Project mode can be set globally, or for individual license features. Set individually when you are using project mode for some features and
+cluster mode for some features.
+a. If you are using project mode for all license features, deﬁne CLUSTER_MODE=N in the Parameters section of lsf.licensescheduler.
+b. If you are using project mode for some license features, deﬁne CLUSTER_MODE=N for individual license features in the Feature section
+of lsf.licensescheduler.
+The Feature section setting of CLUSTER_MODE overrides the global Parameter section setting.
+2. List the License Scheduler hosts.
+By default with an LSF installation, the HOSTS parameter is set to the LSF_MASTER_LIST.
+List the hosts in order from most preferred to least preferred. The ﬁrst host is the license scheduler management host.
+Specify a fully qualiﬁed host name such as hostX.mycompany.com, unless all your License Scheduler clients run in the same DNS
+domain.
+HOSTS=host1 host2
+3. Specify the data collection frequency between License Scheduler and the license manager.
+The default is 30 seconds.
+LM_STAT_INTERVAL=seconds
+4. Specify the ﬁle paths to the commands for the license managers that you are using.
+a. If you are using FlexNet, specify the path to the FlexNet command lmutil (or lmstat).
+For example, if lmstat is in /etc/flexlm/bin:
+LMSTAT_PATH=/etc/flexlm/bin
+b. If you are using Reprise License Manager, specify the path to the Reprise License Manager command rlmutil (or rlmstat).
+For example, if rlmstat is in /etc/rlm/bin:
+RLMSTAT_PATH=/etc/rlm/bin
+Conﬁgure clusters
+About this task
+Conﬁgure the clusters that are permitted to use License Scheduler in the Clusters section of the lsf.licensescheduler ﬁle.
+This conﬁguration is only required if you are using more than one cluster.
+Procedure
+In the Clusters section, list all clusters that can use License Scheduler.
+For example:
+Begin Clusters  
+CLUSTERS  
+2016    IBM Spectrum LSF
+
+cluster1  
+cluster2 
+End Clusters
+Conﬁgure projects
+About this task
+Each project that is deﬁned in a Projects section of lsf.licensescheduler can have a distribution policy that is applied in the Feature section,
+where projects can be associated with license features.
+Procedure
+Deﬁne the projects with or without priority.
+Begin Projects  
+PROJECTS       PRIORITY  
+Lp1             3  
+Lp2             1  
+Lp3             2  
+default         0  
+End Projects
+The higher the number, the higher the priority. When two projects have the same priority number that is conﬁgured, the ﬁrst listed project has a
+higher priority. Priority is taken into account when license preemption occurs, where lower priority projects are preempted ﬁrst.
+If not explicitly conﬁgured, the default project has the priority of zero. A default project is used when no license project is speciﬁed during job
+submission.
+Add project description
+About this task
+Optionally, you can add a project description of up to 64 characters to your projects to help identify them.
+Procedure
+In the Project section of lsf.licensescheduler, ﬁnd the project and add a description in the DESCRIPTION column.
+For example:
+Begin Projects 
+PROJECTS PRIORITY DESCRIPTION 
+p1       10       "Engineering project 123" 
+p2       9        "QA build project 2C" 
+P3       8        "" 
+End Projects
+Results
+When you are running blinfo -Lp or blinfo -G, any existing project descriptions display.
+Project mode service domains
+A service domain is a group of one or more license servers. License Scheduler manages the scheduling of the license tokens, but the license server
+actually supplies the licenses. You must conﬁgure at least one service domain for License Scheduler.
+In project mode, each cluster can access licenses from multiple WAN and LAN service domains. License Scheduler collects license availability and
+usage from license server hosts, and merges this information with license demand and usage information from LSF clusters to make distribution and
+preemption decisions.
+Note: Unless you require multiple service domains for some speciﬁc reason, conﬁgure both modes with at most one LAN and one WAN for each
+feature in a cluster. Because License Scheduler does not control license checkout, running with one cluster that is accessing multiple service
+domains is not optimal.
+Conﬁgure service domains
+About this task
+You conﬁgure each service domain, with the license server names and port numbers that serve licenses to a network, in the ServiceDomain
+section of the lsf.licensescheduler ﬁle.
+Procedure
+1. Add a ServiceDomain section, and deﬁne NAME for each service domain.
+IBM Spectrum LSF 2017
+
+For example:
+Begin ServiceDomain  
+NAME=DesignCenterA  
+End ServiceDomain
+2. Specify the license server hosts for that domain, including the host name and license manager port number.
+For example:
+Begin ServiceDomain  
+NAME=DesignCenterA  
+LIC_SERVERS=((1700@hostA))  
+End ServiceDomain
+For multiple license servers:
+LIC_SERVERS=((1700@hostA)(1700@hostB))
+For redundant servers, the parentheses are used to group the three hosts that share license.dat ﬁle:
+LIC_SERVERS=((1700@hostD 1700@hostE 1700@hostF))
+Note: If FlexNet uses a port from the default range, you can specify the host name without the port number. See the FlexNet documentation
+for the values of the default port range.
+LIC_SERVERS=((@hostA))
+Conﬁgure remote license server hosts
+Before you begin
+If you are using FlexNet as a license manager, the FlexNet license server hosts must have lmutil (or lmstat) in the LMSTAT_PATH directory before
+conﬁguring these hosts with LSF License Scheduler.
+If you are using Reprise License Manager, the Reprise License Manager license server hosts must have rlmutil (or rlmstat) directory before
+conﬁguring these hosts with LSF License Scheduler.
+About this task
+The license collector (blcollect) is a multi-threaded daemon that queries all license servers under LSF License Scheduler for license usage
+information.
+The license collector calls lmutil or lmstat (for FlexNet), or rlmutil or rlmstat (for Reprise License Manager) to collect information from each license
+server. When there are both local and remote license servers (that is, license servers that are in a different subnet from the host running blcollect),
+the threads that collect information from the remote license servers are slower than the threads that collect information from local license servers.
+If there are remote license servers, designate at least one remote license server within each domain as a remote agent host. The license collector
+connects to the remote agent host and calls lmutil, lmstat, rlmutil, or rlmstat on the remote agent host and gets license information from all license
+servers that the remote agent host serves. The remote agent host and the remote license servers should be in the same domain to improve access.
+Procedure
+1. Select the connection method for the license collector to connect to remote hosts.
+LSF License Scheduler supports the use of ssh, rsh, and lsrun to connect to remote hosts. If using lsrun as the connection method, the agent
+host must be a server host in the LSF cluster and RES must be started on this host. Otherwise, if using ssh or rsh as the connection method,
+the agent host does not have to be a server host in the LSF cluster.
+a. In the Parameters section, deﬁne the REMOTE_LMSTAT_PROTOCOL parameter and specify the connection command (and command
+options, if required) to connect to remote servers.
+REMOTE_LMSTAT_PROTOCOL=ssh [ssh_command_options] | rsh [rsh_command_options] | lsrun [lsrun_command_options]
+The default connection method is ssh with no command options. LSF License Scheduler uses the speciﬁed command (and optional
+command options) to connect to the agent host. LSF License Scheduler automatically appends the name of the agent host to the
+command, so there is no need to specify the host with the command.
+Note: LSF License Scheduler does not validate the speciﬁed command, so you must ensure that you correctly specify the command.
+Any connection errors are noted in the blcollect log ﬁle.
+b. If the connection method is ssh or rsh, verify that this connection method is conﬁgured so the host running the license collector can
+connect to remote hosts without specifying a password.
+2. Deﬁne remote license servers and remote agent hosts.
+In the ServiceDomain section, deﬁne the REMOTE_LMSTAT_SERVERS parameter:
+REMOTE_LMSTAT_SERVERS=host_name[(host_name ...)] [host_name[(host_name ...)] ...]
+Specify a remote agent host, then any license servers that it serves in parentheses. The remote agent host and the license servers that it
+serves must be in the same subnet. If you specify a remote agent host by itself without any license servers (for example,
+REMOTE_LMSTAT_SERVERS=hostA), the remote agent host is considered to be a remote license server with itself as the remote agent host.
+2018    IBM Spectrum LSF
+
+That is, the license collector connects to the remote agent host and only gets license information on the remote agent host. You can specify
+multiple remote agent hosts to serve multiple subnets, or multiple remote agent hosts to serve speciﬁc license servers within the same
+subnet.
+Any host that you specify here must be a license server deﬁned in LIC_SERVERS. Any hosts deﬁned in REMOTE_LMSTAT_SERVERS that are not
+also deﬁned in LIC_SERVERS are ignored.
+The following examples assume that the license collector (blcollect) is running on LShost1. That is, the following parameter is speciﬁed in the
+Parameters section:
+Begin Parameters 
+... 
+HOSTS=LShost1 
+... 
+End Parameters 
+One local license server (hostA) and one remote license server (hostB):
+LIC_SERVERS=((1700@hostA)(1700@hostB)) 
+REMOTE_LMSTAT_SERVERS=hostB
+The license collector runs lmutil, lmstat, rlmutil, or rlmstat directly on hostA to get license information on hostA.
+Because hostB is deﬁned without additional license servers, hostB is a remote agent host that only serves itself. The license
+collector connects to hostB (using the command speciﬁed by the REMOTE_LMSTAT_PROTOCOL parameter) and runs lmutil,
+lmstat, rlmutil, or rlmstat to get license information on 1700@hostB.
+One local license server (hostA), one remote agent host (hostB) that serves one remote license server (hostC), and one remote agent
+host (hostD) that serves two remote license servers (hostE and hostF):
+LIC_SERVERS=((1700@hostA)(1700@hostB)(1700@hostC)(1700@hostD)(1700@hostE)(1700@hostF)) 
+REMOTE_LMSTAT_SERVERS=hostB(hostC) hostD(hostE hostF)
+The license collector runs lmutil, lmstat, rlmutil, or rlmstat directly to get license information from 1700@hostA, 1700@hostB,
+and 1700@hostD.
+The license collector connects to hostB (using the command speciﬁed by the REMOTE_LMSTAT_PROTOCOL parameter) and
+runs lmutil, lmstat, rlmutil, or rlmstat to get license information on 1700@hostC.
+hostB and hostC should be in the same subnet to improve access.
+The license collector connects to hostD (using the command speciﬁed by the REMOTE_LMSTAT_PROTOCOL parameter) and
+runs lmutil, lmstat, rlmutil, or rlmstat to get license information on 1700@hostE and 1700@hostF.
+hostD, hostE, and hostF should be in the same subnet to improve access.
+One local license server (hostA), one remote license server (hostB), and one remote agent host (hostC) that serves two remote
+license servers (hostD and hostE):
+LIC_SERVERS=((1700@hostA)(1700@hostB)(1700@hostC)(1700@hostD)(1700@hostE)) 
+REMOTE_LMSTAT_SERVERS=hostB hostC(hostD hostE)
+The license collector runs lmutil, lmstat, rlmutil, or rlmstat directly to get license information on 1700@hostA and
+1700@hostC.
+The license collector connects to hostB (using the command speciﬁed by the REMOTE_LMSTAT_PROTOCOL parameter) and
+runs lmutil, lmstat, rlmutil, or rlmstat to get license information on 1700@hostB.
+The license collector connects to hostC (using the command speciﬁed by the REMOTE_LMSTAT_PROTOCOL parameter) and
+runs lmutil, lmstat, rlmutil, or rlmstat to get license information on 1700@hostD and 1700@hostE.
+hostC, hostD, and hostE should be in the same subnet to improve access.
+Conﬁgure license features
+About this task
+Each type of license requires a Feature section in the lsf.licensescheduler ﬁle.
+The Feature section includes the license distribution policy.
+Procedure
+1. Deﬁne the feature name that is used by the license manager to identify the type of license by using the NAME parameter.
+Optionally, deﬁne an alias between LSF License Scheduler and the license manager feature names by using the LM_LICENSE_NAME
+parameter to specify the license manager feature name and the NAME parameter to deﬁne the LSF License Scheduler alias.
+You only need to specify LM_LICENSE_NAME if the LSF License Scheduler token name is not identical to the license manager feature name, or
+for license manager feature names that either start with a number or contain a hyphen character (-), which are not supported in LSF.
+If the license manager feature name is AppZ201 and you intend to use this same name as the LSF License Scheduler token name, deﬁne the
+NAME parameter as follows:
+IBM Spectrum LSF 2019
+
+Begin Feature 
+NAME=AppZ201  
+End Feature
+If the license manager feature name 201-AppZ, this is not supported in LSF because the feature name starts with a number and contains a
+hyphen. Therefore, deﬁne AppZ201 as an alias of the 201-AppZ license manager feature name as follows:
+Begin Feature 
+NAME=AppZ201 
+LM_LICENSE_NAME=201-AppZ  
+End Feature
+2. Optionally, combine multiple interchangeable license manager features into one LSF License Scheduler alias by specifying multiple license
+manager feature names in LM_LICENSE_NAME as a space-delimited list.
+In this example, two license manager features named 201-AppZ and 202-AppZ are combined into an alias named AppZ201.
+Begin Feature 
+NAME=AppZ201 
+LM_LICENSE_NAME=201-AppZ 202-AppZ 
+End Feature
+AppZ201 is a combined feature that uses both 201-AppZ and  tokens. Submitting a job with AppZ201 in the rusage string (for example,
+bsub -Lp Lp1 -R "rusage[AppZ201=2]" myjob) means that the job checks out tokens for either 201-AppZ or 202-AppZ.
+3. Deﬁne a distribution policy.
+A distribution policy deﬁnes the license fair share policy in the format:
+DISTRIBUTION = ServiceDomain1 (project1 share_ratio project2 share_ratio ...) 
+ServiceDomain2 (project3 share_ratio ...)
+For example, a basic conﬁguration assigns shares:
+Begin Feature  
+LM_LICENSE_NAME=201-AppZ  
+NAME=AppZ201  
+DISTRIBUTION = DesignCenterA (LpA 2 LpB 1 default 1) 
+End Feature
+LpA has the right to twice as many licenses as LpB. Jobs that are submitted without a license project that is speciﬁed can run under the
+default project.
+4. Optionally, add owned licenses to the distribution policy in the format:
+DISTRIBUTION = ServiceDomain1 (project1 share_ratio/number_owned 
+project2 share_ratio/number_owned ...) ServiceDomain2 
+(project3 share_ratio ...) 
+If LS_FEATURE_PERCENTAGE=Y or LS_ACTIVE_PERCENTAGE=Y in lsf.licensescheduler, number_owned is expressed as a percentage of the
+total licenses.
+Example 1:
+DISTRIBUTION = LanServer(Lp1 1 Lp2 1/10)
+This example assumes that there are ten licenses in total, all owned by Lp2.
+The two License Scheduler projects, Lp1 and Lp2, and share the licenses, but grant ownership of the licenses to one of the projects (Lp22).
+When Lp2 has no work to be done, Lp1 can use the licenses. When Lp2 has work to do, Lp1 must return the license immediately to Lp2. The
+license utilization is always at the maximum, showing that all licenses are in use even while the license distribution policies are being
+enforced.
+Example 2:
+DISTRIBUTION=LanServer1(Lp1 1 Lp2 2/6)
+Lp1 is set to use one third of the available licenses and Lp2 to use two thirds of the licenses. However, Lp2 is always entitled to six licenses
+and preempts other license project jobs when licenses are needed immediately.
+If the projects are competing for a total of 12 licenses, Lp2 is entitled to eight (six on demand, and two more as soon as they are free).
+If the projects are competing for only six licenses in total, Lp2 is entitled to all of them, and Lp1 can use licenses only when Lp2 does not
+need them.
+Track partial and unspeciﬁed license use
+About this task
+2020    IBM Spectrum LSF
+
+When you want to manage licenses not included in job resource requirements or have applications that you know use licenses for only part of the
+length of each job, use these optional settings.
+Procedure
+1. Optionally, specify DYNAMIC=Y to consider the license feature as a dynamic resource when it is only used for part of the job.
+Set DYNAMIC=Y for applications with known license use that do not use the license for the entire length of the job. Jobs are submitted with
+duration speciﬁed, then release the license when not in use:
+Begin Feature  
+NAME = p1_2  
+DISTRIBUTION= Lan1 (a 1 b 1 c 1 default 1)  
+DYNAMIC=Y  
+End Feature
+For example, a taskman job submission with duration:
+taskman -R "rusage[p1_2=1:duration=2]" myjob
+2. Optionally, set ENABLE_DYNAMIC_RUSAGE=Y in the Feature section of lsf.licensescheduler to track license use of license features not
+speciﬁed at job submission.
+For example:
+Begin Feature  
+NAME = feat2  
+DISTRIBUTION = LanServer(proj1 1 default 1)  
+ENABLE_DYNAMIC_RUSAGE = y  
+End Feature
+Submit a job to run the application, specifying the license feature name:
+bsub -R "rusage[feat1=1]" -Lp proj1 app1
+The job runs and license feat1 is checked out:
+blstat  
+FEATURE: feat1  
+ SERVICE_DOMAIN: LanServer 
+ TOTAL_INUSE: 1    TOTAL_RESERVE: 0    TOTAL_FREE: 4    OTHERS: 0   
+  PROJECT                 SHARE   OWN  INUSE RESERVE FREE   DEMAND  
+  proj1                   50.0 %  0    1     0       2      0 
+  default                 50.0 %  0    0     0       2      0 
+FEATURE: feat2              
+ SERVICE_DOMAIN: LanServer 
+ TOTAL_INUSE: 0    TOTAL_RESERVE: 0    TOTAL_FREE: 10   OTHERS: 0    
+  PROJECT                 SHARE   OWN  INUSE RESERVE FREE   DEMAND  
+  proj1                   50.0 %  0    0     0       5      0 
+  default                 50.0 %  0    0     0       5      0
+blusers -l  
+FEATURE  SERVICE_DOMAIN  USER   HOST    NLICS   NTASKS OTHERS  DISPLAYS   PIDS  
+feat1    LanServer       user1  hostA   1       1      0       (/dev/tty) (16326)
+blusers -J  
+JOBID   USER     HOST     PROJECT          CLUSTER        START_TIME  
+1896    user1    hostA    proj1            cluster1       Aug  9 10:01:25  
+RESOURCE        RUSAGE        SERVICE_DOMAIN   INUSE  EFFECTIVE_PROJECT 
+feat1           1             LanServer        1      proj1
+Later, app1 checks out feature feat2. Since it was not speciﬁed at job submission, feat2 is a class C license checkout. But since it is
+conﬁgured with ENABLE_DYNAMIC_RUSAGE=Y, jobs that require feat2 are considered managed workload, and subject to the distribution
+policies of project proj1:
+blstat  
+FEATURE: feat1  
+SERVICE_DOMAIN: LanServer  
+TOTAL_INUSE: 1    TOTAL_RESERVE: 0    TOTAL_FREE: 4    OTHERS: 0  
+PROJECT                 SHARE   OWN  INUSE RESERVE FREE   DEMAND  
+ proj1                  50.0 %  0    1     0       2      0 
+ default                50.0 %  0    0     0       2      0
+FEATURE: feat2              
+SERVICE_DOMAIN: LanServer  
+TOTAL_INUSE: 1    TOTAL_RESERVE: 0    TOTAL_FREE: 9    OTHERS: 0  
+PROJECT                 SHARE   OWN  INUSE RESERVE FREE   DEMAND  
+ proj1                  50.0 %  0    1     0       4      0 
+ default                50.0 %  0    0     0       5      0
+blusers -l  
+FEATURE  SERVICE_DOMAIN  USER   HOST    NLICS  NTASKS  OTHERS  DISPLAYS   PIDS  
+feat1    LanServer       user1  hostA   1      1       0       (/dev/tty) (16326)  
+feat2    LanServer       user1  hostA   1      1       0       (/dev/tty) (16344) 
+IBM Spectrum LSF 2021
+
+blusers -J  
+JOBID   USER      HOST      PROJECT             CLUSTER        START_TIME  
+1896    user1     hostA     proj1               cluser1        Aug  9 10:01:25  
+RESOURCE        RUSAGE        SERVICE_DOMAIN   INUSE  EFFECTIVE_PROJECT 
+feat1           1             LanServer        1      proj1 
+feat2           1             LanServer        1      proj1
+Restart to implement conﬁguration changes
+Procedure
+1. Run bladmin reconfig to restart the bld.
+2. If you deleted any Feature sections, restart mbatchd. In this case, a message is written to the log ﬁle, prompting the restart.
+If required, run badmin mbdrestart to restart each LSF cluster.
+View projects and descriptions
+Procedure
+Run blinfo -Lp to view projects and descriptions.
+For example:
+blinfo -Lp 
+PROJECT PRIORITY DESCRIPTION 
+p1      10       Engineering project 123 
+p2      9        QA build project 2C 
+P3      8         
+View license allocation
+Procedure
+Run blstat -t token_name to view information for a speciﬁc license token (as conﬁgured in a Feature section).
+blstat output differs for cluster mode and project mode.
+Project mode with project groups
+Project groups use a ProjectGroup section to build a hierarchical project structure, which you can use to set limits on projects that span multiple
+clusters.
+Depending on your license usage, you can conﬁgure different project groups for different license features, or reuse the same hierarchical structure.
+Each license feature in project mode can either use projects or project groups. Changing from projects to project groups involves adding a
+ProjectGroup section and changing the license token distribution that is conﬁgured in the Feature section. Other conﬁguration remains the same.
+Conﬁguring project groups
+About this task
+ProjectGroup sections use conﬁgured projects (each with a Projects section in the lsf.licensescheduler ﬁle) to form a hierarchical structure for each
+feature.
+Note:
+The Feature section GROUP parameter is used to group projects together, simplifying conﬁguration, and is not the same as a ProjectGroup section.
+Procedure
+1. Add a ProjectGroup section to the lsf.licensescheduler ﬁle:
+Begin ProjectGroup 
+GROUP     SHARES    OWNERSHIP   LIMITS     NON_SHARED 
+End Projectgroup 
+If LS_FEATURE_PERCENTAGE=Y or LS_ACTIVE_PERCENTAGE=Y in lsf.licensescheduler, values for OWNERSHIP, LIMITS, and NON_SHARED
+are expressed as a percentage of the total licenses, not as an absolute number.
+2. For each branch in the hierarchy, add a line to the ProjectGroup section.
+a. Under the heading GROUP, indicate the project that branches, and direct descendants in the hierarchy (group(member ...)).
+b. Under the heading SHARES, set the integer share for each member project.
+2022    IBM Spectrum LSF
+
+c. Under the heading OWNERSHIP, set the integer ownership for each bottom-level group member (leaf node), with a dash (-)
+representing no ownership. The OWNERSHIP value must be greater than or equal to the NON_SHARED value.
+d. Under the heading LIMITS set the integer license limit for each member project, with a dash (-) representing unlimited. The LIMITS
+value must be greater than or equal to the OWNERSHIP value.
+e. Under the heading NON_SHARED, set the integer number of non-shared licenses each bottom-level group member (leaf node) uses
+exclusively, with ’-’ representing none.
+f. Optionally, under the heading DESCRIPTION, add a description up to 64 characters long, using a backslash (\) to extend to multiple
+lines.
+For example, the branch g4 splits into three members:
+GROUP                 SHARES    OWNERSHIP   LIMITS     NON_SHARED  
+(g4 (p4 p5 p6))       (1 1 1)   (1 1 1)     ()         (- 3 -)  
+3. In the Feature section, set parameter GROUP_DISTRIBUTION to the top level of the ProjectGroup section hierarchy.
+The DISTRIBUTION parameter that is used for projects is no longer used.
+4. In the Feature section, list service domains in the SERVICE_DOMAINS parameter.
+Unlike for projects, service domains are not included in the distribution for project groups.
+Project group examples
+This hierarchy is implemented by the project group conﬁguration:
+Begin ProjectGroup  
+GROUP                 SHARES    OWNERSHIP   LIMITS     NON_SHARED  
+(topgrp (g1 g2))      (1 1)     ()          (10 10)    () 
+(g1 (g3 g4))          (1 1)     ()          (10 10)    () 
+(g2 (g5 g6))          (1 1)     ()          (- 5)      () 
+(g3 (p1 p2 p3))       (1 1 2)   ()          (3 4 5)    () 
+(g4 (p4 p5 p6))       (1 1 1)   (1 3 1)     ()         (0 3 0)  
+(g5 (p7 p8 p9))       (1 1 1)   (2 0 2)     ()         (1 0 1)  
+(g6 (p10 p11 p12))    (1 1 1)   (2 2 2)     (4 4 4)    (1 0 1)  
+End ProjectGroup  
+License feature conﬁguration that uses this project group:
+Begin Feature  
+NAME = AppZ  
+GROUP_DISTRIBUTION = topgrp  
+SERVICE_DOMAINS = LanServer WanServer  
+End Feature 
+Use the LIMITS column to limit token use, so tokens are sometimes not distributed even if they are available. By default, License Scheduler
+distributes all available tokens if possible. For example, if total of six licenses are available:
+Begin ProjectGroup 
+GROUP       SHARES OWNERSHIP LIMITS NON_SHARED  
+(Root(A B)) (1 1)   ()        ()     ()  
+(A (c d))   (1 1)   ()        (1 1)  ()  
+(B (e f))   (1 1)   ()        ()     ()  
+End ProjectGroup 
+When there is no demand for license tokens, License Scheduler allocates only ﬁve tokens according to the distribution. License Scheduler gives three
+tokens to group A and three tokens to group B, but project c and project d are limited to one token each, so one token is not allocated within group A.
+As more demand comes in for project e and project f, the tokens that are not allocated are distributed to group B.
+Conﬁguring preemption priority within project groups
+About this task
+The optional PRIORITY parameter in the ProjectGroup section, if deﬁned, is used for preemption instead of basing preemption on the accumulated
+inuse for each project.
+IBM Spectrum LSF 2023
+
+Procedure
+Under the heading PRIORITY, set the integer priority for each group member, with ’0’ being the lowest priority.
+PRIORITY can be set for all members in the project group hierarchy.
+Example
+For example:
+Begin ProjectGroup 
+GROUP             SHARES   OWNERSHIP  LIMITS  NON_SHARED PRIORITY 
+(root(A B C))     (1 1 1)  ()         ()         ()      (3 2 -) 
+(A (P1 D))        (1 1)    ()         ()         ()      (3 5) 
+(B (P4 P5))       (1 1)    ()         ()         ()      () 
+(C (P6 P7 P8))    (1 1 1)  ()         ()         ()      (8 3 -) 
+(D (P2 P3))       (1 1)    ()         ()         ()      (2 1) 
+End ProjectGroup 
+By default, priority is evaluated from top to bottom. The priority of any speciﬁc node is ﬁrst decided by the priorities of its parent nodes. The values
+are only comparable between siblings.
+The following ﬁgure illustrates the example conﬁguration:
+The priority of each node is shown beside the node name. If priority is not deﬁned, by default is set to 0 (nodes P4 and P5 under node B).
+To ﬁnd the highest priority leaf node in the tree, License Scheduler traverses the tree from root to node A to node D to project P2.
+To ﬁnd the lowest priority leaf node in the tree, License Scheduler traverses the tree from root to node C to project P8.
+When two nodes have the same priority, for example, projects P4 and P5, priority is determined by accumulated inuse usage at the time the
+priorities are evaluated.
+When a leaf node in branch A wants to preempt a token from branch B or C, branch C is picked because it has a lower priority than branch B.
+Viewing hierarchical conﬁguration
+Procedure
+Use blinfo -G to view the hierarchical conﬁguration:
+For the previous example:
+blinfo -G  
+GROUP                 SHARES    OWNERSHIP   LIMITS     NON_SHARED  DESCRIPTION 
+(topgrp (g1 g2))      (1 1)     ()          (10 10)    ()          () 
+(g1 (g3 g4))          (1 1)     ()          (10 10)    ()          () 
+(g2 (g5 g6))          (1 1)     ()          (- 5)      ()          () 
+(g3 (p1 p2 p3))       (1 1 2)   ()          (3 4 5)    ()          () 
+(g4 (p4 p5 p6))       (1 1 1)   (1 3 1)     ()         (0 3 0)     () 
+(g5 (p7 p8 p9))       (1 1 1)   (2 0 2)     ()         (1 0 1)     () 
+(g6 (p10 p11 p12))    (1 1 1)   (2 2 2)     (4 4 4)    (1 0 1)     () 
+Viewing information about project groups
+Procedure
+Use blstat -G to view the hierarchical dynamic license information.
+blstat 
+-G 
+FEATURE: p1_f1  
+SERVICE_DOMAINS:  
+TOTAL_INUSE: 0    TOTAL_RESERVE: 0    TOTAL_FREE: 4    OTHERS: 0    
+SHARE_INFO_FOR:  /topgrp   
+GROUP/PROJECT           SHARE   OWN  INUSE RESERVE FREE   DEMAND     
+g2                      100.0 % 0    0     0       4      0          
+2024    IBM Spectrum LSF
+
+SHARE_INFO_FOR:  /topgrp/g2   
+GROUP/PROJECT           SHARE   OWN  INUSE RESERVE FREE   DEMAND 
+p3                      50.0 %  0    0     0       2      0    
+p4                      50.0 %  0    0     0       2      0  
+FEATURE: p1_f2  
+SERVICE_DOMAINS:  
+TOTAL_INUSE: 0    TOTAL_RESERVE: 0    TOTAL_FREE: 4     OTHERS: 0    
+SHARE_INFO_FOR:  /topgrp   
+GROUP/PROJECT          SHARE   OWN  INUSE RESERVE FREE   DEMAND        
+g2                     100.0 % 0    0     0       4      0     
+SHARE_INFO_FOR:  /topgrp/g2   
+GROUP/PROJECT          SHARE   OWN  INUSE RESERVE FREE   DEMAND        
+p3                     50.0 %  0    0     0       2      0   
+p4                     50.0 %  0    0     0       2      0 
+Project mode optional settings
+After you conﬁgure LSF License Scheduler in project mode with projects or project groups, you can include some additional conﬁguration that is not
+required, but can be useful.
+Conﬁgure active ownership
+ When active ownership is enabled, ownership settings for inactive projects are disregarded during license token distribution.
+Conﬁgure default project shares
+ Jobs that require a license feature but are not submitted to a license project for that feature are submitted to the default project. For jobs to
+run, a share of license tokens must be assigned to the default project.
+Groups of projects
+ If you conﬁgure groups of projects, you can set shares and ownership for each group and distribute license features to groups of projects.
+Conﬁgure a license project to belong only to one group. Preemption ﬁrst occurs between groups of projects, and then occurs between
+projects.
+Conﬁgure interactive (taskman) jobs
+ Use the ENABLE_INTERACTIVE parameter to enable interactive (taskman) jobs.
+Conﬁgure cluster and interactive allocations
+ Use the ALLOCATION parameter to conﬁgure cluster and interactive allocations.
+Conﬁgure feature groups
+ Use the FeatureGroup section to conﬁgure feature groups.
+Hierarchical project group paths
+ Hierarchical project group paths allow LSF License Scheduler to dispatch additional jobs.
+Conﬁgure project demand limits
+ Use the DEMAND_LIMIT parameter to conﬁgure project demand limits.
+Conﬁgure lmremove or rlmremove preemption
+ Enable and conﬁgure lmremove (for FlexNet) or rlmremove (for Reprise License Manager) as a preemption action.
+Restart to apply conﬁguration changes
+ 
+Conﬁgure active ownership
+When active ownership is enabled, ownership settings for inactive projects are disregarded during license token distribution.
+About this task
+With ownership deﬁned, projects with demand for licenses are able to reclaim licenses up to the assigned ownership share for the project. With
+active ownership enabled, ownership is expressed as a percent of the total ownership for active projects, and the actual ownership for each project
+decreases as more projects become active. Active ownership allows ownership to automatically adjust based on project activity.
+Active ownership can be used with projects, groups of projects, and project groups. Set percentage ownership values to total more than 100% to
+beneﬁt from active ownership.
+Procedure
+1. Set LS_ACTIVE_PERCENTAGE=Y in the Feature section.
+All ownership values for inactive projects are set to zero, and if the total ownership percent exceeds 100%, the total ownership is adjusted.
+LS_FEATURE_PERCENTAGE=Y is automatically set, and owned and non-shared values are expressed in percent. If used with project groups,
+OWNERSHIP, LIMITS and NON_SHARED are expressed in percent.
+2. Set the percentage of owned licenses in the DISTRIBUTION parameter (Feature section) for a total percentage that exceeds 100%.
+IBM Spectrum LSF 2025
+
+... 
+DISTRIBUTION=wanserver (Lp1 2/50 Lp2 1/30 Lp3 2/30 Lp4 3/30) 
+LS_ACTIVE_PERCENTAGE=Y 
+... 
+In this example, all four license projects are conﬁgured with a share and an owned value. Lp1 has the greatest number of owned licenses, and
+can use preemption to reclaim the most licenses.
+If only Lp1 is active, Lp1 owns 50% of licenses. Total active ownership is 50%, so no adjustment is made.
+If Lp1 and Lp2 are active, Lp1 owns 50% and Lp2 owns 30%. Total active ownership is 80%, so no adjustment is made.
+If Lp1, Lp2, and Lp3 are active, Lp1 owns 50%, Lp2 owns 30%, and Lp3 owns 30%. Total active ownership is 110%, so ownership is scaled to
+result in Lp1 owning 46%, Lp2 owning 27%, and Lp3 owning 27% (Exact numbers are rounded).
+If all projects are active, the total active ownership is 140%. Ownership is scaled to result in Lp1 owning 37%, Lp2 owning 21%, Lp3 owning
+21%, and Lp4 owning 21% (Exact numbers are rounded).
+Conﬁgure default project shares
+Jobs that require a license feature but are not submitted to a license project for that feature are submitted to the default project. For jobs to run, a
+share of license tokens must be assigned to the default project.
+About this task
+If you do not want the default project to get shares of license tokens, you do not have to deﬁne a default project in the distribution policy for a
+feature, however jobs in the default project become pending by default. You can also explicitly specify that such jobs be rejected instead of becoming
+pending.
+To avoid having jobs pend if they are submitted without a project, either assign shares to the default project, or disable default projects so that these
+jobs are rejected.
+Procedure
+By default, jobs become pending if they are submitted without a project.
+To allow jobs to run if they are submitted without a project, conﬁgure default project shares.
+In the lsf.licensescheduler ﬁle, navigate to the Feature section and deﬁne a default project in the DISTRIBUTION parameter.
+Any job that is submitted without a project name that is speciﬁed by -Lp can now use tokens from the default project.
+To reject jobs that are submitted without a project or submitted with a project that does not exist in all requested features, enable strict
+checking of LSF License Scheduler project names.
+Set LSF_LIC_SCHED_STRICT_PROJECT_NAME=y in the lsf.conf ﬁle.
+Jobs that are submitted without requesting a project are rejected, and the default license project is not used.
+Jobs that are submitted with a requested project that does not exist in all the requested features are also rejected, and the default license
+project is not used in the feature. Normally, if strict checking is disabled, the default project is used if the requested project is not in the
+feature that is used.
+Groups of projects
+If you conﬁgure groups of projects, you can set shares and ownership for each group and distribute license features to groups of projects. Conﬁgure a
+license project to belong only to one group. Preemption ﬁrst occurs between groups of projects, and then occurs between projects.
+Preemption with groups of projects
+The following tables show changes in preemption behavior that is based on ownership that is conﬁgured for groups of projects, with a total of 20
+licenses. With groups of projects that are conﬁgured, GroupA is able to preempt to reclaim 10 owned licenses. Since Lp2 is not using all ﬁve owned
+licenses, Lp1 can use more than the share it owns.
+Project license ownership only
+License projectLicenses owned Licenses used
+Lp1 5 6
+2026    IBM Spectrum LSF
+
+License projectLicenses owned Licenses used
+Lp2 5 0
+Lp3 5 7
+Lp4 5 7
+Groups of projects with license ownership
+Group License projectsProject licenses ownedLicenses that are used after preemptions
+GroupA Lp1
+Lp25
+59
+1
+GroupB Lp3
+Lp45
+56
+4
+Conﬁgure group license ownership
+ Use the GROUP parameter to conﬁgure group license ownership.
+Conﬁgure group license ownership
+Use the GROUP parameter to conﬁgure group license ownership.
+Procedure
+In the lsf.licensescheduler ﬁle, navigate to the Feature section and set the GROUP parameter.
+Set up groups and members in the GROUP parameter.
+Begin Feature  
+NAME = AppY  
+DISTRIBUTION = LanServer1(Lp1 5/5 Lp2 5/5 Lp3 5/5 Lp4 5/5)  
+GROUP = GroupA(Lp1 Lp2) GroupB (Lp3 Lp4)  
+End Feature 
+In this example, Lp1 and Lp2 belong to the group GroupA. Lp3 and Lp4 belong to the GroupB group.
+Conﬁgure interactive (taskman) jobs
+Use the ENABLE_INTERACTIVE parameter to enable interactive (taskman) jobs.
+About this task
+By default, interactive (taskman) jobs do not receive a share of the license token allocation, while all clusters receive equal shares.
+You can allocate a share of all license features to interactive jobs in the Parameters section.
+Procedure
+To globally enable a share of the licenses for interactive tasks, you must set the ENABLE_INTERACTIVE in the lsf.licensescheduler ﬁle.
+In lsf.licensescheduler, navigate to the Parameters section and enable the ENABLE_INTERACTIVE parameter:
+Begin Parameters 
+... 
+ENABLE_INTERACTIVE = y 
+... 
+End Parameters 
+When the change in conﬁguration takes effect, interactive tasks are allocated the same share (by default) as each cluster.
+Conﬁgure cluster and interactive allocations
+Use the ALLOCATION parameter to conﬁgure cluster and interactive allocations.
+IBM Spectrum LSF 2027
+
+About this task
+By default in project mode, each cluster receives one allocation share from a license feature, and interactive tasks receive no shares.
+You can modify the allocation of license shares across clusters and to interactive tasks in individual Feature sections.
+Procedure
+In the Features section of lsf.licensescheduler, set the ALLOCATION parameter.
+ALLOCATION=project_name (cluster_name [number_shares] ... )
+Allocation examples
+For example, this ALLOCATION setting matches the default when ALLOCATION is undeﬁned and interactive jobs are enabled with
+ENABLE_INTERACTIVE=Y. An equal share is allocated to each cluster and to interactive jobs.
+Begin Feature 
+NAME = AppX 
+DISTRIBUTION = LanServer1 (Lp1 1) 
+ALLOCATION = Lp1 (Cluster1 1 Cluster2 1 interactive 1) 
+End Feature 
+In this example, licenses are shared equally between cluster1 and interactive tasks, with cluster2 receiving nothing:
+Begin Parameters 
+... 
+ENABLE_INTERACTIVE = y 
+... 
+End Parameters 
+Begin Feature 
+NAME = AppY 
+DISTRIBUTION = LanServer (Lp1 1) 
+ALLOCATION = Lp1(cluster1 2 cluster2 0 interactive 2) 
+End Feature 
+In the following example, even though the global allocation to interactive jobs is disabled (ENABLE_INTERACTIVE = N), ALLOCATION deﬁned in the
+Feature section can assign a share to interactive jobs for this license feature.
+Begin Feature 
+NAME = AppZ 
+DISTRIBUTION = LanServer (Lp1 1) 
+ALLOCATION = Lp1(cluster1 0 cluster2 1 interactive 2) 
+End Feature 
+Given a total of 12 licenses, 4 are allocated to cluster2 and 8 are allocated to interactive tasks.
+Conﬁgure feature groups
+Use the FeatureGroup section to conﬁgure feature groups.
+About this task
+Feature groups that are conﬁgured in one FeatureGroup section allow you to view the information for multiple features, which are grouped together.
+Procedure
+In lsf.licensescheduler, conﬁgure a FeatureGroup section, listing the license features associated with that license.
+Each FeatureGroup section must have a unique name.
+The feature names in FEATURE_LIST must already be deﬁned in Feature sections.
+FEATURE_LIST cannot be empty or contain duplicate feature names.
+Features can be in more than one FeatureGroup section.
+Begin FeatureGroup 
+NAME = Corporate 
+FEATURE_LIST = ASTRO VCS_Runtime_Net Hsim Hspice 
+End FeatureGroup 
+  
+Begin FeatureGroup 
+NAME = Offsite 
+2028    IBM Spectrum LSF
+
+FEATURE_LIST = Encounter NCSim  NCVerilog 
+End FeatureGroup 
+View license feature group information
+ When FEATURE_LIST is conﬁgured for a group of license features in lsf.licensescheduler, you can view detailed information about the groups.
+View license feature group information
+When FEATURE_LIST is conﬁgured for a group of license features in lsf.licensescheduler, you can view detailed information about the groups.
+About this task
+View detailed information about license feature groups by running one of the following commands.
+Procedure
+Run blinfo -g to view the static conﬁguration information on license feature groups.
+Run blinfo -g alone or with options -a, -t, -C, and -A.
+For example, if the feature group called myFeatureGroup1 has the members feature2 and feature3:
+blinfo -g "myFeatureGroup1"
+Information displays for feature2 and feature3 in descending alphabetical order.
+Run blstat -g to view dynamic license feature group information.
+Run blstat -g alone or with options -Lp, -t, -D ,-G, -s.
+For example, if the feature group called myFeatureGroup1 has the members feature2 and feature3:
+blstat -g "myFeatureGroup1"
+Information displays for feature2 and feature3 in descending alphabetical order.
+Hierarchical project group paths
+Hierarchical project group paths allow LSF License Scheduler to dispatch additional jobs.
+The following hierarchical group structure illustrates hierarchical project group paths:
+Enabling hierarchical project group paths allows the following:
+Features can use hierarchical project groups with project and project group names that are not unique, as long as the projects or project
+groups do not have the same parent. That is, you can deﬁne projects and project groups in more than one hierarchical project group.
+For example, the p4 project can be deﬁned for project groups g4 and g6, each with its speciﬁc resource allocation within the project groups.
+Important: Do not deﬁne a project group as a child of itself, because this results in a loop. For example, if project group g3 is a child of project
+group g1, do not deﬁne project g1 as a child of g3, as this will result in a loop of g1 and g3 being child project groups of one another.
+When specifying -Lp license_project, you can use paths to describe the project hierarchy without specifying the root group.
+For example, if you have topgrp as your root group, which has a child project group named g1 with a child project group named g3, which has
+a project named p1, you can use -Lp /g1/g3/p1 to specify this project.
+IBM Spectrum LSF 2029
+
+Hierarchical project groups have a default project named others with a default share value of 0. Any projects that do not match the deﬁned
+projects in a project group are assigned into the others project. If the others project has a share value of 0, this project can still use licenses
+if the deﬁned projects with shares are not using the licenses. Therefore, by default, the others project has the lowest priority within a project
+group.
+For example, if you have topgrp as your root group, which has a child project group named g1 with a child project group named g3, which has
+a project named p1, if you specify -Lp /g1/g3/project3 (which does not match a project), the effective license project is /g1/g3/others
+project. Similarly, specifying -Lp /g1/g3/gA/gB/gC/project3 results in an effective license project of /g1/g3/others because there are no
+subsequent child project groups under /g1/g3.
+If there is already a project named others, the preexisting others project speciﬁcation overrides the default project.
+When deﬁning hierarchical project groups, you can deﬁne project and project group names that are not unique.
+For example, to deﬁne the previously-illustrated hierarchical project group in lsf.licensescheduler:
+Begin ProjectGroup 
+GROUP              SHARES  OWNERSHIP LIMITS NON_SHARED 
+(topgrp (g1 g2)    (1 1)   ()        ()     () 
+(g1 (g3 g4 others) (1 1 1) ()        ()     () 
+(g2 (g5 g6)        (1 2)   ()        ()     () 
+(g3 (p1 p2 others) (2 2 1) ()        ()     () 
+(g4 (p3 p4)        (2 1)   ()        ()     () 
+(g5 (p5 p1)        (1 3)   ()        ()     () 
+(g6 (p6 p4)        (1 1)   ()        ()     () 
+End ProjectGroup 
+Begin Feature 
+NAME=f1 
+GROUP_DISTRIBUTION=topgrp 
+SERVICE_DOMAINS=LanServer 
+End Feature
+The others projects are explicitly deﬁned for g1 and g3 (with a speciﬁc share), while the other project groups use the default others projects with
+0 share.
+The p1 project is deﬁned for both g3 and g5, with a larger share if speciﬁed through the g5 project group. The p4 project is deﬁned for both g4 and
+g6, with a larger share if speciﬁed through the g6 project group.
+You can also specify different project groups with different root groups. Different features can use different root groups (as deﬁned by the
+GROUP_DISTRIBUTION parameter), each with its own project group hierarchy and share policies.
+When a job requests multiple features in project mode, LSF License Scheduler generates an effective license project for each feature. This means
+that it is possible for one job to have multiple effective license projects if the features use different project group hierarchies. LSF License Scheduler
+and LSF will calculate the effective license project for the feature based on its related project group hierarchy. The effective project is the path of the
+project resulting from the -Lp speciﬁcation.
+When specifying a project name without a hierarchical project group path in project mode with hierarchical group paths enabled, LSF License
+Scheduler uses the shortest path to the left that ends with the name of the project, as long as the cluster that submitted the job is authorized to use
+the selected project. If LSF License Scheduler cannot ﬁnd such a project in the hierarchy, LSF License Scheduler uses the /others project.
+For example, the following hierarchical group structure illustrates which clusters (c1 and c2) are authorized to use each project:
+If you specify -Lp p2 from the c2 cluster (by submitting bsub -Lp p2 -R "rusage[f1=1]" myjob) without specifying a hierarchical group path,
+c2 is authorized to use /g2/p2 and /g2/g3/p2. The shortest path to the left that leads to p2 is /g2/p2, so the job is associated with the /g2/p2
+hierarchical project.
+Conﬁgure project demand limits
+2030    IBM Spectrum LSF
+
+Use the DEMAND_LIMIT parameter to conﬁgure project demand limits.
+About this task
+Periodically, each cluster sends a demand for each project. This is calculated in a cluster for a project by summing up the rusage of all jobs of the
+project pending due to lack of licenses. Whether to count a job's rusage in the demand depends on the job's pending reason. In general, the demand
+reported by a cluster only represents a potential demand from the project. It does not take into account other resources that are required to start a
+job. For example, a demand for 100 licenses is reported for a project. However, if LSF License Scheduler allocates 100 licenses to the project, the
+project does not necessarily use all 100 licenses due to slot available, limits, or other scheduling constraints.
+The mbatchd daemon in each cluster sends a demand for licenses from each project. You can limit the amount of demand from each project in each
+cluster that is considered when scheduling by setting the demand limit. This helps prevent LSF License Scheduler from allocating more licenses to a
+project than can actually be used.
+Procedure
+Edit the lsf.licensescheduler ﬁle and deﬁne the DEMAND_LIMIT parameter to set the project demand limit.
+DEMAND_LIMIT=integer
+Deﬁne DEMAND_LIMIT in the Parameters section of lsf.licensescheduler to set the limit for all license features, or deﬁne DEMAND_LIMIT in the
+Feature section for individual license features. The setting in the Feature section overrides the global setting in the Parameters section.
+If demand limits are disabled (that is, DEMAND_LIMIT=0 is set), LSF License Scheduler takes into account all the demand that is reported vy each
+cluster when scheduling.
+If not deﬁned, the default demand limit value is 5.
+Conﬁgure lmremove or rlmremove preemption
+Enable and conﬁgure lmremove (for FlexNet) or rlmremove (for Reprise License Manager) as a preemption action.
+About this task
+Preemption is enabled by conﬁguring license ownership for a project. When a project has ownership of licenses that are occupied by another project,
+these licenses can be preempted by the project that has ownership when it needs to use the licenses.
+Begin Feature 
+NAME = lic1 
+FAST_DISPATCH= Y 
+DISTRIBUTION = serviceDomain1(projectA 1/10 projectB 1 ) 
+End Feature
+The default preemption action is to send a TSTP signal to the job. Some applications will respond well to this action, and will free up their licenses
+and suspend their processes. If your applications respond well to the TSTP signal, leave this default as the preemption action.
+For applications that do not respond well to the TSTP signal, an alternative preemption action for projects (unless FAST_DISPATCH=N is deﬁned in
+the lsf.licensescheduler ﬁle) is to suspend the job’s processes, then use lmremove or rlmremove to remove licenses from the application. lmremove
+or rlmremove causes the license manager daemon and vendor daemons to close the TCP connection with the application.
+Once the application is resumed, it will try to reacquire the licenses. In general, lmremove or rlmremove will fail to remove licenses from an
+application for a period of time after the licenses are checked out. This period depends on the application itself.
+When LSF License Scheduler calls lmremove or rlmremove, it may remove licenses from running jobs when the running jobs share the same user
+and host as a suspended job. LSF License Scheduler will continue to reserve the licenses (from the rusage) for the running job. Therefore, when the
+running job tries to reacquire its licenses, there will be licenses available for it.
+LSF License Scheduler calls lmremove or rlmremove in the same directory as it calls the lmstat or rlmstat command (as deﬁned in the
+LMSTAT_PATH or RLMSTAT_PATH parameter).
+Procedure
+1. Enable lmremove or rlmremove as a preemption action by specifying the LM_REMOVE_SUSP_JOBS parameter in the Parameters or 
+Feature section of lsf.licensescheduler.
+LM_REMOVE_SUSP_JOBS = seconds
+Set this parameter for a license feature in its corresponding Feature section. If you set this parameter in the Parameters section, this
+applies to all license features using project mode. When this parameter is conﬁgured for a license feature, LSF License Scheduler will
+periodically use lmremove or rlmremove to try to remove the license feature from each recently-suspended job.
+IBM Spectrum LSF 2031
+
+For a given application, set LM_REMOVE_SUSP_JOBS to a value greater than the period following a license checkout that lmremove or
+rlmremove will fail for that application. In this way, you can be sure that when a job is suspended, its licenses will be released. The length of
+this period depends on the application.
+LSF License Scheduler will continue to try removing the license feature for the speciﬁed number of seconds after the job is ﬁrst suspended.
+For example, if you deﬁne LM_REMOVE_SUSP_JOBS = 10, when a job is suspended due to preemption,LSF License Scheduler will continue to
+try removing the license feature for up to ten seconds after the job is ﬁrst suspended.
+2. Enable LSF License Scheduler to preempt a job immediately after a license checkout by deﬁning LM_REMOVE_INTERVAL = 0 in the 
+Parameters section of lsf.licensescheduler.
+LM_REMOVE_INTERVAL = 0
+Deﬁning this parameter to a larger value prevents LSF License Scheduler from preempting a job for a period of time after LSF License
+Scheduler ﬁrst detects a license checkout by the job (the default value is 180 seconds). Deﬁning LM_REMOVE_INTERVAL = 0 ensures that
+LSF License Scheduler can preempt a job immediately after checkout. After the job is suspended, LSF License Scheduler calls lmremove or
+rlmremove to release licenses from the job.
+3. To limit the amount of time between subsequent forks of child processes to run lmremove or rlmremove, deﬁne the
+LM_REMOVE_SUSP_JOBS_INTERVAL parameter in the Parameters or section of lsf.licensescheduler.
+LM_REMOVE_SUSP_JOBS_INTERVAL = seconds
+By default, LSF License Scheduler forks a child process to run lmremove or rlmremove every time it receives an update from a license
+collector daemon (blcollect). Deﬁning this parameter controls the minimum amount of time between subsequent forks.
+Restart to apply conﬁguration changes
+About this task
+Changes that are made in the lsf.licensescheduler ﬁle require restarting the bld daemon.
+Changes that are made in the lsf.conf ﬁle require restating the LSF clusters.
+Procedure
+1. Run badmin mbdrestart to restart each LSF cluster.
+2. Run bctrld restart lim or bladmin reconfig to restart the bld daemon.
+Automatic time-based conﬁguration
+Variable time-based conﬁguration is used in both project mode and cluster mode to automatically change conﬁguration that is set in
+lsf.licensescheduler based on time windows. For example, if you have design centers in remote locations, one use of time-based conﬁguration is to
+switch ownership of license tokens that are based on local time of day.
+You deﬁne automatic conﬁguration changes in lsf.licensescheduler by using if-else constructs and time expressions. After you change the ﬁles,
+reconﬁgure the cluster with the bladmin reconﬁg command.
+The expressions are evaluated by License Scheduler every 10 minutes based on bld start time. When an expression evaluates true, License
+Scheduler dynamically changes the conﬁguration that is based on the associated conﬁguration statements and restarts bld
+The #if, #else, #endif keywords are not interpreted as comments by License Scheduler, but as if-else constructs.
+Syntax
+time = hour | 
+hour:minute | 
+day:hour:minute 
+hour
+Specify an integer from 0 to 23, representing the hour of the day.
+minute
+integer from 0 to 59, representing the minute of the hour.
+If you do not specify the minute, License Scheduler assumes the ﬁrst minute of the hour (:00).
+day
+Specify an integer from 0 to 7, representing the day of the week, where 0 represents every day, 1 represents Monday, and 7 represents
+Sunday.
+2032    IBM Spectrum LSF
+
+If you do not specify the day, License Scheduler assumes every day. If you do specify the day, you must also specify the minute.
+Specify time values
+Procedure
+Specify at least the hour.
+Day and minutes are optional.
+Specify time windows
+Procedure
+Specify two time values that are separated by a hyphen (-), with no space in between.
+time_window = 
+time1-time2 
+time1 is the start of the window and time2 is the end of the window. Both time values must use the same syntax.
+Use one of the following ways to specify a time window:
+hour-hour
+hour:minute-hour:minute
+day:hour:minute-day:hour:minute
+For example:
+Daily window
+To specify a daily window, omit the day ﬁeld from the time window. Use either the hour-hour or hour:minute-hour:minute format. For example,
+to specify a daily 8:30 a.m. to 6:30 p.m. window:
+8:30-18:30
+Overnight window
+To specify an overnight window, make time1 greater than time2. For example, to specify 6:30 p.m. to 8:30 a.m. the following day:
+18:30-8:30
+Weekend window
+To specify a weekend window, use the day ﬁeld. For example, to specify Friday at 6:30 p.m to Monday at 8:30 a.m.:
+5:18:30-1:8:30
+Specify time expressions
+About this task
+Time expressions use time windows to specify when to change conﬁgurations.
+Procedure
+Deﬁne a time expression.
+A time expression is made up of the time keyword followed by one or more space-separated time windows that are enclosed in parentheses. Use the
+&&, ||, and ! logical operators to combine time expressions.
+expression = time(time_window[ time_window ...]) 
+             | expression && expression 
+             | expression || expression 
+             | !expression 
+For example:
+Both of the following expressions specify weekends (Friday evening at 6:30 p.m. until Monday morning at 8:30 a.m.) and nights (8:00 p.m. to 8:30
+a.m. daily).
+time(5:18:30-1:8:30 20:00-8:30) 
+time(5:18:30-1:8:30) || time(20:00-8:30)
+Create if-else constructs
+About this task
+The if-else construct can express single decisions and multi-way decisions by including elif statements in the construct.
+IBM Spectrum LSF 2033
+
+Procedure
+Deﬁne an if-else expression.
+#if time(expression)  
+statement  
+#else 
+statement  
+#endif 
+The #endif part is mandatory and the #else part is optional.
+Deﬁne an elif expression.
+The #elif expressions are evaluated in order. If any expression is true, the associated statement is used, and this terminates the whole
+chain.
+The #else part handles the default case where no other conditions are satisﬁed.
+#if time(expression) 
+statement 
+#elif time(expression) 
+statement 
+#elif time(expression) 
+statement 
+#else  
+statement  
+#endif 
+When you use #elif, the #else and #endif parts are required.
+Restart to implement conﬁguration changes
+About this task
+All time-based conﬁguration is within the lsf.licensescheduler ﬁle, so restarting the bld applies all changes.
+Procedure
+1. Run bladmin ckconfig to check conﬁguration.
+2. Run bctrld restart lim or bladmin restart to restart the bld.
+Verify conﬁguration
+About this task
+Verify time-based conﬁguration by viewing License Scheduler information.
+Procedure
+1. Run blinfo.
+2. Run blstat.
+Examples
+Project conﬁguration in project mode
+Begin Feature 
+NAME = f1  
+#if time(5:16:30-1:8:30 20:00-8:30) 
+DISTRIBUTION=Lan(P1 2/5  P2 1) 
+#elif time(3:8:30-3:18:30) 
+DISTRIBUTION=Lan(P3 1) 
+#else 
+DISTRIBUTION=Lan(P1 1 P2 2/5) 
+#endif 
+End Feature 
+Project group conﬁguration in project mode
+# 
+# ProjectGroup section 
+# 
+Begin ProjectGroup 
+GROUP             SHARES   OWNERSHIP  LIMITS     NON_SHARED 
+(group1 (A B))    (1 1)    (5 -)         ()         () 
+End ProjectGroup 
+2034    IBM Spectrum LSF
+
+  
+Begin ProjectGroup 
+GROUP             SHARES   OWNERSHIP  LIMITS     NON_SHARED 
+(group2 (A B))    (1 1)    (- 5)         ()         () 
+End ProjectGroup 
+  
+# 
+# Feature section 
+# 
+Begin Feature 
+NAME = f1  
+#if time(5:16:30-1:8:30 20:00-8:30) 
+GROUP_DISTRIBUTION=group1 
+#elif time(3:8:30-3:18:30) 
+GROUP_DISTRIBUTION=group2 
+#else 
+GROUP_DISTRIBUTION=group2 
+#endif 
+SERVICE_DOMAINS=Lan1 Lan2 
+End Feature 
+Cluster distribution conﬁguration in cluster mode
+Begin Feature 
+NAME = f1 
+#if time(5:16:30-1:8:30 20:00-8:30) 
+CLUSTER_DISTRIBUTION=Wan(Cl1 1 Cl2 1) 
+#elif time(3:8:30-3:18:30) 
+CLUSTER_DISTRIBUTION= Wan(Cl1 2 Cl2 1/2/100) Lan(Cl2 1) 
+#else 
+CLUSTER_DISTRIBUTION= Wan(Cl1 10 Cl2 1/1/10) Lan(Cl1 1) 
+#endif 
+End Feature 
+Failover
+License maximization
+The built-in functionality of License Scheduler helps ensure that your licenses are always being used efﬁciently. For example, if the sbatchd
+encounters any problems, the job acquires the state UNKNOWN. However, License Scheduler ensures that any in use licenses continue to be
+allocated, but charges them to the OTHERS category until the sbatchd recovers and the job state is known again.
+failover host
+A management candidate host that runs the License Scheduler daemon (bld), and can take over license management if the License Scheduler
+management host fails or loses its connection to the network (in either a LAN or WAN environment).
+failover provisioning
+The conﬁguration of a list of failover hosts in the event of a host failure or network breakdown. License Scheduler can be conﬁgured for failover
+provisioning in both LANs and WANs.
+Failover provisioning for LANs
+ Failover provisioning for WANs
+ Set up fod
+ 
+Failover provisioning for LANs
+About this task
+Conﬁguring failover ensures enhanced performance and reliable license distribution.
+You only need one host to run License Scheduler, but you can conﬁgure your site for a failover mechanism with multiple candidate hosts to take over
+the scheduling if there is a failure. This conﬁguration can be used in a local network or across multiple sites in a wider network.
+Procedure
+Deﬁne the list of License Scheduler hosts in LSF_CONFDIR/lsf.conf and lsf.licensescheduler for your LAN (Designer Center A in this example).
+IBM Spectrum LSF 2035
+
+a. lsf.conf: Specify a space-separated list of hosts for the LSF_LIC_SCHED_HOSTS parameter:
+LSF_LIC_SCHED_HOSTS="hostA.designcenter_a.com hostB.designcenter_a.com hostC.designcenter_a.com"
+Tip: List the hosts in order of preference for running License Scheduler, from most preferred to least preferred.
+b. lsf.licensescheduler: Specify a space-separated list of hosts for the HOSTS parameter:
+HOSTS=hostA.designcenter_a.com hostB.designcenter_a.com hostC.designcenter_a.com
+List the hosts in the same order as lsf.conf.
+The LIM starts the bld (License Scheduler daemon) on each host in the LSF_LIC_SCHED_HOSTS list.
+Every host in deﬁned in LSF_LIC_SCHED_HOSTS is a failover candidate and runs the bld daemon.
+hostA.designcenter_a.com is the License Scheduler host, and the remaining hosts are candidate hosts that are running the bld daemon,
+ready to take over the management of the licenses if there is a network failure
+Each host contains the list of candidate hosts in memory
+Each candidate License Scheduler host communicates with the License Scheduler host, License Scheduler (hostA)
+If the License Scheduler host fails, each candidate host checks to see if a more eligible host is running the License Scheduler daemon. If not, it
+becomes the failover host and inherits the communication links that existed between the original License Scheduler host and each candidate
+host. In this example, if License Scheduler on hostA fails, candidate License Scheduler hostB is the next most eligible host, and takes over
+the license scheduling.
+Failover provisioning for WANs
+Similar to LANs, you can conﬁgure your site for a failover mechanism across multiple sites in a wide network.
+You need only one host to run License Scheduler, but you can conﬁgure your site for a failover mechanism with multiple candidate hosts to take over
+the scheduling in a failure.
+License scheduling across sites can be streamlined because License Scheduler supports service provisioning during breaks in wide area network
+connections. This support means that you can run License Scheduler from one host that controls license scheduling across multiple sites.
+Conﬁgure and start License Scheduler in a WAN
+ WAN example
+ Service provisioning at the host and network levels
+ 
+Conﬁgure and start License Scheduler in a WAN
+About this task
+In a WAN conﬁguration:
+Procedure
+1. As the root user, install License Scheduler on each cluster in the WAN conﬁguration and select one cluster to be the main cluster.
+2036    IBM Spectrum LSF
+
+2. In the cluster that contains the WAN license server, log on as the primary License Scheduler administrator.
+3. Edit the following items in LSF_CONFDIR/lsf.licensescheduler:
+a. Specify a space-separated list of hosts for the HOSTS parameter:
+HOSTS=hostname_1 hostname_2 ... hostname_n
+Where:
+hostname_1 is the most preferred host for running License Scheduler.
+hostname_n is the least preferred host for running License Scheduler.
+b. In the Clusters section, specify the names of the clusters in the WAN.
+For example:
+Begin Clusters 
+CLUSTERS 
+design_SJ 
+design_BOS 
+End Clusters
+4. In the cluster that contains the WAN license server, as the LSF primary administrator, edit LSF_CONFDIR/lsf.conf. Lines that begin with # are
+comments:
+Specify a space-separated list of hosts for the LSF_LIC_SCHED_HOSTS parameter:
+LSF_LIC_SCHED_HOSTS="hostname_1 hostname_2 ... hostname_n"
+Where:
+hostname_1, hostname_2, ..., hostname_n are hosts on which the LSF LIM daemon starts the License Scheduler daemon (bld).
+The ﬁrst host that is listed in the HOSTS list is the default License Scheduler management host for the WAN.
+The order of the host names in LSF_LIC_SCHED_HOSTS is ignored.
+5. In the other clusters in the WAN:
+a. Conﬁgure the LSF_LIC_SCHED_HOSTS parameter in lsf.conf with a local list of candidate hosts.
+b. Conﬁgure the HOSTS parameter in the Parameters section lsf.licensescheduler with the following list of hosts:
+Start the list with the same list of candidate hosts as the HOSTS parameter in the cluster that contains the WAN license server.
+Continue the list with the local cluster’s list of hosts from the LSF_LIC_SCHED_HOSTS parameter in lsf.conf.
+6. In the cluster that contains the WAN license server and the other clusters in the WAN, run the following commands:
+a. Run bld -C to test for conﬁguration errors.
+b. Run bladmin reconﬁg to conﬁgure License Scheduler.
+c. Run lsadmin reconfig to reconﬁgure LIM.
+d. Use ps -ef to make sure that bld is running on the candidate hosts.
+e. Run badmin reconfig to reconﬁgure mbatchd.
+Tip: Although the bld daemon is started by LIM, bld runs under the account of the primary License Scheduler administrator. If you did not
+conﬁgure the LIM to automatically start the bld daemon on your License Scheduler hosts, run $LSF_BINDIR/blstartup on each host to start
+the bld daemon.
+WAN example
+A design center contains the following hosts conﬁguration in a WAN:
+LIM starts bld on the following hosts:
+lsf.conf in Design Center A
+LSF_LIC_SCHED_HOSTS="hostA1.designcenter_a.com 
+hostA2.designcenter_a.com hostA3.designcenter_a.com"
+lsf.conf in Design Center B
+LSF_LIC_SCHED_HOSTS="hostB1.designcenter_b.com 
+hostB2.designcenter_b.com hostB3.designcenter_b.com"
+License Scheduler candidate hosts are listed in the following order of preference:
+lsf.licensescheduler in Design Center A
+HOSTS=hostB1.designcenter_b.com hostB2.designcenter_b.com 
+hostA1.designcenter_a.com hostA2.designcenter_a.com hostA3.designcenter_a.com 
+lsf.licensescheduler in Design Center B
+HOSTS=hostB1.designcenter_b.com hostB2.designcenter_b.com 
+hostB3.designcenter_b.com
+IBM Spectrum LSF 2037
+
+The following diagram shows hostB1.designcenter_b.com, the License Scheduler host for the WAN containing Design Center A and Design
+Center B.
+How it works
+The LSF LIM daemon starts the License Scheduler daemon (bld) on each host that is listed in LSF_LIC_SCHED_HOSTS in Design Center A and Design
+Center B.
+Each host in the HOSTS list in Design Center A is a potential License Scheduler candidate in Design Center A and is running the bld daemon, but only
+one host becomes the License Scheduler host: the ﬁrst host in the HOSTS list that is up and that is running the bld daemon. Similarly, the License
+Scheduler host in Design Center B is the ﬁrst host in the HOSTS list that is up and that is running the bld daemon.
+License Scheduler manages the licenses in Design Center A and Design Center B as follows:
+Both design centers list hostB1.designcenter_b.com at the top of their HOSTS lists.
+hostB1.designcenter_b.com is the License Scheduler host for Design Center A and for Design Center B.
+The rest of the hosts in both design centers remain on standby as candidate License Scheduler hosts.
+License Scheduler manages the license scheduling across the WAN connection.
+Service provisioning at the host and network levels
+In the following example conﬁguration, there are two potential points of failure: host and network.
+Host failure
+If hostB1.designcenter_b.com fails, and bld stops running, a candidate License Scheduler host must take over the license management. The
+next host on the HOSTS list in both Design Center A and Design Center B is hostB2designcenter_b.com. License Scheduler fails over to this host if
+it is up and running.
+2038    IBM Spectrum LSF
+
+Network failure
+If the network connection between Design Center A and Design Center B breaks, Design Center A can no longer communicate with the hosts in
+Design Center B, so hostB1.designcenter_b.com and hostB2.designcenter_b.com are no longer candidate license scheduling hosts for
+Design Center A. The next candidate host for Design Center A is hostA1.designcenter_a.com. License management then runs locally in Design
+Center A on hostA1.designcenter_a.com. In Design Center B, hostB1.designcenter_b.com continues to run License Scheduler, but only
+manages the local network if the wide area network connection is down.
+The local License Scheduler host, hostA1.designcenter_a.com, checks for a heartbeat from hostB1.designcenter_b.com at regular intervals,
+then returns license management back to hostB1.designcenter_b.com when the network connection returns.
+Set up fod
+About this task
+The fod daemon manages failover for the blcollect daemons. fod can restart any failed blcollect processes if the local host (and thus the local fod) is
+down. The failover host fod starts new blcollect daemons until the primary host comes back online and the primary fod contacts the secondary fod.
+The fod ﬁles are in the License Scheduler package, but must be copied, conﬁgured, and started manually.
+IBM Spectrum LSF 2039
+
+Procedure
+1. Install the failover daemon (fod) ﬁles on each host.
+a. Create a directory to hold the fod ﬁles, with subdirectories bin, conf, etc, and man.
+For example: /usr/local/fod
+b. Copy all user command ﬁles and the fod.shell ﬁle to .../bin.
+c. Copy the fod.conf ﬁle to .../conf.
+d. Copy the fod ﬁle to .../etc.
+e. Copy the fodapps.1, fodhosts.1 and fodid.1 ﬁles to .../man/man1.
+f. Copy the fod.conf.5 ﬁle to .../man/man5.
+g. Copy the fodadmin.8 ﬁle to .../man/man8.
+2. Edit the fod.shell ﬁle, and set the FOD_ROOT parameter to the name of your new directory.
+For example: FOD_ROOT=/usr/local/fod
+3. Set the environment variables.
+a. Set the PATH environment variable to include the /bin directory.
+b. Set the FOD_ENVDIR environment variable to $FOD_ROOT/conf.
+c. Set the MANPATH environment variable to include the /man directory.
+4. In fod.conf, set the required parameters.
+FOD_ADMIN: The License Scheduler administrator
+FOD_PORT: The TCP listening port and UDP port for the failover daemon
+FOD_WORK_DIR: The working directory
+FOD_LOG_DIR: The log directory
+For example:
+FOD_CLUSTERNAME = fod
+FOD_ADMIN = lsadmin
+FOD_PORT = 9583
+FOD_WORK_DIR = /usr/local/fod/work
+FOD_LOG_DIR = /usr/local/fod/work
+5. In the Hosts section of fod.conf, specify the hosts where the failover daemons run.
+If your hosts run in different DNS domains, you must use a fully qualiﬁed domain name when you specify the host name. The ﬁrst host in the
+Hosts section is the ﬁrst host on which the failover daemon runs (the management failover daemon host).
+Begin Hosts 
+HOSTNAME 
+fodhost1.domain_name 
+fodhost2 
+End Host 
+6. Modify the Applications section of fod.conf.
+Begin Applications 
+NAME         PATH                                  PARAMS     FATAL_EXIT_VALUE 
+blcollect   /pcc/apps/lsf6/6.0/sparc-sol7-64/etc   (-2 -m "sasun3 augustus claudius" -p 9581 -c lan -i 20 
+-D /sparc-sol7-64/etc)   (-)         
+End Applications 
+7. Start fod on each host.
+a. Log on as the IBM® Spectrum LSF License Scheduler administrator.
+b. Source the LSF environment.
+For csh or tsh run source LSF_TOP/conf/cshrc.lsf
+For sh, ksh, or bash, run . LSF_TOP/conf/profile.lsf
+c. Launch the failover daemons by running the fod.shell ﬁle.
+Check the progress of a successful launch by running ps -ef.
+View the fod log under $LSF_LOGDIR.
+Check conﬁguration from $FOD_ROOT/etc by running fod -C.
+User authentication
+When a user claims a job belongs to a project, LSF License Scheduler checks if this user belongs to this project, since projects assign fair share
+priority and preemption is based on ownership. When users submit jobs to license projects they do not belong to, the request is refused or the job
+gets put in a "default" bucket with a low number of shares or no shares at all.
+2040    IBM Spectrum LSF

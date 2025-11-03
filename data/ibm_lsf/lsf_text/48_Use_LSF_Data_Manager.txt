@@ -1,0 +1,756 @@
+After you install IBM® Spectrum LSF 10.1.0 and LSF Data Manager, verify your installation by using the following steps.
+Procedure
+1. Run the bdata showconf command to conﬁrm that the data manager is running.
+2. Run the bdata connections command to conﬁrm that the data manager is connected to mbatchd on the LSF Data Manager cluster.
+bdata connections 
+LOCAL: (LSF_DATA_PORT=33995) 
+LSF_DATA_HOSTS 
+[*]hostDM 
+CLUSTER             MASTER              STATUS 
+cluster1             hostM               ok 
+The host that is named hostDM is the data manager host while the hostM host is the LSF Data Manager management host. This output
+indicates that the LSF Data Manager cluster is connected to the data manager.
+3. Have a test ﬁle ready in the data source.
+For example, the ﬁle hello.txt in hostA, might contain the following text:
+Hello World!
+The followng job script that is using this ﬁle contains the bstage in command to stage the hello.txt ﬁle:
+job_script.sh: 
+#!/bin/sh 
+bstage in -src hostA:/tmp/hello.txt 
+cat hello.txt
+4. Submit the job interactively. The task is able to see the staged ﬁle.
+SUBMIT> bsub -I -m hostB -data "hostA:/tmp/hello.txt" < job_script.sh 
+Job <4721> is submitted to queue <interactive>. 
+<<Waiting for dispatch ...>> 
+Hello World! 
+Note: If you are running this command on an empty cluster, the command can take several seconds to run while the job waits for the transfer.
+Use IBM Spectrum LSF Data Manager
+Submit, control and monitor jobs with data requirements to IBM Spectrum LSF Data Manager.
+Use the following commands to submit and manage jobs with data requirements.
+bsub
+Request that ﬁles be staged for jobs before they are scheduled.
+bmod
+Modify data requirement requests for submitted jobs.
+bstage in
+Get requested ﬁles from the staging area during job execution.
+bstage out
+Request that ﬁles in the job execution environment be returned to the staging area or submission environment.
+bdata
+Query the status of ﬁles and data tags in the staging area cache and manage data tags associated with your jobs.
+bjobs
+Query the status of jobs with data requirements.
+bhist
+View historical information about jobs with data requirements.
+Submitting and managing jobs with data requirements
+ Specify data requirements and use them in your jobs with the bsub -data command. Create and use a data speciﬁcation ﬁle to streamline job
+submission. Stage required data in from a data source repository with the bstage incommand. Move job output data back to the data source
+repository with the bstage out command. Use data tags to build a data requirement work flow, and manage your tag name space.
+Querying jobs with data requirements
+ Use the bdata cache and bdata tags list commands to ﬁnd out information about jobs that have data requirements by querying information in
+the data cache. To query the LSF data manager with the bdata command, you must be logged in to a cluster that can communicate with the
+local LSF data manager daemon. Use the bjobs -data and bhist -data commands to see detailed information about jobs with data
+requirements.
+Submitting and managing jobs with data requirements
+2128    IBM Spectrum LSF
+
+Specify data requirements and use them in your jobs with the bsub -data command. Create and use a data speciﬁcation ﬁle to streamline job
+submission. Stage required data in from a data source repository with the bstage incommand. Move job output data back to the data source
+repository with the bstage out command. Use data tags to build a data requirement work flow, and manage your tag name space.
+Specifying data requirements for your job
+ Use the bsub -data command to specify ﬁles or folders to copy into the staging area before LSF schedules the job for execution.
+Creating a data speciﬁcation ﬁle
+ If your job requires several data ﬁles, collect all of the job's data ﬁle requirements into a data speciﬁcation ﬁle and use the bsub -data
+command to specify this ﬁle.
+Staging data
+ Before your jobs can use the requested data ﬁles, the data must be transferred from a data source repository to a location that the job can
+access. Your job then requests data from the cache and transfers it to the job execution host. After your job is ﬁnished, you can return job
+output data from the job execution environment to a destination you specify.
+Use data tags to build a data requirement work flow
+ Use data tags in job data requirements to transfer ﬁles from the job's current working directory to the staging area without staging it out. Data
+tags associate those ﬁles with a chosen name, and LSF data manager can report the existence of that tag if it is queried later.
+Modifying data jobs
+ Modifying the data requirements of a job replaces the entire previous data requirement string in the -data option with the new one. When you
+modify or add a part of the data requirement string, you must specify the entire data requirement string in bmod -data with the modiﬁcations.
+Transferring data requirement ﬁles with bsub -f
+ LSF supports the transfer of job data between the submission host and the execution host as part of the job through the -f of the bsub
+command. If your workflow already includes data transfer with -f, you can use LSF Data Manager to transfer ﬁles instead of the default lsrcp
+command.
+Specifying a user group for data requirements
+ Use the -datagrp option on the bsub command to specify a particular user group for access to the cache.
+Give other users access to your ﬁles
+ If you own a data tag or a data ﬁle in the LSF data manager cache, you can change the user group ownership of a tag, and ownership and the
+permissions of a ﬁle. The parameter CACHE_ACCESS_CONTROL=Y must be conﬁgured in the lsf.datamanager ﬁle to change group access and
+permissions for ﬁles and tags that you own.
+Specifying data requirements for your job
+Use the bsub -data command to specify ﬁles or folders to copy into the staging area before LSF schedules the job for execution.
+About this task
+Specify each required data ﬁle or folder by deﬁning the source host and the full path to the required ﬁle or folder by using the following format:
+For ﬁles: "[host_name:]/absolute_file_path"
+For folders: "[host_name:]/absolute_folder_path/[*]"
+Use this format to specify single or multiple data ﬁles or folders with the bsub -data command.
+When you use the asterisk character at the end of the path, the data ﬁle requirements must be in quotation marks.
+Note:
+By default, if you do not specify a host name in the data ﬁle requirement, LSF uses the submission host name.
+If the requested data ﬁles are on a different host than the submission host, the submission user must have passwordless ssh conﬁgured to the
+speciﬁed host. Conﬁguring passwordless ssh allows LSF to collect data ﬁle information on the ﬁle to determine whether the ﬁle is already in
+the cache.
+The source ﬁle names can contain only alphanumeric characters, dot (.), underscore (_), and hyphen (-). The ﬁle names cannot contain
+spaces.
+Path names to ﬁles and folders can contain the colon character (:).
+If you request a folder that contains symbolic links, the symbolic links are respected. Symbolic links within the folder are examined to
+determine if the links are valid. If a broken symbolic link is detected, the submission is rejected.
+If you request a folder, you must have access to the folder and its contents. You must have read and execute permission on folders, and read
+permission on regular ﬁles. If you don't have access to the top-level folder and the folder contents, the submission is rejected.
+Each data ﬁle requested results in a single transfer job that is submitted to LSF by the LSF data manager, unless the ﬁle already exists within the LSF
+data manager cache.
+Specifying a folder as a data requirement generates a single transfer job, not separate transfer jobs for each ﬁle in the folder.
+Procedure
+Specify a single data ﬁle requirement by deﬁning a single source host and ﬁle path in the bsub -data command.
+bsub -data "hostA:/data/file1.dat" myjob
+IBM Spectrum LSF 2129
+
+Specify multiple data ﬁle requirements by using multiple -data options.
+bsub –data "hostA:/data/file1.dat" –data "hostA:/data/file2.dat" myjob
+Specify multiple data ﬁle requirements within a single -data option by deﬁning a space-separated list of source hosts and ﬁle paths.
+bsub –data "hostA:/data/file1.dat hostA:/data/file2.dat" myjob
+Specify an entire directory recursively by deﬁning the directory as the ﬁle path in the -data option.
+bsub –data "hostA:/data/" myjob
+This command requests all ﬁles in the folder data, and recursively requests all ﬁles in all subfolders, as the required data ﬁles.
+Specify the immediate contents of a directory (but not recursively) by deﬁning the directory with the asterisk character (*) as the ﬁle path in
+the -data option.
+bsub –data "hostA:/data/*" myjob
+This command requests all ﬁles at the top level of the folder data as the required data ﬁles, but does not recursively deﬁne any subfolders.
+Specify a set of data ﬁles that are indexed by job array element by using the %I special character in the ﬁle name in the -data option and by
+deﬁning the job array with the -J option.
+bsub –data "hostA:/data/file%I.dat" –J "MyJobArray[1-10]" myjob
+The %I special character is replaced with each of the array indexes, and each ﬁle is considered as a data ﬁle requirement to each of the job
+array elements. Therefore, /data/ﬁle1.dat is a data ﬁle requirement for MyJobArray[1], /data/ﬁle2.dat is a data ﬁle requirement for
+MyJobArray[2], and the remaining job array elements have similar data ﬁle requirements.
+Creating a data speciﬁcation ﬁle
+If your job requires several data ﬁles, collect all of the job's data ﬁle requirements into a data speciﬁcation ﬁle and use the bsub -data command to
+specify this ﬁle.
+About this task
+You can use a data speciﬁcation ﬁle instead of specifying several data ﬁle requirements in the job submission command.
+Procedure
+1. Create a data speciﬁcation ﬁle by specifying #@dataspec in the ﬁrst line and specifying one data requirement in each subsequent line.
+Each line that contains a data requirement string is subject to the same formatting restrictions as the data ﬁle requirements. Each source ﬁle
+name can contain only alphanumeric characters, dot (.), underscore (_), and hyphen (-).
+For example, create the ﬁle /tmp/data.spec on your submission host with the following contents:
+#@dataspec 
+hostA:/data/file1.dat 
+hostA:/data/dir1 
+hostB:/proj/my_project/input.dat
+This data speciﬁcation ﬁle indicates that the /data/ﬁle1.dat ﬁle and the contents of the /data/dir1 directory is staged into the cache from
+hostA, and the /proj/my_project/input.dat ﬁle is staged into the cache from hostB before LSF schedules the job.
+2. Submit the data requirements for your job to LSF by specifying a ﬁle path to the data speciﬁcation ﬁle.
+For example, submit the job with the data requirements that are deﬁned in the /tmp/data.spec ﬁle by running the following command:
+bsub –data "/tmp/data.spec" myjob
+Staging data
+Before your jobs can use the requested data ﬁles, the data must be transferred from a data source repository to a location that the job can access.
+Your job then requests data from the cache and transfers it to the job execution host. After your job is ﬁnished, you can return job output data from
+the job execution environment to a destination you specify.
+Data staging comprises two separate phases, as illustrated in the following diagram:
+1. Data transfer jobs are used to move ﬁles between the staging area and sites outside the cluster. These jobs run on data transfer nodes. The
+transfer job that copies data from the data source to the staging area is triggered by submitting a job with data requirements (for example,
+2130    IBM Spectrum LSF
+
+with the bsub -data command).
+2. Use the bstage command to move ﬁles between the execution hosts and the staging area.
+The bstage command must be run within an LSF job, either in the job script, the pre-execution script, or the post-execution script.
+The bstage in command copies ﬁles that were transferred into the job cache to the job’s execution environment.
+After data is successfully copied from the execution host to the staging area with the bstage out command, LSF data manager submits
+a transfer job to copy data from the staging area to a user-speciﬁed destination.
+Staging data in and using it in your job
+ The bstage in subcommand copies or symbolically links data ﬁles from the job cache into the job's execution environment.
+Staging data out after job completion
+The bstage out subcommand copies data ﬁles from the job's execution environment to a remote destination at the end of your job script, or in
+the post-execution script.
+Staging data in and using it in your job
+The bstage in subcommand copies or symbolically links data ﬁles from the job cache into the job's execution environment.
+About this task
+Use the bstage in subcommand to copy or symbolically link ﬁles that were pre-staged into the job cache to the job’s execution environment.
+Procedure
+If a job was submitted with a data ﬁle requirement, use the same data ﬁle path in the bstage in -src option.
+bstage in -src host_name:/ﬁle_path -dst ﬁle_path
+The host name and ﬁle path in the -src option must match the data requirement that is deﬁned in the bsub -data option when you submi the
+job. After the bstage in command runs, the job can use the requested data ﬁle at the location that is speciﬁed in the -dst option.
+For example, if you submitted the job with the following data requirement:
+bsub –data "hostA:/data/file1.dat"
+Run the following command in your job script or pre-execution script to copy the requested ﬁle from the staging area cache into a known
+location in the job's execution environment:
+bstage in –src "hostA:/data/file1.dat" –dst /tmp/file1.dat
+The job can use the job data ﬁle at /tmp/ﬁle1.dat.
+If a job was submitted with a directory as the data ﬁle requirement, use the same directory ﬁle path in the bstage in -src option.
+bstage in -src hostname:/dir_path -dst dir_path
+After the bstage in command runs, the job can use all data ﬁles in the directory at the location that is speciﬁed in the -dst option.
+For example, if you submitted the job with the following data requirement:
+IBM Spectrum LSF 2131
+
+bsub –data "hostA:/data/dir1"
+Run the following command in your job script or pre-execution command to copy the requested ﬁle from the staging area cache into a known
+location in the job's execution environment:
+bstage in –src "hostA:/data/dir1" –dst /tmp/dir1
+LSF interprets the path in the -dst option as a directory and all staged ﬁles from the directory in the cache are copied into this folder. The
+original directory structure is preserved.
+Copy all ﬁles in the job's submission-time data requirements into the job's execution environment by using the bstage in -all option.
+bstage in -all -dst dir_path
+This command copies all ﬁles in the job's submission-time data requirements into the location that is speciﬁed in the –dst option. LSF
+interprets the path in the -dst option as a directory, and all ﬁles are copied into the destination in a flat structure that uses their original ﬁle
+names. If multiple ﬁles have the same name, the multiple ﬁles might overwrite one another.
+What to do next
+Note:
+If you do not specify a host name in the -src option, LSF uses the job's submission host by default.
+You can use the –link option to create a symbolic link to the ﬁles in the cache instead of using an extra copy. The staging area must be directly
+mounted on the job execution host to create the link.
+Staging data out after job completion
+The bstage out subcommand copies data ﬁles from the job's execution environment to a remote destination at the end of your job script, or in the
+post-execution script.
+About this task
+Use the bstage out subcommand to copy data ﬁles from the job execution environment to a location created for the job in the staging area cache.
+The LSF data manager is notiﬁed of the successful ﬁle copy and submits a transfer job to LSF to copy the ﬁle from the cache to the remote location.
+After the ﬁle is successfully copied from the job execution environment to the cache, you can monitor the status of the output transfer by using the
+bdata cache command.
+Procedure
+After a job completes (and generates an output ﬁle), copy the ﬁle onto the staging area cache by running the bstage out subcommand.
+bstage out -src ﬁle_path -dst host_name:/ﬁle_path
+After the ﬁle is copied to the staging area cache, the command returns a successful exit code, which notiﬁes the LSF data manager. The LSF data
+manager submits a transfer job to run on a data transfer node. The transfer node uses the conﬁgured data transfer command to copy the ﬁle from the
+cache to the remote location as speciﬁed in the -dst option.
+You can specify only regular ﬁles in the –src option. Directories and symbolic links are not permitted.
+The ﬁle path that is speciﬁed in the –dst option is passed directly to the transfer command's destination parameter and LSF does not control
+its behavior.
+If you do not specify the –dst option, LSF uses the job's submission directory on the submission host by default.
+For example, if your job generates an output ﬁle /tmp/output.dat on the execution host's local disk, run the following command in your job script to
+stage out the ﬁle:
+bstage out –src /tmp/output.dat –dst hostA:/home/outdir
+Use data tags to build a data requirement work flow
+Use data tags in job data requirements to transfer ﬁles from the job's current working directory to the staging area without staging it out. Data tags
+associate those ﬁles with a chosen name, and LSF data manager can report the existence of that tag if it is queried later.
+LSF Data Manager data tags provide two functions useful during work flow execution:
+They provide a running job with a writable directory in the staging area where ﬁles can be saved for use by later jobs. Files that are uploaded to
+these directories are not staged out of the staging area to remote destinations, but they are left there explicitly for subsequent jobs to use.
+They provide a dependency mechanism outside of the usual LSF dependency mechanism to control when jobs are dispatched.
+2132    IBM Spectrum LSF
+
+Data tag usage notes
+You can request any number of tags from the bsub command, but you cannot mix tags and regular ﬁle requirements together.
+Use the bdata tags command to query the status of your tags and clean up your old tags.
+You can upload ﬁles to the same tag multiple times, but the tag is considered available for scheduling purposes as soon as the ﬁrst upload is
+complete.
+LSF does not manage the tag name space. You are responsible for making sure that your tag names are unique.
+You can use tags in IBM® Spectrum LSF multicluster capability forwarding jobs. A job is scheduled on a cluster only if LSF data manager
+reports that the tag it requests is available.
+Rules for specifying data tags
+ Use the following rules for specifying data tags in your job data requirements.
+Creating and using data tags
+ A data tag is created with the bstage out command from inside a job context with the –tag option.
+Data tags example
+ Submit a simple work flow that contains three jobs: two producer jobs that each create a set of data ﬁles, and a consumer job that consumes
+that data and produces a ﬁnal result.
+Monitoring data tags
+ The bdata tags list command to view the tags that your jobs create.
+Cleaning up data tags
+ Use the bdata tags clean command to delete a tag and all its containing ﬁles.
+Rules for specifying data tags
+Use the following rules for specifying data tags in your job data requirements.
+Valid tag names can contain only alphanumeric characters ([A-z|a-z|0-9]), and a period (.), an underscore (_), or a dash (-).
+The tag name cannot contain the special operating system names for parent directory (../), current directory (./), or user home directory
+(~/).
+Tag names cannot start with the dash (-) character.
+Tag names cannot contain spaces.
+When a tag is copied with bstage out, it is copied into the folder STAGING_AREA/tags/user_name/tag_name/.
+When a tag is copied with bstage in, the contents of the entire tag folder are copied to the current working directory into a folder that is
+speciﬁed by the destination.
+bstage in -tag tag_name -dst destination_folder
+The tag interface is intended for use with intermediate ﬁles only. An intermediate ﬁle is created by one job for use by a subsequent job, and is
+an intermediate result in a larger workflow.
+Creating and using data tags
+A data tag is created with the bstage out command from inside a job context with the –tag option.
+Procedure
+1. Run the bstage out command and specify the path to a source directory and a tag name.
+ bstage out –src source_path -tag tag_name
+This command has the following effects:
+a. A directory is created in the staging area at the following location:
+STAGING_AREA/tags/user_name/tag_name
+Where user_name is the execution user of the job that runs the command. The folder is owned by user_name with 700 permission.
+b. The ﬁle or the contents of the folder that is speciﬁed by source_path is recursively copied into the directory, and the command returns.
+The job remains pending until this step is complete.
+c. After the copy is successful, jobs that are submitted with the following –data speciﬁcation run:
+bsub –data “tag:tag_name” ...
+2. To use the tag, the job copies the intermediate ﬁles that are contained in the tag folder to its own execution environment.
+bstage in –tag tag_name –dst destination_path
+IBM Spectrum LSF 2133
+
+The path that is represented by destination_path on the -dst option represents a folder name in the job execution environment. All the ﬁles
+that are previously stored in the tag_name folder are copied into destination_path.
+Data tags example
+Submit a simple work flow that contains three jobs: two producer jobs that each create a set of data ﬁles, and a consumer job that consumes that
+data and produces a ﬁnal result.
+The following work flow is described in this example:
+A script that is named producer1 creates a tag that is named producer1_output, and producer2 creates a tag that is named producer2_output.
+The job that runs script names consumer depends on ﬁles that both tags point to.
+Write a job script to create and store the intermediate data in tag folders that are managed by the LSF data manager. The following fragment shows
+part of the producer1 script. The producer2 script is similar, but it generates a different tag name:
+producer1.sh: 
+#!/bin/csh 
+# 
+# create a folder in the CWD to store the output from this step 
+# 
+mkdir outfolder1 
+foreach i (`seq 10`) 
+    # 
+    # run an application that generates file${i}.dat in a folder  
+    #   called ‘outfolder’ 
+    #  
+    app1_exe $i > ./outfolder1/file$i.dat 
+end 
+# 
+# Copy the contents of the output folder to a tag with a known 
+#    unique name. 
+# 
+bstage out –src ./outfolder1 –tag producer1_output 
+The following example is an excerpt of the consumer script:
+consumer.sh: 
+#!/bin/csh 
+# 
+# create a folders in the CWD to store the output from previous 
+#   steps 
+# 
+mkdir producer1_files 
+mkdir producer2_files 
+# 
+# Copy the contents of the previously generated tags into the  
+#  above folders to a tag with a known 
+# 
+bstage in –tag producer1_output –dst producer1_files 
+bstage in –tag producer2_output –dst producer2_files 
+######################################################## 
+# Now the ouput from each producer step can be found in  
+#  its corresponding folder.  Code can be inserted here 
+#  to use it. 
+######################################################## 
+2134    IBM Spectrum LSF
+
+# 
+# After we’re done with the intermediate data, we can use 
+#    the bdata command to clean it up 
+# 
+bdata tags clean producer1_output 
+bdata tags clean producer2_output 
+Finally, submit all of your jobs at once, knowing that the tag dependency ensures that the consumer script doesn't run until the producers complete if
+you request their tags:
+bsub producer1.sh 
+bsub producer2.sh 
+bsub –data “tag:producer1_output” 
+     –data “tag:producer2_output” consumer.sh 
+Monitoring data tags
+The bdata tags list command to view the tags that your jobs create.
+Procedure
+Run the bdata tags list command.
+The command shows the following information:
+The names of data tags that your jobs created.
+The last time ﬁles were uploaded to them with bstage out –tag.
+The last time the tag contents were downloaded with bstage in –tag.
+bdata tags list 
+NAME                USER    LAST_UPLOAD               LAST_DOWNLOAD 
+producer1_output    user1   Thu Sep  4 14:49:29 2014  Thu Sep  4 14:50:12 2014 
+producer2_output    user1   Thu Sep  4 14:49:57 2014  Thu Sep  4 14:50:13 2014
+Remember:
+Ordinary users can query only their own tags.
+Administrators use the -u option to query tags that belong to any user.
+After the tag folder is originally created, the time stamp under LAST_UPLOAD is not set until the ﬁrst upload to the tag is complete. Before this
+time, the LAST_UPLOAD column is blank (-), and a job that requests the tag remains pending.
+The query command doesn’t directly provide any visibility about what ﬁles or how many ﬁles are uploaded to the tag. You must use normal ﬁle
+system commands on the tag folder for these functions.
+Cleaning up data tags
+Use the bdata tags clean command to delete a tag and all its containing ﬁles.
+About this task
+Tags that are created by jobs are not automatically deleted by LSF. The user who created them, or an administrator, must clean them up manually.
+Procedure
+Run the bdata tags clean command.
+bdata tags clean producer1_output 
+Request <clean tag producer1_output> is sent. 
+bdata tags clean producer2_output 
+Request <clean tag producer2_output> is sent.
+These commands delete the tags from LSF data manager memory, and remove the corresponding folders and their entire contents from the ﬁle
+system.
+Remember:
+An administrator who wants to clean leftover tags for a user must use the –u option to specify which user tags to delete.
+The tag removal operation does not check whether jobs currently use the tag. Make sure that the tag is not in use before you remove it. The
+time stamp under LAST_DOWNLOAD can help.
+Tag cleanup cannot be undone.
+IBM Spectrum LSF 2135
+
+Modifying data jobs
+Modifying the data requirements of a job replaces the entire previous data requirement string in the -data option with the new one. When you modify
+or add a part of the data requirement string, you must specify the entire data requirement string in bmod -data with the modiﬁcations.
+Transferring data requirement ﬁles with bsub -f
+LSF supports the transfer of job data between the submission host and the execution host as part of the job through the -f of the bsub command. If
+your workflow already includes data transfer with -f, you can use LSF Data Manager to transfer ﬁles instead of the default lsrcp command.
+Before you begin
+Check that the following ﬁles are installed to support the bsub -f command through LSF Data Manager:
+An external submission (esub) script esub.datamanager is installed in the LSF_SERVERDIR directory. This esub converts -f options to -data
+options.
+A wrapper script lsrcp.wrapper.datamanager that runs either the original lsrcp binary, or the bstage command is in the LSF_BINDIR directory.
+About this task
+The esub script can be run manually or automatically. To run esub.datamanager automatically, conﬁgure the LSB_ESUB_METHOD=”datamanager”
+parameter in the lsf.conf ﬁle. To run the esub manually, or to override the current LSB_ESUB_METHOD conﬁguration, specify bsub -a datamanager
+when you submit the job. The esub must be named esub.datamanager. The following steps assume that LSB_ESUB_METHOD=”datamanager” is
+conﬁgured, so no -a option is needed.
+Important: You cannot specify a data speciﬁcation ﬁle with -f. You must use -data with data speciﬁcation ﬁles.
+Procedure
+Use the bsub -f command to submit your job.
+bsub -f "[local_file operator [remote_file]]"
+To specify multiple ﬁles, repeat the -f option.
+local_ﬁle is the ﬁle in the staging area.
+remote_ﬁle is the ﬁle on the execution host.
+local_ﬁle and remote_ﬁle can be absolute or relative ﬁle path names. You must specify at least one ﬁle name. When the ﬁle remote_ﬁle is not
+speciﬁed, it is assumed to be the same as local_ﬁle.
+The following values are valid for operator:
+>, @>
+The > operator copies the local_ﬁle in the staging area to remote_ﬁle on the execution host before job execution. remote_ﬁle is overwritten if it
+exists. The @> operator creates a symbolic link from local_ﬁle in the staging area to remote_ﬁle on the execution host before job execution.
+With the > operator, the following bstage command is used:
+bstage in –src src_file –dst dstfile
+With the @> operator, the following bstage command is used:
+bstage in –src src_file –dst dstfile -link
+<, @<
+The < operator copies remote_ﬁle on the execution host to local_ﬁle in the staging area after the job completes. local_ﬁle is overwritten if it
+exists. The @< operator creates a symbolic link from remote_ﬁle on the execution host to local_ﬁle in the staging area after the job completes.
+With the < operator, the following bstage command is used:
+bstage out –src src_file –dst dstfile
+With the @< operator, the following bstage command is used:
+bstage out –src src_file –dst dstfile -link
+<<
+The << operator appends the remote_ﬁle to local_ﬁle after the job completes. If the local_ﬁle does not exist, it is created.
+2136    IBM Spectrum LSF
+
+Runs the lsrcp -a command instead of bstage.
+><, <>
+Copies the ﬁle local_ﬁle to remote_ﬁle before the job runs, and remote_ﬁle is copied back, overwriting local_ﬁle, after the job completes. <> is
+the same as ><.
+Runs the bstage in –src src_file 
+                                            –dst dstfile command before the job starts, and runs the bstage out –src 
+                                                src_file –dst 
+                                                dstfile command after the job completes.
+Example
+The following example assumes that LSF Data Manager is enabled and running properly, and that LSB_ESUB_METHOD=”datamanager” is conﬁgured
+in lsf.conf as the default esub method, so -a datamanager is not needed.
+To submit the job myjob to LSF, with input from the ﬁle /data/data3 and the output that is copied back to /data/out3, run the following command:
+bsub -f "/data/data3 > data3" -f "/data/out3 < out3" myjob data3 out3
+For transfer from the staging area to the execution host before job execution (with >), esub.datamanager converts the -f options to the appropriate -
+data options.
+The esub modiﬁes the job environment variables by setting LSB_LSRCP_DO_BSTAGE="Y" in the job execution environment.
+If the esub ﬁnds no errors, the job submission is accepted and mbatchd sends the data requirement to the data manager to start a transfer job. After
+the transfer job completes, the user job is scheduled and dispatched.
+LSF sets the job environment on the execution host, and runs the lsrcp.wrapper.datamanager script before the actual job runs. The
+lsrcp.wrapper.datamanager script runs the bstage in command to copy the ﬁle /data/data3 to the data manager cache before the job starts.
+For transfer from the staging area to the submission host (with the < operator), no -data option is needed since the < transfer operator copies a ﬁle
+from the execution host to the submission host. The lsrcp.wrapper.datamanager script runs after the job completes. The script runs the bstage out
+command to copy the /data/out3 ﬁle to the submission host.
+Environment variables
+ When ﬁle transfer with the -f option is enabled with LSF Data Manager, either the bstage command or the lsrcp command is used according to
+the arguments in the -f option.
+Environment variables
+When ﬁle transfer with the -f option is enabled with LSF Data Manager, either the bstage command or the lsrcp command is used according to the
+arguments in the -f option.
+To disable ﬁle transfer through the bstage command and use the real lsrcp command for speciﬁc jobs, set one or both of the following environment
+variables before you submit the job with bsub:
+LSB_NO_BSTAGE_IN=Y | y
+The lsrcp.wrapper.datamanager wrapper script does not call the bstage in command. The real lsrcp command is used for the ﬁle transfer.
+LSB_NO_BSTAGE_OUT=Y | y
+The lsrcp.wrapper.datamanager wrapper script does not call the bstage out command. The real lsrcp command is used for the ﬁle transfer.
+Specifying a user group for data requirements
+Use the -datagrp option on the bsub command to specify a particular user group for access to the cache.
+About this task
+By default, if the CACHE_PERMISSIONS=group parameter is speciﬁed in the lsf.datamanager ﬁle, the data manager uses the primary group of the
+user who submitted the job to control access to the cached ﬁles. Only users who belong to the primary group can access the ﬁles in the data
+requirement. You can use the -datagrp option to specify a different user group to access the required ﬁles. The user who submits the job must be a
+member of the speciﬁed group. You can specify only one -datagrp option per job.
+Procedure
+Use the -datagrp "user_group" option to specify the user group for access to the data requirement ﬁles for your job.
+IBM Spectrum LSF 2137
+
+Example
+The following job requests the data ﬁle /proj/std/model.tar, which belongs to the user group design1:
+bsub -o %J.out -data "hostA:/proj/std/model.tar" -datagrp "design1" my_job.sh 
+ Job <1962> is submitted to default queue <normal>.  
+Use the bdata cache -g command to query ﬁles that are owned by the speciﬁed user group. The following example uses the -g option to query a ﬁle
+that belongs to the user group design1:
+bdata cache -l -g design1 /home/user1/data/file1.txt  
+-------------------------------------------------------------------------------- 
+INPUT: 
+hosta:/home/user1/data/file1.txt 
+PERMISSION          group:design1 
+HASH                fbea858bdf6ddefc6c7f44dc6a08f1a6 
+SIZE                4 B 
+STATUS              LINKED 
+REF_JOB             11297@cluster1 
+XFER_JOB            - 
+GRACE               - 
+MODIFIED            Thu Oct  9 07:54:19 2014 
+CACHE_LOCATION: 
+/scratch/data/user1/staging1/stgin/group/design1/hosta/home/user1/data/file1.txt/fbea858bdf6ddefc6c7f44dc6a08f1
+a6
+For jobs with data requirements that also specify a user group with the -datagrp option, the bhist -l command shows the user group. The following
+example shows that user group design1 was speciﬁed at job submission. The user group was later changed to qa2, which was then removed, and
+changed to design2:
+bhist -l 102  
+Job <102>, User <user1>, Project <default>, Command <my_data_job> 
+Wed Oct 29 17:45:38: Submitted from host <hosta> with hold, to Queue <normal>, 
+                     CWD <$HOME/datajobs>, Data Requirement Requested, 
+                     Data User Group <design1>; 
+Wed Oct 29 17:46:45: Parameters of Job are changed: 
+                     Data user group changed to <qa2>; 
+Wed Oct 29 18:09:02: Parameters of Job are changed: 
+                     Data user group removed; 
+Wed Oct 29 18:09:33: Parameters of Job are changed: 
+                     Data user group changed to <design2>; 
+Summary of time in seconds spent in various states by Wed Oct 29 18:43:01 
+  PEND    PSUSP     RUN       USUSP     SSUSP     UNKWN    TOTAL 
+  0       3443      0         0         0         0        3443 
+For jobs with data requirements that also specify a user group with the -datagrp option, the bjobs -l command shows the user group. The following
+example shows that user group design1 was speciﬁed at job submission:
+bjobs -l 4785  
+Job <4785>, User <user1>, Project <default>, Status <PEND>, Queue <normal>, C 
+                     ommand <my_data_job> 
+Wed Oct  1 15:09:29: Submitted from host <hostA>, CWD <$HOME>, Data Requireme 
+                     nt Requested,  Data User Group <design1>;  
+ PENDING REASONS: 
+ Job is waiting for its data requirement to be satisfied; 
+ SCHEDULING PARAMETERS: 
+           r15s    r1m   r15m    ut      pg     io    ls     it     tmp    swp     mem 
+ loadSched   -      -      -      -        -     -     -      -      -       -      - 
+ loadStop    -      -      -      -        -     -     -      -      -       -      - 
+ RESOURCE REQUIREMENT DETAILS: 
+ Combined: select[type == local] order[r15s:pg] 
+ Effective: -
+Give other users access to your ﬁles
+If you own a data tag or a data ﬁle in the LSF data manager cache, you can change the user group ownership of a tag, and ownership and the
+permissions of a ﬁle. The parameter CACHE_ACCESS_CONTROL=Y must be conﬁgured in the lsf.datamanager ﬁle to change group access and
+permissions for ﬁles and tags that you own.
+Give another user group access to your ﬁles
+Use the bdata chgrp command to give users in another group accesses to ﬁles in the data manager cache. For example, to share a ﬁle in the cache
+that is named hostA:/newshare/scal/user1/data_ﬁles/15/seqdata.1 with a group of users in user group ugrp2, use the following command:
+2138    IBM Spectrum LSF
+
+bdata chgrp -g ugrp2 hostA:/newshare/scal/user1/data_files/15/seqdata.1
+A user in group ugrp2 can submit a data job that uses the ﬁle bsub -data "hostA:/newshare/scal/user1/data_files/15/seqdata.1"
+a.out. You must make sure that the permissions on the original copy of the ﬁle are set so that users in group ugrp2 can read it.
+Changing the group of a ﬁle applies only to ﬁles in the data manager cache. If the entry in the cache is a symbolic link, the user group of the ﬁle is not
+changed. The data manager does not modify the original ﬁles.
+Only the owner of the ﬁle can change the group access with the bdata chgrp command.
+Share a data tag with another user group
+Use the bdata chgrp command to give users in another group accesses to ﬁles to share a tag with users in another group. For example, if user user1
+wants to change the group permission of the ﬁles that are uploaded to a tag named SEQ_DATA_READY so that user user2 in user group ugrp2 can
+access them, user user1 runs the following command:
+bdata chgrp -g ugrp2 -tag SEQ_DATA_READY
+When users in user group want ugrp2 to use this tag, they use the command bsub -data tag:user1@SEQ_DATA_READY.
+Only the owner of the tag can change the group access with the bdata chgrp command.
+Change the permissions on your ﬁles
+Use the bdata chmod command to change the permission mode of ﬁles that are required for a job that are already staged in to the cache. For
+example, if ﬁle hosta:/newshare/scal/user1/data_ﬁles/15/seqdata.1 was staged in with the data group speciﬁed as group ugrp2, the following
+command explicitly makes a ﬁle group readable by that group:
+bdata chmod -mode 440 hosta:/newshare/scal/user1/data_files/15/seqdata.1
+A user who belongs to group ugrp2 can access the ﬁle.
+The ﬁle must be in the transferred or idle state for the chmod command to succeed.
+Only the owner of the ﬁle can change the permissions with the bdata chmod command.
+View group permissions on cached ﬁles and tags
+Use the bdata cache -l command to see the user group and the permissions for a ﬁle in the cache.
+bdata cache -l 1152 
+Job <1152@dm1> has the following file records in LSF data manager: 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hostA:/newshare/scal/user1/data_files/15/seqdata.1 
+PERMISSION          group:pcl   rwxr-x---   [manual] 
+HASH                b7202f200c0240a66493f81f0e2e8875 
+SIZE                1 KB 
+STATUS              TRANSFERRED 
+XFER_JOB            1153@dm1 FINISHED Tue Nov 17 10:42:25 2015 
+GRACE               - 
+MODIFIED            Tue Apr 19 15:59:28 2015  
+CACHE_LOCATION: 
+/data/cluster1cache/stgin/user/user1/hostA/home/user1/testDATA/seqdata.1/b7202f200c0240a66493f81f0e2e8875 
+Use the bdata tags list command to see the user and group that a data tag belongs to.
+bdata tags list 
+NAME      USER    GROUP     LAST_UPLOAD          LAST_DOWNLOAD 
+code      user1   pcl       06/12/2015 15:50:10  - 
+tag1      user1   <error>   03/12/2015 13:51:59  - 
+tag2      user2   test      03/12/2015 13:52:06  - 
+tag3      user2   test      03/12/2015 13:52:09  - 
+If a bdata chgrp command did not successfully change the user group of the ﬁle, the GROUP column shows <error>.
+Querying jobs with data requirements
+Use the bdata cache and bdata tags list commands to ﬁnd out information about jobs that have data requirements by querying information in the
+data cache. To query the LSF data manager with the bdata command, you must be logged in to a cluster that can communicate with the local LSF
+data manager daemon. Use the bjobs -data and bhist -data commands to see detailed information about jobs with data requirements.
+IBM Spectrum LSF 2139
+
+Querying the data cache
+Use the bdata cache command to query the LSF data manager cache. You can query either by ﬁle name or by job ID.
+Querying data tags
+The bdata tags list command displays the names of the known data tags. You can display only data tags that you can normally access.
+Querying data jobs
+The bjobs -data command queries jobs with data requirements. Jobs held because they are waiting for data staging are displayed as pending.
+The bjobs –data command shows jobs with data requirements and displays a list of the requested ﬁles and data tags. This option can be used
+with the -l and -w option.
+Viewing historical information about data jobs
+The bhist -data command displays historical information about jobs with data requirements. The -data option acts as a ﬁlter to show only jobs
+with data requirements. This option can be used with -l and –w.
+Querying the data cache
+Use the bdata cache command to query the LSF data manager cache. You can query either by ﬁle name or by job ID.
+Procedure
+Use the bdata cache abs_file_path command to query by ﬁle name.
+If you specify a host name (host_name:abs_file_path), the bdata cache command shows the ﬁles that are staged in from the speciﬁed
+host. The ﬁle path must match the bjobs -data command output exactly.
+If you do not specify a host name, the bdata cache command shows ﬁles that are staged in from the current local host.
+In the following example, the ﬁle is in the cache with one shared copy that is cached for different jobs:
+bdata cache hostA:/home/user1/transfer_tool.sh 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hostA:/home/user1/transfer_tool.sh 
+HASH     STATUS   REF_JOB        XFER_JOB       GRACE 
+ab7dc9*  STAGING  2947@cluster1  2949@cluster1  -  
+                  2952@cluster1 
+                  2954@cluster1 
+Use the bdata cache job_ID command to query by job ID.
+If you specify a cluster name (job_ID@cluster_name), the bdata cache command shows ﬁles that are referenced by the speciﬁed jobs in
+the speciﬁed cluster.
+If you do not specify a cluster name, the bdata cache command shows ﬁles that are referenced by the speciﬁed jobs in the current cluster.
+In the following example, the job requests two input ﬁles. During job execution, ﬁle data2 is copied to two other locations. Files being staged
+out are listed as OUTPUT and show their destinations:
+bdata cache 84044 
+Job <84044@cluster1> has the following file records in LSF data manager: 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hostA:/home/user1/data2 
+HASH    STATUS       XFER_JOB               GRACE 
+68990b* TRANSFERRED  84045@cluster1         - 
+-------------------------------------------------------------------------------- 
+INPUT: 
+hostA:/home/user1/data3 
+HASH    STATUS       XFER_JOB               GRACE 
+e2fff4* TRANSFERRED  84056@cluster1         - 
+-------------------------------------------------------------------------------- 
+OUTPUT: 
+hostB:/home/user1/data2 
+TO: 
+hostA:/scratch/user1/workspace 
+HASH    STATUS       XFER_JOB               GRACE 
+68990b* TRANSFERRED  84091@cluster1         - 
+Example data requirements job query
+ Use the bdata cache command to check the progress of a job with data requirements.
+2140    IBM Spectrum LSF
+
+Example data requirements job query
+Use the bdata cache command to check the progress of a job with data requirements.
+The following job requests three data ﬁles for staging, listing in the -data option:
+bsub -o %J.out -data "hostA:/proj/std/model.tar  
+hostA:/proj/user1/case02341.dat hostB:/data/human/seq342138.dna" /share/bin/job_copy.sh 
+ Job <1962> is submitted to default queue <normal>.  
+The job_copy.sh script contains the necessary bstage in commands to copy the required ﬁles to the job current working directory:
+cat /share/bin/job_copy.sh 
+  #!/bin/sh 
+  bstage in -src hostA:/proj/std/model.tar -dst $LSB_JOBID/model.tar 
+  bstage in -src hostA:/proj/user1/case02341.dat -dst $LSB_JOBID/case02341.dat 
+  bstage in -src hostB:/data/human/seq342138.dna -dst $LSB_JOBID/seq342138.dna 
+The job remains pending while the data ﬁles are being staged:
+bjobs -p 1962 
+JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME 
+1962    user1   PEND  normal     submit                  *b_copy.sh Sep 20 16:31 
+ Job is waiting for its data requirement to be satisfied; 
+After a few seconds, check the job data requirement status in the data manager:
+bdata cache 1962@cluster1 
+Job <1962@cluster1> has the following file records in LSF data manager: 
+----------------------------------------------------------------------------- 
+INPUT: 
+hostA:/proj/std/model.tar 
+HASH          STATUS   REF_JOB        XFER_JOB        GRACE 
+ee4b497dc35b* STAGING  1962@cluster1  1963@cluster1   -  
+  
+----------------------------------------------------------------------------- 
+INPUT: 
+hostA:/proj/user1/case02341.dat 
+HASH          STATUS   REF_JOB        XFER_JOB        GRACE 
+497de4c3b5eb* STAGING  1962@cluster1  1965@cluster1   -  
+  
+----------------------------------------------------------------------------- 
+INPUT: 
+hostB:/data/human/seq342138.dna 
+HASH          STATUS   REF_JOB        XFER_JOB        GRACE 
+bb846e6d24c1* STAGING  1962@cluster1  1966@cluster1   -  
+After all ﬁles are staged, jobs are no longer pending:
+bdata cache 1962@cluster1 
+INPUT: 
+hostA:/proj/std/model.tar 
+----------------------------------------------------------------------------- 
+HASH          STATUS       REF_JOB        XFER_JOB        GRACE 
+ee4b497dc35b* TRANSFERRED  1962@cluster1  1963@cluster1   -  
+  
+INPUT: 
+hostA:/proj/user1/case02341.dat 
+----------------------------------------------------------------------------- 
+HASH          STATUS       REF_JOB        XFER_JOB        GRACE 
+497de4c3b5eb* TRANSFERRED  1962@cluster1  1965@cluster1   -  
+  
+INPUT: 
+hostB:/data/human/seq342138.dna 
+----------------------------------------------------------------------------- 
+HASH          STATUS       REF_JOB        XFER_JOB        GRACE 
+bb846e6d24c1* TRANSFERRED  1962@cluster1  1966@cluster1   -  
+bjobs 1962 
+JOBID  USER   STAT  QUEUE  FROM_HOST  EXEC_HOST  JOB_NAME    SUBMIT_TIME 
+1962   user1  RUN   normal submit     compute    *in/job.sh  Sep 20 16:31 
+ 
+Querying data tags
+IBM Spectrum LSF 2141
+
+The bdata tags list command displays the names of the known data tags. You can display only data tags that you can normally access.
+Procedure
+Use the bdata tags list command.
+Use the -u user_name option to display the names of known data tags that belong to the speciﬁed user, or use -u all to display the names of all
+known data tags. You can display only data tags that you can normally access.
+bdata tags list -u all 
+NAME       USER   LAST_UPLOAD       LAST_DOWNLOAD 
+tag_name1  user1  Jun 27 16:37:52   Jun 28 16:37:52 
+tag_name2  user2  Jun 23 16:37:52   Jun 29 16:37:52 
+tag_name3  user3  Jun 25 16:37:52   Jun 30 16:37:52 
+... 
+Querying data jobs
+The bjobs -data command queries jobs with data requirements. Jobs held because they are waiting for data staging are displayed as pending. The
+bjobs –data command shows jobs with data requirements and displays a list of the requested ﬁles and data tags. This option can be used with the -l
+and -w option.
+Procedure
+Use the bjobs -data command.
+bjobs -data 1962 
+JOBID   USER    STAT  QUEUE  FROM_HOST  EXEC_HOST  JOB_NAME   SUBMIT_TIME 
+1962    user1   PEND  normal hostA                 *p 1000000 Sep 20 16:31  
+FILE                                 SIZE   MODIFIED  
+datahost:/proj/user1/input1.dat      500 M   Jun 27 16:37:52  
+datahost:/proj/user1/input2.dat      100 M   Jun 27 16:37:52  
+datahost:/proj/user1/input3.dat      -      - 
+For jobs with data requirements speciﬁed as tags, the -data option shows the tag names:
+bjobs -data 1962 
+JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME 
+1962    user1   PEND  normal     hostA                   *p 1000000 Sep 20 16:31  
+TAG 
+OUTPUT_FROM_J1  
+OUTPUT_FROM_J2 
+For jobs with a folder as data requirement, the -data shows the folder name. Individual ﬁles in the folder are not shown. For example, for the
+following data requirement
+bsub -data /home/user/folder1/ myjob
+the -data option shows the folder name /home/user/folder1/:
+bjobs -data 44843 
+JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME 
+44843   user1   PEND  normal     hosta                   myjob      May 10 14:42 
+ FILE                                                 SIZE         MODIFIED     
+ hosta:/home/user1/folder1/                           4 KB         May  9 09:53          
+Viewing historical information about data jobs
+The bhist -data command displays historical information about jobs with data requirements. The -data option acts as a ﬁlter to show only jobs with
+data requirements. This option can be used with -l and –w.
+Procedure
+Use the bhist -data command.
+bhist -data 
+Summary of time in seconds spent in various states: 
+JOBID  USER  JOB_NAME  PEND    PSUSP  RUN  USUSP  SSUSP  UNKWN  TOTAL 
+1962   user1 *1000000  410650  0      0     0     0      0      410650 
+2142    IBM Spectrum LSF

@@ -1,0 +1,115 @@
+# ls -l bhist bacct 
+-rwxr-xr-x 1 lsfadmin lsf 2958368 Nov 28  2022 bacct* 
+-rwxr-xr-x 1 lsfadmin lsf 3072216 Nov 28  2022 bhist* 
+# chmod u+s bhist bacct 
+# ls -l bhist bacct 
+-rwsr-xr-x 1 lsfadmin lsf 2958368 Nov 28  2022 bacct* 
+-rwsr-xr-x 1 lsfadmin lsf 3072216 Nov 28  2022 bhist*
+Results
+bhist and bacct can now only be used by users to query their own job information. Only the LSF primary administrator can query all job history
+information.
+The LSF ACL feature supports ﬁve different levels of control for job information. For different administrator roles in job information access, the
+feature also supports queue and cluster administrators. See the IBM Spectrum LSF Conﬁguration Reference for more information.
+IBM® Spectrum LSF job directories
+LSF uses different types of directories for jobs to use during execution.
+Job current working directory
+Job spool directory
+Job temporary directory
+Job output directory
+Job current working directory (JOBCWD)
+The job current working directory (JOBCWD) is the directory where job processes run on. Typically, all job data and results will be generated under
+JOBCWD. LSF sets the proper JOBCWD before job execution. By default, LSF tries to use the job submission directory as JOBCWD. If the submission
+directory does not exist, LSF uses /tmp as JOBCWD. Use the bsub -cwd option to allow users to choose a different JOBCWD from the submission
+directory.
+For example:
+$ pwd 
+/home/user1 
+$ bsub -I pwd 
+Job <322> is submitted to default queue <interactive>. 
+<<Waiting for dispatch ...>> 
+<<Starting on s1node1>> 
+/home/user1 
+$ bsub -I -cwd "/pcc/cust_data" pwd 
+Job <323> is submitted to default queue <interactive>. 
+<<Waiting for dispatch ...>> 
+<<Starting on s1node1>> 
+/pcc/cust_data
+LSF also supports a dynamic JOBCWD, which allows users to create and manage the JOBCWD dynamically based on conﬁguration parameters, and
+any dynamic patterns included in the path. Use bsub -cwd with a dynamic pattern to enable a dynamic JOBCWD. LSF dynamically creates JOBCWD if
+the path for the current working directory includes dynamic patterns for both absolute and relative paths. LSF cleans the created JOBCWD based on
+the time to live value set in the JOB_CWD_TTL parameter of the application proﬁle in lsb.applications, or in lsb.params.
+For example:
+$ bsub -I -cwd "/tmp/%J_%I" pwd 
+Job <324> is submitted to default queue <interactive>. 
+<<Waiting for dispatch ...>> 
+<<Starting on s1node1>> 
+/tmp/324_0
+LSF also supports several other ways to deﬁne a static and dynamic JOBCWD.
+JOB_CWD in lsb.applications speciﬁes the current working directory for the job in the application proﬁle. The path can be absolute or relative
+to the submission directory. The path can include dynamic directory patterns.
+DEFAULT_JOB_CWD in lsb.params speciﬁes the cluster wide current working directory for the job. The path can be absolute or relative to the
+submission directory. The path can include dynamic directory patterns.
+LSB_JOB_CWD environment variable speciﬁes the directory on the execution host from where the job starts. The path can include dynamic
+directory patterns.
+Job spool directory
+2406    IBM Spectrum LSF
+
+LSF creates a job script ﬁle and redirects job standard output and standard error to ﬁles under the job spool directory. All ﬁles under this directory
+are temporary ﬁles and are deleted after the job completes. By default, LSF uses $HOME/.lsbatch as the job spool directory. In most cases, the
+$HOME/.lsbatch directory is located on a shared ﬁle system with limited disk quotas and performance constraints. It is not suitable for a cluster
+environment where jobs generate a huge amount standard output.
+Use JOB_SPOOL_DIR in lsb.params to deﬁne an alternative location as job spool directory. This is a cluster-wide setting. When JOB_SPOOL_DIR is
+deﬁned, LSF creates a job script ﬁle and redirects job standard output and error ﬁles under the directory speciﬁed by JOB_SPOOL_DIR. If your site
+has a scalable parallel ﬁle system like GPFS, you can deﬁne JOB_SPOOL_DIR on some directory of the parallel ﬁle system. You can also deﬁne
+JOB_SPOOL_DIR=/tmp to use temporary disk space on the local host to reduce I/O competition from multiple jobs. The directory deﬁned in
+JOB_SPOOL_DIR must already exist and must be accessible by all compute nodes in the cluster.
+The following example enables JOB_SPOOL_DIR=/tmp/smc:
+1. Add JOB_SPOOL_DIR=/tmp/smc in lsb.params, then run badmin mbdrestart and badmin hrestart all to restart mbatchd and sbatchd on all
+hosts. Use bparams -a to verify the setting:
+$ bparams -a | grep JOB_SPOOL_DIR 
+JOB_SPOOL_DIR = /tmp/smc
+2. To verify that the JOB_SPOOL_DIR function works properly, submit a simple interactive shell on one host. When the job starts, list the
+contents of /tmp/smc to verify that job-speciﬁc output ﬁles and error ﬁles have been created as follows:
+$ bsub -Is /bin/sh 
+Job <314> is submitted to default queue <interactive>. 
+<<Waiting for dispatch ...>> 
+<<Starting on s1node1>> 
+sh-4.1$ cd /tmp/smc 
+sh-4.1$ ls 
+1379966620.314  1379966620.314.hostAffinityFile  1379966620.314.hostfile  1379966620.314.out
+Job temporary directory (TMPDIR)
+By default, LSF creates a job-speciﬁc temporary directory under $TMPDIR or /tmp for jobs to store their temporary output ﬁles and working ﬁles. LSF
+deletes this temporary directory after the job completes. LSF administrators can customize the top-level temporary directory by deﬁning
+LSF_TMPDIR in lsf.conf. LSF creates a job speciﬁc temporary directory as $LSF_TMPDIR/<jobID>.tmpdir for regular jobs and
+$LSF_TMPDIR/<jobID>_<job_index>.tmpdir for each job array element.
+To make the job-speciﬁc temporary directory available in the job execution environment, the LSF administrator must deﬁne LSB_SET_TMPDIR in
+lsf.conf. When LSB_SET_TMPDIR=Y, LSF will use the TMPDIR environment variable and overwrite the current value with the job-speciﬁc temporary
+directory. If this parameter is set to the name of another environment variable (for example, MY_TMPDIR), LSF sets the value of this environment
+variable to the job-speciﬁc temporary directory. Either way, user applications can use the environment variable within their code.
+The following example enables an LSF job temporary directory:
+1. Add LSF_TMPDIR=/tmp/smctmp and LSB_SET_TMPDIR=LSF_TMPDIR in lsf.conf. Run badmin hrestart all to restart all sbatchd daemons in
+the cluster. Use badmin showconf sbd host_name to verify the conﬁguration setting.
+$  badmin showconf sbd s1node1 | grep TMPDIR 
+LSB_SET_TMPDIR = LSF_TMPDIR 
+LSF_TMPDIR = /tmp/smctmp
+2. To verify that the LSF temporary job directory is working properly, submit a simple interactive shell on host. When the job starts to run, use
+echo $LSF_TMPDIR to verify if LSF set job speciﬁc job directory, then go to $LSF_TMPDIR to verify that the directory exists.
+$ bsub -Is /bin/sh 
+Job <315> is submitted to default queue <interactive>. 
+<<Waiting for dispatch ...>> 
+<<Starting on s1node1 >> 
+sh-4.1$ echo $LSF_TMPDIR 
+/tmp/smctmp/315.tmpdir 
+sh-4.1$ cd $LSF_TMPDIR 
+sh-4.1$ pwd 
+/tmp/smctmp/315.tmpdir
+Job output directory
+By default, when jobs require ﬁles copied with the bsub -f option after job completes, LSF will copy ﬁles from the job current working directory to the
+job submission directory if the destination directory is not a full path. You can create and manage job speciﬁc output directories with the bsub -
+outdir submission option and DEFAULT_JOB_OUTDIR in lsb.params. This feature is very useful if you are running applications that have speciﬁc job
+output directory requirements.
+The directory path deﬁned in DEFAULT_JOB_OUTDIR or bsub -outdir can be absolute or relative to the submission directory and can include
+dynamic directory patterns. The job -outdir option overwrites the setting in the DEFAULT_JOB_OUTDIR parameter. Once speciﬁed, LSF creates the
+directory with the 700 permission and with the ownership of a submission user at the start of the job on the submission host. If it fails to create the
+directory, LSF deletes all created directories and uses the submission directory for ﬁle copying.
+IBM Spectrum LSF 2407

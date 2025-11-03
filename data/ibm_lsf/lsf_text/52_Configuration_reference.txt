@@ -1,0 +1,528 @@
+Command Transfer job destination Command Transfer job destination
+-dst not speciﬁed $LSB_SUB_HOST:$LSB_OUTDIR
+-dst relative_path $LSB_SUB_HOST:$LSB_OUTDIR/relative_path
+-dst absolute_path $LSB_SUB_HOST:absolute_path
+-dst host_name:absolute_pathhost_name:absolute_path
+The argument to the -dst option accepts both relative and absolute paths, both with and without host names, but all of these arguments are
+converted into an absolute host_name:path pair according to the table. You cannot use path descriptors that contain special names ~/, ./,
+and ../.
+If the folders in the destination location do not exist, the success or failure of the transfer job depends on the transfer tool conﬁgured. For
+example, the default tool (the scp command) does not create destination folders, but other tools (such as the rsync command) do.
+-link
+Create symbolic links from the requested source ﬁles to the staging area cache location instead of copying them. Use the -link option to avoid
+unnecessary ﬁle copying between the execution host and the staging area. The staging area must be directly mounted on the job execution
+host to create the link.
+Important: You must ensure that the source ﬁle will not be cleaned up after the end of the job to avoid the symbolic link from becoming stale
+before the ﬁle is staged out or used by a subsequent job.
+-tag tag_name
+Copy the ﬁle to the staging area tag directory associated with tag_name. LSF creates the directory if necessary. The LSF data manager does
+not submit a job to transfer out the ﬁle, or create a record for it in the cache. You cannot use the -tag option with the -dst or -link option.
+LSF data manager associates the required ﬁles to an arbitrary name you choose, and the LSF data manager reports the existence of that tag if
+you query it with the bdata tags command.
+Valid tag names can contain only alphanumeric characters ([A-z|a-z|0-9]), and a period (.), underscore (_), and dash (-). The tag name
+cannot contain the special operating system names for parent directory (../), current directory (./), or user home directory (~/). Tag names
+cannot contain spaces. Tag names cannot begin with a dash (-).
+Use the bdata tags clean command to remove tags.
+You must be the owner of the tag folder to copy ﬁles into it.
+Important: You are responsible for the name space of your tags. LSF does not check whether the tag is valid. Use strings like the job ID, array
+index, and cluster name as part of your tag names to make sure that your tag is unique.
+-g user_group_name
+By default, when a job stages out ﬁles to a tag, the tag directory is only accessible by the user who submitted the job. When the
+CACHE_ACCESS_CONTROL = Y parameter is conﬁgured in the lsf.datamanager ﬁle, the –g option changes the group that is associated with the
+tag. The user_group_nameargument speciﬁes the user group name to be associated with the tag. The permissions on the tag directory and its
+contents are set so that the speciﬁed group can access the ﬁles. You can also use the following command to change the group that is
+associated with a tag:
+bdata chgrp -g group_name -tag tag_name
+Help and version options
+IBM® Spectrum LSF Data Manager help and version display options
+bstage [-h[elp] | -V]
+-h[help]
+Displays the command usage of the bstage command to stderr and exits.
+-V
+Prints IBM Spectrum LSF Data Manager release version to stderr and exits.
+See also
+bdata, bhist, bjobs, bmod, bsub, lsf.conf, lsf.datamanager
+Conﬁguration reference for IBM Spectrum LSF Data Manager
+To conﬁgure LSF Data Manager and functionality related to it, set parameters in several LSF conﬁguration ﬁles.
+2178    IBM Spectrum LSF
+
+For detailed information about the conﬁguration ﬁles and environment variables for LSF Data Manager, see the IBM Spectrum LSF Conﬁguration
+Reference.
+lsb.queues
+ The lsb.queues ﬁle deﬁnes batch queues. Conﬁgure a queue as the data transfer queue for LSF data management. The DATA_TRANSFER=Y
+parameter enables the queue for data transfer.
+lsb.users
+ Starting in Fix Pack 14, LSF Data Manager supports cross-cluster user account mapping for a multicluster environment. LSF administrators
+can map user accounts at the system level in the UserMap section of the lsb.users ﬁle to conﬁgure account mappings in a multicluster
+environment. Both the remote and local clusters must have corresponding mappings in their respective lsb.users ﬁles.
+lsf.conf
+ The lsf.conf ﬁle controls the operation of LSF. To conﬁgure LSF Data Manager, you set the LSF_DATA_HOSTS and LSF_DATA_PORT parameters
+for the lsf.conf ﬁle, and other optional parameters.
+lsf.datamanager
+ The lsf.datamanager ﬁle controls the operation of IBM Spectrum LSF Data Manager features. Each cluster has one LSF data management
+conﬁguration ﬁle, called lsf.datamanager.cluster_name. The cluster_name sufﬁx is the name of the cluster that is deﬁned in the Cluster
+section of the lsf.shared ﬁle. The ﬁle is read by the LSF data management daemon dmd. Since one LSF data manager can serve multiple LSF
+clusters, the contents of this ﬁle must be identical on each cluster that shares LSF data manager.
+lsb.queues
+The lsb.queues ﬁle deﬁnes batch queues. Conﬁgure a queue as the data transfer queue for LSF data management. The DATA_TRANSFER=Y
+parameter enables the queue for data transfer.
+DATA_TRANSFER
+ Conﬁgures the queue as a data transfer queue for LSF data manager.
+DATA_TRANSFER
+Conﬁgures the queue as a data transfer queue for LSF data manager.
+Syntax
+DATA_TRANSFER=Y | N
+Description
+The DATA_TRANSFER=Y parameter enables a queue for data transfer through LSF data manager.
+Only one queue in a cluster can be a data transfer queue. Any transfer jobs that are submitted by the data manager go to this queue. If the
+lsf.datamanager ﬁle exists, then at least one queue must deﬁne the DATA_TRANSFER parameter. If this parameter is set, a corresponding
+lsf.datamanager ﬁle must exist.
+Regular jobs that are submitted to this queue through bsub are rejected.
+Use the bstop, bresume, and bkill commands to stop, resume, and kill your own transfer jobs in a data transfer queue. LSF administrators and queue
+administrators can additionally use the btop and bbot commands to move transfer jobs in the queue. All other commands on jobs in a data transfer
+queue are rejected. You cannot use the bswitch command to switch jobs from other queues to a data transfer queue.
+If you change this parameter, LSF data manager transfer jobs that were in the previous queue remain in that queue and are scheduled and run as
+normal. The LSF data manager is notiﬁed of their success or failure.
+The following queue parameters cannot be used together with a queue that deﬁnes the DATA_TRANSFER parameter:
+INTERACTIVE=ONLY
+RCVJOBS_FROM
+MAX_RSCHED_TIME
+REQUEUE_EXIT_VALUES
+SUCCESS_EXIT_VALUES
+RERUNNABLE
+A data transfer queue cannot appear in the list of default queues that are deﬁned by the DEFAULT_QUEUE parameter in the lsb.params ﬁle. Jobs that
+are submitted to the data transfer queue are not attached to the application speciﬁed by the DEFAULT_APPLICATION parameter in the lsb.params
+ﬁle.
+Use the SNDJOBS_TO to enable an LSF data manager data transfer queue as a remote send-jobs queue in the execution cluster.
+IBM Spectrum LSF 2179
+
+If you specify a remote queue with the SNDJOBS_TO parameter in the data transfer queue in the execution cluster, the path of the
+FILE_TRANSFER_CMD parameter must exist in the submission cluster. You must also add the execution cluster to the RCVJOBS_FROM parameter (or
+use the allclusters keyword) for the remote queue in the submission cluster to receive jobs from (and push data to) the execution cluster.
+Default
+N
+lsb.users
+Starting in Fix Pack 14, LSF Data Manager supports cross-cluster user account mapping for a multicluster environment. LSF administrators can map
+user accounts at the system level in the UserMap section of the lsb.users ﬁle to conﬁgure account mappings in a multicluster environment. Both the
+remote and local clusters must have corresponding mappings in their respective lsb.users ﬁles.
+The required ﬁelds for the UserMap section of the lsb.users ﬁle are LOCAL, REMOTE, and DIRECTION. These values map a user name on a local host
+to a different user name on a remote host so that jobs that execute on a remote host run using a mapped user name rather than the job submission
+user name.
+For detailed usage and examples, see the UserMap section of the lsb.users ﬁle.
+Related concepts
+Cross-cluster user account mapping
+Related tasks
+Cross-cluster user account mapping in IBM Spectrum LSF Data Manager for a multicluster environment
+lsf.conf
+The lsf.conf ﬁle controls the operation of LSF. To conﬁgure LSF Data Manager, you set the LSF_DATA_HOSTS and LSF_DATA_PORT parameters for the
+lsf.conf ﬁle, and other optional parameters.
+LSB_TIME_DMD
+ The timing level for checking how long the dmd daemon runs.
+LSF_DATA_HOSTS
+ Speciﬁes a list of hosts where the LSF data manager daemon (dmd) can run, and where clients can contact the LSF data manager that is
+associated with the cluster. The dmd daemon can run only on the listed hosts.
+LSF_DATA_PORT
+ Port number of the LSF data manager daemon (dmd) associated with the cluster.
+LSF_DATA_SKIP_GROUP_CHECK
+ When the LSF_DATA_SKIP_GROUP_CHECK parameter is set to Y or y, the LSF mbatchd daemon does not check whether the user who
+requests data is a member of the user group that is speciﬁed by the -datagrp option for the job.
+LSF_STAGE_IN_EXEC
+ Speciﬁes the stage in script for direct data staging (for example, IBM CAST burst buffer).
+LSB_STAGE_OUT_EXEC
+ Speciﬁes the stage out script for direct data staging (for example, IBM CAST burst buffer).
+LSB_STAGE_STORAGE
+ Speciﬁes the resource name to report available storage space for direct data staging (for example, IBM CAST burst buffer).
+LSB_STAGE_TRANSFER_RATE
+ Speciﬁes the estimated data transfer rate for direct data staging (for example, IBM CAST burst buffer). LSF uses this value to calculate the
+predicted duration for data stage in.
+LSB_TIME_DMD
+The timing level for checking how long the dmd daemon runs.
+Syntax
+LSB_TIME_DMD=timing_level
+2180    IBM Spectrum LSF
+
+Description
+Specify a positive integer. Time usage is logged in milliseconds.
+LSB_TIME_DMD=1
+You must run the bdata admin reconﬁg command to reconﬁgure the LSF data manager daemon (dmd) for the parameter to take effect.
+Default
+0
+See also
+LSB_TIME_CMD, LSB_TIME_MBD, LSB_TIME_SBD, LSF_TIME_LIM, LSF_TIME_RES
+LSF_DATA_HOSTS
+Speciﬁes a list of hosts where the LSF data manager daemon (dmd) can run, and where clients can contact the LSF data manager that is associated
+with the cluster. The dmd daemon can run only on the listed hosts.
+Syntax
+LSF_DATA_HOSTS=host_list
+Description
+All LSF data manager clients, including the mbatchd daemon, use this parameter to contact the dmd daemon. This parameter must be deﬁned in
+every cluster that talks to the LSF data manager. Deﬁning this parameter acts as a switch that enables the overall LSF data management features.
+The order of host names in the list decides which host is the LSF data manager management host, and order of failover. All host names must be listed
+in the same order for all LSF data managers.
+To have LIM start the LSF data manager daemon automatically, and keep monitoring it, the hosts that are listed in LSF_DATA_HOSTS must be LSF
+server hosts.
+When the LSF data manager starts, it veriﬁes that its current host name is on this list, and that it is an LSF server.
+To change the LSF_DATA_HOSTS parameter, complete these steps:
+1. Run the bctrld stop lim command to shut down LIM on the LSF data manager candidate hosts.
+2. Run the bdata admin shutdown command to shut down the dmd daemon on the LSF data manager candidate hosts.
+3. Change the parameter.
+4. Run the bctrld start lim command to start LIM on the LSF data manager candidate hosts.
+5. Run the badmin mbdrestart command to restart all LSF management candidate hosts.
+Default
+Not deﬁned
+LSF_DATA_PORT
+Port number of the LSF data manager daemon (dmd) associated with the cluster.
+Syntax
+LSF_DATA_PORT=integer
+Description
+After you change the LSF_DATA_PORT parameter, complete these steps:
+IBM Spectrum LSF 2181
+
+1. Run the lsadmin limshutdown command to shut down LIM on the LSF data manager candidate hosts.
+2. Run the bdata admin shutdown command to shut down the dmd daemon on the LSF data manager candidate hosts.
+3. Change the parameter.
+4. Run the lsadmin limstartup command to start LIM on the LSF data manager candidate hosts.
+5. Run the badmin mbdrestart command to restart all LSF management candidate hosts.
+Default
+1729
+LSF_DATA_SKIP_GROUP_CHECK
+When the LSF_DATA_SKIP_GROUP_CHECK parameter is set to Y or y, the LSF mbatchd daemon does not check whether the user who requests data
+is a member of the user group that is speciﬁed by the -datagrp option for the job.
+Syntax
+LSF_DATA_SKIP_GROUP_CHECK=Y | y | N | n
+Description
+The LSF_DATA_SKIP_GROUP_CHECK parameter is ignored if the LSF data manager is not conﬁgured (no data hosts are conﬁgured with the
+LSF_DATA_HOSTS parameter and the LSF_DATA_PORT parameter is not conﬁgured).
+After you change LSF_DATA_SKIP_GROUP_CHECK, run the badmin mbdrestart command to restart all LSF management candidate hosts.
+Default
+N. If a data job speciﬁes the –datagrp option, LSF checks whether the user is a member of the group speciﬁed. If the user is not a member the job
+submission is rejected.
+LSF_STAGE_IN_EXEC
+Speciﬁes the stage in script for direct data staging (for example, IBM CAST burst buffer).
+Syntax
+LSF_STAGE_IN_EXEC=script_name
+Description
+This script is run as root during the stage in process. The speciﬁed script must be located in the $LSF_SERVERDIR directory.
+Default
+Not deﬁned.
+LSB_STAGE_OUT_EXEC
+Speciﬁes the stage out script for direct data staging (for example, IBM CAST burst buffer).
+Syntax
+LSB_STAGE_OUT_EXEC=script_name
+Description
+2182    IBM Spectrum LSF
+
+This script is run as root during the stage out process. The speciﬁed script must be located in the $LSF_SERVERDIR directory.
+Default
+Not deﬁned.
+LSB_STAGE_STORAGE
+Speciﬁes the resource name to report available storage space for direct data staging (for example, IBM CAST burst buffer).
+Syntax
+LSB_STAGE_STORAGE=resource_name [total_resource_name]
+Description
+Optionally, specify the resource name to report the total storage space for direct data staging as the second resource name. This prevents LSF from
+assigning more storage than is available because the resource information is out of date. This can occur for direct data staging jobs where the job
+handles the ﬁle transfer instead of LSF because LSF cannot reliably predict the storage usage for these jobs.
+If both resource names are speciﬁed, the resource to report the available storage must be conﬁgured as a dynamic, decreasing, and numeric, while
+the resource to report the maximum storage must be conﬁgured as numeric.
+If only one resource name is speciﬁed, the resource must be conﬁgured as a dynamic, decreasing resource. LSF assumes that the total storage space
+on the host is the sum of the reported available storage space, the reserved space, and the used space. The reserved space is storage space that is
+assigned to jobs that have a plan, but have not completed the stage in operation. The used space is storage space that is assigned to jobs that
+completed the stage in operation, but has not completed the stage out operation.
+Examples
+LSB_STAGE_STORAGE=ssd
+The ssd resource reports the available storage space. LSF estimates that the total storage space available is the sum of the available storage space,
+the storage space that is reserved for planned jobs, and the storage space that is used by jobs that completed the stage in operation (but not the
+stage out operation).
+LSB_STAGE_STORAGE=ssd ssd_max
+The ssd resource reports the available storage space. The ssd_max resource reports the total storage space.
+Default
+Not deﬁned.
+LSB_STAGE_TRANSFER_RATE
+Speciﬁes the estimated data transfer rate for direct data staging (for example, IBM CAST burst buffer). LSF uses this value to calculate the predicted
+duration for data stage in.
+Syntax
+LSB_STAGE_TRANSFER_RATE=data_transfer_rate
+Description
+Specify the estimated data transfer rate in kilobits per second (kbps).
+Default
+1048576 (1 Gbps)
+IBM Spectrum LSF 2183
+
+lsf.datamanager
+The lsf.datamanager ﬁle controls the operation of IBM® Spectrum LSF Data Manager features. Each cluster has one LSF data management
+conﬁguration ﬁle, called lsf.datamanager.cluster_name. The cluster_name sufﬁx is the name of the cluster that is deﬁned in the Cluster section of
+the lsf.shared ﬁle. The ﬁle is read by the LSF data management daemon dmd. Since one LSF data manager can serve multiple LSF clusters, the
+contents of this ﬁle must be identical on each cluster that shares LSF data manager.
+Changing lsf.datamanager conﬁguration
+After you change lsf.datamanager.cluster_name, run the bdata admin reconﬁg command to reconﬁgure LSF data manager on all candidate hosts.
+Location
+The lsf.datamanager ﬁle is located in the directory that is deﬁned by the LSF_ENVDIR parameter.
+Structure
+The lsf.datamanager.cluster_name ﬁle contains two conﬁguration sections:
+Parameters section
+The Parameters section of the lsf.datamanager ﬁle conﬁgures LSF data manager operations.
+RemoteDataManagers section
+Optional. The RemoteDataManagers section tells a local LSF data manager how to communicate with remote LSF data managers in LSF
+multicluster capability forwarding clusters. Only the cluster that is sending jobs needs to conﬁgure the RemoteDataManagers section.
+Parameters section
+ The Parameters section of the lsf.datamanager ﬁle conﬁgures LSF data manager operations.
+RemoteDataManagers section
+ Optional. The RemoteDataManagers section of the lsf.datamanager ﬁle tells a local LSF data manager how to communicate with remote LSF
+data managers in LSF multicluster capability forwarding clusters. Only the cluster that is sending jobs needs to conﬁgure the
+RemoteDataManagers section.
+Parameters section
+The Parameters section of the lsf.datamanager ﬁle conﬁgures LSF data manager operations.
+Description
+The Parameters section of the lsf.datamanager ﬁle conﬁgures the following operations:
+LSF data manager administrators
+The default ﬁle transfer command
+The location of the LSF data manager staging area
+File permissions on the LSF data manager cache
+The grace period for LSF data manager cache cleanup
+Parameters
+ADMINS
+CACHE_ACCESSIBLE_FILES
+CACHE_ACCESS_CONTROL
+CACHE_INPUT_GRACE_PERIOD
+CACHE_OUTPUT_GRACE_PERIOD
+CACHE_PERMISSIONS
+CACHE_REFRESH_INTERVAL
+FILE_TRANSFER_CMD
+PERMISSION_MASK
+QUERY_NTHREADS
+REMOTE_CACHE_REFRESH_INTERVAL
+STAGING_AREA
+ADMINS
+2184    IBM Spectrum LSF
+
+Required. List of LSF data manager administrator users.
+Syntax
+ADMINS=user_name [user_name ... ]
+Description
+The speciﬁed users can reconﬁgure and shut down the LSF data manager daemon (dmd), and use the bdata tags subcommand to list or clean
+intermediate ﬁles that are associated with a tag for users. LSF data manager administrators must be administrators in each of the connected LSF
+clusters.
+You cannot conﬁgure the root user as an LSF data manager administrator, but root has the same privileges as an LSF data manager administrator.
+The parameter takes effect after you restart or reconﬁgure LSF data manager.
+Valid values
+Any LSF administrator user account, except root.
+Example
+ADMINS=lsfadmin user1 user2
+Default
+None. Required parameter.
+CACHE_ACCESS_CONTROL
+Enables the owner of a data tag or a data ﬁle in the cache to change the user group ownership of a tag, an ownership, and the permissions of a ﬁle.
+Syntax
+CACHE_ACCESS_CONTROL=Y | y | N | n
+Description
+LSF data manager cache access control allows a user to access cached data ﬁles that belong to a user in another user group.
+The CACHE_PERMISSIONS=all parameter and the CACHE_ACCESSIBLE_FILES= Y parameter must be conﬁgured to enable cache access control.
+Default
+N - changing the user group of a cached ﬁle or tag is not enabled.
+CACHE_ACCESSIBLE_FILES
+Speciﬁes whether LSF data manager initiates a transfer job or creates a symbolic link from the cache to the requested data ﬁle.
+Syntax
+CACHE_ACCESSIBLE_FILES=Y | y | N | n
+Description
+By default, if LSF data manager can directly access a required data ﬁle through the ﬁle system, the CACHE_ACCESSIBLE_FILES=N parameter avoids
+unnecessary local stage in of the ﬁle. Creating a symbolic link to a locally accessible ﬁle increases job throughput because the job does not need to
+wait for a transfer job to ﬁnish. When the CACHE_ACCESSIBLE_FILES=Y parameter is conﬁgured, a transfer job is always initiated for jobs that are
+submitted with data requirements, and automatic symbolic linking for accessible ﬁles is disabled. Always starting a transfer job might be desirable to
+ensure that the latest copy of the data ﬁle is made available to the job.
+Default
+N - a symbolic link from the cache is created for ﬁles that LSF data manager can access directly.
+CACHE_INPUT_GRACE_PERIOD
+Minimum time in minutes that an input ﬁle is kept in the LSF data manager cache after no jobs reference it.
+Syntax
+CACHE_INPUT_GRACE_PERIOD=minutes
+Description
+IBM Spectrum LSF 2185
+
+After the speciﬁed number of minutes, the job that is associated with the input ﬁle can no longer be queried through the bdata command. The ﬁles
+that the job requested to be staged in are physically deleted from the cache.
+The grace period for the input ﬁle begins when no data jobs request the ﬁle and no transfer jobs are transferring it. The input ﬁle grace period does
+not apply to transfers with ERROR status.
+The parameter takes effect after you restart or reconﬁgure LSF data manager.
+Valid values
+1 - 2147483647 minutes
+Default
+1440 minutes (1 day)
+CACHE_OUTPUT_GRACE_PERIOD
+Minimum time in minutes that an output ﬁle is kept in the LSF data manager cache after its transfer completes, either successfully or unsuccessfully.
+Syntax
+CACHE_OUTPUT_GRACE_PERIOD=minutes
+Description
+After the speciﬁed number of minutes, the job that is associated with the output ﬁle can no longer be queried through the bdata command. The ﬁles
+that the job requested to be staged out are physically deleted from the cache.
+The grace period for the output ﬁle begins when all the output ﬁle records associated to the same job reach TRANSFERRED or ERROR status. However,
+the ﬁles and job records are not cleaned up until the grace periods expire for all stage-out requirements that are associated with the same job.
+Output ﬁles can be queried until the grace period expires for all output ﬁle records associated with the job.
+The grace period on the output ﬁle begins whether the ﬁle transfer completes successfully or unsuccessfully. Files are cleaned up only after the
+grace periods of all stage-out requirements for the job expire. After the grace period expires, the stage-out records are removed, and you cannot
+search the stage-out history from LSF data manager.
+The grace period does not apply to ﬁles uploaded to the cache with the bstage out -tag command. You must use the bdata tags clean command to
+clean up these ﬁles manually.
+The parameter takes effect after you restart or reconﬁgure LSF data manager.
+Valid values
+1 - 2147483647 minutes
+Default
+180 minutes (3 hours)
+CACHE_PERMISSIONS
+Sets ﬁle permissions and ownership of the LSF data manager staging area subdirectories.
+Syntax
+CACHE_PERMISSIONS=user | group | all
+Description
+CACHE_PERMISSIONS=user
+By default, ﬁles are stored in a user-speciﬁc subdirectory in the staging area. All ﬁles are owned by that user with 700 ﬁle permission mode. If
+two users ask for the same ﬁle to be pre-staged with the bsub -data command, LSF transfers a separate copy for each user. Different users
+cannot use the same cached ﬁle or query the staged ﬁles for other users with the bdata cache command.
+CACHE_PERMISSIONS=group
+Users in the same primary UNIX user group can share the cached ﬁles to avoid unnecessary ﬁle transfers. Files are owned by the ﬁrst user in
+the group that requests the ﬁle. The subdirectory is based on the main group of the transferring user, and ﬁle permissions are set to 750.
+Users in the same primary group can query ﬁles for their group with the bdata cache command.
+When CACHE_PERMISSIONS=group is speciﬁed, the -g option of the bdata command shows the cached ﬁles that belong to the speciﬁed user
+group.
+CACHE_PERMISSIONS=all
+Only a single cache is created for incoming ﬁles, and ﬁles are shareable by all users. All ﬁles pre-staged with the bsub -data command are
+stored in the staging area with permission 755. Files are owned by the ﬁrst user who requests the ﬁle. If two users ask for the same ﬁle to be
+2186    IBM Spectrum LSF
+
+pre-staged, only one copy of the ﬁle is pre-staged, owned by the ﬁrst requesting user. Users can query any ﬁle in the cache with the bdata
+cache command.
+Note: The value of CACHE_PERMISSIONS affects the directory structure of the staging area cache, which LSF data manager depends on for recovery.
+To avoid losing the cache, do not change the value of the CACHE_PERMISSIONS parameter between LSF data manager restarts.
+If you must change the value of the CACHE_PERMISSIONS parameter after the cache is already in use, ﬁles in the cache subdirectory
+$STAGING_AREA/stgin/$CACHE_PERMISSIONS corresponding to the old value are not cleaned up by LSF data manager. You must manually delete
+them as root. Be careful that no running jobs are using them.
+The parameter takes effect after you restart or reconﬁgure LSF data manager.
+Default
+user
+CACHE_REFRESH_INTERVAL
+Limits the number of transfer jobs to the data manager by setting a refresh interval for the ﬁle cache.
+Syntax
+CACHE_REFRESH_INTERVAL=minutes
+Description
+Every time a ﬁle or folder is requested by a new job, there could be a new transfer job. The CACHE_REFRESH_INTERVAL parameter limits the
+number of times that LSF Data Manager performs data copy operations to the cache area. If a data job requests source data that is already in the
+cache and is within the time period as speciﬁed in CACHE_REFRESH_INTERVAL, the transfer job does not copy the data to the staging area to refresh
+the cache. In addition, the transfer job does not refresh a new copy of the source data in the cache if the source ﬁle is not changed.
+If CACHE_ACCESS_CONTROL=Y is conﬁgured, the data manager ignores the CACHE_REFRESH_INTERVAL parameter value and copies the source
+data ﬁle to cache if the source data ﬁle is changed, otherwise the transfer job does not copy the data. The data manager also ignores the
+CACHE_REFRESH_INTERVAL parameter value if LSF_DATA_BSUB_CHKSUM is deﬁned as y or Y.
+Valid values
+0 - 2147483647 (minutes)
+Default
+15
+FILE_TRANSFER_CMD
+The command that is used by LSF data manager to transfer data ﬁles.
+Syntax
+FILE_TRANSFER_CMD=command
+Description
+The speciﬁed command must take two arguments of the form [host_name:]abs_file_path. The ﬁrst argument is an absolute path to the
+location of the source ﬁle and the second is absolute path to the destination of the transfer.
+The command must be able to accept path descriptors with or without host names for each of its two arguments. For example, the default scp
+command satisﬁes both requirements. The cp command is not valid because it can't accept a host name.
+The command that you specify must block until the transfer is successfully completed or an error occurs. It must return 0 if successful and a nonzero
+value if an error occurs. Provide a full path to the command so that it can be accessed from the hosts that the data transfer queue points to.
+If the command returns successfully, LSF data manager assumes that the transfer was completed without error
+The parameter takes effect after you restart or reconﬁgure LSF data manager.
+Use the SNDJOBS_TO to enable an LSF data manager data transfer queue as a remote send-jobs queue in the execution cluster.
+If you specify a remote queue with the SNDJOBS_TO parameter in the data transfer queue in the execution cluster, the path of the
+FILE_TRANSFER_CMD parameter must exist in the submission cluster.
+Note: If you change the FILE_TRANSFER_CMD parameter, transfer jobs that are submitted before the parameter changed continue to use the old
+value. You must kill these jobs and any dependent data jobs, and submit new data jobs for the ﬁles to be transferred with the new command.
+Default
+IBM Spectrum LSF 2187
+
+/usr/bin/scp
+PERMISSION_MASK
+Controls how data cache ﬁle permissions can be changed by the bdata chmod command.
+Syntax
+PERMISSION_MASK=octal_mode
+Description
+The octal-mode is three octal digits (0-7), derived by adding up the bits with values 4, 2, and 1. The ﬁrst digit selects permissions for the user who
+owns the ﬁle: read (4), write (2), and execute (1). The second digit selects the permissions for other users in the group that is associated with the ﬁle.
+The third digit selects the permissions for other users not in the group that is associated with the ﬁle.
+For example, PERMISSION_MASK=750 means that ﬁle owners can modify the rwx bits for the user, the rw bits for the group, but not the global bits.
+The PERMISSION_MASK=777 parameter value means that ﬁle owners can modify all the permission bits. The PERMISSION_MASK=000 value means
+that ﬁle owners cannot modify permissions at all.
+The permissions on the directory that the ﬁle is in are changed to be consistent with the ﬁle permission, but the owner always has full access at the
+directory level. If the permissions on the ﬁle allow the group or others permission to read, write, or execute, the same permissions are enabled on
+the directory. For example, if the permission mask is set to PERMISSION_MASK=777 and the ﬁle mode is 570 (r-xrwx---), the permissions on the
+directory are changed to 770 (rwxrwxr---).
+The parameter takes effect after you restart or reconﬁgure LSF data manager.
+Default
+When the CACHE_ACCESS_CONTROL=Y parameter is set, the default permission mask value is 777. When the CACHE_ACCESS_CONTROL parameter
+is not set to Y, the permission mask is set to 000 regardless of conﬁguration.
+QUERY_NTHREADS
+Number of threads in the LSF data manager client query thread pool.
+Syntax
+QUERY_NTHREADS=integer
+Description
+Increase the value of the QUERY_NTHREADS parameter to improve the responsiveness of the local LSF data manager to requests by remote data
+managers and bdata command clients.
+The parameter takes effect after you restart or reconﬁgure LSF data manager.
+Valid values
+1 - 2147483647
+Default
+4
+REMOTE_CACHE_REFRESH_INTERVAL
+Number of seconds that information about remote LSF data manager ﬁle availability is considered to be fresh.
+Syntax
+REMOTE_CACHE_REFRESH_INTERVAL=seconds
+Description
+The REMOTE_CACHE_REFRESH_INTERVAL parameter affects how often LSF data manager queries LSF data managers in other clusters. After the
+speciﬁed number of seconds elapses, the job assumes that the remote cluster information about this ﬁle is stale, and queries the cluster for
+availability again.
+The parameter takes effect after you restart or reconﬁgure LSF data manager.
+Valid values
+1 - 2147483647 seconds
+2188    IBM Spectrum LSF
+
+Default
+15 seconds
+STAGING_AREA
+Absolute path to the top of the data management staging area as it is accessed from the LSF data manager hosts.
+Syntax
+STAGING_AREA=[host_name:]abs_ﬁle_path
+Description
+Any host that the LSF data manager runs on must statically mount a staging area. This path must not point to a directory that has the sticky bit set in
+any directory in its path (such as the /tmp directory or any subdirectory of /tmp).
+Check the entries in the /etc/mtab ﬁle and see whether the mounted ﬁle system source location is a preﬁx of host_name:path. If so, replace this
+preﬁx with the local mount point for the source location that is speciﬁed in the /etc/mtab ﬁle and access the ﬁle at the resulting path.
+The resolved directory must exist.
+You must restart the LSF data manager daemon (dmd) for this parameter to take effect.
+Note: If you change the STAGING_AREA parameter, ﬁles that are stored in the previous cache are not recovered, and therefore are never deleted by
+the LSF data manager.
+Data transfer hosts
+Each cluster that uses LSF data management must have a set of hosts that act as data transfer nodes (also referred to as I/O nodes). These hosts
+must have the following properties:
+Each node must have read/write access to the mounted staging area.
+For input data requirements (data stage in), data transfer nodes must be able to reach the data source location through the conﬁgured transfer
+tool.
+For output data requirements (data stage out), data transfer nodes must be able to reach the data destination location through the conﬁgured
+transfer tool.
+These nodes must statically mount the staging area at the same location as the LSF data manager host.
+These nodes must be conﬁgured as LSF execution hosts in the data transfer queue.
+Data transfer nodes are execution hosts for transfer job that LSF data manager submits to a data transfer queue that speciﬁes the
+DATA_TRANSFER=Y parameter. Specify the LSF server hosts in the HOSTS parameter in the lsb.queues ﬁle for the data transfer queue.
+Example
+For the following staging area conﬁguration
+STAGING_AREA=hostA.company.com:/vol/dmd_cache
+The following /etc/mtab ﬁle entries are valid:
+hostA.company.com:/vol/ /mnt/vol1 0 0 - The staging area is accessed locally at /mnt/vol1/dmd_cache
+hostA:/vol/dmd_cache /mnt/staging 0 0 - The staging area is accessed locally at /mnt/staging
+The following /etc/mtab ﬁle entry is not valid:
+hostA.company.com:/vol/vol1 /mnt/staging 0 0
+In this case, the export location is not an ancestor of the location pointed to by the STAGING_AREA parameter.
+Default
+None. Required parameter.
+RemoteDataManagers section
+Optional. The RemoteDataManagers section of the lsf.datamanager ﬁle tells a local LSF data manager how to communicate with remote LSF data
+managers in LSF multicluster capability forwarding clusters. Only the cluster that is sending jobs needs to conﬁgure the RemoteDataManagers
+section.
+Before a job with data requirements is forwarded to another cluster, the local LSF data manager contacts remote LSF data managers, which serve as
+candidate clusters for job forwarding. The local dmd daemon collects the information that is needed for the scheduler forwarding decision. If the
+dmd daemon of a candidate forwarding cluster is not conﬁgured in the section, LSF excludes that cluster from being scheduled for job forwarding.
+IBM Spectrum LSF 2189

@@ -1,0 +1,129 @@
+LSF supports following dynamic directory patterns:
+%J: Job ID
+%JG: Job group (if not speciﬁed, it will be ignored)
+%I: Index (default value is 0)
+%EJ: Execution job ID
+%EI: Execution index
+%P: Project name
+%U: User name
+%G: User group
+The following example uses a job output directory:
+1. Check the current submission directory.
+$ pwd 
+/tmp
+2. Submit a job specifying job output directory, then copy ﬁles back to output directory.
+$ bsub -outdir "outputdir/%J_%I" -o outputfile -f " outputfile < outputfile" hostname 
+Job <320> is submitted to default queue <normal>.
+3. After the job completes, check the directory and ﬁles.
+$ bjobs 320 
+JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME 
+320     user1   DONE  normal     master      s1node1     hostname   Sep 23 21:02 
+$ cd outputdir/320_0 
+$ pwd 
+/tmp/outputdir/320_0 
+$ ls 
+outputfile
+Using IBM® Spectrum LSF with Andrew File System (AFS)
+Learn how LSF integrates with Andrew File System (AFS) so you can conﬁgure LSF to suit your needs.
+TGT forwarding in LSF
+The purpose of TGT (ticket granting ticket) forwarding in LSF is to forward user TGT ﬁles from the job submission host to the job execution host.
+About this task
+Job processes can use this TGT ﬁle to assume the identity of submission user, as illustrated in the following ﬁgure:
+2408    IBM Spectrum LSF
+
+The TGT ﬁle is carried along with job submission from the bsub command to the mbatchd daemon, then to the execution host. Before the user job
+process is started, the TGT ﬁle is set up and the KRB5CCNAME environment variable in the user process is set to point to this ﬁle.
+In the following example, user data is stored in NFSv4 with Kerberos protecting. A job needs the submission user’s TGT ﬁle to access job data. Site
+policy also dictates that each TGT has a lifetime of 8 hours and renewal limit of 40 hours. That is, the TGT can be used for a full work day before it
+needs to be renewed. It can be renewed for a whole work week.
+Procedure
+1. Conﬁgure LSB_KRB_TGT_FWD=Y in the lsf.conf ﬁle.
+This enables the TGT forwarding feature. The TGT on the submission host is forwarded to the execution host.
+2. Conﬁgure optional Kerberos 5 parameters in the lsf.conf ﬁle.
+Since a user TGT ﬁle can only last for 8 hours, if your job is expected to last longer than that (PEND time + RUN time), the cluster
+administrator can conﬁgure LSF to renew the TGT while the job is pending or running. Use the LSB_KRB_CHECK_INTERVAL parameter
+to deﬁne how often LSF inspects the TGT ﬁle to see if it needs renewing.
+Use the LSB_KRB_RENEW_MARGIN parameter to specify how long before the TGT ﬁle expires that LSF renews the TGT.
+For example, if you specify LSB_KRB_CHECK_INTERVAL=15, LSF scans the TGT ﬁles every 15 minutes, and if you specify
+LSB_KRB_RENEW_MARGIN=30, LSF renews the TGT 30 minutes before it expires. These are typical values if the TGT lifetime is 8 hours.
+3. Before job submission, your job must get a valid TGT ﬁle on the submission host.
+Your job can get a valid TGT ﬁle on the submission host with a Kerberos 5 client command such as kinit. Most UNIX login utilities, like PAM, do
+this automatically. Consult with your network administrator to ﬁnd the method to apply a TGT ﬁle at your site.
+The following example uses the kinit command from the MIT Kerberos 5 distribution:
+user1@host1: kinit -r 10d -f -l 30m 
+Password for user1@IBM.COM: 
+user1@host1: klist 
+Ticket cache: FILE:/tmp/krb5cc_34252 
+Default principal: user1@EXAMPLE.COM 
+Valid starting     Expires            Service principal 
+05/01/22 10:29:34  05/01/22 10:59:31  krbtgt/EXAMPLE.COM@EXAMPLE.COM 
+       renew until 05/11/22 10:29:31 
+Kerberos 4 ticket cache: /tmp/tkt34252 
+klist: You have no tickets cached
+4. Submit a job.
+For example, the job is submitted from host1, and it runs on host3, so the TGT ﬁle in wsj_vm1 is forwarded to host3. The TGT ﬁle is set up
+correctly on the execution host, with a name like lsf_krb5cc_<jobid>:
+user1@host1: bsub -m host3 <some program that will read NFSv4> 
+Job <109> is submitted to default queue <normal>. 
+user1@host3: klist lsf_krb5cc_j109_0 
+Ticket cache: FILE:lsf_krb5cc_j109_0 
+Default principal: user1@EXAMPLE.COM 
+Valid starting     Expires            Service principal 
+05/01/22 10:33:36  05/01/14 11:03:33  krbtgt/IBM.COM@IBM.COM 
+        renew until 05/11/22 10:29:31
+Results
+After the TGT is set up on the execution host, your program can read and write to the NFSv4 volume the same as regular directories. Kerberos logic is
+handled by underlying system calls, so your job does not need to do anything.
+LSF AFS integration
+The LSF integration with AFS is effectively an application of LSF TGT forwarding, but with extra help from LSF.
+About this task
+The conﬁguration of the LSF AFS integration covers the following case:
+1. The job accesses user data in an AFS volume.
+a. The job must have a valid TGT ﬁle.
+b. The job must use this TGT ﬁle to apply an AFS token.
+This ensures that the job can access user data ﬁles in an AFS volume as if they are normal ﬁles.
+2. JOB_SPOOL_DIR is deﬁned in an AFS volume. In this case, the child sbatchd daemon, and the job RES needs to access the AFS volume to
+create the job ﬁle, job output, error cache, and other ﬁles.
+a. The child sbatchd daemon and the job RES must have a valid TGT ﬁle.
+b. The child sbatchd daemon and the job RES must use this TGT ﬁle to apply an AFS token.
+This ensures that the child sbatchd daemon and the job RES can access the JOB_SPOOL_DIR directory as if it is a normal directory.
+IBM Spectrum LSF 2409
+
+LSF creates a separate PAG (process authentication group) for user jobs, the child sbatchd, and job RES to maximize the security of user tokens. This
+operation is depicted in the following ﬁgure:
+In the following example, user data is stored in an AFS volume. This is different from NFSv4 because an AFS token is needed to access the AFS
+volume, and the AFS token must possess a valid TGT ﬁle. The job still needs the submission user’s TGT ﬁle to be forwarded to the execution host, but
+LSF must also apply an AFS token for the job based on this TGT ﬁle.
+Site policy dictates that each TGT has a lifetime of 8 hours with a renewal limit of 40 hours That is, the TGT can be used without renewal for a full
+work day, and it can be renewed for a whole work week. AFS has the additional requirement that after TGT ﬁle is renewed, the AFS token derived
+from it must be renewed as well.
+Procedure
+1. Conﬁgure LSB_KRB_TGT_FWD=Y in the lsf.conf ﬁle.
+This enables the TGT forwarding feature, which ensures that the job, child sbatchd daemon, and job RES have valid TGT ﬁles.
+2. Conﬁgure LSB_AFS_JOB_SUPPORT=Y in the lsf.conf ﬁle.
+This ensures that LSF creates and renews AFS tokens for use by your jobs and the child sbatchd daemon, if needed.
+3. Conﬁgure optional Kerberos-related parameters in the lsf.conf ﬁle.
+Use the LSB_KRB_CHECK_INTERVAL parameter to deﬁne how often LSF inspects the TGT ﬁle to see if it needs renewing.
+Use the LSB_KRB_RENEW_MARGIN parameter to specify how long before the TGT ﬁle expires that LSF renews the TGT.
+4. Conﬁgure optional AFS-related parameters in the lsf.conf ﬁle.
+After the TGT ﬁle is renewed, LSF uses the aklog command to renew AFS tokens. Use the LSB_AFS_BIN_DIR parameter to specify the
+location of the aklog command. Specify a space-separated list of directories. If LSB_AFS_BIN_DIR is not deﬁned, LSF defaults to the
+following locations: /bin, /usr/bin, /usr/local/bin.
+5. Before job submission, your job must get a valid TGT ﬁle on the submission host.
+Your job can get a valid TGT ﬁle on the submission host with a Kerberos 5 client command such as kinit. Most UNIX login utilities, like PAM, do
+this automatically. Consult with your network administrator to ﬁnd the method to apply a TGT ﬁle at your site.
+The following example uses the kinit command from the MIT Kerberos 5 distribution:
+user1@host1: kinit -r 10d -f -l 30m 
+Password for user1@IBM.COM: 
+user1@host1: klist 
+Ticket cache: FILE:/tmp/krb5cc_34252 
+Default principal: user1@EXAMPLE.COM 
+Valid starting     Expires            Service principal 
+05/01/22 10:29:34  05/01/22 10:59:31  krbtgt/EXAMPLE.COM@EXAMPLE.COM 
+       renew until 05/11/22 10:29:31 
+Kerberos 4 ticket cache: /tmp/tkt34252 
+klist: You have no tickets cached
+6. Submit a job.
+The job can freely read and write on the AFS volume as if it is a regular directory. All housekeeping steps such as applying and renewing AFS
+tokens are handled by LSF. Your jobs do not need to do any housekeeping.
+2410    IBM Spectrum LSF

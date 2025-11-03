@@ -1,0 +1,231 @@
+"computeUnit": ["String", "encl_3"] 
+    }, 
+    "imageId": "r006-931515d2-fcc3-11e9-896d-3baa2797200f", 
+    "subnetId": "0717-a16bb490-c5ab-4fa3-bf18-0298694df8c6", 
+    "vpcId": "r006-e5c03fe9-42db-4995-bff9-7b7cfbbec7e9", 
+    "resourceGroupId": "0d4b98578d5a474489b928cae03767d0", 
+    "vmType": "bx2-8x32", 
+    "securityGroupIds": ["r006-e2a0df77-5efc-4da3-932f-d30aa9c1cdd2"], 
+    "sshkey_id": "r006-73ace4ad-7fc2-4ee9-b00e-066f563e4833", 
+    "region": "us-south", 
+    "zone": "us-south-1" 
+} 
+] 
+}
+The example deﬁnes a template named CENTOS-Template-NGVM-1. LSF attempts to place any pending workload on Cloud VPC Gen 2 instances that
+match the template of type X86_64 with the required ncpus, mem, and other resources. LSF uses the default VPC, and all instances are created in
+the us-south-1 zone. For example, if some pending workload is placed on on N number of hosts, LSF requests N instances of CENTOS-Template-
+NGVM-1 from the resource connector. If demand is generated for this template, the connector attempts to launch virtual machines, up to the deﬁned
+maximum of 100. The launch command succeeds for any of the instances (even if there are fewer than requested), the connector informs LSF that it
+can use the allocated hosts.
+Important: When you deﬁne templates, you must ensure that the attribute deﬁnitions presented to LSF accurately match those provided by Cloud
+VPC Gen 2. If, for example, the attribute deﬁnition speciﬁes hosts with ncpus=4, but the actual hosts returned by LIM detects ncpus=2, the demand
+calculation in LSF might not be accurate.
+LSF Web Services
+IBM Spectrum LSF Web Services (LSF Web Services) is available with Fix Pack 15. Use LSF Web Services to access LSF from anywhere, making it
+easier for your to connect to your LSF cluster.
+Installing LSF Web Services
+ As an administrator, after you have installed or upgraded to the LSF Fix Pack 15 level, you can install LSF Web Services installation package for
+easy access to your LSF from anywhere. LSF Web Services is supported on RHEL 8 or later.
+Installing LSF Web Services for a high availability environment
+ High availability (HA) for LSF Web Services involves installing multiple instances of LSF Web Services on LSF servers or management hosts. A
+gateway provides a single URL for users to access LSF Web Services and balances the load among the instances. After you have installed your
+instances of LSF Web Services, you then conﬁgure a load balancer that meets your business needs, such as Apache HTTP Server, HA Proxy, or
+NGINX. The following information illustrates how to conﬁgure Apache HTTP Server as a load balancer for LSF Web Services with HA: either as
+your HTTP proxy or HTTPS proxy for LSF Web Services. Instead of Apache HTTP Server, you can use a different load balancer, and use this
+information as a guide to conﬁgure your load balancer for your HA environment. Moreover, the steps illustrate conﬁguring the Apache HTTP
+Server without redundancy in load balancer itself; however, a common approach with HA is to run multiple load balancers in an active-passive
+deployment (for example, you can use Keepalived so that multiple daemons run on different hosts and read from a common IP address, but
+only one of these is active at any point in time). Consider the best option for your HA environment as you use the guidance provided here.
+Enabling OAuth 2.0 for LSF Web Services single sign-on
+ The OAuth 2.0 protocol enables users to safely give LSF Web Services access to data without having to share credentials. You integrate OAuth
+for LSF Web Services through an authentication server (such as Keycloak) as an OpenID Connect (OIDC) identity provider (IdP).
+Enabling OAuth 2.0 for LSF Web Services single sign-on for an high availability environment
+ If you have conﬁgured an LSF Web Services for a high availability environment, you can also integrate OAuth for it to enable users to safely
+give LSF Web Services access to data without having to share credentials. You integrate OAuth for LSF Web Services through an authentication
+server (such as Keycloak) as an OpenID Connect (OIDC) identity provider (IdP).
+Conﬁguration reference
+ An administrator can use the LSF Web Services conﬁguration ﬁles to further deﬁne LSF Web Services, rather than use the defaults.
+Installing LSF Web Services
+As an administrator, after you have installed or upgraded to the LSF Fix Pack 15 level, you can install LSF Web Services installation package for easy
+access to your LSF from anywhere. LSF Web Services is supported on RHEL 8 or later.
+Before you begin
+Tip: If you are using a failover environment for LSF Web Services, then refer to the installation steps in Installing LSF Web Services for a high
+availability environment.
+Before you install LSF Web Services, note these requirements:
+1. Download the LSF Web Services installation package from the same site where you downloaded Fix Pack 15: IBM Fix Central. Select the
+operating system type that matches your LSF installation (Linux x64 or Linux ARM). Once you have the installation package downloaded, you
+2300    IBM Spectrum LSF
+
+can install it.
+2. Supported operating systems for installing LSF Web Services server are as follows:
+Table 1. Supported operating systems for LSF Web Services server
+Type CPU or hardware Name and version Package name
+Linux x64 kernelx86 RHEL 8.10, and 9.1-9.5
+SLES 15.5 and 15.6
+Ubuntu 20.04, 22.04. and 42/04lws<version>_linux-x86_64.tar.Z
+Linux ARM AArch64 RHEL 8.10, and 9.1-9.5
+SLES 15.5 and 15.6
+Ubuntu 20.04, 22.04. and 42/04lws<version>_linux-aarch64.tar.Z
+Additionally, the LSF Web Services package (lws_client<version>.tar.Z) includes different client installers for different operating systems:
+Table 2. Supported operating systems for LSF Web Services client
+Type CPU or hardware Name and version Package name within lws_client < v e r s i o n >.tar.Z
+Linux x64 kernelx86 RHEL 8.x and 9.x
+SLES 15.5 and 15.6
+Ubuntu 20.04, 22.04. and 42/04x86_64/lsf
+Linux ARM AArch64 RHEL 8.x and 9.x
+SLES 15.5 and 15.6
+Ubuntu 20.04, 22.04. and 42/04aarch64/lsf
+macOS ARM macOS macOS 13.x mac-arch64/lsf
+Windows 64-bitx64 Windows 10 and 11 win-x64/lsf.exe
+Procedure
+1. Log on to an existing LSF management or server host as root .
+2. Extract the downloaded package; for example, one of:
+lwsversion_linux-x86_64.tar.Z
+lwsversion_linux-aarch64.tar.Z
+For example:
+[root@lsfhost ~]# tar xvf lws10.1.0.15_linux-x86_64.tar.Z 
+3. Change to the directory where you extracted the ﬁles and edit lwsinstall.sh ﬁle to source your LSF cluster environment:
+a. Locate the # . $LSF_ENVDIR/proﬁle.lsf line.
+b. Add the a line after this one to source the LSF cluster environment.
+For example:
+# cd lws10.1.0.15_linux-x86_64  
+# vi lwsinstall.sh  
+ …  
+#. $LSF_ENVDIR/profile.lsf  
+. /opt/lsf/conf/profile.lsf
+c. Save your changes.
+4. Install the LSF Web Services package:
+a. Run the installer:
+# ./lwsinstall.sh
+b. Enter 1 to accept the LSF license agreement.
+c. Support for HTTPS is enabled by default so that server side, default self-signed certiﬁcates are installed automatically. Enter N to keep
+it enabled, or Y to disable it.
+If you entered N:
+The installer enables HTTPS with the default self-signed certiﬁcate. You must also copy the trusted certiﬁcate bundle to your
+trust store, and regenerate the system's trusted certiﬁcate bundles with the added certiﬁcate bundle. The following examples
+use the default certiﬁcate bundle, cacert.pem:
+On RHEL:
+$ cp /opt/ibm/lsfsuite/ext/ws/conf/https/cacert.pem /etc/pki/ca-trust/source/anchors/ 
+$ update-ca-trust extract
+On SLES:
+$ cp your_ca.crt /usr/local/share/ca-certificates/ 
+$ mkchain
+On Ubuntu:
+$ cp my-ca.crt /usr/local/share/ca-certificates/ 
+$ update-ca-certificates
+IBM Spectrum LSF 2301
+
+If you entered Y:
+HTTPS is disabled during installation, then the installer enables HTTP. You can enable HTTPS later on for LSF Web Services and
+the lsf client CLI library.
+By default, the installer:
+Installs the ibm-jre and lsf-webservice RPM ﬁles into the /opt/ibm/ directory.
+Installs a single client-side LSF CLI library called lsf so you can run LSF commands wherever the client is installed.
+Enables LSF Web Services for HTTPS so that server side, default self-signed certiﬁcates are installed automatically.
+Note: The certiﬁcate that LSF Web Services issues is speciﬁc for your host; therefore, if you change your hostname, you must also re-
+enable HTTPS for that host.
+5. Source LSF Web Services proﬁle:
+For example:
+# . /opt/ibm/lsfsuite/ext/profile.platform 
+6. Start LSF Web Services :
+For example:
+# systemctl restart lwsd 
+7. Check LSF Web Services status :
+For example:
+# systemctl status lwsd  
+SERVICE        STATUS         PID            PORT           HOST_NAME  
+WEBSERVICE     STARTED        3976321        8088           lwshost 
+# netstat -na|grep 8088  
+tcp6       0      0 :::8088                 :::*                    LISTEN 
+8. Test LSF Web Services with the client-side CLI:
+a. Log into any host as a normal user, switch to your LSF Web Services installation directory and list the lsf client binary:
+$ cd /opt/ibm 
+$ ls -l 
+-rwxr-xr-x  1 user1   user1    29876840 Apr 24 14:21 lsf 
+$ ./lsf version 
+version:  v0.0.1 
+commit:   0.0.1 Preview
+b. Authenticate the lsf client binary to LSF Web Services by logging on to the LSF Web Services host with your existing OS username and
+password. For example:
+$ ./lsf cluster logon --username user1 --url http://lwshost:8448 
+Password> ********* 
+OK
+In the example, user1 is an existing user on the LSF Web Services host. This user can be a local user on the host, or an LDAP user.
+c. Run any LSF CLI commands (as you would run with LSF normally) using the lsf client-side CLI. Preface LSF commands with lsf.
+For example, run the lsﬁd, bsub, and bjobs commands:
+$ ./lsf lsid 
+IBM Spectrum LSF Standard 10.1.0.15, June 25 2024 
+Copyright International Business Machines Corp. 1992, 2016. 
+US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule 
+Contract with IBM Corp. 
+My cluster name is lwshost 
+My master name is lsfmgrA 
+$ ./lsf bsub sleep 100 
+Job <20770> is submitted to default queue <normal>. 
+$ ./lsf bjobs 20770 
+JOBID   USER   STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME 
+20770   user1  RUN   normal     lwshost     lsfexec     sleep 100  Apr  9 15:56
+Enabling HTTPS for LSF Web Services
+ When you installed LSF Web Services, by default, it enables LSF Web Services for HTTPS so that server side, self signed certiﬁcates are
+installed automatically. If you entered Y to disable HTTPS during installation, then the installer enables HTTP and uses port 8088. You can
+enable HTTPS now for LSF Web Services on the server side, and the lsf client CLI binary on the client side.
+Enabling HTTPS for LSF Web Services
+2302    IBM Spectrum LSF
+
+When you installed LSF Web Services, by default, it enables LSF Web Services for HTTPS so that server side, self signed certiﬁcates are installed
+automatically. If you entered Y to disable HTTPS during installation, then the installer enables HTTP and uses port 8088. You can enable HTTPS now
+for LSF Web Services on the server side, and the lsf client CLI binary on the client side.
+About this task
+Note: The certiﬁcate that LSF Web Services issues is speciﬁc for your host; therefore, if you change your hostname, you must also re-enable HTTPS
+for that host.
+Procedure
+1. Log on to an LSF Web Services host as root and source the LSF Web Services environment.
+For example:
+[root@lsfhost ~]# . /opt/ibm/lsfsuite/ext/profile.platform
+2. Enable HTTPS with the default self-signed certiﬁcate by running the lwsadmin command and restarting LSF Web Services:
+For example:
+# lwsadmin https enable --password ********* 
+ SSL file created successfully 
+# systemctl stop lwsd  
+# systemctl start lwsd  
+# systemctl status lwsd  
+SERVICE        STATUS         PID            PORT           HOST_NAME 
+WEBSERVICE     STARTED        3979191        8448           lwshostA.ibm.com 
+Tip: To use your own custom certiﬁcate, use your keystore password for the lwsadmin https enable --password ********* command and
+then edit the /opt/ibm/lsfsuite/ext/ws/conf/server_https.xml ﬁle and replace the location attribute within the <keyStore> element with
+the path to your keystore ﬁle. For example: <keyStore 
+id="_home_markdown_jenkins_workspace_Transform_in_SSWRJV_10.1.0_lsf_web_services_lsf_lws_enabling_https_de
+faultKeyStore" password="*********" 
+location="/sharedir/corpKeyStore.jks"/>.
+3. Conﬁgure HTTPS certiﬁcation for the LSF Web Services client host:
+a. Copy the default trusted certiﬁcate bundle (cacert.pem) to the LSF Web Services client host:
+For example:
+# cp /opt/ibm/lsfsuite/ext/ws/conf/https/cacert.pem /home/lwshostA/work/ 
+b. On the client host, set up the HTTPS certiﬁcate:
+For example:
+$ ./lsf config set --cacert /home/lwshostA/work/cacert.pem 
+OK
+c. On the client host, copy the default trusted certiﬁcate bundle to your trust store, and regenerate the system's trusted certiﬁcate
+bundles with the added certiﬁcate bundle. The following examples use the default certiﬁcate bundle, cacert.pem:
+On RHEL:
+$ cp /opt/ibm/lsfsuite/ext/ws/conf/https/cacert.pem /etc/pki/ca-trust/source/anchors/ 
+$ update-ca-trust extract
+On SLES:
+$ cp your_ca.crt /usr/local/share/ca-certificates/ 
+$ mkchain
+On Ubuntu:
+$ cp my-ca.crt /usr/local/share/ca-certificates/ 
+$ update-ca-certificates
+4. Log out of the HTTP on port 8088 session and log on with HTTPS and port 8448.
+For example:
+$ ./lsf cluster logout --url http://www.lwshostA.ibm.com:8088 
+$ ./lsf cluster logon --username user1 --url https://www.lwshostA.ibm.com:8448 
+Password> ********* 
+OK
+5. Test the HTTPS connection by running any lsf LSF CLI commands.
+For example, run the bjobs command:
+$ ./lsf bjobs 
+JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME 
+19820   user1   PEND  normal     pacvnc1.fyr             *931891255 Sep  5 12:38 
+IBM Spectrum LSF 2303

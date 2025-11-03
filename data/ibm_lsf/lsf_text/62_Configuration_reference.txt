@@ -1,0 +1,228 @@
+For HTTP:
+# lsf cluster logon --username xxxxxx --password xxxxxx --url 
+http://LWS_proxy_hostname_or_IP_address:80
+For HTTPS:
+# lsf cluster logon --username xxxxxx --password xxxxxx --url 
+https://LWS_proxy_hostname_or_IP_address:443
+b. List the logged clusters:
+For example:
+  
+#lsf cluster list  
+Default   Name     Version                                            URL  
+*         lws_ha   IBM Spectrum LSF Standard 10.1.0.14, Jun 11 2023   https://lwshost.ibm.com:443
+c. Submit jobs to the LSF cluster.
+For example:
+#lsf bsub -n2 -R "rusage[mem=500]" sleep 200  
+Job <519> is submitted to default queue <normal>. 
+Conﬁguration reference
+An administrator can use the LSF Web Services conﬁguration ﬁles to further deﬁne LSF Web Services, rather than use the defaults.
+LSF Web Services supports the lws.conf, commands.json, and esecurity.json conﬁguration ﬁles
+lws.conf
+ The lws.conf ﬁle is the main LSF Web Services conﬁguration ﬁle for general settings, including SSL, OAuth2, user mapping, enhanced security,
+and other conﬁguration parameters.
+commands.json
+ Use the commands.json ﬁle to conﬁgure the commands that LSF Web Services is allowed to run.
+esecurity.json
+ Use the esecurity.json ﬁle to additionally secure LSF Web Services access through IP addresses and users.
+lws.conf
+The lws.conf ﬁle is the main LSF Web Services conﬁguration ﬁle for general settings, including SSL, OAuth2, user mapping, enhanced security, and
+other conﬁguration parameters.
+Location
+The lws.conf ﬁle is located in the $LWS_TOP/conf directory.
+Format
+Each entry in lws.conf has one of the following forms:
+NAME=VALUE 
+NAME= 
+NAME="STRING1 STRING2 ..."
+The equal sign = must follow each NAME even if no value follows and there should be no space beside the equal sign.
+A value that contains multiple strings separated by spaces must be enclosed in quotation marks.
+Lines starting with a pound sign (#) are comments and are ignored. Do not use #if as this is reserved syntax for time-based conﬁguration.
+Parameters
+Refer to the comments within the lws.conf for descriptions of each section the parameters within the them.
+Note: You can use the esecurity.json ﬁle for additional secure LSF Web Services access. The esecurity.json ﬁle only takes effect if you have set
+ENHANCED_SECURITY="Y" in the # ENHANCED SECURITY PARAMETERS section of this lws.conf ﬁle. By default, it is set to
+ENHANCED_SECURITY="N".
+IBM Spectrum LSF 2315
+
+commands.json
+Use the commands.json ﬁle to conﬁgure the commands that LSF Web Services is allowed to run.
+Location
+The commands.json ﬁle is located in the $LWS_TOP/conf directory.
+Description
+The commands.json ﬁle deﬁnes all the commands that LSF Web Services is allowed to execute. You can also use this ﬁle to deﬁne allow or disallow
+properties when running the commands.
+Format and structure
+The commands.json ﬁle is a JSON array in plain text format. Each element in the JSON array is a JSON object that contains three ﬁelds. For example:
+{ 
+        "command" : "bsub", 
+        "unSupportedParameters" : ["-I", "-Ip", "-Is", "-IS", "-J"], 
+        "standalone" : false 
+}
+Each JSON object contains these ﬁelds:
+command
+Required ﬁeld. The name of the command that LSF Web Services is allowed to run (in the example, bsub is an LSF command to run). Specify a
+string for this value.
+unSupportedParameters
+Optional ﬁeld. The command parameters or options that LSF Web Services is not allowed to run with the command speciﬁed in the command
+ﬁeld. Specify a JSON array of strings. Each string represents a parameter or option that LSF Web Services is not allowed to run with the
+speciﬁed command. In the example, LSF Web Services is not allowed to run the bsub command with the -I, -Ip, -Is, -IS, or -J options.
+standalone
+Optional ﬁeld. Specify either true or false. When this ﬁeld is set to false, LSF Web Services is not allowed to run the command speciﬁed in
+the command ﬁeld without any parameters or any arguments. This ﬁeld is for commands that will fall into interactive mode when called as a
+standalone command, such as the bsub command.
+Examples
+Allow running the bjobs command from LSF Web Services with or without parameters or arguments:
+{ "command" : "bjobs"}
+Allow running the bjobs command from LSF Web Services, with at least one parameter or argument, but not run as a standalone command:
+{ 
+        "command" : "bjobs", 
+        "standalone" : false 
+}
+Allow running the bjobs command from LSF Web Services, run as a standalone command but not with the -b parameter option:
+{ 
+        "command" : "bjobs", 
+        "unSupportedParameters" : ["-J"] 
+}
+Allow running the bjobs command from LSF Web Services, but not run as a standalone command and not with the -J parameter option:
+{ 
+        "command" : "bjobs", 
+        "unSupportedParameters" : ["-J"], 
+        "standalone" : false 
+}
+esecurity.json
+Use the esecurity.json ﬁle to additionally secure LSF Web Services access through IP addresses and users.
+2316    IBM Spectrum LSF
+
+Location
+The esecurity.json ﬁle is located in the $LWS_TOP/conf directory.
+Description
+The esecurity.json ﬁle secures LSF Web Services access. The security settings in this ﬁle are in addition to the general security provided in the
+lws.conf conﬁguration ﬁle; this ﬁle only takes effect if you have set ENHANCED_SECURITY="Y" in the lws.conf ﬁle.
+Use it to deﬁne the IP addresses and users that can access LSF Web Services, and block those to which you want to restrict access. You can also use
+this ﬁle to control users' LSF Web Services access time through authentication token time to live values.
+Format and structure
+The esecurity.json ﬁle is a JSON array in plain text format. Each element in the JSON array is a JSON object that contains three ﬁelds. For example:
+{ 
+        "addresses" : [ 
+            "0.0.0.0/0" 
+        ], 
+        "users" : [], 
+        "ttl" : 86400 
+}
+Each JSON object contains these ﬁelds:
+addresses
+Required ﬁeld. The IP addresses that are allowed to initiate requests to LSF Web Services. Specify a JSON array of strings. Each string must be
+in CIDR format to represent an IP address range (for example, 9.200.56.141/32). Additionally, specifying 0.0.0.0/0 indicates any IP
+address range. An empty array represents blocking speciﬁc users to access LSF Web Services from anywhere.
+LSF Web Services only allows users deﬁned in the users ﬁeld to initiate requests to LSF Web Services from IP addresses deﬁned in the
+addresses ﬁeld.
+users
+Required ﬁeld. The users that are allowed to initiate requests to LSF Web Services. Specify a JSON array of strings. Wildcard characters (such
+as *) are not supported. An empty array represents the default settings for any user not deﬁned in this ﬁle.
+LSF Web Services only allows users deﬁned in the users ﬁeld to initiate requests to LSF Web Services from IP addresses deﬁned in the
+addresses ﬁeld.
+ttl
+Optional ﬁeld and only applicable if OAuth2 integration is disabled.
+Note: Token time to live only takes effect when OAuth2 integration is not enabled; therefore, the value of the ttl ﬁeld deﬁned in this
+esecurity.json ﬁle only takes effect when the ENABLE_OAUTH parameter is not set to true in the OAUTH2 PARAMETERS section of the
+lws.conf ﬁle.
+The authentication token's time to live (TTL), in seconds, for the speciﬁed users, to control the amount of time that users have to use LSF Web
+Services. Specify a positive number between 300 and 9223372036854775. The default value of this ﬁeld is 86400 seconds (the equivalent of
+one day).
+When a user logs on to LSF Web Services, LSF Web Services generates a token with a time to live value deﬁned in the ttl ﬁeld for that user. Any
+changes to the ttl ﬁeld does not affect existing tokens.
+If a user is deﬁned from multiple places, LSF Web Services generates token time to live value with the minimum time to live.
+Examples
+Allow only users u1 and u2 to access LSF Web Services from IP addresses 9.200.56.141 and 9.30.199.99, with a token time to live of 3600
+seconds for both users. All other users are not allowed to access LSF Web Services from any IP address:
+[ 
+    { 
+        "addresses" : [ 
+            "9.200.56.141/32", 
+            "9.30.199.99/32" 
+        ], 
+        "users" : ["u1","u2"], 
+        "ttl" : 3600 
+    } 
+]
+Allow only users u1 and u2 to access LSF Web Services from IP address range between 9.200.56.0 to 9.200.56.255, and between 9.30.199.0
+and 9.30.199.255, with a token time to live of 3600 seconds for both users. All other users are not allowed to access LSF Web Services from any
+IP address:
+IBM Spectrum LSF 2317
+
+[ 
+    { 
+        "addresses" : [ 
+            "9.200.56.1/24", 
+            "9.30.199.1/24" 
+        ], 
+        "users" : ["u1","u2"], 
+        "ttl" : 3600 
+    } 
+]
+Allow only users u1 and u2 to access LSF Web Services from anywhere, with a token time to live of 3600 seconds for both users. All other users are
+not allowed to access LSF Web Services from any IP address:
+[ 
+    { 
+        "addresses" : [ 
+            "0.0.0.0/0" 
+        ], 
+        "users" : ["u1","u2"], 
+        "ttl" : 3600 
+    } 
+]
+Allow only users u1 and u2 to access LSF Web Services from IP address 9.200.56.141, with a token time to live of 3600 seconds for both users. All
+other users can access LSF Web Services from IP address 9.30.199.99, with a token time to live of 86400 seconds for all users:
+[ 
+    { 
+        "addresses" : [ 
+            "9.200.56.141/32" 
+        ], 
+        "users" : ["u1","u2"], 
+        "ttl" : 3600 
+    }, 
+    { 
+        "addresses" : [ 
+            "9.30.199.99/32" 
+        ], 
+        "users" : [], 
+        "ttl" : 86400 
+    } 
+]
+Allow only users u1 and u2 to access LSF Web Services from IP address 9.200.56.141, with a token time to live of 3600 seconds for both users.
+Block users u3 and u4 from accessing LSF Web Services from anywhere. All other users can access LSF Web Services from IP address 
+9.30.199.99, with a token time to live of 86400 seconds for all users:
+[ 
+    { 
+        "addresses" : [ 
+            "9.200.56.141/32" 
+        ], 
+        "users" : ["u1","u2"], 
+        "ttl" : 3600 
+    }, 
+    { 
+        "addresses" : [ 
+            "9.30.199.99/32" 
+        ], 
+        "users" : [], 
+        "ttl" : 86400 
+    }, 
+    { 
+        "addresses" : [], 
+        "users" : ["u3","u4"] 
+    } 
+]
+Allow only users u1, u2, and u3 to access LSF Web Services from IP address 9.200.56.141, with a token time to live of 3600 seconds for all users.
+Also allow user u3 to access LSF Web Services from IP address 9.30.199.99 still with a token time to live of 3600 seconds. All other users are not
+allowed to access LSF Web Services from any IP address:
+[ 
+    { 
+        "addresses" : [ 
+            "9.200.56.141/32" 
+        ], 
+        "users" : ["u1","u2","u3"], 
+        "ttl" : 3600 
+    }, 
+    { 
+        "addresses" : [ 
+2318    IBM Spectrum LSF

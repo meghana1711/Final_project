@@ -1,0 +1,506 @@
+LSF uses the latest W3C Standard, WAI-ARIA 1.0, to ensure compliance with US Section 508 and Web Content Accessibility Guidelines (WCAG) 2.0.
+To take advantage of accessibility features, use the latest release of your screen reader and the latest web browser that is supported by LSF.
+With the exception of the LSF API reference, the LSF online product documentation in IBM® Knowledge Center is enabled for accessibility.
+The accessibility features of IBM Knowledge Center are described in the Accessibility section of the IBM Knowledge Center release notes.
+For general accessibility information, see Accessibility in IBM.
+Keyboard navigation
+This product uses standard navigation keys.
+Vendor software
+LSF may include certain vendor software that is not covered under the IBM license agreement. IBM makes no representation about the accessibility
+features of these products. Contact the vendor for accessibility information about its products.
+Related accessibility information
+In addition to standard IBM help desk and support websites, IBM has a TTY telephone service for use by deaf or hard of hearing customers to access
+sales and support services:
+TTY service
+ 800-IBM-3383 (800-426-3383)
+ (within North America)
+For more information about the commitment that IBM has to accessibility, see IBM Accessibility.
+IBM Spectrum LSF videos
+Videos for IBM Spectrum LSF are available in the IBM Spectrum LSF User Group library.
+For more information, watch the videos in the IBM Spectrum LSF User Group library.
+About IBM Spectrum LSF
+Get an overview of IBM® Spectrum LSF workload management concepts and operations for both users and administrators.
+IBM Spectrum LSF user foundations
+ Get an overview of IBM Spectrum LSF workload management concepts and operations.
+IBM Spectrum LSF administrator foundations
+ Get an administrator overview of IBM Spectrum LSF how to manage various types of workload and cluster operations.
+IBM Spectrum LSF user foundations
+Get an overview of IBM Spectrum LSF workload management concepts and operations.
+IBM Spectrum LSF overview
+ Learn how LSF takes your job requirements and ﬁnds the best resources to run the job.
+Inside an LSF cluster
+ Learn about the various daemon processes that run on LSF hosts, LSF cluster communications paths, and how LSF tolerates host failure in the
+cluster.
+Inside workload management
+ Understand the LSF job lifecycle. Use the bsub to submit jobs to a queue and specify job submission options to modify the default job
+behavior. Submitted jobs wait in queues until they are scheduled and dispatched to a host for execution. At job dispatch, LSF checks to see
+which hosts are eligible to run the job.
+LSF with EGO enabled
+ Enable the enterprise grid orchestrator (EGO) with LSF to provide a system infrastructure to control and manage cluster resources. Resources
+are physical and logical entities that are used by applications. LSF resources are shared as deﬁned in the EGO resource distribution plan.
+IBM Spectrum LSF 159
+
+IBM Spectrum LSF overview
+Learn how LSF takes your job requirements and ﬁnds the best resources to run the job.
+Introduction to IBM Spectrum LSF
+ The IBM Spectrum LSF ("LSF", short for load sharing facility) software is industry-leading enterprise-class software. LSF distributes work
+across existing heterogeneous IT resources to create a shared, scalable, and fault-tolerant infrastructure, that delivers faster, more reliable
+workload performance and reduces cost. LSF balances load and allocates resources, and provides access to those resources.
+LSF cluster components
+ An LSF cluster manages resources, accepts and schedules workload, and monitors all events. LSF can be accessed by users and
+administrators by a command-line interface, an API, or through the IBM Spectrum LSF Application Center
+Introduction to IBM Spectrum LSF
+The IBM Spectrum LSF ("LSF", short for load sharing facility) software is industry-leading enterprise-class software. LSF distributes work across
+existing heterogeneous IT resources to create a shared, scalable, and fault-tolerant infrastructure, that delivers faster, more reliable workload
+performance and reduces cost. LSF balances load and allocates resources, and provides access to those resources.
+LSF provides a resource management framework that takes your job requirements, ﬁnds the best resources to run the job, and monitors its progress.
+Jobs always run according to host load and site policies.
+Cluster
+A group of computers (hosts) running LSF that work together as a single unit, combining computing power, workload, and resources. A cluster
+provides a single-system image for a network of computing resources.
+Hosts can be grouped into a cluster in a number of ways. A cluster can contain:
+All the hosts in a single administrative group
+All the hosts on a subnetwork
+Hosts
+Hosts in your cluster perform different functions.
+Management host
+LSF server host that acts as the overall coordinator for the cluster, doing all job scheduling and dispatch.
+Server host
+A host that submits and runs jobs.
+160    IBM Spectrum LSF
+
+Client host
+A host that only submits jobs and tasks.
+Execution host
+A host that runs jobs and tasks.
+Submission host
+A host from which jobs and tasks are submitted.
+Job
+A unit of work that is running in the LSF system. A job is a command that is submitted to LSF for execution. LSF schedules, controls, and tracks the
+job according to conﬁgured policies.
+Jobs can be complex problems, simulation scenarios, extensive calculations, or anything that needs compute power.
+Job slot
+A job slot is a bucket into which a single unit of work is assigned in the LSF system.
+Hosts can be conﬁgured with multiple job slots and you can dispatch jobs from queues until all the job slots are ﬁlled. You can correlate job slots with
+the total number of CPUs in the cluster.
+Queue
+A cluster-wide container for jobs. All jobs wait in queues until they are scheduled and dispatched to hosts.
+Queues do not correspond to individual hosts; each queue can use all server hosts in the cluster, or a conﬁgured subset of the server hosts.
+When you submit a job to a queue, you do not need to specify an execution host. LSF dispatches the job to the best available execution host in the
+cluster to run that job.
+Queues implement different job scheduling and control policies.
+Resources
+Resources are the objects in your cluster that are available to run work. For example, resources include but are not limited to hosts, CPU slots, and
+licenses.
+LSF cluster components
+An LSF cluster manages resources, accepts and schedules workload, and monitors all events. LSF can be accessed by users and administrators by a
+command-line interface, an API, or through the IBM® Spectrum LSF Application Center
+IBM Spectrum LSF
+The core of LSF includes daemons and other functions to schedule and run jobs, and manage cluster resources.
+IBM Spectrum LSF 161
+
+IBM Spectrum LSF License Scheduler policies control the way software licenses are shared among different users in your organization. IBM
+Spectrum LSF License Scheduler works with FlexNet™ and other products to control and monitor license usage.
+Inside an LSF cluster
+Learn about the various daemon processes that run on LSF hosts, LSF cluster communications paths, and how LSF tolerates host failure in the
+cluster.
+LSF daemons and processes
+ Multiple LSF processes run on each host in the cluster. The type and number of processes that are running depends on whether the host is a
+management host or a compute host.
+LSF cluster communication paths
+ Understand the communication paths between the LSFdaemons in the cluster.
+Fault tolerance and automatic management host failover
+ The robust architecture of LSF is designed with fault tolerance in mind. Every component in the system has a recovery operationso that vital
+components are monitored by another component and can automatically recover from a failure.
+Security
+ Understand the LSF security model, authentication, and user roles.
+LSF daemons and processes
+Multiple LSF processes run on each host in the cluster. The type and number of processes that are running depends on whether the host is a
+management host or a compute host.
+Management host daemon processes
+LSF hosts run various daemon processes, depending on their role in the cluster.
+Daemon Role
+mbatchd Job requests and dispatch
+mbschd Job scheduling
+sbatchd Job execution
+res Job execution
+lim Host information
+pim Job process information
+elim Dynamic load indexes
+mbatchd
+Management batch daemon that runs on the management host. Responsible for the overall state of jobs in the system.
+Receives job submission, and information query requests. Manages jobs that are held in queues. Dispatches jobs to hosts as determined by mbschd.
+mbschd
+Management batch scheduler daemon that runs on the management host. Works with mbatchd.
+162    IBM Spectrum LSF
+
+Makes scheduling decisions based on job requirements, policies, and resource availability. Sends scheduling decisions to the mbatchd.
+sbatchd
+Server batch daemon that runs on each server host, including the management host. Receives the request to run the job from mbatchd and manages
+local execution of the job. Responsible for enforcing local policies and maintaining the state of jobs on the host.
+sbatchd forks a child sbatchd for every job. The child sbatchd runs an instance of res to create the execution environment in which the job runs. The
+child sbatchd exits when the job is complete.
+res
+Remote execution server (RES) running on each server host. Accepts remote execution requests to provide clear and secure remote execution of jobs
+and tasks.
+lim
+Load information manager (LIM) running on each server host. Collects host load and conﬁguration information and forwards it to the management
+host LIM running on the management host. Reports the information that is displayed by lsload and lshosts.
+Static indexes are reported when the LIM starts up or when the number of CPUs (ncpus) change.
+Parent LIM
+The LIM running on the management host. Receives load information from the LIMs running on hosts in the cluster.
+Forwards load information to mbatchd, which forwards this information to mbschd to support scheduling decisions. If the management host LIM
+becomes unavailable, a LIM on a management candidate automatically takes over.
+PIM
+Process information manager (PIM) running on each server host. Started by LIM, which periodically checks on PIM and restarts it if it dies.
+Collects information about job processes that run on the host such as CPU and memory that is used by the job, and reports the information to
+sbatchd.
+ELIM
+External LIM (ELIM) is a site-deﬁnable executable ﬁle that collects and tracks custom dynamic load indexes. An ELIM can be a shell script or a
+compiled binary program, which returns the values of the dynamic resources you deﬁne. The ELIM executable ﬁle must be named elim.anything and
+located in LSF_SERVERDIR.
+LSF cluster communication paths
+Understand the communication paths between the LSFdaemons in the cluster.
+IBM Spectrum LSF 163
+
+Fault tolerance and automatic management host failover
+The robust architecture of LSF is designed with fault tolerance in mind. Every component in the system has a recovery operationso that vital
+components are monitored by another component and can automatically recover from a failure.
+LSF is designed to continue operating even if some of the hosts in the cluster are unavailable. One host in the cluster acts as the management host,
+but if the management host becomes unavailable another management host candidate takes over. LSF is available when one management host
+candidate is available in the cluster.
+LSF can tolerate the failure of any host or group of hosts in the cluster. When a host becomes unavailable, all jobs that are running on that host are
+either requeued or lost, depending on whether the job was marked as rerunnable. No other pending or running jobs are affected.
+How failover works
+Fault tolerance depends on the event log ﬁle, lsb.events, which is kept on the primary ﬁle server. Every event in the system is logged in this ﬁle,
+including all job submissions and job and host status changes. If the management host becomes unavailable, a new management host is chosen
+from the management candidate list, and the sbatchd daemon on the new management host starts a new mbatchd daemon. The new mbatchd
+daemon reads the lsb.events ﬁle to recover the state of the system.
+Duplicate event logging
+For sites not wanting to rely solely on a central ﬁle server for recovery information, LSF can be conﬁgured to maintain a duplicate event log by
+keeping a replica of the lsb.events ﬁle. The replica is stored on the ﬁle server, and used if the primary copy is unavailable. When duplicate event
+logging is enabled, the primary event log is stored locally on the ﬁrst management host, and resynchronized with the replicated copy when the host
+recovers.
+Host failover
+The LSF management host is chosen dynamically. If the current management host becomes unavailable, another host takes over automatically. The
+failover management host is selected from the list that is deﬁned in the LSF_MASTER_LIST parameter in the lsf.conf ﬁle (speciﬁed in the
+install.conﬁg ﬁle at installation). The ﬁrst available host in the list acts as the management host.
+Running jobs are managed by the sbatchd daemon on each server host. When the new mbatchd daemon starts, it polls the sbatchd daemon on
+each host and ﬁnds the status of its jobs. If the sbatchd daemon fails but the host is still running, jobsthat are running on the host are not lost. When
+the sbatchd daemon is restarted, it regains control of all jobs that are running on the host.
+Job failover
+Jobs can be submitted as rerunnable, so that they automatically run again from the beginning or as checkpointable, so that they start again from a
+checkpoint on another host if they are lost because of a host failure.
+If all of the hosts in a cluster go down, all running jobs are lost. When a management candidate host comes back up and takes over as management
+host, it reads the lsb.events ﬁle to get the state of all batch jobs. Jobs that were running when the systems went down are assumed to be exited
+unless they were marked as rerunnable, and email is sent to the submitting user. Pending jobs remain in their queues, and are scheduled as hosts
+become available.
+Partitioned cluster
+If the cluster is partitioned by a network failure, a management host LIM takes over on each side of the partition while a management host candidate
+is available on each side of the partition. Interactive load-sharing remains available while each host still has access to the LSF executable ﬁles.
+Partitioned network
+If the network is partitioned, only one of the partitions can access the lsb.events ﬁle, so LSF services are only available on one side of the partition. A
+lock ﬁle is used to make sure that only one mbatchd daemon runs in the cluster.
+Job exception handling
+You can conﬁgure hosts and queues so that LSF detects exceptional conditions while jobs are running, and takes appropriate action automatically.
+You can customize what exceptions are detected and the corresponding actions. For example, you can set LSF to restart a job automatically if it exits
+with a speciﬁc error code.
+Security
+164    IBM Spectrum LSF
+
+Understand the LSF security model, authentication, and user roles.
+LSF security model
+By default, the LSF security model tracks user accounts internally. A user account that is deﬁned in LSF includes a password to provide
+authentication and an assigned role to provide authorization, such as administrator.
+LSF user roles
+LSF, without EGO enabled, supports the following user roles:
+LSF user
+Has permission to submit jobs to the LSF cluster and view the states of jobs and the cluster.
+Primary LSF administrator
+Has permission to perform clusterwide operations, change conﬁguration ﬁles, reconﬁgure the cluster, and control jobs submitted by all users.
+Conﬁguration ﬁles such as lsb.params and lsb.hosts conﬁgure all aspects of LSF.
+LSF administrator
+Has permission to perform operations that affect other LSF users.
+Cluster administrator
+Can perform administrative operations on all jobs and queues in the cluster. Might not have permission to change LSF conﬁguration
+ﬁles.
+Queue administrator
+Administrative permissions are limited to a speciﬁed queue.
+Host group administrator
+Administrative permissions are limited to a speciﬁed host group.
+User group administrator
+Administrative permissions are limited to a speciﬁed user group.
+LSF user roles with EGO enabled
+LSF, with EGO enabled, supports the following roles:
+Cluster administrator
+Can administer any objects and workload in the cluster.
+Consumer administrator
+Can administer any objects and workload in consumers to which they have access.
+Consumer user
+Can run workload in consumers to which they have access
+User accounts are created and managed in EGO. EGO authorizes users from its user database.
+LSF user groups
+Use any existing UNIX and Linux user groups directly by specifying a UNIX or Linux user group anywhere an LSF user group can be speciﬁed.
+IBM Spectrum LSF 165
+
+External authentication
+LSF provides a security plug-in for sites that prefer to use external or third-party security mechanisms, such as Kerberos, LDAP, or ActiveDirectory.
+You can create a customized eauth executable ﬁle to provide external authentication of users, hosts, and daemons. Credentials are passed from an
+external security system. The eauth executable ﬁle can also be customized to obtain credentials from an operating system or from an authentication
+protocol such as Kerberos.
+Inside workload management
+Understand the LSF job lifecycle. Use the bsub to submit jobs to a queue and specify job submission options to modify the default job behavior.
+Submitted jobs wait in queues until they are scheduled and dispatched to a host for execution. At job dispatch, LSF checks to see which hosts are
+eligible to run the job.
+Job lifecycle
+ An LSF job goes through several states, starting with job submission, through dispatch, execution, and return of job results.
+Job submission
+ Submit jobs on the command line with the bsub command. You can specify many options with the bsub command to modify the default
+behavior. Jobs must be submitted to a queue.
+Job scheduling and dispatch
+ Submitted jobs wait in queues until they are scheduled and dispatched to a host for execution.
+Host selection
+ Each time LSF attempts to dispatch a job, it checks to see which hosts are eligible to run the job.
+Job execution environment
+ When LSF runs your jobs, it copies the environment from the submission host to the execution host.
+Job lifecycle
+An LSF job goes through several states, starting with job submission, through dispatch, execution, and return of job results.
+1. Submit a job
+You submit a job from an LSF client or server with the bsub command.
+If you do not specify a queue when you submit a job, the job is submitted to the default queue.
+Jobs are held in a queue while they wait to be scheduled. Waiting jobs have the PEND state. The job is held in a job ﬁle in the
+LSF_SHAREDIR/cluster_name/logdir/info/ directory, or in one of its subdirectories if the MAX_INFO_DIRS parameter is deﬁned in the conﬁguration
+ﬁle lsb.params.
+Job ID
+LSF assigns each job a unique job ID when you submit the job.
+Job name
+You can also assign an arbitrary name to the job with the -J option of bsub. Unlike the job ID, the job name is not necessarily unique.
+2. Schedule the job
+1. The management batch daemon (mbatchd) looks at jobs in the queue and sends the jobs for scheduling to the management batch scheduler
+daemon (mbschd). Jobs are scheduled at a preset time interval (deﬁned by the parameter JOB_SCHEDULING_INTERVAL in the conﬁguration
+ﬁle lsb.params).
+2. mbschd evaluates jobs and makes scheduling decisions based on:
+Job priority
+Scheduling policies
+Available resources
+166    IBM Spectrum LSF
+
+3. mbschd selects the best hosts where the job can run and sends its decisions back to mbatchd.
+Resource information is collected at preset time intervals by the parent load information manager (LIM) from LIMs on server hosts. The parent
+LIM communicates this information to mbatchd, which in turn communicates it to mbschd to support scheduling decisions.
+3. Dispatch the job
+As soon as mbatchd receives scheduling decisions, it immediately dispatches the jobs to hosts.
+4. Run the job
+The server batch daemon (sbatchd) has the following functions:
+1. Receives the request from mbatchd.
+2. Creates a child sbatchd for the job.
+3. Creates the execution environment.
+4. Starts the job by using a remote execution server (res).
+LSF copies the execution environment from the submission host to the execution host:
+Environment variables that are needed by the job
+Working directory where the job begins running
+Other system-dependent environment settings
+On UNIX and Linux, resource limits and umask
+On Windows, desktop and Windows root directory
+The job runs under the user account that submitted the job and has the status RUN.
+5. Return output
+When a job is completed, it is assigned the DONE status if the job was completed without any problems. The job is assigned the EXIT status if errors
+prevented the job from completing.
+sbatchd communicates job information, such as errors and output to mbatchd.
+6. Send email to client
+mbatchd returns the job output, job error, and job information to the submission host through email. Use the -o and -e options of bsub to send job
+output and errors to a ﬁle.
+A job report is sent by email to the LSF client and includes the following information:
+Job information:
+CPU use
+Memory use
+Name of the account that submitted the job
+Job output
+Errors
+Job submission
+Submit jobs on the command line with the bsub command. You can specify many options with the bsub command to modify the default behavior.
+Jobs must be submitted to a queue.
+You can also use the IBM Platform Application Center to submit jobs.
+Queues
+Queues represent a set of pending jobs, lined up in a deﬁned order and waiting for their opportunity to use resources. Queues implement different
+job scheduling and control policies.
+Queues have the following attributes:
+Priority
+Name
+Queue limits (restrictions on hosts, number of jobs, users, groups, or processors)
+Standard UNIX and Linux limits (memory, swap, process, CPU)
+Scheduling policies
+Administrators
+Run conditions
+IBM Spectrum LSF 167
+
+Load-sharing threshold conditions
+UNIX nice value (sets the UNIX and Linux scheduler priority)
+Queue priority
+Deﬁnes the order in which queues are searched to determine which job will be processed. Queues are assigned a priority by the LSF administrator,
+where a higher number has a higher priority. Queues are serviced by LSF in order of priority from the highest to the lowest. If multiple queues have
+the same priority, LSF schedules all the jobs from these queues in ﬁrst-come, ﬁrst-served order.
+Automatic queue selection
+When you submit a job, LSF considers the requirements of the job and automatically chooses a suitable queue from a list of candidate default
+queues.
+LSF selects a suitable queue according to the following constraints:
+User access restriction
+Queues that do not allow this user to submit jobs are not considered.
+Host restriction
+If the job explicitly speciﬁes a list of hosts on which the job can be run, then the selected queue must be conﬁgured to send jobs to hosts in
+the list.
+Queue status
+Closed queues are not considered.
+Exclusive execution restriction
+If the job requires exclusive execution, then queues that are not conﬁgured to accept exclusive jobs are not considered.
+Job’s requested resources
+Resources that the job requests must be within the resource allocation limits of the selected queue.
+If multiple queues satisfy the above requirements, then the ﬁrst queue that is listed in the candidate queues that satisﬁes the requirements is
+selected.
+Job scheduling and dispatch
+Submitted jobs wait in queues until they are scheduled and dispatched to a host for execution.
+When a job is submitted to LSF, many factors control when and where the job starts to run:
+Active time window of the queue or hosts
+Resource requirements of the job
+Availability of eligible hosts
+Various job slot limits
+Job dependency conditions
+Fair share constraints (conﬁgured user share policies)
+Load conditions
+Scheduling policies
+To solve diverse problems, LSF allows multiple scheduling policies in the same cluster. LSF has several queue scheduling policies such as exclusive,
+preemptive, fair share, and hierarchical fair share.
+First-come, ﬁrst-served (FCFS) scheduling: By default, jobs in a queue are dispatched in FCFS order. This means that jobs are dispatched
+according to their order in the queue.
+Service level agreement (SLA) scheduling: An SLA in LSF is a just-in-time scheduling policy that schedules the services agreed to between LSF
+administrators and LSF users. The SLA scheduling policy deﬁnes how many jobs should be run from each SLA to meet the conﬁgured goals.
+Fair share scheduling: If you specify a fair share scheduling policy for the queue or if host partitions have been conﬁgured, LSF dispatches jobs
+between users based on assigned user shares, resource usage, or other factors.
+Preemption: You can specify desired behavior so that when two or more jobs compete for the same resources, one job preempts the other.
+Preemption can apply to not only job slots, but also to advance reservation (reserving hosts for particular jobs) and licenses (using IBM
+Platform License Scheduler).
+Backﬁll: Allows small jobs to run on job slots reserved for other jobs, provided that the back-ﬁlling completes before the reservation time
+expires and resource usage is due.
+Scheduling and dispatch
+Jobs are scheduled at regular intervals (5 seconds by default). Once jobs are scheduled, they can be immediately dispatched to hosts.
+To prevent overloading any host, by default LSF waits a short time between dispatching jobs to the same host.
+168    IBM Spectrum LSF
+
+Dispatch order
+Jobs are not necessarily dispatched in the order that they are submitted.
+Each queue has a priority number set by the LSF administrator when the queue is deﬁned. LSF tries to start jobs from the highest priority queue ﬁrst.
+LSF considers jobs for dispatch in the following order:
+For each queue, from highest to lowest priority. If multiple queues have the same priority, LSF schedules all the jobs from these queues in
+ﬁrst-come, ﬁrst-served (FCFS) order.
+For each job in the queue, according to FCFS order.
+If any host is eligible to run this job, start the job on the best eligible host, and mark that host ineligible to start any other job until the period
+speciﬁed by the JOB_ACCEPT_INTERVAL parameter has passed.
+Host selection
+Each time LSF attempts to dispatch a job, it checks to see which hosts are eligible to run the job.
+A number of conditions determine whether a host is eligible:
+Host dispatch windows
+Resource requirements of the job
+Resource requirements of the queue
+Host list of the queue
+Host load levels
+Job slot limits of the host
+User quota and user limits
+A host is only eligible to run a job if all the conditions are met. If a job is queued and an eligible host for that job is available, the job is placed on that
+host. If more than one host is eligible, the job is started on the best host based on both the job and the queue resource requirements.
+Host load levels
+A host is available if the values of the load indexes (such as r1m, pg, mem) of the host are within the conﬁgured scheduling thresholds. You can
+conﬁgure two kinds of scheduling thresholds: host and queue. If any load index on the host exceeds the corresponding host threshold or queue
+threshold, the host is not eligible to run any job.
+Eligible hosts
+When LSF tries to place a job, it obtains current load information for all hosts.
+The load levels on each host are compared to the scheduling thresholds conﬁgured for that host in the Host section of lsb.hosts, and the per-queue
+scheduling thresholds conﬁgured in lsb.queues.
+If any load index exceeds either its per-queue or its per-host scheduling threshold, no new job is started on that host.
+Job execution environment
+When LSF runs your jobs, it copies the environment from the submission host to the execution host.
+The execution environment includes the following information:
+Environment variables that are needed by the job
+Working directory where the job begins running
+Other system-dependent environment settings, such as resource usage limits
+Shared user directories
+To provide transparent remote execution, LSF commands determine the user’s current working directory and use that directory on the remote host.
+Executable ﬁles and the PATH environment variable
+Search paths for executable ﬁles (the PATH environment variable) are passed to the remote execution host unchanged.
+IBM Spectrum LSF 169
+
+Note: In mixed clusters, LSF works best when the user binary directories have the same path names on different host types. Using the same paths
+names makes the PATH variable valid on all hosts.
+For easy administration, LSF conﬁguration ﬁles are stored in a shared directory.
+LSF with EGO enabled
+Enable the enterprise grid orchestrator (EGO) with LSF to provide a system infrastructure to control and manage cluster resources. Resources are
+physical and logical entities that are used by applications. LSF resources are shared as deﬁned in the EGO resource distribution plan.
+EGO component overview
+ EGO can be enabled with LSF to provide a system infrastructure to control and manage cluster resources.
+Resources
+ Resources are physical and logical entities that are used by applications to run. While resource is a generic term, and can include low-level
+things such as shared memory segments or semaphores. In LSF, EGO manages CPU slots.
+How LSF shares resources through EGO
+ LSF resources can be shared by deﬁning an EGO resource distribution plan. LSF requests resources from the EGO resource manager. Based on
+the values speciﬁed in the resource distribution plan, the resource manager returns the number of available slots (m) and the names of the
+hosts on which the slots reside.
+EGO component overview
+EGO can be enabled with LSF to provide a system infrastructure to control and manage cluster resources.
+Just as an operating system running on a single machine aggregates and virtualizes physical resources and allocates them to applications, EGO
+performs similar functions, but across a distributed environment.
+EGO manages both logical and physical resources and supports all forms of applications. EGO manages the supply of resources, making them
+available to applications.
+Hosts can be divided into two groups: management hosts and compute hosts. Management hosts provide specialized services to the cluster, while
+compute hosts run user workload.
+Management hosts
+Management hosts provide both cluster and workload management services within the cluster, and are not expected to run workload for users. The
+management host, all management candidate hosts, and session manager hosts must be management hosts. Other management hosts include the
+host running the data loaders and data purger for the reporting feature.
+Management hosts all run on the same operating system: all Windows, all UNIX, or all Linux.
+Management host
+The management host is the ﬁrst host installed in the cluster. The resource manager (vemkd) for the cluster resides on this host. The
+management host controls the rest of the hosts in the cluster and is the interface to the clients of the cluster.
+Management candidates
+There is only one management host at a time. If the management host should fail, another host automatically takes over the management
+host role. Hosts that can act as the management host are called management candidates.
+Session manager host
+One or more management hosts run session managers. There is one session manager per available slot on a management host. There is one
+session manager per application.
+Compute hosts
+Compute hosts are those hosts in the cluster that provide computing resources to consumers. A cluster may contain any number of compute hosts,
+but must have at least one compute host.
+CPU slots
+A CPU slot is the unit used to measure compute resources. A single CPU slot can run one service instance on a compute host, or one session
+manager on a management host.
+Daemons
+vemkd
+The VEM kernel daemon that runs on the management host. It starts other daemons and responds to allocation requests.
+egosc
+The service controller requests appropriate resources from the vemkd daemon and controls service instances.
+170    IBM Spectrum LSF
+
+pem
+Process execution manager works for the vemkd daemon, starting, controlling, and monitoring activities, as well as collecting and sending run
+time resource usage.
+Resources
+Resources are physical and logical entities that are used by applications to run. While resource is a generic term, and can include low-level things
+such as shared memory segments or semaphores. In LSF, EGO manages CPU slots.
+A resource of a particular type has attributes. For example, a compute host has the attributes of memory, CPU utilization, operating system type.
+Resource groups
+Resources can be grouped into logical groups to simplify identiﬁcation, resource allocation, or for administration and monitoring purposes. These
+resource groups are used to provide a consumer with a like group of hosts to run workload. Any host in a resource group can be able to run the same
+workload.
+The following ﬁgure shows two resource groups:
+ManagementHosts
+ComputeHosts
+If all of your hosts are identical, these resource groups might sufﬁce. If your application requires a speciﬁc type of hosts (for example, with a
+minimum processor speed), and not all hosts meet this criteria, you likely need to create resource groups to group like hosts together.
+For example, a simple way to group resources might be to group your hosts by operating system type.
+EGO provides a common grouping mechanism for resources. Resources might come and go from the system, so EGO supports dynamic membership
+in a resource group. Hosts can be placed explicitly into individual resource groups, or the resource groups can be deﬁned with a dynamic
+membership based on speciﬁc criteria. This criteria includes operating system type, CPU speed, total memory, or swap conﬁguration, or custom
+attributes.
+How LSF shares resources through EGO
+LSF resources can be shared by deﬁning an EGO resource distribution plan. LSF requests resources from the EGO resource manager. Based on the
+values speciﬁed in the resource distribution plan, the resource manager returns the number of available slots (m) and the names of the hosts on
+which the slots reside.
+IBM Spectrum LSF 171

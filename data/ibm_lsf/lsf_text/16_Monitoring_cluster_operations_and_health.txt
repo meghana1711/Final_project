@@ -1,0 +1,2073 @@
+Checkpoint job restart: If you set LSB_JOB_REPORT_MAIL=N|n before submitting a checkpoint job, no email will be sent by sbatchd when the
+job is done. If you want to restart the checkpoint job and don’t want sbatchd to send email, set LSB_JOB_REPORT_MAIL=N|n before
+restarting the job.
+Pre-execution speciﬁed during job submission or in CLI: If you submit a job using bsub –E pre-exec, sbatchd will send an email to the job’s
+submitter or mail user when the job is done. If you don’t want sbatchd to send email, set LSB_JOB_REPORT_MAIL=N|n before submitting the
+job. If you change the value of LSB_JOB_REPORT_MAIL in the pre-execution script, the new value will not affect sbatchd’s sending mail action
+on the execution host.
+Pre-execution or job-starter at the queue level: If you submit a job using bsub –q queueName, sbatchd will send email to the job’s submitter
+or mail user when the job is done. If you don’t want sbatchd to send email, set LSB_JOB_REPORT_MAIL=N|n before submitting the job. If you
+change the value of LSB_JOB_REPORT_MAIL in the pre-execution or job-starter script, the new value will not affect sbatchd’s sending mail
+action on the execution host.
+Size of job email
+Some batch jobs can create large amounts of output. To prevent large job output ﬁles from interfering with your mail system, you can use the
+LSB_MAILSIZE_LIMIT parameter in lsf.conf to limit the size of the email containing the job output information.
+By default, LSB_MAILSIZE_LIMIT is not enabled: no limit is set on size of batch job output email.
+If the size of the job output email exceeds LSB_MAILSIZE_LIMIT, the output is saved to a ﬁle under JOB_SPOOL_DIR, or the default job output
+directory if JOB_SPOOL_DIR is undeﬁned. The email informs users where the job output is located.
+If the -o or -oo option of bsub is used, the size of the job output is not checked against LSB_MAILSIZE_LIMIT.
+LSB_MAILSIZE environment variable
+LSF sets LSB_MAILSIZE to the approximate size in KB of the email containing job output information, allowing a custom mail program to intercept
+output that is larger than desired. If you use the LSB_MAILPROG parameter to specify the custom mail program that can make use of the
+LSB_MAILSIZE environment variable, it is not necessary to conﬁgure LSB_MAILSIZE_LIMIT.
+LSB_MAILSIZE is not recognized by the LSF default mail program. To prevent large job output ﬁles from interfering with your mail system, use
+LSB_MAILSIZE_LIMIT to explicitly set the maximum size in KB of the email containing the job information.
+LSB_MAILSIZE values
+The LSB_MAILSIZE environment variable can take the following values:
+A positive integer: if the output is being sent by email, LSB_MAILSIZE is set to the estimated mail size in KB.
+-1:if the output fails or cannot be read, LSB_MAILSIZE is set to -1, and the output is sent by email using LSB_MAILPROG if speciﬁed in lsf.conf.
+Undeﬁned: If you use the output or error options (-o, -oo, -e, or -eo) of bsub, the output is redirected to an output ﬁle. Because the output is
+not sent by email in this case, LSB_MAILSIZE is not used and LSB_MAILPROG is not called.
+If the -N option is used with the output or error options of bsub, LSB_MAILSIZE is not set.
+Monitoring IBM Spectrum LSF cluster operations and health
+Learn how to monitor cluster performance, job resource usage, and other information about queues, jobs, and users.
+Monitor cluster performance
+ Use badmin perfmon to monitor cluster performance. Use badmin diagnose to troubleshoot cluster problems.
+Monitor job information
+ Use bjobs and bhist to monitor the current and past status of jobs and job arrays. The bjdepinfo command displays any dependencies that
+jobs have, either jobs that depend on a job or jobs that your job depends on. View suspending conditions using bhosts -l and bqueues -l. Run
+bjobs -lp to see the reason a job was suspended. Run bjobs -l to see the scheduling thresholds that control when a job is resumed display.
+Monitor applications by using external scripts
+ Use the watchdog feature to regularly run external scripts that check application information and to pass on the job information as
+notiﬁcations.
+View information about resources
+ Use the bhosts command to view information about shared resources on hosts and load on a host. Use the bjobs command to see job
+resource usage. Use the lsinfo command to see overall cluster resources, and the lshosts command to see host-based resources and host
+load by resource.
+View user and user group information
+ Use the busers and bugroup commands to display information about LSF users and user groups.
+318    IBM Spectrum LSF
+
+View queue information
+The bqueues command displays information about queues. The bqueues -l option also gives current statistics about the jobs in a particular
+queue, such as the total number of jobs in the queue, the number of running and suspended jobs.
+Monitor cluster performance
+Use badmin perfmon to monitor cluster performance. Use badmin diagnose to troubleshoot cluster problems.
+Monitor performance metrics in real time
+ Enable performance metric collection, tune the metric sampling period, and use badmin perfmon view to display current performance.
+Enabling daemon log ﬁles for diagnostics
+ LSF provides daemon monitoring mechanisms for mbatchd and, starting in Fix Pack 14, for lsfproxyd, to log information and help
+administer or support diagnosing problems with clusters when using these daemons. The LSF rate limiter is manged by the lsfproxyd
+daemon.
+Diagnose scheduler buckets
+ Monitor scheduler efﬁciency and overhead
+ Use the bacct or badmin perfmon view commands to monitor scheduler efﬁciency.
+Monitor performance metrics in real time
+Enable performance metric collection, tune the metric sampling period, and use badmin perfmon view to display current performance.
+Enable metric collection
+Set the SCHED_METRIC_ENABLE=Y parameter in the lsb.params ﬁle to enable performance metric collection.
+Start performance metric collection dynamically:
+badmin perfmon start sample_period
+Optionally, you can set a sampling period, in seconds. If no sample period is speciﬁed, the default sample period set in the
+SCHED_METRIC_SAMPLE_PERIOD parameter in the lsb.params ﬁle is used.
+Stop sampling:
+badmin perfmon stop
+SCHED_METRIC_ENABLE and SCHED_METRIC_SAMPLE_PERIOD can be speciﬁed independently. That is, you can specify
+SCHED_METRIC_SAMPLE_PERIOD and not specify SCHED_METRIC_ENABLE. In this case, when you turn on the feature dynamically (using badmin
+perfmon start), the sampling period valued deﬁned in SCHED_METRIC_SAMPLE_PERIOD will be used.
+badmin perfmon start and badmin perfmon stop override the conﬁguration setting in lsb.params. Even if SCHED_METRIC_ENABLE is set, if you run
+badmin perfmon start, performance metric collection is started. If you run badmin perfmon stop, performance metric collection is stopped.
+Tune the metric sampling period
+Set SCHED_METRIC_SAMPLE_PERIOD in lsb.params to specify an initial cluster-wide performance metric sampling period.
+Set a new sampling period in seconds:
+badmin perfmon setperiod sample_period
+Collecting and recording performance metric data may affect the performance of LSF. Smaller sampling periods will result in the lsb.streams ﬁle
+growing faster.
+Display current performance
+Use the badmin perfmon view command to view real-time performance metric information.
+The following metrics are collected and recorded in each sample period:
+The number of queries handled by mbatchd
+The number of queries for each of jobs, queues, and hosts. (bjobs, bqueues, and bhosts, as well as other daemon requests)
+The number of jobs submitted (divided into job submission requests and jobs actually submitted)
+The number of jobs dispatched
+The number of jobs reordered, that is, the number of jobs that reused the resource allocation of a ﬁnished job
+(RELAX_JOB_DISPATCH_ORDER is enabled in lsb.params or lsb.queues)
+IBM Spectrum LSF 319
+
+The number of jobs completed
+The number of jobs sent to remote cluster
+The number of jobs accepted from remote cluster
+Scheduler performance metrics:
+A shorter scheduling interval means the job is scheduled more quickly
+Number of different resource requirement patterns for jobs in use which may lead to different candidate host groups. The more
+matching hosts required, the longer it takes to ﬁnd them, which means a longer scheduling session. The complexity increases with the
+number of hosts in the cluster.
+Number of scheduler buckets in which jobs are put based on resource requirements and different scheduling policies. More scheduler
+buckets means a longer scheduling session.
+badmin perfmon view 
+Performance monitor start time:  Fri Jan 19 15:07:54 
+End time of last sample period:  Fri Jan 19 15:25:55 
+Sample period :                  60 Seconds 
+------------------------------------------------------------------ 
+Metrics                          Last    Max     Min     Avg     Total 
+------------------------------------------------------------------ 
+Processed requests: mbatchd        0      25       0       8      159 
+Jobs information queries           0      13       0       2       46 
+Hosts information queries          0       0       0       0        0 
+Queue information queries          0       0       0       0        0 
+Job submission requests            0      10       0       0       10 
+Jobs submitted                     0     100       0       5      100 
+Jobs dispatched                    0       0       0       0        0 
+Jobs reordered                     0       0       0       0        0 
+Jobs completed                     0      13       0       5      100 
+Jobs sent to remote cluster        0      12       0       5      100 
+Jobs accepted from remote cluster  0       0       0       0        0 
+------------------------------------------------------------------ 
+File Descriptor Metrics                Free     Used    Total 
+------------------------------------------------------------------ 
+MBD file descriptor usage               800      424     1024 
+------------------------------------------------------------------ 
+Scheduler Metrics                Last    Max     Min     Avg  
+------------------------------------------------------------------ 
+Scheduling interval in seconds(s)  5      12      5       8 
+Host matching criteria             5       5      0       5 
+Job buckets                        5       5      0       5 
+Scheduler metrics are collected at the end of each scheduling session.
+Performance metrics information is calculated at the end of each sampling period. Running badmin perfmon view before the end of the sampling
+period displays metric data collected from the sampling start time to the end of last sample period.
+If no metrics have been collected because the ﬁrst sampling period has not yet ended, badmin perfmon view displays:
+badmin perfmon view 
+Performance monitor start time:  Thu Jan 25 22:11:12 
+End time of last sample period:  Thu Jan 25 22:11:12 
+Sample period :                  120 Seconds 
+------------------------------------------------------------------ 
+No performance metric data available. Please wait until first sample period ends. 
+badmin perfmon output
+Sample Period
+Current sample period
+Performance monitor start time
+The start time of sampling
+End time of last sample period
+The end time of last sampling period
+Metric
+The name of metrics
+Total
+This is accumulated metric counter value for each metric. It is counted from Performance monitor start time to End time of last sample period.
+Last Period
+Last sampling value of metric. It is calculated per sampling period. It is represented as the metric value per period, and normalized by the
+following formula:
+LastPeriod = (Metric Counter Value of Last Period / Sample Period Interval) * Sample Period
+Max
+Maximum sampling value of metric. It is reevaluated in each sampling period by comparing Max and Last Period. It is represented as the
+metric value per period.
+Min
+Minimum sampling value of metric. It is reevaluated in each sampling period by comparing Min and Last Period. It is represented as the metric
+value per period.
+320    IBM Spectrum LSF
+
+Avg
+Average sampling value of metric. It is recalculated in each sampling period. It is represented as the metric value per period, and normalized
+by the following formula:
+Avg = (Total / (Last PeriodEndTime - SamplingStartTime)) * Sample Period
+Reconﬁgure your cluster with performance metric sampling enabled
+If performance metric sampling is enabled dynamically with badmin perfmon start, you must enable it again after running badmin mbdrestart.
+If performance metric sampling is enabled by default, StartTime will be reset to the point mbatchd is restarted.
+Use the badmin mbdrestart command when the SCHED_METRIC_ENABLE and SCHED_METRIC_SAMPLE_PERIOD parameters are changed.
+The badmin reconﬁg command is the same as the badmin mbdrestart command in this context.
+Performance metric logging in lsb.streams
+By default, collected metrics are written to lsb.streams.
+However, performance metric can still be turned on even if ENABLE_EVENT_STREAM=N is deﬁned. In this case, no metric data will be logged.
+If EVENT_STREAM_FILE is deﬁned and is valid, collected metrics should be written to EVENT_STREAM_FILE.
+If ENABLE_EVENT_STREAM=N is deﬁned, metrics data will not be logged.
+Job arrays and job packs
+Every job submitted in a job array or job pack is counted individually, except for the Job submission requests metric.
+The entire job array or job pack counts as just one job submission request.
+Job rerun
+Job rerun occurs when execution hosts become unavailable while a job is running, and the job will be put to its original queue ﬁrst and later will be
+dispatched when a suitable host is available.
+In this case, only one submission request, one job submitted, and n jobs dispatched, n jobs completed are counted (n represents the number of
+times the job reruns before it ﬁnishes successfully).
+Job requeue
+Requeued jobs may be dispatched, run, and exit due to some special errors again and again. The job data always exists in the memory, so LSF only
+counts one job submission request and one job submitted, and counts more than one job dispatched.
+For jobs completed, if a job is requeued with brequeue, LSF counts two jobs completed, since requeuing a job ﬁrst kills the job and later puts the job
+into pending list. If the job is automatically requeued, LSF counts one job completed when the job ﬁnishes successfully.
+Job replay
+When job replay is ﬁnished, submitted jobs are not counted in job submission and job submitted, but are counted in job dispatched and job ﬁnished.
+Enabling daemon log ﬁles for diagnostics
+LSF provides daemon monitoring mechanisms for mbatchd and, starting in Fix Pack 14, for lsfproxyd, to log information and help administer or
+support diagnosing problems with clusters when using these daemons. The LSF rate limiter is manged by the lsfproxyd daemon.
+About this task
+The mbatchd daemon log ﬁle is called query_info.querylog.hostname. The log ﬁles show information about mbatchd requests: who issued these
+requests, where the requests came from, and the data size of the query. The format of the information provided in the log ﬁle is DATE TIME YEAR 
+COMMAND,USER,HOSTNAME,SIZE,OPTION.
+The lsfproxyd daemon log ﬁle for the LSF rate limiter, and is called query_info.queryproxylog.hostname. The log ﬁles show information about 
+lsfproxyd requests: where the requests came from, the data size of the request, the batch operation code, whether the request was rejected or
+accepted, and the time that the lsfproxyd daemon receives and processes the requests. The format of the information provided in the log ﬁle is 
+DATE TIME YEAR 
+BATCH_OPCODE,USER,HOSTNAME,SIZE,ACCEPT,RECEIVE TIME,PROCESS TIME.
+IBM Spectrum LSF 321
+
+There are two ways to enable daemon log ﬁles: statically and dynamically.
+Procedure
+Statically:
+For the mbatchd daemon log ﬁle, set ENABLE_DIAGNOSE=query in the lsb.params conﬁguration ﬁle.
+For the lsfproxyd daemon log ﬁle, set the ENABLE_DIAGNOSE=lsfproxyd in the lsb.params conﬁguration ﬁle.
+For both the mbatchd daemon and lsfproxyd daemon log ﬁles, set ENABLE_DIAGNOSE="query lsfproxyd" in the lsb.params
+conﬁguration ﬁle.
+The log ﬁles save to the default LSF log directory (LSF_LOGDIR). To change this log location, deﬁned the DIAGNOSE_LOGDIR parameter in the
+lsb.params conﬁguration ﬁle.
+Dynamically:
+For the mbatchd daemon log ﬁle, run the badmin diagnose -c query command.
+For the lsfproxyd daemon log ﬁle, run the badmin diagnose -c lsfproxyd command.
+The dynamic method overrides the static settings. However, if you restart or reconﬁgure mbatchd or lsfproxyd, it switches back to the static
+diagnosis settings.
+Related concepts
+Offloading the mbatchd daemon using the LSF rate limiter (lsfproxyd daemon)
+LSF daemons
+Related reference
+ENABLE_DIAGNOSE
+DIAGNOSE_LOGDIR
+Diagnose scheduler buckets
+LSF provides the ability to save a snapshot of the current contents of the scheduler buckets to help administrators diagnose problems with the
+scheduler. Jobs are put into scheduler buckets based on resource requirements and different scheduling policies. Saving the contents into a
+snapshot ﬁle is useful for data analysis by parsing the ﬁle or by performing a simple text search on its contents.
+This feature is helpful if there is a sudden large performance impact on the scheduler that you want to examine. Use the snapshot ﬁle to identify any
+users with a large number of buckets or large attribute values.
+To use this feature, run the badmin diagnose -c jobreq command.
+This feature enables mbschd to write an active image of the scheduler job buckets into a snapshot ﬁle as raw data in XML or JSON format. There can
+be a maximum of one snapshot ﬁle generated in each scheduling cycle.
+Use the -f option to specify a custom ﬁle name and path and the -t option to specify whether the ﬁle is in XML or JSON format.
+By default, the name of the snapshot ﬁle is jobreq_<hostname>_<dateandtime>.<format>, where <format> is xml or json, depending on the
+speciﬁed format of the snapshot ﬁle. By default, the snapshot ﬁle is saved to the location speciﬁed in the DIAGNOSE_LOGDIR parameter.
+Monitor scheduler efﬁciency and overhead
+Use the bacct or badmin perfmon view commands to monitor scheduler efﬁciency.
+When the amount of time that LSF spent scheduling a job is large compared to the run times of jobs, you will observe a low resource utilization in
+your cluster. For instance, if the average run time of jobs equals the average time required to ﬁll a slot after a job ﬁnishes, the slot usage in the cluster
+will be approximately 50% of what it would be if scheduling overhead is zero. It is not always clear whether low utilization is caused by scheduling
+performance or by conﬁgured policies (such as limits) that block jobs from accessing resources.
+LSF has a scheduling efﬁciency metric in the badmin perfmon command that estimates how the slot and memory utilization of the cluster is affected
+by scheduling overhead. A value near 100% means that improving scheduler performance does not signiﬁcantly improve resource utilization, while a
+lower percentage indicates how improving scheduler performance will improve resource utilization. For example, a value of 75% means that due to
+scheduling overhead, resource utilization is only 75% of what it could be if scheduling overhead were to be reduced to zero.
+Run the badmin perfmon view command to view the scheduler efﬁciency for ﬁnished jobs within a sample period. This displays the scheduler
+efﬁciency numbers for both the set of ﬁnished jobs within the sample period and all ﬁnished jobs in the cluster.
+Run the bacct command to view the scheduler efﬁciency for all ﬁnished jobs in a cluster.
+322    IBM Spectrum LSF
+
+Monitor job information
+Use bjobs and bhist to monitor the current and past status of jobs and job arrays. The bjdepinfo command displays any dependencies that jobs
+have, either jobs that depend on a job or jobs that your job depends on. View suspending conditions using bhosts -l and bqueues -l. Run bjobs -lp to
+see the reason a job was suspended. Run bjobs -l to see the scheduling thresholds that control when a job is resumed display.
+Viewing host-level and queue-level suspending conditions
+ Viewing job-level suspending conditions
+Viewing resume thresholds
+ View job priority information
+ Viewing job dependencies
+ View information about backﬁll jobs
+ Monitor how resources are distributed in fair share scheduling policies.
+Viewing job array information
+ Use the bjobs and bhist commands to monitor the current and past status of job arrays.
+View information about reserved job slots
+ 
+Viewing host-level and queue-level suspending conditions
+Procedure
+View suspending conditions using bhosts -l and bqueues -l.
+Viewing job-level suspending conditions
+About this task
+The thresholds that apply to a particular job are the more restrictive of the host and queue thresholds.
+Procedure
+Run bjobs -l.
+Viewing resume thresholds
+Procedure
+Run bjobs -l.
+The scheduling thresholds that control when a job is resumed display.
+View job priority information
+Procedure
+Use the following commands to view job history, the current status and system conﬁgurations:
+bhist -l job_ID
+Displays the history of a job including changes in job priority.
+bjobs -l [job_ID]
+Displays the current job priority and the job priority at submission time. Job priorities are changed by the job owner, LSF, and queue
+administrators, and automatically when automatic job priority escalation is enabled.
+bparams -l
+IBM Spectrum LSF 323
+
+Displays values for:
+The maximum user priority, MAX_USER_PRIORITY
+The default submission priority, MAX_USER_PRIORITY/2
+The value and frequency used for automatic job priority escalation, JOB_PRIORITY_OVER_TIME
+Viewing job dependencies
+About this task
+The bjdepinfo command displays any dependencies that jobs have, either jobs that depend on a job or jobs that your job depends on.
+By specifying -r, you get not only direct dependencies (job A depends on job B), but also indirect dependencies (job A depends on job B, job B
+depends on jobs C and D). You can also limit the number of levels returned using the -r option.
+The -l option displays results in greater detail.
+Procedure
+To display all jobs that this job depends on:
+bjdepinfo 123
+JOBID PARENT PARENT_STATUS PARENT_NAME  LEVEL 
+123   32522  RUN           JOB32522     1 
+To display jobs that depend on a job, you specify (display child jobs):
+bjdepinfo -c 300
+JOBID CHILD CHILD_STATUS CHILD_NAME LEVEL 
+300   310   PEND         JOB310     1  
+300   311   PEND         JOB311     1  
+300   312   PEND         JOB312     1  
+To display the parent jobs that cause a job to pend:
+bjdepinfo -p 100
+These jobs are always pending because their dependency has not yet been satisﬁed.
+JOBID PARENT PARENT_STATUS PARENT_NAME LEVEL 
+100   99     PEND          JOB99       1 
+100   98     PEND          JOB98       1 
+100   97     PEND          JOB97       1 
+100   30     PEND          JOB30       1 
+Display more information about job dependencies including whether the condition has been satisﬁed or not and the condition that is on the
+job:
+bjdepinfo -l 32522 
+Dependency condition of job <32522> is not satisfied: done(23455) 
+JOBID PARENT PARENT_STATUS PARENT_NAME  LEVEL 
+32522 23455  RUN           JOB23455     1 
+Display information about job dependencies that includes only direct dependencies and two levels of indirect dependencies:
+bjdepinfo -r 3 -l 100 
+Dependency condition of job <100> is not satisfied: done(99) && ended(98) && done(97) && done(96) 
+JOBID PARENT PARENT_STATUS PARENT_NAME LEVEL  
+100   99     PEND          JOB99       1 
+100   98     PEND          JOB98       1 
+100   97     PEND          JOB97       1 
+324    IBM Spectrum LSF
+
+100   96     DONE          JOB96       1 
+Dependency condition of job <97> is not satisfied: done(89) 
+JOBID PARENT PARENT_STATUS PARENT_NAME LEVEL 
+97    89     PEND          JOB89       2 
+Dependency condition of job <89> is not satisfied: ended(86) 
+JOBID PARENT PARENT_STATUS PARENT_NAME LEVEL 
+89    86     PEND          JOB86       3 
+View information about backﬁll jobs
+Monitor how resources are distributed in fair share scheduling policies.
+Viewing information about job start time
+Viewing the run limits for interruptible backﬁll jobs (bjobs and bhist)
+ Displaying available slots for backﬁll jobs
+ 
+Viewing information about job start time
+Procedure
+Use bjobs -l to view the estimated start time of a job.
+Viewing the run limits for interruptible backﬁll jobs (bjobs and bhist)
+Procedure
+1. Use bjobs to display the run limit calculated based on the conﬁgured queue-level run limit.
+For example, the interruptible backﬁll queue lazy conﬁgures RUNLIMIT=60:
+bjobs -l 135 
+Job <135>, User <user1>, Project <default>, Status <RUN>, Queue <lazy>, Command 
+                     <myjob> 
+Mon Nov 21 11:49:22 2009: Submitted from host <hostA>, CWD <$HOME/H 
+                     PC/jobs>; 
+ RUNLIMIT 
+ 59.5 min of hostA 
+Mon Nov 21 11:49:26 2009: Started on <hostA>, Execution Home </home 
+                     /user1>, Execution CWD </home/user1/HPC/jobs>; 
+...
+2. Use bhist to display job-level run limit if speciﬁed.
+For example, job 135 was submitted with a run limit of 3 hours:
+bsub -n 1 -q lazy -W 3:0 myjob 
+Job <135> is submitted to queue <lazy>.
+bhist displays the job-level run limit:
+bhist -l 135 
+Job <135>, User <user1>, Project <default>, Command <myjob> 
+Mon Nov 21 11:49:22 2009: Submitted from host <hostA>, to Queue <lazy>, CWD <$HOME/HPC/jobs>; 
+ RUNLIMIT 
+ 180.0 min of hostA 
+Mon Nov 21 11:49:26 2009: Dispatched to <hostA>; 
+Mon Nov 21 11:49:26 2009: Starting (Pid 2746); 
+Mon Nov 21 11:49:27 2009: Interruptible backfill runtime limit is 59.5 minutes; 
+Mon Nov 21 11:49:27 2009: Running with execution home </home/user1>, Execution CWD  
+...
+Displaying available slots for backﬁll jobs
+IBM Spectrum LSF 325
+
+The bslots command displays slots reserved for parallel jobs and advance reservations. The available slots are not currently used for running jobs,
+and can be used for backﬁll jobs. The available slots displayed by bslots are only a snapshot of the slots currently not in use by parallel jobs or
+advance reservations. They are not guaranteed to be available at job submission.
+By default, bslots displays all available slots, and the available run time for those slots. When no reserved slots are available for backﬁll, bslots
+displays "No reserved slots available."
+The backﬁll window calculation is based on the snapshot information (current running jobs, slot reservations, advance reservations) obtained from
+mbatchd.The backﬁll window displayed can serve as reference for submitting backﬁll-able jobs. However, if you have speciﬁed extra resource
+requirements or special submission options, it does not insure that submitted jobs are scheduled and dispatched successfully.
+bslots -R only supports the select resource requirement string. Other resource requirement selections are not supported.
+If the available backﬁll window has no run time limit, its length is displayed as UNLIMITED.
+Examples
+Display all available slots for backﬁll jobs:
+bslots
+SLOTS RUNTIME
+1 UNLIMITED
+3 1 hour 30 minutes
+5 1 hour 0 minutes
+7 45 minutes
+15 40 minutes
+18 30 minutes
+20 20 minutes
+Display available slots for backﬁll jobs requiring 15 slots or more:
+bslots -n 15
+SLOTS RUNTIME
+15 40 minutes
+18 30 minutes
+20 20 minutes
+Display available slots for backﬁll jobs requiring a run time of 30 minutes or more:
+bslots -W 30
+SLOTS RUNTIME
+3 1 hour 30 minutes
+5 1 hour 0 minutes
+7 45 minutes
+15 40 minutes
+18 30 minutes
+bslots -W 2:45
+No reserved slots available.
+bslots -n 15 -W 30
+SLOTS RUNTIME
+15 40 minutes
+18 30 minutes
+Display available slots for backﬁll jobs requiring a host with more than 500 MB of memory:
+326    IBM Spectrum LSF
+
+bslots -R "mem>500"
+SLOTS RUNTIME
+7 45 minutes
+15 40 minutes
+Display the host names with available slots for backﬁll jobs:
+bslots -l
+SLOTS: 15
+RUNTIME: 40 minutes
+HOSTS: 1*hostB 1*hostE 3*hostC ...
+3*hostZ ... ...
+SLOTS: 15
+RUNTIME: 30 minutes
+HOSTS: 2*hostA 1*hostB 3*hostC ...
+1*hostX ... ...
+Viewing job array information
+Use the bjobs and bhist commands to monitor the current and past status of job arrays.
+Displaying job array status
+The -A option of the bjobs command shows job array summary information.
+Procedure
+To display summary information about the currently running jobs submitted from a job array, use the -A option of the bjobs command.
+For example, a job array of 10 jobs with job ID 123:
+bjobs -A 123 
+JOBID    ARRAY_SPEC  OWNER  NJOBS PEND DONE  RUN EXIT SSUSP USUSP PSUSP  
+123      myArra[1-10]     user1     10    3    3    4    0     0     0     0
+Displaying job array dependencies
+The bjdepinfo command shows job dependency information for a job array.
+Procedure
+To display information for any job dependency information for an array, use the bjdepinfo command.
+For example, a job array (with job ID 456) where you want to view the dependencies on the third element of the array:
+bjdepinfo -c "456[3]" 
+JOBID  CHILD CHILD_STATUS CHILD_NAME LEVEL 
+456[3] 300   PEND         job300     1
+Displaying status of jobs submitted from an array
+The bjobs command displays the status of the individual jobs submitted from a job array
+Procedure
+Use the bjobs command and specify the job array job ID to display the status of the individual jobs submitted from a job array. For jobs submitted
+from a job array, JOBID displays the job array job ID, and JOBNAME displays the job array name and the index value of each job.
+For example, to view a job array with job ID 123:
+bjobs 123 
+JOBID  USER   STAT   QUEUE     FROM_HOST  EXEC_HOST   JOB_NAME    SUBMIT_TIME  
+123    user1  DONE   default   hostA      hostC       myArray[1]  Feb 29 12:34  
+123    user1  DONE   default   hostA      hostQ       myArray[2]  Feb 29 12:34  
+123    user1  DONE   default   hostA      hostB       myArray[3]  Feb 29 12:34  
+IBM Spectrum LSF 327
+
+123    user1  RUN    default   hostA      hostC       myArray[4]  Feb 29 12:34  
+123    user1  RUN    default   hostA      hostL       myArray[5]  Feb 29 12:34  
+123    user1  RUN    default   hostA      hostB       myArray[6]  Feb 29 12:34  
+123    user1  RUN    default   hostA      hostQ       myArray[7]  Feb 29 12:34  
+123    user1  PEND   default   hostA                  myArray[8]  Feb 29 12:34  
+123    user1  PEND   default   hostA                  myArray[9]  Feb 29 12:34  
+123    user1  PEND   default   hostA                  myArray[10] Feb 29 12:34
+Displaying past job status
+The bhist command displays historical information about array jobs.
+Procedure
+Use the bhist command and specify the job array job ID to display the past status of the individual jobs submitted from a job array.
+For example, to view the history of a job array with job ID 456:
+bhist 456 
+Summary of time in seconds spent in various states:  
+JOBID  USER    JOB_NAME   PEND    PSUSP   RUN     USUSP   SSUSP   UNKWN   TOTAL  
+456[1] user1   *rray[1]   14      0       65      0       0       0       79  
+456[2] user1   *rray[2]   74      0       25      0       0       0       99  
+456[3] user1   *rray[3]   121     0       26      0       0       0       147  
+456[4] user1   *rray[4]   167     0       30      0       0       0       197  
+456[5] user1   *rray[5]   214     0       29      0       0       0       243  
+456[6] user1   *rray[6]   250     0       35      0       0       0       285  
+456[7] user1   *rray[7]   295     0       33      0       0       0       328  
+456[8] user1   *rray[8]   339     0       29      0       0       0       368  
+456[9] user1   *rray[9]   356     0       26      0       0       0       382  
+456[10]user1   *ray[10]   375     0       24      0       0       0       399
+Displaying the current status of a speciﬁc job
+The bjobs command shows the current status of a speciﬁc array job element.
+Procedure
+Use the bjobs command to display the current status of a speciﬁc job submitted from a job array. Specify the job array job ID and an index value in
+quotes.
+For example, the status of the 5th job in a job array with job ID 123:
+bjobs "123[5]" 
+JOBID  USER   STAT   QUEUE     FROM_HOST  EXEC_HOST   JOB_NAME    SUBMIT_TIME  
+123    user1  RUN    default   hostA      hostL       myArray[5]  Feb 29 12:34
+Displaying the past status of a speciﬁc job
+The bhist command shows the historical status of a speciﬁc array job element.
+Procedure
+Use the bhist command to display the past status of a speciﬁc job submitted from a job array. Specify the job array job ID and an index value in
+quotes.
+For example, the status of the 5th job in a job array with job ID 456:
+bhist "456[5]" 
+Summary of time in seconds spent in various states:  
+JOBID  USER    JOB_NAME   PEND    PSUSP   RUN     USUSP   SSUSP   UNKWN   TOTAL  
+456[5] user1   *rray[5]   214     0       29      0       0       0       243
+View information about reserved job slots
+Procedure
+Display reserved slots using bjobs.
+The number of reserved slots can be displayed with the bqueues, bhosts, bhpart, and busers commands. Look in the RSV column.
+Viewing slot allocation of running jobs
+ 
+Viewing slot allocation of running jobs
+328    IBM Spectrum LSF
+
+Procedure
+Use bhosts, bmgroup, and bqueues to verify how LSF maintains the conﬁgured percentage of running jobs in each queue.
+The queues conﬁgurations above use the following hosts groups:
+bmgroup -r 
+GROUP_NAME   HOSTS  
+groupA       hosta hostb hostc  
+groupB       hostd hoste hostf
+Each host has a maximum job slot limit of 5, for a total of 15 slots available to be allocated in each group:
+bhosts 
+HOST_NAME    STATUS    JL/U   MAX  NJOBS    RUN  SSUSP  USUSP    RSV   
+hosta          ok       -      5      5      5      0      0      0  
+hostb          ok       -      5      5      5      0      0      0  
+hostc          ok       -      5      5      5      0      0      0  
+hostd          ok       -      5      5      5      0      0      0  
+hoste          ok       -      5      5      5      0      0      0  
+hostf          ok       -      5      5      5      0      0      0
+Pool named poolA contains queue1,queue2, and queue3.poolB contains queue4, queue5, and queue6. The bqueues command shows the
+number of running jobs in each queue:
+bqueues 
+QUEUE_NAME   PRIO STATUS          MAX JL/U JL/P JL/H NJOBS  PEND   RUN  SUSP   
+queue1       50   Open:Active      -    -    -    -   492   484     8     0  
+queue2       48   Open:Active      -    -    -    -   500   495     5     0  
+queue3       46   Open:Active      -    -    -    -   498   496     2     0  
+queue4       44   Open:Active      -    -    -    -   985   980     5     0  
+queue5       43   Open:Active      -    -    -    -   985   980     5     0  
+queue6       42   Open:Active      -    -    -    -   985   980     5     0
+As a result: queue1 has a 50% share and can run 8 jobs; queue2 has a 30% share and can run 5 jobs; queue3 has a 20% share and is entitled 3
+slots, but since the total number of slots available must be 15, it can run 2 jobs; queue4, queue5, and queue6 all share 30%, so 5 jobs are running
+in each queue.
+Monitor applications by using external scripts
+Use the watchdog feature to regularly run external scripts that check application information and to pass on the job information as notiﬁcations.
+Creating external scripts to monitor applications
+ Conﬁgure the application proﬁle to enable the watchdog feature and specify the LSF Application Center Notiﬁcations server to receive
+notiﬁcations.
+Conﬁguring application proﬁles to use external scripts
+ Conﬁgure the application proﬁle to use an external watchdog script to monitor the application and specify the LSF Application Center
+Notiﬁcations server to receive notiﬁcations.
+Using the application proﬁles to run the external scripts
+ To use the watchdog scripts, submit a job to an application proﬁle that has the WATCHDOG parameter enabled.
+Creating external scripts to monitor applications
+Conﬁgure the application proﬁle to enable the watchdog feature and specify the LSF Application Center Notiﬁcations server to receive notiﬁcations.
+Before you begin
+To ensure that the watchdog scripts can send notiﬁcations to the LSF Application Center Notiﬁcations server, deﬁne the LSF_AC_PNC_URL parameter
+in the lsf.conf ﬁle.
+Procedure
+1. Create a watchdog script to monitor the application (by checking application data, logs, and other information) and send notiﬁcation
+messages.
+In the script, use the bpost -N command option to send a notiﬁcation (with the message in the -d option and the speciﬁed error level) to the
+LSF Application Center Notiﬁcations server:
+bpost -d "message" -N WARNING | ERROR | CRITICAL | INFO
+IBM Spectrum LSF 329
+
+All job environment variables are available to the watchdog scripts. In addition, the following LSF job-level resource consumption environment
+variables are available to the watchdog scripts:
+LSB_GPU_ALLOC_INFO
+LSB_JOB_AVG_MEM
+LSB_JOB_CPU_TIME
+LSB_JOB_MAX_MEM
+LSB_JOB_MEM
+LSB_JOB_NTHREAD
+LSB_JOB_PGIDS
+LSB_JOB_PIDS
+LSB_JOB_RUN_TIME
+LSB_JOB_SWAP
+The watchdog script might have the following format:
+#!/bin/sh 
+source <lsf_conf_dir>/profile.lsf 
+<application_checking_commands> 
+if <okay> then 
+  exit 0 
+else 
+  if <warning_level> then 
+    bpost -N WARNING -d "WARNING: <warning_message>" 
+    exit 0 
+  else 
+    bpost -N CRITICAL -d "FATAL: <critical_message>" 
+    exit 1 
+  end if 
+end if
+Note: You must add a command to source the LSF environment at the beginning of the watchdog script.
+2. Set the proper permissions for the script to ensure that the job submission user is able to execute the script.
+Related reference
+LSF_AC_PNC_URL parameter in the lsf.conf ﬁle
+bpost -N command option
+Conﬁguring application proﬁles to use external scripts
+Conﬁgure the application proﬁle to use an external watchdog script to monitor the application and specify the LSF Application Center Notiﬁcations
+server to receive notiﬁcations.
+Before you begin
+To ensure that the watchdog scripts can send notiﬁcations to the LSF Application Center Notiﬁcations server, deﬁne the LSF_AC_PNC_URL parameter
+in the lsf.conf ﬁle.
+Procedure
+1. Edit the lsb.applications ﬁle and deﬁne the WATCHDOG parameter for the application proﬁle that you want to monitor.
+WATCHDOG=script[ﬁle/path/to/script] init[init_delay] period[start_interval]
+This parameter uses the following keywords:
+script
+Required. This keyword speciﬁes the ﬁle path to the external watchdog script to check the application data and other information. This
+ﬁle must have the proper permissions for the job submission user to execute the script.
+init
+Optional. This keyword speciﬁes the delay to start the watchdog script after the job starts, in seconds. Specify a number larger than 30
+seconds. The default value is 60 seconds.
+period
+Optional. This keyword speciﬁes the interval in which to start the watchdog script after the previous time that the watchdog script
+started, in seconds. Specify a number larger than 30 seconds. The default value is 60 seconds.
+2. To send notiﬁcations to the LSF Application Center Notiﬁcations server, edit the lsf.conf ﬁle and deﬁne the LSF_AC_PNC_URL parameter with
+the URL and listen port of the LSF Application Center Notiﬁcations server.
+LSF_AC_PNC_URL=HTTP://server_address[:port_number]
+If the listen port is not speciﬁed, the default port number is 8081.
+330    IBM Spectrum LSF
+
+Related reference
+WATCHDOG parameter in the lsb.applications ﬁle
+LSF_AC_PNC_URL parameter in the lsf.conf ﬁle
+Using the application proﬁles to run the external scripts
+To use the watchdog scripts, submit a job to an application proﬁle that has the WATCHDOG parameter enabled.
+Procedure
+1. Use the bsub -app command option to submit a job to an application proﬁle that has the watchdog feature enabled.
+If the WATCHDOG parameter is enabled for the jobwatch1 application in the lsb.applications ﬁle, submit a job with the following command:
+bsub -app jobwatch1
+LSF dispatches the job and executes the external watchdog script at regular intervals according to the WATCHDOG parameter settings for the
+speciﬁed application proﬁle.
+2. Use the bread -N command option to see information on any notiﬁcations that the watchdog scripts send.
+Related reference
+WATCHDOG parameter in the lsb.applications ﬁle
+bread -N command option
+View information about resources
+Use the bhosts command to view information about shared resources on hosts and load on a host. Use the bjobs command to see job resource
+usage. Use the lsinfo command to see overall cluster resources, and the lshosts command to see host-based resources and host load by resource.
+Viewing job-level resource requirements
+ Viewing queue-level resource requirements
+ Viewing shared resources for hosts
+ Viewing load on a host
+ Viewing job resource usage
+ View cluster resources (lsinfo)
+ Viewing host resources (lshosts)
+ View resource reservation information
+ View information about resource allocation limits
+ Your job might be pending because some conﬁgured resource allocation limits are reached. Use the blimits command to show the dynamic
+counters of resource allocation limits conﬁgured in Limit sections in the lsb.resources ﬁle. The blimits command displays the current resource
+usage to show what limits might be blocking your job.
+View application proﬁle information
+ View fair share information
+ Monitor how resources are distributed in fair share scheduling policies.
+Viewing information about SLAs and service classes
+ Viewing conﬁgured guaranteed resource pools
+ Resource-type SLAs have the host or slot guarantee conﬁgured within the guaranteed resource pool.
+Viewing job-level resource requirements
+Procedure
+1. Use bjobs -l to view resource requirements deﬁned for the job:
+bsub -R "type==any" -q normal myjob 
+Job <2533> is submitted to queue <normal>. 
+bjobs -l 2533 
+Job <2533>, User <user1>, Project <default>, Status <DONE>, Queue <normal>, 
+     Command <myjob> 
+Fri May 10 17:21:26 2009: Submitted from host <hostA>, CWD <$HOME>, Requested 
+IBM Spectrum LSF 331
+
+  Resources <{hname=hostB} || {hname=hostC}>; 
+Fri May 10 17:21:31 2009: Started on <hostB>, Execution Home </home/user1>, 
+  Execution CWD </home/user1>; 
+Fri May 10 17:21:47 2009: Done successfully. The CPU time used is 0.3 seconds. 
+...
+2. After a job is ﬁnished, use bhist -l to view resource requirements deﬁned for the job:
+bhist -l 2533 
+Job <2533>, User <user1>, Project <default>, Command <myjob> 
+Fri May 10 17:21:26 2009: Submitted from host <hostA>, to Queue <normal>, CWD 
+     <$HOME>, Requested Resources <{hname=hostB} || {hname=hostC}>; 
+Fri May 10 17:21:31 2009: Dispatched to <hostB>, <Effective RES_REQ <select[ 
+(hname = hostC ) && (type == any)] order[r15s:pg] >>; 
+Fri May 10 17:21:32 2009: Starting (Pid 1850232); 
+Fri May 10 17:21:33 2009: Running with execution home </home/user1>, Execution 
+     CWD </home/user1>, Execution Pid <1850232>; 
+Fri May 10 17:21:45 2009: Done successfully. The CPU time used is 0.3 seconds; 
+...
+Note: If you submitted a job with multiple select strings using the bsub -R option, bjobs -l and bhist -l display a single, merged select string.
+Viewing queue-level resource requirements
+Procedure
+Use bqueues -l to view resource requirements (RES_REQ) deﬁned for the queue:
+bqueues -l normal 
+QUEUE: normal 
+ -- No description provided.  This is the default queue. 
+... 
+RES_REQ:  select[type==any] 
+rusage[mem=10,dynamic_rsrc=10:duration=2:decay=1] 
+...
+Viewing shared resources for hosts
+Procedure
+Run bhosts -s to view shared resources for hosts. For example:
+bhosts -s 
+RESOURCE       TOTAL    RESERVED     LOCATION  
+tot_lic            5         0.0     hostA hostB  
+tot_scratch       00         0.0     hostA hostB  
+avail_lic          2         3.0     hostA hostB  
+avail_scratch    100       400.0     hostA hostB
+The TOTAL column displays the value of the resource. For dynamic resources, the RESERVED column displays the amount that has been reserved by
+running jobs.
+Viewing load on a host
+Procedure
+Run bhosts -l to check the load levels on the host.
+A dash (-) in the output indicates that the particular threshold is not deﬁned.
+bhosts -l hostB 
+HOST:  hostB 
+STATUS        CPUF   JL/U  MAX NJOBS RUN SSUSP USUSP RSV  
+ok            20.00  2     2   0     0   0     0     0      
+  
+CURRENT LOAD USED FOR SCHEDULING:  
+         r15s   r1m  r15m  ut    pg    io   ls    t   tmp   swp   mem   slots 
+Total    0.3    0.8  0.9   61%   3.8   72   26    0   6M    253M  97M       8 
+Reserved 0.0    0.0  0.0   0%    0.0   0    0     0   0M    0M     0M       8 
+     
+332    IBM Spectrum LSF
+
+  
+LOAD THRESHOLD USED FOR SCHEDULING:  
+           r15s   r1m  r15m  ut  pg  io  ls  it  tmp  swp  mem  
+loadSched  -      -    -     -   -   -   -   -   -    -    -  
+loadStop   -      -    -     -   -   -   -   -   -    -    -  
+  
+             cpuspeed    bandwidth   
+loadSched          -            -   
+loadStop           -            - 
+Viewing job resource usage
+Procedure
+Run bjobs -l to display the current resource usage of the job.
+Usage information is sampled by PIM every 30 seconds and collected by sbatchd at a maximum frequency of every SBD_SLEEP_TIME (conﬁgured in
+the lsb.params ﬁle) and sent to mbatchd.
+An update occurs only if the value for the CPU time, resident memory usage, or virtual memory usage has changed by more than 10 percent from the
+previous update, or if a new process or process group has been created. Even if the usage does not change for more than 10%, SBD will still update it
+if 15 * SBD_SLEEP_TIME passed from last update.
+View cluster resources (lsinfo)
+Procedure
+Use lsinfo to list the resources available in your cluster.
+The lsinfo command lists all resource names and descriptions.
+lsinfo 
+RESOURCE_NAME   TYPE     ORDER  DESCRIPTION 
+r15s            Numeric  Inc    15-second CPU run queue length 
+r1m             Numeric  Inc    1-minute CPU run queue length (alias:cpu) 
+r15m            Numeric  Inc    15-minute CPU run queue length 
+ut              Numeric  Inc    1-minute CPU utilization (0.0 to 1.0) 
+pg              Numeric  Inc    Paging rate (pages/second) 
+io              Numeric  Inc    Disk IO rate (Kbytes/second) 
+ls              Numeric  Inc    Number of login sessions (alias: login) 
+it              Numeric  Dec    Idle time (minutes) (alias: idle) 
+tmp             Numeric  Dec    Disk space in /tmp (Mbytes) 
+swp             Numeric  Dec    Available swap space (Mbytes) (alias:swap) 
+mem             Numeric  Dec    Available memory (Mbytes) 
+ncpus           Numeric  Dec    Number of CPUs 
+nprocs          Numeric   Dec   Number of physical processors 
+ncores          Numeric   Dec   Number of cores per physical processor 
+nthreads        Numeric   Dec   Number of threads per processor 
+corendisks      Numeric  Dec    Number of local disks 
+maxmem          Numeric  Dec    Maximum memory (Mbytes) 
+maxswp          Numeric  Dec    Maximum swap space (Mbytes) 
+maxtmp          Numeric  Dec    Maximum /tmp space (Mbytes) 
+cpuf            Numeric  Dec    CPU factor 
+...
+Viewing host resources (lshosts)
+Procedure
+Run lshosts for a list of the resources that are deﬁned on a speciﬁc host:
+lshosts hostA 
+HOST_NAME      type    model  cpuf ncpus maxmem maxswp server RESOURCES  
+hostA        SOL732  Ultra2  20.2    2   256M   679M   Yes ()
+Viewing host load by resource (lshosts -s)
+ The lshosts -s command shows host load by shared resource
+Customize host resource information output
+ 
+IBM Spectrum LSF 333
+
+Viewing host load by resource (lshosts -s)
+The lshosts -s command shows host load by shared resource
+Procedure
+Run lshosts -s to view host load for static and dynamic shared resources:
+The following lshosts -s output shows that the shared scratch directory currently contains 500 MB of space.
+lshosts -s 
+RESOURCE     VALUE    LOCATION  
+tot_lic          5    host1 host2  
+tot_scratch    500    host1 host2
+The VALUE ﬁeld indicates the amount of that resource. The LOCATION column shows the hosts which share this resource.
+Customize host resource information output
+By default, the lshosts command displays a predeﬁned set of resource information for hosts. While you can use various lshosts options to display
+speciﬁc host resource information based on your needs, you can also customize the speciﬁc ﬁelds that lshosts displays. Customize output to create
+a speciﬁc lshosts output format that shows all the required information so you can easily parse the information by using custom scripts or to display
+the information in a predeﬁned format.
+Use the LSF_LSHOSTS_FORMAT parameter in lsf.conf or the LSF_LSHOSTS_FORMAT runtime environment variable to deﬁne the default lshosts
+output format for LSF:
+LSF_LSHOSTS_FORMAT="field_name[:[-][output_width]][:unit]] ... [delimiter='character']"
+Use the lshosts -o option to deﬁne the custom output at the command level:
+lshosts ...-o field_name[:[-][output_width]][:unit]] ... [delimiter='character']"
+Specify which lshosts ﬁelds (or aliases instead of the full ﬁeld names), in which order, and with what width to display.
+Specify only the lshosts ﬁeld name or alias to set its output to unlimited width and left justiﬁcation.
+Specify the colon (:) without a width to set the output width to the recommended width for that ﬁeld.
+Specify the colon (:) with a width to set the maximum number of characters to display for the ﬁeld. When its value exceeds this width, lshosts
+truncates the ending characters.
+Specify a hyphen (-) to set right justiﬁcation when lshosts displays the output for the speciﬁc ﬁeld. If not speciﬁed, the default is to set left
+justiﬁcation when lshosts displays the output for a ﬁeld.
+Specify the unit colon (:) with a unit to set the unit for the output of the speciﬁc ﬁeld:
+Specify S to use a built-in conversion for space or capacity, such as memory or disk space. Values are automatically scaled for M (MB),
+G (GB), and T (TB), where the default unit is M (MB).
+For example, when displaying the mem ﬁeld with a speciﬁed width of 3,
+For a value of 30, running the lshosts -o "maxmem:3:S" command shows 30.0M.
+For a value of 4096, running the lshosts -o "maxswp:3:S" command shows 4.0G.
+For a value of 5000000, running the lshosts -o "maxtmp:3:S" command shows 4.8T.
+Specify D to use a built-in conversion for duration or time, such as memory or disk space. Values are automatically scaled for s
+(seconds), m (minutes), h (hours), and d (days), where the default unit is s (seconds). The automatically scaled value is rounded up after
+the ﬁrst decimal point.
+For example, when displaying the external mytime resource ﬁeld with a speciﬁed width of 5,
+For a value of 30, running the lshosts -o "mytime:5:D" command shows 30.0s.
+For a value of 8000, running the lshosts -o "mytime:5:D" command shows 2.2h.
+For a value of 5000000, running the lshosts -o "mytime:5:D" command shows 57.8d.
+Specify any other string of 1 - 3 characters and the characters are used as is in the ﬁeld value. The ﬁrst character must be a letter
+(upper or lower case). The second and third characters must be an alphanumeric character.
+For example, when displaying the external gpu_temp resource with a width of 3, running the lshosts -o "gpu_temp:3:C" command for
+a value of 30 shows 30C
+Use delimiter= to set the delimiting character to display between different headers and ﬁelds. This delimiter must be a single character. By
+default, the delimiter is a space.
+The lshosts -o option overrides the LSF_LSHOSTS_FORMAT environment variable, which overrides the LSF_LSHOSTS_FORMAT setting in lsf.conf.
+Output customization applies only to the output for certain lshosts options:
+LSF_LSHOSTS_FORMAT and lshosts -o both apply to output for the lshosts command with no options, and for lshosts options with output that
+ﬁlter information, including the following options: -a.
+334    IBM Spectrum LSF
+
+LSF_LSHOSTS_FORMAT and lshosts -o do not apply to output for other lshosts options that use a modiﬁed format, including the following
+options: -l, -w.
+Table 1. Output ﬁelds for lshosts
+Field name Width Aliases Unit
+HOST_NAME 20 hname  
+type 10    
+model 10    
+cpuf 10    
+ncpus 8    
+maxmem 10   LSF_UNIT_FOR_LIMITS in lsf.conf (KB by default)
+maxswp 10   LSF_UNIT_FOR_LIMITS in lsf.conf (KB by default)
+server 10    
+RESOURCES 20 res  
+ndisks 8    
+maxtmp 10   LSF_UNIT_FOR_LIMITS in lsf.conf (KB by default)
+rexpri 10    
+nprocs 8    
+ncores 8    
+nthreads 10    
+RUN_WINDOWS20 runwin  
+Field names and aliases are case-sensitive. Valid values for the output width are any positive integer 1 - 4096.
+View customized host load information in JSON format
+Use the lshosts -json option to view the customized lshosts output in JSON format. Since JSON is a customized output format, you must use the
+lshosts -json option together with the -o option.
+View resource reservation information
+Viewing host-level resource information (bhosts)
+ Viewing queue-level resource information (bqueues)
+ Viewing reserved memory for pending jobs (bjobs)
+ Viewing per-resource reservation (bresources)
+ 
+Viewing host-level resource information (bhosts)
+Procedure
+1. Use bhosts -l to show the amount of resources reserved on each host. In the following example, 143 MB of memory is reserved on hostA, and
+no memory is currently available on the host.
+bhosts -l hostA 
+HOST  hostA  
+STATUS     CPUF   JL/U   MAX   NJOBS    RUN   SSUSP   USUSP   RSV  DISPATCH_WINDOW  
+ok       20.00       -     4       2      1       0       0     1       -   
+CURRENT LOAD USED FOR SCHEDULING:  
+            r15s   r1m  r15m     ut     pg       io    ls     it    tmp      swp    mem   slots 
+Total       1.5   1.2   2.0   91%     2.5        7    49      0   911M     915M      0M       8 
+Reserved    0.0   0.0   0.0    0%     0.0        0     0      0     0M       0M    143M       8
+2. Use bhosts -s to view information about shared resources.
+Viewing queue-level resource information (bqueues)
+Procedure
+Use bqueues -l to see the resource usage that is conﬁgured at the queue level.
+IBM Spectrum LSF 335
+
+bqueues -l reservation 
+QUEUE: reservation   
+ -- For resource reservation  
+  
+PARAMETERS/STATISTICS  
+PRIO NICE STATUS          MAX JL/U JL/P JL/H NJOBS  PEND   RUN SSUSP USUSP  RSV   
+40      0 Open:Active       -    -    -    -     4     0     0     0     0    4   
+  
+SCHEDULING PARAMETERS  
+           r15s   r1m   r15m   ut    pg    io   ls    it    tmp    swp    mem   
+loadSched  -       -      -     -     -    -    -     -      -      -      -       
+loadStop   -       -      -     -     -    -    -     -      -      -      -   
+  
+                cpuspeed    bandwidth   
+loadSched          -            -   
+loadStop           -            -   
+  
+SCHEDULING POLICIES:  RESOURCE_RESERVE  
+  
+USERS:   all users  
+HOSTS:   all  
+Maximum resource reservation time: 600 seconds
+Viewing reserved memory for pending jobs (bjobs)
+About this task
+If the job memory requirements cannot be satisﬁed, bjobs -l shows the pending reason. bjobs -l shows both reserved slots and reserved memory.
+Procedure
+For example, the following job reserves 60 MB of memory on hostA:
+bsub -m hostA -n 2 -q reservation -R"rusage[mem=60]" sleep 8888 
+Job <3> is submitted to queue <reservation>. 
+bjobs -l shows the reserved memory:
+bjobs -lp 
+Job <3>, User <user1>, Project <default>, Status <PEND>, Queue <reservation> 
+                      , Command <sleep 8888>  
+Tue Jan 22 17:01:05 2010: Submitted from host <user1>, CWD </home/user1/>, 2 Processors  
+Requested, Requested Resources <rusage[mem=60]>, Specified Hosts <hostA>;  
+Tue Jan 22 17:01:15 2010: Reserved <1> job slot on host <hostA>;  
+Tue Jan 22 17:01:15 2010: Reserved <60> megabyte memory on host <60M*hostA>;   
+PENDING REASONS:  Not enough job slot(s): hostA;   
+  
+SCHEDULING PARAMETERS  
+           r15s   r1m   r15m   ut    pg    io   ls    it    tmp    swp    mem   
+loadSched  -       -      -     -     -    -    -     -      -      -      -       
+loadStop   -       -      -     -     -    -    -     -      -      -      -   
+  
+                cpuspeed    bandwidth   
+loadSched          -            -   
+loadStop           -             -   
+RESOURCE REQUIREMENT DETAILS: 
+...
+Viewing per-resource reservation (bresources)
+Procedure
+Use bresources to display per-resource reservation conﬁgurations from lsb.resources:
+View information about resource allocation limits
+336    IBM Spectrum LSF
+
+Your job might be pending because some conﬁgured resource allocation limits are reached. Use the blimits command to show the dynamic counters
+of resource allocation limits conﬁgured in Limit sections in the lsb.resources ﬁle. The blimits command displays the current resource usage to show
+what limits might be blocking your job.
+blimits command
+The blimits command displays the following information:
+Conﬁgured policy name and information for limits that are being applied to running jobs.
+Conﬁgured policy name and information for all limits, even if they are not being applied to running jobs (-a option).
+Users (-u option)
+Queues (-q option)
+Hosts (-m option)
+Project names (-P option)
+Limits (SLOTS, MEM, TMP, SWP, JOBS)
+All resource conﬁgurations in lsb.resources (-c option). This command option is the same as bresources with no options.
+Resources that have no conﬁgured limits or no limit usage are indicated by a dash (-). Limits are displayed in a USED or LIMIT format. For example, if
+a limit of 10 slots is conﬁgured and 3 slots are in use, then blimits displays the limit for SLOTS as 3/10.
+If limits MEM, SWP, or TMP are conﬁgured as percentages, both the limit and the amount that is used are displayed in MB. For example, lshosts
+displays maxmem of 249 MB, and MEM is limited to 10% of available memory. If 10 MB out of 25 MB are used, blimits displays the limit for MEM as
+10/25 (10 MB USED from a 25 MB LIMIT). MEM, SWP, and TMP can also be conﬁgured in other units set in LSF_UNIT_FOR_LIMITS in lsf.conf)
+Conﬁgured limits and resource usage for built-in resources (slots, mem, tmp, and swp load indices, and number of running and suspended jobs) are
+displayed as INTERNAL RESOURCE LIMITS separately from custom external resources, which are shown as EXTERNAL RESOURCE LIMITS.
+Limits are displayed for both the vertical tabular format and the horizontal format for Limit sections. If a vertical format Limit section has no name,
+blimits displays NONAMEnnn under the NAME column for these limits, where the unnamed limits are numbered in the order the vertical-format Limit
+sections appear in the lsb.resources ﬁle.
+If a resource consumer is conﬁgured as all, the limit usage for that consumer is indicated by a dash (-).
+PER_HOST slot limits are not displayed. The bhosts command displays these limits as MXJ limits.
+In a multicluster environment, blimits returns the information about all limits in the local cluster.
+Examples
+For the following limit deﬁnitions:
+Begin Limit 
+NAME = limit1 
+USERS = user1 
+PER_QUEUE = all 
+PER_HOST = hostA hostC 
+TMP = 30% 
+SWP = 50% 
+MEM = 10% 
+End Limit
+Begin Limit 
+NAME = limit_ext1 
+PER_HOST = all 
+RESOURCE = ([user1_num,30] [hc_num,20]) 
+End Limit
+Begin Limit 
+NAME = limit2 
+QUEUES = short 
+JOBS = 200 
+End Limit
+The blimits command displays the following information:
+blimits  
+INTERNAL RESOURCE LIMITS: 
+  
+NAME    USERS     QUEUES    HOSTS             PROJECTS   SLOTS    MEM      TMP      SWP    JOBS 
+limit1   user1         q2   hostA@cluster1         -       -   10/25        -   10/258       - 
+limit1   user1         q3   hostA@cluster1         -       -       -   30/2953       -       - 
+limit1   user1         q4     hostC         -       -       -    40/590       -       - 
+limit2     -        short      -            -       -       -        -        -  50/200 
+  
+EXTERNAL RESOURCE LIMITS: 
+  
+NAME        USERS   QUEUES   HOSTS               PROJECTS    user1_num    hc_num 
+IBM Spectrum LSF 337
+
+limit_ext1      -        -   hostA@cluster1          -           -         1/20 
+limit_ext1      -        -   hostC@cluster1          -         1/30        1/20
+In limit policy limit1, user1 submitting jobs to q2, q3, or q4 on hostA or hostC is limited to 30% tmp space, 50% swap space, and 10%
+available memory. No limits are reached, so the jobs from user1 can run. For example, on hostA for jobs from q2, 10 MB of memory are used
+from a 25 MB limit and 10 MB of swap space are used from a 258 MB limit.
+In limit policy limit_ext1, external resource user1_num is limited to 30 per host and external resource hc_num is limited to 20 per host.
+Again, no limits are reached, so the jobs that request those resources can run.
+In limit policy limit2, the short queue can have at most 200 running and suspended jobs. Fifty jobs are running or suspended against the 200
+job limit. The limit is not reached, so jobs can run in the short queue.
+View application proﬁle information
+To view the... Run...
+Available application proﬁles bapp
+Detailed application proﬁle information bapp -l
+Jobs associated with an application proﬁle bjobs -l -app application_proﬁle_name
+Accounting information for all jobs associated with an application proﬁlebacct -l -app application_proﬁle_name
+Job success and requeue exit code information bapp -l
+bacct -l
+bhist -l -app application_proﬁle_name
+bjobs -l
+Viewing available application proﬁles
+ 
+Viewing available application proﬁles
+Procedure
+Run bapp. You can view a particular application proﬁle or all proﬁles.
+bapp 
+APPLICATION_NAME  NJOBS  PEND   RUN  SUSP 
+fluent               0     0     0     0 
+catia                0     0     0     0
+A dash (-) in any entry means that the column does not apply to the row.
+Viewing detailed application proﬁle information
+Procedure
+To see the complete conﬁguration for each application proﬁle, run bapp -l.
+bapp -l also gives current statistics about the jobs in a particular application proﬁle, such as the total number of jobs in the proﬁle, the number of
+jobs running, suspended, and so on.
+Specify application proﬁle names to see the properties of speciﬁc application proﬁles.
+bapp -l fluent 
+APPLICATION NAME: fluent 
+ -- Application definition for Fluent v2.0 
+STATISTICS: 
+   NJOBS     PEND      RUN    SSUSP    USUSP      RSV 
+       0        0        0        0        0        0 
+  
+PARAMETERS: 
+ CPULIMIT 
+ 600.0 min of hostA 
+ RUNLIMIT 
+ 200.0 min of hostA 
+ TASKLIMIT 
+ 9 
+ FILELIMIT DATALIMIT STACKLIMIT CORELIMIT MEMLIMIT SWAPLIMIT PROCESSLIMIT THREADLIMIT 
+    800 K     100 K     900 K      700 K     300 K   1000 K     400          500 
+RERUNNABLE: Y
+338    IBM Spectrum LSF
+
+Viewing jobs associated with application proﬁles
+Procedure
+Run bjobs -l -app application_proﬁle_name.
+bjobs -l -app fluent 
+Job <1865>, User <user1>, Project <default>, Application <fluent>,  
+                     Status <PSUSP>, Queue <normal>, Command <ls> 
+Tue Jun  6 11:52:05 2009: Submitted from host <hostA> with hold, CWD 
+                     </clusters/lsf10.1.0/work/cluster1/logdir>; 
+ PENDING REASONS: 
+ Job was suspended by LSF admin or root while pending; 
+ SCHEDULING PARAMETERS: 
+           r15s   r1m  r15m   ut      pg    io   ls    it    tmp    swp    mem   tlu 
+ loadSched   -     -     -     -       -     -    -     -     -      -      -     - 
+ loadStop    -     -     -     -       -     -    -     -     -      -      -     - 
+                 cpuspeed    bandwidth 
+ loadSched          -            - 
+ loadStop           -            - 
+...
+A dash (-) in any entry means that the column does not apply to the row.
+Accounting information for all jobs associated with an application proﬁle
+Procedure
+Run bacct -l -app application_proﬁle_name.
+bacct -l -app fluent 
+Accounting information about jobs that are: 
+  - submitted by users jchan, 
+  - accounted on all projects. 
+  - completed normally or exited 
+  - executed on all hosts. 
+  - submitted to all queues. 
+  - accounted on all service classes. 
+  - associated with application profiles: fluent 
+------------------------------------------------------------------------------ 
+  
+Job <207>, User <user1>, Project <default>, Application <fluent>, Status <DONE> 
+                     , Queue <normal>, Command <dir> 
+Wed May 31 16:52:42 2009: Submitted from host <hostA>, CWD <$HOME/src/mainline/lsbatch/cmd>; 
+Wed May 31 16:52:48 2009: Dispatched to 10 Hosts/Processors <10*hostA> 
+Wed May 31 16:52:48 2009: Completed <done>. 
+Accounting information about this job: 
+     CPU_T     WAIT     TURNAROUND   STATUS     HOG_FACTOR    MEM    SWAP 
+      0.02        6              6     done         0.0035     2M      5M 
+------------------------------------------------------------------------------ 
+... 
+SUMMARY:      ( time unit: second ) 
+ Total number of done jobs:      15      Total number of exited jobs:     4 
+ Total CPU time consumed:       0.4      Average CPU time consumed:     0.0 
+ Maximum CPU time of a job:     0.0      Minimum CPU time of a job:     0.0 
+ Total wait time in queues:  5305.0 
+ Average wait time in queue:  279.2 
+ Maximum wait time in queue: 3577.0      Minimum wait time in queue:    2.0 
+ Average turnaround time:       306 (seconds/job) 
+ Maximum turnaround time:      3577      Minimum turnaround time:         5 
+ Average hog factor of a job:  0.00 ( cpu time / turnaround time ) 
+ Maximum hog factor of a job:  0.01      Minimum hog factor of a job:  0.00 
+ Total throughput:             0.14 (jobs/hour)  during  139.98 hours 
+ Beginning time:       May 31 16:52      Ending time:          Jun  6 12:51 
+...
+Viewing job success exit values and re-queue exit code information
+Procedure
+1. Run bjobs -l to see command-line re-queue exit values if deﬁned.
+bjobs -l 
+Job <405>, User <user1>, Project <default>, Status <PSUSP>,  
+Queue <normal>, Command <myjob 1234> 
+Tue Dec 11 23:32:00 2009: Submitted from host <hostA> with hold, CWD </scratch/d 
+                     ev/lsfjobs/user1/work>, Requeue Exit Values <2>; 
+...
+IBM Spectrum LSF 339
+
+2. Run bapp -l to see SUCCESS_EXIT_VALUES when the parameter is deﬁned in an application proﬁle.
+bapp -l 
+APPLICATION NAME: fluent 
+ -- Run FLUENT applications 
+STATISTICS: 
+   NJOBS     PEND      RUN    SSUSP    USUSP      RSV  
+       0        0        0        0        0        0 
+PARAMETERS: 
+SUCCESS_EXIT_VALUES: 230 222 12 
+...
+3. Run bhist -l to show command-line speciﬁed re-queue exit values with bsub and modiﬁed re-queue exit values with bmod.
+bhist -l 
+Job <405>, User <user1>, Project <default>, Command <myjob 1234> 
+Tue Dec 11 23:32:00 2009: Submitted from host <hostA> with hold, to Queue  
+<norma 
+                     l>, CWD </scratch/dev/lsfjobs/user1/work>, R 
+                     e-queue Exit Values <1>; 
+Tue Dec 11 23:33:14 2009: Parameters of Job are changed: 
+                         Requeue exit values changes to: 2; 
+...
+4. Run bhist -l and bacct -l to see success exit values when a job is done successfully. If the job exited with default success exit value 0, bhist
+and bacct do not display the 0 exit value
+bhist -l 405 
+Job <405>, User <user1>, Project <default>, Interactive pseudo-terminal mode, Co 
+                     mmand <myjob 1234> 
+... 
+Sun Oct  7 22:30:19 2009: Done successfully. Success Exit Code: 230 222 12. 
+...
+bacct -l 405 
+... 
+Job <405>, User <user1>, Project <default>, Status <DONE>, Queue <normal>, Comma 
+                     nd <myjob 1234> 
+Wed Sep 26 18:37:47 2009: Submitted from host <hostA>, CWD </scratch/dev/lsfjobs/user1/wo 
+                     rk>; 
+Wed Sep 26 18:37:50 2009: Dispatched to <hostA>; 
+Wed Sep 26 18:37:51 2009: Completed <done>. Success Exit Code: 230 222 12. 
+...
+View fair share information
+Monitor how resources are distributed in fair share scheduling policies.
+View queue-level fair share information
+Viewing cross-queue fair share information
+ Viewing hierarchical share information for a group
+ Use bugroup -l to ﬁnd out if you belong to a group, and what its share distribution.
+Viewing hierarchical share information for a host partition
+ By default, bhpart displays only the top-level share accounts associated with the partition.
+Viewing host partition information
+ 
+View queue-level fair share information
+Procedure
+To ﬁnd out if a queue is a fair share queue, run the bqueues -l command. If you see USER_SHARES in the output, then a fair share policy is conﬁgured
+for the queue.
+Viewing cross-queue fair share information
+340    IBM Spectrum LSF
+
+Procedure
+Run bqueues -l to know if a queue is part of cross-queue fair share.
+The FAIRSHARE_QUEUES parameter indicates cross-queue fair share. The ﬁrst queue that is listed in the FAIRSHARE_QUEUES parameter is the
+parent queue: the queue in which fair share is conﬁgured; all other queues listed inherit the fair share policy from the parent queue.
+All queues that participate in the same cross-queue fair share display the same fair share information (SCHEDULING POLICIES,
+FAIRSHARE_QUEUES, USER_SHARES, and SHARE_INFO_FOR) when bqueues -l is used. Fair share information applies to all the jobs running in all
+the queues in the parent-child set.
+bqueues -l also displays DISPATCH_ORDER in the parent queue if it is deﬁned.
+Viewing hierarchical share information for a group
+Use bugroup -l to ﬁnd out if you belong to a group, and what its share distribution.
+Procedure
+Run bugroup -l:
+bugroup -l 
+GROUP_NAME: group1  
+USERS: group2/ group3/  
+SHARES:  [group2,20] [group3,10] 
+GROUP_NAME: group2  
+USERS: user1 user2 user3  
+SHARES: [others,10] [user3,4] 
+GROUP_NAME: group3  
+USERS: all  
+SHARES: [user2,10] [default,5]
+This command displays all the share trees that are conﬁgured, even if they are not used in any fair share policy.
+Viewing hierarchical share information for a host partition
+By default, bhpart displays only the top-level share accounts associated with the partition.
+Procedure
+Use bhpart -r to display the group information recursively.
+The output lists all the groups in the share tree, starting from the top level, and displays the following information:
+Number of shares
+Dynamic share priority (LSF compares dynamic priorities of users who belong to same group, at the same level)
+Number of started jobs
+Number of reserved jobs
+CPU time, in seconds (cumulative CPU time for all members of the group, recursively)
+Run time, in seconds (historical and actual run time for all members of the group, recursively)
+bhpart -r Partition1 
+HOST_PARTITION_NAME:  Partition1  
+HOSTS:  HostA 
+SHARE_INFO_FOR: Partition1/  
+USER/GROUP SHARES PRIORITY STARTED RESERVED CPU_TIME RUN_TIME  
+group1      40      1.867      5        0    48.4       17618  
+group2      20      0.775      6        0   607.7       24664 
+SHARE_INFO_FOR: Partition1/group2/ 
+USER/GROUP SHARES PRIORITY STARTED RESERVED CPU_TIME RUN_TIME  
+user1       8      1.144     1       0        9.6       5108  
+user2       2      0.667     0       0       0.0        0  
+others      1      0.046     5       0       598.1      19556
+Viewing host partition information
+IBM Spectrum LSF 341
+
+Procedure
+Use bhpart to view the following information:
+Host partitions conﬁgured in your cluster
+Number of shares (for each user or group in a host partition)
+Dynamic share priority (for each user or group in a host partition)
+Number of started jobs
+Number of reserved jobs
+CPU time, in seconds (cumulative CPU time for all members of the group, recursively)
+Run time, in seconds (historical and actual run time for all members of the group, recursively)
+% bhpart Partition1 
+HOST_PARTITION_NAME: Partition1 
+HOSTS: hostA hostB hostC 
+  
+SHARE_INFO_FOR: Partition1/ 
+USER/GROUP SHARES PRIORITY STARTED RESERVED CPU_TIME RUN_TIME 
+group1     100     5.440      5       0       200.0     1324
+Viewing information about SLAs and service classes
+Monitoring the progress of an SLA (bsla)
+Use bsla to display the properties of service classes conﬁgured in lsb.serviceclasses and dynamic state information for each service class. The
+following are some examples:
+One velocity goal of service class Toﬁno is active and on time. The other conﬁgured velocity goal is inactive.
+% bsla 
+SERVICE CLASS NAME: Tofino 
+-- day and night velocity 
+PRIORITY = 20 
+GOAL:  VELOCITY 30 
+ACTIVE WINDOW: (17:30-8:30) 
+STATUS:  Inactive 
+SLA THROUGHPUT:  0.00 JOBS/CLEAN_PERIOD 
+GOAL: VELOCITY 10 
+ACTIVE WINDOW: (9:00-17:00) 
+STATUS: Active:On time 
+SLA THROUGHPUT:  10.00 JOBS/CLEAN_PERIOD 
+ NJOBS   PEND    RUN     SSUSP   USUSP   FINISH 
+  300    280      10        0       0      10
+The deadline goal of service class Uclulet is not being met, and bsla displays status Active:Delayed.
+% bsla 
+SERVICE CLASS NAME: Uclulet 
+-- working hours 
+PRIORITY = 20 
+GOAL:  DEADLINE 
+ACTIVE WINDOW: (8:30-19:00) 
+STATUS:  Active:Delayed 
+SLA THROUGHPUT:  0.00 JOBS/CLEAN_PERIOD 
+ESTIMATED FINISH TIME:  (Tue Oct 28 06:17) 
+OPTIMUM NUMBER OF RUNNING JOBS:  6 
+ NJOBS   PEND    RUN     SSUSP   USUSP   FINISH 
+   40     39       1        0       0       0 
+The conﬁgured velocity goal of the service class Kyuquot is active and on time. The conﬁgured deadline goal of the service class is inactive.
+% bsla Kyuquot  
+SERVICE CLASS NAME: Kyuquot  
+-- Daytime/Nighttime SLA 
+PRIORITY = 23 
+USER_GROUP:  user1 user2 
+GOAL:  VELOCITY 8 
+ACTIVE WINDOW: (9:00-17:30) 
+STATUS:  Active:On time 
+SLA THROUGHPUT:  0.00 JOBS/CLEAN_PERIOD 
+342    IBM Spectrum LSF
+
+GOAL: DEADLINE  
+ACTIVE WINDOW: (17:30-9:00) 
+STATUS: Inactive 
+SLA THROUGHPUT:  0.00 JOBS/CLEAN_PERIOD 
+ NJOBS   PEND    RUN     SSUSP   USUSP   FINISH 
+    0      0       0        0       0       0 
+The throughput goal of service class Inuvik is always active. bsla displays:
+Status as active and on time
+An optimum number of 5 running jobs to meet the goal
+Actual throughput of 10 jobs per hour based on the last
+CLEAN_PERIOD
+% bsla Inuvik  
+SERVICE CLASS NAME: Inuvik  
+-- constant throughput 
+PRIORITY = 20 
+GOAL:  THROUGHPUT 6 
+ACTIVE WINDOW: Always Open 
+STATUS:  Active:On time 
+SLA THROUGHPUT:  10.00 JOBS/CLEAN_PERIOD 
+OPTIMUM NUMBER OF RUNNING JOBS:  5 
+ NJOBS   PEND    RUN     SSUSP   USUSP   FINISH 
+   110     95      5        0       0      10 
+Tracking historical behavior of an SLA (bacct)
+Use bacct to display historical performance of a service class. For example, service classes Inuvik and Tuktoyaktuk conﬁgure throughput goals.
+% bsla  
+SERVICE CLASS NAME: Inuvik  
+-- throughput 6 
+PRIORITY = 20 
+GOAL:  THROUGHPUT 6 
+ACTIVE WINDOW: Always Open 
+STATUS:  Active:On time 
+SLA THROUGHPUT:  10.00 JOBS/CLEAN_PERIOD 
+OPTIMUM NUMBER OF RUNNING JOBS:  5 
+ NJOBS   PEND    RUN     SSUSP   USUSP   FINISH 
+   111     94      5        0       0      12 
+-------------------------------------------------------------- 
+SERVICE CLASS NAME: Tuktoyaktuk  
+-- throughput 3 
+PRIORITY = 15 
+GOAL:  THROUGHPUT 3 
+ACTIVE WINDOW: Always Open 
+STATUS:  Active:On time 
+SLA THROUGHPUT:  4.00 JOBS/CLEAN_PERIOD 
+OPTIMUM NUMBER OF RUNNING JOBS:  4 
+ NJOBS   PEND    RUN     SSUSP   USUSP   FINISH 
+  104     96       4        0       0       4
+These two service classes have the following historical performance. For SLA Inuvik, bacct shows a total throughput of 8.94 jobs per hour over a
+period of 20.58 hours:
+% bacct -sla Inuvik 
+Accounting information about jobs that are: 
+ - submitted by users user1, 
+ - accounted on all projects. 
+ - completed normally or exited 
+ - executed on all hosts. 
+ - submitted to all queues. 
+ - accounted on service classes Inuvik,  
+-------------------------------------------------------------- 
+SUMMARY:      ( time unit: second )  
+ Total number of done jobs:     183      Total number of exited jobs:     1 
+ Total CPU time consumed:      40.0      Average CPU time consumed:     0.2 
+ Maximum CPU time of a job:     0.3      Minimum CPU time of a job:     0.1 
+ Total wait time in queues: 1947454.0 
+ Average wait time in queue:10584.0 
+IBM Spectrum LSF 343
+
+ Maximum wait time in queue:18912.0      Minimum wait time in queue:    7.0 
+ Average turnaround time:     12268 (seconds/job) 
+ Maximum turnaround time:     22079      Minimum turnaround time:      1713 
+ Average hog factor of a job:  0.00 ( cpu time / turnaround time ) 
+ Maximum hog factor of a job:  0.00      Minimum hog factor of a job:  0.00 
+ Total throughput:             8.94 (jobs/hour)  during   20.58 hours 
+ Beginning time:       Oct 11 20:23      Ending time:          Oct 12 16:58 
+For SLA Tuktoyaktuk, bacct shows a total throughput of 4.36 jobs per hour over a period of 19.95 hours:
+% bacct -sla 
+Tuktoyaktuk
+naround time ) 
+ Maximum hog fa 
+Accounting information about jobs that are: 
+ - submitted by users user1, 
+ - accounted on all projects. 
+ - completed normally or exited 
+ - executed on all hosts. 
+ - submitted to all queues. 
+ - accounted on service classes Tuktoyaktuk,  
+-------------------------------------------------------------- 
+SUMMARY:      ( time unit: second )  
+ Total number of done jobs:      87      Total number of exited jobs:     0 
+ Total CPU time consumed:      18.0      Average CPU time consumed:     0.2 
+ Maximum CPU time of a job:     0.3      Minimum CPU time of a job:     0.1 
+ Total wait time in queues: 2371955.0 
+ Average wait time in queue:27263.8 
+ Maximum wait time in queue:39125.0      Minimum wait time in queue:    7.0 
+ Average turnaround time:     30596 (seconds/job) 
+ Maximum turnaround time:     44778      Minimum turnaround time:      3355 
+ Average hog factor of a job:  0.00 ( cpu time / turctor of a job:  0.00      Minimum hog factor of a job:  
+0.00 
+ Total throughput:             4.36 (jobs/hour)  during   19.95 hours 
+ Beginning time:       Oct 11 20:50      Ending time:          Oct 12 16:47
+Because the run times are not uniform, both service classes actually achieve higher throughput than conﬁgured.
+Monitoring the progress of an SLA (bsla)
+ The bsla command displays the properties of service classes conﬁgured in the lsb.serviceclasses ﬁle.
+Monitoring the progress of an SLA (bsla)
+The bsla command displays the properties of service classes conﬁgured in the lsb.serviceclasses ﬁle.
+Procedure
+Use the bsla command to display the properties of service classes conﬁgured in the lsb.serviceclasses ﬁle and dynamic information about the state
+of each conﬁgured service class.
+Examples
+The guarantee SLA bigMemSLA has 10 slots guaranteed, limited to one slot per host.
+bsla 
+SERVICE CLASS NAME:  bigMemSLA 
+ --  
+ACCESS CONTROL: QUEUES[normal]  
+AUTO ATTACH: Y 
+  
+GOAL:  GUARANTEE  
+  
+POOL NAME                    TYPE  GUARANTEED   USED 
+bigMemPool                  slots          10      0 
+One velocity goal of service class Tofino is active and on time. The other conﬁgured velocity goal is inactive.
+bsla 
+SERVICE CLASS NAME: Tofino 
+  -- day and night velocity  
+PRIORITY: 20  
+  
+GOAL:  VELOCITY 30   
+ACTIVE WINDOW: (17:30-8:30)   
+344    IBM Spectrum LSF
+
+STATUS:  Inactive  
+SLA THROUGHPUT:  0.00 JOBS/CLEAN_PERIOD  
+  
+GOAL: VELOCITY 10  
+ACTIVE WINDOW: (9:00-17:00)  
+STATUS: Active:On time  
+SLA THROUGHPUT:  10.00 JOBS/CLEAN_PERIOD      
+  
+NJOBS   PEND    RUN     SSUSP   USUSP   FINISH     
+ 300    280      10        0       0      10 
+The deadline goal of service class Sooke is not being met, and the bsla command displays status Active:Delayed:
+bsla 
+SERVICE CLASS NAME:  Sooke 
+  -- working hours  
+PRIORITY: 20  
+  
+GOAL:  DEADLINE   
+ACTIVE WINDOW: (8:30-19:00)   
+STATUS:  Active:Delayed  
+SLA THROUGHPUT:  0.00 JOBS/CLEAN_PERIOD  
+  
+ESTIMATED FINISH TIME:  (Tue Oct 28 06:17)  
+OPTIMUM NUMBER OF RUNNING JOBS:  6     
+NJOBS   PEND    RUN     SSUSP   USUSP   FINISH      
+ 40     39       1        0       0       0 
+The conﬁgured velocity goal of the service class Duncan is active and on time. The conﬁgured deadline goal of the service class is inactive.
+bsla Duncan  
+SERVICE CLASS NAME:  Duncan 
+   -- Daytime/Nighttime SLA  
+PRIORITY:  23  
+USER_GROUP:  user1 user2  
+  
+GOAL:  VELOCITY 8  
+ACTIVE WINDOW: (9:00-17:30)   
+STATUS:  Active:On time  
+SLA THROUGHPUT:  0.00 JOBS/CLEAN_PERIOD  
+  
+GOAL:  DEADLINE   
+ACTIVE WINDOW: (17:30-9:00)   
+STATUS:  Inactive  
+SLA THROUGHPUT:  0.00 JOBS/CLEAN_PERIOD     
+  
+NJOBS   PEND    RUN     SSUSP   USUSP   FINISH       
+ 0      0       0        0       0       0 
+The throughput goal of service class Sidney is always active. The bsla command displays information about the service class:
+Status as active and on time
+An optimum number of 5 running jobs to meet the goal
+Actual throughput of 10 jobs per hour based on the last CLEAN_PERIOD
+bsla Sidney 
+SERVICE CLASS NAME:  Sidney 
+  -- constant throughput  
+PRIORITY:  20  
+  
+GOAL:  THROUGHPUT 6  
+ACTIVE WINDOW: Always Open   
+STATUS:  Active:On time  
+SLA THROUGHPUT:  10.00 JOBs/CLEAN_PERIOD  
+OPTIMUM NUMBER OF RUNNING JOBS:  5     
+  
+NJOBS   PEND    RUN     SSUSP   USUSP   FINISH     
+ 110     95       5        0       0      10 
+Viewing jobs running in an SLA (bjobs)
+The bjobs -sla command shows jobs running in a service class.
+Procedure
+Use the bjobs -sla command to display jobs running in a service class:
+bjobs -sla Sidney 
+JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME 
+136     user1   RUN   normal     hostA       hostA       sleep 100  Sep 28 13:24 
+137     user1   RUN   normal     hostA       hostB       sleep 100 Sep 28 13:25 
+IBM Spectrum LSF 345
+
+For time-based SLAs, use the -sla option with the -g option to display job groups attached to a service class. Once a job group is attached to a time-
+based service class, all jobs submitted to that group are subject to the SLA.
+Track historical behavior of an SLA (bacct)
+The bacct command shows historical performance of a service class.
+Procedure
+Use the bacct command to display historical performance of a service class.
+The service classes Sidney and Surrey conﬁgure throughput goals.
+bsla 
+SERVICE CLASS NAME:  Sidney 
+  -- throughput 6   
+PRIORITY:  20  
+  
+GOAL:  THROUGHPUT 6  
+ACTIVE WINDOW: Always Open   
+STATUS:  Active:On time  
+SLA THROUGHPUT:  10.00 JOBs/CLEAN_PERIOD  
+OPTIMUM NUMBER OF RUNNING JOBS:  5     
+  
+NJOBS   PEND    RUN     SSUSP   USUSP   FINISH     
+ 111     94       5        0       0      12  
+---------------------------------------------- 
+SERVICE CLASS NAME:  Surrey 
+  -- throughput 3  
+PRIORITY:  15  
+  
+GOAL:  THROUGHPUT 3  
+ACTIVE WINDOW: Always Open   
+STATUS:  Active:On time  
+SLA THROUGHPUT:  4.00 JOBs/CLEAN_PERIOD  
+OPTIMUM NUMBER OF RUNNING JOBS:  4     
+  
+NJOBS   PEND    RUN     SSUSP   USUSP   FINISH     
+ 104     96       4        0       0       4 
+These two service classes have the following historical performance. For SLA Sidney, the bacct command shows a total throughput of 8.94 jobs per
+hour over a period of 20.58 hours:
+bacct -sla Sidney 
+Accounting information about jobs that are: 
+    - submitted by users user1, 
+    - accounted on all projects. 
+   - completed normally or exited 
+   - executed on all hosts. 
+   - submitted to all queues. 
+   - accounted on service classes Sidney,   
+---------------------------------------------- 
+SUMMARY:      ( time unit: second )    
+Total number of done jobs:     183      Total number of exited jobs:     1   
+Total CPU time consumed:      40.0      Average CPU time consumed:     0.2   
+Maximum CPU time of a job:     0.3      Minimum CPU time of a job:     0.1   
+Total wait time in queues: 1947454.0   
+Average wait time in queue:10584.0   
+Maximum wait time in queue:18912.0      Minimum wait time in queue:    7.0   
+Average turnaround time:     12268 (seconds/job)   
+Maximum turnaround time:     22079      Minimum turnaround time:      1713   
+Average hog factor of a job:  0.00 ( cpu time / turnaround time )   
+Maximum hog factor of a job:  0.00      Minimum hog factor of a job:  0.00 
+Total throughput:             8.94 (jobs/hour)  during   20.58 hours  
+Beginning time:       Oct 11 20:23      Ending time:          Oct 12 16:58 
+For SLA Surrey, the bacct command shows a total throughput of 4.36 jobs per hour over a period of 19.95 hours:
+bacct -sla Surrey 
+Accounting information about jobs that are: 
+    - submitted by users user1, 
+    - accounted on all projects. 
+   - completed normally or exited. 
+   - executed on all hosts. 
+   - submitted to all queues. 
+   - accounted on service classes Surrey,  
+-----------------------------------------  
+  
+SUMMARY:      ( time unit: second )    
+Total number of done jobs:      87      Total number of exited jobs:     0   
+Total CPU time consumed:      18.0      Average CPU time consumed:     0.2   
+Maximum CPU time of a job:     0.3      Minimum CPU time of a job:     0.1   
+Total wait time in queues: 2371955.0   
+346    IBM Spectrum LSF
+
+Average wait time in queue:27263.8   
+Maximum wait time in queue:39125.0      Minimum wait time in queue:    7.0   
+Average turnaround time:     30596 (seconds/job)   
+Maximum turnaround time:     44778      Minimum turnaround time:      3355   
+Average hog factor of a job:  0.00 ( cpu time / turnaround time )   
+Maximum hog factor of a job:  0.00      Minimum hog factor of a job:  0.00 
+Total throughput:             4.36 (jobs/hour)  during   19.95 hours  
+Beginning time:       Oct 11 20:50      Ending time:          Oct 12 16:47 
+Because the run times are not uniform, both service classes actually achieve higher throughput than conﬁgured.
+View parallel jobs in EGO enabled SLA
+The bsla -N command shows job counter information by job slots for a service class
+Procedure
+Use the bsla -N command to display service class job counter information by job slots instead of number of jobs. NSLOTS, PEND, RUN, SSUSP, USUSP
+are all counted in slots rather than number of jobs:
+user1@system-02-461: bsla -N SLA1 
+SERVICE CLASS NAME:  SLA1 
+PRIORITY:  10 
+CONSUMER:  sla1 
+EGO_RES_REQ: any host 
+MAX_HOST_IDLE_TIME: 120 
+EXCLUSIVE:  N 
+GOAL:  VELOCITY 1 
+ACTIVE WINDOW: Always Open 
+STATUS:  Active:On time 
+SLA THROUGHPUT:  0.00 JOBS/CLEAN_PERIOD 
+   NSLOTS  PEND    RUN     SSUSP   USUSP 
+    42     28      14        0       0 
+Viewing conﬁgured guaranteed resource pools
+Resource-type SLAs have the host or slot guarantee conﬁgured within the guaranteed resource pool.
+Procedure
+Use the bresources -g -l -m options to see details of the guaranteed resource pool conﬁguration, including a list of hosts currently in the resource
+pool.
+For example:
+bresources -glm 
+GUARANTEED RESOURCE POOL: packagePool 
+guaranteed package policy, where each package comprises slots and memory together on a single host 
+TYPE: package[slots=1:mem=10000] 
+DISTRIBUTION: [sc1, 4] [sc2, 2] 
+LOAN_POLICIES: QUEUES[priority] DURATION[10] 
+HOSTS: hostA.example.com hostB.example.com hostC.example.com hostD.example.com 
+STATUS: ok 
+RESOURCE SUMMARY: 
+                                    slots        mem   packages  
+TOTAL                                  48     191.9G         18  
+FREE                                   22     168.3G         10  
+ALLOCATED                               6      58.5G          6  
+OWNER USE                               8       3.9G          -  
+LOAN USE                                8       1.9G          -  
+OTHER USE                              10       5.8G          -  
+                                                          OWNER       LOAN      OTHER 
+OWNER                            RESOURCE  ALLOCATED        USE        USE        USE 
+sc1                                 slots          4          8          8         10 
+                                      mem        39G       3.9G       1.9G       5.8G 
+                                 packages          4          -          -          - 
+sc2                                 slots          2          0          0          0 
+                                      mem      19.5G          0          0          0 
+                                 packages          2          -          -          - 
+IBM Spectrum LSF 347
+
+                                                                      OWNER       LOAN      OTHER 
+HOST                   RESERVED   RESOURCE      TOTAL       FREE        USE        USE        USE 
+hostA.example.com             Y      slots         16          0          8          8          0 
+                                       mem      63.9G      54.2G       3.9G       1.9G          0 
+                                  packages          6          0          -          -          - 
+hostB.example.com             -      slots         16          8          0          0          8 
+                                       mem      63.9G        56G          0          0       3.9G 
+                                  packages          6          5          -          -          - 
+hostC.example.com             -      slots         16         14          0          0          2 
+                                       mem      63.9G        58G          0          0       1.9G 
+                                  packages          6          5          -          -          - 
+hostD.example.com             -          -          -          -          -          -          -
+Viewing guarantee policy information
+ 
+Viewing guarantee policy information
+About this task
+Use the bsla command to view guarantee policy information from the point of view of a service class. For service classes with guarantee goals, the
+command lists conﬁguration information for the service class, as well as dynamic information for the guarantees made to that service class in the
+various pools.
+The following is an example of output from the bsla command:
+bsla
+SERVICE CLASS NAME:  sla1 
+ -- SLA ONE 
+ACCESS CONTROL:      QUEUES[normal] 
+AUTO ATTACH:         Y 
+GOAL:                GUARANTEE 
+                                      GUARANTEE  GUARANTEE   TOTAL 
+POOL NAME                       TYPE     CONFIG       USED    USED 
+ mypack                      package         74          0       0
+SERVICE CLASS NAME:  sla2 
+ -- SLA TWO 
+ACCESS CONTROL:      QUEUES[priority] 
+AUTO ATTACH:         Y 
+GOAL:                GUARANTEE 
+                                      GUARANTEE  GUARANTEE   TOTAL 
+POOL NAME                       TYPE     CONFIG       USED    USED 
+ mypack                      package         18          0       0
+bresources –g provides information on guarantee policies. It gives a basic summary of the dynamic info of the guarantee pools.
+This can also be used together with the –l option: bresources –g –l. This displays more details about the guarantee policies, including showing what
+is guaranteed and in use by each of the service classes with a guarantee in the pool. For example:
+bresources -gl 
+GUARANTEED RESOURCE POOL: packagePool 
+guaranteed package policy, where each package comprises slots and memory together on a single host 
+TYPE: package[slots=1:mem=10000] 
+DISTRIBUTION: [sc1, 4] [sc2, 2] 
+LOAN_POLICIES: QUEUES[priority] DURATION[10] 
+HOSTS: hostA.example.com hostB.example.com 
+STATUS: ok 
+RESOURCE SUMMARY: 
+                                    slots        mem   packages  
+TOTAL                                  32     127.9G         12  
+FREE                                    8     110.3G          5  
+ALLOCATED                               6      58.5G          6  
+OWNER USE                               8       3.9G          -  
+LOAN USE                                8       1.9G          -  
+OTHER USE                               8       3.9G          -  
+                                                          OWNER       LOAN      OTHER 
+OWNER                            RESOURCE  ALLOCATED        USE        USE        USE 
+sc1                                 slots          4          8          8          8 
+348    IBM Spectrum LSF
+
+                                      mem        39G       3.9G       1.9G       3.9G 
+                                 packages          4          -          -          - 
+sc2                                 slots          2          0          0          0 
+                                      mem      19.5G          0          0          0 
+                                 packages          2          -          -          -
+The –m option can be used together with –g and –l to get additional host information, including:
+Total packages on the host
+Currently available packages on the host
+Number of resources allocated on the host to jobs with guarantees in the pool
+Number of resources used by owner jobs
+Number of resources used by loaning jobs
+Number of resources used by other jobs
+The following example shows hosts in a package pool:
+bresources -glm 
+GUARANTEED RESOURCE POOL: packagePool 
+guaranteed package policy, where each package comprises slots and memory together on a single host 
+TYPE: package[slots=1:mem=10000] 
+DISTRIBUTION: [sc1, 4] [sc2, 2] 
+LOAN_POLICIES: QUEUES[priority] DURATION[10] 
+HOSTS: hostA.example.com hostB.example.com 
+STATUS: ok 
+RESOURCE SUMMARY: 
+                                    slots        mem   packages  
+TOTAL                                  32     127.9G         12  
+FREE                                    8     110.3G          5  
+ALLOCATED                               6      58.5G          6  
+OWNER USE                               8       3.9G          -  
+LOAN USE                                8       1.9G          -  
+OTHER USE                               8       3.9G          -  
+                                                          OWNER       LOAN      OTHER 
+OWNER                            RESOURCE  ALLOCATED        USE        USE        USE 
+sc1                                 slots          4          8          8          8 
+                                      mem        39G       3.9G       1.9G       3.9G 
+                                 packages          4          -          -          - 
+sc2                                 slots          2          0          0          0 
+                                      mem      19.5G          0          0          0 
+                                 packages          2          -          -          - 
+                                                                      OWNER       LOAN      OTHER 
+HOST                   RESERVED   RESOURCE      TOTAL       FREE        USE        USE        USE 
+hostA.example.com             Y      slots         16          0          8          8          0 
+                                       mem      63.9G      54.2G       3.9G       1.9G          0 
+                                  packages          6          0          -          -          - 
+hostB.example.com             -      slots         16          8          0          0          8 
+                                       mem      63.9G        56G          0          0       3.9G 
+                                  packages          6          5          -          -          -
+View user and user group information
+Use the busers and bugroup commands to display information about LSF users and user groups.
+The busers command displays information about users and user groups. The default is to display information about the user who runs the command.
+The busers command displays the following information:
+Maximum number of jobs a user or group can run on a single processor
+Maximum number of job slots a user or group can use in the cluster
+Maximum number of pending jobs a user or group can have in the system.
+Total number of job slots required by all submitted jobs of the user
+Number of job slots in the PEND, RUN, SSUSP, and USUSP states
+The bugroup command displays information about user groups and which users belong to each group.
+The busers and bugroup commands have extra options. See the busers(1) and bugroup(1) man pages for more details.
+Restriction: The keyword all is reserved by LSF. Make sure that no actual users are assigned the user name all.
+IBM Spectrum LSF 349
+
+Viewing user information
+Viewing user pending job threshold information
+Customize user information output
+Viewing user group information
+Viewing user share information
+Viewing user group admin information
+Viewing user information
+Procedure
+Run busers all.
+busers all 
+USER/GROUP  JL/P  MAX  NJOBS  PEND  RUN   SSUSP  USUSP  RSV  
+default       12    -      -     -    -       -      -    -  
+user9          1   12     34    22   10       2      0    0  
+groupA         -  100     20     7   11       1      1    0
+Viewing user pending job threshold information
+Procedure
+Run busers -w, which displays the pending job threshold column at the end of the busers all output.
+busers -w 
+USER/GROUP  JL/P  MAX  NJOBS  PEND  RUN   SSUSP  USUSP  RSV   MPEND  
+default       12    -      -     -    -       -      -    -      10  
+user9          1   12     34    22   10       2      0    0     500  
+groupA         -  100     20     7   11       1      1    0  200000
+Customize user information output
+By default, the busers command displays a predeﬁned set of queue information. While you can use various busers options to display speciﬁc user
+information based on your needs, you can also customize the speciﬁc ﬁelds that busers displays. Customize output to create a speciﬁc busers
+output format that shows all the required information so you can easily parse the information by using custom scripts or to display the information in
+a predeﬁned format.
+Use the LSB_BUSERS_FORMAT parameter in lsf.conf or the LSB_BUSERS_FORMAT runtime environment variable to deﬁne the default busers output
+format for LSF:
+LSB_BUSERS_FORMAT="field_name ..."
+Use the busers -o option to deﬁne the custom output at the command level:
+busers ... -o "field_name ..."
+Specify which busers ﬁelds to display, and in which order.
+The busers -o option overrides the LSB_BUSERS_FORMAT environment variable, which overrides the LSB_BUSERS_FORMAT setting in lsf.conf.
+The following are the ﬁeld names used to specify the busers ﬁelds to display:
+user (Name of the user or user group)
+jl/p
+max
+nstart (Current number of starting tasks for all of a users' jobs)
+pend
+run
+ssusp
+ususp
+rsv
+njobs
+pjobs
+mpend
+350    IBM Spectrum LSF
+
+mpjobs
+priority
+ngpus (Number of physical GPUs that the users or user groups are using)
+ngpus_shared (Number of physical GPUs that the users or user groups are using in shared mode)
+ngpus_excl (Number of physical GPUs that the users or user groups are using in exclusive mode)
+ngpus_shared_jexcl (Number of physical GPUs that the users or user groups are using in shared mode, but the jobs of the user is exclusive)
+all (Displays all ﬁelds. Specify the colon (:) with an output width that applies to all ﬁelds. Available starting in Fix Pack 14.)
+Note: The following resource limit ﬁeld names are supported, but show the same content as their corresponding maximum resource limit ﬁelds (that
+is, the following resource limit ﬁeld names are aliases): corelimit, cpulimit, datalimit, filelimit, memlimit, processlimit, runlimit,
+stacklimit, swaplimit, tasklimit, threadlimit.
+For example, corelimit is the same as max_corelimit.
+Field names and aliases are not case-sensitive. Valid values for the output width are any positive integer from 1 to 4096.
+Viewing user group information
+Procedure
+Run bugroup.
+bugroup 
+GROUP_NAME           USERS 
+testers              user1 user2  
+engineers            user3 user4 user10 user9 
+develop              user4 user10 user11 user34 engineers/ 
+system               all users
+Viewing user share information
+Procedure
+Run bugroup -l, which displays user share group membership information in long format.
+bugroup -l 
+GROUP_NAME:  testers     
+USERS:       user1 user2   
+SHARES:      [user1, 4] [others, 10]   
+  
+GROUP_NAME:  engineers     
+USERS:       user3 user4 user10 user9   
+SHARES:      [others, 10] [user9, 4]   
+  
+GROUP_NAME:  system   
+USERS:       all users  
+SHARES:      [user9, 10] [others, 15]   
+  
+GROUP_NAME:  develop     
+USERS:       user4 user10 user11 engineers/  
+SHARES:      [engineers, 40] [user4, 15] [user10, 34] [user11, 16]
+Viewing user group admin information
+About this task
+If user group administrators are conﬁgured in the UserGroup sections of lsb.users they appear in bugroup output.
+Procedure
+Run bugroup -w, which displays the user group conﬁguration without truncating columns.
+bugroup -w 
+GROUP_NAME    USERS                    GROUP_ADMIN 
+engineering   user2 groupX groupZ      adminA[usershares] 
+drafting      user1 user10 user12      adminA adminB[full]
+IBM Spectrum LSF 351
+
+View queue information
+The bqueues command displays information about queues. The bqueues -l option also gives current statistics about the jobs in a particular queue,
+such as the total number of jobs in the queue, the number of running and suspended jobs.
+View Command
+Available queues bqueues
+Queue status bqueues
+Detailed queue information bqueues -l
+State change history of a queuebadmin qhist
+Queue administrators bqueues -l for queue
+Queue states
+Queue states, displayed by bqueues, describe the ability of a queue to accept and start batch jobs using a combination of the following states:
+Viewing available queues and queue status
+ Viewing detailed queue information
+ Customize queue information output
+ Viewing the state change history of a queue
+ Viewing queue administrators
+ Viewing exception status for queues (bqueues)
+ 
+Queue states
+Queue states, displayed by bqueues, describe the ability of a queue to accept and start batch jobs using a combination of the following states:
+Open: queues accept new jobs
+Closed: queues do not accept new jobs
+Active: queues start jobs on available hosts
+Inactive: queues hold all jobs
+State Description
+Open:Active Accepts and starts new jobs—normal processing
+Open:Inact Accepts and holds new jobs—collecting
+Closed:ActiveDoes not accept new jobs, but continues to start jobs-draining
+Closed:Inact Does not accept new jobs and does not start jobs—all activity is stopped
+Queue state can be changed by an LSF administrator or root.
+Queues can also be activated and inactivated by run windows and dispatch windows (conﬁgured in lsb.queues, displayed by bqueues -l).
+bqueues -l displays Inact_Adm when explicitly inactivated by an Administrator (badmin qinact), and Inact_Win when inactivated by a run or
+dispatch window.
+Viewing available queues and queue status
+Procedure
+Run bqueues. You can view the current status of a particular queue or all queues. The bqueues command also displays available queues in the
+cluster.
+bqueues  
+QUEUE_NAME   PRIO  STATUS       MAX JL/U JL/P JL/H NJOBS  PEND  RUN  SUSP 
+interactive  400   Open:Active   -  -    -    -     2      0     2    0 
+priority      43   Open:Active   -  -    -    -    16      4    11    1 
+night         40   Open:Inactive -  -    -    -     4      4     0    0 
+short         35   Open:Active   -  -    -    -     6      1     5    0 
+license       33   Open:Active   -  -    -    -     0      0     0    0 
+normal        30   Open:Active   -  -    -    -     0      0     0    0 
+idle          20   Open:Active   -  -    -    -     6      3     1    2
+A dash (-) in any entry means that the column does not apply to the row. In this example no queues have per-queue, per-user, per-processor, or per
+host job limits conﬁgured, so the MAX, JL/U, JL/P, and JL/H entries are shown as a dash.
+352    IBM Spectrum LSF
+
+Job slots required by parallel jobs
+Important: A parallel job with N components requires N job slots.
+Viewing detailed queue information
+Procedure
+To see the complete status and conﬁguration for each queue, run bqueues -l.
+Specify queue names to select speciﬁc queues. The following example displays details for the queue normal.
+bqueues -l normal 
+QUEUE: normal  
+  --For normal low priority jobs, running only if hosts are lightly loaded. This is the default queue.  
+PARAMETERS/STATISTICS  
+PRIO NICE  STATUS      MAX JL/U JL/P NJOBS  PEND  RUN SSUSP USUSP  
+40   20    Open:Active 100 50   11   1      1     0   0     0  
+Migration threshold is 30 min.  
+CPULIMIT           RUNLIMIT  
+20 min of IBM350   342800 min of IBM350  
+FILELIMIT  DATALIMIT  STACKLIMIT  CORELIMIT  MEMLIMIT  TASKLIMIT  
+20000 K    20000 K    2048 K      20000 K    5000 K    3  
+  
+SCHEDULING PARAMETERS            r15s  r1m  r15m  ut   pg   io   ls  it  tmp  swp  mem  
+loadSched  -     0.7  1.0   0.2  4.0  50   -   -   -    -    -  
+loadStop   -     1.5  2.5   -    8.0  240  -   -   -    -    - 
+  
+                 cpuspeed    bandwidth 
+ loadSched          -            - 
+ loadStop           -            - 
+  
+SCHEDULING POLICIES:  FAIRSHARE  PREEMPTIVE PREEMPTABLE EXCLUSIVE  
+USER_SHARES:  [groupA, 70] [groupB, 15]  [default, 1]  
+  
+DEFAULT HOST SPECIFICATION : IBM350  
+  
+RUN_WINDOWS:  2:40-23:00 23:30-1:30  
+DISPATCH_WINDOWS:  1:00-23:50  
+  
+USERS: groupA/ groupB/ user5  
+HOSTS:  hostA, hostD, hostB  
+ADMINISTRATORS:  user7  
+PRE_EXEC: /tmp/apex_pre.x > /tmp/preexec.log 2>&1  
+POST_EXEC:  /tmp/apex_post.x > /tmp/postexec.log 2>&1  
+REQUEUE_EXIT_VALUES:  45 
+HOST_PRE_EXEC: /tmp/apex_pre.x > /tmp/preexec.log 2>&1  
+HOST_POST_EXEC:  /tmp/apex_post.x > /tmp/postexec.log 2>&1 
+Customize queue information output
+By default, the bqueues command displays a predeﬁned set of queue information. While you can use various bqueues options to display speciﬁc
+queue information based on your needs, you can also customize the speciﬁc ﬁelds that bqueues displays. Customize output to create a speciﬁc
+bqueues output format that shows all the required information so you can easily parse the information by using custom scripts or to display the
+information in a predeﬁned format.
+Use the LSB_BQUEUES_FORMAT parameter in lsf.conf or the LSB_BQUEUES_FORMAT runtime environment variable to deﬁne the default bqueues
+output format for LSF:
+LSB_BQUEUES_FORMAT="field_name[:[-][output_width]] ... [delimiter='character']"
+Use the bqueues -o option to deﬁne the custom output at the command level:
+bqueues ... -o "field_name[:[-][output_width]] ... [delimiter='character']"
+The following alternative method of using bqueues -o is recommended for special delimiter characters in a csh environment (for example, $):
+bqueues ... -o 'field_name[:[-][output_width]] ... [delimiter="character"]'
+Specify which bqueues ﬁelds (or aliases instead of the full ﬁeld names), in which order, and with what width to display.
+Specify only the bqueues ﬁeld name or alias to set its output to unlimited width and left justiﬁcation.
+(Available starting in Fix Pack 14) Specify all to display all ﬁelds. Specify the colon (:) with an output width that applies to all ﬁelds.
+Specify the colon (:) without a width to set the output width to the supported width for that ﬁeld.
+IBM Spectrum LSF 353
+
+Specify the colon (:) with a width to set the maximum number of characters to display for the ﬁeld. When its value exceeds this width,
+bqueues truncates the ending characters.
+Specify a hyphen (-) to set right justiﬁcation when bqueues displays the output for the speciﬁc ﬁeld. If not speciﬁed, the default is to set left
+justiﬁcation when bqueues displays output for a ﬁeld.
+Use delimiter= to set the delimiting character to display between different headers and ﬁelds. This delimiter must be a single character. By
+default, the delimiter is a space.
+The bqueues -o option overrides the LSB_BQUEUES_FORMAT environment variable, which overrides the LSB_BQUEUES_FORMAT setting in lsf.conf.
+Output customization applies only to the output for certain bqueues options:
+LSB_BQUEUES_FORMAT and bqueues -o both apply to output for the bqueues command with no options, and for bqueues options with
+output that ﬁlter information, including the following options: -alloc, -m, -u.
+LSB_BQUEUES_FORMAT and bqueues -o do not apply to output for bqueues options that use a modiﬁed format, including the following
+options: -l, -r, -w.
+This table outlines the bqueues ﬁelds to display, and their supported width, aliases you can use instead of ﬁeld names, and units of measurement for
+the displayed ﬁeld:
+Table 1. Output ﬁelds for bqueues
+Field name Width Aliases Unit
+queue_name 15 qname  
+description 50 desc  
+priority 10 prio  
+status 12 stat  
+max 10    
+jl_u 10 jlu  
+jl_p 10 jlp  
+jl_h 10 jlh  
+njobs 10    
+pend 10    
+run 10    
+susp 10    
+rsv 10    
+ususp 10    
+ssusp 10    
+nice 6    
+max_corelimit 8 corelimit  
+max_cpulimit 30 cpulimit  
+default_cpulimit 30 def_cpulimit  
+max_datalimit 8 datalimit  
+default_datalimit 8 def_datalimit  
+max_ﬁlelimit 8 ﬁlelimit  
+max_memlimit 8 memlimit  
+default_memlimit 8 def_memlimit  
+max_processlimit 8 processlimit  
+default_processlimit 8 def_processlimit 
+max_runlimit 12 runlimit  
+default_runlimit 12 def_runlimit  
+max_stacklimit 8 stacklimit  
+max_swaplimit 8 swaplimit  
+max_tasklimit 6 tasklimit  
+min_tasklimit 6    
+default_tasklimit 6 def_tasklimit  
+max_threadlimit 6 threadlimit  
+default_threadlimit 6 def_threadlimit 
+res_req 20    
+hosts 50    
+all (Available starting in Fix Pack 14)Specify an output width that applies to all ﬁelds   
+Note: The following resource limit ﬁeld names are supported, but show the same content as their corresponding maximum resource limit ﬁelds (that
+is, the following resource limit ﬁeld names are aliases): corelimit, cpulimit, datalimit, filelimit, memlimit, processlimit, runlimit,
+stacklimit, swaplimit, tasklimit, threadlimit.
+For example, corelimit is the same as max_corelimit.
+Field names and aliases are not case-sensitive. Valid values for the output width are any positive integer from 1 to 4096.
+354    IBM Spectrum LSF
+
+Remove column headings from the queue information output
+Use the bqueues -noheader option to remove column headings from the bqueues output. When bqueues -noheader is speciﬁed, bqueues displays
+the values of the ﬁelds without displaying the names of the ﬁelds. This option is useful for script parsing, when column headings are not necessary.
+This option applies to output for the bqueues command with no options, and to output for all bqueues options with output that uses column
+headings, including the following: -alloc, -m, -o, -u, -w.
+This option does not apply to output for bqueues options that do not use column headings, including the following: -json, -l, -r.
+View customized queue information in JSON format
+Use the bqueues -json option to view the customized bqueues output in JSON format. Since JSON is a customized output format, you must use the
+bqueues -json option together with the -o option.
+Viewing the state change history of a queue
+Procedure
+Run badmin qhist to display the times when queues are opened, closed, activated, and inactivated.
+badmin qhist 
+Wed Mar 31 09:03:14: Queue <normal> closed by user or administrator <root>. 
+Wed Mar 31 09:03:29: Queue <normal> opened by user or administrator <root>.
+Viewing queue administrators
+Procedure
+Run bqueues -l for the queue.
+Viewing exception status for queues (bqueues)
+Procedure
+Use bqueues to display the conﬁgured threshold for job exceptions and the current number of jobs in the queue in each exception state.
+For example, queue normal conﬁgures JOB_IDLE threshold of 0.10, JOB_OVERRUN threshold of 5 minutes, and JOB_UNDERRUN threshold of 2
+minutes. The following bqueues command shows no overrun jobs, one job that ﬁnished in less than 2 minutes (underrun) and one job that triggered
+an idle exception (less than idle factor of 0.10):
+bqueues -l normal 
+QUEUE: normal    
+-- For normal low priority jobs, running only if hosts are lightly loaded.  This is the default queue.  
+  
+PARAMETERS/STATISTICS  
+PRIO NICE STATUS          MAX JL/U JL/P JL/H NJOBS  PEND   RUN SSUSP USUSP  RSV    
+30   20  Open:Active       -    -    -    -     0     0     0     0     0    0   
+  
+STACKLIMIT MEMLIMIT   
+  2048 K     5000 K  
+  
+SCHEDULING PARAMETERS  
+           r15s   r1m  r15m   ut      pg    io   ls    it    tmp    swp    mem   
+loadSched   -     -     -     -       -     -    -     -     -      -      -     
+loadStop    -     -     -     -       -     -    -     -     -      -      -   
+  
+                 cpuspeed    bandwidth 
+loadSched          -            - 
+loadStop           -            - 
+  
+JOB EXCEPTION PARAMETERS   
+             OVERRUN(min) UNDERRUN(min) IDLE(cputime/runtime)   
+Threshold         5         2          0.10        
+     Jobs         0         1             1 
+  
+IBM Spectrum LSF 355

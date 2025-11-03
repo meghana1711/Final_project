@@ -1,0 +1,331 @@
+Verify that the job is running on host-10-110-135-193:
+bhosts -a 
+HOST_NAME                  STATUS       JL/U    MAX  NJOBS    RUN  SSUSP  USUSP    RSV 
+lsfmanagement              ok              -      1      0      0      0      0      0 
+host-10-110-135-193        ok              -      1      1      1      0      0      0 
+3. Use the bhosts command to monitor the status of the instances.
+Run bhosts with -a option, which shows all hosts, including terminated instances. If no jobs start running on an instance from OpenStack in
+the number of minutes speciﬁed by the LSF_EXTERNAL_HOST_IDLE_TIME parameter, the instance is relinquished and its host status changes
+to closed_RC. When the instance is terminated, the host status becomes unavail.
+You cannot use the badmin hopen command to open a borrowed host in closed_RC status.
+bhosts -a 
+HOST_NAME                   STATUS       JL/U    MAX  NJOBS    RUN  SSUSP  USUSP    RSV 
+lsfmanagement               ok              -      1      0      0      0      0      0 
+host-10-110-135-193         unavail         -      1      0      0      0      0      0 
+4. (Optional) Use external job submission and execution controls.
+Use the job submission and execution controls feature to use external, site-speciﬁc executable ﬁles to validate, modify, and reject jobs,
+transfer data, and modify the job execution environment. To control job submissions such as permission checks before instances are launched
+from OpenStack, you can set up an external submission (esub) script. For more information, see External Job Submission and Execution
+Controls.
+How LSF returns hosts to OpenStack
+ OpenStack does not actively reclaim a host like EGO does. An allocated VM is passively returned to OpenStack.
+How LSF returns hosts to OpenStack
+OpenStack does not actively reclaim a host like EGO does. An allocated VM is passively returned to OpenStack.
+It is idle for the time (conﬁgured by the LSB_RC_EXTERNAL_HOST_IDLE_TIME parameter in the lsf.conf ﬁle).
+A time-to-live period expires (conﬁgured by the LSB_RC_EXTERNAL_HOST_MAX_TTL parameter in lsf.conf ﬁle).
+If host factory notiﬁes LSF that a host is ready to use, but the host does not join the cluster for 10 minutes. This value is hardcoded.
+If the billingPeriod parameter is conﬁgured in the hostProviders.json ﬁle, the LSB_RC_EXTERNAL_HOST_IDLE_TIME value deﬁned in the lsf.conf ﬁle
+is ignored. Resource connector uses the time the instance was launched to return the machine to the provider.
+For example, if a host was launched at 10:00 AM, and billingPeriod is 60 minutes, and the host became idle at 10:55, it is returned before the next
+billing cycle that starts at 11 AM.
+If set to 0 or not deﬁned, resource connnector uses the value deﬁned in the parameter LSB_RC_EXTERNAL_HOST_IDLE_TIME in the lsf.conf ﬁle.
+The default billing period is 0.
+If the host was previously in the cluster, LSF closes it (closed_RC status) and waits for any running jobs on the host to complete. After the host is
+drained of jobs, LSF notiﬁes the resource connector. The resource connector terminates the OpenStack VM, which deallocates the host.
+You cannot use the badmin hopen command to open a borrowed host in closed_RC status.
+Updating LSF conﬁguration for resource connector
+Conﬁgure LSF to enable the resource connector.
+About this task
+Restart the LSF daemons on the management host for the changes to take effect.
+Procedure
+1. Log in to the LSF management host as root.
+2. Conﬁgure DNS.
+LSF looks up host names and addresses for all communication between hosts borrowed from a resource provider and management host
+candidates. Make sure that your environment settings for IP address resolution work between the LSF management host and borrowed hosts
+that join the cluster.
+Check whether the management host candidates can ping the borrowed hosts by using the host name from the hostname command and vice
+versa. Also make sure that the borrowed hosts can ping themselves and each other with the reported host name. If the hosts can ping
+IBM Spectrum LSF 2249
+
+themselves and each other only by using IP address but not by using the host name, DNS settings need to be conﬁgured.
+If the borrowed host cannot join the cluster, check the VPN, ﬁrewall, or security group settings. You must open ﬁrewall rules for all LSF ports
+between the LSF management and borrowed server host IP ranges.
+If the LSF management host and the borrowed host reside in different host domains, specify the portion of both domain names in the
+LSF_STRIP_DOMAIN parameter in the $LSB_SHAREDIR/lsf.conf ﬁle that is accessible by the LSF management host, with both domain names
+separated by a colon (:).
+3. Make sure that the resource connector demand calculation scheduler module is conﬁgured.
+Fast path: If you use the aws_enable.sh script and the aws_enable.conﬁg ﬁle to automate AWS setup, the schmod_demand plug in is
+uncommented in the lsb.modules ﬁle.
+Check the lsb.modules ﬁle. By default, the module schmod_demand is not enabled (it is commented out in the ﬁle at installation). To enable
+resource connector, make sure that the schmod_demand is conﬁgured in the ﬁle. If not, add it to the PluginModule section.
+Begin PluginModule 
+SCH_PLUGIN                      RB_PLUGIN                    SCH_DISABLE_PHASES 
+... 
+schmod_demand                       ()                              () 
+End PluginModule 
+4. Deﬁne Boolean resources to identify hosts that are borrowed from resource providers.
+Fast path: If you use the aws_enable.sh script and the aws_enable.conﬁg ﬁle to automate AWS setup, the awshost resource is added to the
+lsf.shared ﬁle.
+Add new resources to the LSF resource list so that they are accepted by LSF. On the LSF management host, modify the lsf.shared ﬁle to add
+Boolean resources to the Resource section.
+The following example deﬁnes the openstackhost and awshost resource names.
+Begin Resource 
+RESOURCENAME   TYPE   INTERVAL  INCREASING  DESCRIPTION 
+... 
+openstackhost     Boolean  ()       ()         (Hosts borrowed from OpenStack) 
+awshost           Boolean  ()       ()         (Hosts borrowed from AWS) 
+azurehost       Boolean ()       ()          (instances borrowed from Azure) 
+googlehost     Boolean  ()       ()         (Hosts borrowed from Google Compute Cloud) 
+... 
+End Resource
+5. Enable the resource connector.
+Fast path: If you use the aws_enable.sh script and the aws_enable.conﬁg ﬁle to automate AWS setup, the
+LSB_RC_EXTERNAL_HOST_FLAG=awshost parameter is conﬁgured in the lsf.conf ﬁle.
+Deﬁne the LSB_RC_EXTERNAL_HOST_FLAG parameter in the lsf.conf ﬁle to enable the resource connector feature. The value of the
+parameter must be set to the Boolean resource name that you created to identify borrowed hosts, for example,
+LSB_RC_EXTERNAL_HOST_FLAG=openstackhost, LSB_RC_EXTERNAL_HOST_FLAG=awshost,
+LSB_RC_EXTERNAL_HOST_FLAG=azurehost, or LSB_RC_EXTERNAL_HOST_FLAG=googlehost.
+6. Deﬁne the RC_HOSTS parameter in the lsb.queues for a queue for which borrowing needs to be enabled.
+Fast path: If you use the aws_enable.sh script and the aws_enable.conﬁg ﬁle to automate AWS setup, an AWS queue awsexample is created
+with the RC_HOSTS=awshost parameter conﬁgured in the lsb.queues ﬁle.
+The RC_HOSTS parameter also enables the queue to use the hosts that are already borrowed into the cluster.
+RC_HOSTS = none | all | host_type [host_type ...]
+The host_type flag is a Boolean resource that is a member of the list of host resources that are deﬁned in the LSB_RC_EXTERNAL_HOST_FLAG
+parameter in the lsf.conf ﬁle.
+If the RC_HOSTS parameter is not deﬁned in the queue, its default value is none. Borrowing is disabled for any queue that explicitly deﬁnes
+RC_HOSTS=none, even if the LSB_RC_EXTERNAL_HOST_FLAG parameter is deﬁned in the lsf.conf ﬁle.
+If the RC_HOSTS parameter is not deﬁned in any queue, borrowing from resource providers is disabled for all jobs.
+7. If LSF was not installed with the dynamic host feature enabled (that is, the ENABLE_DYNAMIC_HOSTS parameter was not set in the
+install.conﬁg to enable dynamic hosts at installation), set the LSF_DYNAMIC_HOST_WAIT_TIME parameter in the lsf.conf ﬁle.
+Fast path: If you use the aws_enable.sh script and the aws_enable.conﬁg ﬁle to automate AWS setup, the ENABLE_DYNAMIC_HOSTS=Y and
+LSF_REG_FLOAT_HOSTS=Y parameters are set in the lsf.conf ﬁle. The LSF_DYNAMIC_HOST_WAIT_TIME=2 parameter is also conﬁgured in the
+lsf.conf ﬁle if the parameter is not already set. If the the LSF_DYNAMIC_HOST_WAIT_TIME parameter is already set, the script keeps the
+conﬁgured value.
+To ensure the smooth operation of the borrowed hosts, set the LSF_DYNAMIC_HOST_WAIT_TIME parameter to a small value, such as 1 or 2
+seconds.
+8. Deﬁne the LSF_HOST_ADDR_RANGE parameter in the lsf.cluster.cluster_name ﬁle to enable security.
+Fast path: If you use the aws_enable.sh script and the aws_enable.conﬁg ﬁle to automate AWS setup, the LSF_HOST_ADDR_RANGE
+parameter is conﬁgured in the lsf.cluster.cluster_name ﬁle to the value that you set in the aws_enable.conﬁg ﬁle.
+If you do not set a value in the aws_enable.conﬁg, the script does nothing for the LSF_HOST_ADDR_RANGE parameter.
+2250    IBM Spectrum LSF
+
+Only hosts with IP addresses within the speciﬁed range can be added to or removed from the AWS instance.
+In the following example, all instances belonging to domains starting with 12.23.45 are allowed.
+Begin Parameters 
+LSF_HOST_ADDR_RANGE=12.23.45.*   #ipaddress range of the AWS instance 
+End Parameters 
+9. Deﬁne the RC_DEMAND_POLICY parameter in the lsb.queues ﬁle to specify threshold conditions for triggering demand to borrow resources
+through resource connector for all the jobs in a queue.
+The RC_DEMAND_POLICY parameter has the following syntax:
+RC_DEMAND_POLICY = THRESHOLD[ [ num_pend_jobs[,duration]] … ]
+The demand policy deﬁned by the RC_DEMAND_POLICY parameter can contain multiple conditions, in an OR relationship. A condition is
+deﬁned as [ num_pend_jobs[,duration]]. The queue has more than the speciﬁed number of eligible pending jobs that are expected to run at
+least the speciﬁed duration in minutes. The num_pend_jobs option is required, and the duration is optional.
+The default threshold is THRESHOLD[[ 1,0]].
+In the following example, LSF calculates demand if the queue has 5 or more pending jobs in past 10 minutes, or 1 or more pending jobs in
+past 60 minutes, or 100 or more pending jobs.
+RC_DEMAND_POLICY = THRESHOLD[ [ 5, 10] [1, 60] [100] ]
+As long as pending jobs at the queue meet at least one threshold condition, LSF expresses the demand to resource connector to trigger
+borrowing.
+10. Deﬁne the MAX_SBD_CONNS parameter in the lsb.params ﬁle to set the maximum number of open ﬁle connections between the mbatchd and
+sbatchd daemons. As a best practice, set the value as MAX_SBD_CONNS = 2 * maximum_number_of_hosts + 300, where the
+maximum_number_of_hosts includes the number of active VMs created in the resource connector for future jobs.
+11. Optional: Deﬁne optimizations to set rules after the calculation of demand to try to get better results and applied to the provisioning results.
+The Optimizations category is speciﬁed in the policy_conﬁg.json ﬁle. An example of optimization you can conﬁgure are allocation rules. The
+allocRules parameter is a list of allocation rule entries that specify how many hosts from a certain template are worth considering over
+another template. For more information about the allocRules parameter, see policy_conﬁg.json topic.
+12. Optional: Deﬁne the account name to tag the borrowed hosts so they cannot be used by other groups, users, or jobs.
+To deﬁne the account name at the queue or application level, deﬁne the RC_ACCOUNT parameter in the lsb.queues or lsb.applications
+ﬁle.
+To set the project name as the default account name, enable DEFAULT_RC_ACCOUNT_PER_PROJECT=Y in the lsb.params ﬁle. This
+account name overrides the value of the RC_ACCOUNT parameter at the application and queue levels (lsb.applications and lsb.queues
+ﬁles).
+To allow users to assign a speciﬁc account name at the job level, enable ENABLE_RC_ACCOUNT_REQUEST_BY_USER=Y in the
+lsb.params ﬁle. This allows users to use the bsub -rcacct "rc_account_name" command option to assign an account name. This
+account name overrides the account name that is set at the application and queue level, as well as the setting of the project name.
+This also allows you to use an esub script to set the LSB_SUB6_RC_ACCOUNT parameter to change the job level account name. The
+value of LSB_SUB6_RC_ACCOUNT overrides all other values of the account name, including the bsub -rcacct command option.
+When a job is submitted to the queue or application, the host that the job borrows is tagged with the value of the RC_ACCOUNT parameter.
+Other applications or queues that have a different value for the RC_ACCOUNT parameter cannot use the borrowed host.
+When the borrowed host joins the cluster, you can use the lshosts -s or lshosts -l command to view its RC_ACCOUNT value.
+For AWS and OpenStack, edit the user_data.sh ﬁle to use the lshosts command to see the RC_ACCOUNT value.
+The user_data.sh script is located in the <LSF_TOP>/<LSF_VERSION>/resource_connector/aws/scripts directory.
+a. Make sure that the LSF_TOP variable points to the LSF_TOP directory for your cluster.
+b. Make sure that the following lines are not commented out.
+%EXPORT_USER_DATA% 
+logfile=/tmp/userscript.log 
+env > $logfile 
+if [ -n "${rc_account}" ]; then 
+sed -i "s/\(LSF_LOCAL_RESOURCES=.*\)\"/\1 [resourcemap ${rc_account}*rc_account]\"/"  
+    $LSF_CONF_FILE 
+echo "update LSF_LOCAL_RESOURCES lsf.conf successfully,  
+    add [resourcemap ${rc_account}*rc_account]" >> $logfile 
+fi 
+What to do next
+Restart the LSF daemons on the management host for the changes to take effect.
+bctrld restart lim 
+bctrld restart res 
+badmin mbdrestart  
+IBM Spectrum LSF 2251
+
+Pre-provisioning and post-provisioning
+Set up pre-provisioning in LSF resource connector to run commands before the resource instance joins the cluster. Conﬁgure post-provisioning
+scripts to run clean up commands after the instance is terminated, but before the host is removed from the cluster.
+Conﬁgure resource provisioning policies
+LSF resource connector provides built in policies for limiting the number of instances to be launched and the maximum number of instances to
+be created. The default plugin framework is a single python script that communicates via stdin and stdout in JSON data structures. LSF
+resource connector provides an interface for administrators to write their own resource policy plugin.
+Use the LSF ﬁx installer to update resource connector
+The LSF ﬁx installer (patchinstall command) doesn't support installing ﬁles under the LSF_TOP/conf directory. The patchinstall command
+operates only on ﬁles under the LSF_TOP/version directory.
+lsb.modules
+lsb.queues
+lsf.conf
+lsf.shared
+MAX_SBD_CONNS
+Pre-provisioning and post-provisioning
+Set up pre-provisioning in LSF resource connector to run commands before the resource instance joins the cluster. Conﬁgure post-provisioning
+scripts to run clean up commands after the instance is terminated, but before the host is removed from the cluster.
+The pre- and post-provisioning script knows the instance ID, the instance name, and the instance IP address.
+The pre-provisioning script runs on the management host right after the resource instance is created, but before the instance is marked as allocated
+to the LSF cluster, and before a job can start to run on it. Use the pre-provisioning script to run instance setup scripts (for example, network or user
+access conﬁguration), run data transfer commands before the job starts on the instance, or add hosts to a speciﬁc group.
+The post-provisioning script runs after the instance is terminated, but before it is relinquished to the provider. Use the post-provisioning script to run
+clean up tasks; for example, clean up job ﬁles or remove the host from the host cache ﬁle when the instance terminates.
+You can specify a delayOnReturn attribute in your scripts that speciﬁes the number of minutes that the resource connector waits before it returns the
+host in case the pre- or post-provisioning script fails. The default value is 20. For the scripts that are run successfully, resource connector does not
+apply the delay, even if delayOnReturn is set.
+Enable pre- and post-provisioning
+To enable pre- and post-provisioning scripts, set the following parameters in the hostProviders.json ﬁle:
+preProvPath
+Resource connector runs the pre-provisioning script that is speciﬁed with absolute path after the instance is created and started successfully
+but before it is marked allocated to the LSF cluster.
+postProvPath
+Resource connector runs the post-provisioning script that is speciﬁed with absolute path after the instance is terminated successfully but
+before it is removed from the LSF cluster.
+provTimeOut
+This parameter is used to avoid the pre- or post-provisioning program from running for unlimited time. Specify a value in minutes.
+If the program doesn’t complete in the speciﬁed time, it is ended and reported as failed. You can disable pre- or post-provisioning by setting
+the provTimeOut value to 0.
+The default value is 10 minutes. If the pre- or post-provisioning program doesn't return after 10 minutes, it ends.
+Pre-provisioning and post-provisioning script output
+Pre and post provision scripts are expected to return results to inform LSF is the hosts have been provisioned correctly or not. The output needs to
+look like the following example:
+[{ 
+"machines": [ 
+          { 
+            "name": "instance name", 
+            "result": "succeed", 
+            "message": "User added successfully" 
+           }, 
+          { 
+            "name": "ip-192-168-0-154.us-west-2.compute.internal", 
+            "result": "failed", 
+            "message": "Could not resolve host name”, 
+            “delayOnReturn” : 30 
+          } 
+2252    IBM Spectrum LSF
+
+    ] 
+}] 
+Example input.json ﬁle
+The input.json ﬁle is the data in json format which is sent by LSF to the user’s provision scripts as input. The user deﬁned provisioning scripts can use
+the input data of the AWS instances launched by LSF to do the necessary provisioning steps. The input.json ﬁle contains the following information:
+[ { 
+"machines": [ 
+          { 
+            "name": "ip-192-168-0-153.us-west-2.compute.internal", 
+            " publicIpAddress ": "55.66.xx.xx", 
+            " privateIpAddress ": "55.66.xx.xx", 
+            " machineId ": "i-19034xxxxx", 
+            “rcAccount”: “project1” , 
+            "providerName": "aws", 
+            "providerType": "awsProv", 
+            "templateName": "Template-VM-2" 
+          } 
+    ] 
+}] 
+Example
+This example uses the jq package to parse the input.json from LSF for each of the automatically launched AWS instances. After parsing the instance
+details the user can customize code to conﬁgure any DNS settings or cleanup steps for each instance before passing a success or error result back to
+LSF in the speciﬁed format.
+LSF reads the output to determine if the newly launched host was successfully provisioned.
+#!/bin/sh 
+inputFile=$1 
+outputFile=$2 
+echo $inputFile $outputFile 
+count=$(cat $inputFile | jq '.machines[]' |grep 'name' | wc -l) 
+a=0 
+result="succeed" 
+while [ $a -lt $count ] 
+do 
+  hostName=$(cat $inputFile | jq '.machines['${a}'].name') 
+  privateIp=$(cat $inputFile | jq '.machines['${a}'].publicIpAddress') 
+  publicIp=$(cat $inputFile | jq '.machines['${a}'].privateIpAddress') 
+  instanceId=$(cat $inputFile | jq '.machines['${a}'].machineId') 
+  rcAccount=$(cat $inputFile | jq '.machines['${a}'].rcAccount') 
+  providerName=$(cat $inputFile | jq '.machines['${a}'].providerName') 
+  providerType=$(cat $inputFile | jq '.machines['${a}'].providerType') 
+  templateName=$(cat $inputFile | jq '.machines['${a}'].templateName') 
+  #add your custom code here for each machine in the request 
+  #write the output of each machine to the output json file 
+   
+  sed -i '/]/i {\"name\": '${hostName}', \"result\": \"'${result}'\", \"message\": \"'${message}'\" }' 
+$outputFile 
+  a=`expr $a + 1` 
+done 
+Related reference
+hostProviders.json
+Conﬁgure resource provisioning policies
+LSF resource connector provides built in policies for limiting the number of instances to be launched and the maximum number of instances to be
+created. The default plugin framework is a single python script that communicates via stdin and stdout in JSON data structures. LSF resource
+connector provides an interface for administrators to write their own resource policy plugin.
+Example policies
+IBM Spectrum LSF 2253
+
+LSF resource connector provides an example policy, which you can conﬁgure in the example_policy_conﬁg.json ﬁle:
+Step index and step time determine how many instances to launch at a time. The StepValue parameter speciﬁes step index and step time. For
+example, the "StepValue": "10:10" means that the resource connector launches no more than 10 instances every 10 minutes.
+Maximum number of instances (per account, per template, per provider) at any given time is speciﬁed by the MaxNumber parameter.
+To enable this feature, rename the example_policy_conﬁg.json ﬁle under the LSF_TOP/conf/resource_connector directory to policy_conﬁg.json and
+set the cluster administrator as the ﬁle owner.
+Resource policy plug in interface
+You should not change the default resource policy plugin ﬁles (Main.py and Log.py in the LSF_TOP/LSF_VERSION/resource_connector/policy
+directory). Instead, you can create you own script or binary executable ﬁle and specify the path of that script in the UserDeﬁnedScriptPath parameter
+in the policy_conﬁg.json. The default policy script provided by LSF runs your script and uses the demand calculated by your script to create hosts for
+the cluster.
+Your script can have the following input for each provider, template and RC_ACCOUNT:
+The demand target requested by the cluster.
+The current allocation of hosts.
+The outstanding requests that have been made but not yet ﬁlled.
+The number of reclaimed hosts.
+Related reference
+policy_conﬁg.json
+Use the LSF ﬁx installer to update resource connector
+The LSF ﬁx installer (patchinstall command) doesn't support installing ﬁles under the LSF_TOP/conf directory. The patchinstall command operates
+only on ﬁles under the LSF_TOP/version directory.
+Update resource connector
+When the ﬁx installer installs new conﬁguration ﬁles or other items under LSF_TOP/10.1.0/resource_connector/provider_name/conf, you must move
+them to the appropriate directory under LSF_TOP/conf/resource_connector/provider_name/conf. You must also change the ownership of any new
+ﬁles and directories to the cluster administrator. Everything under the LSF_TOP/conf/resource_connector directory must be owned by the cluster
+administrator.
+For example, when the ﬁx installer installs the following new conﬁguration ﬁles for Amazon Web Services (AWS) under
+LSF_TOP/10.1.0/resource_connector/aws/conf/:
+awsprov_templates.json
+awsprov_conﬁg.json
+credentials
+You must move these ﬁles to the LSF_TOP/conf/resource_connector/aws/conf directory and change the ownership of the aws directory and
+conﬁguration ﬁles to the cluster administrator.
+Roll back a resource connector ﬁx
+Follow these steps to roll back a ﬁx:
+1. Log on to the LSF management host as root
+2. Set your environment:
+For csh or tcsh: % source LSF_TOP/conf/cshrc.lsf
+For sh, ksh, or bash: $ . LSF_TOP/conf/profile.lsf
+3. Close all hosts and queues on your cluster:
+badmin hclose all  
+badmin qinact all
+4. Roll back the ﬁx:
+./patchinstall -r fix_number
+5. Shut down the cluster:
+2254    IBM Spectrum LSF

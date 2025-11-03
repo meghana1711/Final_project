@@ -1,0 +1,1130 @@
+UserName
+GroupName
+Submit a job using a JSDL ﬁle
+Procedure
+To submit a job using a JSDL ﬁle, use one of the following bsub command options:
+a. To submit a job that uses elements included in the LSF extension, use the -jsdl option.
+b. To submit a job that uses only standard JSDL elements and POSIX extensions, use the -jsdl_strict option. Error messages indicate invalid
+elements, including:
+Elements that are not part of the JSDL speciﬁcation
+Valid JSDL elements that are not supported in this version of LSF
+Elements that are not part of the JSDL standard and POSIX extension schema
+Results
+If you specify duplicate or conflicting job submission parameters, LSF resolves the conflict by applying the following rules:
+The parameters speciﬁed in the command line override all other parameters.
+A job script or user input for an interactive job overrides parameters speciﬁed in the JSDL ﬁle.
+Collect resource values using elim.jsdl
+To support the use of JSDL ﬁles at job submission, LSF collects the following load indices:
+Attribute name Attribute type Resource name
+OperatingSystemName string osname
+OperatingSystemVersion string osver
+CPUArchitectureName string cpuarch
+IndividualCPUSpeed int64 cpuspeed
+IndividualNetworkBandwidthint64 bandwidth(This is the maximum bandwidth).
+The ﬁle elim.jsdl is automatically conﬁgured to collect these resources, but you must enable its use by modifying the ﬁles lsf.cluster.cluster_name
+and lsf.shared.
+Enabling JSDL resource collection
+ 
+Enabling JSDL resource collection
+Procedure
+1. In the ﬁle lsf.cluster.cluster_name, locate the ResourcesMap section.
+2. In the ﬁle lsf.shared, locate the Resource section.
+3. Uncomment the lines for the following resources in both ﬁles:
+osname
+osver
+cpuarch
+cpuspeed
+bandwidth
+4. To propagate the changes through the LSF system, run the following commands.
+a. lsadmin reconfig
+b. badmin mbdrestart
+You have now conﬁgured LSF to use the elim.jsdl ﬁle to collect JSDL resources.
+IBM Spectrum LSF Simulator
+IBM Spectrum LSF 2361
+
+Use the LSF Simulator to analyze and tune your LSF conﬁguration by simulating an LSF cluster in a separate, internal environment. LSF Simulator
+allows you to run experiments with different and workload traces without interrupting the LSF production environment.
+IBM Spectrum LSF Simulator release notes
+ Find out what's new in LSF Simulator.
+Installing IBM Spectrum LSF Simulator
+ Installing LSF Simulator requires Docker CE (docker-ce).
+Managing the IBM Spectrum LSF Simulator service
+ Use the bcogn command to manage the LSF Simulator service.
+Using IBM Spectrum LSF Simulator
+ Understand the concepts of using LSF Simulator.
+Updating the IBM Spectrum LSF Simulator service
+ To update the LSF Simulator service, stop the current service and extract the new package.
+IBM Spectrum LSF Simulator release notes
+Find out what's new in LSF Simulator.
+What's new in IBM Spectrum LSF Simulator
+ What's new in LSF Simulator 10.1.
+Known issues and limitations for IBM Spectrum LSF Simulator
+ Known issues and limitations for LSF Simulator.
+What's new in IBM Spectrum LSF Simulator
+What's new in LSF Simulator 10.1.
+Download location
+Download any IBM Spectrum LSF Simulator 10.1 ﬁx pack from IBM Fix Central. For more information, see Getting ﬁxes from IBM Fix Central.
+Support for previous IBM Spectrum LSF versions
+To ensure the latest Fix Pack for IBM Spectrum LSF Simulator 10.1 works properly with your previous version of IBM Spectrum LSF 10.1, you
+must conﬁgure the following parameters in the lsf.conf ﬁle that was imported from the production cluster:
+LSF_STRICT_CHECKING=N 
+LSF_AUTH_QUERY_COMMANDS=N
+Determine the installed version of IBM Spectrum LSF Simulator
+To verify the version of IBM Spectrum LSF Simulator, run the bcogn command with the -V option; for example, this output shows IBM
+Spectrum LSF Simulator 10.1 Fix Pack 15:
+$ ./bcogn -V 
+IBM Spectrum 
+LSF Simulator 10.1.0.15  Build number, 
+Copyright International Business Machines Corp. 1992, 2025 
+US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule 
+Contract with IBM Corp. 
+Portions Copyright 1991, 1999 Free Software Foundation, Inc.
+Fix Pack 15
+Operating system support
+As of Fix Pack 15, RHEL 8.10 and 9.5 are newly certiﬁed for LSF Simulator on a Linux x64 kernel.
+Client browser support
+As of Fix Pack 15, you can use LSF Simulator on these upgraded browsers:
+For RHEL and Ubuntu:
+Browser Version Support
+Google Chrome 134 Certiﬁed
+Mozilla Firefox 128 Certiﬁed
+For Windows 10 and 11:
+Browser Version Support
+Google Chrome 133 Certiﬁed
+Mozilla Firefox 136 Certiﬁed
+Microsoft Edge 134 Supported
+Upgraded software included with LSF Simulator
+2362    IBM Spectrum LSF
+
+LSF includes various software, required for LSF Simulator components, as applicable for each operating system. This software is included with
+the LSF installation. To proactively address known security vulnerabilities, Fix Pack 15 upgraded the following software to ensure a secure
+environment:
+Software Version
+Click 8.1.7
+Flask 3.1.0
+Gunicorn 23.0.0
+Jinja2 3.1.4
+MatplotSafe 3.0.2
+NumPy 1.26.4
+Pandas 2.4.4
+Python 3.11
+RedHat container image8.10
+SciPy 1.13.0
+Urllib3 1.26.19
+List of ﬁxes
+LSF Simulator 10.2 Fix Pack 15 resolves the following reported issues and necessary enhancements:
+Description
+Support live LSF environment with dummy workload tracing for new LSF Simulator experiments.
+LSF Simulator ignores the license limits deﬁned in the lsf.resources ﬁle.
+Check conﬁguration report error, where the lsadmin command cannot be found.
+Unable to import cluster conﬁguration if LSF_CONFDIR is commented out but pointing to an incorrect path in the lsf.conf ﬁle.
+LSF Simulator does not support the #INCLUDE macro in LSF conﬁguration.
+Enhance the LSF Simulator known issues.
+Fix Pack 14
+Operating system versions
+As of Fix Pack 14, RHEL 8.x and 9.x are newly certiﬁed for LSF Simulator on Linux x64 kernel. You can also continue to use RHEL 7.9.
+Client browser
+As of Fix Pack 14, you can use LSF Simulator on these upgraded browsers:
+For RHEL and Ubuntu:
+Browser Version Support
+Google Chrome 102 Certiﬁed
+Mozilla Firefox 113 Certiﬁed
+For Windows:
+Browser Version Support
+Google Chrome 111 Certiﬁed
+Mozilla Firefox 111 Certiﬁed
+Display version in LSF Simulator web console header
+You can now see the LSF Simulator version (such as IBM Spectrum LSF Simulator 10.1.0.14) in the header of LSF Simulator web console.
+List of ﬁxes
+LSF Simulator 10.2 Fix Pack 14 resolves the following reported issues:
+Description
+Upgrade fails when there are existing stopped containers.
+Symbolic linking support required for ﬁles under the lsf/conf directory.
+Importing LSF conﬁguration fails when the root user does not have writer permission to the conf directory.
+Special directories are excluded when importing LSF conﬁguration.
+Fix Pack 13
+Password change at ﬁrst logon of the LSF Simulator web console
+For added security, the ﬁrst time you log on to the LSF Simulator web console, you will now be prompted to change your password, rather than
+use the preset default password (Admin).
+Experiment graphs
+To show a graphical representation of your experiments, use the new Graphs tab view in the IBM Spectrum LSF Simulator web console.
+Symbolic linking for loading LSF conﬁguration
+Now, when IBM Spectrum LSF Simulator loads LSF conﬁguration, it can process and handle symbolic links. If there are symbolic links in the
+LSF conf/ directory, when IBM Spectrum LSF Simulator loads the LSF conﬁguration, it takes it from each symbolic link and loads that content
+to IBM Spectrum LSF Simulator. IBM Spectrum LSF Simulator no longer requires connecting to the original LSF conf/ directory, as it uses the
+symbolic link to connect instead.
+Updated Elasticsearch
+IBM Spectrum LSF 2363
+
+The built-in supported Elasticsearch version for IBM Spectrum LSF Simulator 10.1 Fix Pack 13 has been upgraded to from version 7.10 to
+7.16.3, with the JDK also upgraded from version 17.0.1 to 17.0.3.1. For details about installing IBM Spectrum LSF Simulator with the built-in
+Elasticsearch, see Installing IBM Spectrum LSF Simulator.
+General availability (version 10.1 with no ﬁx packs)
+Workload distribution charts
+You can now view workload snapshot job distributions across queues, runtime, memory and slots usage. This can help you decide the time
+compression factor when starting an experiment.
+Dynamic time compression
+You can now choose Let system decide when selecting time compression, and LSF Simulator ﬁnds the optimal time compression factor based
+on the workload.
+Experiments with the current time as the event time
+You can now choose Current time as the experiment event time, so the new experiment event is recorded as the current time instead of the
+original event time.
+Accessibility improvements
+The LSF Simulator console now features improvements for accessibility.
+SLMTag support
+LSF Simulator uses the virtual server license model, which requires SLMTag ﬁle for audition. LSF Simulator now includes a tag ﬁle.
+Known issues and limitations for IBM® Spectrum LSF Simulator
+Known issues and limitations for LSF Simulator.
+Known issues
+Known issues are issues discovered during testing that can be addressed in future releases. Currently, there are no known issues for LSF Simulator.
+Limitations
+One-time advance reservations
+LSF Simulator does not support one-time advance reservations, only recurring advance reservations.
+Threshold scheduling
+LSF Simulator does not support threshold scheduling.
+Memory or CPU limits
+LSF Simulator does not support memory limits (MEMLIMIT) or CPU limits (CPULIMIT).
+Pre-execution, post-execution, or job starter processing
+LSF Simulator does not support pre-execution (pre-exec) and post-execution (post-exec) processing, or job starter (job_starter)
+commands.
+Dynamic resources and elim scripts
+LSF Simulator does not support elim scripts. Dynamic resources that are reported from the elim process are converted to ﬁxed resources
+when loading the LSF conﬁguration.
+Dynamic hosts
+If the LSF production cluster that you are going to simulate contains dynamic hosts, these hosts are not simulated as dynamic hosts. LSF
+Simulator attempts to convert the dynamic hosts into static hosts in the collected data so these hosts show up as static hosts in the simulated
+cluster. The conversion adds these hosts to the lsf.cluster.cluster_name ﬁle in the conf directory in the collected data and adds the dynamic
+hosts into the hostlist line. This adds the hosts as static hosts that are recognized by LSF Simulator.
+LSF resource connector
+LSF Simulator does not support the LSF resource connector, as LSF Simulator requires communicating to cloud APIs and using dynamic hosts.
+LSF multicluster capability
+LSF Simulator does not support the LSF multicluster capability. LSF Simulator only works with single LSF clusters.
+LSF Data Manager
+LSF Simulator does not support LSF Data Manager.
+Time compression factor
+LSF Simulator time compression is primarily intended for low throughput environments in which most jobs are long running (such as more
+than an hour). Compression works by internally simulating a faster clock to reduce the real time used to simulate running a job. For example, a
+time compression factor of 2 means that a job that took one hour to complete in reality, will take only half an hour in the simulation.
+Note that compression will typically not reduce the real scheduling cycle time when running a simulation. The LSF scheduling time will
+increase by the compression factor with respect to simulation time. For example, if it takes ten seconds to complete a scheduling cycle in real
+time, then a compression factor of 2, the scheduling cycle is 20 seconds.
+If in the simulation, the scheduling cycle time contains large relative job lengths, this can seriously affect the accuracy of the simulation. As a
+best practice, set the compression value so that the average scheduling cycle time in the simulation is only a few percent of the average length
+of the job.
+2364    IBM Spectrum LSF
+
+Moreover, the scheduling efﬁciency metrics in the badmin perfmon view command output indicates the degree to which scheduling overhead
+is reducing resources used in the cluster. Setting the RELAX_JOB_DISPATCH_ORDER parameter in the lsb.params ﬁle with a large maximum
+reuse time can also help to reduce the effect of a large effective scheduling cycle time during simulations.
+Installing IBM Spectrum LSF Simulator
+Installing LSF Simulator requires Docker CE (docker-ce).
+Before you begin
+Consider the following prerequisites when selecting a host for installing LSF Simulator:
+LSF Simulator supports the following Linux operating systems running on x64 platforms:
+Red Hat Enterprise Linux 7.2, or later.
+CentOS 7.2, or later.
+Ubuntu 18.04.
+Docker CE (docker-ce) 19.03, or later, must be installed and running.
+The following ports must not be in use: 2222, 5050, 9200, 20022.
+Internet access to download the Docker-in-Docker (dind) and CentOS 7 (centos:7) images for starting the LSF simulation Docker container.
+LSF server or client in a production environment to directly load the LSF conﬁguration ﬁles.
+The intended host for LSF Simulator must have at least 32 GB of memory.
+The installation directory that you use to extract the installation package will be the working directory; therefore, ensure that the installation
+directory has at least 100 GB of free space.
+The LSF Simulator installer assumes that you agreed to the license terms before starting the LSF Simulator service. View the license
+agreement in the License/ directory within the installation package.
+Procedure
+1. Log into the intended host as root.
+2. Add the user for LSF Simulator to the docker user group.
+For example, to add lsfadmin to the user group,
+# usermod -aG docker lsfadmin
+3. Increase the limits on the mmap counts to allow the Elasticsearch features to run correctly.
+The default operating system limits on mmap counts is too low for Elasticsearch to start correctly, which requires a limit of at least 262144.
+Run the following command to increase the limit for Elasticsearch:
+# sysctl -w vm.max_map_count=262144
+a. Edit the /etc/sysctl.conf ﬁle.
+b. Deﬁne the vm.max_map_count parameter to a value of at least 262144.
+vm.max_map_count=262144
+c. Save the sysctl.conf ﬁle and run the sysctl -p command to apply your changes.
+# sysctl -p
+4. Log back in to the intended host as the user for LSF Simulator.
+For example, log in to the intended host as lsfadmin.
+5. Navigate to the intended installation directory and extract the lsf-cognitive installation package.
+Important: The installation directory must be an absolute ﬁle path. Do not navigate to a symbolic link to use as the installation directory. LSF
+Simulator uses Docker containers and symbolic links do not work inside Docker containers.
+For example,
+$ cd /sharedir 
+$ tar -zxvf lsf_cognitive_v1.tar.gz
+6. If you are running simulations for large parallel jobs, increase the share memory for simulation containers.
+The share memory for simulator containers is 62 MB, which might not be enough for a large parallel job environment. To resolve this issue,
+increase the share memory for the simulation container to 2 GB.
+a. Verify that the /dev/shm device on your host has sufﬁcient space to increase the memory to 2 GB.
+b. Navigate to the installation directory and edit the lsf_cognitive_v1/work/lsf_simulator/sim_run/run.sh ﬁle.
+c. Navigate to the lines that start with "docker run" near the end of the ﬁle.
+d. Add the --shm-size=2g option to the docker run commands to increase the share memory to 2 GB.
+For example:
+IBM Spectrum LSF 2365
+
+if [[ "$DOCKER_DIND" == "no dind" ]]; then 
+        docker run --privileged=true --shm-size=2g --cap-add=ALL $RUN_OPTIONS ... 
+else 
+        docker run --privileged=true --link lsf_cognitive --shm-size=2g --cap-add=ALL $RUN_OPTIONS 
+... 
+fi
+7. Start the LSF Simulator service.
+For example, start the LSF Simulator service with directory mapping like the following:
+$ ./bcogn start -v "$LSF_TOP:$LSF_TOP"
+The ﬁrst $LSF_TOP is the real LSF cluster top level ﬁle path and the second $LSF_TOP is the mapping point from inside the Docker container
+that is created automatically when starting the simulation. You must specify the same ﬁle path both times.
+For more information on the bcogn start command, refer to Managing the IBM Spectrum LSF Simulator service.
+8. Log in to the LSF Simulator Console from a web browser.
+a. Import the LSF Simulator certiﬁcate to the web browser as a Trusted Root Certiﬁcate.
+The certiﬁcate is located in lsf_cognitive_v1/conﬁg/https/cacert_lsf.pem.
+b. From the web browser, log in to the LSF Simulator Console.
+https://<lsf_simulator_host>:5050
+Use Admin as the default user name and password.
+Enabling IBM Spectrum LSF License Scheduler in IBM Spectrum LSF Simulator
+ Enable LSF Simulator to work with LSF License Scheduler.
+Connecting an external Elasticsearch in secure mode for IBM Spectrum LSF Simulator
+ LSF Simulator uses Elasticsearch for reporting storage. If LSF Simulator is installed with the built-in Elasticsearch, you do not require this
+topic. If you are an administrator and have an external Elasticsearch, and want to use it with LSF Simulator, use this topic to connect that
+external Elasticsearch with LSF Simulator in secure (HTTPS) mode.
+Enabling IBM Spectrum LSF License Scheduler in IBM Spectrum LSF
+Simulator
+Enable LSF Simulator to work with LSF License Scheduler.
+Before you begin
+The LSF Simulator support for LSF License Scheduler has the following limitations:
+No support for Reprise License Manager. LSF Simulator only supports FlexNet License Manager.
+Cannot manage licenses for multiple LSF clusters.
+No support for the following parameters in the lsf.licensescheduler ﬁle: LM_REMOVE_INTERVAL, LM_REMOVE_SUSP_JOBS,
+LM_REMOVE_SUSP_JOBS_INTERVAL, LM_RESERVATION, REMOTE_LMSTAT_PROTOCOL, and REMOTE_LMSTAT_SERVERS.
+About this task
+LSF Simulator includes a simulator for LSF License Scheduler that you can enable if your LSF cluster has LSF License Scheduler installed and
+working.
+After enabling LSF License Scheduler, running bcogn start -v to load your LSF production cluster into LSF Simulator automatically loads your LSF
+License Scheduler production environment as well, and performs the following actions:
+Set the LSF License Scheduler management host to the same as the LSF management host.
+Generate a simulated license ﬁle for each license server that is conﬁgured in the lsf.licensescheduler ﬁle.
+Modify the path of the lmstat or lmutil command to a simulated one.
+After loading the LSF License Scheduler production environment, perform the following to enable LSF License Scheduler simulation.
+Procedure
+1. Modify the simulated license ﬁles to use the correct license information that is stored in the real license server by performing one of the
+following two actions:
+Copy the original license ﬁle contents to overwrite the related license ﬁle.
+Replace #VENDOR and #VERSION in the simulated license ﬁle with your real license value.
+For example, if the original license ﬁle is the following:
+2366    IBM Spectrum LSF
+
+    SERVER licserver host1 27009 
+    VENDOR demoVendor 
+    FEATURE f1 demoVendor 62.1 15-aug-2020 16666 \ 
+        VENDOR_STRING=demo SUPERSEDE \ 
+        vendor_info=demo user_info=demo1 \ 
+        ISSUED=16-aug-2019 NOTICE="This is demo" \ 
+        SN=200000000028811 START=15-aug-2019 SIGN=E23FEF86BEA0 
+    FEATURE f2 demoVendor 63.1 15-aug-2020 1555 \ 
+        VENDOR_STRING=demo SUPERSEDE \ 
+        vendor_info=demo user_info=demo1 \ 
+        ISSUED=16-aug-2019 NOTICE="This is demo" \ 
+        SN=200000000028812 START=15-aug-2021 SIGN=E23FEF86BEA1
+The modiﬁed license ﬁle in LSF Simulator is the following:
+    SERVER this_host ANY 27009 
+    VENDOR demoVendor 
+    FEATURE f1 demoVendor 62.1 permanent 16666 
+    FEATURE f2 demoVendor 63.1 permanent 1555
+2. Optional. Enable license checkout simulation.
+By default, the LSF License Scheduler simulator does not simulate license checkouts and all licenses that are used by jobs are treated as
+RESERVE. If you enable license checkouts, the simulation does not support the following features:
+License checkout from multiple license servers in the ServiceDomain section or from multiple ServiceDomain sections.
+License checkout with durations.
+Licenses with an alias as deﬁned by the LM_LICENSE_NAME parameter.
+taskman jobs.
+If you enable license checkout simulation, you must remove the unsupported conﬁguration parameters in the lsf.licensescheduler ﬁle.
+a. Navigate to the installation directory and edit the lsf_cognitive_v1/work/lsfconfs/conf_name/ls_sim/lmstat_sim.py ﬁle.
+b. Set the enableCheckout parameter value to 1.
+After enabling license checkout simulation, all license that are used by jobs are treated as INUSE and RESERVE accordingly.
+Results
+After you modify the simulated license ﬁles, LSF License Scheduler is enabled in any simulation that you start up.
+Connecting an external Elasticsearch in secure mode for IBM Spectrum
+LSF Simulator
+LSF Simulator uses Elasticsearch for reporting storage. If LSF Simulator is installed with the built-in Elasticsearch, you do not require this topic. If you
+are an administrator and have an external Elasticsearch, and want to use it with LSF Simulator, use this topic to connect that external Elasticsearch
+with LSF Simulator in secure (HTTPS) mode.
+About this task
+Tip: For overall Elasticsearch and security information, see your Elasticsearch documentation.
+LSF Simulator supports both security-enabled and security-disabled Elasticsearch:
+The LSF Simulator installation package includes a built-in supported version of Elasticsearch. This built-in Elasticsearch is conﬁgured for
+security-disabled Elasticsearch (HTTP).
+You can alternatively connect to an external Elasticsearch, rather than use the built-in one, as long as it is a supported version of Elasticsearch
+compatible with LSF Simulator. An administrator can then conﬁgure a connection to the external Elasticsearch, and then access Elasticsearch
+in LSF Simulator through HTTPS.
+Procedure
+1. Before starting the LSF Simulator service (bcogn), conﬁgure the lsf_cognitive_v1/conﬁg/providers/es1.json Elasticsearch ﬁle with the
+following information deﬁned:
+"use_ssl"
+Conﬁgure to true.
+"ca_certs"
+Conﬁgure to your "CA_FILE_NAME file".
+"verify_certs"
+Conﬁgure to true.
+Here is an example es1.json ﬁle with these conﬁgurations:
+IBM Spectrum LSF 2367
+
+{ 
+"providerType": "elasticsearch", 
+"connection": { 
+"host": "fp13-rhel85-2.fyre.ibm.com", 
+"port": 9200, 
+"use_ssl": true, 
+"ca_certs": "ca.crt", 
+"verify_certs": true, 
+"timeout": 300, 
+"max_retries":3, 
+"retry_on_timeout": true 
+}, 
+"index": "lsf_events*" 
+}
+2. Copy your CA_FILE_NAME ﬁle used in the previous step, to the lsf_cognitive_v1/conﬁg/providers/ directory.
+3. Deﬁne environment variables for your external Elasticsearch:
+ES_USERNAME
+Your external Elasticsearch username.
+ES_PASSWORD
+Your external Elasticsearch password.
+ElasticSearchURL
+URL to your external Elasticsearch, with port (for example, https://elasticsearch.mydomain.com:9200). Providing this
+environment variable and value disables the built-in Elasticsearch, and uses your external Elasticsearch with LSF Simulator.
+Here is an example of deﬁning these Elasticsearch environment variables:
+export ES_USERNAME=elastic 
+export ES_PASSWORD=mypassword 
+export ElasticSearchURL=https://elasticsearch.mydomain.com:9200
+4. From your LSF Simulator directory, start the LSF Simulator service using an administrator account; for example:
+cd /lsf_cognitive_v1 
+./bcogn start -v "LSF_TOP:LSF_TOP"
+Managing the IBM Spectrum LSF Simulator service
+Use the bcogn command to manage the LSF Simulator service.
+Procedure
+1. Log in to the LSF Simulator host as the LSF Simulator user.
+For example, log in to the LSF Simulator host as lsfadmin.
+2. Navigate to the LSF Simulator directory (lsf_cognitive_v1).
+3. Use the bcogn command to manage the LSF Simulator service.
+Use the bcogn start command to start the LSF Simulator service.
+./bcogn start [-v "LSF_TOP:LSF_TOP"]
+Specify the -v option if you want to load the LSF conﬁguration directly into the LSF Simulator web console. The ﬁrst LSF_TOP is the real
+LSF cluster top level ﬁle path and the second LSF_TOP is the mapping point from inside the Docker container that is created
+automatically when starting the simulation. You must specify the same ﬁle path for the pair.
+For example,
+$ ./bcogn start -v "/production_cluster_sharedir/lsf:/production_cluster_sharedir/lsf"
+If you do not specify the -v option, the default mapping location between the ﬁle system and the LSF Simulator is lsf_cognitive_v1/work.
+If you want to import LSF cluster information from a remote server, create a tar.z ﬁle containing the contents of the remote LSF conf
+directory and copy it to this location. When you import this from the LSF Simulator web console, specify the appropriate .tar.z ﬁle name
+and LSF Simulator searches this default location to import the ﬁle.
+The service provides default ﬁle volume mountings, which you can use as a bridge to transfer ﬁles to the service container. The
+following volume mountings are the defaults from the service:
+Table 1. Default volume mountings
+Volume path outside the containerVolume path inside the container
+$PACKAGE_TOP $PACKAGE_TOP
+$PACKAGE_TOP/work /opt/ibm/prediction/work
+$PACKAGE_TOP/logs /opt/ibm/prediction/logs
+2368    IBM Spectrum LSF
+
+Volume path outside the containerVolume path inside the container
+$PACKAGE_TOP/conﬁg /opt/ibm/prediction/conﬁg
+Note:
+$PACKAGE_TOP is the full directory that is created when extracting the original installation package. For example,
+/sharedir/lsf_cognitive_v1
+To accurately analyze and tune your LSF cluster conﬁguration, import LSF conﬁguration ﬁles and workload snapshots (job
+submission and completion records that are imported from the lsb.events ﬁle) from your LSF production cluster.
+If your LSF production cluster is installed with one of the LSF Suites, there might be a symbolic link from /opt/ibm/lsftsuite/lsf to
+/sharedir/lsf. To directly import the LSF conﬁguration from this production cluster, you must map both directories when starting
+the LSF Simulator service. For example,
+$ ./bcogn start -v "/opt/ibm/lsfsuite:/opt/ibm/lsfsuite;/sharedir/lsf:/sharedir/lsf"
+Use the bcogn stop command to stop the LSF Simulator service.
+./bcogn stop
+Use the bcogn status command to view the current status of the LSF Simulator service.
+./bcogn status
+Using IBM Spectrum LSF Simulator
+Understand the concepts of using LSF Simulator.
+Before you begin
+Note these items before using LSF Simulator:
+When using LSF Simulator, the log and event ﬁles can contain personal information (for example, UNIX usernames and email addresses). OS-
+level access control is one level of protecting this persona data; for further protection, you can use encryption software tools to encrypt the
+disk partition or volume used to store the log and events ﬁles. LSF Simulator log and event ﬁles are located at PACKAGE_TOP/logs and
+PACKAGE_TOP/work.
+You must import the LSF Simulator certiﬁcate to your web browser as a Trusted Root Certiﬁcate. The certiﬁcate is located in
+lsf_cognitive_v1/conﬁg/https/cacert_lsf.pem.
+Procedure
+1. From a web browser, log in to the LSF Simulator Console.
+https://lsf_simulator_host:5050
+The default user name and password is Admin as the default user name and password.
+2. From the LSF Simulator Console, you can create an Experiment, which is an LSF simulation that is run using a selected workload snapshot and
+a full set of LSF cluster conﬁguration ﬁles and workload policies.
+A workload snapshot is a set of job submission and completion records that are imported from the LSF cluster event ﬁle (lsb.events).
+Note: To accurately analyze and tune your LSF cluster conﬁguration, import LSF conﬁguration ﬁles and workload snapshots from your LSF
+production cluster.
+LSF Simulator experiments
+ An LSF Simulator experiment is an LSF simulation that is run using a selected workload snapshot and a full set of LSF cluster conﬁguration
+ﬁles and workload policies. Use the Experiments tab in the LSF Simulator web console to work with experiments.
+Cluster conﬁgurations
+ Use the Cluster Conﬁgurations tab in the LSF Simulator web console to manage the LSF cluster conﬁgurations.
+Workload snapshots
+ A workload snapshot is a set of job submission and completion records that are imported from the LSF cluster event ﬁle (lsb.events). Use the
+Workload Snapshots tab in the LSF Simulator web console to manage the workload snapshot functions.
+LSF Simulator experiments
+An LSF Simulator experiment is an LSF simulation that is run using a selected workload snapshot and a full set of LSF cluster conﬁguration ﬁles and
+workload policies. Use the Experiments tab in the LSF Simulator web console to work with experiments.
+About this task
+IBM Spectrum LSF 2369
+
+The Experiments tab in the LSF Simulator web console displays an overview of all existing experiments and allows you to perform additional actions
+on these experiments.
+Note that when LSF Simulator is conﬁgured with LSF License Scheduler, measuring experiment data differs for jobs running in different LSF License
+Scheduler modes. LSF License Scheduler provides modes: a cluster mode, a traditional project mode. Each LSF License Scheduler mode uses a
+different scheduling mechanism that affects how LSF Simulator measures its experiment data. For example, with LSF License Scheduler project
+mode, license token distribution is deﬁned at each scheduling cycle, after the lmstat or rlmstat command conﬁrms the availability of the license
+token. Compare with LSF License Scheduler cluster or fast dispatch modes, when a job ﬁnishes running, the next job gets its license immediately
+without having to wait for the next lmstat or rlmstat interval. These different scheduling mechanisms for the different modes measure the LSF
+Simulator experiment data differently. For instance, the pending time of experiments conﬁgured with the FAST_DISPATCH=N setting is much higher
+that for experiments where FAST_DISPATCH=Y.
+Procedure
+Click New to create a new experiment.
+1. In the Cluster Conﬁguration tab, select an LSF cluster conﬁguration to use for your experiment.
+2. In the Workload Snapshot tab, select a workload snapshot from which to run your experiment.
+A workload snapshot is a set of job submission and completion records that are imported from the LSF cluster event ﬁle (lsb.events).
+You can also select a Time Compression Factor to speed up your simulation.
+3. Click Start to start your experiment.
+Click the name of an existing experiment to view details on that experiment.
+The Cluster Conﬁguration and Workload Snapshot tabs show the parameters of the experiment that you created, including changes that
+you made to the conﬁguration after importing it from the production cluster.
+When the experiment is running, the Experiment Progress tab shows the current progress of jobs that are in the simulated cluster.
+When the experiment is done, the Experiment Results tab shows details of the jobs that ran on the simulated cluster.
+You can compare different experiment versions by selecting the appropriate version in the list. You can also select Baseline to compare
+simulation results with data results from the actual production cluster.
+The Graphs tab show a graphical representation of the experiments.
+When an experiment is running, you can go into the simulation environment to view the simulated cluster by clicking the Xterm action item.
+A new terminal window opens and logs you in to the simulated cluster as the primary LSF administrator. Run LSF commands to view the status
+of the cluster.
+Cluster conﬁgurations
+Use the Cluster Conﬁgurations tab in the LSF Simulator web console to manage the LSF cluster conﬁgurations.
+About this task
+The Cluster Conﬁgurations tab in the LSF Simulator web console displays an overview of all LSF cluster conﬁgurations that you imported or created
+for the LSF Simulator and allows you to perform additional actions on these cluster conﬁgurations.
+Procedure
+1. If LSF Simulator is version 10.1 Fix Pack 12 and the LSF production cluster is version 10.1.0.11 or previous, you must conﬁgure the following
+parameters in the lsf.conf ﬁle in the production cluster:
+LSF_STRICT_CHECKING=N 
+LSF_AUTH_QUERY_COMMANDS=N
+2. Click Import to import a new LSF conﬁguration.
+Directly import the LSF conﬁguration from your production cluster by specifying the LSF conf directory.
+Note: To directly import the LSF conﬁguration, the LSF Simulator host must be a server or client in the LSF cluster. In addition, the LSF
+conf directory that you specify must be mapped into the container when you started the LSF Simulator service with the bcogn start -v
+command.
+For example, if you started the LSF Simulator service with the following command:
+./bcogn start -v "/production_cluster_sharedir/lsf:/production_cluster_sharedir/lsf"
+Specify the following LSF conf directory:
+/production_cluster_sharedir/lsf/conf
+Load an existing LSF cluster conﬁguration package as a tar or tar.gz ﬁle.
+As administrator, log in to an LSF server host that is in the production cluster.
+Extract lsf_simulator/ from the lsf_simulator:v1 image by running the following command:
+2370    IBM Spectrum LSF
+
+$ docker run -it --rm -v "/tmp:/copyto" lsf_simulator:v1 tar zcf /copyto/lsf_simulator.tar.gz 
+/opt/ibm/lsf_simulator
+Copy /tmp/lsf_simulator.tar.gz to one of the LSF servers in the LSF live cluster and unpack it by running the following command:
+$ tar xvf lsf_simulator.tar.gz
+Source the LSF environment.
+For example,
+For csh or tcsh:
+source /opt/ibm/lsfsuite/lsf/conf/cshrc.lsf
+For sh, ksh, or bash:
+. /opt/ibm/lsfsuite/lsf/conf/profile.lsf
+Create a tar or tar.gz package ﬁle with the LSF conﬁguration by using the lsf_sim.sh script in LSF Simulator.
+For example,
+$ ./opt/ibm/lsf_simulator/lsf_sim.sh -c -o /production_cluster_sharedir/lsf/lsf101conf.tar.gz
+3. Click the name of an existing cluster conﬁguration to view details on that cluster conﬁguration.
+4. Click the Edit action item to edit an existing cluster conﬁguration.
+You can edit any of the simulated LSF conﬁguration ﬁles. You can either save your changes or click Save As to create a new copy of the LSF
+conﬁguration.
+Create an LSF cluster conﬁguration package
+ Create an LSF conﬁguration package as a tar or tar.gz ﬁle from the an LSF production cluster and running the lsf_sim.sh script.
+Create an LSF cluster conﬁguration package
+Create an LSF conﬁguration package as a tar or tar.gz ﬁle from the an LSF production cluster and running the lsf_sim.sh script.
+About this task
+Create a cluster conﬁguration package that you can specify when importing a cluster conﬁguration from the LSF Simulator web console.
+Procedure
+1. As administrator, log in to an LSF server host that is in the production cluster.
+2. Extract lsf_simulator/ from the lsf_simulator:v1 image by running the following command:
+docker run -it --rm -v "/tmp:/copyto" lsf_simulator:v1 tar zcf /copyto/lsf_simulator.tar.gz 
+/opt/ibm/lsf_simulator
+3. Copy /tmp/lsf_simulator.tar.gz to one of the LSF servers in the LSF live cluster and unpack it by running the following command:
+tar xvf lsf_simulator.tar.gz
+4. Source the LSF environment.
+For example,
+For csh or tcsh:
+source /opt/ibm/lsfsuite/lsf/conf/cshrc.lsf
+For sh, ksh, or bash:
+. /opt/ibm/lsfsuite/lsf/conf/profile.lsf
+5. Create a tar or tar.gz package ﬁle with the LSF conﬁguration by using the lsf_sim.sh script in LSF Simulator.
+For example,
+./opt/ibm/lsf_simulator/lsf_sim.sh -c -o /production_cluster_sharedir/lsf/lsf101conf.tar.gz
+Results
+When importing a cluster conﬁguration, you can specify the full path to the package ﬁle that you created.
+Workload snapshots
+IBM Spectrum LSF 2371
+
+A workload snapshot is a set of job submission and completion records that are imported from the LSF cluster event ﬁle (lsb.events). Use the
+Workload Snapshots tab in the LSF Simulator web console to manage the workload snapshot functions.
+About this task
+The Workload Snapshots tab in the LSF Simulator web console displays an overview of all LSF workload snapshots that you imported or created for
+the LSF Simulator and allows you to perform additional actions on these workload snapshots.
+Procedure
+Click Import to import a new LSF workload snapshot.
+Import the LSF workload snapshot from your production cluster by specifying the events log directory, which must contain the lsb.acct and
+lsb.event ﬁles, and by specifying the time range of job submission events that you want to include.
+Note: The LSF Simulator host must be a server or client in the LSF cluster. In addition, the LSF directory that you specify must be mapped into
+the container when you started the LSF Simulator service with the bcogn start -v command.
+For example, if you started the LSF Simulator service with the following command:
+./bcogn start -v "/production_cluster_sharedir/lsf:/production_cluster_sharedir/lsf"
+Specify the following LSF directory for the cluster1 cluster:
+/production_cluster_sharedir/lsf/work/cluster1/logdir
+The workload snapshot import process might take several minutes, depending on the number of job records to import. During this time, the
+workload snapshot appears in the Workload Snapshots tab with (importing) beside its name.
+Click the name of an existing workload snapshot to view details on that workload snapshot.
+Click the Clone action item to copy and modify an existing workload snapshot.
+Use the Workload Selection For Modiﬁcation ﬁlters and the Modify Options checkboxes to modify an existing workload snapshot to create a
+new workload snapshot.
+For more details on modifying the workloads with the wconvert script, refer to Using modiﬁcation scripts.
+Modify workload snapshots
+ Use workload snapshot modiﬁcation scripts and plug-ins to modify your workload snapshots for different simulations.
+Modify workload snapshots
+Use workload snapshot modiﬁcation scripts and plug-ins to modify your workload snapshots for different simulations.
+A workload snapshot is set of job submission and completion records that are imported from the LSF cluster event ﬁle (lsb.events). The LSF
+Simulator console runs the bsim wconvert command to import workload snapshots from the LSF cluster.
+If you want to run different simulations with different use cases, you can modify these workload snapshots by using workload snapshot modiﬁcation
+scripts or plug-ins.
+The workload snapshot modiﬁcation scripts and plug-ins use these parameters that are mapped to the following bsub command options.
+Optionbsub or bmod
+optionData type Description
+LSB_SUB_BEGI
+N_TIME-b integer Begin time, in seconds since 00:00:00 GMT, 1 January 1970.
+LSB_SUB_CHKP
+NT_DIR-k string Checkpoint directory
+The ﬁle path of the checkpoint directory can contain up to 4000 characters for UNIX and
+Linux, or up to 255 characters for Windows, including the directory and ﬁle name.
+LSB_SUB_COMM
+AND_LINEbsub job
+command
+argumentstring The LSB_SUB_COMMANDNAME parameter must be set in the lsf.conf parameter to enable
+esub to use this variable.
+LSB_SUB_CHKP
+NT_PERIOD-k string Checkpoint period in seconds
+LSB_SUB_DEPE
+ND_COND-w string Dependency condition
+LSB_SUB_ERR_
+FILE-e, -eo string Standard error ﬁle name
+LSB_SUB_EXCL
+USIVE-x boolean Exclusive execution, which is speciﬁed by Y.
+2372    IBM Spectrum LSF
+
+Optionbsub or bmod
+optionData type Description
+LSB_SUB_HOLD-H boolean Hold job.
+LSB_SUB_HOST
+_SPEC-c or -w string Host speciﬁer, limits the CPU time or RUN time.
+LSB_SUB_HOST
+S-m string List of requested execution host names
+LSB_SUB_IN_FI
+LE-i, -io string Standard input ﬁle name
+LSB_SUB_INTE
+RACTIVE-I boolean Interactive job, which is speciﬁed by Y.
+LSB_SUB_LOGI
+N_SHELL-L string Login shell
+LSB_SUB_JOB_
+NAME-J string Job name
+LSB_SUB_JOB_
+WARNING
+_ACTION-wa string Job warning action
+LSB_SUB_JOB_
+ACTION
+_WARNING_TIM
+E-wt integer Job warning time period
+LSB_SUB_MAIL
+_USER-u string Email address to which LSF sends job-related messages.
+LSB_SUB_MAX_
+NUM
+_PROCESSORS-n integer Maximum number of processors requested
+LSB_SUB_NOTI
+FY_BEGIN-B boolean LSF sends an email notiﬁcation when the job begins, speciﬁed by Y.
+LSB_SUB_NOTI
+FY_END-N boolean LSF sends an email notiﬁcation when the job ends, which are speciﬁed by Y.
+LSB_SUB_NUM_
+PROCESSORS-n integer Minimum number of processors requested.
+LSB_SUB_OTHE
+R_FILESbmod -f integer Indicates the number of ﬁles to be transferred. The value is SUB_RESET if bmod is being
+used to reset the number of ﬁles to be transferred.
+The ﬁle path of the directory can contain up to 4094 characters for UNIX and Linux, or up to
+255 characters for Windows, including the director and ﬁle name.
+LSB_SUB_OTHE
+R_FILES
+_numberbsub -f integer The number indicates the particular ﬁle transfer value in the speciﬁed ﬁle transfer
+expression.
+For example, for bsub -f "a > b" -f "c < d", the following parameters are deﬁned:
+LSB_SUB_OTHER_FILES=2
+LSB_SUB_OTHER_FILES_0="a > b"
+LSB_SUB_OTHER_FILES_1="c < d"
+LSB_SUB_OUT_
+FILE-o, -oo string Standard output ﬁle name.
+LSB_SUB_PRE_
+EXEC-E string Pre-execution command.
+The ﬁle path of the directory can contain up to 4094 characters for UNIX and Linux, or up to
+255 characters for Windows, including the directory and ﬁle name.
+LSB_SUB_PROJ
+ECT_NAME-P string Project name.
+LSB_SUB_PTY -Ip boolean An interactive job with PTY support, which is speciﬁed by "Y"
+LSB_SUB_PTY_S
+HELL-Is boolean An interactive job with PTY shell support, which is speciﬁed by "Y"
+LSB_SUB_QUEU
+E-q string Submission queue name
+LSB_SUB_RERU
+NNABLE-r boolean Y speciﬁes a rerunnable job.
+N speciﬁes a non-rerunnable job (speciﬁed with bsub -rn). The job is not rerunnable even it
+was submitted to a rerunnable queue or application proﬁle.
+For bmod -rn, the value is SUB_RESET.
+LSB_SUB_RES_
+REQ-R string Resource requirement string—does not support multiple resource requirement strings.
+LSB_SUB_REST
+ARTbrestart boolean Y indicates to esub that the job options are associated with a restarted job.
+IBM Spectrum LSF 2373
+
+Optionbsub or bmod
+optionData type Description
+LSB_SUB_REST
+ART_FORCEbrestart -f boolean Y indicates to esub that the job options are associated with a forced restarted job.
+LSB_SUB_RLIMI
+T_CORE-C integer Core ﬁle size limit
+LSB_SUB_RLIMI
+T_CPU-c integer CPU limit
+LSB_SUB_RLIMI
+T_DATA-D integer Data size limit
+For AIX, if the XPG_SUS_ENV=ON environment variable is set in the user's environment
+before the process is executed and a process attempts to set the limit lower than current
+usage, the operation fails with errno set to EINVAL. If the XPG_SUS_ENV environment
+variable is not set, the operation fails with errno set to EFAULT.
+LSB_SUB_RLIMI
+T_FSIZE-F integer File size limit
+LSB_SUB_RLIMI
+T_PROCESS-p integer Process limit
+LSB_SUB_RLIMI
+T_RSS-M integer Resident size limit
+LSB_SUB_RLIMI
+T_RUN-W integer Wall-clock run limit in seconds. (Note this value is not in minutes, unlike the run limit
+speciﬁed by bsub -W).
+LSB_SUB_RLIMI
+T_STACK-S integer Stack size limit
+LSB_SUB_RLIMI
+T_THREAD-T integer Thread limit
+LSB_SUB_TERM
+_TIME-t integer Termination time, in seconds, since 00:00:00 GMT, Jan. 1, 1970
+LSB_SUB_TIME_
+EVENT-wt integer Time event expression.
+LSB_SUB_USER
+_GROUP-G string User group name
+LSB_SUB_WIND
+OW_SIG-s integer Window signal number
+LSB_SUB2_JOB
+_GROUP-g string Submits a job to a job group
+LSB_SUB2_LICE
+NSE
+_PROJECT-Lp string License Scheduler project name
+LSB_SUB2_IN
+_FILE_SPOOL
+(read-only)-is string Spooled input ﬁle name. This value cannot be modiﬁed
+LSB_SUB2_JOB
+_CMD_SPOOL
+(read-only)-Zs string Spooled job command ﬁle name. This value cannot be modiﬁed.
+LSB_SUB2_JOB
+_PRIORITY-sp integer Job priority
+For bmod -spn, the value is SUB_RESET.
+LSB_SUB2_SLA -sla string SLA scheduling options
+LSB_SUB2_USE
+_RSV-U string Advance reservation ID
+LSB_SUB3_AUT
+O
+_RESIZABLE-ar boolean Job autoresizable attribute. LSB_SUB3_AUTO_RESIZABLE=Y if bsub -ar -app or bmod -ar is
+speciﬁed.
+LSB_SUB3_AUTO_RESIABLE=
+SUB_RESET if bmod -arn is used.
+LSB_SUB3_APP-app string Application proﬁle name
+For bmod -appn, the value is SUB_RESET.
+LSB_SUB3_CWD-cwd string Current working directory
+LSB_SUB3_
+INIT_CHKPNT_P
+ERIOD-k init integer Initial checkpoint period
+2374    IBM Spectrum LSF
+
+Optionbsub or bmod
+optionData type Description
+LSB_SUB_INTE
+RACTIVE
+LSB_SUB3_INT
+ERACTIVE_SSHbsub -IS boolean The session of the interactive job is encrypted with SSH.
+LSB_SUB_INTE
+RACTIVE
+LSB_SUB_PTY
+LSB_SUB3_INT
+ERACTIVE_SSHbsub -ISp boolean If LSB_SUB_INTERACTIVE is speciﬁed by "Y", LSB_SUB_PTY is speciﬁed by "Y", and
+LSB_SUB3_INTERACTIVE_SSH is speciﬁed by "Y", the session of interactive job with PTY
+support is encrypted by SSH.
+LSB_SUB_INTE
+RACTIVE
+LSB_SUB_PTY
+LSB_SUB_PTY_S
+HELL
+LSB_SUB3_INT
+ERACTIVE_SSHbsub -ISs boolean If LSB_SUB_INTERACTIVE is speciﬁed by "Y", LSB_SUB_PTY is speciﬁed by "Y",
+LSB_SUB_PTY_SHELL is speciﬁed by "Y", and LSB_SUB3_INTERACTIVE_SSH is speciﬁed by
+"Y", the session of interactive job with PTY shell support is encrypted by SSH.
+LSB_SUB3_JOB
+_REQUEUE-Q string String format parameter that contains the job requeue exit values
+For bmod -Qn, the value is SUB_RESET.
+LSB_SUB3_MIG-mig
+-migninteger Migration threshold
+LSB_SUB3_POS
+T_EXEC-Ep string Run the speciﬁed post-execution command on the execution host after the job ﬁnishes (you
+must specify the ﬁrst execution host).
+The ﬁle path of the directory can contain up to 4094 characters for UNIX and Linux, or up to
+255 characters for Windows, including the directory and ﬁle name.
+LSB_SUB3_RESI
+ZE_NOTIFY_CM
+D-rnc string Job resize notiﬁcation command.
+LSB_SUB3_RESIZE_NOTIFY_CMD=<cmd> if bsub -rnc or bmod -rnc is speciﬁed.
+LSB_SUB3_RESIZE_NOTIFY_CMD
+=SUB_RESET
+if bmod -rnc is used.
+LSB_SUB3_RUN
+TIME_ESTIMATI
+ON-We integer Runtime estimate in seconds. (Note this runtime is not in minutes, unlike the runtime
+estimate speciﬁed by bsub -We).
+LSB_SUB3_RUN
+TIME_ESTIMATI
+ON_ACC-We+ integer Runtime estimate that is the accumulated run time plus the runtime estimate.
+LSB_SUB3_RUN
+TIME_ESTIMATI
+ON_PERC-Wep integer Runtime estimate in percentage of completion
+LSB_SUB3_USE
+R_SHELL_LIMIT
+S-ul boolean Pass user shell limits to execution host.
+LSB_SUB_INTE
+RACTIVELSB_SU
+B3_XJOB_SSHbsub -IX boolean If both are set to "Y", the session between the X-client and X-server as well as the session
+between the execution host and submission host are encrypted with SSH.
+LSB_SIM_CPUF
+ACTOR-sim cputime
+-sim runtimefloat Job running host's CPU factor.
+LSB_SIM_CPUTI
+ME-sim cputime integer Job CPU time.
+LSB_SIM_EXIT_
+STATUS-sim exitstatus integer Job exit status.
+LSB_SIM_JOBID
+(read-only)    Job ID. This value cannot be modiﬁed.
+LSB_SIM_JOBID
+X
+(read-only)    Job index. This value cannot be modiﬁed.
+LSB_SIM_MAXM
+EM-sim maxmem integer Maximum memory usage.
+IBM Spectrum LSF 2375
+
+Optionbsub or bmod
+optionData type Description
+LSB_SIM_NSLO
+TS    Number of allocated slots.
+LSB_SIM_RUNT
+IME-sim runtime integer Normalized job run time.
+LSB_SIM_SUB_T
+IME
+(read-only)    Job submission time. This value cannot be modiﬁed.
+LSB_SIM_TRAC
+E_TYPE
+(read-only)    The type of snapshot (trace) record. This is JOB_NEW and cannot be modiﬁed.
+LSB_SIM_SUB_
+USER  string The job submission user name.
+Using modiﬁcation scripts
+ Use workload snapshot modiﬁcation scripts to easily modify your workload snapshots for different simulations.
+Using modiﬁcation plug-ins
+ Use a workload snapshot modiﬁcation plug-in library for improved performance over scripts to modify your workload snapshots for different
+simulations.
+Using modiﬁcation scripts
+Use workload snapshot modiﬁcation scripts to easily modify your workload snapshots for different simulations.
+Create a workload snapshot modiﬁcation script in the lsf_cognitive_v1/work/scripts directory. Refer to the default workload snapshot modiﬁcation
+script (wconvert_script_sample.sh) as an example for writing a script. You can then select your workload script from the LSF Simulator console when
+running a simulation. The bsim wconvert -s command calls this script for each snapshot record to modify the job submission parameters in the
+workload snapshot ﬁle.
+There is a set of LSF environment variables that are mapped from the bsub command options. These are passed from the bsim command into the
+script. Another set of environment variables for the scripts are passed from LSF Simulator for the GUI ﬁlters. The script matches the current record
+using these two sets of environment variables, then writes these environment variables back to the bsim command.
+The workload snapshot modiﬁcation scripts use these parameters that are mapped to the following bsub command options.
+Optionbsub or bmod
+optionData type Description
+2376    IBM Spectrum LSF
+
+Optionbsub or bmod
+optionData type Description
+LSB_SUB_BEGI
+N_TIME-b integer Begin time, in seconds since 00:00:00 GMT, 1 January 1970.
+LSB_SUB_CHKP
+NT_DIR-k string Checkpoint directory
+The ﬁle path of the checkpoint directory can contain up to 4000 characters for UNIX and
+Linux, or up to 255 characters for Windows, including the directory and ﬁle name.
+LSB_SUB_COMM
+AND_LINEbsub job
+command
+argumentstring The LSB_SUB_COMMANDNAME parameter must be set in the lsf.conf parameter to enable
+esub to use this variable.
+LSB_SUB_CHKP
+NT_PERIOD-k string Checkpoint period in seconds
+LSB_SUB_DEPE
+ND_COND-w string Dependency condition
+LSB_SUB_ERR_
+FILE-e, -eo string Standard error ﬁle name
+LSB_SUB_EXCL
+USIVE-x boolean Exclusive execution, which is speciﬁed by Y.
+LSB_SUB_HOLD-H boolean Hold job.
+LSB_SUB_HOST
+_SPEC-c or -w string Host speciﬁer, limits the CPU time or RUN time.
+LSB_SUB_HOST
+S-m string List of requested execution host names
+LSB_SUB_IN_FI
+LE-i, -io string Standard input ﬁle name
+LSB_SUB_INTE
+RACTIVE-I boolean Interactive job, which is speciﬁed by Y.
+LSB_SUB_LOGI
+N_SHELL-L string Login shell
+LSB_SUB_JOB_
+NAME-J string Job name
+LSB_SUB_JOB_
+WARNING
+_ACTION-wa string Job warning action
+LSB_SUB_JOB_
+ACTION
+_WARNING_TIM
+E-wt integer Job warning time period
+LSB_SUB_MAIL
+_USER-u string Email address to which LSF sends job-related messages.
+LSB_SUB_MAX_
+NUM
+_PROCESSORS-n integer Maximum number of processors requested
+LSB_SUB_NOTI
+FY_BEGIN-B boolean LSF sends an email notiﬁcation when the job begins, speciﬁed by Y.
+LSB_SUB_NOTI
+FY_END-N boolean LSF sends an email notiﬁcation when the job ends, which are speciﬁed by Y.
+LSB_SUB_NUM_
+PROCESSORS-n integer Minimum number of processors requested.
+LSB_SUB_OTHE
+R_FILESbmod -f integer Indicates the number of ﬁles to be transferred. The value is SUB_RESET if bmod is being
+used to reset the number of ﬁles to be transferred.
+The ﬁle path of the directory can contain up to 4094 characters for UNIX and Linux, or up to
+255 characters for Windows, including the director and ﬁle name.
+LSB_SUB_OTHE
+R_FILES
+_numberbsub -f integer The number indicates the particular ﬁle transfer value in the speciﬁed ﬁle transfer
+expression.
+For example, for bsub -f "a > b" -f "c < d", the following parameters are deﬁned:
+LSB_SUB_OTHER_FILES=2
+LSB_SUB_OTHER_FILES_0="a > b"
+LSB_SUB_OTHER_FILES_1="c < d"
+LSB_SUB_OUT_
+FILE-o, -oo string Standard output ﬁle name.
+IBM Spectrum LSF 2377
+
+Optionbsub or bmod
+optionData type Description
+LSB_SUB_PRE_
+EXEC-E string Pre-execution command.
+The ﬁle path of the directory can contain up to 4094 characters for UNIX and Linux, or up to
+255 characters for Windows, including the directory and ﬁle name.
+LSB_SUB_PROJ
+ECT_NAME-P string Project name.
+LSB_SUB_PTY -Ip boolean An interactive job with PTY support, which is speciﬁed by "Y"
+LSB_SUB_PTY_S
+HELL-Is boolean An interactive job with PTY shell support, which is speciﬁed by "Y"
+LSB_SUB_QUEU
+E-q string Submission queue name
+LSB_SUB_RERU
+NNABLE-r boolean Y speciﬁes a rerunnable job.
+N speciﬁes a non-rerunnable job (speciﬁed with bsub -rn). The job is not rerunnable even it
+was submitted to a rerunnable queue or application proﬁle.
+For bmod -rn, the value is SUB_RESET.
+LSB_SUB_RES_
+REQ-R string Resource requirement string—does not support multiple resource requirement strings.
+LSB_SUB_REST
+ARTbrestart boolean Y indicates to esub that the job options are associated with a restarted job.
+LSB_SUB_REST
+ART_FORCEbrestart -f boolean Y indicates to esub that the job options are associated with a forced restarted job.
+LSB_SUB_RLIMI
+T_CORE-C integer Core ﬁle size limit
+LSB_SUB_RLIMI
+T_CPU-c integer CPU limit
+LSB_SUB_RLIMI
+T_DATA-D integer Data size limit
+For AIX, if the XPG_SUS_ENV=ON environment variable is set in the user's environment
+before the process is executed and a process attempts to set the limit lower than current
+usage, the operation fails with errno set to EINVAL. If the XPG_SUS_ENV environment
+variable is not set, the operation fails with errno set to EFAULT.
+LSB_SUB_RLIMI
+T_FSIZE-F integer File size limit
+LSB_SUB_RLIMI
+T_PROCESS-p integer Process limit
+LSB_SUB_RLIMI
+T_RSS-M integer Resident size limit
+LSB_SUB_RLIMI
+T_RUN-W integer Wall-clock run limit in seconds. (Note this value is not in minutes, unlike the run limit
+speciﬁed by bsub -W).
+LSB_SUB_RLIMI
+T_STACK-S integer Stack size limit
+LSB_SUB_RLIMI
+T_THREAD-T integer Thread limit
+LSB_SUB_TERM
+_TIME-t integer Termination time, in seconds, since 00:00:00 GMT, Jan. 1, 1970
+LSB_SUB_TIME_
+EVENT-wt integer Time event expression.
+LSB_SUB_USER
+_GROUP-G string User group name
+LSB_SUB_WIND
+OW_SIG-s integer Window signal number
+LSB_SUB2_JOB
+_GROUP-g string Submits a job to a job group
+LSB_SUB2_LICE
+NSE
+_PROJECT-Lp string License Scheduler project name
+LSB_SUB2_IN
+_FILE_SPOOL
+(read-only)-is string Spooled input ﬁle name. This value cannot be modiﬁed
+2378    IBM Spectrum LSF
+
+Optionbsub or bmod
+optionData type Description
+LSB_SUB2_JOB
+_CMD_SPOOL
+(read-only)-Zs string Spooled job command ﬁle name. This value cannot be modiﬁed.
+LSB_SUB2_JOB
+_PRIORITY-sp integer Job priority
+For bmod -spn, the value is SUB_RESET.
+LSB_SUB2_SLA -sla string SLA scheduling options
+LSB_SUB2_USE
+_RSV-U string Advance reservation ID
+LSB_SUB3_AUT
+O
+_RESIZABLE-ar boolean Job autoresizable attribute. LSB_SUB3_AUTO_RESIZABLE=Y if bsub -ar -app or bmod -ar is
+speciﬁed.
+LSB_SUB3_AUTO_RESIABLE=
+SUB_RESET if bmod -arn is used.
+LSB_SUB3_APP-app string Application proﬁle name
+For bmod -appn, the value is SUB_RESET.
+LSB_SUB3_CWD-cwd string Current working directory
+LSB_SUB3_
+INIT_CHKPNT_P
+ERIOD-k init integer Initial checkpoint period
+LSB_SUB_INTE
+RACTIVE
+LSB_SUB3_INT
+ERACTIVE_SSHbsub -IS boolean The session of the interactive job is encrypted with SSH.
+LSB_SUB_INTE
+RACTIVE
+LSB_SUB_PTY
+LSB_SUB3_INT
+ERACTIVE_SSHbsub -ISp boolean If LSB_SUB_INTERACTIVE is speciﬁed by "Y", LSB_SUB_PTY is speciﬁed by "Y", and
+LSB_SUB3_INTERACTIVE_SSH is speciﬁed by "Y", the session of interactive job with PTY
+support is encrypted by SSH.
+LSB_SUB_INTE
+RACTIVE
+LSB_SUB_PTY
+LSB_SUB_PTY_S
+HELL
+LSB_SUB3_INT
+ERACTIVE_SSHbsub -ISs boolean If LSB_SUB_INTERACTIVE is speciﬁed by "Y", LSB_SUB_PTY is speciﬁed by "Y",
+LSB_SUB_PTY_SHELL is speciﬁed by "Y", and LSB_SUB3_INTERACTIVE_SSH is speciﬁed by
+"Y", the session of interactive job with PTY shell support is encrypted by SSH.
+LSB_SUB3_JOB
+_REQUEUE-Q string String format parameter that contains the job requeue exit values
+For bmod -Qn, the value is SUB_RESET.
+LSB_SUB3_MIG-mig
+-migninteger Migration threshold
+LSB_SUB3_POS
+T_EXEC-Ep string Run the speciﬁed post-execution command on the execution host after the job ﬁnishes (you
+must specify the ﬁrst execution host).
+The ﬁle path of the directory can contain up to 4094 characters for UNIX and Linux, or up to
+255 characters for Windows, including the directory and ﬁle name.
+LSB_SUB3_RESI
+ZE_NOTIFY_CM
+D-rnc string Job resize notiﬁcation command.
+LSB_SUB3_RESIZE_NOTIFY_CMD=<cmd> if bsub -rnc or bmod -rnc is speciﬁed.
+LSB_SUB3_RESIZE_NOTIFY_CMD
+=SUB_RESET
+if bmod -rnc is used.
+LSB_SUB3_RUN
+TIME_ESTIMATI
+ON-We integer Runtime estimate in seconds. (Note this runtime is not in minutes, unlike the runtime
+estimate speciﬁed by bsub -We).
+LSB_SUB3_RUN
+TIME_ESTIMATI
+ON_ACC-We+ integer Runtime estimate that is the accumulated run time plus the runtime estimate.
+IBM Spectrum LSF 2379
+
+Optionbsub or bmod
+optionData type Description
+LSB_SUB3_RUN
+TIME_ESTIMATI
+ON_PERC-Wep integer Runtime estimate in percentage of completion
+LSB_SUB3_USE
+R_SHELL_LIMIT
+S-ul boolean Pass user shell limits to execution host.
+LSB_SUB_INTE
+RACTIVELSB_SU
+B3_XJOB_SSHbsub -IX boolean If both are set to "Y", the session between the X-client and X-server as well as the session
+between the execution host and submission host are encrypted with SSH.
+LSB_SIM_CPUF
+ACTOR-sim cputime
+-sim runtimefloat Job running host's CPU factor.
+LSB_SIM_CPUTI
+ME-sim cputime integer Job CPU time.
+LSB_SIM_EXIT_
+STATUS-sim exitstatus integer Job exit status.
+LSB_SIM_JOBID
+(read-only)    Job ID. This value cannot be modiﬁed.
+LSB_SIM_JOBID
+X
+(read-only)    Job index. This value cannot be modiﬁed.
+LSB_SIM_MAXM
+EM-sim maxmem integer Maximum memory usage.
+LSB_SIM_NSLO
+TS    Number of allocated slots.
+LSB_SIM_RUNT
+IME-sim runtime integer Normalized job run time.
+LSB_SIM_SUB_T
+IME
+(read-only)    Job submission time. This value cannot be modiﬁed.
+LSB_SIM_TRAC
+E_TYPE
+(read-only)    The type of snapshot (trace) record. This is JOB_NEW and cannot be modiﬁed.
+LSB_SIM_SUB_
+USER  string The job submission user name.
+Using modiﬁcation plug-ins
+Use a workload snapshot modiﬁcation plug-in library for improved performance over scripts to modify your workload snapshots for different
+simulations.
+About this task
+Create the plug-in library with the C programming language to implement the conversion logic. The bsim wconvert -p command calls this plug-in for
+each snapshot record to modify the job submission parameters in the workload snapshot ﬁle. The source code of the example workload snapshot
+modiﬁcation plug-in (wconvert_plugin.c) is in the lsf_simulator/sim_run/lsf/10.1/{OS_ARCH}/plugin directory. The wconvert_plugin.c program
+provides the following four interfaces for you to edit to implement the workload snapshot modiﬁcation:
+plugin_wconvert_pre_exec()
+This function performs preparatory tasks before modifying the workload snapshot ﬁle, for example, by loading an external ﬁle.
+plugin_wconvert_exec()
+This function implements the workload snapshot modiﬁcation logic. The bsim command calls this function to modify job parameters for each
+record in the snapshot ﬁle.
+plugin_wconvert_free()
+The bsim command calls this function to free the memory used in the workload snapshot modiﬁcation, as returned by the
+plugin_wconvert_exec() function.
+plugin_wconvert_post_exec()
+This function performs any cleanup actions after modifying the workload snapshot ﬁle.
+Note: Do not change the type of functions and deﬁnitions of the parameter index in the plug-in source code.
+Procedure
+2380    IBM Spectrum LSF

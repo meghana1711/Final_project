@@ -1,0 +1,407 @@
+export NOCHECKVIEW_POSTEXEC=1
+IBM Spectrum LSF on Cray Linux
+The IBM® Spectrum LSF integration with Cray Linux applies to LSF Version 8.0 or later, and supports integration with Cray Linux Environment 4.0 or
+later. You must have LSF Standard Edition. The Cray Linux integration is not supported on LSF Express Edition.
+Downloading and installing the integration package
+ Download and install the integration package to run LSF on Cray Linux systems
+Conﬁguring the LSF integration on Cray Linux
+ Set conﬁguration parameters for the LSF integration on Cray Linux
+Integration directory and ﬁle structure
+ After installation and conﬁguration, the LSF integration on Cray Linux is installed under LSF_TOP (for example, /software/lsf/).
+Submitting and running jobs
+ Submit and run jobs with the LSF integration on Cray Linux.
+Assumptions and limitations
+ After the patch has been installed and conﬁgured, advance reservation, preemption, and reservation scheduling policies are supported with
+some limitations.
+Downloading and installing the integration package
+Download and install the integration package to run LSF on Cray Linux systems
+Procedure
+1. Download the installation package and the distribution tar ﬁle for the LSF integration on Cray Linux (on Cray XT/XE/XC) integration.
+For example, in LSF Version 10.1.0, the following ﬁles are needed:
+lsf10.1.0_lnx26-lib23-x64-cray.tar.Z
+Intstaller packages:
+lsf10.1.0_lsﬁnstall.tar.Z
+This is the standard installer package. Use this package in a heterogeneous cluster with a mix of systems other than x86-64
+(except zLinux). Requires approximately 1 GB free space.
+lsf10.1.0_lsﬁnstall_linux_x86_64.tar.Z
+Use this smaller installer package in a homogeneous x86-64 cluster. If you add other non x86-64 hosts you must use the
+standard installer package. Requires approximately 100 MB free space.
+lsf10.1.0_no_jre_lsﬁnstall.tar.Z For all platforms not requiring the JRE. JRE version 1.4 or higher must already be installed on the
+system. Requires approximately 1 MB free space.
+2. Conﬁrm that the Cray Linux system is working.
+a. On CLE 4.0 or later, conﬁrm the existence of /opt/cray/rca/default/bin/rca-helper, /etc/xthostname and
+/etc/opt/cray/sdb/node_classes. Otherwise, conﬁrm that the xtuname and xthostname commands exist and are in the $PATH.
+b. Conﬁrm that all compute PEs are in batch mode. If not, switch all compute PEs to batch mode and restart ALPS services on the boot
+node:
+xtprocadmin -k m batch
+$/etc/init.d/alps restart (optional)
+apstat -rn (optional)
+3. Follow the standard LSF installation procedure to install LSF on the boot nodes.
+a. Run the xtopview command to switch to a shared root ﬁle system.
+b. Add the Cray Linux machine to an existing cluster.
+For more details, refer to the upgrade/migration instructions.
+c. Edit the install.conﬁg ﬁle and set the following installation parameters:
+LSF_TOP=/software/lsf
+LSF_CLUSTER_NAME=<crayxt_machine_name>
+LSF_MASTER_LIST=<management_host_candidates> (a list of login node names or service node names)
+EGO_DAEMON_CONTROL=N
+ENABLE_DYNAMIC_HOSTS=N
+LSF_ADD_SERVERS=<service or login nodes>
+CONFIGURATION_TEMPLATE=PARALLEL
+The LSF_MASTER_LIST and LSF_ADD_SERVERS parameters should only include login nodes or service nodes.
+The startup and shutdown script for LSF daemons is located in $LSF_SERVERDIR/lsf_daemons.
+4. As the LSF administrator, create and use the LSF-HPC service.
+2324    IBM Spectrum LSF
+
+a. Add the following lines to the /opt/xt-boot/default/etc/serv_cmd ﬁle:
+service_cmd_info='LSF-HPC',service_num=XXX,heartbeat=null
+start_cmd='<$LSF_SERVERDIR>/lsf_daemons start'
+stop_cmd='<$LSF_SERVERDIR>/lsf_daemons stop'
+restart_cmd='<$LSF_SERVERDIR>/lsf_daemons restart'
+fail_cmd='<$LSF_SERVERDIR>/lsf_daemons stop'
+b. Create a service command: xtservcmd2db -f /opt/xt-boot/default/etc/serv_cmd.
+c. Assign the LSF-HPC service to serv_cmd: xtservconﬁg -c login add LSF-HPC.
+d. Exit xtopview and access a login node.
+Make sure /ufs is shared among all login/service nodes and root and LSF administrators have write permission.
+Set up sub-directories under /ufs the same as /opt/xt-lsfhpc/log and /opt/xt-lsfhpc/work (see section "File Structure" for
+details).
+Make sure the directory ownership and permission mode are reserved (you can use the cp -r command), and that root and LSF
+administrators have write permission to the sub-directories under /ufs/lsfhpc.
+5. Use the module command to set the LSF environment variables.
+module load xt-lsfhpc
+Conﬁguring the LSF integration on Cray Linux
+Set conﬁguration parameters for the LSF integration on Cray Linux
+Procedure
+1. Modify $LSF_ENVDIR/lsf.conf.
+Some of the following parameters may have been added by the LSF installation:
+LSB_SHAREDIR=/ufs/lsfhpc/work - A shared ﬁle system that is accessible by root and the LSF administrator on both management
+hosts and Cray Linux login/service nodes.
+LSF_LOGDIR=/ufs/lsfhpc/log - A shared ﬁle system that is accessible by root and the LSF administrator on both management hosts and
+Cray Linux login/service nodes.
+LSF_LIVE_CONFDIR=/ufs/lsfhpc/work/<cluster_name>/live_confdir - A shared ﬁle system that is accessible by root and the LSF
+administrator on both management hosts and Cray Linux login/service nodes.
+LSB_RLA_PORT=21787 - a unique port
+LSB_SHORT_HOSTLIST=1
+LSF_ENABLE_EXTSCHEDULER=Y
+LSB_SUB_COMMANDNAME=Y
+LSF_CRAY_PS_CLIENT=/usr/bin/apbasil
+LSF_LIMSIM_PLUGIN="liblimsim_craylinux"
+LSF_CRAYLINUX_FRONT_NODES="nid00060 nid00062" - A list of Cray Linux login/service nodes with LSF daemons started and
+running.
+LSF_CRAYLINUX_FRONT_NODES_POLL_INTERVAL=120 - Interval for the management host LIM polling RLA to query computer node
+status and conﬁguration information. Default value is 120 seconds. Any value less than 120 seconds will be reset to default
+LSB_MIG2PEND=1
+LSF_CRAY_RUR_DIR=/ufs/lsfhpc/work/<cluster_name>/craylinux/<cray_machine_name>/rur - Location of the RUR data ﬁles, which is
+a shared ﬁle system that is accessible from any potential ﬁrst execution host. An RUR data ﬁle for jobs that are submitted by all users is
+named rur.output. A job-speciﬁc RUR data ﬁle for speciﬁc job IDs are named rur.<jobID>. The default value is
+LSF_SHARED_DIR/<cluster_name>/craylinux/<cray_machine_name>/rur.
+You can use the %U special character to represent the home directory of the user that submitted the job. For example, if you specify
+LSF_CRAY_RUR_DIR=%U/.rur, and userA and userB submitted jobs, the RUR data ﬁles are located in /home/userA/.rur for userA and
+/home/userB/.rur for userB.
+LSF_CRAY_RUR_PROLOG_PATH=<path_to_rur_prologue.py> - File path to the RUR prolog script ﬁle. Default value is
+/opt/cray/rur/default/bin/rur_prologue.py.
+Note: LSF runs the prolog script ﬁle with the -j <jobID> option. Therefore, the prolog script ﬁle must support the -j option with the job ID
+as the argument.
+LSF_CRAY_RUR_EPILOG_PATH=<path_to_rur_epilogue.py> - File path to the RUR epilog script ﬁle. Default value is
+/opt/cray/rur/default/bin/rur_epilogue.py.
+Note: LSF runs the epilog script ﬁle with the -j <jobID> option. Therefore, the epilog script ﬁle must support the -j option with the job ID
+as the argument.
+2. From a Cray login node, run the $LSF_BINDIR/genVnodeConf command.
+This command generates a list of compute nodes in BATCH mode. You can add the compute nodes to the HOST section in
+$LSF_ENVDIR/lsf.cluster.<cluster_name>.
+HOSTNAME  model   type   server    r1m  mem  swp  RESOURCES 
+nid00038     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00039     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00040     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00041     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00042     !     !       1       3.5   ()  ()   (craylinux vnode gpu) 
+IBM Spectrum LSF 2325
+
+nid00043     !     !       1       3.5   ()  ()   (craylinux vnode gpu) 
+nid00044     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00045     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00046     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00047     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00048     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00049     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00050     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00051     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00052     !     !       1       3.5   ()  ()   (craylinux vnode gpu) 
+nid00053     !     !       1       3.5   ()  ()   (craylinux vnode gpu) 
+nid00054     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00055     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00056     !     !       1       3.5   ()  ()   (craylinux vnode) 
+nid00057     !     !       1       3.5   ()  ()   (craylinux vnode)
+3. Conﬁgure $LSF_ENVDIR/hosts.
+Make sure that the IP addresses of compute nodes do not conflict with any IP address that is already in use.
+cat $LSF_ENVDIR/hosts 
+  
+10.128.0.34    nid00033     c0-0c1s0n3  sdb001  sdb002 
+10.128.0.61    nid00060     c0-0c1s1n0  login   login1  castor-p2 
+10.128.0.36    nid00035     c0-0c1s1n3 
+10.128.0.59    nid00058     c0-0c1s2n0 
+10.128.0.38    nid00037     c0-0c1s2n3 
+10.128.0.57    nid00056     c0-0c1s3n0 
+10.128.0.58    nid00057     c0-0c1s3n1 
+10.128.0.39    nid00038     c0-0c1s3n2 
+10.128.0.40    nid00039     c0-0c1s3n3 
+10.128.0.55    nid00054     c0-0c1s4n0 
+10.128.0.56    nid00055     c0-0c1s4n1 
+10.128.0.41    nid00040     c0-0c1s4n2 
+10.128.0.42    nid00041     c0-0c1s4n3 
+10.128.0.53    nid00052     c0-0c1s5n0 
+10.128.0.54    nid00053     c0-0c1s5n1 
+10.128.0.43    nid00042     c0-0c1s5n2 
+10.128.0.44    nid00043     c0-0c1s5n3 
+10.128.0.51    nid00050     c0-0c1s6n0 
+10.128.0.52    nid00051     c0-0c1s6n1 
+10.128.0.45    nid00044     c0-0c1s6n2 
+10.128.0.46    nid00045     c0-0c1s6n3 
+10.128.0.49    nid00048     c0-0c1s7n0 
+10.128.0.50    nid00049     c0-0c1s7n1 
+10.128.0.47    nid00046     c0-0c1s7n2 
+10.128.0.48    nid00047     c0-0c1s7n3 
+10.131.255.251 sdb sdb-p2 syslog ufs
+4. Modify $LSF_ENVDIR/lsbatch/<cluster_name>/conﬁgdir/lsb.hosts.
+Make sure to set a large number in the MXJ column for the Cray Linux login and service nodes that are also LSF server hosts. The number
+should be larger than the total number of PEs.
+Begin Host 
+HOST_NAME   MXJ     r1m  pg  ls  tmp  DISPATCH_WINDOW   # Keywords 
+ nid00060   9999    ()   ()  ()  ()   ()                # Example 
+ nid00062   9999    ()   ()  ()  ()   ()                # Example 
+ default     !      ()   ()  ()  ()   ()                # Example 
+End Host
+5. Modify $LSF_ENVDIR/lsbatch/<cluster_name>/conﬁgdir/lsb.queues.
+JOB_CONTROLS and RERUNNABLE are required.
+Comment out all loadSched/loadStop lines.
+DEFAULT_EXTSCHED and MANDATORY_EXTSCHED are optional.
+To run CCM jobs, you must get the pre-execution and post-execution binary ﬁles from Cray. Refer to Cray documentation to ﬁnd these
+ﬁles.
+Begin Queue 
+  QUEUE_NAME   = normal 
+  PRIORITY     = 30 
+  NICE         = 20 
+  PREEMPTION   = PREEMPTABLE 
+  JOB_CONTROLS = SUSPEND[bmig $LSB_BATCH_JID] 
+  RERUNNABLE   = Y 
+  #RUN_WINDOW  = 5:19:00-1:8:30 20:00-8:30 
+  #r1m         = 0.7/2.0   # loadSched/loadStop 
+  #r15m        = 1.0/2.5 
+  #pg          = 4.0/8 
+  #ut          = 0.2 
+  #io          = 50/240 
+  #CPULIMIT    = 180/hostA  # 3 hours of hostA 
+  #FILELIMIT   = 20000 
+  #DATALIMIT   = 20000  # jobs data segment limit 
+  #CORELIMIT   = 20000 
+2326    IBM Spectrum LSF
+
+  #TASKCLIMIT   = 5   # job task limit 
+  #USERS       = all   # users who can submit jobs to this queue 
+  #HOSTS       = all   # hosts on which jobs in this queue can run 
+  #PRE_EXEC    = /usr/local/lsf/misc/testq_pre >> /tmp/pre.out 
+  #POST_EXEC   = /usr/local/lsf/misc/testq_post |grep -v "Hey" 
+  #REQUEUE_EXIT_VALUES = 55 34 78 
+  #APS_PRIORITY = WEIGHT[[RSRC, 10.0] [MEM, 20.0] [PROC, 2.5] [QPRIORITY, 2.0]] \ 
+  #LIMIT[[RSRC, 3.5] [QPRIORITY, 5.5]] \ 
+  #GRACE_PERIOD[[QPRIORITY, 200s] [MEM, 10m] [PROC, 2h]] 
+  DESCRIPTION  = For normal low priority jobs, running only if hosts are lightly loaded. 
+End Queue 
+  
+Begin Queue 
+  QUEUE_NAME    = owners 
+  PRIORITY      = 43 
+  JOB_CONTROLS  = SUSPEND[bmig $LSB_BATCH_JID] 
+  RERUNNABLE    = YES 
+  PREEMPTION    = PREEMPTIVE 
+  NICE          = 10 
+  #RUN_WINDOW   = 5:19:00-1:8:30 20:00-8:30 
+  r1m           = 1.2/2.6 
+  #r15m         = 1.0/2.6 
+  #r15s         = 1.0/2.6 
+  pg            = 4/15 
+  io            = 30/200 
+  swp           = 4/1 
+  tmp           = 1/0 
+  #CPULIMIT     = 24:0/hostA  # 24 hours of hostA 
+  #FILELIMIT    = 20000 
+  #DATALIMIT    = 20000  # jobs data segment limit 
+  #CORELIMIT    = 20000 
+  #TASKLIMIT    = 5   # job task limit 
+  #USERS        = user1 user2 
+  #HOSTS        = hostA hostB 
+  #ADMINISTRATORS = user1 user2 
+  #PRE_EXEC     = /usr/local/lsf/misc/testq_pre >> /tmp/pre.out 
+  #POST_EXEC    = /usr/local/lsf/misc/testq_post |grep -v "Hey" 
+  #REQUEUE_EXIT_VALUES = 55 34 78 
+  DESCRIPTION   = For owners of some machines, only users listed in the HOSTS\ 
+  section can submit jobs to this queue. 
+End Queue
+6. Modify $LSF_ENVDIR/lsf.shared.
+Make sure the following boolean resources are deﬁned in the RESOURCE section:
+vnode      Boolean () () (sim node) 
+gpu        Boolean () () (gpu) 
+frontnode  Boolean () () (login/service node) 
+craylinux  Boolean () () (Cray XT/XE MPI) 
+7. By default, LSF_CRAY_RUR_ACCOUNTING=Y is enabled for LSF to work with Resource Utility Reporting (RUR). If RUR is not installed in your
+environment, you must disable RUR by setting LSF_CRAY_RUR_ACCOUNTING=N in lsf.conf.
+8. Modify /etc/opt/cray/rur/rur.conf.
+Disable the default prolog and epilog scripts by commenting out the following lines in the apsys section:
+apsys 
+# prologPath - location of the executable file to be run before application 
+#       prologPath      /usr/local/adm/sbin/prolog 
+# epilogPath - location of the executable file to be run after application 
+#       epilogPath      /usr/local/adm/sbin/epilog 
+# prologTimeout - time in seconds before prolog is aborted as "hung" 
+#       prologTimeout   10 
+# epilogTimeout - time in seconds before epilog is aborted as "hung" 
+#       epilogTimeout   10 
+#        prologPath      /opt/cray/rur/default/bin/rur_prologue.py 
+#        epilogPath      /opt/cray/rur/default/bin/rur_epilogue.py 
+#        prologTimeout   100 
+#        epilogTimeout   100 
+/apsys
+9. Modify /etc/opt/cray/alps/alps.conf.
+Disable the default prolog and epilog scripts by commenting out the following lines in the apsys section:
+apsys 
+# prologPath - location of the executable file to be run before application 
+#       prologPath      /usr/local/adm/sbin/prolog 
+# epilogPath - location of the executable file to be run after application 
+#       epilogPath      /usr/local/adm/sbin/epilog 
+# prologTimeout - time in seconds before prolog is aborted as "hung" 
+#       prologTimeout   10 
+IBM Spectrum LSF 2327
+
+# epilogTimeout - time in seconds before epilog is aborted as "hung" 
+#       epilogTimeout   10 
+#        prologPath      /opt/cray/rur/default/bin/rur_prologue.py 
+#        epilogPath      /opt/cray/rur/default/bin/rur_epilogue.py 
+#        prologTimeout   100 
+#        epilogTimeout   100 
+/apsys
+10. Restart the alps daemon on the login nodes to apply the changes to the alps.conf and rur.conf ﬁle.
+/etc/init.d/alps restart
+11. Use the service command to start and stop the LSF services as needed.
+service LSF-HPC start
+service LSF-HPC stop
+Integration directory and ﬁle structure
+After installation and conﬁguration, the LSF integration on Cray Linux is installed under LSF_TOP (for example, /software/lsf/).
+File Structure
+The integration after installation has the following directory layout:
+/ufs 
+`-- lsfhpc 
+    |-- log 
+    |    
+    `-- work 
+        `-- <cluster_name> 
+            |-- craylinux 
+            |-- logdir 
+            |-- lsf_cmddir 
+            |-- live_confdir 
+            `-- lsf_indir
+The following directories and three ﬁles are located in /software/lsf/:
+|--<version> 
+|   |-- include 
+|   |   `-- lsf 
+|   |-- install 
+|   |   |-- instlib 
+|   |   |-- patchlib 
+|   |   `-- scripts 
+|   |-- linux2.6-glibc2.3-x86_64-cray 
+|   |   |-- bin 
+|   |   |-- etc 
+|   |   |   `-- scripts 
+|   |   `-- lib 
+|   |-- man 
+|   |   |-- man1 
+|   |   |-- man3 
+|   |   |-- man5 
+|   |   `-- man8 
+|   |-- misc 
+|   |   |-- conf_tmpl 
+|   |   |   |-- eservice 
+|   |   |   |   |-- esc 
+|   |   |   |   |   `-- conf 
+|   |   |   |   |       `-- services 
+|   |   |   |   `-- esd 
+|   |   |   |       `-- conf 
+|   |   |   |           `-- named 
+|   |   |   |               |-- conf 
+|   |   |   |               `-- namedb 
+|   |   |   `-- kernel 
+|   |   |       |-- conf 
+|   |   |       |   `-- mibs 
+|   |   |       |-- log 
+|   |   |       `-- work 
+|   |   |-- config 
+|   |   |-- examples 
+|   |   |   |-- blastparallel 
+|   |   |   |-- blogin 
+|   |   |   |-- dr 
+|   |   |   |-- eevent 
+2328    IBM Spectrum LSF
+
+|   |   |   |-- external_plugin 
+|   |   |   |-- extsched 
+|   |   |   |-- reselim 
+|   |   |   |-- web-lsf 
+|   |   |   |   |-- cgi-bin 
+|   |   |   |   |-- doc 
+|   |   |   |   `-- lsf_html 
+|   |   |   `-- xelim 
+|   |   |-- lsmake 
+|   |   `-- src 
+|   |-- schema 
+|   |   `-- samples 
+|   `-- scripts 
+|-- conf 
+|   |-- ego 
+|   |   `-- <cluster_name> 
+|   |       |-- eservice 
+|   |       |   |-- esc 
+|   |       |   |   `-- conf 
+|   |       |   |       `-- services 
+|   |       |   `-- esd 
+|   |       |       `-- conf 
+|   |       |           `-- named 
+|   |       |               |-- conf 
+|   |       |               `-- namedb 
+|   |       `-- kernel 
+|   |           `-- mibs 
+|   `-- lsbatch 
+|       `-- <cluster_name> 
+|           `-- configdir 
+|-- log 
+|-- patch 
+|   |-- backup 
+|   |-- lock 
+|   `-- patchdb 
+|       `-- PackageInfo_LSF<version>_linux2.6-glibc2.3-x86_64-cray 
+`-- work 
+`-- <cluster_name> 
+        |-- ego 
+        |-- live_confdir 
+        |-- logdir 
+        |-- lsf_cmddir 
+        `-- lsf_indir 
+Submitting and running jobs
+Submit and run jobs with the LSF integration on Cray Linux.
+Before you begin
+Before you submit jobs to the cluster, be aware that CLE4.0 does not support multiple jobs running on one compute node. All ALPS reservations
+created by LSF will have the "mode=EXCLUSIVE" attribute.
+About this task
+Deﬁne a limit to make sure LSF does not dispatch jobs to compute nodes where a job has been running.
+Procedure
+1. Modify $LSF_ENVDIR/lsbatch/<cluster_name>/conﬁgdir/lsb.resources:
+Begin Limit 
+  NAME     = COMPUTE_NODES_LIMIT 
+  USERS    = all 
+  PER_HOST = all ~<login_nodes> 
+  JOBS     = 1 
+End Limit 
+2. Note: There are other ways in LSF to enforce this limitation for ALPS.
+To submit a job that requires Cray Linux reservations (for example, an aprun job or a CCM job), you must use compound resource
+requirements.
+bsub -extsched "CRAYLINUX[]" -R "1*{select[craylinux && \!vnode]} +  
+n*{select[vnode && craylinux] span[ptile=q*p]}" aprun -n y -d p -N q a.out
+IBM Spectrum LSF 2329

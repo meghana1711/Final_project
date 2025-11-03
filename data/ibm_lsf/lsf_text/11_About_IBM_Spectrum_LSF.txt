@@ -1,0 +1,430 @@
+About IBM Spectrum LSF
+Clusters, jobs, and queues
+ The IBM® Spectrum LSF ("LSF", short for load sharing facility) software is industry-leading enterprise-class software that distributes work
+across existing heterogeneous IT resources to create a shared, scalable, and fault-tolerant infrastructure, that delivers faster, balanced, more
+reliable workload performance and reduces cost.
+Hosts
+ A host is an individual computer in the cluster.
+LSF daemons
+ LSF interacts with several daemons, each responsible for different aspects of the entire LSF workflow.
+Batch jobs and tasks
+ Host types and host models
+ Users and administrators
+ Resources
+ Job lifecycle
+ 
+Clusters, jobs, and queues
+The IBM Spectrum LSF ("LSF", short for load sharing facility) software is industry-leading enterprise-class software that distributes work across
+existing heterogeneous IT resources to create a shared, scalable, and fault-tolerant infrastructure, that delivers faster, balanced, more reliable
+workload performance and reduces cost.
+Cluster
+A group of computers (hosts) running LSF that work together as a single unit, combining computing power and sharing workload and resources. A
+cluster provides a single-system image for a network of computing resources.
+Hosts can be grouped into clusters in a number of ways. A cluster could contain:
+All the hosts in a single administrative group
+All the hosts on one ﬁle server or sub-network
+Hosts that perform similar functions
+Commands
+lshosts — View static resource information about hosts in the cluster
+bhosts — View resource and job information about server hosts in the cluster
+lsid — View the cluster name
+lsclusters — View cluster status and size
+Conﬁguration
+Deﬁne hosts in your cluster in lsf.cluster.cluster_name
+Tip:
+The name of your cluster should be unique. It should not be the same as any host or queue.
+Job
+IBM Spectrum LSF 249
+
+A unit of work runs in the LSF system. A job is a command that is submitted to LSF for execution. LSF schedules, controls, and tracks the job
+according to conﬁgured policies.
+Jobs can be complex problems, simulation scenarios, extensive calculations, anything that needs compute power.
+Commands
+bjobs — View jobs in the system
+bsub — Submit jobs
+Job slot
+A job slot is a bucket into which a single unit of work is assigned in the LSF system. Hosts are conﬁgured to have a number of job slots available and
+queues dispatch jobs to ﬁll job slots.
+Commands
+bhosts — View job slot limits for hosts and host groups
+bqueues — View job slot limits for queues
+busers — View job slot limits for users and user groups
+Conﬁguration
+Deﬁne job slot limits in lsb.resources.
+Job states
+LSF jobs have the following states:
+PEND — Waiting in a queue for scheduling and dispatch
+RUN — Dispatched to a host and running
+DONE — Finished normally with zero exit value
+EXIT — Finished with non-zero exit value
+PSUSP — Suspended while pending
+USUSP — Suspended by user
+SSUSP — Suspended by the LSF system
+POST_DONE — Post-processing is completed without errors
+POST_ERR — Post-processing is completed with errors
+WAIT — Members of a chunk job that are waiting to run
+Queue
+A cluster wide container for jobs. All jobs wait in queues until they are scheduled and dispatched to hosts.
+Queues do not correspond to individual hosts; each queue can use all server hosts in the cluster, or a conﬁgured subset of the server hosts.
+When you submit a job to a queue, you do not need to specify an execution host. LSF dispatches the job to the best available execution host in the
+cluster to run that job.
+Queues implement different job scheduling and control policies.
+Commands
+bqueues — View available queues
+bsub -q — Submit a job to a speciﬁc queue
+bparams — View default queues
+Conﬁguration
+Deﬁne queues in lsb.queues
+250    IBM Spectrum LSF
+
+Tip:
+The names of your queues should be unique. They should not be the same as the cluster name or any host in the cluster.
+First-come, ﬁrst-served scheduling (FCFS)
+The default type of scheduling in LSF. Jobs are considered for dispatch based on their order in the queue.
+Hosts
+A host is an individual computer in the cluster.
+Each host may have more than one processor. Multiprocessor hosts are used to run parallel jobs. A multiprocessor host with a single process queue
+is considered a single machine, while a box full of processors that each have their own process queue is treated as a group of separate machines.
+Host commands
+The following LSF commands are useful when working with hosts in your LSF cluster:
+lsload: to view the load on hosts
+lshosts: to view conﬁguration information about hosts in the cluster, including the number of CPUs, model, type, and whether the host is a
+client or server
+bhosts: to view batch server hosts in the cluster
+Tip: The names of your hosts should be unique. They should not be the same as the cluster name or any queue deﬁned for the cluster.
+Types of LSF hosts
+LSF supports three types of hosts:
+Server
+A server host is capable of submitting and running jobs. It runs sbatchd to execute server requests and apply local policies.
+Use the lshosts command to view hosts that are servers (server=Yes).
+Server hosts are deﬁned in the lsf.cluster.cluster_name ﬁle by setting the value of server to 1.
+Client
+A client hosts is only capable of submitting jobs to the cluster. They run LSF commands and act only as submission hosts; they do not execute
+jobs or run LSF daemons.
+Use the lshosts command to view hosts that are clients (server=No).
+Client hosts are deﬁned in the lsf.cluster.cluster_name ﬁle by setting the value of server to 0
+Management
+A Management host is an LSF server host that acts as the overall coordinator for that cluster. All LSF daemons (including the mbatchd
+daemon) run on the management host. The LIM on the management host is the management host LIM. The host LIM runs from the
+management host.
+Each cluster has one management host to do all job scheduling and dispatch. If the management host goes down, another LSF server in the
+cluster becomes the management host.
+Use the lsid command to view the management host name.
+The management host is the ﬁrst host that is listed in the lsf.cluster.cluster_name ﬁle or is deﬁned along with other candidate management
+hosts by LSF_MASTER_LIST in lsf.conf.
+Submitting and executing LSF jobs
+Additionally, when you run LSF jobs, you do so by running commands from the host where you submit the job, which can be different from the host
+that actually runs or executes the job:
+Submission
+Where jobs are submitted to the cluster. Client hosts and server hosts can act as submission hosts.
+Use these command for job submission:
+bsub: to submit a job
+bjobs: to view jobs that are submitted
+Jobs are submitted using the bsub command or from an application that uses the LSF API.
+Execution
+IBM Spectrum LSF 251
+
+Where a job runs or executes. The execution host can be the same as the submission host, or can be separate. All execution hosts are server
+hosts.
+Use the bjobs LSF command to view where a job runs.
+LSF daemons
+LSF interacts with several daemons, each responsible for different aspects of the entire LSF workflow.
+mbatchd  (mbd )
+Management batch daemon running on the management host.
+Started by sbatchd.
+Responsible for the overall state of jobs in the system.
+Receives job submission, and information query requests.
+Manages jobs that are held in queues. Dispatches jobs to hosts as determined by mbschd.
+Conﬁguration
+Port number is deﬁned in lsf.conf.
+lsfproxyd
+LSF rate limiter daemon.
+By default, all LSF batch commands contact the mbatchd daemon (or the mbatchd query child, if conﬁgured). When there are excessive
+requests, such as scripts with tight loop running bjobs commands, mbatchd can become overloaded, negatively affecting cluster
+performance. Starting in Fix Pack 14, to protect mbatchd from heavy loads, enable the LSF rate limiter (controlled by the lsfproxyd
+daemon), which acts as a gatekeeper between the commands and the mbatchd daemon. The rate limiter is supported on Linux.
+Conﬁguration
+You can conﬁgure to have multiple lsfproxyd daemons run within a single cluster; use the LSF_PROXY_HOSTS parameter to list the hosts on
+which you want lsfproxyd daemons to run. When multiple lsfproxyd daemons are deﬁned for a cluster, they work together to balance
+workload and provide high availability: the client command ﬁrst randomly picks one to use, and if an lsfproxyd daemon is unavailable, then
+the command locates another one to use.
+LIM controls starting and restarting the lsfproxyd daemon on the LSF hosts speciﬁed in the LSF_PROXY_HOSTS parameter in the lsf.conf
+ﬁle. When the lsfproxyd daemon starts, it binds to the listening port speciﬁed by the LSF_PROXY_PORT parameter in the lsf.conf ﬁle. LIM
+restarts the lsfproxyd daemon if it dies.
+mbschd
+Management batch scheduler daemon running on the management host.
+Works with mbatchd.
+Started by mbatchd.
+Makes scheduling decisions based on job requirements, and policies, and resource availability. Sends scheduling decisions to mbatchd.
+sbatchd
+Server batch daemon running on each server host.
+Receives the request to run the job from mbatchd and manages local execution of the job.
+Responsible for enforcing local policies and maintaining the state of jobs on the host.
+The sbatchd forks a child sbatchd for every job. The child sbatchd runs an instance of sbatchd to create the execution environment in
+which the job runs. The child sbatchd exits when the job is complete.
+Commands
+bctrld start sbd: Start sbatchd.
+bctrld stop sbd: Shut down sbatchd.
+bctrld restart sbd: Restart sbatchd.
+Conﬁguration
+Port number is deﬁned in lsf.conf.
+res
+Remote execution server (res) running on each server host.
+Accepts remote execution requests to provide transparent and secure remote execution of jobs and tasks.
+Commands
+252    IBM Spectrum LSF
+
+bctrld start res: Start res.
+bctrld stop res: Shut down res.
+bctrld restart res: Restart res.
+Conﬁguration
+Port number is deﬁned in lsf.conf.
+lim
+Load information manager (LIM) running on each server host.
+Collects host load and conﬁguration information and forwards it to the management host LIM running on the management host.
+Reports the information that is displayed by the lsload and lshosts commands.
+Static indices are reported when the LIM starts up or when the number of CPUs (ncpus) change. Static indices are:
+Number of CPUs (ncpus)
+Number of disks (ndisks)
+Total available memory (maxmem)
+Total available swap (maxswp)
+Total available temp (maxtmp)
+Dynamic indices for host load collected at regular intervals are:
+Hosts status (status)
+15 second, 1 minute, and 15 minute run queue lengths (r15s, r1m, and r15m)
+CPU utilization (ut)
+Paging rate (pg)
+Number of login sessions (ls)
+Interactive idle time (it)
+Available swap space (swp)
+Available memory (mem)
+Available temp space (tmp)
+Disk IO rate (io)
+Commands
+bctrld start lim: Start LIM.
+bctrld stop lim: Shut down LIM.
+bctrld restart lim: Restart LIM.
+lsload: View dynamic load values.
+lshosts: View static host load values.
+Conﬁguration
+Port number is deﬁned in lsf.conf.
+Parent lim
+The LIM running on the management host. Receives load information from the LIMs running on hosts in the cluster.
+Forwards load information to mbatchd, which forwards this information to mbschd to support scheduling decisions. If the management host
+LIM becomes unavailable, a LIM on another host automatically takes over.
+Commands
+bctrld start lim: Start LIM.
+bctrld stop lim: Shut down LIM.
+bctrld restart lim: Restarts LIM.
+lsload: View dynamic load values.
+lshosts: View static host load values.
+Conﬁguration
+Port number is deﬁned in lsf.conf.
+elim
+External LIM (ELIM) is a site-deﬁnable executable that collects and tracks custom dynamic load indices. An ELIM can be a shell script or a compiled
+binary program, which returns the values of the dynamic resources you deﬁne. The ELIM executable must be named elim and located in
+LSF_SERVERDIR.
+pim
+Process information manager (PIM) running on each server host.
+Started by LIM, which periodically checks on pim and restarts it if it dies.
+IBM Spectrum LSF 253
+
+Collects information about job processes running on the host such as CPU and memory that is used by the job, and reports the information to
+sbatchd.
+Commands
+bjobs: View job information.
+Related concepts
+Offloading the mbatchd daemon using the LSF rate limiter (lsfproxyd daemon)
+Batch jobs and tasks
+You can either run jobs through the batch system where jobs are held in queues, or you can interactively run tasks without going through the batch
+system, such as tests.
+Job
+A unit of work that is run in the LSF system. A job is a command that is submitted to LSF for execution, using the bsub command. LSF schedules,
+controls, and tracks the job according to conﬁgured policies.
+Jobs can be complex problems, simulation scenarios, extensive calculations, anything that needs compute power.
+Commands
+bjobs: View jobs in the system
+bsub: Submit jobs
+Interactive batch job
+A batch job that allows you to interact with the application and still take advantage of LSF scheduling policies and fault tolerance. All input and
+output are through the terminal that you used to type the job submission command.
+When you submit an interactive job, a message is displayed while the job is awaiting scheduling. A new job cannot be submitted until the interactive
+job is completed or terminated.
+The bsub command stops display of output from the shell until the job completes, and no mail is sent to you by default. Use Ctrl-C at any time to
+terminate the job.
+Commands
+bsub -I: Submit an interactive job
+Interactive task
+A command that is not submitted to a batch queue and scheduled by LSF, but is dispatched immediately. LSF locates the resources that are needed
+by the task and chooses the best host among the candidate hosts that has the required resources and is lightly loaded. Each command can be a
+single process, or it can be a group of cooperating processes.
+Tasks are run without using the batch processing features of LSF but still with the advantage of resource requirements and selection of the best host
+to run the task based on load.
+Commands
+lsrun: Submit an interactive task
+lsgrun: Submit an interactive task to a group of hosts
+See also LSF utilities such as lsacct, lsacctmrg, lsplace, lsload, lsloadadj, .
+Host types and host models
+Hosts in LSF are characterized by host type and host model.
+The following example has a host type of X86_64. Host models are Opteron240, Opteron840, Intel_EM64T, Intel_IA64.
+254    IBM Spectrum LSF
+
+Host type
+The combination of operating system version and host CPU architecture.
+All computers that run the same operating system on the same computer architecture are of the same type — in other words, binary-compatible with
+each other.
+Each host type usually requires a different set of LSF binary ﬁles.
+Commands:
+lsinfo -t — View all host types that are deﬁned in lsf.shared
+Conﬁguration:
+Deﬁned in lsf.shared
+Mapped to hosts in lsf.cluster.cluster_name
+Host model
+The combination of host type and CPU speed (CPU factor) of the computer.
+All hosts of the same relative speed are assigned the same host model.
+The CPU factor is taken into consideration when jobs are being dispatched.
+Commands:
+lsinfo -m — View a list of currently running models
+lsinfo -M — View all models that are deﬁned in lsf.shared
+Conﬁguration:
+Deﬁned in lsf.shared
+Mapped to hosts in lsf.cluster.cluster_name
+Users and administrators
+LSF user
+A user account that has permission to submit jobs to the LSF cluster.
+LSF administrator
+In general, you must be an LSF administrator to perform operations that will affect other LSF users. Each cluster has one primary LSF administrator,
+speciﬁed during LSF installation. You can also conﬁgure additional administrators at the cluster level and at the queue level.
+Primary LSF administrator
+The ﬁrst cluster administrator speciﬁed during installation and ﬁrst administrator listed in lsf.cluster.cluster_name. The primary LSF administrator
+account owns the conﬁguration and log ﬁles. The primary LSF administrator has permission to perform clusterwide operations, change conﬁguration
+ﬁles, reconﬁgure the cluster, and control jobs submitted by all users.
+Cluster administrator
+May be speciﬁed during LSF installation or conﬁgured after installation. Cluster administrators can perform administrative operations on all jobs and
+queues in the cluster. Cluster administrators have the same cluster-wide operational privileges as the primary LSF administrator except that they do
+not necessarily have permission to change LSF conﬁguration ﬁles.
+For example, a cluster administrator can create an LSF host group, submit a job to any queue, or terminate another user’s job.
+IBM Spectrum LSF 255
+
+Queue administrator
+An LSF administrator user account that has administrative permissions limited to a speciﬁed queue. For example, an LSF queue administrator can
+perform administrative operations on the speciﬁed queue, or on jobs running in the speciﬁed queue, but cannot change LSF conﬁguration or operate
+on LSF daemons.
+Resources
+Resource usage
+The LSF system uses built-in and conﬁgured resources to track resource availability and usage. Jobs are scheduled according to the resources
+available on individual hosts.
+Jobs that are submitted through the LSF system will have the resources that they use monitored while they are running. This information is used to
+enforce resource limits and load thresholds as well as fair share scheduling.
+LSF collects information such as:
+Total CPU time consumed by all processes in the job
+Total resident memory usage in KB of all currently running processes in a job
+Total virtual memory usage in KB of all currently running processes in a job
+Currently active process group ID in a job
+Currently active processes in a job
+On UNIX, job-level resource usage is collected through PIM.
+Commands
+lsinfo; View the resources available in your cluster
+bjobs -l: View current resource usage of a job
+Conﬁguration
+SBD_SLEEP_TIME in lsb.params: Conﬁgures how often resource usage information is sampled by PIM, collected by sbatchd, and sent to 
+mbatchd
+Load indices
+Load indices measure the availability of dynamic, non-shared resources on hosts in the cluster. Load indices that are built into the LIM are updated at
+ﬁxed time intervals.
+Commands
+lsload -l: View all load indices
+bhosts -l: View load levels on a host
+External load indices
+Deﬁned and conﬁgured by the LSF administrator and collected by an External Load Information Manager (ELIM) program. The ELIM also updates LIM
+when new values are received.
+Commands
+lsinfo: View external load indices
+Static resources
+Built-in resources that represent host information that does not change over time, such as the maximum RAM available to user processes or the
+number of processors in a machine. Most static resources are determined by the LIM at startup.
+Static resources can be used to select appropriate hosts for particular jobs based on binary architecture, relative CPU speed, and system
+conﬁguration.
+Load thresholds
+Two types of load thresholds can be conﬁgured by your LSF administrator to schedule jobs in queues. Each load threshold speciﬁes a load index
+value:
+256    IBM Spectrum LSF
+
+loadSched determines the load condition for dispatching pending jobs. If a host’s load is beyond any deﬁned loadSched, a job will not be
+started on the host. This threshold is also used as the condition for resuming suspended jobs.
+loadStop determines when running jobs should be suspended.
+To schedule a job on a host, the load levels on that host must satisfy both the thresholds that are conﬁgured for that host and the thresholds
+for the queue from which the job is being dispatched.
+The value of a load index may either increase or decrease with load, depending on the meaning of the speciﬁc load index. Therefore, when
+comparing the host load conditions with the threshold values, you need to use either greater than (>) or less than (<), depending on the load
+index.
+Commands
+bhosts -l: View suspending conditions for hosts
+bqueues -l: View suspending conditions for queues
+bjobs -l: View suspending conditions for a particular job and the scheduling thresholds that control when a job is resumed
+Conﬁguration
+lsb.hosts: Conﬁgure thresholds for hosts
+lsb.queues: Conﬁgure thresholds for queues
+Runtime resource usage limits
+Limit the use of resources while a job is running. Jobs that consume more than the speciﬁed amount of a resource are signaled or have their priority
+lowered.
+Conﬁguration
+lsb.queues: Conﬁgure resource usage limits for queues
+Hard and soft limits
+Resource limits that are speciﬁed at the queue level are hard limits while those speciﬁed with job submission are soft limits. See setrlimit(2)
+man page for concepts of hard and soft limits.
+Resource allocation limits
+Restrict the amount of a given resource that must be available during job scheduling for different classes of jobs to start, and which resource
+consumers the limits apply to. If all of the resource has been consumed, no more jobs can be started until some of the resource is released.
+Conﬁguration
+lsb.resources: Conﬁgure queue-level resource allocation limits for hosts, users, queues, and projects
+Resource requirements (bsub -R)
+Restrict which hosts the job can run on. Hosts that match the resource requirements are the candidate hosts. When LSF schedules a job, it collects
+the load index values of all the candidate hosts and compares them to the scheduling conditions. Jobs are only dispatched to a host if all load values
+are within the scheduling thresholds.
+Commands
+bsub -R: Specify resource requirement string for a job
+Conﬁguration
+lsb.queues: Conﬁgure resource requirements for queues
+Job lifecycle
+IBM Spectrum LSF 257
+
+1: Submit a job
+You submit a job from an LSF client or server with the bsub command.
+If you do not specify a queue when submitting the job, the job is submitted to the default queue.
+Jobs are held in a queue waiting to be scheduled and have the PEND state. The job is held in a job ﬁle in the
+LSF_SHAREDIR/cluster_name/logdir/info/ directory.
+Job ID
+LSF assigns each job a unique job ID when you submit the job.
+Job name
+You can also assign a name to the job with the -J option of bsub. Unlike the job ID, the job name is not necessarily unique.
+2: Schedule job
+1. The mbatchd daemon looks at jobs in the queue and sends the jobs for scheduling to mbschd at a preset time interval (deﬁned by the
+parameter JOB_SCHEDULING_INTERVAL in lsb.params).
+2. mbschd evaluates jobs and makes scheduling decisions based on the following:
+Job priority
+Scheduling policies
+Available resources
+3. mbschd selects the best hosts where the job can run and sends its decisions back to mbatchd.
+Resource information is collected at preset time intervals by the management host LIM from the LIM instances on server hosts. The management
+host LIM communicates this information to mbatchd, which in turn communicates it to mbschd to support scheduling decisions.
+3: Dispatch job
+As soon as mbatchd receives scheduling decisions, it immediately dispatches the jobs to hosts.
+4: Run job
+The sbatchd daemon handles job execution, as follows:
+1. Receives the request from mbatchd.
+2. Creates a child sbatchd for the job.
+3. Creates the execution environment.
+4. Starts the job using res.
+The execution environment is copied from the submission host to the execution host, including:
+Environment variables that are needed by the job.
+Working directory where the job begins running.
+Other system-dependent environment settings; for example:
+On UNIX and Linux, resource limits and umask.
+On Windows, desktop and Windows root directory.
+The job runs under the user account that submitted the job and has the status RUN.
+5: Return output
+When a job is completed, it is assigned the DONE status if the job was completed without any problems. The job is assigned the EXIT status if errors
+prevented the job from completing.
+The sbatchd daemon communicates job information including errors and output to mbatchd.
+258    IBM Spectrum LSF

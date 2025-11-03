@@ -1,0 +1,56 @@
+lsb.params
+SYSTEM_MAPPING_ACCOUNT
+lsb.queues
+ADMINISTRATORS
+FAIRSHARE
+USERS
+lsb.users
+GROUP_MEMBER
+USER_SHARES
+USER_NAME
+LOCAL
+REMOTE
+lsf.cluster.cluster_name
+ADMINISTRATORS
+lsf.conf
+LSF_SHELL_AT_USERS
+lsf.sudoers
+LSF_EAUTH_USER
+LSF_EEXEC_USER
+LSF_STARTUP_USERS
+LSB_PRE_POST_EXEC_USER
+Environment
+Job execution environment
+By default, LSF transfers environment variables from the submission to the execution host. However, some environment variables do not make sense
+when transferred.
+How LSF sets the job execution environment
+When submitting a job from a Windows to a UNIX machine, the -L option of bsub can be used to reinitialize the environment variables. If submitting a
+job from a UNIX machine to a Windows machine, you can set the environment variables explicitly in your job script.
+PATH environment variable on UNIX and Windows
+LSF automatically resets the PATH on the execution host if the submission host is of a different type. If the submission host is Windows and the
+execution host is UNIX, the PATH variable is set to /bin:/usr/bin:/sbin:/usr/sbin and the path to the LSF bin directory is appended to it.
+If the submission host is UNIX and the execution host is Windows, the PATH variable is set to the system PATH variable with the path to the LSF bin
+directory appended to it. LSF looks for the presence of the WINDIR variable in the job’s environment to determine whether the job was submitted
+from a Windows or UNIX host. If WINDIR is present, it is assumed that the submission host was Windows; otherwise, the submission host is
+assumed to be a UNIX machine.
+Environment variable handling on Windows
+The following Windows environment variables are overridden based on the values on the execution host:
+COMPSPEC
+COMPUTERNAME
+NTRESKIT
+OS2LIBPATH
+PATHEXT
+PROCESSOR_ARCHITECTURE
+PROCESSOR_IDENTIFIER
+PROCESSOR_LEVEL
+SYSTEMDRIVE
+SYSTEMROOT
+WINDIR
+If the WINDIR on the submission and execution host are different, then the system PATH variable on the execution host is used instead of that
+from the submission host.
+Avoid using drive names in environment variables (especially the PATH variable) for drives that are connected over the network. It is
+preferable to use the UNC form of the path. This is because drive maps are shared between all users logged on to a particular machine. For
+example, if an interactive user has drive F: mapped to \\serverX\share, then any batch job will also see drive F: mapped to \\serverX\share.
+However, drive F: might have been mapped to a different share on the submission host of the job.
+Job starters can be used to perform more site-speciﬁc handling of environment variables.
+1976    IBM Spectrum LSF

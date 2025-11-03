@@ -1,0 +1,189 @@
+2. Enable dynamic IP addressing for the LSF cluster.
+a. Conﬁgure the following parameter in lsf.conf: LSF_DHCP_ENV=Y
+b. Reconﬁgure the cluster:
+lsadmin reconfig 
+badmin reconfig
+LSF checks for any conﬁguration errors. If no fatal errors are found, you are asked to conﬁrm reconﬁguration. If fatal errors are found,
+reconﬁguration is aborted.
+Displaying a GUI in LSF with Microsoft Terminal Services
+Use Microsoft Terminal Services to run jobs to display a GUI (graphic user interface) on remote hosts in LSF.
+Environment variables
+The following environment variables are available for Remote Desktop Services jobs:
+LSF_LOGON_DESKTOP
+When LSF_LOGON_DESKTOP=1, jobs run in interactive foreground sessions. This allows GUIs to be displayed on the submission host. If this
+parameter is not deﬁned, jobs run in the background.
+LSB_TSJOB
+When the LSB_TSJOB variable is deﬁned to any value, it indicates to LSF that the job is a Terminal Services job.
+LSF_TS_LOGON_TIME
+Speciﬁes the time to create a Windows Remote Desktop Service session. You should conﬁgure LSF_TS_LOGON_TIME according to your
+network environment. This parameter only affects Terminal Services jobs dispatched to the Windows Server host, not Terminal Services jobs
+on the Windows client version host.
+The default, 300000 milliseconds is suitable for most environments. For a congested network, set LSF_TS_LOGON_TIME=1000000
+Conﬁguration ﬁles
+To dispatch a Terminal Services jobs to Windows client hosts, set the following parameters in lsf.conf after installation, then restart the LIM (by
+running lsadmin limrestart all) and restart the TSJobHelper Windows service on the execution hosts and helper hosts to apply the changes to these
+parameters:
+LSB_TSJOBS_HELPER_HOSTS
+Lists the Terminal Services job helper hosts. Specify a list of host names separated by blank space. Helper hosts must be LSF servers in the
+LSF cluster. Conﬁgure a maximum of 256 hosts in the list.
+The local helper service will select one host from the list and send requests to the helper to create a user session. If the host fails to create the
+user session, the next helper host in the list will be tried. The local helper service will not select itself as helper host.
+For stability, you should conﬁgure one helper host for every 40 execution hosts.
+TSJobHelper must be running under the LocalSystem account. The Terminal Services job helper service has two functions:
+Help create a user session. The local helper service running on the job execution host sends requests to the remote helper service
+running on a helper host. The remote helper host will call back to trigger creation of a user session.
+Help launch the LSF job across sessions. On the job execution host, the service accepts job startup information from child sbatchd and
+launches the job RES across sessions. The job will run in the job execution session for the user.
+To install the TSJobHelper service, run TSJobHelper -i from the command line. To uninstall the service, run TSJobHelper -u. TSJobHelper
+is located under LSF_TOP\10.1.0\etc.
+LSB_TSJOBS_HELPER_PORT
+This is a service port to use for communication with TSJobHelper. TSJobHelper uses this port to communicate with the helper hosts.
+LSB_TSJOBS_HELPER_TIMEOUT
+The maximum time out that the local TSJobHelper service waits for a helper host to reply. After time out, the local service tries the next
+helper host in the LSB_TSJOBS_HELPER_HOSTS list.
+Conﬁgure post-execution job processing
+To dispatch a Terminal Services jobs to Windows client hosts, enable post-execution job processing as part of the job. You may enable post-
+execution job processing to dispatch Terminal Services jobs to Windows client hosts for the following:
+Cluster: To enable the dispatching of Terminal Services jobs in the cluster to Windows client hosts, set JOB_INCLUDE_POSTPROC=y in the
+lsb.params ﬁle, then reconﬁgure mbatchd (by running badmin reconﬁg) to apply the change to this parameter.
+Application: To enable the dispatching of Terminal Services jobs in a speciﬁc application to Windows client hosts, set
+JOB_INCLUDE_POSTPROC=y for the speciﬁc application proﬁle in the lsb.applications ﬁle, then reconﬁgure mbatchd (by running badmin
+reconﬁg) to apply the change to this parameter.
+1978    IBM Spectrum LSF
+
+Job: To enable the dispatching of a speciﬁc Terminal Services jobs to Windows client hosts, set the JOB_INCLUDE_POSTPROC environment
+variable, then submit the Terminal Services job.
+Job submission
+1. Submit the job with tssub instead of bsub. tssub is a wrapper around the bsub command which only submits jobs to hosts that have the msts
+resource.
+2. tssub sets the LSB_TSJOB and LSF_LOGON_DESKTOP environment variables. These variables are then transferred to the execution host.
+If the job is dispatched to a host in which Terminal Services is not installed or properly conﬁgured, the job is set to the PEND state and a
+pending reason is written in sbatchd.log.host_name.
+If tssub -I is speciﬁed, a terminal display is visible on the submission host after the job has been started.
+If the job is not a GUI job, LSF runs a command window and output is displayed in the command window when something is written to
+stdout.
+Pre- and post-execution commands are executed within the session in which sbatchd runs. The job does not complete until post-
+execution commands complete.
+3. View job output with the command tspeek. If the terminal window is closed, the job remains running. You can reconnect to view the job with
+tspeek.
+Limitations
+A job submitted as a Remote Desktop Services job cannot be modiﬁed to become a non-Remote Desktop Services job with bmod.
+The bsub option -o out_ﬁle is not supported for tssub.
+Compound resource requirements are not supported for Remote Desktop Services jobs.
+Only Windows bsub options are supported for tssub. For example, you cannot use the options -Ip, -Is, -L login_shell of bsub with tssub.
+tssub cannot run successfully on Windows 2016 under default settings. To resolve this issue, set SecurityLayer to 0 or 1 in the following
+registry key: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ Terminal Server\WinStations\RDP-Tcp
+The default value of SecurityLayer is 2 on Windows Server 2016, but this value must be smaller than 2 for tssub to run successfully.
+If user mapping is deﬁned, the user who invokes tspeek must have the required privileges to access the session.
+If you are planning to run TSJobHelper service on a Windows host, LSF must apply the non-shared conﬁguration directory when installing.
+IBM Spectrum LSF multicluster capability is not supported.
+The automation of mouse and keyboard events are not supported.
+Requirements
+All submission hosts must have the Remote Desktop Services Full Client Windows Installer (MSI) package installed and enabled. This package
+contains the required Microsoft Terminal Services Advanced Client ActiveX Control. Download it from the Microsoft web site.
+All execution server hosts must use Windows Server operating systems, such as Windows Server 2016.
+To run Terminal Services jobs on Windows hosts, you must install Terminal Server Role.
+All execution server hosts must have the Remote Desktop Access enabled.
+Remote Desktop Services server hosts can be in a different domain from submission hosts as long as the user can be authenticated by both
+domains.
+The service account on Remote Desktop Services server hosts must be a member of the local administrators group.
+Your LSF cluster must be working properly.
+All submission (client) hosts need the ActiveX control.
+Conﬁgure Remote Desktop Services for LSF
+Procedure
+1. Start the Microsoft Management Console (MMC) Terminal Services Conﬁguration snap-in (Start > Programs > Administrative Tools > Terminal
+Services Conﬁguration).
+2. Right-click the conﬁguration for which you want to disable the default password setting, and select Properties.
+3. Change the logon information.
+a. Select Logon Settings > Use client provided logon information.
+This ensures you are not using a predeﬁned user to log on to Remote Desktop Services.
+IBM Spectrum LSF 1979
+
+b. Clear the Always prompt for password check box.
+Future connections no longer force a password entry.
+4. Click Apply, then click OK and close the dialog.
+Conﬁgure Windows Server 2008 for Terminal Services jobs
+About this task
+To launch Terminal Services jobs on a Windows 2008 server host, you need to conﬁgure lstsmgr.exe (an LSF binary) and tscon.exe (a Windows
+executable ﬁle) as allowed by the RemoteApp programs in RemoteApp Manager on the Windows 2008 server host.
+To install the Terminal Server role service:
+1. Open Server Manager (Start > Programs > Administrative Tools > Server Manager).
+2. In the left pane, right-click Roles, and then click Add Roles.
+3. In the Add Roles wizard, on the Before You Begin page, click Next.
+4. In the Select Server Roles page, under Roles, select the Terminal Services check box. Click Next.
+5. In the Terminal Services page, click Next.
+6. In the Select Role Services page, select the Terminal Services check box, and then click Next.
+7. In the Uninstall and Reinstall Applications for Compatibility page, click Next.
+8. In the Specify Authentication Method for Terminal Server page, select the appropriate authentication method for the terminal server, and then
+click Next.
+9. In the Specify Licensing Mode page, select the appropriate licensing mode for the terminal server, and then click Next.
+10. In the Select User Groups Allowed Access To This Terminal Server page, add the users or user groups to which you want to remotely connect
+to this terminal server, and then click Next.
+11. In the Conﬁrm Installation Selections page, verify that the Terminal Server role service will be installed, and then click Install. On the
+Installation Progress page, installation progress will be noted.
+Optionally, you can check the RemoteApp conﬁguration to see if lstsmgr.exe and tscon.exe are listed in the RemoteApp allowed program list after
+LSF is installed:
+1. Open Terminal Services Remote Manager (Start > Programs > Administrative Tools > Terminal Services, and then click TS RemoteApp
+Manager).
+2. In the Actions side bar click Add RemoteApp Programs, then click Next.
+3. In the RemoteApp wizard, click Browse, then select lstsmgr.exe (in <LSF_TOP>\etc in the list).
+4. Select C:\Windows\system32\tscon.exe from the list. Click Next and Finish.
+5. Right click the items in the RemoteApp Programs. Click Properties and select Allow any command-line arguments.
+Alternatively, you can change Terminal Services settings and select Allow users to start both listed and unlisted programs on initial connection.
+Conﬁgure Windows Server 2012 for Terminal Services jobs
+About this task
+Windows Server 2012 has security enhancements over Windows Server 2008, so to enable Terminal Services jobs for Windows Server 2012:
+1980    IBM Spectrum LSF
+
+1. From the Control Panel, select System and Security > System > Remote settings.
+2. Select Allow remote connections to this computer.
+3. Make sure Allow connections only from computer running Remote Desktop with Network Level Authentication is not checked.
+4. Ensure the following registry settings:
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal 
+Server\TsAppAllowList\Applications\lstsmgr
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal 
+Server\TsAppAllowList\Applications\tscon
+5. Set CommandLineSetting to 1
+Conﬁgure LSF to run Remote Desktop Services jobs
+Procedure
+1. Deﬁne the msts static resource.
+Edit LSF_CONFDIR\lsf.shared and deﬁne the msts static resource. Note that the resource name must be msts and values for the resource must
+be exactly as shown.
+Begin Resource 
+RESOURCENAME TYPE  INTERVAL INCREASING DESCRIPTION 
+... 
+msts         Boolean  ()    ()        (Windows Terminal Server) 
+... 
+End Resource
+2. Add the msts resource to hosts.
+Edit LSF_CONFDIR\lsf.cluster.cluster_name and add the msts resource to each host on which Terminal Server is installed. For example:
+Begin Host 
+HOSTNAME   model   type   server r1m pg tmp RESOURCES 
+... 
+hostA      !       NTX86    1     -   -   - (msts) 
+... 
+End Host
+3. (Optional) Create job starters to preserve a user's environment settings.
+You may need to create a job starter script to preserve a user’s environment settings on the execution host.
+Use Windows Remote Desktop Services jobs on Windows server hosts
+This feature only supports one Remote Desktop Services job running on each Windows host running a Windows server operating system (such as
+Windows Server 2016). Additional jobs will be in PEND state, causing mbschd to schedule the extra Remote Desktop Services jobs to the host back
+and forth. To avoid this, set a static numeric resource on each Windows host. For example, conﬁgure a static numeric resource, like tsjob and set it
+to 1 for each Windows host. The msts resource must also be conﬁgured.
+Procedure
+1. Add the following line in the lsf.shared ﬁle Resource section:
+tsjob Numeric () N (tsjob counter)
+2. Add the following line in the lsf.cluster ﬁle in the ResourceMap section:
+tsjob (1@[win])
+In this example, win is the Windows host name.
+Results
+A Remote Desktop job will fail on Windows when there is any user logged on the computer before the job is submitted. To avoid this, you should add
+ls==0 to the job resource requirement.
+To submit a job, use:
+tssub -R "ls==0 rusage[tsjob=1]" app
+When the job runs, use tspeek to check job display from a Windows host or a Linux host with rdesktop installed.
+Submit LSF jobs to Terminal Services hosts (tssub)
+Procedure
+1. Submit a job to a host with Remote Desktop Services installed by using the tssub command:
+tssub myjob
+IBM Spectrum LSF 1981
