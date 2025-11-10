@@ -1,25 +1,28 @@
 import sqlite3
 
-db_path = "ontology_workspace.db"  # path to your .db file
+db_path = "ontology_sample.db"  
 
 conn = sqlite3.connect(db_path)
 cur = conn.cursor()
 
-cur.execute("""
-    SELECT doc_id, title, cleaned_text
-    FROM cleaned_documents
-    WHERE cleaned_version = 1
-    ORDER BY created_at DESC
+cur.execute("PRAGMA table_info(sentence_lemmatized);")
+print("Columns:")
+for row in cur.fetchall():
+    print(row)
+
+print("\nSample rows:")
+cur.execute("""  
+    SELECT doc_id, sent_idx, pos_tags_json , cleaned_version, created_at
+    FROM sentence_lemmatized
+    ORDER BY doc_id, sent_idx
+    LIMIT 10
 """)
+for row in cur.fetchall():
+    print(row)
 
-rows = cur.fetchall()
+cur.execute("SELECT COUNT(*) FROM sentence_lemmatized;")
+print("\nTotal rows:", cur.fetchone()[0])
 
-#cur.execute("DROP TABLE IF EXISTS cleaned_documents;")
 conn.close()
-
-# optional: look at the rows
-for row in rows:
-    doc_id, title, cleaned_text = row
-    print(doc_id, title, len(cleaned_text), "chars")
 
 

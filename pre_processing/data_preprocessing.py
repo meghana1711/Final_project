@@ -1,4 +1,3 @@
-import os
 import json
 import re
 import sqlite3
@@ -8,7 +7,9 @@ from datetime import datetime
 import unicodedata
 from typing import List, Dict, Set, Tuple
 from collections import Counter
-
+from . import patterns as pat
+import spacy
+from spacy.language import Language
 
 # Create ontology_workspace.db
 def init_db(db_path: str) -> None:
@@ -31,19 +32,59 @@ def init_db(db_path: str) -> None:
         )
     """)
 
-    # cleaned_documents: 1 cleaned row per doc_id (latest), FK to raw
+    # leaned row per cleaned_id (latest), FK is doc_id
     cur.execute("""
         CREATE TABLE IF NOT EXISTS cleaned_documents (
-            doc_id           TEXT PRIMARY KEY,
-            title            TEXT,
-            cleaned_text     TEXT,
-            raw_version      INTEGER,
-            cleaned_version  INTEGER,
-            created_at       TEXT,
-            stats_json       TEXT,
+            cleaned_id      INTEGER PRIMARY KEY AUTOINCREMENT,
+            doc_id          TEXT NOT NULL,
+            title           TEXT,
+            cleaned_text    TEXT,
+            raw_version     INTEGER,
+            cleaned_version INTEGER,
+            created_at      TEXT,
+            stats_json      TEXT,
             FOREIGN KEY (doc_id) REFERENCES raw_documents(doc_id)
                 ON UPDATE CASCADE
                 ON DELETE CASCADE
+        )
+    """)
+
+      # Sentence Segmentation table per sentence_id is PK, doc_id is FK
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS sentence_segmented (
+        sentence_id     TEXT PRIMARY KEY,   
+        doc_id          TEXT NOT NULL,
+        sent_idx        INTEGER NOT NULL,   
+        sentence        TEXT NOT NULL,
+        start_char      INTEGER,
+        end_char        INTEGER,
+        length          INTEGER,
+        cleaned_version INTEGER,           
+        created_at      TEXT,
+        FOREIGN KEY (doc_id) REFERENCES raw_documents(doc_id)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
+        )
+    """)
+
+    # Sentence Lemmatizing table per sentenclemma_id is PK, doc_id is FK
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS sentence_lemmatized (
+        lemma_id                    INTEGER PRIMARY KEY AUTOINCREMENT,
+        doc_id                      TEXT NOT NULL,
+        sent_idx                    INTEGER NOT NULL,
+        sentence                    TEXT NOT NULL,
+        tokens_json                 TEXT,  
+        lemmas_json                 TEXT,   
+        lemmas_with_case_json       TEXT,  
+        lemmatized_text             TEXT,   
+        lemmatized_text_with_case   TEXT,  
+        pos_tags_json               TEXT,   
+        cleaned_version             INTEGER,
+        created_at                  TEXT,
+        FOREIGN KEY (doc_id) REFERENCES raw_documents(doc_id)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
         )
     """)
 
@@ -113,7 +154,7 @@ def read_data(folder_path: str, db_path: str, version: int = 1) -> List[Dict[str
                 continue
 
             h = hash_text(cleaned_for_hash)
-            doc_id = f"doc_{h[:12]}"  # stable, content-based ID
+            doc_id = f"doc_{h[:4]}" 
             title = file_path.stem
             created_at = datetime.utcnow().isoformat(timespec="seconds") + "Z"
 
@@ -149,65 +190,25 @@ def read_data(folder_path: str, db_path: str, version: int = 1) -> List[Dict[str
 
 
 
-# Normalize a line
+# Normalize a line with containing width/quotes/dashes
 def _norm(s: str) -> str:
     """Normalize a line for robust matching while keeping the original for output."""
     if s is None:
         return ""
-    s = unicodedata.normalize("NFKC", s)  # normalize width/quotes/dashes
+    s = unicodedata.normalize("NFKC", s)  # 
     s = s.replace("\ufeff", "")           # strip BOM
     s = s.replace("\xa0", " ")            # NBSP -> space
     s = re.sub(r"\s+", " ", s.strip())    # collapse whitespace
     return s
 
 
-
 # Cleaning documents
 class TechnicalDocumentCleaner:
     def __init__(self, min_words: int = 4):
         self.min_words = min_words
-        self.boilerplate_patterns = [
-            r'^\s*(navigation|menu|home|back to top|skip to content)\s*$',
-            r'^\s*version\s+[\d.]+\s*$',
-            r'^\s*v\d+\.\d+\s*$',
-            r'^\s*release\s+\d+\s*$',
-            r'^\s*(last modified|last updated|modified:|updated:|date:)\b.*$',
-            r'^\s*\d{1,2}\s+(?:january|february|march|april|may|june|july|august|september|october|november|december)\s+\d{4}\s*$',
-            r'^\s*\d{4}-\d{2}-\d{2}\s*$',
-            r'^\s*page\s+\d+\s*$',
-            r'^\s*chapter\s+\d+\s*$',
-            r'^\s*\d+\s*$',
-            r'^\s*(contents|table of contents)\s*$',
-            r'^\s*(references|bibliography)\s*$',
-            r'^\s*appendix\s+[a-z]\s*$',
-            r'^\s*(figure|table)\s+\d+\s*$',
-            r'^\s*©\s*copyright\s+ibm\s+corp\.?\s*\d{4}\.?\s*$',
-            r'^\s*(?:ibm\s+spectrum\s+lsf\s+\d+|\d+\s+ibm\s+spectrum\s+lsf)\s*$',
-            r'copyright\s+©',
-            r'©\s*\d{4}',
-            r'\ball rights reserved\b',
-            r'^\s*\[?\d+\]?\s*$',
-            r'^\s*(see also:?|retrieved from|available at:|more information)\b.*$',
-            r'^\s*[\*_\-=#{3,}]+\s*$',
-            r'^\s*(about|overview|using|installing|get(ting)? help|get(ting)? started|documentation|mailing lists?|support( and training)?|training|troubleshooting|faq|faqs|publications?|downloads?|installation guide|release notes|changelog|related software)\s*$',
-            r'^\s*slurm workload manager\s*$',
-            r'^\s*schedmd\s*$',
-        ]
-        self.preserve_patterns = [
-            r'^\s*(?:int|void|char|const|static|extern|uint\d+_t|bool|float|double|struct|enum|typedef|union|long|short|unsigned|signed)\b',
-            r'^\s*[a-z_][a-z0-9_]*\s*\([^)]*\)\s*;?$',
-            r'\b[a-z_][a-z0-9_]*\s*\([^)]*\)\s*;?$',
-            r'^\s*[A-Z_][A-Z0-9_]+\b',
-            r'^\s*#\s*define\b',
-            r'^\s*#\s*include\b',
-            r'^\s*(arguments?|returns?|description|parameters?|example|note|warning|syntax|usage|input|output|overview):\s*$',
-            r'^\s*(api\s+(?:functions|methods|calls)|function\s+(?:reference|list)|method\s+(?:reference|list))\s*$',
-            r'\b(?:SLURM_SUCCESS|SLURM_ERROR|SUCCESS|ERROR|FAILURE|OK)\b',
-            r'\([^)]*(?:input|output|in|out|inout)[^)]*\)',
-            r'^\s*//',
-            r'^\s*/\*',
-            r'\*/\s*$',
-        ]
+        self.boilerplate_patterns = pat.BOILERPLATE_PATTERNS
+        self.preserve_patterns = pat.PRESERVE_PATTERNS
+
         self.compiled_boilerplate = [re.compile(p, re.IGNORECASE) for p in self.boilerplate_patterns]
         self.compiled_preserve = [re.compile(p, re.IGNORECASE) for p in self.preserve_patterns]
         self.footer_re = re.compile(
@@ -235,13 +236,7 @@ class TechnicalDocumentCleaner:
         norm = _norm(line)
         if not norm:
             return False
-        structural_headers = {
-            'api functions', 'api', 'functions', 'methods',
-            'description', 'arguments', 'returns', 'parameters',
-            'examples', 'example', 'syntax', 'usage',
-            'notes', 'note', 'warnings', 'warning',
-            'input', 'output', 'configuration', 'options', 'specifications'
-        }
+        structural_headers = pat.STRUCTURAL_HEADERS
         if norm in structural_headers or (norm.endswith(':') and norm[:-1] in structural_headers):
             return True
         for h in structural_headers:
@@ -355,7 +350,7 @@ class TechnicalDocumentCleaner:
         cleaned_text = re.sub(r'\n{3,}', '\n\n', cleaned_text).strip()
         return cleaned_text, stats
 
-    # FIXED: added self; uses self.clean_document
+    # uses self.clean_document
     def clean_into_db(self, db_path: str, raw_version: int, cleaned_version: int):
         conn = sqlite3.connect(db_path)
         cur = conn.cursor()
@@ -366,11 +361,11 @@ class TechnicalDocumentCleaner:
             SELECT d.doc_id, d.title, d.text, d.version
             FROM raw_documents d
             WHERE d.version = ?
-              AND NOT EXISTS (
-                  SELECT 1 FROM cleaned_documents c
-                  WHERE c.doc_id = d.doc_id
+            AND NOT EXISTS (
+                SELECT 1 FROM cleaned_documents c
+                WHERE c.doc_id = d.doc_id
                     AND c.cleaned_version = ?
-              )
+            )
         """, (raw_version, cleaned_version))
         rows = cur.fetchall()
 
@@ -386,8 +381,9 @@ class TechnicalDocumentCleaner:
             cleaned_text, stats = self.clean_document(raw_text)
 
             cur.execute("""
-                INSERT OR REPLACE INTO cleaned_documents
-                    (doc_id, title, cleaned_text, raw_version, cleaned_version, created_at, stats_json)
+                INSERT INTO cleaned_documents
+                    (doc_id, title, cleaned_text, raw_version,
+                    cleaned_version, created_at, stats_json)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
             """, (
                 doc_id,
@@ -414,6 +410,517 @@ class TechnicalDocumentCleaner:
 
         conn.commit()
         conn.close()
-        print(f"✓ Wrote {len(cleaned_batch)} cleaned docs into cleaned_documents (cleaned_version={cleaned_version})")
+        print(f"Updated {len(cleaned_batch)} pre_processed docs into cleaned_documents (cleaned_version={cleaned_version})")
         return cleaned_batch
+
+#Sentence segmentation 
+class ImprovedSentenceSegmenter:
+    def __init__(self, model_name, max_length):
+        try:
+            self.nlp = spacy.load(model_name)
+            print(f"Loaded spaCy model: {model_name}")
+        except OSError:
+            print(f"Model '{model_name}' not found. Run: python -m spacy download {model_name}")
+            raise
+
+        self.nlp.max_length = max_length
+        disable_pipes = ['ner', 'lemmatizer', 'textcat']
+        for pipe in disable_pipes:
+            if pipe in self.nlp.pipe_names:
+                self.nlp.disable_pipes(pipe)
+
+        self._add_custom_sentencizer_rules()
+        print(f"Active pipes: {self.nlp.pipe_names}")
+
+    def _add_custom_sentencizer_rules(self):
+        """Register and add custom sentence-boundary logic to spaCy."""
+        self.abbreviations = pat.ABBREVIATIONS
+        self.non_boundary_patterns = pat.NON_BOUNDARY
+
+        abbreviations = self.abbreviations
+        non_boundary_patterns = self.non_boundary_patterns
+
+        def custom_sentencizer(doc):
+            for i, token in enumerate(doc[:-1]):
+                if token.text in '.!?':
+                    prev_text = doc[max(0, i - 5):i + 1].text.lower()
+                    next_token = doc[i + 1]
+
+                    is_abbrev = any(abbrev in prev_text for abbrev in abbreviations)
+                    context = doc[max(0, i - 2):min(len(doc), i + 3)].text
+                    is_non_boundary = any(
+                        re.search(pattern, context, re.IGNORECASE)
+                        for pattern in non_boundary_patterns
+                    )
+
+                    if not is_abbrev and not is_non_boundary and next_token.is_alpha:
+                        next_token.is_sent_start = next_token.text[0].isupper()
+                    else:
+                        next_token.is_sent_start = False
+            return doc
+
+        if not Language.has_factory("custom_sentencizer"):
+            Language.component("custom_sentencizer", func=custom_sentencizer)
+
+        if "custom_sentencizer" not in self.nlp.pipe_names:
+            try:
+                self.nlp.add_pipe("custom_sentencizer", before="parser")
+            except ValueError:
+                self.nlp.add_pipe("custom_sentencizer", first=True)
+
+    def _is_valid_sentence(self, text: str) -> bool:
+        text = text.strip()
+        if not text:
+            return False
+
+        if len(text) < 10:
+            if not (text[0].isupper() and text[-1] in '.!?'):
+                return False
+
+        if len(text) > 800:
+            return False
+
+        fragment_patterns = pat.FRAGMENT_PATTERNS
+        for pattern in fragment_patterns:
+            if re.match(pattern, text, re.IGNORECASE):
+                return False
+
+        if not re.search(r'[a-zA-Z]', text):
+            return False
+
+        words = text.split()
+        if len(words) == 1 and len(text) < 20:
+            if not (text[-1] in '.!?' or len(text) > 5):
+                return False
+
+        return True
+
+    def _split_long_sentence(self, text: str, doc_id: str, sent_counter: int, start_offset: int) -> List[Dict]:
+        if len(text) <= 800:
+            return [{
+                'doc_id': doc_id,
+                'sent_idx': sent_counter,
+                'sentence': text,
+                'start_char': start_offset,
+                'end_char': start_offset + len(text),
+                'length': len(text)
+            }]
+
+        sentences = []
+        sub_counter = 0
+
+        split_patterns = pat.SPLIT_PATTERNS
+        remaining_text = text
+
+        for pattern in split_patterns:
+            if len(remaining_text) <= 800:
+                break
+
+            parts = re.split(pattern, remaining_text)
+            if len(parts) > 1:
+                new_parts = []
+                current = ""
+
+                for part in parts:
+                    if current and len(current + part) > 600:
+                        new_parts.append(current.strip())
+                        current = part
+                    else:
+                        current += part
+
+                if current:
+                    new_parts.append(current.strip())
+
+                offset = start_offset
+                for part in new_parts:
+                    if self._is_valid_sentence(part):
+                        sub_counter += 1
+                        sentences.append({
+                            'doc_id': doc_id,
+                            'sent_idx': sent_counter,  # keep same index; you could encode sub-counter if you like
+                            'sentence': part,
+                            'start_char': offset,
+                            'end_char': offset + len(part),
+                            'length': len(part)
+                        })
+                    offset += len(part)
+
+                return sentences or [{
+                    'doc_id': doc_id,
+                    'sent_idx': sent_counter,
+                    'sentence': text,
+                    'start_char': start_offset,
+                    'end_char': start_offset + len(text),
+                    'length': len(text)
+                }]
+
+        return [{
+            'doc_id': doc_id,
+            'sent_idx': sent_counter,
+            'sentence': text,
+            'start_char': start_offset,
+            'end_char': start_offset + len(text),
+            'length': len(text)
+        }]
+
+    def segment_text(self, text: str, doc_id: str) -> List[Dict]:
+        if len(text) > self.nlp.max_length:
+            return self._segment_large_text(text, doc_id)
+
+        text = re.sub(r'\n{3,}', '\n\n', text)
+        text = re.sub(r' {2,}', ' ', text)
+
+        doc = self.nlp(text)
+
+        sentences = []
+        sent_counter = 0
+
+        for sent in doc.sents:
+            sentence_text = sent.text.strip()
+            if not sentence_text:
+                continue
+            if sentence_text.endswith(':') and len(sentence_text.split()) < 10:
+                continue
+            if not self._is_valid_sentence(sentence_text):
+                continue
+
+            sent_counter += 1
+
+            if len(sentence_text) > 800:
+                split_sentences = self._split_long_sentence(
+                    sentence_text, doc_id, sent_counter, sent.start_char
+                )
+                sentences.extend(split_sentences)
+            else:
+                sentences.append({
+                    'doc_id': doc_id,
+                    'sent_idx': sent_counter,
+                    'sentence': sentence_text,
+                    'start_char': sent.start_char,
+                    'end_char': sent.end_char,
+                    'length': len(sentence_text)
+                })
+
+        return sentences
+
+    def _segment_large_text(self, text: str, doc_id: str) -> List[Dict]:
+        chunk_size = int(self.nlp.max_length * 0.8)
+        overlap_size = 1000
+        all_sentences = []
+        sentence_counter = 0
+
+        i = 0
+        while i < len(text):
+            end = min(i + chunk_size, len(text))
+
+            if end < len(text):
+                last_para = text.rfind('\n\n', i, end)
+                if last_para > i + chunk_size // 2:
+                    end = last_para + 2
+                else:
+                    for punct in ['. ', '! ', '? ']:
+                        last_sent = text.rfind(punct, i + chunk_size // 2, end)
+                        if last_sent > i:
+                            end = last_sent + 2
+                            break
+
+            chunk = text[i:end]
+            doc = self.nlp(chunk)
+
+            for sent in doc.sents:
+                sentence_text = sent.text.strip()
+                if not sentence_text:
+                    continue
+                if not self._is_valid_sentence(sentence_text):
+                    continue
+
+                abs_start = i + sent.start_char
+                abs_end = i + sent.end_char
+
+                is_duplicate = False
+                for existing in all_sentences[-5:]:
+                    if abs(existing['start_char'] - abs_start) < 50:
+                        is_duplicate = True
+                        break
+                if is_duplicate:
+                    continue
+
+                sentence_counter += 1
+
+                if len(sentence_text) > 800:
+                    split_sentences = self._split_long_sentence(
+                        sentence_text, doc_id, sentence_counter, abs_start
+                    )
+                    all_sentences.extend(split_sentences)
+                else:
+                    all_sentences.append({
+                        'doc_id': doc_id,
+                        'sent_idx': sentence_counter,
+                        'sentence': sentence_text,
+                        'start_char': abs_start,
+                        'end_char': abs_end,
+                        'length': len(sentence_text)
+                    })
+
+            next_start = end - overlap_size if end < len(text) else end
+            i = max(next_start, i + chunk_size // 2)
+
+        return all_sentences
+
+    def segment_cleaned_to_db(self, db_path: str, cleaned_version: int):
+        """
+        Read cleaned documents from cleaned_documents
+        and write sentence rows into sentence_segmented table.
+        """
+        conn = sqlite3.connect(db_path)
+        cur = conn.cursor()
+        cur.execute("PRAGMA foreign_keys = ON;")
+
+        cur.execute("""
+            SELECT cd.doc_id, cd.cleaned_text
+            FROM cleaned_documents cd
+            WHERE cd.cleaned_version = ?
+              AND NOT EXISTS (
+                  SELECT 1 FROM sentence_segmented s
+                  WHERE s.doc_id = cd.doc_id
+                    AND s.cleaned_version = cd.cleaned_version
+              )
+        """, (cleaned_version,))
+        rows = cur.fetchall()
+
+        if not rows:
+            print(f"No cleaned docs to segment for cleaned_version={cleaned_version}.")
+            conn.close()
+            return []
+
+        print(f"Segmenting {len(rows)} cleaned document(s) from DB...")
+        now = datetime.utcnow().isoformat(timespec="seconds") + "Z"
+        inserted_total = 0
+
+        for doc_id, cleaned_text in rows:
+            sentences = self.segment_text(cleaned_text, doc_id)
+            print(f"  {doc_id}: {len(sentences)} sentences")
+
+            for s in sentences:
+                cur.execute("""
+                    INSERT INTO sentence_segmented
+                        (doc_id, sent_idx, sentence, start_char, end_char,
+                         length, cleaned_version, created_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """, (
+                    s['doc_id'],
+                    s['sent_idx'],
+                    s['sentence'],
+                    s['start_char'],
+                    s['end_char'],
+                    s['length'],
+                    cleaned_version,
+                    now
+                ))
+            inserted_total += len(sentences)
+
+        conn.commit()
+        conn.close()
+        print(f"Inserted {inserted_total} sentence rows into sentence_segmented (cleaned_version={cleaned_version})")
+        return inserted_total
+
+
+#Sentence lemmatizaing and POS tagging
+class SentenceLemmatizer:
+    def __init__(self, model_name: str = "en_core_web_sm"):
+        """
+        Initialize spaCy lemmatizer.
+        """
+        try:
+            self.nlp = spacy.load(model_name)
+            print(f"Loaded spaCy model: {model_name}")
+        except OSError:
+            print(f"Model '{model_name}' not found.")
+            print(f"Run: python -m spacy download {model_name}")
+            raise
+
+        # We need tokenizer + tagger + lemmatizer; disable NER & parser
+        disable_pipes = ['ner', 'parser']
+        for pipe in disable_pipes:
+            if pipe in self.nlp.pipe_names:
+                self.nlp.disable_pipes(pipe)
+
+        print(f"Active pipes: {self.nlp.pipe_names}")
+
+    def preserve_original_case(self, original_token: str, lemma: str) -> str:
+        """
+        Preserve the capitalization pattern of the original token in the lemma.
+        """
+        if not original_token or not lemma:
+            return lemma
+
+        if original_token.isupper():
+            return lemma.upper()
+        elif original_token[0].isupper():
+            return lemma.capitalize()
+        elif any(c.isupper() for c in original_token[1:]):
+            if len(original_token) == len(lemma):
+                result = ""
+                for i, char in enumerate(lemma):
+                    if i < len(original_token) and original_token[i].isupper():
+                        result += char.upper()
+                    else:
+                        result += char.lower()
+                return result
+            else:
+                return lemma.capitalize() if original_token[0].isupper() else lemma
+
+        return lemma
+
+    def lemmatize_sentence(
+        self,
+        sentence: str,
+        keep_pos: bool = True,
+        remove_stopwords: bool = False,
+        remove_punct: bool = False,
+    ) -> Dict:
+        """
+        Lemmatize a sentence and optionally filter tokens.
+        """
+        doc = self.nlp(sentence)
+
+        tokens = []
+        lemmas = []
+        lemmas_with_case = []
+        pos_tags = []
+
+        for token in doc:
+            if remove_stopwords and token.is_stop:
+                continue
+            if remove_punct and token.is_punct:
+                continue
+
+            tokens.append(token.text)
+            lemmas.append(token.lemma_)
+            case_preserved_lemma = self.preserve_original_case(token.text, token.lemma_)
+            lemmas_with_case.append(case_preserved_lemma)
+
+            if keep_pos:
+                pos_tags.append(token.pos_)
+
+        result = {
+            "tokens": tokens,
+            "lemmas": lemmas,
+            "lemmas_with_case": lemmas_with_case,
+            "lemmatized_text": " ".join(lemmas),
+            "lemmatized_text_with_case": " ".join(lemmas_with_case),
+        }
+
+        if keep_pos:
+            result["pos_tags"] = pos_tags
+
+        return result
+
+    def process_sentences_db(
+        self,
+        db_path: str,
+        cleaned_version: int,
+        keep_pos: bool = True,
+        remove_stopwords: bool = False,
+        remove_punct: bool = False,
+        batch_size: int = 200,
+    ) -> int:
+        """
+        Lemmatize sentences from sentence_segmented table and write into
+        sentence_lemmatized table.
+
+        Only processes sentences for given cleaned_version that don't
+        already have lemma rows.
+        """
+        conn = sqlite3.connect(db_path)
+        cur = conn.cursor()
+        cur.execute("PRAGMA foreign_keys = ON;")
+
+        # Fetch sentences to lemmatize
+        cur.execute(
+            """
+            SELECT s.doc_id, s.sent_idx, s.sentence
+            FROM sentence_segmented s
+            WHERE s.cleaned_version = ?
+              AND NOT EXISTS (
+                  SELECT 1 FROM sentence_lemmatized l
+                  WHERE l.doc_id = s.doc_id
+                    AND l.sent_idx = s.sent_idx
+                    AND l.cleaned_version = s.cleaned_version
+              )
+            ORDER BY s.doc_id, s.sent_idx
+        """,
+            (cleaned_version,),
+        )
+        rows = cur.fetchall()
+
+        if not rows:
+            print(f"No sentences to lemmatize for cleaned_version={cleaned_version}.")
+            conn.close()
+            return 0
+
+        print(
+            f"\nLemmatizing {len(rows)} sentences from DB "
+            f"(cleaned_version={cleaned_version})..."
+        )
+        print(
+            f" Settings → keep_pos={keep_pos}, remove_stopwords={remove_stopwords}, "
+            f"remove_punct={remove_punct}"
+        )
+
+        total = 0
+        now = datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+        for i in range(0, len(rows), batch_size):
+            batch = rows[i : i + batch_size]
+
+            for doc_id, sent_idx, sentence_text in batch:
+                lemma_result = self.lemmatize_sentence(
+                    sentence_text,
+                    keep_pos=keep_pos,
+                    remove_stopwords=remove_stopwords,
+                    remove_punct=remove_punct,
+                )
+
+                cur.execute(
+                    """
+                    INSERT OR REPLACE INTO sentence_lemmatized
+                        (doc_id, sent_idx, sentence,
+                         tokens_json, lemmas_json, lemmas_with_case_json,
+                         lemmatized_text, lemmatized_text_with_case,
+                         pos_tags_json, cleaned_version, created_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                    (
+                        doc_id,
+                        sent_idx,
+                        sentence_text,
+                        json.dumps(lemma_result["tokens"], ensure_ascii=False),
+                        json.dumps(lemma_result["lemmas"], ensure_ascii=False),
+                        json.dumps(
+                            lemma_result["lemmas_with_case"], ensure_ascii=False
+                        ),
+                        lemma_result["lemmatized_text"],
+                        lemma_result["lemmatized_text_with_case"],
+                        json.dumps(
+                            lemma_result.get("pos_tags"), ensure_ascii=False
+                        )
+                        if keep_pos
+                        else None,
+                        cleaned_version,
+                        now,
+                    ),
+                )
+                total += 1
+
+            conn.commit()
+            processed = min(i + batch_size, len(rows))
+            print(f"  Processed {processed}/{len(rows)} sentences...")
+
+        conn.close()
+        print(
+            f"\n Updated {total} rows into sentence_lemmatized "
+            f"(cleaned_version={cleaned_version})"
+        )
+        return total
 
