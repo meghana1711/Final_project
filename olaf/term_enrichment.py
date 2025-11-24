@@ -276,7 +276,7 @@ def enrich_terms(db_path: str) -> None:
 # -------------------------------------------------------------------
 
 def main():
-    DB_PATH = r"onto_db/ontology_sample_new.db"  # adjust as needed
+    DB_PATH = r"onto_db/ontology_sample_new.db"  
     print("Running term enrichment (lemma-based canonical_term, rule-based only)...")
     enrich_terms(DB_PATH)
     print("Done term enrichment.")

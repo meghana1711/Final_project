@@ -101,9 +101,8 @@ def _shape_boost(term_text: str) -> float:
     return 0.0
 
 
-# -------------------------------------------------------------------
+
 # Main scoring logic
-# -------------------------------------------------------------------
 
 def compute_term_scores(db_path: str) -> Tuple[int, int]:
     """
@@ -279,12 +278,10 @@ def compute_term_scores(db_path: str) -> Tuple[int, int]:
     return (len(scores), upsert_count)
 
 
-# -------------------------------------------------------------------
 # CLI
-# -------------------------------------------------------------------
 
 def main():
-    DB_PATH = r"onto_db/ontology_sample_new.db"  # adjust path as needed
+    DB_PATH = r"onto_db/ontology_sample_new.db" 
 
     print("Computing TF-IDF and combined score for term candidates...")
     n_terms, n_upserted = compute_term_scores(DB_PATH)
