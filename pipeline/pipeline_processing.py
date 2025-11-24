@@ -11,7 +11,7 @@ import pre_processing.data_preprocessing as dp
 
 
 FOLDER_PATH = "C:/Users/20236193/Final_project/data/sample"  
-DB_PATH = "C:/Users/20236193/Final_project/onto_db/ontology_sample.db"           
+DB_PATH = "C:/Users/20236193/Final_project/onto_db/ontology_sample_new.db"           
 VERSION = 1      
 MIN_WORDS=4   
 MODEL_NAME = "en_core_web_sm"     

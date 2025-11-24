@@ -1,6 +1,6 @@
 import sqlite3
 
-db_path = "ontology_sample.db"  
+db_path = "C:/Users/20236193/Final_project/onto_db/ontology_sample.db"  
 
 conn = sqlite3.connect(db_path)
 cur = conn.cursor()
