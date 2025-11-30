@@ -5,8 +5,9 @@ We use an OLAF framework to automatically generate, align, and refine LLM-based 
 git clone https://github.com/meghana1711/Final_project.git
 cd Final_project
 python -m venv venv
-venv\Scripts\activate
+.\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+python -m spacy download en_core_web_sm
 
 # Data
 For this study, we used the complete official documentation of the SLURM and IBM LSF workload managers as our primary data sources. The SLURM corpus was scraped from the SLURM website, while the IBM LSF documentation was obtained directly as a PDF file from the official IBM LSF website.

@@ -5,9 +5,7 @@ from datetime import datetime
 from typing import Dict, Optional, Any
 
 
-# -------------------------------------------------------------------
 # DB schema helpers
-# -------------------------------------------------------------------
 
 def init_term_enrichment_table(db_path: str) -> None:
     """
@@ -49,9 +47,7 @@ def init_term_enrichment_table(db_path: str) -> None:
     conn.close()
 
 
-# -------------------------------------------------------------------
 # Canonicalization (lemma-driven)
-# -------------------------------------------------------------------
 
 def _canonical_key(term_lemma: str, term_text: str) -> str:
     """
@@ -65,8 +61,6 @@ def _canonical_key(term_lemma: str, term_text: str) -> str:
 
     This merges things like:
       - "LSF management host" / "LSF client"      -> "lsf"
-      - "LSF_ENVDIR variable" / "LSF_ENVDIR"     -> "lsf_envdir"
-      - "cluster name" / "cluster options"       -> "cluster"
     """
     lemma = (term_lemma or "").strip()
     text = (term_text or "").strip()
@@ -112,9 +106,7 @@ def _canonical_term_from_key(key: str) -> str:
     return key
 
 
-# -------------------------------------------------------------------
 # Type inference (rules only)
-# -------------------------------------------------------------------
 
 def infer_term_type(term_text: str) -> Optional[str]:
     """
@@ -139,10 +131,8 @@ def infer_term_type(term_text: str) -> Optional[str]:
     return None
 
 
-# -------------------------------------------------------------------
-# Main enrichment routine
-# -------------------------------------------------------------------
 
+# Main enrichment routine
 def enrich_terms(db_path: str) -> None:
     """
     Read term_candidates, compute lemma-based canonical_term, synonyms, type,
@@ -168,20 +158,8 @@ def enrich_terms(db_path: str) -> None:
         FROM term_candidates
         """
     )
-    rows = cur.fetchall()  # (term_id, term_text, term_lemma, freq_total, freq_docs)
+    rows = cur.fetchall() 
 
-    # ----------------------------------------------------------------
-    # Build groups: canonical_term -> aggregated data
-    # ----------------------------------------------------------------
-    # {
-    #   canonical_term: {
-    #       "ids": set([...]),
-    #       "texts": set([...]),
-    #       "freq_total": int,
-    #       "freq_docs": int
-    #   },
-    #   ...
-    # }
     groups: Dict[str, Dict[str, Any]] = {}
 
     for term_id, term_text, term_lemma, freq_total, freq_docs in rows:
@@ -207,9 +185,8 @@ def enrich_terms(db_path: str) -> None:
 
     now = datetime.utcnow().isoformat(timespec="seconds") + "Z"
 
-    # ----------------------------------------------------------------
+
     # Write one row per canonical_term
-    # ----------------------------------------------------------------
     for canonical_term, data in groups.items():
         member_ids = sorted(data["ids"])
         member_texts = sorted(data["texts"])
@@ -270,10 +247,6 @@ def enrich_terms(db_path: str) -> None:
     conn.commit()
     conn.close()
 
-
-# -------------------------------------------------------------------
-# CLI
-# -------------------------------------------------------------------
 
 def main():
     DB_PATH = r"onto_db/ontology_sample_new.db"  
