@@ -1,7 +1,7 @@
 import sqlite3
 import json
 from pathlib import Path
-from typing import List, Dict, Tuple
+from typing import List, Tuple, Dict
 
 import numpy as np
 from gensim.models import Word2Vec
@@ -12,18 +12,24 @@ from gensim.models import Word2Vec
 # -------------------------------------------------------------------
 
 DB_PATH = r"onto_db/ontology_sample_new.db"
-CLEANED_VERSION = 1           # match your sentence_lemmatized version
-USE_LEMMAS = True            # True: use lemmas_json, False: use tokens_json
+CLEANED_VERSION = 1            # match your sentence_lemmatized version
+
+USE_LEMMAS = True              # always use lemmas, not raw tokens
+LOWERCASE = True               # normalize to lowercase everywhere
 
 VECTOR_SIZE = 100
 WINDOW = 5
-MIN_COUNT = 2                 # ignore words with total freq < 2
+MIN_COUNT = 2                  # ignore words with total freq < 2
 WORKERS = 4
-TOP_K_NEIGHBORS = 10          # how many neighbors per term to store
+TOP_K_NEIGHBORS = 10           # how many neighbors per term to store
 
 OUT_DIR = Path("models")
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 SKIPGRAM_MODEL_PATH = OUT_DIR / "word2vec_skipgram.model"
+
+SKIPPED_OUT_DIR = Path("output")
+SKIPPED_OUT_DIR.mkdir(parents=True, exist_ok=True)
+SKIPPED_TERMS_PATH = SKIPPED_OUT_DIR / "skipgram_skipped_terms.tsv"
 
 
 # -------------------------------------------------------------------
@@ -48,7 +54,7 @@ def init_skipgram_neighbors_table(db_path: str) -> None:
             neighbor_term_id INTEGER NOT NULL,
             similarity       REAL    NOT NULL,
             PRIMARY KEY (term_id, neighbor_term_id),
-            FOREIGN KEY (term_id) REFERENCES term_candidates(term_id) ON DELETE CASCADE,
+            FOREIGN KEY (term_id)          REFERENCES term_candidates(term_id) ON DELETE CASCADE,
             FOREIGN KEY (neighbor_term_id) REFERENCES term_candidates(term_id) ON DELETE CASCADE
         );
         """
@@ -59,18 +65,24 @@ def init_skipgram_neighbors_table(db_path: str) -> None:
 
 
 # -------------------------------------------------------------------
-# Load sentences from DB
+# Load sentences from DB (for training)
 # -------------------------------------------------------------------
 
-def load_sentences_from_db(db_path: str,
-                           cleaned_version: int,
-                           use_lemmas: bool = True) -> List[List[str]]:
+def load_sentences_from_db(
+    db_path: str,
+    cleaned_version: int,
+    use_lemmas: bool = True,
+    lowercase: bool = True,
+) -> List[List[str]]:
     """
     Load all sentences as lists of tokens from sentence_lemmatized.
 
     Uses:
       - lemmas_json if use_lemmas=True
       - tokens_json otherwise
+
+    If lowercase=True, everything is lowercased so we don't distinguish
+    between 'SLURM', 'Slurm', 'slurm'.
     """
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
@@ -92,7 +104,17 @@ def load_sentences_from_db(db_path: str,
 
         seq = lemmas if use_lemmas else tokens
 
-        sent = [t for t in seq if isinstance(t, str) and t.strip()]
+        sent = []
+        for t in seq:
+            if not isinstance(t, str):
+                continue
+            t = t.strip()
+            if not t:
+                continue
+            if lowercase:
+                t = t.lower()
+            sent.append(t)
+
         if sent:
             sentences.append(sent)
 
@@ -127,12 +149,15 @@ def load_skipgram_model() -> Word2Vec:
 
 
 # -------------------------------------------------------------------
-# Build phrase embeddings for term_candidates
+# Load term candidates (lemmas)
 # -------------------------------------------------------------------
 
 def get_term_candidates(db_path: str) -> List[Tuple[int, str]]:
     """
     Return list of (term_id, term_lemma) from term_candidates.
+
+    We assume term_lemma is already lowercased, but we force lower() anyway
+    to be safe (so 'SLURM', 'Slurm', 'slurm' all become 'slurm').
     """
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
@@ -146,9 +171,18 @@ def get_term_candidates(db_path: str) -> List[Tuple[int, str]]:
     rows = cur.fetchall()
     conn.close()
 
-    # term_lemma is already lowercase; use it as phrase representation
-    return [(int(term_id), lemma or "") for (term_id, lemma) in rows]
+    out: List[Tuple[int, str]] = []
+    for term_id, lemma in rows:
+        lemma = (lemma or "").strip()
+        if lemma:
+            lemma = lemma.lower()
+        out.append((int(term_id), lemma))
+    return out
 
+
+# -------------------------------------------------------------------
+# Build phrase vectors for term_candidates (track skipped)
+# -------------------------------------------------------------------
 
 def build_phrase_vectors(
     model: Word2Vec,
@@ -161,27 +195,41 @@ def build_phrase_vectors(
     Returns:
       term_ids: list of term_ids (only those with vectors)
       matrix: 2D numpy array of shape (n_terms, vector_size)
+
+    Also writes skipped terms (with reasons) to SKIPPED_TERMS_PATH.
     """
     term_ids: List[int] = []
     vecs: List[np.ndarray] = []
+    skipped: List[Tuple[int, str, str]] = []
 
     for term_id, lemma in term_candidates:
         if not lemma:
+            skipped.append((term_id, lemma, "empty lemma"))
             continue
+
         tokens = lemma.split()
         token_vecs = []
 
         for tok in tokens:
-            if tok in model.wv:
-                token_vecs.append(model.wv[tok])
+            tok_norm = tok.lower()
+            if tok_norm in model.wv:
+                token_vecs.append(model.wv[tok_norm])
 
         if not token_vecs:
-            # no tokens from this term are in the vocab – skip
+            skipped.append((term_id, lemma, "no tokens in vocab"))
             continue
 
         phrase_vec = np.mean(token_vecs, axis=0)
         term_ids.append(term_id)
         vecs.append(phrase_vec)
+
+    # Report and save skipped terms
+    print(f"Built vectors for {len(term_ids)} terms, skipped {len(skipped)} terms.")
+    with open(SKIPPED_TERMS_PATH, "w", encoding="utf-8", newline="") as f:
+        f.write("term_id\tlemma\treason\n")
+        for tid, lem, reason in skipped:
+            f.write(f"{tid}\t{lem}\t{reason}\n")
+    print(f"Wrote skipped terms to {SKIPPED_TERMS_PATH}")
 
     if not vecs:
         return [], np.empty((0, model.vector_size), dtype=np.float32)
@@ -234,7 +282,6 @@ def compute_and_store_neighbors(
         # Exclude self
         sims[i] = -1.0
 
-        # Top-k indices
         if top_k >= n_terms - 1:
             top_indices = np.argsort(-sims)  # all others
         else:
@@ -255,7 +302,7 @@ def compute_and_store_neighbors(
                 (term_id_i, neighbor_id, similarity),
             )
 
-        if (i + 1) % 100 == 0 or i == n_terms - 1:
+        if (i + 1) % 1000 == 0 or i == n_terms - 1:
             print(f"  processed {i + 1}/{n_terms} terms...")
             conn.commit()
 
@@ -269,9 +316,14 @@ def compute_and_store_neighbors(
 # -------------------------------------------------------------------
 
 def main():
-    # 1) Load sentences and train Skip-gram model
+    # 1) Load sentences and train Skip-gram model on lowercased lemmas
     print("Loading sentences from DB...")
-    sentences = load_sentences_from_db(DB_PATH, CLEANED_VERSION, use_lemmas=USE_LEMMAS)
+    sentences = load_sentences_from_db(
+        DB_PATH,
+        CLEANED_VERSION,
+        use_lemmas=USE_LEMMAS,
+        lowercase=LOWERCASE,
+    )
     print(f"Loaded {len(sentences)} sentences.")
 
     if not sentences:
@@ -280,13 +332,13 @@ def main():
 
     model = train_skipgram(sentences)
 
-    # 2) Build phrase vectors for term_candidates
+    # 2) Load term candidates (lemmas, lowercased)
     print("Loading term candidates...")
     term_cands = get_term_candidates(DB_PATH)
     print(f"Loaded {len(term_cands)} term candidates.")
 
     term_ids, matrix = build_phrase_vectors(model, term_cands)
-    print(f"Built vectors for {len(term_ids)} terms.")
+    print(f"Built vectors for {len(term_ids)} terms (see skipped file for the rest).")
 
     # 3) Compute and store neighbors
     compute_and_store_neighbors(DB_PATH, term_ids, matrix, top_k=TOP_K_NEIGHBORS)

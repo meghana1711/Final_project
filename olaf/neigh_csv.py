@@ -2,7 +2,7 @@ import sqlite3
 import csv
 
 DB_PATH = r"onto_db/ontology_sample_new.db"
-OUT_CSV = r"output/skipgram_neighbors.csv"
+OUT_CSV = r"output/skipgram_neighbors_1.csv"
 
 conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()

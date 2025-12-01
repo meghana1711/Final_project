@@ -9,6 +9,7 @@ import string
 # Path to your stopwords file
 STOP_WORDS_FILE = "other/stop_words.txt"
 
+
 def load_stop_terms(path: str) -> Set[str]:
     """
     Load stop terms from a text file.
@@ -48,11 +49,14 @@ MAX_TERM_TOKENS = 7
 # Maximum characters in the lemma to avoid very long noisy phrases
 MAX_TERM_CHARS = 60
 
-# Optional: substrings that mark generic noisy phrases to drop patterns like "this section", "following example", etc.
+# Optional: substrings that mark generic noisy phrases to drop
+# patterns like "this section", "following example", etc.
 GENERIC_NOISE_SUBSTRINGS: Set[str] = set()
 
 
-# DB term extraction and term occurances
+# -------------------------------------------------------------------
+# DB term extraction and term occurrences
+# -------------------------------------------------------------------
 
 def init_term_tables(db_path: str) -> None:
     """Create term_candidates and term_occurrences tables if missing."""
@@ -90,7 +94,11 @@ def init_term_tables(db_path: str) -> None:
     conn.commit()
     conn.close()
 
+
+# -------------------------------------------------------------------
 # Candidate extraction
+# -------------------------------------------------------------------
+
 def _extract_candidates_from_sentence(
     tokens: List[str],
     lemmas: List[str],
@@ -111,6 +119,8 @@ def _extract_candidates_from_sentence(
       - weird IDs like '-147101316', 'CPUs303030'
       - overly long noisy phrases
       - code-like / placeholder text (fopen(<logdir, <logdir>, etc.)
+      - table/markup noise like "| | | | | |"
+      - terms starting/ending with shell-ish junk (#, ', /, etc.)
       - duplicate term_lemma within the same sentence
 
     And with:
@@ -125,7 +135,11 @@ def _extract_candidates_from_sentence(
     # Track lemmas we've already emitted in this sentence
     seen_lemmas: Set[str] = set()
 
-    #  Unicode normalization 
+    # Edge special characters to trim from first/last tokens of terms
+    # Keep '_' and '-' because they appear in env vars/config names.
+    EDGE_STRIP_CHARS = "".join(ch for ch in string.punctuation if ch not in "_-")
+
+    # ---------------- Unicode normalization ----------------
 
     def _normalize_unicode(s: str) -> str:
         if not s:
@@ -135,7 +149,8 @@ def _extract_candidates_from_sentence(
         s = s.replace("\u00A0", " ").replace("\u2007", " ").replace("\u202F", " ")
         return s
 
-    #  Text / lemma construction with singularization
+    # -------- Text / lemma construction with singularization ---------
+
     def _make_text_lemma(start: int, end: int) -> Tuple[str, str, int]:
         # Slice span
         span_tokens = tokens[start:end + 1]
@@ -168,12 +183,105 @@ def _extract_candidates_from_sentence(
         length_tokens = len(norm_tokens)
         return term_text, term_lemma, length_tokens
 
-    # Low-level emitter with all filters
+    # ---------------- helper: strip edge special chars ----------------
+
+    def _strip_edge_specials(term_text: str, term_lemma: str) -> Tuple[str, str, int]:
+        """
+        Strip leading/trailing special chars from first/last tokens.
+
+        Examples:
+          "grep slurmdbd '"   -> "grep slurmdbd"
+          "/usr"              -> "usr"
+          "# lsfrestart"      -> "lsfrestart"
+          "# cd /usr"         -> "cd usr"
+        """
+        text_tokens = term_text.split()
+        lemma_tokens = term_lemma.split()
+
+        if not text_tokens or not lemma_tokens:
+            return "", "", 0
+
+        def clean_tok_list(tok_list: List[str]) -> List[str]:
+            if not tok_list:
+                return []
+            # Clean first
+            tok_list[0] = tok_list[0].strip(EDGE_STRIP_CHARS)
+            # Clean last (could be same as first if only 1 token)
+            tok_list[-1] = tok_list[-1].strip(EDGE_STRIP_CHARS)
+            # Drop empty tokens
+            return [t for t in tok_list if t]
+
+        text_tokens = clean_tok_list(text_tokens)
+        lemma_tokens = clean_tok_list(lemma_tokens)
+
+        if not text_tokens or not lemma_tokens:
+            return "", "", 0
+
+        # If lengths mismatch (rare), align to min length
+        min_len = min(len(text_tokens), len(lemma_tokens))
+        text_tokens = text_tokens[:min_len]
+        lemma_tokens = lemma_tokens[:min_len]
+
+        text_clean = " ".join(text_tokens)
+        lemma_clean = " ".join(lemma_tokens).lower()
+        return text_clean, lemma_clean, len(text_tokens)
+
+    # ---------------- Low-level emitter with all filters ----------------
+
     def _emit(term_text: str, term_lemma: str, length_tokens: int, start: int, end: int) -> None:
         nonlocal seen_lemmas, candidates
 
         # If normalization produced an empty or degenerate term, skip
         if not term_text or not term_lemma or length_tokens <= 0:
+            return
+
+        # ---- SHAPE-BASED JUNK FILTERS (pipes / punctuation) ----
+
+        # Clean up spans containing '|' that were not handled by pipe-splitting.
+        # Example junk: "| | | | | |" -> drop
+        # Example salvage: "| innodb_buffer_pool_size |" -> "innodb_buffer_pool_size"
+        if "|" in term_text:
+            text_parts = [p.strip() for p in term_text.split("|") if p.strip()]
+            lemma_parts = [p.strip() for p in term_lemma.split("|") if p.strip()]
+
+            if not text_parts:
+                # everything was pipes/whitespace
+                return
+
+            if len(text_parts) != len(lemma_parts):
+                # fall back to text parts for lemma as well
+                lemma_parts = text_parts
+
+            # For these leftover pipe-containing spans we treat the whole thing
+            # as a single term after stripping pipes; multi-term cases like
+            # "a | b | c" are already handled in _push.
+            term_text = " ".join(text_parts)
+            term_lemma = " ".join(lemma_parts).lower()
+            length_tokens = len(term_text.split())
+
+            if not term_text or not term_lemma or length_tokens <= 0:
+                return
+
+        # NEW: strip leading/trailing special chars from first/last tokens
+        term_text, term_lemma, length_tokens = _strip_edge_specials(term_text, term_lemma)
+        if not term_text or not term_lemma or length_tokens <= 0:
+            return
+
+        # Drop spans that are pure or almost pure punctuation/table noise.
+        compact = term_text.replace(" ", "")
+        if not compact:
+            return
+
+        # If all characters are pipe/table-ish punctuation -> junk
+        if all(ch in "|/\\-_=+*~" for ch in compact):
+            return
+
+        alpha_chars = sum(ch.isalpha() for ch in compact)
+        if alpha_chars == 0:
+            # no letters at all (e.g. "||||||", "====")
+            return
+        # If less than 40% of characters are letters, it's likely junk
+        if alpha_chars / len(compact) < 0.4:
             return
 
         # ---- CODE / PLACEHOLDER FILTERS ----
@@ -197,7 +305,7 @@ def _extract_candidates_from_sentence(
             if noise in term_lemma:
                 return
 
-        # very short single tokens
+        # Very short single tokens
         if length_tokens == 1 and len(term_lemma) < 3:
             return
 
@@ -207,20 +315,20 @@ def _extract_candidates_from_sentence(
             if lemma_token in STOP_TERMS:
                 return
 
-        # reject pure numbers (including leading +/- and simple punctuation)
+        # Reject pure numbers (including leading +/- and simple punctuation)
         stripped = term_lemma.strip(string.punctuation + " ")
         if stripped.isdigit():
             return
 
-        # reject long digit sequences inside the term (IDs, CPUs303030, -147101316)
+        # Reject long digit sequences inside the term (IDs, CPUs303030, -147101316)
         if re.search(r"\d{3,}", term_lemma):
             return
 
-        # reject key=value style terms (we'll treat these as config patterns later)
+        # Reject key=value style terms (we'll treat these as config patterns later)
         if "=" in term_lemma:
             return
 
-        # reject obvious garbage punctuation shapes
+        # Reject obvious garbage punctuation shapes
         if term_lemma.startswith("-") or term_lemma.endswith("?"):
             return
 
@@ -234,14 +342,15 @@ def _extract_candidates_from_sentence(
                 term_text = re.sub(r"\d+$", "", term_text).strip()
                 # length_tokens stays the span length
 
-        # Drop duplicates in term_lemma within the sentence 
+        # Drop duplicates in term_lemma within the sentence
         if term_lemma in seen_lemmas:
             return
         seen_lemmas.add(term_lemma)
 
         candidates.append((start, end, term_text, term_lemma, length_tokens))
 
-    #  Candidate collection with filters + pipe splitting
+    # ---------------- Candidate collection with pipe splitting ----------------
+
     def _push(start: int, end: int) -> None:
         term_text, term_lemma, length_tokens = _make_text_lemma(start, end)
 
@@ -255,7 +364,8 @@ def _extract_candidates_from_sentence(
             text_parts = [p.strip() for p in term_text.split("|") if p.strip()]
             lemma_parts = [p.strip() for p in term_lemma.split("|") if p.strip()]
 
-            # Only split if we can align text and lemma parts sensibly
+            # Only split if we can align text and lemma parts sensibly AND
+            # we actually have multiple sub-terms.
             if len(text_parts) == len(lemma_parts) and len(text_parts) > 1:
                 for t_sub, l_sub in zip(text_parts, lemma_parts):
                     sub_len_tokens = len(t_sub.split())
@@ -269,7 +379,7 @@ def _extract_candidates_from_sentence(
     allowed_end = {"NOUN", "PROPN"}
 
     while i < n:
-        # ADJ/NOUN/PROPN+ ending in NOUN/PROPN
+        # (1) contiguous ADJ/NOUN/PROPN+ ending in NOUN/PROPN
         if pos[i] in allowed_inside:
             start = i
             j = i + 1
@@ -281,7 +391,7 @@ def _extract_candidates_from_sentence(
             i = j
             continue
 
-        # (NOUN|PROPN) ADP (NOUN|PROPN)+  e.g. "quality of service"
+        # (2) (NOUN|PROPN) ADP (NOUN|PROPN)+  e.g. "quality of service"
         if (
             i + 2 < n
             and pos[i] in {"NOUN", "PROPN"}
@@ -297,7 +407,7 @@ def _extract_candidates_from_sentence(
             i = j
             continue
 
-        # PROPN (PROPN|NOUN)+   e.g. "Slurm Controller"
+        # (3) PROPN (PROPN|NOUN)+   e.g. "Slurm Controller"
         if pos[i] == "PROPN":
             start = i
             j = i + 1
@@ -313,7 +423,11 @@ def _extract_candidates_from_sentence(
 
     return candidates
 
+
+# -------------------------------------------------------------------
 # Run extraction onto DB
+# -------------------------------------------------------------------
+
 def extract_term_candidates(db_path: str, cleaned_version: int) -> Tuple[int, int]:
     """
     Read from sentence_lemmatized and populate term_candidates + term_occurrences.
@@ -365,6 +479,7 @@ def extract_term_candidates(db_path: str, cleaned_version: int) -> Tuple[int, in
 
             occurrences.append((term_lemma, length_tokens, doc_id, sent_idx, start, end))
 
+    # Optional: prune by document frequency
     if MIN_DOC_FREQ > 1:
         term_stats = {
             k: v for k, v in term_stats.items()
@@ -424,8 +539,8 @@ def extract_term_candidates(db_path: str, cleaned_version: int) -> Tuple[int, in
 
 
 def main():
-    DB_PATH = r"onto_db/ontology_sample_new.db"  
-    CLEANED_VERSION = 1                          
+    DB_PATH = r"onto_db/ontology_sample_new.db"
+    CLEANED_VERSION = 1
 
     print("Running term extraction...")
     n_terms, n_occ = extract_term_candidates(DB_PATH, CLEANED_VERSION)

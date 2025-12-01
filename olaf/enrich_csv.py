@@ -2,12 +2,12 @@ import sqlite3
 import csv
 
 DB_PATH = r"onto_db/ontology_sample_new.db"
-OUT_CSV = r"output/is_a_relations.csv"
+OUT_CSV = r"output/tfidf_1.csv"
 
 conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()
 
-cur.execute("SELECT * FROM is_a_relations")
+cur.execute("SELECT * FROM term_tfidf")
 rows = cur.fetchall()
 col_names = [d[0] for d in cur.description]
 
