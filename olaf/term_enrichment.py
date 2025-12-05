@@ -11,16 +11,17 @@ def init_term_enrichment_table(db_path: str) -> None:
     """
     Create term_enrichment table if missing.
 
-    One row per canonical_term.
+    One row per canonical group.
 
     Columns:
-      - canonical_term        : canonical label (PK), derived from term_lemma/text
-      - term_type             : coarse type (command, config, file, ...)
-      - synonyms_json         : JSON list of non-canonical surface variants
-      - abbreviations_json    : JSON list of abbreviations
-      - member_term_ids_json  : JSON list of term_ids grouped under this canonical_term
-      - freq_total            : sum of freq_total over all member terms
-      - freq_docs             : max of freq_docs over all member terms
+      - canonical_id         : INTEGER PK, also term_id of the canonical member in term_candidates
+      - canonical_term       : canonical label (display string)
+      - term_type            : coarse type (command, config, file, ...)
+      - synonyms_json        : JSON list of non-canonical surface variants
+      - abbreviations_json   : JSON list of abbreviations
+      - member_term_ids_json : JSON list of term_ids grouped under this canonical_term
+      - freq_total           : sum of freq_total over all member terms
+      - freq_docs            : max of freq_docs over all member terms
       - created_at, updated_at
     """
     conn = sqlite3.connect(db_path)
@@ -30,15 +31,20 @@ def init_term_enrichment_table(db_path: str) -> None:
     cur.execute(
         """
         CREATE TABLE IF NOT EXISTS term_enrichment (
-            canonical_term        TEXT PRIMARY KEY,
-            term_type             TEXT,
-            synonyms_json         TEXT,
-            abbreviations_json    TEXT,
+            canonical_id        INTEGER PRIMARY KEY,
+            canonical_term      TEXT NOT NULL,
+            term_type           TEXT,
+            synonyms_json       TEXT,
+            abbreviations_json  TEXT,
             member_term_ids_json  TEXT,
-            freq_total            INTEGER,
-            freq_docs             INTEGER,
-            created_at            TEXT NOT NULL,
-            updated_at            TEXT NOT NULL
+            freq_total          INTEGER,
+            freq_docs           INTEGER,
+            created_at          TEXT NOT NULL,
+            updated_at          TEXT NOT NULL,
+            FOREIGN KEY (canonical_id)
+                REFERENCES term_candidates(term_id)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
         );
         """
     )
@@ -48,7 +54,6 @@ def init_term_enrichment_table(db_path: str) -> None:
 
 
 # Canonicalization (lemma-driven)
-
 def _canonical_key(term_lemma: str, term_text: str) -> str:
     """
     Compute a canonical key using lemma first, with fallback to text.
@@ -138,7 +143,7 @@ def enrich_terms(db_path: str) -> None:
     Read term_candidates, compute lemma-based canonical_term, synonyms, type,
     and populate term_enrichment.
 
-    One row per canonical_term.
+    One row per canonical group.
 
     Aggregates:
       - member_term_ids_json
@@ -158,7 +163,7 @@ def enrich_terms(db_path: str) -> None:
         FROM term_candidates
         """
     )
-    rows = cur.fetchall() 
+    rows = cur.fetchall()
 
     groups: Dict[str, Dict[str, Any]] = {}
 
@@ -185,13 +190,16 @@ def enrich_terms(db_path: str) -> None:
 
     now = datetime.utcnow().isoformat(timespec="seconds") + "Z"
 
-
     # Write one row per canonical_term
     for canonical_term, data in groups.items():
         member_ids = sorted(data["ids"])
         member_texts = sorted(data["texts"])
         freq_total = data["freq_total"]
         freq_docs = data["freq_docs"]
+
+        # Choose a canonical_id: here we pick the smallest term_id of the group
+        # -> this canonical_id == term_candidates.term_id of the canonical member
+        canonical_id = member_ids[0]
 
         # Synonyms: all member texts except the canonical label itself (if present)
         if canonical_term in member_texts:
@@ -216,22 +224,24 @@ def enrich_terms(db_path: str) -> None:
         cur.execute(
             """
             INSERT INTO term_enrichment
-                (canonical_term, term_type,
+                (canonical_id, canonical_term, term_type,
                  synonyms_json, abbreviations_json,
                  member_term_ids_json,
                  freq_total, freq_docs,
                  created_at, updated_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ON CONFLICT(canonical_term) DO UPDATE SET
-                term_type             = COALESCE(excluded.term_type, term_enrichment.term_type),
-                synonyms_json         = excluded.synonyms_json,
-                abbreviations_json    = excluded.abbreviations_json,
-                member_term_ids_json  = excluded.member_term_ids_json,
-                freq_total            = excluded.freq_total,
-                freq_docs             = excluded.freq_docs,
-                updated_at            = excluded.updated_at
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(canonical_id) DO UPDATE SET
+                canonical_term       = excluded.canonical_term,
+                term_type            = COALESCE(excluded.term_type, term_enrichment.term_type),
+                synonyms_json        = excluded.synonyms_json,
+                abbreviations_json   = excluded.abbreviations_json,
+                member_term_ids_json = excluded.member_term_ids_json,
+                freq_total           = excluded.freq_total,
+                freq_docs            = excluded.freq_docs,
+                updated_at           = excluded.updated_at
             """,
             (
+                canonical_id,
                 canonical_term,
                 term_type,
                 json.dumps(synonyms, ensure_ascii=False),
