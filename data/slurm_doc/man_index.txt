@@ -1,0 +1,74 @@
+﻿Slurm Workload Manager 
+SchedMD 
+ 
+Navigation
+Slurm Workload Manager
+Version 25.05
+About
+Overview 
+Release Notes 
+Using
+Documentation 
+FAQ 
+Publications 
+Installing
+Download 
+Related Software 
+Installation Guide 
+Getting Help
+Mailing Lists 
+Support and Training 
+Troubleshooting 
+Man Pages
+NOTE: This documentation is for Slurm version 25.05.
+Documentation for other versions of Slurm is distributed with the code
+Refer to this page for an overview of Slurm.
+Commands 
+sacctDisplays accounting data for all jobs and job steps in the Slurm job accounting log or Slurm database.
+sacctmgrUsed to view and modify Slurm account information.
+sallocObtain a Slurm job allocation (a set of nodes), execute a command, and then release the allocation when the command is finished.
+sattachAttach to a Slurm job step.
+sbatchSubmit a batch script to Slurm.
+sbcastTransmit a file to the nodes allocated to a Slurm job.
+scancelUsed to signal jobs or job steps that are under the control of Slurm.
+scontrolView or modify Slurm configuration and state.
+scrontabManage Slurm crontab files.
+scrunAn OCI runtime proxy for slurm.
+sdiagScheduling diagnostic tool.
+sh5utilMerge utility for acct_gather_profile plugin.
+sinfoView information about Slurm nodes and partitions.
+sprioView the factors that comprise a job's scheduling priority.
+squeueView information about jobs located in the Slurm scheduling queue.
+sreportGenerate reports from the slurm accounting data.
+srunRun parallel jobs.
+sshareTool for listing the shares of associations to a cluster.
+sstatDisplay the status information of a running job/step.
+striggerUsed to set, get or clear Slurm trigger information.
+sviewGraphical user interface to view and modify Slurm state.
+
+Configuration Files 
+acct_gather.confSlurm configuration file for the acct_gather plugins.
+burst_buffer.confSlurm burst buffer configuration.
+cgroup.confSlurm configuration file for the cgroup support.
+gres.confSlurm configuration file for generic resource management.
+helpers.confSlurm configuration file for the node_features/helpers plugin.
+job_container.confSlurm configuration file for configuring the tmpfs job container plugin.
+knl.confSlurm configuration file for Intel Knights Landing management.
+mpi.confSlurm configuration file to allow the configuration of MPI plugins.
+oci.confSlurm configuration file for OCI Containers.
+plugstack.confSlurm configuration file for SPANK plug-in stack.
+slurm.confSlurm configuration file.
+slurmdbd.confSlurm Database Daemon (SlurmDBD) configuration file.
+topology.confSlurm configuration file for defining the network topology.
+topology.yamlSlurm configuration file for defining multiple network topologies.
+
+Daemons and Other 
+sackdSlurm Auth and Cred Kiosk Daemon.
+slurmctldThe central management daemon of Slurm.
+slurmdThe compute node daemon for Slurm.
+slurmdbdSlurm Database Daemon.
+slurmrestdThe Slurm REST API daemon.
+slurmstepdThe job step manager for Slurm.
+SPANKSlurm Plug-in Architecture for Node and job (K)control.
+
+Last modified 10 July 2024

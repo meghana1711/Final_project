@@ -680,11 +680,11 @@ class ImprovedSentenceSegmenter:
             SELECT cd.doc_id, cd.cleaned_text
             FROM cleaned_documents cd
             WHERE cd.cleaned_version = ?
-              AND NOT EXISTS (
-                  SELECT 1 FROM sentence_segmented s
-                  WHERE s.doc_id = cd.doc_id
+            AND NOT EXISTS (
+                SELECT 1 FROM sentence_segmented s
+                WHERE s.doc_id = cd.doc_id
                     AND s.cleaned_version = cd.cleaned_version
-              )
+            )
         """, (cleaned_version,))
         rows = cur.fetchall()
 
@@ -701,13 +701,17 @@ class ImprovedSentenceSegmenter:
             sentences = self.segment_text(cleaned_text, doc_id)
             print(f"  {doc_id}: {len(sentences)} sentences")
 
-            for s in sentences:
+            # enumerate sentences to build sentence_id = <doc_id>_sent_<00001>
+            for idx, s in enumerate(sentences, start=1):
+                sentence_id = f"{doc_id}_sent_{idx:05d}"  # e.g. doc_001_sent_00001
+
                 cur.execute("""
                     INSERT INTO sentence_segmented
-                        (doc_id, sent_idx, sentence, start_char, end_char,
-                         length, cleaned_version, created_at)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                        (sentence_id, doc_id, sent_idx, sentence, start_char, end_char,
+                        length, cleaned_version, created_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """, (
+                    sentence_id,          # NEW: primary key
                     s['doc_id'],
                     s['sent_idx'],
                     s['sentence'],

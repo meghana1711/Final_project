@@ -6,6 +6,9 @@ git clone https://github.com/meghana1711/Final_project.git
 cd Final_project
 python -m venv venv
 .\venv\Scripts\Activate.ps1
+
+# Install PyTorch with CUDA
+pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu124
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 

@@ -1,13 +1,13 @@
 import sqlite3
 import csv
 
-DB_PATH = r"onto_db/ontology_sample_new.db"
-OUT_CSV = r"output/taxonomy_edges.csv"
+DB_PATH = r"onto_db/olaf_trial.db"
+OUT_CSV = r"output/contextual_chunk.csv"
 
 conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()
 
-cur.execute("SELECT * FROM taxonomy_edges")
+cur.execute("SELECT * FROM contextual_chunk")
 rows = cur.fetchall()
 col_names = [d[0] for d in cur.description]
 
