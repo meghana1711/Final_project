@@ -1,8 +1,8 @@
 import sqlite3
 import csv
 
-DB_PATH = r"onto_db/olaf_trial.db"
-OUT_CSV = r"output/contextual_chunk.csv"
+DB_PATH = r"onto_db/olaf_sample_llm.db"
+OUT_CSV = r"output/contextual_chunk_2.csv"
 
 conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()

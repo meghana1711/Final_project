@@ -10,8 +10,8 @@ import logging
 import pre_processing.data_preprocessing as dp
 
 
-FOLDER_PATH = "data/slurm_doc"  
-DB_PATH = "onto_db/olaf_trial.db"           
+FOLDER_PATH = "data/sample"  
+DB_PATH = "onto_db/olaf_sample_llm.db"           
 VERSION = 1      
 MIN_WORDS=4   
 MODEL_NAME = "en_core_web_sm"     

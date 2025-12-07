@@ -4,7 +4,7 @@ from typing import List, Dict, Optional
 from collections import defaultdict
 import statistics
 
-DB_PATH = "onto_db/olaf_trial.db"          
+DB_PATH = "onto_db/olaf_sample_llm.db"          
 CHUNKS_TABLE = "contextual_chunk"      
 SENTENCE_TABLE = "sentence_segmented"
 
