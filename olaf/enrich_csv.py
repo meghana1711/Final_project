@@ -2,12 +2,12 @@ import sqlite3
 import csv
 
 DB_PATH = r"onto_db/olaf_sample_llm.db"
-OUT_CSV = r"output/contextual_chunk_2.csv"
+OUT_CSV = r"output/llm_terms.csv"
 
 conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()
 
-cur.execute("SELECT * FROM contextual_chunk")
+cur.execute("SELECT * FROM llm_terms")
 rows = cur.fetchall()
 col_names = [d[0] for d in cur.description]
 
