@@ -2,7 +2,6 @@ import sqlite3
 from dataclasses import dataclass
 from typing import List, Tuple, Dict
 import torch
-
 # HiT model for hypernym/subsumption scoring
 from hierarchy_transformers import HierarchyTransformer  
 

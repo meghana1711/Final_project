@@ -5,9 +5,7 @@ from datetime import datetime
 from typing import Dict, Optional, Any
 
 
-# -------------------------------------------------------------------
 # DB schema helpers
-# -------------------------------------------------------------------
 
 def init_term_enrichment_table(db_path: str) -> None:
     """
@@ -55,38 +53,19 @@ def init_term_enrichment_table(db_path: str) -> None:
     conn.close()
 
 
-# -------------------------------------------------------------------
 # Canonicalization (lemma-driven)
-# -------------------------------------------------------------------
-
-# Words we are happy to drop from the *front* of a term
-LIGHT_PREFIXES = {
-    "a", "an", "the",
-    "this", "that", "these", "those",
-    "some", "any", "each", "every", "either", "neither",
-    "no", "none",
-    "most", "many", "much", "few", "several", "various", "multiple",
-    "certain", "particular", "specific", "typical", "general", "common",
-}
-
-
 def _canonical_key(term_lemma: str, term_text: str) -> str:
     """
     Compute a canonical key using lemma first, with fallback to text.
 
-    New behaviour:
-      - Keep the full lemma (no more "drop last token").
-      - Drop only light quantifiers/modifiers at the *front*
-        (most, many, particular, specific, ...).
-      - Still group ALLCAPS/underscore env/acro terms by first lemma token.
+    Basic idea:
+      - use lemma tokens;
+      - if first surface token is ALLCAPS/underscore (LSF, LSF_ENVDIR),
+        group by first lemma token;
+      - otherwise, drop the last lemma token.
 
-    Examples:
-      "Most static resources" (lemma "most static resource")
-        -> "static resource"
-      "particular jobs" (lemma "particular job")
-        -> "job"
-      "Binary files" (lemma "binary file")
-        -> "binary file"  (we keep the noun head)
+    This merges things like:
+      - "LSF management host" / "LSF client"      -> "lsf"
     """
     lemma = (term_lemma or "").strip()
     text = (term_text or "").strip()
@@ -97,28 +76,23 @@ def _canonical_key(term_lemma: str, term_text: str) -> str:
     # Fallback: if lemma is missing, approximate from text
     if not lemma_tokens and text_tokens:
         lemma_tokens = [t.lower() for t in text_tokens]
-    else:
-        lemma_tokens = [t.lower() for t in lemma_tokens]
 
     if not lemma_tokens:
         return ""
 
-    first_text = text_tokens[0] if text_tokens else lemma_tokens[0]
+    # Single-token lemma → key is that lemma
+    if len(lemma_tokens) == 1:
+        return lemma_tokens[0]
+
+    first_lemma = lemma_tokens[0]
+    first_text = text_tokens[0] if text_tokens else first_lemma
 
     # Env/acro style: FIRST surface token ALLCAPS/underscore/digits
-    #   e.g. "LSF_ENVDIR", "SLURM_JOB_ID" -> group by first lemma token
     if re.fullmatch(r"[A-Z0-9_]+", first_text):
-        return lemma_tokens[0]  # "lsf", "slurm_job_id" -> "lsf", "slurm_job_id"
+        return first_lemma
 
-    # Drop light prefixes at the FRONT (most, particular, specific, ...)
-    while lemma_tokens and lemma_tokens[0] in LIGHT_PREFIXES:
-        lemma_tokens.pop(0)
-
-    if not lemma_tokens:
-        return ""
-
-    # Use the remaining lemma tokens as canonical key
-    return " ".join(lemma_tokens)
+    # Fallback: drop last lemma token
+    return " ".join(lemma_tokens[:-1])
 
 
 def _canonical_term_from_key(key: str) -> str:
@@ -137,9 +111,7 @@ def _canonical_term_from_key(key: str) -> str:
     return key
 
 
-# -------------------------------------------------------------------
 # Type inference (rules only)
-# -------------------------------------------------------------------
 
 def infer_term_type(term_text: str) -> Optional[str]:
     """
@@ -164,10 +136,8 @@ def infer_term_type(term_text: str) -> Optional[str]:
     return None
 
 
-# -------------------------------------------------------------------
-# Main enrichment routine
-# -------------------------------------------------------------------
 
+# Main enrichment routine
 def enrich_terms(db_path: str) -> None:
     """
     Read term_candidates, compute lemma-based canonical_term, synonyms, type,
@@ -228,6 +198,7 @@ def enrich_terms(db_path: str) -> None:
         freq_docs = data["freq_docs"]
 
         # Choose a canonical_id: here we pick the smallest term_id of the group
+        # -> this canonical_id == term_candidates.term_id of the canonical member
         canonical_id = member_ids[0]
 
         # Synonyms: all member texts except the canonical label itself (if present)
@@ -288,12 +259,10 @@ def enrich_terms(db_path: str) -> None:
 
 
 def main():
-    DB_PATH = r"onto_db/ontology_sample_new.db"
+    DB_PATH = r"onto_db/ontology_sample_new.db"  
     print("Running term enrichment (lemma-based canonical_term, rule-based only)...")
     enrich_terms(DB_PATH)
     print("Done term enrichment.")
 
-
 if __name__ == "__main__":
     main()
-

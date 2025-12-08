@@ -87,7 +87,9 @@ def init_term_tables(db_path: str) -> None:
             token_end       INTEGER NOT NULL,
             cleaned_version INTEGER NOT NULL,
             PRIMARY KEY (term_id, doc_id, sent_idx, token_start, token_end, cleaned_version),
-            FOREIGN KEY (term_id) REFERENCES term_candidates(term_id) ON DELETE CASCADE
+            FOREIGN KEY (term_id) REFERENCES term_candidates(term_id) 
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
         );
     """)
 
