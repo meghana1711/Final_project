@@ -24,6 +24,9 @@ jobs:
           pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu124
           pip install -r requirements.txt
           python -m spacy download en_core_web_sm
+      
+      - name: Remove old DB
+        run: rm -f onto_db/onto_new.db
 
       - name: Run data preprocessing
         run: |
@@ -41,3 +44,5 @@ jobs:
           python -m olaf.parent_terms
           python -m olaf.taxonomy
           python -m olaf.non_taxonomy
+
+
