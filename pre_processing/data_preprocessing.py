@@ -7,7 +7,7 @@ from datetime import datetime
 import unicodedata
 from typing import List, Dict, Set, Tuple
 from collections import Counter
-from . import patterns as pat
+from pre_processing import patterns as pat
 import spacy
 from spacy.language import Language
 
