@@ -16,7 +16,7 @@ except Exception:
 # CONFIG
 # -------------------------------------------------------------------
 
-DB_PATH = r"onto_db/ontology_sample_new.db"  # <-- change if needed
+DB_PATH = r"onto_db/onto_new.db"  
 
 # For WordNet edges
 MAX_WN_PARENTS_PER_TERM = 3

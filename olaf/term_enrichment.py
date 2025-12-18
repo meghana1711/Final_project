@@ -4,6 +4,15 @@ import sqlite3
 from datetime import datetime
 from typing import Dict, Optional, Any
 
+# -------------------------------------------------------------------
+# Config: TF-IDF threshold for enrichment
+# -------------------------------------------------------------------
+
+# Primary filter: keep statistically important terms
+MIN_TF_IDF = 10.0
+
+DB_PATH = r"onto_db/onto_new.db"
+
 
 # -------------------------------------------------------------------
 # DB schema helpers
@@ -33,16 +42,16 @@ def init_term_enrichment_table(db_path: str) -> None:
     cur.execute(
         """
         CREATE TABLE IF NOT EXISTS term_enrichment (
-            canonical_id        INTEGER PRIMARY KEY,
-            canonical_term      TEXT NOT NULL,
-            term_type           TEXT,
-            synonyms_json       TEXT,
-            abbreviations_json  TEXT,
+            canonical_id          INTEGER PRIMARY KEY,
+            canonical_term        TEXT NOT NULL,
+            term_type             TEXT,
+            synonyms_json         TEXT,
+            abbreviations_json    TEXT,
             member_term_ids_json  TEXT,
-            freq_total          INTEGER,
-            freq_docs           INTEGER,
-            created_at          TEXT NOT NULL,
-            updated_at          TEXT NOT NULL,
+            freq_total            INTEGER,
+            freq_docs             INTEGER,
+            created_at            TEXT NOT NULL,
+            updated_at            TEXT NOT NULL,
             FOREIGN KEY (canonical_id)
                 REFERENCES term_candidates(term_id)
                 ON UPDATE CASCADE
@@ -56,59 +65,88 @@ def init_term_enrichment_table(db_path: str) -> None:
 
 
 # -------------------------------------------------------------------
-# Canonicalization (lemma-driven)
+# Canonicalization helpers
 # -------------------------------------------------------------------
 
 # Words we are happy to drop from the *front* of a term
 LIGHT_PREFIXES = {
     "a", "an", "the",
     "this", "that", "these", "those",
-    "some", "any", "each", "every", "either", "neither",
-    "no", "none",
+    "some", "any", "each", "every",
+    "either", "neither", "no", "none",
     "most", "many", "much", "few", "several", "various", "multiple",
     "certain", "particular", "specific", "typical", "general", "common",
+    "other",
 }
+
+
+def is_technical_token(term_text: str) -> bool:
+    """
+    Heuristic: keep rare but important HPC/config tokens even if tf_idf is low.
+
+    Examples:
+      - ALLCAPS + underscores: SLURM_JOB_ID, EGO_AUDIT_MAX_SIZE
+      - Config files: slurm.conf, lsf.conf
+      - Obvious scheduler mentions: contains 'slurm' or 'lsf'
+    """
+    if not term_text:
+        return False
+
+    t = term_text.strip()
+
+    # Env/config style: ALLCAPS + '_' (or digits)
+    if re.fullmatch(r"[A-Z0-9_]+", t) and "_" in t:
+        return True
+
+    lower = t.lower()
+
+    # Config files
+    if lower.endswith(".conf") or lower.endswith(".cfg") or lower.endswith(".ini"):
+        return True
+
+    # Explicit scheduler mentions
+    if "slurm" in lower or "lsf" in lower:
+        return True
+
+    return False
 
 
 def _canonical_key(term_lemma: str, term_text: str) -> str:
     """
     Compute a canonical key using lemma first, with fallback to text.
 
-    New behaviour:
-      - Keep the full lemma (no more "drop last token").
-      - Drop only light quantifiers/modifiers at the *front*
-        (most, many, particular, specific, ...).
-      - Still group ALLCAPS/underscore env/acro terms by first lemma token.
-
-    Examples:
-      "Most static resources" (lemma "most static resource")
-        -> "static resource"
-      "particular jobs" (lemma "particular job")
-        -> "job"
-      "Binary files" (lemma "binary file")
-        -> "binary file"  (we keep the noun head)
+    Behaviour:
+      - Use lemma tokens (already lowercased, singularised from extraction).
+      - Drop only light quantifiers/modifiers at the *front*.
+      - Group ALLCAPS/underscore env/acro terms by first *lemma* token.
+      - Normalise simple punctuation (hyphens, slashes) for non-env terms.
     """
-    lemma = (term_lemma or "").strip()
+    lemma_raw = (term_lemma or "").strip()
     text = (term_text or "").strip()
 
-    lemma_tokens = lemma.split() if lemma else []
     text_tokens = text.split() if text else []
 
-    # Fallback: if lemma is missing, approximate from text
-    if not lemma_tokens and text_tokens:
-        lemma_tokens = [t.lower() for t in text_tokens]
+    # Detect env/acro style based on surface form
+    first_text = text_tokens[0] if text_tokens else ""
+    is_env_like = bool(re.fullmatch(r"[A-Z0-9_]+", first_text))
+
+    if is_env_like:
+        # For env-like tokens, keep the first lemma token as-is (no splitting on '_')
+        lemma_tokens = [lemma_raw.lower()] if lemma_raw else [first_text.lower()]
     else:
-        lemma_tokens = [t.lower() for t in lemma_tokens]
+        # Normalise hyphens/underscores/slashes → spaces
+        lemma_norm = lemma_raw.lower()
+        lemma_norm = re.sub(r"[-/]+", " ", lemma_norm)
+        lemma_tokens = lemma_norm.split() if lemma_norm else []
+
+        # Fallback: if lemma is missing, approximate from text
+        if not lemma_tokens and text_tokens:
+            lemma_norm = " ".join(text_tokens).lower()
+            lemma_norm = re.sub(r"[-/]+", " ", lemma_norm)
+            lemma_tokens = lemma_norm.split()
 
     if not lemma_tokens:
         return ""
-
-    first_text = text_tokens[0] if text_tokens else lemma_tokens[0]
-
-    # Env/acro style: FIRST surface token ALLCAPS/underscore/digits
-    #   e.g. "LSF_ENVDIR", "SLURM_JOB_ID" -> group by first lemma token
-    if re.fullmatch(r"[A-Z0-9_]+", first_text):
-        return lemma_tokens[0]  # "lsf", "slurm_job_id" -> "lsf", "slurm_job_id"
 
     # Drop light prefixes at the FRONT (most, particular, specific, ...)
     while lemma_tokens and lemma_tokens[0] in LIGHT_PREFIXES:
@@ -117,16 +155,15 @@ def _canonical_key(term_lemma: str, term_text: str) -> str:
     if not lemma_tokens:
         return ""
 
-    # Use the remaining lemma tokens as canonical key
     return " ".join(lemma_tokens)
 
 
 def _canonical_term_from_key(key: str) -> str:
     """
-    Turn canonical key into canonical_term (display + group).
+    Turn canonical key into canonical_term for display.
 
-    - If it looks like ALLCAPS/underscore (env/config style) → upper-case it.
-    - Otherwise keep as lemma form (likely lowercase).
+    - ALLCAPS/underscore looking tokens → upper-case it.
+    - Otherwise: keep lemma form (lowercase).
     """
     if not key:
         return key
@@ -150,6 +187,9 @@ def infer_term_type(term_text: str) -> Optional[str]:
 
     Everything else → None.
     """
+    if not term_text:
+        return None
+
     t = term_text.strip()
     lower = t.lower()
 
@@ -173,6 +213,13 @@ def enrich_terms(db_path: str) -> None:
     Read term_candidates, compute lemma-based canonical_term, synonyms, type,
     and populate term_enrichment.
 
+    Behaviour:
+      - Use tf_idf from term_candidates.
+      - Only keep terms that are either:
+          * tf_idf >= MIN_TF_IDF  (statistically important), OR
+          * is_technical_token(term_text)  (HPC configs/env vars/etc.)
+      - Rebuild term_enrichment from scratch each run.
+
     One row per canonical group.
 
     Aggregates:
@@ -186,18 +233,34 @@ def enrich_terms(db_path: str) -> None:
     cur = conn.cursor()
     cur.execute("PRAGMA foreign_keys = ON;")
 
-    # Need freq_total and freq_docs from term_candidates
+    # Rebuild from scratch
+    cur.execute("DELETE FROM term_enrichment;")
+
+    # Pull everything, filter in Python so we can apply the OR rule
     cur.execute(
         """
-        SELECT term_id, term_text, term_lemma, freq_total, freq_docs
+        SELECT term_id, term_text, term_lemma, freq_total, freq_docs,
+               COALESCE(tf_idf, 0.0)
         FROM term_candidates
         """
     )
     rows = cur.fetchall()
+    print(f"Loaded {len(rows)} term_candidates for enrichment filtering.")
 
     groups: Dict[str, Dict[str, Any]] = {}
 
-    for term_id, term_text, term_lemma, freq_total, freq_docs in rows:
+    kept_count = 0
+
+    for term_id, term_text, term_lemma, freq_total, freq_docs, tf_idf in rows:
+        tf_idf = float(tf_idf or 0.0)
+        term_text = term_text or ""
+
+        # Filter: keep if statistically important OR technical pattern
+        if tf_idf < MIN_TF_IDF and not is_technical_token(term_text):
+            continue
+
+        kept_count += 1
+
         key = _canonical_key(term_lemma, term_text)
         if not key:
             continue
@@ -218,16 +281,19 @@ def enrich_terms(db_path: str) -> None:
         g["freq_total"] += int(freq_total or 0)
         g["freq_docs"] = max(g["freq_docs"], int(freq_docs or 0))
 
-    now = datetime.utcnow().isoformat(timespec="seconds") + "Z"
+    print(f"Kept {kept_count} terms after tf_idf/technical filtering.")
+    print(f"Formed {len(groups)} canonical groups.")
 
-    # Write one row per canonical_term
+    now = datetime.utcnow().isoformat(timespec="seconds") 
+
+    #cur.execute("BEGIN;")
     for canonical_term, data in groups.items():
         member_ids = sorted(data["ids"])
         member_texts = sorted(data["texts"])
         freq_total = data["freq_total"]
         freq_docs = data["freq_docs"]
 
-        # Choose a canonical_id: here we pick the smallest term_id of the group
+        # canonical_id = smallest term_id in the group
         canonical_id = member_ids[0]
 
         # Synonyms: all member texts except the canonical label itself (if present)
@@ -236,13 +302,13 @@ def enrich_terms(db_path: str) -> None:
         else:
             synonyms = member_texts
 
-        # Abbreviations (rules only): any member that is ALLCAPS/underscore
+        # Abbreviations: ALLCAPS/underscore tokens
         abbreviations = [
             t for t in member_texts
             if re.fullmatch(r"[A-Z0-9_]+", t) and len(t) > 1
         ]
 
-        # Very coarse type: based on canonical_term first, then fallback to any member
+        # Coarse type from canonical term, fallback to any member
         term_type = infer_term_type(canonical_term)
         if term_type is None:
             for t in member_texts:
@@ -259,15 +325,6 @@ def enrich_terms(db_path: str) -> None:
                  freq_total, freq_docs,
                  created_at, updated_at)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ON CONFLICT(canonical_id) DO UPDATE SET
-                canonical_term       = excluded.canonical_term,
-                term_type            = COALESCE(excluded.term_type, term_enrichment.term_type),
-                synonyms_json        = excluded.synonyms_json,
-                abbreviations_json   = excluded.abbreviations_json,
-                member_term_ids_json = excluded.member_term_ids_json,
-                freq_total           = excluded.freq_total,
-                freq_docs            = excluded.freq_docs,
-                updated_at           = excluded.updated_at
             """,
             (
                 canonical_id,
@@ -285,15 +342,14 @@ def enrich_terms(db_path: str) -> None:
 
     conn.commit()
     conn.close()
+    print("term_enrichment rebuilt.")
 
 
 def main():
-    DB_PATH = r"onto_db/ontology_sample_new.db"
-    print("Running term enrichment (lemma-based canonical_term, rule-based only)...")
+    print(f"Running term enrichment (tf_idf >= {MIN_TF_IDF} OR technical)...")
     enrich_terms(DB_PATH)
     print("Done term enrichment.")
 
 
 if __name__ == "__main__":
     main()
-

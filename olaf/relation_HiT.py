@@ -10,7 +10,7 @@ from hierarchy_transformers import HierarchyTransformer
 # Config
 # -------------------------------------------------------------------
 
-DB_PATH = "onto_db/ontology_sample_new.db"  
+DB_PATH = "onto_db/onto_new.db"  
 HIT_MODEL_NAME = "Hierarchy-Transformers/HiT-MiniLM-L12-WordNetNoun"
 
 TOP_K_PARENTS = 5          # max parents per child
