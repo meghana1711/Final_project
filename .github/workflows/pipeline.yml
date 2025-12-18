@@ -27,17 +27,17 @@ jobs:
 
       - name: Run data preprocessing
         run: |
-          python pre_processing/patterns.py
-          python pre_processing/data_preprocessing.py
-          python pre_processing/contextual_chunking.py
-          python pipeline/pipeline_processing.py
+          python -m pre_processing.patterns
+          python -m pre_processing.data_preprocessing
+          python -m pre_processing.contextual_chunking
+          python -m pipeline.pipeline_processing
 
 
       - name: Run OLAF pipeline
         run: |
-          python olaf/term_extraction_tfidf.py
-          python olaf/term_enrichment.py
-          python olaf/embeddings.py
-          python olaf/parent_terms.py
-          python olaf/taxonomy.py
-          python olaf/non_taxonomy.py
+          python -m olaf.term_extraction_tfidf
+          python -m olaf.term_enrichment
+          python -m olaf.embeddings
+          python -m olaf.parent_terms
+          python -m olaf.taxonomy
+          python -m olaf.non_taxonomy
