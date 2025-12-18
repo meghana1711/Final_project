@@ -27,6 +27,7 @@ jobs:
 
       - name: Run data preprocessing
         run: |
+          python pre_processing/patterns.py
           python pre_processing/data_preprocessing.py
           python pre_processing/contextual_chunking.py
           python pipeline/pipeline_processing.py
