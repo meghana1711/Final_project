@@ -1,0 +1,42 @@
+name: Pipeline 1.0
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu124
+          pip install -r requirements.txt
+          python -m spacy download en_core_web_sm
+
+      - name: Run data preprocessing
+        run: |
+          python pre_processing/data_preprocessing.py
+          python pre_processing/contextual_chunking.py
+          python pipeline/pipeline_processing.py
+
+
+      - name: Run OLAF pipeline
+        run: |
+          python olaf/term_extraction_tfidf.py
+          python olaf/term_enrichment.py
+          python olaf/embeddings.py
+          python olaf/parent_terms.py
+          python olaf/taxonomy.py
+          python olaf/non_taxonomy.py
