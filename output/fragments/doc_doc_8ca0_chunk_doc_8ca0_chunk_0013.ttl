@@ -1,0 +1,36 @@
+hpc:Slurmctld a owl:Class .
+hpc:gracefulTermination a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmctld ;
+    rdfs:range xsd:integer .
+
+hpc:SuspendTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmctld .
+
+hpc:ResumeTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmctld .
+
+hpc:SuspendProgram a owl:Class .
+hpc:ResumeProgram a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:SLURM_RESUME_FILE a owl:ObjectProperty ;
+    rdfs:domain hpc:ResumeProgram .
+
+hpc:BootImage a owl:ObjectProperty ;
+    rdfs:domain hpc:ResumeProgram .
+
+hpc:NodeFeaturePlugins a owl:Class .
+hpc:mapImages a owl:ObjectProperty ;
+    rdfs:domain hpc:NodeFeaturePlugins .
+
+hpc:JobSpecification a owl:Class .
+hpc:associatedJobs a owl:ObjectProperty ;
+    rdfs:domain hpc:NodeFeaturePlugins .
+
+hpc:ResourceAllocation a owl:Class .
+hpc:grantedAllocation a owl:ObjectProperty ;
+    rdfs:domain hpc:ResourceAllocation .
+
+hpc:NodeRestoration a owl:ObjectProperty ;
+    rdfs:domain hpc:ResourceAllocation .
+```

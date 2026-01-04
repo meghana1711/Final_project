@@ -1,0 +1,32 @@
+hpc:Association a owl:Class .
+hpc:OpenapiAssocsResp a owl:Class .
+hpc:OpenapiAssocsRemovedResp a owl:Class .
+
+hpc:hasResponse a owl:ObjectProperty .
+hpc:hasResponse rdfs:domain hpc:Association ;
+                 rdfs:range hpc:OpenapiAssocsResp .
+
+hpc:hasApplicationJsonRequestContent a owl:ObjectProperty .
+hpc:hasApplicationJsonRequestContent rdfs:domain hpc:OpenapiAssocsResp ;
+                                       rdfs:range xsd:anyURI .
+
+hpc:hasTextYamlContent a owl:ObjectProperty .
+hpc:hasTextYamlContent rdfs:domain hpc:OpenapiAssocsResp ;
+                        rdfs:range xsd:anyURI .
+
+hpc:hasPostRequestBody a owl:ObjectProperty .
+hpc:hasPostRequestBody rdfs:domain hpc:Association ;
+                        rdfs:range hpc:OpenapiAssocsResp .
+
+hpc:hasDeleteResponse a owl:ObjectProperty .
+hpc:hasDeleteResponse rdfs:domain hpc:Association ;
+                      rdfs:range hpc:OpenapiAssocsRemovedResp .
+
+hpc:hasClusterName a owl:DatatypeProperty .
+hpc:hasClusterName rdfs:domain hpc:Cluster .
+                   rdfs:range xsd:string .
+
+hpc:Cluster a owl:Class .
+```
+
+This ontology fragment represents the classes `Association`, `OpenapiAssocsResp`, and `OpenapiAssocsRemovedResp`, as well as the properties `hasResponse`, `hasApplicationJsonRequestContent`, `hasTextYamlContent`, `hasPostRequestBody`, `hasDeleteResponse`, and `hasClusterName`. The `Cluster` class is also included, but it is not fully defined in the provided documentation.

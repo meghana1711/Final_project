@@ -1,0 +1,29 @@
+hpc:SlurmConfiguration a owl:Class .
+hpc:hasDebugFlags a owl:ObjectProperty .
+hpc:DebugFlags rdf:type xsd:string .
+hpc:DebugFlags rdfs:domain hpc:SlurmConfiguration .
+
+hpc:BurstBuffer a owl:Class .
+hpc:hasTRESLimit a owl:ObjectProperty .
+hpc:TRESLimit rdf:type xsd:string .
+hpc:hasTRESLimit rdfs:domain hpc:BurstBuffer .
+hpc:hasAssociationOrQOS rdf:type owl:ObjectProperty .
+hpc:AccountingStorageTres rdf:type owl:ObjectProperty .
+
+hpc:Job a owl:Class .
+hpc:hasBurstBufferRequirements a owl:DatatypeProperty .
+hpc:JobPrioritySetting a owl:ObjectProperty .
+
+hpc:BurstBufferResources a owl:Class .
+
+hpc:BurstBufferConfiguration a owl:Class .
+hpc:hasUserAccess a owl:ObjectProperty .
+hpc:hasTimeout a owl:DatatypeProperty .
+hpc:hasBurstBufferScriptPath a owl:DatatypeProperty .
+
+hpc:DatawarpPlugin a owl:Class .
+hpc:callsDwWlmCli a owl:ObjectProperty .
+hpc:callsDwStat a owl:ObjectProperty .
+hpc:BurstBufferType rdf:type owl:DatatypeProperty .
+hpc:dwWlmCliScriptLocation rdf:type owl:DatatypeProperty .
+```

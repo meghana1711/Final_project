@@ -1,0 +1,55 @@
+hpc:SuspendProgram rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range rdf:Resource .
+
+hpc:IdleOnNodeSuspend rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SuspendProgram ;
+    rdfs:range hpc:Node .
+
+hpc:NodeMemRegPercentage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:decimal .
+
+hpc:NodeMemRegPercentageDefault a xsd:decimal ;
+    hpc:NodeMemRegPercentage rdfs:subPropertyOf hpc:NodeMemRegPercentage ;
+    hpc:NodeMemRegPercentageDefault rdf:value "100"^^xsd:decimal .
+
+hpc:NodeStateCloud rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Node .
+
+hpc:NodeStateCloudMemRegPercentageDefault a xsd:decimal ;
+    hpc:NodeStateCloudMemRegPercentageDefault rdf:value "90"^^xsd:decimal .
+
+hpc:PowerSaveInterval a xsd:decimal ;
+    hpc:PowerSaveThread rdfs:subPropertyOf hpc:PowerSave .
+    hpc:PowerSaveThread rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PowerSaveThread ;
+    rdfs:range xsd:decimal .
+
+hpc:PowerSaveMinInterval a xsd:decimal ;
+    hpc:PowerSaveThread rdfs:subPropertyOf hpc:PowerSave .
+    hpc:PowerSaveMinInterval rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PowerSaveThread ;
+    rdfs:range xsd:decimal .
+
+hpc:PowerSaveThread rdf:type owl:Class .
+
+hpc:PowerSaveThreadLooksToResumeAndSuspendNodes rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PowerSaveThread ;
+    rdfs:range hpc:Node .
+
+hpc:NodeStateChange rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PowerSaveThreadLooksToResumeAndSuspendNodes ;
+    rdfs:range hpc:NodeStateChange .
+
+hpc:PowerSaveThreadLooksToResumeAndSuspendNodesAtLeast rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PowerSaveThread ;
+    rdfs:range xsd:decimal .
+
+hpc:NodeNotSubjectToSuspendResumeLogic a owl:Class ;
+    rdfs:subClassOf hpc:Node .
+
+hpc:SlurmHostlistExpression rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PowerSaveThreadLooksToResumeAndSuspendNodesAtLeast ;
+    rdfs:range rdf:Literal .
+```

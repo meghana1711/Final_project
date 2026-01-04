@@ -1,0 +1,25 @@
+hpc:Instance a owl:Class .
+hpc:Job a owl:Class .
+
+hpc:openapi_instances_resp a owl:Class .
+hpc:openapi_slurmdbd_jobs_resp a owl:Class .
+
+hpc:hasResponse a owl:ObjectProperty .
+hpc:hasResponse rdfs:domain hpc:Instance ;
+                 rdfs:range rdfs:Resource .
+
+hpc:hasContent a owl:ObjectProperty .
+hpc:hasContent rdfs:domain hpc:hasResponse ;
+              rdfs:range xsd:string .
+
+hpc:hasSchema a owl:ObjectProperty .
+hpc:hasSchema rdfs:domain hpc:hasContent ;
+              rdfs:range hpc:Schema .
+
+hpc:Schema a owl:Class .
+hpc:Schema rdfs:subClassOf xsd:string .
+
+hpc:job_id a owl:DatatypeProperty .
+hpc:job_id rdfs:domain hpc:Job ;
+           rdfs:range xsd:string .
+```

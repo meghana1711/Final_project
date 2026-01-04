@@ -1,0 +1,61 @@
+hpc:JobStep hpc:hasDelay hpc:Delay .
+hpc:Delay rdf:type xsd:nonNegativeInteger .
+
+hpc:JobStep hpc:requires hpc:NodeService .
+hpc:NodeService rdf:type owl:Class .
+
+hpc:BatchProgram hpc:startsOn hpc:NodeZero .
+hpc:NodeZero rdf:type owl:Class .
+
+hpc:Job hpc:hasCommand hpc:SbatchCommand .
+hpc:SbatchCommand rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Command ;
+    hpc:hasOption hpc:WaitAllNodes .
+
+hpc:System hpc:hasDefault SchedulerParameters .
+hpc:SchedulerParameters rdf:type owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subPropertyOf rdf:type ;
+    rdfs:domain hpc:System ;
+    rdfs:range hpc:Option .
+
+hpc:Job hpc:hasSystemDefault SchedulerParameters .
+
+hpc:Job hpc:hasCommand hpc:SallocCommand .
+hpc:SallocCommand rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Command ;
+    hpc:hasOption hpc:WaitAllNodes .
+
+hpc:System hpc:hasDefault SallocParameters .
+hpc:SallocParameters rdf:type owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subPropertyOf rdf:type ;
+    rdfs:domain hpc:System ;
+    rdfs:range hpc:Option .
+
+hpc:Job hpc:hasSystemDefault SallocParameters .
+
+hpc:CloudNode hpc:hasFeatures hpc:NodeFeatures .
+hpc:NodeFeatures rdf:type owl:Class .
+
+hpc:NodeFeatures hpc:isDefinedBy hpc:NodeFeaturesPlugin .
+hpc:NodeFeaturesPlugin rdf:type owl:Class .
+
+hpc:CloudNode hpc:hasFeature hpc:NodeFeature .
+hpc:NodeFeature rdf:type owl:Class .
+
+hpc:CloudNode hpc:hasActiveFeature hpc:ActiveNodeFeature .
+hpc:ActiveNodeFeature rdf:type owl:Class .
+
+hpc:CloudNode hpc:hasAvailableButNotActiveFeature hpc:AvailableButNotActiveNodeFeature .
+hpc:AvailableButNotActiveNodeFeature rdf:type owl:Class .
+
+hpc:CloudNode hpc:canBeRebootedToGetFeature hpc:NodeFeature .
+
+hpc:CloudNode hpc:becomesAvailableButNotActiveWhenPoweredDown hpc:AvailableButNotActiveNodeFeature .
+
+hpc:NodeFeature hpc:isAlwaysActive a rdf:Boolean .
+
+hpc:slurmConf hpc:hasNodeFeaturesPlugin hpc:NodeFeaturesPlugins .
+hpc:NodeName hpc:belongsTo hpc:CloudNode .
+```

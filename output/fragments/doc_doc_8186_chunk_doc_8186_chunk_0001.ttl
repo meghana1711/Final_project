@@ -1,0 +1,35 @@
+hpc:Slurmrestd a owl:Class .
+hpc:isStateless rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range xsd:boolean .
+
+hpc:handlesRequest rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range xsd:anyURI .
+
+hpc:isSynchronous rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range xsd:boolean .
+
+hpc:holdsConnection rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range xsd:boolean .
+
+hpc:commitsDatabaseCommands rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range xsd:boolean .
+
+hpc:RunMode a owl:Class .
+hpc:InetServiceMode rdf:type hpc:RunMode .
+hpc:ListeningMode rdf:type hpc:RunMode .
+
+hpc:supportsRunMode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range hpc:RunMode .
+
+hpc:InetServiceMode rdfs:subClassOf hpc:RunMode .
+hpc:ListeningMode rdfs:subClassOf hpc:RunMode .
+
+hpc:InetServiceModeDescription a xsd:string .
+hpc:ListeningModeDescription a xsd:string .
+```

@@ -1,0 +1,53 @@
+hpc:SlurmdDaemon a owl:Class .
+hpc:UnprivilegedPhase hpc:SlurmdDaemon rdf:type owl:ObjectProperty .
+hpc:UnprivilegedPhase rdfs:domain hpc:SlurmdDaemon ;
+                        rdfs:range xsd:Boolean .
+
+hpc:PrivilegedPhase hpc:SlurmdDaemon rdf:type owl:ObjectProperty .
+hpc:PrivilegedPhase rdfs:domain hpc:SlurmdDaemon ;
+                        rdfs:range xsd:Boolean .
+
+hpc:SpawnedJob hpc:SlurmdDaemon rdf:type owl:ObjectProperty .
+hpc:SpawnedJob rdfs:domain hpc:SlurmdDaemon ;
+                        rdfs:range hpc:SpawnedJob .
+
+hpc:WorkingDirectory hpc:SpawnedJob rdf:type owl:ObjectProperty .
+hpc:WorkingDirectory rdfs:domain hpc:SpawnedJob ;
+                        rdfs:range xsd:string .
+
+hpc:Location hpc:SlurmdDaemon rdf:type owl:DatatypeProperty .
+hpc:Location rdfs:domain hpc:SlurmdDaemon ;
+                        rdfs:range xsd:string .
+
+hpc:RHEL hpc:OperatingSystem rdf:type owl:Class .
+
+hpc:AbrtDaemon hpc:RHEL rdf:type owl:ObjectProperty .
+hpc:AbrtDaemon rdfs:domain hpc:RHEL ;
+                        rdfs:range hpc:Daemon .
+
+hpc:DumpLocation hpc:AbrtDaemon rdf:type owl:DatatypeProperty .
+hpc:DumpLocation rdfs:domain hpc:AbrtDaemon ;
+                        rdfs:range xsd:string .
+
+hpc:SuidDumpable hpc:OperatingSystem rdf:type owl:ObjectProperty .
+hpc:SuidDumpable rdfs:domain hpc:OperatingSystem ;
+                        rdfs:range xsd:integer .
+
+hpc:SuidSafe hpc:SuidDumpable rdf:type owl:NamedIndividual .
+hpc:SuidSafe rdf:value "2"^^xsd:integer .
+
+hpc:KernelCorePattern hpc:OperatingSystem rdf:type owl:ObjectProperty .
+hpc:KernelCorePattern rdfs:domain hpc:OperatingSystem ;
+                        rdfs:range xsd:string .
+
+hpc:TmpCore hpc:KernelCorePattern rdf:type owl:NamedIndividual .
+hpc:TmpCore rdf:value "/tmp/core.%e.%p"^^xsd:string .
+
+hpc:Sysctl hpc:OperatingSystem rdf:type owl:ObjectProperty .
+hpc:Sysctl rdfs:domain hpc:OperatingSystem ;
+                        rdfs:range xsd:string .
+
+hpc:ProcSys hpc:Sysctl rdf:type owl:NamedIndividual .
+hpc:ProcSys rdf:value "/proc/sys"^^xsd:string .
+
+hpc:FsSuidDumpable hpc:ProcSys rdf:type

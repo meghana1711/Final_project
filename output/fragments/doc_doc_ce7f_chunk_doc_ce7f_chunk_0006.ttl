@@ -1,0 +1,45 @@
+hpc:SlurmUser a owl:Class .
+hpc:slurmdDaemon rdf:type owl:Class ;
+    rdfs:subClassOf hpc:SlurmUser ;
+    rdfs:comment "Daemon that executes on every compute node." .
+
+hpc:slurmctldDaemon rdf:type owl:Class ;
+    rdfs:subClassOf hpc:SlurmUser ;
+    rdfs:comment "Daemon that orchestrates Slurm activities on the controller." .
+
+hpc:slurmdbdDaemon rdf:type owl:Class ;
+    rdfs:subClassOf hpc:SlurmUser ;
+    rdfs:comment "Daemon that saves job accounting records to a database." .
+
+hpc:ComputeNode a owl:Class ;
+    rdfs:comment "Performs computational work in the cluster." .
+
+hpc:ControllerNode a owl:Class ;
+    rdfs:subClassOf hpc:ComputeNode ;
+    rdfs:comment "Orchestrates Slurm activities, including queuing of jobs, monitoring node states, and allocating resources to jobs." .
+
+hpc:hasSlurmUser a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmUser ;
+    rdfs:range hpc:SlurmUser ;
+    rdfs:comment "The Slurm user configured for the daemon." .
+
+hpc:isControllerNode a owl:ObjectProperty ;
+    rdfs:domain hpc:ComputeNode ;
+    rdfs:range hpc:ControllerNode ;
+    rdfs:comment "Indicates if a compute node is a controller node." .
+
+hpc:hasSlurmdDaemon a owl:ObjectProperty ;
+    rdfs:domain hpc:ComputeNode ;
+    rdfs:range hpc:slurmdDaemon ;
+    rdfs:comment "Indicates the slurmd daemon executing on a compute node." .
+
+hpc:hasSlurmctldDaemon a owl:ObjectProperty ;
+    rdfs:domain hpc:ControllerNode ;
+    rdfs:range hpc:slurmctldDaemon ;
+    rdfs:comment "Indicates the slurmctld daemon running on the controller." .
+
+hpc:hasSlurmdbdDaemon a owl:ObjectProperty ;
+    rdfs:domain hpc:ComputeNode ;
+    rdfs:range hpc:slurmdbdDaemon ;
+    rdfs:comment "Indicates the slurmdbd daemon running on a compute node." .
+```

@@ -1,0 +1,34 @@
+hpc:v0_0_40_openapi_reservation_resp a owl:Class .
+
+hpc:ReservationResponse rdf:type hpc:v0_0_40_openapi_reservation_resp ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:ReservationResponse ;
+    rdfs:range xsd:anyURI .
+
+# Shares
+# (Not provided in the text, assuming it follows the same pattern as Reservations)
+hpc:v0_0_40_openapi_shares_resp a owl:Class .
+
+hpc:ShareResponse rdf:type hpc:v0_0_40_openapi_shares_resp ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:ShareResponse ;
+    rdfs:range xsd:anyURI .
+
+# Jobs
+hpc:v0_0_40_kill_jobs_msg a owl:Class .
+
+hpc:KillJobsMsg rdf:type hpc:v0_0_40_kill_jobs_msg ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:hasRequired a owl:ObjectProperty ;
+    rdfs:domain hpc:KillJobsMsg .
+    rdfs:range rdf:List .
+
+hpc:hasType a owl:ObjectProperty ;
+    rdfs:domain hpc:KillJobsMsg .
+    rdfs:range xsd:string .
+```

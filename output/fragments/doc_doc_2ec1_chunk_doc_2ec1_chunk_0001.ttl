@@ -1,0 +1,73 @@
+hpc:IssueTracker a owl:Class ;
+ rdf:value https://support.schedmd.com/ ;
+ rdfs:comment "Official issue tracker for Slurm." .
+
+hpc:CodeContribution a owl:Class ;
+ rdfs:subClassOf hpc:Contribution .
+
+hpc:Patch a owl:Class ;
+ rdfs:subClassOf hpc:CodeContribution .
+
+hpc:PullRequest a owl:Class ;
+ rdfs:subClassOf hpc:CodeContribution ;
+ rdfs:comment "Not accepted through GitHub at this time." .
+
+hpc:Contribution a owl:Class ;
+ rdfs:subClassOf owl:Thing .
+
+hpc:ContributionSeverity a owl:DatatypeProperty ;
+ rdfs:domain hpc:Contribution ;
+ rdfs:range xsd:string .
+
+hpc:TargetRelease a owl:Class ;
+ rdfs:subClassOf owl:Thing .
+
+hpc:FunctionalityChange a owl:Class ;
+ rdfs:subClassOf hpc:TargetRelease .
+
+hpc:CLIToolChange a owl:Class ;
+ rdfs:subClassOf hpc:FunctionalityChange .
+
+hpc:RPCProtocolChange a owl:Class ;
+ rdfs:subClassOf hpc:TargetRelease .
+
+hpc:StateFileFormatModification a owl:Class ;
+ rdfs:subClassOf hpc:TargetRelease .
+
+hpc:BugFix a owl:Class ;
+ rdfs:subClassOf owl:Thing .
+
+hpc:CodingGuidelines a owl:Class ;
+ rdfs:subClassOf owl:Thing .
+
+hpc:FollowsLinuxKernelStyle a owl:ObjectProperty .
+
+hpc:LinuxKernelStyle a owl:Class ;
+ rdf:value <https://www.kernel.org/doc/html/latest/process/coding-style.html> ;
+ rdfs:comment "Guidelines followed by Slurm." .
+
+hpc:Exception a owl:Class ;
+ rdfs:subClassOf owl:Thing .
+
+hpc:TabNotSpaces a owl:ObjectProperty ;
+ rdfs:domain hpc:Exception ;
+ rdfs:range xsd:boolean .
+
+hpc:LineWidth a owl:DatatypeProperty ;
+ rdfs:domain hpc:Exception ;
+ rdfs:range xsd:integer .
+
+hpc:ErrorMessage a owl:Class ;
+ rdfs:subClassOf hpc:Exception .
+
+hpc:LogMessage a owl:Class ;
+ rdfs:subClassOf hpc:Exception .
+
+hpc:KRStyle a owl:ObjectProperty ;
+ rdfs:domain hpc:Exception ;
+ rdfs:range xsd:boolean .
+
+hpc:UsesTypedefs a owl:ObjectProperty ;
+ rdfs:domain hpc:Exception ;
+ rdfs:range xsd:boolean .
+```

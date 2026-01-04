@@ -1,0 +1,50 @@
+hpc:TaskProlog a owl:Class .
+hpc:TaskEpilog a owl:Class .
+hpc:Step a owl:Class .
+hpc:Program a owl:Class .
+hpc:Job a owl:Class .
+
+hpc:Loggable rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:TaskProlog, hpc:TaskEpilog, hpc:Step ;
+    rdfs:range xsd:boolean .
+
+hpc:Cancelable rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Task, hpc:Step ;
+    rdfs:range xsd:boolean .
+
+hpc:Cancels hpc:TaskProlog hpc:Task .
+hpc:Cancels hpc:TaskEpilog hpc:Step .
+
+hpc:CudaMpsActiveThreadPercentage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:CudaMpsActiveThreadPercentageSetIn rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Prolog, hpc:Epilog ;
+    rdfs:range hpc:CudaMpsActiveThreadPercentage .
+
+hpc:CudaVisibleDevices a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:CudaVisibleDevicesSetIn rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Prolog, hpc:Epilog ;
+    rdfs:range hpc:CudaVisibleDevices .
+
+hpc:CudaVisibleDevicesJobSetIn rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:CudaVisibleDevices .
+
+hpc:GresConf rdf:type owl:Class .
+hpc:Flags rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:GresConf ;
+    rdfs:range hpc:CudaVisibleDevices .
+
+hpc:AutoDetect rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:GresConf ;
+    rdfs:range xsd:boolean .
+
+hpc:SlurmJobGpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+```

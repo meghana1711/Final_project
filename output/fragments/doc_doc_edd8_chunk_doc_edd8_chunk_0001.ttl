@@ -1,0 +1,69 @@
+hpc:SlurmTask a owl:Class .
+hpc:SlurmPartition a owl:Class .
+hpc:SlurmNode a owl:Class .
+hpc:GlobalBinding a owl:Class .
+hpc:PartitionBinding a owl:Class .
+hpc:NodeBinding a owl:Class .
+
+hpc:hasBinding a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmTask ;
+    rdfs:range rdf:List .
+
+hpc:isBoundTo a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmTask ;
+    rdfs:range hpc:Resource .
+
+hpc:hasCpuBindOption a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmTask ;
+    rdfs:range xsd:string .
+
+hpc:hasNodeBinding a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmTask ;
+    rdfs:range hpc:NodeBinding .
+
+hpc:hasPartitionBinding a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmTask ;
+    rdfs:range hpc:PartitionBinding .
+
+hpc:hasGlobalBinding a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmTask ;
+    rdfs:range hpc:GlobalBinding .
+
+hpc:isVerboseBinding a owl:ObjectProperty ;
+    rdfs:domain hpc:GlobalBinding ;
+    rdfs:range xsd:boolean .
+
+hpc:hasCpuBindValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeBinding ;
+    rdfs:range xsd:string .
+
+hpc:NodeCpuBind a owl:Class ;
+    rdfs:subClassOf hpc:NodeBinding .
+
+hpc:PartitionCpuBind a owl:Class ;
+    rdfs:subClassOf hpc:PartitionBinding .
+
+hpc:TaskPluginParam a owl:Class ;
+    rdfs:subClassOf hpc:GlobalBinding .
+
+hpc:CpuBindOptionValue a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:CpuBindValue a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:BindingOrder a owl:Class ;
+    rdfs:subClassOf owl:OrderedCollection .
+
+hpc:BindingOrder_1 a owl:NamedIndividual ;
+    hpc:hasFirst hpc:SrunCpuBindOption .
+
+hpc:BindingOrder_2 a owl:NamedIndividual ;
+    hpc:hasFirst hpc:NodeCpuBind .
+
+hpc:BindingOrder_3 a owl:NamedIndividual ;
+    hpc:hasFirst hpc:PartitionCpuBind .
+
+hpc:BindingOrder_4 a owl:NamedIndividual ;
+    hpc:hasFirst hpc:TaskPluginParam .
+```

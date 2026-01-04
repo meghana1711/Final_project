@@ -1,0 +1,68 @@
+hpc:Developer a owl:Class .
+hpc:OpenAPI a owl:Class .
+hpc:Plugin a owl:Class .
+hpc:Version a owl:DatatypeProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:string .
+
+hpc:Supports a owl:ObjectProperty ;
+    rdfs:domain hpc:OpenAPI ;
+    rdfs:range xsd:string .
+
+hpc:Deprecated a owl:Class .
+hpc:Removed a owl:Class .
+hpc:NewPlugin a owl:ObjectProperty ;
+    rdfs:domain hpc:OpenAPI ;
+    rdfs:range hpc:Plugin .
+
+hpc:HasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range hpc:Schema .
+
+hpc:Schema a owl:Class .
+hpc:DataParser a owl:Class ;
+    rdfs:subClassOf hpc:Schema .
+
+hpc:HasFields a owl:ObjectProperty ;
+    rdfs:domain hpc:Schema ;
+    rdfs:range rdf:List .
+
+hpc:Field a owl:Class ;
+    rdfs:subClassOf hpc:HasFields .
+hpc:Field a owl:ObjectProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:string .
+hpc:FieldType a owl:DatatypeProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:string .
+
+hpc:HasType a owl:ObjectProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:string .
+
+hpc:Path a owl:Class .
+hpc:Paths a owl:ObjectProperty ;
+    rdfs:domain hpc:OpenAPI ;
+    rdfs:range rdf:List .
+
+hpc:Post a owl:Class ;
+    rdfs:subClassOf hpc:Path .
+hpc:Post a owl:ObjectProperty ;
+    rdfs:domain hpc:Paths ;
+    rdfs:range rdf:List .
+hpc:RequestBody a owl:DatatypeProperty ;
+    rdfs:domain hpc:Post ;
+    rdfs:range hpc:Schema .
+
+hpc:Tres a owl:Class .
+hpc:TresUpdate a owl:Class ;
+    rdfs:subClassOf hpc:Schema .
+hpc:UpdateQOS a owl:Class ;
+    rdfs:subClassOf hpc:Field .
+hpc:UpdateAccount a owl:Class ;
+    rdfs:subClassOf hpc:Field .
+hpc:UpdateUsers a owl:Class ;
+    rdfs:subClassOf hpc:Field .
+hpc:Associations a owl:Class .
+hpc:Wckeys a owl:Class .
+```

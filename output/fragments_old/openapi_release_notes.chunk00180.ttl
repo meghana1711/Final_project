@@ -1,0 +1,28 @@
+hpc:V0_0_40_Openapi_Tres_Resp a owl:Class .
+hpc:V0_0_40_Openapi_Resp a owl:Class .
+
+hpc:TresResponse a owl:Class, rdfs:subClassOf [ hpc:V0_0_40_Openapi_Tres_Resp ] .
+hpc:Response a owl:Class, rdfs:subClassOf [ hpc:V0_0_40_Openapi_Resp ] .
+
+hpc:GetTresResponse a owl:ObjectProperty, rdfs:domain [ hpc:TresResponse ], rdfs:range [ hpc:V0_0_40_Openapi_Tres_Resp ] .
+hpc:PostTresResponse a owl:ObjectProperty, rdfs:domain [ hpc:TresResponse ], rdfs:range [ hpc:V0_0_40_Openapi_Tres_Resp ] .
+hpc:GetResponse a owl:ObjectProperty, rdfs:domain [ hpc:Response ], rdfs:range [ hpc:V0_0_40_Openapi_Resp ] .
+hpc:PostResponse a owl:ObjectProperty, rdfs:domain [ hpc:Response ], rdfs:range [ hpc:V0_0_40_Openapi_Resp ] .
+
+hpc:TresRequest a owl:Class, rdfs:subClassOf [ xsd:anyType ] .
+hpc:JsonRequest a owl:Class, rdfs:subClassOf [ hpc:TresRequest ] .
+hpc:YamlRequest a owl:Class, rdfs:subClassOf [ hpc:TresRequest ] .
+
+hpc:GetTresRequestBody a owl:ObjectProperty, rdfs:domain [ hpc:GetTresResponse ], rdfs:range [ hpc:TresRequest ] .
+hpc:PostTresRequestBody a owl:ObjectProperty, rdfs:domain [ hpc:PostTresResponse ], rdfs:range [ hpc:TresRequest ] .
+
+hpc:TresResponseContent a owl:Class, rdfs:subClassOf [ xsd:anyType ] .
+hpc:JsonRequestContent a owl:Class, rdfs:subClassOf [ hpc:TresResponseContent ] .
+hpc:YamlRequestContent a owl:Class, rdfs:subClassOf [ hpc:TresResponseContent ] .
+
+hpc:GetTresResponseContentApplicationJson a owl:ObjectProperty, rdfs:domain [ hpc:GetTresResponse ], rdfs:range [ hpc:JsonRequestContent ] .
+hpc:PostTresResponseContentApplicationJson a owl:ObjectProperty, rdfs:domain [ hpc:PostTresResponse ], rdfs:range [ hpc:JsonRequestContent ] .
+hpc:GetTresResponseContentApplicationYaml a owl:ObjectProperty, rdfs:domain [ hpc:GetTresResponse ], rdfs:range [ hpc:YamlRequestContent ] .
+hpc:PostTresResponseContentApplicationYaml a owl:ObjectProperty, rdfs:domain [ hpc:PostTresResponse ], rdfs:range [ hpc:YamlRequestContent ] .
+
+hpc:UserResponse a

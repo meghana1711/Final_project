@@ -1,0 +1,34 @@
+hpc:Task a owl:Class .
+hpc:UserProcess rdf:type owl:Class .
+hpc:Step rdf:type owl:Class .
+hpc:Job rdf:type owl:Class .
+hpc:JobAcctGather rdf:type owl:Class .
+hpc:TrackableResource rdf:type owl:Class .
+hpc:TRES rdf:type owl:Class .
+hpc:cpu rdf:type hpc:TRES .
+hpc:memory rdf:type hpc:TRES .
+hpc:energy rdf:type hpc:TRES .
+
+hpc:Task hasStep hpc:Step .
+hpc:Step hasTask+ hpc:Task .
+hpc:UserProcess isPartOf hpc:Task .
+hpc:Job hasStep+ hpc:Step .
+hpc:JobAcctGather gathers hpc:TRES .
+hpc:JobAcctGather hasFrequency xsd:double .
+hpc:JobAcctGather hasFrequencyInSlurmConf xsd:boolean .
+hpc:JobAcctGather hasAcctFreq xsd:double .
+
+hpc:Task hasTresUsageInTot hpc:DataStructure .
+hpc:Task hasTresUsageInMax hpc:DataStructure .
+hpc:DataStructure hasTresMemory xsd:double .
+hpc:DataStructure hasTresMemoryNode xsd:integer .
+hpc:DataStructure hasTresMemoryTask xsd:integer .
+hpc:DataStructure hasTresCpu xsd:double .
+hpc:DataStructure hasTresEnergy xsd:double .
+
+hpc:Task hasMaxRSS xsd:double .
+hpc:Task hasMaxRSSNode xsd:integer .
+hpc:Task hasMaxRSSTask xsd:integer .
+
+hpc:TRES hasConsumptionByNode hpc:DataStructure .
+```

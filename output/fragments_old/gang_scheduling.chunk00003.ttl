@@ -1,0 +1,46 @@
+# Job
+hpc:Job a owl:Class .
+hpc:jobID rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+hpc:partition rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+hpc:user rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+hpc:state rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+hpc:time rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:nodes rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+hpc:nodeList rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+# Consumable Resource
+hpc:ConsumableResource a owl:Class .
+hpc:consumableType rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ConsumableResource .
+
+# CPU and Core
+hpc:CPU a hpc:ConsumableResource .
+hpc:Core a hpc:ConsumableResource .
+
+# Backfilling
+hpc:LocalBackfilling a owl:Class .
+hpc:overSubscribe a owl:ObjectProperty ;
+    rdfs:domain hpc:LocalBackfilling .
+
+# Timeslicing
+hpc:Timeslicing a owl:Class .
+hpc:SelectType a owl:ObjectProperty ;
+    rdfs:domain hpc:Timeslicing .
+hpc:SelectTypeParameters a owl:ObjectProperty ;
+    rdfs:domain hpc:Timeslicing .
+
+# Job Affinity
+hpc:TaskAffinity a owl:Class .
+hpc:taskAffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:TaskAffinity .
+hpc:configuredWith a owl:ObjectProperty ;
+    rdfs:domain hpc:TaskAffinity .
+```

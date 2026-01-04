@@ -1,0 +1,36 @@
+hpc:MessageType a owl:Class .
+hpc:RPCType a owl:Class .
+hpc:User a owl:Class .
+hpc:StatsRec a owl:Class .
+hpc:Step a owl:Class .
+hpc:State a owl:Class .
+hpc:RPC a owl:Class, rdfs:subClassOf [ a owl:Class ;
+                                         rdfs:subClassOf hpc:Step ] .
+
+hpc:message_type a owl:ObjectProperty .
+hpc:average_time a owl:DatatypeProperty, rdfs:domain hpc:RPC ;
+                   rdfs:range xsd:integer .
+hpc:time_start a owl:DatatypeProperty, rdfs:domain hpc:StatsRec ;
+              rdfs:range xsd:integer .
+hpc:requested_frequency a owl:DatatypeProperty, rdfs:domain hpc:CPU ;
+                        rdfs:range xsd:integer .
+hpc:exit_code a owl:DatatypeProperty, rdfs:domain hpc:Step ;
+              rdfs:range xsd:integer .
+hpc:state a owl:ObjectProperty, rdfs:domain hpc:Step ;
+          rdfs:range rdf:List .
+hpc:state rdfs:listMember a owl:NamedIndividual .
+hpc:state rdfs:listMember rdf:first "PENDING" .
+hpc:state rdfs:listMember rdf:first "RUNNING" .
+hpc:state rdfs:listMember rdf:first "SUSPENDED" .
+hpc:state rdfs:listMember rdf:first "COMPLETED" .
+hpc:state rdfs:listMember rdf:first "CANCELLED" .
+hpc:state rdfs:listMember rdf:first "FAILED" .
+hpc:state rdfs:listMember rdf:first "TIMEOUT" .
+hpc:state rdfs:listMember rdf:first "NODE_FAIL" .
+hpc:state rdfs:listMember rdf:first "PREEMPTED" .
+hpc:state rdfs:listMember rdf:first "BOOT_FAIL" .
+hpc:state rdfs:listMember rdf:first "DEADLINE" .
+hpc:state rdfs:listMember rdf:first "OUT_OF_MEMORY" .
+hpc:state rdfs:listMember rdf:first "LAUNCH_FAILED" .
+hpc:state rdfs:listMember rdf:first "REQUEUED" .
+hpc:state rdfs:listMember rdf:first "REQUEUE_HOLD" .

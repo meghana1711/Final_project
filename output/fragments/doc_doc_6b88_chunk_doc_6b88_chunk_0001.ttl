@@ -1,0 +1,30 @@
+hpc:Slurm a owl:Class .
+hpc:hasRFC7519CompliantJWTImplementation owl:FunctionalProperty .
+hpc:AuthAltType rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range rdf:String .
+hpc:AuthType rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm .
+hpc:supportedCommunicationDirection rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range rdf:String .
+hpc:interactiveJobScenario rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Scenario .
+hpc:requiresLibjwt owl:FunctionalProperty ;
+    rdfs:domain hpc:Slurm .
+hpc:rootTrustInJWTCreation rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm .
+hpc:authenticatingProxy rdf:type owl:Class .
+hpc:dividesUpTrust rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:AuthenticatingProxy ;
+    rdfs:range hpc:AuthenticatingProxy .
+hpc:implementsSiteSpecificPolicies rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:AuthenticatingProxy ;
+    rdfs:range rdf:String .
+hpc:noLongerInvolvedOnceJobQueued rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+hpc:runsWithUsersPermissions rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+hpc:trustsJWTs rdf:type owl:ObjectProperty .
+hpc:JWT rdf:type owl:Class .
+```

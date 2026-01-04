@@ -1,0 +1,67 @@
+hpc:Account a owl:Class .
+hpc:AccountList a owl:Class .
+hpc:AssociationInfo a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:DefaultQOS a owl:Class .
+hpc:DeletedAssociation a owl:Class .
+hpc:GetAssociationInfo a owl:Class .
+hpc:ID a xsd:ID .
+hpc:IncludeDeletedAssociations a owl:ObjectProperty .
+hpc:IncludeUsage a owl:ObjectProperty .
+hpc:IncludeDefaults a owl:ObjectProperty .
+hpc:IncludeRawQOS a owl:ObjectProperty .
+hpc:IncludeSubAcctInfo a owl:ObjectProperty .
+hpc:ExcludeParentIdName a owl:ObjectProperty .
+hpc:ExcludeLimitsFromParents a owl:ObjectProperty .
+hpc:Format a xsd:string .
+hpc:FilterToOnlyDefaults a owl:ObjectProperty .
+hpc:Partition a owl:Class .
+hpc:QOS a owl:Class .
+hpc:UsageEnd a xsd:dateTime .
+hpc:UsageStart a xsd:dateTime .
+
+hpc:AccountList rdfs:subClassOf rdf:List .
+hpc:Account rdfs:subClassOf hpc:AccountList ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:domain hpc:GetAssociationInfo .
+
+hpc:AssociationInfo rdfs:subClassOf owl:NamedIndividual .
+
+hpc:Cluster rdfs:subClassOf hpc:Account .
+
+hpc:DefaultQOS rdfs:subClassOf hpc:QOS .
+
+hpc:DeletedAssociation rdfs:subClassOf hpc:AssociationInfo .
+
+hpc:GetAssociationInfo rdf:type owl:Object .
+
+hpc:ID rdfs:domain hpc:Account ;
+    rdfs:range xsd:ID .
+
+hpc:IncludeDeletedAssociations rdfs:domain hpc:GetAssociationInfo ;
+    rdfs:range hpc:DeletedAssociation .
+
+hpc:IncludeUsage rdfs:domain hpc:GetAssociationInfo ;
+    rdfs:range hpc:AssociationInfo .
+
+hpc:IncludeDefaults rdfs:domain hpc:GetAssociationInfo ;
+    rdfs:range hpc:AssociationInfo .
+
+hpc:IncludeRawQOS rdfs:domain hpc:GetAssociationInfo ;
+    rdfs:range hpc:AssociationInfo .
+
+hpc:IncludeSubAcctInfo rdfs:domain hpc:GetAssociationInfo ;
+    rdfs:range hpc:AssociationInfo .
+
+hpc:ExcludeParentIdName rdfs:domain hpc:GetAssociationInfo ;
+    rdfs:range xsd:boolean .
+
+hpc:ExcludeLimitsFromParents rdfs:domain hpc:GetAssociationInfo ;
+    rdfs:range xsd:boolean .
+
+hpc:FilterToOnlyDefaults rdfs:domain hpc:GetAssociationInfo ;
+    rdfs:range xsd:boolean .
+
+hpc:Partition rdfs:subClassOf hpc:Account .
+
+hpc:QOS rdfs:subClassOf owl

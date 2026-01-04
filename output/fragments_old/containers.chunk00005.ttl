@@ -1,0 +1,35 @@
+# Docker
+hpc:Docker a owl:Class .
+hpc:run a owl:ObjectProperty .
+hpc:run rdfs:domain hpc:Docker ;
+    rdfs:range rdf:Resource .
+
+# Podman
+hpc:Podman a owl:Class .
+hpc:configure a owl:ObjectProperty .
+hpc:configure rdfs:domain hpc:Podman ;
+    rdfs:range rdf:Resource .
+hpc:call_scrun a owl:ObjectProperty .
+hpc:call_scrun rdfs:domain hpc:Podman ;
+    rdfs:range rdf:Resource .
+
+# Slurm
+hpc:Slurm a owl:Class .
+hpc:configured a owl:ObjectProperty .
+hpc:configured rdfs:domain hpc:Slurm ;
+    rdfs:range rdf:Resource .
+hpc:job_id a owl:DatatypeProperty .
+hpc:job_id rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:string .
+hpc:hostname a owl:ObjectProperty .
+hpc:hostname rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:string .
+
+# Container
+hpc:Container a owl:Class .
+hpc:use_host_networking a owl:ObjectProperty .
+hpc:use_host_networking rdfs:domain hpc:Container ;
+    rdfs:range xsd:boolean .
+```
+
+This ontology fragment defines classes for Docker, Podman, Slurm, and Container, as well as properties for running Docker and Podman, calling scrun with Podman, and configuring Slurm and containers. The properties have been defined as object properties for Docker and Podman, and as an object property and a datatype property for Slurm and Container, respectively. The datatype property for Slurm's job ID is of type xsd:string, and the property for Container's host networking is of type xsd:boolean.

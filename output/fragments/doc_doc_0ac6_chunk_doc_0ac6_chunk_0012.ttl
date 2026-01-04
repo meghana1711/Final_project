@@ -1,0 +1,37 @@
+hpc:ScrunNode a owl:Class .
+hpc:hasScrunScript rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ScrunNode ;
+    rdfs:range xsd:string .
+
+hpc:ContainerJobNode a owl:Class .
+hpc:hasOciConfig rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ContainerJobNode ;
+    rdfs:range xsd:string .
+
+hpc:UnsupportedAuthMethod a owl:Class .
+hpc:isJwtAuthNotSupported rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:UnsupportedAuthMethod ;
+    rdfs:range xsd:boolean .
+
+hpc:UnsupportedCommand a owl:Class .
+hpc:isPodmanExecCommandNotSupported rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:UnsupportedCommand ;
+    rdfs:range xsd:boolean .
+hpc:isPodmanComposeCommandNotSupported rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:UnsupportedCommand ;
+    rdfs:range xsd:boolean .
+hpc:isPodmanKubeCommandNotSupported rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:UnsupportedCommand ;
+    rdfs:range xsd:boolean .
+hpc:isPodmanPodCommandNotSupported rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:UnsupportedCommand ;
+    rdfs:range xsd:boolean .
+hpc:isPodmanFarmCommandNotSupported rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:UnsupportedCommand ;
+    rdfs:range xsd:boolean .
+
+hpc:HostNetworkingRequirement a owl:Class .
+hpc:requiresHostNetwork rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:HostNetworkingRequirement ;
+    rdfs:range xsd:boolean .
+```

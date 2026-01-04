@@ -1,0 +1,18 @@
+hpc:SlurmConfigurationFile a owl:Class .
+hpc:hasClusterName a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmConfigurationFile ;
+    rdfs:range xsd:string .
+
+hpc:ClusterName a owl:Class ;
+    rdfs:subClassOf hpc:SlurmConfigurationFile .
+```
+
+Additionally, for the Cluster Name constraint about using different names for each cluster when using a single database:
+
+```
+hpc:UniqueClusterName a owl:ObjectProperty ;
+    rdfs:domain hpc:ClusterName ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:hasClusterName ;
+    rdfs:comment "Useful for differentiating clusters when using a single database." .
+```

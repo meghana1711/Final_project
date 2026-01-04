@@ -1,0 +1,45 @@
+hpc:PersistentBurstBufferCreationAndDeletionDirectives a owl:Class .
+hpc:HeterogeneousJobSupport a owl:Class .
+hpc:CommandLineJobOptions a owl:Class .
+hpc:Datawarp a owl:Class .
+hpc:Lua a owl:Class .
+hpc:SymbolReplacement a owl:Class .
+hpc:StatusCommands a owl:Class .
+hpc:AdvancedReservations a owl:Class .
+hpc:JobDependencies a owl:Class .
+hpc:BurstBufferStatesAndJobStates a owl:Class .
+
+hpc:usesSlurmBurstBufferPlugins rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Plugin .
+
+hpc:datawarp rdf:type hpc:Plugin ;
+    rdfs:subClassOf hpc:Plugin .
+
+hpc:lua rdf:type hpc:Plugin ;
+    rdfs:subClassOf hpc:Plugin .
+
+hpc:providesHooksToDatawarpAPIs rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Datawarp ;
+    rdfs:range rdf:Resource .
+
+hpc:implementsBurstBuffers rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Datawarp ;
+    rdfs:range rdf:Resource .
+
+hpc:supportsAllocatingResources rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Datawarp ;
+    rdfs:range rdf:Resource .
+
+hpc:supportsStagingFilesIn rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Datawarp ;
+    rdfs:range rdf:Resource .
+
+hpc:schedulesComputeNodesForJobs rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Datawarp ;
+    rdfs:range rdf:Resource .
+
+hpc:supportsStagingFilesOut rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Datawarp ;
+    rdfs:range rdf:Resource .
+```

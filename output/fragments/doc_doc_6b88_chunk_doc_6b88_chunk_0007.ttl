@@ -1,0 +1,25 @@
+hpc:JWT a owl:Class .
+hpc:SigningKey a owl:Class .
+hpc:ExpirationTime a xsd:integer .
+hpc:IssuedAt a xsd:integer .
+hpc:Subject a xsd:string .
+
+hpc:JWT rdf:type owl:NamedIndividual ;
+    hpc:exp hpc:ExpirationTime ;
+    hpc:iat hpc:IssuedAt ;
+    hpc:sun hpc:Subject .
+
+hpc:SigningKey rdf:type owl:NamedIndividual ;
+    hpc:k rdf:type xsd:base64Binary .
+
+hpc:encode a owl:ObjectProperty ;
+    rdfs:domain hpc:JWT ;
+    rdfs:range hpc:CompactJWS .
+
+hpc:decode a owl:ObjectProperty ;
+    rdfs:domain hpc:CompactJWS ;
+    rdfs:range hpc:DecodedJWT .
+
+hpc:CompactJWS a owl:Class .
+hpc:DecodedJWT a owl:Class .
+```

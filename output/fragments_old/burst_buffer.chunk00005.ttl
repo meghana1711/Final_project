@@ -1,0 +1,44 @@
+# Classes
+hpc:Job a owl:Class .
+hpc:BurstBuffer a owl:Class .
+hpc:Pool a owl:Class .
+hpc:Session a owl:Class .
+hpc:Configuration a owl:Class .
+hpc:Reservation a owl:Class .
+hpc:AdvancedReservation a owl:Class .
+hpc:BurstBufferState a owl:Class .
+
+# Object Properties
+hpc:hasState a owl:ObjectProperty .
+hpc:hasPool a owl:ObjectProperty .
+hpc:hasUnits a owl:ObjectProperty .
+hpc:hasSession a owl:ObjectProperty .
+hpc:hasConfiguration a owl:ObjectProperty .
+hpc:hasReservation a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:state a owl:DatatypeProperty .
+hpc:pool a owl:DatatypeProperty .
+hpc:units a owl:DatatypeProperty .
+hpc:token a owl:DatatypeProperty .
+hpc:creator a owl:DatatypeProperty .
+hpc:owner a owl:DatatypeProperty .
+hpc:created a xsd:dateTime .
+hpc:expiration a xsd:dateTime .
+hpc:nodes a xsd:nonNegativeInteger .
+
+# Subclass relations
+hpc:AdvancedReservation rdfs:subClassOf hpc:Reservation .
+
+# Domain and Range
+hpc:hasState rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:BurstBufferState .
+hpc:hasPool rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Pool .
+hpc:hasUnits rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+hpc:hasSession rdfs:domain hpc:Job ;
+    rdfs:range hpc:Session .
+hpc:hasConfiguration rdfs:domain hpc:Job ;
+    rdfs:range hpc:Configuration .
+```

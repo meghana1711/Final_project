@@ -1,0 +1,11 @@
+hpc:OpenapiAssocsResp a owl:Class .
+hpc:OpenapiAssocsRemovedResp a owl:Class .
+
+hpc:hasSchema a owl:ObjectProperty .
+
+hpc:OpenapiAssocsResp rdfs:subClassOf owl:Class .
+hpc:OpenapiAssocsRemovedResp rdfs:subClassOf owl:Class .
+
+hpc:OpenapiAssocsResp hpc:hasSchema rdf:resource #/components/schemas/v0.0.40_openapi_assocs_resp .
+hpc:OpenapiAssocsRemovedResp hpc:hasSchema rdf:resource #/components/schemas/v0.0.40_openapi_assocs_removed_resp .
+```

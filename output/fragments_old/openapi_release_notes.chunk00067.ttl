@@ -1,0 +1,16 @@
+hpc:JobInfo a owl:Class .
+hpc:JobState a owl:Class .
+
+hpc:hasJobInfo a owl:ObjectProperty .
+hpc:state a owl:ObjectProperty .
+
+hpc:hasJobInfo rdfs:domain hpc:Job .
+hpc:state rdfs:domain hpc:Job .
+
+hpc:JobInfo rdfs:subClassOf owl:NamedIndividual .
+hpc:Job rdfs:subClassOf owl:NamedIndividual .
+
+# Add the schema references here when they are available
+```
+
+This ontology fragment represents a simple ontology for SLURM jobs, with classes `Job` and `JobInfo`, and properties `hasJobInfo` and `state`. The `hasJobInfo` property is used to associate a `Job` with its information, and the `state` property is used to describe the state of a `Job`. The ontology is designed to be extended with the actual schema references when they become available.

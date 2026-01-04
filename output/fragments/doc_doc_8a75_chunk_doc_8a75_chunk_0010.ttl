@@ -1,0 +1,11 @@
+hpc:SLURM_LOCAL_GLOBALS_FILE a owl:Class .
+hpc:SLURM_LOCALID a owl:ObjectProperty .
+hpc:SLURM_NNODES a owl:ObjectProperty .
+hpc:SLURM_NODEID a owl:ObjectProperty .
+hpc:SLURM_NTASKS a owl:ObjectProperty .
+hpc:SLURM_PRIO_PROCESS a owl:ObjectProperty .
+hpc:SLURM_PROCID a owl:ObjectProperty .
+hpc:SLURM_RESTART_COUNT a owl:DatatypeProperty .
+hpc:SLURM_RESTART_COUNT rdfs:domain hpc:Job .
+hpc:SLURM_RESTART_COUNT rdfs:range xsd:nonNegativeInteger .
+```

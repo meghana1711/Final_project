@@ -1,0 +1,50 @@
+hpc:Plugin a owl:Class .
+hpc:NodeSelection a owl:Class .
+hpc:SiteFactor a owl:Class .
+hpc:SwitchInterconnect a owl:Class .
+hpc:TaskAffinity a owl:Class .
+hpc:NetworkTopology a owl:Class .
+
+hpc:Slurm a owl:Class .
+hpc:ComputeResource a owl:Class ;
+    rdfs:subClassOf hpc:Slurm .
+
+hpc:Partition a owl:Class ;
+    rdfs:subClassOf hpc:Slurm .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Slurm .
+
+hpc:JobStep a owl:Class ;
+    rdfs:subClassOf hpc:Slurm .
+
+hpc:JobQueue a owl:Class ;
+    rdfs:subClassOf hpc:Partition .
+
+hpc:Node a owl:Class ;
+    rdfs:subClassOf hpc:Slurm .
+
+hpc:Resource a owl:Class ;
+    rdfs:subClassOf hpc:Slurm .
+
+hpc:Processor a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+hpc:Memory a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:hasState a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:hasCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Processor ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasMemorySize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Memory ;
+    rdfs:range xsd:decimal .
+
+hpc:hasTemporaryDiskSpace a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:decimal .
+```

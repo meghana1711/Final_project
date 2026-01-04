@@ -1,0 +1,32 @@
+hpc:GPUNode a owl:Class .
+hpc:GPUSocket a owl:Class .
+hpc:GPUTask a owl:Class .
+hpc:GPUMemory a owl:Class .
+
+hpc:numGPUsPerNode owl:DatatypeProperty ;
+    rdfs:domain hpc:GPUNode ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:numGPUsPerSocket owl:DatatypeProperty ;
+    rdfs:domain hpc:GPUSocket ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:numGPUsPerTask owl:DatatypeProperty ;
+    rdfs:domain hpc:GPUTask ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:memPerGPU owl:DatatypeProperty ;
+    rdfs:domain hpc:GPUMemory ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:CR_CPU rdf:Type hpc:ConsumableResource .
+hpc:CR_CPU_MEMORY rdf:Type hpc:ConsumableResource .
+hpc:RealMemory rdf:Type hpc:ConsumableResource .
+
+hpc:SelectType a owl:Class .
+hpc:selectLinear rdf:Type hpc:SelectType .
+hpc:selectCons_tres rdf:Type hpc:SelectType .
+hpc:bestFit rdf:Type hpc:SelectType .
+hpc:cons_tres rdf:Type hpc:SelectType .
+
+hpc:SelectType rdfs:subClassOf owl:Class .
+hpc:bestFit rdfs:subClassOf hpc:SelectType .
+hpc:cons_tres rdfs:subClassOf hpc:SelectType .
+```

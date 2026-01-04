@@ -1,0 +1,35 @@
+hpc:Cluster a owl:Class .
+hpc:Account a owl:Class .
+hpc:User a owl:Class .
+hpc:Partition optional hpc:PartitionName owl:DatatypeProperty .
+hpc:Association rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Account ;
+    rdfs:subClassOf hpc:User .
+
+hpc:addCluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:string .
+
+hpc:addAccount a owl:ObjectProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:string .
+
+hpc:ClusterName rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string .
+
+hpc:Description rdfs:domain hpc:Account ;
+    rdfs:range xsd:string .
+
+hpc:Organization rdfs:domain hpc:Account ;
+    rdfs:range xsd:string .
+
+hpc:hasPartition optional hpc:Partition .
+
+hpc:commaSeparatedClusters rdfs:domain hpc:addAccount ;
+    rdfs:range xsd:string .
+
+hpc:hasChild rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range hpc:Account .
+```

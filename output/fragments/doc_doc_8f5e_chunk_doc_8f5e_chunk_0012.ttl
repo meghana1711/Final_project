@@ -1,0 +1,36 @@
+hpc:UpgradableComponent a owl:Class .
+hpc:ProperOperation hpc:UpgradableComponent rdfs:subClassOf owl:ObjectProperty .
+hpc:CommunicationWithController, hpc:JobStart, hpc:JobFinish rdfs:domain hpc:ProperOperation ;
+                                                            rdfs:range rdf:Resource .
+
+hpc:SlurmComponent a owl:Class .
+hpc:CoreSlurmComponent, hpc:AdditionalComponent rdfs:subClassOf hpc:SlurmComponent .
+hpc:SlurmCommand, hpc:ClientCommand rdfs:subClassOf owl:ObjectProperty .
+hpc:RequiresSpecialAttention, hpc:DoesNotRequireSpecialAttention rdfs:domain hpc:SlurmCommand ;
+                                                                     rdfs:range xsd:boolean .
+
+hpc:CustomizedSlurmPlugin a owl:Class .
+hpc:RecompilationRequired, hpc:ModificationRequired rdfs:subClassOf owl:ObjectProperty .
+hpc:LocallyDeveloped, hpc:ThirdParty rdfs:domain hpc:CustomizedSlurmPlugin ;
+                                               rdfs:range xsd:boolean .
+
+hpc:SlurmAPI a owl:Class .
+hpc:MainPublicAPI, hpc:PMI1API, hpc:PMI2API rdfs:subClassOf owl:Class .
+hpc:IncreasesVersionNumber, hpc:DoesNotChange rdfs:subClassOf owl:ObjectProperty .
+hpc:RequiresRecompilation, hpc:DoesNotRequireRecompilation rdfs:domain hpc:SlurmAPI ;
+                                                               rdfs:range xsd:boolean .
+
+hpc:Application rdfs:subClassOf owl:Class .
+hpc:LinkedAgainstMainPublicAPI, hpc:LinkedAgainstPMI1API, hpc:LinkedAgainstPMI2API rdfs:subClassOf owl:ObjectProperty .
+hpc:RequiresRecompilationAfterUpgrade rdfs:domain hpc:Application ;
+                                                      rdfs:range xsd:boolean .
+
+hpc:MPIStack a owl:Class .
+hpc:OpenMPI, hpc:MVAPICH2, hpc:MPICH rdfs:subClassOf hpc:MPIStack .
+hpc:DoesNotRequireRecompilationAfterUpgrade rdfs:domain hpc:MPIStack ;
+                                                      rdfs:range xsd:boolean .
+
+hpc:MPICHWithSlurmSupport a owl:Class .
+hpc:RequiresRecompilationAfterUpgrade rdfs:domain hpc:MPICHWithSlurmSupport ;
+                                                      rdfs:range xsd:boolean .
+```

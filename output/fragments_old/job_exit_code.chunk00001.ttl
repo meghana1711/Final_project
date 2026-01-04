@@ -1,0 +1,43 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:Version a owl:DatatypeProperty .
+hpc:Overview a owl:ObjectProperty .
+hpc:ReleaseNotes a owl:ObjectProperty .
+hpc:Using a owl:ObjectProperty .
+hpc:Documentation a owl:ObjectProperty .
+hpc:FAQ a owl:ObjectProperty .
+hpc:Publications a owl:ObjectProperty .
+hpc:Installing a owl:ObjectProperty .
+hpc:Download a owl:ObjectProperty .
+hpc:RelatedSoftware a owl:ObjectProperty .
+hpc:InstallationGuide a owl:ObjectProperty .
+hpc:GettingHelp a owl:ObjectProperty .
+hpc:MailingLists a owl:ObjectProperty .
+hpc:SupportAndTraining a owl:ObjectProperty .
+hpc:Troubleshooting a owl:ObjectProperty .
+hpc:JobExitCodes a owl:ObjectProperty .
+hpc:JobStepExitCodes a owl:ObjectProperty .
+hpc:SignaledJobs a owl:ObjectProperty .
+hpc:DisplayingExitCodesAndSignals a owl:ObjectProperty .
+hpc:DatabaseJobStepRecords a owl:ObjectProperty .
+hpc:DerivedExitCode a owl:DatatypeProperty .
+hpc:CommentString a owl:DatatypeProperty .
+hpc:scontrolShowJob a owl:ObjectProperty .
+hpc:sview a owl:ObjectProperty .
+hpc:sacct a owl:ObjectProperty .
+hpc:sacctmgr a owl:ObjectProperty .
+hpc:sjobexitmod a owl:ObjectProperty .
+
+hpc:Job a owl:Class .
+hpc:ExitCode a xsd:unsignedByte .
+hpc:Signal a xsd:unsignedShort .
+hpc:State rdfs:domain hpc:Job ;
+    rdfs:range hpc:StateType .
+hpc:StateType rdf:type owl:Class .
+hpc:Step rdf:type owl:Class .
+hpc:Node rdf:type owl:Class .
+hpc:Account rdf:type owl:Class .
+```
+
+This ontology fragment represents the main classes and properties related to the Slurm Workload Manager. It includes classes for Job, State, StateType, Step, Node, and Account, as well as properties for relationships between these classes. The datatype properties ExitCode and Signal are defined as unsigned byte and unsigned short, respectively. The properties for Slurm utilities such as scontrol, sview, sacct, and sjobexitmod are also included as object properties.

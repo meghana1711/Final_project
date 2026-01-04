@@ -1,0 +1,19 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Jobs a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Collection of jobs." .
+
+# Job resource properties
+hpc:jobId a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+# Jobs resource properties
+hpc:jobsResponseSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobs ;
+    rdfs:range #v0.0.42_openapi_slurmdbd_jobs_resp .
+```
+
+This ontology fragment represents the `Job` and `Jobs` resources, as well as their respective properties. The `jobId` property is a datatype property of the `Job` resource, while the `jobsResponseSchema` property is an object property of the `Jobs` resource. The range of the `jobsResponseSchema` property is a schema defined elsewhere, indicated by the `#v0.0.42_openapi_slurmdbd_jobs_resp` IRI.

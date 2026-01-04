@@ -1,0 +1,51 @@
+hpc:SlurmRestd a owl:Class .
+hpc:hasSocketPath rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmRestd ;
+    rdfs:range xsd:string .
+
+hpc:PermissionIssue rdf:type owl:Class .
+hpc:hasLogOutput rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:PermissionIssue .
+
+hpc:ParentDirectoryAccess rdf:type owl:Class .
+hpc:hasParentDirectory rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ParentDirectoryAccess .
+
+hpc:AddressInUse rdf:type owl:Class .
+hpc:hasCommand rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:AddressInUse .
+hpc:hasSLURMRESTD_LISTEN rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:AddressInUse .
+
+hpc:ConnectionRefused rdf:type owl:Class .
+
+hpc:SlurmRestdRunning rdf:type owl:Class .
+hpc:isListeningOnPort rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmRestdRunning .
+
+hpc:ProtocolAuthenticationError rdf:type owl:Class .
+hpc:hasExpiredToken rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:ProtocolAuthenticationError .
+
+hpc:NoAuthenticationToken rdf:type owl:Class .
+hpc:hasLogMessage rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:NoAuthenticationToken .
+
+hpc:APIMethodNotFound rdf:type owl:Class .
+hpc:hasURL rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:APIMethodNotFound .
+hpc:hasMethod rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:APIMethodNotFound .
+
+hpc:ThreadConfigTokenRejected rdf:type owl:Class .
+hpc:hasLoadedJWT rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:ThreadConfigTokenRejected .
+
+hpc:URLCharacterError rdf:type owl:Class .
+hpc:hasProblematicCharacter rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:URLCharacterError .
+
+hpc:OtherSlurmCommandsFailure rdf:type owl:Class .
+hpc:hasJWTSet rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:OtherSlurmCommandsFailure .
+```

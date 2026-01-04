@@ -1,0 +1,48 @@
+hpc:Infinite a owl:Class .
+hpc:submit_line a rdf:Property .
+hpc:extra a rdf:Property .
+
+hpc:Reservation a owl:Class .
+hpc:Reservation hpc:requested rdf:type owl:ObjectProperty .
+hpc:Reservation hpc:name rdf:type owl:DatatypeProperty .
+hpc:Reservation hpc:id rdf:type owl:DatatypeProperty .
+
+hpc:Block a rdf:Property .
+
+hpc:Tres a owl:Class .
+hpc:Tres hpc:requested rdf:type owl:ObjectProperty .
+hpc:Tres hpc:allocated rdf:type owl:ObjectProperty .
+hpc:TresRequested hpc:name rdf:type xsd:string .
+hpc:TresRequested hpc:count rdf:type xsd:nonNegativeInteger .
+hpc:TresRequested hpc:id rdf:type xsd:nonNegativeInteger .
+hpc:TresRequested hpc:type rdf:type xsd:string .
+
+hpc:State a owl:Class .
+hpc:State hpc:reason rdf:type owl:DatatypeProperty .
+hpc:State hpc:current rdf:type owl:ObjectProperty .
+hpc:StateCurrent rdf:type xsd:string .
+
+hpc:Mcs a rdf:Property .
+
+hpc:Group a rdf:Property .
+
+hpc:Wckey a owl:Class .
+hpc:Wckey hpc:wckey rdf:type owl:DatatypeProperty .
+hpc:Wckey hpc:flags rdf:type owl:ObjectProperty .
+hpc:WckeyFlag rdf:type xsd:string .
+
+hpc:Priority a owl:Class .
+hpc:Priority hpc:number rdf:type xsd:nonNegativeInteger .
+hpc:Priority hpc:set rdf:type xsd:boolean .
+hpc:Priority hpc:infinite rdf:type xsd:boolean .
+
+hpc:Stderr a rdf:Property .
+
+hpc:Steps a owl:Class .
+hpc:Steps hpc:nodes rdf:type owl:ObjectProperty .
+hpc:Steps hpc:task rdf:type owl:ObjectProperty .
+hpc:Steps hpc:exit_code rdf:type owl:ObjectProperty .
+
+hpc:ExitCode hpc:return_code rdf:type xsd:nonNegativeInteger .
+hpc:ExitCode hpc:signal rdf:type owl:ObjectProperty .
+hpc:ExitCode hpc:status rdf:type o

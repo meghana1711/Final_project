@@ -1,0 +1,60 @@
+hpc:JobCompletionType a owl:Class .
+hpc:Elasticsearch a hpc:JobCompletionType .
+hpc:FileTxt a hpc:JobCompletionType .
+hpc:Kafka a hpc:JobCompletionType .
+hpc:Lua a hpc:JobCompletionType .
+hpc:Script a hpc:JobCompletionType .
+hpc:MySQL a hpc:JobCompletionType .
+
+hpc:JobCompLoc a owl:ObjectProperty .
+hpc:JobCompLoc rdfs:domain hpc:JobCompletionType ;
+                 rdfs:range xsd:string .
+
+hpc:JobAcctGatherType a owl:Class .
+hpc:SpecificLinux a hpc:JobAcctGatherType .
+hpc:Linux a hpc:SpecificLinux .
+
+hpc:JobAcctGatherFrequency a owl:DatatypeProperty .
+hpc:JobAcctGatherFrequency rdfs:domain hpc:JobAcctGatherType ;
+                           rdfs:range xsd:integer .
+
+hpc:AccountingStorageType a owl:Class .
+hpc:None a hpc:AccountingStorageType .
+hpc:SlurmDBD a hpc:AccountingStorageType .
+
+hpc:AccountingStorageLoc a owl:ObjectProperty .
+hpc:AccountingStorageLoc rdfs:domain hpc:AccountingStorageType ;
+                          rdfs:range xsd:string .
+
+hpc:AccountingStorageHost a owl:ObjectProperty .
+hpc:AccountingStorageHost rdfs:domain hpc:AccountingStorageType ;
+                           rdfs:range xsd:string .
+
+hpc:AccountingStoragePort a owl:DatatypeProperty .
+hpc:AccountingStoragePort rdfs:domain hpc:AccountingStorageType ;
+                           rdfs:range xsd:integer .
+
+hpc:AccountingStorageUser a owl:DatatypeProperty .
+hpc:AccountingStorageUser rdfs:domain hpc:AccountingStorageType ;
+                           rdfs:range xsd:string .
+
+hpc:JobCompUser a owl:DatatypeProperty .
+hpc:JobCompUser rdfs:domain hpc:JobCompletionType ;
+                 rdfs:range xsd:string .
+
+hpc:JobCompParams a owl:DatatypeProperty .
+hpc:JobCompParams rdfs:domain hpc:JobCompletionType ;
+                   rdfs:range xsd:string .
+
+hpc:JobCompType a owl:DatatypeProperty .
+hpc:JobCompType rdfs:domain hpc:JobCompletionType ;
+                 rdfs:range xsd:string .
+
+hpc:JobCompPort a owl:DatatypeProperty .
+hpc:JobCompPort rdfs:domain hpc:JobCompletionType ;
+                 rdfs:range xsd:integer .
+
+hpc:JobCompHost a owl:ObjectProperty .
+hpc:JobCompHost rdfs:domain hpc:JobCompletionType ;
+                 rdfs:range xsd:string .
+```

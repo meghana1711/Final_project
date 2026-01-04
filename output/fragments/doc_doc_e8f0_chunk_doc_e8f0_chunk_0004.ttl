@@ -1,0 +1,47 @@
+hpc:JobDescription a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The job allocation request specifications." .
+
+hpc:JobPtr a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "slurmctld daemon's current data structure for the job to be modified." .
+
+hpc:ModifyUid a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "user ID initiating the request." .
+
+hpc:JobAllocationRequestSpecifications a owl:ObjectProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range hpc:JobDescription ;
+    rdfs:comment "The job allocation request specifications, before job defaults are set." .
+
+hpc:SlurmSuccess a xsd:integer ;
+    rdfs:comment "SLURM_SUCCESS on success." .
+
+hpc:SlurmError a xsd:integer ;
+    rdfs:comment "SLURM_ERROR on failure." .
+
+hpc:LuaFunction a owl:Class ;
+    rdfs:subClassOf owl:Function ;
+    rdfs:comment "Lua functions used to log and/or modify job parameters." .
+
+hpc:Environment a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A data structure containing named elements representing job environment variables." .
+
+hpc:HasEnvironment a owl:ObjectProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range hpc:Environment ;
+    rdfs:comment "Environment variables for a job." .
+
+hpc:HasVariable a owl:ObjectProperty ;
+    rdfs:domain hpc:Environment ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A named element in the job environment." .
+
+hpc:IsBatchJob a owl:ObjectProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the job is a batch job." .
+```

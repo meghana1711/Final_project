@@ -1,0 +1,54 @@
+hpc:SlurmPackage a owl:Class .
+hpc:hasVersion a owl:ObjectProperty .
+hpc:hasVersion rdfs:domain hpc:SlurmPackage ;
+    rdfs:range xsd:string .
+
+hpc:AutomaticUpdate a owl:Class .
+hpc:isFromEpel a owl:ObjectProperty .
+hpc:isNotRecommended a owl:ObjectProperty .
+hpc:AutomaticUpdate rdfs:subClassOf hpc:Event .
+hpc:AutomaticUpdate hpc:isFromEpel rdfs:domain hpc:AutomaticUpdate ;
+    rdfs:range hpc:SlurmPackage .
+hpc:AutomaticUpdate hpc:isNotRecommended rdfs:domain hpc:AutomaticUpdate ;
+    rdfs:range xsd:boolean .
+
+hpc:SlurmUpdatePrevention a owl:Class .
+hpc:excludeSlurmFromUpdates a owl:ObjectProperty .
+hpc:SlurmUpdatePrevention rdfs:subClassOf hpc:Configuration .
+hpc:SlurmUpdatePrevention hpc:excludeSlurmFromUpdates rdfs:domain hpc:SlurmUpdatePrevention ;
+    rdfs:range xsd:string .
+
+hpc:ClusterManagement a owl:Class .
+hpc:RelocateController a owl:ObjectProperty .
+hpc:RelocateController rdfs:domain hpc:ClusterManagement ;
+    rdfs:range hpc:Procedure .
+
+hpc:Procedure a owl:Class .
+hpc:hasStep a owl:ObjectProperty .
+hpc:Procedure rdfs:subClassOf hpc:Sequence .
+hpc:Procedure hpc:hasStep rdfs:domain hpc:Procedure ;
+    rdfs:range hpc:Step .
+
+hpc:Step a owl:Class .
+hpc:DrainCluster a owl:ObjectProperty .
+hpc:StopSlurmDaemons a owl:ObjectProperty .
+hpc:ModifySlurmConf a owl:ObjectProperty .
+hpc:DistributeSlurmConf a owl:ObjectProperty .
+hpc:CopyStateSaveLocation a owl:ObjectProperty .
+hpc:RestartSlurmDaemons a owl:ObjectProperty .
+hpc:Step rdfs:subClassOf hpc:Action .
+hpc:Step hpc:DrainCluster rdfs:domain hpc:Step ;
+    rdfs:range hpc:Cluster .
+hpc:Step hpc:StopSlurmDaemons rdfs:domain hpc:Step ;
+    rdfs:range hpc:Cluster .
+hpc:Step hpc:ModifySlurmConf rdfs:domain hpc:Step ;
+    rdfs:range hpc:SlurmConfFile .
+hpc:Step hpc:DistributeSlurmConf rdfs:domain hpc:Step ;
+    rdfs:range hpc:Cluster .
+hpc:Step hpc:CopyStateSaveLocation rdfs:domain hpc:Step ;
+    rdfs:range hpc:StateSaveLocation .
+hpc:Step hpc:RestartSlurmDaemons rdfs:domain hpc:Step ;
+    rdfs:range hpc:Cluster .
+
+hpc:SlurmConfFile a owl:Class .
+hpc:SlurmctldHost

@@ -1,0 +1,31 @@
+hpc:BootingProblem a owl:Class .
+hpc:SystemAdministration a owl:Class .
+hpc:NodeBootFailure a owl:Class, rdfs:subClassOf hpc:BootingProblem .
+hpc:DrainNodes a owl:ObjectProperty .
+hpc:RequeueJob a owl:ObjectProperty .
+hpc:AvailableNodes a owl:ObjectProperty .
+hpc:CurrentTopology a owl:ObjectProperty .
+hpc:NumaCount a owl:DatatypeProperty, rdfs:domain hpc:CurrentTopology, rdfs:range xsd:nonNegativeInteger .
+hpc:CoresAssociatedWithEachNuma a owl:DatatypeProperty, rdfs:domain hpc:CurrentTopology, rdfs:range xsd:string .
+hpc:Slurm a owl:Class .
+hpc:HWLOC a owl:Class .
+hpc:NodeFeaturesPlugin a owl:Class .
+hpc:KnlConf a owl:Class .
+hpc:TimeoutConfiguration a owl:Class, rdfs:subClassOf hpc:KnlConf .
+hpc:DefaultConfiguration a owl:Class, rdfs:subClassOf hpc:KnlConf .
+hpc:ConfigFile a owl:Class .
+hpc:NodeReboot a owl:ObjectProperty .
+hpc:UserRequestReboot a owl:ObjectProperty .
+hpc:DebugFlags a owl:Class .
+hpc:NodeFeatures a owl:Class .
+hpc:KnlSpecificFeature a owl:Class .
+hpc:KnlGenericPlugin a owl:Class .
+hpc:SlurmConf a owl:Class .
+hpc:AvailableFeatures a owl:ObjectProperty .
+hpc:ActiveFeatures a owl:ObjectProperty .
+hpc:KnlOperationDetails a owl:Class .
+hpc:RackNumber a owl:DatatypeProperty .
+hpc:Knl a owl:DatatypeProperty .
+hpc:NodeFeaturesConfiguration a owl:Class .
+hpc:CopyFromNodesFeatures a owl:ObjectProperty .
+```

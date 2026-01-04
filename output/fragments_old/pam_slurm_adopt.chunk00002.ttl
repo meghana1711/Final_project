@@ -1,0 +1,52 @@
+hpc:AdministrativeAccessConfiguration a owl:Class .
+hpc:PamSlurmAdopt a owl:Class .
+hpc:PamAccess a owl:Class .
+hpc:PamListfile a owl:Class .
+
+hpc:hasAdminGroup rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:AdministrativeAccessConfiguration ;
+    rdfs:range xsd:string .
+
+hpc:allowsAccess rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PamAccess ;
+    rdfs:range xsd:string .
+
+hpc:deniesAccess rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PamAccess ;
+    rdfs:range xsd:string .
+
+hpc:isSufficient rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PamModule ;
+    rdfs:range xsd:boolean .
+
+hpc:isRequired rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PamModule ;
+    rdfs:range xsd:boolean .
+
+hpc:hasOrder rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PamModule ;
+    rdfs:range xsd:integer .
+
+hpc:hasOption rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PamSlurmAdopt ;
+    rdfs:range xsd:string .
+
+hpc:hasAction rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PamSlurmAdoptOption ;
+    rdfs:range xsd:string .
+
+hpc:AdministrativeAccessConfiguration hpc:hasAdminGroup "wheel" .
+hpc:PamAccess hpc:allowsAccess "wheel" .
+hpc:PamAccess hpc:deniesAccess "*" .
+hpc:PamModule hpc:isSufficient true .
+hpc:PamModule hpc:isRequired false .
+hpc:PamModule hpc:hasOrder 1 .
+hpc:PamSlurmAdoptOption hpc:hasAction "ignore" .
+hpc:PamSlurmAdoptOption hpc:hasAction "deny" .
+hpc:PamSlurmAdoptOption hpc:hasAction "newest" .
+hpc:PamSlurmAdoptOption hpc:hasAction "allow" .
+hpc:PamSlurmAdoptOption hpc:hasAction "deny" .
+hpc:PamSlurmAdoptOption hpc:hasAction "ignore" .
+hpc:PamSlurmAdoptOption hpc:hasAction "allow" .
+hpc:PamSlurmAdoptOption hpc:hasAction "deny" .
+```

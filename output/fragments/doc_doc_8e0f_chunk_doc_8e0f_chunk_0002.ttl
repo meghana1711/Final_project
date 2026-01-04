@@ -1,0 +1,32 @@
+hpc:UserTool a owl:Class .
+hpc:Srun hpc:userTool .
+hpc:Scancel hpc:userTool .
+hpc:Sinfo hpc:userTool .
+hpc:Squeue hpc:userTool .
+hpc:Sacct hpc:userTool .
+hpc:Sview hpc:userTool .
+hpc:Scontrol a owl:Class .
+hpc:Sacctmgr a owl:Class .
+hpc:SlurmComponent a owl:Class .
+hpc:Plugin a owl:Class .
+hpc:AccountingStorage a hpc:Plugin ;
+    rdfs:subClassOf hpc:Plugin ;
+    rdfs:comment "Primarily Used to store historical data about jobs." .
+hpc:AccountGatherEnergy a hpc:Plugin ;
+    rdfs:subClassOf hpc:Plugin ;
+    rdfs:comment "Gather energy consumption data per job or nodes in the system." .
+hpc:Authentication a hpc:Plugin ;
+    rdfs:subClassOf hpc:Plugin ;
+    rdfs:comment "Provides authentication mechanism between various components of Slurm." .
+hpc:Containers a hpc:Plugin ;
+    rdfs:subClassOf hpc:Plugin ;
+    rdfs:comment "HPC workload container support and implementations." .
+hpc:Credential a owl:Class .
+hpc:DigitalSignatureGeneration a hpc:Credential ;
+    rdfs:subClassOf hpc:Credential ;
+    rdfs:comment "Mechanism used to generate a digital signature, which is used to validate that job step is authorized to execute on specific nodes." .
+hpc:GpuResource a owl:Class .
+hpc:GpuResourceControl a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmComponent ;
+    rdfs:range hpc:GpuResource .
+```

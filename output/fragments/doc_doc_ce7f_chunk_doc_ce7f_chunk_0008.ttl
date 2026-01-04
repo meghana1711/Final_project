@@ -1,0 +1,28 @@
+hpc:Slurmctld a owl:Class .
+hpc:runMode a owl:ObjectProperty .
+hpc:traditionalUnixService rdf:type hpc:RunMode ;
+  rdfs:label "traditional Unix service" .
+hpc:inetService rdf:type hpc:RunMode ;
+  rdfs:label "Inet service" .
+
+hpc:SlurmctldHost a owl:Class .
+hpc:primary rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SlurmctldHost ;
+  rdfs:range hpc:SlurmctldHost .
+hpc:backup rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SlurmctldHost ;
+  rdfs:range hpc:SlurmctldHost .
+hpc:commonFileSystem rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SlurmctldHost .
+
+hpc:HighAvailability a owl:Class .
+hpc:stateInformation rdf:type owl:DatatypeProperty ;
+  rdfs:domain hpc:HighAvailability .
+
+hpc:StateSaveLocation a owl:Class .
+
+hpc:SlurmctldPrimaryOnProg a owl:ObjectProperty .
+hpc:SlurmctldPrimaryOffProg a owl:ObjectProperty .
+
+hpc:SlurmctldFailure a owl:Class .
+```

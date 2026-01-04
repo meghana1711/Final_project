@@ -1,0 +1,39 @@
+hpc:BurstBufferDirective a owl:Class .
+hpc:hasDirective a owl:ObjectProperty ;
+    rdfs:domain hpc:BurstBufferDirective ;
+    rdfs:range xsd:string .
+
+hpc:Job a owl:Class .
+hpc:hasBurstBufferDirective a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:BurstBufferDirective .
+
+hpc:BurstBufferStage a owl:Class .
+hpc:hasCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:BurstBufferStage ;
+    rdfs:range xsd:string .
+
+hpc:BurstBufferPool a owl:Class .
+hpc:hasName a owl:ObjectProperty ;
+    rdfs:domain hpc:BurstBufferPool ;
+    rdfs:range xsd:string .
+
+hpc:BurstBufferCapacity a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeInteger .
+
+hpc:PersistentBurstBufferDirective a owl:Class ;
+    rdfs:subClassOf hpc:BurstBufferDirective .
+hpc:createPersistent a owl:ObjectProperty ;
+    rdfs:domain hpc:PersistentBurstBufferDirective ;
+    rdfs:range [ a owl:Class ;
+                   owl:unionOf ( (hpc:PersistentBurstBufferDirective ; hpc:hasName) (hpc:PersistentBurstBufferDirective ; hpc:hasName ; hpc:hasCapacity) (hpc:PersistentBurstBufferDirective ; hpc:hasName ; hpc:hasCapacity ; hpc:hasAccess) ) ] .
+hpc:hasNamePersistent a owl:DatatypeProperty ;
+    rdfs:domain hpc:PersistentBurstBufferDirective ;
+    rdfs:range xsd:string .
+hpc:hasCapacityPersistent a owl:DatatypeProperty ;
+    rdfs:domain hpc:PersistentBurstBufferDirective ;
+    rdfs:range hpc:BurstBufferCapacity .
+hpc:hasAccessPersistent a owl:DatatypeProperty ;
+    rdfs:domain hpc:PersistentBurstBufferDirective ;
+    rdfs:range xsd:string .
+```

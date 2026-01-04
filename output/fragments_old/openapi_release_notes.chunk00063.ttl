@@ -1,0 +1,49 @@
+hpc:V0_0_42_Openapi_Job_Alloc_Resp a owl:Class .
+
+hpc:JobAllocateResponseContent a owl:Class .
+hpc:JobAllocateResponseContent rdfs:subClassOf hpc:V0_0_42_Openapi_Job_Alloc_Resp .
+
+hpc:hasApplicationXYAML a owl:ObjectProperty ;
+    rdfs:domain hpc:JobAllocateResponseContent ;
+    rdfs:range rdf:Resource .
+
+hpc:hasTextYAML a owl:ObjectProperty ;
+    rdfs:domain hpc:JobAllocateResponseContent ;
+    rdfs:range rdf:Resource .
+
+# Job Submit Request Schema
+hpc:V0_0_42_Job_Submit_Req a owl:Class .
+
+hpc:JobSubmitRequestContent a owl:Class .
+hpc:JobSubmitRequestContent rdfs:subClassOf hpc:V0_0_42_Job_Submit_Req .
+
+hpc:hasApplicationJSON a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmitRequestContent ;
+    rdfs:range rdf:Resource .
+
+hpc:hasApplicationXYAML a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmitRequestContent ;
+    rdfs:range rdf:Resource .
+
+hpc:hasTextYAML a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmitRequestContent ;
+    rdfs:range rdf:Resource .
+
+# Job Submit Response Schema
+hpc:V0_0_42_Openapi_Job_Submit_Response a owl:Class .
+
+hpc:JobSubmitResponseContent a owl:Class .
+hpc:JobSubmitResponseContent rdfs:subClassOf hpc:V0_0_42_Openapi_Job_Submit_Response .
+
+hpc:hasApplicationJSON a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmitResponseContent ;
+    rdfs:range rdf:Resource .
+
+hpc:hasApplicationXYAML a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmitResponseContent ;
+    rdfs:range rdf:Resource .
+
+hpc:hasTextYAML a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmitResponseContent ;
+    rdfs:range rdf:Resource .
+```

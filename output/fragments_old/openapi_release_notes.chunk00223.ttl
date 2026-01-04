@@ -1,0 +1,41 @@
+hpc:V0_0_41_Openapi_Resp a owl:Class .
+hpc:V0_0_41_Openapi_Users_Add_Cond_Resp_Str rdf:type owl:Class ;
+    rdfs:subClassOf hpc:V0_0_41_Openapi_Resp .
+
+hpc:Post a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Path a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Removed a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:RequestBody a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Content a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Schema a owl:Class .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:Post ;
+    rdfs:range hpc:Content .
+
+hpc:hasRequestBody a owl:ObjectProperty ;
+    rdfs:domain hpc:Post ;
+    rdfs:range hpc:RequestBody .
+
+hpc:hasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:Content ;
+    rdfs:range hpc:Schema .
+
+hpc:hasRef a owl:DatatypeProperty ;
+    rdfs:domain hpc:Schema ;
+    rdfs:range xsd:anyURI .
+
+hpc:hasId a owl:DatatypeProperty ;
+    rdfs:domain hpc:Path ;
+    rdfs:range xsd:string .
+```

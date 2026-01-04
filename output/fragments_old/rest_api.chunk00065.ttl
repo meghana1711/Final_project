@@ -1,0 +1,62 @@
+hpc:Job a owl:Class .
+
+hpc:ReturnCode a owl:Class .
+hpc:hasReturnCode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:ReturnCode .
+
+hpc:ReturnCodeNumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:ReturnCode ;
+    rdfs:range xsd:integer .
+
+hpc:Set a owl:Class .
+hpc:hasSet rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ReturnCode ;
+    rdfs:range hpc:Set .
+
+hpc:Infinite a owl:Class .
+hpc:hasInfinite rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ReturnCode ;
+    rdfs:range hpc:Infinite .
+
+hpc:Signal a owl:Class .
+hpc:hasSignal rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Signal .
+
+hpc:SignalName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Signal ;
+    rdfs:range xsd:string .
+
+hpc:SignalId a owl:Class .
+hpc:hasSignalId rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Signal ;
+    rdfs:range hpc:SignalId .
+
+hpc:Number a owl:DatatypeProperty ;
+    rdfs:domain hpc:SignalId ;
+    rdfs:range xsd:integer .
+
+hpc:Set a owl:Class .
+hpc:hasSet rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SignalId ;
+    rdfs:range hpc:Set .
+
+hpc:Infinite a owl:Class .
+hpc:hasInfinite rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SignalId ;
+    rdfs:range hpc:Infinite .
+
+hpc:Status a owl:Class .
+hpc:hasStatus rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdfs:List .
+
+hpc:KillRequestUser a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:CPU a owl:Class .
+hpc:hasCPU rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc

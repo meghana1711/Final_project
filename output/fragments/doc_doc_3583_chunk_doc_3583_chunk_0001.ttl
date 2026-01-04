@@ -1,0 +1,12 @@
+hpc:SlurmCommand hpc:hasApi hpc:SlurmApi .
+hpc:SlurmApi rdf:type owl:Class .
+hpc:hasApi a owl:ObjectProperty .
+
+hpc:SlurmApi hpc:isFixedInMajorRelease rdf:true .
+hpc:isFixedInMajorRelease rdf:type owl:FunctionalProperty .
+
+hpc:SlurmApi hpc:changesSignificantlyBetweenMajorReleases rdf:true .
+hpc:changesSignificantlyBetweenMajorReleases rdf:type owl:FunctionalProperty .
+
+hpc:SlurmCommand hpc:targetsRestApi rdf:type owl:ObjectProperty .
+hpc:SlurmApi hpc:providesCrossVersionCompatibility rdf:type owl:FunctionalProperty .

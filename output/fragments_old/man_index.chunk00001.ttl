@@ -1,0 +1,69 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD rdf:type owl:NamedIndividual ;
+    rdf:label "SchedMD" .
+
+hpc:Overview rdf:type owl:Class .
+hpc:ReleaseNotes rdf:type owl:Class .
+hpc:Using rdf:type owl:Class .
+hpc:Documentation rdf:type owl:Class .
+hpc:FAQ rdf:type owl:Class .
+hpc:Publications rdf:type owl:Class .
+hpc:Installing rdf:type owl:Class .
+hpc:Download rdf:type owl:Class .
+hpc:RelatedSoftware rdf:type owl:Class .
+hpc:InstallationGuide rdf:type owl:Class .
+hpc:GettingHelp rdf:type owl:Class .
+hpc:MailingLists rdf:type owl:Class .
+hpc:SupportAndTraining rdf:type owl:Class .
+hpc:Troubleshooting rdf:type owl:Class .
+hpc:ManPages rdf:type owl:Class .
+
+hpc:sacctDisplays a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:sacctmgr a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:salloc a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:sattach a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:sbatch a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:sbcast a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:scancel a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:scontrol a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:scrontab a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:scrun a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:sdiag a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:sh5util a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+h

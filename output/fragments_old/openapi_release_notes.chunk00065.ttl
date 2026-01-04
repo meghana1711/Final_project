@@ -1,0 +1,12 @@
+hpc:JobDescriptionMsg a owl:Class .
+
+hpc:job_id rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescriptionMsg ;
+    rdfs:range xsd:string .
+
+hpc:job_desc_msg rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobDescriptionMsg ;
+    rdfs:range hpc:JobDescriptionMsg .
+```
+
+This ontology fragment represents a JobDescriptionMsg class with a datatype property `job_id` and an object property `job_desc_msg`. The `job_id` property is of type xsd:string, and the `job_desc_msg` property is a reference to another instance of the JobDescriptionMsg class.

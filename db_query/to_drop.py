@@ -6,6 +6,6 @@ DB_PATH = r"onto_db/onto_new.db"
 conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()
 
-cur.execute("DROP TABLE IF EXISTS non_taxonomic_edges;")  
+cur.execute("DROP TABLE IF EXISTS llm_enrich;")  
 conn.commit()
 conn.close()

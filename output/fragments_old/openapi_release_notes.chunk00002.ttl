@@ -1,0 +1,41 @@
+hpc:DeprecatedOperation a owl:Class .
+hpc:DeprecatedOperation rdfs:subClassOf owl:Thing .
+
+hpc:Node a owl:Class .
+hpc:Partition a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Account a owl:Class .
+hpc:QOS a owl:Class .
+hpc:Tres a owl:Class .
+hpc:User a owl:Class .
+hpc:WCKey a owl:Class .
+
+hpc:hasDeprecatedOperation rdfs:domain hpc:Node .
+hpc:hasDeprecatedOperation rdfs:domain hpc:Partition .
+hpc:hasDeprecatedOperation rdfs:domain hpc:Cluster .
+hpc:hasDeprecatedOperation rdfs:domain hpc:Account .
+hpc:hasDeprecatedOperation rdfs:domain hpc:QOS .
+hpc:hasDeprecatedOperation rdfs:domain hpc:Tres .
+hpc:hasDeprecatedOperation rdfs:domain hpc:User .
+hpc:hasDeprecatedOperation rdfs:domain hpc:WCKey .
+
+hpc:deprecatedOperation a owl:ObjectProperty .
+hpc:deprecatedOperation rdfs:domain hpc:Node .
+hpc:deprecatedOperation rdfs:domain hpc:Partition .
+hpc:deprecatedOperation rdfs:domain hpc:Cluster .
+hpc:deprecatedOperation rdfs:domain hpc:Account .
+hpc:deprecatedOperation rdfs:domain hpc:QOS .
+hpc:deprecatedOperation rdfs:domain hpc:Tres .
+hpc:deprecatedOperation rdfs:domain hpc:User .
+hpc:deprecatedOperation rdfs:domain hpc:WCKey .
+
+hpc:flags a owl:DatatypeProperty .
+hpc:flags rdfs:domain hpc:Account .
+hpc:flags rdfs:range xsd:string .
+hpc:flags rdfs:subPropertyOf rdf:list .
+
+hpc:flagsItem a owl:Class .
+hpc:flagsItem rdfs:subClassOf owl:Thing .
+hpc:flagsItem rdfs:subClassOf hpc:flags .
+hpc:flagsItem rdfs:subClassOf xsd:string .
+```

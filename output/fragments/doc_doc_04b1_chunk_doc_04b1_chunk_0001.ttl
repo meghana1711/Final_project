@@ -1,0 +1,19 @@
+hpc:HighThroughputComputing a owl:Class .
+hpc:SlurmAdministrator a owl:Class, rdfs:subClassOf hpc:HighThroughputComputing .
+
+hpc:PerformanceResults a owl:Class, rdfs:subClassOf hpc:HighThroughputComputing .
+hpc:SystemConfiguration a owl:Class, rdfs:subClassOf hpc:HighThroughputComputing .
+
+hpc:maxFileLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:SystemConfiguration ;
+    rdfs:range xsd:integer .
+
+hpc:tcpMaxSynBacklog a owl:DatatypeProperty ;
+    rdfs:domain hpc:SystemConfiguration ;
+    rdfs:range xsd:integer .
+
+hpc:fileMax a owl:ObjectProperty ;
+    rdfs:domain hpc:SystemConfiguration ;
+    rdfs:range rdf:Resource ;
+    rdfs:range rdf:PlainLiteral .
+```

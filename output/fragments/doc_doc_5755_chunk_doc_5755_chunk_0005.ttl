@@ -1,0 +1,24 @@
+hpc:SafelyRemovePartitions a owl:Class .
+hpc:ConfigureRoutingQueue a owl:Class .
+hpc:NonePlugins a owl:Class .
+hpc:AccountingDatabase a owl:Class .
+
+hpc:UseSlurmdbd insteadOf hpc:RegularDatabasePlugins .
+hpc:RebuildDatabaseHierarchy a owl:Class .
+hpc:ConfigureHighAvailabilityForDatabase a owl:Class .
+hpc:UseDoubleQuotesInMySQLQueries a owl:Class .
+
+hpc:ComputeNode a owl:Class .
+hpc:Slurmd a owl:Class, rdfs:subClassOf hpc:ComputeNode .
+
+hpc:NodeShownInStateDOWN a owl:Class .
+hpc:NodeCrash a owl:Class .
+hpc:ControlExecutionOfMultipleJobsPerNode a owl:Class .
+hpc:JobsAllocatedNodesUnableToInitiatePrograms a owl:Class .
+hpc:NodesNotRespondingLoggedBySlurmctld a owl:Class .
+hpc:PreserveDrainedNodeInformationBetweenMajorSlurmUpdates a owl:Class .
+
+hpc:NodeHealthCheckScriptForSlurm a owl:Class .
+hpc:HealthCheckProgramDoesNotExecuteOnDOWNNodes a owl:Class .
+hpc:PreventSlurmdAndSlurmstepdDaemonsFromBeingKilledWhenNodesMemoryExhausted a owl:Class .
+```

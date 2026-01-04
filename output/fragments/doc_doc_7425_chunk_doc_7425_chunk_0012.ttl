@@ -1,0 +1,41 @@
+hpc:Step a owl:Class .
+hpc:Step hpc:hasState a owl:ObjectProperty .
+hpc:StateDomain a rdfs:Class .
+hpc:StateDomain rdfs:subClassOf xsd:string .
+hpc:StateDomain rdfs:comment "UNIX timestamp or time string recognized by Slurm (e.g., '[MM/DD[/YY]-]HH:MM[:SS]'); may also be infinite or unset" .
+
+hpc:Step a owl:Class .
+hpc:Step hpc:hasRequestedFrequency a owl:ObjectProperty .
+hpc:RequestedFrequencyDomain a rdfs:Class .
+hpc:RequestedFrequencyDomain rdfs:subClassOf xsd:integer .
+hpc:RequestedFrequencyDomain rdfs:comment "32 bit integer number with flags" .
+hpc:Step hpc:hasRequestedFrequencyMax hpc:RequestedFrequencyDomain .
+hpc:Step hpc:hasRequestedFrequencyMin hpc:RequestedFrequencyDomain .
+
+hpc:Step a owl:Class .
+hpc:Step hpc:hasExitCode a owl:ObjectProperty .
+hpc:ExitCodeDomain a rdfs:Class .
+hpc:ExitCodeDomain rdfs:subClassOf xsd:integer .
+
+hpc:UpdateNodeMsg a owl:Class .
+hpc:UpdateNodeMsg hpc:hasState a owl:ObjectProperty .
+hpc:UpdateNodeMsgStateDomain a rdfs:Class .
+hpc:UpdateNodeMsgStateDomain rdfs:subClassOf xsd:string .
+hpc:UpdateNodeMsgStateDomain rdfs:comment "UNIX timestamp or time string recognized by Slurm (e.g., '[MM/DD[/YY]-]HH:MM[:SS]'); may also be infinite or unset" .
+
+hpc:UpdateNodeMsg a owl:Class .
+hpc:UpdateNodeMsg hpc:hasResumeAfter a owl:ObjectProperty .
+hpc:ResumeAfterDomain a rdfs:Class .
+hpc:ResumeAfterDomain rdfs:subClassOf xsd:integer .
+
+hpc:UpdateNodeMsg a owl:Class .
+hpc:UpdateNodeMsg hpc:hasTopologyStr a owl:DatatypeProperty .
+hpc:TopologyStrDomain a rdfs:Class .
+hpc:TopologyStrDomain rdfs:subClassOf xsd:string .
+
+hpc:UpdateNodeMsg a owl:Class .
+hpc:UpdateNodeMsg hpc:hasWeight a owl:ObjectProperty .
+hpc:WeightDomain a rdfs:Class .
+hpc:WeightDomain rdfs:subClassOf xsd:integer .
+
+hpc:User a owl:Class .

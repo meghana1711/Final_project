@@ -1,0 +1,22 @@
+hpc:SLURM_JOB_GPUS a owl:Class .
+hpc:SLURM_ARRAY_JOB_ID a owl:Class .
+hpc:SLURM_ARRAY_TASK_ID a owl:Class .
+hpc:SLURM_ARRAY_TASK_COUNT a owl:Class .
+
+hpc:GPU_DEVICE_ORDINAL a owl:ObjectProperty ;
+    rdfs:domain hpc:SLURM_JOB_GPUS ;
+    rdfs:range xsd:integer .
+
+hpc:ROCR_VISIBLE_DEVICES a owl:ObjectProperty ;
+    rdfs:domain hpc:SLURM_JOB_GPUS ;
+    rdfs:range xsd:integer .
+
+hpc:availableIn a owl:ObjectProperty ;
+    rdfs:domain hpc:Class ;
+    rdfs:range xsd:string .
+
+hpc:SLURM_JOB_GPUS rdfs:subClassOf (hpc:Job ALL (hpc:GPU_DEVICE_ORDINAL | hpc:ROCR_VISIBLE_DEVICES) .) .
+hpc:SLURM_ARRAY_JOB_ID rdfs:subClassOf (hpc:Job ALL (hpc:availableIn [hplc:value "PrologSlurmctld" || hplc:value "SrunProlog" || hplc:value "TaskProlog" || hplc:value "EpilogSlurmctld" || hplc:value "SrunEpilog" || hplc:value "TaskEpilog" ] .) .
+hpc:SLURM_ARRAY_TASK_ID rdfs:subClassOf (hpc:SLURM_ARRAY_JOB_ID owl:intersectionOf (hplc:availableIn [hplc:value "PrologSlurmctld" || hplc:value "SrunProlog" || hplc:value "TaskProlog" || hplc:value "EpilogSlurmctld" || hplc:value "SrunEpilog" || hplc:value "TaskEpilog" ] .) .
+hpc:SLURM_ARRAY_TASK_COUNT rdfs:subClassOf (hpc:SLURM_ARRAY_JOB_ID owl:intersectionOf (hplc:availableIn [hplc:value "PrologSlurmctld" || hplc:value "SrunProlog" || hplc:value "TaskProlog" || hplc:value "EpilogSlurmctld" || hplc:value "SrunEpilog" || hplc:value "TaskEpilog" ] .) .
+```

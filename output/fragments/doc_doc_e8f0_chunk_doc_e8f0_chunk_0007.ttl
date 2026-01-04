@@ -1,0 +1,57 @@
+hpc:CJobSubmitPlugin a owl:Class .
+hpc:LuaJobSubmitPlugin a owl:Class .
+
+hpc:hasDependency a owl:ObjectProperty .
+hpc:hasDependency rdfs:domain hpc:JobSubmitPlugin ;
+hpc:hasDependency rdfs:range xsd:string .
+
+hpc:usesSlurmDataStructures a owl:ObjectProperty .
+hpc:usesSlurmDataStructures rdfs:domain hpc:CJobSubmitPlugin ;
+hpc:usesSlurmDataStructures rdfs:range owl:Thing .
+
+hpc:providesMoreInformation a owl:ObjectProperty .
+hpc:providesMoreInformation rdfs:domain hpc:CJobSubmitPlugin ;
+hpc:providesMoreInformation rdfs:range owl:Thing .
+
+hpc:isBuiltInSlurmDistribution a owl:ObjectProperty .
+hpc:isBuiltInSlurmDistribution rdfs:domain hpc:JobSubmitPlugin ;
+hpc:isBuiltInSlurmDistribution rdfs:range xsd:boolean .
+
+hpc:isBuiltOutsideSlurmDistribution a owl:ObjectProperty .
+hpc:isBuiltOutsideSlurmDistribution rdfs:domain hpc:JobSubmitPlugin ;
+hpc:isBuiltOutsideSlurmDistribution rdfs:range xsd:boolean .
+
+hpc:requiresAccessToSlurmHeaderFiles a owl:ObjectProperty .
+hpc:requiresAccessToSlurmHeaderFiles rdfs:domain hpc:JobSubmitPlugin ;
+hpc:requiresAccessToSlurmHeaderFiles rdfs:range owl:Thing .
+
+hpc:buildsSlurm a owl:ObjectProperty .
+hpc:buildsSlurm rdfs:domain hpc:JobSubmitPlugin ;
+hpc:buildsSlurm rdfs:range owl:Thing .
+
+hpc:executesConfigCommand a owl:ObjectProperty .
+hpc:executesConfigCommand rdfs:domain hpc:JobSubmitPlugin ;
+hpc:executesConfigCommand rdfs:range xsd:string .
+
+hpc:hasBuildDirectory a owl:ObjectProperty .
+hpc:hasBuildDirectory rdfs:domain hpc:JobSubmitPlugin ;
+hpc:hasBuildDirectory rdfs:range xsd:string .
+
+hpc:hasLocalDirectory a owl:ObjectProperty .
+hpc:hasLocalDirectory rdfs:domain hpc:JobSubmitPlugin ;
+hpc:hasLocalDirectory rdfs:range xsd:string .
+
+hpc:hasSubdirectoryLibs a owl:ObjectProperty .
+hpc:hasSubdirectoryLibs rdfs:domain hpc:JobSubmitPlugin ;
+hpc:hasSubdirectoryLibs rdfs:range xsd:string .
+
+hpc:hasSubdirectoryDeps a owl:ObjectProperty .
+hpc:hasSubdirectoryDeps rdfs:domain hpc:JobSubmitPlugin ;
+hpc:hasSubdirectoryDeps rdfs:range xsd:string .
+
+hpc:copiesDepFile a owl:ObjectProperty .
+hpc:copiesDepFile rdfs:domain hpc:JobSubmitPlugin ;
+hpc:copiesDepFile rdfs:range xsd:string .
+
+hpc:renamesDepFile a owl:ObjectProperty .
+hpc:renamesDepFile rdfs:domain hpc

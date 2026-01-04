@@ -1,0 +1,57 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+hpc:Node a owl:Class .
+hpc:Partition a owl:Class .
+hpc:Job a owl:Class .
+hpc:JobStep a owl:Class .
+
+# Object Properties
+hpc:hasSlurmDaemon a owl:ObjectProperty .
+hpc:isManagedBy a owl:ObjectProperty .
+hpc:allocates a owl:ObjectProperty .
+hpc:executes a owl:ObjectProperty .
+hpc:arbitrates a owl:ObjectProperty .
+hpc:hasState a owl:ObjectProperty .
+hpc:hasName a owl:ObjectProperty .
+hpc:hasConstraints a owl:ObjectProperty .
+hpc:hasJobSteps a owl:ObjectProperty .
+hpc:hasPriority a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hasVersion rdf:datatype xsd:string .
+hpc:hasArchitecture rdf:datatype xsd:string .
+hpc:hasComponents rdf:datatype xsd:string .
+hpc:hasCommands rdf:datatype xsd:string .
+hpc:hasEntities rdf:datatype xsd:string .
+hpc:hasOptions rdf:datatype xsd:string .
+hpc:hasStateValue rdf:datatype xsd:string .
+
+# Subclass relations
+hpc:SlurmWorkloadManager rdfs:subClassOf owl:Class .
+hpc:SchedMD rdfs:subClassOf hpc:SlurmWorkloadManager .
+hpc:Node rdfs:subClassOf hpc:SlurmEntity .
+hpc:Partition rdfs:subClassOf hpc:SlurmEntity .
+hpc:Job rdfs:subClassOf hpc:SlurmEntity .
+hpc:JobStep rdfs:subClassOf hpc:SlurmEntity .
+
+# Domain and Range
+hpc:hasSlurmDaemon rdfs:domain hpc:ComputeNode ;
+                    rdfs:range hpc:SlurmdDaemon .
+hpc:isManagedBy rdfs:domain hpc:SlurmEntity ;
+                 rdfs:range hpc:SlurmWorkloadManager .
+hpc:allocates rdfs:domain hpc:SlurmWorkloadManager ;
+               rdfs:range hpc:Node .
+hpc:executes rdfs:domain hpc:SlurmWorkloadManager ;
+               rdfs:range hpc:Job .
+hpc:arbitrates rdfs:domain hpc:SlurmWorkloadManager ;
+               rdfs:range hpc:Job .
+hpc:hasState rdfs:domain hpc:SlurmEntity ;
+              rdfs:range xsd:string .
+hpc:hasName rdfs:domain hpc:SlurmEntity ;
+              rdfs:range xsd:string .
+hpc:hasConstraints rdfs:domain hpc:Partition ;
+                 rdfs:range xsd:string .
+hpc:hasJobSteps rdfs:domain hpc:Job ;
+                rdfs:range rdf:List .
+hpc:hasPriority rdfs:domain hpc:Job ;
+                rdfs:range xsd:

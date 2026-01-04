@@ -1,0 +1,44 @@
+hpc:UpdateNodeMsg a owl:Class .
+hpc:state a owl:DatatypeProperty ;
+    rdfs:domain hpc:UpdateNodeMsg ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf rdf:list .
+
+hpc:topology_str a owl:DatatypeProperty ;
+    rdfs:domain hpc:UpdateNodeMsg ;
+    rdfs:range xsd:string .
+
+hpc:weight a owl:DatatypeProperty ;
+    rdfs:domain hpc:UpdateNodeMsg ;
+    rdfs:range xsd:integer .
+
+hpc:User a owl:Class .
+hpc:administrator_level a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range rdf:List ;
+    rdfs:subPropertyOf rdf:list .
+hpc:administrator_level rdfs:subClassOf xsd:string .
+
+hpc:flags a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range rdf:List ;
+    rdfs:subPropertyOf rdf:list .
+hpc:flags rdfs:subClassOf xsd:string .
+
+hpc:UserShort a owl:Class .
+hpc:adminlevel a owl:ObjectProperty ;
+    rdfs:domain hpc:UserShort ;
+    rdfs:range rdf:List ;
+    rdfs:subPropertyOf rdf:list .
+hpc:adminlevel rdfs:subClassOf xsd:string .
+```
+
+For the enumerated values, I'm not including them in the output as they are not part of the ontology structure but rather the instances of the properties. However, you can easily add them as individual triples like this:
+
+```
+hpc:UpdateNodeMsg_instance state "NOT_RESPONDING" .
+hpc:UpdateNodeMsg_instance state "POWERED_DOWN" .
+...
+```
+
+Similarly, for the `administrator_level` and `flags` properties of the `User` class.

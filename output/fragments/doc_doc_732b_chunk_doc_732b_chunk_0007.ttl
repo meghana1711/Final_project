@@ -1,0 +1,20 @@
+hpc:Action a owl:Class .
+hpc:Action_Adopt_Failure rdf:type hpc:Action ;
+    rdfs:subClassOf hpc:Action .
+hpc:Action_Generic_Failure rdf:type hpc:Action ;
+    rdfs:subClassOf hpc:Action .
+
+hpc:allowValue a xsd:string ;
+    rdfs:comment "Let the connection through without adoption. WARNING: This value is insecure and is recommended for testing purposes only." ;
+    rdfs:domain hpc:Action_Adopt_Failure ;
+    rdfs:range xsd:string .
+hpc:denyValue a xsd:string ;
+    rdfs:comment "Deny the connection." ;
+    rdfs:domain hpc:Action_Adopt_Failure ;
+    rdfs:range xsd:string .
+
+hpc:ignoreValue a xsd:string ;
+    rdfs:comment "Do nothing. Fall through to the next pam module. WARNING This value is insecure and is recommended for testing purposes only." ;
+    rdfs:domain hpc:Action_Generic_Failure ;
+    rdfs:range xsd:string .
+```

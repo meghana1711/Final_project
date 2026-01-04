@@ -1,0 +1,42 @@
+hpc:JobDescription a owl:Class .
+
+hpc:deadline a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:distributionPlaneSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:int16 .
+
+hpc:endTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:excludedNodes a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:flags a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:flags a owl:ObjectProperty ;
+    rdfs:subPropertyOf owl:unionOf ;
+    rdfs:domain hpc:JobDescription .
+
+hpc:flags KILL_INVALID_DEPENDENCY a owl:EnumeratedClass ;
+    rdf:type owl:Restriction ;
+    rdfs:domain hpc:flags ;
+    owl:someValuesFrom xsd:string ;
+    owl:enumeration "KILL_INVALID_DEPENDENCY" .
+
+hpc:flags NO_KILL_INVALID_DEPENDENCY a owl:EnumeratedClass ;
+    rdf:type owl:Restriction ;
+    rdfs:domain hpc:flags ;
+    owl:someValuesFrom xsd:string ;
+    owl:enumeration "NO_KILL_INVALID_DEPENDENCY" .
+
+... (Repeat the above pattern for the remaining flags)
+```
+
+This Turtle code defines a class `hpc:JobDescription` and several datatype and object properties related to it. The `hpc:flags` property is defined as an object property that is a union of the enumerated classes representing the different flag values. Each flag value is defined as an `owl:EnumeratedClass` with the appropriate `owl:enumeration` statement.

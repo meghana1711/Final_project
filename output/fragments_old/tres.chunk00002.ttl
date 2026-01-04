@@ -1,0 +1,48 @@
+hpc:Weight a owl:Class .
+hpc:Sacct a owl:Class .
+hpc:Sacctmgr a owl:Class .
+hpc:Sreport a owl:Class .
+
+hpc:uses a owl:ObjectProperty ;
+  rdfs:domain hpc:Sacct ;
+  rdfs:range hpc:Sreport .
+
+hpc:hasTRES a owl:ObjectProperty ;
+  rdfs:domain hpc:Sacct ;
+  rdfs:range xsd:string .
+
+hpc:isAvailable a owl:ObjectProperty ;
+  rdfs:domain hpc:Sacctmgr ;
+  rdfs:range hpc:TRES .
+
+hpc:showTRES a owl:ObjectProperty ;
+  rdfs:domain hpc:Sacctmgr ;
+  rdfs:range hpc:Sreport .
+
+hpc:generatesReports a owl:ObjectProperty ;
+  rdfs:domain hpc:Sreport ;
+  rdfs:range xsd:string .
+
+hpc:hasTRESReport a owl:ObjectProperty ;
+  rdfs:domain hpc:Sreport ;
+  rdfs:range xsd:string .
+
+hpc:BillingTRES a owl:DatatypeProperty ;
+  rdfs:domain hpc:Node .
+
+hpc:ReportedBillingTRES a owl:DatatypeProperty ;
+  rdfs:domain hpc:BillingTRES .
+
+hpc:TRESBillingWeights a owl:DatatypeProperty ;
+  rdfs:domain hpc:Partition .
+
+hpc:Node a owl:Class ;
+  rdfs:subClassOf [ a owl:Class ;
+    rdfs:subClassOf hpc:Resource ] .
+
+hpc:Partition a owl:Class ;
+  rdfs:subClassOf [ a owl:Class ;
+    rdfs:subClassOf hpc:Resource ] .
+
+hpc:Resource a owl:Class .
+```

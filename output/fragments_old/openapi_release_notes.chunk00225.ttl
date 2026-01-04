@@ -1,0 +1,59 @@
+hpc:WCKeyResponse a owl:Class ;
+    rdfs:subClassOf <#/components/schemas/v0.0.41_openapi_wckey_resp> .
+
+hpc:JobDescMsg a owl:Class ;
+    rdfs:subClassOf <http://example.org/hpc#v0.0.40_job_desc_msg> .
+
+hpc:WCKeyResponse_get a owl:Class ;
+    rdfs:subClassOf hpc:WCKeyResponse ;
+    rdfs:subClassOf <http://example.org/hpc#Response> .
+
+hpc:WCKeyResponse_post a owl:Class ;
+    rdfs:subClassOf hpc:WCKeyResponse ;
+    rdfs:subClassOf <http://example.org/hpc#Response> .
+
+hpc:WCKeyResponse_get_textYAML a owl:DatatypeProperty ;
+    rdfs:domain hpc:WCKeyResponse_get ;
+    rdfs:range xsd:string .
+
+hpc:WCKeyResponse_post_textYAML a owl:DatatypeProperty ;
+    rdfs:domain hpc:WCKeyResponse_post ;
+    rdfs:range xsd:string .
+
+hpc:WCKeyRequest a owl:Class ;
+    rdfs:subClassOf <http://example.org/hpc#Request> .
+
+hpc:WCKeyRequest_textYAML a owl:DatatypeProperty ;
+    rdfs:domain hpc:WCKeyRequest ;
+    rdfs:range xsd:string .
+
+hpc:WCKeyRequest_applicationJSON a owl:Class ;
+    rdfs:subClassOf hpc:WCKeyRequest ;
+    rdfs:subClassOf <http://example.org/hpc#Request> .
+
+hpc:WCKeyRequest_applicationJSON_textYAML a owl:DatatypeProperty ;
+    rdfs:domain hpc:WCKeyRequest_applicationJSON ;
+    rdfs:range xsd:string .
+
+# Slurmdb API v0.0.40
+
+hpc:JobDescMsg_cpuBindingFlags a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescMsg ;
+    rdfs:range xsd:string .
+
+hpc:JobDescMsg_cpuBindingFlags_CPU_BIND_MAP a xsd:string ;
+    hpc:JobDescMsg_cpuBindingFlags rdfs:range .
+
+hpc:JobDescMsg_cpuBindingFlags_CPU_BIND_MASK a xsd:string ;
+    hpc:JobDescMsg_cpuBindingFlags rdfs:range .
+
+hpc:JobDescMsg_cpuBindingFlags_CPU_BIND_LDRANK a xsd:string ;
+    hpc:JobDescMsg_cpuBindingFlags rdfs:range .
+
+hpc:JobDescMsg_cpuBindingFlags_CPU_BIND_LDMAP a xsd:string ;
+    hpc:JobDescMsg_cpuBindingFlags rdfs:range .
+
+hpc:JobDescMsg_cpuBindingFlags_CPU_BIND_LDMASK a xsd:string ;
+    hpc:JobDescMsg_cpuBindingFlags rdfs:range .
+
+hpc:

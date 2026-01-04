@@ -1,0 +1,32 @@
+hpc:CPUAccounting a owl:Class .
+hpc:StatCPU a owl:Class .
+hpc:StatCPU rdfs:subClassOf hpc:CPUAccounting .
+
+hpc:EBPFProgram a owl:Class .
+hpc:EBPFProgram rdfs:subClassOf hpc:Device .
+hpc:Device a owl:Class .
+
+hpc:CgroupV1 a owl:Class .
+hpc:SwapAccounting a owl:DatatypeProperty ;
+    rdfs:domain hpc:CgroupV1 ;
+    rdfs:range xsd:boolean .
+
+hpc:KernelCommandLine a owl:Class .
+hpc:GrubFile a owl:Class .
+hpc:UpdateGrub a owl:ObjectProperty ;
+    rdfs:domain hpc:GrubFile ;
+    rdfs:range hpc:KernelCommandLine .
+
+hpc:KernelConfig a owl:Class .
+hpc:MemcgSwap a owl:DatatypeProperty ;
+    rdfs:domain hpc:KernelConfig ;
+    rdfs:range xsd:boolean .
+
+hpc:SystemdJoinControllers a owl:DatatypeProperty ;
+    rdfs:domain hpc:CgroupV1 ;
+    rdfs:range xsd:boolean .
+
+hpc:SlurmCompatibility a owl:DatatypeProperty ;
+    rdfs:domain hpc:CgroupV1 ;
+    rdfs:range xsd:boolean .
+```

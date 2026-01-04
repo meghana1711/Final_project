@@ -1,0 +1,25 @@
+hpc:Administrator a owl:Class .
+hpc:Operator a owl:Class .
+hpc:PasswdFile a rdf:Property .
+hpc:SameUid a owl:ObjectProperty .
+hpc:AuthenticateCorrectly a owl:ObjectProperty .
+hpc:LdapServer a owl:Class .
+
+hpc:BackupInstance a owl:Class .
+hpc:AccountingStorageBackupHost a rdf:Property .
+hpc:DbdBackupHost a rdf:Property .
+hpc:DifferentMachine a owl:ObjectProperty .
+hpc:SameDatabase a owl:ObjectProperty .
+hpc:SameMungeKey a owl:ObjectProperty .
+hpc:SameUsers a owl:ObjectProperty .
+hpc:SameUidGid a owl:ObjectProperty .
+
+hpc:SlurmJobCompConfiguration a owl:Class .
+hpc:JobCompletionNotSupported a owl:ObjectProperty .
+hpc:Database a owl:Class .
+hpc:JobCompHost a rdf:Property .
+hpc:JobCompLoc a rdf:Property .
+hpc:JobCompPass a rdf:Property .
+hpc:DatabaseUser a owl:Class .
+hpc:SecurePassword a owl:ObjectProperty .
+```

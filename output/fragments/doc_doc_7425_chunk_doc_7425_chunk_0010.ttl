@@ -1,0 +1,48 @@
+hpc:QoS_Flags a owl:Class .
+hpc:Preempt_Mode a owl:Class .
+hpc:Reservation_Desc_Msg a owl:Class .
+hpc:Flag a owl:EnumRestriction ;
+    rdfs:domain hpc:QoS_Flags ;
+    rdfs:range xsd:string ;
+    owl:enumeration "NOT_SET" "ADD" "REMOVE" "DELETED" "PARTITION_MINIMUM_NODE" "PARTITION_MAXIMUM_NODE".
+
+hpc:Preempt_Mode_Mode a owl:Class ;
+    rdfs:subClassOf hpc:QoS_Flags .
+
+hpc:Preempt_Mode_Description a rdfs:Property ;
+    rdfs:domain hpc:Preempt_Mode ;
+    rdfs:range xsd:string .
+
+hpc:Preempt_Mode_Items a owl:Class ;
+    rdfs:subClassOf hpc:QoS_Flags .
+
+hpc:Preempt_Mode_Items_Enum a owl:ObjectProperty ;
+    rdfs:domain hpc:Preempt_Mode_Items ;
+    rdfs:range hpc:Flag .
+
+hpc:Reservation_Desc_Msg_Comment a rdfs:Property ;
+    rdfs:domain hpc:Reservation_Desc_Msg ;
+    rdfs:range xsd:string .
+
+hpc:Reservation_Desc_Msg_Core_Count a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation_Desc_Msg ;
+    rdfs:range xsd:integer .
+
+hpc:Reservation_Desc_Msg_Core_Count_Description a rdfs:Property ;
+    rdfs:domain hpc:Reservation_Desc_Msg_Core_Count ;
+    rdfs:range xsd:string .
+
+hpc:Reservation_Desc_Msg_Duration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation_Desc_Msg ;
+    rdfs:range xsd:integer .
+
+hpc:Reservation_Desc_Msg_Duration_Description a rdfs:Property ;
+    rdfs:domain hpc:Reservation_Desc_Msg_Duration ;
+    rdfs:range xsd:string .
+
+hpc:Reservation_Desc_Msg_End_Time a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation_Desc_Msg ;
+    rdfs:range xsd:integer .
+
+hpc:Reservation_Desc_Msg_End_Time_Description a rdfs:Property ;
+    rdfs:domain hpc:Reservation_Desc_Msg_End_Time ;

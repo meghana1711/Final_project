@@ -1,0 +1,72 @@
+# Partitions
+hpc:State a owl:Class ;
+  rdfs:subClassOf hpc:Partition .
+
+hpc:PartitionsEndpoint a owl:Class .
+
+hpc:replaceNodes_online rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:PartitionsEndpoint ;
+  rdfs:range hpc:State .
+
+hpc:state rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:PartitionsEndpoint .
+
+# Associations
+hpc:Associations a owl:Class .
+hpc:post a owl:ObjectProperty ;
+  rdfs:domain hpc:Associations ;
+  rdfs:range hpc:DBV0_0_37_Response_Associations .
+
+# Job Properties
+hpc:JobProperties a owl:Class ;
+  rdfs:subClassOf hpc:Required .
+
+# Node
+hpc:Node a owl:Class .
+hpc:state_flags rdf:type owl:DatatypeProperty ;
+  rdfs:domain hpc:Node .
+hpc:next_state_after_reboot_flags rdf:type owl:DatatypeProperty ;
+  rdfs:domain hpc:Node .
+
+# Job
+hpc:Job a owl:Class .
+hpc:previous rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:Job .
+
+# Tres List
+hpc:TresList a owl:Class .
+
+# Job Query CSV parameters
+hpc:JobQueryCSVParameters a owl:Class ;
+  rdfs:subClassOf hpc:Parameter .
+
+# Partition
+hpc:Partition a owl:Class .
+hpc:min_nodes_per_job rdf:type owl:DatatypeProperty ;
+  rdfs:domain hpc:Partition .
+
+# Node Comment
+hpc:NodeComment rdf:type owl:DatatypeProperty ;
+  rdfs:domain hpc:Node .
+
+# Initial Implementation of database queries
+hpc:DatabaseQueries a owl:Class .
+
+# Error Schema
+hpc:Error a owl:Class .
+
+# Nodes Response
+hpc:NodesResponse a owl:Class ;
+  rdfs:subClassOf hpc:Response .
+
+# Partitions Response
+hpc:PartitionsResponse a owl:Class ;
+  rdfs:subClassOf hpc:Response .
+
+# Pings Response
+hpc:PingsResponse a owl:Class ;
+  rdfs:subClassOf hpc:Response .
+
+# Simplify possible signals for canceling jobs
+hpc:CancelJobSignal a owl:DatatypeProperty ;
+  rdfs:domain hpc:Job .

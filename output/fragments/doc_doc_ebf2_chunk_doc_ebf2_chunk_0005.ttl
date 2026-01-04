@@ -1,0 +1,23 @@
+hpc:CGroupPlugin a owl:Class .
+hpc:SlurmCGroupPlugin a subClassOf hpc:CGroupPlugin .
+hpc:UsesCpuacctController an owl:ObjectProperty .
+hpc:UsesMemoryController an owl:ObjectProperty .
+hpc:GathersStatistics a owl:Class .
+hpc:GathersCpuStatistics a subClassOf hpc:GathersStatistics .
+hpc:GathersMemoryStatistics a subClassOf hpc:GathersStatistics .
+hpc:CGroupStatistics a owl:Class .
+hpc:LinuxPlugin a owl:Class .
+hpc:JobacctGatherType a owl:DatatypeProperty .
+hpc:SlurmConf a owl:Class .
+hpc:CGroupConf a owl:Class .
+hpc:ResourceSpecialization a owl:Class .
+hpc:ReservesCores a owl:ObjectProperty .
+hpc:ReservesMemory a owl:ObjectProperty .
+hpc:SlurmComputeNodeDaemon a owl:Class .
+hpc:SlurmStepd a owl:Class .
+hpc:CGroupV1 a owl:Class .
+hpc:CGroupV2 a owl:Class .
+hpc:UnifiedMode a owl:ObjectProperty .
+hpc:Hierarchy a owl:Class .
+hpc:ControllerHierarchy a subClassOf hpc:Hierarchy .
+```

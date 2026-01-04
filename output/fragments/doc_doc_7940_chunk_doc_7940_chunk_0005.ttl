@@ -1,0 +1,38 @@
+hpc:MPIInterfaceImplementation a owl:Class .
+hpc:SlurmdSpooldirEquality a owl:ObjectProperty ;
+    rdfs:domain hpc:MPIInterfaceImplementation ;
+    rdfs:range xsd:string .
+
+hpc:WorkaroundAllocation a owl:Class ;
+    rdfs:subClassOf hpc:Allocation .
+
+hpc:LaunchParameters a owl:DatatypeProperty ;
+    rdfs:domain hpc:MPIInterfaceImplementation .
+
+hpc:CancelRequest a owl:Class .
+hpc:CancelSiblingJob a owl:ObjectProperty ;
+    rdfs:domain hpc:CancelRequest .
+hpc:ClusterName a xsd:string .
+
+hpc:JobModification a owl:Class .
+hpc:JobModificationRouting a owl:ObjectProperty ;
+    rdfs:domain hpc:JobModification .
+
+hpc:JobArray a owl:Class .
+hpc:JobArrayExecution a owl:ObjectProperty ;
+    rdfs:domain hpc:JobArray .
+    rdfs:range xsd:string .
+
+hpc:StatusCommand a owl:Class .
+hpc:Federation a owl:ObjectProperty ;
+    rdfs:domain hpc:StatusCommand .
+hpc:ClusterInFederation a owl:ObjectProperty ;
+    rdfs:domain hpc:StatusCommand .
+hpc:JobInfo a owl:Class .
+hpc:UnifiedView a owl:ObjectProperty ;
+    rdfs:domain hpc:StatusCommand .
+
+hpc:FederationParameters a owl:DatatypeProperty ;
+    rdfs:domain hpc:StatusCommand .
+hpc:FedDisplay a xsd:string .
+```

@@ -1,0 +1,70 @@
+hpc:PAMModule a owl:Class .
+
+# Account Stack
+hpc:AccountStack a owl:Class .
+hpc:includes rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:AccountStack ;
+    rdfs:range hpc:PAMModule .
+
+# PAM Control Flags
+hpc:RequiredFlag a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:SufficientFlag a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+# PAM Module Types
+hpc:SlurmAdopt a owl:Class ;
+    rdfs:subClassOf hpc:PAMModule .
+
+hpc:Systemd a owl:Class ;
+    rdfs:subClassOf hpc:PAMModule .
+
+# PAM Module Relations
+hpc:shouldBeLast rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmAdopt ;
+    rdfs:range hpc:AccountStack .
+
+hpc:conflictsWith rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PAMModule ;
+    rdfs:range hpc:PAMModule .
+
+# PAM Module Requirements
+hpc:requiresTaskPlugin rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmAdopt ;
+    rdfs:range xsd:string .
+
+hpc:requiresProctrackPlugin rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmAdopt ;
+    rdfs:range xsd:string .
+
+# File Inclusion
+hpc:IncludedFile a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:isIncludedIn rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PAMModule ;
+    rdfs:range hpc:IncludedFile .
+
+# File Failure Handling
+hpc:allowsFailure rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PAMModule ;
+    rdfs:range xsd:boolean .
+
+# Environment Variables
+hpc:XDGRuntimeDir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Prolog ;
+    rdfs:range xsd:string .
+
+hpc:XDGSessionID a owl:DatatypeProperty ;
+    rdfs:domain hpc:Prolog ;
+    rdfs:range xsd:string .
+
+hpc:XDGSessionType a owl:DatatypeProperty ;
+    rdfs:domain hpc:Prolog ;
+    rdfs:range xsd:string .
+
+hpc:XDGSessionClass a owl:DatatypeProperty ;
+    rdfs:domain hpc:Prolog ;
+    rdfs:range xsd:string .
+```

@@ -1,0 +1,50 @@
+hpc:Switch a owl:Class .
+hpc:Node a owl:Class .
+hpc:Topology a owl:Class .
+
+hpc:hasSwitch a owl:ObjectProperty ;
+  rdfs:domain hpc:Switch ;
+  rdfs:range hpc:Switch .
+
+hpc:hasNode a owl:ObjectProperty ;
+  rdfs:domain hpc:Switch ;
+  rdfs:range hpc:Node .
+
+hpc:hasChildSwitch a owl:ObjectProperty ;
+  rdfs:domain hpc:Switch ;
+  rdfs:range hpc:Switch .
+
+hpc:hasLinkSpeed a owl:DatatypeProperty ;
+  rdfs:domain hpc:Switch ;
+  rdfs:range xsd:decimal .
+
+hpc:Topology hasSwitch a owl:ObjectProperty ;
+  rdfs:domain hpc:Topology ;
+  rdfs:range hpc:Switch .
+
+hpc:Switch_8_Node a hpc:Topology ;
+  hpc:hasSwitch (:s0 :s1 :s2 :s3) .
+  :s0 hpc:hasNode (:tux0 :tux1 :tux2 :tux3) .
+  :s1 hpc:hasNode (:tux4 :tux5 :tux6 :tux7) .
+  :s2 hpc:hasNode (:tux8 :tux9 :tux10 :tux11) .
+  :s3 hpc:hasNode (:tux12 :tux13 :tux14 :tux15) .
+
+hpc:Switch_2_Level a hpc:Topology ;
+  hpc:hasSwitch (:s0 :s1 :s2 :s3 :s4 :s5 :s6 :s7) .
+  :s0 hpc:hasNode (:tux0 :tux1 :tux2 :tux3) ;
+    hpc:hasLinkSpeed 900 .
+  :s1 hpc:hasNode (:tux4 :tux5 :tux6 :tux7) ;
+    hpc:hasLinkSpeed 900 .
+  :s2 hpc:hasNode (:tux8 :tux9 :tux10 :tux11) ;
+    hpc:hasLinkSpeed 900 .
+  :s3 hpc:hasNode (:tux12 :tux13 :tux14 :tux15) ;
+    hpc:hasLinkSpeed 1800 .
+  :s4 hpc:hasSwitch :s0 ;
+    hpc:hasLinkSpeed 1800 .
+  :s5 hpc:hasSwitch :s1 ;
+    hpc:hasLinkSpeed 1800 .
+  :s6 hpc:hasSwitch :s2 ;
+    hpc:hasLinkSpeed 1800 .
+  :s7 hpc:hasSwitch :s3 ;
+    hpc:hasLinkSpeed 1800 .
+```

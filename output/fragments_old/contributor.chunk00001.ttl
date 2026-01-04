@@ -1,0 +1,59 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class ;
+    rdfs:subClassOf hpc:SlurmWorkloadManager .
+
+hpc:Overview a owl:Class ;
+    rdfs:subClassOf hpc:Documentation .
+hpc:ReleaseNotes a owl:Class ;
+    rdfs:subClassOf hpc:Documentation .
+hpc:Using a owl:Class .
+hpc:Documentation a owl:Class .
+hpc:FAQ a owl:Class ;
+    rdfs:subClassOf hpc:Documentation .
+hpc:Publications a owl:Class .
+hpc:Installing a owl:Class .
+hpc:Download a owl:Class ;
+    rdfs:subClassOf hpc:Installing .
+hpc:RelatedSoftware a owl:Class .
+hpc:InstallationGuide a owl:Class ;
+    rdfs:subClassOf hpc:Documentation .
+hpc:GettingHelp a owl:Class .
+hpc:MailingLists a owl:Class ;
+    rdfs:subClassOf hpc:GettingHelp .
+hpc:SupportAndTraining a owl:Class ;
+    rdfs:subClassOf hpc:GettingHelp .
+hpc:Troubleshooting a owl:Class ;
+    rdfs:subClassOf hpc:GettingHelp .
+hpc:NOTESFORDEVELOPERS a owl:Class .
+
+hpc:officialIssueTracker a owl:ObjectProperty .
+hpc:codeContributions a owl:ObjectProperty .
+hpc:pullRequests a owl:ObjectProperty .
+hpc:targetReleases a owl:ObjectProperty .
+hpc:bugFixes a owl:ObjectProperty .
+hpc:contributedPatches a owl:ObjectProperty .
+hpc:reviewBySchedMD a owl:ObjectProperty .
+
+hpc:CodingGuidelines a owl:DatatypeProperty .
+hpc:LinuxKernelStyleGuidelines a owl:DatatypeProperty .
+hpc:TabsNotSpaces a owl:DatatypeProperty .
+hpc:TabsWidth a owl:DatatypeProperty .
+hpc:LinesWidth a owl:DatatypeProperty .
+hpc:ErrorMessage a owl:DatatypeProperty .
+hpc:KRStyle a owl:DatatypeProperty .
+hpc:UsesTypedefs a owl:DatatypeProperty .
+hpc:Comments a owl:DatatypeProperty .
+hpc:MultiLineComments a owl:DatatypeProperty .
+
+hpc:BuildSystemChanges a owl:ObjectProperty .
+hpc:ChangesToMakefileAm a owl:ObjectProperty .
+hpc:ChangesToConfigureAc a owl:ObjectProperty .
+hpc:ChangesToAuxdir a owl:ObjectProperty .
+
+hpc:Changelog a owl:DatatypeProperty .
+hpc:LogicallySeparateChunks a owl:DatatypeProperty .
+hpc:CompilablePatches a owl:DatatypeProperty .
+hpc:SpellingCorrections a owl:DatatypeProperty .
+hpc:FormattingDiscrepancies a owl:DatatypeProperty .
+hpc:AutomatedChange a owl:DatatypeProperty .
+hpc:

@@ -1,0 +1,21 @@
+hpc:QOS a owl:Class .
+hpc:Preempt a owl:Class .
+hpc:Priority a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOS ;
+    rdfs:range xsd:integer .
+hpc:UsageFactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOS ;
+    rdfs:range xsd:float .
+hpc:UsageThreshold a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOS ;
+    rdfs:range xsd:float .
+
+hpc:PreemptMode a owl:EnumeredClass ;
+    rdfs:subClassOf hpc:Preempt .
+hpc:mode a owl:DatatypeProperty ;
+    rdfs:domain hpc:PreemptMode ;
+    rdfs:range xsd:string .
+
+hpc:QOSFlags a owl:DeprecatedClass .
+hpc:ReservationFlags a owl:DeprecatedClass .
+```

@@ -1,0 +1,34 @@
+hpc:SELinux a owl:Class .
+hpc:PAM_SLURM_Adopt a owl:Class .
+hpc:TypeEnforcementFile a owl:Class .
+
+hpc:Module a owl:Class .
+hpc:requires a owl:ObjectProperty .
+
+hpc:Type a owl:Class .
+hpc:Class a owl:Class .
+hpc:Sock_File a owl:Class .
+hpc:Dir a owl:Class .
+hpc:Unix_Stream_Socket a owl:Class .
+
+hpc:allow a owl:ObjectProperty .
+
+hpc:sshd_t a hpc:Type .
+hpc:initrc_var_run_t a hpc:Type .
+hpc:unconfined_t a hpc:Type .
+hpc:var_spool_t a hpc:Type .
+
+hpc:search a rdfs:subClassOf hpc:Dir .
+hpc:write a rdfs:subClassOf hpc:Sock_File .
+hpc:read a rdfs:subClassOf hpc:Dir .
+hpc:connectto a rdfs:subClassOf hpc:Unix_Stream_Socket .
+
+hpc:sshd_t initrc_var_run_t:dir search hpc:allow .
+hpc:sshd_t initrc_var_run_t:sock_file write hpc:allow .
+hpc:sshd_t unconfined_t:unix_stream_socket connectto hpc:allow .
+hpc:sshd_t var_spool_t:dir read hpc:allow .
+hpc:sshd_t var_spool_t:sock_file write hpc:allow .
+
+hpc:module pam_slurm_adopt 1.0 hpc:Module .
+hpc:module pam_slurm_adopt 1.0 hpc:requires hpc:sshd_t .
+```

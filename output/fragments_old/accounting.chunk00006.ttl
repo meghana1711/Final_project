@@ -1,0 +1,65 @@
+hpc:Cluster a owl:Class .
+hpc:Account a owl:Class .
+hpc:User a owl:Class .
+hpc:Association a owl:Class .
+hpc:Partition a owl:Class .
+
+hpc:Name a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:domain hpc:Account ;
+    rdfs:domain hpc:User .
+
+hpc:ClusterOptions a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster .
+
+hpc:AccountOptions a owl:ObjectProperty ;
+    rdfs:domain hpc:Account .
+
+hpc:UserOptions a owl:ObjectProperty ;
+    rdfs:domain hpc:User .
+
+hpc:AccountOptions_Cluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:string .
+
+hpc:AccountOptions_Description a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:string .
+
+hpc:AccountOptions_Name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:string .
+
+hpc:AccountOptions_Organization a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:string .
+
+hpc:AccountOptions_Parent a owl:ObjectProperty ;
+    rdfs:domain hpc:Account .
+
+hpc:UserOptions_Account a owl:ObjectProperty ;
+    rdfs:domain hpc:User .
+
+hpc:UserOptions_AdminLevel a owl:EnumProperty ;
+    rdfs:domain hpc:User .
+    rdfs:range [ a owl:NamedIndividual ;
+                  hpc:AdminLevel "None" ;
+                  hpc:AdminLevel "Operator" ;
+                  hpc:AdminLevel "Admin" ] .
+
+hpc:UserOptions_Cluster a owl:ObjectProperty ;
+    rdfs:domain hpc:User .
+
+hpc:UserOptions_DefaultAccount a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+
+hpc:UserOptions_DefaultWCKey a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+
+hpc:UserOptions_Name a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+
+hpc:UserOptions_NewName a owl:Dat

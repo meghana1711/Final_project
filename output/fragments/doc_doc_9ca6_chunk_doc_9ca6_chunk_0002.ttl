@@ -1,0 +1,30 @@
+hpc:ResourceLayer a owl:Class .
+hpc:Resource a owl:Class .
+hpc:JobAllocation a owl:Class .
+hpc:Node a owl:Class .
+
+hpc:hasResource a owl:ObjectProperty ;
+    rdfs:domain hpc:JobAllocation ;
+    rdfs:range hpc:Resource .
+
+hpc:availableCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:ResourceLayer ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:allocatedCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:ResourceLayer ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:overlapsWith a owl:ObjectProperty ;
+    rdfs:domain hpc:JobAllocation ;
+    rdfs:range hpc:Node .
+
+hpc:LayerWithInfiniteResources a owl:Class ;
+    rdfs:subClassOf hpc:ResourceLayer .
+
+hpc:LayerWithZeroResources a owl:Class ;
+    rdfs:subClassOf hpc:ResourceLayer .
+
+hpc:FlatResource a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+```

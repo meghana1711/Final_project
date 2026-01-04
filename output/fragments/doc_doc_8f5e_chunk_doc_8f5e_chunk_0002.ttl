@@ -1,0 +1,31 @@
+hpc:Upgrade a owl:Class .
+hpc:CompatibleVersion a owl:Class .
+hpc:IncompatibleVersion a owl:Class .
+hpc:PreReleaseVersion a owl:Class .
+hpc:CurrentReleaseVersion a owl:Class .
+
+hpc:hasCompatibleVersion hpc:Upgrade rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:Upgrade ;
+ rdfs:range hpc:CompatibleVersion .
+
+hpc:hasIncompatibleVersion hpc:Upgrade rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:Upgrade ;
+ rdfs:range hpc:IncompatibleVersion .
+
+hpc:isCurrentRelease hpc:CompatibleVersion rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:CompatibleVersion ;
+ rdfs:range xsd:boolean .
+
+hpc:isPreRelease hpc:CompatibleVersion rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:CompatibleVersion ;
+ rdfs:range xsd:boolean .
+
+hpc:requiresVerification hpc:Upgrade rdf:type owl:ObjectProperty .
+
+hpc:EPELRepository a owl:Class .
+hpc:excludesSlurm hpc:EPELRepository rdf:type owl:ObjectProperty .
+
+hpc:PreReleaseWarning hpc:PreReleaseVersion rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:PreReleaseVersion ;
+ rdfs:range xsd:string .
+```

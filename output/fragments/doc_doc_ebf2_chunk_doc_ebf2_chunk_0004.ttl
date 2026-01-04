@@ -1,0 +1,40 @@
+hpc:TaskPlugin a owl:Class .
+hpc:TaskPluginConfined a owl:Class .
+hpc:TaskPluginConfinedByCpuSet a owl:Class .
+hpc:TaskPluginConfinedByMemory a owl:Class .
+hpc:TaskPluginConfinedByGres a owl:Class .
+hpc:TaskPluginConfinedByGpus a owl:Class .
+
+hpc:TaskPluginConfinedByCpuSet rdfs:subClassOf hpc:TaskPluginConfined .
+hpc:TaskPluginConfinedByMemory rdfs:subClassOf hpc:TaskPluginConfined .
+hpc:TaskPluginConfinedByGres rdfs:subClassOf hpc:TaskPluginConfined .
+hpc:TaskPluginConfinedByGpus rdfs:subClassOf hpc:TaskPluginConfined .
+
+hpc:confinesToCpuset a owl:ObjectProperty .
+hpc:confinesToMemory a owl:ObjectProperty .
+hpc:confinesToGres a owl:ObjectProperty .
+hpc:confinesToGpus a owl:ObjectProperty .
+
+hpc:confinesToCpuset rdfs:domain hpc:TaskPluginConfinedByCpuSet .
+hpc:confinesToMemory rdfs:domain hpc:TaskPluginConfinedByMemory .
+hpc:confinesToGres rdfs:domain hpc:TaskPluginConfinedByGres .
+hpc:confinesToGpus rdfs:domain hpc:TaskPluginConfinedByGpus .
+
+hpc:usesCpusetSubsystem a owl:ObjectProperty .
+hpc:usesMemorySubsystem a owl:ObjectProperty .
+hpc:usesDevicesSubsystem a owl:ObjectProperty .
+
+hpc:usesCpusetSubsystem rdfs:domain hpc:TaskPlugin .
+hpc:usesMemorySubsystem rdfs:domain hpc:TaskPlugin .
+hpc:usesDevicesSubsystem rdfs:domain hpc:TaskPlugin .
+
+hpc:jobacctGatherPlugin a owl:Class .
+hpc:jobacctGatherCgroupPlugin a owl:Class .
+hpc:jobacctGatherLinuxPlugin a owl:Class .
+
+hpc:jobacctGatherCgroupUsesCpuacctController a owl:ObjectProperty .
+hpc:jobacctGatherCgroupUsesMemoryController a owl:ObjectProperty .
+
+hpc:jobacctGatherCgroupUsesCpuacctController rdfs:domain hpc:jobacctGatherCgroupPlugin .
+hpc:jobacctGatherCgroupUsesMemoryController rdfs:domain hpc:jobacctGatherCgroupPlugin .
+```

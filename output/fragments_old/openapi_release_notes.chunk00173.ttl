@@ -1,0 +1,11 @@
+hpc:SlurmdbDiagStats a owl:Class .
+hpc:SlurmdbInstances a owl:Class .
+
+hpc:slurmdbdStatsResp a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmdbDiagStats ;
+    rdfs:range xsd:anyURI .
+
+hpc:instancesResp a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmdbInstances ;
+    rdfs:range xsd:anyURI .
+```

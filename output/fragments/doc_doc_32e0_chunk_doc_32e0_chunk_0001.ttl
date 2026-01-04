@@ -1,0 +1,31 @@
+hpc:JobCompType a owl:Class .
+hpc:JobCompLoc a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobCompType ;
+    rdfs:range xsd:string .
+
+hpc:JobCompLocFile a owl:Class ;
+    rdfs:subClassOf hpc:FileLocation .
+
+hpc:BootstrapServers a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobCompLocFile ;
+    rdfs:range xsd:string .
+
+hpc:Debug a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobCompLocFile ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:LingerMs a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobCompLocFile ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:LogLevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobCompLocFile ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:JobCompParams a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobCompType ;
+    rdfs:range xsd:string .
+
+hpc:JobCompType_Kafka a hpc:JobCompType .
+hpc:JobCompLocFile_RdKafkaConf a hpc:JobCompLocFile .
+```

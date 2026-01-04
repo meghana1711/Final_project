@@ -1,0 +1,33 @@
+hpc:ReservationResponse a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:ResourceResponse .
+
+hpc:ReservationResponseSchema a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf hpc:Schema .
+
+hpc:hasReservationResponse a owl:ObjectProperty ;
+    rdfs:domain hpc:ResourceResponse ;
+    rdfs:range hpc:ReservationResponse .
+
+hpc:hasReservationResponseSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:ResourceResponse ;
+    rdfs:range hpc:ReservationResponseSchema .
+
+# Reservations
+
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:hasReservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range hpc:Reservation .
+
+# Shares
+
+hpc:Share a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+```
+
+This ontology fragment represents the classes `ReservationResponse`, `ReservationResponseSchema`, `Reservation`, and `Share`, as well as the properties `hasReservationResponse`, `hasReservationResponseSchema`, `hasReservation`, and their domains and ranges. It does not include the specific schema for the YAML and JSON content types, as that information was not provided in the documentation.

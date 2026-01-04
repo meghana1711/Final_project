@@ -1,0 +1,63 @@
+hpc:Job a owl:Class .
+
+hpc:profile rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:priority a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:List ;
+    rdfs:subPropertyOf owl:hasValue .
+
+hpc:tres_per_job a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:failed_node a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:derived_exit_code a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+
+hpc:return_code a owl:DatatypeProperty ;
+    rdfs:domain hpc:DerivedExitCode ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:signal a owl:Class ;
+    rdfs:subClassOf hpc:DerivedExitCode .
+
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Signal ;
+    rdfs:range xsd:string .
+
+hpc:id a owl:DatatypeProperty ;
+    rdfs:domain hpc:Signal ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:status a owl:DatatypeProperty ;
+    rdfs:domain hpc:DerivedExitCode ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:List .
+
+hpc:priority_by_partition a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:List .
+
+hpc:partition a owl:DatatypeProperty ;
+    rdfs:domain hpc:PriorityByPartition ;
+    rdfs:range xsd:string .
+
+hpc:priority a owl:DatatypeProperty ;
+    rdfs:domain hpc:PriorityByPartition ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maximum_switch_wait_time a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:core_spec a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:mcs_label a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;

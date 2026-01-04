@@ -1,0 +1,32 @@
+hpc:SlurmResponse a owl:Class .
+hpc:OpenapiResp a owl:Class .
+
+hpc:SlurmNodeResponse a owl:Class, rdfs:subClassOf hpc:SlurmResponse .
+hpc:OpenapiNodesResp a owl:Class .
+hpc:OpenapiPartitionResp a owl:Class .
+
+hpc:hasContent a owl:ObjectProperty .
+hpc:hasContentSchema a owl:ObjectProperty .
+
+hpc:SlurmNodeResponse hasContent hpc:SlurmNode .
+hpc:OpenapiNodesResp hasContent hpc:Nodes .
+hpc:OpenapiPartitionResp hasContent hpc:Partition .
+hpc:SlurmResponse rdfs:domain hpc:SlurmOperation ;
+    rdfs:range hpc:SlurmResponseData .
+hpc:SlurmOperation a owl:Class .
+hpc:SlurmResponseData a owl:Class .
+hpc:Nodes a owl:Class .
+hpc:Partition a owl:Class .
+hpc:SlurmOperation rdfs:subClassOf rdf:Resource .
+hpc:SlurmResponseData rdfs:subClassOf rdf:Resource .
+hpc:Nodes rdfs:subClassOf rdf:Resource .
+hpc:Partition rdfs:subClassOf rdf:Resource .
+
+hpc:SlurmNode a owl:Class .
+hpc:SlurmOperation hasContentSchema #/components/schemas/v0.0.41_openapi_resp .
+hpc:SlurmNodeResponse hasContentSchema #/components/schemas/v0.0.41_openapi_nodes_resp .
+hpc:OpenapiResp rdfs:subClassOf xsd:anySimpleType .
+hpc:SlurmNodeResponse hasContent rdf:Property .
+hpc:OpenapiNodesResp hasContent rdf:Property .
+hpc:OpenapiPartitionResp hasContent rdf:Property .
+```

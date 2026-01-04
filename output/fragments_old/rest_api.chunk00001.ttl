@@ -1,0 +1,36 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:APIKey a owl:ObjectProperty .
+hpc:KeyParamName rdfs:domain hpc:APIKey ;
+    rdfs:range xsd:string .
+hpc:KeyInQuery rdfs:domain hpc:APIKey ;
+    rdfs:range xsd:boolean .
+hpc:KeyInHeader rdfs:domain hpc:APIKey ;
+    rdfs:range xsd:boolean .
+
+hpc:HTTPBasicAuthentication a owl:ObjectProperty .
+
+hpc:Method a owl:Class .
+
+hpc:Slurm a owl:Class .
+hpc:delete a owl:ObjectProperty ;
+    rdfs:subClassOf hpc:Method .
+hpc:get a owl:ObjectProperty ;
+    rdfs:subClassOf hpc:Method .
+hpc:post a owl:ObjectProperty ;
+    rdfs:subClassOf hpc:Method .
+
+hpc:SlurmJob a owl:Class .
+hpc:job_id a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmJob .
+hpc:signal a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmJob ;
+    rdfs:range xsd:string .
+hpc:flags a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmJob ;
+    rdfs:range xsd:string .
+
+hpc:SlurmResponse a owl:Class .
+hpc:v0.0.43_openapi_kill_job_resp a rdfs:subClassOf hpc:SlurmResponse .
+```

@@ -1,0 +1,35 @@
+hpc:MPS a owl:Class .
+hpc:hasBuiltInLimitation a owl:ObjectProperty .
+hpc:hasBuiltInLimitation rdfs:domain hpc:MPS ;
+                          rdfs:range rdf:PlainLiteral .
+
+hpc:GPUSharing a owl:Class .
+hpc:isTimeSliced a owl:ObjectProperty .
+hpc:isTimeSliced rdfs:domain hpc:GPUSharing ;
+                  rdfs:range hpc:MPS .
+
+hpc:MIGManagement a owl:Class .
+hpc:supportsMIG a owl:ObjectProperty .
+hpc:supportsMIG rdfs:domain hpc:MIGManagement .
+
+hpc:MIGInstance a owl:Class .
+hpc:isIsolated a owl:ObjectProperty .
+hpc:isIsolated rdfs:domain hpc:MIGInstance .
+
+hpc:Slurm a owl:Class .
+hpc:hasGresConf a owl:ObjectProperty .
+hpc:hasGresConf rdfs:domain hpc:Slurm ;
+              rdfs:range rdf:XMLLiteral .
+
+hpc:SlurmConfig a owl:Class .
+hpc:hasAccountingStorageTRES a owl:ObjectProperty .
+hpc:hasAccountingStorageTRES rdfs:domain hpc:SlurmConfig .
+
+hpc:GresType a owl:Class .
+hpc:isSubstringOfMIGProfile a owl:ObjectProperty .
+hpc:isSubstringOfMIGProfile rdfs:domain hpc:GresType .
+
+hpc:MultipleFiles a owl:Class .
+hpc:hasMultipleDeviceFiles a owl:ObjectProperty .
+hpc:hasMultipleDeviceFiles rdfs:domain hpc:GPU .
+```

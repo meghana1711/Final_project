@@ -1,0 +1,16 @@
+hpc:User a owl:Class .
+hpc:FairShareFactor a owl:DatatypeProperty .
+hpc:FairShareFactor rdfs:domain hpc:User .
+hpc:FairShareFactor rdfs:range xsd:decimal .
+
+hpc:User1 a hpc:User ;
+    hpc:FairShareFactor "0.408479"^^xsd:decimal .
+hpc:User2 a hpc:User ;
+    hpc:FairShareFactor "0.022097"^^xsd:decimal .
+hpc:User3 a hpc:User ;
+    hpc:FairShareFactor "0.125000"^^xsd:decimal .
+hpc:User4 a hpc:User ;
+    hpc:FairShareFactor "0.500000"^^xsd:decimal .
+hpc:User5 a hpc:User ;
+    hpc:FairShareFactor "0.749154"^^xsd:decimal .
+```

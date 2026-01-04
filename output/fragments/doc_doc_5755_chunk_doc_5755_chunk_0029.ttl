@@ -1,0 +1,42 @@
+hpc:Slurm a owl:Class .
+hpc:SlurmConf rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Configuration .
+
+hpc:SlurmConfHasResourceSpecification hpc:SlurmConf a owl:ObjectProperty .
+
+hpc:TaskPlugin a owl:Class ;
+    rdfs:subClassOf hpc:SlurmSetting .
+
+hpc:TaskPluginValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:TaskPlugin ;
+    rdfs:range xsd:string .
+
+hpc:BuildableLibrary a owl:Class ;
+    rdfs:subClassOf hpc:Software .
+
+hpc:BuildableLibraryRequiresDependency hpc:BuildableLibrary a owl:ObjectProperty .
+
+hpc:PamSlurmLibrary a owl:Class ;
+    rdfs:subClassOf hpc:BuildableLibrary .
+
+hpc:PamSlurmLibraryBuildRequiresPamDevel hpc:PamSlurmLibrary a owl:ObjectProperty .
+
+hpc:AuthNonePlugin a owl:Class ;
+    rdfs:subClassOf hpc:SlurmPlugin .
+
+hpc:AuthNonePluginNotBuiltByDefault a owl:DatatypeProperty ;
+    rdfs:domain hpc:AuthNonePlugin .
+
+hpc:AuthNonePluginCommunicationsUnauthenticated a owl:DatatypeProperty ;
+    rdfs:domain hpc:AuthNonePlugin .
+
+hpc:AuthNonePluginBuildRequiresAuthNoneRPM hpc:AuthNonePlugin a owl:ObjectProperty .
+
+hpc:SlurmBuildWithDebuggingSymbols a owl:Class ;
+    rdfs:subClassOf hpc:BuildableLibrary .
+
+hpc:SlurmBuildWithDebuggingSymbolsConfigureScriptOption hpc:SlurmBuildWithDebuggingSymbols a owl:ObjectProperty .
+
+hpc:SlurmCodeCompiledWithDebuggingFlags a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmBuildWithDebuggingSymbols .
+```

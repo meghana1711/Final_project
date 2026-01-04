@@ -1,0 +1,17 @@
+hpc:V0_0_42_Openapi_Resp a owl:Class .
+hpc:V0_0_42_Openapi_Assocs_Removed_Resp a owl:Class .
+
+hpc:Associations a owl:Class .
+
+hpc:hasResponseContent a owl:ObjectProperty .
+hpc:hasResponseContentSchema a owl:ObjectProperty .
+
+hpc:AssociationsPostResponse200 hpc:hasResponseContent rdf:nil .
+hpc:AssociationsPostResponse200 hpc:hasResponseContentSchema hpc:V0_0_42_Openapi_Resp .
+
+hpc:AssociationsDeleteResponse200 hpc:hasResponseContent rdf:nil .
+hpc:AssociationsDeleteResponse200 hpc:hasResponseContentSchema hpc:V0_0_42_Openapi_Assocs_Removed_Resp .
+
+hpc:AssociationsDeleteResponseDefault hpc:hasResponseContent rdf:nil .
+hpc:AssociationsDeleteResponseDefault hpc:hasResponseContentSchema rdf:nil .
+```

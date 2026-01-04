@@ -1,0 +1,39 @@
+hpc:SlurmdbConfigResponse a owl:Class .
+hpc:SlurmdbConfigRequest a owl:Class .
+
+hpc:hasSlurmdbConfigResponse a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbConfigRequest ;
+    rdfs:range hpc:SlurmdbConfigResponse .
+
+hpc:hasSlurmdbConfigResponseSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbConfigRequest ;
+    rdfs:range xsd:anyURI .
+
+hpc:SlurmdbConfigResponseSchema a owl:Class ;
+    rdfs:subClassOf xsd:anyURI .
+
+hpc:v0_0_40_openapi_slurmdbd_config_resp a hpc:SlurmdbConfigResponse ;
+    hpc:hasSlurmdbConfigResponseSchema [ a xsd:anyURI ;
+                                            rdf:value "http://example.org/hpc#v0.0.40_openapi_slurmdbd_config_resp" ] .
+
+hpc:v0_0_40_openapi_slurmdbd_config_resp a hpc:SlurmdbConfigResponseSchema ;
+    rdfs:subClassOf hpc:SlurmdbConfigResponseSchema .
+
+hpc:v0_0_40_openapi_resp a owl:Class ;
+    rdfs:subClassOf xsd:anyURI .
+
+hpc:hasSlurmdbConfigRequestSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbConfigRequest ;
+    rdfs:range xsd:anyURI .
+
+hpc:SlurmdbConfigRequestSchema a owl:Class ;
+    rdfs:subClassOf xsd:anyURI .
+
+hpc:hasSlurmdbConfigRequest a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbConfigResponse ;
+    rdfs:range hpc:SlurmdbConfigRequest .
+
+hpc:hasSlurmdbConfigRequestSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbConfigRequest ;
+    rdfs:range hpc:SlurmdbConfigRequestSchema .
+```

@@ -1,0 +1,14 @@
+hpc:Cluster a owl:Class .
+hpc:OpenapiClustersResp a owl:Class .
+hpc:OpenapiClustersRemovedResp a owl:Class .
+
+hpc:hasSchema a owl:ObjectProperty .
+
+hpc:OpenapiClustersResp rdfs:subClassOf hpc:Cluster .
+hpc:OpenapiClustersRemovedResp rdfs:subClassOf hpc:Cluster .
+
+hpc:hasSchema rdfs:domain hpc:Cluster ;
+                 rdfs:range rdf:Resource .
+```
+
+This ontology fragment defines two classes `hpc:Cluster`, `hpc:OpenapiClustersResp`, and `hpc:OpenapiClustersRemovedResp`. It also declares an object property `hpc:hasSchema` that connects a `hpc:Cluster` to its schema. The domain of `hpc:hasSchema` is `hpc:Cluster`, and its range is `rdf:Resource`.

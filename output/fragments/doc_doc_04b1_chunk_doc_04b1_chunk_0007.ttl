@@ -1,0 +1,60 @@
+hpc:HardwareCPU a owl:Class .
+hpc:SlurmctldDaemon a owl:Class .
+hpc:RPCRequest a owl:Class .
+hpc:GlobalSlurmctldLock a owl:Class .
+hpc:SchedulerThread a owl:Class .
+hpc:ConMgrThread a owl:Class .
+hpc:SchedulerType a owl:Class .
+hpc:SlurmctldDebug a owl:Class .
+hpc:SlurmctldPort a owl:Class .
+
+hpc:hasHardwareCPUs rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmctldDaemon ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasConMgrThreads rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmctldDaemon ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:usesSchedulerType rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmctldDaemon ;
+    rdfs:range hpc:SchedulerType .
+
+hpc:hasSlurmctldDebug rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmctldDaemon ;
+    rdfs:range hpc:SlurmctldDebug .
+
+hpc:hasSlurmctldPort rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmctldDaemon ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:isShortLivedJob a owl:ObjectProperty ;
+    rdfs:domain hpc:SchedulerType ;
+    rdfs:range xsd:boolean .
+
+hpc:hasFIFOScheduling rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SchedulerType ;
+    rdfs:range xsd:boolean .
+
+hpc:hasDetailedLogging rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmctldDebug ;
+    rdfs:range xsd:string .
+
+hpc:increasesSystemThroughputNegatively rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmctldDebug ;
+    rdfs:range xsd:boolean .
+
+hpc:requiresGlobalLock rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:RPCRequest ;
+    rdfs:range hpc:GlobalSlurmctldLock .
+
+hpc:causesContention rdf:type owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( (hpc:Thread) (hpc:GlobalSlurmctldLock) ) ] ;
+    rdfs:range [ a owl:Class ; owl:unionOf ( (hpc:KernelScheduler) (hpc:SchedulerThread) ) ] .
+
+hpc:runsSlower rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SchedulerThread ;
+    rdfs:range xsd:boolean .
+
+hpc:causesOutOfMemoryEvent rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc

@@ -1,0 +1,56 @@
+hpc:Account a owl:Class .
+hpc:FairShareFactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+hpc:EffectiveUsageRatio a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+hpc:LocalUsageRatio a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+hpc:UsageRatio a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+hpc:NormalizedShares a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+hpc:NormalizedUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+hpc:SiblingUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+hpc:ParentUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+hpc:DepthObliviousFairShareFactor a owl:FunctionalDataProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+hpc:DepthObliviousFairShareFactorFunction a owl:Function ;
+    rdfs:domain hpc:Account ;
+    owl:hasBody (
+        if( ( ln(?Rparent) * ln(?rl) <= 0 ) (
+            ( 1/(1+(5*pow(ln(?Rparent), 2)) )
+        )
+        (
+            if( ( ln(?Rparent) * ln(?rl) >= 0 ) (
+                1
+            )
+        )
+    )
+    ) .
+hpc:AccountAtFirstLevel a hpc:Account ;
+    hpc:EffectiveUsageRatio hpc:UsageRatio .
+hpc:AccountWithDepth a hpc:Account ;
+    rdfs:subClassOf hpc:Account .
+hpc:AccountWithDepth rdfs:subClassOf (
+    hpc:AccountWithSiblings rdfs:subClassOf hpc:Account
+) .
+hpc:AccountWithSiblings a hpc:Account ;
+    hpc:SiblingUsage rdf:type owl:ObjectProperty ;
+    hpc:SiblingUsage rdfs:domain hpc:AccountWithDepth ;
+    hpc:SiblingUsage rdfs:range hpc:AccountWithDepth ;
+    hpc:AllSiblingUsage rdf:type owl:ObjectProperty ;
+    hpc:AllSiblingUsage rdfs:domain hpc:AccountWithDepth ;
+    hpc:AllSiblingUsage rdfs:range xsd:decimal .
+```

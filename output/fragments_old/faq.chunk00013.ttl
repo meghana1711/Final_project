@@ -1,0 +1,81 @@
+hpc:Job a owl:Class .
+hpc:JobID rdf:type xsd:string ;
+        rdfs:domain hpc:Job .
+
+hpc:SLURM_JOB_ID rdf:type xsd:string ;
+        rdfs:domain hpc:Job .
+
+hpc:SLURM_JOB_NODELIST rdf:type xsd:string ;
+        rdfs:domain hpc:Job .
+
+# Job Output
+hpc:JobOutput a owl:Class .
+
+hpc:UserStdout rdf:type xsd:string ;
+        rdfs:domain hpc:JobOutput ;
+        rdfs:range hpc:UserStdout .
+
+hpc:UserStderr rdf:type xsd:string ;
+        rdfs:domain hpc:JobOutput ;
+        rdfs:range hpc:UserStderr .
+
+# Job State
+hpc:JobState a owl:Class .
+
+hpc:Completed rdf:type xsd:string ;
+        rdfs:domain hpc:JobState .
+
+hpc:Held rdf:type xsd:string ;
+        rdfs:domain hpc:JobState .
+
+# Job Control
+hpc:JobControl a owl:Class .
+
+hpc:Requeue rdf:type rdf:Resource ;
+        rdfs:subClassOf hpc:JobControl .
+
+hpc:SpecialExit rdf:type xsd:string ;
+        rdfs:domain hpc:Requeue .
+
+# Job Execution
+hpc:JobExecution a owl:Class .
+
+hpc:TaskProlog rdf:type xsd:string ;
+        rdfs:domain hpc:JobExecution .
+
+hpc:EpilogSlurmctld rdf:type rdf:Resource ;
+        rdfs:subClassOf hpc:JobExecution .
+
+# Process Tracking
+hpc:ProcessTracking a owl:Class .
+
+hpc:ProctrackType rdf:type xsd:string ;
+        rdfs:domain hpc:ProcessTracking .
+
+# CPU Frequency
+hpc:CPUFrequencyControl a owl:Class .
+
+hpc:BindToCPUs rdf:type rdf:Resource ;
+        rdfs:subClassOf hpc:CPUFrequencyControl .
+
+# Shell on Node
+hpc:ShellOnNode a owl:Class .
+
+hpc:use_interactive_step rdf:type xsd:boolean ;
+        rdfs:domain hpc:ShellOnNode .
+
+# Private /tmp and /dev/shm
+hpc:JobContainer a owl:Class .
+
+hpc:JobContainerType rdf:type xsd:string ;
+        rdfs:domain hpc:JobContainer .
+
+hpc:JobContainerTypeValue rdf:type xsd:string ;
+        rdfs:domain hpc:JobContainerType .
+
+hpc:job_container rdf:type rdf:Resource ;
+        rdfs:subClassOf hpc:JobContainer .
+
+hpc:basepath rdf:type xsd:string ;
+        rdfs:domain hpc:job_container .
+```

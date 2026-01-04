@@ -1,0 +1,35 @@
+hpc:SlurmDBD a owl:Class .
+hpc:hasStartOption a owl:ObjectProperty .
+hpc:hasStartOption rdfs:domain hpc:SlurmDBD ;
+  rdfs:range xsd:string .
+
+hpc:DaemonMode a owl:ObjectProperty .
+hpc:DaemonMode rdfs:domain hpc:SlurmDBD ;
+  rdfs:range xsd:boolean .
+
+hpc:Archive a owl:Class .
+hpc:Purge a owl:Class .
+
+hpc:ArchiveOption a owl:ObjectProperty .
+hpc:PurgeOption a owl:ObjectProperty .
+
+hpc:ArchiveUnit a owl:DatatypeProperty .
+hpc:PurgeUnit a owl:DatatypeProperty .
+
+hpc:ArchiveServer a owl:Class .
+hpc:CommunicateWithProductionServer a owl:ObjectProperty .
+hpc:CommunicateWithProductionServer rdfs:domain hpc:ArchiveServer ;
+  rdfs:range xsd:boolean .
+
+hpc:UseSeparateDataStorage a owl:ObjectProperty .
+hpc:UseSeparateDataStorage rdfs:domain hpc:ArchiveServer ;
+  rdfs:range xsd:boolean .
+
+hpc:MatchProductionServerData a owl:ObjectProperty .
+hpc:MatchProductionServerData rdfs:domain hpc:ArchiveServer ;
+  rdfs:range xsd:boolean .
+
+hpc:NeverCommunicateWithSlurmController a owl:ObjectProperty .
+hpc:NeverCommunicateWithSlurmController rdfs:domain hpc:ArchiveServer ;
+  rdfs:range xsd:boolean .
+```

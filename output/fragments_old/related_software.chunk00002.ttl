@@ -1,0 +1,56 @@
+hpc:PackageConfiguration a owl:Class .
+hpc:Compile a owl:ObjectProperty .
+hpc:PackageConfiguration rdfs:subClassOf owl:Class .
+hpc:Compile rdfs:domain hpc:PackageConfiguration ;
+                             rdfs:range xsd:string .
+
+hpc:JsonCPackage a owl:Class .
+hpc:JsonCPackage rdfs:subClassOf hpc:PackageConfiguration .
+
+hpc:CMake a owl:ObjectProperty .
+hpc:CMake rdfs:domain hpc:JsonCPackage ;
+             rdfs:range xsd:string .
+
+hpc:Make a owl:ObjectProperty .
+hpc:Make rdfs:domain hpc:JsonCPackage ;
+             rdfs:range xsd:string .
+
+hpc:Install a owl:ObjectProperty .
+hpc:Install rdfs:domain hpc:JsonCPackage ;
+             rdfs:range xsd:string .
+
+hpc:PkgConfigPath a owl:DatatypeProperty .
+hpc:PkgConfigPath rdfs:domain hpc:PackageConfiguration ;
+                 rdfs:range xsd:string .
+
+hpc:HttpParser a owl:Class .
+hpc:HttpParser rdfs:subClassOf owl:Class .
+
+hpc:HttpParserBuild a owl:ObjectProperty .
+hpc:HttpParserBuild rdfs:domain hpc:HttpParser ;
+                      rdfs:range xsd:string .
+
+hpc:MakeHttpParser a owl:ObjectProperty .
+hpc:MakeHttpParser rdfs:domain hpc:HttpParser ;
+                     rdfs:range xsd:string .
+
+hpc:InstallHttpParser a owl:ObjectProperty .
+hpc:InstallHttpParser rdfs:domain hpc:HttpParser ;
+                        rdfs:range xsd:string .
+
+hpc:HttpParserPath a owl:DatatypeProperty .
+hpc:HttpParserPath rdfs:domain hpc:PackageConfiguration ;
+                   rdfs:range xsd:string .
+
+hpc:Slurm a owl:Class .
+hpc:Slurm rdfs:subClassOf owl:Class .
+
+hpc:SlurmHttpParser a owl:ObjectProperty .
+hpc:SlurmHttpParser rdfs:domain hpc:Slurm ;
+                      rdfs:range xsd:string .
+
+hpc:SlurmYAML a owl:Class .
+hpc:SlurmYAML rdfs:subClassOf hpc:Slurm .
+
+hpc:SlurmYAMLBuild a owl:ObjectProperty .
+hpc:SlurmYAMLBuild rdfs:domain hpc

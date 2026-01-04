@@ -1,0 +1,50 @@
+hpc:Job a owl:Class .
+hpc:JobID rdf:type xsd:string .
+hpc:Partition a owl:Class .
+hpc:PartitionName rdf:type xsd:string .
+hpc:User rdf:type xsd:string .
+hpc:State rdf:type xsd:string .
+hpc:Time xsd:duration .
+hpc:Nodes rdf:type xsd:positiveInteger .
+hpc:NodeList rdf:type owl:Class .
+hpc:Reason rdf:type xsd:string .
+
+hpc:Node a owl:Class .
+hpc:ID rdf:type xsd:positiveInteger .
+hpc:Name rdf:type xsd:string .
+hpc:State rdf:type xsd:string .
+hpc:CPUs xsd:positiveInteger .
+hpc:Memory xsd:positiveInteger .
+hpc:TmpDisk xsd:positiveInteger .
+hpc:Weight xsd:positiveInteger .
+hpc:Features rdf:type xsd:string .
+hpc:Reason rdf:type xsd:string .
+
+hpc:allocated rdf:type owl:ObjectProperty .
+hpc:allocated rdfs:domain hpc:Job .
+hpc:allocated rdfs:range hpc:Node .
+
+hpc:idle rdf:type owl:ObjectProperty .
+hpc:idle rdfs:domain hpc:Node .
+hpc:idle rdfs:range owl:Thing .
+
+hpc:running rdf:type owl:ObjectProperty .
+hpc:running rdfs:domain hpc:Job .
+hpc:running rdfs:range hpc:Node .
+
+hpc:scheduled rdf:type owl:ObjectProperty .
+hpc:scheduled rdfs:domain hpc:Job .
+hpc:scheduled rdfs:range hpc:Node .
+
+hpc:pending rdf:type owl:ObjectProperty .
+hpc:pending rdfs:domain hpc:Job .
+hpc:pending rdfs:range owl:Thing .
+
+hpc:finished rdf:type owl:ObjectProperty .
+hpc:finished rdfs:domain hpc:Job .
+hpc:finished rdfs:range owl:Thing .
+
+hpc:concurrency rdf:type owl:ObjectProperty .
+hpc:concurrency rdfs:domain hpc:Job .
+hpc:concurrency rdfs:range owl:Class .
+```

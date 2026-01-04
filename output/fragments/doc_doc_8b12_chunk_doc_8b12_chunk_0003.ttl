@@ -1,0 +1,23 @@
+hpc:PySlurm a owl:Class .
+hpc:hasPythonInterface a owl:ObjectProperty .
+
+hpc:SPANK a owl:Class .
+hpc:hasSpankPlugin a owl:ObjectProperty .
+
+hpc:NodeHealthCheck a owl:Class .
+
+hpc:AccountingTool a owl:Class .
+hpc:hasAccountingDataDisplay a owl:ObjectProperty .
+hpc:hasMySQLDataWarehouse a owl:ObjectProperty .
+
+hpc:XDMoD a owl:Class .
+hpc:providesResourceMetrics a owl:ObjectProperty .
+
+hpc:STUBL a owl:Class .
+
+hpc:pestat a owl:Class .
+hpc:printsNodeStatus a owl:ObjectProperty .
+
+hpc:GraphicalSdiag a owl:Class .
+hpc:maintainsSlurmSchedulingStats a owl:ObjectProperty .
+```

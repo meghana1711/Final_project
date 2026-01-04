@@ -1,0 +1,59 @@
+# JWT and JWKS
+hpc:JWT a owl:Class .
+hpc:JWKS a owl:Class .
+
+# JWT properties
+hpc:iat a owl:DatatypeProperty ;
+    rdfs:domain hpc:JWT ;
+    rdfs:range xsd:integer .
+hpc:exp a owl:DatatypeProperty ;
+    rdfs:domain hpc:JWT ;
+    rdfs:range xsd:integer .
+hpc:sun a owl:DatatypeProperty ;
+    rdfs:domain hpc:JWT ;
+    rdfs:range xsd:string .
+
+# JWKS properties
+hpc:trustedKey a owl:ObjectProperty ;
+    rdfs:domain hpc:JWKS ;
+    rdfs:range hpc:Key .
+
+# Key properties
+hpc:e a owl:DatatypeProperty ;
+    rdfs:domain hpc:Key ;
+    rdfs:range xsd:base64Binary .
+hpc:n a owl:DatatypeProperty ;
+    rdfs:domain hpc:Key ;
+    rdfs:range xsd:base64Binary .
+
+# File properties
+hpc:file a owl:Class .
+hpc:ownership a owl:ObjectProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range rdf:List ;
+    rdfs:rangeMembership rdf:first hpc:User ;
+    rdfs:rangeMembership rdf:rest xsd:integer .
+hpc:permissions a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:integer .
+hpc:writableByOther a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:boolean .
+
+# User properties
+hpc:User a owl:Class .
+hpc:username a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+
+# SlurmUser a hpc:User .
+# root a hpc:User .
+
+# KeyCloak properties
+hpc:clientSecret a owl:DatatypeProperty ;
+    rdfs:domain hpc:KeyCloak .
+hpc:clientId a owl:DatatypeProperty ;
+    rdfs:domain hpc:KeyCloak .
+```
+
+This ontology fragment includes classes for JWT, JWKS

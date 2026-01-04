@@ -1,0 +1,44 @@
+hpc:OpenapiMeta a owl:Class .
+hpc:JobInfoResp a owl:Class .
+hpc:JobPostResponse a owl:Class .
+hpc:JobSubmitResponse a owl:Class .
+hpc:KillJobResp a owl:Class .
+hpc:KillJobsResp a owl:Class .
+hpc:LicensesResp a owl:Class .
+hpc:Meta a owl:Class .
+hpc:NodesResp a owl:Class .
+hpc:PartitionResp a owl:Class .
+hpc:PingArrayResp a owl:Class .
+hpc:ReservationModResp a owl:Class .
+hpc:ReservationResp a owl:Class .
+hpc:Response a owl:Class .
+hpc:SharesResp a owl:Class .
+hpc:SlurmdbdConfigResp a owl:Class .
+
+hpc:errors a owl:ObjectProperty .
+hpc:warnings a owl:ObjectProperty .
+
+hpc:JobInfoResp rdfs:subClassOf hpc:Response .
+hpc:JobPostResponse rdfs:subClassOf hpc:Response .
+hpc:JobSubmitResponse rdfs:subClassOf hpc:Response .
+hpc:KillJobResp rdfs:subClassOf hpc:Response .
+hpc:KillJobsResp rdfs:subClassOf hpc:Response .
+hpc:LicensesResp rdfs:subClassOf hpc:Response .
+hpc:Meta rdfs:subClassOf hpc:Response .
+hpc:NodesResp rdfs:subClassOf hpc:Response .
+hpc:PartitionResp rdfs:subClassOf hpc:Response .
+hpc:PingArrayResp rdfs:subClassOf hpc:Response .
+hpc:ReservationModResp rdfs:subClassOf hpc:Response .
+hpc:ReservationResp rdfs:subClassOf hpc:Response .
+hpc:SharesResp rdfs:subClassOf hpc:Response .
+hpc:SlurmdbdConfigResp rdfs:subClassOf hpc:Response .
+
+hpc:jobs a owl:ObjectProperty .
+hpc:last_backfill a owl:DatatypeProperty .
+hpc:last_update a owl:DatatypeProperty .
+hpc:results a owl:ObjectProperty .
+hpc:job_id a owl:DatatypeProperty .
+hpc:step_id a xsd:string .
+hpc:job_submit_user_msg a xsd:string .
+hpc:status a owl:ObjectProperty .
+hpc:licenses a owl:ObjectProperty

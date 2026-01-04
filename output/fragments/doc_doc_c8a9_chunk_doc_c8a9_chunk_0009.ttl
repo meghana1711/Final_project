@@ -1,0 +1,69 @@
+hpc:Cluster a owl:Class .
+hpc:Partition a owl:Class, rdfs:subClassOf hpc:Cluster .
+
+# Node
+hpc:Node a owl:Class .
+
+# Job
+hpc:Job a owl:Class .
+
+# Preemption
+hpc:Preemption a owl:Class .
+hpc:PreemptMode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Preemption ;
+    rdfs:range xsd:string .
+
+# Scheduler
+hpc:Scheduler a owl:Class .
+
+# Gang Scheduler
+hpc:GangScheduler a owl:Class, rdfs:subClassOf hpc:Scheduler .
+
+# Select Plugin
+hpc:SelectPlugin a owl:Class .
+
+# Backfill Scheduler
+hpc:BackfillScheduler a owl:Class, rdfs:subClassOf hpc:Scheduler .
+
+# Priority
+hpc:Priority a owl:Class .
+
+# Sharing
+hpc:Sharing a owl:Class .
+
+# State
+hpc:State a owl:Class .
+
+# Job Selection
+hpc:jobSelection a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectPlugin ;
+    rdfs:range hpc:Job .
+
+# Resource Allocation
+hpc:resourceAllocation a owl:ObjectProperty ;
+    rdfs:domain hpc:Scheduler ;
+    rdfs:range hp:Node .
+
+# Preemption Action
+hpc:preemptionAction a owl:ObjectProperty ;
+    rdfs:domain hpc:Preemption ;
+    rdfs:range hpc:State .
+
+# Partition Settings
+hpc:partitionSettings a owl:Class .
+hpc:PartitionName a owl:DatatypeProperty ;
+    rdfs:domain hpc:partitionSettings ;
+    rdfs:range xsd:string .
+hpc:Nodes a owl:DatatypeProperty ;
+    rdfs:domain hpc:partitionSettings ;
+    rdfs:range xsd:string .
+hpc:OverSubscribe a owl:DatatypeProperty ;
+    rdfs:domain hpc:partitionSettings ;
+    rdfs:range xsd:integer .
+hpc:PriorityTier a owl:DatatypeProperty ;
+    rdfs:domain hpc:partitionSettings ;
+    rdfs:range xsd:integer .
+hpc:Default a owl:DatatypeProperty ;
+    rdfs:domain hpc:partitionSettings ;
+    rdfs:range xsd:string .
+```

@@ -1,0 +1,40 @@
+hpc:JobSubmissionCommand a owl:Class .
+hpc:hasRequestedUnits a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobSubmissionCommand ;
+    rdfs:range xsd:integer .
+hpc:roundedUpToThousand a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmissionCommand ;
+    rdfs:range xsd:integer .
+hpc:BatchJob a owl:Class ;
+    rdfs:subClassOf hpc:JobSubmissionCommand .
+hpc:BurstBufferRequirements a owl:Class ;
+    rdfs:subClassOf hpc:JobSubmissionCommand .
+hpc:CommandLineJobOptions a owl:Class .
+hpc:sallocCommand a owl:Class ;
+    rdfs:subClassOf hpc:CommandLineJobOptions ;
+    hpc:hasBBOption a owl:ObjectProperty .
+hpc:srunCommand a owl:Class ;
+    rdfs:subClassOf hpc:CommandLineJobOptions ;
+    hpc:hasBBOption a owl:ObjectProperty .
+hpc:BBFOption a owl:Class .
+hpc:BurstBufferDirective a owl:Class ;
+    rdfs:subClassOf hpc:BurstBufferRequirements ;
+    rdfs:subPropertyOf hpc:hasCommentedDirective .
+hpc:hasBBStage a owl:ObjectProperty ;
+    rdfs:domain hpc:BurstBufferDirective ;
+    rdfs:range hpc:BurstBufferStage .
+hpc:BurstBufferStage a owl:Class .
+hpc:persistentBurstBuffer a owl:Class ;
+    rdfs:subClassOf hpc:BurstBufferStage .
+hpc:datawarpPlugin a owl:Class .
+hpc:stageIn a owl:ObjectProperty ;
+    rdfs:domain hpc:BurstBufferStage ;
+    rdfs:range hpc:BurstBufferAction .
+hpc:stageOut a owl:ObjectProperty ;
+    rdfs:domain hpc:BurstBufferStage ;
+    rdfs:range hpc:BurstBufferAction .
+hpc:burstBufferResourcePool a owl:Class .
+hpc:JobRequest a owl:Class ;
+    rdfs:subClassOf hpc:BurstBufferResourcePool ;
+    hpc:hasRequestedSize a owl:DatatypeProperty .
+```

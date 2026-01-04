@@ -1,0 +1,64 @@
+hpc:Job a owl:Class .
+hpc:Node a owl:Class .
+hpc:Socket a owl:Class .
+hpc:CPU a owl:Class .
+hpc:Task a owl:Class .
+
+hpc:hasNode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Node .
+
+hpc:hasSocket rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range hpc:Socket .
+
+hpc:hasCPU rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Socket ;
+    rdfs:range hpc:CPU .
+
+hpc:hasTask rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:CPU ;
+    rdfs:range hpc:Task .
+
+hpc:allocatedOn rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:CPU ;
+    rdfs:range xsd:integer .
+
+hpc:distributedTo rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:integer .
+
+hpc:boundTo rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:integer .
+
+hpc:BlockAllocation a owl:Class ;
+    rdfs:subClassOf hpc:AllocationMethod .
+
+hpc:CyclicDistribution a owl:Class ;
+    rdfs:subClassOf hpc:DistributionMethod .
+
+hpc:SocketBinding a owl:Class .
+```
+
+For the specific examples, I'll provide the instances instead of the classes, as they are not explicitly defined in the provided text:
+
+```
+hpc:Example1 a hpc:Job ;
+    hpc:hasNode n1, n2, n3 ;
+    hpc:hasTask 1-18 ;
+    hpc:allocationMethod hpc:CyclicDistribution ;
+    hpc:distributionMethod "cyclic:block" ;
+    hpc:cpuBind "cores" ;
+    hpc:ntasks 18 ;
+    hpc:ntasksPerNode 6 ;
+    hpc:allocatedOn [ a hpc:CPU ;
+                        hpc:allocatedOn 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 ] .
+    hpc:distributedTo [ a hpc:Task ;
+                          hpc:distributedTo 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 ] .
+    hpc:boundTo [ a hpc:Task ;
+                   hpc:boundTo 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 ] .
+
+hpc:Example2 a hpc:Job ;
+    hpc:hasNode n0 ;
+    h

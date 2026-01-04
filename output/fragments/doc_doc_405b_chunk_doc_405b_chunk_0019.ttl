@@ -1,0 +1,35 @@
+hpc:UnavailableNodes a owl:Class .
+hpc:reason rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Reservation a owl:Class .
+hpc:advancedReservation rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:ReservationDeleted a owl:Class .
+hpc:reservationDeleted rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:ResourcesNotAvailable a owl:Class .
+hpc:resources rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:SchedDefer a owl:Class .
+hpc:schedulerParameters rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:SystemFailure a owl:Class .
+hpc:systemFailure rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:TimeLimitExceeded a owl:Class .
+hpc:timeLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+```

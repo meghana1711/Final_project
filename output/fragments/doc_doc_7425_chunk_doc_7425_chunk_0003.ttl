@@ -1,0 +1,65 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ; rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:Job_Desc_Msg a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Segment_Size a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:State a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    hpc:hasCurrentState a owl:ObjectProperty ;
+    hpc:hasCurrentState rdfs:range xsd:string ;
+    hpc:hasCurrentState rdfs:range xsd:dateTime ;
+    hpc:hasCurrentState rdfs:range xsd:int64 ;
+    hpc:hasCurrentState rdfs:range xsd:unboundedInteger .
+
+hpc:Required_Features a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job_Desc_Msg ;
+    rdfs:range xsd:string .
+
+hpc:Cpu_Binding_Flags a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job_Desc_Msg ;
+    rdfs:range xsd:string .
+
+hpc:Profile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job_Desc_Msg ;
+    rdfs:range xsd:string ;
+    rdfs:range rdf:List ;
+    Profile rdfs:subPropertyOf rdf:list .
+
+hpc:Profile_Item a owl:DatatypeProperty ;
+    rdfs:domain Profile ;
+    rdfs:range xsd:string .
+
+hpc:Required_Nodes a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job_Desc_Msg ;
+    rdfs:range xsd:string .
+
+hpc:Required_Switches a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job_Desc_Msg ;
+    rdfs:range xsd:int .
+
+hpc:Rlimits a owl:Class ;
+    rdfs:subClassOf hpc:Job_Desc_Msg .
+
+hpc:Rlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rlimits ;
+    rdfs:range xsd:int64 .
+
+hpc:Rlimit_As a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rlimits ;
+    rdfs:range xsd:string .
+
+hpc:Rlimit_Core a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rlimits ;
+    rdfs:range xsd:int64 .
+
+hpc:Rlimit_Cpu a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rlimits ;
+    rdfs:range xsd:int64 .
+
+hpc:Rlimit_Data a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rlimits ;

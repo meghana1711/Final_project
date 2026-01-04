@@ -1,0 +1,43 @@
+hpc:User a owl:Class .
+hpc:WCKey a owl:Class .
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:hasWCKey a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:WCKey .
+
+hpc:addUserToWCKey a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:first hpc:User ;
+    rdfs:range rdf:rest hpc:WCKey .
+
+hpc:removeUserFromWCKey a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:first hpc:User ;
+    rdfs:range rdf:rest hpc:WCKey .
+
+hpc:setDefaultWCKey a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:first hpc:User ;
+    rdfs:range rdf:rest rdf:List ;
+    rdfs:range rdf:first hpc:Cluster ;
+    rdfs:range rdf:rest rdf:first hpc:WCKey .
+
+hpc:WCKeyOfJob a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:WCKeyForUser a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+
+hpc:DefaultWCKeyForUser a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+
+hpc:Cluster a owl:Class .
+```

@@ -1,0 +1,50 @@
+hpc:User a owl:Class .
+hpc:hasAssociation hpc:User hpc:Association .
+hpc:hasDefault hpc:User hpc:Default .
+hpc:hasAdministratorLevel hpc:User hpc:AdministratorLevel .
+hpc:hasOldName hpc:User hpc:String .
+hpc:hasWCKey hpc:User hpc:WCKey .
+hpc:hasCoordinator hpc:User hpc:Coordinator .
+hpc:hasFlags hpc:User hpc:Flags .
+hpc:hasName hpc:User hpc:String .
+
+hpc:Association a owl:Class .
+hpc:hasCluster hpc:Association hpc:Cluster .
+hpc:hasPartition hpc:Association xsd:int .
+hpc:hasId hpc:Association xsd:int .
+hpc:hasUser hpc:Association hpc:User .
+hpc:hasAccount hpc:Association hpc:Account .
+
+hpc:Default a owl:Class .
+hpc:hasWCKey hpc:Default hpc:WCKey .
+hpc:hasAccount hpc:Default hpc:Account .
+
+hpc:AdministratorLevel a owl:Class .
+hpc:isNotSet rdfs:subClassOf hpc:AdministratorLevel .
+
+hpc:WCKey a owl:Class .
+hpc:hasCluster hpc:WCKey hpc:Cluster .
+hpc:hasName hpc:WCKey hpc:String .
+hpc:hasFlags hpc:WCKey hpc:Flags .
+hpc:hasAccounting hpc:WCKey hpc:Accounting .
+hpc:hasId hpc:WCKey xsd:int .
+hpc:hasUser hpc:WCKey hpc:User .
+
+hpc:Accounting a owl:Class .
+hpc:hasStart hpc:Accounting xsd:int .
+hpc:hasId hpc:Accounting xsd:int .
+hpc:hasTRES hpc:Accounting hpc:TRES .
+hpc:hasAllocated hpc:Accounting hpc:Allocation .
+hpc:hasIdAlt hpc:Accounting xsd:int .
+
+hpc:TRES a owl:Class .
+hpc:hasName hpc:TRES hpc:String .
+hpc:hasCount hpc:TRES xsd:int .
+hpc:hasId hpc:TRES xsd:int .
+hpc:hasType hpc:TRES hpc:Type .
+
+hpc:Allocation a owl:Class .
+hpc:hasSeconds hpc:Allocation xsd:decimal .
+
+hpc:Coordinator a owl:Class .
+hpc:is

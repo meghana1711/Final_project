@@ -1,0 +1,33 @@
+hpc:GPUDeviceFile a owl:Class .
+hpc:LinuxMinorNumber a xsd:integer .
+hpc:PCIBusID a xsd:integer .
+hpc:NVIDIACUDA Documentation rdf:type rdfs:Resource .
+hpc:CUDA_VISIBLE_DEVICES rdf:type owl:ObjectProperty .
+hpc:CUDA_DEVICE_ORDER rdf:type owl:ObjectProperty .
+
+hpc:MPS a owl:Class .
+hpc:Node a owl:Class .
+hpc:Gres a owl:Class .
+hpc:MPSResource a owl:Class .
+
+hpc:configuredOn a owl:ObjectProperty .
+hpc:hasCount a owl:DatatypeProperty .
+hpc:hasName a owl:DatatypeProperty .
+hpc:hasFile a owl:DatatypeProperty .
+
+hpc:Node rdfs:subClassOf owl:Class .
+hpc:Gres rdfs:subClassOf owl:Class .
+hpc:MPSResource rdfs:subClassOf owl:Class .
+
+hpc:GPUDeviceFile rdfs:subClassOf hpc:Node .
+hpc:MPSResource rdfs:subClassOf hpc:Gres .
+
+hpc:hasCount rdfs:domain hpc:Gres .
+hpc:hasCount rdfs:range xsd:integer .
+hpc:hasName rdfs:domain hpc:Gres .
+hpc:hasName rdfs:range xsd:string .
+hpc:hasFile rdfs:domain hpc:MPSResource .
+hpc:hasFile rdfs:range xsd:string .
+hpc:configuredOn rdfs:domain hpc:MPSResource .
+hpc:configuredOn rdfs:range hpc:Node .
+```

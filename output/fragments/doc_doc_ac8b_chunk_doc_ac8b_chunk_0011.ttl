@@ -1,0 +1,50 @@
+hpc:DepthOblivious a owl:Class .
+hpc:isDepthOblivious a owl:ObjectProperty ;
+    rdfs:domain hpc:PriorityCalculation ;
+    rdfs:range xsd:boolean .
+
+hpc:NoFairTree a owl:Class .
+hpc:isNoFairTree a owl:ObjectProperty ;
+    rdfs:domain hpc:PriorityCalculation ;
+    rdfs:range xsd:boolean .
+
+hpc:IncrOnly a owl:Class .
+hpc:isIncrOnly a owl:ObjectProperty ;
+    rdfs:domain hpc:PriorityCalculation ;
+    rdfs:range xsd:boolean .
+
+hpc:MaxTres a owl:Class .
+hpc:hasMaxTres a owl:ObjectProperty ;
+    rdfs:domain hpc:PriorityCalculation ;
+    rdfs:range xsd:anyURI .
+
+hpc:NoNormalAll a owl:Class .
+hpc:isNoNormalAll a owl:ObjectProperty ;
+    rdfs:domain hpc:PriorityCalculation ;
+    rdfs:range xsd:boolean .
+
+hpc:NoNormalAssoc a owl:Class .
+hpc:isNoNormalAssoc a owl:ObjectProperty ;
+    rdfs:domain hpc:PriorityCalculation ;
+    rdfs:range xsd:boolean .
+
+hpc:NoNormalPart a owl:Class .
+hpc:isNoNormalPart a owl:ObjectProperty ;
+    rdfs:domain hpc:PriorityCalculation ;
+    rdfs:range xsd:boolean .
+
+hpc:NoNormalQos a owl:Class .
+hpc:isNoNormalQos a owl:ObjectProperty ;
+    rdfs:domain hpc:PriorityCalculation ;
+    rdfs:range xsd:boolean .
+
+hpc:NoNormalTres a owl:Class .
+hpc:isNoNormalTres a owl:ObjectProperty ;
+    rdfs:domain hpc:PriorityCalculation ;
+    rdfs:range xsd:boolean .
+
+hpc:SmallRelativeToTime a owl:Class .
+hpc:isSmallRelativeToTime a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+```

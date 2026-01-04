@@ -1,0 +1,38 @@
+hpc:JobExitCode a owl:Class ;
+    rdfs:subClassOf <http://www.w3.org/2001/XMLSchema#integer> .
+
+hpc:Epilog a owl:Class ;
+    rdfs:subClassOf hpc:LogOutput .
+
+hpc:Prolog a owl:Class ;
+    rdfs:subClassOf hpc:LogOutput .
+
+hpc:LogOutput a owl:Class .
+
+hpc:Slurmctld a owl:Class ;
+    rdfs:subClassOf hpc:LogOutput .
+
+hpc:ResumeProgram a owl:Class ;
+    rdfs:subClassOf hpc:LogOutput ;
+    rdfs:subClassOf hpc:File .
+
+hpc:JobEndTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .
+
+hpc:JobExitCode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:JobExitCode .
+
+hpc:JobExitCode2 rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:JobExtra rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:JobGID rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+```

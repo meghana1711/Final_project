@@ -1,0 +1,54 @@
+hpc:Database a owl:Class .
+hpc:SlurmDatabase a hpc:Database .
+hpc:hasDefaultRowFormat hpc:Database owl:ObjectProperty ;
+ rdfs:domain hpc:Database ;
+ rdfs:range xsd:string .
+
+hpc:Collation a owl:Class .
+hpc:CaseInsensitiveCollation a hpc:Collation ;
+ rdfs:subClassOf [ a owl:Class ;
+   owl:equivalentClass [ a rdf:PlainLiteral ;
+     xsd:string "ci" ] ] .
+
+hpc:DatabaseSchema a owl:Class .
+hpc:hasDefaultCollation hpc:DatabaseSchema owl:ObjectProperty ;
+ rdfs:domain hpc:DatabaseSchema ;
+ rdfs:range xsd:string .
+
+hpc:Table a owl:Class .
+hpc:hasTableStatus hpc:Table owl:ObjectProperty ;
+ rdfs:domain hpc:Table ;
+ rdfs:range rdf:List .
+
+hpc:Column a owl:Class .
+hpc:hasTableSchema hpc:Column owl:ObjectProperty ;
+ rdfs:domain hpc:Column ;
+ rdfs:range xsd:string .
+hpc:hasCollation hpc:Column owl:ObjectProperty ;
+ rdfs:domain hpc:Column ;
+ rdfs:range xsd:string .
+
+hpc:SlurmAccountingConfiguration a owl:Class .
+hpc:usesSlurmDBD hpc:SlurmAccountingConfiguration owl:ObjectProperty ;
+ rdfs:domain hpc:SlurmAccountingConfiguration ;
+ rdfs:range xsd:boolean .
+
+hpc:StoragePlugin a owl:Class .
+hpc:hasMinimalSecurity hpc:StoragePlugin owl:ObjectProperty ;
+ rdfs:domain hpc:StoragePlugin ;
+ rdfs:range xsd:boolean .
+
+hpc:AccountingStorageEnforce a owl:Class .
+hpc:hasOptions hpc:AccountingStorageEnforce owl:ObjectProperty ;
+ rdfs:domain hpc:AccountingStorageEnforce ;
+ rdfs:range xsd:string .
+
+hpc:EnforcementOption a owl:Class .
+hpc:isEnforcedBy hpc:EnforcementOption owl:ObjectProperty ;
+ rdfs:domain hpc:EnforcementOption ;
+ rdfs:range xsd:string .
+
+hpc:Associations a hpc:EnforcementOption ;
+hpc:Limits a hpc:EnforcementOption ;
+hpc:NoJobs a hpc:EnforcementOption .
+```

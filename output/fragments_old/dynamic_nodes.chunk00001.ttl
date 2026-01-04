@@ -1,0 +1,52 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:Overview a owl:Class .
+hpc:ReleaseNotes a owl:Class .
+hpc:Using a owl:Class .
+hpc:Documentation a owl:Class .
+hpc:FAQ a owl:Class .
+hpc:Publications a owl:Class .
+hpc:Installing a owl:Class .
+hpc:Download a owl:Class .
+hpc:RelatedSoftware a owl:Class .
+hpc:InstallationGuide a owl:Class .
+hpc:GettingHelp a owl:Class .
+hpc:MailingLists a owl:Class .
+hpc:SupportAndTraining a owl:Class .
+hpc:Troubleshooting a owl:Class .
+hpc:DynamicNodes a owl:Class .
+hpc:DynamicNodeCommunications a owl:Class .
+hpc:SlurmConfiguration a owl:Class .
+hpc:MaxNodeCount a owl:DatatypeProperty .
+hpc:SelectType a owl:ObjectProperty .
+hpc:PartitionAssignment a owl:Class .
+hpc:Partition a owl:Class .
+hpc:Nodeset a owl:Class .
+hpc:Feature a owl:Class .
+hpc:CreatingNodes a owl:Class .
+hpc:DynamicSlurmdRegistration a owl:Class .
+hpc:scontrolCreateNode a owl:ObjectProperty .
+hpc:DeletingNodes a owl:Class .
+hpc:DynamicNodesTopology a owl:Class .
+hpc:Topology a owl:Class .
+hpc:TopologyUnit a owl:Class .
+hpc:Limitations a owl:Class .
+
+hpc:MaxNodeCount rdfs:domain hpc:SlurmConfiguration ;
+    rdfs:range xsd:integer .
+
+hpc:SelectType rdfs:domain hpc:SlurmConfiguration ;
+    rdfs:range hpc:SelectType .
+
+hpc:Partition rdfs:subClassOf hpc:SlurmWorkloadManager .
+hpc:Nodeset rdfs:subClassOf hpc:Partition .
+hpc:Feature rdfs:subClassOf hpc:Nodeset .
+hpc:CreatingNodes rdfs:subClassOf hpc:Partition .
+hpc:DynamicSlurmdRegistration rdfs:subClassOf hpc:CreatingNodes .
+hpc:scontrolCreateNode rdfs:domain hpc:CreatingNodes ;
+    rdfs:range rdf:Resource .
+
+hpc:DeletingNodes rdfs:subClassOf hpc:Partition .
+
+hpc:DynamicNodesTop

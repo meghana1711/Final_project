@@ -1,0 +1,55 @@
+hpc:User a owl:Class ;
+  rdfs:subClassOf [ a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:UserID a owl:DatatypeProperty ;
+  rdfs:domain hpc:User ;
+  rdfs:range xsd:string .
+
+hpc:count a owl:DatatypeProperty ;
+  rdfs:domain hpc:v0_0_43_stats_rpc_time ;
+  rdfs:range xsd:int .
+
+hpc:time a owl:DatatypeProperty ;
+  rdfs:domain hpc:v0_0_43_stats_rpc_time ;
+  rdfs:range xsd:string .
+
+hpc:exit_code a owl:DatatypeProperty ;
+  rdfs:domain hpc:v0_0_43_step ;
+  rdfs:range xsd:string .
+
+hpc:v0_0_43_process_exit_code_verbose a owl:Class .
+
+hpc:nodes a owl:DatatypeProperty ;
+  rdfs:domain hpc:v0_0_43_step ;
+  rdfs:range xsd:string .
+
+hpc:tasks a owl:DatatypeProperty ;
+  rdfs:domain hpc:v0_0_43_step ;
+  rdfs:range xsd:string .
+
+hpc:pid a owl:DatatypeProperty ;
+  rdfs:domain hpc:v0_0_43_step ;
+  rdfs:range xsd:string .
+
+hpc:CPU a owl:DatatypeProperty ;
+  rdfs:domain hpc:v0_0_43_step ;
+  rdfs:range xsd:string .
+
+hpc:kill_request_user a owl:DatatypeProperty ;
+  rdfs:domain hpc:v0_0_43_step ;
+  rdfs:range xsd:string .
+
+hpc:state a owl:DatatypeProperty ;
+  rdfs:domain hpc:v0_0_43_step ;
+  rdfs:range rdf:List ;
+  rdfs:rangeMembershipProperty hpc:stateMember .
+
+hpc:stateMember a owl:Class ;
+  rdfs:subClassOf [ a owl:Class ;
+    rdfs:subClassOf xsd:string ] .
+
+hpc:statistics a owl:DatatypeProperty ;
+  rdfs:domain hpc:v0_0_43_step ;
+  rdfs:range rdf:List ;
+  rdfs:rangeMembershipProperty h

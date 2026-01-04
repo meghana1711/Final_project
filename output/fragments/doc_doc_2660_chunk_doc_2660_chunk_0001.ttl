@@ -1,0 +1,57 @@
+hpc:SlurmJob a owl:Class .
+hpc:SlurmVersion a owl:Class .
+hpc:SELinuxSupport a owl:Class .
+hpc:SlurmCommand a owl:Class .
+hpc:JobSubmitPlugin a owl:Class .
+hpc:SELinuxContext a owl:DatatypeProperty .
+hpc:JobDescription a owl:Class .
+hpc:ReqContext a owl:DatatypeProperty .
+hpc:SelinuxContext a owl:DatatypeProperty .
+hpc:Error a owl:Class .
+hpc:Success a owl:Class .
+hpc:SlurmLogUser a owl:ObjectProperty .
+
+hpc:SlurmJob rdf:type hpc:Job .
+hpc:SlurmVersion rdf:type hpc:SELinuxSupport .
+hpc:SELinuxSupport rdfs:subClassOf hpc:SlurmVersion .
+hpc:SlurmCommand rdf:type hpc:Command .
+hpc:JobSubmitPlugin rdf:type hpc:Plugin .
+hpc:JobDescription rdf:type hpc:SlurmJob .
+
+hpc:SELinuxContext rdfs:domain hpc:JobDescription ;
+                     rdfs:range xsd:string .
+hpc:ReqContext rdfs:domain hpc:JobDescription ;
+                 rdfs:range xsd:string .
+hpc:SelinuxContext rdfs:domain hpc:JobDescription ;
+                   rdfs:range xsd:string .
+
+hpc:unconfined_u a xsd:string .
+hpc:unconfined_r a xsd:string .
+hpc:slurm_t a xsd:string .
+
+hpc:SlurmLogUser rdfs:domain hpc:Error ;
+                 rdfs:range hpc:JobDescription .
+
+hpc:slurm_job_submit a owl:Function .
+hpc:slurm_job_submit rdfs:subClassOf hpc:JobSubmitPlugin .
+hpc:slurm_job_submit rdfs:comment "Function to submit a Slurm job" .
+hpc:slurm_job_submit
+  rdfs:parameter hpc:job_desc "Job description" (hpc:JobDescription) ;
+  rdfs:parameter hpc:part_list "Part list" (hpc:List) ;
+  rdfs:parameter hpc:submit_uid "Submit user ID" (xsd:integer) .
+hpc:slurm_job_submit
+  rdfs:returns hpc:Error "Error" .
+hpc:slurm_job_submit
+  rdfs:returns hpc:Success "Success" .
+hpc:slurm_job_submit
+  rdf:type hpc:Procedure ;
+  rdfs:comment "If job_desc.req_context is valid, set job_desc.selinux_context based on it. If not, set a default context." .
+hpc:slurm_job_submit
+  rdf:type hpc:If ;
+  rdfs:condition (job_desc.req_context IS NOT NULL) ;
+  rdf:type hpc:Then ;
+    hpc:slurm_job_submit_then .
+  rdf:type hpc:Else ;
+    hpc:slurm_job_submit_else .
+
+hpc

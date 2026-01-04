@@ -1,0 +1,19 @@
+hpc:Job a owl:Class .
+hpc:defer a owl:ObjectProperty .
+hpc:maxSwitchWait a xsd:nonNegativeInteger .
+hpc:partitionJobDepth a xsd:nonNegativeInteger .
+hpc:schedInterval a xsd:nonNegativeInteger .
+
+hpc:Job hasMaxSwitchWait hpc:maxSwitchWait .
+hpc:Job hasPartitionJobDepth hpc:partitionJobDepth .
+hpc:Job hasSchedInterval hpc:schedInterval .
+
+hpc:BackfillScheduling a owl:Class .
+hpc:BackfillScheduling hasPriorityOrder rdf:PlainLiteral .
+hpc:BackfillScheduling startsLowerPriorityJobs rdf:PlainLiteral .
+hpc:BackfillScheduling takesIntoConsiderationEveryRunningJob rdf:PlainLiteral .
+
+hpc:SchedulingLoop a owl:Class .
+hpc:SchedulingLoop executesMainLoop rdf:PlainLiteral .
+hpc:SchedulingLoop testsPendingJobs rdf:PlainLiteral .
+```

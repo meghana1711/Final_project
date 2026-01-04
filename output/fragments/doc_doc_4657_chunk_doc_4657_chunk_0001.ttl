@@ -1,0 +1,19 @@
+hpc:SlurmVersion25_05 a owl:Class .
+hpc:SlurmUserGuide a owl:Class .
+hpc:CommandSummary a owl:Class .
+
+hpc:hasVersion a owl:ObjectProperty .
+hpc:hasVersion rdfs:domain hpc:SlurmVersion25_05 .
+hpc:hasVersion rdfs:range xsd:string .
+
+hpc:hasUserGuide a owl:ObjectProperty .
+hpc:hasUserGuide rdfs:domain hpc:SlurmVersion25_05 .
+hpc:hasUserGuide rdfs:range hpc:SlurmUserGuide .
+
+hpc:hasCommandSummary a owl:ObjectProperty .
+hpc:hasCommandSummary rdfs:domain hpc:SlurmVersion25_05 .
+hpc:hasCommandSummary rdfs:range hpc:CommandSummary .
+
+hpc:numPages a owl:DatatypeProperty .
+hpc:numPages rdfs:domain hpc:CommandSummary .
+hpc:numPages rdfs:range xsd:nonNegativeInteger .

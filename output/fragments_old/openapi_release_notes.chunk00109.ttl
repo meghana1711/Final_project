@@ -1,0 +1,49 @@
+hpc:Client a owl:Class .
+hpc:ClientGroup a xsd:string .
+hpc:ClientSource a xsd:string .
+hpc:ClientUser a xsd:string .
+
+hpc:Command a owl:Class .
+hpc:Command items a xsd:string .
+hpc:Command items rdfs:range hpc:Command .
+hpc:Command items rdfs:subClassOf owl:Collection .
+hpc:Command items rdfs:domain hpc:Command .
+hpc:Command items rdfs:subPropertyOf rdf:rest .
+hpc:Command items rdfs:container rdf:nil .
+hpc:Command items rdfs:container rdf:first hpc:Command .
+
+hpc:Command a rdfs:subClassOf hpc:Array .
+hpc:Command rdfs:domain hpc:Meta .
+
+hpc:Meta a owl:Class .
+hpc:Meta rdfs:subClassOf rdf:Resource .
+hpc:Meta rdfs:subClassOf owl:NamedIndividual .
+hpc:Meta rdfs:domain hpc:Job .
+
+hpc:Plugin a owl:Class .
+hpc:PluginType a xsd:string .
+hpc:PluginAccountingStorage a xsd:string .
+hpc:PluginDataParser a xsd:string .
+hpc:PluginName a xsd:string .
+hpc:PluginType rdfs:range hpc:Plugin .
+hpc:PluginType rdfs:subPropertyOf rdf:type .
+hpc:PluginAccountingStorage rdfs:range hpc:Plugin .
+hpc:PluginDataParser rdfs:range hpc:Plugin .
+hpc:PluginName rdfs:range hpc:Plugin .
+
+hpc:Job a owl:Class .
+hpc:Job rdfs:subClassOf rdf:Resource .
+hpc:Job rdfs:subClassOf owl:NamedIndividual .
+hpc:Job rdf:type hpc:SlurmJob .
+hpc:Job rdfs:domain hpc:Slurm .
+
+hpc:Slurm a owl:Class .
+hpc:Slurm rdfs:subClassOf rdf:Resource .
+hpc:Slurm rdfs:subClassOf owl:NamedIndividual .
+hpc:Slurm rdf:type hpc:HPCSystem .
+hpc:Slurm rdfs:domain hpc:HPC .
+
+hpc:SlurmJob a owl:Class .
+hpc:SlurmJob rdfs:subClassOf hpc:Job .
+hpc:SlurmJob rdfs:subClassOf rdf:Resource .
+hpc:SlurmJob rdfs:subClassOf owl

@@ -1,0 +1,26 @@
+hpc:TopologyFunction a owl:Class .
+hpc:Block a hpc:TopologyFunction .
+hpc:Switch a hpc:TopologyFunction .
+hpc:blockX a rdf:Property .
+hpc:switchY a rdf:Property .
+hpc:blockwith a rdf:Property .
+hpc:switchwith a rdf:Property .
+hpc:scontrolUpdate a hpc:blockwith .
+hpc:sbatch a hpc:blockwith .
+hpc:PartitionName a xsd:string .
+hpc:Nodes a xsd:string .
+hpc:EnvironmentVariable a owl:Class .
+hpc:SLURM_TOPOLOGY_ADDR a hpc:EnvironmentVariable .
+hpc:SLURM_TOPOLOGY_ADDR rdfs:domain hpc:Job .
+hpc:SLURM_TOPOLOGY_ADDR rdfs:range xsd:string .
+hpc:SLURM_TOPOLOGY_ADDR_Components a owl:Class .
+hpc:SLURM_TOPOLOGY_ADDR_Components rdfs:subClassOf hpc:SLURM_TOPOLOGY_ADDR .
+hpc:SLURM_TOPOLOGY_ADDR_Components rdfs:domain hpc:SLURM_TOPOLOGY_ADDR .
+hpc:SLURM_TOPOLOGY_ADDR_Components rdfs:range (hpc:Switch owl:union hpc:Node) .
+hpc:SLURM_TOPOLOGY_ADDR_Components_Type a owl:DatatypeProperty .
+hpc:SLURM_TOPOLOGY_ADDR_Components_Type rdfs:domain hpc:SLURM_TOPOLOGY_ADDR_Components .
+hpc:SLURM_TOPOLOGY_ADDR_Components_Type rdfs:range (hpc:Switch rdf:union owl:Thing) .
+hpc:MultipleTopologies a owl:Class .
+hpc:topologyYAML a rdf:Property .
+hpc:SlurmVersion a xsd:string .
+```

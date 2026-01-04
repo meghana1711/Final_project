@@ -1,0 +1,49 @@
+# Resources
+hpc:ConsumableResource a owl:Class .
+hpc:Board rdf:type hpc:ConsumableResource ;
+  rdfs:label "Baseboard" .
+hpc:Socket rdf:type hpc:ConsumableResource ;
+  rdfs:label "Socket" .
+hpc:Core rdf:type hpc:ConsumableResource ;
+  rdfs:label "Core" .
+hpc:Memory rdf:type hpc:ConsumableResource ;
+  rdfs:label "Memory" .
+hpc:CPU rdf:type hpc:ConsumableResource ;
+  rdfs:subClassOf hpc:Core ;
+  rdfs:label "CPU" .
+
+hpc:CR_Board rdf:type hpc:ConsumableResource ;
+  rdfs:label "CR_Board" .
+hpc:CR_Socket rdf:type hpc:ConsumableResource ;
+  rdfs:label "CR_Socket" .
+hpc:CR_Core rdf:type hpc:ConsumableResource ;
+  rdfs:label "CR_Core" .
+hpc:CR_Socket_Memory rdf:type hpc:ConsumableResource ;
+  rdfs:label "Socket and Memory" .
+hpc:CR_Core_Memory rdf:type hpc:ConsumableResource ;
+  rdfs:label "Core and Memory" .
+hpc:CR_CPU_Memory rdf:type hpc:ConsumableResource ;
+  rdfs:label "CPU and Memory" .
+
+hpc:OverSubscribe rdf:type owl:DatatypeProperty ;
+  rdfs:domain hpc:ConsumableResource ;
+  rdfs:range xsd:string .
+
+# Job options
+hpc:DefCpuPerGPU rdf:type owl:DatatypeProperty ;
+  rdfs:domain hpc:Plugin ;
+  rdfs:range xsd:integer .
+hpc:DefMemPerGPU rdf:type owl:DatatypeProperty ;
+  rdfs:domain hpc:Plugin ;
+  rdfs:range xsd:integer .
+hpc:--cpus-per-gpu rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:Job ;
+  rdfs:range hpc:Integer .
+hpc:--gpus rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:Job ;
+  rdfs:range hpc:Integer .
+hpc:--gpu-bind rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:Job ;
+  rdfs:range hpc:String .
+hpc:--gpu-freq rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:Job ;

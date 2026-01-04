@@ -1,0 +1,47 @@
+# Classes
+hpc:QOS a owl:Class .
+hpc:Job a owl:Class .
+hpc:Account a owl:Class .
+hpc:User a owl:Class .
+hpc:Partition a owl:Class .
+hpc:GRES a owl:Class .
+hpc:Type a owl:Class .
+
+# Object Properties
+hpc:hasQOS a owl:ObjectProperty .
+hpc:hasAccount a owl:ObjectProperty .
+hpc:hasUser a owl:ObjectProperty .
+hpc:hasPartition a owl:ObjectProperty .
+hpc:hasGRES a owl:ObjectProperty .
+hpc:hasType a owl:ObjectProperty .
+hpc:hasLimitFactor a owl:ObjectProperty .
+hpc:hasLimitFactorSafe a owl:ObjectProperty .
+hpc:hasAccountingStorageEnforce a owl:ObjectProperty .
+hpc:hasMinPrioThreshold a owl:ObjectProperty .
+hpc:hasMinTRESPerJob a owl:ObjectProperty .
+hpc:hasUsageFactor a owl:ObjectProperty .
+hpc:hasMaxJobsAccruePerAccount a owl:ObjectProperty .
+hpc:hasMaxJobsAccruePerUser a owl:ObjectProperty .
+hpc:hasMaxJobsPerAccount a owl:ObjectProperty .
+hpc:hasMaxJobsPerUser a owl:ObjectProperty .
+hpc:hasMaxSubmitJobsPerAccount a owl:ObjectProperty .
+hpc:hasMaxSubmitJobsPerUser a owl:ObjectProperty .
+hpc:hasMaxTRESMinsPerJob a owl:ObjectProperty .
+hpc:hasMaxTRESPerAccount a owl:ObjectProperty .
+hpc:hasMaxTRESPerJob a owl:ObjectProperty .
+hpc:hasMaxTRESPerNode a owl:ObjectProperty .
+hpc:hasMaxTRESPerUser a owl:ObjectProperty .
+hpc:hasMaxWallDurationPerJob a owl:ObjectProperty .
+hpc:hasGrpTRESMins a owl:ObjectProperty .
+hpc:hasGrpWall a owl:ObjectProperty .
+hpc:hasPriorityDecayHalfLife a owl:ObjectProperty .
+hpc:hasPriorityUsageResetPeriod a owl:ObjectProperty .
+hpc:hasNoDecay a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:LimitFactor a owl:DatatypeProperty .
+hpc:MinPrioThreshold a owl:DatatypeProperty .
+hpc:MinTRESPerJob a owl:DatatypeProperty .
+hpc:UsageFactor a owl:DatatypeProperty .
+hpc:MaxJobsAccruePerAccount rdfs:domain hpc:Account ;
+    rd

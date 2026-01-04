@@ -1,0 +1,37 @@
+hpc:Accounting_id_alt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:int .
+
+hpc:Accounting_id_alt_users a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:int .
+
+hpc:Accounting_id_alt_wckey a owl:DatatypeProperty ;
+    rdfs:domain hpc:Wckey ;
+    rdfs:range xsd:int .
+
+hpc:Gres_binding_disabled a owl:Enumeration ;
+    rdfs:subClassOf hpc:Flag .
+
+hpc:Job_desc_msg_flags a owl:Class ;
+    rdfs:subClassOf hpc:Job_desc_msg .
+
+hpc:Job_info_resp_jobs a owl:Class ;
+    rdfs:subClassOf hpc:Job_info_resp .
+
+hpc:Slurmdbd_jobs_resp_jobs a owl:Class ;
+    rdfs:subClassOf hpc:Slurmdbd_jobs_resp .
+
+hpc:Wckey_resp_wckeys a owl:Class ;
+    rdfs:subClassOf hpc:Wckey_resp .
+
+hpc:Pid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Step ;
+    rdfs:range xsd:int ;
+    rdfs:deprecated true .
+
+hpc:Pid_description a rdfs:Literal ;
+    rdfs:value "Deprecated. List of pids is not available in slurmdbd."@en .
+
+hpc:YAML a owl:Class .
+```

@@ -1,0 +1,50 @@
+hpc:ConnectionAction a owl:Enum;
+  rdfs:subClassOf owl:Class;
+  rdf:type rdfs:Class;
+
+hpc:Deny a hpc:ConnectionAction;
+hpc:Newest a hpc:ConnectionAction;
+hpc:ActionUnknown a hpc:ConnectionAction;
+
+hpc:Connection a owl:Class;
+
+hpc:hasConnectionAction rdf:type owl:ObjectProperty;
+  rdfs:domain hpc:Connection;
+  rdfs:range hpc:ConnectionAction;
+
+hpc:SystemType a owl:Class;
+
+hpc:hasSystemType rdf:type owl:ObjectProperty;
+  rdfs:domain hpc:Connection;
+  rdfs:range hpc:SystemType;
+
+hpc:CgroupVersion a owl:Class;
+
+hpc:isCgroupVersion rdf:type owl:DatatypeProperty;
+  rdfs:domain hpc:SystemType;
+  rdfs:range xsd:string;
+
+hpc:JobSelectionStrategy a owl:Class;
+
+hpc:hasJobSelectionStrategy rdf:type owl:ObjectProperty;
+  rdfs:domain hpc:Connection;
+  rdfs:range hpc:JobSelectionStrategy;
+
+hpc:NewestJobSelectionStrategy a hpc:JobSelectionStrategy;
+
+hpc:CgroupDirectoryCheck rdf:type owl:ObjectProperty;
+  rdfs:domain hpc:NewestJobSelectionStrategy;
+  rdfs:range xsd:boolean;
+
+hpc:AdoptionPossible rdf:type owl:ObjectProperty;
+  rdfs:domain hpc:NewestJobSelectionStrategy;
+  rdfs:range xsd:boolean;
+
+hpc:PickJobByMtime rdf:type owl:ObjectProperty;
+  rdfs:domain hpc:NewestJobSelectionStrategy;
+  rdfs:range xsd:string;
+
+hpc:CgroupIdSelection rdf:type owl:ObjectProperty;
+  rdfs:domain hpc:JobSelectionStrategy;
+  rdfs:range xsd:string;
+```

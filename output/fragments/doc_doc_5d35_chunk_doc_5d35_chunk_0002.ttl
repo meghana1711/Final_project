@@ -1,0 +1,51 @@
+hpc:HeterogeneousJob a owl:Class .
+hpc:JobComponent a owl:Class .
+hpc:CPUAllocation a owl:ObjectProperty ;
+    rdfs:domain hpc:JobComponent ;
+    rdfs:range rdf:List .
+hpc:TaskDistribution a owl:Enum ;
+    rdfs:member rdf:PlainLiteral "cyclic" ;
+    rdfs:member rdf:PlainLiteral "sequential" .
+hpc:Node a owl:Class .
+hpc:Rank a owl:DatatypeProperty ;
+    rdfs:range xsd:integer .
+hpc:BatchJobOption a owl:Class .
+hpc:BatchScript a owl:ObjectProperty ;
+    rdfs:domain hpc:JobComponent ;
+    rdfs:range rdf:XMLLiteral .
+hpc:HeterogeneousJob a rdfs:subClassOf owl:NamedIndividual .
+hpc:JobComponent rdfs:subClassOf owl:NamedIndividual .
+hpc:CPUAllocation rdf:type owl:FunctionalProperty .
+hpc:TaskDistribution rdf:type owl:FunctionalProperty .
+hpc:Node rdf:type owl:Class .
+hpc:Rank rdf:type owl:DatatypeProperty .
+hpc:BatchJobOption rdf:type owl:Class .
+hpc:BatchScript rdf:type owl:ObjectProperty .
+
+hpc:HeterogeneousJob_1 a hpc:HeterogeneousJob ;
+    hpc:JobComponent hpc:JobComponent_1 , hpc:JobComponent_2 .
+hpc:JobComponent_1 hpc:CPUAllocation ( xsd:integer "2" ; xsd:integer "2" ) ;
+    hpc:Node "nid00003" ;
+    hpc:JobComponent hpc:JobComponent_3 .
+hpc:JobComponent_1 hpc:CPUAllocation ( xsd:integer "2" ; xsd:integer "2" ) ;
+    hpc:Node "nid00004" .
+hpc:JobComponent_2 rdf:type hpc:JobComponent ;
+    hpc:TaskDistribution "cyclic" ;
+    hpc:Node "nid00001" ;
+    hpc:Rank xsd:integer "0" ;
+    hpc:Node "nid00002" ;
+    hpc:Rank xsd:integer "1" .
+hpc:JobComponent_3 rdf:type hpc:JobComponent ;
+    hpc:TaskDistribution "cyclic" ;
+    hpc:Node "nid00003" ;
+    hpc:Rank xsd:integer "4" ;
+    hpc:Node "nid00004" ;
+    hpc:Rank xsd:integer "5" .
+hpc:JobComponent_4 rdf:type hpc:JobComponent ;
+    hpc:TaskDistribution "cyclic" ;
+    hpc:Node "nid00001" ;
+    hpc:Rank xsd:integer "2" ;
+    hpc:Node "nid00002" ;
+    hpc:Rank xsd:integer "3" .
+hpc:JobComponent_5 rdf:type hpc:JobComponent ;
+    hpc:TaskDistribution "

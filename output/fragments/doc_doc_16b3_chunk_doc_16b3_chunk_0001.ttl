@@ -1,0 +1,41 @@
+hpc:GRES a owl:Class .
+hpc:hasName a owl:ObjectProperty ;
+    rdfs:domain hpc:GRES ;
+    rdfs:range xsd:string .
+
+hpc:usesPlugin a owl:ObjectProperty ;
+    rdfs:domain hpc:GRES ;
+    rdfs:range xsd:string .
+
+hpc:isAssociatedWith a owl:ObjectProperty ;
+    rdfs:domain hpc:GRES ;
+    rdfs:range (hpc:Node | hpc:Job | hpc:Step) .
+
+hpc:hasGRES a owl:DatatypeProperty ;
+    rdfs:domain (hpc:Node | hpc:Job | hpc:Step) ;
+    rdfs:range xsd:string .
+
+hpc:hasGRESList a owl:ObjectProperty ;
+    rdfs:domain (hpc:Node | hpc:Job | hpc:Step) ;
+    rdfs:range rdf:List .
+
+hpc:GRESListElement a owl:Class .
+hpc:hasGRESType a owl:ObjectProperty ;
+    rdfs:domain hpc:GRESListElement ;
+    rdfs:range xsd:string .
+
+hpc:hasID a owl:DatatypeProperty ;
+    rdfs:domain hpc:GRESListElement ;
+    rdfs:range xsd:integer .
+
+hpc:hasGRESInfo a owl:ObjectProperty ;
+    rdfs:domain hpc:GRESListElement ;
+    rdfs:range owl:Thing .
+
+hpc:GRESNodeState a owl:Class ;
+    rdfs:subClassOf hpc:GRESListElement .
+hpc:GRESJobState a owl:Class ;
+    rdfs:subClassOf hpc:GRESListElement .
+hpc:GRESStepState a owl:Class ;
+    rdfs:subClassOf hpc:GRESListElement .
+```

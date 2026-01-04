@@ -1,0 +1,70 @@
+hpc:Sacctmgr a owl:Class .
+hpc:managesAccountingPolicy a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr ;
+    rdfs:range hpc:AccountingPolicy .
+
+hpc:CreateAssociationRecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr .
+
+hpc:DeleteAssociationRecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr .
+
+hpc:CreateClusterRecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr .
+
+hpc:DeleteClusterRecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr .
+
+hpc:CreateUserRecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr .
+
+hpc:DeleteUserRecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr .
+
+hpc:CreateBankAccountRecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr .
+
+hpc:DeleteBankAccountRecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr .
+
+hpc:CreatePartitionRecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr .
+
+hpc:DeletePartitionRecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr .
+
+hpc:CreateCombinedAssociationRecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr .
+
+hpc:DeleteCombinedAssociationRecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr .
+
+hpc:CancelRunningOrPendingJobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr ;
+    rdfs:range xsd:Boolean .
+
+hpc:EnforceNewLimits a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr ;
+    rdfs:range xsd:Boolean .
+
+hpc:AssociationLimit a owl:Class .
+hpc:UserAssociationLimit a rdfs:subClassOf hpc:AssociationLimit .
+hpc:ClusterLimit a rdfs:subClassOf hpc:AssociationLimit .
+hpc:AccountLimit a rdfs:subClassOf hpc:AssociationLimit .
+
+hpc:applyInOrder a owl:ObjectProperty ;
+    rdfs:domain hpc:AssociationLimit ;
+    rdfs:range xsd:Boolean .
+
+hpc:userAssociationLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:UserAssociationLimit ;
+    rdfs:range xsd:anyURI .
+
+hpc:clusterLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:ClusterLimit ;
+    rdfs:range xsd:anyURI .
+
+hpc:accountLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:AccountLimit ;
+    rdfs:range xsd:anyURI .
+```

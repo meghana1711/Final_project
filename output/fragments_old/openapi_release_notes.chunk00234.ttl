@@ -1,0 +1,69 @@
+hpc:OpenapiAccountsResp a owl:Class .
+hpc:OpenapiAccountsRemovedResp a owl:Class .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:OpenapiAccountsResp ;
+    rdfs:range xsd:string .
+
+hpc:hasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:OpenapiAccountsResp ;
+    rdfs:range rdf:Resource .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:OpenapiAccountsRemovedResp ;
+    rdfs:range xsd:string .
+
+hpc:hasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:OpenapiAccountsRemovedResp ;
+    rdfs:range rdf:Resource .
+
+hpc:Account a owl:Class ;
+    rdfs:subClassOf hpc:OpenapiAccountsResp .
+
+hpc:AccountRemoved a owl:Class ;
+    rdfs:subClassOf hpc:OpenapiAccountsRemovedResp .
+
+hpc:Account hasName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:string .
+
+hpc:Account hasPath a owl:ObjectProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:string .
+
+hpc:Account hasMethod a owl:ObjectProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:string .
+
+hpc:Account hasResponse a owl:ObjectProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range hpc:Response .
+
+hpc:Response hasCode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Response ;
+    rdfs:range xsd:integer .
+
+hpc:Response hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:Response ;
+    rdfs:range rdf:Resource .
+
+hpc:Response hasContentType a owl:DatatypeProperty ;
+    rdfs:domain hpc:Response ;
+    rdfs:range xsd:string .
+
+hpc:Accounts hasPath a owl:ObjectProperty ;
+    rdfs:domain hpc:Accounts ;
+    rdfs:range xsd:string .
+
+hpc:Accounts hasMethod a owl:ObjectProperty ;
+    rdfs:domain hpc:Accounts ;
+    rdfs:range xsd:string .
+
+hpc:Accounts hasResponse a owl:ObjectProperty ;
+    rdfs:domain hpc:Accounts ;
+    rdfs:range hpc:Response .
+
+hpc:Accounts hasRequestBody a owl:ObjectProperty ;
+    rdfs:domain hpc:Accounts ;
+    rdfs:range rdf:Resource .
+```

@@ -1,0 +1,31 @@
+hpc:User a owl:Class .
+hpc:Account a owl:Class .
+
+hpc:hasNormalizedShares a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+
+hpc:hasUser a owl:ObjectProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range hpc:User .
+
+hpc:SoleMember a owl:Class ;
+    rdfs:subClassOf hpc:User .
+
+hpc:SharedMember a owl:Class ;
+    rdfs:subClassOf hpc:User .
+
+hpc:SoleAccount a owl:Class ;
+    rdfs:subClassOf hpc:Account ;
+    rdfs:subClass [ a owl:Restriction ;
+                     owl:onProperty hpc:hasUser ;
+                     owl:cardinality 1
+    ] .
+
+hpc:SharedAccount a owl:Class ;
+    rdfs:subClassOf hpc:Account ;
+    rdfs:subClass [ a owl:Restriction ;
+                     owl:onProperty hpc:hasUser ;
+                     owl:cardinality greaterThan 1
+    ] .
+```

@@ -1,0 +1,76 @@
+hpc:LastUpdate a owl:DatatypeProperty ;
+    rdfs:domain hpc:PartitionInfo ;
+    rdfs:range xsd:string .
+
+hpc:Timeouts a owl:Class ;
+    rdfs:subClassOf hpc:PartitionInfo .
+
+hpc:Suspend a owl:DatatypeProperty ;
+    rdfs:domain hpc:Timeouts ;
+    rdfs:range xsd:string .
+
+hpc:Resume a owl:DatatypeProperty ;
+    rdfs:domain hpc:Timeouts ;
+    rdfs:range xsd:string .
+
+hpc:SuspendTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:PartitionInfo ;
+    rdfs:range xsd:string .
+
+hpc:CpusPerNode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Maximums ;
+    rdfs:range xsd:integer .
+
+hpc:CpusPerSocket a owl:DatatypeProperty ;
+    rdfs:domain hpc:Maximums ;
+    rdfs:range xsd:integer .
+
+hpc:Nodes a owl:DatatypeProperty ;
+    rdfs:domain hpc:Maximums ;
+    rdfs:range xsd:integer .
+
+hpc:Time a owl:DatatypeProperty ;
+    rdfs:domain hpc:Maximums ;
+    rdfs:range xsd:duration .
+
+hpc:PartitionMemoryPerCpu a owl:DatatypeProperty ;
+    rdfs:domain hpc:Maximums ;
+    rdfs:range xsd:decimal .
+
+hpc:OverTimeLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Maximums ;
+    rdfs:range xsd:boolean .
+
+hpc:PartitionMemoryPerNode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Maximums ;
+    rdfs:range xsd:decimal .
+
+hpc:DefaultTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:PartitionInfo ;
+    rdfs:range xsd:duration .
+
+hpc:DefaultPartitionMemoryPerCpu a owl:DatatypeProperty ;
+    rdfs:domain hpc:PartitionInfo ;
+    rdfs:range xsd:decimal .
+
+hpc:DefaultPartitionMemoryPerNode a owl:DatatypeProperty ;
+    rdfs:domain hpc:PartitionInfo ;
+    rdfs:range xsd:decimal .
+
+hpc:Grpwall a owl:DatatypeProperty ;
+    rdfs:domain hpc:AssocRecSet .
+
+hpc:Minpriothresh a owl:DatatypeProperty ;
+    rdfs:domain hpc:AssocRecSet .
+
+hpc:Grpsubmitjobs a owl:DatatypeProperty ;
+    rdfs:domain hpc:AssocRecSet .
+
+hpc:Maxjobsaccrue a owl:DatatypeProperty ;
+    rdfs:domain hpc:AssocRecSet .
+
+hpc:Maxwalldurationperjob a owl:DatatypeProperty ;
+    rdfs:domain hpc:AssocRecSet ;
+    rdfs:range xsd:duration .
+
+hpc:Maxj

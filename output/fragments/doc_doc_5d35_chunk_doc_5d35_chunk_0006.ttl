@@ -1,0 +1,56 @@
+hpc:Job a owl:Class .
+hpc:Component a owl:Class .
+hpc:HeterogeneousJob a owl:Class, rdfs:subClassOf hpc:Job .
+
+hpc:hasComponent obj:Property .
+hpc:hasComponent rdfs:domain hpc:Job ;
+                    rdfs:range hpc:Component .
+
+hpc:JobID a owl:DatatypeProperty .
+hpc:JobID rdfs:domain hpc:Job .
+hpc:JobID rdfs:range xsd:integer .
+
+hpc:Operation a owl:Class .
+hpc:Operation rdfs:subClassOf owl:Enum .
+hpc:Operation:resume, hpc:Operation:suspend, hpc:Operation:requeue owl:EnumMember .
+
+hpc:sbcast a owl:ObjectProperty .
+hpc:sbcast rdfs:domain hpc:HeterogeneousJob ;
+              rdfs:range rdf:List .
+
+hpc:sbcast:file, hpc:sbcast:data, hpc:sbcast:app obj:Property .
+hpc:sbcast:file, hpc:sbcast:data, hpc:sbcast:app rdfs:domain hpc:sbcast ;
+              rdfs:range xsd:string .
+
+hpc:sbcast:jobid obj:Property .
+hpc:sbcast:jobid rdfs:domain hpc:sbcast ;
+              rdfs:range xsd:integer .
+
+hpc:srun a owl:ObjectProperty .
+hpc:srun rdfs:domain hpc:HeterogeneousJob ;
+              rdfs:range rdf:List .
+
+hpc:srun:application, hpc:srun:app obj:Property .
+hpc:srun:application, hpc:srun:app rdfs:domain hpc:srun ;
+              rdfs:range xsd:string .
+
+hpc:srun:hetGroup obj:Property .
+hpc:srun:hetGroup rdfs:domain hpc:srun ;
+              rdfs:range xsd:string .
+
+hpc:srun:hetGroupComponent obj:Property .
+hpc:srun:hetGroupComponent rdfs:domain hpc:srun:hetGroup ;
+              rdfs:range xsd:integer .
+
+hpc:scancel a owl:ObjectProperty .
+hpc:scancel rdfs:domain hpc:HeterogeneousJob ;
+              rdfs:range xsd:integer .
+
+hpc:scancel:jobID obj:Property .
+hpc:scancel:jobID rdfs:domain hpc:scancel ;
+              rdfs:range xsd:integer .
+
+hpc:scancel:wholeHetjob obj:Property .
+hpc:scancel:wholeHetjob rdfs:domain hpc:HeterogeneousJob ;
+              rdfs:range xsd:boolean .
+```

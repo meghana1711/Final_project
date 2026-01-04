@@ -1,0 +1,36 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a hpc:SlurmWorkloadManager .
+
+hpc:Plugin a owl:Class .
+hpc:cli_filterPlugin a hpc:Plugin .
+
+hpc:pluginName a owl:DatatypeProperty ;
+    rdfs:domain hpc:cli_filterPlugin ;
+    rdfs:range xsd:string .
+
+hpc:pluginType a owl:DatatypeProperty ;
+    rdfs:domain hpc:cli_filterPlugin ;
+    rdfs:range xsd:string .
+
+hpc:pluginVersion a xsd:unsignedInt .
+
+hpc:cli_filter_p_setup_defaults a owl:ObjectProperty ;
+    rdfs:domain hpc:cli_filterPlugin ;
+    rdfs:range rdf:Resource .
+
+hpc:cli_filter_p_pre_submit a owl:ObjectProperty ;
+    rdfs:domain hpc:cli_filterPlugin ;
+    rdfs:range rdf:Resource .
+
+hpc:cli_filter_p_post_submit a owl:ObjectProperty ;
+    rdfs:domain hpc:cli_filterPlugin ;
+    rdfs:range rdf:PlainLiteral .
+
+hpc:init a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:unsignedInt .
+
+hpc:fini a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:void .
+```

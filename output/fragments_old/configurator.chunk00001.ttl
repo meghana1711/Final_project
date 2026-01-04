@@ -1,0 +1,70 @@
+# Cluster
+hpc:Cluster a owl:Class .
+
+hpc:ClusterName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string .
+
+# Control Machines
+hpc:ControlMachine a owl:Class .
+
+hpc:SlurmctldHost a owl:ObjectProperty ;
+    rdfs:domain hpc:ControlMachine ;
+    rdfs:range xsd:string .
+
+hpc:BackupController a owl:ObjectProperty ;
+    rdfs:domain hpc:ControlMachine ;
+    rdfs:range xsd:string .
+
+# Compute Machines
+hpc:ComputeMachine a owl:Class .
+
+hpc:NodeName a owl:DatatypeProperty ;
+    rdfs:domain hpc:ComputeMachine ;
+    rdfs:range xsd:string .
+
+hpc:NodeAddr a owl:DatatypeProperty ;
+    rdfs:domain hpc:ComputeMachine ;
+    rdfs:range xsd:string .
+
+hpc:PartitionName a owl:DatatypeProperty ;
+    rdfs:domain hpc:ComputeMachine ;
+    rdfs:range xsd:string .
+
+# Node Configuration
+hpc:NodeConfiguration a owl:Class .
+
+hpc:CPUs a owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeConfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Sockets a owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeConfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:CoresPerSocket a owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeConfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ThreadsPerCore a owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeConfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:RealMemory a owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeConfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Slurm User
+hpc:SlurmUser a owl:Class .
+
+# Slurm Port Numbers
+hpc:SlurmctldPort a owl:DatatypeProperty .
+hpc:SlurmdPort a owl:DatatypeProperty .
+
+# State Preservation
+hpc:StateSaveLocation a owl:DatatypeProperty .
+hpc:SlurmdSpoolDir a owl:DatatypeProperty .
+
+# ReturnToService
+hpc:ReturnToService a owl:DatatypeProperty ;
+    rdfs:domain h

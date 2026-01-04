@@ -1,0 +1,43 @@
+hpc:CPUManagement a owl:Class .
+hpc:ConsumableResource a owl:Class .
+hpc:Core a hpc:ConsumableResource .
+hpc:Socket a hpc:ConsumableResource .
+hpc:CPU a hpc:ConsumableResource .
+
+hpc:SelectionSetting a owl:Class .
+hpc:SelectType a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectionSetting ;
+    rdfs:range hpc:SelectType .
+
+hpc:OverSubscribeSetting a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectionSetting ;
+    rdfs:range xsd:boolean .
+
+hpc:ResultingBehavior a owl:Class .
+
+hpc:SelectTypeParameters a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectType ;
+    rdfs:range xsd:string .
+
+hpc:CR_Core a hpc:SelectTypeParameters .
+hpc:CR_Core_Memory a hpc:SelectTypeParameters .
+
+hpc:SelectType_select_linear a hpc:SelectType ;
+    rdfs:subClassOf hpc:SelectType .
+hpc:SelectType_select_cons_tres a hpc:SelectType ;
+    rdfs:subClassOf hpc:SelectType .
+
+hpc:SelectType_select_linear_OverSubscribe_NO a hpc:ResultingBehavior ;
+    rdfs:subClassOf hpc:ResultingBehavior .
+hpc:SelectType_select_linear_OverSubscribe_YES a hpc:ResultingBehavior ;
+    rdfs:subClassOf hpc:ResultingBehavior .
+hpc:SelectType_select_linear_OverSubscribe_FORCE a hpc:ResultingBehavior ;
+    rdfs:subClassOf hpc:ResultingBehavior .
+
+hpc:SelectType_select_cons_tres_OverSubscribe_NO a hpc:ResultingBehavior ;
+    rdfs:subClassOf hpc:ResultingBehavior .
+hpc:SelectType_select_cons_tres_OverSubscribe_YES a hpc:ResultingBehavior ;
+    rdfs:subClassOf hpc:ResultingBehavior .
+hpc:SelectType_select_cons_tres_OverSubscribe_FORCE a hpc:ResultingBehavior ;
+    rdfs:subClassOf hpc:ResultingBehavior .
+```

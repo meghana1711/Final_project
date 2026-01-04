@@ -1,0 +1,14 @@
+hpc:JobInfo a owl:Class .
+hpc:JobDescMsg a owl:Class .
+hpc:JobPostResponse a owl:Class .
+
+hpc:jobId rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:string .
+
+hpc:jobDesc rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobPostResponse ;
+    rdfs:range hpc:JobDescMsg .
+```
+
+This ontology fragment represents three classes: `JobInfo`, `JobDescMsg`, and `JobPostResponse`. It also defines a datatype property `jobId` for `JobInfo` and an object property `jobDesc` for `JobPostResponse`. The `jobId` property is expected to have a string value, and the `jobDesc` property is expected to have an instance of `JobDescMsg` as its value.

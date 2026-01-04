@@ -1,0 +1,9 @@
+hpc:SlurmCliFilterPlugin a owl:Class .
+
+hpc:pluginName a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmCliFilterPlugin ;
+    rdfs:range xsd:string .
+
+hpc:conformsTo a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCliFilterPlugin .
+```

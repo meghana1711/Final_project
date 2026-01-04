@@ -1,0 +1,48 @@
+hpc:v0_0_43_wckey_tag_struct a owl:Class .
+hpc:flags a owl:ObjectProperty .
+hpc:flags rdfs:domain hpc:v0_0_43_wckey_tag_struct ;
+                      rdfs:range rdf:List ;
+                      rdfs:subPropertyOf rdf:list .
+hpc:flag a owl:DatatypeProperty .
+hpc:flag rdfs:domain hpc:flags ;
+                   rdfs:range xsd:string .
+
+hpc:v0_0_43_x11_flags a owl:Class .
+hpc:v0_0_43_x11_flags rdf:type owl:Class .
+
+hpc:info a owl:Class .
+hpc:data_parsers a owl:ObjectProperty .
+hpc:data_parsers rdfs:domain hpc:info ;
+                  rdfs:range rdf:List .
+hpc:plugin a owl:DatatypeProperty .
+hpc:plugin rdfs:domain hpc:data_parsers ;
+             rdfs:range xsd:string .
+hpc:flags a owl:DatatypeProperty .
+hpc:flags rdfs:domain hpc:data_parsers ;
+           rdfs:range rdf:List ;
+           rdfs:subPropertyOf rdf:list .
+hpc:flag a owl:DatatypeProperty .
+hpc:flag rdfs:domain hpc:flags ;
+           rdfs:range xsd:string .
+
+hpc:openapi a owl:DatatypeProperty .
+hpc:openapi rdfs:domain hpc:info .
+
+hpc:slurm a owl:Class .
+hpc:reservation a owl:Class .
+hpc:reservation_mod_resp a owl:Class .
+hpc:reservations a owl:ObjectProperty .
+hpc:reservations rdfs:domain hpc:slurm ;
+                   rdfs:range rdf:List .
+hpc:post a owl:ObjectProperty .
+hpc:post rdfs:domain hpc:reservations ;
+          rdfs:range rdf:List .
+hpc:operationId a owl:DatatypeProperty .
+hpc:operationId rdfs:domain hpc:post ;
+               rdfs:range xsd:string .
+hpc:parameters a owl:ObjectProperty .
+hpc:parameters rdfs:domain hpc:post ;
+              rdfs:range rdf:List .
+hpc:delete a owl:ObjectProperty .
+hpc:delete rdfs:subPropertyOf hpc:post .
+hpc:responses a

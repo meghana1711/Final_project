@@ -1,0 +1,48 @@
+hpc:StepStatistics a owl:Class .
+hpc:v0_0_43_step_statistics a owl:Class .
+hpc:CPU a owl:DatatypeProperty ;
+    rdfs:domain hpc:v0_0_43_step_statistics .
+hpc:energy a owl:DatatypeProperty ;
+    rdfs:domain hpc:v0_0_43_step_statistics .
+
+hpc:Step a owl:Class .
+hpc:v0_0_43_step a owl:Class .
+
+hpc:Task a owl:Class .
+hpc:v0_0_43_step_task a owl:Class .
+
+hpc:Tasks a owl:Class .
+hpc:v0_0_43_step_tasks a owl:Class .
+
+hpc:Time a owl:Class .
+hpc:v0_0_43_step_time a owl:Class .
+hpc:system a owl:DatatypeProperty ;
+    rdfs:domain hpc:v0_0_43_step_time .
+hpc:total a owl:DatatypeProperty ;
+    rdfs:domain hpc:v0_0_43_step_time .
+hpc:user a owl:DatatypeProperty ;
+    rdfs:domain hpc:v0_0_43_step_time .
+
+hpc:TRES a owl:Class .
+hpc:v0_0_43_step_tres a owl:Class .
+hpc:consumed a owl:DatatypeProperty ;
+    rdfs:domain hpc:v0_0_43_step_tres .
+hpc:requested a owl:DatatypeProperty ;
+    rdfs:domain hpc:v0_0_43_step_tres .
+
+hpc:User a owl:Class .
+hpc:v0_0_43_user_default a owl:Class .
+
+hpc:Account a owl:Class .
+hpc:v0_0_43_account a owl:Class ;
+    rdfs:subClassOf hpc:Account .
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:v0_0_43_account .
+hpc:organization a owl:DatatypeProperty ;
+    rdfs:domain hpc:v0_0_43_account .
+hpc:flags a owl:DatatypeProperty ;
+    rdfs:domain hpc:v0_0_43_account ;
+    rdfs:range xsd:string .
+
+hpc:Accounting a owl:Class .
+hpc:v0

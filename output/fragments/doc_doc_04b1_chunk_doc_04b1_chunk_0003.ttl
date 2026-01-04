@@ -1,0 +1,36 @@
+hpc:MungeDaemon a owl:Class .
+hpc:numThreads a owl:ObjectProperty ;
+    rdfs:domain hpc:MungeDaemon ;
+    rdfs:range xsd:integer .
+
+hpc:SlurmDaemon a owl:Class .
+hpc:ulimitMemorySize a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:integer .
+hpc:ulimitOpenFileCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:integer .
+hpc:ulimitStackSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:integer .
+
+hpc:SlurmConfiguration a owl:Class .
+hpc:AccountingStorageType a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmConfiguration ;
+    rdfs:range rdf:XMLLiteral .
+hpc:CommitDelay a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmdbd ;
+    rdfs:range xsd:integer .
+
+hpc:JobAcctGatherType a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmConfiguration ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:JobCompType a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmConfiguration ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:JobSubmitPluginType a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmConfiguration ;
+    rdfs:range rdf:XMLLiteral .
+```

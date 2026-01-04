@@ -1,0 +1,16 @@
+hpc:OpenapiNodesResp a owl:Class .
+hpc:OpenapiPartitionResp a owl:Class .
+hpc:OpenapiPingArrayResp a owl:Class .
+
+hpc:hasContent a owl:ObjectProperty .
+
+hpc:OpenapiNodesResp rdfs:subClassOf owl:Class .
+hpc:OpenapiPartitionResp rdfs:subClassOf owl:Class .
+hpc:OpenapiPingArrayResp rdfs:subClassOf owl:Class .
+
+hpc:hasContent rdfs:domain hpc:OpenapiNodesResp ;
+                 rdfs:domain hpc:OpenapiPartitionResp ;
+                 rdfs:domain hpc:OpenapiPingArrayResp ;
+
+hpc:hasContent rdfs:range xsd:string .
+```

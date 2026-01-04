@@ -1,0 +1,55 @@
+hpc:Reservation a owl:Class .
+hpc:ReservationModResp a owl:Class .
+hpc:OpenapiResp a owl:Class .
+
+hpc:hasResponse a owl:ObjectProperty .
+hpc:hasResponse rdfs:domain hpc:Reservation .
+hpc:hasResponse rdfs:range hpc:ReservationModResp .
+
+hpc:createOrUpdateReservation a owl:ObjectProperty .
+hpc:createOrUpdateReservation rdfs:domain hpc:Reservation .
+hpc:createOrUpdateReservation rdfs:range hpc:ReservationModResp .
+
+hpc:deleteReservation a owl:ObjectProperty .
+hpc:deleteReservation rdfs:domain hpc:Reservation .
+hpc:deleteReservation rdfs:range hpc:OpenapiResp .
+
+hpc:reservationName a owl:DatatypeProperty .
+hpc:reservationName rdfs:domain hpc:DeleteReservation .
+hpc:reservationName rdfs:range xsd:string .
+
+hpc:Reservation hasResponse hpc:ReservationModResp ;
+  hasResponse hpc:createOrUpdateReservation ;
+  hasResponse hpc:deleteReservation .
+
+hpc:DeleteReservation rdf:type hpc:Reservation ;
+  rdfs:subClassOf hpc:Reservation ;
+  hpc:reservationName xsd:string .
+
+hpc:ReservationModResp rdf:type hpc:Response ;
+  rdfs:subClassOf hpc:OpenapiResp .
+
+hpc:OpenapiResp rdf:type owl:Class .
+
+hpc:Response rdf:type owl:Class ;
+  rdfs:subClassOf owl:Thing .
+
+hpc:Response hasContent xsd:string .
+
+hpc:Content rdf:type owl:Class ;
+  rdfs:subClassOf owl:Thing .
+
+hpc:Content hasSchema hpc:Schema .
+
+hpc:Schema rdf:type owl:Class ;
+  rdfs:subClassOf owl:Thing .
+
+hpc:Schema $ref hpc:ReservationModResp ;
+  $ref hpc:OpenapiResp .
+
+hpc:Response hasContent xsd:string ;
+  hasContent hpc:Content ;
+  hasContent hpc:Schema .
+
+hpc:Content hasSchema hpc:Schema .
+```

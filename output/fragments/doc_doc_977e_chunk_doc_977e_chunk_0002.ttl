@@ -1,0 +1,44 @@
+hpc:Reservation a owl:Class .
+hpc:Reservation hasStartTime a xsd:dateTime .
+hpc:Reservation hasEndTime a xsd:dateTime .
+hpc:Reservation hasDuration xsd:nonNegativeInteger .
+hpc:Reservation hasUser rdf:Resource .
+hpc:Reservation hasFlags rdf:List .
+hpc:Reservation hasNodes rdf:List .
+hpc:Reservation hasLicenses rdf:List .
+
+hpc:Node a owl:Class .
+hpc:Node hasNodeCnt xsd:nonNegativeInteger .
+
+hpc:License a owl:Class .
+hpc:License hasName rdf:Literal .
+
+hpc:createReservation a owl:ObjectProperty .
+hpc:createReservation rdfs:domain hpc:Reservation .
+hpc:createReservation rdfs:range hpc:Reservation .
+
+hpc:hasStartTime rdfs:domain hpc:Reservation .
+hpc:hasStartTime rdfs:range xsd:dateTime .
+
+hpc:hasEndTime rdfs:domain hpc:Reservation .
+hpc:hasEndTime rdfs:range xsd:dateTime .
+
+hpc:hasDuration rdfs:domain hpc:Reservation .
+hpc:hasDuration rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasUser rdfs:domain hpc:Reservation .
+hpc:hasUser rdfs:range rdf:Resource .
+
+hpc:hasFlags rdfs:domain hpc:Reservation .
+hpc:hasFlags rdfs:range rdf:List .
+
+hpc:hasNodes rdfs:domain hpc:Reservation .
+hpc:hasNodes rdfs:range rdf:List .
+
+hpc:hasLicenses rdfs:domain hpc:Reservation .
+hpc:hasLicenses rdfs:range rdf:List .
+
+hpc:LicenseOnly a owl:Class .
+hpc:LicenseOnly rdfs:subClassOf hpc:Reservation .
+hpc:LicenseOnly hasFlags rdf:Literal "LICENSE_ONLY" .
+```

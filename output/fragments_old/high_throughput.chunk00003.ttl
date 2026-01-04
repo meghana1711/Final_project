@@ -1,0 +1,18 @@
+hpc:Track a owl:Class .
+hpc:hasRlTableSize hpc:Track owl:ObjectProperty .
+hpc:isEnabled hpc:Track owl:ObjectProperty .
+
+hpc:SlurmDBDConfiguration a owl:Class .
+hpc:hasCommitDelay hpc:SlurmDBDConfiguration owl:DatatypeProperty .
+
+hpc:PurgeEventAfter hpc:SlurmDBDConfiguration owl:DatatypeProperty .
+hpc:PurgeJobAfter hpc:SlurmDBDConfiguration owl:DatatypeProperty .
+hpc:PurgeResvAfter hpc:SlurmDBDConfiguration owl:DatatypeProperty .
+hpc:PurgeStepAfter hpc:SlurmDBDConfiguration owl:DatatypeProperty .
+hpc:PurgeSuspendAfter hpc:SlurmDBDConfiguration owl:DatatypeProperty .
+hpc:PurgeTXNAfter hpc:SlurmDBDConfiguration owl:DatatypeProperty .
+hpc:PurgeUsageAfter hpc:SlurmDBDConfiguration owl:DatatypeProperty .
+
+hpc:TurningAccountingOff a owl:Class .
+hpc:improvesPerformance hpc:TurningAccountingOff owl:ObjectProperty .
+```

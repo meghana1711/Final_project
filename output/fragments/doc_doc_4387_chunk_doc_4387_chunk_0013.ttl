@@ -1,0 +1,27 @@
+hpc:AuthInfo a owl:DatatypeProperty .
+hpc:AuthInfo rdfs:domain hpc:SlurmDBD .
+hpc:AuthInfo rdfs:range xsd:string .
+
+hpc:AuthType a owl:ObjectProperty .
+hpc:AuthType rdfs:domain hpc:SlurmConfiguration .
+hpc:AuthType rdfs:range xsd:string .
+
+hpc:MachineName a owl:DatatypeProperty .
+hpc:MachineName rdfs:domain hpc:SlurmDBD .
+hpc:MachineName rdfs:range xsd:string .
+
+hpc:PortNumber a owl:DatatypeProperty .
+hpc:PortNumber rdfs:domain hpc:SlurmDBD .
+hpc:PortNumber rdfs:range xsd:integer .
+
+hpc:LogFile a owl:DatatypeProperty .
+hpc:LogFile rdfs:domain hpc:SlurmDBD .
+hpc:LogFile rdfs:range xsd:string .
+
+hpc:PluginPath a owl:DatatypeProperty .
+hpc:PluginPath rdfs:domain hpc:SlurmConfiguration .
+hpc:PluginPath rdfs:range xsd:string .
+
+hpc:SlurmDBD a owl:Class .
+hpc:SlurmConfiguration a owl:Class .
+```

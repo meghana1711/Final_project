@@ -1,0 +1,64 @@
+hpc:SlurmConfigurationFile a owl:Class .
+hpc:SlurmConfigurationFile rdfs:subClassOf owl:NamedIndividual .
+
+hpc:SlurmUser a owl:Class .
+hpc:SlurmUser rdfs:subClassOf owl:NamedIndividual .
+
+hpc:SlurmctldHost a owl:ObjectProperty .
+hpc:SlurmctldHost rdfs:domain hpc:SlurmConfigurationFile ;
+                   rdfs:range xsd:string .
+
+hpc:AuthType a owl:ObjectProperty .
+hpc:AuthType rdfs:domain hpc:SlurmConfigurationFile ;
+                   rdfs:range xsd:string .
+
+hpc:Epilog a owl:ObjectProperty .
+hpc:Epilog rdfs:domain hpc:SlurmConfigurationFile ;
+                   rdfs:range xsd:string .
+
+hpc:JobCompLoc a owl:ObjectProperty .
+hpc:JobCompLoc rdfs:domain hpc:SlurmConfigurationFile ;
+                   rdfs:range xsd:string .
+
+hpc:JobCompType a owl:ObjectProperty .
+hpc:JobCompType rdfs:domain hpc:SlurmConfigurationFile ;
+                   rdfs:range xsd:string .
+
+hpc:PluginDir a owl:ObjectProperty .
+hpc:PluginDir rdfs:domain hpc:SlurmConfigurationFile ;
+                   rdfs:range xsd:string .
+
+hpc:Prolog a owl:ObjectProperty .
+hpc:Prolog rdfs:domain hpc:SlurmConfigurationFile ;
+                   rdfs:range xsd:string .
+
+hpc:SchedulerType a owl:ObjectProperty .
+hpc:SchedulerType rdfs:domain hpc:SlurmConfigurationFile ;
+                   rdfs:range xsd:string .
+
+hpc:SelectType a owl:ObjectProperty .
+hpc:SelectType rdfs:domain hpc:SlurmConfigurationFile ;
+                   rdfs:range xsd:string .
+
+hpc:SlurmUser a owl:ObjectProperty .
+hpc:SlurmUser rdfs:domain hpc:SlurmConfigurationFile ;
+                   rdfs:range xsd:string .
+
+hpc:SlurmctldPort a owl:DatatypeProperty .
+hpc:SlurmctldPort rdfs:domain hpc:SlurmConfigurationFile ;
+                     rdfs:range xsd:integer .
+
+hpc:SlurmctldTimeout a owl:DatatypeProperty .
+hpc:SlurmctldTimeout rdfs:domain hpc:SlurmConfigurationFile ;
+                        rdfs:range xsd:integer .
+
+hpc:SlurmdPort a owl:DatatypeProperty .
+hpc:SlurmdPort rdfs:domain hpc:SlurmConfigurationFile ;
+                   rdfs:range xsd:integer .
+
+hpc:SlurmdSpoolDir a owl:ObjectProperty .
+hpc:SlurmdSpoolDir rdfs:domain hpc:SlurmConfigurationFile ;
+                      rdfs:range xsd:string .
+
+hpc:SlurmdTimeout a owl:DatatypeProperty .
+hpc:Slurmd

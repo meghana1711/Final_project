@@ -1,0 +1,38 @@
+hpc:JobSubmitRequest a owl:Class .
+hpc:JobSubmitReq rdf:type owl:NamedIndividual ;
+    rdf:type hpc:JobSubmitRequest .
+
+hpc:JobSubmitResponse a owl:Class .
+hpc:OpenapiJobSubmitResponse rdf:type owl:NamedIndividual ;
+    rdf:type hpc:JobSubmitResponse .
+
+hpc:JobInfoResponse a owl:Class .
+hpc:OpenapiJobInfoResp rdf:type owl:NamedIndividual ;
+    rdf:type hpc:JobInfoResponse .
+
+hpc:JobDescMsg a owl:Class .
+
+# Job Submit Request Properties
+hpc:requestBody a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmitRequest ;
+    rdfs:range rdf:Resource .
+
+hpc:content a owl:ObjectProperty ;
+    rdfs:domain hpc:requestBody ;
+    rdfs:range xsd:QName .
+
+# Job Submit Response Properties
+hpc:content a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmitResponse ;
+    rdfs:range xsd:QName .
+
+# Job Information Properties
+hpc:content a owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfoResponse ;
+    rdfs:range xsd:QName .
+
+# Job Description Message Properties
+hpc:content a owl:ObjectProperty ;
+    rdfs:domain hpc:JobDescMsg ;
+    rdfs:range xsd:QName .
+```

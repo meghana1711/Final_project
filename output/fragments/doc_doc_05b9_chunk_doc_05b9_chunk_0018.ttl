@@ -1,0 +1,33 @@
+hpc:WCKey a owl:Class .
+hpc:WckeyResponse a owl:Class .
+hpc:hasError a owl:DatatypeProperty ;
+    rdfs:domain hpc:WckeyResponse ;
+    rdfs:range xsd:string .
+hpc:hasMediaType a owl:DatatypeProperty ;
+    rdfs:domain hpc:WckeyResponse ;
+    rdfs:range xsd:string .
+
+hpc:SlurmdbV0043GetWckeys a owl:Class ;
+    rdf:type hpc:APICall ;
+    rdfs:subClassOf hpc:SlurmdbAPICall .
+hpc:SlurmdbAPICall a owl:Class .
+
+hpc:SlurmdbV0043PostAccounts a owl:Class ;
+    rdf:type hpc:APICall ;
+    rdfs:subClassOf hpc:SlurmdbAPICall .
+
+hpc:SlurmdbAPICall a owl:Class ;
+    rdf:type hpc:API .
+
+hpc:API a owl:Class .
+
+hpc:APICall a owl:Class .
+
+hpc:GetWckeyList a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbV0043GetWckeys ;
+    rdfs:range hpc:WCKey .
+
+hpc:ListOfWckeys a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbV0043PostAccounts ;
+    rdfs:range rdf:List .
+```

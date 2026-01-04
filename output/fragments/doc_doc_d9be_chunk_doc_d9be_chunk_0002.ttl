@@ -1,0 +1,35 @@
+hpc:Partition a owl:Class .
+hpc:SlurmdParametersConfigOverrides a owl:Class .
+hpc:SelectType a owl:Enum .
+hpc:SelectType "select/linear" rdf:value, hpc:SelectType "select/cons_tres" rdf:value .
+hpc:SelectTypeParameters a owl:Class .
+hpc:SelectTypeParameters "CR_CPU" rdf:value, hpc:SelectTypeParameters "CR_CPU_Memory" rdf:value, hpc:SelectTypeParameters "CR_Core" rdf:value, hpc:SelectTypeParameters "CR_Core_Memory" rdf:value, hpc:SelectTypeParameters "CR_Socket" rdf:value, hpc:SelectTypeParameters "CR_Socket_Memory" rdf:value .
+
+hpc:Node a owl:Class .
+hpc:OverSubscribe a owl:DatatypeProperty .
+hpc:MaxNodes a xsd:nonNegativeInteger .
+
+hpc:CommandLineOption a owl:Class .
+hpc:PossibleValues a rdfs:List .
+hpc:Description a rdfs:DatatypeProperty .
+
+hpc:RestrictsNodeSelection a owl:ObjectProperty .
+hpc:ExtraNodeInfo a owl:DatatypeProperty .
+hpc:Constraint a rdfs:Class .
+hpc:Contiguous a owl:ObjectProperty .
+hpc:ContiguousN a xsd:nonNegativeInteger .
+hpc:ARestricts a owl:ObjectProperty .
+hpc:CoresPerSocket a xsd:nonNegativeInteger .
+hpc:CpusPerTask a xsd:nonNegativeInteger .
+hpc:Exclusive a owl:ObjectProperty .
+hpc:Nodefile a rdfs:Resource .
+hpc:HintComputeBound a xsd:string .
+hpc:MemoryBound a xsd:string .
+hpc:Multithread a xsd:boolean .
+hpc:MinCpus a xsd:nonNegativeInteger .
+hpc:Nodes a rdfs:DatatypeProperty .
+hpc:MinNodes a xsd:nonNegativeInteger .
+hpc:MaxNodes a xsd:nonNegativeInteger .
+hpc:Ntasks a xsd:nonNegativeInteger .
+hpc:NtasksPerCore a xsd:nonNegativeInteger .
+```

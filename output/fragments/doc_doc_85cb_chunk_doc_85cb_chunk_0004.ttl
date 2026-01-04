@@ -1,0 +1,40 @@
+# Cluster and License classes
+hpc:Cluster a owl:Class .
+hpc:License a owl:Class .
+
+# Server and ServerType classes
+hpc:Server a owl:Class .
+hpc:ServerType a owl:Class .
+
+# Resource properties
+hpc:hasServer a owl:ObjectProperty .
+hpc:hasServerType a owl:ObjectProperty .
+hpc:hasCluster a owl:ObjectProperty .
+hpc:hasAllowed a owl:DatatypeProperty .
+hpc:hasFlags a owl:DatatypeProperty .
+
+# Data type properties
+hpc:count rdf:type xsd:nonNegativeInteger .
+hpc:lastConsumed rdf:type xsd:nonNegativeInteger .
+hpc:allocated rdf:type xsd:nonNegativeInteger .
+hpc:allowed rdf:type xsd:nonNegativeInteger .
+
+# Class and property relationships
+hpc:Cluster rdfs:subClassOf owl:Class .
+hpc:License rdfs:subClassOf owl:Class .
+hpc:Server rdfs:subClassOf owl:Class .
+hpc:ServerType rdfs:subClassOf owl:Class .
+
+hpc:hasServer rdfs:domain hpc:Cluster .
+hpc:hasServer rdfs:domain hpc:License .
+hpc:hasServerType rdfs:domain hpc:Server .
+hpc:hasCluster rdfs:domain hpc:Server .
+hpc:hasAllowed rdfs:domain hpc:License .
+hpc:hasFlags rdfs:domain hpc:License .
+
+hpc:hasServer rdfs:range hpc:Server .
+hpc:hasServerType rdfs:range hpc:ServerType .
+hpc:hasCluster rdfs:range hpc:Cluster .
+hpc:hasAllowed rdfs:range xsd:nonNegativeInteger .
+hpc:hasFlags rdfs:range xsd:string .
+```

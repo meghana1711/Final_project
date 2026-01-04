@@ -1,0 +1,45 @@
+hpc:Partition a owl:Class .
+hpc:ConsumableResource a owl:Class .
+hpc:Job a owl:Class .
+hpc:Node a owl:Class .
+
+hpc:hasPartition rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range hpc:Partition .
+
+hpc:hasResource rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:ConsumableResource .
+
+hpc:OverSubscribe a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition .
+
+hpc:MaxJobsOnResource a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition .
+
+hpc:MaxJobsOnResourceValue a xsd:nonNegativeInteger .
+
+hpc:SelectType a owl:Enum ;
+    rdfs:subClassOf owl:Class .
+
+hpc:selectLinear rdf:type hpc:SelectType .
+hpc:selectLinearPlus rdf:type hpc:SelectType .
+hpc:selectConsTres rdf:type hpc:SelectType .
+
+hpc:CRMemory rdf:type hpc:SelectTypeParameters .
+hpc:CRCore rdf:type hpc:SelectTypeParameters .
+hpc:CRCPU rdf:type hpc:SelectTypeParameters .
+hpc:CRSocket rdf:type hpc:SelectTypeParameters .
+hpc:CRCore_Memory rdf:type hpc:SelectTypeParameters .
+hpc:CRCPU_Memory rdf:type hpc:SelectTypeParameters .
+hpc:CRSocket_Memory rdf:type hpc:SelectTypeParameters .
+
+hpc:MemoryRequirement rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:MemoryRequirementType rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:MemoryRequirement .
+
+hpc:PerNode rdf:type xsd:string .
+hpc:PerCPU rdf:type xsd:string .
+```

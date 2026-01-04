@@ -1,0 +1,31 @@
+hpc:Account a owl:Class .
+hpc:AccountsResponse a owl:Class .
+
+hpc:requestBody a owl:ObjectProperty ;
+    rdfs:domain hpc:Post ;
+    rdfs:range rdf:Resource .
+
+hpc:content a owl:ObjectProperty ;
+    rdfs:domain hpc:requestBody ;
+    rdfs:range xsd:QName .
+
+hpc:schema a owl:ObjectProperty ;
+    rdfs:domain hpc:content ;
+    rdfs:range rdf:Resource .
+
+hpc:$ref a owl:ObjectProperty ;
+    rdfs:domain hpc:schema ;
+    rdfs:range rdf:Resource .
+
+hpc:AccountsAddCondResponse a owl:Class .
+
+hpc:Post a owl:Class ;
+    rdfs:subClassOf hpc:Request .
+
+hpc:Response a owl:Class ;
+    rdfs:subClassOf hpc:Result .
+
+hpc:default a rdfs:Resource .
+
+hpc:200 a rdfs:Literal .
+```

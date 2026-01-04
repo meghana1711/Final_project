@@ -1,0 +1,66 @@
+hpc:Slurmd a owl:Class .
+hpc:Slurmstepd a owl:Class .
+
+# Environment variable classes
+hpc:SLURMD_OOM_ADJ a owl:Class .
+hpc:SLURMSTEPD_OOM_ADJ a owl:Class .
+
+# Property for setting environment variables
+hpc:setsEnvironmentVariable a owl:ObjectProperty ;
+    rdfs:domain hpc:Daemon ;
+    rdfs:range rdf:Resource .
+
+# Property for having an environment variable
+hpc:hasEnvironmentVariable a owl:ObjectProperty ;
+    rdfs:domain hpc:Daemon ;
+    rdfs:range hpc:EnvironmentVariable .
+
+# Environment Variable class
+hpc:EnvironmentVariable a owl:Class .
+
+# Property for having a value
+hpc:hasValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:EnvironmentVariable ;
+    rdfs:range xsd:string .
+
+# Host configuration
+hpc:HostConfiguration a owl:Class .
+
+# Property for having an IP address
+hpc:hasIPAddress a owl:ObjectProperty ;
+    rdfs:domain hpc:HostConfiguration ;
+    rdfs:range xsd:string .
+
+# Problem with incorrect host IP address
+hpc:IncorrectIPAddress a owl:Class ;
+    rdfs:subClassOf hpc:HostConfiguration .
+
+# Property for having a hostname
+hpc:hasHostname a owl:ObjectProperty ;
+    rdfs:domain hpc:HostConfiguration ;
+    rdfs:range xsd:string .
+
+# Node adding
+hpc:NodeAddition a owl:Class .
+
+# Property for having a node
+hpc:hasNode a owl:ObjectProperty ;
+    rdfs:domain hp:NodeAddition ;
+    rdfs:range hpc:Node .
+
+# Node class
+hpc:Node a owl:Class .
+
+# Property for having a slurm.conf file
+hpc:hasSlurmConfFile a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range rdf:Resource .
+
+# Slurmctld daemon class
+hpc:Slurmctld a owl:Class .
+
+# Property for having slurmctld daemon bitmaps
+hpc:hasBitmaps a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmctld ;
+    rdfs:range rdf:Resource .
+```

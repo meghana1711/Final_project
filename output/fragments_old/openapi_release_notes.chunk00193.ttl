@@ -1,0 +1,28 @@
+hpc:V0_0_40_Openapi_Kill_Jobs_Resp a owl:Class .
+
+hpc:jobID rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:V0_0_40_Openapi_Kill_Jobs_Resp ;
+    rdfs:range xsd:string .
+
+# Job Information Response
+hpc:V0_0_40_Openapi_Job_Info_Resp a owl:Class .
+
+hpc:jobID rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:V0_0_40_Openapi_Job_Info_Resp ;
+    rdfs:range xsd:string .
+
+hpc:jobState rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:V0_0_40_Openapi_Job_Info_Resp ;
+    rdfs:range xsd:string .
+
+# License Response
+hpc:V0_0_40_Openapi_Licenses_Resp a owl:Class .
+
+hpc:licenseID rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:V0_0_40_Openapi_Licenses_Resp ;
+    rdfs:range xsd:string .
+
+hpc:licenseName rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:V0_0_40_Openapi_Licenses_Resp ;
+    rdfs:range xsd:string .
+```

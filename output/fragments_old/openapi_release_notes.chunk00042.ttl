@@ -1,0 +1,46 @@
+hpc:AdminLevel a owl:Class .
+hpc:AdminLevel rdfs:subClassOf xsd:string .
+hpc:AdminLevel rdfs:subClassOf rdf:List .
+hpc:AdminLevel rdfs:comment "Enumeration of user admin levels." .
+hpc:AdminLevel "None" rdf:first .
+hpc:AdminLevel "Operator" rdf:first hpc:AdminLevel ;
+                                 rdf:rest hpc:AdminLevel "Administrator" .
+
+hpc:WarnFlags a owl:Class .
+hpc:WarnFlags rdfs:subClassOf xsd:string .
+hpc:WarnFlags rdfs:subClassOf rdf:List .
+hpc:WarnFlags rdfs:comment "Enumeration of warning flags." .
+
+hpc:WckeyFlags a owl:Class .
+hpc:WckeyFlags rdfs:subClassOf xsd:string .
+hpc:WckeyFlags rdfs:subClassOf rdf:List .
+hpc:WckeyFlags rdfs:comment "Enumeration of wckey flags." .
+
+hpc:WckeyTagFlags a owl:Class .
+hpc:WckeyTagFlags rdfs:subClassOf xsd:string .
+hpc:WckeyTagFlags rdfs:subClassOf rdf:List .
+hpc:WckeyTagFlags rdfs:comment "Enumeration of wckey tag flags." .
+
+hpc:WckeyTagStruct a owl:Class .
+hpc:WckeyTagStruct rdfs:subClassOf xsd:string .
+hpc:WckeyTagStruct rdfs:subClassOf rdf:List .
+hpc:WckeyTagStruct rdfs:comment "Enumeration of wckey tag structures." .
+
+hpc:X11Flags a owl:Class .
+hpc:X11Flags rdfs:subClassOf xsd:string .
+hpc:X11Flags rdfs:subClassOf rdf:List .
+hpc:X11Flags rdfs:comment "Enumeration of X11 flags." .
+
+hpc:info a rdf:Property .
+hpc:info rdfs:domain hpc:Info .
+hpc:info rdfs:range xsd:string .
+
+hpc:version a rdf:Property .
+hpc:version rdfs:domain hpc:Info .
+hpc:version rdfs:range xsd:string .
+
+hpc:xSlurm a rdf:Property .
+hpc:xSlurm rdfs:domain hpc:Info .
+hpc:xSlurm rdfs:range rdf:List .
+
+hpc:dataParsers a rdf:Property .

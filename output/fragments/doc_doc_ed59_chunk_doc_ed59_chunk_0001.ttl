@@ -1,0 +1,54 @@
+hpc:SlurmVersion25_05 a owl:Class .
+hpc:supportsUpgradeFrom rdf:List .
+hpc:supportsUpgradeFrom rdf:first hpc:SlurmVersion24_11 ;
+                             rdf:rest hpc:SlurmVersion24_05 ;
+                             rdf:rest hpc:SlurmVersion23_11 .
+
+hpc:hasTLSEncryption a owl:ObjectProperty ;
+                      rdfs:domain hpc:SlurmVersion25_05 ;
+                      rdfs:range xsd:boolean .
+
+hpc:supportsMultipleTopologies a owl:ObjectProperty ;
+                               rdfs:domain hpc:SlurmVersion25_05 ;
+                               rdfs:range rdf:Resource .
+
+hpc:supportsHierarchicalResources a owl:ObjectProperty ;
+                                  rdfs:domain hpc:SlurmVersion25_05 ;
+                                  rdfs:range xsd:boolean .
+
+hpc:supportsDynamicNodes a owl:ObjectProperty ;
+                          rdfs:domain hpc:SlurmVersion25_05 ;
+                          rdfs:range rdf:Resource .
+
+hpc:supportsOROperatorInLicenseRequests a owl:ObjectProperty ;
+                                       rdfs:domain hpc:SlurmVersion25_05 ;
+                                       rdfs:range xsd:boolean .
+
+hpc:sacctmgrDumpLoadQOSes a owl:ObjectProperty ;
+                           rdfs:domain hpc:SlurmVersion25_05 ;
+                           rdfs:range rdf:Resource .
+
+hpc:slurmrestdTLSEncryption a owl:ObjectProperty ;
+                            rdfs:domain hpc:SlurmVersion25_05 ;
+                            rdfs:range xsd:boolean .
+
+hpc:srunWaitForChildren a owl:ObjectProperty ;
+                        rdfs:domain hpc:SlurmVersion25_05 ;
+                        rdfs:range xsd:boolean .
+
+hpc:topologyBlockGaps a owl:ObjectProperty ;
+                      rdfs:domain hpc:SlurmVersion25_05 ;
+                      rdfs:range xsd:boolean .
+
+hpc:jobcompKafkaStartInfo a owl:ObjectProperty ;
+                          rdfs:domain hpc:SlurmVersion25_05 ;
+                          rdfs:range xsd:boolean .
+
+hpc:switchHPE_SlingshotRanksPerNodeMoreThan252 a owl:DatatypeProperty ;
+                                               rdfs:domain hpc:SlurmVersion25_05 ;
+                                               rdfs:range xsd:integer .
+
+hpc:switchHPE_SlingshotMTLSAuth a owl:ObjectProperty ;
+                                 rdfs:domain hpc:SlurmVersion25_05 ;
+                                 rdfs:range xsd:boolean .
+```

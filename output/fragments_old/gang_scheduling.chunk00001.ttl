@@ -1,0 +1,78 @@
+# Workload Manager
+hpc:WorkloadManager a owl:Class .
+
+# Slurm Workload Manager
+hpc:SlurmWorkloadManager a hpc:WorkloadManager .
+
+# Version
+hpc:Version a owl:DatatypeProperty ;
+    rdfs:domain hpc:WorkloadManager ;
+    rdfs:range xsd:string .
+
+# About
+hpc:About a owl:ObjectProperty ;
+    rdfs:domain hpc:WorkloadManager .
+
+# Overview
+hpc:Overview a owl:Class ;
+    rdfs:subClassOf hpc:About .
+
+# Release Notes
+hpc:ReleaseNotes a owl:Class ;
+    rdfs:subClassOf hpc:About .
+
+# Using
+hpc:Using a owl:Class ;
+    rdfs:subClassOf hpc:About .
+
+# Documentation
+hpc:Documentation a owl:Class ;
+    rdfs:subClassOf hpc:Using .
+
+# FAQ
+hpc:FAQ a owl:Class ;
+    rdfs:subClassOf hpc:Using .
+
+# Publications
+hpc:Publications a owl:Class ;
+    rdfs:subClassOf hpc:About .
+
+# Installing
+hpc:Installing a owl:Class ;
+    rdfs:subClassOf hpc:Using .
+
+# Download
+hpc:Download a owl:ObjectProperty ;
+    rdfs:domain hpc:Installing .
+
+# Related Software
+hpc:RelatedSoftware a owl:Class ;
+    rdfs:subClassOf hpc:Installing .
+
+# Installation Guide
+hpc:InstallationGuide a owl:Class ;
+    rdfs:subClassOf hpc:Installing .
+
+# Getting Help
+hpc:GettingHelp a owl:Class ;
+    rdfs:subClassOf hpc:Using .
+
+# Mailing Lists
+hpc:MailingLists a owl:Class ;
+    rdfs:subClassOf hpc:GettingHelp .
+
+# Support and Training
+hpc:SupportAndTraining a owl:Class ;
+    rdfs:subClassOf hpc:GettingHelp .
+
+# Troubleshooting
+hpc:Troubleshooting a owl:Class ;
+    rdfs:subClassOf hpc:GettingHelp .
+
+# Gang Scheduling
+hpc:GangScheduling a owl:Class ;
+    rdfs:subClassOf hpc:Using .
+
+# Timesliced Gang Scheduling
+hpc:TimeslicedGangScheduling a owl:Class ;
+    rdfs:subClassOf hpc:Gang

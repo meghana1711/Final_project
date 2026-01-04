@@ -1,0 +1,59 @@
+hpc:DockerContainerStorage a owl:Class .
+hpc:usesSharedFilesystem rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:DockerContainerStorage ;
+    rdfs:range rdf:Resource .
+
+hpc:DockerContainerStorageWithVFS a hpc:DockerContainerStorage ;
+    hpc:storageDriver "vfs" ;
+    hpc:dataRoot xsd:string "/path/to/shared/filesystem/user_name/data/" ;
+    hpc:execRoot xsd:string "/path/to/shared/filesystem/user_name/exec/" .
+
+hpc:DockerNode a owl:Class .
+hpc:canRunContainers rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:DockerNode ;
+    rdfs:range rdf:Resource .
+
+hpc:CanReadFilesystem a owl:Class ;
+    rdfs:subClassOf hpc:DockerNode .
+
+hpc:FullWritePrivileges a owl:Class ;
+    rdfs:subClassOf hpc:CanReadFilesystem .
+
+hpc:DockerNetworkNamespace a owl:Class .
+hpc:isConfigured rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:DockerNode ;
+    rdfs:range xsd:boolean .
+
+hpc:NotConfiguredNetworkNamespace a owl:Class ;
+    rdfs:subClassOf hpc:DockerNode ;
+    hpc:isConfigured false .
+
+hpc:SystemdDockerConfiguration a owl:Class .
+hpc:isForAllUsers rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SystemdDockerConfiguration ;
+    rdfs:range xsd:string .
+
+hpc:UserSpecificDockerConfiguration a owl:Class .
+hpc:isForUser rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:UserSpecificDockerConfiguration ;
+    rdfs:range xsd:string .
+
+hpc:RootlessDocker a owl:Class .
+hpc:isConfigured rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:RootlessDocker ;
+    rdfs:range xsd:boolean .
+
+hpc:ScrunIntegration a owl:Class .
+hpc:requiresSlurmConfiguration rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ScrunIntegration ;
+    rdfs:range rdf:Resource .
+
+hpc:MungeAuthentication a owl:Class .
+hpc:isConfigured rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:boolean .
+
+hpc:PodmanIntegration a owl:Class .
+hpc:doesNotRequireSpecialPermissions rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PodmanIntegration .
+```

@@ -1,0 +1,26 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:GenericResource a owl:Class .
+hpc:GRES a hpc:GenericResource .
+
+hpc:GRESDesignGuide a owl:Class .
+hpc:GRESScheduling a rdfs:subClassOf hpc:GRESDesignGuide .
+
+hpc:GRESDataStructure a owl:Class .
+hpc:gres_node_state_t a hpc:GRESDataStructure .
+hpc:gres_job_state_t a hpc:GRESDataStructure .
+hpc:gres_step_state_t a hpc:GRESDataStructure .
+
+hpc:hasGRES a owl:ObjectProperty .
+hpc:hasGRES_list a owl:ObjectProperty .
+
+hpc:GRES_ID a xsd:integer .
+hpc:GRES_data a owl:Class .
+
+hpc:gres_count a xsd:integer .
+hpc:node_count a xsd:integer .
+hpc:gres_bitmap a owl:DatatypeProperty .
+hpc:gres_count_allocated_to_steps a xsd:integer .
+hpc:gres_bitmap_allocated_to_steps a owl:DatatypeProperty .
+```

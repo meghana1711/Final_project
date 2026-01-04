@@ -1,0 +1,64 @@
+hpc:SlurmWrapper a owl:Class .
+hpc:hasWrapperURL a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWrapper ;
+    rdfs:range xsd:string .
+
+hpc:SlurmCommand a owl:Class .
+hpc:isSlurmCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCommand ;
+    rdfs:range xsd:anyURI .
+
+hpc:SlurmOption a owl:Class .
+hpc:isSlurmOption a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmOption ;
+    rdfs:range xsd:string .
+
+hpc:SlurmEnvironmentVariable a owl:Class .
+hpc:isSlurmEnvironmentVariable a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmEnvironmentVariable ;
+    rdfs:range xsd:string .
+
+hpc:MPIImplementation a owl:Class .
+hpc:requiresEnvironmentVariable a owl:ObjectProperty ;
+    rdfs:domain hpc:MPIImplementation ;
+    rdfs:range rdf:Resource .
+
+hpc:LimitedLockedMemory a owl:Class .
+hpc:hasLimitedLockedMemory a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:boolean .
+
+hpc:Partition a owl:Class .
+hpc:isPartition a owl:ObjectProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range rdf:Resource .
+
+hpc:PartitionName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:string .
+
+hpc:SlurmDaemon a owl:Class .
+hpc:hasPartition a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range rdf:Resource .
+
+hpc:SlurmDaemonStartupOption a owl:Class .
+hpc:isSlurmDaemonStartupOption a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemonStartupOption ;
+    rdfs:range xsd:string .
+
+hpc:SlurmConfig a owl:Class .
+hpc:hasPartition a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmConfig ;
+    rdfs:range rdf:Resource .
+
+hpc:Job a owl:Class .
+hpc:hasPartition a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource .
+
+hpc:RoutingQueue a owl:Class .
+hpc:isRoutingQueue a owl:ObjectProperty ;
+    rdfs:domain hpc:RoutingQueue ;
+    rdfs:range rdf:Resource .
+```

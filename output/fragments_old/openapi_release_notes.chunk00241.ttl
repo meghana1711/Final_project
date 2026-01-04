@@ -1,0 +1,16 @@
+hpc:Instance a owl:Class .
+hpc:instances_resp a owl:Class .
+hpc:slurmdbd_jobs_resp a owl:Class .
+
+hpc:hasResponse a owl:ObjectProperty .
+hpc:hasResponse rdfs:domain hpc:Instance ;
+hpc:hasResponse rdfs:range rdfs:Resource .
+
+hpc:hasContent a owl:ObjectProperty .
+hpc:hasContent rdfs:domain hpc:hasResponse ;
+hpc:hasContent rdfs:range xsd:QName .
+
+hpc:schema a owl:ObjectProperty .
+hpc:schema rdfs:domain hpc:hasContent ;
+hpc:schema rdfs:range hpc:instances_resp .
+```

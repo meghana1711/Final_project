@@ -1,0 +1,54 @@
+hpc:Step a owl:Class .
+hpc:id a owl:DatatypeProperty ;
+    rdfs:domain hpc:Step .
+
+hpc:CPU a owl:Class .
+hpc:requested_frequency a owl:DatatypeProperty ;
+    rdfs:domain hpc:CPU .
+
+hpc:statistics a owl:Class ;
+    rdfs:subClassOf hpc:CPU .
+
+hpc:range a owl:Class .
+hpc:nodes a owl:ObjectProperty ;
+    rdfs:domain hpc:range .
+
+hpc:CPU a rdfs:subClassOf hpc:range .
+
+hpc:tres a owl:Class .
+hpc:requested a owl:DatatypeProperty ;
+    rdfs:domain hpc:tres .
+hpc:consumed a owl:DatatypeProperty ;
+    rdfs:domain hpc:tres .
+
+hpc:controller a owl:Class .
+hpc:host a owl:DatatypeProperty ;
+    rdfs:domain hpc:controller .
+
+hpc:current_watts a xsd:integer .
+hpc:acct_gather_energy a owl:Class ;
+    rdfs:subClassOf hpc:CPU .
+
+hpc:priority a xsd:integer .
+hpc:qos a owl:Class .
+
+hpc:job_desc_msg a owl:Class ;
+    rdfs:subClassOf hpc:JobDescription .
+hpc:status a xsd:integer .
+
+hpc:job_info a owl:Class .
+hpc:derived_exit_code a xsd:unsignedInt .
+
+hpc:Plugin a owl:Class .
+hpc:data_parser a owl:Class .
+hpc:v0_0_39 a owl:Class .
+
+hpc:job_id a xsd:string .
+hpc:job a owl:Class .
+hpc:get a owl:ObjectProperty .
+hpc:licenses a owl:Class .
+hpc:default a owl:ObjectProperty .
+
+hpc:exit_code a xsd:unsignedInt .
+hpc:derived_exit_code rdfs:subPropertyOf hpc:exit_code .
+```

@@ -1,0 +1,70 @@
+# Node
+hpc:Node a owl:Class .
+
+# Socket
+hpc:Socket a owl:Class ;
+    rdfs:subClassOf hpc:LogicalProcessor .
+
+# Core
+hpc:Core a owl:Class ;
+    rdfs:subClassOf hpc:LogicalProcessor .
+
+# Thread
+hpc:Thread a owl:Class ;
+    rdfs:subClassOf hpc:LogicalProcessor .
+
+# HighLevelJob
+hpc:HighLevelJob a owl:Class .
+
+# HighLevelJob_has_cpus
+hpc:HighLevelJob_has_cpus a owl:ObjectProperty ;
+    rdfs:domain hpc:HighLevelJob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# HighLevelJob_has_nodes
+hpc:HighLevelJob_has_nodes a owl:ObjectProperty ;
+    rdfs:domain hpc:HighLevelJob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# HighLevelJob_has_sockets_per_node
+hpc:HighLevelJob_has_sockets_per_node a owl:DatatypeProperty ;
+    rdfs:domain hpc:HighLevelJob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# HighLevelJob_has_cores_per_socket
+hpc:HighLevelJob_has_cores_per_socket a owl:DatatypeProperty ;
+    rdfs:domain hpc:HighLevelJob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# HighLevelJob_has_threads_per_core
+hpc:HighLevelJob_has_threads_per_core a owl:DatatypeProperty ;
+    rdfs:domain hpc:HighLevelJob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Task
+hpc:Task a owl:Class .
+
+# Task_is_bound
+hpc:Task_is_bound a owl:ObjectProperty .
+
+# Task_distribution
+hpc:Task_distribution a owl:ObjectProperty .
+
+# Task_distribution_type
+hpc:Task_distribution_type a owl:DatatypeProperty .
+
+# Task_distribution_parameters
+hpc:Task_distribution_parameters a owl:DatatypeProperty .
+
+# Memory
+hpc:Memory a owl:Class .
+
+# Memory_per_node
+hpc:Memory_per_node a owl:DatatypeProperty ;
+    rdfs:domain hpc:Memory .
+    rdfs:range xsd:nonNegativeInteger .
+
+# ConsumableResource
+hpc:ConsumableResource a owl:Class .
+
+# ConsumableResource_type

@@ -1,0 +1,42 @@
+hpc:Job a owl:Class .
+hpc:BurstBufferState a owl:Class .
+hpc:SlurmctldState a owl:Class .
+
+hpc:hasBurstBufferState rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:BurstBufferState .
+
+hpc:currentSlurmctldState rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:BurstBufferScript a owl:Class .
+
+hpc:pendingBurstBufferState a hpc:BurstBufferState ;
+    rdfs:label "Pending" .
+hpc:stagingInBurstBufferState a hpc:BurstBufferState ;
+    rdfs:label "Staging-in" .
+hpc:stagedInBurstBufferState a hpc:BurstBufferState ;
+    rdfs:label "Staged-in" .
+hpc:preRunBurstBufferState a hpc:BurstBufferState ;
+    rdfs:label "Pre-run" .
+hpc:runningBurstBufferState a hpc:BurstBufferState ;
+    rdfs:label "Running" .
+hpc:postRunBurstBufferState a hpc:BurstBufferState ;
+    rdfs:label "Post-run" .
+hpc:stagingOutBurstBufferState a hpc:BurstBufferState ;
+    rdfs:label "Staging-out" .
+hpc:teardownBurstBufferState a hpc:BurstBufferState ;
+    rdfs:label "Teardown" .
+hpc:teardownFailBurstBufferState a hpc:BurstBufferState ;
+    rdfs:label "Teardown-fail" .
+
+hpc:runBurstBufferScript a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:BurstBufferScript .
+
+hpc:killBurstBufferScript a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmctld ;
+    rdfs:range hpc:BurstBufferScript .
+
+hpc:Slurmctld a owl:Class .
+```

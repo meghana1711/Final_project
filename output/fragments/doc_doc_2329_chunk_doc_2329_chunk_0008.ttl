@@ -1,0 +1,65 @@
+hpc:SlurmBootstrap a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Bootstrap mechanism used by Slurm." .
+
+hpc:SlurmEnvironmentVariable a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Environment variable injected by Slurm." .
+
+hpc:SlurmConf a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Slurm configuration file." .
+
+hpc:MpiParams a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmConf ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Parameter set in slurm.conf." .
+
+hpc:MpiParamsDisableSlurmHydraBootstrap a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmConf ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Parameter to disable Slurm's automatic Hydra bootstrap mechanism." .
+
+hpc:MpiParamsSlurmHydraBootstrapException a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmConf ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Exception for the case where 'slurm' is explicitly set as a bootstrap." .
+
+hpc:MpiLibrary a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Library used by MPICH." .
+
+hpc:PmiLibrary a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Parallel Message Passing Interface library." .
+
+hpc:PmiVersion a owl:DatatypeProperty ;
+    rdfs:domain hpc:PmiLibrary ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Version of the PMI library." .
+
+hpc:MpiCh a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "MPICH software." .
+
+hpc:MpiChBootstrap a owl:ObjectProperty ;
+    rdfs:domain hpc:MpiCh ;
+    rdfs:range hpc:SlurmBootstrap ;
+    rdfs:comment "Bootstrap mechanism used by MPICH." .
+
+hpc:MpiChLinkedLibrary a owl:ObjectProperty ;
+    rdfs:domain hpc:MpiCh ;
+    rdfs:range hpc:MpiLibrary ;
+    rdfs:comment "MPI library linked with MPICH." .
+
+hpc:MpiChPmiVersion a owl:DatatypeProperty ;
+    rdfs:domain hpc:MpiCh ;
+    rdfs:range hdfs:PmiVersion ;
+    rdfs:comment "PMI version used by linked MPICH library." .
+
+hpc:MpiChPmiLib a owl:ObjectProperty ;
+    rdfs:domain hpc:MpiCh ;
+    rdfs:range hpc:PmiLibrary ;
+    rdfs:comment "PMI library used by MPICH." .
+
+hpc:MpiChP

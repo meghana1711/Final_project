@@ -1,0 +1,63 @@
+hpc:Node a owl:Class .
+
+hpc:coresPerGpu rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:int .
+
+hpc:comment rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Node .
+
+hpc:reason rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Node .
+
+hpc:reasonChangedAt rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:uint64 .
+
+hpc:reasonSetByUser rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Node .
+
+hpc:resumeAfter rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:uint64 .
+
+hpc:reservation rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Node .
+
+hpc:allocMemory rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:int .
+
+hpc:allocCpus rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:int .
+
+hpc:allocIdleCpus rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:int .
+
+hpc:tresUsed rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Node .
+
+hpc:tresWeighted rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:double .
+
+hpc:slurmdStartTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:uint64 .
+
+hpc:sockets rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:int .
+
+hpc:threads rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:int .
+
+hpc:temporaryDisk rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:int .
+
+hpc:weight rdf:type owl:DatatypeProperty ;
+    rd

@@ -1,0 +1,54 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:Version a owl:DatatypeProperty .
+hpc:Overview a owl:ObjectProperty .
+hpc:ReleaseNotes a owl:ObjectProperty .
+hpc:Using a owl:ObjectProperty .
+hpc:Documentation a owl:ObjectProperty .
+hpc:FAQ a owl:ObjectProperty .
+hpc:Publications a owl:ObjectProperty .
+hpc:Installing a owl:ObjectProperty .
+hpc:Download a owl:ObjectProperty .
+hpc:RelatedSoftware a owl:ObjectProperty .
+hpc:InstallationGuide a owl:ObjectProperty .
+hpc:GettingHelp a owl:ObjectProperty .
+hpc:MailingLists a owl:ObjectProperty .
+hpc:SupportAndTraining a owl:ObjectProperty .
+hpc:Troubleshooting a owl:ObjectProperty .
+hpc:JobCompletionKafkaPluginGuide a owl:ObjectProperty .
+
+hpc:JobCompType a owl:ObjectProperty .
+hpc:JobCompLoc a owl:ObjectProperty .
+hpc:JobCompParams a owl:ObjectProperty .
+hpc:DebugFlags a owl:ObjectProperty .
+
+hpc:JobCompType rdfs:domain hpc:SlurmWorkloadManager ;
+  rdfs:range xsd:string .
+
+hpc:JobCompLoc rdfs:domain hpc:SlurmWorkloadManager ;
+  rdfs:range xsd:anyURI .
+
+hpc:JobCompParams rdfs:domain hpc:SlurmWorkloadManager ;
+  rdfs:range xsd:string .
+
+hpc:DebugFlags rdfs:domain hpc:SlurmWorkloadManager ;
+  rdfs:range xsd:string .
+
+hpc:JobCompTypeHasValue a owl:FunctionalProperty ;
+  rdfs:subPropertyOf hpc:JobCompType ;
+  rdfs:domain hpc:SlurmWorkloadManager ;
+  rdfs:range xsd:string .
+
+hpc:JobCompLocHasValue a owl:FunctionalProperty ;
+  rdfs:subPropertyOf hpc:JobCompLoc ;
+  rdfs:domain hpc:SlurmWorkloadManager ;
+  rdfs:range xsd:anyURI .
+
+hpc:JobCompParamsHasValue a owl:FunctionalProperty ;
+  rdfs:subPropertyOf hpc:JobCompParams ;
+  rdfs:domain hpc:SlurmWorkloadManager ;
+  rdfs:range xsd:string .
+
+hpc:DebugFlagsHasValue a owl:FunctionalProperty ;
+  rdfs:

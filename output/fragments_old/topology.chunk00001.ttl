@@ -1,0 +1,26 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:Topology a owl:Class .
+hpc:ThreeDimensionalTopology a hpc:Topology .
+hpc:TreeTopology a hpc:Topology .
+hpc:BlockTopology a hpc:Topology .
+
+hpc:Switch a owl:Class .
+hpc:Node a owl:Class .
+
+hpc:hasTopology a owl:ObjectProperty .
+hpc:hasSwitch a owl:ObjectProperty .
+hpc:hasNodes a owl:ObjectProperty .
+hpc:hasChildren a owl:ObjectProperty .
+hpc:hasParentSwitch owl:ObjectProperty .
+
+hpc:LinkSpeed a xsd:decimal .
+
+hpc:TopologyPlugin a owl:ObjectProperty .
+hpc:TopologyParam a owl:ObjectProperty .
+
+hpc:TopologyOptional a owl:NamedIndividual .
+```
+
+This ontology fragment represents the classes and properties related to the Slurm Workload Manager, specifically focusing on the topology-aware resource allocation. It includes classes for Slurm Workload Manager, SchedMD, Topology, ThreeDimensionalTopology, TreeTopology, BlockTopology, Switch, and Node. It also includes object properties for relationships such as having a topology, having a switch, having nodes, having children, and having a parent switch. Additionally, it includes a datatype property for link speed and object properties for TopologyPlugin and TopologyParam.

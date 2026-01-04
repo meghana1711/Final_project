@@ -1,0 +1,47 @@
+hpc:Job a owl:Class .
+hpc:RunningJob a hpc:Job .
+hpc:PendingJob a hpc:Job .
+
+hpc:JobPriority a owl:Enum ;
+  rdfs:member hpc:HighPriority .
+hpc:HighPriority rdf:value "high"^^xsd:string .
+hpc:MediumPriority rdf:value "medium"^^xsd:string .
+hpc:LowPriority rdf:value "low"^^xsd:string .
+
+hpc:JobReservation a owl:Class .
+
+hpc:JobPreemption a owl:ObjectProperty .
+hpc:GangScheduling a owl:ObjectProperty .
+hpc:GenericResourceRequirement a owl:ObjectProperty .
+hpc:MemoryRequirement a owl:ObjectProperty .
+
+hpc:PlannedState a owl:Class .
+
+hpc:ExpectedStartTime a owl:DatatypeProperty ;
+  rdfs:domain hpc:Job .
+  rdfs:range xsd:dateTime .
+
+hpc:ReservedNodes a owl:ObjectProperty ;
+  rdfs:domain hpc:JobReservation .
+  rdfs:range rdf:List .
+
+hpc:JobPartitionPair a owl:Class .
+
+hpc:DefaultTime a owl:DatatypeProperty ;
+  rdfs:domain hpc:Partition .
+  rdfs:range xsd:duration .
+
+hpc:MaxTime a owl:DatatypeProperty ;
+  rdfs:domain hpc:Partition .
+  rdfs:range xsd:duration .
+
+hpc:OverTimeLimit a owl:DatatypeProperty ;
+  rdfs:domain rdf:Resource .
+  rdfs:range xsd:duration .
+
+hpc:SchedulerParameters a owl:ObjectProperty .
+
+hpc:BfContinue a owl:ObjectProperty .
+
+hpc:LockReleaseInterval a xsd:duration .
+```

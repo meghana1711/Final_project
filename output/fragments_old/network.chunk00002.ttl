@@ -1,0 +1,50 @@
+hpc:CTLD a owl:Class .
+hpc:CTLD rdfs:subClassOf owl:Class .
+
+hpc:Machine a owl:Class .
+hpc:Machine rdfs:subClassOf owl:Class .
+
+hpc:Slurmdbd a owl:Class .
+hpc:Slurmdbd rdfs:subClassOf owl:Class .
+
+hpc:MySQLServer a owl:Class .
+hpc:MySQLServer rdfs:subClassOf owl:Class .
+
+hpc:SlurmDaemon a owl:Class .
+hpc:SlurmDaemon rdfs:subClassOf owl:Class .
+
+hpc:hasIPv4Address a owl:DatatypeProperty .
+hpc:hasIPv4Address rdfs:domain hpc:SlurmDaemon ;
+                    rdfs:range xsd:string .
+
+hpc:hasIPv6Address a owl:DatatypeProperty .
+hpc:hasIPv6Address rdfs:domain hpc:SlurmDaemon ;
+                    rdfs:range xsd:string .
+
+hpc:canReach a owl:ObjectProperty .
+hpc:canReach rdfs:domain hpc:SlurmDaemon ;
+             rdfs:range hpc:SlurmDaemon .
+
+hpc:isFallback a owl:ObjectProperty .
+hpc:isFallback rdfs:domain hpc:CTLD ;
+              rdfs:range hpc:CTLD .
+
+hpc:isInCluster a owl:ObjectProperty .
+hpc:isInCluster rdfs:domain hpc:CTLD ;
+               rdfs:range hpc:CTLD .
+
+hpc:isInFederation a owl:ObjectProperty .
+hpc:isInFederation rdfs:domain hpc:CTLD ;
+                 rdfs:range hpc:CTLD .
+
+hpc:usesIPv6 a owl:ObjectProperty .
+hpc:usesIPv6 rdfs:domain hpc:SlurmDaemon ;
+            rdfs:range xsd:boolean .
+
+hpc:hasPrecedence a owl:ObjectProperty .
+hpc:hasPrecedence rdfs:domain hpc:IPAddress ;
+                 rdfs:range xsd:integer .
+
+hpc:IPAddress a owl:Class .
+hpc:IPAddress rdfs:subClassOf owl:Class .
+```

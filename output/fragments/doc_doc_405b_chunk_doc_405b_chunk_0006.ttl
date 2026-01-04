@@ -1,0 +1,36 @@
+hpc:AssocMaxLicenseMinutesPerJob a owl:Class .
+hpc:AssocMaxLicensePerJob a owl:Class .
+hpc:AssocMaxMemMinutesPerJob a owl:Class .
+hpc:AssocMaxMemPerJob a owl:Class .
+hpc:AssocMaxMemPerNode a owl:Class .
+hpc:AssocMaxNodeMinutesPerJob a owl:Class .
+hpc:AssocMaxNodePerJobLimit a owl:Class .
+hpc:AssocMaxSubmitJobLimit a owl:Class .
+hpc:AssocMaxUnknownMinutesPerJob a owl:Class .
+hpc:AssocMaxUnknownPerJob a owl:Class .
+hpc:AssocMaxUnknownPerNode a owl:Class .
+
+hpc:AssocMaxLicenseMinutesPerJob rdfs:domain hpc:Association .
+hpc:AssocMaxLicensePerJob rdfs:domain hpc:Association .
+hpc:AssocMaxMemMinutesPerJob rdfs:domain hpc:Association .
+hpc:AssocMaxMemPerJob rdfs:domain hpc:Association .
+hpc:AssocMaxMemPerNode rdfs:domain hpc:JobAllocation .
+hpc:AssocMaxNodeMinutesPerJob rdfs:domain hpc:Association .
+hpc:AssocMaxNodePerJobLimit rdfs:domain hpc:Association .
+hpc:AssocMaxSubmitJobLimit rdfs:domain hpc:User .
+hpc:AssocMaxUnknownMinutesPerJob rdfs:domain hpc:Association .
+hpc:AssocMaxUnknownPerJob rdfs:domain hpc:Association .
+hpc:AssocMaxUnknownPerNode rdfs:domain hpc:JobAllocation .
+
+hpc:AssocMaxLicenseMinutesPerJob rdfs:range xsd:nonNegativeInteger .
+hpc:AssocMaxLicensePerJob rdfs:range xsd:nonNegativeInteger .
+hpc:AssocMaxMemMinutesPerJob rdfs:range xsd:nonNegativeInteger .
+hpc:AssocMaxMemPerJob rdfs:range xsd:nonNegativeInteger .
+hpc:AssocMaxMemPerNode rdfs:range xsd:nonNegativeInteger .
+hpc:AssocMaxNodeMinutesPerJob rdfs:range xsd:nonNegativeInteger .
+hpc:AssocMaxNodePerJobLimit rdfs:range xsd:nonNegativeInteger .
+hpc:AssocMaxSubmitJobLimit rdfs:range xsd:nonNegativeInteger .
+hpc:AssocMaxUnknownMinutesPerJob rdfs:range xsd:nonNegativeInteger .
+hpc:AssocMaxUnknownPerJob rdfs:range xsd:nonNegativeInteger .
+hpc:AssocMaxUnknownPerNode rdfs:range xsd:nonNegativeInteger .
+```

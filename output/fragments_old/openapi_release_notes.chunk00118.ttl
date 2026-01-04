@@ -1,0 +1,22 @@
+hpc:Job a owl:Class .
+hpc:Warning a owl:Class .
+hpc:Warning a owl:Object .
+hpc:Warning_source a owl:DatatypeProperty ;
+    rdfs:domain hpc:Warning ;
+    rdfs:range xsd:string .
+hpc:Warnings a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:ControllerPing a owl:Class .
+hpc:Primary a owl:DatatypeProperty ;
+    rdfs:domain hpc:ControllerPing ;
+    rdfs:range xsd:boolean .
+hpc:Responding a owl:DatatypeProperty ;
+    rdfs:domain hpc:ControllerPing ;
+    rdfs:range xsd:boolean .
+
+hpc:Account a owl:Class .
+hpc:openapi_accounts_resp a owl:Class .
+```
+
+This ontology fragment represents the classes `Job`, `Warning`, `ControllerPing`, and `Account`, as well as the properties `Warning_source`, `Warnings`, `Primary`, and `Responding`. The `Warning` class is an object that has a `source` property, and the `ControllerPing` class has `Primary` and `Responding` properties. The `Job` class has a `Warnings` property, and the `Account` class is related to the `openapi_accounts_resp` class, but the details for that are not provided in the given documentation.

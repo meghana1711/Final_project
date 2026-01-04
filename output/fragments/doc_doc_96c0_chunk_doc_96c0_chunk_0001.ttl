@@ -1,0 +1,42 @@
+hpc:IntelKNLSystem a owl:Class .
+hpc:SlurmJob a owl:Class .
+hpc:NUMAMode a owl:Enum .
+hpc:MCDRAMMode a owl:Enum .
+
+hpc:hasNUMAMode rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SlurmJob ;
+  rdfs:range hpc:NUMAMode .
+
+hpc:hasMCDRAMMode rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SlurmJob ;
+  rdfs:range hpc:MCDRAMMode .
+
+hpc:a2aAll a hpc:NUMAMode ;
+  rdfs:label "All to all" .
+hpc:hemiHemisphere a hpc:NUMAMode ;
+  rdfs:label "Hemisphere" .
+hpc:snc2 a hpc:NUMAMode ;
+  rdfs:label "Sub-NUMA cluster 2" .
+hpc:snc4 a hpc:NUMAMode ;
+  rdfs:label "Sub-NUMA cluster 4" .
+hpc:quadQuadrant a hpc:NUMAMode ;
+  rdfs:label "Quadrant" .
+
+hpc:cacheAll a hpc:MCDRAMMode ;
+  rdfs:label "MCDRAM cacheAll" .
+hpc:equalMCDRAM a hpc:MCDRAMMode ;
+  rdfs:label "MCDRAM equalMCDRAM" .
+hpc:flatMCDRAM a hpc:MCDRAMMode ;
+  rdfs:label "MCDRAM flatMCDRAM" .
+
+hpc:hbm a owl:Class ;
+  rdfs:label "High Bandwidth Memory (HBM)" .
+
+hpc:hasHBM rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SlurmJob ;
+  rdfs:range hpc:hbm .
+
+hpc:memSort a owl:DatatypeProperty ;
+  rdfs:domain hpc:SlurmJob ;
+  rdfs:range xsd:boolean .
+```

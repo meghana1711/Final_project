@@ -1,0 +1,54 @@
+hpc:SlurmCluster a owl:Class .
+hpc:SlurmConfiguration a owl:Class .
+hpc:StateSaveLocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmConfiguration ;
+    rdfs:range xsd:string .
+
+hpc:SlurmConfigurationDirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmConfiguration ;
+    rdfs:range xsd:string .
+
+hpc:MySQLDatabase a owl:Class .
+hpc:Slurmdbd a owl:Class ;
+    rdfs:subClassOf hpc:MySQLDatabase .
+
+hpc:BackupMethod a owl:Class .
+hpc:FileBackup a owl:Class ;
+    rdfs:subClassOf hpc:BackupMethod .
+hpc:DiskImage a owl:Class ;
+    rdfs:subClassOf hpc:BackupMethod .
+hpc:Snapshot a owl:Class ;
+    rdfs:subClassOf hpc:BackupMethod .
+hpc:DatabaseDump a owl:Class ;
+    rdfs:subClassOf hpc:BackupMethod .
+
+hpc:Backup hpc:BackupMethod .
+
+hpc:BackupSlurmConfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCluster ;
+    rdfs:range hpc:FileBackup .
+
+hpc:BackupMySQLDatabase a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCluster ;
+    rdfs:range hpc:DatabaseDump .
+
+hpc:BackupWithSingleTransaction a owl:ObjectProperty ;
+    rdfs:domain hpc:DatabaseDump ;
+    rdfs:range xsd:boolean .
+
+hpc:UpgradeSlurmdbd a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCluster ;
+    rdfs:range hpc:DatabaseDump .
+
+hpc:UpgradeDatabaseServer a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCluster ;
+    rdfs:range xsd:string .
+
+hpc:UpgradeSlurmctld a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCluster ;
+    rdfs:range hpc:DatabaseDump .
+
+hpc:UpgradeSlurmd a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCluster ;
+    rdfs:range hpc:DatabaseDump .
+```

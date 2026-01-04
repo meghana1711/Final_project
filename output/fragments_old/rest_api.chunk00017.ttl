@@ -1,0 +1,48 @@
+hpc:CPU a owl:Class .
+hpc:Memory a owl:Class .
+hpc:Socket a owl:Class .
+hpc:Core a owl:Class .
+hpc:Status a owl:DatatypeProperty .
+hpc:index a owl:ObjectProperty .
+hpc:count a owl:DatatypeProperty .
+hpc:used a owl:DatatypeProperty .
+hpc:allocated a owl:DatatypeProperty .
+hpc:cores a owl:ObjectProperty .
+
+hpc:CPU a rdfs:subClassOf [ a owl:Class ; rdfs:subClassOf hpc:Resource ] .
+hpc:Memory a rdfs:subClassOf [ a owl:Class ; rdfs:subClassOf hpc:Resource ] .
+hpc:Socket a rdfs:subClassOf [ a owl:Class ; rdfs:subClassOf hpc:CPU ] .
+hpc:Core a rdfs:subClassOf [ a owl:Class ; rdfs:subClassOf hpc:Socket ] .
+
+hpc:index rdfs:domain hpc:CPU .
+hpc:index rdfs:domain hpc:Socket .
+hpc:index rdfs:range xsd:integer .
+hpc:count rdfs:domain hpc:CPU .
+hpc:count rdfs:range xsd:integer .
+hpc:used rdfs:domain hpc:CPU .
+hpc:used rdfs:range xsd:integer .
+hpc:allocated rdfs:domain hpc:Memory .
+hpc:allocated rdfs:range xsd:decimal .
+hpc:status rdfs:domain hpc:Core .
+hpc:status rdfs:range xsd:string .
+hpc:cores rdfs:domain hpc:Socket .
+hpc:cores rdfs:range rdf:List .
+
+hpc:CPU_1 a hpc:CPU ;
+    hpc:index 1 ;
+    hpc:count 9 ;
+    hpc:used 3 .
+hpc:CPU_2 a hpc:CPU ;
+    hpc:index 2 ;
+    hpc:count 9 ;
+    hpc:used 3 .
+hpc:Memory_1 a hpc:Memory ;
+    hpc:index 1 ;
+    hpc:used 2 ;
+    hpc:allocated 4 .
+hpc:Socket_1 a hpc:Socket ;
+    hpc:index 1 ;
+    hpc:cores [ hpc:Core_1, hpc:Core_2 ] .
+hpc:Socket_2 a hpc:Socket ;
+    hpc:index 2 ;
+    hpc:cores [

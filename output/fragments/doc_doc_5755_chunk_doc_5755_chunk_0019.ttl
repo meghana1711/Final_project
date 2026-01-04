@@ -1,0 +1,56 @@
+hpc:Scheduler a owl:Class .
+hpc:JobPriority an owl:DatatypeProperty ;
+    rdfs:domain hpc:Scheduler ;
+    rdfs:range xsd:integer .
+
+hpc:JobState an owl:DatatypeProperty ;
+    rdfs:domain hpc:Scheduler ;
+    rdfs:range xsd:string .
+
+hpc:JobReason an owl:DatatypeProperty ;
+    rdfs:domain hpc:Scheduler ;
+    rdfs:range xsd:string .
+
+hpc:BackfillScheduler a owl:Class ;
+    rdfs:subClassOf hpc:Scheduler .
+
+hpc:TimeLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:integer .
+
+hpc:DefaultTimeLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:integer .
+
+hpc:MaxTimeLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:integer .
+
+hpc:BackfillSchedulingParameter a owl:Class .
+
+hpc:MaxJobsTestedPerUser an owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillSchedulingParameter ;
+    rdfs:range xsd:integer .
+
+hpc:InactiveLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Scheduler ;
+    rdfs:range xsd:integer .
+
+hpc:KilledJob a owl:Class .
+
+hpc:PurgingMechanism a owl:ObjectProperty ;
+    rdfs:domain hpc:Scheduler ;
+    rdfs:range hpc:KilledJob .
+
+hpc:InactivityTimeLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:InactiveLimit ;
+    rdfs:range xsd:integer .
+
+hpc:InactiveJob a owl:Class .
+
+hpc:ForceTerminatedJob a owl:Class .
+
+hpc:StandardOutputErrorTermination a owl:ObjectProperty ;
+    rdfs:domain hpc:SrunCommand ;
+    rdfs:range hpc:Job .
+```

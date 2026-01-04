@@ -1,0 +1,38 @@
+hpc:ProcessAffinityBinding a owl:Class .
+hpc:ControlOption a owl:Class .
+hpc:HighLevelAffinityBinding a subClassOf hpc:ProcessAffinityBinding .
+hpc:AutomaticMaskGeneration a subClassOf hpc:HighLevelAffinityBinding .
+hpc:TaskDistributionOption a owl:Class .
+hpc:Distribution a subClassOf hpc:TaskDistributionOption .
+hpc:ArbitraryDistribution a subClassOf hpc:Distribution .
+hpc:BlockDistribution a subClassOf hpc:Distribution .
+hpc:CyclicDistribution a subClassOf hpc:Distribution .
+hpc:PlaneDistribution a subClassOf hpc:Distribution .
+hpc:FcyclicDistribution a subClassOf hpc:PlaneDistribution .
+hpc:MemoryConsumableResource a owl:Class .
+hpc:RealMemory a owl:DatatypeProperty .
+hpc:RequiredByJob a rdfs:domain hpc:MemoryConsumableResource ;
+                     rdfs:range xsd:nonNegativeInteger .
+hpc:Node a owl:Class .
+hpc:Socket a owl:Class .
+hpc:Core a owl:Class .
+hpc:Thread a owl:Class .
+hpc:TaskAffinity a owl:ObjectProperty .
+hpc:TaskPlugin a owl:Class .
+hpc:TaskLaunch a owl:Class .
+hpc:Process a owl:Class .
+hpc:CPUBind a owl:ObjectProperty .
+hpc:MaskCPU a rdfs:domain hpc:CPUBind ;
+                 rdfs:range xsd:hexBinary .
+hpc:ExtraNodeInfo a owl:ObjectProperty .
+hpc:SocketsPerNode a owl:DatatypeProperty .
+hpc:CoresPerSocket a owl:DatatypeProperty .
+hpc:ThreadsPerCore a owl:DatatypeProperty .
+hpc:TotalCpusRequested a owl:DatatypeProperty .
+hpc:Minimum a rdfs:Literal ;
+                 rdf:value "min" ;
+                 rdf:datatype xsd:string .
+hpc:Wildcard a rdfs:Literal ;
+                 rdf:value "*" ;
+                 rdf:datatype xsd:string .
+```

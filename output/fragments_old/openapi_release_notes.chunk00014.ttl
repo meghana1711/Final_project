@@ -1,0 +1,39 @@
+hpc:JobFlags a owl:Class .
+hpc:JobFlag a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobFlags ;
+    rdfs:range xsd:string .
+
+hpc:JobInfo a owl:Class .
+hpc:accrueTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:string .
+hpc:arrayJobId a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:integer .
+hpc:arrayMaxTasks a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:integer .
+hpc:arrayTaskId a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:integer .
+hpc:billableTres a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:float .
+hpc:coresPerSocket a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:integer .
+hpc:cpuFrequencyGovernor a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:integer .
+hpc:cpuFrequencyMaximum a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:integer .
+hpc:cpuFrequencyMinimum a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:integer .
+hpc:cpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:integer .
+```
+
+This ontology fragment describes two classes `hpc:JobFlags` and `hpc:JobInfo`, and several datatype properties associated with the `hpc:JobInfo` class. The properties are defined with their domain and range. However, the enumerated values for `hpc:JobFlags` are not included in this fragment, as they were not explicitly provided in the given documentation.

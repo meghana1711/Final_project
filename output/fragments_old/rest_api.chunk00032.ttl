@@ -1,0 +1,47 @@
+hpc:NodeUpdateRequestResult a owl:Class .
+hpc:UpdateNodeMsg a owl:Class .
+hpc:NodeUpdateRequestResult rdfs:subClassOf owl:NamedIndividual .
+hpc:UpdateNodeMsg rdfs:subClassOf owl:NamedIndividual .
+
+hpc:hasMetaData a owl:ObjectProperty .
+hpc:hasWarnings a owl:ObjectProperty .
+hpc:hasErrors a owl:ObjectProperty .
+
+hpc:MetaData a owl:Class .
+hpc:Slurm a owl:Class .
+hpc:Plugin a owl:Class .
+hpc:Client a owl:Class .
+hpc:Command a owl:Class .
+hpc:Warning a owl:Class .
+hpc:Error a owl:Class .
+
+hpc:MetaData rdfs:subClassOf hpc:NamedIndividual .
+hpc:Slurm rdfs:subClassOf hpc:Plugin .
+hpc:Plugin rdfs:subClassOf hpc:NamedIndividual .
+hpc:Client rdfs:subClassOf hpc:NamedIndividual .
+hpc:Command rdfs:subClassOf hpc:NamedIndividual .
+hpc:Warning rdfs:subClassOf hpc:NamedIndividual .
+hpc:Error rdfs:subClassOf hpc:NamedIndividual .
+
+hpc:Slurm rdf:type rdfs:Resource .
+hpc:Plugin rdf:type rdfs:Resource .
+hpc:Client rdf:type rdfs:Resource .
+hpc:Command rdf:type rdfs:Resource .
+hpc:Warning rdf:type rdfs:Resource .
+hpc:Error rdf:type rdfs:Resource .
+
+hpc:hasCluster rdf:type owl:ObjectProperty .
+hpc:hasRelease rdf:type owl:ObjectProperty .
+hpc:hasVersion rdf:type owl:ObjectProperty .
+hpc:hasAccountingStorage rdf:type owl:ObjectProperty .
+hpc:hasName rdf:type owl:ObjectProperty .
+hpc:hasType rdf:type owl:ObjectProperty .
+hpc:hasDataParser rdf:type owl:ObjectProperty .
+hpc:hasSource rdf:type owl:ObjectProperty .
+hpc:hasUser rdf:type owl:ObjectProperty .
+hpc:hasGroup rdf:type owl:ObjectProperty .
+hpc:hasCommand rdf:type owl:ObjectProperty .
+hpc:hasDescription rdf:type owl:ObjectProperty .
+hpc:hasSource rdf:type owl:ObjectProperty .
+hpc:hasError rdf:type owl:ObjectProperty .
+hpc:has

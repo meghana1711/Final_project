@@ -1,0 +1,20 @@
+hpc:V0_0_41_Openapi_Users_Resp a owl:Class .
+
+# Properties
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:V0_0_41_Openapi_Users_Resp ;
+    rdfs:range xsd:string .
+hpc:hasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:V0_0_41_Openapi_Users_Resp ;
+    rdfs:range xsd:anyURI .
+
+# Content types
+hpc:ApplicationJson a owl:Class ;
+    rdfs:subClassOf xsd:string .
+hpc:ApplicationX_Yaml a owl:Class ;
+    rdfs:subClassOf xsd:string .
+hpc:ApplicationYaml a owl:Class ;
+    rdfs:subClassOf xsd:string .
+hpc:TextYaml a owl:Class ;
+    rdfs:subClassOf xsd:string .
+```

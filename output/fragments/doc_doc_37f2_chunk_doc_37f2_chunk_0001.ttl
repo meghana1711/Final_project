@@ -1,0 +1,40 @@
+hpc:AccountCoordinator a owl:Class .
+hpc:User a owl:Class .
+hpc:FairshareFactor a xsd:decimal .
+hpc:FairTreePriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Account .
+    rdfs:range hpc:FairshareFactor .
+
+hpc:HasHigherFairshareFactor a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:FairTreePriority .
+
+hpc:SiblingAccount rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Account .
+    rdfs:range hpc:Account .
+
+hpc:AccountHasChildren a owl:ObjectProperty ;
+    rdfs:domain hpc:Account .
+    rdfs:range hpc:User .
+
+hpc:HigherPriorityUser a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Class ;
+        rdfs:subClassOf (hpc:User [ rdfs:subPropertyOf hpc:HasHigherFairshareFactor ])
+    ] .
+
+hpc:HigherPriorityAccount a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Class ;
+        rdfs:subClassOf (hpc:Account [ rdfs:subPropertyOf hpc:HasHigherFairshareFactor ])
+    ] .
+
+hpc:FairShare a xsd:decimal .
+hpc:LevelFS a xsd:decimal .
+hpc:FairTreeAlgorithm a owl:ObjectProperty ;
+    rdfs:domain hpc:Account .
+    rdfs:range rdfs:Resource .
+
+hpc:FairShareValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:User .
+    rdfs:range xsd:decimal .
+```

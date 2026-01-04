@@ -1,0 +1,49 @@
+hpc:Singularity a owl:Class .
+hpc:OCIConfiguration a owl:Class .
+
+hpc:RunTimeEnvExclude rdfs:domain hpc:OCIConfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:ObjectProperty .
+
+hpc:RunTimeQuery rdfs:domain hpc:Singularity ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:ObjectProperty .
+
+hpc:RunTimeCreate rdfs:domain hpc:Singularity ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:ObjectProperty .
+
+hpc:RunTimeStart rdfs:domain hpc:Singularity ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:ObjectProperty .
+
+hpc:RunTimeKill rdfs:domain hpc:Singularity ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:ObjectProperty .
+
+hpc:RunTimeDelete rdfs:domain hpc:Singularity ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:ObjectProperty .
+
+hpc:EnvExclude rdfs:domain hpc:OCIConfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:ObjectProperty .
+
+hpc:CharliecloudConfiguration a owl:Class .
+hpc:RunTimeRun rdfs:domain hpc:CharliecloudConfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:ObjectProperty .
+
+hpc:RunTimeKill rdfs:domain hpc:CharliecloudConfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:ObjectProperty .
+
+hpc:RunTimeDelete rdfs:domain hpc:CharliecloudConfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:ObjectProperty .
+
+hpc:EnrootConfiguration a owl:Class .
+hpc:RunTimeRun rdfs:domain hpc:EnrootConfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:ObjectProperty .
+```

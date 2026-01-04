@@ -1,0 +1,58 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a rdfs:label "SchedMD" .
+
+hpc:Overview rdfs:subClassOf owl:Class .
+hpc:ReleaseNotes rdfs:subClassOf owl:Class .
+hpc:Using rdfs:subClassOf owl:Class .
+hpc:Documentation rdfs:subClassOf owl:Class .
+hpc:FAQ rdfs:subClassOf owl:Class .
+hpc:Publications rdfs:subClassOf owl:Class .
+hpc:Installing rdfs:subClassOf owl:Class .
+hpc:Download rdfs:subClassOf owl:Class .
+hpc:RelatedSoftware rdfs:subClassOf owl:Class .
+hpc:InstallationGuide rdfs:subClassOf owl:Class .
+hpc:GettingHelp rdfs:subClassOf owl:Class .
+hpc:MailingLists rdfs:subClassOf owl:Class .
+hpc:SupportAndTraining rdfs:subClassOf owl:Class .
+hpc:Troubleshooting rdfs:subClassOf owl:Class .
+hpc:ElasticsearchGuide rdfs:subClassOf owl:Class .
+
+hpc:JobCompletionPlugin a owl:Class .
+hpc:AccountingStorageType rdfs:subClassOf hpc:JobCompletionPlugin .
+
+hpc:JobCompType a owl:ObjectProperty .
+hpc:JobCompType rdfs:domain hpc:SlurmWorkloadManager ;
+                 rdfs:range xsd:string .
+
+hpc:JobCompLoc a owl:ObjectProperty .
+hpc:JobCompLoc rdfs:domain hpc:SlurmWorkloadManager ;
+                 rdfs:range xsd:string .
+
+hpc:DebugFlags a owl:ObjectProperty .
+hpc:DebugFlags rdfs:domain hpc:SlurmWorkloadManager ;
+                 rdfs:range xsd:string .
+
+hpc:Elasticsearch a owl:Class .
+hpc:ElasticsearchInstance a owl:Class .
+hpc:ElasticsearchServerURL a owl:DatatypeProperty .
+hpc:ElasticsearchServerURL rdfs:domain hpc:ElasticsearchInstance ;
+                             rdfs:range xsd:string .
+
+hpc:Kibana a owl:Class .
+hpc:DataVisualization a owl:Class .
+hpc:ElasticsearchIndexName a owl:DatatypeProperty .
+hpc:ElasticsearchIndexName rdfs:domain hpc:DataVisualization ;
+                              rdfs:range xsd:string .
+
+hpc:Job a owl:Class .
+hpc:FinishedJob a owl:Class .
+hpc:JobDocument a owl:Class .
+hpc:IndexedJob a owl:Class .
+hpc:DocumentCount a owl:DatatypeProperty .
+hpc:DocumentCount rdfs:domain hpc:JobDocument ;
+                     rdfs:range xsd:integer .
+
+hpc:ElasticsearchState a owl:Class .
+hpc:StateSaveLocation a owl:DatatypeProperty .
+hpc:StateSaveLocation rdfs:domain hpc:SlurmWorkloadManager ;
+                          rdfs:

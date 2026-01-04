@@ -1,0 +1,61 @@
+hpc:SlurmJob a owl:Class .
+hpc:SlurmJob rdf:type owl:NamedIndividual .
+
+hpc:X11_LIBEXEC_PROG a owl:DatatypeProperty .
+hpc:X11_LIBEXEC_PROG rdfs:domain hpc:SlurmJob .
+hpc:X11_LIBEXEC_PROG rdfs:range xsd:string .
+
+hpc:Compile a owl:ObjectProperty .
+hpc:Compile rdfs:domain hpc:SlurmJob .
+hpc:Compile rdfs:range rdf:List .
+
+hpc:Compile_Step a owl:Class .
+hpc:Compile_Step rdf:type owl:NamedIndividual .
+
+hpc:Compile_Step_Command a owl:DatatypeProperty .
+hpc:Compile_Step_Command rdfs:domain hpc:Compile_Step .
+hpc:Compile_Step_Command rdfs:range xsd:string .
+
+hpc:Install a owl:ObjectProperty .
+hpc:Install rdfs:domain hpc:SlurmJob .
+hpc:Install rdfs:range rdf:List .
+
+hpc:Install_Step a owl:Class .
+hpc:Install_Step rdf:type owl:NamedIndividual .
+
+hpc:Install_Step_Command a owl:DatatypeProperty .
+hpc:Install_Step_Command rdfs:domain hpc:Install_Step .
+hpc:Install_Step_Command rdfs:range xsd:string .
+
+hpc:Install_Location a owl:DatatypeProperty .
+hpc:Install_Location rdfs:domain hpc:Install_Step .
+hpc:Install_Location rdfs:range xsd:string .
+
+hpc:Install_Permission a owl:DatatypeProperty .
+hpc:Install_Permission rdfs:domain hpc:Install_Step .
+hpc:Install_Permission rdfs:range xsd:integer .
+
+hpc:Configure a owl:ObjectProperty .
+hpc:Configure rdfs:domain hpc:SlurmJob .
+hpc:Configure rdfs:range rdf:List .
+
+hpc:Configure_Step a owl:Class .
+hpc:Configure_Step rdf:type owl:NamedIndividual .
+
+hpc:Configure_Step_Command a owl:DatatypeProperty .
+hpc:Configure_Step_Command rdfs:domain hpc:Configure_Step .
+hpc:Configure_Step_Command rdfs:range xsd:string .
+
+hpc:Run a owl:ObjectProperty .
+hpc:Run rdfs:domain hpc:SlurmJob .
+hpc:Run rdfs:range rdf:List .
+
+hpc:Run_Step a owl:Class .
+hpc:Run_Step rdf:type owl:NamedIndividual .
+
+hpc:Run_Step_Command a owl:DatatypeProperty .
+hpc:Run_Step_Command rdfs:domain hpc:Run_Step .
+hpc:Run_Step_Command rdfs:range xsd:string .
+
+hpc:SchedulerType a owl:DatatypeProperty .
+hpc

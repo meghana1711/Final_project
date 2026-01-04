@@ -1,0 +1,48 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:Overview a rdfs:subClassOf owl:Class .
+hpc:ReleaseNotes a rdfs:subClassOf owl:Class .
+hpc:Using a rdfs:subClassOf owl:Class .
+hpc:Documentation a rdfs:subClassOf owl:Class .
+hpc:FAQ a rdfs:subClassOf owl:Class .
+hpc:Publications a rdfs:subClassOf owl:Class .
+hpc:Installing a rdfs:subClassOf owl:Class .
+hpc:Download a rdfs:subClassOf owl:Class .
+hpc:RelatedSoftware a rdfs:subClassOf owl:Class .
+hpc:InstallationGuide a rdfs:subClassOf owl:Class .
+hpc:GettingHelp a rdfs:subClassOf owl:Class .
+hpc:MailingLists a rdfs:subClassOf owl:Class .
+hpc:SupportAndTraining a rdfs:subClassOf owl:Class .
+hpc:Troubleshooting a rdfs:subClassOf owl:Class .
+hpc:SlurmProgrammersGuide a rdfs:subClassOf owl:Class .
+
+hpc:Contents a rdfs:subClassOf owl:Class .
+
+hpc:Plugins a rdfs:subClassOf owl:Class .
+hpc:DirectoryStructure a rdfs:subClassOf owl:Class .
+hpc:SourceCode a rdfs:subClassOf owl:Class .
+hpc:SourceCodeManagement a rdfs:subClassOf owl:Class .
+hpc:AddingNewModules a rdfs:subClassOf owl:Class .
+hpc:Compiling a rdfs:subClassOf owl:Class .
+hpc:Configuration a rdfs:subClassOf owl:Class .
+hpc:TestSuite a rdfs:subClassOf owl:Class .
+hpc:AddingFilesAndDirectories a rdfs:subClassOf owl:Class .
+hpc:TricksOfTheTrade a rdfs:subClassOf owl:Class .
+
+# Object Properties
+hpc:hasVersion a owl:ObjectProperty .
+hpc:hasReleaseNotes a owl:ObjectProperty .
+hpc:hasOverview a owl:ObjectProperty .
+hpc:hasDocumentation a owl:ObjectProperty .
+hpc:hasFAQ a owl:ObjectProperty .
+hpc:hasPublications a owl:ObjectProperty .
+hpc:hasInstallingInstructions a owl:ObjectProperty .
+hpc:hasDownloadLink a owl:ObjectProperty .
+hpc:hasRelatedSoftware a owl:ObjectProperty .
+hpc:hasInstallationGuide a owl:ObjectProperty .
+hpc:hasGettingHelp a owl:ObjectProperty .
+hpc:hasMailingLists a owl:ObjectProperty .
+hpc:hasSupportAndTraining a owl:ObjectProperty .
+hpc:hasTroubleshooting a owl:ObjectProperty .
+hpc:hasSlurmProgrammersGuide a owl:ObjectProperty .

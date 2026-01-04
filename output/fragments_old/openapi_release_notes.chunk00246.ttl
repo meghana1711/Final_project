@@ -1,0 +1,23 @@
+hpc:Users_Response a owl:Class .
+hpc:Users_Add_Cond_Response a owl:Class .
+
+hpc:v0_0_40_openapi_users_resp a hpc:Users_Response .
+hpc:v0_0_40_openapi_users_add_cond_resp a hpc:Users_Add_Cond_Response .
+hpc:v0_0_40_openapi_users_add_cond_resp_str rdfs:subClassOf hpc:v0_0_40_openapi_users_add_cond_resp .
+
+hpc:getUsersResponse a owl:ObjectProperty ;
+    rdfs:domain hpc:Users_Response ;
+    rdfs:range rdf:Resource .
+
+hpc:postUsersResponse a owl:ObjectProperty ;
+    rdfs:domain hpc:Users_Response ;
+    rdfs:range rdf:Resource .
+
+hpc:postUsersRequest a owl:ObjectProperty ;
+    rdfs:domain hpc:Post ;
+    rdfs:range hpc:Users_Response .
+
+hpc:postUsersAssociationRequest a owl:ObjectProperty ;
+    rdfs:domain hpc:Post ;
+    rdfs:range hpc:Users_Add_Cond_Response .
+```

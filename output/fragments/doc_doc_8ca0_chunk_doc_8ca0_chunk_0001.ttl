@@ -1,0 +1,49 @@
+hpc:Node a owl:Class .
+hpc:SuspendedNode a hpc:Node .
+hpc:ResumedNode a hpc:Node .
+hpc:DownNode a hpc:Node .
+
+hpc:SuspendProgram a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:ResumeProgram a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:ResumeTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:SuspendTimeout a owl:DatatypeProperty ;
+    rdfs:domain (hpc:Node | hpc:Partition) ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:SuspendTime a owl:DatatypeProperty ;
+    rdfs:domain (hpc:Node | hpc:Partition) ;
+    rdfs:range xsd:nonNegativeInteger ;
+    owl:hasValue xsd:finite .
+
+hpc:ResumeRate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:SuspendRate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:PowerSavingOperation a owl:Class ;
+    rdfs:subClassOf hpc:Node .
+
+hpc:CloudResource a owl:Class .
+hpc:CloudProvider a owl:Class ;
+    rdfs:subClassOf hpc:CloudResource ;
+    owl:hasValue xsd:string .
+
+hpc:CloudBursting a owl:Class ;
+    rdfs:subClassOf hpc:PowerSavingOperation ;
+    rdfs:subClassOf hpc:CloudResource .
+
+hpc:IndependentCluster a owl:Class ;
+    rdfs:subClassOf hpc:PowerSavingOperation .
+```

@@ -1,0 +1,55 @@
+hpc:SlurmDaemonCoreDump hpc:hasCoreFileFile a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:Property ;
+
+hpc:SlurmDaemonCoreDumpInSlurmdhpc:hasCoreFileDirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string ;
+
+hpc:SlurmDaemonCoreDumpInSlurmctldhpc:hasCoreFileDirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string ;
+
+hpc:SlurmDaemonCoreDumpInSlurmdWithDOptionhpc:hasCoreFileDirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string ;
+
+hpc:SlurmDaemonCoreDumpInSlurmctldWithDOptionhpc:hasCoreFileDirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string ;
+
+hpc:SlurmDaemonCoreDumpInSlurmctldWithLogFileAbsolutePathhpc:hasCoreFileDirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string ;
+
+hpc:SlurmDaemonCoreDumpInSlurmdWithLogFileAbsolutePathhpc:hasCoreFileDirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string ;
+
+hpc:SlurmDaemonCoreDumpInSlurmdSpoolDirhpc:hasCoreFileDirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string ;
+
+hpc:SlurmDaemonCoreDumpInStateSaveLocationhpc:hasCoreFileDirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string ;
+
+hpc:SlurmDaemonCoreDumpInVarTmphpc:hasCoreFileDirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string ;
+
+hpc:SlurmDaemonCoreDumpNoFilehpc:hasReason a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string ;
+
+hpc:SlurmDaemonCoreDumpPrivilegedPhasehpc:hasCoreFileDirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmStepd ;
+    rdfs:range xsd:string ;
+
+hpc:SlurmDaemonCoreDumpNotProducedhpc:hasReason a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string ;
+
+hpc:SlurmDaemonCoreDumpWritePermissionDeniedhpc:hasReason a owl:ObjectProperty ;
+    rdfs:

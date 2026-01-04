@@ -1,0 +1,60 @@
+# Input parameter with_deleted
+hpc:InputParameter a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:path ;
+                        owl:hasValue "with_deleted" ] .
+
+hpc:path a owl:ObjectProperty ;
+    rdfs:domain hpc:Endpoint ;
+    rdfs:range rdf:Resource .
+
+# Endpoint GET /account, /accounts
+hpc:Endpoint a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:path ;
+                        owl:hasValue "/account" ] .
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:path ;
+                        owl:hasValue "/accounts" ] .
+
+hpc:Endpoint a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:path ;
+                        owl:hasValue "/account/{account_name}" ] .
+
+hpc:Endpoint a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:path ;
+                        owl:hasValue "/accounts/" ] .
+
+# Container field in job description
+hpc:Container a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription .
+
+# Limit DELETE or GET a single association
+hpc:Parameter a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:parameter ;
+                        owl:hasValue false ] .
+
+hpc:parameter a owl:ObjectProperty ;
+    rdfs:domain hpc:Endpoint .
+
+# Filter parameters for GET /associations
+hpc:FilterParameter a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:parameter ;
+                        owl:hasValue hpc:AssociationFilter ] .
+
+hpc:AssociationFilter a owl:ObjectProperty .
+
+# Plugin openapi/v0.0.38
+hpc:OpenApiPlugin a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty rdf:type ;
+                        owl:hasValue "http://example.org/openapi/v0.0.38" ] .
+
+# String for JobIds
+hpc:JobId a xsd:string .
+
+hpc:parameter a o

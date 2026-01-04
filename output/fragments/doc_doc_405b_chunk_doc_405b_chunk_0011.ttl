@@ -1,0 +1,60 @@
+hpc:PartitionNodeLimit a owl:Class .
+hpc:hasPartitionNodeLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:PartitionNodeLimit ;
+    rdfs:range xsd:integer .
+
+hpc:PartitionTimeLimit a owl:Class .
+hpc:hasPartitionTimeLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:PartitionTimeLimit ;
+    rdfs:range xsd:decimal .
+
+hpc:JobPriority a owl:Class .
+hpc:hasHigherPriorityJob a owl:ObjectProperty ;
+    rdfs:domain hpc:JobPriority ;
+    rdfs:range hpc:Job .
+
+hpc:JobProlog a owl:Class .
+hpc:isPrologRunning a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobProlog ;
+    rdfs:range xsd:boolean .
+
+hpc:QOSGrpBB a owl:Class .
+hpc:hasQOSBurstBufferLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOSGrpBB ;
+    rdfs:range xsd:integer .
+
+hpc:QOSGrpBBMinutes a owl:Class .
+hpc:hasQOSBurstBufferMinutesLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOSGrpBBMinutes ;
+    rdfs:range xsd:decimal .
+
+hpc:QOSGrpBBRunMinutes a owl:Class .
+hpc:hasQOSBurstBufferRunMinutesLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOSGrpBBRunMinutes ;
+    rdfs:range xsd:decimal .
+
+hpc:QOSGrpBilling a owl:Class .
+hpc:hasQOSBillingLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOSGrpBilling ;
+    rdfs:range xsd:integer .
+
+hpc:QOSGrpBillingMinutes a owl:Class .
+hpc:hasQOSBillingMinutesLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOSGrpBillingMinutes ;
+    rdfs:range xsd:decimal .
+
+hpc:QOSGrpBillingRunMinutes a owl:Class .
+hpc:hasQOSBillingRunMinutesLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOSGrpBillingRunMinutes ;
+    rdfs:range xsd:decimal .
+
+hpc:QOSGrpCPULimit a owl:Class .
+hpc:hasQOSCPULimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOSGrpCPULimit ;
+    rdfs:range xsd:integer .
+
+hpc:QOSGrpCPUMinutesLimit a owl:Class .
+hpc:hasQOSCPUMinutesLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOSGrpCPUMinutesLimit ;
+    rdfs:range xsd:decimal .
+```

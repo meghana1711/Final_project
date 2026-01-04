@@ -1,0 +1,31 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:HierarchicalResource a owl:Class .
+hpc:ResourcePlanningMode a owl:Enum .
+hpc:Mode1 rdf:value "Mode 1" .
+hpc:Mode2 rdf:value "Mode 2" .
+
+hpc:HRESConfigurationFile a owl:Class .
+hpc:Resource a owl:Class .
+hpc:Layer a owl:Class .
+hpc:NodeList a owl:Class .
+
+hpc:hasResourcePlanningMode owl:domain hpc:HierarchicalResource ;
+    rdfs:range hpc:ResourcePlanningMode .
+
+hpc:hasConfigurationFile owl:domain hpc:HierarchicalResource ;
+    rdfs:range rdf:Resource .
+
+hpc:hasResource owl:domain hpc:Layer ;
+    rdfs:range hpc:Resource .
+
+hpc:hasNodeList owl:domain hpc:Layer ;
+    rdfs:range hpc:NodeList .
+
+hpc:count owl:domain hpc:Layer ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:conflictsWith rdf:domain hpc:Resource ;
+    rdfs:range hpc:Resource .
+```

@@ -1,0 +1,40 @@
+hpc:CoordListItem a owl:Class .
+hpc:CoordListItem rdfs:subClassOf owl:NamedIndividual .
+hpc:CoordListItem rdfs:subClassOf rdf:List .
+
+hpc:InstanceListItem a owl:Class .
+hpc:InstanceListItem rdfs:subClassOf owl:NamedIndividual .
+hpc:InstanceListItem rdfs:subClassOf rdf:List .
+hpc:InstanceListItem rdfs:subClassOf hpc:HasProperties .
+hpc:InstanceListItem rdfs:subClassOf hpc:RequiredProperties .
+hpc:InstanceListItem rdfs:subClassOf hpc:HasType .
+
+hpc:JobArrayResponseArrayItem a owl:Class .
+hpc:JobArrayResponseArrayItem rdfs:subClassOf owl:NamedIndividual .
+hpc:JobArrayResponseArrayItem rdfs:subClassOf rdf:List .
+hpc:JobArrayResponseArrayItem rdfs:subClassOf hpc:HasProperties .
+hpc:JobArrayResponseArrayItem rdfs:subClassOf hpc:RequiredProperties .
+hpc:JobArrayResponseArrayItem rdfs:subClassOf hpc:HasType .
+
+hpc:JobInfoMsgItem a owl:Class .
+hpc:JobInfoMsgItem rdfs:subClassOf owl:NamedIndividual .
+hpc:JobInfoMsgItem rdfs:subClassOf rdf:List .
+hpc:JobInfoMsgItem rdfs:subClassOf hpc:HasProperties .
+hpc:JobInfoMsgItem rdfs:subClassOf hpc:RequiredProperties .
+hpc:JobInfoMsgItem rdfs:subClassOf hpc:HasType .
+
+hpc:LicensesItem a owl:Class .
+hpc:LicensesItem rdfs:subClassOf owl:NamedIndividual .
+hpc:LicensesItem rdfs:subClassOf rdf:List .
+hpc:LicensesItem rdfs:subClassOf hpc:HasProperties .
+hpc:LicensesItem rdfs:subClassOf hpc:RequiredProperties .
+hpc:LicensesItem rdfs:subClassOf hpc:HasType .
+
+hpc:NodesItem a owl:Class .
+hpc:NodesItem rdfs:subClassOf owl:NamedIndividual .
+hpc:NodesItem rdfs:subClassOf rdf:List .
+hpc:NodesItem rdfs:subClassOf hpc:HasProperties .
+hpc:NodesItem rdfs:subClassOf hpc:RequiredProperties .
+hpc:NodesItem rdfs:subClassOf hpc:HasType .
+
+hpc:OpenapiErrorsItem

@@ -1,0 +1,29 @@
+hpc:PreemptedJob a owl:Class .
+hpc:GangScheduling a owl:Class .
+hpc:GangSchedulingEnabledJob a owl:Class, rdfs:subClassOf hpc:PreemptedJob .
+hpc:GangSchedulingOption a owl:Class .
+hpc:ClusterLevelGangScheduling a owl:Class, rdfs:subClassOf hpc:GangSchedulingOption .
+hpc:GangSchedulingType a owl:Class .
+hpc:PreemptType a owl:Class .
+hpc:PreemptTypePreemptPartitionPrio a owl:Class, rdfs:subClassOf hpc:PreemptType .
+hpc:PreemptTypePreemptQOS a owl:Class, rdfs:subClassOf hpc:PreemptType .
+hpc:PreemptMode a owl:ObjectProperty .
+hpc:PreemptModeDomain rdf:type rdfs:Resource .
+hpc:PreemptModeRange rdf:type rdfs:Literal .
+hpc:PreemptModeValue rdf:type xsd:string .
+hpc:PriorityTier a owl:Class .
+hpc:SuspendedJob a owl:Class, rdfs:subClassOf hpc:PreemptedJob .
+hpc:RequeueableJob a owl:Class .
+hpc:RequeueableJobDomain rdf:type rdfs:Resource .
+hpc:RequeueableJobRange rdf:type xsd:boolean .
+hpc:MemoryTracking a owl:ObjectProperty .
+hpc:MemoryTrackingDomain rdf:type rdfs:Resource .
+hpc:MemoryTrackingRange rdf:type rdfs:Resource .
+hpc:TimeSlicing a owl:ObjectProperty .
+hpc:TimeSlicingDomain rdf:type rdfs:Resource .
+hpc:TimeSlicingRange rdf:type xsd:boolean .
+hpc:OverlappingPartitions a owl:Class .
+hpc:PreemptedBy a owl:ObjectProperty .
+hpc:PreemptedByDomain rdf:type rdfs:Resource .
+hpc:PreemptedByRange rdf:type rdfs:Resource .
+```

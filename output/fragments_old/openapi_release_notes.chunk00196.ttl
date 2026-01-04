@@ -1,0 +1,18 @@
+hpc:V0_0_40_Openapi_Resp a owl:Class .
+
+# SLURM Node Delete Response (Application/YAML)
+hpc:V0_0_40_Slurm_Node_Delete_YAML_Resp a owl:Class ;
+    rdfs:subClassOf hpc:V0_0_40_Openapi_Resp .
+
+# SLURM Node Delete Response (Application/JSON)
+hpc:V0_0_40_Slurm_Node_Delete_Json_Resp a owl:Class ;
+    rdfs:subClassOf hpc:V0_0_40_Openapi_Resp .
+
+# SLURM Nodes Get Response (Application/YAML)
+hpc:V0_0_40_Slurm_Nodes_Get_YAML_Resp a owl:Class ;
+    rdfs:subClassOf hpc:V0_0_40_Openapi_Resp .
+
+# SLURM Nodes Get Response (Application/JSON)
+hpc:V0_0_40_Slurm_Nodes_Get_Json_Resp a owl:Class ;
+    rdfs:subClassOf hpc:V0_0_40_Openapi_Resp .
+```

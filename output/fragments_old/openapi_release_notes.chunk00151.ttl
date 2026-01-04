@@ -1,0 +1,18 @@
+hpc:OpenapiJobInfoResp a owl:Class .
+hpc:v0_0_41_openapi_job_info_resp rdf:type hpc:OpenapiJobInfoResp ;
+    rdfs:subClassOf hpc:OpenapiJobInfoResp .
+
+hpc:OpenapiKillJobsResp a owl:Class .
+hpc:v0_0_41_openapi_kill_jobs_resp rdf:type hpc:OpenapiKillJobsResp ;
+    rdfs:subClassOf hpc:OpenapiKillJobsResp .
+
+hpc:Job hasJobInfo a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:v0_0_41_openapi_job_info_resp .
+
+hpc:Job canBeKilledBy a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:v0_0_41_openapi_kill_jobs_resp .
+```
+
+This ontology fragment represents two classes `hpc:OpenapiJobInfoResp` and `hpc:OpenapiKillJobsResp`, which are subclasses of `owl:Class`. It also defines two object properties `hpc:hasJobInfo` and `hpc:canBeKilledBy` that relate `hpc:Job` instances to instances of the respective OpenAPI response classes.

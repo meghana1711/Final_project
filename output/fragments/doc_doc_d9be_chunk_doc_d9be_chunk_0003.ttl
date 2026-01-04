@@ -1,0 +1,23 @@
+hpc:Node a owl:Class .
+hpc:Partition a owl:Class .
+hpc:SlurmdParameters a owl:Class .
+
+hpc:hasName a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:domain hpc:Partition ;
+    rdfs:domain hpc:SlurmdParameters .
+
+hpc:hasConfigurationOverrides a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdParameters .
+
+hpc:hasBoardCount xsd:nonNegativeInteger .
+hpc:hasSocketCount xsd:nonNegativeInteger .
+hpc:hasCoreCount xsd:nonNegativeInteger .
+hpc:hasThreadCount xsd:nonNegativeInteger .
+hpc:hasProcessorCount xsd:nonNegativeInteger .
+hpc:hasName rdf:String .
+
+hpc:hasNodes rdf:List .
+hpc:hasOverSubscribe xsd:nonNegativeInteger .
+hpc:hasMaxNodes xsd:nonNegativeInteger .
+```

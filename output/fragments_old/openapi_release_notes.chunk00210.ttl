@@ -1,0 +1,44 @@
+hpc:SlurmShare a owl:Class .
+hpc:SlurmSharesResponse a owl:Class .
+hpc:AccountResponse a owl:Class .
+hpc:AccountRemovedResponse a owl:Class .
+
+hpc:SlurmSharesResponse rdfs:subClassOf owl:Thing .
+hpc:AccountResponse rdfs:subClassOf owl:Thing .
+hpc:AccountRemovedResponse rdfs:subClassOf owl:Thing .
+
+hpc:getSlurmSharesResponse a owl:ObjectProperty .
+hpc:getSlurmdbAccountResponse a owl:ObjectProperty .
+hpc:removeSlurmdbAccountResponse a owl:ObjectProperty .
+
+hpc:getSlurmSharesResponse rdfs:domain hpc:Slurm .
+hpc:getSlurmdbAccountResponse rdfs:domain hpc:Slurmdb .
+hpc:removeSlurmdbAccountResponse rdfs:domain hpc:Slurmdb .
+
+hpc:getSlurmSharesResponseRange a xsd:anyType .
+hpc:getSlurmdbAccountResponseRange a xsd:anyType .
+hpc:removeSlurmdbAccountResponseRange a xsd:anyType .
+
+hpc:SlurmSharesResponseSchema rdf:type owl:Class .
+hpc:v0.0.41_openapi_shares_resp rdf:type hpc:SlurmSharesResponseSchema .
+hpc:AccountResponseSchema rdf:type owl:Class .
+hpc:v0.0.41_openapi_accounts_resp rdf:type hpc:AccountResponseSchema .
+hpc:AccountRemovedResponseSchema rdf:type owl:Class .
+hpc:v0.0.41_openapi_accounts_removed_resp rdf:type hpc:AccountRemovedResponseSchema .
+
+hpc:SlurmSharesResponseSchema rdfs:subClassOf rdfs:Resource .
+hpc:v0.0.41_openapi_shares_resp rdfs:subClassOf hpc:SlurmSharesResponseSchema .
+hpc:AccountResponseSchema rdfs:subClassOf rdfs:Resource .
+hpc:v0.0.41_openapi_accounts_resp rdfs:subClassOf hpc:AccountResponseSchema .
+hpc:AccountRemovedResponseSchema rdfs:subClassOf rdfs:Resource .
+hpc:v0.0.41_openapi_accounts_removed_resp rdfs:subClassOf hpc:AccountRemovedResponseSchema .
+
+hpc:SlurmSharesResponseSchema rdfs:domain hpc:Slurm .
+hpc:AccountResponseSchema rdfs:domain hpc:Slurmdb .
+hpc:AccountRemovedResponseSchema rdfs:domain hpc:Slurmdb .
+
+hpc:SlurmSharesResponseSchema rdfs:range rdfs:Resource .
+hpc:v0.0.41_openapi_shares_resp rdfs:range hpc:SlurmSharesResponse .
+hpc:AccountResponseSchema rdfs:range rdfs:Resource .
+hpc:v0.0.41_openapi_accounts_resp rdfs:range hpc:AccountResponse .
+hpc:AccountRemovedResponseSchema rd

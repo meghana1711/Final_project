@@ -1,0 +1,41 @@
+hpc:QueryParameters a owl:Class .
+hpc:Cluster hpc:QueryParameters rdfs:subClassOf xsd:string .
+hpc:Extra hpc:QueryParameters rdfs:subClassOf xsd:string .
+hpc:Format hpc:QueryParameters rdfs:subClassOf xsd:string .
+hpc:InstanceId hpc:QueryParameters rdfs:subClassOf xsd:string .
+hpc:InstanceType hpc:QueryParameters rdfs:subClassOf xsd:string .
+hpc:NodeList hpc:QueryParameters rdfs:subClassOf xsd:string .
+hpc:TimeEnd hpc:QueryParameters rdfs:subClassOf xsd:xsd:integer .
+hpc:TimeStart hpc:QueryParameters rdfs:subClassOf xsd:xsd:integer .
+
+hpc:ReturnType a owl:Class .
+hpc:v0_0_43_openapi_instances_resp rdf:type hpc:ReturnType .
+
+hpc:Instance a owl:Class .
+hpc:cluster rdf:type hpc:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range hpc:Cluster .
+hpc:instance_id rdf:type hpc:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range hpc:InstanceId .
+hpc:extra rdf:type hpc:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range hpc:Extra .
+hpc:node_name rdf:type hpc:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range rdf:Literal .
+hpc:time rdf:type hpc:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range hpc:Time .
+hpc:instance_type rdf:type hpc:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range hpc:InstanceType .
+
+hpc:Time a owl:Class .
+hpc:time_start rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:Time ;
+    rdfs:range xsd:xsd:integer .
+hpc:time_end rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:Time ;
+    rdfs:range xsd:xsd:integer .
+```

@@ -1,0 +1,37 @@
+hpc:HeterogeneousJob a owl:Class .
+hpc:RegularJob a owl:Class .
+hpc:JobComponent a owl:Class .
+hpc:BackfillSchedulerIteration a owl:Class .
+
+hpc:hasComponent rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:JobComponent .
+
+hpc:hasExpectedStartTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:JobComponent ;
+    rdfs:range xsd:dateTime .
+
+hpc:isInFirstMode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:BackfillSchedulerIteration .
+
+hpc:isInSecondMode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:BackfillSchedulerIteration .
+
+hpc:hasClearedExpectedStartTimeData rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:BackfillSchedulerIteration .
+
+hpc:hasResourceLimitTestResult rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:HeterogeneousJob ;
+    rdfs:range xsd:boolean .
+
+hpc:hasValidationResult rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobComponent ;
+    rdfs:range xsd:boolean .
+
+hpc:hasQOSLimitTestResult rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:HeterogeneousJob ;
+    rdfs:range xsd:boolean .
+
+hpc:JobComponent subClassOf hpc:Job .
+hpc:BackfillSchedulerIteration subClassOf hpc:Job .
+```

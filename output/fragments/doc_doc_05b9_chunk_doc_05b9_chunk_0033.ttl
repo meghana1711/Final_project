@@ -1,0 +1,82 @@
+hpc:AdminLevel a owl:Class .
+
+hpc:DefaultAccount a owl:DatatypeProperty ;
+    rdfs:domain hpc:AdminLevel ;
+    rdfs:range xsd:String .
+
+hpc:DefaultWCKey a owl:DatatypeProperty ;
+    rdfs:domain hpc:AdminLevel ;
+    rdfs:range xsd:String .
+
+hpc:Accounts a owl:DatatypeProperty ;
+    rdfs:domain hpc:AdminLevel ;
+    rdfs:range rdf:Array .
+
+hpc:Association a owl:ObjectProperty ;
+    rdfs:domain hpc:AdminLevel ;
+    rdfs:range hpc:AssociationRec .
+
+hpc:Clusters a owl:DatatypeProperty ;
+    rdfs:domain hpc:AdminLevel ;
+    rdfs:range rdf:Array .
+
+hpc:Partitions a owl:DatatypeProperty ;
+    rdfs:domain hpc:AdminLevel ;
+    rdfs:range rdf:Array .
+
+hpc:Users a owl:DatatypeProperty ;
+    rdfs:domain hpc:AdminLevel ;
+    rdfs:range rdf:Array .
+
+hpc:WCKeys a owl:DatatypeProperty ;
+    rdfs:domain hpc:AdminLevel ;
+    rdfs:range rdf:Array .
+
+hpc:Accounting a owl:Class .
+
+hpc:Cluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Accounting ;
+    rdfs:range xsd:String .
+
+hpc:Id a owl:DatatypeProperty ;
+    rdfs:domain hpc:UserClusterWCKey ;
+    rdfs:range xsd:integer .
+
+hpc:Name a owl:DatatypeProperty ;
+    rdfs:domain hpc:WCKey ;
+    rdfs:range xsd:String .
+
+hpc:User a owl:DatatypeProperty ;
+    rdfs:domain hpc:WCKey ;
+    rdfs:range xsd:String .
+
+hpc:Flags a owl:DatatypeProperty ;
+    rdfs:domain hpc:WCKey ;
+    rdfs:range rdf:Array .
+
+hpc:WCKey a owl:DatatypeProperty ;
+    rdfs:domain hpc:WCKeyTagStruct ;
+    rdfs:range xsd:string .
+
+hpc:Flags1 a owl:DatatypeProperty ;
+    rdfs:domain hpc:WCKeyTagStruct ;
+    rdfs:range xsd:integer .
+
+hpc:InstanceTime a owl:Class .
+
+hpc:TimeEnd a owl:DatatypeProperty ;
+    rdfs:domain hpc:InstanceTime ;
+    rdfs:range xsd:long .
+
+hpc:TimeStart a owl:DatatypeProperty ;
+    rdfs:domain hpc:InstanceTime ;
+    rdfs:range xsd:long .
+
+hpc:JobArray a owl:Class .
+
+hpc:JobId a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobArray ;
+    rdfs:range xsd:integer .
+
+hpc:Limits a owl:Class ;
+    rdfs:subClassOf hpc:

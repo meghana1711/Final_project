@@ -1,0 +1,48 @@
+# Classes
+hpc:FairTreeAlgorithm a owl:Class .
+hpc:ClassicFairshareAlgorithm a owl:Class .
+hpc:MultifactorJobPriorityPlugin a owl:Class .
+hpc:PriorityType a owl:Class .
+hpc:PriorityDecayHalfLife a owl:Class .
+hpc:PriorityCalcPeriod a owl:Class .
+hpc:PriorityUsageResetPeriod a owl:Class .
+hpc:PriorityFlags a owl:Class .
+
+# Object Properties
+hpc:hasDefaultAlgorithm rdf:type owl:ObjectProperty .
+hpc:usesAlgorithm rdf:type owl:ObjectProperty .
+hpc:isConfiguredWith rdf:type owl:ObjectProperty .
+hpc:hasPriorityType rdf:type owl:ObjectProperty .
+hpc:hasDecayHalfLife rdf:type owl:ObjectProperty .
+hpc:hasCalcPeriod rdf:type owl:ObjectProperty .
+hpc:hasUsageResetPeriod rdf:type owl:ObjectProperty .
+hpc:hasFlags rdf:type owl:ObjectProperty .
+
+# Datatype Properties
+hpc:priorityType rdf:type owl:DatatypeProperty .
+hpc:decayHalfLife rdf:type owl:DatatypeProperty .
+hpc:calcPeriod rdf:type owl:DatatypeProperty .
+hpc:usageResetPeriod rdf:type owl:DatatypeProperty .
+hpc:flags rdf:type owl:DatatypeProperty .
+
+# Domain and Range
+hpc:hasDefaultAlgorithm rdfs:domain hpc:Cluster .
+hpc:usesAlgorithm rdfs:domain hpc:Algorithm .
+hpc:isConfiguredWith rdfs:domain hpc:Configuration .
+hpc:hasPriorityType rdfs:domain hpc:MultifactorJobPriorityPlugin .
+hpc:hasDecayHalfLife rdfs:domain hpc:PriorityDecayHalfLife .
+hpc:hasCalcPeriod rdfs:domain hpc:PriorityCalcPeriod .
+hpc:hasUsageResetPeriod rdfs:domain hpc:PriorityUsageResetPeriod .
+hpc:hasFlags rdfs:domain hpc:PriorityFlags .
+hpc:priorityType rdfs:range xsd:string .
+hpc:decayHalfLife rdfs:range xsd:string .
+hpc:calcPeriod rdfs:range xsd:integer .
+hpc:usageResetPeriod rdfs:range xsd:string .
+hpc:flags rdfs:range xsd:string .
+
+# Algorithms
+hpc:FairTree a hpc:FairTreeAlgorithm .
+hpc:ClassicFairshare a hpc:ClassicFairshareAlgorithm .
+
+# Plugin Configuration
+hpc:Mult

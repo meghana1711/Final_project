@@ -1,0 +1,48 @@
+hpc:PartitionQOSLimit a owl:Class .
+hpc:JobQOSLimit a owl:Class .
+hpc:UserAssociation a owl:Class .
+hpc:AccountAssociation a owl:Class .
+hpc:RootClusterAssociation a owl:Class .
+hpc:PartitionLimit a owl:Class .
+
+hpc:hasHierarchyLimit a owl:ObjectProperty ;
+    rdfs:domain hpc:HierarchicalLimit .
+hpc:enforcedBy a owl:ObjectProperty ;
+    rdfs:domain hpc:HierarchicalLimit ;
+    rdfs:range hpc:HierarchicalLimit .
+hpc:isReversible a owl:ObjectProperty ;
+    rdfs:domain hpc:HierarchicalLimit ;
+    rdfs:range xsd:boolean .
+
+hpc:QOS a owl:Class .
+hpc:PartitionQOS a rdfs:subClassOf hpc:QOS .
+hpc:JobQOS a rdfs:subClassOf hpc:QOS .
+
+hpc:limit a owl:DatatypeProperty ;
+    rdfs:domain hpc:HierarchicalLimit .
+hpc:precedenceOrder a owl:DatatypeProperty ;
+    rdfs:domain hpc:HierarchicalLimit ;
+    rdfs:range xsd:string .
+
+hpc:GrpLimitException a owl:Class .
+hpc:AccountLevelEnforced a owl:ObjectProperty ;
+    rdfs:domain hpc:GrpLimitException .
+hpc:UserLevelEnforced a owl:ObjectProperty ;
+    rdfs:domain hpc:GrpLimitException .
+
+hpc:Configuration a owl:Class .
+hpc:SchedulingPolicy a owl:Class ;
+    rdfs:subClassOf hpc:Configuration .
+hpc:AccountingStorageType a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration .
+
+hpc:Database a owl:Class .
+hpc:MySQL a owl:Class ;
+    rdfs:subClassOf hpc:Database .
+hpc:MariaDB a owl:Class ;
+    rdfs:subClassOf hpc:Database .
+
+hpc:SlurmDBD a owl:Class .
+hpc:recommendedForSecurityPerformance a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmDBD .
+```

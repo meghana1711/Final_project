@@ -1,0 +1,37 @@
+hpc:DragonflyNetwork a owl:Class .
+hpc:SlurmConfiguration a owl:Class .
+hpc:TopologyPlugin a owl:ObjectProperty .
+hpc:TopologyParam a owl:ObjectProperty .
+hpc:NetworkBandwidthOptimization a owl:ObjectProperty .
+hpc:NodeWeight a owl:DatatypeProperty .
+hpc:ResourceSelectionOverride a owl:ObjectProperty .
+
+hpc:TreeTopology a owl:Class .
+hpc:NetworkSwitchFit a owl:ObjectProperty .
+
+hpc:ConfigurationGenerator a owl:Class .
+hpc:InfinibandSwitchGenerator rdf:type hpc:ConfigurationGenerator ;
+   rdfs:label "slurmibtopology" ;
+   rdfs:seeAlso <https://github.com/OleHolmNielsen/Slurm_tools/tree/master/slurmibtopology> .
+hpc:OmniPathSwitchGenerator rdf:type hpc:ConfigurationGenerator ;
+   rdfs:label "opa2slurm" ;
+   rdfs:seeAlso <https://gitlab.com/jtfrey/opa2slurm> .
+hpc:AWS EFASwitchGenerator rdf:type hpc:ConfigurationGenerator ;
+   rdfs:label "ec2-topology" ;
+   rdfs:seeAlso <https://github.com/aws-samples/ec2-topology-aware-for-slurm> .
+
+hpc:BlockTopology a owl:Class .
+hpc:BaseBlock a owl:Class ;
+   rdfs:subClassOf hpc:Block .
+hpc:AggregatedBlock a owl:Class ;
+   rdfs:subClassOf hpc:Block .
+hpc:LowerLevelBlock a owl:Class ;
+   rdfs:subClassOf hpc:Block .
+
+hpc:BlockTopologyPlugin a owl:ObjectProperty .
+hpc:BlockSizes a owl:DatatypeProperty .
+hpc:BlockLevel a owl:DatatypeProperty .
+hpc:FragmentationMinimization a owl:ObjectProperty .
+hpc:BestFitAlgorithm a owl:ObjectProperty .
+hpc:BlockHierarchy a owl:ObjectProperty .
+```

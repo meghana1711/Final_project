@@ -1,0 +1,27 @@
+hpc:v0_0_42_openapi_users_resp
+    a owl:Class ;
+    rdfs:subClassOf xsd:anySimpleType .
+
+hpc:v0_0_42_openapi_resp
+    a owl:Class ;
+    rdfs:subClassOf xsd:anySimpleType .
+
+hpc:User
+    a owl:Class ;
+    rdfs:subClassOf hpc:v0_0_42_openapi_users_resp .
+
+hpc:getUser
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmdb ;
+    rdfs:range hpc:User .
+
+hpc:deleteUser
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmdb ;
+    rdfs:range hpc:User .
+
+hpc:Slurmdb
+    a owl:Class .
+```
+
+Assuming `Slurmdb` is the main class representing the Slurm database, and `User` is a subclass of the OpenAPI response schema for users. `getUser` and `deleteUser` are object properties representing the GET and DELETE operations on the Slurmdb for users.

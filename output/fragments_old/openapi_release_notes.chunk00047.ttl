@@ -1,0 +1,12 @@
+hpc:ReservationDeletion a owl:Class .
+hpc:reservationName a owl:DatatypeProperty ;
+    rdfs:domain hpc:ReservationDeletion ;
+    rdfs:range xsd:string .
+
+hpc:ReservationDeleteResponse a owl:Class .
+hpc:reservationDeleteRequestResult a owl:ObjectProperty ;
+    rdfs:domain hpc:ReservationDeletion ;
+    rdfs:range hpc:ReservationDeleteResponse .
+```
+
+This ontology fragment represents a `ReservationDeletion` class and a `ReservationDeleteResponse` class, as well as a datatype property `reservationName` for the `ReservationDeletion` class and an object property `reservationDeleteRequestResult` for the `ReservationDeletion` and `ReservationDeleteResponse` classes.

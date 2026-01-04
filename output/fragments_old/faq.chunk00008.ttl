@@ -1,0 +1,65 @@
+hpc:OperatingSystem a owl:Class .
+hpc:CPU a owl:Class .
+hpc:OperatingSystemControl a owl:ObjectProperty ;
+    rdfs:domain hpc:OperatingSystem ;
+    rdfs:range hpc:CPU .
+
+# Slurm Build and Install
+hpc:SlurmLibrary a owl:Class .
+hpc:SlurmDependency a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmLibrary ;
+    rdfs:range rdf:Resource .
+hpc:SlurmRPM a owl:Class ;
+    rdfs:subClassOf hpc:SlurmLibrary .
+hpc:PamDevel a owl:Class .
+hpc:SlurmSpec a owl:Class .
+hpc:RpmbuildFlag a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmLibrary ;
+    rdfs:range xsd:string .
+hpc:RpmmacrosFile a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmLibrary ;
+    rdfs:range rdf:Resource .
+
+# Auth Plugin
+hpc:AuthNonePlugin a owl:Class ;
+    rdfs:subClassOf hpc:SlurmLibrary .
+hpc:AuthNoneRPM a owl:Class .
+hpc:WithAuthNone a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmLibrary ;
+    rdfs:range xsd:string .
+
+# Debugging Symbols
+hpc:DeveloperMode a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmLibrary ;
+    rdfs:range xsd:boolean .
+hpc:DeveloperCompileFlags a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmLibrary ;
+    rdfs:range xsd:string .
+
+# Patching Slurm
+hpc:PatchFile a owl:Class ;
+    rdfs:subClassOf xsd:string .
+hpc:ApplyPatch a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range rdf:Resource .
+hpc:SourceTarball a owl:Class .
+hpc:RpmbuildCommand a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string .
+
+# Updates and Cluster Management
+hpc:AutomaticUpdate a owl:Class .
+hpc:ExcludeSlurm a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string .
+hpc:RelocateController a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range rdf:Resource .
+hpc:SlurmctldHost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmctld ;
+    rdfs:range xsd:string .
+hpc:StateSaveLocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmNode ;
+    rdfs:range xsd:string .
+hpc:SlurmUser a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sl

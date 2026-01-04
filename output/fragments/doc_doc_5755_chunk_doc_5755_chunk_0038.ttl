@@ -1,0 +1,54 @@
+hpc:HighAvailabilityMySQL a owl:Class .
+hpc:UsesClassicalLinuxHA a owl:ObjectProperty ;
+    rdfs:domain hpc:HighAvailabilityMySQL ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:OneWayReplication a owl:Class ;
+    rdfs:subClassOf hpc:HighAvailabilityMySQL .
+
+hpc:SharedStorage a owl:Class ;
+    rdfs:subClassOf hpc:HighAvailabilityMySQL .
+
+hpc:SlurmdbD a owl:Class .
+hpc:UsesMySQLImplementation a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbD ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:Slurmctld a owl:Class .
+hpc:StoresDataInMemory a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmctld ;
+    rdfs:range rdf:XMLLiteral .
+hpc:CachesUserLimits a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmctld ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:Ndb a owl:Class ;
+hpc:IncompatibleWithSlurmdbD a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbD ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:Node a owl:Class .
+hpc:HasState a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:Slurmd a owl:Class .
+hpc:IsRunningOnNode a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmd ;
+    rdfs:range hpc:Node .
+
+hpc:SlurmConf a owl:Class .
+hpc:DefinesSlurmdTimeout a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmConf ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Scontrol a owl:Class .
+hpc:UpdatesNodeState a owl:ObjectProperty ;
+    rdfs:domain hpc:Scontrol ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:AnsiQuotes a owl:Class .
+hpc:AllowsDoubleQuotesInQueries a owl:ObjectProperty ;
+    rdfs:domain rdf:XMLLiteral ;
+    rdfs:range rdf:XMLLiteral .
+```

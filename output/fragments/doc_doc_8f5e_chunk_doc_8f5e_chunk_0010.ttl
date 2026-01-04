@@ -1,0 +1,42 @@
+hpc:Upgrade a owl:Class .
+hpc:PerformUpgrade rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Upgrade ;
+    rdfs:range rdf:Seq .
+
+hpc:UpgradeStep a owl:Class ;
+    rdfs:subClassOf hpc:Upgrade .
+
+hpc:ShutdownSlurmctld a hpc:UpgradeStep ;
+    rdfs:comment "Shutdown the slurmctld daemon(s)." .
+
+hpc:ShutdownSlurmd a hpc:UpgradeStep ;
+    rdfs:comment "Shutdown the slurmd daemons on the compute nodes." .
+
+hpc:BackupStateSaveLocation a hpc:UpgradeStep ;
+    rdfs:comment "Back up the contents of the configured StateSaveLocation." .
+
+hpc:UpgradeDaemons a hpc:UpgradeStep ;
+    rdfs:comment "Upgrade the slurmctld (and optionally slurmd) daemons and their systemd service files (if used)." .
+
+hpc:RestartSlurmd a hpc:UpgradeStep ;
+    rdfs:comment "Restart the slurmd daemons on the compute nodes." .
+
+hpc:RestartSlurmctld a hpc:UpgradeStep ;
+    rdfs:comment "Restart the slurmctld daemon(s)." .
+
+hpc:ValidateOperation a hpc:UpgradeStep ;
+    rdfs:comment "Validate proper operation, such as communication with nodes and a job's ability to successfully start and finish." .
+
+hpc:RestoreTimeouts a hpc:UpgradeStep ;
+    rdfs:comment "Restore the preferred SlurmdTimeout and SlurmctldTimeout values and execute scontrol reconfig for them to take effect." .
+
+hpc:SimultaneousUpgrade a hpc:UpgradeStep ;
+    rdfs:comment "It is preferred to upgrade all slurmd nodes at the same time as the slurmctld." ;
+    rdfs:subClassOf hpc:UpgradeStep ;
+    rdfs:domain hpc:Upgrade ;
+
+hpc:RollingUpgrade a hpc:UpgradeStep ;
+    rdfs:comment "It is also possible to perform a rolling upgrade by upgrading the slurmd nodes later in any number of groups." ;
+    rdfs:subClassOf hpc:UpgradeStep ;
+    rdfs:domain hpc:Upgrade ;
+```

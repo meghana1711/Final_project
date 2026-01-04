@@ -1,0 +1,75 @@
+hpc:Job a owl:Class .
+
+hpc:mailType a owl:ObjectProperty .
+hpc:mailType rdfs:domain hpc:Job ;
+                 rdfs:range rdf:List .
+
+hpc:mailEventType a xsd:string .
+
+hpc:mailUser a owl:ObjectProperty .
+hpc:mailUser rdfs:domain hpc:Job ;
+                 rdfs:range xsd:string .
+
+hpc:mcsLabel a xsd:string .
+
+hpc:memoryBinding a xsd:string .
+
+hpc:memoryBindingType a rdf:List .
+hpc:memoryBindingType rdfs:domain hpc:Job ;
+                      rdfs:range xsd:string .
+
+hpc:memoryBindingMethod a xsd:string .
+
+hpc:memoryPerTres a xsd:string .
+
+hpc:name a xsd:string .
+
+hpc:network a xsd:string .
+
+hpc:nice a xsd:int .
+
+hpc:tasks a xsd:int .
+
+hpc:oomKillStep a xsd:int .
+
+hpc:openMode a rdf:List .
+hpc:openMode rdfs:domain hpc:Job ;
+              rdfs:range xsd:string .
+
+hpc:openModeValue a xsd:string .
+
+hpc:reservePort a xsd:int .
+
+hpc:overcommit a xsd:boolean .
+
+hpc:partition a xsd:string .
+
+hpc:distributionPlaneSize a <http://example.org/hpc#v0.0.43_uint16_no_val_struct> .
+
+hpc:powerFlags a rdf:List .
+hpc:powerFlags rdfs:domain hpc:Job ;
+               rdfs:range oas_any_type_not_mapped .
+
+hpc:prefer a xsd:string .
+
+hpc:hold a xsd:boolean .
+
+hpc:priority a <http://example.org/hpc#v0.0.43_uint32_no_val_struct> .
+
+hpc:profile a rdf:List .
+hpc:profile rdfs:domain hpc:Job ;
+             rdfs:range xsd:string .
+
+hpc:profileValue a xsd:string .
+
+hpc:qos a xsd:string .
+
+hpc:reboot a xsd:boolean .
+
+hpc:requiredNodes a rdf:List .
+hpc:requiredNodes rdfs:domain hpc:Job ;
+                   rdfs:range xsd:string .
+
+hpc:requeue a xsd:boolean .
+
+hpc:reservation a

@@ -1,0 +1,59 @@
+hpc:ComputeNode a owl:Class .
+
+# Job
+hpc:Job a owl:Class .
+
+# JobStep
+hpc:JobStep a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+# CUDA_VISIBLE_DEVICES
+hpc:CUDA_VISIBLE_DEVICES a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobStep ;
+    rdfs:range xsd:string .
+
+# GPU
+hpc:GPU a owl:Class .
+
+# GPU Device File
+hpc:GPUDeviceFile a owl:DatatypeProperty ;
+    rdfs:domain hpc:GPU ;
+    rdfs:range xsd:string .
+
+# MPS
+hpc:MPS a owl:Class .
+
+# MPS Resource
+hpc:MPSResource a owl:Class ;
+    rdfs:subClassOf hpc:MPS .
+
+# MPS Configuration
+hpc:MPSConfiguration a owl:Class .
+
+# MPS Count
+hpc:MPSCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:MPSConfiguration ;
+    rdfs:range xsd:integer .
+
+# MPS Name
+hpc:MPSName a owl:DatatypeProperty ;
+    rdfs:domain hpc:MPSConfiguration ;
+    rdfs:range xsd:string .
+
+# MPS File
+hpc:MPSFile a owl:DatatypeProperty ;
+    rdfs:domain hpc:MPSResource ;
+    rdfs:range xsd:string .
+
+# Slurm Configuration
+hpc:SlurmConfiguration a owl:Class .
+
+# gres.conf File
+hpc:GresConfFile a owl:Class ;
+    rdfs:subClassOf hpc:SlurmConfiguration .
+
+# AutoDetect
+hpc:AutoDetect a owl:ObjectProperty ;
+    rdfs:domain hpc:GresConfFile ;
+    rdfs:range xsd:string .
+```

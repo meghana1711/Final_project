@@ -1,0 +1,61 @@
+# Job Management
+hpc:Job a owl:Class .
+hpc:JobPriorityValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:ManagedByPlugin a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Plugin .
+
+hpc:UpdateMultipleJobs a owl:ObjectProperty ;
+    rdfs:domain hpc:ScontrolCommand ;
+    rdfs:range xsd:boolean .
+
+hpc:PrintJobID a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:WriteToUserStdout a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean .
+
+hpc:JobExitCode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:RequeueJob a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+# Slurm-specific Classes and Properties
+hpc:Slurm a owl:Class .
+hpc:SlurmJob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+hpc:SlurmJobID a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmJob ;
+    rdfs:range xsd:string .
+hpc:SlurmJobAllocation a owl:Class ;
+    rdfs:subClassOf hpc:JobAllocation .
+hpc:SlurmNode a owl:Class .
+hpc:SlurmNodeID a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmNode ;
+    rdfs:range xsd:string .
+
+# Troubleshooting and Error Messages
+hpc:Troubleshooting a owl:Class .
+hpc:ErrorMessage a owl:Class .
+
+# Third Party Integrations
+hpc:Globus a owl:Class .
+hpc:TotalView a owl:Class .
+
+# Management
+hpc:FreeSoftware a owl:Class .
+hpc:Cost a owl:DatatypeProperty ;
+    rdfs:domain hpc:FreeSoftware ;
+    rdfs:range xsd:string .
+hpc:Quality a owl:DatatypeProperty ;
+    rdfs:domain hpc:FreeSoftware ;
+    rdfs:range xsd:string .
+hpc:Support a owl:

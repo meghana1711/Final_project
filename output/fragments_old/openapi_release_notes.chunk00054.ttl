@@ -1,0 +1,29 @@
+hpc:ResourceSpec a owl:Class .
+hpc:ResourceSpec hpc:memory rdfs:domain hpc:ResourceSpec .
+hpc:ResourceSpec hpc:memory rdfs:range xsd:int64 .
+
+hpc:JobDescMsg a owl:Class .
+hpc:JobDescMsg hpc:oom_kill_step rdfs:domain hpc:JobDescMsg .
+hpc:JobDescMsg hpc:oom_kill_step rdfs:range xsd:int32 .
+
+hpc:OpenapiSlurmdbdPingResp a owl:Class .
+hpc:OpenapiSlurmdbdPingResp hpc:errors rdfs:domain hpc:OpenapiSlurmdbdPingResp .
+hpc:OpenapiSlurmdbdPingResp hpc:errors rdfs:range rdf:Resource .
+hpc:OpenapiSlurmdbdPingResp hpc:meta rdfs:domain hpc:OpenapiSlurmdbdPingResp .
+hpc:OpenapiSlurmdbdPingResp hpc:meta rdfs:range rdf:Resource .
+hpc:OpenapiSlurmdbdPingResp hpc:pings rdfs:domain hpc:OpenapiSlurmdbdPingResp .
+hpc:OpenapiSlurmdbdPingResp hpc:pings rdfs:range rdf:List .
+hpc:OpenapiSlurmdbdPingResp hpc:warnings rdfs:domain hpc:OpenapiSlurmdbdPingResp .
+hpc:OpenapiSlurmdbdPingResp hpc:warnings rdfs:range rdf:Resource .
+
+hpc:SlurmdbdPing a owl:Class .
+hpc:SlurmdbdPing hpc:hostname rdfs:domain hpc:SlurmdbdPing .
+hpc:SlurmdbdPing hpc:hostname rdfs:range xsd:string .
+hpc:SlurmdbdPing hpc:latency rdfs:domain hpc:SlurmdbdPing .
+hpc:SlurmdbdPing hpc:latency rdfs:range xsd:int64 .
+hpc:SlurmdbdPing hpc:mode rdfs:domain hpc:SlurmdbdPing .
+hpc:SlurmdbdPing hpc:mode rdfs:range xsd:string .
+hpc:SlurmdbdPing hpc:pinged rdfs:domain hpc:SlurmdbdPing .
+hpc:SlurmdbdPing hpc:pinged rdfs:range xsd:string .
+
+hpc:SlurmdbdPingArray a

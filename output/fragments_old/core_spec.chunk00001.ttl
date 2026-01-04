@@ -1,0 +1,46 @@
+# Classes
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:CoreSpecialization a owl:Class .
+hpc:ComputeNode a owl:Class .
+hpc:Job a owl:Class .
+hpc:Step a owl:Class .
+
+# Object Properties
+hpc:hasVersion a owl:ObjectProperty .
+hpc:hasReleaseNotes a owl:ObjectProperty .
+hpc:hasDocumentation a owl:ObjectProperty .
+hpc:hasFAQ a owl:ObjectProperty .
+hpc:hasPublications a owl:ObjectProperty .
+hpc:hasInstallationGuide a owl:ObjectProperty .
+hpc:hasMailingLists a owl:ObjectProperty .
+hpc:hasSupportAndTraining a owl:ObjectProperty .
+hpc:hasTroubleshooting a owl:ObjectProperty .
+hpc:hasCoreSpecializationCount a owl:ObjectProperty .
+hpc:hasCpuSpecList a owl:ObjectProperty .
+hpc:hasAllowSpecResourcesUsage a owl:ObjectProperty .
+hpc:hasSchedulerParameters a owl:ObjectProperty .
+hpc:hasCoresPerSocket a owl:ObjectProperty .
+hpc:hasThreadsPerCore a owl:ObjectProperty .
+hpc:hasCpusAllowed a owl:ObjectProperty .
+hpc:hasCpusAllowedList a owl:ObjectProperty .
+hpc:hasAllocatedCPUs a owl:ObjectProperty .
+hpc:hasJobID a owl:ObjectProperty .
+hpc:hasSpecifiedCoreSpecCount a owl:ObjectProperty .
+hpc:hasImplicitExclusive a owl:ObjectProperty .
+hpc:hasAllocatedCPUsIncludingSpecialized a owl:ObjectProperty .
+hpc:hasJobAllocatedCPUs a owl:ObjectProperty .
+hpc:hasCoreSelectionAlgorithm a owl:ObjectProperty .
+hpc:hasSpecCoresFirst a owl:ObjectProperty .
+hpc:hasCoreCount a owl:ObjectProperty .
+hpc:hasCpusCount a owl:ObjectProperty .
+hpc:hasHyperthreadsCount a owl:ObjectProperty .
+hpc:hasAllowSpecResourcesUsageValue a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hasPort a xsd:integer .
+hpc:hasNodename a xsd:string .
+hpc:hasCoreCountValue a xsd:integer .
+hpc:hasCpuSpecListValue a xsd:string .
+hpc:hasCoreSpecCountValue a xsd:integer .
+hpc:hasAllowSpecResourcesUsageValue a xsd:integer .
+```

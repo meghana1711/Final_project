@@ -1,0 +1,31 @@
+hpc:Slurm a owl:Class .
+hpc:Version a owl:DatatypeProperty .
+hpc:Release a owl:DatatypeProperty .
+hpc:MicroVersion a owl:DatatypeProperty .
+
+hpc:OpenAPISpecification a owl:Class .
+hpc:GeneratedBy a owl:ObjectProperty .
+hpc:Deprecated a owl:ObjectProperty .
+hpc:Path a owl:Class .
+hpc:Get a owl:ObjectProperty .
+hpc:Post a owl:ObjectProperty .
+hpc:Delete a owl:ObjectProperty .
+
+hpc:Slurm rdfs:subClassOf hpc:Version .
+hpc:DataParser rdfs:subClassOf hpc:Version .
+
+hpc:Slurm rdfs:domain hpc:Slurm .
+hpc:DataParser rdfs:domain hpc:DataParser .
+
+hpc:Version rdfs:range xsd:string .
+hpc:Release rdfs:range xsd:string .
+hpc:MicroVersion rdfs:range xsd:nonNegativeInteger .
+
+hpc:OpenAPISpecification rdfs:subClassOf hpc:Version .
+hpc:GeneratedBy rdfs:domain hpc:OpenAPISpecification .
+hpc:Deprecated rdfs:domain hpc:Path .
+hpc:Path rdfs:range hpc:Path .
+hpc:Get rdfs:domain hpc:Path .
+hpc:Post rdfs:domain hpc:Path .
+hpc:Delete rdfs:domain hpc:Path .
+```

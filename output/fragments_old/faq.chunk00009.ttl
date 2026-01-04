@@ -1,0 +1,71 @@
+hpc:SlurmCluster a owl:Class .
+hpc:SlurmAccount a owl:Class .
+
+# Slurm Cluster Configuration Properties
+hpc:copySlurmClusterConfig a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCluster ;
+    rdfs:range rdf:Resource .
+
+hpc:sacctmgrDump a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCluster ;
+    rdfs:range rdf:Literal .
+
+hpc:sacctmgrLoad a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCluster ;
+    rdfs:range rdf:Resource .
+
+# Job Loss Scenarios
+hpc:jobLossDueToSlurmctldCrash a owl:Class .
+hpc:jobLossDueToHardwareFailure a owl:Class .
+
+# Resource Limit Propagation
+hpc:resourceLimitPropagation a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCluster ;
+    rdfs:range rdf:Resource .
+
+hpc:PropagateResourceLimits a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmCluster ;
+    rdfs:range xsd:string .
+
+hpc:PropagateResourceLimitsExcept a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmCluster ;
+    rdfs:range xsd:string .
+
+# Resource Limit Enforcement
+hpc:AccountingStorageEnforce a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmCluster ;
+    rdfs:range xsd:string .
+
+# Slurm License Management
+hpc:SlurmLicenses a owl:Class .
+hpc:allocateLicenses a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmLicenses ;
+    rdfs:range rdf:Resource .
+
+hpc:grantExclusiveLicenses a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmLicenses ;
+    rdfs:range rdf:Resource .
+
+hpc:changeLicensesTotal a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmLicenses ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:reserveLicenses a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmLicenses ;
+    rdfs:range rdf:Resource .
+
+hpc:removeLicensesFromJobs a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmLicenses ;
+    rdfs:range rdf:Resource .
+
+# Switching from PBS or Torque to Slurm
+hpc:switchFromPBSorTorque a owl:Class .
+hpc:providesSlurmWrappers a owl:ObjectProperty ;
+    rdfs:domain hpc:switchFromPBSorTorque ;
+    rdfs:range rdf:Resource .
+
+hpc:translatesPBSOptions a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCluster ;
+    rdfs:range rdf:Resource .
+
+hpc:usesSPANKPlugin a o

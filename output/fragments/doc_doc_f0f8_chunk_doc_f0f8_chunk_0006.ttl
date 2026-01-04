@@ -1,0 +1,21 @@
+hpc:SlurmdLogFile a owl:Class .
+hpc:JobAccountingGatherType a owl:ObjectProperty .
+hpc:JobAccountingStorageType a owl:ObjectProperty .
+hpc:AccountingStorageType a owl:Class .
+hpc:SlurmDBD a hpc:AccountingStorageType .
+hpc:None a hpc:AccountingStorageType .
+hpc:ProcessIDLogging a owl:Class .
+hpc:SlurmctldPidFile a xsd:string .
+hpc:SlurmdPidFile a xsd:string .
+hpc:JobAccountingGather a owl:Class .
+hpc:Linux a owl:Class .
+hpc:SpecificLinuxCgroupInformation a hpc:JobAccountingGatherType .
+hpc:SpecificLinuxProcessTableInformation a hpc:JobAccountingGatherType .
+hpc:Linux a rdfs:subClassOf hpc:JobAccountingGather .
+hpc:SlurmDBD a rdfs:subClassOf hpc:AccountingStorageType .
+hpc:None rdfs:subClassOf hpc:AccountingStorageType .
+hpc:SlurmctldPidFile rdfs:domain hpc:ProcessIDLogging ;
+    rdfs:range xsd:string .
+hpc:SlurmdPidFile rdfs:domain hpc:ProcessIDLogging ;
+    rdfs:range xsd:string .
+```

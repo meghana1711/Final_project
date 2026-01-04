@@ -1,0 +1,46 @@
+hpc:HeterogeneousJob a owl:Class .
+hpc:JobComponent a owl:Class .
+
+hpc:hasComponent rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:HeterogeneousJob ;
+    rdfs:range hpc:JobComponent .
+
+hpc:hasResourceSpecification rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobComponent ;
+    rdfs:range xsd:string .
+
+hpc:NumCPUs rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:ResourceSpecification ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Memory rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:ResourceSpecification ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:PropagatedOption a owl:Class .
+hpc:isPropagated rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:HeterogeneousJob ;
+    rdfs:range hpc:PropagatedOption .
+
+hpc:ResettableOption a owl:Class .
+hpc:isResettable rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobComponent ;
+    rdfs:range hpc:Option .
+
+hpc:Account a hpc:PropagatedOption .
+hpc:AcctgFreq a hpc:PropagatedOption .
+hpc:Begin a hpc:PropagatedOption .
+hpc:ClusterConstraint a hpc:PropagatedOption .
+hpc:Clusters a hpc:PropagatedOption .
+hpc:Comment a hpc:PropagatedOption .
+hpc:Deadline a hpc:PropagatedOption .
+hpc:DelayBoot a hpc:PropagatedOption .
+hpc:Dependency a hpc:PropagatedOption .
+hpc:Distribution a hpc:PropagatedOption .
+hpc:Epilog a hpc:PropagatedOption .
+hpc:Immediate a hpc:ResettableOption .
+hpc:JobName a hpc:PropagatedOption .
+hpc:JobNameReset a hpc:ResettableOption .
+hpc:Ntasks a hpc:ResettableOption .
+hpc:MemPerCpu a hpc:ResettableOption .
+```

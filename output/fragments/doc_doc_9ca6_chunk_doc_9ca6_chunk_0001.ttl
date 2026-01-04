@@ -1,0 +1,55 @@
+hpc:HierarchicalResource a owl:Class .
+hpc:HierarchicalTopology a owl:Class .
+hpc:ResourceDefinition a owl:Class .
+hpc:JobRequest a owl:Class .
+
+hpc:hasHierarchicalTopology rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:HierarchicalResource ;
+    rdfs:range hpc:HierarchicalTopology .
+
+hpc:hasResourceDefinition rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:HierarchicalTopology ;
+    rdfs:range hpc:ResourceDefinition .
+
+hpc:hasJobRequest rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:HierarchicalResource ;
+    rdfs:range hpc:JobRequest .
+
+hpc:count rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:ResourceDefinition ;
+    rdfs:range xsd:integer .
+
+hpc:Mode1 rdf:type owl:Class ;
+    rdfs:subClassOf hpc:PlanningMode .
+
+hpc:Mode2 rdf:type owl:Class ;
+    rdfs:subClassOf hpc:PlanningMode .
+
+hpc:hasLayer rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ResourceDefinition ;
+    rdfs:range hpc:Layer .
+
+hpc:LayerCount rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Layer ;
+    rdfs:range xsd:integer .
+
+hpc:sufficientFor rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Mode1 ;
+    rdfs:range hpc:Layer .
+
+hpc:overlapsWith rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Layer ;
+    rdfs:range hpc:JobAllocation .
+
+hpc:hasInfiniteResources rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Layer ;
+    rdfs:range xsd:integer .
+
+hpc:LayerZeroCount rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Layer .
+hpc:LayerZeroCount owl:equivalentClass [ a owl:Class ;
+    rdf:type owl:Class ;
+    owl:equivalentProperty hpc:LayerCount ;
+    owl:allValuesFrom [ xsd:integer "-1" ]
+] .
+```

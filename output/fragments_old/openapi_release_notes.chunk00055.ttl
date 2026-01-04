@@ -1,0 +1,25 @@
+hpc:PingTest a owl:Class ;
+    rdfs:subClassOf hpc:Test .
+
+hpc:OpenAPISlurmdbPingResp a owl:Class ;
+    rdfs:subClassOf xsd:anySimpleType .
+
+hpc:getPing a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmdb ;
+    rdfs:range hpc:PingTest .
+
+hpc:slurmdb_v0042_get_ping rdf:type xsd:string .
+
+hpc:v0042_openapi_slurmdbd_ping_resp a hpc:OpenAPISlurmdbPingResp ;
+    rdfs:subClassOf hpc:v0042_openapi_slurmdbd_ping_resp .
+
+hpc:required_switches a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfoResp ;
+    rdfs:range xsd:integer .
+
+hpc:FilterToOnlyDefaults a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmdb ;
+    rdfs:range hpc:PingTest .
+```
+
+This ontology fragment represents the classes `PingTest`, `OpenAPISlurmdbPingResp`, and `JobInfoResp`. It also includes the object property `getPing` and the datatype property `required_switches`. The `FilterToOnlyDefaults` object property is also included. The relationships between these classes and properties are defined using `rdfs:domain` and `rdfs:range`.

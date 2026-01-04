@@ -1,0 +1,28 @@
+hpc:Kubernetes a owl:Class .
+hpc:HPCCluster a owl:Class .
+hpc:Workload a owl:Class .
+hpc:AIMLInference a owl:Class, rdfs:subClassOf hpc:Workload .
+hpc:Software a owl:Class, rdfs:subClassOf hpc:Workload .
+hpc:Infrastructure a owl:Class, rdfs:subClassOf hpc:Workload .
+
+hpc:Orchestrates a owl:ObjectProperty .
+hpc:Runs a owl:ObjectProperty .
+hpc:Integrates a owl:ObjectProperty .
+hpc:OptimizesResourceUtilization a owl:ObjectProperty .
+hpc:Leverages a owl:ObjectProperty .
+hpc:Handles a owl:ObjectProperty .
+hpc:Interacts a owl:ObjectProperty .
+
+hpc:Presentation a owl:Class .
+hpc:Year a xsd:integer .
+hpc:Presenter a owl:Class .
+hpc:Conference a owl:Class .
+
+hpc:Presentation rdfs:domain hpc:Presentation .
+hpc:Year rdfs:domain hpc:Presentation ;
+    rdfs:range xsd:integer .
+hpc:Presenter rdfs:domain hpc:Presentation ;
+    rdfs:range hpc:Presenter .
+hpc:Conference rdfs:domain hpc:Presentation ;
+    rdfs:range hpc:Conference .
+```

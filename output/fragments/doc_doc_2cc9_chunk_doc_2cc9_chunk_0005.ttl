@@ -1,0 +1,49 @@
+hpc:MPIDefault a owl:Enum;
+  rdfs:label "MPI Default";
+  rdf:type owl:Class;
+  rdf:value xsd:string "MPI-PMI2"^^xsd:string;
+  rdf:value xsd:string "MPI-PMIx"^^xsd:string;
+  rdf:value xsd:string "None"^^xsd:string .
+
+hpc:ProcessTrackingMethod a owl:Class;
+  rdfs:subClassOf hpc:MPIDefault .
+
+hpc:Algorithm a owl:Class;
+  rdfs:label "Algorithm";
+  rdf:type owl:Class .
+
+hpc:IdentifyAssociatedProcesses a owl:ObjectProperty;
+  rdfs:domain hpc:Algorithm;
+  rdfs:range hpc:ProcessTrackingMethod;
+  rdfs:label "Identify Associated Processes" .
+
+hpc:ResourceSelection a owl:Class;
+  rdfs:label "Resource Selection";
+  rdf:type owl:Class .
+
+hpc:SelectType a owl:Enum;
+  rdfs:label "Select Type";
+  rdf:type owl:Class;
+  rdf:value xsd:string "cons_tres"^^xsd:string;
+  rdf:value xsd:string "Linear"^^xsd:string .
+
+hpc:TaskLaunch a owl:Class;
+  rdfs:label "Task Launch";
+  rdf:type owl:Class .
+
+hpc:TaskPlugin a owl:Enum;
+  rdfs:label "Task Plugin";
+  rdf:type owl:Class;
+  rdf:value xsd:string "None"^^xsd:string;
+  rdf:value xsd:string "Affinity"^^xsd:string;
+  rdf:value xsd:string "Allocated Resources Constraints Enforcement using Linux Control Groups"^^xsd:string .
+
+hpc:PrologEpilog a owl:Class;
+  rdfs:label "Prolog/Epilog";
+  rdf:type owl:Class .
+
+hpc:PrologEpilogPath a owl:DatatypeProperty;
+  rdfs:domain hpc:PrologEpilog;
+  rdfs:range xsd:string;
+  rdfs:label "Prolog/Epilog Path" .
+```

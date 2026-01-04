@@ -1,0 +1,11 @@
+hpc:MaximumResourceAllocation a owl:Class .
+hpc:TotalResourcesOnLowerLevels owl:DatatypeProperty .
+hpc:AllocatedResources a owl:Class .
+hpc:FlexibleResourceAllocation a owl:Class .
+hpc:MaximumAllocatable a xsd:integer .
+hpc:TotalAvailableOnLowerLevels rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:MaximumResourceAllocation ;
+    rdfs:range xsd:integer .
+hpc:UsedResources rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:FlexibleResourceAllocation .
+```

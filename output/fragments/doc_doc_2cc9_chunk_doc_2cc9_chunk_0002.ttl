@@ -1,0 +1,42 @@
+hpc:Cluster a owl:Class .
+hpc:ControlMachine a owl:Class .
+hpc:hasControlMachineHostname rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string .
+
+hpc:BackupControlMachine (optional) a owl:Class ;
+    rdfs:subClassOf hpc:ControlMachine .
+
+hpc:ComputeMachine a owl:Class .
+hpc:hasComputeMachineAddress rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ComputeMachine ;
+    rdfs:range xsd:string .
+
+hpc:Node a owl:Class .
+hpc:isComputeNode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Node .
+
+hpc:Partition a owl:Class .
+hpc:hasPartitionName rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:string .
+hpc:hasMaxTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:string .
+
+hpc:NodeConfiguration a owl:Class .
+hpc:hasCPUs rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeConfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasSockets rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeConfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasCoresPerSocket rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeConfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasThreadsPerCore rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeConfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+```

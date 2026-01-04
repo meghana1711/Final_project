@@ -1,0 +1,10 @@
+hpc:SlurmdbConfigResponse a owl:Class .
+hpc:SlurmdbConfig a owl:Class .
+hpc:hasSlurmdbConfig a owl:ObjectProperty .
+
+hpc:SlurmdbConfigResponse rdfs:subClassOf owl:NamedIndividual .
+hpc:hasSlurmdbConfig rdfs:domain hpc:SlurmdbConfig .
+hpc:hasSlurmdbConfig rdfs:range hpc:SlurmdbConfigResponse .
+```
+
+This ontology fragment represents a simple class hierarchy with `SlurmdbConfig` and `SlurmdbConfigResponse` classes. The `hasSlurmdbConfig` property is an object property that connects a `SlurmdbConfig` instance to its corresponding `SlurmdbConfigResponse`.

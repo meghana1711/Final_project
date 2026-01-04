@@ -1,0 +1,45 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:SchedulerType a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:SchedulerParameters a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:default_queue_depth a owl:DatatypeProperty ;
+    rdfs:domain hpc:SchedulerParameters ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:defer a owl:DatatypeProperty ;
+    rdfs:domain hpc:SchedulerParameters ;
+    rdfs:range xsd:boolean .
+
+hpc:max_switch_wait a owl:DatatypeProperty ;
+    rdfs:domain hpc:SchedulerParameters ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:partition_job_depth a owl:DatatypeProperty ;
+    rdfs:domain hpc:SchedulerParameters ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:sched_interval a owl:DatatypeProperty ;
+    rdfs:domain hpc:SchedulerParameters ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:BackfillScheduling a owl:Class .
+
+hpc:DefaultTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:SchedulerParameters ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:MaxTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:SchedulerParameters ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:OverTimeLimit a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:nonNegativeInteger .
+```

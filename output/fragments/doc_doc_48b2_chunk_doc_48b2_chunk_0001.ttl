@@ -1,0 +1,79 @@
+hpc:Slurm a owl:Class .
+hpc:SlurmCTLD a hpc:Slurm .
+hpc:Slurmd a hpc:Slurm .
+
+hpc:Slurm has rdf:type owl:Object .
+hpc:SlurmCTLD rdf:type hpc:Slurm ;
+    rdfs:subClassOf hpc:Slurm .
+hpc:Slurmd rdf:type hpc:Slurm ;
+    rdfs:subClassOf hpc:Slurm .
+
+hpc:allocates a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:Job .
+
+hpc:starts a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:Work .
+
+hpc:monitors a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:Work .
+
+hpc:arbitrates a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:Queue .
+
+hpc:ComputeNode a owl:Class .
+hpc:Partition a owl:Class .
+hpc:Job a owl:Class .
+hpc:JobStep a owl:Class .
+hpc:Work a owl:Class .
+hpc:Queue a owl:Class .
+
+hpc:hasConstraints a owl:ObjectProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:string .
+
+hpc:hasJob a owl:ObjectProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range hpc:Job .
+
+hpc:hasJobStep a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:JobStep .
+
+hpc:hasAllocation a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:ComputeNode .
+
+hpc:hasPortion a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:ComputeNode .
+
+hpc:hasJobQueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range hpc:Partition .
+
+hpc:sacct a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:string .
+
+hpc:sacctmgr a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:string .
+
+hpc:salloc a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:string .
+
+hpc:sattach a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:string .
+
+hpc:sbatch a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:string .
+
+hpc:sbcast a owl:ObjectProperty ;
+    r

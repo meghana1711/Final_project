@@ -1,0 +1,72 @@
+hpc:Upgrade a owl:Class .
+hpc:Upgrade rdf:type owl:NamedIndividual ;
+    hpc:hasStep hpc:RecompileUpgradePlugins ;
+    hpc:hasStep hpc:TestKeyFunctionality ;
+    hpc:hasStep hpc:ArchiveBackupData ;
+    hpc:hasStep hpc:WaitForRunningJobsToFinish ;
+    hpc:hasPreparation hpc:Preparation .
+
+# Preparation
+hpc:Preparation a owl:Class .
+hpc:Preparation rdf:type owl:NamedIndividual ;
+    hpc:hasDocument hpc:RELEASE_NOTES ;
+    hpc:hasDocument hpc:CHANGELOG ;
+
+# Document
+hpc:Document a owl:Class .
+
+# Release Notes
+hpc:RELEASE_NOTES a owl:Class ;
+    rdfs:subClassOf hpc:Document ;
+    rdfs:comment "Release notes for the Slurm software." .
+
+# Changelog
+hpc:CHANGELOG a owl:Class ;
+    rdfs:subClassOf hpc:Document ;
+    rdfs:comment "Detailed changes in Slurm software releases." .
+
+# Configuration Changes
+hpc:ConfigurationChanges a owl:Class .
+hpc:ConfigurationChanges rdf:type owl:NamedIndividual ;
+    hpc:hasStep hpc:PrepareTestConfigurationChanges ;
+    hpc:hasStep hpc:LookUpConfigurationChangesInManPages ;
+
+# Prepare Test Configuration Changes
+hpc:PrepareTestConfigurationChanges a owl:ObjectProperty ;
+    rdfs:domain hpc:ConfigurationChanges ;
+    rdfs:range hpc:TestEnvironment .
+
+# Look Up Configuration Changes In Man Pages
+hpc:LookUpConfigurationChangesInManPages a owl:ObjectProperty ;
+    rdfs:domain hpc:ConfigurationChanges ;
+    rdfs:range hpc:ManPage .
+
+# Man Page
+hpc:ManPage a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Manual pages for Slurm configuration files." .
+
+# Test Environment
+hpc:TestEnvironment a owl:Class ;
+    rdfs:subClassOf hpc:NamedIndividual ;
+    rdfs:comment "Environment for testing configuration changes." .
+
+# Downtime
+hpc:Downtime a owl:Class .
+hpc:Downtime rdf:type owl:NamedIndividual ;
+    hpc:hasStep hpc:ReferToExpectedDowntimeGuidance ;
+    hpc:hasStep hpc:NotifyAffectedUsers .
+
+# OpenAPI Changes
+hpc:OpenAPIChanges a owl:Class .
+hpc:OpenAPIChanges rdf:type owl:NamedIndividual ;
+    hpc:hasStep hpc:CheckFormatCompatibility ;
+    hpc:hasStep hpc:CheckDataParserPluginRemovals .
+
+# Check Format Compatibility
+hpc:CheckFormatCompatibility a owl:ObjectProperty ;
+    rdfs:domain hpc:OpenAPIChanges ;
+    rdfs:range hpc:CLICommand .
+
+# Check Data Parser Plugin Removals
+hpc:CheckDataParser

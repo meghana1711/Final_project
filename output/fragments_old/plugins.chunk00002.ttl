@@ -1,0 +1,52 @@
+hpc:TresWeights a owl:Class .
+hpc:tresWeights rdf:type xsd:integer .
+
+hpc:JobStepPids a owl:Class .
+hpc:pidCnt a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobStepPids ;
+    rdfs:range xsd:unsignedInt .
+hpc:pid a owl:ObjectProperty ;
+    rdfs:domain hpc:JobStepPids .
+
+hpc:SlurmStepLayout a owl:Class .
+hpc:nodeCnt a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmStepLayout ;
+    rdfs:range xsd:unsignedInt .
+hpc:nodeList a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmStepLayout .
+hpc:tasks a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmStepLayout .
+hpc:taskCnt a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmStepLayout ;
+    rdfs:range xsd:unsignedInt .
+hpc:tids a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmStepLayout .
+
+hpc:SlurmStepLaunchParams a owl:Class .
+hpc:envc a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmStepLaunchParams ;
+    rdfs:range xsd:unsignedInt .
+hpc:env a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmStepLaunchParams .
+
+hpc:HetJob a owl:Class .
+hpc:hetJobNnodes a owl:DatatypeProperty ;
+    rdfs:domain hpc:HetJob ;
+    rdfs:range xsd:unsignedInt .
+hpc:hetJobNtasks a owl:DatatypeProperty ;
+    rdfs:domain hpc:HetJob ;
+    rdfs:range xsd:unsignedInt .
+hpc:hetJobTaskCnts a owl:ObjectProperty ;
+    rdfs:domain hpc:HetJob .
+hpc:hetJobTids a owl:ObjectProperty ;
+    rdfs:domain hpc:HetJob .
+hpc:hetJobNodeList a owl:ObjectProperty ;
+    rdfs:domain hpc:HetJob .
+
+hpc:SpankJobEnv a owl:Class .
+hpc:spankJobEnvSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:SpankJobEnv ;
+    rdfs:range xsd:unsignedInt .
+
+hpc:NodeInfo a owl:Class .
+hpc:features a owl

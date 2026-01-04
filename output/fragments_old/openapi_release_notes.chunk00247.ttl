@@ -1,0 +1,26 @@
+hpc:UsersAssociationResponse a owl:Class .
+hpc:UsersAddCondRespStr a owl:Class .
+hpc:WckeyResponse a owl:Class .
+hpc:WckeyRemovedResp a owl:Class .
+
+hpc:hasResponse a owl:ObjectProperty .
+hpc:path a owl:DatatypeProperty .
+hpc:content a owl:ObjectProperty .
+hpc:schema a owl:ObjectProperty .
+hpc:$ref a owl:ObjectProperty .
+
+hpc:UsersAssociationResponse rdfs:subClassOf hpc:Response .
+hpc:UsersAddCondRespStr rdfs:subClassOf hpc:UsersAssociationResponse .
+hpc:WckeyResponse rdfs:subClassOf hpc:Response .
+hpc:WckeyRemovedResp rdfs:subClassOf hpc:WckeyResponse .
+
+hpc:Response rdfs:domain hpc:API .
+hpc:path rdfs:domain hpc:Response .
+hpc:content rdfs:domain hpc:Response .
+hpc:schema rdfs:domain hpc:Response .
+hpc:$ref rdfs:domain hpc:Response .
+
+hpc:content rdfs:range xsd:anyURI .
+hpc:schema rdfs:range xsd:anyURI .
+hpc:$ref rdfs:range xsd:anyURI .
+```

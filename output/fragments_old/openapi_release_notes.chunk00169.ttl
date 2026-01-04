@@ -1,0 +1,26 @@
+hpc:Cluster a owl:Class .
+
+hpc:v0_0_40_openapi_clusters_resp a owl:Class .
+hpc:v0_0_40_openapi_clusters_removed_resp a owl:Class .
+
+hpc:hasSchema a owl:ObjectProperty .
+hpc:hasSchema rdfs:domain hpc:Cluster .
+hpc:hasSchema rdfs:range rdf:Resource .
+
+hpc:get a owl:ObjectProperty .
+hpc:delete a owl:ObjectProperty .
+
+hpc:hasContent a owl:ObjectProperty .
+hpc:hasContent rdfs:domain hpc:get .
+hpc:hasContent rdfs:range rdf:Resource .
+hpc:hasContent rdfs:subPropertyOf hpc:hasSchema .
+
+hpc:hasContentSchema a owl:ObjectProperty .
+hpc:hasContentSchema rdfs:domain hpc:delete .
+hpc:hasContentSchema rdfs:range rdf:Resource .
+hpc:hasContentSchema rdfs:subPropertyOf hpc:hasSchema .
+
+hpc:hasContentSchemaRef a owl:DatatypeProperty .
+hpc:hasContentSchemaRef rdfs:domain hpc:hasContentSchema .
+hpc:hasContentSchemaRef rdfs:range xsd:anyURI .
+```

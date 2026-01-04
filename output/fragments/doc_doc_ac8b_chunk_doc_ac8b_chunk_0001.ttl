@@ -1,0 +1,66 @@
+hpc:Slurm a owl:Class .
+hpc:SlurmConfFile owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm .
+
+hpc:PriorityType a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmConfFile .
+
+hpc:Job a owl:Class .
+hpc:JobPriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:FIFOScheduling a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+hpc:MultifactorScheduling a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:PreemptableJob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+hpc:ReservedJob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:PartitionPriorityTier a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:JobPriorityTier a owl:Class .
+
+hpc:JobSubmitTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:JobID a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:MultifactorJobPriorityPlugin a owl:Class .
+hpc:Factor a owl:Class .
+
+hpc:AgeFactor a owl:Class ;
+    rdfs:subClassOf hpc:Factor .
+hpc:AssociationFactor a owl:Class ;
+    rdfs:subClassOf hpc:Factor .
+hpc:FairShareFactor a owl:Class ;
+    rdfs:subClassOf hpc:Factor .
+hpc:JobSizeFactor a owl:Class ;
+    rdfs:subClassOf hpc:Factor .
+hpc:NiceFactor a owl:Class ;
+    rdfs:subClassOf hpc:Factor .
+hpc:PartitionFactor a owl:Class ;
+    rdfs:subClassOf hpc:Factor .
+hpc:QOSFactor a owl:Class ;
+    rdfs:subClassOf hpc:Factor .
+hpc:SiteFactor a owl:Class ;
+    rdfs:subClassOf hpc:Factor .
+hpc:TRESFactor a owl:Class ;
+    rdfs:subClassOf hpc:Factor .
+
+hpc:PriorityWeightAge a xsd:decimal .
+hpc:SiteFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm .
+hpc:AgeFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:MultifactorJobPriorityPlugin .
+hpc:AssociationFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:MultifactorJobPriorityPlugin .
+hpc:FairShareFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:MultifactorJobPriorityPlugin .
+hpc:JobSizeFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:MultifactorJobPriorityPlugin .
+hpc:NiceFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:MultifactorJobPriorityPlugin .
+hpc:PartitionFactor a owl:Object

@@ -1,0 +1,60 @@
+hpc:MySQLUser a owl:Class .
+hpc:Database a owl:Class .
+hpc:GrantPermission a owl:ObjectProperty .
+hpc:DatabaseStorageHost rdf:type owl:Class .
+hpc:LocalHost rdf:type owl:Class .
+hpc:HasPassword a owl:DatatypeProperty .
+hpc:HasGrantOption a owl:ObjectProperty .
+hpc:HasEngine a owl:DatatypeProperty .
+hpc:InnoDB a owl:Class .
+hpc:SlurmDB a owl:Class .
+hpc:SlurmDBD a owl:Class .
+hpc:StartSlurmDBD a owl:ObjectProperty .
+hpc:RunningSlurmDBD a owl:ObjectProperty .
+
+hpc:MySQLUser rdfs:subClassOf [ a owl:Restriction ;
+                                 owl:onProperty hpc:HasGrantOption ;
+                                 owl:hasValue true ] .
+
+hpc:Database rdfs:subClassOf [ a owl:Restriction ;
+                                 owl:onProperty hpc:HasEngine ;
+                                 owl:hasValue xsd:string "InnoDB" ] .
+
+hpc:DatabaseStorageHost rdfs:subClassOf [ a owl:UnionOf ;
+                                                  rdfs:member hpc:LocalHost ;
+                                                  rdfs:member hpc:DatabaseStorageHost ] .
+
+hpc:GrantPermission rdfs:domain hpc:MySQLUser ;
+                      rdfs:range [ a owl:Restriction ;
+                                    owl:onProperty hpc:HasGrantOption ;
+                                    owl:hasValue true ] ;
+                      rdfs:range [ a owl:Restriction ;
+                                    owl:onProperty hpc:HasDatabase ;
+                                    owl:hasValue [ a owl:Class ;
+                                                    rdf:type hpc:Database ] ] .
+
+hpc:HasPassword rdfs:domain hpc:MySQLUser ;
+                rdfs:range xsd:string .
+
+hpc:HasGrantOption rdfs:domain hpc:MySQLUser ;
+                   rdfs:range xsd:boolean .
+
+hpc:HasEngine rdfs:domain hpc:Database ;
+              rdfs:range xsd:string .
+
+hpc:InnoDB rdfs:subClassOf [ a owl:Restriction ;
+                                 owl:onProperty hpc:HasEngine ;
+                                 owl:hasValue xsd:string "InnoDB" ] .
+
+hpc:SlurmDB a owl:Class ;
+            rdfs:subClassOf [ a owl:Restriction ;
+                                 owl:onProperty hpc:HasDatabase ;
+                                 owl:hasValue [ a owl:Class ;
+                                                rdf:type hpc:Database ] ] .
+
+hpc:SlurmDBD rdfs:subClassOf [ a owl:Restriction ;
+                                   owl:onProperty hpc:StartSlurmDBD ;
+                                   owl:hasValue true ] .
+
+hpc:StartSlurmDBD rdfs:domain hpc:SlurmDBD ;
+                rdfs:range xsd:string .

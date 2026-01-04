@@ -1,0 +1,31 @@
+hpc:Job a owl:Class .
+hpc:AppropriateMemoryLimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:LockedMemoryLimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:ResourceLimitPropagation a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Slurm a owl:Class .
+hpc:Slurmd a owl:Class ;
+    rdfs:subClassOf hpc:Slurm .
+
+hpc:MemlockLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmd ;
+    rdfs:range xsd:integer .
+
+hpc:LimitMemlock a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmd ;
+    rdfs:range xsd:string .
+
+hpc:Systemd a owl:Class .
+hpc:SlurmdServiceFile a owl:Class ;
+    rdfs:subClassOf hpc:Systemd .
+
+hpc:Pam a owl:Class .
+```

@@ -1,0 +1,27 @@
+hpc:SlurmLicenses a owl:Class .
+hpc:SlurmNode a owl:Class .
+
+hpc:openapi_licenses_resp rdf:type owl:Class .
+hpc:update_node_msg rdf:type owl:Class .
+hpc:openapi_resp rdf:type owl:Class .
+
+hpc:hasResponseContent a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmLicenses ;
+    rdfs:range xsd:string .
+
+hpc:hasResponseContentType a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmLicenses ;
+    rdfs:range xsd:string .
+
+hpc:hasNodeName a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmNode ;
+    rdfs:range xsd:string .
+
+hpc:hasResponse a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmNode ;
+    rdfs:range hpc:openapi_resp .
+
+hpc:updateNodeMsg a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmNode ;
+    rdfs:range hpc:update_node_msg .
+```

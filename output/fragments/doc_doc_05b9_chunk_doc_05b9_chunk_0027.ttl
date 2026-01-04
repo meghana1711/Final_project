@@ -1,0 +1,48 @@
+hpc:ActiveSiblingJobNames a owl:DatatypeProperty .
+hpc:federation_siblings_viable rdfs:domain hpc:Job .
+hpc:federation_siblings_viable rdfs:range xsd:string .
+
+hpc:ViableSiblingJobNames a owl:DatatypeProperty .
+
+hpc:gres_detail rdfs:domain hpc:Job .
+
+hpc:array a owl:Class .
+hpc:group_id a owl:DatatypeProperty .
+hpc:group_id rdfs:domain hpc:Job .
+hpc:group_id rdfs:range xsd:int32 .
+
+hpc:group_name a owl:DatatypeProperty .
+
+hpc:het_job_id a owl:DatatypeProperty .
+hpc:het_job_id_set a owl:DatatypeProperty .
+
+hpc:JobID rdfs:domain hpc:Job .
+hpc:JobID rdfs:range xsd:int32 .
+
+hpc:job_resources a owl:Class .
+hpc:job_size_str a owl:DatatypeProperty .
+hpc:job_size_str rdfs:range xsd:array .
+
+hpc:job_state a owl:DatatypeProperty .
+hpc:job_state rdfs:range xsd:array .
+hpc:job_state rdfs:subClassOf xsd:string .
+
+hpc:qos a owl:Enum .
+hpc:reboot a owl:DatatypeProperty .
+hpc:required_nodes a owl:DatatypeProperty .
+hpc:required_switches a owl:DatatypeProperty .
+hpc:requeue a owl:DatatypeProperty .
+hpc:resize_time a owl:DatatypeProperty .
+hpc:restart_cnt a owl:DatatypeProperty .
+hpc:resv_name a owl:DatatypeProperty .
+hpc:scheduled_nodes a owl:DatatypeProperty .
+hpc:segment_size a owl:DatatypeProperty .
+hpc:tres_per_job a owl:DatatypeProperty .
+hpc:tres_per_node a owl:DatatypeProperty .
+hpc:tres_per_socket a owl:DatatypeProperty .
+hpc:tres_per_task a owl:DatatypeProperty .
+hpc:tres_req_str a owl:DatatypeProperty .
+hpc:tres_alloc_str a owl:DatatypeProperty .
+hpc:user_id a owl:DatatypeProperty .
+hpc:user_id rdfs:range xsd:int32 .
+hpc:user_name a owl:DatatypeProperty .

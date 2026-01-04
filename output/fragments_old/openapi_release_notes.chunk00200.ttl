@@ -1,0 +1,14 @@
+hpc:OpenapiReservationResp a owl:Class .
+
+hpc:reservationName a owl:ObjectProperty .
+hpc:version a owl:DatatypeProperty .
+hpc:reservations a owl:Class .
+
+rdfs:domain(hpc:reservationName, hpc:OpenapiReservationResp) .
+rdfs:domain(hpc:version, hpc:OpenapiReservationResp) .
+rdfs:domain(hpc:reservations, hpc:OpenapiReservationResp) .
+
+hpc:OpenapiReservationResp rdfs:subClassOf owl:Thing .
+```
+
+This ontology fragment represents the classes `OpenapiReservationResp` and `Reservations`, and the properties `reservationName`, `version`, and `reservations`. The `reservationName` and `version` properties are object properties, while `reservations` is a class. The domain of each property is specified as the class it belongs to. The `OpenapiReservationResp` class is a subclass of `owl:Thing`.

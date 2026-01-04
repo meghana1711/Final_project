@@ -1,0 +1,26 @@
+hpc:V0_0_40_Openapi_Slurmdbd_Qos_Removed_Resp a owl:Class .
+
+# Qos delete response
+hpc:QosDeleteResponse a owl:Class ;
+    rdfs:subClassOf hpc:V0_0_40_Openapi_Slurmdbd_Qos_Removed_Resp ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf xsd:anyURI .
+
+hpc:hasContentApplicationYAML a owl:ObjectProperty ;
+    rdfs:domain hpc:QosDeleteResponse ;
+    rdfs:range hpc:V0_0_40_Openapi_Slurmdbd_Qos_Removed_Resp .
+
+# Tres get response
+hpc:TresGetResponse a owl:Class ;
+    rdfs:subClassOf hpc:V0_0_40_Openapi_Tres_Resp ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf xsd:anyURI .
+
+hpc:hasContentApplicationYAML a owl:ObjectProperty ;
+    rdfs:domain hpc:TresGetResponse ;
+    rdfs:range hpc:V0_0_40_Openapi_Tres_Resp .
+```
+
+This ontology fragment defines two classes: `hpc:QosDeleteResponse` and `hpc:TresGetResponse`, which are subclasses of `hpc:V0_0_40_Openapi_Slurmdbd_Qos_Removed_Resp` and `hpc:V0_0_40_Openapi_Tres_Resp`, respectively. Both classes are subclasses of `rdf:Resource`, `owl:NamedIndividual`, and `xsd:anyURI`. The `hpc:hasContentApplicationYAML` object property is defined for both classes, with a domain of `hpc:QosDeleteResponse` and `hpc:TresGetResponse`, and a range of `hpc:V0_0_40_Openapi_Slurmdbd_Qos_Removed_Resp` and `hpc:V0_0_40_Openapi_Tres_Resp`, respectively.

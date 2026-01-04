@@ -1,0 +1,56 @@
+hpc:AccountAssociationResponse_v0_0_41_str a owl:Class ;
+    rdfs:subClassOf [ hpc:Response_v0_0_41 ] .
+
+hpc:AccountAssociationAddCond_resp a owl:Class ;
+    rdfs:subClassOf [ hpc:AccountAssociationResponse_v0_0_41_str ] .
+
+hpc:AccountAssociation_add_cond_resp_str rdf:datatype xsd:string .
+
+hpc:AccountAssociationRequest a owl:Class ;
+    rdfs:subClassOf [ hpc:Request ] .
+
+hpc:AccountAssociation_requestBody a owl:ObjectProperty ;
+    rdfs:domain hpc:AccountAssociationRequest ;
+    rdfs:range hpc:AccountAssociation_requestBody_content .
+
+hpc:AccountAssociation_requestBody_content a owl:Class ;
+    rdfs:subClassOf [ owl:Class ] .
+
+hpc:AccountAssociation_requestBody_content_application_yaml a owl:Class ;
+    rdfs:subClassOf [ hpc:AccountAssociation_requestBody_content ] .
+    rdfs:subClassOf [ hpc:YAML_content ] .
+
+hpc:YAML_content rdf:datatype xsd:anyURI .
+
+# Response
+hpc:Response_v0_0_41 a owl:Class .
+
+hpc:Response_v0_0_41_json rdf:datatype xsd:string .
+hpc:Response_v0_0_41_x_yaml rdf:datatype xsd:string .
+hpc:Response_v0_0_41_text_yaml rdf:datatype xsd:string .
+
+hpc:Response_v0_0_41_json_request a owl:Class ;
+    rdfs:subClassOf [ hpc:Response_v0_0_41 ] .
+
+hpc:Response_v0_0_41_x_yaml_request a owl:Class ;
+    rdfs:subClassOf [ hpc:Response_v0_0_41 ] .
+
+hpc:Response_v0_0_41_text_yaml_request a owl:Class ;
+    rdfs:subClassOf [ hpc:Response_v0_0_41 ] .
+
+# Association
+hpc:AssociationResponse_v0_0_41_str a owl:Class ;
+    rdfs:subClassOf [ hpc:Response_v0_0_41 ] .
+
+hpc:Association_resp a owl:Class ;
+    rdfs:subClassOf [ hpc:AssociationResponse_v0_0_41_str ] .
+
+hpc:Association_requestBody a owl:ObjectProperty ;
+    rdfs:domain hpc:AssociationRequest ;
+    rdfs:range hpc:Association_requestBody_content .
+
+hpc:Association_requestBody_content a owl:Class ;
+    rdfs:subClassOf [ owl:Class ] .
+
+hpc:Association_requestBody_content_application_yaml a owl:Class ;
+    rdfs:subClassOf [

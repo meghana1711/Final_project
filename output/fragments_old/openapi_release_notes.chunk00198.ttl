@@ -1,0 +1,14 @@
+hpc:SlurmPartitionResponse a owl:Class .
+hpc:SlurmPingArrayResponse a owl:Class .
+
+hpc:hasSlurmPartitionResponse a owl:ObjectProperty .
+hpc:hasSlurmPingArrayResponse a owl:ObjectProperty .
+
+hpc:SlurmPartitionResponse rdfs:subClassOf xsd:anyURI .
+hpc:SlurmPingArrayResponse rdfs:subClassOf xsd:anyURI .
+
+hpc:hasSlurmPartitionResponse rdfs:domain hpc:SlurmPartitionResponse ;
+  rdfs:range hpc:SlurmPartitionResponse .
+hpc:hasSlurmPingArrayResponse rdfs:domain hpc:SlurmPingArrayResponse ;
+  rdfs:range hpc:SlurmPingArrayResponse .
+```

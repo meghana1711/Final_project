@@ -1,0 +1,29 @@
+hpc:FairTreeAlgorithm a owl:Class .
+hpc:ClassicFairShareAlgorithm a owl:Class .
+hpc:Account a owl:Class .
+hpc:SubAccount a owl:Class, rdfs:subClassOf hpc:Account .
+hpc:Machine a owl:Class .
+hpc:User a owl:Class .
+hpc:Share a owl:Class .
+hpc:NormalizedShareCalculation a owl:ObjectProperty .
+hpc:UserNormalizedShare a datatypeProperty, rdfs:domain hpc:User, rdfs:range xsd:decimal .
+hpc:AccountShare a datatypeProperty, rdfs:domain hpc:Account, rdfs:range xsd:nonNegativeInteger .
+hpc:SubAccountShare a datatypeProperty, rdfs:domain hpc:SubAccount, rdfs:range xsd:nonNegativeInteger .
+hpc:ParentAccountShare a datatypeProperty, rdfs:domain hpc:Account, rdfs:range xsd:nonNegativeInteger .
+hpc:GrandparentAccountShare a datatypeProperty, rdfs:domain hpc:Account, rdfs:range xsd:nonNegativeInteger .
+hpc:SiblingAccountShare a datatypeProperty, rdfs:domain hpc:Account, rdfs:range xsd:nonNegativeInteger .
+hpc:ParentSiblingAccountShare a datatypeProperty, rdfs:domain hpc:Account, rdfs:range xsd:nonNegativeInteger .
+hpc:TotalUserShares a datatypeProperty, rdfs:domain hpc:Account, rdfs:range xsd:nonNegativeInteger .
+hpc:TotalSiblingShares a datatypeProperty, rdfs:domain hpc:Account, rdfs:range xsd:nonNegativeInteger .
+hpc:TotalSiblingAccountShares a datatypeProperty, rdfs:domain hpc:Account, rdfs:range xsd:nonNegativeInteger .
+hpc:TotalParentShares a datatypeProperty, rdfs:domain hdfs:Account, rdfs:range xsd:nonNegativeInteger .
+hpc:TotalParentSiblingShares a datatypeProperty, rdfs:domain hdfs:Account, rdfs:range xsd:nonNegativeInteger .
+hpc:NormalizedUsageCalculation a owl:ObjectProperty .
+hpc:UserNormalizedUsage a datatypeProperty, rdfs:domain hpc:User, rdfs:range xsd:decimal .
+hpc:TotalUserUsage a datatypeProperty, rdfs:domain hpc:Account, rdfs:range xsd:nonNegativeInteger .
+hpc:TotalClusterUsage a datatypeProperty, rdfs:domain rdf:Resource, rdfs:range xsd:nonNegativeInteger .
+hpc:HalfLifeUsageCalculation a owl:ObjectProperty .
+hpc:HalfLifeFactor a datatypeProperty, rdfs:domain rdf:Resource, rdfs:range xsd:decimal .
+hpc:CurrentPeriodUsage a datatypeProperty, rdfs:domain rdf:Resource, rdfs:range xsd:nonNegativeInteger .
+hpc:LastPeriodUsage a datatypeProperty, rdfs:domain rdf:Resource, rdfs:range xsd:nonNegativeInteger .
+```

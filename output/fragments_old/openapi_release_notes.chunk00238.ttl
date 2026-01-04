@@ -1,0 +1,41 @@
+hpc:Clusters a owl:Class .
+hpc:ClusterResponse a owl:Class .
+hpc:ClustersRemovedResponse a owl:Class .
+hpc:getClustersResponse a owl:Class .
+hpc:getClusterResponse a owl:Class .
+hpc:deleteClusterResponse a owl:Class .
+
+hpc:hasContent a owl:ObjectProperty .
+hpc:hasContentSchema a owl:ObjectProperty .
+
+hpc:Content a owl:Class .
+hpc:ApplicationJsonRequest a hpc:Content .
+hpc:TextYaml a hpc:Content .
+
+hpc:hasContentType a owl:ObjectProperty .
+
+hpc:ContentType a owl:DatatypeProperty .
+hpc:applicationJsonRequest a xsd:string .
+hpc:textYaml a xsd:string .
+
+hpc:getClustersResponse rdfs:subClassOf hpc:ClustersResponse .
+hpc:getClusterResponse rdfs:subClassOf hpc:ClusterResponse .
+hpc:deleteClusterResponse rdfs:subClassOf hpc:ClusterResponse .
+
+hpc:getClustersResponse rdfs:domain hpc:Clusters .
+hpc:getClusterResponse rdfs:domain hpc:Cluster .
+hpc:deleteClusterResponse rdfs:domain hpc:Cluster .
+
+hpc:hasContent rdfs:domain hpc:getClustersResponse .
+hpc:hasContent rdfs:domain hpc:getClusterResponse .
+hpc:hasContent rdfs:domain hpc:deleteClusterResponse .
+
+hpc:hasContentSchema rdfs:domain hpc:hasContent .
+hpc:hasContentSchema rdfs:range hpc:ClusterResponse .
+
+hpc:getClustersResponse rdfs:subClassOf hpc:Response .
+hpc:getClusterResponse rdfs:subClassOf hpc:Response .
+hpc:deleteClusterResponse rdfs:subClassOf hpc:Response .
+
+hpc:Response rdfs:subClassOf rdf:Resource .
+```

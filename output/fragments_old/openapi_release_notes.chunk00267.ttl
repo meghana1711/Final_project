@@ -1,0 +1,42 @@
+# Maximum TRES Group Active
+hpc:MaxTresGroupActive a owl:Class .
+hpc:MaxTresGroupActive rdfs:subClassOf owl:NamedIndividual .
+hpc:MaxTresGroupActive rdfs:domain schemas."dbv0.0.37_association" .
+
+# Maximum Jobs Active
+hpc:MaxJobsActive a owl:Class .
+hpc:MaxJobsActive rdfs:subClassOf owl:NamedIndividual .
+hpc:MaxJobsActive rdfs:domain schemas."dbv0.0.37_association" .
+
+# Maximum Jobs Accruing
+hpc:MaxJobsAccruing a owl:Class .
+hpc:MaxJobsAccruing rdfs:subClassOf owl:NamedIndividual .
+hpc:MaxJobsAccruing rdfs:domain schemas."dbv0.0.37_association" .
+
+# Maximum Jobs Total
+hpc:MaxJobsTotal a owl:Class .
+hpc:MaxJobsTotal rdfs:subClassOf owl:NamedIndividual .
+hpc:MaxJobsTotal rdfs:domain schemas."dbv0.0.37_association" .
+
+# Maximum TRES Minutes Per Job
+hpc:MaxTresMinutesPerJob a owl:Class .
+hpc:MaxTresMinutesPerJob rdfs:subClassOf owl:NamedIndividual .
+hpc:MaxTresMinutesPerJob rdfs:domain schemas."dbv0.0.37_association" .
+
+# Maximum Jobs Active Jobs Per Account (QOS)
+hpc:MaxActiveJobsPerAccount a owl:Class .
+hpc:MaxActiveJobsPerAccount rdfs:subClassOf owl:NamedIndividual .
+hpc:MaxActiveJobsPerAccount rdfs:domain schemas."dbv0.0.37_qos" .
+
+# Maximum Properties Jobs Properties Active Jobs Per User (QOS)
+hpc:MaxActiveJobsPerUser a owl:Class .
+hpc:MaxActiveJobsPerUser rdfs:subClassOf owl:NamedIndividual .
+hpc:MaxActiveJobsPerUser rdfs:domain schemas."dbv0.0.37_qos" .
+
+# Factor (QOS)
+hpc:Factor a owl:DatatypeProperty .
+hpc:Factor rdfs:domain schemas."dbv0.0.37_qos" .
+hpc:Factor rdfs:range xsd:decimal .
+
+# Maximum Properties Accruing Properties Per Account (QOS)
+h

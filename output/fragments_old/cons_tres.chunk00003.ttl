@@ -1,0 +1,30 @@
+hpc:Job a owl:Class .
+hpc:Node a owl:Class .
+hpc:Partition a owl:Class .
+hpc:CPU a owl:Class .
+hpc:ScheduledOn a owl:ObjectProperty .
+hpc:RunningOn a owl:ObjectProperty .
+hpc:Finished a owl:ObjectProperty .
+hpc:ConcurrentlyRunningWith a owl:ObjectProperty .
+hpc:Allocated a owl:ObjectProperty .
+hpc:Idle a owl:Class .
+hpc:ConsumableResourceSchedulingPolicy a owl:Class .
+hpc:ExclusiveMode a owl:ObjectProperty .
+hpc:MPIProgram a owl:Class .
+
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Node rdfs:subClassOf owl:Class .
+hpc:Partition rdfs:subClassOf owl:Class .
+hpc:CPU rdfs:subClassOf owl:Class .
+
+hpc:ScheduledOn rdfs:domain hpc:Job .
+hpc:RunningOn rdfs:domain hpc:Job .
+hpc:Finished rdfs:domain hpc:Job .
+hpc:ConcurrentlyRunningWith rdfs:domain hpc:Job .
+hpc:Allocated rdfs:domain hpc:Job .
+hpc:Allocated rdfs:range hpc:Node .
+hpc:Idle rdfs:subClassOf hpc:Node .
+hpc:ConsumableResourceSchedulingPolicy a owl:Class .
+hpc:ExclusiveMode rdfs:domain hpc:Job .
+hpc:MPIProgram a owl:Class .
+```

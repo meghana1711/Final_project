@@ -1,0 +1,32 @@
+hpc:Account a owl:Class .
+
+hpc:accountsResp a owl:Class .
+hpc:accountsResp rdfs:subClassOf hpc:OpenapiResponse .
+
+hpc:accountsRequest a owl:Class .
+hpc:accountsRequest rdfs:subClassOf hpc:OpenapiRequest .
+
+hpc:hasAccountResponse a owl:ObjectProperty .
+hpc:hasAccountResponse rdfs:domain hpc:Account .
+hpc:hasAccountResponse rdfs:range hpc:accountsResp .
+
+hpc:postAccountRequest a owl:ObjectProperty .
+hpc:postAccountRequest rdfs:domain hpc:Account .
+hpc:postAccountRequest rdfs:range hpc:accountsRequest .
+
+hpc:accountsResponseCode a xsd:integer .
+hpc:accountsResponseCode rdfs:range 200 .
+
+hpc:contentType a xsd:string .
+hpc:contentType rdfs:domain hpc:accountsResp .
+hpc:contentType rdfs:range xsd:string .
+
+hpc:applicationJSONRequest a xsd:string .
+hpc:applicationJSONRequest rdfs:subPropertyOf hpc:contentType .
+
+hpc:applicationYAML a xsd:string .
+hpc:applicationYAML rdfs:subPropertyOf hpc:contentType .
+
+hpc:textYAML a xsd:string .
+hpc:textYAML rdfs:subPropertyOf hpc:contentType .
+```

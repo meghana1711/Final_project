@@ -1,0 +1,71 @@
+hpc:Slurm a owl:Class .
+hpc:Documentation a owl:Class .
+hpc:Plugin a owl:Class .
+hpc:PluginLifeCycle a owl:Class .
+hpc:OpenAPIGeneration a owl:Class .
+hpc:SlurmConf a xsd:string .
+hpc:SlurmRestd a owl:Class .
+hpc:OpenAPIJSON a xsd:string .
+hpc:RestApiDocs a xsd:string .
+hpc:Browser a xsd:string .
+hpc:Swagger a owl:Class .
+hpc:WebEditor a owl:Class .
+hpc:Client a owl:Class .
+hpc:ClientDesign a owl:Class .
+hpc:TaggedPath a owl:Class .
+hpc:SlurmVersion a xsd:string .
+hpc:Method a owl:Class .
+hpc:Versioning a owl:Class .
+hpc:OpenAPISchema a xsd:string .
+hpc:StructName a xsd:string .
+
+hpc:hasDocumentation rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:Slurm ;
+ rdfs:range hpc:Documentation .
+
+hpc:usesPlugin rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:Slurm ;
+ rdfs:range hpc:Plugin .
+
+hpc:hasLifeCycle rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:Plugin ;
+ rdfs:range hpc:PluginLifeCycle .
+
+hpc:generatedBy rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:OpenAPIGeneration ;
+ rdfs:range hpc:OpenAPIJSON .
+
+hpc:generatesDocumentation rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:OpenAPIJSON ;
+ rdfs:range hpc:RestApiDocs .
+
+hpc:viewedWith rdf:type owl:ObjectProperty ;
+ hpc:viewedWith rdf:type rdfs:seeAlso ;
+ rdfs:domain hpc:RestApiDocs ;
+ rdfs:range hpc:Browser .
+
+hpc:usesSwagger rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:RestApiDocs ;
+ rdfs:range hpc:Swagger .
+
+hpc:hasWebEditor rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:Swagger ;
+ rdfs:range hpc:WebEditor .
+
+hpc:designedFor rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:ClientDesign ;
+ rdfs:range hpc:TaggedPath .
+
+hpc:excludesFunctionality rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:ClientDesign ;
+ rdfs:range hpc:Method .
+
+hpc:plansForChanges rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:ClientDesign ;
+ rdfs:range rdf:PlainLiteral .
+
+hpc:supportsVersion rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:Client ;
+ rdfs:range hpc:SlurmVersion .
+
+hpc:hasVersioning rdf:

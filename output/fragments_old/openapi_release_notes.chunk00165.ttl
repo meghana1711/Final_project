@@ -1,0 +1,49 @@
+hpc:v0_0_40_openapi_assocs_resp
+    a owl:Class .
+
+hpc:v0_0_40_openapi_assocs_removed_resp
+    a owl:Class .
+
+hpc:AssociationResponse a owl:Class .
+
+hpc:hasSchema a owl:ObjectProperty .
+hpc:hasSchema rdfs:domain hpc:AssociationResponse ;
+                 rdfs:range rdf:Resource .
+
+hpc:get a owl:Class .
+hpc:delete a owl:Class .
+
+hpc:getResponse a owl:Class .
+hpc:deleteResponse a owl:Class .
+
+hpc:hasContent a owl:ObjectProperty .
+hpc:hasContent rdfs:domain hpc:getResponse ;
+                 rdfs:range rdf:Resource .
+
+hpc:hasContentSchema a owl:ObjectProperty .
+hpc:hasContentSchema rdfs:domain hpc:getResponse ;
+                      rdfs:range rdf:Resource .
+
+hpc:hasContentSchemaRef a owl:DatatypeProperty .
+hpc:hasContentSchemaRef rdfs:domain hpc:getResponse ;
+                          rdfs:range xsd:anyURI .
+
+hpc:defaultResponse a owl:Class .
+hpc:defaultResponse rdfs:subClassOf hpc:getResponse .
+
+hpc:applicationJsonRequest a owl:Class .
+hpc:applicationXYaml a owl:Class .
+hpc:textYaml a owl:Class .
+
+hpc:hasContentApplicationJsonRequest a owl:ObjectProperty .
+hpc:hasContentApplicationJsonRequest rdfs:domain hpc:defaultResponse ;
+                                       rdfs:range rdf:Resource .
+
+hpc:hasContentApplicationXYaml a owl:ObjectProperty .
+hpc:hasContentApplicationXYaml rdfs:domain hpc:defaultResponse ;
+                                 rdfs:range rdf:Resource .
+
+hpc:hasContentTextYaml a owl:ObjectProperty .
+hpc:hasContentTextYaml rdfs:domain hpc:defaultResponse ;
+                          rdfs:range rdf:Resource .
+```

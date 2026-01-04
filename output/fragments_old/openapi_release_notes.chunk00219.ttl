@@ -1,0 +1,26 @@
+hpc:SlurmdbdJobsResp a owl:Class .
+hpc:SlurmdbdQosResp a owl:Class .
+
+hpc:openapi_slurmdbd_jobs_resp rdf:type hpc:SlurmdbdJobsResp .
+hpc:openapi_slurmdbd_qos_resp rdf:type hpc:SlurmdbdQosResp .
+
+hpc:openapi_resp a owl:Class .
+
+hpc:hasContent a owl:ObjectProperty .
+hpc:hasContent rdfs:domain hpc:Response .
+hpc:hasContent rdfs:range xsd:string .
+
+hpc:Response a owl:Class .
+hpc:hasSchema a owl:ObjectProperty .
+hpc:hasSchema rdfs:domain hpc:Content .
+hpc:hasSchema rdfs:range hpc:Schema .
+
+hpc:Schema a owl:Class .
+hpc:hasRef a owl:ObjectProperty .
+hpc:hasRef rdfs:domain hpc:Schema .
+hpc:hasRef rdfs:range hpc:Schema .
+
+hpc:Response a rdfs:subClassOf hpc:Content .
+```
+
+This ontology fragment represents the classes `SlurmdbdJobsResp` and `SlurmdbdQosResp`, as well as the properties `hasContent`, `hasSchema`, and `hasRef`. The `Response` class is a subclass of `Content`. The `Schema` class has properties `hasRef` and `hasContent`, and the `Content` class has properties `hasSchema` and `hasContent`. The `hasRef` property is used to reference other schemas.

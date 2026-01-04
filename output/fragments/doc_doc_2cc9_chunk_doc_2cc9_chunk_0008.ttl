@@ -1,0 +1,53 @@
+hpc:DatabaseServer a owl:Class .
+hpc:AccountingStorageUser rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:DatabaseServer ;
+    rdfs:range rdf:Resource .
+
+hpc:AccountingStoragePass rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:DatabaseServer ;
+    rdfs:range rdf:Literal .
+
+hpc:AccountingStoreFlags rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:DatabaseServer ;
+    rdfs:range xsd:string .
+
+hpc:ProcessIDLogging a owl:Class .
+hpc:PidFileLocation rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ProcessIDLogging ;
+    rdfs:range xsd:string .
+
+hpc:SlurmctldPidFile rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:ProcessIDLogging ;
+    rdfs:range xsd:string .
+
+hpc:SlurmdPidFile rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:ProcessIDLogging ;
+    rdfs:range xsd:string .
+
+hpc:Timers a owl:Class .
+hpc:SlurmctldTimeout rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Timers ;
+    rdfs:range xsd:integer .
+
+hpc:SlurmdTimeout rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Timers ;
+    rdfs:range xsd:integer .
+
+hpc:InactiveLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Timers ;
+    rdfs:range xsd:integer .
+
+hpc:MinJobAge rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Timers ;
+    rdfs:range xsd:integer .
+
+hpc:KillWait rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Timers ;
+    rdfs:range xsd:integer .
+
+hpc:WaitTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Timers ;
+    rdfs:range xsd:integer .
+
+hpc:LegalNotices a owl:Class .
+```

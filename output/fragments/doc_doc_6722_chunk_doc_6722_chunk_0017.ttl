@@ -1,0 +1,57 @@
+hpc:Job a owl:Class .
+hpc:BurstBuffer a owl:Class .
+hpc:AllocRevoke a owl:Class .
+hpc:allocRevoke happens rdf:type owl:FunctionalDataProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:submitted a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:pending a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:burstBufferPending a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hdfs:BurstBuffer .
+
+hpc:burstBufferStageInStart a owl:ObjectProperty ;
+    rdfs:domain hpc:BurstBuffer ;
+    rdfs:range xsd:string .
+
+hpc:jobStatePendingWithReason a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:burstBufferStagingIn a owl:ObjectProperty ;
+    rdfs:domain hpc:BurstBuffer .
+
+hpc:eligibleToBeScheduled a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:burstBufferStagedIn a owl:ObjectProperty ;
+    rdfs:domain hpc:BurstBuffer .
+
+hpc:scheduledAndAllocatedResources a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:burstBufferPreRun a owl:ObjectProperty ;
+    rdfs:domain hpc:BurstBuffer .
+
+hpc:runningPlusConfiguring a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:preRunFinishes a owl:ObjectProperty ;
+    rdfs:domain hpc:BurstBuffer .
+
+hpc:configuringFlagCleared a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:running a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:burstBufferPreRun a owl:ObjectProperty ;
+    rdfs:domain hpc:BurstBuffer .
+```

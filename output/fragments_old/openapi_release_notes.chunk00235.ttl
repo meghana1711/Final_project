@@ -1,0 +1,38 @@
+hpc:Account a owl:Class .
+hpc:Accounts_Association a owl:Class .
+hpc:Association a owl:Class .
+
+hpc:postRequestBodyContent a owl:ObjectProperty .
+hpc:postResponseContent a owl:ObjectProperty .
+
+hpc:postRequestBodyContent_textYAML rdfs:domain hpc:Accounts_Association ;
+    rdfs:range hpc:Account .
+
+hpc:postResponseContent_applicationJSONrequest rdfs:domain hpc:Account ;
+    rdfs:range hpc:Accounts_Association .
+
+hpc:postResponseContent_textYAML rdfs:domain hpc:Account ;
+    rdfs:range hpc:Account .
+
+hpc:postResponseContent_applicationJSONrequest rdfs:domain hpc:Accounts_Association ;
+    rdfs:range hpc:Account .
+
+hpc:postResponseContent_textYAML rdfs:domain hpc:Association ;
+    rdfs:range hpc:Account .
+
+hpc:postResponseContent_applicationJSONrequest rdfs:domain hpc:Association ;
+    rdfs:range hpc:Account .
+
+hpc:Accounts_Association_add_cond_resp a owl:Class .
+hpc:Accounts_Association_add_cond_resp_str rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Accounts_Association_add_cond_resp .
+
+hpc:openapi_accounts_resp a owl:Class .
+hpc:openapi_accounts_add_cond_resp rdf:type owl:Class ;
+    rdfs:subClassOf hpc:openapi_accounts_resp .
+
+hpc:openapi_accounts_add_cond_resp_str rdf:type owl:Class ;
+    rdfs:subClassOf hpc:openapi_accounts_add_cond_resp .
+
+hpc:openapi_assocs_resp a owl:Class .
+```

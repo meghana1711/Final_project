@@ -1,0 +1,56 @@
+hpc:TaskPrologScript a owl:Class .
+hpc:TaskPrologScript rdf:type owl:NamedIndividual .
+
+hpc:setEnvironmentVariable a owl:ObjectProperty ;
+    rdfs:domain hpc:TaskPrologScript ;
+    rdfs:range xsd:string .
+
+hpc:clearEnvironmentVariable a owl:ObjectProperty ;
+    rdfs:domain hpc:TaskPrologScript ;
+    rdfs:range xsd:string .
+
+hpc:writeToStandardOutput a owl:ObjectProperty ;
+    rdfs:domain hpc:TaskPrologScript ;
+    rdfs:range xsd:string .
+
+hpc:Task hpc:hasProlog hpc:TaskPrologScript .
+
+hpc:FailureHandling a owl:Class .
+hpc:FailureHandling rdf:type owl:NamedIndividual .
+
+hpc:PrologFailure a owl:ObjectProperty ;
+    rdfs:domain hpc:FailureHandling ;
+    rdfs:range xsd:boolean .
+
+hpc:EpilogFailure a owl:ObjectProperty ;
+    rdfs:domain hpc:FailureHandling ;
+    rdfs:range xsd:boolean .
+
+hpc:PrologSlurmctldFailure a owl:ObjectProperty ;
+    rdfs:domain hpc:FailureHandling ;
+    rdfs:range xsd:boolean .
+
+hpc:EpilogSlurmctldFailure a owl:ObjectProperty ;
+    rdfs:domain hpc:FailureHandling ;
+    rdfs:range xsd:boolean .
+
+hpc:JobRequeue a owl:ObjectProperty ;
+    rdfs:domain hpc:FailureHandling ;
+    rdfs:range xsd:boolean .
+
+hpc:JobHold a owl:ObjectProperty ;
+    rdfs:domain hpc:FailureHandling ;
+    rdfs:range xsd:boolean .
+
+hpc:JobCancel a owl:ObjectProperty ;
+    rdfs:domain hpc:FailureHandling ;
+    rdfs:range xsd:boolean .
+
+hpc:NodeDrain a owl:ObjectProperty ;
+    rdfs:domain hpc:FailureHandling ;
+    rdfs:range xsd:boolean .
+
+hpc:nohold_on_prolog_fail a owl:ObjectProperty ;
+    rdfs:domain hpc:FailureHandling ;
+    rdfs:range xsd:boolean .
+```

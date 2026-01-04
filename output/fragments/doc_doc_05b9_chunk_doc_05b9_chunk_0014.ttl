@@ -1,0 +1,75 @@
+hpc:JobDescription a owl:Class .
+
+hpc:account a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:association a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:cluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:constraints a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:scheduler_unset a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:scheduled_on_submit a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:scheduled_by_main a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:scheduled_by_backfill a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:job_started a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:exit_code a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:integer .
+
+hpc:show_duplicates a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:skip_steps a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:disable_truncate_usage_time a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:whole_hetjob a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:disable_whole_hetjob a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:disable_wait_for_result a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:usage_time_as_submit_time a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:show_batch_script a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescription ;
+    rdfs:range xsd:string .
+
+hpc:show_job_environment a owl:Datatype

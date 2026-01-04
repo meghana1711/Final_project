@@ -1,0 +1,53 @@
+hpc:GPU a owl:Class .
+hpc:GPUUtil a owl:DatatypeProperty ;
+    rdfs:domain hpc:GPU ;
+    rdfs:range xsd:decimal .
+
+hpc:GPUMem a owl:DatatypeProperty ;
+    rdfs:domain hpc:GPU ;
+    rdfs:range xsd:decimal .
+
+# GPU Utilization and Memory Tracking
+
+hpc:AutoDetect a owl:Enum ;
+    owl:value nvml ;
+    owl:value rsmi .
+
+hpc:NVIDIAGPU a owl:Class ;
+    rdfs:subClassOf hpc:GPU .
+
+hpc:AMDGPU a owl:Class ;
+    rdfs:subClassOf hpc:GPU .
+
+hpc:MIGDevice a owl:Class ;
+    rdfs:subClassOf hpc:GPU ;
+    hpc:supportsGPUMem false ;
+    hpc:supportsGPUUtil false .
+
+hpc:NonMIGDevice a owl:Class ;
+    rdfs:subClassOf hpc:GPU ;
+    hpc:supportsGPUMem true ;
+    hpc:supportsGPUUtil true .
+
+# Job and Accounting
+
+hpc:Job a owl:Class .
+hpc:Task a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:TRESUsageInMin a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:TRESUsageInMax a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:TRESUsageInAve a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:TRESUsageInTot a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+```

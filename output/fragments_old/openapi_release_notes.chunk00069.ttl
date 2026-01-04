@@ -1,0 +1,42 @@
+hpc:OpenapiNodesResp a owl:Class ;
+    rdfs:subClassOf [ hpc:Response ] ;
+    rdfs:comment "Response schema for Slurm v0.0.42 node request" .
+
+hpc:ApplicationJsonRequest a owl:Class ;
+    rdfs:subClassOf [ xsd:anyType ] ;
+    rdfs:domain [ hpc:GetNode , hpc:UpdateNode ] ;
+    rdfs:range [ hpc:OpenapiNodesResp , hpc:OpenapiResp ] .
+
+hpc:ApplicationYaml a owl:Class ;
+    rdfs:subClassOf [ xsd:anyType ] ;
+    rdfs:domain [ hpc:GetNode , hpc:UpdateNode ] ;
+    rdfs:range [ hpc:OpenapiNodesResp , hpc:OpenapiResp ] .
+
+hpc:UpdateNodeMsg a owl:Class ;
+    rdfs:subClassOf [ xsd:anyType ] ;
+    rdfs:domain hpc:UpdateNode ;
+    rdfs:range xsd:anyType .
+
+hpc:GetNode a owl:Class ;
+    rdfs:subClassOf [ hpc:SlurmOperation ] ;
+    rdfs:domain xsd:string ;
+    rdfs:range hpc:Node .
+
+hpc:UpdateNode a owl:Class ;
+    rdfs:subClassOf [ hpc:SlurmOperation ] ;
+    rdfs:domain [ xsd:string , hpc:Node ] ;
+    rdfs:range xsd:anyType .
+
+hpc:Node a owl:Class ;
+    rdfs:subClassOf [ rdf:Resource ] .
+
+hpc:SlurmOperation a owl:Class ;
+    rdfs:subClassOf [ rdf:Resource ] ;
+    rdfs:subClassOf [ hpc:Operation ] .
+
+hpc:Operation a owl:Class ;
+    rdfs:subClassOf [ rdf:Resource ] .
+
+hpc:Response a owl:Class ;
+    rdfs:subClassOf [ rdf:Resource ] .
+```

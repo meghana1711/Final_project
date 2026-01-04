@@ -1,0 +1,56 @@
+hpc:JobArray a owl:Class .
+hpc:Job a owl:Class, rdfs:subClassOf hpc:JobArray .
+hpc:BatchJob a owl:Class, rdfs:subClassOf hpc:Job .
+
+hpc:hasInitialOptions a owl:ObjectProperty .
+hpc:hasInitialOptions rdfs:domain hpc:JobArray ;
+                        rdfs:range rdf:List .
+
+hpc:hasOption a owl:ObjectProperty .
+hpc:hasOption rdfs:domain hpc:InitialOptions ;
+                 rdfs:range xsd:string .
+
+hpc:hasSize a owl:DatatypeProperty .
+hpc:hasSize rdfs:domain hpc:Option ;
+             rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasTimeLimit a owl:DatatypeProperty .
+hpc:hasTimeLimit rdfs:domain hpc:Option ;
+                 rdfs:range xsd:nonNegativeInteger .
+
+hpc:isJobArray a owl:ObjectProperty .
+hpc:isJobArray rdfs:domain hpc:Job ;
+               rdfs:range hpc:JobArray .
+
+hpc:hasJobID a owl:DatatypeProperty .
+hpc:hasJobID rdfs:domain hpc:JobArray ;
+             rdfs:range xsd:string .
+
+hpc:hasArrayTaskID a owl:DatatypeProperty .
+hpc:hasArrayTaskID rdfs:domain hpc:JobArray ;
+                   rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasArrayTaskCount a owl:DatatypeProperty .
+hpc:hasArrayTaskCount rdfs:domain hpc:JobArray ;
+                      rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasArrayIndexValues a owl:ObjectProperty .
+hpc:hasArrayIndexValues rdfs:domain hpc:SBatchCommand ;
+                        rdfs:range rdf:List .
+
+hpc:hasArrayRange a owl:ObjectProperty .
+hpc:hasArrayRange rdfs:domain hpc:ArrayIndexValues ;
+                   rdfs:range rdf:List .
+
+hpc:hasArrayStepSize a owl:DatatypeProperty .
+hpc:hasArrayStepSize rdfs:domain hpc:ArrayRange ;
+                     rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasMaxSimultaneousTasks a owl:DatatypeProperty .
+hpc:hasMaxSimultaneousTasks rdfs:domain hpc:SBatchCommand ;
+                             rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasSBatchCommand a owl:ObjectProperty .
+hpc:hasSBatchCommand rdfs:domain hpc:JobArray .
+                     rdfs:range hpc:SBatchCommand .
+```

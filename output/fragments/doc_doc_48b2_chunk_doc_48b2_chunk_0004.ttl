@@ -1,0 +1,56 @@
+hpc:JobStep hpc:hasJob rdf:Type owl:NamedIndividual ;
+    hpc:executesOn rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resource .
+
+hpc:Resource hpc:hasMinNodeCount xsd:int ;
+    hpc:hasMaxNodeCount xsd:int ;
+    hpc:hasProcessorCount xsd:int ;
+    hpc:hasSpecificNodes rdf:List ;
+    hpc:hasNodeCharacteristics rdf:List ;
+    hpc:isAllocationFor rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:NodeAllocation .
+
+hpc:NodeAllocation rdf:Type owl:NamedIndividual ;
+    hpc:hasPartition rdf:Resource ;
+    hpc:hasNodes rdf:List ;
+    hpc:hasStartTime xsd:dateTime ;
+    hpc:hasEndTime xsd:dateTime ;
+    hpc:hasState rdf:Resource .
+
+hpc:Partition hpc:hasName rdf:Literal ;
+    hpc:hasDefaultForSubmittedJobs xsd:boolean ;
+    hpc:hasState rdf:Resource ;
+    hpc:isUp rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:boolean .
+
+hpc:State hpc:hasName rdf:Literal .
+
+hpc:Job hpc:hasSteps rdf:List ;
+    hpc:hasPartition rdf:Resource ;
+    hpc:hasNodeAllocation rdf:Resource ;
+    hpc:hasEventTriggers rdf:List ;
+    hpc:hasFairshareUsage rdf:Resource ;
+    hpc:hasResourceUsage rdf:Resource .
+
+hpc:EventTrigger rdf:Type owl:NamedIndividual ;
+    hpc:isNodeDown rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:Job hpc:hasTimeLimit xsd:duration .
+
+hpc:Node hpc:hasMemory xsd:decimal ;
+    hpc:hasDiskSpace xsd:decimal ;
+    hpc:hasFeatures rdf:List .
+
+hpc:Partition hpc:hasNodes rdf:List ;
+    hpc:hasName rdf:Literal ;
+    hpc:isUp rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:boolean .
+
+hpc:Node hpc:hasPartition rdf:Resource .
+```

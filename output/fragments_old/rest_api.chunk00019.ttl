@@ -1,0 +1,48 @@
+hpc:Job a owl:Class .
+
+hpc:number a xsd:nonNegativeInteger .
+hpc:set a owl:ObjectProperty .
+hpc:infinite a owl:FunctionalProperty .
+
+hpc:job_size_str a rdfs:Literal .
+hpc:hold a owl:DatatypeProperty .
+
+hpc:cpu_frequency_maximum a hpc:Resource .
+hpc:cpu_frequency_maximum_number a xsd:nonNegativeInteger .
+hpc:cpu_frequency_maximum_set a owl:ObjectProperty .
+hpc:cpu_frequency_maximum_infinite a owl:FunctionalProperty .
+
+hpc:features a rdfs:Literal .
+hpc:het_job_id_set a rdfs:Literal .
+hpc:state_description a rdfs:Literal .
+hpc:array_task_id a hpc:Resource .
+hpc:array_task_id_number a xsd:nonNegativeInteger .
+hpc:array_task_id_set a owl:ObjectProperty .
+hpc:array_task_id_infinite a owl:FunctionalProperty .
+
+hpc:licenses_allocated a rdfs:Literal .
+hpc:minimum_tmp_disk_per_node a hpc:Resource .
+hpc:minimum_tmp_disk_per_node_number a xsd:nonNegativeInteger .
+hpc:minimum_tmp_disk_per_node_set a owl:ObjectProperty .
+hpc:minimum_tmp_disk_per_node_infinite a owl:FunctionalProperty .
+
+hpc:tres_req_str a rdfs:Literal .
+hpc:burst_buffer_state a rdfs:Literal .
+hpc:cron a rdfs:Literal .
+hpc:allocating_node a rdfs:Literal .
+hpc:tres_per_socket a rdfs:Literal .
+hpc:array_task_string a rdfs:Literal .
+
+hpc:submit_time a hpc:Time .
+hpc:submit_time_number a xsd:nonNegativeInteger .
+hpc:submit_time_set a owl:ObjectProperty .
+hpc:submit_time_infinite a owl:FunctionalProperty .
+
+hpc:wckey a rdfs:Literal .
+hpc:max_nodes a hpc:Resource .
+hpc:max_nodes_number a xsd:nonNegativeInteger .
+hpc:max_nodes_set a owl:ObjectProperty .
+hpc:max_nodes_infinite a owl:FunctionalProperty .
+
+hpc:batch_flag a xsd:boolean .
+hpc:start_time a hpc:Time .

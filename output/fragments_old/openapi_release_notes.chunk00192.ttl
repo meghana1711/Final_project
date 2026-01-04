@@ -1,0 +1,19 @@
+hpc:OpenapiJobInfoResp a owl:Class .
+hpc:v0_0_40_openapi_job_info_resp a hpc:OpenapiJobInfoResp .
+
+hpc:JobInfo a owl:Class, rdfs:subClassOf [ hpc:OpenapiJobInfoResp ] .
+hpc:jobID a owl:DatatypeProperty, rdfs:domain [ hpc:JobInfo ] .
+hpc:jobState a owl:DatatypeProperty, rdfs:domain [ hpc:JobInfo ] .
+hpc:jobName a owl:DatatypeProperty, rdfs:domain [ hpc:JobInfo ] .
+hpc:jobQueue a owl:DatatypeProperty, rdfs:domain [ hpc:JobInfo ] .
+hpc:jobStartTime a xsd:dateTime, rdfs:domain [ hpc:JobInfo ] .
+hpc:jobEndTime a xsd:dateTime, rdfs:domain [ hpc:JobInfo ] .
+hpc:jobError a xsd:string, rdfs:domain [ hpc:JobInfo ] .
+
+hpc:KillJobsResp a owl:Class .
+hpc:v0_0_40_openapi_kill_jobs_resp a hpc:KillJobsResp .
+
+hpc:KillJobs a owl:Class, rdfs:subClassOf [ hpc:KillJobsResp ] .
+hpc:jobIDs a owl:ObjectProperty, rdfs:domain [ hpc:KillJobs ] .
+hpc:killReason a owl:DatatypeProperty, rdfs:domain [ hpc:KillJobs ] .
+```

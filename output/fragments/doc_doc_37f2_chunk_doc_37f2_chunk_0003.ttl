@@ -1,0 +1,54 @@
+hpc:User a owl:Class .
+hpc:Account a owl:Class .
+hpc:Association a owl:Class .
+hpc:Subtree a owl:Class .
+hpc:Tree a owl:Class .
+
+hpc:hasChildren rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Subtree ;
+    rdfs:range rdf:List .
+
+hpc:hasRank rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:User .
+
+hpc:hasFairshare rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Association .
+
+hpc:hasLevelFairshare rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:subPropertyOf hpc:hasFairshare .
+
+hpc:hasSharesNorm rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Association .
+
+hpc:hasEffectiveUsage rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Association .
+
+hpc:isRoot rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Subtree .
+
+hpc:isUser rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Association .
+
+hpc:isAccount rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Association .
+
+hpc:hasSibling rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Association .
+
+hpc:hasRawSelfShares rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Association .
+
+hpc:hasRawSelfUsage rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Association .
+
+hpc:hasSiblingsShares rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Association .
+
+hpc:hasSiblingsUsage rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Association .
+
+hpc:LevelFairshare rdf:type xsd:decimal .
+hpc:SharesNorm rdf:type xsd:decimal .
+hpc:EffectiveUsage rdf:type xsd:decimal .
+```

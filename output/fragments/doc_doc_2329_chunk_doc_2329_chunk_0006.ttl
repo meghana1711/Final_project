@@ -1,0 +1,56 @@
+hpc:MpirunCommand a owl:Class .
+hpc:SrunCommand a owl:Class .
+
+hpc:usesSlurm a owl:ObjectProperty .
+hpc:usesPMI a owl:ObjectProperty .
+hpc:usesPMIVersion rdf:datatype xsd:string .
+hpc:usesPMIVersionDomain rdfs:domain hpc:SrunCommand ;
+                                      rdfs:domain hpc:MpirunCommand .
+
+hpc:supportsPMI1 a owl:ObjectProperty .
+hpc:supportsPMI2 a owl:ObjectProperty .
+hpc:supportsPMIx a owl:ObjectProperty .
+hpc:supportsPMI1Domain rdfs:domain hpc:IntelMPILibrary .
+hpc:supportsPMI2Domain rdfs:domain hpc:IntelMPILibrary .
+hpc:supportsPMIxDomain rdfs:domain hpc:IntelMPILibrary .
+
+hpc:recommendedPMIVersion rdf:datatype xsd:string .
+hpc:recommendedPMIVersionRange a rdfs:Resource ;
+                                 rdf:value "PMI-2"^^xsd:string ;
+                                 hpc:supportsPMIVersion "PMI-2" .
+
+hpc:PMI1Deprecated a owl:Class .
+hpc:PMI1Deprecated rdfs:subClassOf hpc:PMI1 .
+
+hpc:usesSlurmBootstrap a owl:ObjectProperty .
+hpc:usesSlurmBootstrapDomain rdfs:domain hpc:Hydra .
+hpc:usesSlurmBootstrapRange rdfs:range hpc:BootstrapMechanism .
+
+hpc:SlurmPMI2Library a owl:Class .
+hpc:SlurmPMI2Library rdfs:subClassOf hpc:IntelMPILibrary .
+
+hpc:SlurmExclusiveAllocation a owl:Class .
+hpc:SlurmExclusiveAllocation rdfs:subClassOf hpc:Allocation .
+
+hpc:IntelMPILibrary a owl:Class .
+hpc:IntelMPILibrary rdfs:subClassOf hpc:MPILibrary .
+
+hpc:MPILibrary a owl:Class .
+hpc:MPILibrary rdfs:subClassOf owl:Class .
+
+hpc:Hydra a owl:Class .
+hpc:Hydra rdfs:subClassOf owl:Class .
+
+hpc:BootstrapMechanism a owl:Class .
+hpc:BootstrapMechanism rdfs:subClassOf owl:Class .
+
+hpc:sallocCommand a owl:ObjectProperty .
+hpc:sallocCommandDomain rdfs:domain hpc:SlurmCommand .
+hpc:sallocCommandRange rdfs:range hpc:SlurmExclusiveAllocation .
+
+hpc:sbatchCommand a owl:ObjectProperty .
+hpc:sbatchCommandDomain rdfs:domain hpc:SlurmCommand .
+hpc:sbatchCommandRange rdfs:range hpc:SlurmExclusiveAllocation .
+
+hpc:setI_MPI_PMI_LIBRARY a owl:ObjectProperty .
+hpc:setI_MPI_PMI_LIBRARYDomain rdfs:

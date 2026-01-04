@@ -1,0 +1,60 @@
+hpc:Path a owl:Class .
+hpc:RequestBody a owl:ObjectProperty .
+
+hpc:Post a owl:Class .
+
+hpc:PathComponents a owl:Class .
+hpc:Schema a owl:Class .
+hpc:Field a owl:Class .
+
+hpc:Type a owl:DatatypeProperty .
+hpc:Properties a owl:ObjectProperty .
+
+hpc:Accounting a xsd:string .
+hpc:QOS a xsd:string .
+hpc:Oversubscribe a xsd:boolean .
+
+hpc:MaximumMemoryPerCPU a xsd:nonNegativeInteger .
+hpc:DefaultMemoryPerNode a xsd:nonNegativeInteger .
+
+hpc:Prefer a xsd:string .
+
+hpc:Partition a owl:Class .
+
+hpc:Association a owl:Class .
+hpc:IsDefault a xsd:boolean .
+hpc:MaxTresGroupMinutes a xsd:nonNegativeInteger .
+hpc:MaxTresGroupActive a xsd:nonNegativeInteger .
+hpc:MaxJobsActive a xsd:nonNegativeInteger .
+hpc:MaxJobsAccruing a xsd:nonNegativeInteger .
+hpc:MaxJobsTotal a xsd:nonNegativeInteger .
+hpc:MaxTresMinutesPerJob a xsd:nonNegativeInteger .
+
+hpc:ResponseAssociations a owl:Class .
+
+hpc:Meta a owl:Class .
+
+hpc:QOSInfo a owl:Class .
+hpc:QOS a owl:ObjectProperty .
+
+hpc:JobStep a owl:Class .
+hpc:Tres a owl:ObjectProperty .
+
+hpc:AssociationProperties a owl:Class .
+hpc:IsDefault a xsd:boolean .
+hpc:MaxTresGroupMinutes a xsd:nonNegativeInteger .
+hpc:MaxTresGroupActive a xsd:nonNegativeInteger .
+hpc:MaxJobsActive a xsd:nonNegativeInteger .
+hpc:MaxJobsAccruing a xsd:nonNegativeInteger .
+hpc:MaxJobsTotal a xsd:nonNegativeInteger .
+hpc:MaxTresMinutesPerJob a xsd:nonNegativeInteger .
+
+hpc:ErrorResponseContents a owl:Class .
+
+hpc:QOSProperties a owl:Class .
+hpc:Factor a xsd:decimal .
+hpc:MaxPropertiesAccruingPerAccount a xsd:nonNegativeInteger .
+hpc:MaxPropertiesAccruingPerUser a xsd:nonNegativeInteger .
+
+hpc:Diag a owl:Class .
+hpc:BfTableSize a xsd:nonNegativeInteger

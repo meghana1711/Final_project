@@ -1,0 +1,48 @@
+hpc:MVAPICH2 a owl:Class .
+hpc:SlurmBootstrap a owl:Class .
+hpc:PMI a owl:Class .
+hpc:PMI1 a owl:Class, rdfs:subClassOf hpc:PMI .
+hpc:PMI2 a owl:Class, rdfs:subClassOf hpc:PMI .
+hpc:PMIx a owl:Class .
+hpc:HydraProcessManager a owl:Class .
+hpc:srun a owl:Class .
+hpc:mpiexec a owl:Class .
+hpc:sbatch a owl:Class .
+hpc:salloc a owl:Class .
+hpc:configure a owl:Class .
+hpc:hello_world a owl:Class .
+
+hpc:usesSlurmBootstrap a owl:ObjectProperty .
+hpc:usesPMI a owl:ObjectProperty .
+hpc:usesPMIx a owl:ObjectProperty .
+hpc:linkedWithSlurmsPMI a owl:ObjectProperty .
+hpc:requiresSlurmPMIVersion a owl:ObjectProperty .
+hpc:runsOnSlurm a owl:ObjectProperty .
+hpc:compiledWithSlurm a owl:ObjectProperty .
+hpc:hasCommandLine a owl:ObjectProperty .
+
+hpc:MVAPICH2 a rdfs:subClassOf hpc:HpcSoftware .
+hpc:SlurmBootstrap a rdfs:subClassOf hpc:HpcEnvironment .
+hpc:PMI1 rdfs:subClassOf hpc:PMI .
+hpc:PMI2 rdfs:subClassOf hpc:PMI .
+hpc:PMIx rdfs:subClassOf hpc:PMI .
+hpc:HydraProcessManager rdfs:subClassOf hpc:ProcessManager .
+hpc:srun rdfs:subClassOf hpc:SlurmCommand .
+hpc:mpiexec rdfs:subClassOf hpc:HydraProcessManager .
+hpc:sbatch rdfs:subClassOf hpc:SlurmCommand .
+hpc:salloc rdfs:subClassOf hpc:SlurmCommand .
+hpc:configure rdfs:subClassOf hpc:BuildTool .
+hpc:hello_world rdfs:subClassOf hpc:UserApplication .
+
+hpc:usesSlurmBootstrap rdfs:domain hpc:MVAPICH2 ;
+    rdfs:range hpc:SlurmBootstrap .
+hpc:usesPMI rdfs:domain hpc:MVAPICH2 ;
+    rdfs:range hpc:PMI .
+hpc:usesPMIx rdfs:domain hpc:MVAPICH2 ;
+    rdfs:range hpc:PMIx .
+hpc:linkedWithSlurmsPMI rdfs:domain hpc:MVAPICH2 ;
+    rdfs:range hpc:PMI .
+hpc:requiresSlurmPMIVersion rdfs:domain hpc:MVAPICH2 ;
+    rdfs:range xsd:string .
+hpc:runsOnSlurm rdfs:domain hpc:UserApplication ;
+    rdfs:range hpc:Slurm

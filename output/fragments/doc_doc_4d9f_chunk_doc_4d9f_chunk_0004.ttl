@@ -1,0 +1,40 @@
+hpc:SLURMJob a owl:Class .
+hpc:SLURMArrayJob a owl:Class, rdfs:subClassOf hpc:SLURMJob .
+hpc:SLURMTask a owl:Class, rdfs:subClassOf hpc:SLURMJob .
+
+hpc:hasSLURMID a owl:ObjectProperty .
+hpc:hasSLURMArrayID a owl:DatatypeProperty .
+hpc:hasSLURMArrayTaskID a owl:DatatypeProperty .
+
+hpc:SLURMJob hpc:hasSLURMID rdf:type xsd:string .
+hpc:SLURMArrayJob hpc:hasSLURMArrayID rdf:type xsd:string .
+hpc:SLURMTask hpc:hasSLURMArrayID rdf:type xsd:string ;
+                  hpc:hasSLURMArrayTaskID rdf:type xsd:string .
+
+hpc:SLURMJob hpc:hasSLURMID rdfs:domain hpc:SLURMJob ;
+             hpc:hasSLURMArrayID rdfs:domain hpc:SLURMArrayJob ;
+             hpc:hasSLURMArrayTaskID rdfs:domain hpc:SLURMTask .
+
+hpc:SqueueCommandUse a owl:Class .
+hpc:squeueCommandOption a owl:ObjectProperty .
+hpc:squeueOutputFormatField a owl:ObjectProperty .
+
+hpc:SqueueCommandUse hpc:squeueCommandOption rdfs:domain hpc:SqueueCommandUse .
+hpc:SqueueCommandUse hpc:squeueOutputFormatField rdfs:domain hpc:SqueueCommandUse .
+
+hpc:SqueueOutputFormatField hpc:arrayJobID a owl:DatatypeProperty .
+hpc:SqueueOutputFormatField hpc:arrayTaskID a owl:DatatypeProperty .
+
+hpc:ScontrolCommandUse a owl:Class .
+hpc:scontrolShowJobOption a owl:ObjectProperty .
+
+hpc:ScontrolCommandUse hpc:scontrolShowJobOption rdfs:domain hpc:ScontrolCommandUse .
+
+hpc:ScontrolShowJobOption hpc:jobID a owl:DatatypeProperty .
+hpc:ScontrolShowJobOption hpc:arrayJobID a owl:DatatypeProperty .
+hpc:ScontrolShowJobOption hpc:arrayTaskID a owl:DatatypeProperty .
+
+hpc:ScontrolShowJobOption hpc:jobID rdfs:range xsd:string .
+hpc:ScontrolShowJobOption hpc:arrayJobID rdfs:range xsd:string .
+hpc:ScontrolShowJobOption hpc:arrayTaskID rdfs:range xsd:string .
+```

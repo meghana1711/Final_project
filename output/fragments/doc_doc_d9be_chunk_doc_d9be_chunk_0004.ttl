@@ -1,0 +1,60 @@
+hpc:SlurmdParametersConfigOverrides a owl:Class .
+hpc:selectType a owl:Enum;
+  rdfs:label "Select Type"@en;
+  rdfs:subClassOf owl:Class .
+hpc:selectTypeSelect a owl:Class;
+  rdfs:label "Select"@en .
+hpc:selectTypeLinear a owl:Class;
+  rdfs:label "Linear"@en .
+hpc:selectTypeConsTres a owl:Class;
+  rdfs:label "Consumable Resources"@en .
+
+hpc:SlurmdParametersConfigOverridesControls a owl:ObjectProperty;
+  rdfs:domain hpc:SlurmdParametersConfigOverrides;
+  rdfs:range hpc:SelectType .
+
+hpc:ConsumableResourceType a owl:Class;
+  rdfs:label "Consumable Resource Type"@en .
+hpc:CR_CPU a owl:Class;
+  rdfs:label "CPU"@en;
+  rdfs:subClassOf hpc:ConsumableResourceType .
+hpc:CR_CPU_Memory a owl:Class;
+  rdfs:label "CPU and Memory"@en;
+  rdfs:subClassOf hpc:ConsumableResourceType .
+hpc:CR_Core a owl:Class;
+  rdfs:label "Core"@en;
+  rdfs:subClassOf hpc:ConsumableResourceType .
+hpc:CR_Core_Memory a owl:Class;
+  rdfs:label "Core and Memory"@en;
+  rdfs:subClassOf hpc:ConsumableResourceType .
+hpc:CR_Socket a owl:Class;
+  rdfs:label "Socket"@en;
+  rdfs:subClassOf hpc:ConsumableResourceType .
+hpc:CR_Socket_Memory a owl:Class;
+  rdfs:label "Socket and Memory"@en;
+  rdfs:subClassOf hpc:ConsumableResourceType .
+
+hpc:CommandLineOption a owl:Class;
+  rdfs:label "Command Line Option"@en .
+hpc:PossibleValues a owl:DatatypeProperty;
+  rdfs:domain hpc:CommandLineOption;
+  rdfs:range xsd:string .
+hpc:Description a owl:DatatypeProperty;
+  rdfs:domain hpc:CommandLineOption;
+  rdfs:range xsd:string .
+
+hpc:RestrictsNodeSelection a owl:ObjectProperty;
+  rdfs:domain hpc:CommandLineOption;
+  rdfs:range hpc:Node .
+hpc:Node a owl:Class;
+  rdfs:label "Node"@en .
+
+hpc:Contiguous a owl:Class;
+  rdfs:label "Contiguous"@en .
+hpc:CoresPerSocket a owl:DatatypeProperty;
+  rdfs:domain hpc:CommandLineOption;
+  rdfs:range xsd:nonNegativeInteger .
+hpc:CpusPerTask a owl:DatatypeProperty;
+  rdfs:domain hpc:CommandLineOption;
+  rdfs:range xsd:nonNegativeInteger .
+hpc:Distribution a owl:ObjectProperty

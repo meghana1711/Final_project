@@ -1,0 +1,37 @@
+hpc:Slurmctld a owl:Class ;
+    rdfs:subClassOf hpc:Component ;
+    rdfs:comment "Slurm Controller Daemon" ;
+    hpc:SlurmctldPort rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmctld ;
+    rdfs:range xsd:integer .
+
+hpc:Slurmd a owl:Class ;
+    rdfs:subClassOf hpc:Component ;
+    rdfs:comment "Slurm Job Manager Daemon" ;
+    hpc:SlurmdPort rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmd ;
+    rdfs:range xsd:integer .
+
+hpc:Slurmdbd a owl:Class ;
+    rdfs:subClassOf hpc:Component ;
+    rdfs:comment "Slurm Database Daemon" ;
+    hpc:DbdPort rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmdbd ;
+    rdfs:range xsd:integer .
+
+# Communication Properties
+hpc:CommunicatesWith rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Component ;
+    rdfs:range hpc:Component .
+
+# IPv4 and IPv6 Communication Properties
+hpc:CommunicatesWithIPv4 rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Component ;
+    rdfs:range xsd:boolean .
+
+hpc:CommunicatesWithIPv6 rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Component ;
+    rdfs:range xsd:boolean .
+```
+
+This ontology fragment represents the Slurm Workload Manager components (Slurmctld, Slurmd, and Slurmdbd) and their communication properties. It also includes properties for IPv4 and IPv6 communication.

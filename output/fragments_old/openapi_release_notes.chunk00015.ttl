@@ -1,0 +1,61 @@
+hpc:JobInfo a owl:Class .
+
+hpc:cpuFrequencyGovernor rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:int .
+
+hpc:cpuFrequencyMaximum rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:int .
+
+hpc:cpuFrequencyMinimum rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:int .
+
+hpc:cpus rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:int .
+
+hpc:cpusPerTask rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:short .
+
+hpc:deadline rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:int .
+
+hpc:delayBoot rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:int .
+
+hpc:derivedExitCode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:int .
+
+hpc:eligibleTime rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:int .
+
+hpc:endTime rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:int .
+
+hpc:excludedNodes rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:string .
+
+hpc:exitCode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:int .
+
+hpc:features rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:string .
+
+hpc:flags a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:string .
+
+hpc:flags enum "KILL_INVALID_DEPENDENCY" ;
+hpc:flags enum "NO_KILL_INVALID_DEPENDENCY" ;
+hpc:flags

@@ -1,0 +1,41 @@
+hpc:V0_0_42_Openapi_Slurmdb_Config_Resp a owl:Class .
+hpc:V0_0_42_Openapi_Slurmdb_Stats_Resp a owl:Class .
+
+hpc:RequestBody a owl:Class .
+hpc:Response a owl:Class .
+
+hpc:Content a owl:Class .
+hpc:Schema a owl:Class .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:RequestBody ;
+    rdfs:range hpc:Content .
+
+hpc:hasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:Content ;
+    rdfs:range hpc:Schema .
+
+hpc:ref a owl:ObjectProperty ;
+    rdfs:domain hpc:Schema .
+
+hpc:hasResponse a owl:ObjectProperty ;
+    rdfs:domain hpc:RequestBody ;
+    rdfs:range hpc:Response .
+
+hpc:hasContent_Application_YAML a owl:DatatypeProperty ;
+    rdfs:domain hpc:Response ;
+    rdfs:range hpc:Content .
+
+hpc:hasSchema_Application_YAML a owl:DatatypeProperty ;
+    rdfs:domain hpc:Content_Application_YAML ;
+    rdfs:range hpc:Schema .
+
+hpc:V0_0_42_Openapi_Slurmdbd_Config_Resp rdfs:subClassOf hpc:Response .
+hpc:V0_0_42_Openapi_Slurmdbd_Stats_Resp rdfs:subClassOf hpc:Response .
+
+hpc:V0_0_42_Openapi_Slurmdb_Config_Resp_Content_Application_YAML a hpc:Content_Application_YAML ;
+    hpc:hasSchema_Application_YAML hpc:V0_0_42_openapi_slurmdbd_config_resp .
+
+hpc:V0_0_42_Openapi_Slurmdb_Stats_Resp_Content_Application_YAML a hpc:Content_Application_YAML ;
+    hpc:hasSchema_Application_YAML hpc:V0_0_42_openapi_slurmdbd_stats_resp .
+```

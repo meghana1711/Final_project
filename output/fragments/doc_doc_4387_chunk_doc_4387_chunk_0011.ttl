@@ -1,0 +1,31 @@
+hpc:WCKey a owl:Class .
+hpc:hasAccessTo rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:WCKey ;
+    rdfs:range hpc:User .
+
+hpc:associations rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:WCKey .
+
+hpc:TrackWCKey rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:WCKey .
+
+hpc:Cluster a owl:Class .
+hpc:Account a owl:Class .
+hpc:User a owl:Class .
+hpc:Partition optional rdf:type owl:Class .
+
+hpc:AccountingStorageEnforce rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:WCKey .
+
+hpc:AccountingStorageExternalHost rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:AccountingStoragePort rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:integer .
+
+hpc:AccountingStorageHost rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:AccountingStoragePass rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+```

@@ -1,0 +1,33 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:Overview a rdfs:SubClassOf hpc:SlurmWorkloadManager .
+hpc:ReleaseNotes a rdfs:SubClassOf hpc:SlurmWorkloadManager .
+hpc:Using a rdfs:SubClassOf hpc:SlurmWorkloadManager .
+hpc:Documentation a rdfs:SubClassOf hpc:SlurmWorkloadManager .
+hpc:FAQ a rdfs:SubClassOf hpc:SlurmWorkloadManager .
+hpc:Publications a rdfs:SubClassOf hpc:SlurmWorkloadManager .
+
+hpc:Installing a rdfs:SubClassOf hpc:SlurmWorkloadManager .
+hpc:Download a rdfs:SubClassOf hpc:Installing .
+hpc:RelatedSoftware a rdfs:SubClassOf hpc:Installing .
+hpc:InstallationGuide a rdfs:SubClassOf hpc:Installing .
+
+hpc:GettingHelp a rdfs:SubClassOf hpc:SlurmWorkloadManager .
+hpc:MailingLists a rdfs:SubClassOf hpc:GettingHelp .
+hpc:SupportAndTraining a rdfs:SubClassOf hpc:GettingHelp .
+hpc:Troubleshooting a rdfs:SubClassOf hpc:GettingHelp .
+
+hpc:SlurmUsers a rdfs:SubClassOf hpc:SlurmWorkloadManager .
+hpc:QuickStartUserGuide a rdfs:SubClassOf hpc:SlurmUsers .
+hpc:CommandOptionSummary a rdfs:SubClassOf hpc:SlurmUsers .
+hpc:ManPages a rdfs:SubClassOf hpc:SlurmUsers .
+hpc:RosettaStoneOfWorkloadManagers a rdfs:SubClassOf hpc:SlurmUsers .
+hpc:JobArraySupport a rdfs:SubClassOf hpc:SlurmUsers .
+hpc:HeterogeneousJobSupport a rdfs:SubClassOf hpc:SlurmUsers .
+hpc:CPUManagementUserAndAdministratorGuide a rdfs:SubClassOf hpc:SlurmUsers .
+hpc:MPIandUPCUsersGuide a rdfs:SubClassOf hpc:SlurmUsers .
+hpc:SupportForMultiCoreMultiThreadedArchitectures a rdfs:SubClassOf hpc:SlurmUsers .
+hpc:MultiClusterOperation a rdfs:SubClassOf hpc:SlurmUsers .
+hpc:ProfilingUsingHDF5UserGuide a rdfs:SubClassOf hpc:SlurmUsers .
+h

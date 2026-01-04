@@ -1,0 +1,55 @@
+hpc:Plugin a owl:Class .
+hpc:InitFunction a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:anyURI .
+
+hpc:FiniFunction a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:anyURI .
+
+hpc:AsyncOperationCallbacks a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:anyURI .
+
+hpc:PrologSlurmctldCallback a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:anyURI .
+
+hpc:EpilogSlurmctldCallback a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:anyURI .
+
+hpc:PrepPPrologSlurmctld a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:anyURI .
+
+hpc:PrepPEpilogSlurmctld a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:anyURI .
+
+hpc:PrepPRegisterCallbacks a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:anyURI .
+
+hpc:PluginWithAsyncOperation a rdfs:subClassOf hpc:Plugin ;
+hpc:PluginWithAsyncOperation rdfs:subClassOf owl:Class ;
+hpc:PluginWithAsyncOperation
+    owl:imports ( hpc:AsyncOperationCallbacks
+                  hpc:PrologSlurmctldCallback
+                  hpc:EpilogSlurmctldCallback ) .
+
+hpc:PluginWithPrologSlurmctld a rdfs:subClassOf hpc:Plugin ;
+hpc:PluginWithPrologSlurmctld rdfs:subClassOf owl:Class ;
+hpc:PluginWithPrologSlurmctld
+    owl:imports ( hpc:PrepPPrologSlurmctld ) .
+
+hpc:PluginWithEpilogSlurmctld a rdfs:subClassOf hpc:Plugin ;
+hpc:PluginWithEpilogSlurmctld rdfs:subClassOf owl:Class ;
+hpc:PluginWithEpilogSlurmctld
+    owl:imports ( hpc:PrepPEpilogSlurmctld ) .
+
+hpc:PluginWithRegisterCallbacks a rdfs:subClassOf hpc:Plugin ;
+hpc:PluginWithRegisterCallbacks rdfs:subClassOf owl:Class ;
+hpc:PluginWithRegisterCallbacks
+    owl:imports ( hpc:PrepPRegisterCallbacks ) .
+```

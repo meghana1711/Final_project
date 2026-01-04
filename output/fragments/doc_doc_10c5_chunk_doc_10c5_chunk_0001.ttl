@@ -1,0 +1,37 @@
+hpc:LocalityDomain a owl:Class .
+hpc:Socket a owl:Class ;
+    rdfs:subClassOf hpc:LocalityDomain .
+hpc:Core a owl:Class ;
+    rdfs:subClassOf hpc:LocalityDomain .
+hpc:Thread a owl:Class ;
+    rdfs:subClassOf hpc:LocalityDomain .
+
+hpc:Affinity a owl:ObjectProperty .
+hpc:affinity rdfs:domain hpc:LocalityDomain ;
+    rdfs:range xsd:boolean .
+
+hpc:AffinityMask a owl:ObjectProperty .
+hpc:affinityMask rdfs:domain hpc:LocalityDomain ;
+    rdfs:range xsd:unsignedInt .
+
+hpc:FatMask a owl:Class ;
+    rdfs:subClassOf hpc:AffinityMask .
+
+hpc:srunFlags a owl:Class .
+
+hpc:cpuBind a owl:ObjectProperty .
+hpc:cpuBind rdfs:domain hpc:srunFlags ;
+    rdfs:range hpc:ProcessAffinityBinding .
+
+hpc:socketsPerNode a owl:ObjectProperty .
+hpc:socketsPerNode rdfs:domain hpc:srunFlags ;
+    rdfs:range xsd:unsignedInt .
+
+hpc:coresPerSocket a owl:ObjectProperty .
+hpc:coresPerSocket rdfs:domain hpc:srunFlags ;
+    rdfs:range xsd:unsignedInt .
+
+hpc:threadsPerCore a owl:ObjectProperty .
+hpc:threadsPerCore rdfs:domain hpc:srunFlags ;
+    rdfs:range xsd:unsignedInt .
+```

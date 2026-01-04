@@ -1,0 +1,45 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:Navigation a owl:Class .
+hpc:Overview a rdfs:subClassOf hpc:Navigation .
+hpc:ReleaseNotes a rdfs:subClassOf hpc:Navigation .
+hpc:Using a rdfs:subClassOf hpc:Navigation .
+hpc:Documentation a rdfs:subClassOf hpc:Navigation .
+hpc:FAQ a rdfs:subClassOf hpc:Navigation .
+hpc:Publications a rdfs:subClassOf hpc:Navigation .
+hpc:Installing a rdfs:subClassOf hpc:Navigation .
+hpc:GettingHelp a rdfs:subClassOf hpc:Navigation .
+hpc:Troubleshooting a rdfs:subClassOf hpc:Navigation .
+hpc:ResourceLimits a rdfs:subClassOf hpc:Navigation .
+
+hpc:Hierarchy a owl:Class .
+
+hpc:PartitionQOSLimit a owl:Class .
+hpc:JobQOSLimit a owl:Class .
+hpc:UserAssociation a owl:Class .
+hpc:AccountAssociation a owl:Class .
+hpc:RootClusterAssociation a owl:Class .
+hpc:PartitionLimit a owl:Class .
+
+hpc:hasPrecedence a owl:ObjectProperty .
+hpc:enforcedBy a owl:ObjectProperty .
+
+hpc:PartitionQOSLimit rdfs:subClassOf hpc:Limit .
+hpc:JobQOSLimit rdfs:subClassOf hpc:Limit .
+hpc:UserAssociation rdfs:subClassOf hpc:Association .
+hpc:AccountAssociation rdfs:subClassOf hpc:Association .
+hpc:RootClusterAssociation rdfs:subClassOf hpc:Association .
+hpc:PartitionLimit rdfs:subClassOf hpc:Limit .
+
+hpc:Limit rdf:type owl:Class .
+hpc:Association rdf:type owl:Class .
+
+hpc:hasLimit a owl:ObjectProperty .
+hpc:hasPrecedence rdfs:domain hpc:Limit ;
+                      rdfs:range hpc:Limit .
+hpc:enforcedBy rdfs:domain hpc:Association ;
+                 rdfs:range hpc:Limit .
+```
+
+This ontology fragment represents the classes and properties related to the Slurm Workload Manager, including the hierarchy of limits, associations, and limits themselves. The `Limit` class is a superclass for all limit types, and the `Association` class is a superclass for all association types. The `hasPrecedence` and `enforcedBy` properties are used to represent the order in which limits are enforced and the associations that enforce a particular limit.

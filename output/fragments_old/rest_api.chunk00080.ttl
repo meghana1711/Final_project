@@ -1,0 +1,47 @@
+hpc:AddUsersWithConditionalAssociation a owl:Class .
+hpc:v0_0_43_openapi_users_add_cond_resp a owl:Class .
+hpc:added_users rdf:datatype xsd:string ;
+                 rdfs:domain hpc:AddUsersWithConditionalAssociation .
+
+hpc:AddOrUpdateWckeys a owl:Class .
+hpc:v0_0_43_openapi_wckey_resp a owl:Class .
+
+hpc:update_time rdf:datatype xsd:xsd:int64 ;
+                rdfs:domain hpc:AddUsersWithConditionalAssociation ;
+                rdfs:range xsd:xsd:int64 .
+
+hpc:flags rdf:datatype xsd:string ;
+          rdfs:domain hpc:AddUsersWithConditionalAssociation .
+
+hpc:cluster rdf:datatype xsd:string ;
+            rdfs:domain hpc:AddOrUpdateWckeys .
+
+hpc:format rdf:datatype xsd:string ;
+           rdfs:domain hpc:AddOrUpdateWckeys .
+
+hpc:id rdf:datatype xsd:string ;
+      rdfs:domain hpc:AddOrUpdateWckeys .
+
+hpc:name rdf:datatype xsd:string ;
+        rdfs:domain hpc:AddOrUpdateWckeys .
+
+hpc:only_defaults rdf:datatype xsd:string ;
+                 rdfs:domain hpc:AddOrUpdateWckeys .
+
+hpc:usage_end rdf:datatype xsd:xsd:int64 ;
+              rdfs:domain hpc:AddOrUpdateWckeys ;
+              rdfs:range xsd:xsd:int64 .
+
+hpc:usage_start rdf:datatype xsd:xsd:int64 ;
+                rdfs:domain hpc:AddOrUpdateWckeys ;
+                rdfs:range xsd:xsd:int64 .
+
+hpc:user rdf:datatype xsd:string ;
+        rdfs:domain hpc:AddOrUpdateWckeys .
+
+hpc:with_usage rdf:datatype xsd:string ;
+              rdfs:domain hpc:AddOrUpdateWckeys .
+
+hpc:with_deleted rdf:datatype xsd:string ;
+                rdfs:domain hpc:AddOrUpdateWckeys .
+```

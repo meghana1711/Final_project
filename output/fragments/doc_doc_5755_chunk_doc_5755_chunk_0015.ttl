@@ -1,0 +1,47 @@
+hpc:Program a owl:Class .
+hpc:OutputMode a owl:EnumeredClass ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Modes of program output." ;
+    owl:enum "Interactive" ;
+    owl:enum "Batch" .
+
+hpc:PerformanceOptimization a owl:Class ;
+    rdfs:comment "Techniques used for improving performance." .
+
+hpc:Buffering a owl:ObjectProperty ;
+    rdfs:domain hpc:Program ;
+    rdfs:range hpc:PerformanceOptimization ;
+    rdfs:comment "The method used by a program for output buffering." .
+
+hpc:PtyConfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:Program ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a program is configured to write to a pseudo terminal." .
+
+hpc:CarriageReturnCharacter a owl:DatatypeProperty ;
+    rdfs:domain hpc:Program ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a program prepends a carriage return character before line feed characters." .
+
+hpc:JobAllocation a owl:Class ;
+    rdfs:subClassOf hpc:Program ;
+    rdfs:comment "A job allocation created by srun or sbatch." .
+
+hpc:SrunCommand a owl:Class ;
+    rdfs:subClassOf hpc:JobAllocation ;
+    rdfs:comment "The srun command for creating a job allocation." .
+
+hpc:SbatchCommand a owl:Class ;
+    rdfs:subClassOf hpc:JobAllocation ;
+    rdfs:comment "The sbatch command for submitting a script for later execution." .
+
+hpc:JobArraySupport a owl:ObjectProperty ;
+    rdfs:domain hpc:JobAllocation ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a job allocation supports job arrays." .
+
+hpc:FaultTolerance a owl:ObjectProperty ;
+    rdfs:domain hpc:JobAllocation ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The fault tolerance behavior of a job allocation." .
+```

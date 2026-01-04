@@ -1,0 +1,54 @@
+hpc:Partition a owl:Class .
+hpc:QoS a owl:Class .
+hpc:User a owl:Class .
+hpc:Account a owl:Class .
+hpc:Comment a owl:DatatypeProperty .
+hpc:id a owl:DatatypeProperty .
+
+hpc:QoS has rdfs:subClass [
+    rdf:type owl:Class ;
+    hpc:flags a owl:DatatypeProperty ;
+    hpc:name a owl:DatatypeProperty ;
+    hpc:usage_threshold a owl:DatatypeProperty ;
+    hpc:description a owl:DatatypeProperty ;
+    hpc:usage_factor a owl:DatatypeProperty ;
+    hpc:priority a owl:DatatypeProperty ;
+    hpc:limits a owl:ObjectProperty ;
+] .
+
+hpc:limits rdfs:domain hpc:QoS ;
+hpc:limits rdfs:range hpc:QoSLimits .
+
+hpc:QoSLimits has rdfs:subClass [
+    rdf:type owl:Class ;
+    hpc:min a owl:ObjectProperty ;
+    hpc:max a owl:ObjectProperty ;
+] .
+
+hpc:QoSLimits has rdfs:subProperty [
+    rdf:type owl:ObjectProperty ;
+    hpc:tres a owl:ObjectProperty ;
+] .
+
+hpc:Tres rdfs:domain hpc:QoSLimits ;
+hpc:Tres rdfs:range hpc:TresValue .
+
+hpc:TresValue has rdfs:subClass [
+    rdf:type owl:Class ;
+    hpc:per a owl:ObjectProperty ;
+    hpc:total a owl:ObjectProperty ;
+    hpc:minutes a owl:ObjectProperty ;
+    hpc:node a owl:ObjectProperty ;
+    hpc:job a owl:ObjectProperty ;
+    hpc:user a owl:ObjectProperty ;
+    hpc:account a owl:ObjectProperty ;
+] .
+
+hpc:QoSLimits has rdfs:subProperty [
+    rdf:type owl:ObjectProperty ;
+    hpc:wall_clock a owl:ObjectProperty ;
+] .
+
+hpc:WallClock rdfs:domain hpc:QoSLimits ;
+hpc:WallClock rdfs:range xsd:decimal .
+```

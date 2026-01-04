@@ -1,0 +1,27 @@
+hpc:AutomatedChange rdf:type owl:Class .
+hpc:CommandName rdf:type owl:ObjectProperty .
+hpc:CommandName rdfs:domain hpc:AutomatedChange .
+hpc:CommandName rdfs:range xsd:string .
+
+hpc:GitFormatPatch rdf:type owl:Class .
+hpc:GitFormatPatch rdfs:subClassOf hpc:AutomatedChange .
+
+hpc:SpellingMistake rdf:type owl:Class .
+hpc:SpellingMistake rdfs:subClassOf hpc:AutomatedChange .
+
+hpc:Location rdf:type owl:DatatypeProperty .
+hpc:Location rdfs:domain hpc:SpellingMistake .
+hpc:Location rdfs:range xsd:string .
+
+hpc:Documentation rdf:type owl:Class .
+hpc:Documentation rdfs:subClassOf hpc:AutomatedChange .
+hpc:Documentation rdfs:subClassOf hpc:SpellingMistake .
+hpc:Documentation rdfs:subClassOf hpc:GitFormatPatch .
+hpc:Documentation rdfs:subClassOf hpc:AutomatedChange .
+hpc:Documentation rdfs:subClassOf hpc:SpellingMistake .
+hpc:Documentation rdfs:subClassOf hpc:GitFormatPatch .
+hpc:Documentation rdfs:subClassOf owl:Thing .
+
+hpc:Description rdf:type owl:DatatypeProperty .
+hpc:Description rdfs:domain hpc:Documentation .
+hpc:Description rdfs:range xsd:string .

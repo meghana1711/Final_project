@@ -1,0 +1,62 @@
+hpc:ReservationAccounting a owl:Class .
+
+hpc:UserAccount hpc:hasEligibilityFor hpc:Reservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:UserAccount .
+
+hpc:BankAccount hpc:hasEligibilityFor hpc:Reservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:BankAccount .
+
+hpc:Reservation hpc:isAccountedForBy hpc:UserAccount a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:UserAccount .
+
+hpc:Reservation hpc:isAccountedForBy hpc:BankAccount a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:BankAccount .
+
+hpc:Reservation hpc:hasProlog hpc:SlurmScript a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:Resource .
+
+hpc:Reservation hpc:hasEpilog hpc:SlurmScript a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:Resource .
+
+hpc:SlurmScript a owl:Class .
+
+hpc:Reservation hpc:hasPartitionConfiguration rdf:Resource a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:Resource .
+
+hpc:Reservation hpc:hasCancellationScript rdf:Resource a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:Resource .
+
+hpc:Reservation hpc:hasTimeSlicingLevel xsd:integer a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:integer .
+
+hpc:Reservation hpc:hasInitiatedJob hpc:Job a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Job .
+
+hpc:Reservation hpc:hasUnusedResources xsd:decimal a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:decimal .
+
+hpc:Reservation hpc:hasAssociatedUsers hpc:UserAccounts a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:List .
+
+hpc:Reservation hpc:hasAssociatedBankAccounts hpc:BankAccounts a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:List .
+
+hpc:Reservation hpc:isWithinPartition hpc:Partition a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Partition .
+
+hpc:Reservation hpc:hasGangSchedulingLevel xsd:integer a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;

@@ -1,0 +1,35 @@
+hpc:v0_0_43_openapi_error a owl:Class .
+hpc:v0_0_43_cluster_rec a owl:Class .
+hpc:v0_0_43_tres a owl:Class .
+hpc:v0_0_43_account a owl:Class .
+hpc:v0_0_43_user a owl:Class .
+hpc:v0_0_43_qos a owl:Class .
+hpc:v0_0_43_wckey a owl:Class .
+hpc:v0_0_43_assoc a owl:Class .
+hpc:v0_0_43_instance a owl:Class .
+hpc:v0_0_43_slurmdbd_ping a owl:Class .
+hpc:v0_0_43_slurmdbd_job a owl:Class .
+hpc:v0_0_43_slurmdbd_config_resp a owl:Class .
+hpc:v0_0_43_slurmdbd_qos_removed_resp a owl:Class .
+hpc:v0_0_43_slurmdbd_qos_resp a owl:Class .
+hpc:v0_0_43_slurmdbd_stats_resp a owl:Class .
+hpc:v0_0_43_tres_resp a owl:Class .
+hpc:v0_0_43_users_add_cond a owl:Class .
+hpc:v0_0_43_users_add_cond_resp a owl:Class .
+hpc:v0_0_43_users_add_cond_resp_str a owl:Class .
+hpc:v0_0_43_users_resp a owl:Class .
+hpc:v0_0_43_openapi_warning a owl:Class .
+
+hpc:errors rdfs:domain hpc:v0_0_43_openapi_error ;
+    rdfs:range rdf:List ;
+    rdfs:subClassOf xsd:string .
+
+hpc:warnings rdfs:domain hpc:v0_0_43_openapi_warning ;
+    rdfs:range rdf:List ;
+    rdfs:subClassOf xsd:string .
+
+hpc:clusters rdfs:domain hpc:v0_0_43_openapi_slurmdbd_config_resp ;
+    rdfs:range rdf:List ;
+    rdfs:subClassOf hpc:v0_0_43_cluster_rec .
+
+hpc

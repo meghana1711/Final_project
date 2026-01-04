@@ -1,0 +1,30 @@
+hpc:Job a owl:Class .
+hpc:Task a owl:Class, rdfs:subClassOf hpc:Job .
+hpc:Node a owl:Class .
+hpc:Process a owl:Class, rdfs:subClassOf hpc:Task .
+hpc:SingleTaskProcess a owl:Class, rdfs:subClassOf hpc:Process .
+
+hpc:Consumption a owl:Class .
+hpc:AffectedBy a owl:ObjectProperty, rdfs:domain hpc:Node; rdfs:range hpc:Process .
+
+hpc:Storage a owl:Class .
+hpc:StoredInDatabase a owl:ObjectProperty, rdfs:domain hpc:Job; rdfs:range hpc:Storage .
+hpc:Queryable a owl:ObjectProperty, rdfs:domain hpc:Storage .
+
+hpc:TresUsageInTot a owl:DatatypeProperty, rdfs:domain hpc:Job .
+hpc:TresUsageInAve a owl:DatatypeProperty, rdfs:domain hpc:Job .
+hpc:TresUsageInMax a owl:DatatypeProperty, rdfs:domain hpc:Job .
+hpc:TresUsageInTot rdf:type xsd:nonNegativeInteger .
+hpc:TresUsageInAve rdf:type xsd:nonNegativeFloat .
+hpc:TresUsageInMax rdf:type xsd:nonNegativeInteger .
+
+hpc:Memory a owl:Class .
+hpc:Peak a owl:Class .
+hpc:Outlier a owl:Class, rdfs:subClassOf hpc:Task .
+hpc:Issue a owl:Class .
+hpc:Profiling a owl:Class .
+hpc:Visualization a owl:Class .
+
+hpc:HDF5 a owl:Class, rdfs:subClassOf hpc:Visualization .
+hpc:InfluxDB a owl:Class, rdfs:subClassOf hpc:Visualization .
+```

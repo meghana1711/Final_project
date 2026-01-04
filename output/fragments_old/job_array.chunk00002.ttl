@@ -1,0 +1,34 @@
+hpc:Job a owl:Class .
+hpc:JobArray a owl:Class .
+hpc:JobArrayElement a owl:Class .
+hpc:JobID a xsd:string .
+hpc:ArrayJobID a xsd:string .
+hpc:ArrayTaskID a xsd:string .
+
+hpc:hasJobID rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:JobID .
+
+hpc:isArrayJobID rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobArray ;
+    rdfs:range hpc:ArrayJobID .
+
+hpc:hasArrayTaskID rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobArrayElement ;
+    rdfs:range hpc:ArrayTaskID .
+
+hpc:isJobArray rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:JobArray .
+
+hpc:isElementOf rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobArray ;
+    rdfs:range hpc:JobArrayElement .
+
+hpc:cancelJob a owl:ObjectProperty .
+hpc:cancelJobArray a owl:ObjectProperty .
+hpc:cancelJobArrayElement a owl:ObjectProperty .
+
+hpc:squeueCommandUse a owl:ObjectProperty .
+hpc:scontrolCommandUse a owl:ObjectProperty .
+```

@@ -1,0 +1,62 @@
+hpc:UsersAssociationRequestBody a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:UsersAssociationResponseBody a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:UsersAssociationRequestBodyContent a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:UsersAssociationResponseBodyContent a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:hasContentType a owl:ObjectProperty ;
+    rdfs:domain hpc:UsersAssociationRequestBodyContent ;
+    rdfs:range xsd:string .
+
+hpc:hasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:UsersAssociationRequestBodyContent ;
+    rdfs:range rdf:Resource .
+
+hpc:UsersAssociationRequestBodySchema a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf rdf:Resource ] .
+
+hpc:UsersAssociationResponseBodySchema a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf rdf:Resource ] .
+
+hpc:hasRef a owl:ObjectProperty ;
+    rdfs:domain hpc:UsersAssociationRequestBodySchema ;
+    rdfs:range rdf:Resource .
+
+hpc:v0_0_40_openapi_users_add_cond_resp a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf rdf:Resource ] .
+
+hpc:v0_0_40_openapi_users_add_cond_resp_str a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf rdf:Resource ] .
+
+hpc:wckeyIDRequestBody a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:wckeyIDResponseBody a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:wckeyIDRequestBodyContent a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:wckeyIDResponseBodyContent a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:hasContentType_wckey a owl:ObjectProperty ;
+    rdfs:domain hpc:wckeyIDRequestBodyContent ;

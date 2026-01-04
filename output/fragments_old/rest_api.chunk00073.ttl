@@ -1,0 +1,57 @@
+hpc:Release a owl:Class .
+hpc:Version a owl:Class ;
+  rdfs:subClassOf hpc:Release ;
+  rdfs:comment "major, minor, micro" .
+
+hpc:Plugin a owl:Class .
+hpc:AccountingStorage a owl:DatatypeProperty ;
+  rdfs:domain hpc:Plugin .
+hpc:Name a owl:DatatypeProperty ;
+  rdfs:domain hpc:Plugin .
+hpc:Type a owl:DatatypeProperty ;
+  rdfs:domain hpc:Plugin .
+hpc:DataParser a owl:DatatypeProperty ;
+  rdfs:domain hpc:Plugin .
+
+hpc:Client a owl:Class .
+hpc:Source a owl:DatatypeProperty ;
+  rdfs:domain hpc:Client .
+hpc:User a owl:DatatypeProperty ;
+  rdfs:domain hpc:Client .
+hpc:Group a owl:DatatypeProperty ;
+  rdfs:domain hpc:Client .
+
+hpc:Command a owl:Class ;
+  rdfs:comment "list of commands" .
+
+hpc:Warning a owl:Class .
+hpc:Description a owl:DatatypeProperty ;
+  rdfs:domain hpc:Warning .
+hpc:Source a owl:DatatypeProperty ;
+  rdfs:domain hpc:Warning .
+
+hpc:User a owl:Class .
+hpc:Associations a owl:ObjectProperty ;
+  rdfs:domain hpc:User .
+hpc:Default a owl:Class ;
+  rdfs:subClassOf hpc:User ;
+  rdfs:comment "default user" .
+hpc:AdministratorLevel a owl:DatatypeProperty ;
+  rdfs:domain hpc:User .
+hpc:OldName a owl:DatatypeProperty ;
+  rdfs:domain hpc:User .
+hpc:WCKeys a owl:Class ;
+  rdfs:subClassOf hpc:User .
+hpc:Coordinators a owl:ObjectProperty ;
+  rdfs:domain hpc:User .
+hpc:Flags a owl:DatatypeProperty ;
+  rdfs:domain hpc:User .
+hpc:Name a owl:DatatypeProperty ;
+  rdfs:domain hpc:User .
+
+hpc:WCKey a owl:Class .
+hpc:Cluster a owl:DatatypeProperty ;
+  rdfs:domain hpc:WCKey .
+hpc:Name a owl:DatatypeProperty ;
+  rdfs:domain hpc:WCKey .
+hpc:Flags a owl:DatatypeProperty ;

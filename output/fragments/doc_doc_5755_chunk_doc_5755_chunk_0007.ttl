@@ -1,0 +1,52 @@
+hpc:SingleCommandJobUpdate a owl:Class .
+hpc:SingleCommandJobUpdate rdfs:subClassOf hpc:Job .
+
+hpc:SlurmJobID a owl:DatatypeProperty .
+hpc:SlurmJobID rdfs:domain hpc:Job .
+hpc:SlurmJobID rdfs:range xsd:string .
+
+hpc:UserStdoutWrite a owl:ObjectProperty .
+hpc:UserStdoutWrite rdfs:domain hpc:Job .
+hpc:UserStdoutWrite rdfs:range rdf:Resource .
+
+hpc:JobCompletionIssue a owl:Class .
+hpc:JobCompletionIssue rdfs:subClassOf hpc:Job .
+
+hpc:JobExitCodeSpecificRequeue a owl:ObjectProperty .
+hpc:JobExitCodeSpecificRequeue rdfs:domain hpc:Job .
+hpc:JobExitCodeSpecificRequeue rdfs:range rdf:Resource .
+
+# Troubleshooting
+hpc:SlurmDaemonCoreDump a owl:Class .
+hpc:SlurmDaemonCoreDump rdfs:subClassOf hpc:TroubleshootingIssue .
+
+hpc:CoreFileLocation a owl:DatatypeProperty .
+hpc:CoreFileLocation rdfs:domain hpc:SlurmDaemonCoreDump .
+hpc:CoreFileLocation rdfs:range xsd:string .
+
+hpc:BacktraceFromCoreFile a owl:ObjectProperty .
+hpc:BacktraceFromCoreFile rdfs:domain hpc:SlurmDaemonCoreDump .
+hpc:BacktraceFromCoreFile rdfs:range rdf:Resource .
+
+# Error Messages
+hpc:CredentialReplay a owl:Class .
+hpc:CredentialReplay rdfs:subClassOf hpc:ErrorMessage .
+
+hpc:InvalidJobCredential a owl:Class .
+hpc:InvalidJobCredential rdfs:subClassOf hpc:ErrorMessage .
+
+hpc:TooManyOpenFiles a owl:Class .
+hpc:TooManyOpenFiles rdfs:subClassOf hpc:ErrorMessage .
+
+hpc:SlurmdDebugLoggingIssue a owl:Class .
+hpc:SlurmdDebugLoggingIssue rdfs:subClassOf hpc:ErrorMessage .
+
+hpc:BatchJobIdMissing a owl:Class .
+hpc:BatchJobIdMissing rdfs:subClassOf hpc:ErrorMessage .
+
+hpc:MultiInstanceGPUIssue a owl:Class .
+hpc:MultiInstanceGPUIssue rdfs:subClassOf hpc:ErrorMessage .
+
+hpc:SrunConnectionError a owl:Class .
+hpc:SrunConnectionError rdfs:subClassOf hpc:ErrorMessage .
+```

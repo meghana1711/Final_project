@@ -1,0 +1,75 @@
+# Cluster
+hpc:Cluster a owl:Class .
+
+# Slurm Workload Manager
+hpc:SlurmWorkloadManager a owl:Class .
+
+# Version
+hpc:Version a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range xsd:string .
+
+# Configuration
+hpc:Configuration a owl:Class .
+
+# GRES
+hpc:GRES a owl:Class .
+
+# Generic Resource (GRES)
+hpc:GenericResource a owl:Class ;
+    rdfs:subClassOf hpc:GRES .
+
+# GPU
+hpc:GPU a owl:Class ;
+    rdfs:subClassOf hpc:GenericResource .
+
+# MPS
+hpc:MPS a owl:Class ;
+    rdfs:subClassOf hpc:GenericResource .
+
+# MIG Management
+hpc:MIGManagement a owl:Class ;
+    rdfs:subClassOf hpc:GenericResource .
+
+# Sharding
+hpc:Sharding a owl:Class ;
+    rdfs:subClassOf hpc:GenericResource .
+
+# Configuration Parameters
+hpc:GresTypes a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:List .
+
+hpc:Gres a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:List .
+
+hpc:GresType a owl:DatatypeProperty ;
+    rdfs:domain hpc:GRES ;
+    rdfs:range xsd:string .
+
+hpc:Count a owl:DatatypeProperty ;
+    rdfs:domain hpc:GRES ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Type a owl:DatatypeProperty ;
+    rdfs:domain hpc:GPU ;
+    rdfs:range xsd:string .
+
+hpc:Model a owl:DatatypeProperty ;
+    rdfs:domain hpc:GPU ;
+    rdfs:range xsd:string .
+
+hpc:Cores a owl:DatatypeProperty ;
+    rdfs:domain hpc:GRES ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:DeviceFiles a owl:DatatypeProperty ;
+    rdfs:domain hpc:GRES ;
+    rdfs:range xsd:string .
+
+hpc:no_consume a owl:ObjectProperty ;
+    rdfs:domain hpc:GRES ;
+    rdfs:range hpc:GenericResource .
+
+# Job

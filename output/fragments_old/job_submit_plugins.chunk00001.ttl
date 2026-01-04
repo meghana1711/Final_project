@@ -1,0 +1,42 @@
+# Slurm Workload Manager
+hpc:SlurmWorkloadManager a owl:Class .
+
+# Plugin
+hpc:Plugin a owl:Class ;
+  rdfs:subClassOf hpc:SlurmWorkloadManager ;
+  rdfs:comment "A plugin for Slurm Workload Manager." .
+
+hpc:pluginName a owl:DatatypeProperty ;
+  rdfs:domain hpc:Plugin ;
+  rdfs:range xsd:string .
+
+hpc:pluginType a owl:DatatypeProperty ;
+  rdfs:domain hpc:Plugin ;
+  rdfs:range xsd:string .
+
+hpc:pluginVersion a xsd:unsignedInt .
+
+# Job Submit Plugin
+hpc:JobSubmitPlugin a owl:Class ;
+  rdfs:subClassOf hpc:Plugin .
+
+hpc:init a owl:ObjectProperty ;
+  rdfs:domain hpc:JobSubmitPlugin ;
+  rdfs:range xsd:integer .
+
+hpc:fini a owl:ObjectProperty ;
+  rdfs:domain hpc:JobSubmitPlugin ;
+  rdfs:range xsd:void .
+
+hpc:job_submit a owl:ObjectProperty ;
+  rdfs:domain hpc:JobSubmitPlugin ;
+  rdfs:range xsd:integer .
+
+hpc:job_modify a owl:ObjectProperty ;
+  rdfs:domain hpc:JobSubmitPlugin ;
+  rdfs:range xsd:integer .
+
+# Lua Functions
+hpc:LuaFunction a owl:Class ;
+  rdfs:subClassOf hpc:JobSubmitPlugin .
+```

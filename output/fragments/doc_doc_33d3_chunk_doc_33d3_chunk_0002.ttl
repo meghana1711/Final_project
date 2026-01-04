@@ -1,0 +1,76 @@
+hpc:JobSubmission a owl:Class .
+hpc:validateOptions a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmission ;
+    rdfs:range xsd:Boolean .
+
+hpc:hasHighestPriority a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmission ;
+    rdfs:range xsd:Boolean .
+
+hpc:allocateResources a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmission ;
+    rdfs:range hpc:ResourceAllocation .
+
+hpc:determineNodes a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmission ;
+    rdfs:range hpc:NodeSet .
+
+hpc:useExclusiveOR a owl:ObjectProperty ;
+    rdfs:domain hpc:NodeSet ;
+    rdfs:range xsd:Boolean .
+
+hpc:selectResources a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmission ;
+    rdfs:range hpc:ResourceAllocation .
+
+hpc:jobStepUsesAllResources a owl:ObjectProperty ;
+    rdfs:domain hpc:ResourceAllocation ;
+    rdfs:range xsd:Boolean .
+
+hpc:supportJobStepDependencies a owl:ObjectProperty ;
+    rdfs:domain hpc:ResourceAllocation ;
+    rdfs:range xsd:Boolean .
+
+hpc:hasDigitalSignature a owl:DatatypeProperty ;
+    rdfs:domain hpc:ResourceAllocation ;
+    rdfs:range xsd:string .
+
+hpc:TaskLaunch a owl:Class .
+
+hpc:srunCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:TaskLaunch ;
+    rdfs:range xsd:string .
+
+hpc:buildTaskLaunchRequest a owl:ObjectProperty ;
+    rdfs:domain hpc:TaskLaunch ;
+    rdfs:range hpc:TaskLaunchRequest .
+
+hpc:hasCredential a owl:DatatypeProperty ;
+    rdfs:domain hpc:TaskLaunchRequest ;
+    rdfs:range xsd:string .
+
+hpc:hasExecutableName a owl:DatatypeProperty ;
+    rdfs:domain hpc:TaskLaunchRequest ;
+    rdfs:range xsd:string .
+
+hpc:hasFileName a owl:DatatypeProperty ;
+    rdfs:domain hpc:TaskLaunchRequest ;
+    rdfs:range xsd:string .
+
+hpc:sendToSlurmdDaemon a owl:ObjectProperty ;
+    rdfs:domain hpc:TaskLaunchRequest ;
+    rdfs:range xsd:string .
+
+hpc:TreeWidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:TaskLaunchRequest ;
+    rdfs:range xsd:integer .
+
+hpc:validateSignature a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdDaemon ;
+    rdfs:range xsd:Boolean .
+
+hpc:forwardRequest a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdDaemon ;
+    rdfs:range hpc:TaskLaunchRequest .
+
+hpc:spawnSlurmstepd a

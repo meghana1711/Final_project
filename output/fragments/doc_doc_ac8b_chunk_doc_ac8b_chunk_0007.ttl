@@ -1,0 +1,55 @@
+hpc:Job3 a owl:Class .
+
+hpc:MAX a owl:ObjectProperty ;
+    rdfs:domain hpc:Job3 ;
+    rdfs:range xsd:decimal .
+
+hpc:MAX_TRES a owl:ObjectProperty ;
+    rdfs:domain hpc:Job3 ;
+    rdfs:range xsd:boolean .
+
+hpc:MAX_TRES_GRES a owl:ObjectProperty ;
+    rdfs:domain hpc:Job3 ;
+    rdfs:range xsd:boolean .
+
+hpc:billableTRES a owl:ObjectProperty ;
+    rdfs:domain hpc:Job3 ;
+    rdfs:range xsd:decimal .
+
+hpc:cpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job3 ;
+    rdfs:range xsd:decimal .
+
+hpc:mem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job3 ;
+    rdfs:range xsd:decimal .
+
+hpc:gres a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job3 ;
+    rdfs:range xsd:decimal .
+
+hpc:licenses a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job3 ;
+    rdfs:range xsd:decimal .
+
+hpc:FairTree a owl:Class .
+hpc:Classic a owl:Class .
+
+hpc:sprio a owl:ObjectProperty ;
+    rdfs:domain hpc:Job3 ;
+    rdfs:range rdf:Resource .
+
+hpc:PriorityType a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmConf ;
+    rdfs:range xsd:string .
+
+hpc:PriorityWeightAge a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:decimal .
+
+hpc:PriorityWeightFairshare a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:decimal .
+
+hpc:SlurmConf a owl:Class .
+```

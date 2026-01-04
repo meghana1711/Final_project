@@ -1,0 +1,29 @@
+hpc:WCKeyRequestBody a owl:Class .
+hpc:WCKeyResponseBody a owl:Class .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:WCKeyRequestBody ;
+    rdfs:range rdfs:Resource .
+
+hpc:hasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:WCKeyRequestBody ;
+    rdfs:range rdfs:Resource ;
+    rdfs:subPropertyOf hpc:hasContent .
+
+hpc:hasSchemaRef a owl:ObjectProperty ;
+    rdfs:domain hpc:WCKeyRequestBody ;
+    rdfs:range xsd:string .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:WCKeyResponseBody ;
+    rdfs:range rdfs:Resource .
+
+hpc:hasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:WCKeyResponseBody ;
+    rdfs:range rdfs:Resource ;
+    rdfs:subPropertyOf hpc:hasContent .
+
+hpc:hasSchemaRef a owl:ObjectProperty ;
+    rdfs:domain hpc:WCKeyResponseBody ;
+    rdfs:range xsd:string .
+```

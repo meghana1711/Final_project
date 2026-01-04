@@ -1,0 +1,41 @@
+hpc:Job a owl:Class .
+hpc:UserJob hpc:Job rdfs:subClassOf hpc:Job .
+hpc:AccountJob hpc:Job rdfs:subClassOf hpc:Job .
+
+hpc:ActiveJobs a owl:Class .
+hpc:ActiveUserJobs a owl:Class, rdfs:subClassOf hpc:ActiveJobs .
+hpc:ActiveAccountJobs a owl:Class, rdfs:subClassOf hpc:ActiveJobs .
+
+hpc:Accruing a owl:Class .
+hpc:AccruingUserJobs a owl:Class, rdfs:subClassOf hpc:Accruing .
+hpc:AccruingAccountJobs a owl:Class, rdfs:subClassOf hpc:Accruing .
+
+hpc:Tres a owl:Class .
+hpc:TresTotal a owl:ObjectProperty, rdfs:domain hpc:Tres .
+hpc:TresTotalName datatype xsd:string .
+hpc:TresTotalCount datatype xsd:nonNegativeInteger .
+hpc:TresTotalId datatype xsd:nonNegativeInteger .
+hpc:TresTotalType datatype xsd:string .
+
+hpc:TresMinutes a owl:Class .
+hpc:TresMinutesTotal a owl:ObjectProperty, rdfs:domain hpc:TresMinutes .
+hpc:TresMinutesTotalName datatype xsd:string .
+hpc:TresMinutesTotalCount datatype xsd:nonNegativeInteger .
+hpc:TresMinutesTotalId datatype xsd:nonNegativeInteger .
+hpc:TresMinutesTotalType datatype xsd:string .
+hpc:TresMinutesQos a owl:ObjectProperty, rdfs:domain hpc:TresMinutes .
+hpc:TresMinutesQosName datatype xsd:string .
+hpc:TresMinutesQosCount datatype xsd:nonNegativeInteger .
+hpc:TresMinutesQosId datatype xsd:nonNegativeInteger .
+hpc:TresMinutesQosType datatype xsd:string .
+hpc:TresMinutesJob a owl:ObjectProperty, rdfs:domain hpc:TresMinutes .
+hpc:TresMinutesJobName datatype xsd:string .
+hpc:TresMinutesJobCount datatype xsd:nonNegativeInteger .
+hpc:TresMinutesJobId datatype xsd:nonNegativeInteger .
+hpc:TresMinutesJobType datatype xsd:string .
+hpc:TresMinutesUser a owl:ObjectProperty, rdfs:domain hpc:TresMinutes .
+hpc:TresMinutesUserName datatype xsd:string .
+hpc:TresMinutesUserCount datatype xsd:nonNegativeInteger .
+hpc:TresMinutesUserId datatype xsd:nonNegativeInteger .
+hpc:TresMinutesUserType datatype xsd:string .
+hpc:TresMinutesAccount a owl:ObjectProperty,

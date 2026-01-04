@@ -1,0 +1,52 @@
+hpc:Federation a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Job a owl:Class .
+
+hpc:hasFederation a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Federation .
+
+hpc:hasJob a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster .
+
+hpc:hasUniqueID a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:isOrigin a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:isMemberOf a owl:ObjectProperty ;
+    rdfs:domain hpc:Federation ;
+    rdfs:range hpc:Cluster .
+
+hpc:addFederation a rdf:Property ;
+    rdfs:subClassOf owl:FunctionalProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range rdf:Statement ;
+    rdfs:comment "sacctmgr add federation <federation_name> [clusters=<list_of_clusters>]" .
+
+hpc:addClusterToFederation a rdf:Property ;
+    rdfs:subClassOf owl:FunctionalProperty ;
+    rdfs:domain rdf:Statement ;
+    rdfs:range rdf:Statement ;
+    rdfs:comment "sacctmgr modify federation <federation_name> set clusters[+-]=<list_of_clusters>" .
+
+hpc:removeClusterFromFederation a rdf:Property ;
+    rdfs:subClassOf owl:FunctionalProperty ;
+    rdfs:domain rdf:Statement ;
+    rdfs:range rdf:Statement ;
+    rdfs:comment "sacctmgr modify federation <federation_name> set clusters=" .
+
+hpc:setFederationForCluster a rdf:Property ;
+    rdfs:subClassOf owl:FunctionalProperty ;
+    rdfs:domain rdf:Statement ;
+    rdfs:range rdf:Statement ;
+    rdfs:comment "sacctmgr modify cluster <cluster_name> set federation=<federation_name>" .
+
+hpc:setFederationForClusterEmpty a rdf:Property ;
+    rdfs:subClassOf owl:FunctionalProperty ;
+    rdfs:domain rdf:Statement ;
+    rdfs:range rdf:Statement ;
+    rdfs:comment "sacctmgr modify cluster <cluster_name> set federation=" .
+```

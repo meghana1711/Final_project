@@ -1,0 +1,35 @@
+hpc:JobDeleteResponse a owl:Class .
+hpc:JobDeleteResponse hpc:hasWarnings hpc:Warning .
+hpc:Warning a owl:Class .
+hpc:Warning rdfs:subClassOf owl:Object .
+hpc:Warning hpc:hasSource rdf:Property .
+hpc:hasSource rdfs:domain hpc:Warning ;
+                      rdfs:range xsd:string .
+
+hpc:JobDeleteResponse hpc:hasErrors rdf:List .
+hpc:Error a owl:Class .
+hpc:Error rdfs:subClassOf owl:Object .
+hpc:Error hpc:hasDescription rdf:Property ;
+     hpc:hasError rdf:Property ;
+     hpc:hasErrorNumber rdf:Property ;
+     hpc:hasSource rdf:Property .
+hpc:hasDescription rdfs:domain hpc:Error ;
+             rdfs:range xsd:string .
+hpc:hasError rdfs:domain hpc:Error ;
+             rdfs:range xsd:string .
+hpc:hasErrorNumber rdfs:domain hpc:Error ;
+             rdfs:range xsd:int32 .
+hpc:hasSource rdfs:domain hpc:Error ;
+             rdfs:range xsd:string .
+
+hpc:JobDeleteResponse hpc:hasMeta rdf:Property .
+hpc:Meta a owl:Class .
+hpc:Meta hpc:hasClient rdf:Property .
+hpc:hasClient rdfs:domain hpc:Meta ;
+         rdfs:range hpc:Client .
+
+hpc:Client a owl:Class .
+hpc:Client hpc:hasGroup rdf:Property .
+hpc:hasGroup rdfs:domain hpc:Client ;
+         rdfs:range xsd:string .
+```

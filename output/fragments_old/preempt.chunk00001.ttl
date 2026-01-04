@@ -1,0 +1,60 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:Preemption a owl:Class .
+hpc:JobPreemptionLogic a owl:ObjectProperty .
+hpc:GangSchedulingLogic a owl:ObjectProperty .
+
+hpc:Partition a owl:Class .
+hpc:PriorityTier a owl:DatatypeProperty .
+hpc:QOS a owl:ObjectProperty .
+
+hpc:SelectType a owl:ObjectProperty .
+hpc:SelectTypeParameter a owl:DatatypeProperty .
+
+hpc:DefMemPerCPU a owl:DatatypeProperty .
+hpc:DefMemPerNode a owl:DatatypeProperty .
+hpc:MaxMemPerCPU a owl:DatatypeProperty .
+hpc:MaxMemPerNode a owl:DatatypeProperty .
+
+hpc:GraceTime a owl:DatatypeProperty .
+
+hpc:JobAcctGatherType a owl:DatatypeProperty .
+hpc:JobAcctGatherFrequency a owl:DatatypeProperty .
+
+hpc:PreemptMode a owl:ObjectProperty .
+hpc:PreemptType a owl:DatatypeProperty .
+
+hpc:CANCEL a owl:Class .
+hpc:GANG a owl:Class .
+hpc:OFF a owl:Class .
+hpc:REQUEUE a owl:Class .
+hpc:SUSPEND a owl:Class .
+
+hpc:PreemptableJob a owl:Class .
+hpc:HighPriorityJob a owl:Class .
+hpc:LowPriorityJob a owl:Class .
+
+hpc:PreemptableResource a owl:Class .
+hpc:Memory a owl:Class .
+
+hpc:SelectType rdfs:domain hpc:SlurmWorkloadManager .
+hpc:SelectTypeParameter rdfs:domain hpc:SelectType .
+hpc:DefMemPerCPU rdfs:domain hpc:SlurmWorkloadManager .
+hpc:DefMemPerNode rdfs:domain hpc:SlurmWorkloadManager .
+hpc:MaxMemPerCPU rdfs:domain hpc:SlurmWorkloadManager .
+hpc:MaxMemPerNode rdfs:domain hpc:SlurmWorkloadManager .
+hpc:GraceTime rdfs:domain hpc:Preemption .
+hpc:JobAcctGatherType rdfs:domain hpc:Preemption .
+hpc:JobAcctGatherFrequency rdfs:domain hpc:Preemption .
+hpc:PreemptMode rdfs:domain hpc:Preemption .
+hpc:PreemptType rdfs:domain hpc:SlurmWorkloadManager .
+
+hpc:CANCEL rdfs:subClassOf hpc:PreemptMode .
+hpc:GANG rdfs:subClassOf hpc:PreemptMode .
+hpc:OFF rdfs:subClassOf hpc:PreemptMode .
+hpc:REQUEUE rdfs:subClassOf hpc:PreemptMode .
+hpc:SUSPEND rdfs:subClassOf hpc:PreemptMode .
+
+hpc:PreemptableJob rdfs:subClassOf hpc:Job .
+hpc:HighPriorityJob rdfs:subClassOf hpc:Preempt

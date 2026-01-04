@@ -1,0 +1,65 @@
+hpc:AssociationFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:JobSizeFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:NiceFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:PartitionFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:QOSFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:FairShareFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+# Age related factors
+hpc:AgeFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:PriorityMaxAge a xsd:integer .
+
+# Association, Partition, QOS, and Site factors are normalized
+hpc:NormalizedFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Factor ;
+    rdfs:range xsd:decimal .
+
+# TRES factors
+hpc:TRESFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:GlobalTRESFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+# Priority flags
+hpc:PriorityFavorSmall a xsd:boolean .
+hpc:SMALL_RELATIVE_TO_TIME a xsd:boolean .
+hpc:NO_FAIR_TREE a xsd:boolean .
+hpc:MAX_TRES a xsd:boolean .
+hpc:MAX_TRES_GRES a xsd:boolean .
+
+# Job and Factor classes
+hpc:Job a owl:Class .
+hpc:Factor a owl:Class .
+hpc:Association a hpc:Factor .
+hpc:JobSize a hpc:Factor .
+hpc:Nice a hpc:Factor .
+hpc:Partition a hpc:Factor .
+hpc:QOS a hpc:Factor .
+hpc:FairShare a hpc:Factor .
+hpc:Age a hpc:Factor .
+hpc:TRES a hpc:Factor .
+hpc:GlobalTRES a hpc:Factor .
+```

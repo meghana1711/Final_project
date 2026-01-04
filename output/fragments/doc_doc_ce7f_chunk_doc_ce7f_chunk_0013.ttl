@@ -1,0 +1,53 @@
+hpc:Controller a owl:Class .
+hpc:hasStateInformation owl:DatatypeProperty .
+hpc:hasStateInformation rdfs:domain hpc:Controller .
+hpc:hasStateInformation rdfs:range xsd:boolean .
+
+hpc:Node a owl:Class .
+hpc:Node rdfs:subClassOf hpc:Resource .
+hpc:hasName owl:ObjectProperty .
+hpc:hasName rdfs:domain hpc:Node .
+hpc:hasName rdfs:range xsd:string .
+hpc:hasAddr owl:ObjectProperty .
+hpc:hasAddr rdfs:domain hpc:Node .
+hpc:hasAddr rdfs:range xsd:string .
+hpc:hasHostname owl:ObjectProperty .
+hpc:hasHostname rdfs:domain hpc:Node .
+hpc:hasHostname rdfs:range xsd:string .
+hpc:isInPartition owl:ObjectProperty .
+hpc:isInPartition rdfs:domain hpc:Node .
+hpc:isInPartition rdfs:range hpc:Partition .
+hpc:hasPartition rdf:List .
+hpc:hasPartition rdfs:domain hpc:Node .
+hpc:hasPartition rdfs:range hpc:Partition .
+hpc:Partition a owl:Class .
+hpc:Partition rdfs:subClassOf hpc:Resource .
+hpc:hasName owl:DatatypeProperty .
+hpc:hasName rdfs:domain hpc:Partition .
+hpc:hasName rdfs:range xsd:string .
+hpc:hasConstraints owl:ObjectProperty .
+hpc:hasConstraints rdfs:domain hpc:Partition .
+hpc:hasConstraints rdfs:range rdf:List .
+hpc:PartitionConstraint a owl:Class .
+hpc:PartitionConstraint rdfs:subClassOf hpc:ResourceConstraint .
+hpc:hasUser rdf:List .
+hpc:hasUser rdfs:domain hpc:PartitionConstraint .
+hpc:hasUser rdfs:range xsd:string .
+hpc:hasTimeLimit owl:DatatypeProperty .
+hpc:hasTimeLimit rdfs:domain hpc:PartitionConstraint .
+hpc:hasTimeLimit rdfs:range xsd:nonNegativeInteger .
+hpc:hasJobSizeLimit owl:DatatypeProperty .
+hpc:hasJobSizeLimit rdfs:domain hpc:PartitionConstraint .
+hpc:hasJobSizeLimit rdfs:range xsd:nonNegativeInteger .
+
+hpc:Cluster a owl:Class .
+hpc:hasNodeCount owl:DatatypeProperty .
+hpc:hasNodeCount rdfs:domain hpc:Cluster .
+hpc:hasNodeCount rdfs:range xsd:nonNegativeInteger .
+hpc:hasMinCPUs owl:DatatypeProperty .
+hpc:hasMinCPUs rdfs:domain hpc:Node .
+hpc:hasMinCPUs rdfs:range xsd:nonNegativeInteger .
+hpc:hasMinRealMemory owl:DatatypeProperty .
+hpc:hasMinRealMemory rdfs:domain hpc:Node .
+hpc:hasMinRealMemory rdfs:range xsd:nonNegativeInteger .
+hpc:hasMinTmpDisk owl:DatatypeProperty .

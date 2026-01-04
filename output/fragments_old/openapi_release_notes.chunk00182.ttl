@@ -1,0 +1,37 @@
+hpc:DeleteResponse a owl:Class .
+hpc:OpenapiResponse a owl:Class .
+hpc:SlurmdbUser a owl:Class .
+hpc:SlurmdbUsers a owl:Class .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:DeleteResponse ;
+    rdfs:range rdf:Resource .
+
+hpc:hasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:DeleteResponse ;
+    rdfs:range hpc:OpenapiResponse .
+
+hpc:OpenapiResp a hpc:OpenapiResponse .
+hpc:v0_0_40_openapi_resp a hpc:OpenapiResp .
+
+hpc:SlurmdbV0_0_40User a hpc:SlurmdbUser .
+hpc:SlurmdbV0_0_40Users a hpc:SlurmdbUsers .
+
+hpc:hasName a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmdbV0_0_40User .
+    rdfs:range xsd:string .
+
+hpc:hasResponse a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbV0_0_40User ;
+    rdfs:range hpc:DeleteResponse .
+
+hpc:get a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbV0_0_40Users ;
+    rdfs:range hpc:DeleteResponse ;
+    rdfs:subPropertyOf hpc:hasResponse .
+
+hpc:post a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbV0_0_40Users ;
+    rdfs:range hpc:DeleteResponse ;
+    rdfs:subPropertyOf hpc:hasResponse .
+```

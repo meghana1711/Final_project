@@ -1,0 +1,27 @@
+hpc:Node a owl:Class .
+hpc:Socket a owl:Class .
+hpc:Core a owl:Class .
+hpc:Thread a owl:Class .
+hpc:TaskID a owl:Class .
+hpc:CPU_Bind a owl:ObjectProperty .
+
+hpc:Node rdfs:subClassOf owl:Class .
+hpc:Socket rdfs:subClassOf hpc:Node .
+hpc:Core rdfs:subClassOf hpc:Socket .
+hpc:Thread rdfs:subClassOf hpc:Core .
+hpc:TaskID rdfs:subClassOf owl:Class .
+hpc:CPU_Bind rdfs:domain hpc:TaskID ;
+                               rdfs:range xsd:string .
+
+hpc:p00x01 a hpc:TaskID ;
+           hpc:CPU_Bind "0x02" .
+hpc:p20x10 a hpc:TaskID ;
+           hpc:CPU_Bind "0x20" .
+hpc:c0c1 a hpc:TaskID .
+hpc:p10x04 a hpc:TaskID ;
+           hpc:CPU_Bind "0x08" .
+hpc:p30x40 a hpc:TaskID ;
+           hpc:CPU_Bind "0x80" .
+```
+
+This ontology fragment represents the classes `Node`, `Socket`, `Core`, `Thread`, and `TaskID`, as well as the `CPU_Bind` object property that connects a `TaskID` to its CPU binding string. The given task IDs and their CPU bindings are also included as instances of the `TaskID` class.

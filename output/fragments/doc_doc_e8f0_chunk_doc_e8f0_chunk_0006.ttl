@@ -1,0 +1,36 @@
+hpc:JobModify a owl:Function ;
+    rdfs:subClassOf hpc:Function .
+
+hpc:JobModify rdfs:subClassOf hpc:SlurmFunction .
+
+hpc:job_desc a owl:Class ;
+    rdfs:subClassOf hpc:SlurmJobAttribute .
+
+hpc:job_ptr a owl:Class ;
+    rdfs:subClassOf hpc:SlurmJobAttribute .
+
+hpc:part_list a owl:Class .
+
+hpc:modify_uid a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobModify ;
+    rdfs:range xsd:integer .
+
+hpc:job_desc_msg a owl:Class ;
+    rdfs:subClassOf hpc:JobModifyParameter .
+
+hpc:job_record a owl:Class ;
+    rdfs:subClassOf hpc:SlurmJobAttribute .
+
+hpc:SlurmJobAttribute rdfs:subClassOf owl:NamedIndividual .
+
+hpc:SlurmFunction rdfs:subClassOf owl:Function .
+
+hpc:SlurmError a owl:Class ;
+    rdfs:subClassOf hpc:ESLURM .
+
+hpc:ESLURM rdf:type owl:Class ;
+    rdfs:subClassOf hpc:SlurmError ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:NO_VAL a xsd:integer .
+```

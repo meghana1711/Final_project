@@ -1,0 +1,76 @@
+# Slurm Workload Manager
+hpc:SlurmWorkloadManager a owl:Class .
+
+# Version
+hpc:Version a owl:DatatypeProperty .
+rdfs:domain hpc:SlurmWorkloadManager .
+rdfs:range xsd:string .
+
+# About
+hpc:Overview a owl:Class .
+hpc:ReleaseNotes a owl:Class .
+
+# Using
+hpc:Documentation a owl:Class .
+hpc:FAQ a owl:Class .
+
+# Installing
+hpc:Download a owl:ObjectProperty .
+rdfs:domain hpc:SlurmWorkloadManager .
+rdfs:range xsd:anyURI .
+
+# Related Software
+hpc:RelatedSoftware a owl:Class .
+
+# Authentication plugins
+hpc:MUNGE a owl:Class .
+hpc:AUKS a owl:Class .
+
+# Databases
+hpc:MySQL a owl:Class .
+hpc:MariaDB a owl:Class .
+
+# DRMAA
+hpc:DRMAA a owl:Class .
+
+# Hardware topology
+hpc:hwloc a owl:Class .
+
+# Hostlist
+hpc:Hostlist a owl:Class .
+
+# MPI versions
+hpc:IntelMPI a owl:Class .
+hpc:MPICH a owl:Class .
+hpc:MVAPICH a owl:Class .
+hpc:OpenMPI a owl:Class .
+
+# Command wrappers
+hpc:MauiMoabShowqCommandWrapper a owl:Class .
+
+# Scripting interfaces
+hpc:PerlInterface a owl:Class .
+hpc:PySlurm a owl:Class .
+hpc:PythonHostlistExpander a owl:Class .
+
+# SPANK Plugins
+hpc:SPANK a owl:Class .
+
+# Node Health Check
+hpc:LBNLNodeHealthCheck a owl:Class .
+
+# Accounting Tools
+hpc:UBMoD a owl:Class .
+hpc:XDMoD a owl:Class .
+
+# STUBL
+hpc:STUBL a owl:Class .
+hpc:pestat a owl:Class .
+hpc:GraphicalSdiag a owl:Class .
+
+# JSON
+hpc:JSON a owl:Class .
+
+# HTTP Parser
+hpc:libhttp_parser a owl:Class .
+```

@@ -1,0 +1,24 @@
+hpc:Cluster a owl:Class .
+hpc:Response a owl:Class .
+hpc:OpenapiClustersRemovedResp a hpc:Response .
+hpc:OpenapiClustersResp a hpc:Response .
+
+# Deletion response properties
+hpc:status a owl:DatatypeProperty ;
+    rdfs:domain hpc:Response ;
+    rdfs:range xsd:string .
+hpc:content a owl:ObjectProperty ;
+    rdfs:domain hpc:Response ;
+    rdfs:range xsd:anyURI .
+
+# GET response properties
+hpc:data a owl:ObjectProperty ;
+    rdfs:domain hpc:Response ;
+    rdfs:range hpc:Cluster .
+
+# Cluster hasName and hasID properties
+hpc:hasName a owl:ObjectProperty .
+hpc:hasID a owl:ObjectProperty .
+```
+
+This ontology fragment represents the classes `Cluster`, `Response`, `OpenapiClustersRemovedResp`, and `OpenapiClustersResp`. It also includes properties for the status, content, data, hasName, and hasID of responses and clusters. The properties are defined as datatype properties or object properties with their respective domains and ranges.

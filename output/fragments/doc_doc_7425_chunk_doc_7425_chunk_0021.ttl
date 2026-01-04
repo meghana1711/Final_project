@@ -1,0 +1,65 @@
+hpc:Job a owl:Class .
+hpc:LastBackfill a xsd:dateTime .
+hpc:LastUpdate a xsd:dateTime .
+
+hpc:OpenapiJobInfoResp a owl:Class .
+hpc:OpenapiNodesResp a owl:Class .
+hpc:OpenapiPartitionResp a owl:Class .
+hpc:OpenapiReservationResp a owl:Class .
+hpc:OpenapiLicensesResp a owl:Class .
+
+hpc:SlurmdbdPlugin a owl:Class .
+
+hpc:ExitCode a xsd:integer .
+hpc:DerivedExitCode a xsd:integer .
+
+hpc:Step a owl:Class .
+hpc:StepID a xsd:string .
+
+hpc:Assoc a owl:Class .
+hpc:Accounting a xsd:string .
+hpc:Id a xsd:string .
+hpc:Comment a xsd:string .
+
+hpc:Usage a xsd:string .
+
+hpc:OpenapiAccountsAddCondRespStr a owl:Datatype .
+hpc:OpenapiAccountsAddCondResp a owl:Class .
+hpc:OpenapiUsersAddCondRespStr a owl:Datatype .
+hpc:OpenapiUsersAddCondResp a owl:Class .
+
+hpc:Slurmdb a owl:Class .
+hpc:Slurmdb v0.0.40 rdf:type hpc:SlurmdbdPlugin ;
+                          hpc:swappedJobExitCodes true .
+
+hpc:Job rdfs:subClassOf hpc:Step .
+hpc:Job rdfs:subClassOf hpc:OpenapiJobInfoResp ;
+                             rdfs:subClassOf hpc:OpenapiNodesResp ;
+                             rdfs:subClassOf hpc:OpenapiPartitionResp ;
+                             rdfs:subClassOf hpc:OpenapiReservationResp ;
+                             rdfs:subClassOf hpc:OpenapiLicensesResp .
+
+hpc:Step rdfs:domain hpc:Job ;
+         rdfs:range hpc:Step .
+
+hpc:Job rdfs:domain hpc:Slurmdb ;
+      rdfs:range hpc:Job .
+
+hpc:OpenapiJobInfoResp rdfs:subClassOf hpc:Job ;
+                        rdfs:domain hpc:Slurmdb ;
+                        rdfs:range hpc:Job .
+
+hpc:OpenapiNodesResp rdfs:subClassOf hpc:Job ;
+                      rdfs:domain hpc:Slurmdb ;
+                      rdfs:range hpc:Job .
+
+hpc:OpenapiPartitionResp rdfs:subClassOf hpc:Job ;
+                          rdfs:domain hpc:Slurmdb ;
+                          rdfs:range hpc:Job .
+
+hpc:OpenapiReservationResp rdfs:subClassOf hpc:Job ;
+                             rdfs:domain hpc:Slurmdb ;
+                             rdfs:range hpc:Job .
+
+hpc:OpenapiLicensesResp rdfs:subClassOf hpc:Job ;
+                          rdfs:domain hpc:Slurmdb ;

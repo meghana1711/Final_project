@@ -1,0 +1,59 @@
+hpc:FileMax a owl:Class .
+hpc:fileMax rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:SystemSpecs ;
+    rdfs:range xsd:integer .
+
+hpc:OpenFiles a owl:Class ;
+    rdfs:subClassOf hpc:FileMax .
+
+hpc:Workload a owl:Class ;
+    rdfs:subClassOf hpc:FileMax .
+
+hpc:MinimumFileMax a owl:Class ;
+    rdfs:subClassOf hpc:FileMax .
+
+hpc:TcpMaxSynBacklog a owl:Class .
+hpc:tcpMaxSynBacklog rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Server ;
+    rdfs:range xsd:integer .
+
+hpc:Overload a owl:Class ;
+    rdfs:subClassOf hpc:Server .
+
+hpc:Somaxconn a owl:Class .
+hpc:somaxconn rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Socket ;
+    rdfs:range xsd:integer .
+
+hpc:BurstRequests a owl:Class ;
+    rdfs:subClassOf hpc:Somaxconn .
+
+hpc:Txqueuelen a owl:Class .
+hpc:txqueuelen rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:NetworkInterface ;
+    rdfs:range xsd:integer .
+
+hpc:LargeCluster a owl:Class .
+hpc:ifconfigCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:LargeCluster ;
+    rdfs:range rdf:PlainLiteral .
+
+hpc:ThreadLimit a owl:Class .
+hpc:processOrInitScript a owl:Class ;
+    rdfs:subClassOf hpc:ThreadLimit .
+
+hpc:PIDSCgroupController a owl:Class .
+hpc:systemdVersion a owl:DatatypeProperty ;
+    rdfs:domain hpc:PIDSCgroupController ;
+    rdfs:range rdf:PlainLiteral .
+
+hpc:ThreadsProcessesLimit a owl:Class ;
+    rdfs:subClassOf hpc:PIDSCgroupController .
+
+hpc:SLES12SP2 a owl:Class .
+hpc:CraySystems a owl:Class ;
+    rdfs:subClassOf hpc:SLES12SP2 .
+
+hpc:CLE60UP04 a owl:Class ;
+    rdfs:subClassOf hpc:CraySystems .
+```

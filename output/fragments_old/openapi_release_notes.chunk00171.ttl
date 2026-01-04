@@ -1,0 +1,32 @@
+hpc:SlurmdbClusterResponse a owl:Class .
+hpc:SlurmdbConfigResponse a owl:Class .
+
+hpc:v0_0_40_openapi_resp rdfs:subClassOf hpc:SlurmdbClusterResponse .
+hpc:v0_0_40_openapi_slurmdbd_config_resp rdfs:subClassOf hpc:SlurmdbConfigResponse .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbClusterResponse ;
+    rdfs:range rdf:Resource .
+
+hpc:hasContentSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbClusterResponse ;
+    rdfs:range rdf:Resource .
+
+hpc:hasApplicationYAMLContentSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbClusterResponse ;
+    rdfs:range rdf:Resource ;
+    owl:sameAs hpc:hasContentSchema .
+
+hpc:hasDefaultContent a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbClusterResponse ;
+    rdfs:range rdf:Resource .
+
+hpc:hasApplicationYAMLDefaultContentSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdbClusterResponse ;
+    rdfs:range rdf:Resource ;
+    owl:sameAs hpc:hasDefaultContentSchema .
+
+hpc:hasConfigResponse a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmdb .
+    rdfs:range hpc:SlurmdbConfigResponse .
+```

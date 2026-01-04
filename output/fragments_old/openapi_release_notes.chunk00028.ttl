@@ -1,0 +1,48 @@
+hpc:PartitionInfo a owl:Class .
+
+hpc:Job a owl:Class ;
+  rdfs:subClassOf hpc:PartitionInfo ;
+  rdfs:comment "32 bit integer number with flags" .
+
+hpc:OverTimeLimit a owl:DatatypeProperty ;
+  rdfs:domain hpc:PartitionInfo ;
+  rdfs:range xsd:unsignedShort ;
+  rdfs:comment "OverTimeLimit - Number of minutes by which a job can exceed its time limit before being canceled (16 bit integer number with flags)" .
+
+hpc:oversubscribe a owl:DatatypeProperty ;
+  rdfs:domain hpc:PartitionInfo ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Controls the ability of the partition to execute more than one job at a time on each resource" ;
+  rdfs:subPropertyOf hpc:oversubscribeFlags .
+
+hpc:oversubscribeFlags a owl:ObjectProperty ;
+  rdfs:domain hpc:PartitionInfo ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Flags for oversubscribe property" ;
+  rdfs:subPropertyOf rdf:list .
+
+hpc:oversubscribeFlagsItems a owl:Class ;
+  rdfs:subClassOf xsd:string .
+
+hpc:MaxMemPerCPU a owl:DatatypeProperty ;
+  rdfs:domain hpc:PartitionInfo ;
+  rdfs:range xsd:unsignedLong ;
+  rdfs:comment "MaxMemPerCPU - Maximum real memory size available per allocated CPU in megabytes (64 bit integer number with flags)" .
+
+hpc:MaxMemPerNode a owl:DatatypeProperty ;
+  rdfs:domain hpc:PartitionInfo ;
+  rdfs:range xsd:unsignedLong ;
+  rdfs:comment "MaxMemPerNode - Maximum real memory size available per allocated node in a job allocation in megabytes (64 bit integer number with flags)" .
+
+hpc:Shares a owl:DatatypeProperty ;
+  rdfs:domain hpc:PartitionInfo ;
+  rdfs:range xsd:string ;
+  rdfs:comment "OverSubscribe - Controls the ability of the partition to execute more than one job at a time on each resource" .
+
+hpc:MaxTime a owl:DatatypeProperty ;
+  rdfs:domain hpc:PartitionInfo ;
+  rdfs:range xsd:unsignedShort ;
+  rdfs:comment "MaxTime - Maximum run time limit for jobs (32 bit integer number with flags)" .
+
+hpc:MinNodes a owl:DatatypeProperty ;
+  rdfs:domain hpc:

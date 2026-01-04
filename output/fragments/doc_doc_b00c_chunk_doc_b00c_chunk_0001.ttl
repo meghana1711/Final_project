@@ -1,0 +1,35 @@
+hpc:ThreeDimensionalTorusInterconnect a owl:Class .
+hpc:CrayXT, hpc:CrayXE rdf:type hpc:ThreeDimensionalTorusInterconnect .
+
+hpc:HierarchicalNetwork a owl:Class .
+hpc:FatTree, hpc:Dragonfly rdf:type hpc:HierarchicalNetwork .
+
+hpc:ConfigurationGenerator a owl:Class .
+
+hpc:BlockTopology a owl:Class .
+
+hpc:ThreeDimensionalTopology rdfs:subClassOf hpc:Topology .
+hpc:HierarchicalTopology rdfs:subClassOf hpc:Topology .
+
+hpc:hasInterconnect a owl:ObjectProperty .
+hpc:hasInterconnect rdfs:domain hpc:Topology ;
+                        rdfs:range hpc:Interconnect .
+
+hpc:allocatesResourcesTo a owl:ObjectProperty .
+hpc:allocatesResourcesTo rdfs:domain hpc:Slurm ;
+                          rdfs:range hpc:Job .
+
+hpc:usesAlgorithm a owl:ObjectProperty .
+hpc:usesAlgorithm rdfs:domain hpc:Topology ;
+                   rdfs:range hpc:Algorithm .
+
+hpc:requiresAdjacentNodes a owl:ObjectProperty .
+hpc:requiresAdjacentNodes rdfs:domain hpc:ThreeDimensionalTorusInterconnect ;
+                            rdfs:range xsd:boolean .
+
+hpc:usesHilbertCurve a owl:ObjectProperty .
+hpc:usesHilbertCurve rdfs:domain hpc:ThreeDimensionalTorusInterconnect .
+
+hpc:minimizesNetworkContention a owl:ObjectProperty .
+hpc:minimizesNetworkContention rdfs:domain hpc:HierarchicalNetwork .
+```

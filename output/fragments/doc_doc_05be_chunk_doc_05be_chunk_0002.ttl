@@ -1,0 +1,47 @@
+hpc:SlurmCliFilterPlugin a owl:Class .
+hpc:pluginName a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmCliFilterPlugin ;
+    rdfs:range xsd:string .
+
+hpc:pluginType a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmCliFilterPlugin ;
+    rdfs:range xsd:string .
+
+hpc:pluginVersion a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmCliFilterPlugin ;
+    rdfs:range xsd:unsignedInt .
+
+hpc:isCliFilter a owl:ObjectProperty ;
+    rdfs:domain hpc:PluginType ;
+    rdfs:range rdfs:Literal ;
+    rdfs:range rdfs:Literal "cli_filter" .
+
+hpc:hasPluginName a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCliFilterPlugin ;
+    rdfs:range rdfs:Literal .
+
+hpc:hasPluginType a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCliFilterPlugin ;
+    rdfs:range rdfs:Literal .
+
+hpc:hasPluginVersion a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCliFilterPlugin ;
+    rdfs:range xsd:unsignedInt .
+
+hpc:init a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCliFilterPlugin ;
+    rdfs:range xsd:integer .
+
+hpc:fini a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCliFilterPlugin ;
+    rdfs:range xsd:integer .
+
+hpc:cliFilterP_setup_defaults a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCliFilterPlugin ;
+    rdfs:range rdf:Resource .
+
+hpc:SlurmOpt a owl:Class .
+hpc:early a owl:DatatypeProperty ;
+    rdfs:domain hpc:cliFilterP_setup_defaults ;
+    rdfs:range xsd:boolean .
+```

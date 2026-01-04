@@ -1,0 +1,18 @@
+hpc:BFResolution a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:unsignedLong .
+
+hpc:BFWindow a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:unsignedInt .
+
+hpc:BFYieldInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:unsignedLong .
+
+hpc:BFYieldSleep a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:unsignedLong .
+
+hpc:BackfillScheduler a owl:Class .
+```

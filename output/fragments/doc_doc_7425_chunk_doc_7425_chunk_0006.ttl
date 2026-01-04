@@ -1,0 +1,43 @@
+hpc:JobResource a owl:Class .
+hpc:select_type a owl:ObjectProperty .
+hpc:select_type rdfs:domain hpc:JobResource ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf owl:EnumeratedProperty ;
+  rdfs:range rdf:PlainLiteral .
+hpc:select_type rdf:type owl:FunctionalProperty ;
+hpc:select_type rdf:type owl:TransitiveProperty .
+hpc:select_type rdf:type owl:SymmetricProperty .
+
+hpc:JobResourceCore a owl:Class .
+hpc:status a owl:ObjectProperty .
+hpc:status rdfs:domain hpc:JobResourceCore ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf owl:EnumeratedProperty ;
+  rdfs:range rdf:List .
+hpc:status rdf:type owl:FunctionalProperty ;
+hpc:status rdf:type owl:TransitiveProperty .
+hpc:status rdf:type owl:SymmetricProperty .
+
+hpc:JobResourceCoreStatus a rdfs:Class .
+hpc:JobResourceCoreStatus rdf:type owl:Restriction ;
+  rdf:property hpc:status ;
+  rdf:type rdfs:Class .
+
+hpc:JobResources a owl:Class .
+hpc:JobShared a owl:Class .
+hpc:JobState a owl:Class .
+hpc:KillJobsMsg a owl:Class .
+hpc:MemoryBindingType a rdfs:Class .
+hpc:Node a owl:Class .
+hpc:CertFlags a owl:DatatypeProperty .
+hpc:CertFlags rdfs:domain hpc:Node ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf owl:EnumeratedProperty ;
+  rdfs:range rdf:List .
+hpc:CertFlags rdf:type owl:FunctionalProperty ;
+hpc:CertFlags rdf:type owl:TransitiveProperty .
+hpc:CertFlags rdf:type owl:SymmetricProperty .
+hpc:FreeMem a owl:DatatypeProperty .
+hpc:LastBusy a owl:DatatypeProperty .
+hpc:NextStateAfterReboot a owl:DatatypeProperty .
+```

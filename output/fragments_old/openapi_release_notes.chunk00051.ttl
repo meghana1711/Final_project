@@ -1,0 +1,36 @@
+hpc:ReservationDelete a owl:Operation ;
+    rdfs:subClassOf hpc:Operation ;
+    rdfs:comment "delete a reservation" ;
+    rdfs:label "delete" ;
+    rdfs:seeAlso <http://example.org/slurm/v0.0.40/reservation/{reservation_name}/delete> ;
+    hpc:summary "delete a reservation" ;
+    hpc:tags (hpc:slurm) ;
+    hpc:parameter hpc:reservation_name ;
+        rdfs:domain hpc:ReservationDelete ;
+        rdfs:range xsd:string ;
+        rdfs:comment "reservation name" ;
+        rdfs:label "reservation_name" ;
+        rdfs:required true ;
+        rdfs:style "simple" ;
+        hpc:in "path" ;
+        hpc:explode false ;
+        hpc:schema a owl:Class ;
+            rdfs:subClassOf xsd:string ;
+
+hpc:ReservationDeleteResult a owl:Class ;
+    rdfs:subClassOf hpc:OperationResult ;
+    rdfs:comment "reservation delete request result" ;
+    rdfs:label "ReservationDeleteResult" ;
+    hpc:content hpc:application_json ;
+        rdfs:domain hpc:ReservationDeleteResult ;
+        rdfs:range hpc:ReservationDeleteContent ;
+
+hpc:ReservationDeleteContent a owl:Class ;
+    rdfs:subClassOf hpc:OperationContent ;
+    rdfs:comment "content of reservation delete request result" ;
+    rdfs:label "ReservationDeleteContent" ;
+    hpc:schema a owl:Class ;
+        rdfs:subClassOf hpc:v0_0_40_openapi_resp ;
+```
+
+This ontology fragment represents the `ReservationDelete` operation and its result, as well as the `ReservationDeleteContent` class, which is the content of the `ReservationDeleteResult`. The `ReservationDelete` operation has a required parameter `reservation_name` of type `string`. The `ReservationDeleteResult` and `ReservationDeleteContent` classes are subclasses of `OperationResult` and `OperationContent` respectively, and their schema is a subclass of `v0_0_40_openapi_resp`.

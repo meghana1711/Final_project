@@ -1,0 +1,55 @@
+hpc:MVAPICH2 a owl:Class .
+hpc:Slurm a owl:Class .
+hpc:HPECrayPMI a owl:Class .
+hpc:CrayPMIPlugin a owl:Class .
+hpc:CrayShasta a owl:Class .
+
+hpc:upgradesSafe a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:boolean .
+
+hpc:requiresLibs a owl:ObjectProperty ;
+    rdfs:domain hpc:MVAPICH2 ;
+    rdfs:range xsd:string .
+
+hpc:forcibleLink a owl:ObjectProperty ;
+    rdfs:domain hpc:MVAPICH2 ;
+    rdfs:range xsd:boolean .
+
+hpc:usesAPIs a owl:ObjectProperty ;
+    rdfs:domain hpc:CrayPMIPlugin ;
+    rdfs:range xsd:string .
+
+hpc:changesFrequently a owl:DatatypeProperty ;
+    rdfs:domain hpc:APIs ;
+    rdfs:range xsd:boolean .
+
+hpc:notesInReleaseNotes a owl:DatatypeProperty ;
+    rdfs:domain hpc:APIs ;
+    rdfs:range xsd:string .
+
+hpc:requiresLibPals a owl:ObjectProperty ;
+    rdfs:domain hpc:CrayPMIPlugin ;
+    rdfs:range xsd:decimal .
+
+hpc:supportsMPMD a owl:ObjectProperty ;
+    rdfs:domain hpc:CrayPMIPlugin ;
+    rdfs:range xsd:boolean .
+
+hpc:requiresHeterogeneousJobs a owl:ObjectProperty ;
+    rdfs:domain hpc:CrayPMIPlugin ;
+    rdfs:range xsd:boolean .
+
+hpc:usesReservedPorts a owl:ObjectProperty ;
+    rdfs:domain hpc:CrayPMIPlugin ;
+    rdfs:range xsd:integer .
+
+hpc:PMIControlPort a owl:DatatypeProperty ;
+    rdfs:domain hpc:CrayPMIPlugin ;
+    rdfs:range xsd:integer .
+
+hpc:CrayPMIPlugin subClassOf hpc:CrayPMI .
+hpc:Slurm subClassOf hpc:HPCSoftware .
+hpc:MVAPICH2 subClassOf hpc:MPIStack .
+hpc:CrayShasta a hpc:CrayPMIPlugin ;
+```

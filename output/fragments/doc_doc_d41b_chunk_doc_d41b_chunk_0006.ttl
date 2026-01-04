@@ -1,0 +1,33 @@
+hpc:GrpSubmitJobs a owl:Class .
+hpc:GrpTRES a owl:Class .
+hpc:GrpTRESRunMins a owl:Class .
+hpc:GrpWall a owl:Class .
+
+hpc:hasSubmitJobLimit a owl:ObjectProperty ;
+    rdfs:domain hpc:GrpSubmitJobs ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasTRESLimit a owl:ObjectProperty ;
+    rdfs:domain hpc:GrpTRES ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasTRESRunMinsLimit a owl:ObjectProperty ;
+    rdfs:domain hpc:GrpTRESRunMins ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasWallClockTimeLimit a owl:ObjectProperty ;
+    rdfs:domain hpc:GrpWall ;
+    rdfs:range xsd:nonNegativeDuration .
+
+hpc:usesPriorityDecayHalfLife a owl:DatatypeProperty ;
+    rdfs:domain hpc:GrpTRES .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:usesPriorityUsageResetPeriod a owl:DatatypeProperty ;
+    rdfs:domain hpc:GrpTRES .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:isControlledByPriorityMultifactorPlugin a owl:ObjectProperty ;
+    rdfs:domain hpc:GrpTRES .
+    rdfs:range owl:Boolean .
+```

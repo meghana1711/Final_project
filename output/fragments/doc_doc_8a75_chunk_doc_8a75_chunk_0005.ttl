@@ -1,0 +1,22 @@
+hpc:JobArrayTask a owl:Class .
+
+hpc:slurmArrayTaskId a owl:ObjectProperty ;
+    rdfs:domain hpc:JobArrayTask ;
+    rdfs:range xsd:integer .
+
+hpc:slurmArrayJobId a owl:ObjectProperty ;
+    rdfs:domain hpc:JobArrayTask ;
+    rdfs:range xsd:integer .
+
+hpc:slurmArrayTaskMax a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobArrayTask ;
+    rdfs:range xsd:integer .
+
+hpc:slurmArrayTaskMin a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobArrayTask ;
+    rdfs:range xsd:integer .
+
+hpc:slurmArrayTaskStep a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobArrayTask ;
+    rdfs:range xsd:integer .
+```

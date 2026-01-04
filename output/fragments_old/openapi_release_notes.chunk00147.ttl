@@ -1,0 +1,58 @@
+hpc:JobAllocationResponse a owl:Class .
+hpc:JobAllocationRequest a owl:Class .
+hpc:JobSubmitResponse a owl:Class .
+hpc:JobSubmitRequest a owl:Class .
+
+hpc:jobAllocationResponseSchema rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobAllocationResponse ;
+    rdfs:range xsd:anyURI .
+
+hpc:jobAllocationRequestSchema rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobAllocationRequest ;
+    rdfs:range xsd:anyURI .
+
+hpc:jobSubmitResponseSchema rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmitResponse ;
+    rdfs:range xsd:anyURI .
+
+hpc:jobSubmitRequestSchema rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmitRequest ;
+    rdfs:range xsd:anyURI .
+
+hpc:v0_0_41_openapi_job_alloc_resp rdf:type owl:Class ;
+    rdfs:subClassOf hpc:JobAllocationResponse .
+
+hpc:v0_0_41_job_submit_req rdf:type owl:Class ;
+    rdfs:subClassOf hpc:JobSubmitRequest .
+
+hpc:v0_0_41_openapi_job_submit_response rdf:type owl:Class ;
+    rdfs:subClassOf hpc:JobSubmitResponse .
+
+hpc:SlurmJobAllocate a owl:Class ;
+    rdfs:subClassOf hpc:JobAllocationRequest ;
+    rdfs:subClassOf hpc:v0_0_41_job_submit_req .
+
+hpc:SlurmJobSubmit a owl:Class ;
+    rdfs:subClassOf hpc:JobSubmitRequest ;
+    rdfs:subClassOf hpc:v0_0_41_openapi_job_submit_response .
+
+hpc:SlurmJobAllocateResponse a owl:Class ;
+    rdfs:subClassOf hpc:JobAllocationResponse ;
+    rdfs:subClassOf hpc:v0_0_41_openapi_job_alloc_resp .
+
+hpc:SlurmJobSubmitResponse a owl:Class ;
+    rdfs:subClassOf hpc:JobSubmitResponse ;
+    rdfs:subClassOf hpc:v0_0_41_openapi_job_submit_response .
+
+# Paths and responses for SlurmJobAllocate
+hpc:SlurmJobAllocate a owl:Class ;
+    rdfs:subClassOf hpc:JobAllocationRequest ;
+    rdfs:subClassOf hpc:SlurmJobAllocateResponse .
+
+hpc:SlurmJobAllocate rdf:type owl:Class ;
+    hpc:jobAllocationRequestSchema rdf:type hpc:jobAllocationRequestSchema ;
+    hpc:jobAllocationResponseSchema rdf:type hpc:jobAllocationResponseSchema ;
+    rdfs:subClassOf hpc:SlurmJobAllocateResponse .
+
+hpc:SlurmJobAllocateResponse rdf:type owl:Class ;
+    rdfs:subClassOf h

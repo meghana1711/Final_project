@@ -1,0 +1,67 @@
+hpc:FederatedJob a owl:Class .
+hpc:JobID a xsd:string .
+
+hpc:OriginClusterID a xsd:string .
+hpc:LocalJobID a xsd:string .
+hpc:FederatedJobID a owl:DatatypeProperty ;
+    rdfs:domain hpc:FederatedJob ;
+    rdfs:range xsd:string .
+
+hpc:Cluster a owl:Class .
+hpc:ClusterName a xsd:string .
+hpc:ClusterID a xsd:string .
+hpc:ClusterNameShort a xsd:string .
+hpc:ClusterNameLong a xsd:string .
+hpc:Cluster reports hpc:Job .
+
+hpc:squeue a owl:Class .
+hpc:squeueSortByCluster a owl:ObjectProperty ;
+    rdfs:domain hpc:squeue ;
+    rdfs:range hpc:Cluster .
+
+hpc:sinfo a owl:Class .
+hpc:sinfoShowPartitions a owl:ObjectProperty ;
+    rdfs:domain hpc:sinfo .
+
+hpc:sprio a owl:Class .
+hpc:sprioDisplayJobInfoFromLocalCluster a owl:ObjectProperty ;
+    rdfs:domain hpc:sprio .
+hpc:sprioShowSibling a owl:ObjectProperty ;
+    rdfs:domain hpc:sprio .
+hpc:sprioShowClusterName a owl:ObjectProperty ;
+    rdfs:domain hpc:sprio .
+
+hpc:sacct a owl:Class .
+hpc:sacctShowJobFromClusterThat RanJob a owl:ObjectProperty ;
+    rdfs:domain hpc:sacct .
+hpc:sacctShowRevokedJobs a owl:ObjectProperty ;
+    rdfs:domain hpc:sacct .
+
+hpc:sreport a owl:Class .
+hpc:sreportCombineReports a owl:ObjectProperty ;
+    rdfs:domain hpc:sreport .
+
+hpc:scontrol a owl:Class .
+hpc:scontrolDisplayFederatedView a owl:ObjectProperty ;
+    rdfs:domain hpc:scontrol .
+hpc:scontrolDisplayFederatedJobs a owl:ObjectProperty ;
+    rdfs:domain hpc:scontrol .
+hpc:scontrolDisplayFederatedSteps a owl:ObjectProperty ;
+    rdfs:domain hpc:scontrol .
+
+hpc:hold a owl:ObjectProperty ;
+hpc:uhold a owl:ObjectProperty ;
+hpc:release a owl:ObjectProperty ;
+hpc:requeue a owl:ObjectProperty ;
+hpc:requeuehold a owl:ObjectProperty ;
+hpc:suspend a owl:ObjectProperty ;
+hpc:updateJob a owl:ObjectProperty ;
+
+hpc:scontrolCommandRoutedToOriginCluster a owl:ObjectProperty ;
+    rdfs:domain hpc:scontrol ;
+    rdfs:range hpc:Cluster .
+
+hpc:scontrolOption a owl:Class .
+hpc:scontrolFederation a owl:ObjectProperty ;
+    rdfs:domain hpc:scontrolOption .
+hpc:scontrolSibling a owl:ObjectProperty ;

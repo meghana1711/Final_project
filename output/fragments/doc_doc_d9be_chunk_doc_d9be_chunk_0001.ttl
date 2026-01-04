@@ -1,0 +1,35 @@
+hpc:Node a owl:Class .
+hpc:Partition a owl:Class .
+
+hpc:selects rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Node .
+
+hpc:allocates rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobStep ;
+    rdfs:range hpc:CPU .
+
+hpc:distributedTo rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:Node .
+
+hpc:boundTo rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:CPU .
+
+hpc:SelectType a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:SelectTypeParameters a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:NodeName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:PartitionName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:string .
+```

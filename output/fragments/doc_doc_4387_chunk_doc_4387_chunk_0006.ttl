@@ -1,0 +1,46 @@
+hpc:JobCompPort a owl:ObjectProperty ;
+    rdfs:domain hpc:JobComp ;
+    rdfs:range xsd:integer .
+
+hpc:JobCompType a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:JobCompUser a owl:ObjectProperty ;
+    rdfs:domain hpc:JobComp ;
+    rdfs:range xsd:string .
+
+hpc:JobCompParams a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobComp ;
+    rdfs:range xsd:string .
+
+hpc:AccountingStorageType a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:string .
+
+hpc:Association a owl:Class ;
+    rdfs:subClassOf hpc:Entity .
+
+hpc:Cluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:string .
+
+hpc:User a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:string .
+
+hpc:Account a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:string .
+
+hpc:Partition a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:string .
+
+hpc:Database a owl:Class ;
+    rdfs:subClassOf hpc:Entity .
+
+hpc:InnoDB a owl:DatatypeProperty ;
+    rdfs:domain hpc:Database ;
+    rdfs:range xsd:string .
+```

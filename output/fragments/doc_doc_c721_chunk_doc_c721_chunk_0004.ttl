@@ -1,0 +1,28 @@
+hpc:Account a owl:Class .
+hpc:ChildAccount a owl:Class, rdfs:subClassOf hpc:Account .
+hpc:ParentAccount a owl:Class, rdfs:subClassOf hpc:Account .
+
+hpc:EffectiveUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+
+hpc:ActualUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+
+hpc:Shares a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+
+hpc:Sall_siblings a owl:ObjectProperty ;
+    rdfs:domain hpc:ParentAccount ;
+    rdfs:range hpc:ChildAccount+ .
+
+hpc:FairShare a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+
+hpc:FairShare_parent a owl:ObjectProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range hpc:Account .
+```

@@ -1,0 +1,46 @@
+hpc:AcctGatherProfileProfile a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty hpc:type ;
+                      owl:hasValue rdf:list ;
+                      rdfs:domain hpc:AcctGatherProfileProfile ;
+                      rdfs:range rdf:list ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty hpc:items ;
+                      owl:hasValue ( "NOT_SET" "NONE" "ENERGY" "LUSTRE" "NETWORK" "TASK" ) ;
+                      rdfs:domain hpc:AcctGatherProfileProfile ;
+                      rdfs:range xsd:string ] .
+
+hpc:AdminLvl a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty hpc:type ;
+                      owl:hasValue rdf:list ;
+                      rdfs:domain hpc:AdminLvl ;
+                      rdfs:range rdf:list ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty hpc:items ;
+                      owl:hasValue ( "Not Set" "None" "Operator" "Administrator" ) ;
+                      rdfs:domain hpc:AdminLvl ;
+                      rdfs:range xsd:string ] .
+
+hpc:Assoc a owl:Class ;
+    rdfs:subClassOf [ a owl:ObjectProperty ] ;
+    rdfs:domain hpc:Assoc ;
+    rdfs:range rdf:list .
+
+hpc:AssocSharesObjWrap a owl:Class ;
+    rdfs:subClassOf [ a owl:ObjectProperty ] ;
+    rdfs:domain hpc:AssocSharesObjWrap ;
+    rdfs:range rdf:list .
+    rdfs:subPropertyOf hpc:Assoc .
+
+hpc:AssocSharesObjWrap_type a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty hpc:type ;
+                      owl:hasValue ( "USER" "ASSOCIATION" ) ;
+                      rdfs:domain hpc:AssocSharesObjWrap_type ;
+                      rdfs:range xsd:string ] .
+
+hpc:ClusterRec a owl:Class ;
+    rdfs:subClassOf [ a owl:ObjectProperty ] ;
+    rdfs:domain hpc:ClusterRec ;
+    rdfs:range

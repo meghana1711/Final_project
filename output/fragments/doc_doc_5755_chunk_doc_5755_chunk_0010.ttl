@@ -1,0 +1,19 @@
+hpc:JobStep hpc:allocatedTo hpc:Node rdf:type owl:ObjectProperty .
+hpc:Job hpc:hasStep hpc:JobStep rdf:type owl:ObjectProperty .
+hpc:Job hpc:withinAllocation hpc:JobAllocation rdf:type owl:ObjectProperty .
+hpc:JobAllocation hpc:hasID xsd:string rdf:type owl:DatatypeProperty .
+hpc:JobAllocation hpc:hasCPUs xsd:nonNegativeInteger rdf:type owl:DatatypeProperty .
+hpc:JobAllocation hpc:hasCores xsd:nonNegativeInteger rdf:type owl:DatatypeProperty .
+hpc:JobAllocation hpc:hasThreads xsd:nonNegativeInteger rdf:type owl:DatatypeProperty .
+hpc:JobAllocation hpc:releasesOnTermination hpc:Job rdf:type owl:ObjectProperty .
+hpc:BatchJob a owl:Class .
+hpc:JobStep hpc:isBatch rdf:type owl:ObjectProperty .
+hpc:Job hpc:isBatch a rdfs:subClassOf hpc:Job .
+hpc:JobAllocation hpc:isNewOnBatchSubmission rdf:type owl:ObjectProperty .
+hpc:Job hpc:usesExistingAllocation hpc:JobAllocation rdf:type owl:ObjectProperty .
+hpc:Node hpc:hasHyperthreading xsd:boolean rdf:type owl:DatatypeProperty .
+hpc:Node hpc:hasThreadsPerCore xsd:nonNegativeInteger rdf:type owl:DatatypeProperty .
+hpc:EnvironmentVariable hpc:SLURM_JOB_ID a owl:Class .
+hpc:EnvironmentVariable rdf:type rdfs:Resource .
+hpc:JobStep hpc:runsWithin rdfs:Resource rdf:type owl:ObjectProperty .
+```

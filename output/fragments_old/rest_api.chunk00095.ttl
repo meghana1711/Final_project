@@ -1,0 +1,55 @@
+hpc:BackfillScheduler a owl:Class .
+
+hpc:last a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:int32 .
+
+hpc:bf_cycle_max a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:int32 .
+
+hpc:bf_exit a owl:ObjectProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range hpc:v0_0_43_bf_exit_fields .
+
+hpc:bf_last_depth a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:int32 .
+
+hpc:bf_last_depth_try a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:int32 .
+
+hpc:bf_depth_sum a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:int32 .
+
+hpc:bf_depth_try_sum a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:int32 .
+
+hpc:bf_queue_len a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:int32 .
+
+hpc:bf_queue_len_mean a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:int64 .
+
+hpc:bf_queue_len_sum a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:int32 .
+
+hpc:bf_table_size a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:int32 .
+
+hpc:bf_table_size_sum a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:int32 .
+
+hpc:bf_table_size_mean a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:int64 .
+
+hpc:bf_when_last_cycle a owl:

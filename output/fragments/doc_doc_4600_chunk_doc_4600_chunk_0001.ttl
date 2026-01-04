@@ -1,0 +1,37 @@
+hpc:JobContainer a owl:Class .
+hpc:JobContainerPlugin a owl:Class .
+hpc:TmpfsJobContainerPlugin a hpc:JobContainerPlugin .
+hpc:InstalledByDefault a owl:ObjectProperty .
+hpc:InstalledByDefault rdf:type owl:ObjectProperty .
+hpc:InstalledByDefault hpc:JobContainer rdfs:domain .
+hpc:RequiresSlurmConfiguration a owl:ObjectProperty .
+hpc:RequiresSlurmConfiguration rdf:type owl:ObjectProperty .
+hpc:RequiresSlurmConfiguration hpc:JobContainer rdfs:domain .
+hpc:HasSlurmConfig a owl:ObjectProperty .
+hpc:HasSlurmConfig rdf:type owl:ObjectProperty .
+hpc:HasSlurmConfig hpc:JobContainer rdfs:domain .
+hpc:HasSlurmConfigFile a owl:ObjectProperty .
+hpc:HasSlurmConfigFile rdf:type owl:ObjectProperty .
+hpc:HasSlurmConfigFile hpc:JobContainer rdfs:domain .
+hpc:UsesTmpfsForJobs a owl:ObjectProperty .
+hpc:UsesTmpfsForJobs rdf:type owl:ObjectProperty .
+hpc:UsesTmpfsForJobs hpc:JobContainer rdfs:domain .
+hpc:HasTmpfsDirs a owl:ObjectProperty .
+hpc:HasTmpfsDirs rdf:type owl:ObjectProperty .
+hpc:HasTmpfsDirs hpc:JobContainer rdfs:domain .
+hpc:RemovesTmpfsContentsOnJobTermination a owl:ObjectProperty .
+hpc:RemovesTmpfsContentsOnJobTermination rdf:type owl:ObjectProperty .
+hpc:RemovesTmpfsContentsOnJobTermination hpc:JobContainer rdfs:domain .
+hpc:JobContainerConfigFile a owl:Class .
+hpc:JobContainerConfigFile a rdf:XMLLiteral .
+hpc:JobContainerConfigFile rdf:value "slurm.conf" .
+hpc:JobContainerConfigFileLocation a owl:DatatypeProperty .
+hpc:JobContainerConfigFileLocation rdf:type owl:DatatypeProperty .
+hpc:JobContainerConfigFileLocation hpc:JobContainerConfigFile rdfs:range xsd:string .
+hpc:AutoBasePath a owl:DatatypeProperty .
+hpc:AutoBasePath rdf:type owl:DatatypeProperty .
+hpc:AutoBasePath hpc:JobContainer rdfs:range xsd:boolean .
+hpc:BasePath a owl:DatatypeProperty .
+hpc:BasePath rdf:type owl:DatatypeProperty .
+hpc:BasePath hpc:JobContainer rdfs:range xsd:string .
+```

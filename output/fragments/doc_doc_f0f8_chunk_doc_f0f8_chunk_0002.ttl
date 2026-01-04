@@ -1,0 +1,29 @@
+hpc:ControlMachine a owl:Class .
+hpc:SlurmControllerHostname rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ControlMachine ;
+    rdfs:range xsd:string .
+
+hpc:ComputeMachine a owl:Class .
+hpc:NodeAddr rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ComputeMachine ;
+    rdfs:range xsd:string .
+hpc:PartitionName rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ComputeMachine .
+hpc:MaxTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:ComputeMachine ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:NodeConfiguration a owl:Class .
+hpc:CPUs rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeConfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Sockets rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeConfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:CoresPerSocket rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeConfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:ThreadsPerCore rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeConfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+```

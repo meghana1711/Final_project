@@ -1,0 +1,50 @@
+# Classes
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:Version a owl:Class .
+hpc:Overview a owl:Class .
+hpc:ReleaseNotes a owl:Class .
+hpc:Using a owl:Class .
+hpc:Documentation a owl:Class .
+hpc:FAQ a owl:Class .
+hpc:Publications a owl:Class .
+hpc:Installing a owl:Class .
+hpc:Download a owl:Class .
+hpc:RelatedSoftware a owl:Class .
+hpc:InstallationGuide a owl:Class .
+hpc:GettingHelp a owl:Class .
+hpc:MailingLists a owl:Class .
+hpc:SupportAndTraining a owl:Class .
+hpc:Troubleshooting a owl:Class .
+hpc:ClassicFairshareAlgorithm a owl:Class .
+hpc:Account a owl:Class .
+hpc:SubAccount a owl:Class .
+hpc:User a owl:Class .
+
+# Object Properties
+hpc:hasVersion a owl:ObjectProperty .
+hpc:hasOverview a owl:ObjectProperty .
+hpc:hasReleaseNotes a owl:ObjectProperty .
+hpc:hasUsing a owl:ObjectProperty .
+hpc:hasDocumentation a owl:ObjectProperty .
+hpc:hasFAQ a owl:ObjectProperty .
+hpc:hasPublications a owl:ObjectProperty .
+hpc:hasInstalling a owl:ObjectProperty .
+hpc:hasDownload a owl:ObjectProperty .
+hpc:hasRelatedSoftware a owl:ObjectProperty .
+hpc:hasInstallationGuide a owl:ObjectProperty .
+hpc:hasGettingHelp a owl:ObjectProperty .
+hpc:hasMailingLists a owl:ObjectProperty .
+hpc:hasSupportAndTraining a owl:ObjectProperty .
+hpc:hasTroubleshooting a owl:ObjectProperty .
+hpc:usesClassicFairshareAlgorithm optionally rdf:type owl:ObjectProperty .
+hpc:hasAccount a owl:ObjectProperty .
+hpc:hasSubAccount rdf:type owl:ObjectProperty .
+hpc:hasUser rdf:type owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hasNormalizedShares a owl:DatatypeProperty .
+hpc:hasNormalizedUsage a owl:DatatypeProperty .
+hpc:hasUsageMetric a owl:DatatypeProperty .
+hpc:hasFairShareFactor a owl:DatatypeProperty .
+hpc:hasDecayFactor a owl:DatatypeProperty .
+hpc:hasPriorityDecayH

@@ -1,0 +1,42 @@
+hpc:MemoryBindingType a owl:Class .
+hpc:MemoryBindingType rdfs:subClassOf xsd:string .
+hpc:MemoryBindingType rdfs:subClassOf xsd:array .
+hpc:MemoryBindingType rdf:first hpc:RANK .
+hpc:MemoryBindingType rdf:first hpc:MAP .
+hpc:MemoryBindingType rdf:first hpc:MASK .
+hpc:MemoryBindingType rdf:first hpc:LOCAL .
+hpc:MemoryBindingType rdf:first hpc:VERBOSE .
+hpc:MemoryBindingType rdf:first hpc:SORT .
+hpc:MemoryBindingType rdf:first hpc:PREFER .
+hpc:MemoryBindingType rdf:first hpc:SORT .
+
+hpc:Node a owl:Class .
+hpc:Node rdfs:subClassOf rdf:Resource .
+
+hpc:boot_time a owl:DatatypeProperty .
+hpc:boot_time rdfs:domain hpc:Node .
+hpc:boot_time rdfs:range xsd:integer .
+hpc:boot_time rdfs:comment "Time when the node booted (UNIX timestamp) (UNIX timestamp or time string recognized by Slurm (e.g., '[MM/DD[/YY]-]HH:MM[:SS]'); may also be infinite or unset) (64 bit integer number with flags)" .
+
+hpc:cert_flags a owl:DatatypeProperty .
+hpc:cert_flags rdfs:domain hpc:Node .
+hpc:cert_flags rdfs:range xsd:string .
+hpc:cert_flags rdfs:comment "Certmgr status flags" .
+hpc:cert_flags rdf:first hpc:TOKEN_SET .
+
+hpc:cert_flags_enum a owl:Class .
+hpc:cert_flags_enum rdf:type owl:Restriction .
+hpc:cert_flags_enum owl:onProperty hpc:cert_flags .
+hpc:cert_flags_enum owl:hasValue ^hpc:TOKEN_SET .
+
+hpc:free_mem a owl:DatatypeProperty .
+hpc:free_mem rdfs:domain hpc:Node .
+hpc:free_mem rdfs:range xsd:integer .
+
+hpc:last_busy a owl:DatatypeProperty .
+hpc:last_busy rdfs:domain hpc:Node .
+hpc:last_busy rdfs:range xsd:integer .
+
+hpc:next_state_after_reboot a owl:DatatypeProperty .
+hpc:next_state_after_reboot rdfs:domain hpc:Node .
+hpc:next_

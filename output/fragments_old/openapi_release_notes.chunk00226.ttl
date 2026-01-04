@@ -1,0 +1,14 @@
+hpc:JobSubmitRequest a owl:Class .
+hpc:JobInfoResponse a owl:Class .
+hpc:OpenapiDiagResponse a owl:Class .
+
+hpc:cpuBindingFlags a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobSubmitRequest ;
+    rdfs:range xsd:string .
+
+hpc:jobId a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfoResponse ;
+    rdfs:range xsd:string .
+```
+
+This ontology fragment represents three classes (`JobSubmitRequest`, `JobInfoResponse`, and `OpenapiDiagResponse`) and two properties (`cpuBindingFlags` and `jobId`). The `cpuBindingFlags` property is a datatype property that takes string values, and the `jobId` property is also a datatype property that takes string values. The classes are not related in this fragment.

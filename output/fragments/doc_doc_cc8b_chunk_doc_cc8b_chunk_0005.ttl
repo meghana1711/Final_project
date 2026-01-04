@@ -1,0 +1,39 @@
+hpc:BillingTRES a owl:Class .
+hpc:TRES a owl:Class .
+hpc:Job a owl:Class .
+hpc:Node a owl:Class .
+hpc:Partition a owl:Class .
+
+hpc:hasTRES a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range hpc:TRES .
+
+hpc:hasBillingTRES a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range hpc:BillingTRES .
+
+hpc:hasPartition a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range hpc:Partition .
+
+hpc:hasBillingWeights a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:decimal .
+
+hpc:TRESBillingWeights a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range hpc:BillingTRES .
+
+hpc:CalculatedBillingTRES a owl:Class ;
+    rdfs:subClassOf hpc:BillingTRES ;
+    owl:equivalentClass [ a owl:Restriction ;
+                            owl:onProperty hpc:TRESBillingWeights ;
+                            owl:allValuesFrom [ xsd:decimal ] ;
+                            owl:upperBound [ xsd:decimal "1" ] ] .
+
+hpc:DefaultBillingTRES a owl:Class ;
+    rdfs:subClassOf hpc:BillingTRES ;
+    owl:equivalentClass [ a owl:Restriction ;
+                            owl:onProperty hpc:hasBillingWeights ;
+                            owl:allValuesFrom [ xsd:nonNegativeInteger ] ] .
+```

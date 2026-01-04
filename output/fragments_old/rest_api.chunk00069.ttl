@@ -1,0 +1,61 @@
+hpc:Node a owl:Class .
+hpc:Job a owl:Class .
+hpc:User a owl:Class .
+hpc:Account a owl:Class .
+
+hpc:name rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:domain hpc:Job ;
+    rdfs:domain hpc:User ;
+    rdfs:domain hpc:Account .
+
+hpc:type rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:domain hpc:Job ;
+    rdfs:domain hpc:User ;
+    rdfs:domain hpc:Account .
+
+hpc:wall_clock a owl:Class .
+hpc:qos rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:wall_clock .
+
+hpc:per rdf:type owl:Class .
+hpc:job rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:per .
+
+hpc:active_jobs a owl:Class .
+hpc:count rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:active_jobs .
+
+hpc:accruing rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:active_jobs .
+
+hpc:factor rdf:type owl:DatatypeProperty .
+
+hpc:grace_time rdf:type xsd:integer .
+
+hpc:preempt a owl:Class .
+hpc:mode rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:preempt .
+
+hpc:exempt_time rdf:type owl:DatatypeProperty .
+
+hpc:list rdf:type rdfs:List .
+
+hpc:slurm a owl:Class .
+hpc:cluster rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:slurm .
+
+hpc:release rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:slurm .
+
+hpc:version a owl:Class .
+hpc:major rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:version .
+hpc:minor rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:version .
+hpc:micro rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:version .
+
+hpc:plugin a owl:Class .
+hpc:accounting_storage rdf:type owl:DatatypeProperty

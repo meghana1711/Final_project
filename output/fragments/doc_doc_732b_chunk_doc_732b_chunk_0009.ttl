@@ -1,0 +1,20 @@
+hpc:LogLevel a owl:Class .
+hpc:logLevel rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:LogLevel ;
+    rdfs:range xsd:string .
+
+hpc:NodeName a owl:Class .
+hpc:nodeName rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:NodeName ;
+    rdfs:range xsd:string .
+
+hpc:ServiceName a owl:Class .
+hpc:serviceName rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ServiceName ;
+    rdfs:range xsd:string .
+
+hpc:FirewallAccess a owl:Class .
+hpc:firewallAccess rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:FirewallAccess ;
+    rdfs:range xsd:string .
+```

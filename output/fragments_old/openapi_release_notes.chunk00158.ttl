@@ -1,0 +1,25 @@
+hpc:SlurmPingResponse a owl:Class .
+hpc:SlurmReconfigureResponse a owl:Class .
+hpc:SlurmReservationResponse a owl:Class .
+
+hpc:pingArrayResp a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmPingResponse ;
+    rdfs:range xsd:anyURI .
+
+hpc:v0_0_41_openapi_ping_array_resp a owl:Class ;
+    rdfs:subClassOf hpc:SlurmPingResponse .
+
+hpc:reconfigureResp a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmReconfigureResponse ;
+    rdfs:range xsd:anyURI .
+
+hpc:v0_0_41_openapi_resp a owl:Class ;
+    rdfs:subClassOf hpc:SlurmReconfigureResponse .
+
+hpc:reservationResp a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmReservationResponse ;
+    rdfs:range xsd:anyURI .
+
+hpc:v0_0_41_openapi_reservation_resp a owl:Class ;
+    rdfs:subClassOf hpc:SlurmReservationResponse .
+```

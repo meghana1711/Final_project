@@ -1,0 +1,24 @@
+hpc:TresResponse a owl:Class .
+hpc:TresResponse rdfs:subClassOf owl:NamedIndividual .
+
+hpc:hasTresResponseContent a owl:ObjectProperty .
+hpc:hasTresResponseContent rdfs:domain hpc:TresResponse ;
+                                 rdfs:range xsd:string .
+
+hpc:TresRequest a owl:Class .
+hpc:TresRequest rdfs:subClassOf owl:NamedIndividual .
+
+hpc:hasTresRequestContent a owl:ObjectProperty .
+hpc:hasTresRequestContent rdfs:domain hpc:TresRequest ;
+                                 rdfs:range xsd:string .
+
+hpc:UserResponse a owl:Class .
+hpc:UserResponse rdfs:subClassOf owl:NamedIndividual .
+
+hpc:hasUserResponseContent a owl:ObjectProperty .
+hpc:hasUserResponseContent rdfs:domain hpc:UserResponse ;
+                                 rdfs:range xsd:string .
+
+hpc:User a owl:Class .
+hpc:User rdfs:subClassOf owl:NamedIndividual .
+```

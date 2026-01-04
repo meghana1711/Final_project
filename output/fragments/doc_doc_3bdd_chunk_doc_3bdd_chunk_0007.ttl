@@ -1,0 +1,53 @@
+hpc:SlurmTest a owl:Class .
+hpc:slurm_dir rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmTest ;
+    rdfs:range xsd:string .
+
+hpc:TestSuiteFile a owl:Class ;
+    rdfs:subClassOf hpc:SlurmTest .
+
+hpc:TestFile a owl:Class ;
+    rdfs:subClassOf hpc:SlurmTest .
+
+hpc:TestCommand a owl:Class ;
+    rdfs:subClassOf hpc:SlurmTest .
+
+hpc:TestExecutionMethod a owl:ObjectProperty .
+
+hpc:TestDirectory a owl:Class ;
+    rdfs:subClassOf hpc:SlurmTest ;
+    rdfs:domain hpc:TestSuiteFile ;
+    rdfs:range xsd:string .
+
+hpc:TestFileLocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:TestFile ;
+    rdfs:range xsd:string .
+
+hpc:TestExecution a owl:Class ;
+    rdfs:subClassOf hpc:SlurmTest .
+
+hpc:TestExecutionMethodLocal a owl:Class ;
+    rdfs:subClassOf hpc:TestExecution .
+
+hpc:TestExecutionMethodPytest a owl:Class ;
+    rdfs:subClassOf hpc:TestExecution .
+
+hpc:TestExecutionMethodQA a owl:Class ;
+    rdfs:subClassOf hpc:TestExecution .
+
+hpc:SlurmConfigFile a owl:Class ;
+    rdfs:subClassOf hpc:SlurmTest .
+
+hpc:MakefileAMFile a owl:Class ;
+    rdfs:subClassOf hpc:SlurmConfigFile .
+
+hpc:Autoreconf a owl:Class ;
+    rdfs:subClassOf hpc:SlurmConfigFile .
+
+hpc:SlurmMultipleSupport a owl:Class ;
+    rdfs:subClassOf hpc:SlurmTest .
+
+hpc:MultipleSlurmdSupportEnabled a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmMultipleSupport ;
+    rdfs:range xsd:boolean .
+```

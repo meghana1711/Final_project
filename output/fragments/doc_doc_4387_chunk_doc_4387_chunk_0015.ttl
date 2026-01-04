@@ -1,0 +1,38 @@
+hpc:AccountingStorage a owl:Class .
+hpc:AccountingStorage rdf:type owl:NamedIndividual .
+hpc:AccountingStorage rdfs:label "Accounting Storage Mechanism" ;
+                        rdfs:comment "The only acceptable value at present is 'accounting_storage/mysql'." .
+
+hpc:AccountingStorageValue a owl:DatatypeProperty ;
+                             rdfs:domain hpc:AccountingStorage ;
+                             rdfs:range xsd:string .
+
+hpc:StorageLoc a owl:DatatypeProperty ;
+                rdfs:domain hpc:AccountingStorage ;
+                rdfs:range xsd:string .
+
+hpc:StorageUser a owl:Class .
+hpc:StorageUser rdf:type owl:NamedIndividual .
+hpc:StorageUser rdfs:label "Database User" ;
+                 rdfs:comment "Define the name of the user we are going to connect to the database with to store the job accounting data." .
+
+hpc:MySQLConfig a owl:Class .
+hpc:MySQLConfig rdf:type owl:NamedIndividual .
+hpc:MySQLConfig rdfs:label "MySQL Configuration" .
+
+hpc:GrantPrivileges a owl:ObjectProperty ;
+                      rdfs:domain hpc:MySQLConfig ;
+                      rdfs:range rdfs:Literal .
+
+hpc:StorageHost a owl:DatatypeProperty ;
+                rdfs:domain hpc:StorageUser ;
+                rdfs:range xsd:string .
+
+hpc:GrantAllOnStorageLoc a owl:ObjectProperty ;
+                          rdfs:domain hpc:MySQLConfig ;
+                          rdfs:range rdfs:Resource .
+
+hpc:DatabaseCreation a owl:ObjectProperty ;
+                      rdfs:domain hpc:MySQLConfig ;
+                      rdfs:range xsd:string .
+```

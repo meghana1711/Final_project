@@ -1,0 +1,26 @@
+hpc:UsageFactor a owl:Real;
+    rdfs:domain hpc:QOS .
+
+hpc:UsageFactorSafe a owl:Boolean;
+    rdfs:domain hpc:QOS .
+
+hpc:AccountingStorageEnforce a owl:Enumeration;
+    rdfs:range xsd:string;
+    rdfs:subClassOf owl:Class .
+
+hpc:AccountingStorageEnforceSafe a owl:NamedIndividual;
+    rdf:value "Safe" .
+
+hpc:UsageThreshold a owl:Real;
+    rdfs:domain hpc:Association .
+
+hpc:hasUsageFactor hpc:QOS rdf:type owl:ObjectProperty .
+hpc:hasUsageFactorSafe hpc:QOS rdf:type owl:ObjectProperty .
+hpc:hasAccountingStorageEnforce hpc:QOS rdf:type owl:ObjectProperty .
+hpc:hasUsageThreshold hpc:Association rdf:type owl:ObjectProperty .
+
+hpc:QOS a owl:Class;
+    rdfs:subClassOf hpc:ResourceLimit .
+
+hpc:Association a owl:Class .
+```

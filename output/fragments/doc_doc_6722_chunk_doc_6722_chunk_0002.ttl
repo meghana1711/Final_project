@@ -1,0 +1,28 @@
+hpc:Slurm a owl:Class .
+hpc:ResourceAllocation a owl:Class .
+hpc:FileStaging a owl:Class, rdfs:subClassOf hpc:ResourceAllocation .
+hpc:BurstBuffer a owl:Class, rdfs:subClassOf hpc:ResourceAllocation .
+hpc:PersistentStorage a owl:Class, rdfs:subClassOf hpc:ResourceAllocation .
+hpc:TemporaryStorage a owl:Class, rdfs:subClassOf hpc:BurstBuffer .
+hpc:LuaPlugin a owl:Class .
+hpc:ApiHook a owl:Class .
+hpc:JobState a owl:Class .
+hpc:Task a owl:Class .
+hpc:FileStagingTask a owl:Class, rdfs:subClassOf hpc:Task .
+hpc:NodeMaintenanceTask a owl:Class, rdfs:subClassOf hpc:Task .
+hpc:OtherTask a owl:Class, rdfs:subClassOf hpc:Task .
+hpc:BurstBufferPlugin a owl:Class .
+hpc:BurstBufferType a owl:DatatypeProperty .
+hpc:DebugFlags a owl:DatatypeProperty .
+hpc:enables a owl:ObjectProperty .
+hpc:hasTask a owl:ObjectProperty .
+hpc:BurstBufferPlugin rdfs:domain hpc:Slurm .
+hpc:BurstBufferType rdfs:domain hpc:slurm.conf ;
+ rdfs:range xsd:string .
+hpc:DebugFlags rdfs:domain hpc:slurm.conf ;
+ rdfs:range xsd:string .
+hpc:enables rdfs:domain hpc:Slurm ;
+ rdfs:range hpc:BurstBufferPlugin .
+hpc:hasTask rdfs:domain hpc:BurstBuffer ;
+ rdfs:range hpc:Task .
+```

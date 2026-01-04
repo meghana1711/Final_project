@@ -1,0 +1,21 @@
+hpc:JobInfo a owl:Class .
+hpc:JobDescMsg a owl:Class .
+hpc:OpenapiJobPostResponse a owl:Class .
+
+hpc:job_id rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:string .
+
+hpc:job_desc_msg rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range hpc:JobDescMsg .
+
+hpc:v0.0.41_openapi_job_info_resp a owl:Class ;
+    rdfs:subClassOf hpc:JobInfo .
+
+hpc:v0.0.41_job_desc_msg a owl:Class ;
+    rdfs:subClassOf hpc:JobDescMsg .
+
+hpc:v0.0.41_openapi_job_post_response a owl:Class ;
+    rdfs:subClassOf hpc:OpenapiJobPostResponse .
+```

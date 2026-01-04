@@ -1,0 +1,49 @@
+hpc:Job a owl:Class .
+hpc:Job hasTimeLimit xsd:time .
+hpc:Job startsExecution xsd:time .
+hpc:Job completesExecution xsd:time .
+hpc:Job isChargedFor xsd:duration .
+
+hpc:Resource a owl:Class .
+hpc:Resource isAvailableAt xsd:time .
+hpc:Resource isRebooting xsd:boolean .
+
+hpc:Node a owl:Class .
+hpc:Node hasFeature rdf:List .
+hpc:Node isActive xsd:boolean .
+
+hpc:Feature a owl:Class .
+hpc:Feature hasName xsd:string .
+
+hpc:NetworkTopology a owl:Class .
+
+hpc:OptimizePerformance a owl:ObjectProperty .
+hpc:OptimizePerformance rdfs:domain hpc:Job .
+hpc:OptimizePerformance rdfs:range hpc:Resource .
+
+hpc:RebootNode a owl:ObjectProperty .
+hpc:RebootNode rdfs:domain hpc:Job .
+hpc:RebootNode rdfs:range hpc:Node .
+
+hpc:AllocateJob a owl:ObjectProperty .
+hpc:AllocateJob rdfs:domain hpc:Job .
+hpc:AllocateJob rdfs:range hpc:Resource .
+
+hpc:DrainNode a owl:ObjectProperty .
+hpc:DrainNode rdfs:domain hpc:Job .
+hpc:DrainNode rdfs:range hpc:Node .
+
+hpc:RequeueJob a owl:ObjectProperty .
+hpc:RequeueJob rdfs:domain hpc:Job .
+hpc:RequeueJob rdfs:range hpc:Job .
+
+hpc:SpecifySwitches a owl:ObjectProperty .
+hpc:SpecifySwitches rdfs:domain hpc:Job .
+hpc:SpecifySwitches rdfs:range xsd:string .
+
+hpc:MaxSwitchWait a owl:DatatypeProperty .
+hpc:MaxSwitchWait rdfs:domain hpc:SchedulerParameters .
+hpc:MaxSwitchWait rdfs:range xsd:duration .
+
+hpc:BootingProblem a owl:Class .
+```

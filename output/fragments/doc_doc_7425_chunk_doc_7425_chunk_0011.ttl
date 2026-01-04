@@ -1,0 +1,30 @@
+hpc:ReservationDescMsg a owl:Class .
+hpc:maxStartDelay a owl:DatatypeProperty ;
+    rdfs:domain hpc:ReservationDescMsg ;
+    rdfs:range xsd:unsignedInt .
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:ReservationDescMsg ;
+    rdfs:range xsd:string .
+hpc:nodeCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:ReservationDescMsg ;
+    rdfs:range xsd:unsignedInt .
+hpc:nodeList a owl:ObjectProperty ;
+    rdfs:domain hpc:ReservationDescMsg ;
+    rdfs:range hpc:HostlistString .
+hpc:partition a owl:DatatypeProperty ;
+    rdfs:domain hpc:ReservationDescMsg .
+
+hpc:ReservationInfo a owl:Class .
+hpc:flags a owl:DatatypeProperty ;
+    rdfs:domain hpc:ReservationInfo ;
+    rdfs:range xsd:string .
+
+hpc:ReservationModReq a owl:Class .
+hpc:reservations a owl:ObjectProperty ;
+    rdfs:domain hpc:ReservationModReq ;
+    rdfs:range hpc:ReservationDescMsgList .
+
+hpc:ReservationDescMsgList a owl:Class .
+```
+
+This ontology fragment represents the classes `ReservationDescMsg`, `ReservationInfo`, and `ReservationModReq`, as well as their properties. The properties are defined with their domain and range. The `ReservationDescMsgList` class is also defined, but it does not have any properties in this provided documentation.

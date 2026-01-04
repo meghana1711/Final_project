@@ -1,0 +1,32 @@
+hpc:SlurmJob a owl:Class .
+hpc:SlurmSelectTresPlugin hpc:hasPlugin rdf:true .
+
+hpc:GpuOption a owl:Class .
+
+hpc:CpusPerGpu a owl:DatatypeProperty ;
+    rdfs:domain hpc:GpuOption ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:GpuBind a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuOption ;
+    rdfs:range hpc:GpuBindType .
+
+hpc:GpuBindType a owl:Class .
+
+hpc:GpuFreq a owl:DatatypeProperty ;
+    rdfs:domain hpc:GpuOption ;
+    rdfs:range xsd:decimal .
+
+hpc:MemPerGpu a owl:DatatypeProperty ;
+    rdfs:domain hpc:GpuOption ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:JobStep a owl:Class ;
+    rdfs:subClassOf hpc:SlurmJob .
+
+hpc:JobStepResourceAllocation a owl:ObjectProperty ;
+    rdfs:domain hpc:JobStep ;
+    rdfs:range hpc:ResourceAllocation .
+
+hpc:ResourceAllocation a owl:Class .
+```

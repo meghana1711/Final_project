@@ -1,0 +1,19 @@
+hpc:ClockSynchronization a owl:Class .
+hpc:MungeDecodeError a owl:Class .
+hpc:ExpiredCredentialError a rdfs:subClassOf hpc:MungeDecodeError .
+hpc:ScheduledJob a owl:Class .
+hpc:Partition a owl:Class .
+hpc:State a owl:ObjectProperty .
+hpc:State rdfs:domain hpc:Partition .
+hpc:State rdfs:range xsd:string .
+hpc:WorkloadManagement a owl:Class .
+hpc:ResourceReservation a owl:Class .
+hpc:Upgrade a owl:Class .
+hpc:DatabaseUpgrade a rdfs:subClassOf hpc:Upgrade .
+hpc:SlurmConfigurationCopy a owl:Class .
+hpc:UpgradeGuideReference a owl:ObjectProperty .
+hpc:UpgradeGuideReference rdfs:domain hpc:Upgrade .
+hpc:UpgradeGuideReference rdfs:range rdf:Resource .
+hpc:DatabaseServerUpgrade a rdfs:subClassOf hpc:DatabaseUpgrade .
+hpc:NewClusterConfigurationCopy a rdfs:subClassOf hpc:SlurmConfigurationCopy .
+```

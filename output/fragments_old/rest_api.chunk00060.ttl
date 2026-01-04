@@ -1,0 +1,57 @@
+hpc:QueryParameter a owl:Class .
+hpc:HetjobComponent a owl:Class .
+
+# Object Properties
+hpc:hasQueryParameter rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:HetjobComponent ;
+    rdfs:range hpc:QueryParameter .
+
+# Datatype Properties
+hpc:defaultValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:QueryParameter .
+
+# Specific Query Parameters
+hpc:disable_whole_hetjob a hpc:QueryParameter ;
+    hpc:defaultValue xsd:boolean .
+hpc:query_parameter_show_details a hpc:QueryParameter ;
+    hpc:defaultValue xsd:string .
+hpc:disable_wait_for_result a hpc:QueryParameter ;
+    hpc:defaultValue xsd:boolean .
+hpc:usage_time_as_submit_time a hpc:QueryParameter ;
+    hpc:defaultValue xsd:boolean .
+hpc:show_batch_script a hpc:QueryParameter ;
+    hpc:defaultValue xsd:boolean .
+hpc:show_job_environment a hpc:QueryParameter ;
+    hpc:defaultValue xsd:boolean .
+hpc:format a hpc:QueryParameter .
+hpc:groups a hpc:QueryParameter ;
+    hpc:defaultValue xsd:string .
+hpc:job_name a hpc:QueryParameter ;
+    hpc:defaultValue xsd:string .
+hpc:partition a hpc:QueryParameter ;
+    hpc:defaultValue xsd:string .
+hpc:qos a hpc:QueryParameter ;
+    hpc:defaultValue xsd:string .
+hpc:reason a hpc:QueryParameter ;
+    hpc:defaultValue xsd:string .
+hpc:reservation a hpc:QueryParameter ;
+    hpc:defaultValue xsd:string .
+hpc:reservation_id a hpc:QueryParameter ;
+    hpc:defaultValue xsd:string .
+hpc:state a hpc:QueryParameter ;
+    hpc:defaultValue xsd:string .
+hpc:step a hpc:QueryParameter ;
+    hpc:defaultValue xsd:string .
+hpc:end_time a hpc:QueryParameter ;
+    rdf:type xsd:dateTime .
+hpc:start_time a hpc:QueryParameter ;
+    rdf:type xsd:dateTime .
+hpc:node a hpc:QueryParameter .
+hpc:users a hpc:QueryParameter ;
+    hpc:defaultValue xsd:string .
+hpc:wckey a hpc:QueryParameter ;
+    hpc:defaultValue xsd:string .
+
+# Hetjob Component
+hpc:Hetjob a hpc:HetjobComponent .
+```

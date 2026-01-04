@@ -1,0 +1,56 @@
+hpc:JobInfo a owl:Class .
+
+hpc:job_state a owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf owl:Property .
+
+hpc:job_state rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:DatatypeProperty .
+
+hpc:job_state.items a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:CONFIGURING a hpc:job_state.items .
+hpc:COMPLETING a hpc:job_state.items .
+hpc:STOPPED a hpc:job_state.items .
+hpc:RECONFIG_FAIL a hpc:job_state.items .
+hpc:POWER_UP_NODE a hpc:job_state.items .
+hpc:REVOKED a hpc:job_state.items .
+hpc:REQUEUE_FED a hpc:job_state.items .
+hpc:RESV_DEL_HOLD a hpc:job_state.items .
+hpc:SIGNALING a hpc:job_state.items .
+hpc:STAGE_OUT a hpc:job_state.items .
+
+hpc:last_sched_evaluation a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:string .
+
+hpc:licenses_allocated a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:string .
+
+hpc:mail_type a owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf owl:Property .
+
+hpc:mail_type.items a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:max_cpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:integer .
+
+hpc:max_nodes a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:integer .
+
+hpc:memory_per_cpu a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfo ;
+    rdfs:range xsd:integer .
+
+hpc:

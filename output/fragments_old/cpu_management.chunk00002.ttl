@@ -1,0 +1,65 @@
+hpc:Node a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Defines a node." .
+
+hpc:nodeName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the node." .
+
+# Partition definition
+hpc:Partition a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Defines a partition." .
+
+hpc:partitionName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the partition." .
+
+# CPU resource allocation control
+hpc:SlurmdParameters a owl:Class ;
+    rdfs:subClassOf hpc:Configuration ;
+    rdfs:comment "Controls how the information in a node definition is used." .
+
+hpc:selectType a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdParameters ;
+    rdfs:range hpc:SelectType ;
+    rdfs:comment "Defines whether CPU resources are allocated to jobs and job steps in units of whole nodes or as consumable resources." .
+
+hpc:SelectTypeParameters a owl:Class ;
+    rdfs:subClassOf hpc:Configuration ;
+    rdfs:comment "Defines the consumable resource type and controls other aspects of CPU resource allocation by the select plugin." .
+
+# Command line options for CPU resource allocation control
+hpc:extraNodeInfo a owl:DatatypeProperty ;
+    rdfs:domain hpc:CommandLineOptions ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Restricts node selection to nodes with a specified layout of sockets, cores and threads." .
+
+hpc:constraint a owl:DatatypeProperty ;
+    rdfs:domain hpc:CommandLineOptions ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Restricts node selection to nodes with specified attributes." .
+
+hpc:contiguousN a owl:DatatypeProperty ;
+    rdfs:domain hpc:CommandLineOptions ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Restricts node selection to contiguous nodes." .
+
+hpc:coresPerSocket a owl:DatatypeProperty ;
+    rdfs:domain hpc:CommandLineOptions ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Restricts node selection to nodes with at least the specified number of cores per socket." .
+
+hpc:cpusPerTask a owl:DatatypeProperty ;
+    rdfs:domain hpc:CommandLineOptions ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Controls the number of CPUs allocated per task." .
+
+hpc:distribution a owl:DatatypeProperty ;
+    rdfs:domain hpc:CommandLineOptions ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The second specified distribution (after the ':') can be used to override the default allocation method within nodes." .
+
+hpc:exclusiveN

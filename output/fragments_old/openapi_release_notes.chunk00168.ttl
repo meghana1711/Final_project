@@ -1,0 +1,16 @@
+hpc:OpenapiAssocsRemovedResp a owl:Class .
+hpc:OpenapiClustersResp a owl:Class .
+
+hpc:v0_0_40_openapi_assocs_removed_resp a hpc:OpenapiAssocsRemovedResp .
+hpc:v0_0_40_openapi_clusters_resp a hpc:OpenapiClustersResp .
+
+hpc:assocsRemovedResp a owl:ObjectProperty .
+hpc:clustersResp a owl:ObjectProperty .
+
+hpc:assocsRemovedResp rdfs:domain hpc:DeleteAssociation .
+hpc:clustersResp rdfs:domain hpc:GetCluster .
+hpc:assocsRemovedResp rdfs:range hpc:v0_0_40_openapi_assocs_removed_resp .
+hpc:clustersResp rdfs:range hpc:v0_0_40_openapi_clusters_resp .
+```
+
+This ontology fragment represents two classes `OpenapiAssocsRemovedResp` and `OpenapiClustersResp`, and two object properties `assocsRemovedResp` and `clustersResp`. The `assocsRemovedResp` and `clustersResp` properties are used in the `DeleteAssociation` and `GetCluster` operations, respectively. The range of both properties is the corresponding response classes.

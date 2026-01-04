@@ -1,0 +1,76 @@
+hpc:SuspendProgram rdf:type owl:Class .
+hpc:ResumeProgram rdf:type owl:Class .
+
+hpc:SuspendTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:SuspendProgram ;
+    rdfs:range xsd:integer .
+
+hpc:ResumeTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:ResumeProgram ;
+    rdfs:range xsd:integer .
+
+hpc:SuspendableNode a owl:Class ;
+    rdfs:subClassOf hpc:Node .
+
+hpc:SuspendablePartition a owl:Class ;
+    rdfs:subClassOf hpc:Partition .
+
+hpc:hasSuspendTimeout a owl:ObjectProperty ;
+    rdfs:domain hpc:SuspendablePartition ;
+    rdfs:range xsd:integer .
+
+hpc:hasResumeTimeout a owl:ObjectProperty ;
+    rdfs:domain hpc:SuspendablePartition ;
+    rdfs:range xsd:integer .
+
+hpc:SuspendableCluster a owl:Class ;
+    rdfs:subClassOf hpc:Cluster .
+
+hpc:hasSuspendTime a owl:ObjectProperty ;
+    rdfs:domain hpc:SuspendableCluster ;
+    rdfs:range xsd:integer .
+
+hpc:InfiniteSuspendTime a xsd:integer ;
+    xsd:value "INFINITE" .
+
+hpc:NodeLifecycle a owl:Class .
+
+hpc:PowerDownState a owl:Class ;
+    rdfs:subClassOf hpc:NodeLifecycle .
+
+hpc:PowerUpState a owl:Class ;
+    rdfs:subClassOf hpc:NodeLifecycle .
+
+hpc:PoweredDownState a owl:Class ;
+    rdfs:subClassOf hpc:NodeLifecycle .
+
+hpc:PoweringDownState a owl:Class ;
+    rdfs:subClassOf hpc:NodeLifecycle .
+
+hpc:PoweringUpState a owl:Class ;
+    rdfs:subClassOf hpc:NodeLifecycle .
+
+hpc:hasPowerSavingSymbol a owl:ObjectProperty ;
+    rdfs:domain hpc:NodeLifecycle ;
+    rdfs:range xsd:string .
+
+hpc:PowerSavingMode a owl:Class ;
+    rdfs:subClassOf hpc:NodeState .
+
+hpc:ManualPowerSaving a owl:Class .
+
+hpc:PowerDownCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:ManualPowerSaving .
+    rdfs:range rdf:PlainLiteral .
+
+hpc:PowerUpCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:ManualPowerSaving .
+    rdfs:range rdf:PlainLiteral .
+
+hpc:PowerDownAsapCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:ManualPowerSaving .
+    rdfs:range rdf:PlainLiteral .
+
+hpc:PowerDownForceCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:ManualPowerSaving .
+    rdfs:range rdf:PlainLiteral .

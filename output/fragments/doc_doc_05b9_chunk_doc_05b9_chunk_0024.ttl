@@ -1,0 +1,65 @@
+hpc:SlurmctldOperatingMode a owl:Class .
+hpc:isRespondingSlurmctldPrimary a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmctldOperatingMode ;
+    rdfs:range xsd:boolean .
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmctldOperatingMode .
+
+hpc:SlurmctldPrimaryController a owl:Class .
+hpc:up a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmctldPrimaryController .
+
+hpc:User a owl:Class .
+hpc:direct a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:boolean .
+
+hpc:CronEntry a owl:Class .
+hpc:flags a owl:DatatypeProperty ;
+    rdfs:domain hpc:CronEntry ;
+    rdfs:range xsd:double .
+
+hpc:Instance a owl:Class .
+hpc:cluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance .
+hpc:extra a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance .
+hpc:instance_id a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance .
+hpc:instance_type a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance .
+hpc:node_name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance .
+hpc:time a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance .
+
+hpc:Job a owl:Class .
+hpc:account a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:comment a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:job_id a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:licenses a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:mcs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:nodes a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:partition a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:hold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:priority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:qos a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:qosreq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:required a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:kill_request_user a owl:DatatypeProperty

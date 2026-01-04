@@ -1,0 +1,40 @@
+hpc:JobArray a owl:Class .
+hpc:ManagesBatchJobsWithIdenticalResources rdfs:domain hpc:JobArray ;
+    rdfs:range hpc:BatchJob .
+
+hpc:SlurmCommand a owl:Class .
+
+hpc:MPIImplementation a owl:Class .
+
+hpc:PMI2API a owl:Class ;
+    rdfs:subClassOf hpc:PMIxAPI .
+
+hpc:SlurmInfrastructure a owl:Class .
+
+hpc:ResourceAllocation a owl:Class .
+
+hpc:Task a owl:Class .
+
+hpc:CommunicationInitialization rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:Task .
+
+hpc:PurgeTask rdfs:domain hpc:JobArray ;
+    rdfs:range hpc:Task .
+
+hpc:UsePamSlurmAdopt rdfs:domain hpc:JobArray .
+
+hpc:MPIType rdfs:domain hpc:MPIImplementation .
+
+hpc:LaunchTasks rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:Task .
+
+hpc:UsingSlurmInfrastructure rdfs:domain hpc:MPIImplementation ;
+    rdfs:range hpc:Slurm .
+
+hpc:UsingSSHOrRSH rdfs:domain hpc:MPIImplementation .
+
+hpc:OlderOpenMPIVersion rdfs:subClassOf hpc:MPIImplementation .
+
+hpc:LinksToInstructions rdfs:domain hpc:MPIImplementation ;
+    rdfs:range xsd:string .
+```

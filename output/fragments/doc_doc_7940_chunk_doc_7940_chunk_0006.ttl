@@ -1,0 +1,38 @@
+hpc:FederationParameters a owl:Class .
+hpc:fed_display an owl:DatatypeProperty ;
+    rdfs:domain hpc:FederationParameters ;
+    rdfs:range xsd:string .
+
+hpc:SLURMConfParameter a owl:Class ;
+    rdfs:subClassOf hpc:FederationParameters .
+
+hpc:FederatedView a owl:Class .
+hpc:LocalView a owl:Class .
+
+hpc:OverrideFederatedView a owl:ObjectProperty ;
+    rdfs:domain hpc:FederationParameters ;
+    rdfs:range [ a owl:Class ;
+        owl:unionOf (hpc:FederatedView hpc:LocalView) ] .
+
+hpc:Cluster a owl:Class .
+hpc:ClusterID a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster .
+
+hpc:SiblingJob a owl:Class .
+hpc:SiblingActiveRaw a owl:DatatypeProperty ;
+    rdfs:domain hpc:SiblingJob .
+
+hpc:SiblingViable a owl:Class .
+hpc:SiblingViableRaw a owl:DatatypeProperty ;
+    rdfs:domain hpc:SiblingViable .
+
+hpc:SqueueCommand a owl:Class .
+hpc:FederatedInformation a owl:ObjectProperty ;
+    rdfs:domain hpc:SqueueCommand .
+
+hpc:ClusterName a owl:DatatypeProperty ;
+    rdfs:domain hpc:FederatedInformation .
+
+hpc:SortByCluster a owl:ObjectProperty ;
+    rdfs:domain hpc:SqueueCommand .
+```

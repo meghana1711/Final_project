@@ -1,0 +1,69 @@
+hpc:Job a owl:Class .
+hpc:RequiresCPUs rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:PartitionDefinition a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:OverSubscribe a owl:DatatypeProperty ;
+    rdfs:domain hpc:PartitionDefinition ;
+    rdfs:range xsd:boolean .
+
+hpc:SelectType a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:SelectTypeParameters a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:CommandLine a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:Comments a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:Node a owl:Class .
+hpc:Socket a owl:Class ;
+    rdfs:subClassOf hpc:Node .
+hpc:Core a owl:Class ;
+    rdfs:subClassOf hpc:Socket .
+hpc:CPU a owl:Class ;
+    rdfs:subClassOf hpc:Core .
+
+hpc:AllocatedCPUs rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Node .
+
+hpc:AllocatedCPUIds rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node .
+
+hpc:NumberOfAllocatedCPUs rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node .
+
+hpc:AllocatedCPU a owl:ObjectProperty ;
+    rdfs:domain hpc:Core ;
+    rdfs:range hpc:CPU .
+
+hpc:BindingOfTasksToCPUs rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node .
+
+hpc:TaskAffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:CoreBinding a owl:ObjectProperty ;
+    rdfs:domain hpc:TaskAffinity .
+
+hpc:SocketBinding a owl:ObjectProperty ;
+    rdfs:domain hpc:TaskAffinity .
+
+hpc:Cyclic a owl:ObjectProperty ;
+    rdfs:domain hpc:AllocationMethod ;
+    rdfs:range rdfs:Literal .
+
+hpc:RoundRobin a owl:ObjectProperty ;
+    rdfs:domain hpc:DistributionMethod .
+    rdfs:range rdfs:Literal .
+
+hpc:Hint a owl:ObjectProperty ;
+    rdfs:domain hpc:CommandLine .
+    rdfs:range rdfs:Literal .
+```

@@ -1,0 +1,21 @@
+hpc:v0_0_41_openapi_resp a owl:Class .
+hpc:v0_0_41_openapi_reservation_resp a owl:Class .
+hpc:v0_0_41_openapi_shares_resp a owl:Class .
+
+hpc:Reconfigure a owl:ObjectProperty .
+hpc:Reservation a owl:Class .
+hpc:Reservations a owl:Class .
+hpc:Shares a owl:Class .
+
+rdfs:domain(hpc:Reconfigure, hpc:Reservation) .
+rdfs:domain(hpc:Reservations, hpc:Reservations) .
+rdfs:domain(hpc:Shares, hpc:Shares) .
+
+rdfs:range(hpc:Reconfigure, hpc:v0_0_41_openapi_resp) .
+rdfs:range(hpc:Reservations, hpc:v0_0_41_openapi_reservation_resp) .
+rdfs:range(hpc:Shares, hpc:v0_0_41_openapi_shares_resp) .
+
+hpc:v0_0_41_openapi_resp rdfs:subClassOf owl:Thing .
+hpc:v0_0_41_openapi_reservation_resp rdfs:subClassOf hpc:v0_0_41_openapi_resp .
+hpc:v0_0_41_openapi_shares_resp rdfs:subClassOf hpc:v0_0_41_openapi_resp .
+```

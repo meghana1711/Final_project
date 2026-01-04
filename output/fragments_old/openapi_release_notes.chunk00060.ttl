@@ -1,0 +1,46 @@
+hpc:QOSAction a owl:Enum .
+hpc:QOSAction "SUSPEND" rdf:value, xsd:string .
+hpc:QOSAction "REQUEUE" rdf:value, xsd:string .
+hpc:QOSAction "CANCEL" rdf:value, xsd:string .
+hpc:QOSAction "GANG" rdf:value, xsd:string .
+
+hpc:PreemptMode a owl:Enum .
+hpc:PreemptMode "DISABLED" rdf:value, xsd:string .
+hpc:PreemptMode "SUSPEND" rdf:value, xsd:string .
+hpc:PreemptMode "REQUEUE" rdf:value, xsd:string .
+hpc:PreemptMode "CANCEL" rdf:value, xsd:string .
+hpc:PreemptMode "GANG" rdf:value, xsd:string .
+
+hpc:QOS a owl:Class .
+hpc:QOS rdfs:subClassOf owl:NamedIndividual .
+
+hpc:QOSActionParameter a owl:ObjectProperty .
+hpc:QOSActionParameter rdfs:domain hpc:QOS .
+hpc:QOSActionParameter rdfs:range hpc:QOSAction .
+
+hpc:PreemptModeParameter a owl:ObjectProperty .
+hpc:PreemptModeParameter rdfs:domain hpc:QOS .
+hpc:PreemptModeParameter rdfs:range hpc:PreemptMode .
+
+hpc:QOSConfig a owl:Class .
+hpc:QOSConfig rdfs:subClassOf owl:NamedIndividual .
+
+hpc:QOSConfigParameter a owl:ObjectProperty .
+hpc:QOSConfigParameter rdfs:domain hpc:QOSConfig .
+
+hpc:Association a owl:Class .
+hpc:Association rdfs:subClassOf owl:NamedIndividual .
+hpc:Association rdfs:subClassOf hpc:QOSConfig .
+
+hpc:Accounting a owl:Class .
+hpc:Accounting rdfs:subClassOf owl:NamedIndividual .
+hpc:Accounting rdfs:subClassOf hpc:Association .
+
+hpc:User a owl:Class .
+hpc:User rdfs:subClassOf owl:NamedIndividual .
+hpc:User rdfs:subClassOf hpc:Association .
+
+hpc:WCKeys a owl:Class .
+hpc:WCKeys rdfs:subClassOf owl:NamedIndividual .
+hpc:WCKeys rdfs:subClassOf hpc:Accounting .
+``

@@ -1,0 +1,26 @@
+hpc:QOS a owl:Class .
+hpc:nojobs a owl:ObjectProperty .
+hpc:nosteps a owl:ObjectProperty .
+hpc:associations a owl:ObjectProperty .
+hpc:limits a owl:ObjectProperty .
+hpc:safe a owl:ObjectProperty .
+hpc:wckeys a owl:ObjectProperty .
+
+hpc:QOS rdfs:subClassOf owl:Class .
+hpc:nojobs rdfs:domain hpc:QOS ;
+    rdfs:range xsd:boolean .
+hpc:nosteps rdfs:domain hpc:QOS ;
+    rdfs:range xsd:boolean .
+hpc:associations rdfs:subPropertyOf hpc:QOS ;
+    rdfs:domain hpc:QOS ;
+    rdfs:range rdf:Resource .
+hpc:limits rdfs:subPropertyOf hpc:QOS ;
+    rdfs:domain hpc:QOS ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:safe rdfs:subPropertyOf hpc:QOS ;
+    rdfs:domain hpc:QOS ;
+    rdfs:range xsd:boolean .
+hpc:wckeys rdfs:subPropertyOf hpc:QOS ;
+    rdfs:domain hpc:QOS ;
+    rdfs:range rdf:Resource .
+```

@@ -1,0 +1,45 @@
+# OpenMPI
+
+hpc:OpenMPI a owl:Class .
+hpc:hasPMIVersion a owl:ObjectProperty .
+hpc:hasPMIVersionDomain a xsd:string .
+hpc:hasPMIVersionRange a xsd:string .
+hpc:supportsPMIx a owl:ObjectProperty .
+hpc:supportsPMIxDomain a xsd:boolean .
+hpc:launchMethod a owl:ObjectProperty .
+hpc:launchMethodDomain a xsd:string .
+hpc:launchMethodRange a xsd:string .
+hpc:requiresSlurmPMIConfig a owl:ObjectProperty .
+hpc:requiresSlurmPMIConfigDomain a xsd:boolean .
+hpc:hasPMIxPluginParameters a owl:ObjectProperty .
+hpc:hasPMIxPluginParametersDomain a xsd:string .
+hpc:hasPMIxPluginParametersRange a xsd:string .
+hpc:doesNotSupportMPI_Comm_spawn a owl:ObjectProperty .
+hpc:doesNotSupportMPI_Comm_spawnDomain a xsd:boolean .
+hpc:requiresMemoryLimitConfig a owl:ObjectProperty .
+hpc:requiresMemoryLimitConfigDomain a xsd:boolean .
+
+hpc:OpenMPI a rdfs:subClassOf owl:Class .
+hpc:hasPMIVersion rdfs:domain hpc:OpenMPI ;
+    rdfs:range xsd:string .
+hpc:supportsPMIx rdfs:domain hpc:OpenMPI ;
+    rdfs:range xsd:boolean .
+hpc:launchMethod rdfs:domain hpc:OpenMPI ;
+    rdfs:range xsd:string .
+hpc:requiresSlurmPMIConfig rdfs:domain hpc:OpenMPI ;
+    rdfs:range xsd:boolean .
+hpc:hasPMIxPluginParameters rdfs:domain hpc:OpenMPI ;
+    rdfs:range xsd:string .
+hpc:doesNotSupportMPI_Comm_spawn rdfs:domain hpc:OpenMPI ;
+    rdfs:range xsd:boolean .
+hpc:requiresMemoryLimitConfig rdfs:domain hpc:OpenMPI ;
+    rdfs:range xsd:boolean .
+
+# Slurm PMI-1
+
+hpc:SlurmPMI1 a owl:Class .
+hpc:isUsedByOpenMPI a owl:ObjectProperty .
+hpc:isUsedByOpenMPIDomain a xsd:boolean .
+hpc:isUsedByIntelMPI a owl:ObjectProperty .
+hpc:isUsedByIntelMPIDomain a xsd:boolean .
+hpc:is

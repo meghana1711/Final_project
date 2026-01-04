@@ -1,0 +1,47 @@
+hpc:API a owl:Class .
+hpc:Function a owl:Class, rdfs:subClassOf hpc:API .
+
+hpc:functionResponse a owl:DatatypeProperty .
+hpc:functionResponse rdfs:domain hpc:Function .
+hpc:functionResponse rdfs:range xsd:string .
+
+hpc:JobArray a owl:Class .
+hpc:Task a owl:Class, rdfs:subClassOf hpc:JobArray .
+
+hpc:errorCode a owl:DatatypeProperty .
+hpc:errorCode rdfs:domain hpc:Task .
+hpc:errorCode rdfs:range xsd:nonNegativeInteger .
+
+hpc:FileSpecification a owl:Class .
+hpc:stdinFile a owl:ObjectProperty .
+hpc:stdinFile rdfs:domain hpc:FileSpecification .
+hpc:stdinFile rdfs:range hpc:File .
+hpc:stdoutFile a owl:ObjectProperty .
+hpc:stdoutFile rdfs:domain hpc:FileSpecification .
+hpc:stdoutFile rdfs:range hpc:File .
+hpc:stderrFile a owl:ObjectProperty .
+hpc:stderrFile rdfs:domain hpc:FileSpecification .
+hpc:stderrFile rdfs:range hpc:File .
+
+hpc:JobID a owl:DatatypeProperty .
+hpc:JobID rdfs:domain hpc:FileSpecification .
+hpc:JobID rdfs:range xsd:nonNegativeInteger .
+
+hpc:OutputFileFormat a owl:DatatypeProperty .
+hpc:OutputFileFormat rdfs:domain hpc:FileSpecification .
+hpc:OutputFileFormat rdfs:range xsd:string .
+
+hpc:ScancelCommand a owl:Class .
+hpc:jobID a owl:ObjectProperty .
+hpc:jobID rdfs:domain hpc:ScancelCommand .
+hpc:jobID rdfs:range hpc:JobID .
+
+hpc:ArrayID a owl:DatatypeProperty .
+hpc:ArrayID rdfs:domain hpc:ScancelCommand .
+hpc:ArrayID rdfs:range xsd:nonNegativeInteger .
+
+hpc:SqueueCommand a owl:Class .
+hpc:jobRecord a owl:DatatypeProperty .
+hpc:jobRecord rdfs:domain hpc:SqueueCommand .
+hpc:jobRecord rdfs:range hpc:JobRecord .
+```

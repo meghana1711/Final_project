@@ -1,0 +1,65 @@
+hpc:NodeIssue a owl:Class .
+hpc:Reason a owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeIssue ;
+    rdfs:range xsd:string .
+
+hpc:Time a owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeIssue ;
+    rdfs:range xsd:dateTime .
+
+hpc:InsufficientResource a owl:Class ;
+    rdfs:subClassOf hpc:NodeIssue .
+hpc:FixNode a owl:ObjectProperty ;
+    rdfs:domain hpc:InsufficientResource ;
+    rdfs:range hpc:Node .
+hpc:ChangeSlurmConf a owl:ObjectProperty ;
+    rdfs:domain hpc:InsufficientResource ;
+    rdfs:range hpc:File .
+
+hpc:NotResponding a owl:Class ;
+    rdfs:subClassOf hpc:NodeIssue .
+hpc:CheckCommunication a owl:ObjectProperty ;
+    rdfs:domain hpc:NotResponding ;
+    rdfs:range hpc:Command .
+hpc:NodeAddr a owl:DatatypeProperty ;
+    rdfs:domain hpc:CheckCommunication ;
+    rdfs:range xsd:string .
+
+hpc:NetworkIssue a owl:Class ;
+    rdfs:subClassOf hpc:NodeIssue .
+hpc:FixNetwork a owl:ObjectProperty ;
+    rdfs:domain hpc:NetworkIssue ;
+    rdfs:range hpc:Network .
+hpc:Address a owl:DatatypeProperty ;
+    rdfs:domain hpc:FixNetwork ;
+    rdfs:range xsd:string .
+
+hpc:SlurmdDown a owl:Class ;
+    rdfs:subClassOf hpc:NodeIssue .
+hpc:CheckSlurmd a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdDown ;
+    rdfs:range hpc:Command .
+
+hpc:SlurmdNotRunning a owl:Class ;
+    rdfs:subClassOf hpc:SlurmdDown .
+hpc:RestartSlurmd a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdNotRunning ;
+    rdfs:range hpc:Command .
+
+hpc:SlurmdLog a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmdDown ;
+    rdfs:range xsd:string .
+
+hpc:SlurmdRunningButNotResponding a owl:Class ;
+    rdfs:subClassOf hpc:SlurmdDown .
+hpc:KillAndRestartSlurmd a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdRunningButNotResponding ;
+    rdfs:range hpc:Command .
+
+hpc:SlurmdDebug a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmdDown ;
+    rdfs:range xsd:integer .
+
+hpc:SlurmdCleanStart a owl:Class ;
+    rdfs:subClassOf hpc:SlurmdDown .
+hpc:StopSlurmd a owl:ObjectProperty ;

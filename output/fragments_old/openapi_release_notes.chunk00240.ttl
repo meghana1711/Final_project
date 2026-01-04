@@ -1,0 +1,20 @@
+hpc:SlurmdbConfigResponse a owl:Class .
+hpc:SlurmdbStatsResponse a owl:Class .
+hpc:InstancesResponse a owl:Class .
+
+hpc:openapi_slurmdbd_config_resp rdf:type hpc:SlurmdbConfigResponse .
+hpc:openapi_slurmdbd_stats_resp rdf:type hpc:SlurmdbStatsResponse .
+hpc:openapi_instances_resp rdf:type hpc:InstancesResponse .
+
+hpc:SlurmdbConfigResponse rdfs:subClassOf owl:Thing .
+hpc:SlurmdbStatsResponse rdfs:subClassOf owl:Thing .
+hpc:InstancesResponse rdfs:subClassOf owl:Thing .
+
+hpc:SlurmdbConfigResponse rdfs:domain /slurmdb/v0.0.40/config .
+hpc:SlurmdbStatsResponse rdfs:domain /slurmdb/v0.0.40/diag/ .
+hpc:InstancesResponse rdfs:domain /slurmdb/v0.0.40/instance/ .
+
+hpc:SlurmdbConfigResponse rdfs:range rdf:Resource .
+hpc:SlurmdbStatsResponse rdfs:range rdf:Resource .
+hpc:InstancesResponse rdfs:range rdf:Resource .
+```

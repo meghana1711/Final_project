@@ -1,0 +1,53 @@
+hpc:Job a owl:Class .
+hpc:JobID a xsd:integer .
+hpc:Account a xsd:string .
+hpc:NNodes a xsd:integer .
+hpc:NodeList a xsd:string .
+hpc:State a xsd:string .
+hpc:ExitCode a xsd:integer .
+hpc:DerivedExitCode a xsd:integer .
+hpc:Comment a xsd:string .
+
+hpc:hasJobID hpc:Job rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:JobID .
+
+hpc:hasAccount hpc:Job rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Account .
+
+hpc:hasNNodes hpc:Job rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:NNodes .
+
+hpc:hasNodeList hpc:Job rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:NodeList .
+
+hpc:hasState hpc:Job rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:State .
+
+hpc:hasExitCode hpc:Job rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:hasDerivedExitCode hpc:Job rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:hasComment hpc:Job rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:sjobexitmodCommand a owl:Class .
+hpc:hasJobIDForModification hpc:sjobexitmodCommand rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:sjobexitmodCommand ;
+    rdfs:range hpc:JobID .
+hpc:hasNewExitCode hpc:sjobexitmodCommand rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:sjobexitmodCommand ;
+    rdfs:range xsd:integer .
+hpc:hasNewComment hpc:sjobexitmodCommand rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:sjobexitmodCommand ;
+    rdfs:range xsd:string .
+```

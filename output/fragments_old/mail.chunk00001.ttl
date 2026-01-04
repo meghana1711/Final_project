@@ -1,0 +1,76 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:Version a owl:DatatypeProperty ;
+  rdfs:domain hpc:SlurmWorkloadManager ;
+  rdfs:range xsd:string .
+
+hpc:Overview a owl:Class ;
+  rdfs:subClassOf hpc:Documentation .
+
+hpc:ReleaseNotes a owl:Class ;
+  rdfs:subClassOf hpc:Documentation .
+
+hpc:Using a owl:Class ;
+  rdfs:subClassOf hpc:Documentation .
+
+hpc:FAQ a owl:Class ;
+  rdfs:subClassOf hpc:Documentation .
+
+hpc:Publications a owl:Class ;
+  rdfs:subClassOf hpc:Documentation .
+
+hpc:Installing a owl:Class ;
+  rdfs:subClassOf hpc:Documentation .
+
+hpc:Download a owl:Class ;
+  rdfs:subClassOf hpc:Installing .
+
+hpc:RelatedSoftware a owl:Class ;
+  rdfs:subClassOf hpc:Installing .
+
+hpc:InstallationGuide a owl:Class ;
+  rdfs:subClassOf hpc:Installing .
+
+hpc:GettingHelp a owl:Class ;
+  rdfs:subClassOf hpc:Documentation .
+
+hpc:MailingLists a owl:Class ;
+  rdfs:subClassOf hpc:GettingHelp .
+
+hpc:slurmAnnounce a owl:Class ;
+  rdfs:subClassOf hpc:MailingLists ;
+  rdfs:subClassOf hpc:EmailList .
+
+hpc:slurmUsers a owl:Class ;
+  rdfs:subClassOf hpc:MailingLists ;
+  rdfs:subClassOf hpc:EmailList .
+
+hpc:EmailList a owl:Class .
+
+hpc:postToList a owl:ObjectProperty ;
+  rdfs:domain hpc:EmailList ;
+  rdfs:range hpc:Person .
+
+hpc:subscribe a owl:ObjectProperty ;
+  rdfs:domain hpc:Person ;
+  rdfs:range hpc:EmailList .
+
+hpc:changeSubscription a owl:ObjectProperty ;
+  rdfs:domain hpc:Person ;
+  rdfs:range hpc:EmailList .
+
+hpc:unsubscribe a owl:ObjectProperty ;
+  rdfs:domain hpc:Person ;
+  rdfs:range hpc:EmailList .
+
+hpc:trafficLevel a owl:DatatypeProperty ;
+  rdfs:domain hpc:EmailList ;
+  rdfs:range xsd:string .
+
+hpc:archive a owl:DatatypeProperty ;
+  rdfs:domain hpc:EmailList ;
+  rdfs:range xsd:anyURI .
+
+hpc:Person a owl:Class .
+```

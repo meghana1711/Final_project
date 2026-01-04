@@ -1,0 +1,19 @@
+hpc:ManPage a owl:Class .
+hpc:hasManPage a owl:ObjectProperty .
+hpc:SlurmDaemon rdf:type owl:Class .
+hpc:Command rdf:type owl:Class .
+hpc:APIFunction rdf:type owl:Class .
+hpc:sacct a hpc:Command ;
+    hpc:hasManPage rdf:nil .
+hpc:salloc a hpc:Command ;
+    hpc:hasManPage rdf:nil .
+hpc:srun a rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Command .
+hpc:sattach a hpc:Command ;
+    hpc:hasManPage rdf:nil .
+hpc:sbatch a hpc:Command ;
+    hpc:hasManPage rdf:nil .
+hpc:sbcast a hpc:Command ;
+    hpc:hasManPage rdf:nil .
+```

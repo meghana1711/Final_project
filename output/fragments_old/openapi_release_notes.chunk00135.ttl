@@ -1,0 +1,50 @@
+hpc:SlurmdbdQosResp a owl:Class .
+
+hpc:requestBodyContent a owl:Class .
+hpc:requestBodyContent rdfs:subClassOf owl:Class .
+
+hpc:applicationJsonRequest a hpc:requestBodyContent ;
+    rdfs:subClassOf xsd:anySimpleType .
+
+hpc:applicationXaml a hpc:requestBodyContent ;
+    rdfs:subClassOf xsd:anySimpleType .
+
+hpc:textYaml a hpc:requestBodyContent ;
+    rdfs:subClassOf xsd:anySimpleType .
+
+hpc:applicationYaml a hpc:requestBodyContent ;
+    rdfs:subClassOf xsd:anySimpleType .
+
+hpc:responseContent a owl:Class .
+hpc:responseContent rdfs:subClassOf owl:Class .
+
+hpc:applicationJsonRequestResponse a hpc:responseContent ;
+    rdfs:subClassOf xsd:anySimpleType .
+
+hpc:applicationXamlResponse a hpc:responseContent ;
+    rdfs:subClassOf xsd:anySimpleType .
+
+hpc:textYamlResponse a hpc:responseContent ;
+    rdfs:subClassOf xsd:anySimpleType .
+
+hpc:applicationYamlResponse a hpc:responseContent ;
+    rdfs:subClassOf xsd:anySimpleType .
+
+hpc:hasRequestBodyContent a owl:ObjectProperty .
+hpc:hasRequestBodyContent rdfs:domain hpc:Post ;
+hpc:hasRequestBodyContent rdfs:range hpc:requestBodyContent .
+
+hpc:hasResponseContent a owl:ObjectProperty .
+hpc:hasResponseContent rdfs:domain hpc:Post ;
+hpc:hasResponseContent rdfs:range hpc:responseContent .
+
+hpc:SlurmdbdQosResp $ref "#/components/schemas/v0.0.41_openapi_slurmdbd_qos_resp" .
+hpc:applicationJsonRequest $ref "#/components/schemas/v0.0.41_openapi_slurmdbd_qos_resp" .
+hpc:applicationXaml $ref "#/components/schemas/v0.0.41_openapi_slurmdbd_qos_resp" .
+hpc:textYaml $ref "#/components/schemas/v0.0.41_openapi_slurmdbd_qos_resp" .
+hpc:applicationYaml $ref "#/components/schemas/v0.0.41_openapi_slurmdbd_qos_resp" .
+hpc:applicationJsonRequestResponse $ref "#/components/schemas/v0.0.41_openapi_resp" .
+hpc:applicationXamlResponse $ref "#/components/schemas/v0.0.41_openapi_resp" .
+hpc:textYamlResponse $ref "#/components/schemas/v0.0.41_openapi_resp" .
+hpc:applicationYamlResponse $ref "#/components/schemas/v0.0.41_openapi_resp" .
+```

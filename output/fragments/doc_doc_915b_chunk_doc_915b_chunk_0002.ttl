@@ -1,0 +1,47 @@
+hpc:Machine a owl:Class .
+hpc:MungeService hpc:Machine rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Service .
+
+hpc:MungeServiceEnabled hpc:MungeService rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Machine ;
+    rdfs:range xsd:boolean .
+
+hpc:MungeServiceStarted hpc:MungeService rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Machine ;
+    rdfs:range xsd:boolean .
+
+hpc:SlurmDaemon hpc:Machine rdf:type owl:Class .
+
+hpc:SlurmDaemonRestarted hpc:SlurmDaemon rdf:type owl:ObjectProperty .
+
+hpc:SlurmAuthType hpc:SlurmDaemon rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string .
+
+hpc:SlurmCredType hpc:SlurmDaemon rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string .
+
+hpc:SlurmKey hpc:SlurmDaemon rdf:type owl:Class .
+
+hpc:SlurmKeyFile hpc:SlurmKey rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range xsd:string .
+
+hpc:SlurmKeyOwnedBy hpc:SlurmKey rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmKey ;
+    rdfs:range xsd:string .
+
+hpc:SlurmKeyAccess hpc:SlurmKey rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmKey ;
+    rdfs:range xsd:integer .
+
+hpc:SlurmAuthTypeMunge hpc:SlurmDaemon rdf:type owl:NamedIndividual ;
+    hpc:SlurmAuthType "auth/munge" .
+
+hpc:SlurmCredTypeSlurm hpc:SlurmDaemon rdf:type owl:NamedIndividual ;
+    hpc:SlurmCredType "cred/slurm" .
+
+hpc:SlurmAuthTypeSlurm hpc:SlurmDaemon rdf:type owl:NamedIndividual ;
+    hpc:SlurmAuthType "auth/slurm" .
+```

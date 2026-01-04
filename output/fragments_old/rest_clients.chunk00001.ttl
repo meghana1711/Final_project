@@ -1,0 +1,49 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a rdfs:label "SchedMD" .
+
+hpc:Version a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range xsd:string .
+
+hpc:Overview a rdfs:label "Overview" .
+hpc:ReleaseNotes a rdfs:label "Release Notes" .
+hpc:Documentation a rdfs:label "Documentation" .
+hpc:FAQ a rdfs:label "FAQ" .
+hpc:Publications a rdfs:label "Publications" .
+hpc:Installing a rdfs:label "Installing" .
+hpc:Download a rdfs:label "Download" .
+hpc:RelatedSoftware a rdfs:label "Related Software" .
+hpc:InstallationGuide a rdfs:label "Installation Guide" .
+hpc:GettingHelp a rdfs:label "Getting Help" .
+hpc:MailingLists a rdfs:label "Mailing Lists" .
+hpc:SupportAndTraining a rdfs:label "Support and Training" .
+hpc:Troubleshooting a rdfs:label "Troubleshooting" .
+hpc:RESTAPICclientWritingGuide a rdfs:label "REST API Client Writing Guide" .
+
+hpc:OpenAPI a rdfs:label "OpenAPI" .
+hpc:OpenAPISpecification a rdfs:subClassOf hpc:OpenAPI ;
+    rdfs:label "OpenAPI Specification" .
+
+hpc:OpenAPISpecificationCompliance a rdfs:label "OpenAPI Standard Compliance" .
+
+hpc:OpenAPISpecificationDocumentation a rdfs:subClassOf hpc:OpenAPISpecification ;
+    rdfs:label "OpenAPI Specification Documentation" .
+
+hpc:ClientDesign a rdfs:label "Client Design" .
+
+hpc:OpenAPISpecificationChanges a rdfs:subClassOf hpc:OpenAPISpecification ;
+    rdfs:label "OpenAPI Specification Changes" .
+
+hpc:Slurmrestd a rdfs:label "slurmrestd" .
+hpc:SlurmrestdOpenAPIsCompliant a rdfs:label "Slurmrestd is compliant with OpenAPI" .
+hpc:SlurmrestdOpenAPISpecification a rdfs:subPropertyOf hpc:SlurmrestdOpenAPIsCompliant ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range hpc:OpenAPISpecification .
+
+hpc:SlurmrestdGenerateOAS a rdfs:label "Generate OAS" .
+hpc:SlurmrestdGenerateOASWithCompiledSlurmrestd a rdfs:subPropertyOf hpc:SlurmrestdGenerateOAS ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range xsd:string .
+hpc:SlurmrestdGenerateOASWithFullyConfiguredSlurmInstall a rdfs:subPropertyOf hpc:SlurmrestdGenerateOAS .
+
+hpc:OpenAPIGeneratedBySlurmrestd

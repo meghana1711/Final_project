@@ -1,0 +1,52 @@
+hpc:GPUDevice a owl:Class .
+hpc:CUDA_VISIBLE_DEVICES hpc:GPUDevice .
+hpc:GPU_DEVICE_ORDINAL hpc:GPUDevice .
+hpc:ROCR_VISIBLE_DEVICES hpc:GPUDevice .
+
+hpc:Job a owl:Class .
+hpc:JobID a rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+hpc:JobAccount a rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:JobComment a rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:JobConstraints a rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:JobCPUS_ON_NODE a rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+hpc:JobCPUS_PER_NODE a rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+hpc:JobArray a owl:Class .
+hpc:JobArrayID a rdf:Property ;
+    rdfs:domain hpc:JobArray ;
+    rdfs:range xsd:integer .
+hpc:JobArrayTaskCount a rdf:Property ;
+    rdfs:domain hpc:JobArray ;
+    rdfs:range xsd:integer .
+hpc:JobArrayTaskID a rdf:Property ;
+    rdfs:domain hpc:JobArray ;
+    rdfs:range xsd:integer .
+hpc:JobArrayTaskMax a rdf:Property ;
+    rdfs:domain hpc:JobArray ;
+    rdfs:range xsd:integer .
+hpc:JobArrayTaskMin a rdf:Property ;
+    rdfs:domain hpc:JobArray ;
+    rdfs:range xsd:integer .
+hpc:JobArrayTaskStep a rdf:Property ;
+    rdfs:domain hpc:JobArray ;
+    rdfs:range xsd:integer .
+hpc:ClusterName a rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:Conf a rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:Distribution a rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string

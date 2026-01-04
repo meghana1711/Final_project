@@ -1,0 +1,51 @@
+hpc:GangScheduler a owl:Class .
+hpc:PreemptionMode a owl:Enum .
+hpc:PreemptType a owl:Class .
+hpc:preemptNone a hpc:PreemptType ;
+   rdfs:comment "Job preemption is disabled (default)." .
+hpc:preemptPartitionPrio a hpc:PreemptType ;
+   rdfs:comment "Job preemption is based upon partition PriorityTier." .
+hpc:preemptQos a hpc:PreemptType ;
+   rdfs:comment "Job preemption rules are specified by Quality Of Service (QOS) specifications in the Slurm database." .
+
+hpc:PreemptExemptTime a owl:DatatypeProperty ;
+   rdfs:domain hpc:Job ;
+   rdfs:range xsd:string .
+
+hpc:PriorityTier a owl:DatatypeProperty ;
+   rdfs:domain hpc:Partition ;
+   rdfs:range xsd:integer .
+
+hpc:OverSubscribe a owl:Class .
+hpc:OverSubscribeSetting a owl:Enum .
+hpc:Force a hpc:OverSubscribeSetting ;
+   rdfs:comment "Supports an additional parameter that controls how many jobs can oversubscribe a compute resource." .
+
+hpc:ExclusiveUser a owl:Class .
+hpc:ExclusiveUserSetting a owl:Enum .
+
+hpc:MCSParameters a owl:Class .
+hpc:MCSLabel a owl:Class .
+hpc:MCSLabelRestriction a owl:ObjectProperty ;
+   rdfs:domain hpc:Preemption .
+   rdfs:range hpc:MCSLabel .
+
+hpc:Job a owl:Class .
+hpc:PreemptableJob a hpc:Job .
+hpc:HeterogeneousJob a hpc:Job .
+hpc:Component a owl:Class .
+hpc:PreemptMode a owl:Enum .
+hpc:Suspend a hpc:PreemptMode ;
+   rdfs:comment "Jobs will be suspended." .
+hpc:Requeue a hpc:PreemptMode ;
+   rdfs:comment "Jobs will be requeued." .
+hpc:Cancel a hpc:PreemptMode ;
+   rdfs:comment "Jobs will be canceled." .
+
+hpc:Partition a owl:Class .
+hpc:PreemptType a rdf:Property ;
+   rdfs:domain hpc:Partition ;
+   rdfs:range hpc:PreemptType .
+hpc:PriorityTier a rdf:Property ;
+   rdfs:domain hpc:Partition ;
+   rdfs:range xsd:integer .

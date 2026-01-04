@@ -1,0 +1,76 @@
+hpc:HDF5File a owl:Class .
+
+# HDF5 Group
+hpc:HDF5Group a owl:Class .
+hpc:hasAttribute a owl:ObjectProperty ;
+ rdfs:domain hpc:HDF5Group ;
+ rdfs:range rdf:Resource .
+
+# Data Set
+hpc:DataSet a owl:Class .
+
+# Time Series Group
+hpc:TimeSeriesGroup a owl:Class .
+hpc:hasTimeSeries a owl:ObjectProperty ;
+ rdfs:domain hpc:TimeSeriesGroup .
+
+# Totals Group
+hpc:TotalsGroup a owl:Class .
+hpc:hasMinimum a owl:DatatypeProperty ;
+ hpc:hasAverage a owl:DatatypeProperty ;
+ hpc:hasMaximum a owl:DatatypeProperty ;
+ hpc:hasSumTotal a owl:DatatypeProperty ;
+ rdfs:domain hpc:TotalsGroup .
+
+# Task Group
+hpc:TaskGroup a owl:Class .
+hpc:hasTask a owl:ObjectProperty ;
+ rdfs:domain hpc:TaskGroup .
+ hpc:hasNodeAttribute a owl:DatatypeProperty ;
+
+# Job
+hpc:Job a owl:Class .
+hpc:hasStep a owl:ObjectProperty ;
+ rdfs:domain hpc:Job .
+
+# Step
+hpc:Step a owl:Class .
+hpc:hasNodeGroup a owl:ObjectProperty ;
+ hpc:hasTaskGroup a owl:ObjectProperty ;
+ rdfs:domain hpc:Step .
+
+# Node Group
+hpc:NodeGroup a owl:Class .
+hpc:hasTimeSeriesGroup a owl:ObjectProperty ;
+ hpc:hasTotalsGroup a owl:ObjectProperty ;
+ rdfs:domain hpc:NodeGroup .
+
+# Energy Data
+hpc:EnergyData a owl:Class .
+hpc:hasDateAndTime a owl:DatatypeProperty ;
+ hpc:hasTime a owl:DatatypeProperty ;
+ hpc:hasPower a owl:DatatypeProperty ;
+ hpc:hasCPUFrequency a owl:DatatypeProperty ;
+
+# Filesystem Data
+hpc:FilesystemData a owl:Class .
+hpc:hasDateAndTime a owl:DatatypeProperty ;
+ hpc:hasTime a owl:DatatypeProperty ;
+ hpc:hasReads a owl:DatatypeProperty ;
+ hpc:hasMegabytesRead a owl:DatatypeProperty ;
+ hpc:hasWrites a owl:DatatypeProperty ;
+ hpc:hasMegabytesWrite a owl:DatatypeProperty ;
+
+# Network Data
+hpc:NetworkData a owl:Class .
+hpc:hasDateAndTime a owl:DatatypeProperty ;
+ hpc:hasTime a owl:DatatypeProperty ;
+ hpc:hasPacketsIn a owl:DatatypeProperty ;
+ hpc:hasMegabytesRead a owl:DatatypeProperty ;
+ hpc:hasPacketsOut a owl:DatatypeProperty ;
+ hpc:hasMegabytesWrite a owl:DatatypeProperty ;
+
+# Task Data
+hpc:TaskData a owl:Class .
+hpc:hasDateAndTime a owl:DatatypeProperty ;
+ hpc:hasTime a owl:DatatypeProperty

@@ -1,0 +1,48 @@
+hpc:DatabaseServer a owl:Class .
+hpc:DatabaseServer rdfs:subClassOf owl:Thing .
+
+hpc:UpgradeableDatabaseServer a owl:Class .
+hpc:UpgradeableDatabaseServer rdfs:subClassOf hpc:DatabaseServer .
+
+hpc:SupportedByPublisher a owl:ObjectProperty .
+hps:SupportedByPublisher rdfs:domain hpc:UpgradeableDatabaseServer ;
+                               rdfs:range rdf:Resource .
+
+hpc:RecommendedUpgradeProcedure a owl:ObjectProperty .
+hps:RecommendedUpgradeProcedure rdfs:domain hpc:UpgradeableDatabaseServer ;
+                                     rdfs:range rdf:List .
+
+hpc:CompatibleWithSlurmd a owl:ObjectProperty .
+hps:CompatibleWithSlurmd rdfs:domain hpc:UpgradeableDatabaseServer ;
+                               rdfs:range rdf:Resource .
+
+hpc:RequiresSlurmdVersion a owl:DatatypeProperty .
+hps:RequiresSlurmdVersion rdfs:domain hpc:UpgradeableDatabaseServer ;
+                                 rdfs:range xsd:string .
+
+hpc:SlurmCTLD a owl:Class .
+hps:SlurmCTLD rdfs:subClassOf owl:Thing .
+
+hps:UpgradeableSlurmCTLD a owl:Class .
+hps:UpgradeableSlurmCTLD rdfs:subClassOf hps:SlurmCTLD .
+
+hps:SimultaneousUpgradeWithSlurmd a owl:ObjectProperty .
+hps:SimultaneousUpgradeWithSlurmd rdfs:domain hps:UpgradeableSlurmCTLD ;
+                                        rdfs:range rdf:Boolean .
+
+hps:RecommendedUpgradeProcedure a owl:ObjectProperty .
+hps:RecommendedUpgradeProcedure rdfs:domain hps:UpgradeableSlurmCTLD .
+                                     rdfs:range rdf:List .
+
+hps:IncreaseSlurmdTimeout a owl:ObjectProperty .
+hps:IncreaseSlurmdTimeout rdfs:domain hps:UpgradeableSlurmCTLD .
+                                 rdfs:range xsd:integer .
+
+hps:IncreaseSlurmctldTimeout a owl:ObjectProperty .
+hps:IncreaseSlurmctldTimeout rdfs:domain hps:UpgradeableSlurmCTLD .
+                                 rdfs:range xsd:integer .
+
+hps:ExecuteScontrolReconfig a owl:ObjectProperty .
+hps:ExecuteScontrolReconfig rdfs:domain hps:UpgradeableSlurmCTLD .
+                                 rdfs:range xsd:string .
+```

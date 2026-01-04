@@ -1,0 +1,58 @@
+hpc:APICall a owl:Class .
+hpc:MediaType a owl:Class .
+hpc:Response a owl:Class .
+hpc:Status a owl:Class .
+hpc:Clusters a owl:Class .
+hpc:Config a owl:Class .
+hpc:QOS a owl:Class .
+
+hpc:hasMediaType rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:APICall ;
+    rdfs:range hpc:MediaType .
+
+hpc:hasResponse rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:APICall ;
+    rdfs:range hpc:Response .
+
+hpc:hasStatus rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Response ;
+    rdfs:range hpc:Status .
+
+hpc:hasClusters rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Response ;
+    rdfs:range hpc:Clusters .
+
+hpc:hasConfig rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Response ;
+    rdfs:range hpc:Config .
+
+hpc:hasQOS rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Response ;
+    rdfs:range hpc:QOS .
+
+hpc:MediaType rdf:type owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty hpc:hasMediaType ;
+                      owl:hasValue xsd:string ] .
+
+hpc:Response rdf:type owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty hpc:hasResponse ;
+                      owl:hasValue hpc:APIResponse ] .
+
+hpc:Status rdf:type owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty hpc:hasStatus ;
+                      owl:hasValue xsd:string ] .
+
+hpc:Clusters a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty hpc:hasClusters ;
+                      owl:hasValue hpc:ClustersResponse ] .
+
+hpc:Config a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty hpc:hasConfig ;
+                      owl:hasValue hpc:ConfigResponse ] .
+
+hpc:QOS a owl:

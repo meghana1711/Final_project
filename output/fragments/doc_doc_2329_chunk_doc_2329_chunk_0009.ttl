@@ -1,0 +1,30 @@
+hpc:MPIImplementation a owl:Class .
+hpc:SlurmIntegratedImplementation a owl:Class, rdfs:subClassOf hpc:MPIImplementation .
+hpc:NonSlurmIntegratedImplementation a owl:Class, rdfs:subClassOf hpc:MPIImplementation .
+
+hpc:ConfiguredWithSlurm a owl:ObjectProperty .
+hpc:HasSlurmAPI a owl:ObjectProperty .
+hpc:RequiresRecompileOnSlurmUpgrade a owl:ObjectProperty .
+hpc:HasHydraCommands a owl:ObjectProperty .
+
+hpc:MPICH a owl:Class, rdfs:subClassOf hpc:SlurmIntegratedImplementation .
+hpc:MVAPICH2 a owl:Class, rdfs:subClassOf hpc:SlurmIntegratedImplementation .
+
+hpc:MPICH a rdfs:subClassOf hpc:SlurmIntegratedImplementation .
+hpc:MVAPICH2 a rdfs:subClassOf hpc:SlurmIntegratedImplementation .
+
+hpc:MPICH rdfs:subClassOf hpc:SlurmIntegratedImplementation .
+hpc:MVAPICH2 rdfs:subClassOf hpc:SlurmIntegratedImplementation .
+
+hpc:ConfiguredWithSlurm rdfs:domain hpc:MPIImplementation ;
+                               rdfs:range rdfs:Literal .
+
+hpc:HasSlurmAPI rdfs:domain hpc:SlurmIntegratedImplementation ;
+                             rdfs:range rdfs:Resource .
+
+hpc:RequiresRecompileOnSlurmUpgrade rdfs:domain hpc:SlurmIntegratedImplementation ;
+                                          rdfs:range rdfs:Literal .
+
+hpc:HasHydraCommands rdfs:domain hpc:SlurmIntegratedImplementation ;
+                             rdfs:range rdfs:Resource .
+```

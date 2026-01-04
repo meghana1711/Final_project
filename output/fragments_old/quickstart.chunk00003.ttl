@@ -1,0 +1,58 @@
+hpc:ResourceAllocation a owl:Class .
+hpc:hasCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:ResourceAllocation ;
+    rdfs:range rdf:Resource .
+hpc:hasCommand salloc a hpc:hasCommand .
+hpc:hasCommand srun a hpc:hasCommand .
+hpc:hasCommand exit a hpc:hasCommand .
+hpc:hasCommand sbcast a hpc:hasCommand .
+
+# Job Step
+hpc:JobStep a owl:Class .
+hpc:isExecutedInAllocation a owl:ObjectProperty ;
+    rdfs:domain hpc:JobStep ;
+    rdfs:range rdf:Resource .
+
+# Slurm Job
+hpc:SlurmJob a owl:Class ;
+    rdfs:subClassOf hpc:JobStep .
+hpc:hasCommand sbatch a hpc:hasCommand .
+hpc:hasCommand squeue a hpc:hasCommand .
+hpc:hasCommand scancel a hpc:hasCommand .
+
+# Executable Program
+hpc:ExecutableProgram a owl:Class .
+hpc:isTransferredUsing sbcast a owl:ObjectProperty ;
+    rdfs:domain hpc:ExecutableProgram ;
+    rdfs:range rdf:Resource .
+
+# MPI
+hpc:MPI a owl:Class .
+hpc:hasModeOfOperation a owl:ObjectProperty ;
+    rdfs:domain hpc:MPI ;
+    rdfs:range rdf:Plural .
+
+# Job Array
+hpc:JobArray a owl:Class ;
+    rdfs:subClassOf hpc:JobStep .
+
+# PMI2 and PMIx APIs
+hpc:PMI2 a owl:Class ;
+    rdfs:subClassOf hpc:MPI .
+hpc:PMIx a owl:Class ;
+    rdfs:subClassOf hpc:MPI .
+
+# OpenMPI
+hpc:OpenMPI a owl:Class ;
+    rdfs:subClassOf hpc:MPI .
+
+# MVAPICH2 and MPICH2
+hpc:MVAPICH2 a owl:Class ;
+    rdfs:subClassOf hpc:MPI .
+hpc:MPICH2 a owl:Class ;
+    rdfs:subClassOf hpc:MPI .
+
+# Intel MPI
+hpc:IntelMPI a owl:Class ;
+    rdfs:subClassOf hpc:MPI .
+```

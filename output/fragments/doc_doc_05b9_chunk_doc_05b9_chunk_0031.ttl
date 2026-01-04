@@ -1,0 +1,29 @@
+hpc:ScheduleCycle a owl:Class .
+hpc:scheduleCycleLast hpc:ScheduleCycle rdfs:domain xsd:int32 .
+hpc:scheduleCycleSum hpc:ScheduleCycle rdfs:domain xsd:int32 .
+hpc:scheduleCycleTotal hpc:ScheduleCycle rdfs:domain xsd:int32 .
+hpc:scheduleCycleMean hpc:ScheduleCycle rdfs:domain xsd:int64 .
+hpc:scheduleCycleMeanDepth hpc:ScheduleCycle rdfs:domain xsd:int64 .
+hpc:scheduleCyclePerMinute hpc:ScheduleCycle rdfs:domain xsd:int64 .
+hpc:scheduleCycleDepth hpc:ScheduleCycle rdfs:domain xsd:int64 .
+hpc:bfDepthMean hpc:ScheduleCycle rdfs:domain xsd:int64 .
+hpc:bfDepthMeanTry hpc:ScheduleCycle rdfs:domain xsd:int64 .
+hpc:bfCycleSum hpc:ScheduleCycle rdfs:domain xsd:int32 .
+hpc:bfTableSize hpc:ScheduleCycle rdfs:domain xsd:int32 .
+hpc:bfTableSizeSum hpc:ScheduleCycle rdfs:domain xsd:int32 .
+hpc:bfTableSizeMean hpc:ScheduleCycle rdfs:domain xsd:int64 .
+hpc:bfWhenLastCycle hpc:ScheduleCycle rdf:type rdf:Property .
+hpc:bfActive hpc:ScheduleCycle rdf:type rdf:Property .
+hpc:rpcsByMessageType hpc:ScheduleCycle rdf:type rdf:Property .
+hpc:rpcsByUser hpc:ScheduleCycle rdf:type rdf:Property .
+hpc:pendingRpcs hpc:ScheduleCycle rdf:type rdf:Property .
+hpc:pendingRpcsByHostlist hpc:ScheduleCycle rdf:type rdf:Property .
+hpc:totalTime hpc:ScheduleCycle rdf:type rdf:Property .
+hpc:averageTime hpc:ScheduleCycle rdf:type rdf:Property .
+
+hpc:RPC a owl:Class .
+hpc:userID hpc:RPC rdfs:domain xsd:int32 .
+hpc:user hpc:RPC rdfs:domain rdf:XMLLiteral .
+hpc:count hpc:RPC rdfs:domain xsd:int32 .
+hpc:totalTime hpc:RPC rdfs:domain xsd:int64 .
+hpc:averageTime hpc:RPC rdf:type rdf:

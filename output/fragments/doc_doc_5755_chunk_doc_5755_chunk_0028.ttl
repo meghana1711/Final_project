@@ -1,0 +1,29 @@
+hpc:SlurmdDaemon a owl:Class .
+hpc:Node a owl:Class .
+hpc:EmulatedNode a owl:Class, rdfs:subClassOf hpc:Node .
+hpc:PhysicalNode a owl:Class, rdfs:subClassOf hpc:Node .
+hpc:SlurmConfig a owl:Class .
+hpc:NodeName a owl:DatatypeProperty .
+hpc:NodeHostName a owl:DatatypeProperty .
+hpc:Port a xsd:integer .
+hpc:NodeAddr a xsd:string .
+hpc:CPUs a xsd:nonNegativeInteger .
+hpc:RealMemory a xsd:nonNegativeInteger .
+hpc:SlurmdParameters a owl:ObjectProperty .
+hpc:config_overrides a xsd:string .
+hpc:Slurmd a owl:ObjectProperty .
+hpc:NodeName rdfs:domain hpc:EmulatedNode ;
+    rdfs:range xsd:string .
+hpc:NodeHostName rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+hpc:Port rdfs:domain hpc:EmulatedNode ;
+    rdfs:range xsd:integer .
+hpc:NodeAddr rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+hpc:CPUs rdfs:domain hpc:Node ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:RealMemory rdfs:domain hpc:Node ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:SlurmdParameters rdfs:domain hpc:SlurmdDaemon ;
+    rdfs:range hpc:config_overrides .
+```

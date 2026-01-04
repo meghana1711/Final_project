@@ -1,0 +1,10 @@
+hpc:OpenapiAccountsResp a owl:Class .
+hpc:OpenapiAccountsRemovedResp a owl:Class .
+
+hpc:v0_0_40_openapi_accounts_resp rdfs:subClassOf hpc:OpenapiAccountsResp .
+hpc:v0_0_40_openapi_accounts_removed_resp rdfs:subClassOf hpc:OpenapiAccountsRemovedResp .
+
+hpc:schema rdf:type owl:ObjectProperty .
+hpc:schema rdfs:domain hpc:OpenapiAccountsResp .
+hpc:schema rdfs:range xsd:anyURI .
+```

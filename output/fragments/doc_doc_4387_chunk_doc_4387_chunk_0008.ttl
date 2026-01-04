@@ -1,0 +1,36 @@
+hpc:MySQLServer a owl:Class .
+hpc:InnoDBBufferPoolSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:MySQLServer ;
+    rdfs:range xsd:decimal .
+
+hpc:InnoDBLogFileSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:MySQLServer ;
+    rdfs:range xsd:decimal .
+
+hpc:InnoDBLockWaitTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:MySQLServer ;
+    rdfs:range xsd:integer .
+
+hpc:MaxAllowedPacket a owl:DatatypeProperty ;
+    rdfs:domain hpc:MySQLServer ;
+    rdfs:range xsd:decimal .
+
+hpc:InnoDBDefaultRowFormat a owl:DatatypeProperty ;
+    rdfs:domain hpc:MySQLServer ;
+    rdfs:range xsd:string .
+
+hpc:MySQLVersion a owl:Class ;
+    rdfs:subClassOf hpc:MySQLServer .
+
+hpc:OlderMySQLVersion a owl:Class ;
+    rdfs:subClassOf hpc:MySQLVersion .
+
+hpc:RowFormat a owl:Enum ;
+    rdfs:member rdf:PlainLiteral "COMPACT" ;
+    rdfs:member rdf:PlainLiteral "DYNAMIC" .
+
+hpc:MySQLTable a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:RowSizeExceededError a owl:Class .
+```

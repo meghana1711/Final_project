@@ -1,0 +1,54 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a rdf:Literal .
+
+hpc:Overview rdf:type owl:Class .
+hpc:ReleaseNotes rdf:type owl:Class .
+hpc:Using rdf:type owl:Class .
+hpc:Documentation rdf:type owl:Class .
+hpc:FAQ rdf:type owl:Class .
+hpc:Publications rdf:type owl:Class .
+hpc:Installing rdf:type owl:Class .
+hpc:Download rdf:type owl:Class .
+hpc:RelatedSoftware rdf:type owl:Class .
+hpc:InstallationGuide rdf:type owl:Class .
+hpc:GettingHelp rdf:type owl:Class .
+hpc:MailingLists rdf:type owl:Class .
+hpc:SupportAndTraining rdf:type owl:Class .
+hpc:Troubleshooting rdf:type owl:Class .
+
+hpc:job_container_tmpfs a owl:Class .
+
+hpc:hasVersion a owl:DatatypeProperty .
+hpc:hasVersion rdfs:domain hpc:SlurmWorkloadManager ;
+                 rdfs:range xsd:string .
+
+hpc:hasOverview a owl:ObjectProperty .
+hpc:hasReleaseNotes a owl:ObjectProperty .
+hpc:hasDocumentation a owl:ObjectProperty .
+hpc:hasFAQ a owl:ObjectProperty .
+hpc:hasPublications a owl:ObjectProperty .
+hpc:requiresInstallation a owl:ObjectProperty .
+hpc:requiresRelatedSoftware a owl:ObjectProperty .
+hpc:hasInstallationGuide a owl:ObjectProperty .
+hpc:hasGettingHelp a owl:ObjectProperty .
+hpc:hasMailingLists a owl:ObjectProperty .
+hpc:hasSupportAndTraining a owl:ObjectProperty .
+hpc:hasTroubleshooting a owl:ObjectProperty .
+
+hpc:job_container_tmpfs_hasPlugin a owl:ObjectProperty .
+hpc:job_container_tmpfs_hasPlugin rdfs:domain hpc:SlurmWorkloadManager ;
+                                    rdfs:range hpc:Plugin .
+
+hpc:Plugin a owl:Class .
+
+hpc:job_container_tmpfs_providesJobSpecificTemporaryFileSystemSpace a owl:ObjectProperty .
+hpc:job_container_tmpfs_providesJobSpecificTemporaryFileSystemSpace rdfs:domain hpc:Plugin ;
+                                                                      rdfs:range xsd:boolean .
+
+hpc:job_container_tmpfs_createsUniquePrivateInstanceOfTmpAndDevShm a owl:ObjectProperty .
+hpc:job_container_tmpfs_createsUniquePrivateInstanceOfTmpAndDevShm rdfs:domain hpc:Plugin ;
+                                                                      rdfs:range xsd:boolean .
+
+hpc:job_container_tmpfs_removesContentsAtJobTermination a owl:ObjectProperty .
+hpc:job_container_tmpfs_removesContentsAtJobTermination rdfs:domain hpc:Plugin ;
+                                                          rdfs:range xsd:boolean .

@@ -1,0 +1,43 @@
+hpc:WCKeyResponse a owl:Class .
+hpc:WCKeyRemovedResponse a hpc:WCKeyResponse ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf hpc:WCKeyResponse ] .
+hpc:WCKeyAddedResponse a hpc:WCKeyResponse ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf hpc:WCKeyResponse ] .
+
+hpc:WCKey a owl:Class .
+hpc:hasId a owl:ObjectProperty ;
+    rdfs:domain hpc:WCKey ;
+    rdfs:range xsd:string .
+
+hpc:WCKeyOperation a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf hpc:WCKey ] .
+hpc:WCKeyRemoved a hpc:WCKeyOperation ;
+    rdfs:subClassOf [ a hpc:WCKeyOperation ] .
+hpc:WCKeyAdded a hpc:WCKeyOperation ;
+    rdfs:subClassOf [ a hpc:WCKeyOperation ] .
+
+hpc:HTTPResponse a owl:Class .
+hpc:hasContentType a owl:ObjectProperty ;
+    rdfs:domain hpc:HTTPResponse ;
+    rdfs:range xsd:string .
+hpc:hasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:HTTPResponse ;
+    rdfs:range rdf:Resource .
+hpc:hasRef a owl:ObjectProperty ;
+    rdfs:domain hpc:HTTPResponse ;
+    rdfs:range rdf:Resource .
+
+hpc:HTTPRequest a owl:Class .
+hpc:hasContentType a owl:ObjectProperty ;
+    rdfs:domain hpc:HTTPRequest ;
+    rdfs:range xsd:string .
+hpc:hasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:HTTPRequest ;
+    rdfs:range rdf:Resource .
+hpc:hasRef a owl:ObjectProperty ;
+    rdfs:domain hpc:HTTPRequest ;
+    rdfs:range rdf:Resource .
+```

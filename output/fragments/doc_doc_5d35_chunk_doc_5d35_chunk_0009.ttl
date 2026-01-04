@@ -1,0 +1,53 @@
+hpc:JobAllocation a owl:Class .
+hpc:Job queued a hpc:JobAllocation ;
+    rdfs:label "Job queued" ;
+    rdfs:subClassOf owl:ObjectProperty .
+
+hpc:JobAllocationResources a owl:Class .
+hpc:hasResources a hpc:JobAllocationResources ;
+    rdfs:domain hpc:JobAllocation ;
+    rdfs:range rdf:List .
+
+hpc:JobID a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobAllocation ;
+    rdfs:range xsd:integer .
+
+hpc:HetSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobAllocationResources ;
+    rdfs:range xsd:integer .
+
+hpc:HetGroup a owl:Class .
+hpc:hasHetGroup a hpc:HetGroup ;
+    rdfs:domain hpc:JobAllocationResources ;
+    rdfs:range rdf:List .
+
+hpc:HetGroupID a owl:DatatypeProperty ;
+    rdfs:domain hpc:HetGroup ;
+    rdfs:range xsd:integer .
+
+hpc:HetNodeCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:HetGroup ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:HetNodeList a owl:DatatypeProperty ;
+    rdfs:domain hpc:HetGroup ;
+    rdfs:range xsd:string .
+
+hpc:Node a owl:Class .
+hpc:hasMemory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:NodeFeature a owl:Class .
+hpc:hasFeature a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range hpc:NodeFeature .
+
+hpc:NodeList a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobAllocationResources ;
+    rdfs:range xsd:string .
+
+hpc:MPIApplication a owl:Class .
+hpc:hasUniformEnvironment a owl:ObjectProperty ;
+    rdfs:domain hpc:MPIApplication .
+```

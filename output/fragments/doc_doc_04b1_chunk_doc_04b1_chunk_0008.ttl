@@ -1,0 +1,61 @@
+hpc:SlurmctldPort a owl:Class .
+hpc:hasSlurmctldPort a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmctldPort ;
+    rdfs:range xsd:integer .
+
+hpc:SlurmdDebug a owl:Class .
+hpc:logLevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmdDebug ;
+    rdfs:range xsd:string .
+
+hpc:SlurmdLogFile a owl:Class .
+hpc:logFileType a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmdLogFile ;
+    rdfs:range xsd:string .
+
+hpc:SlurmDBDRateLimiting a owl:Class .
+hpc:hasRlBucketSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmDBDRateLimiting ;
+    rdfs:range xsd:integer .
+hpc:hasRlRefillRate a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmDBDRateLimiting ;
+    rdfs:range xsd:decimal .
+hpc:hasRlRefillPeriod a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmDBDRateLimiting ;
+    rdfs:range xsd:duration .
+hpc:hasRlTableSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmDBDRateLimiting ;
+    rdfs:range xsd:integer .
+hpc:isEnabled a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDBDRateLimiting ;
+    rdfs:range xsd:boolean .
+
+hpc:SystemConfiguration a owl:Class .
+hpc:hasLoggingConfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:SystemConfiguration ;
+    rdfs:range hpc:SlurmdDebug ;
+
+hpc:DatabaseConfiguration a owl:Class ;
+    rdfs:subClassOf hpc:SystemConfiguration .
+hpc:hasDatabaseRateLimiting a owl:ObjectProperty ;
+    rdfs:domain hpc:DatabaseConfiguration ;
+    rdfs:range hpc:SlurmDBDRateLimiting .
+
+hpc:AccountingConfiguration a owl:Class ;
+    rdfs:subClassOf hpc:SystemConfiguration .
+hpc:isAccountingEnabled a owl:ObjectProperty ;
+    rdfs:domain hpc:AccountingConfiguration ;
+    rdfs:range xsd:boolean .
+
+hpc:SlurmdbdConfiguration a owl:Class ;
+    rdfs:subClassOf hpc:DatabaseConfiguration .
+hpc:hasCommitDelay a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmdbdConfiguration ;
+    rdfs:range xsd:duration .
+hpc:hasPurgeEventAfter a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmdbdConfiguration ;
+    rdfs:range xsd:duration .
+hpc:hasPurgeJobAfter a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmdbdConfiguration ;
+    rdfs:range xsd:duration .
+hpc:hasP

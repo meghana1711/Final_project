@@ -1,0 +1,46 @@
+hpc:Post a owl:Class .
+hpc:RequestBody a owl:Class .
+hpc:Content a owl:Class .
+hpc:ApplicationYAML a xsd:QName .
+hpc:Schema a owl:Class .
+
+hpc:Post rdfs:subClassOf hpc:Request .
+hpc:RequestBody rdfs:domain hpc:Post ;
+    rdfs:range rdf:List ;
+    rdfs:subClassOf hpc:Content .
+hpc:Content rdfs:subClassOf rdf:List .
+hpc:ApplicationYAML rdfs:subPropertyOf hpc:Content .
+hpc:Schema rdfs:subClassOf rdf:Resource .
+
+hpc:v0_0_41_openapi_assocs_resp a owl:Class .
+hpc:v0_0_41_openapi_resp a owl:Class .
+hpc:v0_0_41_openapi_assocs_removed_resp a owl:Class .
+
+hpc:v0_0_41_openapi_assocs_resp rdfs:subClassOf hpc:Schema ;
+    rdfs:subClassOf hpc:Response .
+hpc:v0_0_41_openapi_resp rdfs:subClassOf hpc:Schema ;
+    rdfs:subClassOf hpc:Response .
+hpc:v0_0_41_openapi_assocs_removed_resp rdfs:subClassOf hpc:Schema ;
+    rdfs:subClassOf hpc:Response .
+
+hpc:Response a owl:Class .
+hpc:Response rdfs:subClassOf hpc:Schema .
+
+hpc:AssociationsPath a owl:Class .
+hpc:PostResponse a owl:Class .
+hpc:DefaultResponse a owl:Class .
+hpc:DeleteResponse a owl:Class .
+
+hpc:AssociationsPath rdfs:subClassOf hpc:Path .
+hpc:PostResponse rdfs:subClassOf hpc:Response .
+hpc:DefaultResponse rdfs:subClassOf hpc:Response .
+hpc:DeleteResponse rdfs:subClassOf hpc:Response .
+
+hpc:ApplicationJSONRequest a owl:Class .
+hpc:ApplicationXYAML a xsd:QName .
+hpc:TextYAML a xsd:QName .
+
+hpc:ApplicationJSONRequest rdfs:subPropertyOf hpc:Content .
+hpc:ApplicationXYAML rdfs:subPropertyOf hpc:Content .
+hpc:TextYAML rdfs:subPropertyOf hpc:Content .
+```

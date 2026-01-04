@@ -1,0 +1,33 @@
+hpc:Slurmctld a owl:Class .
+hpc:Slurmdbd a owl:Class .
+hpc:AccountingStorageBackupHost rdf:type owl:ObjectProperty .
+hpc:DbdBackupHost rdf:type owl:ObjectProperty .
+hpc:UniformUserAndGroupNamespace a owl:Class .
+hpc:AuthenticatedCommunication a owl:Class .
+hpc:AuthType rdf:type owl:ObjectProperty .
+hpc:MungeAuthentication rdf:type owl:Class .
+hpc:InternalAuthentication rdf:type owl:Class .
+hpc:MungeKeyFile rdf:type owl:DatatypeProperty .
+hpc:MungeDaemonStartedBeforeSlurmdaemons rdf:type owl:ObjectProperty .
+hpc:NTPUsed rdf:type owl:DatatypeProperty .
+hpc:SameDatabaseAccess rdf:type owl:ObjectProperty .
+hpc:DifferentMachine rdf:type owl:DatatypeProperty .
+hpc:SaveMaxWait rdf:type owl:DatatypeProperty .
+hpc:SlurmComponentCommunication a rdfs:subClassOf hpc:AuthenticatedCommunication .
+hpc:MungeSlurmComponentCommunication a rdfs:subClassOf hpc:SlurmComponentCommunication .
+hpc:InternalSlurmComponentCommunication a rdfs:subClassOf hpc:SlurmComponentCommunication .
+hpc:SlurmComponent rdfs:subClassOf owl:Class .
+hpc:MungeSlurmComponent rdfs:subClassOf hpc:SlurmComponent .
+hpc:InternalSlurmComponent rdfs:subClassOf hpc:SlurmComponent .
+hpc:UniformUserAndGroupNamespace rdfs:subClassOf owl:Class .
+hpc:AuthType rdfs:domain hpc:SlurmComponent .
+hpc:MungeAuthentication rdfs:domain hpc:SlurmComponent .
+hpc:InternalAuthentication rdfs:domain hpc:SlurmComponent .
+hpc:MungeKeyFile rdfs:domain hpc:MungeSlurmComponent .
+hpc:MungeDaemonStartedBeforeSlurmdaemons rdfs:domain hpc:MungeSlurmComponent .
+hpc:NTPUsed rdfs:range xsd:boolean .
+hpc:SameDatabaseAccess rdfs:domain hpc:Slurmdbd .
+hpc:DifferentMachine rdfs:range xsd:string .
+hpc:SaveMaxWait rdfs:domain hpc:Slurmctld .
+hpc:SaveMaxWait rdfs:range xsd:nonNegativeInteger .
+```

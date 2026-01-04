@@ -1,0 +1,37 @@
+hpc:Database a owl:Class .
+hpc:DatabaseInstance a owl:Class .
+hpc:Node a owl:Class .
+hpc:InstanceId a xsd:string .
+hpc:InstanceType a xsd:string .
+hpc:Extra a xsd:string .
+hpc:Arch a xsd:string .
+hpc:CoresPerSocket a xsd:integer .
+
+hpc:hasDatabaseInstance rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Database ;
+    rdfs:range hpc:DatabaseInstance .
+
+hpc:hasNode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:DatabaseInstance ;
+    rdfs:range hpc:Node .
+
+hpc:hasInstanceId rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:DatabaseInstance ;
+    rdfs:range xsd:string .
+
+hpc:hasInstanceType rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:DatabaseInstance ;
+    rdfs:range xsd:string .
+
+hpc:hasExtra rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:DatabaseInstance ;
+    rdfs:range xsd:string .
+
+hpc:hasArch rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:hasCoresPerSocket rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:integer .
+```

@@ -1,0 +1,73 @@
+hpc:ActiveJobsPerUser a owl:DatatypeProperty ;
+ rdfs:domain hpc:Job ;
+ rdfs:range xsd:int .
+
+hpc:GrpSubmitJobs a owl:DatatypeProperty ;
+ rdfs:domain hpc:QOS ;
+ rdfs:range xsd:int .
+
+hpc:MaxSubmitJobsPerAccount a owl:DatatypeProperty ;
+ rdfs:domain hpc:QOS ;
+ rdfs:range xsd:int .
+
+hpc:MaxSubmitJobsPerUser a owl:DatatypeProperty ;
+ rdfs:domain hpc:QOS ;
+ rdfs:range xsd:int .
+
+hpc:MaxTRESRunMinsPerAccount a owl:DatatypeProperty ;
+ rdfs:domain hpc:QOS ;
+ rdfs:range xsd:int .
+
+hpc:MaxTRESMinsPerJob a owl:DatatypeProperty ;
+ rdfs:domain hpc:Job ;
+ rdfs:range xsd:int .
+
+hpc:GrpTRESRunMins a owl:DatatypeProperty ;
+ rdfs:domain hpc:QOS ;
+ rdfs:range xsd:int .
+
+hpc:MaxTRESRunMinsPerUser a owl:DatatypeProperty ;
+ rdfs:domain hpc:User ;
+ rdfs:range xsd:int .
+
+hpc:GrpTRESMins a owl:DatatypeProperty ;
+ rdfs:domain hpc:QOS ;
+ rdfs:range xsd:int .
+
+hpc:MaxTRESPerAccount a owl:DatatypeProperty ;
+ rdfs:domain hpc:QOS ;
+ rdfs:range xsd:int .
+
+hpc:MaxTRESPerJob a owl:DatatypeProperty ;
+ rdfs:domain hpc:Job ;
+ rdfs:range xsd:int .
+
+hpc:MaxTRESPerNode a owl:DatatypeProperty ;
+ rdfs:domain hpc:JobAllocation ;
+ rdfs:range xsd:int .
+
+hpc:MaxTRESPerUser a owl:DatatypeProperty ;
+ rdfs:domain hpc:User ;
+ rdfs:range xsd:int .
+
+hpc:GrpTRES a owl:DatatypeProperty ;
+ rdfs:domain hpc:QOS ;
+ rdfs:range xsd:int .
+
+hpc:MaxWallDurationPerJob a owl:DatatypeProperty ;
+ rdfs:domain hpc:Job ;
+ rdfs:range xsd:int .
+
+hpc:GrpWall a owl:DatatypeProperty ;
+ rdfs:domain hpc:QOS ;
+ rdfs:range xsd:int .
+
+hpc:MinPrioThreshold a owl:DatatypeProperty ;
+ rdfs:domain hpc:QOS ;
+ rdfs:range xsd:int .
+
+hpc:MinTRESPerJob a owl:DatatypeProperty ;
+ rdfs:domain hpc:Job ;
+ rdfs:range xsd:int .
+
+hpc:PreemptExemptTime

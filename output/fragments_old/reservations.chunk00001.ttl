@@ -1,0 +1,62 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:Reservation a owl:Class .
+hpc:ResourceReservation a owl:Class .
+hpc:NodeReservation a owl:Class .
+hpc:LicenseReservation a owl:Class .
+hpc:BurstBufferReservation a owl:Class .
+
+hpc:hasStartTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:dateTime .
+
+hpc:hasEndTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:dateTime .
+
+hpc:hasDuration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasNodes a owl:ObjectProperty ;
+    rdfs:domain hpc:NodeReservation ;
+    rdfs:range hpc:Node .
+
+hpc:hasLicenses a owl:ObjectProperty ;
+    rdfs:domain hpc:LicenseReservation ;
+    rdfs:range hpc:License .
+
+hpc:hasBurstBuffers a owl:ObjectProperty ;
+    rdfs:domain hpc:BurstBufferReservation ;
+    rdfs:range hpc:BurstBuffer .
+
+hpc:hasUsers a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:User .
+
+hpc:hasAccounts a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Account .
+
+hpc:hasFlags a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Flag .
+
+hpc:Partition a owl:Class .
+hpc:PartitionName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:string .
+
+hpc:Node a owl:Class .
+hpc:NodeCnt a owl:DatatypeProperty ;
+    rdfs:domain hpc:NodeReservation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:License a owl:Class .
+hpc:Licenses a owl:DatatypeProperty ;
+    rdfs:domain hpc:LicenseReservation ;
+    rdfs:range xsd:string .
+
+hpc:BurstBuffer a owl:Class .
+hpc:BurstBufferSpace a owl:Datatype

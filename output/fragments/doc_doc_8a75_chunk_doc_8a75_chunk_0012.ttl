@@ -1,0 +1,34 @@
+hpc:SLURM_RLIMIT_NPROC a owl:Class .
+hpc:SLURM_RLIMIT_RSS a owl:Class .
+hpc:SLURM_RLIMIT_STACK a owl:Class .
+
+hpc:hasScriptContext a owl:ObjectProperty ;
+  rdfs:domain hpc:SLURM_SCRIPT_CONTEXT ;
+  rdfs:range xsd:string .
+
+hpc:SLURM_SCRIPT_CONTEXT
+  rdfs:subClassOf owl:Class ;
+  rdf:value "prolog_slurmctld" ;
+  rdf:value "epilog_slurmctld" ;
+  rdf:value "prolog_slurmd" ;
+  rdf:value "epilog_slurmd" ;
+  rdf:value "prolog_task" ;
+  rdf:value "epilog_task" ;
+  rdf:value "prolog_srun" ;
+  rdf:value "epilog_srun" .
+
+hpc:SLURM_STEP_ID a owl:Class .
+hpc:SLURM_STEPID a owl:Class ;
+  rdfs:subClassOf hpc:SLURM_STEP_ID .
+
+hpc:SLURM_STEP_ID rdfs:subClassOf owl:Class ;
+  rdfs:subClassOf hpc:SLURM_STEP_ID .
+
+hpc:SLURM_STEP_ID rdfs:subClassOf owl:Class ;
+  rdfs:subClassOf hpc:SLURM_STEPID .
+
+hpc:SLURM_SUBMIT_DIR a owl:Class .
+hpc:SLURM_SUBMIT_HOST a owl:Class .
+hpc:SLURM_TASK_PID a owl:Class .
+hpc:SLURM_TASKS_PER_NODE a owl:Class .
+```

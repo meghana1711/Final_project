@@ -1,0 +1,31 @@
+hpc:Clusters a owl:Class .
+hpc:ClusterResponse a owl:Class .
+hpc:RemovedClusterResponse a owl:Class, rdfs:subClassOf [ hpc:ClusterResponse ] .
+
+hpc:getCluster a owl:ObjectProperty .
+hpc:deleteCluster a owl:ObjectProperty .
+hpc:postCluster a owl:ObjectProperty .
+
+hpc:clusterName a xsd:string .
+hpc:response a rdf:Property .
+hpc:status a xsd:integer .
+hpc:data a rdf:Property .
+
+hpc:getCluster rdfs:domain hpc:Clusters ;
+    rdfs:range hpc:ClusterResponse .
+
+hpc:deleteCluster rdfs:domain hpc:Clusters ;
+    rdfs:range hpc:RemovedClusterResponse .
+
+hpc:postCluster rdfs:domain hpc:Clusters ;
+    rdfs:range hpc:ClusterResponse .
+
+hpc:ClusterResponse rdfs:subClass [
+    hpc:status rdfs:range xsd:integer ;
+    hpc:data rdfs:range xsd:anyURI
+] .
+
+hpc:RemovedClusterResponse rdfs:subClass [
+    hpc:status rdfs:range xsd:integer
+] .
+```

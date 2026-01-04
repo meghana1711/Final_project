@@ -1,0 +1,32 @@
+hpc:Reservation a owl:Class .
+hpc:MaintenanceReservation a owl:Class, rdfs:subClassOf hpc:Reservation .
+hpc:SecondExceptionReservation a owl:Class, rdfs:subClassOf hpc:Reservation .
+
+hpc:hasOverlapFlag a owl:ObjectProperty .
+hpc:hasStartTime a xsd:dateTime .
+hpc:hasEndTime a xsd:dateTime .
+hpc:hasNodes a xsd:integer .
+hpc:hasUser a hpc:User .
+hpc:hasGroup a hpc:Group .
+
+hpc:Reservation rdfs:subClass aowl:UnionOf (hpc:MaintenanceReservation hpc:SecondExceptionReservation) .
+hpc:MaintenanceReservation rdfs:domain hpc:Reservation ;
+    rdfs:range [ a owl:Restriction ;
+                 owl:onProperty hpc:hasOverlapFlag ;
+                 owl:allValuesFrom xsd:boolean ] .
+hpc:SecondExceptionReservation rdfs:domain hpc:Reservation ;
+    rdfs:range [ a owl:Restriction ;
+                 owl:onProperty hpc:hasOverlapFlag ;
+                 owl:allValuesFrom xsd:boolean ] .
+
+hpc:hasResource a owl:ObjectProperty .
+hpc:Resource a owl:Class .
+
+hpc:Reservation rdfs:subPropertyChain aowl:Chain (hpc:hasResource hpc:isPartOf) .
+hpc:isPartOf a owl:ObjectProperty .
+
+hpc:Group a owl:Class .
+hpc:User a owl:Class .
+```
+
+This ontology fragment defines classes for Reservation, MaintenanceReservation, and SecondExceptionReservation. It also defines properties for hasOverlapFlag, hasStartTime, hasEndTime, hasNodes, hasUser, hasGroup, hasResource, and isPartOf. The relationships between these classes and properties are also defined.

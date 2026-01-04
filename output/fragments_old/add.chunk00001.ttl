@@ -1,0 +1,54 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD rdf:type owl:NamedIndividual ;
+    rdf:type hpc:SlurmWorkloadManager .
+
+hpc:Version a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager .
+
+hpc:Overview a owl:Class .
+hpc:ReleaseNotes a owl:Class .
+hpc:Documentation a owl:Class .
+hpc:FAQ a owl:Class .
+hpc:Publications a owl:Class .
+hpc:Installing a owl:Class .
+hpc:Download a owl:Class .
+hpc:RelatedSoftware a owl:Class .
+hpc:InstallationGuide a owl:Class .
+hpc:GettingHelp a owl:Class .
+hpc:MailingLists a owl:Class .
+hpc:SupportAndTraining a owl:Class .
+hpc:Troubleshooting a owl:Class .
+hpc:AddingFilesOrPluginsToSlurm a owl:Class .
+hpc:AddingFileToSlurm a owl:Class .
+hpc:AddingPluginToSlurm a owl:Class .
+
+hpc:AddFileToSlurm a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Seq ;
+        rdf:first hpc:addToGitRepository ;
+        rdf:rest [ rdf:type owl:ObjectProperty ;
+                    rdf:subPropertyOf hpc:AddFileToSlurm ;
+                    rdf:first hpc:modifyMakefileAM ;
+                    rdf:rest [ rdf:type owl:ObjectProperty ;
+                                rdf:subPropertyOf hpc:AddFileToSlurm ;
+                                rdf:first hpc:executeAutoreconf ;
+                                rdf:rest [ rdf:type owl:ObjectProperty ;
+                                            rdf:subPropertyOf hpc:AddFileToSlurm ;
+                                            rdf:first hpc:modifyMakefileIn ] ] ] .
+
+hpc:AddPluginToSlurm a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Seq ;
+        rdf:first hpc:createNewDirectory ;
+        rdf:rest [ rdf:type owl:ObjectProperty ;
+                    rdf:subPropertyOf hpc:AddPluginToSlurm ;
+                    rdf:first hpc:addToParentDirectoryMakefileAM ;
+                    rdf:rest [ rdf:type owl:ObjectProperty ;
+                                rdf:subPropertyOf hpc:AddPluginToSlurm ;
+                                rdf:first hpc:putNewFile ;
+                                rdf:rest [ rdf:type owl:ObjectProperty ;
+                                            rdf:subPropertyOf hpc:AddPluginToSlurm ;
+                                            rdf:first hpc:createMakefileAM ;
+                                            rdf:rest [ rdf:type owl:ObjectProperty ;
+                                                        rdf:subPropertyOf hpc:AddPluginToSlurm ;
+                                                        rdf:first hpc:identifyNewMakefile ;

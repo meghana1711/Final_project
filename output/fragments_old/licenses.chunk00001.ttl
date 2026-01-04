@@ -1,0 +1,33 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:SoftwareLicense a owl:Class .
+hpc:LocalLicense a hpc:SoftwareLicense .
+hpc:RemoteLicense a hpc:SoftwareLicense .
+
+hpc:slurmConf a owl:Class .
+hpc:Licenses a rdf:Property .
+
+hpc:scontrolCommand a owl:ObjectProperty .
+hpc:sacctmgrCommand a owl:ObjectProperty .
+
+hpc:LicenseName a xsd:string .
+hpc:Total a xsd:nonNegativeInteger .
+hpc:Used a xsd:nonNegativeInteger .
+hpc:Free a xsd:nonNegativeInteger .
+hpc:Remote a xsd:boolean .
+
+hpc:slurmdbd a owl:Class .
+hpc:database a owl:Class .
+
+hpc:Cluster a owl:Class .
+hpc:ControlHost a rdf:Property .
+
+hpc:Job a owl:Class .
+hpc:script a rdf:Property .
+
+hpc:RequestLicense a rdf:Property .
+hpc:tresPerTask a rdf:Property .
+
+hpc:AccountingStorageTRES a rdf:Property .
+```

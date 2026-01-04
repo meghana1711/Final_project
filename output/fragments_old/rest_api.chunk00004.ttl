@@ -1,0 +1,40 @@
+# Classes
+hpc:JobInfo a owl:Class .
+hpc:SlurmJobInfo a owl:Class, rdfs:subClassOf [ hpc:JobInfo ] .
+hpc:SlurmJob a owl:Class, rdfs:subClassOf [ hpc:JobInfo ] .
+
+# Object Properties
+hpc:hasJobID a owl:ObjectProperty .
+hpc:hasContainer a owl:ObjectProperty .
+hpc:hasCluster a owl:ObjectProperty .
+hpc:hasStdinExpanded a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hasLastBackfill a owl:DatatypeProperty .
+hpc:hasClusterName a owl:DatatypeProperty .
+hpc:hasRelease a owl:DatatypeProperty .
+hpc:hasVersion a owl:DatatypeProperty .
+hpc:hasVersionMajor a owl:DatatypeProperty .
+hpc:hasVersionMinor a owl:DatatypeProperty .
+hpc:hasVersionMicro a owl:DatatypeProperty .
+hpc:hasPluginAccountingStorage a owl:DatatypeProperty .
+hpc:hasPluginName a owl:DatatypeProperty .
+hpc:hasPluginType a owl:DatatypeProperty .
+hpc:hasPluginDataParser a owl:DatatypeProperty .
+hpc:hasClientSource a owl:DatatypeProperty .
+hpc:hasClientUser a owl:DatatypeProperty .
+hpc:hasClientGroup a owl:DatatypeProperty .
+hpc:hasCommand a owl:DatatypeProperty .
+
+# Domain and Range
+rdfs:domain hpc:hasJobID [ hpc:SlurmJobInfo ] .
+rdfs:domain hpc:hasContainer [ hpc:SlurmJob ] .
+rdfs:domain hpc:hasCluster [ hpc:SlurmJob ] .
+rdfs:domain hpc:hasStdinExpanded [ hpc:SlurmJob ] .
+rdfs:domain hpc:hasLastBackfill [ hpc:SlurmJobInfo ] .
+rdfs:domain hpc:hasClusterName [ hpc:SlurmJobInfo ] .
+rdfs:domain hpc:hasRelease [ hpc:SlurmJobInfo ] .
+rdfs:domain hpc:hasVersion [ hpc:SlurmJobInfo ] .
+rdfs:domain hpc:hasVersionMajor [ hpc:SlurmJobInfo ] .
+rdfs:domain hpc:hasVersionMinor [ hpc:SlurmJobInfo ] .
+rdfs:domain hpc:hasVersionMicro [ hpc:SlurmJobInfo

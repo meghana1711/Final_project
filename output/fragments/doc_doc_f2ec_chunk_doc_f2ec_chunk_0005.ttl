@@ -1,0 +1,35 @@
+hpc:SlurmNode a owl:Class .
+hpc:SlurmController a owl:Class .
+hpc:SlurmUser a owl:Class .
+hpc:SlurmVersion a owl:Class .
+hpc:SlurmLogFile a owl:Class .
+hpc:SlurmDaemon a owl:Class .
+hpc:SlurmDaemonSupportsVersion a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range hpc:SlurmVersion .
+hpc:SlurmVersionDesignatesMaintenanceRelease a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmVersion .
+hpc:SlurmVersionMatchesReleaseYearMonth a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmVersion .
+hpc:SlurmNodeHasStateInformation a owl:ObjectProperty .
+hpc:SlurmNodeHasNetworkingConfiguration a owl:ObjectProperty .
+hpc:SlurmNodeHasSlurmConfigFile a owl:ObjectProperty .
+hpc:SlurmNodeHasCredentialFile a owl:ObjectProperty .
+hpc:SlurmNodeHasUser a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmNode ;
+    rdfs:range hpc:SlurmUser .
+hpc:SlurmUserExistsOnController a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmUser .
+hpc:SlurmUserExistsOnNode a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmUser .
+hpc:SlurmNodeHasCompatibleSlurmVersion a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmNode .
+hpc:SlurmNodeRestart a owl:ObjectProperty .
+hpc:SlurmNodeCheckLogFiles a owl:ObjectProperty .
+hpc:SlurmVersion containsThreeParts a owl:DatatypeProperty .
+hpc:SlurmDaemonSupportsRpcsAndStateFiles a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmDaemon ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:first hpc:SlurmVersion ;
+    rdfs:range rdf:rest hpc:SlurmVersion .
+```

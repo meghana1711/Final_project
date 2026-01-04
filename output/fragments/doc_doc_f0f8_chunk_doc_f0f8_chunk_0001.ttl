@@ -1,0 +1,13 @@
+hpc:Cluster a owl:Class .
+hpc:ClusterName rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string .
+
+hpc:ControlMachine a owl:Class .
+hpc:ControlMachineName rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:ControlMachine ;
+    rdfs:range xsd:string .
+hpc:ControlMachineHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ControlMachine ;
+    rdfs:range xsd:string .
+```

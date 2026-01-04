@@ -1,0 +1,14 @@
+{
+  "run_id": "20251224_090837",
+  "utc_start": "2025-12-24T09:08:37.674642Z",
+  "model": "mistralai/Mistral-7B-Instruct-v0.3",
+  "db_path": "onto_db/onto_new.db",
+  "output_dir": "output",
+  "max_new_tokens": 800,
+  "temperature": 0.0,
+  "top_p": 0.9,
+  "load_in_4bit": false,
+  "num_shards": 1,
+  "shard_id": 0,
+  "num_db_rows": 690
+}

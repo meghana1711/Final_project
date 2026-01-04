@@ -1,0 +1,52 @@
+# Classes
+hpc:Type a owl:Class .
+hpc:Association a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Account a owl:Class .
+hpc:Group a owl:Class .
+hpc:Job a owl:Class .
+
+# Object Properties
+hpc:hasType a owl:ObjectProperty .
+hpc:hasName a owl:ObjectProperty .
+hpc:hasCount a owl:ObjectProperty .
+hpc:hasId a owl:ObjectProperty .
+hpc:hasMinutes a owl:ObjectProperty .
+hpc:hasActive a owl:ObjectProperty .
+hpc:hasWallClock a owl:ObjectProperty .
+hpc:hasNumber a owl:ObjectProperty .
+hpc:hasSet a owl:ObjectProperty .
+hpc:hasInfinite a owl:ObjectProperty .
+hpc:hasAllocated a owl:ObjectProperty .
+hpc:hasSeconds a owl:ObjectProperty .
+hpc:hasTRES a owl:ObjectProperty .
+hpc:hasIdAlt a owl:ObjectProperty .
+hpc:hasPriorityThreshold a owl:ObjectProperty .
+hpc:hasPartition a owl:ObjectProperty .
+hpc:hasQos a owl:ObjectProperty .
+hpc:hasComment a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hasFlags a owl:DatatypeProperty .
+hpc:hasPriority a owl:DatatypeProperty .
+hpc:hasAccount a owl:DatatypeProperty .
+hpc:hasUser a owl:DatatypeProperty .
+
+# Subclass relations
+hpc:Association rdfs:subClassOf hpc:Type .
+hpc:Cluster rdfs:subClassOf hpc:Association .
+hpc:Account rdfs:subClassOf hpc:Association .
+hpc:Group rdfs:subClassOf hpc:Association .
+hpc:Job rdfs:subClassOf hpc:Association .
+
+# Domain and Range
+hpc:hasType rdfs:domain hpc:Association ;
+                        rdfs:range hpc:Type .
+hpc:hasName rdfs:domain hpc:Job ;
+                        rdfs:range xsd:string .
+hpc:hasCount rdfs:domain hpc:Job ;
+                        rdfs:range xsd:nonNegativeInteger .
+hpc:hasId rdfs:domain hpc:Association ;
+                        rdfs:range xsd:integer .
+hpc:hasMinutes rdfs:domain hpc:Group ;
+                        rdfs:range r

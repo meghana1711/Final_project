@@ -1,0 +1,60 @@
+hpc:MPSServer a owl:Class .
+hpc:hasGPU a owl:ObjectProperty ;
+    rdfs:domain hpc:MPSServer ;
+    rdfs:range xsd:integer .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf hpc:Identifiable .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Identifiable .
+
+hpc:hasUID a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:hasGPUID a owl:ObjectProperty ;
+    rdfs:domain hpc:MPSServer ;
+    rdfs:range xsd:integer .
+
+hpc:hasDeviceID a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:hasGresResources a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasCUDAVisibleDevices a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasSLURMJobUID a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasCUDAMPSACTiveThreadPercentage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasGresMPS a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasFile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasGresCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasConfiguredCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasAllocatedCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasMPSMode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:MPSMode a owl:Enum ;
+    rdfs:member hpc:perJob ;
+    rdfs:member hpc:wholeGPU .
+
+hpc:hasMPSDaemonCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+```

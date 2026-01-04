@@ -1,0 +1,46 @@
+hpc:ProctrackPlugin a owl:Class .
+hpc:ProctrackType a owl:ObjectProperty .
+hpc:ProctrackType rdfs:domain hpc:ProctrackPlugin ;
+                   rdfs:range xsd:string .
+
+hpc:CgroupPlugin a hpc:ProctrackPlugin ;
+                rdfs:comment "An alternative to other proctrack plugins for process tracking and suspend/resume capability." .
+
+hpc:FreezerController hpc:uses rdf:type owl:ObjectProperty ;
+                      rdfs:domain hpc:CgroupPlugin ;
+                      rdfs:range rdf:Resource .
+
+hpc:StoresPidsInHierarchy rdf:type owl:ObjectProperty ;
+                          rdfs:domain hpc:CgroupPlugin .
+
+hpc:SignalsPids rdf:type owl:ObjectProperty ;
+                rdfs:domain hpc:CgroupPlugin .
+
+hpc:GetPidsOfJobOrStep rdf:type owl:ObjectProperty ;
+                       rdfs:domain hpc:CgroupPlugin .
+
+hpc:UsesCgroupTree rdf:type owl:ObjectProperty ;
+                   rdfs:domain hpc:CgroupPlugin .
+
+hpc:SingleStepHasOwnCgroupProcsFile rdf:type owl:ObjectProperty ;
+                                     rdfs:domain hpc:CgroupPlugin .
+
+hpc:InstantaneousGettingPidsOfStep rdf:type owl:ObjectProperty ;
+                                    rdfs:domain hpc:CgroupPlugin .
+
+hpc:ProctrackLinux rdf:type hpc:ProctrackPlugin ;
+                   rdfs:comment "Stores pids by cgroup in a single file (cgroup.procs) which is read by the plugin to get all the pids of a part of the hierarchy." .
+
+hpc:TaskPlugin a owl:Class .
+hpc:ConstrainResources rdf:type owl:ObjectProperty ;
+                       rdfs:domain hpc:TaskPlugin .
+hpc:ConstrainResourcesToJob rdf:type owl:ObjectProperty ;
+                            rdfs:domain hpc:TaskPlugin ;
+                            rdfs:range rdf:Resource .
+hpc:ConstrainResourcesToStep rdf:type owl:ObjectProperty ;
+                             rdfs:domain hpc:TaskPlugin ;
+                             rdfs:range rdf:Resource .
+hpc:ConstrainResourcesToTask rdf:type owl:ObjectProperty ;
+                             rdfs:domain hpc:TaskPlugin ;
+                             rdfs:range rdf:Resource .
+```

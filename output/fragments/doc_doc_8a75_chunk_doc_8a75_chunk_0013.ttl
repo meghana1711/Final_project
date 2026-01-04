@@ -1,0 +1,33 @@
+hpc:SLURM_TASKS_PER_NODE a owl:DatatypeProperty .
+hpc:SLURM_TASKS_PER_NODE rdfs:domain SrunProlog ;
+                                   rdfs:domain TaskProlog ;
+                                   rdfs:domain SrunEpilog ;
+                                   rdfs:domain TaskEpilog .
+hpc:SLURM_TASKS_PER_NODE rdfs:range xsd:nonNegativeInteger .
+
+hpc:SLURM_TOPOLOGY_ADDR a owl:DatatypeProperty .
+hpc:SLURM_TOPOLOGY_ADDR rdfs:domain SrunProlog ;
+                                   rdfs:domain TaskProlog ;
+                                   rdfs:domain SrunEpilog ;
+                                   rdfs:domain TaskEpilog .
+hpc:SLURM_TOPOLOGY_ADDR rdfs:range xsd:string .
+
+hpc:SLURM_TOPOLOGY_ADDR_PATTERN a owl:DatatypeProperty .
+hpc:SLURM_TOPOLOGY_ADDR_PATTERN rdfs:domain SrunProlog ;
+                                     rdfs:domain TaskProlog ;
+                                     rdfs:domain SrunEpilog ;
+                                     rdfs:domain TaskEpilog .
+hpc:SLURM_TOPOLOGY_ADDR_PATTERN rdfs:range xsd:string .
+
+hpc:SLURM_WCKEY a owl:ObjectProperty .
+hpc:SLURM_WCKEY rdfs:domain PrologSlurmctld ;
+                             rdfs:domain EpilogSlurmctld .
+hpc:SLURM_WCKEY rdfs:range xsd:string .
+
+hpc:SLURMD_NODENAME a owl:DatatypeProperty .
+hpc:SLURMD_NODENAME rdfs:domain SrunProlog ;
+                               rdfs:domain TaskProlog ;
+                               rdfs:domain SrunEpilog ;
+                               rdfs:domain TaskEpilog .
+hpc:SLURMD_NODENAME rdfs:range xsd:string .
+```

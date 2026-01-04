@@ -1,0 +1,54 @@
+hpc:OpenapiResponseSchema a owl:Class .
+hpc:OpenapiResponseSchema rdfs:subClassOf owl:NamedIndividual .
+
+hpc:Content a owl:Class .
+hpc:Content rdfs:subClassOf hpc:OpenapiResponseSchema .
+
+hpc:Schema a owl:Class .
+hpc:Schema rdfs:subClassOf hpc:Content .
+
+hpc:$ref a owl:DatatypeProperty .
+hpc:$ref rdfs:domain hpc:Schema ;
+                             rdfs:range xsd:anyURI .
+
+# User-related classes and properties
+hpc:User a owl:Class .
+hpc:UserRequestBody a owl:Class .
+hpc:UserResponse a owl:Class .
+
+hpc:delete a owl:ObjectProperty .
+hpc:delete rdfs:domain hpc:User ;
+               rdfs:range hpc:UserResponse .
+
+hpc:get a owl:ObjectProperty .
+hpc:get rdfs:domain hpc:User ;
+              rdfs:range hpc:UserResponse .
+
+hpc:post a owl:ObjectProperty .
+hpc:post rdfs:domain hpc:User ;
+           rdfs:range hpc:UserResponse .
+
+hpc:requestBody a owl:ObjectProperty .
+hpc:requestBody rdfs:domain hpc:post ;
+                rdfs:range hpc:UserRequestBody .
+
+hpc:response a owl:ObjectProperty .
+hpc:response rdfs:domain hpc:get, hpc:delete, hpc:post ;
+              rdfs:range hpc:UserResponse .
+
+hpc:content a owl:ObjectProperty .
+hpc:content rdfs:domain hpc:UserResponse ;
+             rdfs:range hpc:Content .
+
+hpc:applicationJSONRequest a owl:DatatypeProperty .
+hpc:applicationJSONRequest rdfs:domain hpc:UserRequestBody ;
+                            rdfs:range xsd:string .
+
+hpc:applicationXYAML a owl:DatatypeProperty .
+hpc:applicationXYAML rdfs:domain hpc:Content ;
+                      rdfs:range xsd:string .
+
+hpc:textYAML a owl:DatatypeProperty .
+hpc:textYAML rdfs:domain hpc:Content ;
+              rdfs:range xsd:string .
+```

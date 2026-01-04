@@ -1,0 +1,48 @@
+hpc:JobRestartCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:SrunProlog a owl:Class ;
+    rdfs:subClassOf hpc:Environment .
+
+hpc:TaskProlog a owl:Class ;
+    rdfs:subClassOf hpc:Task .
+
+hpc:SrunEpilog a owl:Class ;
+    rdfs:subClassOf hpc:Environment .
+
+hpc:TaskEpilog a owl:Class ;
+    rdfs:subClassOf hpc:Task .
+
+hpc:SLURM_RLIMIT_AS a owl:DatatypeProperty ;
+    rdfs:domain (hpc:SrunProlog hpc:TaskProlog hpc:SrunEpilog hpc:TaskEpilog) ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:SLURM_RLIMIT_CORE a owl:DatatypeProperty ;
+    rdfs:domain (hpc:SrunProlog hpc:TaskProlog hpc:SrunEpilog hpc:TaskEpilog) ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:SLURM_RLIMIT_CPU a owl:DatatypeProperty ;
+    rdfs:domain (hpc:SrunProlog hpc:TaskProlog hpc:SrunEpilog hpc:TaskEpilog) ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:SLURM_RLIMIT_DATA a owl:DatatypeProperty ;
+    rdfs:domain (hpc:SrunProlog hpc:TaskProlog hpc:SrunEpilog hpc:TaskEpilog) ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:SLURM_RLIMIT_FSIZE a owl:DatatypeProperty ;
+    rdfs:domain (hpc:SrunProlog hpc:TaskProlog hpc:SrunEpilog hpc:TaskEpilog) ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:SLURM_RLIMIT_MEMLOCK a owl:DatatypeProperty ;
+    rdfs:domain (hpc:SrunProlog hpc:TaskProlog hpc:SrunEpilog hpc:TaskEpilog) ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:SLURM_RLIMIT_NOFILE a owl:DatatypeProperty ;
+    rdfs:domain (hpc:SrunProlog hpc:TaskProlog hpc:SrunEpilog hpc:TaskEpilog) ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:SLURM_RLIMIT_NPROC a owl:DatatypeProperty ;
+    rdfs:domain (hpc:SrunProlog hpc:TaskProlog hpc:SrunEpilog hpc:TaskEpilog) ;
+    rdfs:range xsd:nonNegativeInteger .
+```

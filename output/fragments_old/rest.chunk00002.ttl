@@ -1,0 +1,28 @@
+hpc:SlurmRESTAPIServer a owl:Class .
+hpc:WebServer a owl:Class, rdfs:subClassOf :Resource .
+hpc:SecurityPolicy a owl:Class .
+hpc:AuthenticationFailureMessage a owl:DatatypeProperty, rdfs:domain hpc:SlurmRESTAPIServer .
+hpc:Logs a owl:Class, rdfs:subClassOf :Resource .
+hpc:SlurmDaemon a owl:Class, rdfs:subClassOf :Resource .
+hpc:JWTAuthentication a owl:Class .
+hpc:UserNameHeader a owl:ObjectProperty, rdfs:domain hpc:JWTAuthentication, rdfs:range xsd:string .
+hpc:JWTHeader a owl:ObjectProperty, rdfs:domain hpc:JWTAuthentication, rdfs:range xsd:string .
+hpc:SlurmUser a owl:Class .
+hpc:RootUser a owl:Class .
+hpc:AlternativeUserName a owl:DatatypeProperty, rdfs:domain hpc:SlurmUser .
+hpc:UnprivilegedUser a owl:Class .
+hpc:SLURM_JWT a owl:DatatypeProperty, rdfs:domain hpc:UnprivilegedUser .
+hpc:InvalidSLURM_JWT a owl:DatatypeProperty, rdfs:domain hpc:UnprivilegedUser .
+hpc:AuthAltTypes a owl:DatatypeProperty, rdfs:domain hpc:SlurmRESTAPIServer .
+hpc:LocalAuthentication a owl:Class .
+hpc:UNIXDomainSocket a owl:DatatypeProperty, rdfs:domain hpc:LocalAuthentication, rdfs:range xsd:string .
+hpc:KernelAuthentication a owl:DatatypeProperty, rdfs:domain hpc:LocalAuthentication .
+hpc:MungeSecurityDomain a owl:Class .
+hpc:AuthenticatingProxy a owl:Class .
+hpc:ThirdPartyAuthenticatingProxy a owl:Class, rdfs:subClassOf hpc:AuthenticatingProxy .
+hpc:HTTP1_1Compliant a owl:DatatypeProperty, rdfs:domain hpc:AuthenticatingProxy .
+hpc:CorrectHTTPHeaders a owl:DatatypeProperty, rdfs:domain hpc:AuthenticatingProxy .
+hpc:ClientAuthentication a owl:DatatypeProperty, rdfs:domain hpc:AuthenticatingProxy .
+hpc:TrustedToken a owl:DatatypeProperty, rdfs:domain hpc:AuthenticatingProxy .
+hpc:ProxyRequestVerification a owl:ObjectProperty, rdfs:domain hpc:AuthenticatingProxy .
+```

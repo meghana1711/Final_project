@@ -1,0 +1,58 @@
+hpc:V0_0_41_Openapi_Wckey_Resp a owl:Class .
+hpc:V0_0_41_Openapi_Wckey_Resp rdfs:subClassOf owl:Thing .
+
+# Application/json request and response content
+hpc:ApplicationJsonRequest a owl:Class .
+hpc:ApplicationJsonRequest rdfs:subClassOf hpc:V0_0_41_Openapi_Wckey_Resp .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:ApplicationJsonRequest ;
+    rdfs:range xsd:string .
+
+# Application/x-yaml request and response content
+hpc:ApplicationXYaml a owl:Class ;
+    rdfs:subClassOf hpc:V0_0_41_Openapi_Wckey_Resp .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:ApplicationXYaml ;
+    rdfs:range xsd:string .
+
+# Text/yaml request and response content
+hpc:TextYaml a owl:Class ;
+    rdfs:subClassOf hpc:V0_0_41_Openapi_Wckey_Resp .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:TextYaml ;
+    rdfs:range xsd:string .
+
+# Application/yaml request and response content
+hpc:ApplicationYaml a owl:Class ;
+    rdfs:subClassOf hpc:V0_0_41_Openapi_Wckey_Resp .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:ApplicationYaml ;
+    rdfs:range xsd:string .
+
+# Default response for v0.0.41_wckey_resp
+hpc:V0_0_41_Openapi_Wckey_Default_Resp a owl:Class ;
+    rdfs:subClassOf hpc:V0_0_41_Openapi_Wckey_Resp .
+
+# Application/json request for delete operation
+hpc:ApplicationJsonRequest_Delete a owl:Class ;
+    rdfs:subClassOf hpc:V0_0_41_Openapi_Wckey_Removed_Resp .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:ApplicationJsonRequest_Delete ;
+    rdfs:range xsd:string .
+
+# Application/x-yaml request for delete operation
+hpc:ApplicationXYaml_Delete a owl:Class ;
+    rdfs:subClassOf hpc:V0_0_41_Openapi_Wckey_Removed_Resp .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:ApplicationXYaml_Delete ;
+    rdfs:range xsd:string .
+
+# Text/yaml request for delete operation
+hpc:TextYaml_Delete a owl:Class ;
+    rdfs:subClassOf hpc:V0_0_41_Openapi_Wckey_Removed_Resp .

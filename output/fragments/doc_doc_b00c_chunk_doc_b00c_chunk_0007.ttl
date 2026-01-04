@@ -1,0 +1,15 @@
+hpc:Partition a owl:Class .
+hpc:Topology a owl:Class .
+
+hpc:hasTopology a owl:ObjectProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range hpc:Topology .
+
+hpc:clusterDefaultTopology a hpc:Topology .
+hpc:partitionConfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:Partition .
+
+hpc:TopologyConfiguration a owl:Class .
+hpc:TopologyYAML a owl:DatatypeProperty ;
+    rdfs:domain hpc:TopologyConfiguration .
+```

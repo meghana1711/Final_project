@@ -1,0 +1,68 @@
+hpc:Job a owl:Class .
+hpc:Job hasState a owl:ObjectProperty .
+hpc:Job hasSize a owl:DatatypeProperty .
+hpc:Job hasEstimatedStartTime a xsd:dateTime .
+hpc:Job hasPartition a owl:ObjectProperty .
+hpc:Job hasQOS a owl:ObjectProperty .
+hpc:Job hasReservation a owl:ObjectProperty .
+hpc:Job hasLicenses a owl:ObjectProperty .
+hpc:Job hasDependencies a owl:ObjectProperty .
+hpc:Job hasNodeList a owl:ObjectProperty .
+hpc:Job hasNumNodes a xsd:integer .
+hpc:Job hasEnvironmentVariables a rdf:List .
+hpc:Job hasAccountingRecord a owl:ObjectProperty .
+hpc:Job hasScriptToResetEnvironment a owl:ObjectProperty .
+hpc:Job hasJobID a xsd:string .
+
+hpc:PendingJob a hpc:Job .
+hpc:RunningJob a hpc:Job .
+hpc:CompletedJob a hpc:Job .
+hpc:FailedJob a hpc:Job .
+
+# Environment Variables
+hpc:EnvironmentVariable a owl:Class .
+hpc:EnvironmentVariable hasName a xsd:string .
+hpc:EnvironmentVariable hasValue a xsd:string .
+
+hpc:SLURM_JOB_NUM_NODES a hpc:EnvironmentVariable .
+hpc:SLURM_JOB_NODELIST a hpc:EnvironmentVariable .
+hpc:SLURM_NTASKS a hpc:EnvironmentVariable .
+
+# Commands
+hpc:ScontrolCommand a owl:Class .
+hpc:ScontrolCommand updatesJobSize a owl:ObjectProperty .
+hpc:ScontrolCommand generatesScriptToResetEnvironment a owl:ObjectProperty .
+
+# Node Management
+hpc:Node a owl:Class .
+hpc:Node hasState a owl:ObjectProperty .
+hpc:Node isInPartition a owl:ObjectProperty .
+hpc:Node isInQOS a owl:ObjectProperty .
+hpc:Node isInReservation a owl:ObjectProperty .
+hpc:Node hasLicenses a owl:ObjectProperty .
+
+hpc:IdleNode a hpc:Node .
+hpc:CompletingNode a hpc:Node .
+
+# Backfill Scheduler
+hpc:BackfillScheduler a owl:Class .
+hpc:BackfillScheduler providesEstimatedStartTime a owl:ObjectProperty .
+
+# Color Coding
+hpc:ColorCoding a owl:Class .
+hpc:ColorCoding isAffectedByGTKTheme a owl:ObjectProperty .
+
+# Job States
+hpc:TerminatingJob a hpc:Job .
+hpc:CompletedJob a hpc:TerminatingJob .
+hpc:FailedJob a hpc:TerminatingJob .
+hpc:HungCompletingJob a hpc:TerminatingJob .
+
+# Requeuing Job
+hpc:RequeuedJob a hpc:Job .
+
+# MPICH2, MVAPICH2, and DAKOTA
+hpc:MPICH2Job a hpc:Job .
+hpc:MVAPICH2Job a hpc:Job .
+hpc:DakotaJob a hpc:Job .
+hpc:MPICH2Job

@@ -1,0 +1,6 @@
+hpc:v0_0_40_openapi_slurmdbd_jobs_resp a owl:Class .
+hpc:v0_0_40_openapi_slurmdbd_qos_resp a owl:Class .
+
+hpc:JobsResponse a owl:Class, rdfs:subClassOf [ a owl:Class; rdf:type owl:Restriction; owl:onProperty hpc:content; owl:hasValue "#/components/schemas/v0.0.40_openapi_slurmdbd_jobs_resp" ] .
+hpc:QosResponse a owl:Class, rdfs:subClassOf [ a owl:Class; rdf:type owl:Restriction; owl:onProperty hpc:content; owl:hasValue "#/components/schemas/v0.0.40_openapi_slurmdbd_qos_resp" ] .
+```

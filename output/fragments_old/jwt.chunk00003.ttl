@@ -1,0 +1,35 @@
+hpc:JWT a owl:Class .
+hpc:SigningKey a owl:Class .
+hpc:Message a owl:Class .
+hpc:exp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Message ;
+    rdfs:range xsd:integer .
+hpc:iat a owl:DatatypeProperty ;
+    rdfs:domain hpc:Message ;
+    rdfs:range xsd:integer .
+hpc:sun a owl:DatatypeProperty ;
+    rdfs:domain hpc:Message ;
+    rdfs:range xsd:string .
+hpc:kty a owl:DatatypeProperty ;
+    rdfs:domain hpc:SigningKey ;
+    rdfs:range xsd:string .
+hpc:k a owl:DatatypeProperty ;
+    rdfs:domain hpc:SigningKey ;
+    rdfs:range xsd:base64Binary .
+hpc:alg a owl:DatatypeProperty ;
+    rdfs:domain hpc:JWT ;
+    rdfs:range xsd:string .
+hpc:encode a owl:ObjectProperty ;
+    rdfs:domain hpc:JWT ;
+    rdfs:range hpc:JWT .
+hpc:decode a owl:ObjectProperty ;
+    rdfs:domain hpc:JWT ;
+    rdfs:range hpc:Message .
+hpc:HS256 a hpc:Algorithm .
+hpc:JWT a rdfs:subClassOf [ a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ] .
+hpc:SigningKey a rdfs:subClassOf [ a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ] .
+hpc:Message a rdfs:subClassOf [ a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ] .
+```

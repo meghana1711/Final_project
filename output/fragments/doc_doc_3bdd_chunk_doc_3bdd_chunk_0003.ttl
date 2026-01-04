@@ -1,0 +1,38 @@
+hpc:Documentation a owl:Class .
+hpc:SampleConfigurationFiles rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Documentation ;
+    rdfs:range xsd:string .
+
+hpc:SlurmHeaderFiles a owl:Class ;
+    rdfs:subClassOf hpc:SourceCode .
+
+hpc:SourceCode a owl:Class .
+
+hpc:Api a owl:Class ;
+    rdfs:subClassOf hpc:SourceCode ;
+    rdfs:comment "Application Program Interfaces into the Slurm code." .
+
+hpc:ApiFunction rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Api ;
+    rdfs:range hpc:ApiFunction .
+
+hpc:ManPages a owl:Class ;
+    rdfs:subClassOf hpc:Documentation ;
+    rdfs:comment "man pages for the APIs, configuration file, commands, and daemons." .
+
+hpc:WebPages a owl:Class ;
+    rdfs:subClassOf hpc:Documentation ;
+    rdfs:comment "web pages." .
+
+hpc:TestSuite a owl:Class ;
+    rdfs:subClassOf hpc:SourceCode .
+
+hpc:CheckTests rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:TestSuite .
+
+hpc:ExpectTests rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:TestSuite .
+
+hpc:PytestTests rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:TestSuite .
+```

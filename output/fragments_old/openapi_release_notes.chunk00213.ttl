@@ -1,0 +1,20 @@
+hpc:OpenapiAssocsRemovedResp a owl:Class .
+hpc:OpenapiAssocsResp a owl:Class .
+hpc:OpenapiResp a owl:Class .
+
+hpc:DeleteAssociation a owl:ObjectProperty .
+hpc:GetAssociations a owl:ObjectProperty .
+hpc:PostAssociations a owl:ObjectProperty .
+
+hpc:hasContent a owl:ObjectProperty ;
+  rdfs:domain hpc:DeleteAssociation, hpc:GetAssociations, hpc:PostAssociations .
+hpc:hasContent rdfs:subPropertyOf hpc:hasResponseContent .
+
+hpc:hasResponseContent a owl:ObjectProperty .
+hpc:hasResponseContent rdfs:domain hpc:DeleteAssociation, hpc:GetAssociations, hpc:PostAssociations .
+hpc:hasResponseContent rdfs:range xsd:anyURI .
+
+hpc:hasSchema a owl:ObjectProperty .
+hpc:hasSchema rdfs:domain hpc:DeleteAssociation, hpc:GetAssociations, hpc:PostAssociations .
+hpc:hasSchema rdfs:range xsd:anyURI .
+```

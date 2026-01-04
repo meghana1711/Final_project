@@ -1,0 +1,56 @@
+hpc:Registration a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:configuration ;
+                        rdfs:someValuesFrom xsd:boolean ;
+                        owl:allValuesFrom (<true> <false>) ].
+
+hpc:RegistrationDown a owl:Class ;
+    rdfs:subClassOf hpc:Registration ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:reason ;
+                        rdfs:value <"non-responsive"> ].
+
+hpc:SchedulerType a owl:Enum ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:type ;
+                        rdfs:value "FIFO with backfill" ;
+                        owl:enumerationValue "Builtin" ].
+
+hpc:Interconnect a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:type ;
+                        rdfs:value "HPE Slingshot" ;
+                        owl:enumerationValue "None" ].
+
+hpc:MpiDefault a owl:Enum ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:type ;
+                        rdfs:value "MPI-PMI2" ;
+                        owl:enumerationValue "MPI-PMIx" ;
+                        owl:enumerationValue "None" ].
+
+hpc:ProcessTrackingAlgorithm a owl:Class ;
+
+hpc:hasConfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:Registration ;
+    rdfs:range hpc:Configuration .
+
+hpc:hasSchedulerType a owl:ObjectProperty ;
+    rdfs:domain hpc:Scheduling ;
+    rdfs:range hpc:SchedulerType .
+
+hpc:hasInterconnect a owl:ObjectProperty ;
+    rdfs:domain hpc:Interconnect ;
+    rdfs:range hpc:InterconnectType .
+
+hpc:hasMpiDefault a owl:ObjectProperty ;
+    rdfs:domain hpc:MPI ;
+    rdfs:range hpc:MpiDefault .
+
+hpc:hasProcessTrackingAlgorithm a owl:ObjectProperty ;
+    rdfs:domain hpc:ProcessTracking ;
+    rdfs:range hpc:ProcessTrackingAlgorithm .
+```

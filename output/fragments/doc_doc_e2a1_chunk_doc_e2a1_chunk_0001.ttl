@@ -1,0 +1,25 @@
+hpc:SlurmCluster a owl:Class .
+hpc:Slurmctld a owl:Class, rdfs:subClassOf hpc:SlurmComponent .
+hpc:Slurmdbd a owl:Class, rdfs:subClassOf hpc:SlurmComponent .
+hpc:ComputeNode a owl:Class, rdfs:subClassOf hpc:SlurmComponent .
+hpc:ClientCommand a owl:Class .
+
+hpc:SlurmComponentCommunicates a owl:ObjectProperty .
+hpc:hasPort a owl:DatatypeProperty .
+hpc:IPv4Communication a owl:Class .
+hpc:IPv6Communication a owl:Class .
+
+hpc:Slurmctld hasIPv4Communication rdf:true .
+hpc:Slurmctld hasPort xsd:integer .
+hpc:SlurmctldCommunicatesWith rdf:type owl:ObjectProperty .
+hpc:SlurmctldCommunicatesWith rdfs:domain hpc:SlurmComponent .
+hpc:SlurmctldCommunicatesWith rdfs:range hpc:SlurmComponent .
+hpc:SlurmctldCommunicatesWith rdf:Property hpc:SlurmctldPort .
+hpc:SlurmctldCommunicatesWith rdf:Property hpc:SlurmdbdPort .
+hpc:SlurmctldCommunicatesWith rdf:Property hpc:SlurmdPort .
+hpc:SlurmctldPort a owl:DatatypeProperty .
+hpc:SlurmdbdPort a owl:DatatypeProperty .
+hpc:SlurmdPort a owl:DatatypeProperty .
+hpc:Slurmdbd hasPort xsd:integer .
+hpc:Slurmd hasPort xsd:integer .
+```

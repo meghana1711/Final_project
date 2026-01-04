@@ -1,0 +1,31 @@
+hpc:LocalServiceAccount a owl:Class .
+hpc:Group a owl:Class .
+hpc:SlurmRestdDaemon a owl:Class .
+hpc:NotRoot a owl:Class ;
+    rdfs:subClassOf hpc:UserAccount .
+hpc:NotSlurmUser a owl:Class ;
+    rdfs:subClassOf hpc:UserAccount .
+hpc:NotUsedByRealUsers a owl:Class ;
+    rdfs:subClassOf hpc:UserAccount .
+hpc:NotGrantedAnySpecialPermissions a owl:Class ;
+    rdfs:subClassOf hpc:UserAccount .
+hpc:UserAccount a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:runsSlurmRestdDaemon owl:ObjectProperty .
+hpc:hasSocket owl:ObjectProperty .
+
+hpc:UserAccount hasUser hpc:User ;
+    rdfs:domain hpc:UserAccount .
+hpc:User hasGroup hpc:Group ;
+    rdfs:domain hpc:User .
+hpc:Group rdfs:member hpc:User ;
+    rdfs:range hpc:UserGroup .
+hpc:UserGroup a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:hasWriteExecutePermissions owl:ObjectProperty ;
+    rdfs:domain hpc:Directory .
+hpc:hasUNIXSocket owl:ObjectProperty ;
+    rdfs:domain hpc:Directory .
+```

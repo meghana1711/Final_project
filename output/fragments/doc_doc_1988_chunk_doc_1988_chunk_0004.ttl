@@ -1,0 +1,31 @@
+hpc:Job a owl:Class .
+hpc:Resource a owl:Class .
+hpc:Timeslice a owl:Class .
+hpc:OverSubscribe a xsd:nonNegativeInteger .
+
+hpc:hasResource rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resource .
+
+hpc:isSuspended rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasTimeslice rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Timeslice .
+
+hpc:OverSubscribeValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ActiveBitmap a owl:Class .
+hpc:SchedulerTimeSlice a xsd:duration .
+
+hpc:PartitionJobQueue a owl:Class .
+hpc:TimeslicerThread a owl:Class .
+
+hpc:Partition a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:GangScheduler a owl:Class .
+```

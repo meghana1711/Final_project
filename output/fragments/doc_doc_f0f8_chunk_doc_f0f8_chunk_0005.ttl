@@ -1,0 +1,25 @@
+hpc:ProcessTracking a owl:Class .
+hpc:Algorithm a owl:Class .
+hpc:Cgroup a hpc:Algorithm .
+hpc:LinuxCgroup a hpc:Cgroup .
+hpc:CgroupConfFile a owl:DatatypeProperty .
+hpc:LinuxProc a hpc:Algorithm .
+hpc:ParentProcessID a owl:DatatypeProperty .
+hpc:Pgid a hpc:Algorithm .
+hpc:ProcessGroupID a owl:DatatypeProperty .
+
+hpc:ResourceSelection a owl:Class .
+hpc:SelectType a owl:DatatypeProperty .
+hpc:ConsTres a hpc:SelectType .
+hpc:Linear a hpc:SelectType .
+
+hpc:TaskLaunch a owl:Class .
+hpc:TaskPlugin a owl:DatatypeProperty .
+hpc:None a hpc:TaskPlugin .
+hpc:Affinity a hpc:TaskPlugin .
+
+hpc:EventLogging a owl:Class .
+hpc:SlurmctldLogFile a owl:DatatypeProperty .
+hpc:SlurmdLogFile a owl:DatatypeProperty .
+hpc:DebugFile a xsd:string .
+```

@@ -1,0 +1,63 @@
+hpc:SchedulerParameters a owl:Class .
+hpc:maxSwitchWait an owl:ObjectProperty .
+
+hpc:BootProblem a owl:Class .
+
+hpc:SystemAdministration a owl:Class .
+hpc:Slurm a owl:Class .
+hpc:HWLOC a owl:Class .
+hpc:NodeFeaturesPlugin a owl:Class .
+hpc:knlConf a owl:Class .
+hpc:RebootMechanism a owl:Class .
+hpc:DebugFlags a owl:Class .
+
+hpc:NodeTopology a owl:ObjectProperty .
+hpc:numNUMA a owl:DatatypeProperty .
+hpc:coresPerNUMA a owl:DatatypeProperty .
+
+hpc:NodeFeatures a owl:Class .
+hpc:knlFeatures a owl:Class .
+hpc:nonKnlFeatures a owl:Class .
+
+hpc:knl_generic a rdfs:subClassOf hpc:NodeFeaturesPlugin .
+hpc:slurmConf a owl:Class .
+hpc:slurm_conf a rdfs:subClassOf hpc:slurmConf .
+hpc:knl_genericConf a rdfs:subClassOf hpc:slurm_conf .
+
+hpc:slurmd a owl:Class .
+hpc:slurmctld a owl:Class .
+
+hpc:NodeState a owl:Class .
+hpc:idle a owl:Class .
+
+hpc:NodeRebootTime a xsd:duration .
+
+hpc:GenericClusterConfiguration a owl:Class .
+hpc:knl_genericConfiguration a rdfs:subClassOf hpc:GenericClusterConfiguration .
+
+hpc:SyscfgPath a owl:DatatypeProperty .
+hpc:DefaultNUMA a owl:DatatypeProperty .
+hpc:AllowNUMA a owl:DatatypeProperty .
+hpc:DefaultMCDRAM a owl:DatatypeProperty .
+hpc:RebootProgram a owl:DatatypeProperty .
+hpc:GresTypes a owl:DatatypeProperty .
+
+hpc:Node a owl:Class .
+hpc:Socket a owl:Class .
+hpc:Core a owl:Class .
+hpc:Memory a owl:Class .
+hpc:Feature a owl:Class .
+
+hpc:NodeFeaturesPlugin rdfs:domain hpc:Node .
+hpc:NodeFeatures rdfs:domain hpc:Node .
+hpc:NodeTopology rdfs:domain hpc:Node .
+hpc:numNUMA rdfs:domain hpc:Node .
+hpc:coresPerNUMA rdfs:domain hpc:Node .
+hpc:NodeState rdfs:domain hpc:Node .
+hpc:SyscfgPath rdfs:domain hpc:knl_generic .
+hpc:DefaultNUMA rdfs:domain hpc:knl_genericConf .
+hpc:AllowNUMA rdfs:domain hpc:knl_genericConf .
+hpc:DefaultMCDRAM rdfs:domain hpc:knl_genericConf .
+hpc:RebootProgram rdfs:domain hpc:knl_genericConf .
+hpc:GresTypes rdfs:domain hpc:slurm_conf .
+hpc:Socket rdfs:range h

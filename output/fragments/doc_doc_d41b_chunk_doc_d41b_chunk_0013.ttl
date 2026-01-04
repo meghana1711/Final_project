@@ -1,0 +1,44 @@
+# Classes
+hpc:AccountingStorageEnforce a owl:Class .
+hpc:QOS a owl:Class .
+hpc:Partition a owl:Class .
+hpc:GRES a owl:Class .
+hpc:GRESType a owl:Class .
+hpc:JobSubmitPlugin a owl:Class .
+
+# Object Properties
+hpc:hasEnforcement a owl:ObjectProperty .
+hpc:hasQOS a owl:ObjectProperty .
+hpc:hasPartition a owl:ObjectProperty .
+hpc:hasGRES a owl:ObjectProperty .
+hpc:hasGRESType a owl:ObjectProperty .
+hpc:requiresPlugin a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hasMaxNodes rdfs:domain hpc:AccountingStorageEnforce;
+                 rdfs:range xsd:nonNegativeInteger .
+hpc:hasMaxTime rdfs:domain hpc:AccountingStorageEnforce;
+                 rdfs:range xsd:nonNegativeInteger .
+hpc:hasMaxJobs rdfs:domain hpc:QOS;
+                 rdfs:range xsd:nonNegativeInteger .
+hpc:hasGrpTRES rdfs:domain hpc:QOS;
+                 rdfs:range xsd:nonNegativeInteger .
+hpc:hasMaxTRESPerUser rdfs:domain hpc:GRES;
+                      rdfs:range xsd:nonNegativeInteger .
+
+# Subclass Relations
+hpc:PerUserStorageEnforcement a hpc:AccountingStorageEnforce .
+hpc:PerPartitionStorageEnforcement a hpc:AccountingStorageEnforce .
+hpc:PerQOSStorageEnforcement a hpc:AccountingStorageEnforce .
+hpc:PerGRESTypeStorageEnforcement a hpc:AccountingStorageEnforce .
+
+hpc:PerUserQOS a hpc:QOS;
+                rdfs:subClassOf hpc:QOS .
+hpc:PerPartitionQOS a hpc:QOS;
+                    rdfs:subClassOf hpc:QOS .
+
+hpc:SpecificGRES a hpc:GRES .
+hpc:GenericGRES a hpc:GRES .
+
+hpc:LuaJobSubmitPlugin a hpc:JobSubmitPlugin .
+```

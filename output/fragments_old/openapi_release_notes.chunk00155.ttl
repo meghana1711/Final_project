@@ -1,0 +1,59 @@
+hpc:Node a owl:Class .
+
+# Node delete response class
+hpc:NodeDeleteResponse a owl:Class .
+hpc:NodeDeleteResponse rdfs:subClassOf hpc:Node .
+
+# Response content types
+hpc:ApplicationJsonRequest a owl:Class .
+hpc:ApplicationXYAML a owl:Class .
+hpc:TextYAML a owl:Class .
+hpc:ApplicationYAML a owl:Class, rdfs:subClassOf [ hpc:ApplicationJsonRequest ; rdfs:subClassOf xsd:string ] .
+
+# Response schema
+hpc:OpenapiResp a owl:Class .
+
+# Node delete response properties
+hpc:hasContent a owl:ObjectProperty .
+hpc:hasSchema a owl:ObjectProperty .
+
+# Response content properties
+hpc:has200Content a owl:ObjectProperty .
+hpc:hasDefaultContent a owl:ObjectProperty .
+
+# Content properties for different content types
+hpc:hasApplicationJsonRequestContent a owl:DatatypeProperty .
+hpc:hasApplicationXYAMLContent a owl:DatatypeProperty .
+hpc:hasTextYAMLContent a owl:DatatypeProperty .
+hpc:hasApplicationYAMLContent a owl:DatatypeProperty .
+
+# Schema properties
+hpc:hasSchemaRef a owl:ObjectProperty .
+
+# Response properties for different content types
+hpc:has200ApplicationJsonRequestSchema a owl:ObjectProperty .
+hpc:has200ApplicationXYAMLSchema a owl:ObjectProperty .
+hpc:has200TextYAMLSchema a owl:ObjectProperty .
+hpc:has200ApplicationYAMLSchema a owl:ObjectProperty .
+hpc:hasDefaultApplicationJsonRequestSchema a owl:ObjectProperty .
+hpc:hasDefaultApplicationXYAMLSchema a owl:ObjectProperty .
+hpc:hasDefaultTextYAMLSchema a owl:ObjectProperty .
+hpc:hasDefaultApplicationYAMLSchema a owl:ObjectProperty .
+
+# Domain and range for properties
+hpc:hasContent rdfs:domain hpc:NodeDeleteResponse ;
+    rdfs:range [ hpc:has200Content ; hpc:hasDefaultContent ] .
+hpc:hasSchema rdfs:domain hpc:NodeDeleteResponse ;
+    rdfs:range hpc:OpenapiResp .
+hpc:has200Content rdfs:domain hpc:NodeDeleteResponse ;
+    rdfs:range hpc:ApplicationJsonRequest ;
+    rdfs:subPropertyOf hpc:hasContent .
+hpc:hasDefaultContent rdfs:domain hpc:NodeDeleteResponse ;
+    rdfs:range hpc:ApplicationJsonRequest ;
+    rdfs:subPropertyOf hpc:hasContent .
+hpc:hasSchemaRef rdfs:domain hpc:NodeDeleteResponse ;
+    rdfs:range hpc:OpenapiResp .
+hpc:has200ApplicationJsonRequestSchema rdfs:domain hpc:NodeDeleteResponse ;
+    rdfs:range hpc:OpenapiResp .
+hpc:has200ApplicationXYAMLSchema rdfs:domain hpc:NodeDeleteResponse ;
+    rdfs:range h

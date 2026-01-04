@@ -1,0 +1,28 @@
+hpc:SlurmJob a owl:Class .
+hpc:PamConfiguration a owl:Class .
+hpc:SysVIPC a owl:Class .
+hpc:KernelShmRmidForced a owl:DatatypeProperty ;
+    rdfs:domain hpc:Kernel ;
+    rdfs:range xsd:boolean .
+hpc:SlurmDaemonCoreDump a owl:Class .
+
+hpc:hasPamConfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmJob ;
+    rdfs:range hpc:PamConfiguration .
+hpc:usesSysVIPC a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmJob ;
+    rdfs:range hpc:SysVIPC .
+hpc:hasKernelShmRmidForced a owl:DatatypeProperty ;
+    rdfs:domain hpc:Kernel ;
+    rdfs:range xsd:boolean .
+hpc:hasSlurmDaemonCoreDump a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmJob ;
+    rdfs:range hpc:SlurmDaemonCoreDump .
+
+hpc:PamConfiguration_withJoinContainerFalse a hpc:PamConfiguration ;
+    hpc:join_container false .
+hpc:SysVIPC_accounted a hpc:SysVIPC ;
+    hpc:shm_rmid_forced 1 .
+hpc:SysVIPC_notAccounted a hpc:SysVIPC ;
+    hpc:shm_rmid_forced 0 .
+```

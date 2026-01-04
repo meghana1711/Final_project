@@ -1,0 +1,48 @@
+hpc:SlurmCTLD a owl:Class .
+hpc:SlurmConf a owl:Class .
+hpc:NSSSlurm a owl:Class .
+hpc:NSSSlurmConfig a owl:Class .
+hpc:Node a owl:Class .
+hpc:JobStep a owl:Class .
+hpc:User a owl:Class .
+hpc:Group a owl:Class .
+
+hpc:hasSlurmConf rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmCTLD ;
+    rdfs:range hpc:SlurmConf .
+
+hpc:getEntCommand rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range rdf:Resource .
+
+hpc:hasUser rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobStep ;
+    rdfs:range hpc:User .
+
+hpc:hasGroup rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobStep ;
+    rdfs:range hpc:Group .
+
+hpc:NodeName a owl:DatatypeProperty ;
+    rdfs:domain hpc:NSSSlurmConfig ;
+    rdfs:range xsd:string .
+
+hpc:SlurmdSpoolDir a owl:DatatypeProperty ;
+    rdfs:domain hpc:NSSSlurmConfig ;
+    rdfs:range xsd:string .
+
+hpc:hasNSSSlurmConfig rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:NSSSlurm ;
+    rdfs:range hpc:NSSSlurmConfig .
+
+hpc:InitialTesting a owl:Class .
+hpc:Verified rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:InitialTesting ;
+    rdfs:range xsd:boolean .
+
+hpc:EnabledSlurm rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:NsswitchConf ;
+    rdfs:range xsd:boolean .
+
+hpc:NsswitchConf a owl:Class .
+```

@@ -1,0 +1,37 @@
+hpc:CPUFrequency a owl:Class .
+hpc:cpuFrequencyAtTimeOfSample rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:CPUFrequency ;
+    rdfs:range xsd:double .
+
+hpc:CPUTime a owl:Class .
+hpc:cpuTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:CPUTime ;
+    rdfs:range xsd:double .
+
+hpc:CPUUtilization a owl:Class .
+hpc:cpuUtilizationDuringInterval rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:CPUUtilization ;
+    rdfs:range xsd:double .
+
+hpc:RSS a owl:Class .
+hpc:rssAtTimeOfSample rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:RSS ;
+    rdfs:range xsd:double .
+
+hpc:VMSize a owl:Class .
+hpc:vmSizeAtTimeOfSample rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:VMSize ;
+    rdfs:range xsd:double .
+
+hpc:Pages a owl:Class .
+
+hpc:ReadMegabytes a owl:Class .
+hpc:readMegabytes rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:ReadMegabytes ;
+    rdfs:range xsd:double .
+
+hpc:WriteMegabytes a owl:Class .
+hpc:writeMegabytes rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:WriteMegabytes ;
+    rdfs:range xsd:double .
+```

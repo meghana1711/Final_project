@@ -1,0 +1,42 @@
+# Single node job
+hpc:SingleNodeJob a owl:Class .
+hpc:slurmConf a owl:ObjectProperty .
+hpc:commandLine a owl:ObjectProperty .
+hpc:allocatedCPUs a owl:DatatypeProperty .
+hpc:tasks a owl:DatatypeProperty .
+
+hpc:slurmConf rdfs:domain hpc:SingleNodeJob .
+hpc:slurmConf rdfs:range xsd:string .
+hpc:commandLine rdfs:domain hpc:SingleNodeJob .
+hpc:commandLine rdfs:range xsd:string .
+hpc:allocatedCPUs rdfs:domain hpc:SingleNodeJob .
+hpc:allocatedCPUs rdfs:range xsd:nonNegativeInteger .
+hpc:tasks rdfs:domain hpc:SingleNodeJob .
+hpc:tasks rdfs:range xsd:nonNegativeInteger .
+
+hpc:SingleNodeJob8 a hpc:SingleNodeJob ;
+    hpc:slurmConf "SelectType=select/cons_tres; SelectTypeParameters=CR_Core" ;
+    hpc:commandLine "srun --nodes=1-1 --nodelist=n0 --ntasks=6 --oversubscribe ..." ;
+    hpc:allocatedCPUs 44 .
+
+# Multithreaded node job
+hpc:MultithreadedNodeJob a owl:Class .
+hpc:slurmConf a owl:ObjectProperty .
+hpc:commandLine a owl:ObjectProperty .
+hpc:allocatedCPUs a owl:DatatypeProperty .
+hpc:allocatedCPUIds a owl:ObjectProperty .
+hpc:partition a owl:DatatypeProperty .
+hpc:hint a owl:ObjectProperty .
+
+hpc:slurmConf rdfs:domain hpc:MultithreadedNodeJob .
+hpc:slurmConf rdfs:range xsd:string .
+hpc:commandLine rdfs:domain hpc:MultithreadedNodeJob .
+hpc:commandLine rdfs:range xsd:string .
+hpc:allocatedCPUs rdfs:domain hpc:MultithreadedNodeJob .
+hpc:allocatedCPUs rdfs:range xsd:nonNegativeInteger .
+hpc:allocatedCPUIds rdfs:domain hpc:MultithreadedNodeJob .
+hpc:allocatedCPUIds rdfs:range xsd:string .
+hpc:partition rdfs:domain hpc:MultithreadedNodeJob .
+hpc:partition rdfs:range xsd:string .
+hpc:hint rdfs:domain hpc:MultithreadedNodeJob .
+hpc:hint rdfs:range xsd:string .

@@ -1,0 +1,51 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:Overview a owl:Class .
+hpc:ReleaseNotes a owl:Class .
+hpc:Using a owl:Class .
+hpc:Documentation a owl:Class .
+hpc:FAQ a owl:Class .
+hpc:Publications a owl:Class .
+hpc:Installing a owl:Class .
+hpc:Download a owl:Class .
+hpc:RelatedSoftware a owl:Class .
+hpc:InstallationGuide a owl:Class .
+hpc:GettingHelp a owl:Class .
+hpc:MailingLists a owl:Class .
+hpc:SupportAndTraining a owl:Class .
+hpc:Troubleshooting a owl:Class .
+hpc:MultiCategorySecurityGuide a owl:Class .
+
+hpc:MCSPlugin a owl:ObjectProperty .
+hpc:MCSParameters a owl:ObjectProperty .
+
+hpc:MCSLabel a owl:DatatypeProperty .
+hpc:ondemand a xsd:string .
+hpc:enforced a xsd:string .
+hpc:noselect a xsd:string .
+hpc:select a xsd:string .
+hpc:ondemandselect a xsd:string .
+hpc:privatedata a xsd:string .
+
+hpc:mcsNone a hpc:MCSPlugin .
+hpc:mcsAccount a hpc:MCSPlugin .
+hpc:mcsGroup a hpc:MCSPlugin .
+hpc:mcsUser a hpc:MCSPlugin .
+hpc:mcsLabel a hpc:MCSPlugin .
+
+hpc:mcsAccount rdfs:subClassOf hpc:MCSPlugin .
+hpc:mcsGroup rdfs:subClassOf hpc:MCSPlugin .
+hpc:mcsUser rdfs:subClassOf hpc:MCSPlugin .
+hpc:mcsLabel rdfs:subClassOf hpc:MCSPlugin .
+
+hpc:mcsAccount rdfs:domain hpc:SlurmWorkloadManager .
+hpc:mcsGroup rdfs:domain hpc:SlurmWorkloadManager .
+hpc:mcsUser rdfs:domain hpc:SlurmWorkloadManager .
+hpc:mcsLabel rdfs:domain hpc:SlurmWorkloadManager .
+
+hpc:MCSParameters rdfs:range xsd:string .
+hpc:MCSParameters rdfs:domain hpc:SlurmWorkloadManager .
+
+hpc:MCSPlugin rdfs:range hpc:MCSPlugin .
+hpc:MCS

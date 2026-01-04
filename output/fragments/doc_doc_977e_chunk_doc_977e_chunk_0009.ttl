@@ -1,0 +1,60 @@
+hpc:Reservation a owl:Class .
+hpc:ReservationName a rdf:Property .
+hpc:StartTime a xsd:dateTime .
+hpc:EndTime a xsd:dateTime .
+hpc:Duration a xsd:duration .
+hpc:Nodes a rdf:List .
+hpc:NodeCnt a xsd:nonNegativeInteger .
+hpc:CoreCnt a xsd:nonNegativeInteger .
+hpc:Features a rdf:List .
+hpc:PartitionName a rdf:Property .
+hpc:Flags a rdf:Property .
+hpc:Users a rdf:Property .
+hpc:Accounts a rdf:List .
+hpc:Licenses a rdf:List .
+hpc:State a rdf:Property .
+
+hpc:BatchJob a owl:Class .
+hpc:hasReservation a owl:ObjectProperty .
+
+hpc:Reservation rdfs:subClassOf hpc:BatchJob .
+hpc:Reservation rdfs:subClassOf owl:NamedIndividual .
+hpc:BatchJob rdfs:subClassOf owl:NamedIndividual .
+
+hpc:ReservationName rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:Literal .
+
+hpc:StartTime rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:dateTime .
+
+hpc:EndTime rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:dateTime .
+
+hpc:Duration rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:duration .
+
+hpc:Nodes rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:List .
+
+hpc:NodeCnt rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:CoreCnt rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Features rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:List .
+
+hpc:PartitionName rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:Literal .
+
+hpc:Flags rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:Literal .
+
+hpc:Users rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:Literal .
+
+hpc:Accounts rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:List .
+
+hpc:Licenses rdfs:domain hpc

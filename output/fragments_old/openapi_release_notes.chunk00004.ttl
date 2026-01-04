@@ -1,0 +1,72 @@
+hpc:MaxJobsAccrue
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:int .
+
+hpc:MaxJobs
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:int .
+
+hpc:GrpJobsAccrue
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:int .
+
+hpc:GrpJobs
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:int .
+
+hpc:GrpSubmitJobs
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:int .
+
+hpc:MaxWallDurationPerJob
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:int .
+
+hpc:MaxSubmitJobs
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:int .
+
+hpc:GrpWall
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:int .
+
+hpc:GrpTRESRunMins
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:int .
+
+hpc:GrpTRESMins
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:int .
+
+hpc:MaxTRESMinsPerJob
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:int .
+
+hpc:MaxTRESMinsTotal
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Not implemented" .
+
+hpc:MaxTRESPerJob
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:int .
+
+hpc:MaxTRESPerNode
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:int .
+
+hpc:GrpTRES

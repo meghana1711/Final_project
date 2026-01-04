@@ -1,0 +1,52 @@
+hpc:SlurmPlugin a owl:Class .
+
+# Plugin Version Property
+hpc:pluginVersion a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmPlugin ;
+    rdfs:range xsd:unsignedInt .
+
+# Job Submit Function
+hpc:jobSubmit a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmPlugin ;
+    rdfs:range [ a owl:Class ;
+                  owl:unionOf ( (hpc:JobDescriptor) (xsd:string) (hpc:ErrorMessage) ) ] .
+
+# Job Descriptor Class
+hpc:JobDescriptor a owl:Class .
+
+# Submit UID Property
+hpc:submitUID a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescriptor ;
+    rdfs:range xsd:unsignedInt .
+
+# Error Message Property
+hpc:errorMsg a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescriptor ;
+    rdfs:range xsd:string .
+
+# Initialization Function
+hpc:init a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmPlugin ;
+    rdfs:range xsd:unsignedInt .
+
+# Finalization Function
+hpc:fini a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmPlugin ;
+    rdfs:range xsd:void .
+
+# Job Submit Function (with specific parameters)
+hpc:jobSubmitWithParameters a owl:ObjectProperty ;
+    rdfs:subClassOf hpc:jobSubmit ;
+    rdfs:domain hpc:SlurmPlugin ;
+    rdfs:range [ a owl:Class ;
+                  owl:unionOf ( (hpc:JobDescriptorWithParameters) (xsd:string) (hpc:ErrorMessage) ) ] .
+
+# Job Descriptor with Parameters Class
+hpc:JobDescriptorWithParameters a owl:Class ;
+    rdfs:subClassOf hpc:JobDescriptor .
+
+# Parameters Property
+hpc:parameters a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescriptorWithParameters ;
+    rdfs:range xsd:string .
+```

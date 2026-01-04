@@ -1,0 +1,39 @@
+hpc:PluginType a owl:Class .
+hpc:PluginType rdfs:subClassOf xsd:string .
+
+hpc:Slurm a owl:Class .
+hpc:Slurm rdfs:subClassOf rdf:Resource .
+
+hpc:SlurmMeta a owl:Class .
+hpc:SlurmMeta rdfs:subClassOf rdf:Resource .
+hpc:SlurmMeta rdfs:subClassOf owl:Object .
+hpc:SlurmMeta rdfs:domain hpc:Slurm .
+
+hpc:cluster a owl:DatatypeProperty .
+hpc:cluster rdfs:domain hpc:SlurmMeta .
+hpc:cluster rdfs:range xsd:string .
+
+hpc:release a owl:DatatypeProperty .
+hpc:release rdfs:domain hpc:SlurmMeta .
+hpc:release rdfs:range xsd:string .
+
+hpc:version a owl:Class .
+hpc:version rdfs:subClassOf rdf:Resource .
+hpc:version rdfs:subClassOf owl:Object .
+
+hpc:major a owl:DatatypeProperty .
+hpc:major rdfs:domain hpc:Version .
+hpc:major rdfs:range xsd:string .
+
+hpc:micro a owl:DatatypeProperty .
+hpc:micro rdfs:domain hpc:Version .
+hpc:micro rdfs:range xsd:string .
+
+hpc:minor a owl:DatatypeProperty .
+hpc:minor rdfs:domain hpc:Version .
+hpc:minor rdfs:range xsd:string .
+
+hpc:status a owl:DatatypeProperty .
+hpc:status rdfs:domain hpc:Slurm .
+hpc:status rdfs:range xsd:string .
+```

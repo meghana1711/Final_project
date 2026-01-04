@@ -1,0 +1,49 @@
+hpc:ClusterRecFlag a owl:Enum .
+hpc:ClusterRecFlag "EXTERNAL" rdf:value .
+
+hpc:JobInfo a owl:Class .
+hpc:JobInfo hpc:hasQos rdf:type owl:ObjectProperty .
+hpc:JobInfo hpc:hasQos rdfs:domain hpc:JobInfo ;
+                        rdfs:range hpc:Qos .
+
+hpc:Node a owl:Class .
+hpc:Node hpc:tresWeighted rdf:type owl:DatatypeProperty .
+
+hpc:JobSubmitUserMsg a owl:Class .
+hpc:JobSubmitUserMsg rdf:type owl:DatatypeProperty .
+
+hpc:OpenApiJobPostResponse a owl:Class .
+hpc:OpenApiJobPostResponse hpc:jobSubmitUserMsg rdf:type owl:ObjectProperty .
+
+hpc:OpenApiJobSubmitResponse a owl:Class .
+hpc:OpenApiJobSubmitResponse hpc:jobSubmitUserMsg rdf:type owl:ObjectProperty .
+
+hpc:DataParsers a owl:Class .
+hpc:DataParsers rdf:type owl:Class ;
+             rdfs:subClassOf hpc:Plugin .
+
+hpc:DataParsers "v0.0.40" hpc:pluginVersion rdf:value .
+hpc:DataParsers "NONE" hpc:flags rdf:type owl:ObjectProperty .
+
+hpc:Slurm a owl:Class .
+hpc:Slurm hpc:info rdf:type owl:ObjectProperty .
+hpc:Slurm hpc:info rdfs:domain hpc:Slurm ;
+               rdfs:range hpc:Info .
+
+hpc:Info a owl:Class .
+hpc:Info hpc:dataParsers rdf:type owl:ObjectProperty .
+hpc:Info hpc:dataParsers rdfs:domain hpc:Info ;
+               rdfs:range hpc:DataParsers .
+hpc:Info hpc:openapi rdf:type owl:ObjectProperty .
+hpc:Info hpc:openapi rdfs:domain hpc:Info ;
+               rdfs:range rdf:List .
+hpc:Info hpc:release rdf:type owl:DatatypeProperty .
+hpc:Info hpc:version rdf:type owl:DatatypeProperty .
+
+hpc:Qos a owl:Class .
+hpc:Qos rdf:type owl:Class ;
+         rdfs:subClassOf hpc:JobInfo .
+
+hpc:JobState a owl:Class .
+hpc:JobState rdf:type owl:Class ;
+             rdfs:subClassOf hpc

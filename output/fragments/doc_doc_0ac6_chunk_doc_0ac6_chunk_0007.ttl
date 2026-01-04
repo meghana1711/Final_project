@@ -1,0 +1,62 @@
+# Container Bundle
+hpc:ContainerBundle a owl:Class .
+
+# Enroot Start Wrapper
+hpc:EnrootStartWrapper a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Script for starting an Enroot container." .
+
+hpc:hasBundle rdf:Property ;
+    rdfs:domain hpc:EnrootStartWrapper ;
+    rdfs:range hpc:ContainerBundle .
+
+hpc:hasSpooldir rdf:Property ;
+    rdfs:domain hpc:EnrootStartWrapper ;
+    rdfs:range xsd:string .
+
+hpc:hasEnvFile rdf:Property ;
+    rdfs:domain hpc:EnrootStartWrapper ;
+    rdfs:range xsd:string .
+
+# OCI Runtime Configuration
+hpc:OCIRuntimeConfiguration a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:hasGenericOCIConfig rdf:Property ;
+    rdfs:domain hpc:OCIRuntimeConfiguration ;
+    rdfs:range xsd:string .
+
+hpc:hasRunCommand rdf:Property ;
+    rdfs:domain hpc:OCIRuntimeConfiguration ;
+    rdfs:range xsd:string .
+
+hpc:hasRunTimeKill rdf:Property ;
+    rdfs:domain hpc:OCIRuntimeConfiguration ;
+    rdfs:range xsd:string .
+
+hpc:hasRunTimeDelete rdf:Property ;
+    rdfs:domain hpc:OCIRuntimeConfiguration ;
+    rdfs:range xsd:string .
+
+# User-Specific OCI Runtime Configuration
+hpc:UserSpecificOCIRuntimeConfiguration a owl:Class ;
+    rdfs:subClassOf hpc:OCIRuntimeConfiguration .
+
+hpc:hasUserSpecificRunCommand rdf:Property ;
+    rdfs:domain hpc:UserSpecificOCIRuntimeConfiguration ;
+    rdfs:range xsd:string .
+
+hpc:hasDefaultOCIRuntimeConfiguration rdf:Property ;
+    rdfs:domain hpc:UserSpecificOCIRuntimeConfiguration ;
+    rdfs:range hpc:OCIRuntimeConfiguration .
+
+# Default OCI Runtime Configuration
+hpc:DefaultOCIRuntimeConfiguration a owl:Class ;
+    rdfs:subClassOf hpc:OCIRuntimeConfiguration .
+
+hpc:hasContainer rdf:Property ;
+    rdfs:domain hpc:DefaultOCIRuntimeConfiguration ;
+    rdfs:range xsd:string .
+
+hpc:hasSpooldir rdf:Property ;
+    rdfs:domain hpc:DefaultOCIRuntimeConfiguration ;

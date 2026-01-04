@@ -1,0 +1,41 @@
+hpc:HDF5ProfilePlugin a owl:Class .
+hpc:AcctGatherEnergyPlugin rdf:type owl:Class ;
+    rdfs:subClassOf hpc:HDF5ProfilePlugin .
+hpc:AcctGatherInterconnectPlugin rdf:type owl:Class ;
+    rdfs:subClassOf hpc:HDF5ProfilePlugin .
+hpc:AcctGatherFilesystemPlugin rdf:type owl:Class ;
+    rdfs:subClassOf hpc:HDF5ProfilePlugin .
+hpc:JobacctGatherPlugin rdf:type owl:Class ;
+    rdfs:subClassOf hpc:HDF5ProfilePlugin .
+
+hpc:TimeSeries a owl:Class .
+
+hpc:collectData a owl:ObjectProperty .
+hpc:collectData rdfs:domain hpc:HDF5ProfilePlugin ;
+    rdfs:range hpc:TimeSeries .
+
+hpc:recordData a owl:ObjectProperty .
+hpc:recordData rdfs:domain hpc:HDF5ProfilePlugin ;
+    rdfs:range hpc:TimeSeries .
+
+hpc:accumulateTotals a owl:ObjectProperty .
+hpc:accumulateTotals rdfs:domain hpc:HDF5ProfilePlugin .
+
+hpc:ProfileHDF5Dir a owl:DatatypeProperty .
+hpc:ProfileHDF5Dir rdfs:domain hpc:HDF5ProfilePlugin .
+hpc:ProfileHDF5Dir rdfs:range xsd:string .
+
+hpc:StepDirectory a owl:Class .
+hpc:StepDirectory rdfs:subClassOf rdf:Resource .
+
+hpc:JobDirectory a owl:Class ;
+    rdfs:subClassOf hpc:StepDirectory .
+
+hpc:hasStepDirectory a owl:ObjectProperty .
+hpc:hasStepDirectory rdfs:domain hpc:HDF5ProfilePlugin ;
+    rdfs:range hpc:StepDirectory .
+
+hpc:hasJobDirectory a owl:ObjectProperty .
+hpc:hasJobDirectory rdfs:domain hpc:HDF5ProfilePlugin ;
+    rdfs:range hpc:JobDirectory .
+```

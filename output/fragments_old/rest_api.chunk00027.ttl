@@ -1,0 +1,42 @@
+hpc:MediaType a owl:Class .
+hpc:PartitionInformation a MediaType .
+hpc:PingArrayResponse a MediaType .
+hpc:ReconfigureRequestResult a MediaType .
+hpc:ReservationResponse a MediaType .
+
+hpc:major a xsd:nonNegativeInteger .
+hpc:minor a xsd:nonNegativeInteger .
+hpc:micro a xsd:nonNegativeInteger .
+
+hpc:accounting_storage a owl:ObjectProperty .
+hpc:name a owl:ObjectProperty .
+hpc:type a owl:ObjectProperty .
+hpc:data_parser a owl:ObjectProperty .
+hpc:source a owl:ObjectProperty .
+hpc:user a owl:ObjectProperty .
+hpc:group a owl:ObjectProperty .
+hpc:command a owl:ObjectProperty .
+
+hpc:description a rdfs:DatatypeProperty .
+hpc:source a rdfs:DatatypeProperty .
+hpc:error a rdfs:DatatypeProperty .
+hpc:error_number a xsd:nonNegativeInteger .
+
+hpc:cluster a owl:Class .
+hpc:release a rdfs:Class .
+hpc:version a rdfs:Class .
+hpc:ping a owl:Class .
+hpc:mode a xsd:string .
+hpc:responding a xsd:boolean .
+hpc:hostname a xsd:string .
+hpc:latency a xsd:nonNegativeInteger .
+hpc:pinged a xsd:string .
+hpc:primary a xsd:boolean .
+hpc:end_time a rdfs:DatatypeProperty .
+hpc:flags a rdfs:List .
+hpc:groups a xsd:string .
+hpc:users a xsd:string .
+hpc:max_start_delay a xsd:nonNegativeInteger .
+hpc:features a xsd:string .
+hpc:start_time a rdfs:DatatypeProperty .
+```

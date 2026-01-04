@@ -1,0 +1,38 @@
+hpc:PreemptType a owl:Class .
+hpc:PreemptType preempt/none rdf:value "disabled" .
+hpc:PreemptType preempt/partition_prio rdf:value "based upon partition PriorityTier" .
+hpc:PreemptType preempt/qos rdf:value "Job preemption rules are specified by Quality Of Service (QOS) specifications in the Slurm database" .
+
+hpc:PreemptMode a owl:ObjectProperty .
+hpc:PreemptMode rdfs:domain PreemptType .
+hpc:PreemptMode rdfs:range xsd:string .
+
+hpc:PriorityTier a owl:Class .
+hpc:PriorityTier rdfs:subClassOf xsd:nonNegativeInteger .
+
+hpc:PreemptType_partition_prio_compatible a owl:Class .
+hpc:PreemptType_partition_prio_compatible rdfs:subClassOf PreemptType .
+hpc:PreemptType_partition_prio_compatible rdf:value "This is not compatible with PreemptMode=OFF" .
+
+hpc:PreemptType_qos_compatible a owl:Class .
+hpc:PreemptType_qos_compatible rdfs:subClassOf PreemptType .
+hpc:PreemptType_qos_compatible rdf:value "In the case of PreemptMode=SUSPEND, a preempting job needs to be submitted to a partition with a higher PriorityTier or to the same partition" .
+hpc:PreemptType_qos_compatible_selectType_select_tres_required a owl:Class .
+hpc:PreemptType_qos_compatible_selectType_select_tres_required rdfs:subClassOf PreemptType_qos_compatible .
+hpc:PreemptType_qos_compatible_selectType_select_tres_required rdf:value "A configuration of PreemptMode=SUSPEND is only supported by the SelectType=select/cons_tres plugin" .
+
+hpc:PreemptMode_off_incompatible a owl:Class .
+hpc:PreemptMode_off_incompatible rdfs:subClassOf PreemptType .
+hpc:PreemptMode_off_incompatible rdf:value "This is not compatible with PreemptType=preempt/partition_prio" .
+hpc:PreemptMode_off_incompatible rdf:value "This is not compatible with PreemptType=preempt/qos" .
+
+hpc:PreemptMode_suspend_compatible a owl:Class .
+hpc:PreemptMode_suspend_compatible rdfs:subClassOf PreemptType .
+hpc:PreemptMode_suspend_compatible rdf:value "In the case of PreemptMode=SUSPEND, a preempting job needs to be submitted to a partition with a higher PriorityTier or to the same partition" .
+
+hpc:PreemptMode_suspend_qos_compatible a owl:Class .
+hpc:PreemptMode_suspend_qos_compatible rdfs:subClassOf PreemptType_qos_compatible .
+hpc:PreemptMode_suspend_qos_compatible rdf:value "This option is not compatible with PreemptMode=OFF" .
+
+hpc:PreemptMode_suspend_qos_partition_compatible a owl:Class .
+hpc:PreemptMode_suspend_qos_partition

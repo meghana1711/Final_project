@@ -1,0 +1,51 @@
+hpc:Core a owl:Class .
+hpc:Job a owl:Class .
+hpc:PartitionQueue a owl:Class .
+hpc:SelectType a owl:Enum .
+hpc:SelectTypeParameters a owl:Class .
+hpc:OverSubscribe a owl:Enum .
+
+hpc:hasCore rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Core .
+
+hpc:allocatedTo rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Core ;
+    rdfs:range hpc:Job .
+
+hpc:sharedWith rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Core ;
+    rdfs:range hpc:Job .
+
+hpc:oversubscribed rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PartitionQueue ;
+    rdfs:range xsd:boolean .
+
+hpc:maxJobsPerCore rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:PartitionQueue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maxJobsPerCPU rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:PartitionQueue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maxJobsPerSocket rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:PartitionQueue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:usesLeastLoadedAlgorithm rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PartitionQueue ;
+    rdfs:range xsd:boolean .
+
+hpc:SelectTypeParametersOf rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SelectType ;
+    rdfs:range hpc:SelectTypeParameters .
+
+hpc:isCPU rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SelectTypeParameters ;
+    rdfs:range xsd:boolean .
+
+hpc:isMemoryOverSubscribed rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SelectTypeParameters ;
+    rdfs:range xsd:boolean .
+```

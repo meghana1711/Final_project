@@ -1,0 +1,57 @@
+hpc:User a owl:Class .
+hpc:Account a owl:Class .
+hpc:Reservation a owl:Class .
+hpc:ReservationName rdf:type rdf:Property ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+hpc:StartTime rdf:type rdf:Property ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:dateTime .
+hpc:EndTime rdf:type rdf:Property ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:dateTime .
+hpc:Duration rdf:type rdf:Property ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:NodeCnt rdf:type rdf:Property ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Features rdf:type rdf:Property ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:List .
+hpc:PartitionName rdf:type rdf:Property ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+hpc:Flags rdf:type rdf:Property ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+hpc:Licenses rdf:type rdf:Property ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:List .
+hpc:BurstBuffer rdf:type rdf:Property ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:decimal .
+hpc:Users rdf:type rdf:Property ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:List .
+hpc:Accounts rdf:type rdf:Property ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:List .
+hpc:Node a owl:Class .
+hpc:User alan a hpc:User .
+hpc:User brenda a hpc:User .
+hpc:Reservation alan_7 a hpc:Reservation ;
+    hpc:ReservationName "alan_7" ;
+    hpc:StartTime "2009-02-05T12:00:00" ;
+    hpc:EndTime "2009-02-05T13:00:00" ;
+    hpc:Duration 60 ;
+    hpc:Nodes (NodeCnt 0) ;
+    hpc:Features ( ) ;
+    hpc:PartitionName ( ) ;
+    hpc:Flags "ANY_NODES" ;
+    hpc:Licenses ( ) ;
+    hpc:BurstBuffer 100 .
+hpc:Reservation alan_9 a hpc:Reservation ;
+    hpc:ReservationName "alan_9" ;
+    hpc:StartTime "2011-12-05T13:00:00" ;
+    hpc:EndTime

@@ -1,0 +1,60 @@
+hpc:Job a owl:Class .
+hpc:Command a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Component a owl:Class .
+hpc:hasCommand rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Command .
+hpc:onCluster rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Cluster .
+hpc:usesComponent rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Component .
+hpc:Salloc a hpc:Command ;
+    rdfs:subClassOf hpc:Command .
+hpc:Sbatch a hpc:Command ;
+    rdfs:subClassOf hpc:Command .
+hpc:Srun a hpc:Command ;
+    rdfs:subClassOf hpc:Command .
+hpc:AnyCommand a hpc:Command ;
+    rdfs:subClassOf hpc:Command .
+hpc:Cluster1 a hpc:Cluster .
+hpc:Cluster2 a hpc:Cluster .
+hpc:interactive a hpc:Partition ;
+    rdfs:subClassOf xsd:string .
+hpc:member a hpc:Partition ;
+    rdfs:subClassOf xsd:string .
+hpc:high a hpc:Partition ;
+    rdfs:subClassOf xsd:string .
+hpc:short a hpc:Partition ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Job_submittedWithSalloc a hpc:Job ;
+    hpc:hasCommand hpc:Salloc ;
+    hpc:onCluster hpc:Cluster1 ;
+    hpc:usesComponent rdf:type rdf:Statement ;
+        hpc:subject hpc:Job_submittedWithSalloc ;
+        hpc:predicate hpc:onCluster ;
+        hpc:object hpc:Cluster1 .
+hpc:Job_submittedWithSalloc_onCluster1 a hpc:Partition ;
+    hpc:usesComponent rdf:type rdf:Statement ;
+        hpc:subject hpc:Job_submittedWithSalloc ;
+        hpc:predicate hpc:usesComponent ;
+        hpc:object hpc:interactive .
+hpc:Job_submittedWithSalloc_onCluster2 a hpc:Job ;
+    hpc:hasCommand hpc:Salloc ;
+    hpc:onCluster hpc:Cluster2 ;
+    hpc:usesComponent rdf:type rdf:Statement ;
+        hpc:subject hpc:Job_submittedWithSalloc ;
+        hpc:predicate hpc:usesComponent ;
+        hpc:object hpc:member .
+hpc:Job_submittedWithSbatch a hpc:Job ;
+    hpc:hasCommand hpc:Sbatch ;
+    hpc:usesComponent rdf:type rdf:Statement ;
+        hpc:subject hpc:Job_submittedWithSbatch ;
+        hpc:predicate hpc:usesComponent ;
+        hpc:object hpc:high .
+hpc:Job_submittedWithSrun a hpc:Job ;
+    hpc:hasCommand hpc:Srun ;
+    hpc

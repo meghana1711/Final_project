@@ -1,0 +1,39 @@
+hpc:SLURM_SUBMIT_HOST a owl:Class .
+hpc:SLURM_TASK_PID a owl:Class .
+hpc:SLURM_TASKS_PER_NODE a owl:Class .
+hpc:SLURM_TOPOLOGY_ADDR a owl:Class .
+hpc:SLURM_TOPOLOGY_ADDR_PATTERN a owl:Class .
+hpc:SLURM_WCKEY a owl:Class .
+hpc:SLURMD_NODENAME a owl:Class .
+
+hpc:hasSubmitHost rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SLURM_SUBMIT_HOST ;
+  rdfs:range hpc:SLURM_SUBMIT_HOST .
+
+hpc:hasTaskPID rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SLURM_TASK_PID ;
+  rdfs:range hpc:SLURM_TASK_PID .
+
+hpc:tasksPerNode rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SLURM_TASKS_PER_NODE ;
+  rdfs:range xsd:integer .
+
+hpc:topologyAddr rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SLURM_TOPOLOGY_ADDR ;
+  rdfs:range hpc:SLURM_TOPOLOGY_ADDR .
+
+hpc:topologyAddrPattern rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SLURM_TOPOLOGY_ADDR_PATTERN ;
+  rdfs:range hpc:SLURM_TOPOLOGY_ADDR_PATTERN .
+
+hpc:hasWCKey rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SLURM_WCKEY ;
+  rdfs:range hpc:SLURM_WCKEY .
+
+hpc:nodeName rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SLURMD_NODENAME ;
+  rdfs:range hpc:SLURMD_NODENAME .
+
+hpc:pluginFunction a owl:Class .
+hpc:spank a owl:Class .
+```

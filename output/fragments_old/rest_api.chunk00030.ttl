@@ -1,0 +1,56 @@
+hpc:Job a owl:Class .
+hpc:hasName a owl:ObjectProperty .
+hpc:hasShares a owl:ObjectProperty .
+hpc:hasFairshare a owl:ObjectProperty .
+hpc:hasType a owl:ObjectProperty .
+hpc:hasEffectiveUsage a owl:ObjectProperty .
+hpc:hasUsageNormalized a owl:ObjectProperty .
+hpc:hasPartition a owl:ObjectProperty .
+hpc:hasTres a owl:ObjectProperty .
+hpc:hasRunSeconds a owl:ObjectProperty .
+hpc:hasUsage a owl:ObjectProperty .
+hpc:hasGroupMinutes a owl:ObjectProperty .
+hpc:hasCluster a owl:ObjectProperty .
+hpc:hasParent a owl:ObjectProperty .
+hpc:hasSharesNormalized a owl:ObjectProperty .
+
+hpc:Shares a owl:Class .
+hpc:number a xsd:decimal .
+hpc:set a owl:ObjectProperty .
+hpc:infinite a owl:ObjectProperty .
+
+hpc:Fairshare a owl:Class .
+hpc:level a owl:ObjectProperty .
+hpc:factor a owl:ObjectProperty .
+
+hpc:Type a owl:Class .
+hpc:value a xsd:string .
+
+hpc:EffectiveUsage a owl:Class .
+hpc:value a xsd:decimal .
+
+hpc:UsageNormalized a owl:Class .
+hpc:value a xsd:decimal .
+
+hpc:Partition a owl:Class .
+hpc:value a xsd:string .
+
+hpc:Tres a owl:Class .
+hpc:RunSeconds a owl:Class .
+hpc:Usage a owl:Class .
+hpc:GroupMinutes a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Parent a owl:Class .
+
+hpc:Job hasName rdf:value ?name .
+hpc:Job hasShares rdf:value ?shares .
+hpc:Job hasFairshare rdf:value ?fairshare .
+hpc:Job hasType rdf:value ?type .
+hpc:Job hasEffectiveUsage rdf:value ?effectiveUsage .
+hpc:Job hasUsageNormalized rdf:value ?usageNormalized .
+hpc:Job hasPartition rdf:value ?partition .
+hpc:Job hasTres rdf:value ?tres .
+hpc:Job hasRunSeconds rdf:value ?runSeconds .
+hpc:Job hasUsage rdf:value ?usage .
+hpc:Job hasGroupMinutes rdf:value ?groupMinutes .
+hpc:Job hasCluster rdf:value ?cluster .

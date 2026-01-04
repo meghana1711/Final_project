@@ -1,0 +1,27 @@
+hpc:Plugin a owl:Class .
+hpc:CompatibleSlurmVersion rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:string .
+
+hpc:IncompatibleSlurmVersion rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:string .
+
+hpc:CustomPlugin a owl:Class ;
+    rdfs:subClassOf hpc:Plugin .
+
+hpc:SlurmRestd a owl:Class .
+hpc:HighAvailability rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmRestd .
+
+hpc:LoadBalancer rdf:type owl:Class .
+hpc:ForwardAuthentication rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LoadBalancer ;
+    rdfs:range xsd:string .
+
+hpc:SlurmRESTAPISecurity rdf:type owl:Class .
+hpc:UnencryptedCommunication rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmRESTAPISecurity .
+hpc:UncompressedCommunication rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmRESTAPISecurity .
+```

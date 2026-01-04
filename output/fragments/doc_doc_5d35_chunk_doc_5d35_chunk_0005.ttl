@@ -1,0 +1,51 @@
+hpc:HeterogeneousJob a owl:Class .
+hpc:JobComponent a owl:Class .
+hpc:HetJobLeader a owl:Class, rdfs:subClassOf hpc:JobComponent .
+
+hpc:hetJobId a owl:DatatypeProperty .
+hpc:hetJobId rdfs:domain hpc:HeterogeneousJob ;
+                 rdfs:range xsd:string .
+
+hpc:hetJobOffset a owl:DatatypeProperty .
+hpc:hetJobOffset rdfs:domain hpc:JobComponent ;
+                 rdfs:range xsd:integer .
+
+hpc:partitionName a owl:DatatypeProperty .
+hpc:partitionName rdfs:domain hpc:JobComponent .
+
+hpc:user a owl:DatatypeProperty .
+hpc:user rdfs:domain hpc:JobComponent .
+
+hpc:state a owl:DatatypeProperty .
+hpc:state rdfs:domain hpc:JobComponent .
+
+hpc:startTime a xsd:dateTime .
+hpc:startTime rdfs:domain hpc:JobComponent .
+
+hpc:endTime a xsd:dateTime .
+hpc:endTime rdfs:domain hpc:JobComponent .
+
+hpc:nodes a owl:DatatypeProperty .
+hpc:nodes rdfs:domain hpc:JobComponent .
+
+hpc:nodeList a owl:DatatypeProperty .
+hpc:nodeList rdfs:domain hpc:JobComponent .
+
+hpc:cancelJob a owl:ObjectProperty .
+hpc:cancelJob rdfs:domain hpc:HeterogeneousJob .
+
+hpc:cancelComponent a owl:ObjectProperty .
+hpc:cancelComponent rdfs:domain hpc:JobComponent ;
+                      rdfs:range xsd:string .
+
+hpc:modifyJob a owl:ObjectProperty .
+hpc:modifyJob rdfs:domain hpc:HeterogeneousJob .
+
+hpc:modifyComponent a owl:ObjectProperty .
+hpc:modifyComponent rdfs:domain hpc:JobComponent ;
+                      rdfs:range xsd:string .
+
+hpc:hetJobLeaderOf a owl:ObjectProperty .
+hpc:hetJobLeaderOf rdfs:domain hpc:HeterogeneousJob ;
+                    rdfs:range hpc:HetJobLeader .
+```

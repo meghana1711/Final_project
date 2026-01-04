@@ -1,0 +1,30 @@
+hpc:Plugin a owl:Class .
+hpc:InitFunction a owl:Class .
+hpc:FinishFunction a owl:Class .
+hpc:ConfigFunction a owl:Class .
+hpc:SetFunction a owl:Class .
+hpc:UpdateFunction a owl:Class .
+
+hpc:InitFunction rdfs:subClassOf owl:FunctionalProperty .
+hpc:FinishFunction rdfs:subClassOf owl:FunctionalProperty .
+hpc:ConfigFunction rdfs:subClassOf owl:FunctionalProperty .
+hpc:SetFunction rdfs:subClassOf owl:FunctionalProperty .
+hpc:UpdateFunction rdfs:subClassOf owl:FunctionalProperty .
+
+hpc:Returns a owl:DatatypeProperty ;
+  rdfs:domain hpc:Function .
+  rdfs:range xsd:string .
+
+hpc:Description a owl:DatatypeProperty ;
+  rdfs:domain hpc:Function .
+  rdfs:range xsd:string .
+
+hpc:Parameters a owl:Class .
+
+hpc:PrioritySiteFactorParameters a owl:Class ;
+  rdfs:subClassOf hpc:Parameters .
+
+hpc:PrioritySiteFactorPlugin a owl:ObjectProperty ;
+  rdfs:domain hpc:Plugin .
+  rdfs:range hpc:PrioritySiteFactorPlugin .
+```

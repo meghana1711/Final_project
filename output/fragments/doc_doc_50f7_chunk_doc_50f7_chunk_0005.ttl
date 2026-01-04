@@ -1,0 +1,53 @@
+hpc:MCS_Label_Enforcement a owl:Enum;
+  rdfs:label "Label enforcement";
+  rdf:type owl:Class;
+  owl:enumValue (
+    hpc:Enforced ;
+    hpc:OnDemand ;
+    hpc:Noselect ;
+    hpc:OnDemandSelect ;
+    hpc:Select ;
+    hpc:ExclusiveOnDemandSelect
+  ).
+
+hpc:MCS_Plugin a owl:Class;
+  rdfs:label "MCS Plugin";
+  rdf:type owl:Class.
+
+hpc:MCS_Parameters a owl:Class;
+  rdfs:label "MCS Parameters";
+  rdf:type owl:Class.
+
+hpc:hasMCS_Plugin a owl:ObjectProperty;
+  rdfs:domain hpc:MCS_Plugin;
+  rdfs:range hpc:MCS_Plugin;
+  rdfs:label "has MCS Plugin".
+
+hpc:hasMCS_Parameters a owl:ObjectProperty;
+  rdfs:domain hpc:MCS_Plugin;
+  rdfs:range hpc:MCS_Parameters;
+  rdfs:label "has MCS Parameters".
+
+hpc:MCS_Label a owl:Class;
+  rdfs:label "MCS Label";
+  rdf:type owl:Class.
+
+hpc:requiresMCS_Label a owl:ObjectProperty;
+  rdfs:domain hpc:MCS_Parameters;
+  rdfs:range hpc:MCS_Label;
+  rdfs:label "requires MCS Label".
+
+hpc:exclusivity a owl:DatatypeProperty;
+  rdfs:domain hpc:MCS_Parameters;
+  rdfs:range xsd:string;
+  rdfs:label "exclusivity".
+
+hpc:Node_Filtering a owl:Class;
+  rdfs:label "Node filtering";
+  rdf:type owl:Class.
+
+hpc:hasNodeFiltering a owl:ObjectProperty;
+  rdfs:domain hpc:Node_Filtering;
+  rdfs:range hpc:Node_Filtering;
+  rdfs:label "has Node Filtering".
+```

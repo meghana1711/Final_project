@@ -1,0 +1,48 @@
+hpc:SystemdService a owl:Class .
+hpc:hasTaskMaxLimit a owl:ObjectProperty .
+hpc:TaskMaxLimit rdf:type xsd:nonNegativeInteger .
+hpc:SystemdService rdfs:subClassOf hpc:Service .
+hpc:SystemdService rdfs:domain hpc:ClusterSystem .
+
+hpc:ClusterSystem a owl:Class .
+
+hpc:InitScript a owl:Class .
+hpc:InitScript rdfs:subClassOf hpc:Service .
+hpc:InitScript rdfs:domain hpc:ClusterSystem .
+
+hpc:OverridesFile a owl:Class .
+hpc:OverridesFile rdfs:subClassOf hpc:File .
+hpc:OverridesFile rdfs:domain hpc:ClusterSystem .
+
+hpc:Ulimit a owl:Class .
+hpc:Ulimit rdfs:subClassOf hpc:ResourceLimit .
+hpc:Ulimit rdfs:domain hpc:Daemon .
+
+hpc:MemorySizeLimit a owl:DatatypeProperty .
+hpc:OpenFileCountLimit a owl:DatatypeProperty .
+hpc:StackSizeLimit a owl:DatatypeProperty .
+
+hpc:NodeSelectionPlugin a owl:Class .
+hpc:SelectType a owl:ObjectProperty .
+hpc:Cons_tres a owl:NamedIndividual .
+hpc:Linear a owl:NamedIndividual .
+hpc:NodeSelectionPlugin rdfs:subClassOf hpc:Plugin .
+hpc:NodeSelectionPlugin rdfs:domain hpc:ClusterSystem .
+
+hpc:JobAccountingGatherPlugin a owl:Class .
+hpc:JobAcctGatherType a owl:ObjectProperty .
+hpc:None a owl:NamedIndividual .
+hpc:JobCompletionRecords a owl:NamedIndividual .
+hpc:JobAccountingGatherPlugin rdfs:subClassOf hpc:Plugin .
+hpc:JobAccountingGatherPlugin rdfs:domain hpc:ClusterSystem .
+
+hpc:JobAccountingGatherFrequency a owl:DatatypeProperty .
+hpc:JobAccountingGatherFrequency rdf:type xsd:nonNegativeInteger .
+
+hpc:JobCompletionRecords a owl:Class .
+hpc:JobCompletionRecords rdfs:subClassOf hpc:AccountingMethod .
+hpc:JobCompletionRecords rdfs:domain hpc:ClusterSystem .
+
+hpc:SystemNoise a owl:Class .
+hpc:ApplicationScalability a owl:ObjectProperty .
+```

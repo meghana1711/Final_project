@@ -1,0 +1,24 @@
+hpc:PriorityType a owl:Class .
+hpc:PriorityDecayHalfLife a owl:DatatypeProperty ;
+    rdfs:domain hpc:PriorityType ;
+    rdfs:range xsd:string .
+hpc:PriorityCalcPeriod a owl:DatatypeProperty ;
+    rdfs:domain hpc:PriorityType ;
+    rdfs:range xsd:string .
+
+hpc:MultifactorJobPriorityPlugin a owl:Class ;
+    rdfs:subClassOf hpc:PriorityType .
+
+hpc:PriorityUsageResetPeriod a owl:DatatypeProperty ;
+    rdfs:domain hpc:MultifactorJobPriorityPlugin ;
+    rdfs:range xsd:string .
+
+hpc:PriorityUsageResetPeriod_NONE a owl:NamedIndividual ;
+    hpc:PriorityUsageResetPeriod "NONE" .
+
+hpc:PriorityUsageResetPeriod_NOW a owl:NamedIndividual ;
+    hpc:PriorityUsageResetPeriod "NOW" .
+
+hpc:PriorityDecay a owl:ObjectProperty ;
+    rdfs:domain hpc:MultifactorJobPriorityPlugin .
+```

@@ -1,0 +1,63 @@
+hpc:CgroupV1 a owl:Class .
+hpc:CgroupV2 a owl:Class .
+
+hpc:hasController a owl:ObjectProperty .
+hpc:Cgroup hasController hpc:CgroupController .
+hpc:CgroupV1 hasController hpc:V1Controller .
+hpc:CgroupV2 hasController hpc:V2Controller .
+
+hpc:V1Controller a owl:Class ;
+    rdfs:subClassOf hpc:CgroupController ;
+    rdfs:comment "Controller for cgroup/v1" .
+
+hpc:V2Controller a owl:Class ;
+    rdfs:subClassOf hpc:CgroupController ;
+    rdfs:comment "Controller for cgroup/v2" .
+
+hpc:FreezerController a owl:Class ;
+    rdfs:subClassOf hpc:CgroupController ;
+    rdfs:comment "Controller for freezer" .
+    rdfs:subClassOf hpc:V1Controller ;
+    rdfs:subClassOf hpc:V2Controller .
+
+hpc:DevicesController a owl:Class ;
+    rdfs:subClassOf hpc:CgroupController ;
+    rdfs:comment "Controller for devices (not present in cgroup/v2)" .
+    rdfs:subClassOf hpc:V1Controller .
+
+hpc:MemoryController a owl:Class ;
+    rdfs:subClassOf hpc:CgroupController ;
+    rdfs:comment "Controller for memory" .
+    rdfs:subClassOf hpc:V1Controller ;
+    rdfs:subClassOf hpc:V2Controller .
+
+hpc:CpuController a owl:Class ;
+    rdfs:subClassOf hpc:CgroupController ;
+    rdfs:comment "Controller for CPU" .
+    rdfs:subClassOf hpc:V1Controller ;
+    rdfs:subClassOf hpc:V2Controller .
+
+hpc:CpuacctStat a owl:DatatypeProperty ;
+    rdfs:domain hpc:CpuController ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Provides metrics in USER_HZ (cgroup/v1)" .
+
+hpc:CpuStat a owl:DatatypeProperty ;
+    rdfs:domain hpc:CpuController ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Provides metrics in milis (cgroup/v2)" .
+
+hpc:MemoryLimitInBytes a owl:DatatypeProperty ;
+    rdfs:domain hpc:MemoryController ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Limit for memory in bytes (cgroup/v1)" .
+
+hpc:MemoryMax a owl:DatatypeProperty ;
+    rdfs:domain hpc:MemoryController ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Max limit for memory in bytes (cgroup/v2)" .
+
+hpc:MemorySoftLimitInBytes a owl:DatatypeProperty ;
+    rdfs:domain hpc:MemoryController ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Soft limit for memory in bytes (cgroup

@@ -1,0 +1,25 @@
+hpc:Slurmrestd a owl:Class .
+hpc:OpenAPISpecification a owl:Class .
+hpc:GeneratedOAS a owl:Class, rdfs:subClassOf(hpc:OpenAPISpecification) .
+hpc:GeneratedWithCompiledSlurmrestd rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range hpc:GeneratedOAS .
+hpc:GeneratedWithFullyConfiguredSlurmInstall rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range hpc:GeneratedOAS .
+hpc:OASURL a owl:DatatypeProperty ;
+    rdfs:domain hpc:GeneratedOAS ;
+    rdfs:range xsd:string .
+hpc:Plugin a owl:Class .
+hpc:PluginVersion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:string .
+hpc:SlurmctldPlugin a hpc:Plugin ;
+hpc:SlurmdbdPlugin a hpc:Plugin .
+hpc:OpenAPICompliance a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range xsd:boolean .
+hpc:TestedCompatibility a owl:ObjectProperty ;
+    rdfs:domain hpc:OpenAPICompliance ;
+    rdfs:range hpc:OpenAPISpecification .
+```

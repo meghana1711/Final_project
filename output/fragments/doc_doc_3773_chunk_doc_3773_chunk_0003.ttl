@@ -1,0 +1,5 @@
+hpc:PrioritySiteFactorPlugin a owl:Class .
+hpc:PriorityCalcPeriod a owl:DatatypeProperty ;
+    rdfs:domain hpc:PrioritySiteFactorPlugin ;
+    rdfs:range xsd:duration .
+```

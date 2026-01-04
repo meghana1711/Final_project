@@ -1,0 +1,50 @@
+hpc:NodeInformation a owl:Class .
+
+hpc:slurm a owl:Class .
+hpc:release a owl:DatatypeProperty .
+hpc:version a owl:ObjectProperty .
+hpc:major a xsd:nonNegativeInteger .
+hpc:minor a xsd:nonNegativeInteger .
+hpc:micro a xsd:nonNegativeInteger .
+
+hpc:plugin a owl:Class .
+hpc:accounting_storage a owl:DatatypeProperty .
+hpc:name a owl:DatatypeProperty .
+hpc:type a owl:DatatypeProperty .
+hpc:data_parser a owl:DatatypeProperty .
+
+hpc:client a owl:Class .
+hpc:source a owl:DatatypeProperty .
+hpc:user a owl:DatatypeProperty .
+hpc:group a owl:DatatypeProperty .
+
+hpc:command a owl:DatatypeProperty .
+
+hpc:last_update a owl:DatatypeProperty .
+
+hpc:warning a owl:Class .
+hpc:description a owl:DatatypeProperty .
+hpc:source a owl:DatatypeProperty .
+
+hpc:error a owl:Class .
+hpc:description a owl:DatatypeProperty .
+hpc:source a owl:DatatypeProperty .
+hpc:error a owl:DatatypeProperty .
+hpc:error_number a xsd:nonNegativeInteger .
+
+hpc:node a hpc:NodeInformation ;
+    rdfs:subClassOf hpc:NodeInformation ;
+    hpc:slurm rdf:type hpc:slurm ;
+    hpc:plugin rdf:type hpc:plugin ;
+    hpc:client rdf:type hpc:client ;
+    hpc:command rdf:type rdf:List ;
+    hpc:last_update rdf:type hpc:last_update .
+
+hpc:warning rdf:type rdf:List ;
+    rdfs:subClassOf hpc:warning ;
+    rdfs:domain hpc:node .
+
+hpc:error rdf:type rdf:List ;
+    rdfs:subClassOf hpc:error ;
+    rdfs:domain hpc:node .
+```

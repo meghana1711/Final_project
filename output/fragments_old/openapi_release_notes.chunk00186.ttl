@@ -1,0 +1,52 @@
+hpc:WCKeyResponse a owl:Class .
+hpc:WCKeyRemovedResponse a hpc:WCKeyResponse .
+hpc:WCKeyDeleted a hpc:WCKeyResponse .
+
+hpc:hasContent a owl:ObjectProperty .
+hpc:hasContent rdfs:domain hpc:Response ;
+                 rdfs:range xsd:string .
+
+hpc:WCKeyResponseSchema a owl:Class .
+hpc:WCKeyRemovedRespSchema a hpc:WCKeyResponseSchema .
+
+hpc:hasSchema a owl:ObjectProperty .
+hpc:hasSchema rdfs:domain hpc:Content ;
+                 rdfs:range rdf:Resource .
+
+hpc:Response a owl:Class ;
+             rdfs:subClassOf hpc:HTTPResponse .
+hpc:HTTPResponse a owl:Class .
+
+hpc:HTTPResponseContent a owl:Class ;
+                       rdfs:subClassOf rdf:List ;
+                       rdfs:subClassOf rdf:Resource .
+
+hpc:HTTPResponseContentMember a owl:Class ;
+                              rdfs:subClassOf rdf:Resource .
+
+hpc:HTTPResponseStatusCode a owl:DatatypeProperty ;
+                            rdfs:domain hpc:HTTPResponse ;
+                            rdfs:range xsd:integer .
+
+hpc:HTTPResponseContentMediaType a owl:DatatypeProperty ;
+                                 rdfs:domain hpc:HTTPResponse ;
+                                 rdfs:range xsd:string .
+
+hpc:HTTPMethod a owl:DatatypeProperty ;
+              rdfs:domain hpc:HTTPRequest ;
+              rdfs:range xsd:string .
+
+hpc:HTTPRequestPath a owl:DatatypeProperty ;
+                rdfs:domain hpc:HTTPRequest ;
+                rdfs:range xsd:string .
+
+hpc:HTTPRequestID a owl:DatatypeProperty ;
+               rdfs:domain hpc:HTTPRequest ;
+               rdfs:range xsd:string .
+
+hpc:HTTPRequestBody a owl:ObjectProperty ;
+               rdfs:domain hpc:HTTPRequest ;
+               rdfs:range hpc:HTTPResponseContent .
+```
+
+This ontology fragment represents the classes `HTTPResponse`, `HTTPRequest`, and `HTTPResponseContent`, as well as their properties such as `HTTPMethod`, `HTTPRequestPath`, `HTTPRequestID`, and `HTTPRequestBody`. Additionally, it includes the classes `WCKeyResponse`, `WCKeyRemovedResponse`, and `WCKeyDeleted`, which are subclasses of `HTTPResponse`, and their associated schema properties.

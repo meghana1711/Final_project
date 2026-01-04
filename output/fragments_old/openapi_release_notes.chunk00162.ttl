@@ -1,0 +1,35 @@
+hpc:AccountResponse a owl:Class .
+hpc:OpenapiAccountsResp a hpc:AccountResponse .
+
+hpc:RemovedAccountResponse a hpc:AccountResponse ;
+  rdfs:subClassOf hpc:OpenapiAccountsResp .
+
+hpc:AddedAccountResponse a hpc:AccountResponse ;
+  rdfs:subClassOf hpc:OpenapiAccountsResp .
+
+hpc:ReplacedAccountResponse a hpc:AccountResponse ;
+  rdfs:subClassOf hpc:OpenapiAccountsResp .
+
+hpc:AccountDeleteResponse a hpc:AccountResponse ;
+  rdfs:subClassOf hpc:OpenapiAccountsResp .
+
+hpc:AccountGetResponse a hpc:AccountResponse ;
+  rdfs:subClassOf hpc:OpenapiAccountsResp .
+
+hpc:AccountPostResponse a hpc:AccountResponse ;
+  rdfs:subClassOf hpc:OpenapiAccountsResp .
+
+hpc:AccountDelete a owl:ObjectProperty ;
+  rdfs:domain hpc:Account ;
+  rdfs:range hpc:AccountDeleteResponse .
+
+hpc:AccountGet a owl:ObjectProperty ;
+  rdfs:domain hpc:Account ;
+  rdfs:range hpc:AccountGetResponse .
+
+hpc:AccountPost a owl:ObjectProperty ;
+  rdfs:domain hpc:Account ;
+  rdfs:range hpc:AccountPostResponse .
+```
+
+This ontology fragment defines classes for different types of account responses (Removed, Added, Replaced, AccountDeleteResponse, AccountGetResponse, AccountPostResponse) and properties for deleting, getting, and posting accounts. The AccountResponse class is a superclass for all these specific response types. The Account class is not defined in this fragment, but it can be inferred as the domain of the defined properties.

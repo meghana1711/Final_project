@@ -1,0 +1,71 @@
+hpc:Job a owl:Class .
+hpc:Job rdfs:subClassOf rdf:Resource .
+
+hpc:job_id a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:required a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:CPUs .
+
+hpc:reservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:state a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:State .
+
+hpc:tres a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Tres .
+
+hpc:CPUs a owl:Class .
+hpc:CPUs rdfs:subClassOf rdf:Resource .
+
+hpc:tres a owl:Class .
+hpc:tres rdfs:subClassOf rdf:Resource .
+
+hpc:Step a owl:Class .
+hpc:Step rdfs:subClassOf rdf:Resource .
+
+hpc:time a owl:ObjectProperty ;
+    rdfs:domain hpc:Step .
+
+hpc:elapsed a owl:DatatypeProperty ;
+    rdfs:range xsd:double .
+
+hpc:end a owl:DatatypeProperty ;
+    rdfs:range xsd:dateTime .
+
+hpc:start a owl:DatatypeProperty ;
+    rdfs:range xsd:dateTime .
+
+hpc:suspended a owl:DatatypeProperty ;
+    rdfs:range xsd:boolean .
+
+hpc:system a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:total a owl:DatatypeProperty ;
+    rdfs:range xsd:double .
+
+hpc:user a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:seconds a owl:DatatypeProperty ;
+    rdfs:range xsd:double .
+
+hpc:nodes a owl:ObjectProperty ;
+    rdfs:domain hpc:Step ;
+    rdfs:range hpc:Nodes .
+
+hpc:count a owl:DatatypeProperty ;
+    rdfs:range xsd:integer .
+
+hpc:range a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:CPU a owl:Class .
+hpc:CPU rdfs:sub

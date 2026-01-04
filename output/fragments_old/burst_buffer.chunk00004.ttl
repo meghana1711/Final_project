@@ -1,0 +1,62 @@
+# Job
+hpc:Job a owl:Class .
+
+# PrivilegedUser
+hpc:PrivilegedUser a owl:Class .
+hpc:SlurmOperator rdfs:subClassOf hpc:PrivilegedUser .
+hpc:Administrator rdfs:subClassOf hpc:PrivilegedUser .
+
+# HeterogeneousJob
+hpc:HeterogeneousJob a owl:Class .
+
+# BurstBuffer
+hpc:BurstBuffer a owl:Class .
+
+# BurstBufferHook
+hpc:BurstBufferHook a owl:Class .
+
+# BurstBufferDirective
+hpc:BurstBufferDirective a owl:Class .
+hpc:access a owl:DatatypeProperty ;
+    rdfs:domain hpc:BurstBufferDirective ;
+    rdfs:range xsd:string .
+hpc:capacity a owl:DatatypeProperty ;
+    rdfs:domain hpc:BurstBufferDirective ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:swap a owl:DatatypeProperty ;
+    rdfs:domain hpc:BurstBufferDirective ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:type a owl:DatatypeProperty ;
+    rdfs:domain hpc:BurstBufferDirective ;
+    rdfs:range xsd:string .
+hpc:pool a owl:DatatypeProperty ;
+    rdfs:domain hpc:BurstBufferDirective ;
+    rdfs:range xsd:string .
+
+# CommandLineJobOption
+hpc:CommandLineJobOption a owl:Class .
+hpc:bb a owl:ObjectProperty ;
+    rdfs:domain hpc:CommandLineJobOption ;
+    rdfs:range hpc:BurstBufferDirective .
+hpc:bbf a owl:ObjectProperty ;
+    rdfs:domain hpc:CommandLineJobOption ;
+    rdfs:range xsd:string .
+
+# BurstBufferPlugin
+hpc:BurstBufferPlugin a owl:Class .
+
+# DatawarpPlugin
+hpc:DatawarpPlugin a hpc:BurstBufferPlugin .
+
+# LuaPlugin
+hpc:LuaPlugin a hpc:BurstBufferPlugin .
+
+# SymbolReplacement
+hpc:SymbolReplacement a owl:Class .
+hpc:%%% a owl:DatatypeProperty ;
+    rdfs:domain hpc:SymbolReplacement ;
+    rdfs:range xsd:string .
+hpc:%A a hpc:SymbolReplacement .
+hpc:%a a hpc:SymbolReplication .
+hpc:%d a hpc:SymbolReplication .
+hpc:%j a hpc:

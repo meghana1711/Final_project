@@ -1,0 +1,65 @@
+hpc:GPU a owl:Class .
+
+hpc:JobSubmit a owl:Class .
+hpc:JobSubmit rdfs:subClassOf hpc:Plugin .
+
+hpc:JobAccountingGather a owl:Class .
+
+hpc:JobCompletionLogging a owl:Class .
+hpc:JobCompletionLogging rdfs:subClassOf hpc:Logging .
+
+hpc:Launcher a owl:Class .
+
+hpc:MPI a owl:Class .
+hpc:MPI rdfs:subClassOf hpc:Plugin .
+
+hpc:Preempt a owl:Class .
+
+hpc:Priority a owl:Class .
+
+hpc:ProcessTracking a owl:Class .
+hpc:ProcessTracking rdfs:subClassOf hpc:Plugin .
+
+hpc:Scheduler a owl:Class .
+hpc:Scheduler rdfs:subClassOf hpc:Plugin .
+
+hpc:hasResource a owl:ObjectProperty .
+hpc:hasResource rdfs:domain hpc:JobSubmit ;
+                                      rdfs:range hpc:Resource .
+
+hpc:requires a owl:ObjectProperty .
+hpc:requires rdfs:domain hpc:JobSubmit ;
+                             rdfs:range hpc:Resource .
+
+hpc:hasUtilizationData a owl:ObjectProperty .
+hpc:hasUtilizationData rdfs:domain hpc:JobAccountingGather ;
+                                      rdfs:range hpc:JobStep .
+
+hpc:hasTerminationData a owl:ObjectProperty .
+hpc:hasTerminationData rdfs:domain hpc:JobCompletionLogging ;
+                                     rdfs:range hpc:Job .
+
+hpc:usesLauncher a owl:ObjectProperty .
+hpc:usesLauncher rdfs:domain hpc:JobSubmit ;
+                          rdfs:range hpc:Launcher .
+
+hpc:hasMPIImplementation a owl:ObjectProperty .
+hpc:hasMPIImplementation rdfs:domain hpc:MPI ;
+                                    rdfs:range xsd:string .
+
+hpc:usesPreemption a owl:ObjectProperty .
+hpc:usesPreemption rdfs:domain hpc:Preempt ;
+                          rdfs:range hpc:PreemptionMechanism .
+
+hpc:hasPriority a owl:DatatypeProperty .
+hpc:hasPriority rdfs:domain hpc:Job ;
+                        rdfs:range xsd:decimal .
+
+hpc:hasProcesses a owl:ObjectProperty .
+hpc:hasProcesses rdfs:domain hpc:ProcessTracking ;
+                          rdfs:range hpc:Process .
+
+hpc:isScheduledBy a owl:ObjectProperty .
+hpc:isScheduledBy rdfs:domain hpc:Job ;
+                          rdfs:range hpc:Scheduler .
+```

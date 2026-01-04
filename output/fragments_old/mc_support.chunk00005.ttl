@@ -1,0 +1,45 @@
+hpc:Job a owl:Class .
+hpc:Job hasReqSockets owl:ObjectProperty ;
+   rdfs:domain hpc:Job ;
+   rdfs:range xsd:nonNegativeInteger .
+hpc:Job hasReqCores owl:ObjectProperty ;
+   rdfs:domain hpc:Job ;
+   rdfs:range xsd:nonNegativeInteger .
+hpc:Job hasReqThreads owl:ObjectProperty ;
+   rdfs:domain hpc:Job ;
+   rdfs:range xsd:nonNegativeInteger .
+hpc:Job hasAllocNode a owl:ObjectProperty ;
+   rdfs:domain hpc:Job .
+hpc:Job hasAllocCPUs a owl:DatatypeProperty ;
+   rdfs:domain hpc:Job ;
+   rdfs:range xsd:positiveInteger .
+hpc:Job hasNodeList a owl:ObjectProperty ;
+   rdfs:domain hpc:Job .
+hpc:Job hasReqNodeList a owl:ObjectProperty ;
+   rdfs:domain hpc:Job .
+hpc:Job hasJobState a owl:DatatypeProperty ;
+   rdfs:domain hpc:Job .
+hpc:Job hasName a owl:DatatypeProperty ;
+   rdfs:domain hpc:Job .
+hpc:Job hasUserId a owl:DatatypeProperty ;
+   rdfs:domain hpc:Job .
+hpc:Job hasGroupId a owl:DatatypeProperty ;
+   rdfs:domain hpc:Job .
+hpc:Job hasPartition a owl:DatatypeProperty ;
+   rdfs:domain hpc:Job .
+hpc:Job hasBatchFlag a owl:DatatypeProperty ;
+   rdfs:domain hpc:Job .
+hpc:Job hasPriority a owl:DatatypeProperty ;
+   rdfs:domain hpc:Job .
+hpc:Job hasTimeLimit a owl:DatatypeProperty ;
+   rdfs:domain hpc:Job .
+hpc:Job hasStartTime a xsd:dateTime .
+hpc:Job hasEndTime a xsd:dateTime .
+hpc:Job hasJobId a owl:DatatypeProperty ;
+   rdfs:domain hpc:Job .
+hpc:Node a owl:Class .
+hpc:Node hasCoresPerSocket owl:DatatypeProperty ;
+   rdfs:domain hpc:Node .
+hpc:Node hasThreadsPerCore owl:DatatypeProperty ;
+   rdfs:domain hpc:Node .
+```

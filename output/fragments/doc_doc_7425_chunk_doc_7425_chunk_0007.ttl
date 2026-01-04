@@ -1,0 +1,41 @@
+hpc:Node a owl:Class .
+
+hpc:certFlags a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:freeMem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:integer .
+    rdfs:comment "Total memory in MB currently free as reported by the OS (64 bit integer number with flags)" .
+
+hpc:lastBusy a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:integer .
+    rdfs:comment "Time when the node was last busy (UNIX timestamp) (UNIX timestamp or time string recognized by Slurm (e.g., '[MM/DD[/YY]-]HH:MM[:SS]'); may also be infinite or unset)" .
+
+hpc:nextStateAfterReboot a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+    rdfs:subPropertyOf hpc:nextStateAfterReboot .
+
+hpc:nextStateAfterReboot rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:nextStateAfterReboot ;
+                        owl:allValuesFrom ( xsd:string "POWERING_UP" "MAINTENANCE" "REBOOT_REQUESTED" "REBOOT_CANCELED" "POWERING_DOWN" "DYNAMIC_FUTURE" "REBOOT_ISSUED" "PLANNED" "INVALID_REG" "POWER_DOWN" "POWER_UP" "[^0-9]+[Tt][^0-9]+[^/]+[/]?[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}" ) ] .
+
+hpc:state a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range hpc:State .
+
+hpc:topology a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:tresWeighted a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Ignored. Was weighted number of billable trackable resources allocated" ;
+    rdfs:deprecated true .
+
+hpc:State a owl:Class .

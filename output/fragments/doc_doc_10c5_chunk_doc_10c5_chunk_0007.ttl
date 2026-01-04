@@ -1,0 +1,48 @@
+hpc:Node a owl:Class .
+hpc:CoreBlock a owl:Class .
+hpc:CyclicCore a owl:Class .
+hpc:CoreMapping a owl:Class .
+hpc:Processor a owl:Class .
+hpc:TaskID a owl:Class .
+
+hpc:hasCore a owl:ObjectProperty .
+hpc:hasProcessor a owl:ObjectProperty .
+hpc:hasTaskID a owl:ObjectProperty .
+hpc:hasCoreBlockNumbering a owl:ObjectProperty .
+hpc:hasCyclicCoreNumbering a owl:ObjectProperty .
+hpc:hasCoreMapping a owl:ObjectProperty .
+
+hpc:CoreBlockNumbering rdfs:domain hpc:Node .
+hpc:CyclicCoreNumbering rdfs:domain hpc:Node .
+hpc:hasCoreMapping rdfs:domain hpc:Node .
+
+hpc:CoreMapping rdfs:range hpc:CoreMapping .
+
+hpc:CoreMapping_Block a hpc:CoreMapping ;
+    hpc:hasCoreBlockNumbering hpc:BlockNumbering_4DualSocket ;
+    hpc:hasCoreMapping
+        ( hpc:CoreMapping_c0c1_p00x01 ( rdf:type hpc:CoreMapping ;
+                                         hpc:hasCore ( hpc:Core_c0c1 ) ;
+                                         hpc:hasProcessor ( hpc:Processor_p00 ) ;
+                                         hpc:hasTaskID xsd:integer "0" ;
+                                         hpc:hasCoreID xsd:integer "1" ) ;
+          hpc:CoreMapping_c0c1_p20x10 ( rdf:type hpc:CoreMapping ;
+                                         hpc:hasCore ( hpc:Core_c0c1 ) ;
+                                         hpc:hasProcessor ( hpc:Processor_p20 ) ;
+                                         hpc:hasTaskID xsd:integer "20" ;
+                                         hpc:hasCoreID xsd:integer "10" ) ;
+          hpc:CoreMapping_c0c1_p10x04 ( rdf:type hpc:CoreMapping ;
+                                         hpc:hasCore ( hpc:Core_c0c1 ) ;
+                                         hpc:hasProcessor ( hpc:Processor_p10 ) ;
+                                         hpc:hasTaskID xsd:integer "8" ;
+                                         hpc:hasCoreID xsd:integer "4" ) ;
+          hpc:CoreMapping_c0c1_p30x40 ( rdf:type hpc:CoreMapping ;
+                                         hpc:hasCore ( hpc:Core_c0c1 ) ;
+                                         hpc:hasProcessor ( hpc:Processor_p30 ) ;
+                                         hpc:hasTaskID xsd:integer "80" ;
+                                         hpc:hasCoreID xsd:integer "40" ) ) .
+
+hpc:CoreMapping_Cyclic a hpc:CoreMapping ;
+    hpc:hasCyclicCoreNumbering hpc:CyclicCoreNumbering_4DualSocket ;
+    hpc:hasCoreMapping
+        ( hpc:CoreMapping_c0c1_p00 ( rdf:type hpc:CoreMapping

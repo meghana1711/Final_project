@@ -1,0 +1,48 @@
+hpc:Job a owl:Class .
+hpc:DefaultBlockAllocationMethod a owl:ObjectProperty .
+hpc:MinimizeSocketsUsed a owl:ObjectProperty .
+hpc:Node a owl:Class .
+hpc:Socket a owl:Class .
+hpc:CPU a owl:Class .
+hpc:Task a owl:Class .
+hpc:AllocationMethod a owl:EnumClass ;
+  rdfs:member hpc:BlockAllocationMethod .
+hpc:DistributionMethod a owl:EnumClass ;
+  rdfs:member hpc:CyclicDistribution .
+  rdfs:member hpc:PlaneDistribution .
+
+hpc:DefaultPartition a owl:Class .
+hpc:Partition a owl:Class .
+
+hpc:AllocatedOnNode rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:Job ;
+  rdfs:range hpc:Node .
+hpc:HasAllocationMethod rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:Job .
+hpc:HasCyclicDistribution rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:Job .
+hpc:HasDefaultPartition rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:Job .
+hpc:HasPlaneDistribution rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:Job .
+hpc:HasNumberOfAllocatedCPUs rdf:type owl:DatatypeProperty ;
+  rdfs:domain hpc:Job .
+hpc:HasNumberOfTasks rdf:type owl:DatatypeProperty ;
+  rdfs:domain hpc:Job .
+hpc:HasNumberOfNodes rdf:type owl:DatatypeProperty ;
+  rdfs:domain hpc:Job .
+hpc:HasNumberOfSockets rdf:type owl:DatatypeProperty ;
+  rdfs:domain hpc:Job .
+hpc:HasNumberOfCPUsPerTask rdf:type owl:DatatypeProperty ;
+  rdfs:domain hpc:Job .
+hpc:HasNumberOfTasksPerNode rdf:type owl:DatatypeProperty ;
+  rdfs:domain hpc:Job .
+
+hpc:NodeName a xsd:string .
+hpc:SocketID a xsd:nonNegativeInteger .
+hpc:NumberOfAllocatedCPUs a xsd:nonNegativeInteger .
+hpc:NumberOfTasks a xsd:nonNegativeInteger .
+hpc:DistributionOfTasksToNodes a xsd:string .
+```
+
+This ontology fragment represents the classes `Job`, `Node`, `Socket`, `CPU`, and `Task`, as well as properties related to job allocation, such as `AllocatedOnNode`, `HasAllocationMethod`, `HasCyclicDistribution`, `HasPlaneDistribution`, `HasNumberOfAllocatedCPUs`, `HasNumberOfTasks`, `HasNumberOfNodes`, `HasNumberOfSockets`, `HasNumberOfCPUsPerTask`, and `HasNumberOfTasksPerNode`. The datatypes used are `xsd:string` for `NodeName` and `xsd:nonNegativeInteger` for the rest.

@@ -1,0 +1,35 @@
+hpc:JobAllocation a owl:Class .
+hpc:createJobAllocation a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:JobAllocation .
+
+hpc:ResourceAllocationSpecification a owl:Class ;
+    rdfs:subClassOf xsd:Resource .
+
+hpc:JobID a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobAllocation .
+
+hpc:JobAllocationRequest a owl:Class .
+hpc:job_submitPlugins a owl:ObjectProperty ;
+    rdfs:domain hpc:JobAllocationRequest .
+
+hpc:JobValidation a owl:ObjectProperty ;
+    rdfs:domain hpc:JobAllocationRequest .
+
+hpc:ResourceSelection a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmctldDaemon .
+
+hpc:ResourceSelectionStep a owl:Class .
+
+hpc:User a owl:Class .
+hpc:UID a owl:DatatypeProperty ;
+    rdfs:domain hpc:User .
+hpc:GID a owl:DatatypeProperty ;
+    rdfs:domain hpc:User .
+
+hpc:SlurmctldDaemon a owl:Class .
+hpc:queueJobRequest a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmctldDaemon .
+hpc:respondToJobRequest a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmctldDaemon .
+```

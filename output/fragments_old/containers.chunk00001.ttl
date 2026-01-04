@@ -1,0 +1,47 @@
+# Classes
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:OCIRuntime a owl:Class .
+hpc:ContainerRuntimeConfiguration a owl:Class .
+hpc:ComputeNode a owl:Class .
+hpc:OCIContainerBundle a owl:Class .
+hpc:OCIContainerJob a owl:Class .
+hpc:OCIContainerStep a owl:Class .
+
+# Object Properties
+hpc:supports a owl:ObjectProperty .
+hpc:requires a owl:ObjectProperty .
+hpc:isConfiguredOn a owl:ObjectProperty .
+hpc:isLocatedOn a owl:ObjectProperty .
+hpc:isNeededBy a owl:ObjectProperty .
+hpc:isGeneratedBy a owl:ObjectProperty .
+hpc:canRunThrough a owl:ObjectProperty .
+hpc:isIgnoredBy a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:version xsd:string .
+hpc:kernelConfiguration xsd:string .
+hpc:ociConfigFile xsd:string .
+hpc:runtimeOperation xsd:string .
+hpc:rootDirectory xsd:string .
+
+# Class and Property Relations
+hpc:SlurmWorkloadManager rdfs:subClassOf owl:Class .
+hpc:OCIRuntime rdfs:subClassOf hpc:SlurmWorkloadManager .
+hpc:ContainerRuntimeConfiguration rdfs:subClassOf owl:Class .
+hpc:ComputeNode rdfs:subClassOf owl:Class .
+hpc:OCIContainerBundle rdfs:subClassOf owl:Class .
+hpc:OCIContainerJob rdfs:subClassOf hpc:OCIContainer .
+hpc:OCIContainerStep rdfs:subClassOf hpc:OCIContainer .
+
+hpc:supports rdfs:domain hpc:SlurmWorkloadManager .
+hpc:requires rdfs:domain hpc:OCIRuntime .
+hpc:isConfiguredOn rdfs:domain hpc:OCIRuntime .
+hpc:isLocatedOn rdfs:domain hpc:OCIContainerBundle .
+hpc:isNeededBy rdfs:domain hpc:OCIContainer .
+hpc:isGeneratedBy rdfs:domain hpc:OCIRuntime .
+hpc:canRunThrough rdfs:domain hpc:OCIContainer .
+hpc:isIgnoredBy rdfs:domain hpc:SlurmWorkloadManager .
+hpc:version rdfs:range xsd:string .
+hpc:kernelConfiguration rdfs:range xsd:string .
+hpc:ociConfigFile rdfs:range xsd:string .
+hpc:runtimeOperation rdfs:range xsd:

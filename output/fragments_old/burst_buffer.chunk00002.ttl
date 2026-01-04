@@ -1,0 +1,70 @@
+hpc:Process a owl:Class .
+hpc:SlurmctldProcess a hpc:Process ;
+    rdfs:subClassOf hpc:Process .
+hpc:SlurmscriptdProcess a hpc:Process ;
+    rdfs:subClassOf hpc:Process .
+
+# Lua Scripts
+hpc:LuaScript a owl:Class .
+
+# Calling Processes
+hpc:Calls a owl:ObjectProperty ;
+    rdfs:domain hpc:Process ;
+    rdfs:range hpc:LuaScript .
+
+# Calling Modes
+hpc:ForkExec a owl:ObjectProperty ;
+    rdfs:domain hpc:LuaScript ;
+    rdfs:range hpc:Process .
+hpc:CAPI a owl:ObjectProperty ;
+    rdfs:domain hpc:Process ;
+    rdfs:range hpc:LuaScript .
+
+# Killable Lua Scripts
+hpc:Killable a owl:Class ;
+    rdfs:subClassOf hpc:LuaScript .
+
+# Non-Killable Lua Scripts
+hpc:NonKillable a owl:Class ;
+    rdfs:subClassOf hpc:LuaScript .
+    rdfs:subClassOf ^hpc:Killable .
+
+# Functions
+hpc:Function a owl:Class .
+
+# Callable Functions
+hpc:Callable a owl:ObjectProperty ;
+    rdfs:domain hpc:LuaScript ;
+    rdfs:range hpc:Function .
+
+# Timeout
+hpc:Timeout a xsd:nonNegativeInteger .
+hpc:hasTimeout a owl:ObjectProperty ;
+    rdfs:domain hpc:Function ;
+    rdfs:range hpc:Timeout .
+
+# Burst Buffer Resource Pools
+hpc:Pool a owl:Class .
+hpc:PoolDefinition a owl:Class ;
+    rdfs:subClassOf hpc:Pool .
+
+# Pool Properties
+hpc:id a owl:DatatypeProperty ;
+    rdfs:domain hpc:Pool ;
+    rdfs:range xsd:string .
+hpc:quantity a owl:DatatypeProperty ;
+    rdfs:domain hpc:Pool ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:granularity a owl:DatatypeProperty ;
+    rdfs:domain hpc:Pool ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Job Submission
+hpc:Job a owl:Class .
+hpc:RequestedPool a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Pool .
+hpc:RequestedCapacity a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+```

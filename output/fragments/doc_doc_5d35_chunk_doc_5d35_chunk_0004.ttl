@@ -1,0 +1,62 @@
+hpc:JobComponent a owl:Class .
+hpc:BatchScript hpc:JobComponent .
+hpc:RebuiltScript hpc:JobComponent .
+
+hpc:HasDirective a owl:ObjectProperty ;
+    rdfs:domain hpc:JobComponent ;
+    rdfs:range rdf:List .
+
+hpc:Directive a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:DWDirective a hpc:Directive ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:Directive ;
+                        owl:hasValue "DW" ] .
+
+hpc:BBDirective a hpc:Directive ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:Directive ;
+                        owl:hasValue "BB" ] .
+
+hpc:ExcludedDirective a hpc:Directive ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:HasDirective ;
+                        owl:allValuesFrom [ a owl:Class ;
+                                             owl:equivalentClass [ a owl:Restriction ;
+                                                                     owl:onProperty hpc:Directive ;
+                                                                     owl:hasValue "#EXCLUDED" ] ] ] .
+
+hpc:Plugin a owl:Class .
+hpc:DataWarpPlugin a hpc:Plugin .
+hpc:LuaPlugin a hpc:Plugin .
+
+hpc:ConfiguredValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:LuaPlugin .
+
+hpc:JobID a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobComponent .
+
+hpc:HetJobID a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobComponent ;
+    rdfs:range xsd:integer .
+
+hpc:HetJobOffset a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobComponent ;
+    rdfs:range xsd:integer .
+
+hpc:HetJobIDSet a owl:Class .
+
+hpc:HeterogeneousJob a owl:Class ;
+    rdfs:subClassOf hpc:JobComponent .
+
+hpc:HeterogeneousJobLeader a owl:ObjectProperty ;
+    rdfs:domain hpc:HeterogeneousJob ;
+    rdfs:range hpc:JobComponent .
+
+hpc:ComponentOfHeterogeneousJob a owl:ObjectProperty ;
+    rdfs:domain hpc:JobComponent ;
+    rdfs:range hpc:HeterogeneousJob .
+
+hpc:HetJobID_set a hpc:HetJobIDSet .
+```

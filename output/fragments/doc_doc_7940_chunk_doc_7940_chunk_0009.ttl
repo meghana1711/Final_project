@@ -1,0 +1,36 @@
+hpc:FederatedJob a owl:Class .
+hpc:LocalCluster rdf:type owl:Class .
+hpc:ResourceLimit a owl:Class .
+hpc:SiblingCluster rdf:type owl:Class .
+hpc:JobArray a owl:Class .
+hpc:OriginCluster rdf:type owl:Class .
+hpc:RemoteCluster rdf:type owl:Class .
+
+hpc:RejectedJob a owl:Class, rdfs:subClassOf [ a owl:Class; rdf:type owl:Restriction;
+                                                rdfs:onProperty hpc:federatedJobStatus;
+                                                owl:hasValue "rejected" ] .
+
+hpc:runOn rdf:type owl:ObjectProperty ;
+         rdfs:domain hpc:JobArray ;
+         rdfs:range hpc:LocalCluster .
+
+hpc:jobModification rdf:type owl:ObjectProperty ;
+                     rdfs:domain hpc:Job ;
+                     rdfs:range hpc:OriginCluster .
+
+hpc:pushToSiblingJobs rdf:type owl:ObjectProperty ;
+                      rdfs:domain hpc:JobModification ;
+                      rdfs:range hpc:SiblingCluster .
+
+hpc:disabledInSview rdf:type owl:ObjectProperty ;
+                    rdfs:domain hpc:JobModification ;
+                    rdfs:range xsd:boolean .
+
+hpc:sviewGrid rdf:type owl:ObjectProperty ;
+             rdfs:domain hpc:LocalCluster ;
+             rdfs:range xsd:boolean .
+
+hpc:federatedView rdf:type owl:ObjectProperty ;
+                rdfs:domain hpc:LocalCluster ;
+                rdfs:range xsd:boolean .
+```

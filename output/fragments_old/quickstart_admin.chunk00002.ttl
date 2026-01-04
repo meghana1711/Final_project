@@ -1,0 +1,37 @@
+# Classes
+hpc:Slurm a owl:Class .
+hpc:BuildProcedure a owl:Class .
+hpc:NodeType a owl:Class .
+hpc:ComputeNode a hpc:NodeType .
+hpc:ControllerNode a hpc:NodeType .
+hpc:DBDNode a hpc:NodeType .
+hpc:LoginNode a hpc:NodeType .
+hpc:RestdNode a owl:Class .
+
+# Object Properties
+hpc:hasBuildProcedure a owl:ObjectProperty .
+hpc:requiresDependency a owl:ObjectProperty .
+hpc:executesAs a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:installationLocation a owl:DatatypeProperty .
+hpc:dependencies a owl:DatatypeProperty .
+hpc:prefix a owl:DatatypeProperty .
+hpc:sysconfdir a owl:DatatypeProperty .
+hpc:defaultdocdir a owl:DatatypeProperty .
+hpc:withMunge a owl:DatatypeProperty .
+
+# Subclass Relations
+hpc:DebianPackage a hpc:BuildProcedure .
+hpc:RPM a hpc:BuildProcedure .
+hpc:ManualBuild a hpc:BuildProcedure .
+hpc:LoginController a hpc:ControllerNode .
+hpc:Compute a hpc:ComputeNode .
+hpc:DBD a hpc:DBDNode .
+
+# Domain and Range
+rdfs:domain(hpc:requiresDependency, hpc:BuildProcedure) .
+rdfs:range(hpc:requiresDependency, xsd:string) .
+rdfs:domain(hpc:executesAs, hpc:NodeType) .
+rdfs:range(hpc:executesAs, xsd:string) .
+```

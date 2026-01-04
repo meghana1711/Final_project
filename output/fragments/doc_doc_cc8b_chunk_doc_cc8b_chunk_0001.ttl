@@ -1,0 +1,45 @@
+hpc:TRES a owl:Class .
+hpc:Type a owl:Class .
+hpc:Name a rdf:Property .
+hpc:Type rdfs:domain hpc:TRES ;
+                        rdfs:range hpc:Type .
+
+hpc:BB a hpc:Type .
+hpc:Billing a hpc:Type .
+hpc:CPU a hpc:Type .
+hpc:Energy a hpc:Type .
+hpc:FS a hpc:Type .
+hpc:GRES a hpc:Type .
+hpc:IC a hpc:Type .
+hpc:License a hpc:Type .
+hpc:Mem a hpc:Type .
+hpc:Node a hpc:Type .
+hpc:Pages a hpc:Type .
+hpc:VMem a hpc:Type .
+
+hpc:TRESBillingWeights rdf:type owl:DatatypeProperty ;
+                        rdfs:domain hpc:TRES ;
+                        rdfs:range xsd:double .
+
+hpc:Billing rdf:type hpc:TRES ;
+            rdfs:subClassOf hpc:TRES ;
+            hpc:calculationMethod xsd:string "From a partition's TRESBillingWeights." .
+
+hpc:BillingValue rdf:type owl:DatatypeProperty ;
+                 rdfs:domain hpc:Billing ;
+                 rdfs:range xsd:integer .
+
+hpc:FSTRES a hpc:TRES ;
+           rdfs:subClassOf hpc:TRES ;
+           hpc:validValues xsd:string "disk" "lustre" .
+
+hpc:ICTRES a hpc:TRES ;
+           rdfs:subClassOf hpc:TRES ;
+           hpc:validValues xsd:string "ofed" .
+
+hpc:AccountingStorageTRES a rdf:Property ;
+                          rdfs:domain hpc:System ;
+                          rdfs:range rdf:List .
+
+hpc:System a owl:Class .
+```

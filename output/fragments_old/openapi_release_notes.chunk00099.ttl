@@ -1,0 +1,26 @@
+hpc:V0_0_42_Openapi_Resp a owl:Class .
+hpc:V0_0_42_Openapi_Users_Resp a hpc:V0_0_42_Openapi_Resp .
+hpc:V0_0_42_Openapi_Users_Add_Cond_Resp a owl:Class .
+hpc:RequestBody a owl:Class .
+hpc:Content a owl:Class .
+hpc:Application_Yaml a xsd:QName .
+hpc:Application_Jsonrequest a xsd:QName .
+hpc:Text_Yaml a xsd:QName .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:RequestBody ;
+    rdfs:range hpc:Content .
+
+hpc:hasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:Content ;
+    rdfs:range hpc:V0_0_42_Openapi_Resp .
+
+hpc:RequestBody_Application_Yaml a hpc:Content ;
+    hpc:hasContent hpc:V0_0_42_openapi_users_resp .
+hpc:RequestBody_Application_Jsonrequest a hpc:Content ;
+hpc:RequestBody_Text_Yaml a hpc:Content ;
+
+hpc:V0_0_42_Openapi_Resp_Application_Yaml a hpc:Content ;
+hpc:V0_0_42_Openapi_Resp_Application_Jsonrequest a hpc:Content ;
+hpc:V0_0_42_Openapi_Resp_Text_Yaml a hpc:Content .
+```

@@ -1,0 +1,61 @@
+# Slurm Workload Manager
+hpc:SlurmWorkloadManager a owl:Class .
+
+# Architecture
+hpc:SlurmCTLD a owl:Class .
+hpc:BackupManager a owl:Class .
+hpc:Slurmd a owl:Class .
+hpc:SlurmdBD a owl:Class .
+hpc:SlurmRESTAPIDaemon a owl:Class .
+
+# Components
+hpc:UserTool a owl:Class .
+hpc:Srun a owl:Class .
+hpc:Scancel a owl:Class .
+hpc:Sinfo a owl:Class .
+hpc:Squeue a owl:Class .
+hpc:Sacct a owl:Class .
+hpc:Sview a owl:Class .
+hpc:Scontrol a owl:Class .
+hpc:SacctMgr a owl:Class .
+
+# Plugins
+hpc:AccountingStorage a owl:Class .
+hpc:AccountGatherEnergy a owl:Class .
+hpc:Authentication a owl:Class .
+hpc:Containers a owl:Class .
+hpc:Credential a owl:Class .
+hpc:GenericResources a owl:Class .
+hpc:JobSubmit a owl:Class .
+hpc:JobAccountingGather a owl:Class .
+hpc:JobCompletionLogging a owl:Class .
+hpc:Launchers a owl:Class .
+hpc:MPI a owl:Class .
+hpc:Preempt a owl:Class .
+hpc:Priority a owl:Class .
+hpc:ProcessTracking a owl:Class .
+hpc:Scheduler a owl:Class .
+hpc:NodeSelection a owl:Class .
+hpc:SiteFactor a owl:Class .
+hpc:SwitchOrInterconnect a owl:Class .
+hpc:TaskAffinity a owl:Class .
+hpc:NetworkTopology a owl:Class .
+
+# Entities
+hpc:Node a owl:Class .
+hpc:Partition a owl:Class .
+hpc:Job a owl:Class .
+hpc:JobStep a owl:Class .
+
+# Properties
+hpc:hasFunction rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SlurmWorkloadManager ;
+  rdfs:range rdfs:Resource .
+
+hpc:allocates rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:SlurmWorkloadManager ;
+  rdfs:range hpc:Node .
+
+hpc:executes rdf:type owl:ObjectProperty ;
+  rdfs:domain hpc:Slurmd ;
+  rdfs:range hpc:

@@ -1,0 +1,42 @@
+hpc:Plugin a owl:Class .
+hpc:PluginFunction a owl:Class .
+
+hpc:ThreadSafety a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin .
+
+hpc:RunTimeSupport a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin .
+
+hpc:Performance a owl:ObjectProperty ;
+    rdfs:domain hpc:PluginFunction .
+
+hpc:DataStructureConsistency a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin .
+
+hpc:InitFunction a owl:Class ;
+    rdfs:subClassOf hpc:PluginFunction .
+
+hpc:FiniFunction a owl:Class ;
+    rdfs:subClassOf hpc:PluginFunction .
+
+hpc:UsesStandardLibraries owl:ObjectProperty ;
+    rdfs:domain hpc:RunTimeSupport .
+
+hpc:UsesSlurmLibraries owl:ObjectProperty ;
+    rdfs:domain hpc:RunTimeSupport .
+
+hpc:UsesSpecificLibraries owl:ObjectProperty ;
+    rdfs:domain hpc:RunTimeSupport .
+
+hpc:PrintsErrorMessagesInSlurmLog owl:ObjectProperty ;
+    rdfs:domain hpc:RunTimeSupport .
+
+hpc:RequiresFastExecution owl:ObjectProperty ;
+    rdfs:domain hpc:Performance .
+
+hpc:UsesThreadForDelayedFunctions owl:ObjectProperty ;
+    rdfs:domain hpc:Performance .
+
+hpc:IteratesOverDataStructuresWithCounters owl:ObjectProperty ;
+    rdfs:domain hpc:DataStructureConsistency .
+```

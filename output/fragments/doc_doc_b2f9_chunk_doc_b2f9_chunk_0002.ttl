@@ -1,0 +1,37 @@
+hpc:Job a owl:Class .
+hpc:JobRequest a owl:Class .
+hpc:GenericResource a owl:Class .
+hpc:GPU a owl:Class, rdfs:subClassOf hpc:GenericResource .
+
+hpc:hasGenericResources a owl:ObjectProperty .
+hpc:hasJob a owl:ObjectProperty .
+hpc:requiresGPUs a owl:ObjectProperty .
+hpc:requiresGPUsPerNode a owl:ObjectProperty .
+hpc:requiresGPUsPerSocket a owl:ObjectProperty .
+hpc:requiresGPUsPerTask a owl:ObjectProperty .
+
+hpc:GPUType rdf:type xsd:string .
+hpc:GPUCount rdf:type xsd:nonNegativeInteger .
+
+hpc:Job subClassOf rdf:Resource .
+hpc:JobRequest subClassOf rdf:Resource .
+hpc:GenericResource rdf:type rdf:Resource .
+hpc:GPU rdf:type rdf:Resource .
+
+hpc:hasGenericResources rdfs:domain hpc:Job .
+hpc:hasJob rdfs:domain hpc:GenericResource .
+hpc:requiresGPUs rdfs:domain hpc:Job .
+hpc:requiresGPUsPerNode rdfs:domain hpc:Job .
+hpc:requiresGPUsPerSocket rdfs:domain hpc:Job .
+hpc:requiresGPUsPerTask rdfs:domain hpc:Job .
+
+hpc:hasGenericResources rdfs:range hpc:GenericResourceList .
+hpc:hasJob rdfs:range hpc:Job .
+hpc:requiresGPUs rdfs:range hpc:GPUList .
+hpc:requiresGPUsPerNode rdfs:range xsd:nonNegativeInteger .
+hpc:requiresGPUsPerSocket rdfs:range xsd:nonNegativeInteger .
+hpc:requiresGPUsPerTask rdfs:range xsd:nonNegativeInteger .
+
+hpc:GPUList rdf:type rdf:List .
+hpc:GenericResourceList rdf:type rdf:List .
+```

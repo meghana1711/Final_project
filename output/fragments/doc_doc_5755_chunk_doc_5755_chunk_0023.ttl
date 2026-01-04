@@ -1,0 +1,37 @@
+hpc:SystemAdministrator a owl:Class .
+hpc:Job a owl:Class .
+hpc:State a owl:Class .
+hpc:PendingState rdf:type hpc:State ;
+    rdfs:subClassOf hpc:JobState .
+hpc:CompleteState rdf:type hpc:State ;
+    rdfs:subClassOf hpc:JobState .
+hpc:FailedState rdf:type hpc:State ;
+    rdfs:subClassOf hpc:JobState .
+hpc:IdleState rdf:type hpc:State .
+hpc:DownState rdf:type hpc:State .
+hpc:DrainState rdf:type hpc:State .
+hpc:ResumeState rdf:type hpc:State .
+
+hpc:JobID a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:integer .
+
+hpc:JobState a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:NodeName a owl:DatatypeProperty ;
+    rdfs:domain hpc:SystemAdministrator .
+    rdfs:range xsd:string .
+
+hpc:StateChangeCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:SystemAdministrator .
+    rdfs:range xsd:string .
+
+hpc:Reason a owl:DatatypeProperty ;
+    rdfs:domain hpc:StateChangeCommand .
+    rdfs:range xsd:string .
+
+hpc:RequeueCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:string .
+```

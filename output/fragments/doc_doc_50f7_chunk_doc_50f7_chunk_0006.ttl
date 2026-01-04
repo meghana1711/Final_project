@@ -1,0 +1,56 @@
+hpc:Node a owl:Class .
+hpc:NodeName rdf:type owl:ObjectProperty .
+hpc:Arch rdf:type owl:ObjectProperty .
+hpc:CoresPerSocket rdf:type xsd:int .
+hpc:CPUAlloc rdf:type xsd:int .
+hpc:CPUTot rdf:type xsd:float .
+hpc:CPULoad rdf:type xsd:float .
+hpc:Features rdf:type rdf:List .
+hpc:Gres rdf:type rdf:List .
+hpc:NodeAddr rdf:type xsd:string .
+hpc:NodeHostName rdf:type xsd:string .
+hpc:Version rdf:type xsd:string .
+hpc:OS rdf:type xsd:string .
+hpc:RealMemory rdf:type xsd:int .
+hpc:AllocMem rdf:type xsd:int .
+hpc:Sockets rdf:type xsd:int .
+hpc:Boards rdf:type xsd:int .
+hpc:State rdf:type xsd:string .
+hpc:ThreadsPerCore rdf:type xsd:int .
+hpc:TmpDisk rdf:type xsd:int .
+hpc:Weight rdf:type xsd:int .
+hpc:Owner rdf:type xsd:string .
+hpc:MCS_label rdf:type xsd:string .
+hpc:BootTime rdf:type xsd:dateTime .
+hpc:SlurmdStartTime rdf:type xsd:dateTime .
+hpc:CurrentWatts rdf:type xsd:int .
+hpc:AveWatts rdf:type xsd:int .
+
+hpc:Node rdfs:subClassOf rdf:Resource .
+hpc:Node rdfs:subClassOf [ a owl:Class ;
+                             rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:NodeName rdfs:domain hpc:Node ;
+             rdfs:range xsd:string .
+hpc:Arch rdfs:domain hpc:Node ;
+          rdfs:range xsd:string .
+hpc:CoresPerSocket rdfs:domain hpc:Node ;
+               rdfs:range xsd:int .
+hpc:CPUAlloc rdfs:domain hpc:Node ;
+           rdfs:range xsd:int .
+hpc:CPUTot rdfs:domain hpc:Node ;
+          rdfs:range xsd:float .
+hpc:CPULoad rdfs:domain hpc:Node ;
+          rdfs:range xsd:float .
+hpc:Features rdfs:domain hpc:Node ;
+          rdfs:range rdf:List .
+hpc:Gres rdfs:domain hpc:Node ;
+          rdfs:range rdf:List .
+hpc:NodeAddr rdfs:domain hpc:Node ;
+          rdfs:range xsd:string .
+hpc:NodeHostName rdfs:domain hpc:Node ;
+          rdfs:range xsd:string .
+hpc:Version rdfs:domain hpc:Node ;
+          rdfs:range xsd:string .
+hpc:OS rdfs:domain hpc:Node ;
+          r

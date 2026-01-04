@@ -1,0 +1,67 @@
+hpc:RequestBody a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Post a owl:Class ;
+    rdfs:subClassOf hpc:RequestBody .
+
+hpc:Associations a owl:Class ;
+    rdfs:subClassOf hpc:Path .
+    rdfs:subClassOf hpc:Post .
+
+hpc:Wckeys a owl:Class ;
+    rdfs:subClassOf hpc:Path .
+    rdfs:subClassOf hpc:Post .
+
+hpc:Config a owl:Class ;
+    rdfs:subClassOf hpc:Field .
+    rdfs:subClassOf hpc:Post .
+
+hpc:Accounting a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Dbv0_0_38_Accounting a owl:Class ;
+    rdfs:subClassOf hpc:Schema .
+
+hpc:Dbv0_0_38_Wckey a owl:Class ;
+    rdfs:subClassOf hpc:Schema .
+
+hpc:Dbv0_0_38_Wckey_Properties a owl:Class ;
+    rdfs:subClassOf hpc:Properties .
+
+hpc:Dbv0_0_38_Wckey_Properties_Accounting a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dbv0_0_38_Wckey ;
+    rdfs:range hpc:Accounting .
+
+hpc:QOS a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dbv0_0_38_Qos_Info .
+
+hpc:Oversubscribe a owl:DatatypeProperty ;
+    rdfs:domain hpc:V0_0_38_Job_Properties .
+
+hpc:V0_0_38_Job_Properties a owl:Class ;
+    rdfs:subClassOf hpc:Properties .
+
+hpc:Maximum_Memory_Per_Cpu a owl:DatatypeProperty ;
+    rdfs:domain hpc:V0_0_38_Partition .
+
+hpc:Default_Memory_Per_Node a owl:DatatypeProperty ;
+    rdfs:domain hpc:V0_0_38_Partition .
+
+hpc:Dbv0_0_38_Qos_Info a owl:Class ;
+    rdfs:subClassOf hpc:Schema .
+
+hpc:QOS a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dbv0_0_38_Qos_Info ;
+    rdfs:range hpc:QOS .
+
+hpc:Prefer a owl:DatatypeProperty ;
+    rdfs:domain hpc:V0_0_38_Job_Properties .
+
+hpc:V0_0_38_Partition a owl:Class ;
+    rdfs:subClassOf hpc:Properties .
+
+hpc:Dbv0_0_38_Response_Associations a owl:Class ;
+    rdfs:subClassOf hpc:Array .
+
+hpc:Default a owl:Class ;
+    rdfs:subClassOf hpc

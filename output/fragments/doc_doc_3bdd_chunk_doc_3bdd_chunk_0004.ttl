@@ -1,0 +1,44 @@
+hpc:CommonFunction a owl:Class .
+hpc:DatabaseFile a owl:Class .
+hpc:Plugin a owl:Class .
+hpc:AccountingStoragePlugin a owl:Class, rdfs:subClassOf hpc:Plugin .
+hpc:AuthPlugin a owl:Class, rdfs:subClassOf hpc:Plugin .
+hpc:JobCredentialFunction a owl:Class, rdfs:subClassOf hpc:Plugin .
+hpc:JobAccountingPlugin a owl:Class, rdfs:subClassOf hpc:Plugin .
+hpc:JobCompletionLoggingPlugin a owl:Class, rdfs:subClassOf hpc:Plugin .
+hpc:MPISupportPlugin a owl:Class, rdfs:subClassOf hpc:Plugin .
+hpc:JobPriorityCalculation a owl:Class, rdfs:subClassOf hpc:Plugin .
+hpc:ProcessTrackingPlugin a owl:Class, rdfs:subClassOf hpc:Plugin .
+hpc:JobSchedulerPlugin a owl:Class, rdfs:subClassOf hpc:Plugin .
+hpc:NodeSelectionPlugin a owl:Class, rdfs:subClassOf hpc:Plugin .
+hpc:SwitchFunctionPlugin a owl:Class, rdfs:subClassOf hpc:Plugin .
+hpc:TaskAffinityPlugin a owl:Class, rdfs:subClassOf hpc:Plugin .
+hpc:TopologyMethodsPlugin a owl:Class, rdfs:subClassOf hpc:Plugin .
+
+hpc:sacctCommand a owl:Class .
+hpc:sacctmgrTool a owl:Class .
+hpc:sallocCommand a owl:Class .
+hpc:sattachCommand a owl:Class .
+hpc:sbatchCommand a owl:Class .
+hpc:sbcastCommand a owl:Class .
+hpc:scancelCommand a owl:Class .
+hpc:scontrolTool a owl:Class .
+hpc:sinfoCommand a owl:Class .
+
+hpc:hasFunction a owl:ObjectProperty .
+hpc:supportsDatabase a owl:ObjectProperty .
+hpc:hasPlugin a owl:ObjectProperty .
+hpc:typeOfStorage a owl:DatatypeProperty .
+hpc:forUserAuthentication a owl:ObjectProperty .
+hpc:forJobCredential a owl:ObjectProperty .
+hpc:forJobAccounting a owl:ObjectProperty .
+hpc:forJobCompletionLogging a owl:ObjectProperty .
+hpc:forMPISupport a owl:ObjectProperty .
+hpc:forJobPriorityCalculation a owl:ObjectProperty .
+hpc:forProcessTracking a owl:ObjectProperty .
+hpc:forJobScheduling a owl:ObjectProperty .
+hpc:forNodeSelection a owl:ObjectProperty .
+hpc:forSwitchFunction a owl:ObjectProperty .
+hpc:forTaskAffinity a owl:ObjectProperty .
+hpc:forTopologyMethods a owl:ObjectProperty .
+```

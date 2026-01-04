@@ -1,0 +1,36 @@
+hpc:SlurmScheduler a owl:Class .
+hpc:RestartSlurm a rdf:Property ;
+    rdfs:domain hpc:SlurmScheduler ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:StopSlurm a rdf:Property ;
+    rdfs:domain hpc:SlurmScheduler ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:StartClean a rdf:Property ;
+    rdfs:domain hpc:SlurmScheduler ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:SchedulerType a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmScheduler ;
+    rdfs:range xsd:string .
+
+hpc:JobPriority a owl:Class .
+hpc:JobScheduled a rdf:Property ;
+    rdfs:domain hpc:JobPriority ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:JobBackfill a owl:Class ;
+    rdfs:subClassOf hpc:JobPriority .
+hpc:JobBuiltin a owl:Class ;
+    rdfs:subClassOf hpc:JobPriority .
+
+hpc:JobStuck a rdf:Property ;
+    rdfs:domain hdfs:JobPriority ;
+    rdfs:range xsd:string .
+
+hpc:NonKillableProcess a owl:Class .
+hpc:JobStuckInCompletingState a rdf:Property ;
+    rdfs:domain hpc:JobStuck ;
+    rdfs:range rdf:XMLLiteral .
+```

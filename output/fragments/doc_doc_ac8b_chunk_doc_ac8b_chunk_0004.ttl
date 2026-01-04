@@ -1,0 +1,29 @@
+hpc:AssociationFactor a owl:Class .
+hpc:normalizedPriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:AssociationFactor ;
+    rdfs:range xsd:float .
+
+hpc:JobSizeFactor a owl:Class ;
+    rdfs:subClassOf hpc:AssociationFactor .
+hpc:jobSizeFactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobSizeFactor ;
+    rdfs:range xsd:float .
+hpc:jobSizeFactorConfigured rdf:PlainLiteral "PriorityFavorSmall"^^xsd:string .
+hpc:jobSizeFactorLargeJob rdf:PlainLiteral "1.0"^^xsd:float .
+hpc:jobSizeFactorSmallJob rdf:PlainLiteral "1.0"^^xsd:float .
+
+hpc:NiceFactor a owl:Class .
+hpc:niceValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:NiceFactor ;
+    rdfs:range xsd:integer .
+
+hpc:PartitionFactor a owl:Class .
+hpc:partitionPriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:PartitionFactor ;
+    rdfs:range xsd:integer .
+
+hpc:QOSFactor a owl:Class .
+hpc:qosPriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOSFactor ;
+    rdfs:range xsd:integer .
+```

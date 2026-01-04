@@ -1,0 +1,21 @@
+hpc:Compilation a owl:Class .
+hpc:LinkStep a owl:ObjectProperty .
+hpc:InstallStep a owl:ObjectProperty .
+hpc:OutputFile a owl:DatatypeProperty .
+hpc:ObjectFile a owl:Class .
+hpc:LibraryFile a owl:Class .
+hpc:SharedLibraryFile a owl:Class .
+hpc:CleanUpStep a owl:ObjectProperty .
+
+hpc:Compilation rdfs:subClassOf owl:Class .
+hpc:LinkStep rdfs:domain hpc:Compilation ;
+                                      rdfs:range rdf:List .
+hpc:InstallStep rdfs:domain hpc:Compilation ;
+                                      rdfs:range rdf:List .
+hpc:CleanUpStep rdfs:domain hpc:Compilation ;
+                                      rdfs:range rdf:List .
+hpc:OutputFile rdfs:domain hpc:ObjectFile ;
+                                rdfs:range xsd:string .
+hpc:LibraryFile rdfs:subClassOf hpc:ObjectFile .
+hpc:SharedLibraryFile rdfs:subClassOf hpc:LibraryFile .
+```

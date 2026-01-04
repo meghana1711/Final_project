@@ -1,0 +1,83 @@
+hpc:SlurmDaemon a owl:Class .
+hpc:Slurmctld a hpc:SlurmDaemon ;
+ hpc:Slurmd a hpc:SlurmDaemon .
+
+# Daemon Properties
+hpc:executionMode owl:DatatypeProperty ;
+ rdfs:domain hpc:SlurmDaemon ;
+ rdfs:range xsd:string .
+
+hpc:logLevel owl:DatatypeProperty ;
+ rdfs:domain hpc:SlurmDaemon ;
+ rdfs:range xsd:string .
+
+hpc:state owl:ObjectProperty ;
+ rdfs:domain hpc:SlurmDaemon ;
+ rdfs:range hpc:SlurmState .
+
+# Slurm State
+hpc:SlurmState a owl:Class .
+hpc:Operative a hpc:SlurmState ;
+ hpc:Draining a hpc:SlurmState ;
+ hpc:Drained a hpc:SlurmState ;
+ hpc:Idle a hpc:SlurmState .
+
+# Job
+hpc:Job a owl:Class .
+hpc:JobId a owl:DatatypeProperty ;
+ rdfs:domain hpc:Job ;
+ rdfs:range xsd:integer .
+
+hpc:userId a owl:DatatypeProperty ;
+ rdfs:domain hpc:Job ;
+ rdfs:range xsd:string .
+
+hpc:name a owl:DatatypeProperty ;
+ rdfs:domain hpc:Job ;
+ rdfs:range xsd:string .
+
+hpc:jobState a owl:DatatypeProperty ;
+ rdfs:domain hpc:Job ;
+ rdfs:range xsd:string .
+
+hpc:partition a owl:DatatypeProperty ;
+ rdfs:domain hpc:Job ;
+ rdfs:range xsd:string .
+
+hpc:startTime a xsd:dateTime ;
+ rdfs:domain hpc:Job ;
+ rdfs:range xsd:dateTime .
+
+hpc:endTime a xsd:dateTime ;
+ rdfs:domain hpc:Job ;
+ rdfs:range xsd:dateTime .
+
+hpc:nodeList a owl:ObjectProperty ;
+ rdfs:domain hpc:Job ;
+ rdfs:range hpc:Node .
+
+# Node
+hpc:Node a owl:Class .
+hpc:NodeName a owl:DatatypeProperty ;
+ rdfs:domain hpc:Node ;
+ rdfs:range xsd:string .
+
+hpc:state a owl:DatatypeProperty ;
+ rdfs:domain hpc:Node ;
+ rdfs:range hpc:NodeState .
+
+hpc:cpus a owl:DatatypeProperty ;
+ rdfs:domain hpc:Node ;
+ rdfs:range xsd:integer .
+
+hpc:realMemory a owl:DatatypeProperty ;
+ rdfs:domain hpc:Node ;
+ rdfs:range xsd:decimal .
+
+hpc:tmpDisk a owl:DatatypeProperty ;
+ rdfs:domain hpc:Node ;
+ rdfs:range xsd:decimal .
+
+hpc:weight a owl:DatatypeProperty ;
+ rdfs:domain hpc:Node ;
+ rdfs:range xsd:integer

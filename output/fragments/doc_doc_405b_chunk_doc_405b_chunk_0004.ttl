@@ -1,0 +1,45 @@
+hpc:AssocGrpSubmitJobsLimit a owl:Class .
+hpc:assocGrpSubmitJobsLimit rdf:type owl:ObjectProperty .
+
+hpc:AssocGrpUnknown a owl:Class .
+
+hpc:assocGrpUnknownMinutes a owl:DatatypeProperty .
+hpc:assocGrpUnknownMinutes rdfs:domain hpc:AssocGrpUnknown ;
+                                 rdfs:range xsd:decimal .
+
+hpc:AssocGrpUnknownRunMinutes a owl:DatatypeProperty .
+hpc:assocGrpUnknownRunMinutes rdfs:domain hpc:AssocGrpUnknown ;
+                                 rdfs:range xsd:decimal .
+
+hpc:AssocGrpWallLimit a owl:Class .
+
+hpc:assocGrpWallLimit a owl:ObjectProperty .
+
+hpc:AssocMaxBBMinutesPerJob a owl:DatatypeProperty .
+hpc:AssocMaxBBMinutesPerJob rdfs:domain hpc:AssocGrpUnknown ;
+                                 rdfs:range xsd:decimal .
+
+hpc:AssocMaxBBPerJob a owl:DatatypeProperty .
+hpc:AssocMaxBBPerJob rdfs:domain hpc:AssocGrpUnknown ;
+                              rdfs:range xsd:decimal .
+
+hpc:AssocMaxBBPerNode a owl:DatatypeProperty .
+hpc:AssocMaxBBPerNode rdfs:domain hpc:AssocGrpUnknown ;
+                               rdfs:range xsd:decimal .
+
+hpc:AssocMaxBillingMinutesPerJob a owl:DatatypeProperty .
+hpc:AssocMaxBillingMinutesPerJob rdfs:domain hpc:AssocGrpUnknown ;
+                                       rdfs:range xsd:decimal .
+
+hpc:AssocMaxBillingPerJob a owl:DatatypeProperty .
+hpc:AssocMaxBillingPerJob rdfs:domain hpc:AssocGrpUnknown ;
+                               rdfs:range xsd:decimal .
+
+hpc:AssocMaxBillingPerNode a owl:DatatypeProperty .
+hpc:AssocMaxBillingPerNode rdfs:domain hpc:AssocGrpUnknown ;
+                               rdfs:range xsd:decimal .
+
+hpc:AssocMaxCpuMinutesPerJobLimit a owl:DatatypeProperty .
+hpc:AssocMaxCpuMinutesPerJobLimit rdfs:domain hpc:AssocGrpUnknown ;
+                                          rdfs:range xsd:decimal .
+```

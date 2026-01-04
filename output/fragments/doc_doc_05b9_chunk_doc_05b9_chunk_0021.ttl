@@ -1,0 +1,59 @@
+hpc:TRESUpdateResult a owl:Class ;
+    rdfs:subClassOf hpc:OpenapiResponse .
+
+hpc:OpenapiResponse a owl:Class .
+
+hpc:SlurmdbV0043PostUsers a owl:Class ;
+    rdfs:subClassOf hpc:ApiCall ;
+    rdfs:subClassOf hpc:ConsumesMediaType ;
+    rdfs:subClassOf hpc:ProducesMediaType ;
+    rdfs:subClassOf hpc:HasResponse .
+    rdfs:domain hpc:ApiCall .
+
+hpc:SlurmdbV0043PostUsers_OpenapiUsersResp a owl:Class ;
+    rdfs:subClassOf hpc:BodyParameter .
+    rdfs:domain hpc:SlurmdbV0043PostUsers .
+
+hpc:SlurmdbV0043PostUsers_OpenapiResp a owl:Class ;
+    rdfs:subClassOf hpc:ReturnType .
+    rdfs:domain hpc:SlurmdbV0043PostUsers .
+
+hpc:SlurmdbV0043PostUsers_OpenapiUsersAddCondResp a owl:Class ;
+    rdfs:subClassOf hpc:BodyParameter .
+    rdfs:domain hpc:SlurmdbV0043PostUsersAssociation .
+
+hpc:SlurmdbV0043PostUsersAddCondResp_Str a owl:Class ;
+    rdfs:subClassOf hpc:ReturnType .
+    rdfs:domain hpc:SlurmdbV0043PostUsersAssociation .
+
+hpc:SlurmdbV0043PostWckeys a owl:Class ;
+    rdfs:subClassOf hpc:ApiCall ;
+    rdfs:subClassOf hpc:ConsumesMediaType ;
+    rdfs:subClassOf hpc:ProducesMediaType ;
+    rdfs:subClassOf hpc:HasResponse .
+    rdfs:domain hpc:ApiCall .
+
+hpc:ConsumesMediaType a owl:ObjectProperty ;
+    rdfs:domain hpc:ApiCall ;
+    rdfs:range xsd:string .
+
+hpc:ProducesMediaType a owl:ObjectProperty ;
+    rdfs:domain hpc:ApiCall ;
+    rdfs:range xsd:string .
+
+hpc:HasResponse a owl:ObjectProperty ;
+    rdfs:domain hpc:ApiCall ;
+    rdfs:range hpc:OpenapiResponse .
+
+hpc:BodyParameter a owl:Class ;
+    rdfs:subPropertyOf hpc:HasBody .
+
+hpc:ReturnType a owl:Class .
+
+hpc:QueryParameters a owl:ObjectProperty .
+
+hpc:QueryParameter a owl:Class .
+
+hpc:HasBody a owl:ObjectProperty ;
+    rdfs:domain hpc:ApiCall .
+```

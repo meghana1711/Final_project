@@ -1,0 +1,60 @@
+hpc:Slurm a owl:Class .
+hpc:SoftwareLicenseManagement a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:SoftwareLicenseManagement .
+
+hpc:LocalLicense a owl:Class ;
+    rdfs:subClassOf hpc:SoftwareLicense .
+
+hpc:RemoteLicense a owl:Class ;
+    rdfs:subClassOf hpc:SoftwareLicense .
+
+hpc:SoftwareLicense a owl:Class .
+
+hpc:Configure a owl:ObjectProperty ;
+    rdfs:domain hpc:LocalLicense ;
+    rdfs:range rdf:Resource .
+
+hpc:View a owl:ObjectProperty ;
+    rdfs:domain hpc:LocalLicense ;
+    rdfs:range rdf:Resource .
+
+hpc:Request a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range rdf:Resource .
+
+hpc:License a owl:Class ;
+    rdfs:subPropertyOf hpc:SoftwareLicenseManagement .
+
+hpc:LicenseName a owl:DatatypeProperty ;
+    rdfs:domain hpc:License ;
+    rdfs:range xsd:string .
+
+hpc:Total a owl:DatatypeProperty ;
+    rdfs:domain hpc:License ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Used a owl:DatatypeProperty ;
+    rdfs:domain hpc:License ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Free a owl:DatatypeProperty ;
+    rdfs:domain hpc:License ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Remote a owl:DatatypeProperty ;
+    rdfs:domain hpc:License ;
+    rdfs:range xsd:boolean .
+
+hpc:FluentLicense a hpc:LocalLicense ;
+    hpc:Total 30 ;
+    hpc:Used 0 ;
+    hpc:Free 30 ;
+    hpc:Remote false .
+
+hpc:AnsysLicense a hpc:LocalLicense ;
+    hpc:Total 100 ;
+    hpc:Used 0 ;
+    hpc:Free 100 ;
+    hpc:Remote false .
+```

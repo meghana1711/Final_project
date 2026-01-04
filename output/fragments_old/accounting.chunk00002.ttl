@@ -1,0 +1,61 @@
+# Cluster and SlurmDBD
+hpc:SlurmManagedCluster a owl:Class .
+hpc:SlurmDBD a owl:Class .
+
+hpc:hasMungeConfiguration rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:SlurmManagedCluster ;
+ rdfs:range rdf:XMLLiteral .
+
+hpc:usesMunge rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:SlurmManagedCluster ;
+ rdfs:range xsd:boolean .
+
+hpc:hasMungeKey rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:SlurmManagedCluster ;
+ rdfs:range rdf:XMLLiteral .
+
+hpc:hasCommunicationKey rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:SlurmManagedCluster ;
+ rdfs:range rdf:XMLLiteral .
+
+# Nodes and MUNGE
+hpc:Node a owl:Class .
+
+hpc:hasMunge rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:Node ;
+ rdfs:range xsd:boolean .
+
+# Users and Authentication
+hpc:User a owl:Class .
+hpc:Admin a owl:Class, rdfs:subClassOf hpc:User .
+hpc:Operator a owl:Class, rdfs:subClassOf hpc:User .
+
+hpc:hasSameIdOnClusters rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:User ;
+ rdfs:range xsd:boolean .
+
+hpc:isInPasswdFile rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:User ;
+ rdfs:range xsd:boolean .
+
+# Storage Backup Host
+hpc:BackupHost a owl:Class .
+
+hpc:hasAccountingStorageBackupHost rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:SlurmManagedCluster ;
+ rdfs:range hpc:BackupHost .
+
+hpc:hasDbdBackupHost rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:SlurmDBD ;
+ rdfs:range hpc:BackupHost .
+
+# Slurm JobComp Configuration
+hpc:JobCompHost a owl:Class .
+hpc:JobCompLoc a owl:DatatypeProperty .
+hpc:JobCompPass a owl:DatatypeProperty .
+hpc:JobCompPort a owl:DatatypeProperty .
+hpc:JobCompType a owl:DatatypeProperty .
+hpc:JobCompUser a owl:DatatypeProperty .
+hpc:JobCompParams a owl:DatatypeProperty .
+
+# Slurm Accounting Configuration

@@ -1,0 +1,44 @@
+hpc:HeterogeneousJobAllocation a owl:Class .
+hpc:JobAllocation a owl:Class, rdfs:subClassOf hpc:HeterogeneousJobAllocation .
+
+# Job Step
+hpc:JobStep a owl:Class .
+hpc:hasStepID a owl:ObjectProperty .
+hpc:hasStepID rdfs:domain hpc:JobStep ;
+                 rdfs:range xsd:integer .
+
+# Job Component
+hpc:JobComponent a owl:Class .
+hpc:hasComponentID a owl:ObjectProperty .
+hpc:hasComponentID rdfs:domain hpc:JobComponent ;
+                 rdfs:range xsd:integer .
+
+# Resource Contention
+hpc:ResourceContention a owl:Class .
+hpc:isDueToMemoryLimit a owl:ObjectProperty .
+hpc:isDueToMemoryLimit rdfs:domain hpc:ResourceContention .
+
+# Slurm Environment Variables
+hpc:SlurmEnvironmentVariable a owl:Class .
+hpc:hasName a owl:DatatypeProperty .
+hpc:hasName rdfs:domain hpc:SlurmEnvironmentVariable ;
+                 rdfs:range xsd:string .
+hpc:hasValue a owl:DatatypeProperty .
+hpc:hasValue rdfs:domain hpc:SlurmEnvironmentVariable ;
+                 rdfs:range xsd:string .
+
+# Het-Group
+hpc:HetGroup a owl:Class .
+hpc:isComponentOf a owl:ObjectProperty .
+hpc:isComponentOf rdfs:domain hpc:HetGroup ;
+                 rdfs:range hpc:JobComponent .
+hpc:hasMaxValue a owl:DatatypeProperty .
+hpc:hasMaxValue rdfs:domain hpc:HetGroup ;
+                 rdfs:range xsd:integer .
+
+# Job Step Allocation
+hpc:JobStepAllocation a owl:Class .
+hpc:hasHetGroup a owl:ObjectProperty .
+hpc:hasHetGroup rdfs:domain hpc:JobStepAllocation ;
+                 rdfs:range hpc:HetGroup .
+```

@@ -1,0 +1,41 @@
+hpc:Switch hpe_slingshot a owl:Class ;
+    rdfs:subClassOf <http://example.org/hpc#Resource> ;
+    hpc:supportsMTLS a owl:ObjectProperty ;
+    hpc:hasConnectionManagementThreadPoolSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Switch ;
+    rdfs:range xsd:integer ;
+
+hpc:JobCompElasticsearch a owl:Class ;
+    rdfs:subClassOf <http://example.org/hpc#Resource> ;
+    hpc:stopsBatchScriptByDefault a owl:ObjectProperty ;
+    hpc:hasSendScriptOption a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobCompElasticsearch ;
+    rdfs:range xsd:boolean ;
+
+hpc:JobCompKafka a owl:Class ;
+    rdfs:subClassOf <http://example.org/hpc#Resource> ;
+    hpc:stopsBatchScriptByDefault a owl:ObjectProperty ;
+    rdfs:domain hpc:JobCompKafka ;
+    rdfs:range xsd:boolean ;
+
+hpc:RESTAPICall a owl:Class ;
+    rdfs:subClassOf <http://example.org/hpc#APIEndpoint> ;
+    hpc:hasVersion a owl:DatatypeProperty ;
+    rdfs:domain hpc:RESTAPICall ;
+    rdfs:range xsd:string ;
+
+hpc:DeprecatedAPIEndpoint a owl:Class ;
+    rdfs:subClassOf hpc:RESTAPICall ;
+    hpc:willBeRemovedInRelease a owl:DatatypeProperty ;
+    rdfs:domain hpc:DeprecatedAPIEndpoint ;
+    rdfs:range xsd:string ;
+
+hpc:NewAPIEndpoint a owl:Class ;
+    rdfs:subClassOf hpc:RESTAPICall ;
+    hpc:createsReservation a owl:ObjectProperty ;
+    rdfs:domain hpc:NewAPIEndpoint ;
+    rdfs:range hpc:Reservation ;
+
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf <http://example.org/hpc#Resource> .
+```

@@ -1,0 +1,19 @@
+hpc:PluginVersion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:uint32 .
+
+hpc:Init a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:anyURI .
+
+hpc:Finish a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:anyURI .
+
+hpc:Plugin a owl:Class ;
+    rdfs:subClassOf [ a owl:NamedIndividual ] .
+
+hpc:InitializationSuccess a owl:DatatypeProperty ;
+    rdfs:domain hpc:Init ;
+    rdfs:range xsd:anyURI .
+```

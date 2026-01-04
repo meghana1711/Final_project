@@ -1,0 +1,48 @@
+hpc:SlurmPlugin a owl:Class .
+hpc:pluginName a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmPlugin ;
+    rdfs:range xsd:string .
+
+hpc:pluginType a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmPlugin ;
+    rdfs:range xsd:string .
+
+hpc:JobSubmitPlugin a hpc:SlurmPlugin ;
+    rdfs:subClassOf hpc:SlurmPlugin .
+
+hpc:allPartitionsPlugin a hpc:JobSubmitPlugin ;
+    hpc:pluginName "all_partitions" ;
+    hpc:pluginType "job_submit/all_partitions" .
+
+hpc:defaultsPlugin a hpc:JobSubmitPlugin ;
+    hpc:pluginName "defaults" ;
+    hpc:pluginType "job_submit/defaults" .
+
+hpc:loggingPlugin a hpc:JobSubmitPlugin ;
+    hpc:pluginName "logging" ;
+    hpc:pluginType "job_submit/logging" .
+
+hpc:luaPlugin a hpc:JobSubmitPlugin ;
+    hpc:pluginName "lua" ;
+    hpc:pluginType "job_submit/lua" ;
+    hpc:scriptLocation rdfs:Resource .
+
+hpc:scriptLocation a owl:ObjectProperty ;
+    rdfs:domain hpc:luaPlugin ;
+    rdfs:range rdf:Description ;
+    rdfs:subPropertyOf rdf:type .
+
+hpc:scriptName a owl:DatatypeProperty ;
+    rdfs:domain hpc:scriptLocation ;
+    rdfs:range xsd:string .
+
+hpc:scriptLocationPath a owl:DatatypeProperty ;
+    rdfs:domain hpc:scriptLocation ;
+    rdfs:range xsd:string .
+
+hpc:defaultConfigDirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:string .
+
+hpc:Slurm a owl:Class .
+```

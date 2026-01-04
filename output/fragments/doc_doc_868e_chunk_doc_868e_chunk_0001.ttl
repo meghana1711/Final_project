@@ -1,0 +1,63 @@
+hpc:SacctDisplays a owl:Class .
+hpc:sacctDisplays a rdfs:subClassOf hpc:Command .
+hpc:sacctDisplays rdfs:domain hpc:Slurm .
+
+hpc:Sacctmgr a owl:Class .
+hpc:sacctmgr a rdfs:subClassOf hpc:Command .
+hpc:sacctmgr rdfs:domain hpc:Slurm .
+
+hpc:Salloc a owl:Class .
+hpc:salloc a rdfs:subClassOf hpc:Command .
+hpc:salloc rdfs:domain hpc:Slurm .
+
+hpc:Sattach a owl:Class .
+hpc:sattach a rdfs:subClassOf hpc:Command .
+hpc:sattach rdfs:domain hpc:Slurm .
+
+hpc:Sbatch a owl:Class .
+hpc:sbatch a rdfs:subClassOf hpc:Command .
+hpc:sbatch rdfs:domain hpc:Slurm .
+
+hpc:Sbcast a owl:Class .
+hpc:sbcast a rdfs:subClassOf hpc:Command .
+hpc:sbcast rdfs:domain hpc:Slurm .
+
+hpc:Scancel a owl:Class .
+hpc:scancel a rdfs:subClassOf hpc:Command .
+hpc:scancel rdfs:domain hpc:Slurm .
+
+hpc:Scontrol a owl:Class .
+hpc:scontrol a rdfs:subClassOf hpc:Command .
+hpc:scontrol rdfs:domain hpc:Slurm .
+
+hpc:Scrun a owl:Class .
+hpc:scrun a rdfs:subClassOf owl:Class .
+hpc:scrun rdfs:domain hpc:Slurm .
+
+hpc:Sdiag a owl:Class .
+hpc:sdiag a rdfs:subClassOf owl:Class .
+hpc:sdiag rdfs:domain hpc:Slurm .
+
+hpc:Sh5util a owl:Class .
+hpc:sh5util a rdfs:subClassOf owl:Class .
+hpc:sh5util rdfs:domain hpc:Slurm .
+
+hpc:Sinfo a owl:Class .
+hpc:sinfo a rdfs:subClassOf owl:Class .
+hpc:sinfo rdfs:domain hpc:Slurm .
+
+hpc:SPrio a owl:Class .
+hpc:sprio a rdfs:subClassOf owl:Class .
+hpc:sprio rdfs:domain hpc:Slurm .
+
+hpc:Squeue a owl:Class .
+hpc:squeue a rdfs:subClassOf owl:Class .
+hpc:squeue rdfs:domain hpc:Slurm .
+
+hpc:Sreport a owl:Class .
+hpc:sreport a rdfs:subClassOf owl:Class .
+hpc:sreport rdfs:domain hpc:Slurm .
+
+hpc:Srun a owl:Class .
+hpc:srun a rdfs:subClassOf owl:Class .
+hpc:srun rdfs:domain

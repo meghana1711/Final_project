@@ -1,0 +1,35 @@
+hpc:Job hasJobID rdf:resource .
+hpc:Job hasParameters rdf:List .
+hpc:Parameter rdf:type owl:Class .
+hpc:Job hasDeprecatedParameter hpc:Parameter .
+hpc:Job hasNonDeprecatedParameter hpc:Parameter .
+hpc:Job hasJobID rdf:type owl:DatatypeProperty .
+hpc:hasParameters rdf:type owl:ObjectProperty .
+hpc:hasDeprecatedParameter rdf:type owl:ObjectProperty .
+
+hpc:SlurmJob a hpc:Job .
+hpc:SlurmdbJob a hpc:Job .
+hpc:Association a hpc:Job .
+
+hpc:SlurmJob hasJobID xsd:string .
+hpc:SlurmdbJob hasJobID xsd:string .
+hpc:Association hasJobID xsd:string .
+
+hpc:SlurmJob deleteParameter rdf:List .
+hpc:SlurmdbJob getParameter rdf:List .
+hpc:SlurmdbJob postParameter rdf:List .
+hpc:Association deleteParameter rdf:List .
+
+hpc:SlurmJob deleteParameter[0] a hpc:DeprecatedParameter .
+hpc:SlurmJob deleteParameter[1] a hpc:DeprecatedParameter .
+hpc:SlurmJob deleteParameter[2] a hpc:DeprecatedParameter .
+hpc:SlurmdbJob getParameter[0] a hpc:DeprecatedParameter .
+hpc:SlurmdbJob getParameter[1] a hpc:DeprecatedParameter .
+hpc:SlurmdbJob getParameter[2] a hpc:DeprecatedParameter .
+hpc:SlurmdbJob postParameter[0] a hpc:DeprecatedParameter .
+hpc:Association deleteParameter[0] a hpc:DeprecatedParameter .
+hpc:Association deleteParameter[1] a hpc:DeprecatedParameter .
+hpc:Association deleteParameter[2] a hpc:DeprecatedParameter .
+```
+
+This ontology fragment represents the classes `Job`, `SlurmJob`, `SlurmdbJob`, `Association`, and `Parameter`. It also defines the properties `hasJobID`, `hasParameters`, `hasDeprecatedParameter`, and `hasNonDeprecatedParameter`. The `hasJobID` property is a datatype property with the domain and range both being `xsd:string`. The `hasParameters`, `hasDeprecatedParameter`, and `hasNonDeprecatedParameter` properties are object properties. The `SlurmJob`, `SlurmdbJob`, and `Association` classes have `hasJobID`, `hasParameters`, `hasDeprecatedParameter`, and `hasNonDeprecatedParameter` properties. The `Parameter` class is a superclass for both `DeprecatedParameter` and non-deprecated parameters. The `

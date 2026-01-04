@@ -1,0 +1,56 @@
+hpc:EC2Instance a owl:Class .
+hpc:SlurmJobOnEC2 a owl:Class .
+hpc:SlurmWrapper a owl:Class .
+hpc:HostsFile a owl:Class .
+hpc:SlurmConf a owl:Class .
+hpc:RsyncScript a owl:Class .
+
+hpc:hasEC2Instance rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:SlurmJobOnEC2 ;
+ rdfs:range hpc:EC2Instance .
+
+hpc:usesWrapper rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:SlurmJobOnEC2 ;
+ rdfs:range hpc:SlurmWrapper .
+
+hpc:generatesHostsFile rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:SlurmWrapper ;
+ rdfs:range hpc:HostsFile .
+
+hpc:generatesSlurmConf rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:SlurmWrapper ;
+ rdfs:range hpc:SlurmConf .
+
+hpc:usesRsyncScript rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:SlurmWrapper ;
+ rdfs:range hpc:RsyncScript .
+
+# PAM user management
+hpc:PAMConfiguration a owl:Class .
+hpc:SlurmPAMConfiguration a owl:Class .
+hpc:PAMConfigFile a owl:Class .
+hpc:SSHDConfig a owl:Class .
+hpc:PAMAccount rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:PAMConfiguration ;
+ rdfs:range hpc:PAMConfigFile .
+
+hpc:usesSlurmPAM rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:PAMConfiguration ;
+ rdfs:range hpc:SlurmPAMConfiguration .
+
+hpc:requiresPAM rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:PAMConfigFile ;
+ rdfs:range rdfs:Literal .
+
+hpc:hasSlurmLimit rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:PAMConfiguration ;
+ rdfs:range hpc:PAMAccount .
+
+hpc:usesLimitsFile rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:PAMConfiguration ;
+ rdfs:range hpc:PAMConfigFile .
+
+hpc:disablesPropagation rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:SlurmConf ;
+ rdfs:range rdfs:Literal .
+```

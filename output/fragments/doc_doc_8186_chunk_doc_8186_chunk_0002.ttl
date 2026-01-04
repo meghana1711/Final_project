@@ -1,0 +1,60 @@
+hpc:Plugin a owl:Class .
+hpc:SupportedByRelease rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Release ;
+    rdfs:range hpc:Plugin .
+
+hpc:Deprecated rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:boolean .
+
+hpc:PluginVersion rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Method ;
+    rdfs:range xsd:string .
+
+hpc:MethodPath rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Method ;
+    rdfs:range xsd:string .
+
+hpc:PluginLifeCycle a owl:Class ;
+    rdfs:subClassOf hpc:Plugin .
+
+hpc:LatestVersionedPlugin rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Plugin .
+
+hpc:MinorBugFixes rdf:type owl:Class ;
+    rdfs:subClassOf hpc:PluginLifeCycle .
+
+hpc:SecurityFixes rdf:type owl:Class ;
+    rdfs:subClassOf hpc:PluginLifeCycle .
+
+hpc:BackwardCompatibility rdf:type owl:Class ;
+    rdfs:subClassOf hpc:PluginLifeCycle .
+
+hpc:DeprecatedPlugin rdf:type owl:Class ;
+    rdfs:subClassOf hpc:PluginLifeCycle .
+
+hpc:RemovedPlugin rdf:type owl:Class ;
+    rdfs:subClassOf hpc:PluginLifeCycle .
+
+hpc:RetainedPlugin rdf:type owl:Class ;
+    rdfs:subClassOf hpc:PluginLifeCycle .
+
+hpc:LatestStablePluginVersion rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Plugin .
+
+hpc:CodeDevelopment rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Plugin .
+
+hpc:Compatibility rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Plugin .
+
+hpc:Validation rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Plugin .
+
+hpc:Communication rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Plugin .
+
+hpc:SlurmRelease rdf:type owl:Class .
+hpc:ReleaseVersion rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmRelease ;
+    rdfs:range xsd:string .

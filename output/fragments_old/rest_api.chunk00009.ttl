@@ -1,0 +1,65 @@
+hpc:Job a owl:Class .
+
+hpc:wckey a owl:DatatypeProperty .
+
+hpc:max_nodes a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range [ a owl:Class ;
+        owl:unionOf ( ( xsd:integer ) ( xsd:integer* ) )
+    ] .
+
+hpc:batch_flag a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:start_time a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range [ a owl:Class ;
+        owl:unionOf ( ( xsd:integer ) ( xsd:integer* ) )
+    ] .
+
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:preempt_time a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range [ a owl:Class ;
+        owl:unionOf ( ( xsd:integer ) ( xsd:integer* ) )
+    ] .
+
+hpc:contiguous a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:job_resources a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:nodes a owl:ObjectProperty ;
+    rdfs:domain hpc:Job_resources ;
+    rdfs:range [ a owl:Class ;
+        owl:unionOf ( ( hpc:Job_resource )* )
+    ] .
+
+hpc:job_resource a owl:Class .
+
+hpc:memory a owl:Class ;
+    rdfs:subClassOf hpc:Job_resource .
+
+hpc:cpus a owl:Class ;
+    rdfs:subClassOf hpc:Job_resource .
+
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job_resource .
+
+hpc:index a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job_resource ;
+    rdfs:range xsd:integer .
+
+hpc:sockets a owl:ObjectProperty ;
+    rdfs:domain hpc:Job_resource ;
+    rdfs:range [ a owl:Class ;
+        owl:unionOf ( ( hpc:Socket )* )
+    ] .
+
+hpc:cores a owl:Class ;
+    rdfs:subClassOf hpc:Socket .

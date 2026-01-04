@@ -1,0 +1,24 @@
+hpc:OpenAPIClustersResp a owl:Class .
+hpc:v0_0_40_openapi_clusters_resp a hpc:OpenAPIClustersResp .
+
+hpc:hasContent a owl:ObjectProperty .
+hpc:hasContent rdfs:domain hpc:Response ;
+                 rdfs:range hpc:Content .
+
+hpc:Content a owl:Class .
+hpc:ApplicationYAML a hpc:Content ;
+                rdf:type xsd:string .
+hpc:TextYAML a hpc:Content ;
+              rdf:type xsd:string .
+hpc:ApplicationJSONRequest a hpc:Content ;
+                rdf:type xsd:string .
+
+hpc:Response a owl:Class .
+hpc:hasStatusCode a owl:DatatypeProperty ;
+                 rdfs:range xsd:integer .
+hpc:hasContent a owl:ObjectProperty .
+
+hpc:StatusCode a owl:DatatypeProperty .
+```
+
+This ontology fragment represents the classes `OpenAPIClustersResp`, `Response`, and `Content` with their properties. The `Content` class has subclasses for different content types like `ApplicationYAML`, `TextYAML`, and `ApplicationJSONRequest`. The `Response` class has properties for `hasStatusCode` and `hasContent`.

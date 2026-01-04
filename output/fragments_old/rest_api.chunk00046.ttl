@@ -1,0 +1,54 @@
+hpc:Account a owl:Class .
+hpc:hasID a owl:ObjectProperty .
+hpc:hasID rdfs:domain hpc:Account ;
+    rdfs:range xsd:integer .
+
+hpc:hasLineage a owl:ObjectProperty .
+hpc:hasLineage rdfs:domain hpc:Account ;
+    rdfs:range xsd:string .
+
+hpc:hasCluster a owl:ObjectProperty .
+hpc:hasCluster rdfs:domain hpc:Account ;
+    rdfs:range xsd:string .
+
+hpc:hasSharesRaw a owl:DatatypeProperty .
+hpc:hasSharesRaw rdfs:domain hpc:Account ;
+    rdfs:range xsd:integer .
+
+hpc:hasMaxJobs a owl:ObjectProperty .
+hpc:hasMaxJobs rdfs:domain hpc:Account ;
+    rdfs:range hpc:JobLimit .
+
+hpc:hasJobLimitTotal a owl:DatatypeProperty .
+hpc:hasJobLimitTotal rdfs:domain hpc:JobLimit ;
+    rdfs:range xsd:integer .
+
+hpc:hasJobLimitActive a owl:DatatypeProperty .
+hpc:hasJobLimitActive rdfs:domain hpc:JobLimit ;
+    rdfs:range xsd:integer .
+
+hpc:hasJobLimitAccruing a owl:DatatypeProperty .
+hpc:hasJobLimitAccruing rdfs:domain hpc:JobLimit ;
+    rdfs:range xsd:integer .
+
+hpc:hasJobLimitSubmittedPerSubmitted a owl:DatatypeProperty .
+hpc:hasJobLimitSubmittedPerSubmitted rdfs:domain hpc:JobLimit ;
+    rdfs:range xsd:integer .
+
+hpc:hasJobLimitCountPerSubmitted a owl:DatatypeProperty .
+hpc:hasJobLimitCountPerSubmitted rdfs:domain hpc:JobLimit ;
+    rdfs:range xsd:integer .
+
+hpc:hasJobLimitAccruingPerSubmitted a owl:DatatypeProperty .
+hpc:hasJobLimitAccruingPerSubmitted rdfs:domain hpc:JobLimit ;
+    rdfs:range xsd:integer .
+
+hpc:hasJobLimitWallClockPerSubmitted a owl:DatatypeProperty .
+hpc:hasJobLimitWallClockPerSubmitted rdfs:domain hpc:JobLimit ;
+    rdfs:range xsd:integer .
+
+hpc:hasTRES a owl:ObjectProperty .
+hpc:hasTRES rdfs:domain hpc:Account ;
+    rdfs:range hpc:TRES .
+
+hpc

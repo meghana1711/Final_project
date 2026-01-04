@@ -1,0 +1,18 @@
+hpc:JobInfo a owl:Class .
+hpc:JobInfoResponse a owl:Class .
+hpc:LicensesResponse a owl:Class .
+
+hpc:jobInfoResponseOf a owl:ObjectProperty .
+hpc:jobInfoResponseOf rdfs:domain hpc:JobInfo .
+hpc:jobInfoResponseOf rdfs:range hpc:JobInfoResponse .
+
+hpc:jobInfoResponseSchema a owl:ObjectProperty .
+hpc:jobInfoResponseSchema rdfs:domain hpc:JobInfoResponse .
+hpc:jobInfoResponseSchema rdfs:range xsd:anyURI .
+
+hpc:hasContentType a owl:ObjectProperty .
+hpc:hasContentType rdfs:domain hpc:Response .
+hpc:hasContentType rdfs:range xsd:string .
+```
+
+This ontology fragment represents the classes `JobInfo`, `JobInfoResponse`, and `LicensesResponse`, as well as the properties `jobInfoResponseOf`, `jobInfoResponseSchema`, and `hasContentType`. The `jobInfoResponseOf` property links a `JobInfo` to its corresponding `JobInfoResponse`, the `jobInfoResponseSchema` property links a `JobInfoResponse` to its schema, and the `hasContentType` property indicates the content type of a response.

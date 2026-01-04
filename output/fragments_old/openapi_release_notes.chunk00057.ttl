@@ -1,0 +1,59 @@
+hpc:Association a owl:Class .
+hpc:DeleteAssociation a owl:Class, rdfs:subClassOf [ a owl:Restriction ;
+                                                      rdfs:onProperty hpc:delete ;
+                                                      rdfs:allValuesFrom xsd:boolean ] .
+
+hpc:IncludeSubAcctInformation a owl:DatatypeProperty ;
+                               rdfs:domain hpc:Association ;
+                               rdfs:range xsd:boolean .
+
+hpc:ExcludeParentIdName a owl:DatatypeProperty ;
+                          rdfs:domain hpc:DeleteAssociation ;
+                          rdfs:range xsd:boolean .
+
+hpc:ExcludeLimitsFromParents a owl:DatatypeProperty ;
+                               rdfs:domain hpc:DeleteAssociation ;
+                               rdfs:range xsd:boolean .
+
+hpc:Format a owl:DatatypeProperty ;
+           rdfs:domain hpc:DeleteAssociation ;
+           rdfs:range xsd:string .
+
+hpc:Id a owl:DatatypeProperty ;
+      rdfs:domain hpc:DeleteAssociation ;
+      rdfs:range xsd:string .
+
+hpc:ParentAccount a owl:DatatypeProperty ;
+               rdfs:domain hpc:DeleteAssociation ;
+               rdfs:range xsd:string .
+
+hpc:Partition a owl:DatatypeProperty ;
+         rdfs:domain hpc:DeleteAssociation ;
+         rdfs:range xsd:string .
+
+hpc:Qos a owl:DatatypeProperty ;
+     rdfs:domain hpc:DeleteAssociation ;
+     rdfs:range xsd:string .
+
+hpc:UsageEnd a owl:DatatypeProperty ;
+          rdfs:domain hpc:DeleteAssociation ;
+          rdfs:range xsd:dateTime .
+
+hpc:UsageStart a owl:DatatypeProperty ;
+            rdfs:domain hpc:DeleteAssociation ;
+            rdfs:range xsd:dateTime .
+
+hpc:User a owl:DatatypeProperty ;
+     rdfs:domain hpc:DeleteAssociation ;
+     rdfs:range xsd:string .
+
+hpc:IncludeDeletedAssociations a owl:DatatypeProperty ;
+                               rdfs:domain hpc:Association ;
+                               rdfs:range xsd:boolean .
+
+hpc:IncludeUsage a owl:DatatypeProperty ;
+               rdfs:domain hpc:Association ;
+               rdfs:range xsd:boolean .
+
+hpc:FilterToOnlyDefaults a owl:DatatypeProperty ;
+                          rdfs:domain hpc:Association ;

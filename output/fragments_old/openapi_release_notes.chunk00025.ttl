@@ -1,0 +1,17 @@
+hpc:Node a owl:Class .
+
+hpc:state a owl:ObjectProperty .
+hpc:state rdfs:domain hpc:Node .
+hpc:state rdfs:range xsd:string .
+hpc:state rdfs:subPropertyOf rdf:list .
+
+hpc:TLS_cert_last_renewal a owl:DatatypeProperty .
+hpc:TLS_cert_last_renewal rdfs:domain hpc:Node .
+hpc:TLS_cert_last_renewal rdfs:range xsd:unsignedLong .
+
+hpc:Topology a owl:DatatypeProperty .
+hpc:Topology rdfs:domain hpc:Node .
+hpc:Topology rdfs:range xsd:string .
+
+hpc:POWERING_DOWN, hpc:DYNAMIC_FUTURE, hpc:REBOOT_ISSUED, hpc:PLANNED, hpc:INVALID_REG, hpc:POWER_DOWN, hpc:POWER_UP, hpc:POWER_DRAIN, hpc:DYNAMIC_NORM in hpc:state .
+```

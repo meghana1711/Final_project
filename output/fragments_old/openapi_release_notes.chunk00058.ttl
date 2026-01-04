@@ -1,0 +1,67 @@
+hpc:Association a owl:Class .
+
+hpc:format a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:string .
+
+hpc:id a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:string .
+
+hpc:parent_account a owl:ObjectProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:string .
+
+hpc:partition a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:string .
+
+hpc:qos a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:string .
+
+hpc:usage_end a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:dateTime .
+
+hpc:usage_start a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:dateTime .
+
+hpc:user a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:string .
+
+hpc:IncludeDeletedAssociations a owl:ObjectProperty ;
+    rdfs:domain hpc:Delete ;
+    rdfs:range xsd:boolean .
+
+hpc:IncludeUsage a owl:ObjectProperty ;
+    rdfs:domain hpc:Delete ;
+    rdfs:range xsd:boolean .
+
+hpc:FilterToOnlyDefaults a owl:ObjectProperty ;
+    rdfs:domain hpc:Delete ;
+    rdfs:range xsd:boolean .
+
+hpc:IncludeSubAcctInformation a owl:ObjectProperty ;
+    rdfs:domain rdf:List ;
+    rdfs:range xsd:boolean .
+
+hpc:ExcludeParentIdName a owl:ObjectProperty ;
+    rdfs:domain rdf:List ;
+    rdfs:range xsd:boolean .
+
+hpc:ExcludeLimitsFromParents a owl:ObjectProperty ;
+    rdfs:domain rdf:List ;
+    rdfs:range xsd:boolean .
+
+hpc:Format a owl:DatatypeProperty ;
+    rdfs:domain rdf:List ;
+    rdfs:range xsd:string .
+
+hpc:Id a owl:DatatypeProperty ;
+    rdfs:domain rdf:List ;
+    rdfs:range xsd:string .
+
+hpc

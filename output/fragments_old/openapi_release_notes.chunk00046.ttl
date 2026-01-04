@@ -1,0 +1,56 @@
+hpc:DeprecatedParameter a owl:Class .
+hpc:DataParser a owl:Class .
+hpc:ClusterRecFlag a owl:Class .
+hpc:JobDescMsg a owl:Class .
+hpc:Node a owl:Class .
+hpc:Info a owl:Class .
+hpc:DataParserVersion a owl:Class .
+hpc:OpenApi a owl:Class .
+hpc:Release a owl:Class .
+hpc:Version a owl:Class .
+hpc:Path a owl:Class .
+hpc:Operation a owl:Class .
+
+hpc:deprecated rdfs:domain hpc:DeprecatedParameter ;
+ rdfs:range xsd:boolean .
+
+hpc:plugin rdfs:domain hpc:DataParserVersion ;
+ rdfs:range xsd:string .
+
+hpc:pluginName rdfs:domain hpc:DataParser ;
+ rdfs:range xsd:string .
+
+hpc:flags rdfs:domain hpc:Operation ;
+ rdfs:range rdfs:Resource .
+
+hpc:deprecatedParameter rdfs:subClassOf hpc:DeprecatedParameter ;
+ rdfs:domain hpc:Path ;
+ rdfs:range xsd:boolean .
+
+hpc:enumMember rdfs:domain hpc:ClusterRecFlag ;
+ rdfs:range xsd:string .
+
+hpc:description rdfs:domain hpc:JobDescMsg ;
+ rdfs:range xsd:string .
+
+hpc:tresWeighted rdfs:domain hpc:Node ;
+ rdfs:range xsd:string .
+
+hpc:major rdfs:domain hpc:Version ;
+ rdfs:range xsd:integer .
+
+hpc:micro rdfs:domain hpc:Version ;
+ rdfs:range xsd:integer .
+
+hpc:minor rdfs:domain hpc:Version ;
+ rdfs:range xsd:integer .
+
+hpc:release rdfs:domain hpc:OpenApi ;
+ rdfs:range xsd:string .
+
+hpc:operationId rdfs:domain hpc:Operation ;
+ rdfs:range xsd:string .
+
+hpc:path rdfs:domain hpc:Path ;
+ rdfs:range rdfs:Resource .
+```

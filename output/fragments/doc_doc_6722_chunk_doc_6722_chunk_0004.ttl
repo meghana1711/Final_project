@@ -1,0 +1,67 @@
+hpc:SlurmBurstBufferLuaScript a owl:Class ;
+    rdfs:subClassOf hpc:Script .
+
+hpc:hasLocation a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmBurstBufferLuaScript ;
+    rdfs:range xsd:string .
+
+# Slurm Configuration
+hpc:SlurmConfig a owl:Class ;
+    rdfs:subClassOf hpc:Configuration .
+
+hpc:BurstBufferType a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmConfig ;
+    rdfs:range xsd:string .
+
+# Lua Plugin Functions
+
+hpc:SlurmBBJobProcess a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmBurstBufferLuaScript ;
+    rdfs:range xsd:anyURI .
+
+hpc:SlurmBBPools a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmBurstBufferLuaScript ;
+    rdfs:range xsd:anyURI .
+
+hpc:SlurmBBJobTeardown a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmBurstBufferLuaScript ;
+    rdfs:range xsd:anyURI .
+
+hpc:SlurmBBSetup a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmBurstBufferLuaScript ;
+    rdfs:range xsd:anyURI .
+
+hpc:SlurmBBDataIn a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmBurstBufferLuaScript ;
+    rdfs:range xsd:anyURI .
+
+hpc:SlurmBBTestDataIn a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmBurstBufferLuaScript ;
+    rdfs:range xsd:anyURI .
+
+hpc:SlurmBBRealSize a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmBurstBufferLuaScript ;
+    rdfs:range xsd:double .
+
+hpc:SlurmBBPaths a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmBurstBufferLuaScript ;
+    rdfs:range xsd:anyURI .
+
+hpc:SlurmBBPreRun a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmBurstBufferLuaScript ;
+    rdfs:range xsd:anyURI .
+
+hpc:SlurmBBPostRun a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmBurstBufferLuaScript ;
+    rdfs:range xsd:anyURI .
+
+hpc:SlurmBBDataOut a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmBurstBufferLuaScript ;
+    rdfs:range xsd:anyURI .
+
+hpc:SlurmBBTestDataOut a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmBurstBufferLuaScript ;
+    rdfs:range xsd:anyURI .
+
+hpc:SlurmBBGetStatus a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm

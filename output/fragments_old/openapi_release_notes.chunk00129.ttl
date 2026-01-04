@@ -1,0 +1,15 @@
+hpc:v0_0_41_openapi_resp a owl:Class .
+hpc:v0_0_41_openapi_slurmdbd_config_resp a owl:Class .
+
+hpc:Content a owl:Class .
+hpc:Content rdfs:subClassOf owl:Class .
+hpc:Content rdfs:subClassOf hpc:v0_0_41_openapi_resp .
+
+hpc:schema a owl:ObjectProperty .
+hpc:schema rdfs:domain hpc:Content .
+hpc:schema rdfs:range rdf:Resource .
+
+hpc:$ref a owl:DatatypeProperty .
+hpc:$ref rdfs:domain hpc:Content .
+hpc:$ref rdfs:range rdf:Resource .
+```

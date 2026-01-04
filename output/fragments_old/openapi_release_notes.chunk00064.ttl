@@ -1,0 +1,28 @@
+hpc:JobSubmitResponse a owl:Class .
+hpc:JobInfoResp a owl:Class .
+hpc:JobDescMsg a owl:Class .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmitResponse ;
+    rdfs:range xsd:anyURI .
+
+hpc:hasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmitResponse ;
+    rdfs:range xsd:anyURI .
+
+hpc:JobInfoRespSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfoResp ;
+    rdfs:range xsd:anyURI .
+
+hpc:hasContent a owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfoResp ;
+    rdfs:range xsd:anyURI .
+
+hpc:hasSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:JobInfoResp ;
+    rdfs:range xsd:anyURI .
+
+hpc:JobDescMsgSchema a owl:ObjectProperty ;
+    rdfs:domain hpc:JobDescMsg ;
+    rdfs:range xsd:anyURI .
+```

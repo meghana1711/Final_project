@@ -1,0 +1,31 @@
+hpc:Backtrace a owl:Class .
+hpc:hasSlurmBinary rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Backtrace ;
+    rdfs:range xsd:string .
+
+hpc:usesCoreFile rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Backtrace ;
+    rdfs:range xsd:boolean .
+
+hpc:RunningBacktrace a owl:Class ;
+    rdfs:subClassOf hpc:Backtrace .
+
+hpc:hasRunningBinary rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:RunningBacktrace ;
+    rdfs:range xsd:string .
+
+hpc:StuckBacktrace a owl:Class ;
+    rdfs:subClassOf hpc:Backtrace .
+
+hpc:hasPid rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:StuckBacktrace ;
+    rdfs:range xsd:integer .
+
+hpc:ErrorMessage a owl:Class .
+hpc:errorMessage rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:ErrorMessage ;
+    rdfs:range xsd:string .
+
+hpc:cannotResolveXPluginOperations a hpc:ErrorMessage .
+hpc:credentialReplayed a hpc:ErrorMessage .
+```

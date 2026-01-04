@@ -1,0 +1,73 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:NamedIndividual ;
+    rdf:type hpc:SlurmWorkloadManager .
+
+hpc:SelectPlugin a owl:Class .
+hpc:SelectLinearPlugin a owl:NamedIndividual ;
+    rdf:type hpc:SelectPlugin .
+hpc:SelectConsTresPlugin a owl:NamedIndividual ;
+    rdf:type hpc:SelectPlugin .
+
+hpc:TopologyPlugin a owl:Class .
+
+hpc:SelectTypeParameters a owl:DatatypeProperty ;
+    rdfs:domain hpc:SelectPlugin ;
+    rdfs:range xsd:string .
+
+hpc:ModeOfOperation a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectPlugin ;
+    rdfs:range hpc:ModeOfOperation .
+
+hpc:ModeOfOperation hpc:NodeCentric a xsd:string .
+hpc:ModeOfOperation hpc:FinerResolution a xsd:string .
+
+hpc:PerNodeDataStructures a owl:Class .
+hpc:Memory a owl:ObjectProperty ;
+    rdfs:domain hpc:PerNodeDataStructures ;
+    rdfs:range xsd:float .
+hpc:GRES a owl:ObjectProperty ;
+    rdfs:domain hpc:PerNodeDataStructures ;
+    rdfs:range rdf:List .
+hpc:AllocatedExclusive a owl:ObjectProperty ;
+    rdfs:domain hpc:PerNodeDataStructures ;
+    rdfs:range xsd:boolean .
+
+hpc:PerPartitionOverSubscribe a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectPlugin ;
+    rdfs:range rdf:List .
+
+hpc:UsableNodes a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectPlugin ;
+    rdfs:range rdf:List .
+
+hpc:NodeCounts a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectPlugin ;
+    rdfs:range rdf:List .
+
+hpc:SharableJobs a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectPlugin ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:PreemptableJobs a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectPlugin ;
+    rdfs:range rdf:List .
+
+hpc:BestNodes a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectPlugin ;
+    rdfs:range rdf:List .
+
+hpc:ResourceRequirementsSatisfied a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectPlugin ;
+    rdfs:range xsd:boolean .
+
+hpc:PreemptSimulated a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectPlugin ;
+    rdfs:range rdf:List .
+
+hpc:PreemptedJobs a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectPlugin ;
+    rdfs:range rdf:List .
+
+hpc:SuspendJob a owl:ObjectProperty ;
+    rdfs:domain hpc:SelectPlugin ;
+    r

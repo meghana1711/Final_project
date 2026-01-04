@@ -1,0 +1,47 @@
+hpc:Plugin a owl:Class .
+hpc:Plugin rdf:type owl:NamedIndividual ;
+    rdf:type hpc:HpcPlugin ;
+    hpc:performsOperationOnComputeNodes owl:ObjectProperty ;
+    hpc:usesIntelsSyscfgProgram rdf:DatatypeProperty ;
+    hpc:usesLinuxRebootProgram rdf:DatatypeProperty ;
+    hpc:modifiesMCDRAM rdf:DatatypeProperty ;
+    hpc:modifiesNUMAMode rdf:DatatypeProperty ;
+    hpc:requiresRebootProgramInSlurmConf rdf:DatatypeProperty .
+
+hpc:HpcPlugin rdf:type owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:usesIntelsSyscfgProgram rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:string .
+
+hpc:usesLinuxRebootProgram rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:string .
+
+hpc:modifiesMCDRAM rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:string .
+
+hpc:modifiesNUMAMode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:string .
+
+hpc:requiresRebootProgramInSlurmConf rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:string .
+
+hpc:knl_genericPlugin a hpc:Plugin ;
+    hpc:usesIntelsSyscfgProgram "http://example.org/hpc#/usr/bin/syscfg" ;
+    hpc:DefaultNUMA "http://example.org/hpc#a2a" ;
+    hpc:AllowNUMA "http://example.org/hpc#a2a,snc2,hemi" ;
+    hpc:DefaultMCDRAM "http://example.org/hpc#cache" .
+
+hpc:slurmConfFile a owl:Class .
+hpc:RebootProgram a owl:DatatypeProperty ;
+    rdfs:domain hpc:slurmConfFile ;
+    rdfs:range xsd:string .
+
+hpc:knl_generic_conf a hpc:slurmConfFile ;
+    hpc:RebootProgram "http://example.org/hpc/#sbin/reboot" .
+```

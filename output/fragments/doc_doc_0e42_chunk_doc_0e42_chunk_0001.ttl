@@ -1,0 +1,44 @@
+# Classes
+hpc:SlurmRESTAPIDaemon a owl:Class .
+hpc:SlurmRESTAPIMachine a owl:Class .
+hpc:SlurmCTLDMachine a owl:Class .
+hpc:DedicatedRESTAPIMachine a owl:Class .
+hpc:MultipleClusterMachine a owl:Class .
+
+# Object Properties
+hpc:hasDevelopmentLibrary a owl:ObjectProperty .
+hpc:requiresHTTPParser a owl:ObjectProperty .
+hpc:requiresLibYAML a owl:ObjectProperty .
+hpc:requiresJSONC a owl:ObjectProperty .
+hpc:usesJWTAuthentication a owl:ObjectProperty .
+hpc:requiresSlurmDBD a owl:ObjectProperty .
+hpc:hasUniqueInstance a owl:ObjectProperty .
+hpc:hasComponents a owl:ObjectProperty .
+hpc:hasPort a owl:ObjectProperty .
+hpc:runsOnMachine a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hasMinimumVersion a owl:DatatypeProperty .
+hpc:hasPortNumber a xsd:integer .
+
+# Subclass Relations
+hpc:SlurmCTLDMachine rdfs:subClassOf hpc:SlurmRESTAPIMachine .
+hpc:DedicatedRESTAPIMachine rdfs:subClassOf hpc:SlurmRESTAPIMachine .
+hpc:MultipleClusterMachine rdfs:subClassOf hpc:SlurmRESTAPIMachine .
+
+# Domain and Range
+hpc:hasDevelopmentLibrary rdfs:domain hpc:SlurmRESTAPIDaemon ;
+  rdfs:range rdf:Resource .
+hpc:requiresHTTPParser rdfs:domain hpc:SlurmRESTAPIDaemon ;
+  rdfs:range rdf:Resource .
+hpc:requiresLibYAML rdfs:domain hpc:SlurmRESTAPIDaemon ;
+  rdfs:range rdf:Resource .
+hpc:requiresJSONC rdfs:domain hpc:SlurmRESTAPIDaemon ;
+  rdfs:range rdf:Resource .
+hpc:usesJWTAuthentication rdfs:domain hpc:SlurmRESTAPIDaemon ;
+  rdfs:range rdf:Resource .
+hpc:requiresSlurmDBD rdfs:domain hpc:SlurmRESTAPIDaemon ;
+  rdfs:range rdf:Resource .
+hpc:hasUniqueInstance rdfs:domain hpc:SlurmRESTAPIDaemon ;
+  rdfs:range rdf:Literal .
+hpc:hasComponents rd

@@ -1,0 +1,12 @@
+hpc:AccountsAssociationResponse a owl:Class .
+hpc:AccountsAssociationResponseSchema a owl:Class .
+hpc:AssociationsResponse a owl:Class .
+
+hpc:hasSchema a owl:ObjectProperty .
+
+hpc:AccountsAssociationResponseSchema rdfs:subClassOf xsd:string .
+hpc:AssociationsResponse rdfs:subClassOf xsd:string .
+
+hpc:AccountsAssociationResponseSchema rdfs:domain hpc:AccountsAssociationResponse .
+hpc:hasSchema rdfs:range hpc:AccountsAssociationResponseSchema .
+```

@@ -1,0 +1,37 @@
+hpc:WCKeyRequestBody a owl:Class .
+hpc:V0_0_42_Openapi_Wckey_Resp rdf:type owl:Class ;
+    rdfs:subClassOf hpc:WCKeyRequestBody .
+
+hpc:WCKeyResponse a owl:Class .
+hpc:V0_0_42_Openapi_Resp rdf:type owl:Class ;
+    rdfs:subClassOf hpc:WCKeyResponse .
+
+hpc:ApplicationYAMLContent a owl:DatatypeProperty ;
+    rdfs:domain hpc:WCKeyRequestBody ;
+    rdfs:range xsd:anyURI .
+
+hpc:V0_0_42_Openapi_Wckey_Resp rdfs:subPropertyOf hpc:ApplicationYAMLContent .
+
+hpc:Exclusive a owl:DatatypeProperty ;
+    rdfs:domain hpc:V0_0_42_Job_Desc_Msg .
+    rdfs:range xsd:string .
+
+hpc:Oversubscribe a owl:DatatypeProperty ;
+    rdfs:domain hpc:V0_0_42_Job_Desc_Msg .
+    rdfs:range xsd:boolean .
+
+hpc:JobInfoResponse a owl:Class .
+hpc:V0_0_42_Openapi_Job_Info_Resp rdf:type owl:Class ;
+    rdfs:subClassOf hpc:JobInfoResponse .
+
+hpc:Jobs a owl:ObjectProperty ;
+    rdfs:domain hpc:V0_0_42_Openapi_Job_Info_Resp .
+    rdfs:range rdf:List .
+
+hpc:JobsItem a owl:Class ;
+    rdfs:subClassOf xsd:anyType .
+
+hpc:JobsItemExclusive a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobsItem .
+    rdfs:range xsd:string .
+```

@@ -1,0 +1,18 @@
+hpc:SlurmResponse a owl:Class .
+hpc:OpenapiPingArrayResp rdf:type hpc:SlurmResponse ;
+    rdfs:subClassOf hpc:SlurmResponse .
+
+hpc:OpenapiResp rdf:type hpc:SlurmResponse .
+
+hpc:PingArrayResp a owl:Class .
+hpc:pingArrayResp a owl:ObjectProperty ;
+    rdfs:domain hpc:OpenapiPingArrayResp ;
+    rdfs:range xsd:array .
+
+hpc:ReservationResp a owl:Class .
+hpc:reservationResp a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmResponse ;
+    rdfs:range hpc:Reservation .
+
+hpc:Reservation a owl:Class .
+```

@@ -1,0 +1,25 @@
+hpc:MCSParameters a owl:Class .
+hpc:Preemption a owl:Class .
+hpc:Job a owl:Class .
+hpc:Component a owl:Class .
+hpc:ExclusiveJob a owl:Class, rdfs:subClassOf hpc:Job .
+hpc:HeterogeneousJob a owl:Class, rdfs:subClassOf hpc:Job .
+
+hpc:hasMCSLabel a owl:ObjectProperty .
+hpc:usesPreemption a owl:ObjectProperty .
+hpc:hasPreemptMode a owl:ObjectProperty .
+hpc:hasGraceTime a owl:DatatypeProperty, rdfs:range xsd:nonNegativeInteger .
+hpc:hasUserWarningSignal a owl:DatatypeProperty, rdfs:range xsd:nonNegativeInteger .
+hpc:isEligibleForPreemption a owl:ObjectProperty .
+hpc:isPreempting a owl:ObjectProperty .
+hpc:isPreemptedBy a owl:ObjectProperty .
+hpc:hasPreemptParameters a owl:DatatypeProperty .
+
+hpc:UniversalMCS a owl:NamedIndividual, hpc:hasMCSLabel "universal" .
+hpc:EnforcedPreemption a owl:NamedIndividual, hpc:usesPreemption true .
+hpc:SelectType a owl:NamedIndividual .
+hpc:CANCEL a owl:NamedIndividual, rdfs:subClassOf hpc:PreemptMode .
+hpc:SUSPEND a owl:NamedIndividual, rdfs:subClassOf hpc:PreemptMode .
+hpc:REQUEUE a owl:NamedIndividual, rdfs:subClassOf hpc:PreemptMode .
+hpc:RECLAIM_LICENSES a owl:NamedIndividual .
+```

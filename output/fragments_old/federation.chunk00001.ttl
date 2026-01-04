@@ -1,0 +1,68 @@
+hpc:Cluster a owl:Class .
+hpc:Cluster rdf:type owl:Resource .
+
+# Federation
+hpc:Federation a owl:Class .
+hpc:Federation rdf:type owl:Resource .
+
+# Federated Job
+hpc:FederatedJob a owl:Class .
+hpc:FederatedJob rdf:type owl:Resource .
+
+# Job
+hpc:Job a owl:Class .
+hpc:Job rdf:type owl:Resource .
+
+# Job ID
+hpc:JobID a owl:DatatypeProperty .
+hpc:JobID rdfs:domain hpc:Job ;
+                        rdfs:range xsd:string .
+
+# Cluster ID
+hpc:ClusterID a owl:DatatypeProperty .
+hpc:ClusterID rdfs:domain hpc:Cluster ;
+                        rdfs:range xsd:integer .
+
+# Federated Cluster
+hpc:FederatedCluster a owl:Class .
+hpc:FederatedCluster rdf:type owl:Resource .
+
+# Origin Cluster
+hpc:OriginCluster a owl:Class .
+hpc:OriginCluster rdf:type owl:Resource .
+
+# Sibling Jobs
+hpc:SiblingJobs a owl:ObjectProperty .
+hpc:SiblingJobs rdfs:domain hpc:Job ;
+                        rdfs:range hpc:Job .
+
+# Eligible Cluster
+hpc:EligibleCluster a owl:ObjectProperty .
+hpc:EligibleCluster rdfs:domain hpc:FederatedCluster ;
+                        rdfs:range hpc:Cluster .
+
+# Viable Cluster
+hpc:ViableCluster a owl:ObjectProperty .
+hpc:ViableCluster rdfs:domain hpc:Job ;
+                        rdfs:range hpc:Cluster .
+
+# Cluster Feature
+hpc:ClusterFeature a owl:Class .
+hpc:ClusterFeature rdf:type owl:Resource .
+
+# Cluster State
+hpc:ClusterState a owl:Enum .
+hpc:ClusterState:ACTIVE "ACTIVE" ;
+                     hpc:ClusterState:INACTIVE "INACTIVE" ;
+                     hpc:ClusterState:DRAIN "DRAIN" ;
+                     hpc:ClusterState:DRAIN_REMOVE "DRAIN+REMOVE" .
+
+# Federated Job ID Components
+hpc:LocalJobID a owl:DatatypeProperty .
+hpc:LocalJobID rdfs:domain hpc:FederatedJob ;
+                        rdfs:range xsd:nonNegativeInteger .
+
+hpc:ClusterOriginID a owl:DatatypeProperty .
+hpc:ClusterOriginID rdfs:domain hpc:FederatedJob ;
+                        rdfs:range xsd:nonNegativeInteger .
+```

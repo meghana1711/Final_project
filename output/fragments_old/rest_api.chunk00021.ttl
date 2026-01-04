@@ -1,0 +1,61 @@
+hpc:Instance a owl:Class .
+
+hpc:name rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:string .
+
+hpc:instance_id rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:string .
+
+hpc:cpus rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:integer .
+
+hpc:threads rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:integer .
+
+hpc:alloc_cpus rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:integer .
+
+hpc:alloc_memory rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:integer .
+
+hpc:temporary_disk rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:integer .
+
+hpc:real_memory rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:integer .
+
+hpc:specialized_memory rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:integer .
+
+hpc:specialized_cpus rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:integer .
+
+hpc:specialized_cores rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:integer .
+
+hpc:tres_used rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range hpc:Tres .
+
+hpc:tres_weighted rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:double .
+
+hpc:gres rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range hpc:Gres .
+
+hpc:boards rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:integer .

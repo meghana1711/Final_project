@@ -1,0 +1,48 @@
+hpc:Key a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a key." .
+
+hpc:DefaultKey a owl:Class ;
+    rdfs:subClassOf hpc:Key ;
+    rdfs:comment "Default key in a system. There can only be one." .
+
+hpc:Expiration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Key ;
+    rdfs:range xsd:xsd:string ;
+    rdfs:comment "The expiration date of the key as a Unix timestamp." .
+
+hpc:SlurmJwksFile a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Slurm JWKS file." .
+
+hpc:UseClientIds a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:xsd:boolean ;
+    rdfs:comment "Allows the Slurm authentication mechanism to use client ids." .
+
+hpc:Sack a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Slurm Auth and Cred Kiosk (SACK)." .
+
+hpc:Sackd a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "SACK daemon." .
+
+hpc:RuntimeDirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sackd ;
+    rdfs:range xsd:xsd:string ;
+    rdfs:comment "Runtime directory option for sackd daemons." .
+
+hpc:SlurmAuth a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Slurm authentication mechanism." .
+
+hpc:Jwt a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "JSON Web Tokens (JWT) for authentication purposes." .
+
+hpc:AuthAltType a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jwt ;
+    rdfs:range xsd:xsd:string ;
+    rdfs:comment "Authentication mechanism for JWT." .
+```

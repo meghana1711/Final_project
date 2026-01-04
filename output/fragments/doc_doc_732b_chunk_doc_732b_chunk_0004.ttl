@@ -1,0 +1,49 @@
+hpc:PAMModule a owl:Class .
+hpc:AccountStack a owl:Class .
+hpc:AdministrativeUser a owl:Class .
+hpc:AdminGroup a owl:Class .
+hpc:PAMConfigurationFile a owl:Class .
+hpc:PAMConfigurationFileLocation a owl:ObjectProperty .
+hpc:PAMModuleOrder a owl:ObjectProperty .
+hpc:PAMModuleType a owl:DatatypeProperty .
+hpc:PAMModuleFunction a owl:DatatypeProperty .
+hpc:AllowsAccess a owl:ObjectProperty .
+hpc:AdminGroupMembership a owl:ObjectProperty .
+
+hpc:PAMModule subClassOf owl:Class .
+hpc:AccountStack subClassOf owl:Class .
+hpc:AdministrativeUser a owl:Class .
+hpc:AdminGroup a owl:Class .
+hpc:PAMConfigurationFile a owl:Class .
+hpc:PAMConfigurationFileLocation rdfs:domain hpc:PAMConfigurationFile ;
+                                   rdfs:range xsd:string .
+hpc:PAMModuleOrder rdfs:domain hpc:AccountStack ;
+                    rdfs:range rdf:List .
+hpc:PAMModuleType rdfs:domain hpc:PAMModule ;
+                   rdfs:range xsd:string .
+hpc:PAMModuleFunction rdfs:domain hpc:PAMModule ;
+                      rdfs:range xsd:string .
+hpc:AllowsAccess rdfs:domain hpc:PAMModule ;
+                 rdfs:range hpc:AdministrativeUser .
+hpc:AdminGroupMembership rdfs:domain hpc:AdministrativeUser ;
+                         rdfs:range hpc:AdminGroup .
+
+hpc:pam_slurm_adopt a hpc:PAMModule ;
+                     hpc:PAMModuleType "sufficient" ;
+                     hpc:PAMModuleFunction "allows root access" .
+hpc:pam_localuser a hpc:PAMModule ;
+                   hpc:PAMModuleType "sufficient" ;
+                   hpc:PAMModuleFunction "allows local user access" .
+hpc:pam_systemd a hpc:PAMModule ;
+                 hpc:PAMModuleType "optional" ;
+                 hpc:PAMModuleFunction "systemd session management" .
+hpc:pam_access a hpc:PAMModule ;
+                 hpc:PAMModuleType "sufficient" .
+hpc:pam_listfile a hpc:PAMModule ;
+                  hpc:PAMModuleType "sufficient" .
+
+hpc:wheel a hpc:AdminGroup .
+hpc:root a hpc:AdministrativeUser .
+hpc:allUsersFile a hpc:PAMConfigurationFile ;
+             hpc:PAMConfigurationFileLocation "/etc/security/access.conf" .
+```

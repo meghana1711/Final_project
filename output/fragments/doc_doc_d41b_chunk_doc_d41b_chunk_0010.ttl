@@ -1,0 +1,37 @@
+hpc:GrpWall a owl:Class .
+hpc:hasTimeLimit a owl:ObjectProperty ;
+    rdfs:domain hpc:GrpWall ;
+    rdfs:range xsd:float .
+
+hpc:QOS a owl:Class .
+hpc:hasMaxTimeLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOS ;
+    rdfs:range xsd:float .
+hpc:decays a owl:ObjectProperty ;
+    rdfs:domain hpc:QOS ;
+    rdfs:range xsd:float .
+hpc:hasPriorityDecayHalfLife a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOS ;
+    rdfs:range xsd:float .
+hpc:hasPriorityUsageResetPeriod a owl:DatatypeProperty ;
+    rdfs:domain hpc:QOS ;
+    rdfs:range xsd:float .
+hpc:hasNoDecay a owl:ObjectProperty ;
+    rdfs:domain hpc:QOS ;
+    rdfs:range xsd:boolean .
+
+hpc:LimitFactor a owl:Class .
+hpc:appliesTo a owl:ObjectProperty ;
+    rdfs:domain hpc:LimitFactor ;
+    rdfs:range hpc:GrpWall .
+
+hpc:MaxJobsAccruePerAccount a owl:Class .
+hpc:hasMaxJobsAccruePerAccount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:MaxJobsAccruePerUser a owl:Class .
+hpc:hasMaxJobsAccruePerUser a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:nonNegativeInteger .
+```

@@ -1,0 +1,44 @@
+hpc:MCSParameters a owl:Class .
+
+hpc:mcsPluginParameters a owl:ObjectProperty ;
+    rdfs:domain hpc:MCSParameters .
+
+hpc:mcs_plugin_parameters a owl:DatatypeProperty ;
+    rdfs:domain hpc:MCSParameters .
+
+hpc:ondemandSelect a owl:EnumValue ;
+    rdfs:label "ondemandselect" ;
+    rdfs:comment "select nodes with filter on MCS label: on demand" .
+
+hpc:enforced a owl:EnumValue ;
+    rdfs:label "enforced" ;
+    rdfs:comment "MCS label on jobs always" .
+
+hpc:noselect a owl:EnumValue ;
+    rdfs:label "noselect" ;
+    rdfs:comment "select nodes with filter on MCS label: never" .
+
+hpc:ondemand a owl:EnumValue ;
+    rdfs:label "ondemand" ;
+    rdfs:comment "MCS label on jobs on demand" .
+
+hpc:privatedata a owl:ObjectProperty ;
+    rdfs:domain hpc:MCSParameters .
+
+hpc:PrivateData a owl:Enum ;
+    rdfs:label "jobs" ;
+    rdfs:comment "Filter job information based on their MCS labels." .
+
+hpc:PrivateData a owl:Enum ;
+    rdfs:label "nodes" ;
+    rdfs:comment "Filter node information based on their MCS labels." .
+
+hpc:mcs_group a owl:ObjectProperty ;
+    rdfs:domain hpc:MCSParameters .
+
+hpc:mcs_account a owl:ObjectProperty ;
+    rdfs:domain hpc:MCSParameters .
+
+hpc:partition a owl:ObjectProperty ;
+    rdfs:domain hpc:mcs_account .
+```

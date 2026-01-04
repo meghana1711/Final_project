@@ -1,0 +1,54 @@
+hpc:FairShareFactor a owl:Class .
+hpc:hasFairShareFactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:Account a owl:Class .
+hpc:hasAllocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+
+hpc:ChildAccount a owl:Class ;
+    rdfs:subClassOf hpc:Account .
+
+hpc:ParentAccount a owl:Class .
+hpc:hasChildAccount a owl:ObjectProperty ;
+    rdfs:domain hpc:ParentAccount ;
+    rdfs:range hpc:ChildAccount .
+
+hpc:SiblingAccount a owl:Class ;
+    rdfs:subClassOf hpc:ChildAccount .
+
+hpc:hasEffectiveUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+
+hpc:hasAllocationShares a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+
+hpc:hasChildEffectiveUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:ParentAccount ;
+    rdfs:range xsd:decimal .
+
+hpc:hasSiblingEffectiveUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:ChildAccount ;
+    rdfs:range xsd:decimal .
+
+hpc:hasActualUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+
+hpc:hasChildActualUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:ParentAccount ;
+    rdfs:range xsd:decimal .
+
+hpc:hasSiblingAllocationShares a owl:DatatypeProperty ;
+    rdfs:domain hpc:ChildAccount ;
+    rdfs:range xsd:decimal .
+
+hpc:SlurmFairShareFormula a owl:Class .
+hpc:hasFormula a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmFairShareFormula ;
+    rdfs:range xsd:string .
+```

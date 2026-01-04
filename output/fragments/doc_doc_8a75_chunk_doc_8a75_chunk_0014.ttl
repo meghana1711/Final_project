@@ -1,0 +1,30 @@
+hpc:ComputeNode a owl:Class .
+hpc:Task a owl:Class .
+hpc:EnvironmentVariable a owl:Class .
+hpc:PluginFunction a owl:Class .
+hpc:SPANK a owl:Class .
+
+hpc:RunsOn rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:ComputeNode ;
+    rdfs:range hpc:Task .
+
+hpc:HasEnvironmentVariable rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:EnvironmentVariable .
+
+hpc:IsAvailableIn rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:EnvironmentVariable ;
+    rdfs:range rdfs:Class .
+
+hpc:UsesPluginFunction rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:PluginFunction .
+
+hpc:InvokedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SPANK ;
+    rdfs:range rdfs:Class .
+
+hpc:ApplicableTo rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SPANK ;
+    rdfs:range rdfs:Class .
+```

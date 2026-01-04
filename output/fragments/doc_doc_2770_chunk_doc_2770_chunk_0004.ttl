@@ -1,0 +1,23 @@
+hpc:BackfillScheduler a owl:Class .
+hpc:SchedulerParameters a owl:Class .
+
+hpc:bfContinue a owl:ObjectProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:boolean .
+
+hpc:bfInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:bfMaxJobPart a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:bfMaxJobStart a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:bfMaxJobTest a owl:DatatypeProperty ;
+    rdfs:domain hpc:BackfillScheduler ;
+    rdfs:range xsd:nonNegativeInteger .
+```

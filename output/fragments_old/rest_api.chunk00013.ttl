@@ -1,0 +1,67 @@
+hpc:Job a owl:Class .
+
+hpc:status a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:priority_by_partition a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:PartitionPriority .
+
+hpc:PartitionPriority a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:PartitionPriority rdf:type hpc:PartitionPriority ;
+    hpc:partition rdf:value ?partition ;
+    hpc:priority xsd:integer ?priority .
+
+hpc:maximum_switch_wait_time a xsd:integer .
+
+hpc:core_spec a xsd:integer .
+
+hpc:mcs_label a xsd:string .
+
+hpc:required_nodes a xsd:string .
+
+hpc:tres_bind a xsd:string .
+
+hpc:user_id a xsd:integer .
+
+hpc:selinux_context a xsd:string .
+
+hpc:exit_code a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:exit_code rdf:type hpc:ExitCode ;
+    hpc:return_code rdf:type hpc:ReturnCode ;
+    hpc:signal rdf:type hpc:Signal .
+
+hpc:ReturnCode a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf (xsd:integer rdf:type xsd:integer) .
+
+hpc:ReturnCode rdf:type hpc:ReturnCode ;
+    hpc:number xsd:integer ?number ;
+    hpc:set xsd:boolean ?set ;
+    hpc:infinite xsd:boolean ?infinite .
+
+hpc:Signal a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:Signal rdf:type hpc:Signal ;
+    hpc:name xsd:string ?name ;
+    hpc:id rdf:type hpc:Id ;
+    hpc:id rdf:value (xsd:integer ?number ; xsd:boolean ?set ; xsd:boolean ?infinite) .
+
+hpc:id a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:federation_origin a xsd:string .
+
+hpc:container_id a xsd:string .
+
+hpc:shared a xsd:string .
+
+hpc:tasks_per_board a xsd:integer .
+
+h

@@ -1,0 +1,36 @@
+hpc:MIG a owl:Class .
+hpc:AutoDetectMode rdf:type owl:ObjectProperty .
+hpc:Slurm a owl:Class .
+hpc:expects rdf:type owl:ObjectProperty .
+hpc:MIGDevice rdf:type owl:Class .
+hpc:partitioned rdf:type owl:ObjectProperty .
+hpc:dynamicPartitioning rdf:type owl:ObjectProperty .
+hpc:MIGUserGuide rdf:type owl:Class .
+
+hpc:Sharding a owl:Class .
+hpc:fences rdf:type xsd:boolean .
+hpc:homogeneousWorkflow rdf:type owl:ObjectProperty .
+hpc:maxJobsOnNode rdf:type owl:DatatypeProperty .
+hpc:slurmConfFile rdf:type owl:ObjectProperty .
+hpc:NodeName rdf:type owl:DatatypeProperty .
+hpc:Gres rdf:type owl:ObjectProperty .
+hpc:shard rdf:type owl:Class .
+hpc:count rdf:type owl:DatatypeProperty .
+
+hpc:ShardConfiguration a owl:Class .
+hpc:NoShard rdf:type owl:Class .
+hpc:Name rdf:type owl:DatatypeProperty .
+hpc:Count rdf:type owl:DatatypeProperty .
+hpc:ShardConfigurationWithFile rdf:type owl:Class .
+hpc:File rdf:type owl:DatatypeProperty .
+hpc:CountInSpecificGPU rdf:type owl:DatatypeProperty .
+hpc:ShardConfigurationWithNameAndCount rdf:type owl:Class .
+hpc:NameInSpecificGPU rdf:type owl:DatatypeProperty .
+hpc:CountInSpecificGPU rdf:type owl:DatatypeProperty .
+
+hpc:Node a owl:Class .
+hpc:maxPossibleJobs rdf:type owl:DatatypeProperty .
+hpc:shardsOnNode rdf:type owl:DatatypeProperty .
+hpc:slurmConf rdf:type owl:ObjectProperty .
+hpc:gresConf rdf:type owl:ObjectProperty .
+```

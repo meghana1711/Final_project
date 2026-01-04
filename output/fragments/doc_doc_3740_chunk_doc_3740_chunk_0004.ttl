@@ -1,0 +1,32 @@
+hpc:Job a owl:Class .
+hpc:CoreSpecializationOption hpc:CoreSpecializationOption a owl:ObjectProperty .
+hpc:ComputeNode hpc:ComputeNode a owl:Class .
+hpc:CoreCount hpc:coreCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:ComputeNode ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:CPUsCount hpc:cpusCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:ComputeNode ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:NodeCoreCount hpc:nodeCoreCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:ComputeNode ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Hyperthread hpc:hyperthread a owl:Class .
+hpc:ReservedForSystem hpc:reservedForSystem a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Hyperthread .
+hpc:AllowSpecResourcesUsage hpc:allowSpecResourcesUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+hpc:SpecializedCore hpc:specializedCore a owl:Class .
+hpc:UserControlled hpc:userControlled a owl:ObjectProperty ;
+    rdfs:domain hpc:SpecializedCore ;
+    rdfs:range xsd:boolean .
+hpc:Job rdfs:subClassOf [ a owl:Class ;
+    owl:equivalentClass (IntersectionOf (Class (Union (hpc:Job) (NegativeDataPropertyAssertion (hpc:coreSpecializationOption rdf:value 0))) ) ) ] .
+hpc:ComputeNode rdfs:subClassOf [ a owl:Class ;
+    owl:equivalentClass (IntersectionOf (Class (Union (hpc:ComputeNode) (MinCardinality (hpc:coreCount 1) (hpc:cpusCount 1))) ) ) ] .
+hpc:Job rdfs:subClassOf [ a owl:Class ;
+    owl:equivalentClass (IntersectionOf (Class (Union (hpc:Job) (MinCardinality (hpc:ReservedForSystem 0) (hpc:SpecializedCore 0))) ) ) ] .
+hpc:SpecializedCore rdfs:subClassOf [ a owl:Class ;
+    owl:equivalentClass (IntersectionOf (Class (Union (hpc:SpecializedCore) (PropertyChain (hpc:AllowSpecResourcesUsage rdf:value 1))) ) ) ] .
+```

@@ -1,0 +1,57 @@
+hpc:Job a owl:Class .
+hpc:Step a owl:Class .
+hpc:NodeGroup a owl:Class .
+hpc:TimeSeriesGroup a owl:Class .
+hpc:TotalsGroup a owl:Class .
+hpc:TaskGroup a owl:Class .
+
+hpc:hasStep rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Step .
+
+hpc:hasNodeGroup rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Step ;
+    rdfs:range hpc:NodeGroup .
+
+hpc:hasTimeSeriesGroup rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:NodeGroup ;
+    rdfs:range hpc:TimeSeriesGroup .
+
+hpc:hasTotalsGroup rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:NodeGroup ;
+    rdfs:range hpc:TotalsGroup .
+
+hpc:hasTaskGroup rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Step ;
+    rdfs:range hpc:TaskGroup .
+
+hpc:hasCollector rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:TimeSeriesGroup ;
+    rdfs:range xsd:string .
+
+hpc:hasMin rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:TotalsGroup ;
+    rdfs:range xsd:decimal .
+
+hpc:hasAvg rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:TotalsGroup ;
+    rdfs:range xsd:decimal .
+
+hpc:hasMax rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:TotalsGroup ;
+    rdfs:range xsd:decimal .
+
+hpc:hasSumTotal rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:TotalsGroup ;
+    rdfs:range xsd:decimal .
+
+hpc:executedOn rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:TaskGroup ;
+    rdfs:range hpc:NodeGroup .
+
+hpc:AcctGatherEnergyType a owl:DatatypeProperty .
+hpc:energy a owl:DatatypeProperty .
+hpc:JobAcctGatherFrequency a owl:DatatypeProperty .
+hpc:acctGatherFreq a owl:DatatypeProperty .
+hpc:EnergyIPMIFrequency a owl:DatatypeProperty .
+```

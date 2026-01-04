@@ -1,0 +1,70 @@
+hpc:SlurmWorkloadManager a owl:Class .
+hpc:SchedMD a owl:Class .
+
+hpc:Version a owl:DatatypeProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager .
+
+hpc:ReleaseNotes a owl:Class ;
+    rdfs:subClassOf hpc:Documentation .
+
+hpc:Upgrading a owl:Class ;
+    rdfs:subClassOf hpc:Using .
+
+hpc:Highlights a owl:Class .
+
+hpc:OptionalTLS a owl:Class ;
+    rdfs:subClassOf hpc:Highlights .
+hpc:supportForTLS a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:SupportForMultipleTopologies a owl:Class ;
+    rdfs:subClassOf hpc:Highlights .
+hpc:supportForDefiningTopologies a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:SupportForHierarchicalResources a owl:Class ;
+    rdfs:subClassOf hpc:Highlights .
+hpc:supportForTrackingResources a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:DynamicNodes a owl:Class ;
+    rdfs:subClassOf hpc:Highlights .
+hpc:supportForDynamicNodes a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:SupportForOROperator a owl:Class ;
+    rdfs:subClassOf hpc:Highlights .
+hpc:supportForOROperatorInLicenseRequests a owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmWorkloadManager ;
+    rdfs:range rdf:Resource .
+
+hpc:sacctmgr a owl:Class .
+hpc:supportForDumpingQOSes a owl:ObjectProperty ;
+    rdfs:domain hpc:sacctmgr ;
+    rdfs:range rdf:Resource .
+
+hpc:slurmrestd a owl:Class .
+hpc:supportForTLSEncryption a owl:ObjectProperty ;
+    rdfs:domain hpc:slurmrestd ;
+    rdfs:range rdf:Resource .
+
+hpc:srun a owl:Class .
+hpc:waitForChildren a owl:ObjectProperty ;
+    rdfs:domain hpc:srun ;
+    rdfs:range xsd:boolean .
+
+hpc:topologyBlock a owl:Class .
+hpc:permitGaps a owl:ObjectProperty ;
+    rdfs:domain hpc:topologyBlock ;
+    rdfs:range xsd:boolean .
+
+hpc:jobcompKafka a owl:Class .
+hpc:sendJobInformationAtJobStart a owl:ObjectProperty ;
+    rdfs:domain hpc:jobcompKafka ;
+    rdfs:range xsd:boolean .
+
+hpc:switchHpeSlingshot a owl:

@@ -1,0 +1,46 @@
+hpc:JobResNode a owl:Class .
+hpc:JobResNodeIndex a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobResNode ;
+    rdfs:range xsd:int32 .
+hpc:JobResNodeName a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobResNode .
+
+hpc:JobResSocket a owl:Class .
+hpc:JobResSocketIndex a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobResSocket ;
+    rdfs:range xsd:int32 .
+hpc:JobResCore a owl:Class .
+
+hpc:JobSubmitReq a owl:Class .
+hpc:JobSubmitReqScript a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobSubmitReq ;
+    rdfs:range xsd:string .
+
+hpc:JobDescMsg a owl:Class .
+
+hpc:KillJobsMsg a owl:Class .
+hpc:KillJobsMsgAccount a owl:DatatypeProperty ;
+    rdfs:domain hpc:KillJobsMsg .
+hpc:KillJobsMsgFlags a owl:DatatypeProperty ;
+    rdfs:domain hpc:KillJobsMsg ;
+    rdfs:range xsd:string .
+hpc:KillJobsMsgEnumJobName a owl:Enum ;
+    rdfs:subClassOf xsd:string .
+hpc:KillJobsMsgJobs a owl:DatatypeProperty ;
+    rdfs:domain hpc:KillJobsMsg .
+hpc:KillJobsMsgPartition a owl:DatatypeProperty ;
+    rdfs:domain hpc:KillJobsMsg .
+hpc:KillJobsMsgQOS a owl:DatatypeProperty ;
+    rdfs:domain hpc:KillJobsMsg .
+hpc:KillJobsMsgReservation a owl:DatatypeProperty ;
+    rdfs:domain hpc:KillJobsMsg .
+hpc:KillJobsMsgSignal a owl:DatatypeProperty ;
+    rdfs:domain hpc:KillJobsMsg .
+hpc:KillJobsMsgJobState a owl:DatatypeProperty ;
+    rdfs:domain hpc:KillJobsMsg ;
+    rdfs:range xsd:string .
+hpc:KillJobsMsgEnumUserId a owl:Enum ;
+    rdfs:subClassOf xsd:string .
+hpc:KillJobsMsgUserName a owl:DatatypeProperty ;
+    rdfs:domain hpc:KillJobsMsg .
+hpc:KillJobsMsgWckey a o

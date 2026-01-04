@@ -1,0 +1,49 @@
+hpc:JobInfoResp a owl:Class .
+hpc:exclusive a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfoResp ;
+    rdfs:range xsd:string .
+hpc:exclusive.deprecated rdf:true .
+hpc:exclusive.items a owl:Class ;
+    rdfs:subClassOf hpc:exclusive .
+hpc:exclusive.items.enum rdf:List ;
+    rdfs:range xsd:string .
+hpc:exclusive.items.type a rdf:Property ;
+    rdfs:domain hpc:exclusive.items ;
+    rdfs:range xsd:string .
+hpc:oversubscribe a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobInfoResp ;
+    rdfs:range xsd:boolean .
+hpc:oversubscribe.deprecated rdf:true .
+
+hpc:JobPostResponse a owl:Class .
+hpc:job_id a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobPostResponse ;
+    rdfs:range xsd:string .
+hpc:job_id.deprecated rdf:true .
+hpc:job_submit_user_msg a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobPostResponse ;
+    rdfs:range xsd:string .
+hpc:job_submit_user_msg.deprecated rdf:true .
+hpc:step_id a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobPostResponse ;
+    rdfs:range xsd:string .
+hpc:step_id.deprecated rdf:true .
+
+hpc:JobSubmitResponse a owl:Class .
+hpc:result a owl:Class .
+hpc:result.error a owl:DatatypeProperty ;
+    rdfs:domain hpc:result ;
+    rdfs:range xsd:string .
+hpc:result.error_code a owl:DatatypeProperty ;
+    rdfs:domain hpc:result ;
+    rdfs:range xsd:int .
+hpc:result.job_id a owl:DatatypeProperty ;
+    rdfs:domain hpc:result ;
+    rdfs:range xsd:int .
+hpc:result.job_submit_user_msg a owl:DatatypeProperty ;
+    rdfs:domain hpc:result ;
+    rdfs:range xsd:string .
+hpc:result.step_id a owl:DatatypeProperty ;
+    rdfs:domain hpc:result ;
+    rdfs:range xsd:string .
+hpc:result.required rdf:List .

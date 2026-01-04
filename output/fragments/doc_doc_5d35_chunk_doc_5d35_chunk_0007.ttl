@@ -1,0 +1,38 @@
+hpc:HeterogeneousJob a owl:Class .
+hpc:Component a owl:Class .
+hpc:Application a owl:Class .
+hpc:IndexValue a xsd:nonNegativeInteger .
+hpc:Range a owl:Class .
+hpc:DefaultComponent owl:equivalentClass [ rdf:type owl:Restriction ;
+                                            rdfs:onProperty hpc:component ;
+                                            rdfs:domain hpc:HeterogeneousJob ;
+                                            owl:allValuesFrom [ xsd:minInclusive "0" ] ] .
+hpc:hasComponent hpc:Component rdf:type owl:ObjectProperty .
+hpc:hasComponent rdfs:domain hpc:HeterogeneousJob .
+hpc:hasComponent rdfs:range [ rdf:type owl:Cardinality ; owl:minCardinality "1" ] .
+hpc:hasIndexValue hpc:IndexValue rdf:type owl:ObjectProperty .
+hpc:hasIndexValue rdfs:domain hpc:Component .
+hpc:hasRange hpc:Range rdf:type owl:ObjectProperty .
+hpc:hasRange rdfs:domain hpc:Component .
+hpc:commaSeparatedList rdf:type owl:Class .
+hpc:hyphenSeparatedList rdf:type owl:Class .
+hpc:SlurmClusterConfiguration a owl:Class .
+hpc:disableHetjobSteps a xsd:string .
+hpc:hasSlurmConfiguration hpc:SlurmClusterConfiguration rdf:type owl:ObjectProperty .
+hpc:hasSlurmConfiguration rdfs:domain hpc:HeterogeneousJob .
+hpc:srunCommand a owl:Class .
+hpc:label a xsd:string .
+hpc:n a xsd:nonNegativeInteger .
+hpc:hasLabel hpc:label rdf:type owl:ObjectProperty .
+hpc:hasLabel rdfs:domain hpc:srunCommand .
+hpc:hasN hpc:n rdf:type owl:ObjectProperty .
+hpc:hasN rdfs:domain hpc:Component .
+hpc:mpiCommWorld a owl:Class .
+hpc:nonOverlappingTaskIds a xsd:boolean .
+hpc:hasMpiCommWorld hpc:mpiCommWorld rdf:type owl:ObjectProperty .
+hpc:hasMpiCommWorld rdfs:domain hpc:HeterogeneousJob .
+hpc:resourceContention a owl:Class .
+hpc:memoryLimit a xsd:string .
+hpc:hasResourceContention resourceContention rdf:type owl:ObjectProperty .
+hpc:hasResourceContention rdfs:domain hpc:HeterogeneousJob .
+```

@@ -1,0 +1,50 @@
+hpc:JobDescMsg a owl:Class .
+
+hpc:flags a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescMsg ;
+    rdfs:range xsd:string ;
+    rdf:type owl:Array .
+
+hpc:flag a owl:Datatype .
+
+hpc:MAGNETIC a hpc:flag ;
+    rdf:value "MAGNETIC" .
+hpc:PARTITION_ASSIGNED a hpc:flag ;
+    rdf:value "PARTITION_ASSIGNED" .
+hpc:BACKFILL_ATTEMPTED a hpc:flag ;
+    rdf:value "BACKFILL_ATTEMPTED" .
+hpc:SCHEDULING_ATTEMPTED a hpc:flag ;
+    rdf:value "SCHEDULING_ATTEMPTED" .
+hpc:STEPMGR_ENABLED a hpc:flag ;
+    rdf:value "STEPMGR_ENABLED" .
+
+hpc:hold a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescMsg ;
+    rdfs:range xsd:boolean .
+
+hpc:kill_warning_delay a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescMsg ;
+    rdfs:range xsd:integer .
+
+hpc:kill_warning_flags a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobDescMsg ;
+    rdfs:range xsd:string ;
+    rdf:type owl:Array .
+
+hpc:kill_warning_flags_flag a owl:Datatype .
+
+hpc:BATCH_JOB a hpc:kill_warning_flags_flag ;
+    rdf:value "BATCH_JOB" .
+hpc:ARRAY_TASK a hpc:kill_warning_flags_flag ;
+    rdf:value "ARRAY_TASK" .
+hpc:FULL_STEPS_ONLY a hpc:kill_warning_flags_flag ;
+    rdf:value "FULL_STEPS_ONLY" .
+hpc:FULL_JOB a hpc:kill_warning_flags_flag ;
+    rdf:value "FULL_JOB" .
+hpc:FEDERATION_REQUEUE a hpc:kill_warning_flags_flag ;
+    rdf:value "FEDERATION_REQUEUE" .
+hpc:HURRY a hpc:kill_warning_flags_flag ;
+    rdf:value "HURRY" .
+hpc:OUT_OF_MEMORY a hpc:kill_warning_flags_flag ;
+    rdf:value "OUT_OF_MEMORY" .
+hpc:NO_SIBLING

@@ -1,0 +1,20 @@
+hpc:ReservationResponse a owl:Class .
+hpc:SharesResponse a owl:Class .
+hpc:AccountsResponse a owl:Class .
+
+hpc:hasReservationResponse a owl:ObjectProperty .
+hpc:hasSharesResponse a owl:ObjectProperty .
+hpc:hasAccountsResponse a owl:ObjectProperty .
+
+hpc:ReservationResponse rdfs:subClassOf owl:NamedIndividual .
+hpc:SharesResponse rdfs:subClassOf owl:NamedIndividual .
+hpc:AccountsResponse rdfs:subClassOf owl:NamedIndividual .
+
+hpc:ReservationResponse rdfs:domain hpc:Reservation .
+hpc:SharesResponse rdfs:domain hpc:Shares .
+hpc:AccountsResponse rdfs:domain hpc:Account .
+
+hpc:ReservationResponse rdfs:range xsd:anyURI .
+hpc:SharesResponse rdfs:range xsd:anyURI .
+hpc:AccountsResponse rdfs:range xsd:anyURI .
+```

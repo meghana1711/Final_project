@@ -1,0 +1,59 @@
+hpc:KafkaConfig a owl:Class ;
+    rdfs:subClassOf <http://www.w3.org/2000/01/rdf-schema#Resource> .
+
+hpc:bootstrapServers rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:KafkaConfig ;
+    rdfs:range xsd:string .
+
+hpc:debug rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:KafkaConfig ;
+    rdfs:range xsd:string .
+
+hpc:lingerMs rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:KafkaConfig ;
+    rdfs:range xsd:decimal .
+
+hpc:logLevel rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:KafkaConfig ;
+    rdfs:range xsd:integer .
+
+hpc:JobCompParams rdf:type owl:Class ;
+    rdfs:subClassOf hpc:KafkaConfig .
+
+hpc:flushTimeout rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:JobCompParams ;
+    rdfs:range xsd:decimal .
+
+hpc:pollInterval rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:JobCompParams ;
+    rdfs:range xsd:decimal .
+
+hpc:requeueOnMsgTimeout rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobCompParams .
+
+hpc:topic rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:KafkaConfig ;
+    rdfs:range xsd:string .
+
+hpc:DebugFlags rdf:type owl:Class ;
+    rdfs:subClassOf hpc:KafkaConfig .
+
+hpc:DebugFlag rdf:type owl:Class ;
+    rdfs:subClassOf hpc:DebugFlags .
+
+hpc:JobCompDebugFlag rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:KafkaConfig ;
+    rdfs:range rdfs:Resource .
+
+hpc:JobCompPlugin rdf:type owl:Class .
+
+hpc:functionality rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobCompPlugin ;
+    rdfs:range xsd:string .
+
+hpc:jobComp_p_record_job_end rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobCompPlugin .
+
+hpc:jobComp_p_record_job_start rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobCompPlugin .
+```
