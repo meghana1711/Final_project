@@ -33,62 +33,62 @@ In this project, the OLAF pipeline operates in multiple sequential stages:
 
 # Project Structure
 
-Final_project/
-├── data/                           # Raw input data (SLURM / IBM LSF documents)
+Final_project/  
+├── data/                           # Raw input data (SLURM / IBM LSF documents)  
 │
-├── pre_processing/                 # Text preprocessing + contextual chunking
-│   ├── __init__.py
-│   ├── data_preprocessing.py       # Cleaning, normalization, sentence handling
-│   └── contextual_chunking.py      # Context-aware chunk generation
+├── pre_processing/                 # Text preprocessing + contextual chunking  
+│   ├── __init__.py  
+│   ├── data_preprocessing.py       # Cleaning, normalization, sentence handling  
+│   └── contextual_chunking.py      # Context-aware chunk generation  
+│  
+├── pipeline/                       # End-to-end pipeline orchestration  
+│   ├── __init__.py  
+│   └── pipeline_processing.py      # Runs full OLAF / OLAF_LLM pipeline  
+│  
+├── onto_db/                        # SQLite databases (intermediate + final artifacts)  
+│   ├── concept_taxonomy.db         # Concept-level taxonomy  
+│   ├── taxonomy_parent_candidates.db  
+│   ├── term_enrichment.db  
+│   ├── olaf_sample.db              # OLAF (rule/NLP-based) outputs  
+│   ├── olaf_sample_llm.db           # OLAF_LLM outputs  
+│   ├── olaf_trial.db                # Experimental runs  
+│   ├── onto_new.db                 # Main working ontology database  
+│   └── ontology_sample_new.db      # Sample / debug ontology  
+│  
+├── olaf/                           # OLAF: Hybrid ontology learning (NLP + statistics)  
+│   ├── __init__.py  
+│   ├── term_extraction_tfidf.py    # TF-IDF / C-value based term extraction  
+│   ├── term_enrichment.py          # Enrichment using lexical resources  
+│   ├── parent_terms.py             # Parent/head term identification  
+│   ├── taxonomy_induction.py       # IS-A hierarchy construction  
+│   ├── taxonomy.py                 # Taxonomy handling utilities  
+│   ├── taxonomy_old.py             # Legacy taxonomy logic  
+│   ├── relation_HiT.py             # Hearst-in-the-wild / pattern-based relations  
+│   ├── relation_induction.py       # Non-taxonomic relation induction  
+│   ├── non_taxonomy.py             # Filtering & storage of non-taxonomic relations  
+│   ├── embeddings.py               # Embedding utilities  
+│   └── axioms.py                   # OWL axiom generation (rule-based)  
 │
-├── pipeline/                       # End-to-end pipeline orchestration
-│   ├── __init__.py
-│   └── pipeline_processing.py      # Runs full OLAF / OLAF_LLM pipeline
-│
-├── onto_db/                        # SQLite databases (intermediate + final artifacts)
-│   ├── concept_taxonomy.db         # Concept-level taxonomy
-│   ├── taxonomy_parent_candidates.db
-│   ├── term_enrichment.db
-│   ├── olaf_sample.db              # OLAF (rule/NLP-based) outputs
-│   ├── olaf_sample_llm.db           # OLAF_LLM outputs
-│   ├── olaf_trial.db                # Experimental runs
-│   ├── onto_new.db                 # Main working ontology database
-│   └── ontology_sample_new.db      # Sample / debug ontology
-│
-├── olaf/                           # OLAF: Hybrid ontology learning (NLP + statistics)
-│   ├── __init__.py
-│   ├── term_extraction_tfidf.py    # TF-IDF / C-value based term extraction
-│   ├── term_enrichment.py          # Enrichment using lexical resources
-│   ├── parent_terms.py             # Parent/head term identification
-│   ├── taxonomy_induction.py       # IS-A hierarchy construction
-│   ├── taxonomy.py                 # Taxonomy handling utilities
-│   ├── taxonomy_old.py             # Legacy taxonomy logic
-│   ├── relation_HiT.py             # Hearst-in-the-wild / pattern-based relations
-│   ├── relation_induction.py       # Non-taxonomic relation induction
-│   ├── non_taxonomy.py             # Filtering & storage of non-taxonomic relations
-│   ├── embeddings.py               # Embedding utilities
-│   └── axioms.py                   # OWL axiom generation (rule-based)
-│
-├── olaf_llm/                       # OLAF_LLM: LLM-assisted ontology learning
-│   ├── __init__.py
-│   ├── term_extraction_llm.py      # LLM-based term extraction
-│   ├── term_enrichment_llm.py      # LLM-based enrichment
-│   ├── taxonomy_llm.py             # LLM-driven taxonomy induction
-│   ├── non_taxonomy_llm.py         # LLM-based non-taxonomic relations
-│   └── axioms_llm.py               # LLM-generated OWL axioms
-│
-├── competency_question/            # Competency Questions (CQs)
-│   ├── __init__.py
-│   └── competency_question.py      # Documents grounded RAG based CQ generation
-│
-├── text2owl/                       # Text2OWL-style OWL serialization
-│   ├── __init__.py
-│   ├── text2owl.py                 # Converts extracted knowledge → OWL
-│   └── owl1.ttl                    # Generated OWL/Turtle output
-│
-└── README.md
+├── olaf_llm/                       # OLAF_LLM: LLM-assisted ontology learning  
+│   ├── __init__.py  
+│   ├── term_extraction_llm.py      # LLM-based term extraction  
+│   ├── term_enrichment_llm.py      # LLM-based enrichment  
+│   ├── taxonomy_llm.py             # LLM-driven taxonomy induction  
+│   ├── non_taxonomy_llm.py         # LLM-based non-taxonomic relations  
+│   └── axioms_llm.py               # LLM-generated OWL axioms  
+│  
+├── competency_question/            # Competency Questions (CQs)  
+│   ├── __init__.py  
+│   └── competency_question.py      # Documents grounded RAG based CQ generation  
+│  
+├── text2owl/                       # Text2OWL-style OWL serialization  
+│   ├── __init__.py  
+│   ├── text2owl.py                 # Converts extracted knowledge → OWL   
+│   └── owl1.ttl                    # Generated OWL/Turtle output  
+│  
+└── README.md  
 
-# Installation
+# Installation  
 git clone https://github.com/meghana1711/Final_project.git   
 cd Final_project  
 python -m venv venv  
