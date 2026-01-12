@@ -9,6 +9,9 @@ from typing import List, Dict, Any, Optional
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
+# NEW: spaCy for lemmatisation
+import spacy
+
 
 # -----------------------------------------------------------------------------
 # Config
@@ -292,7 +295,6 @@ FEW_SHOT_EXAMPLES = [
 ]
 
 
-
 # -----------------------------------------------------------------------------
 # DB helpers
 # -----------------------------------------------------------------------------
@@ -316,24 +318,84 @@ def init_llm_terms_table(conn: sqlite3.Connection) -> None:
     conn.commit()
 
 
+# -----------------------------------------------------------------------------
+# Lemmatization + dedup (NEW)
+# -----------------------------------------------------------------------------
+
+_SPACY_NLP = None
+
+
+def get_spacy_nlp():
+    """
+    Lazy-load spaCy model for lemmatisation so we don't pay load cost
+    if we only do extraction.
+    """
+    global _SPACY_NLP
+    if _SPACY_NLP is None:
+        # Use a small English model; adjust name if you use a different one
+        _SPACY_NLP = spacy.load("en_core_web_sm", disable=["parser", "ner", "textcat"])
+        _SPACY_NLP.max_length = 2_000_000
+    return _SPACY_NLP
+
+
+def lemmatize_term(term: str) -> str:
+    """
+    Plain lemmatisation of a term:
+    - pass the full term to spaCy,
+    - take tok.lemma_ for each token,
+    - join with spaces.
+
+    This is ONLY lemmatisation (no custom canonicalisation rules).
+    """
+    term = (term or "").strip()
+    if not term:
+        return ""
+
+    nlp = get_spacy_nlp()
+    doc = nlp(term)
+    lemmas = [tok.lemma_ for tok in doc]
+    lemma_term = " ".join(lemmas).strip()
+    return lemma_term
+
+
 def dedupe_llm_terms(conn: sqlite3.Connection) -> None:
     """
-    Build/update a deduplicated view of terms in llm_terms.
+    Build/update a lemmatised, deduplicated view of terms in llm_terms.
 
-    Creates/overwrites llm_terms_unique with:
-      - one row per unique term
-      - example_doc_id, example_chunk_id
-      - freq_total  = total occurrences across llm_terms
-      - doc_count   = in how many distinct docs the term appears
+    Flow:
+      - read all (term_id, doc_id, chunk_id, term) from llm_terms
+      - lemmatise each term string -> lemma
+      - aggregate per lemma:
+          * example_term_id, example_term, example_doc_id, example_chunk_id
+          * freq_total       = number of occurrences across llm_terms
+          * doc_count        = number of distinct doc_id values
+
+    Results are stored in llm_terms_unique:
+
+        lemma             TEXT PRIMARY KEY
+        example_term_id   INTEGER
+        example_term      TEXT
+        example_doc_id    TEXT
+        example_chunk_id  TEXT
+        freq_total        INTEGER
+        doc_count         INTEGER
+
+    NOTE:
+      - We DO NOT modify llm_terms; term_ids remain for all original rows.
+      - llm_terms_unique is rebuilt from scratch each time this is called.
     """
-    print("Building llm_terms_unique from llm_terms...")
+    print("Building lemmatised llm_terms_unique from llm_terms...")
     init_llm_terms_table(conn)
 
     cur = conn.cursor()
+
+    # Create / overwrite the lemma-level dedupe table
     cur.execute(
         """
         CREATE TABLE IF NOT EXISTS llm_terms_unique (
-            term              TEXT PRIMARY KEY,
+            lemma             TEXT PRIMARY KEY,
+            example_term_id   INTEGER,
+            example_term      TEXT,
             example_doc_id    TEXT,
             example_chunk_id  TEXT,
             freq_total        INTEGER,
@@ -341,24 +403,68 @@ def dedupe_llm_terms(conn: sqlite3.Connection) -> None:
         )
         """
     )
-    # Clear previous contents so we rebuild from scratch
-    #cur.execute("DELETE FROM llm_terms_unique")
-
-    cur.execute(
-        """
-        INSERT INTO llm_terms_unique (term, example_doc_id, example_chunk_id, freq_total, doc_count)
-        SELECT
-            term,
-            MIN(doc_id)  AS example_doc_id,
-            MIN(chunk_id) AS example_chunk_id,
-            COUNT(*)     AS freq_total,
-            COUNT(DISTINCT doc_id) AS doc_count
-        FROM llm_terms
-        GROUP BY term
-        """
-    )
+    # Rebuild from scratch
+    cur.execute("DELETE FROM llm_terms_unique")
     conn.commit()
-    print("Deduplication complete: llm_terms_unique rebuilt.")
+
+    # Fetch all terms
+    cur.execute("SELECT term_id, doc_id, chunk_id, term FROM llm_terms")
+    rows = cur.fetchall()
+    print(f"  -> {len(rows)} rows read from llm_terms")
+
+    # Aggregate in Python
+    agg: Dict[str, Dict[str, Any]] = {}  # lemma -> stats
+
+    for term_id, doc_id, chunk_id, term in rows:
+        lemma = lemmatize_term(term)
+        if not lemma:
+            continue
+
+        entry = agg.get(lemma)
+        if entry is None:
+            entry = {
+                "example_term_id": term_id,
+                "example_term": term,
+                "example_doc_id": doc_id,
+                "example_chunk_id": chunk_id,
+                "freq_total": 0,
+                "doc_ids": set(),  # distinct doc_ids
+            }
+            agg[lemma] = entry
+
+        entry["freq_total"] += 1
+        entry["doc_ids"].add(doc_id)
+
+    print(f"  -> aggregated into {len(agg)} lemma terms")
+
+    # Insert aggregated rows
+    for lemma, data in agg.items():
+        cur.execute(
+            """
+            INSERT INTO llm_terms_unique (
+                lemma,
+                example_term_id,
+                example_term,
+                example_doc_id,
+                example_chunk_id,
+                freq_total,
+                doc_count
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                lemma,
+                data["example_term_id"],
+                data["example_term"],
+                data["example_doc_id"],
+                data["example_chunk_id"],
+                data["freq_total"],
+                len(data["doc_ids"]),
+            ),
+        )
+
+    conn.commit()
+    print("Lemmatization + deduplication complete: llm_terms_unique rebuilt.")
 
 
 # -----------------------------------------------------------------------------
@@ -395,17 +501,12 @@ def build_zero_shot_prompt(text: str, max_terms: int = MAX_TERMS_PER_CHUNK) -> s
     """
     Simple instruction prompt: no examples, just schema + rules.
     """
+    # For zero-shot we don't need examples_str, just instructions
     user_instructions = (
-        "You will see examples of HPC documentation and the JSON terms extracted from them.\n"
-        "Notice that the extracted terms are STABLE scheduler/configuration concepts, not raw numbers,\n"
-        "example durations, or generic phrases like '100 jobs' or '0.5 seconds'.\n"
-        "Follow the same behaviour for the NEW text.\n\n"
-        f"{examples_str}"
-        f"Now process ONLY the following NEW text.\n"
-        f"Extract up to {max_terms} important HPC domain terms.\n"
-        "Return ONLY one JSON object of the form:\n"
-        '{ \"terms\": [\"term1\", \"term2\", \"term3\", ...] }\n'
-        "Do NOT include pure numeric examples, time durations, or generic words as terms.\n\n"
+        "Read the following HPC scheduler documentation chunk and extract important DOMAIN TERMS.\n"
+        "Follow the rules in the system prompt and output ONLY JSON of the form:\n"
+        '{ "terms": ["term1", "term2", "term3", ...] }.\n\n'
+        f"Extract up to {max_terms} terms.\n\n"
         f"Text:\n{text}\n"
     )
 
@@ -527,7 +628,6 @@ def _clean_term(term: str, seen: set[str]) -> Optional[str]:
     seen.add(key)
 
     return term
-
 
 
 def parse_terms(raw_output: str) -> List[str]:
@@ -745,7 +845,7 @@ def process_chunks(
 
 
 # -----------------------------------------------------------------------------
-# Entry point with debug + partial processing + dedupe
+# Entry point with debug + partial processing + lemmatize+dedupe
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
@@ -774,19 +874,19 @@ if __name__ == "__main__":
     parser.add_argument(
         "--dedupe-only",
         action="store_true",
-        help="Do not run LLM; just build/update llm_terms_unique from existing llm_terms.",
+        help="Do not run LLM; just lemmatise + build/update llm_terms_unique from existing llm_terms.",
     )
     parser.add_argument(
         "--dedupe-after",
         action="store_true",
-        help="After processing chunks, build/update llm_terms_unique with unique terms.",
+        help="After processing chunks, lemmatise + build/update llm_terms_unique.",
     )
     args = parser.parse_args()
 
     conn = sqlite3.connect(DB_PATH)
     try:
         if args.dedupe_only:
-            # No GPU needed for dedupe-only mode
+            # No GPU needed for lemma+dedupe-only mode
             dedupe_llm_terms(conn)
         else:
             tokenizer, model, device = load_mistral()

@@ -1,0 +1,8313 @@
+{
+  "min_support": 10,
+  "min_purity": 0.75,
+  "accepted_count": 0,
+  "candidate_count": 205,
+  "axioms": [
+    {
+      "property": "accept",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "database",
+          "accept",
+          "communication"
+        ],
+        [
+          "slurmdbd",
+          "accept",
+          "communication"
+        ],
+        [
+          "command option",
+          "accept",
+          "option"
+        ],
+        [
+          "cluster",
+          "accept",
+          "job"
+        ],
+        [
+          "cluster",
+          "accept",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "add",
+      "domain": null,
+      "range": null,
+      "support": 18,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.5058,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurmctld",
+          "add",
+          "cluster"
+        ],
+        [
+          "user",
+          "add",
+          "privilege"
+        ],
+        [
+          "slurm",
+          "add",
+          "space"
+        ],
+        [
+          "option",
+          "add",
+          "return"
+        ],
+        [
+          "slurm",
+          "add",
+          "character"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "add from",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "node",
+          "add from",
+          "cloud"
+        ],
+        [
+          "setting",
+          "add from",
+          "job"
+        ],
+        [
+          "setting",
+          "add from",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "add in",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "add in",
+          "case"
+        ],
+        [
+          "data",
+          "add in",
+          "future"
+        ],
+        [
+          "hierarchical resource",
+          "add in",
+          "slurm"
+        ],
+        [
+          "hierarchical resource",
+          "add in",
+          "state"
+        ],
+        [
+          "module",
+          "add in",
+          "directory"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "add to",
+      "domain": null,
+      "range": null,
+      "support": 16,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4961,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "cluster",
+          "add to",
+          "database"
+        ],
+        [
+          "cluster",
+          "add to",
+          "external slurmdbd"
+        ],
+        [
+          "slurmctld",
+          "add to",
+          "database"
+        ],
+        [
+          "option",
+          "add to",
+          "line"
+        ],
+        [
+          "job",
+          "add to",
+          "bitmap"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "adopt into",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "connection",
+          "adopt into",
+          "step"
+        ],
+        [
+          "session",
+          "adopt into",
+          "job"
+        ],
+        [
+          "process",
+          "adopt into",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "affect",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "parameter",
+          "affect",
+          "selection"
+        ],
+        [
+          "parameter",
+          "affect",
+          "allocation"
+        ],
+        [
+          "option",
+          "affect",
+          "number"
+        ],
+        [
+          "slurm upgrade",
+          "affect",
+          "installation"
+        ],
+        [
+          "slurm.conf parameter",
+          "affect",
+          "daemon"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "allocate",
+      "domain": null,
+      "range": null,
+      "support": 49,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.5898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job",
+          "allocate",
+          "large number"
+        ],
+        [
+          "user",
+          "allocate",
+          "share"
+        ],
+        [
+          "slurm",
+          "allocate",
+          "node"
+        ],
+        [
+          "slurm",
+          "allocate",
+          "cpu resource"
+        ],
+        [
+          "slurm",
+          "allocate",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "allocate as",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "gpu",
+          "allocate as",
+          "resource"
+        ],
+        [
+          "gpu",
+          "allocate as",
+          "resource"
+        ],
+        [
+          "gpu",
+          "allocate as",
+          "resource"
+        ],
+        [
+          "gpu",
+          "allocate as",
+          "resource"
+        ],
+        [
+          "gpu",
+          "allocate as",
+          "resource"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "allocate at",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "resource",
+          "allocate at",
+          "level"
+        ],
+        [
+          "gre",
+          "allocate at",
+          "time"
+        ],
+        [
+          "maximum number",
+          "allocate at",
+          "time"
+        ],
+        [
+          "maximum number",
+          "allocate at",
+          "time"
+        ],
+        [
+          "user",
+          "allocate at",
+          "time"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "allocate from",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "individual socket",
+          "allocate from",
+          "node"
+        ],
+        [
+          "individual socket",
+          "allocate from",
+          "node"
+        ],
+        [
+          "slurm",
+          "allocate from",
+          "node"
+        ],
+        [
+          "slurm",
+          "allocate from",
+          "node"
+        ],
+        [
+          "slurm",
+          "allocate from",
+          "socket"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "allocate in",
+      "domain": null,
+      "range": null,
+      "support": 7,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4306,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "node",
+          "allocate in",
+          "exclusive mode"
+        ],
+        [
+          "job",
+          "allocate in",
+          "partition"
+        ],
+        [
+          "job",
+          "allocate in",
+          "partition"
+        ],
+        [
+          "gpu",
+          "allocate in",
+          "word"
+        ],
+        [
+          "gpu",
+          "allocate in",
+          "word"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "allocate on",
+      "domain": null,
+      "range": null,
+      "support": 11,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4658,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job",
+          "allocate on",
+          "node"
+        ],
+        [
+          "cpu",
+          "allocate on",
+          "node"
+        ],
+        [
+          "slurm",
+          "allocate on",
+          "socket"
+        ],
+        [
+          "slurm",
+          "allocate on",
+          "socket"
+        ],
+        [
+          "slurm",
+          "allocate on",
+          "socket"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "allocate to",
+      "domain": null,
+      "range": null,
+      "support": 27,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.5394,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "resource",
+          "allocate to",
+          "account"
+        ],
+        [
+          "slurm",
+          "allocate to",
+          "job"
+        ],
+        [
+          "node",
+          "allocate to",
+          "job"
+        ],
+        [
+          "node",
+          "allocate to",
+          "job"
+        ],
+        [
+          "core",
+          "allocate to",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "allow",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "option",
+          "allow",
+          "job"
+        ],
+        [
+          "pam_slurm_adopt",
+          "allow",
+          "access"
+        ],
+        [
+          "success",
+          "allow",
+          "onerr"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "apply to",
+      "domain": null,
+      "range": null,
+      "support": 10,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4583,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "section",
+          "apply to",
+          "datawarp plugin"
+        ],
+        [
+          "patch",
+          "apply to",
+          "source code"
+        ],
+        [
+          "number",
+          "apply to",
+          "component"
+        ],
+        [
+          "request",
+          "apply to",
+          "component"
+        ],
+        [
+          "number",
+          "apply to",
+          "component"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "assign",
+      "domain": null,
+      "range": null,
+      "support": 15,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4908,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "partition",
+          "assign",
+          "set"
+        ],
+        [
+          "partition",
+          "assign",
+          "set"
+        ],
+        [
+          "partition",
+          "assign",
+          "set"
+        ],
+        [
+          "partition",
+          "assign",
+          "set"
+        ],
+        [
+          "job",
+          "assign",
+          "priority"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "assign to",
+      "domain": null,
+      "range": null,
+      "support": 9,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.45,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "node",
+          "assign to",
+          "partition"
+        ],
+        [
+          "gpu device",
+          "assign to",
+          "file"
+        ],
+        [
+          "cluster",
+          "assign to",
+          "job"
+        ],
+        [
+          "qos",
+          "assign to",
+          "job"
+        ],
+        [
+          "multifactor plugin",
+          "assign to",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "associate with",
+      "domain": null,
+      "range": null,
+      "support": 7,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4306,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "gre",
+          "associate with",
+          "slurm node"
+        ],
+        [
+          "gre",
+          "associate with",
+          "node"
+        ],
+        [
+          "buffer",
+          "associate with",
+          "component"
+        ],
+        [
+          "feature",
+          "associate with",
+          "resource"
+        ],
+        [
+          "job",
+          "associate with",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "base on",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "file",
+          "base on",
+          "assignment"
+        ],
+        [
+          "module",
+          "base on",
+          "step"
+        ],
+        [
+          "factor",
+          "base on",
+          "usage ratio"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "base upon",
+      "domain": null,
+      "range": null,
+      "support": 8,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4408,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "choice",
+          "base upon",
+          "scenario"
+        ],
+        [
+          "index",
+          "base upon",
+          "allocation"
+        ],
+        [
+          "library",
+          "base upon",
+          "environment variable"
+        ],
+        [
+          "interpretation",
+          "base upon",
+          "high exit code"
+        ],
+        [
+          "preempt",
+          "base upon",
+          "partition prioritytier"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "be",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "installation",
+          "be",
+          "step"
+        ],
+        [
+          "configuration",
+          "be",
+          "parameter"
+        ],
+        [
+          "configuration",
+          "be",
+          "parameter"
+        ],
+        [
+          "configuration",
+          "be",
+          "selecttype"
+        ],
+        [
+          "authenticating proxy",
+          "be",
+          "array"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "bind",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "bind",
+          "task"
+        ],
+        [
+          "slurm",
+          "bind",
+          "task"
+        ],
+        [
+          "slurm",
+          "bind",
+          "task"
+        ],
+        [
+          "flag",
+          "bind",
+          "enum"
+        ],
+        [
+          "flag",
+          "bind",
+          "range"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "bind to",
+      "domain": null,
+      "range": null,
+      "support": 7,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4306,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "task",
+          "bind to",
+          "cpu"
+        ],
+        [
+          "task ids",
+          "bind to",
+          "cpu ids"
+        ],
+        [
+          "slurm",
+          "bind to",
+          "cpu"
+        ],
+        [
+          "slurm",
+          "bind to",
+          "cpu"
+        ],
+        [
+          "task",
+          "bind to",
+          "cpu"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "build",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "command",
+          "build",
+          "structure"
+        ],
+        [
+          "slurm.spec",
+          "build",
+          "rpm"
+        ],
+        [
+          "program",
+          "build",
+          "makefile.in file"
+        ],
+        [
+          "scheduling logic",
+          "build",
+          "list"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "calculate as",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "billable tre",
+          "calculate as",
+          "sum"
+        ],
+        [
+          "tre",
+          "calculate as",
+          "cpu"
+        ],
+        [
+          "billing",
+          "calculate as",
+          "sum"
+        ],
+        [
+          "billable tre",
+          "calculate as",
+          "max"
+        ],
+        [
+          "billable tre",
+          "calculate as",
+          "max"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "call",
+      "domain": null,
+      "range": null,
+      "support": 7,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4306,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm burst buffer plugin",
+          "call",
+          "script"
+        ],
+        [
+          "dw_wlm_cli",
+          "call",
+          "script"
+        ],
+        [
+          "plugin",
+          "call",
+          "script"
+        ],
+        [
+          "lua plugin",
+          "call",
+          "single script"
+        ],
+        [
+          "slurmctld",
+          "call",
+          "burst_buffer.lua"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "cause",
+      "domain": null,
+      "range": null,
+      "support": 8,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4408,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job",
+          "cause",
+          "oom"
+        ],
+        [
+          "count",
+          "cause",
+          "contention"
+        ],
+        [
+          "thread",
+          "cause",
+          "contention"
+        ],
+        [
+          "module",
+          "cause",
+          "behavior"
+        ],
+        [
+          "argument",
+          "cause",
+          "job failure"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "change",
+      "domain": null,
+      "range": null,
+      "support": 8,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4408,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job",
+          "change",
+          "state"
+        ],
+        [
+          "job",
+          "change",
+          "size"
+        ],
+        [
+          "update",
+          "change",
+          "time limit"
+        ],
+        [
+          "account",
+          "change",
+          "time limit"
+        ],
+        [
+          "node",
+          "change",
+          "mode"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "change with",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "directory",
+          "change with",
+          "option"
+        ],
+        [
+          "port",
+          "change with",
+          "slurmctldport slurm.conf parameter"
+        ],
+        [
+          "port",
+          "change with",
+          "dbdport slurmdbd.conf parameter"
+        ],
+        [
+          "port",
+          "change with",
+          "storageport slurmdbd.conf parameter"
+        ],
+        [
+          "port",
+          "change with",
+          "slurmdport slurm.conf parameter"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "charge for",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job",
+          "charge for",
+          "cpu"
+        ],
+        [
+          "job",
+          "charge for",
+          "resource"
+        ],
+        [
+          "accounting",
+          "charge for",
+          "resource allocation"
+        ],
+        [
+          "job",
+          "charge for",
+          "resource allocation"
+        ],
+        [
+          "job",
+          "charge for",
+          "minute"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "communicate with",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm controller",
+          "communicate with",
+          "archive slurmdbd"
+        ],
+        [
+          "slurmctld",
+          "communicate with",
+          "slurmd"
+        ],
+        [
+          "cluster",
+          "communicate with",
+          "slurmdbd"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "compare with",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "gang scheduler",
+          "compare with",
+          "resource"
+        ],
+        [
+          "job",
+          "compare with",
+          "bitmap"
+        ],
+        [
+          "amount",
+          "compare with",
+          "total amount"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "compile with",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "code",
+          "compile with",
+          "flag"
+        ],
+        [
+          "slurm",
+          "compile with",
+          "library"
+        ],
+        [
+          "mpich",
+          "compile with",
+          "slurm support"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "configure",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "configure",
+          "environment variable"
+        ],
+        [
+          "slurm",
+          "configure",
+          "environment variable"
+        ],
+        [
+          "podman",
+          "configure",
+          "info"
+        ],
+        [
+          "system administrator",
+          "configure",
+          "cr_cpu"
+        ],
+        [
+          "gre",
+          "configure",
+          "count"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "configure as",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "node",
+          "configure as",
+          "primary controller"
+        ],
+        [
+          "module",
+          "configure as",
+          "default"
+        ],
+        [
+          "jwk",
+          "configure as",
+          "mechanism"
+        ],
+        [
+          "user",
+          "configure as",
+          "slurmuser"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "configure in",
+      "domain": null,
+      "range": null,
+      "support": 12,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4728,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "fail",
+          "configure in",
+          "burst_buffer.conf"
+        ],
+        [
+          "node",
+          "configure in",
+          "partition"
+        ],
+        [
+          "resource",
+          "configure in",
+          "slurm.conf"
+        ],
+        [
+          "count",
+          "configure in",
+          "addition"
+        ],
+        [
+          "parameter",
+          "configure in",
+          "slurm.conf"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "configure on",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "oci.conf",
+          "configure on",
+          "execution node"
+        ],
+        [
+          "resource",
+          "configure on",
+          "line"
+        ],
+        [
+          "binding",
+          "configure on",
+          "basi"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "configure to",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "taskplugin",
+          "configure to",
+          "affinity"
+        ],
+        [
+          "openmpi",
+          "configure to",
+          "library"
+        ],
+        [
+          "preemptmode",
+          "configure to",
+          "cancel"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "configure with",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "oversubscribe",
+          "configure with",
+          "consumable resource plugin"
+        ],
+        [
+          "slurm",
+          "configure with",
+          "plugin"
+        ],
+        [
+          "node",
+          "configure with",
+          "hyperthreading"
+        ],
+        [
+          "plugin",
+          "configure with",
+          "option"
+        ],
+        [
+          "node",
+          "configure with",
+          "file"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "consider",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "knowledge",
+          "consider",
+          "prerequisite"
+        ],
+        [
+          "knowledge",
+          "consider",
+          "prerequisite"
+        ],
+        [
+          "scheduler",
+          "consider",
+          "job priority"
+        ],
+        [
+          "text",
+          "consider",
+          "comment"
+        ],
+        [
+          "partition",
+          "consider",
+          "queue"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "consider for",
+      "domain": null,
+      "range": null,
+      "support": 8,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4408,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "change",
+          "consider for",
+          "inclusion"
+        ],
+        [
+          "bug fix",
+          "consider for",
+          "inclusion"
+        ],
+        [
+          "job",
+          "consider for",
+          "backfill scheduling"
+        ],
+        [
+          "component",
+          "consider for",
+          "scheduling"
+        ],
+        [
+          "version",
+          "consider for",
+          "spank plugin"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "consist of",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "response",
+          "consist of",
+          "array"
+        ],
+        [
+          "architecture",
+          "consist of",
+          "slurmd daemon"
+        ],
+        [
+          "slurm",
+          "consist of",
+          "slurmd daemon"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "constrain to",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurmstepd",
+          "constrain to",
+          "resource"
+        ],
+        [
+          "daemon",
+          "constrain to",
+          "resource"
+        ],
+        [
+          "job",
+          "constrain to",
+          "option"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "consume",
+      "domain": null,
+      "range": null,
+      "support": 7,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4306,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurmstepd",
+          "consume",
+          "memory"
+        ],
+        [
+          "job",
+          "consume",
+          "share"
+        ],
+        [
+          "job",
+          "consume",
+          "resource"
+        ],
+        [
+          "node",
+          "consume",
+          "resource"
+        ],
+        [
+          "step",
+          "consume",
+          "resource"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "contain",
+      "domain": null,
+      "range": null,
+      "support": 26,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.5363,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "option",
+          "contain",
+          "list"
+        ],
+        [
+          "document",
+          "contain",
+          "slurm administrator information"
+        ],
+        [
+          "version",
+          "contain",
+          "support"
+        ],
+        [
+          "filename",
+          "contain",
+          "collection"
+        ],
+        [
+          "association tree",
+          "contain",
+          "usera"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "contain in",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "expression",
+          "contain in",
+          "list"
+        ],
+        [
+          "variable",
+          "contain in",
+          "addition"
+        ],
+        [
+          "job record",
+          "contain in",
+          "addition"
+        ],
+        [
+          "extern step",
+          "contain in",
+          "slurm.conf"
+        ],
+        [
+          "step",
+          "contain in",
+          "slurm.conf"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "control",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "parameter",
+          "control",
+          "fanout"
+        ],
+        [
+          "distribution",
+          "control",
+          "sequence"
+        ],
+        [
+          "option",
+          "control",
+          "size"
+        ],
+        [
+          "option",
+          "control",
+          "ability"
+        ],
+        [
+          "flag",
+          "control",
+          "action"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "copy from",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm cluster configuration",
+          "copy from",
+          "cluster"
+        ],
+        [
+          "slurm cluster configuration",
+          "copy from",
+          "cluster"
+        ],
+        [
+          "information",
+          "copy from",
+          "configuration"
+        ],
+        [
+          "information",
+          "copy from",
+          "configuration"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "create",
+      "domain": null,
+      "range": null,
+      "support": 48,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.588,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "create",
+          "database table"
+        ],
+        [
+          "slurm",
+          "create",
+          "database"
+        ],
+        [
+          "mysql",
+          "create",
+          "user"
+        ],
+        [
+          "mysql",
+          "create",
+          "database slurm_acct_db"
+        ],
+        [
+          "scontrol",
+          "create",
+          "reservation starttime"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "define",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "scheduling",
+          "define",
+          "mechanism"
+        ],
+        [
+          "slurmctldport",
+          "define",
+          "location"
+        ],
+        [
+          "scheduling",
+          "define",
+          "mechanism"
+        ],
+        [
+          "container",
+          "define",
+          "path"
+        ],
+        [
+          "file",
+          "define",
+          "parameter"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "define in",
+      "domain": null,
+      "range": null,
+      "support": 11,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4658,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "location",
+          "define in",
+          "burst_buffer.conf"
+        ],
+        [
+          "location",
+          "define in",
+          "burst_buffer.conf"
+        ],
+        [
+          "option",
+          "define in",
+          "struct slurm_opt_t"
+        ],
+        [
+          "resource",
+          "define in",
+          "configuration"
+        ],
+        [
+          "resource",
+          "define in",
+          "resources.yaml file"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "delete",
+      "domain": null,
+      "range": null,
+      "support": 8,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4408,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "add",
+          "delete",
+          "flag"
+        ],
+        [
+          "include",
+          "delete",
+          "cluster default"
+        ],
+        [
+          "include",
+          "delete",
+          "cluster default"
+        ],
+        [
+          "include",
+          "delete",
+          "qos"
+        ],
+        [
+          "include",
+          "delete",
+          "wckey default"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "depend on",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "type",
+          "depend on",
+          "plugin"
+        ],
+        [
+          "factor",
+          "depend on",
+          "usage"
+        ],
+        [
+          "package",
+          "depend on",
+          "slurm package"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "describe",
+      "domain": null,
+      "range": null,
+      "support": 7,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4306,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "document",
+          "describe",
+          "slurm"
+        ],
+        [
+          "parameter",
+          "describe",
+          "configuration"
+        ],
+        [
+          "parameter",
+          "describe",
+          "configuration"
+        ],
+        [
+          "table",
+          "describe",
+          "functionality"
+        ],
+        [
+          "document",
+          "describe",
+          "slurm job submit plugin"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "describe in",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "enforcement",
+          "describe in",
+          "page"
+        ],
+        [
+          "note",
+          "describe in",
+          "slurm.conf"
+        ],
+        [
+          "process",
+          "describe in",
+          "file"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "determine",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "configuration parameter",
+          "determine",
+          "interval"
+        ],
+        [
+          "order",
+          "determine",
+          "sequence"
+        ],
+        [
+          "qos",
+          "determine",
+          "job preemption"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "disable",
+      "domain": null,
+      "range": "filtering",
+      "support": 2,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 1.0,
+      "confidence": 0.3454,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "warning",
+          "disable",
+          "filtering"
+        ],
+        [
+          "privatedata",
+          "disable",
+          "filtering"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "display",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "sprio",
+          "display",
+          "job information"
+        ],
+        [
+          "sacct",
+          "display",
+          "job"
+        ],
+        [
+          "option",
+          "display",
+          "view"
+        ],
+        [
+          "sacctmgr command",
+          "display",
+          "total"
+        ],
+        [
+          "squeue command",
+          "display",
+          "memory size"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "display in",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "sprio",
+          "display in",
+          "view"
+        ],
+        [
+          "sprio",
+          "display in",
+          "addition"
+        ],
+        [
+          "option",
+          "display in",
+          "addition"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "distribute",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "munge",
+          "distribute",
+          "key file"
+        ],
+        [
+          "slurm",
+          "distribute",
+          "key file"
+        ],
+        [
+          "chmod",
+          "distribute",
+          "key file"
+        ],
+        [
+          "cgroup",
+          "distribute",
+          "resource"
+        ],
+        [
+          "slurm",
+          "distribute",
+          "cpu"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "distribute to",
+      "domain": null,
+      "range": null,
+      "support": 7,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4306,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "distribute to",
+          "node"
+        ],
+        [
+          "task",
+          "distribute to",
+          "node"
+        ],
+        [
+          "task",
+          "distribute to",
+          "node"
+        ],
+        [
+          "slurm",
+          "distribute to",
+          "task"
+        ],
+        [
+          "slurm",
+          "distribute to",
+          "task"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "enable",
+      "domain": null,
+      "range": null,
+      "support": 12,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4728,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "configuration",
+          "enable",
+          "burst buffer plugin"
+        ],
+        [
+          "option",
+          "enable",
+          "allocation"
+        ],
+        [
+          "option",
+          "enable",
+          "task affinity"
+        ],
+        [
+          "slurm.conf parameter",
+          "enable",
+          "plugin"
+        ],
+        [
+          "step",
+          "enable",
+          "option"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "enable in",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "plugin",
+          "enable in",
+          "slurm.conf"
+        ],
+        [
+          "allowspecresourcesusage",
+          "enable in",
+          "slurm.conf"
+        ],
+        [
+          "gre",
+          "enable in",
+          "configuration"
+        ],
+        [
+          "parameter",
+          "enable in",
+          "slurm.conf file"
+        ],
+        [
+          "plugin",
+          "enable in",
+          "order"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "exceed",
+      "domain": null,
+      "range": null,
+      "support": 73,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.6238,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "number",
+          "exceed",
+          "size"
+        ],
+        [
+          "total count",
+          "exceed",
+          "count"
+        ],
+        [
+          "total count",
+          "exceed",
+          "count"
+        ],
+        [
+          "portion",
+          "exceed",
+          "limit"
+        ],
+        [
+          "portion",
+          "exceed",
+          "qos"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "exceed on",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job",
+          "exceed on",
+          "number"
+        ],
+        [
+          "job",
+          "exceed on",
+          "number"
+        ],
+        [
+          "request",
+          "exceed on",
+          "qos"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "execute",
+      "domain": null,
+      "range": null,
+      "support": 7,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4306,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "execute",
+          "order"
+        ],
+        [
+          "lua plugin",
+          "execute",
+          "script"
+        ],
+        [
+          "healthcheckprogram",
+          "execute",
+          "node"
+        ],
+        [
+          "healthcheckprogram",
+          "execute",
+          "node"
+        ],
+        [
+          "job",
+          "execute",
+          "step"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "execute as",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "program",
+          "execute as",
+          "slurmuser"
+        ],
+        [
+          "program",
+          "execute as",
+          "slurmuser"
+        ],
+        [
+          "resume",
+          "execute as",
+          "slurmuser"
+        ],
+        [
+          "daemon",
+          "execute as",
+          "account"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "execute in",
+      "domain": null,
+      "range": null,
+      "support": 9,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.45,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job",
+          "execute in",
+          "order"
+        ],
+        [
+          "job",
+          "execute in",
+          "order"
+        ],
+        [
+          "batch script",
+          "execute in",
+          "node"
+        ],
+        [
+          "heterogeneous job",
+          "execute in",
+          "federation"
+        ],
+        [
+          "taskprolog",
+          "execute in",
+          "addition"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "execute on",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job",
+          "execute on",
+          "resource"
+        ],
+        [
+          "healthcheckprogram",
+          "execute on",
+          "node"
+        ],
+        [
+          "heterogeneous job",
+          "execute on",
+          "cluster"
+        ],
+        [
+          "operation",
+          "execute on",
+          "termination"
+        ],
+        [
+          "resume",
+          "execute on",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "exist for",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "entity",
+          "exist for",
+          "day"
+        ],
+        [
+          "plugin",
+          "exist for",
+          "type"
+        ],
+        [
+          "job",
+          "exist for",
+          "partition"
+        ],
+        [
+          "job",
+          "exist for",
+          "partition"
+        ],
+        [
+          "option",
+          "exist for",
+          "taskplugin"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "exist on",
+      "domain": null,
+      "range": null,
+      "support": 8,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4408,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "cluster",
+          "exist on",
+          "external slurmdbd"
+        ],
+        [
+          "user",
+          "exist on",
+          "machine"
+        ],
+        [
+          "bundle",
+          "exist on",
+          "path"
+        ],
+        [
+          "directory",
+          "exist on",
+          "compute node"
+        ],
+        [
+          "pam_listfile.so",
+          "exist on",
+          "system"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "find in",
+      "domain": null,
+      "range": null,
+      "support": 7,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4306,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "information",
+          "find in",
+          "page"
+        ],
+        [
+          "full list",
+          "find in",
+          "page"
+        ],
+        [
+          "cluster",
+          "find in",
+          "slurm.conf"
+        ],
+        [
+          "information",
+          "find in",
+          "description"
+        ],
+        [
+          "detail",
+          "find in",
+          "guide"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "find on",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "option",
+          "find on",
+          "document"
+        ],
+        [
+          "explanation",
+          "find on",
+          "document"
+        ],
+        [
+          "detail",
+          "find on",
+          "page"
+        ],
+        [
+          "information",
+          "find on",
+          "page"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "fork from",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "plugin",
+          "fork from",
+          "openapi"
+        ],
+        [
+          "openapi",
+          "fork from",
+          "dbv0.0.38 plugin"
+        ],
+        [
+          "dbv0.0.39 plugin",
+          "fork from",
+          "dbv0.0.38 plugin"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "gather",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "plugin",
+          "gather",
+          "metric"
+        ],
+        [
+          "srun command",
+          "gather",
+          "information"
+        ],
+        [
+          "energy",
+          "gather",
+          "data"
+        ],
+        [
+          "job accounting gather",
+          "gather",
+          "data"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "gather from",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "gpu configuration",
+          "gather from",
+          "library"
+        ],
+        [
+          "gpu configuration",
+          "gather from",
+          "library"
+        ],
+        [
+          "information",
+          "gather from",
+          "slurmctld node"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "generate",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "scontrol command",
+          "generate",
+          "script"
+        ],
+        [
+          "slurmctld daemon",
+          "generate",
+          "credential"
+        ],
+        [
+          "tmp",
+          "generate",
+          "job array"
+        ],
+        [
+          "plugin",
+          "generate",
+          "error message"
+        ],
+        [
+          "slurmrestd",
+          "generate",
+          "oas"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "get",
+      "domain": null,
+      "range": null,
+      "support": 24,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.5296,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "plugin",
+          "get",
+          "information"
+        ],
+        [
+          "job",
+          "get",
+          "priority"
+        ],
+        [
+          "job",
+          "get",
+          "resource"
+        ],
+        [
+          "job",
+          "get",
+          "limit"
+        ],
+        [
+          "job",
+          "get",
+          "limit"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "go to",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "log",
+          "go to",
+          "syslog"
+        ],
+        [
+          "log",
+          "go to",
+          "syslog"
+        ],
+        [
+          "log",
+          "go to",
+          "syslog"
+        ],
+        [
+          "log",
+          "go to",
+          "syslog"
+        ],
+        [
+          "attribute",
+          "go to",
+          "page"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "grant",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "user",
+          "grant",
+          "permission"
+        ],
+        [
+          "job",
+          "grant",
+          "priority"
+        ],
+        [
+          "step",
+          "grant",
+          "access"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "have",
+      "domain": null,
+      "range": null,
+      "support": 143,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.65,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "instance",
+          "have",
+          "access"
+        ],
+        [
+          "slurmdbd",
+          "have",
+          "file"
+        ],
+        [
+          "hierarchy",
+          "have",
+          "depth"
+        ],
+        [
+          "line",
+          "have",
+          "form"
+        ],
+        [
+          "host",
+          "have",
+          "key"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "have as",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "task",
+          "have as",
+          "result"
+        ],
+        [
+          "partition",
+          "have as",
+          "qos"
+        ],
+        [
+          "partition",
+          "have as",
+          "qos"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "have in",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "field",
+          "have in",
+          "case"
+        ],
+        [
+          "parameter",
+          "have in",
+          "slurm"
+        ],
+        [
+          "user",
+          "have in",
+          "session"
+        ],
+        [
+          "group",
+          "have in",
+          "step allocation"
+        ],
+        [
+          "job",
+          "have in",
+          "addition"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "identify",
+      "domain": null,
+      "range": null,
+      "support": 11,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4658,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "access",
+          "identify",
+          "mode"
+        ],
+        [
+          "parameter",
+          "identify",
+          "mode"
+        ],
+        [
+          "parameter",
+          "identify",
+          "type"
+        ],
+        [
+          "parameter",
+          "identify",
+          "path"
+        ],
+        [
+          "parameter",
+          "identify",
+          "path"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "include",
+      "domain": null,
+      "range": null,
+      "support": 66,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.6152,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "specification",
+          "include",
+          "suffix"
+        ],
+        [
+          "formula",
+          "include",
+          "term"
+        ],
+        [
+          "file",
+          "include",
+          "entry"
+        ],
+        [
+          "term",
+          "include",
+          "memory"
+        ],
+        [
+          "cpu",
+          "include",
+          "specialized core"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "include in",
+      "domain": null,
+      "range": null,
+      "support": 11,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4658,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "term",
+          "include in",
+          "section"
+        ],
+        [
+          "cpu",
+          "include in",
+          "sacct"
+        ],
+        [
+          "option",
+          "include in",
+          "script"
+        ],
+        [
+          "directive",
+          "include in",
+          "script"
+        ],
+        [
+          "uid",
+          "include in",
+          "credential"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "increase",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "srun command",
+          "increase",
+          "limit"
+        ],
+        [
+          "file",
+          "increase",
+          "limit"
+        ],
+        [
+          "srun command",
+          "increase",
+          "limit"
+        ],
+        [
+          "library",
+          "increase",
+          "number"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "initiate",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "daemon",
+          "initiate",
+          "message"
+        ],
+        [
+          "user id",
+          "initiate",
+          "request"
+        ],
+        [
+          "user id",
+          "initiate",
+          "request"
+        ],
+        [
+          "select plugin",
+          "initiate",
+          "job"
+        ],
+        [
+          "builtin",
+          "initiate",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "instal in",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "library",
+          "instal in",
+          "order"
+        ],
+        [
+          "file",
+          "instal in",
+          "cluster"
+        ],
+        [
+          "file",
+          "instal in",
+          "cluster"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "integrate with",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "scrun",
+          "integrate with",
+          "rootless docker"
+        ],
+        [
+          "scrun",
+          "integrate with",
+          "podman"
+        ],
+        [
+          "mechanism",
+          "integrate with",
+          "infrastructure"
+        ],
+        [
+          "plugin",
+          "integrate with",
+          "storage"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "introduce",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "version",
+          "introduce",
+          "ability"
+        ],
+        [
+          "slurm",
+          "introduce",
+          "ability"
+        ],
+        [
+          "release",
+          "introduce",
+          "compatibility"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "keep",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "design",
+          "keep",
+          "track"
+        ],
+        [
+          "gang scheduler",
+          "keep",
+          "track"
+        ],
+        [
+          "algorithm",
+          "keep",
+          "resource"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "launch",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job",
+          "launch",
+          "thousand"
+        ],
+        [
+          "script",
+          "launch",
+          "app"
+        ],
+        [
+          "task",
+          "launch",
+          "parameter"
+        ],
+        [
+          "slurm",
+          "launch",
+          "user application"
+        ],
+        [
+          "user",
+          "launch",
+          "ssh"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "launch in",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "sleep",
+          "launch in",
+          "order"
+        ],
+        [
+          "user",
+          "launch in",
+          "order"
+        ],
+        [
+          "step",
+          "launch in",
+          "job"
+        ],
+        [
+          "slurm",
+          "launch in",
+          "case"
+        ],
+        [
+          "job",
+          "launch in",
+          "manner"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "launch on",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "shell",
+          "launch on",
+          "node"
+        ],
+        [
+          "application",
+          "launch on",
+          "component"
+        ],
+        [
+          "application",
+          "launch on",
+          "number"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "limit",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "allocation",
+          "limit",
+          "number"
+        ],
+        [
+          "core",
+          "limit",
+          "size"
+        ],
+        [
+          "job",
+          "limit",
+          "overhead"
+        ],
+        [
+          "slurm",
+          "limit",
+          "access"
+        ],
+        [
+          "system administrator",
+          "limit",
+          "maximum time"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "limit to",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "script",
+          "limit to",
+          "thread"
+        ],
+        [
+          "shell",
+          "limit to",
+          "cpu"
+        ],
+        [
+          "step",
+          "limit to",
+          "resource"
+        ],
+        [
+          "functionality",
+          "limit to",
+          "script"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "listen for",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm database daemon",
+          "listen for",
+          "work"
+        ],
+        [
+          "slurmctld",
+          "listen for",
+          "incoming request"
+        ],
+        [
+          "slurmdbd",
+          "listen for",
+          "incoming request"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "locate",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "file",
+          "locate",
+          "slurm.conf"
+        ],
+        [
+          "file",
+          "locate",
+          "slurm.conf"
+        ],
+        [
+          "action",
+          "locate",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "log",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurmdbd",
+          "log",
+          "error message"
+        ],
+        [
+          "slurmctld",
+          "log",
+          "termination"
+        ],
+        [
+          "plugin",
+          "log",
+          "message"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "maintain for",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "bitmap",
+          "maintain for",
+          "partition"
+        ],
+        [
+          "information",
+          "maintain for",
+          "heterogeneous job"
+        ],
+        [
+          "bitmap",
+          "maintain for",
+          "partition"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "make",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "make",
+          "scheduling decision"
+        ],
+        [
+          "algorithm",
+          "make",
+          "default"
+        ],
+        [
+          "type",
+          "make",
+          "install"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "manage",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "daemon",
+          "manage",
+          "file"
+        ],
+        [
+          "plugin",
+          "manage",
+          "information"
+        ],
+        [
+          "slurm",
+          "manage",
+          "exclusivity"
+        ],
+        [
+          "slurm",
+          "manage",
+          "exclusivity"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "match",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "usage",
+          "match",
+          "portion"
+        ],
+        [
+          "type",
+          "match",
+          "gpu"
+        ],
+        [
+          "type",
+          "match",
+          "device"
+        ],
+        [
+          "hostname",
+          "match",
+          "nodename"
+        ],
+        [
+          "slurmdspooldir",
+          "match",
+          "location"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "meet",
+      "domain": null,
+      "range": null,
+      "support": 9,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.45,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "burst buffer request",
+          "meet",
+          "minimum"
+        ],
+        [
+          "resource request",
+          "meet",
+          "limit"
+        ],
+        [
+          "cpu request",
+          "meet",
+          "minimum"
+        ],
+        [
+          "energy request",
+          "meet",
+          "minimum"
+        ],
+        [
+          "gre request",
+          "meet",
+          "minimum"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "modify",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "administrator",
+          "modify",
+          "inactivelimit"
+        ],
+        [
+          "exclusiveuser slurm.conf parameter",
+          "modify",
+          "functionality"
+        ],
+        [
+          "type",
+          "modify",
+          "path.components.schema"
+        ],
+        [
+          "flag",
+          "modify",
+          "behavior"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "need",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "need",
+          "mechanism"
+        ],
+        [
+          "slurm",
+          "need",
+          "recompile"
+        ],
+        [
+          "mode",
+          "need",
+          "gang option"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "need in",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "pathname",
+          "need in",
+          "slurm"
+        ],
+        [
+          "pathname",
+          "need in",
+          "slurm.conf"
+        ],
+        [
+          "node",
+          "need in",
+          "order"
+        ],
+        [
+          "suspendexcnode",
+          "need in",
+          "setup"
+        ],
+        [
+          "suspendexcpart",
+          "need in",
+          "setup"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "normalize against",
+      "domain": "factor",
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 1.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "association factor",
+          "normalize against",
+          "priority"
+        ],
+        [
+          "qos factor",
+          "normalize against",
+          "priority"
+        ],
+        [
+          "factor",
+          "normalize against",
+          "partition"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "offer",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "remote",
+          "offer",
+          "kind"
+        ],
+        [
+          "license",
+          "offer",
+          "kind"
+        ],
+        [
+          "pmix",
+          "offer",
+          "compatibility"
+        ],
+        [
+          "slurm",
+          "offer",
+          "ability"
+        ],
+        [
+          "slurm",
+          "offer",
+          "ability"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "pass",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "jobcompparam",
+          "pass",
+          "string"
+        ],
+        [
+          "hydra",
+          "pass",
+          "argument"
+        ],
+        [
+          "hydra",
+          "pass",
+          "argument"
+        ],
+        [
+          "hydra",
+          "pass",
+          "argument"
+        ],
+        [
+          "select plugin",
+          "pass",
+          "list"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "perform",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "module",
+          "perform",
+          "logic"
+        ],
+        [
+          "module",
+          "perform",
+          "firewall"
+        ],
+        [
+          "plugin",
+          "perform",
+          "initialization"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "permit",
+      "domain": null,
+      "range": null,
+      "support": 8,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4408,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "srun",
+          "permit",
+          "job"
+        ],
+        [
+          "option",
+          "permit",
+          "job"
+        ],
+        [
+          "srun",
+          "permit",
+          "job"
+        ],
+        [
+          "option",
+          "permit",
+          "job"
+        ],
+        [
+          "propagation",
+          "permit",
+          "user"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "place in",
+      "domain": null,
+      "range": null,
+      "support": 9,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.45,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "data",
+          "place in",
+          "file"
+        ],
+        [
+          "resource",
+          "place in",
+          "advanced reservation"
+        ],
+        [
+          "system",
+          "place in",
+          "front"
+        ],
+        [
+          "key",
+          "place in",
+          "directory"
+        ],
+        [
+          "node",
+          "place in",
+          "state"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "place into",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "number",
+          "place into",
+          "power saving mode"
+        ],
+        [
+          "node",
+          "place into",
+          "power saving mode"
+        ],
+        [
+          "demand",
+          "place into",
+          "partition"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "preempt",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "select plugin",
+          "preempt",
+          "job"
+        ],
+        [
+          "job",
+          "preempt",
+          "resource"
+        ],
+        [
+          "sbatch",
+          "preempt",
+          "job"
+        ],
+        [
+          "slurm scheduler",
+          "preempt",
+          "running job"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "prevent",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "managing job",
+          "prevent",
+          "job"
+        ],
+        [
+          "managing job",
+          "prevent",
+          "job"
+        ],
+        [
+          "scontrol",
+          "prevent",
+          "partition"
+        ],
+        [
+          "priority",
+          "prevent",
+          "job"
+        ],
+        [
+          "reservation",
+          "prevent",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "provide",
+      "domain": null,
+      "range": null,
+      "support": 53,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.5965,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "daemon",
+          "provide",
+          "authentication"
+        ],
+        [
+          "sreport",
+          "provide",
+          "ability"
+        ],
+        [
+          "plugin",
+          "provide",
+          "hook"
+        ],
+        [
+          "slurm",
+          "provide",
+          "support"
+        ],
+        [
+          "plugin",
+          "provide",
+          "hook"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "provide for",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "cgroup",
+          "provide for",
+          "resource"
+        ],
+        [
+          "view",
+          "provide for",
+          "information"
+        ],
+        [
+          "view",
+          "provide for",
+          "information"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "provide in",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "information",
+          "provide in",
+          "dns srv record"
+        ],
+        [
+          "slurm",
+          "provide in",
+          "order"
+        ],
+        [
+          "file",
+          "provide in",
+          "slurm.conf.example"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "provide to",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "plugin",
+          "provide to",
+          "api"
+        ],
+        [
+          "key",
+          "provide to",
+          "slurmctld"
+        ],
+        [
+          "info",
+          "provide to",
+          "process"
+        ],
+        [
+          "task affinity",
+          "provide to",
+          "processor"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "provide with",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "template",
+          "provide with",
+          "dwstat"
+        ],
+        [
+          "template",
+          "provide with",
+          "slurm"
+        ],
+        [
+          "slurm_bb_test_data_out",
+          "provide with",
+          "slurm"
+        ],
+        [
+          "template",
+          "provide with",
+          "slurm"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "reach",
+      "domain": null,
+      "range": null,
+      "support": 79,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.6306,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "usage",
+          "reach",
+          "limit"
+        ],
+        [
+          "state information",
+          "reach",
+          "disk"
+        ],
+        [
+          "association",
+          "reach",
+          "aggregate limit"
+        ],
+        [
+          "qos",
+          "reach",
+          "aggregate limit"
+        ],
+        [
+          "association",
+          "reach",
+          "limit"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "read",
+      "domain": null,
+      "range": null,
+      "support": 8,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4408,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "cgroup plugin",
+          "read",
+          "file"
+        ],
+        [
+          "plugin",
+          "read",
+          "option"
+        ],
+        [
+          "mode",
+          "read",
+          "file"
+        ],
+        [
+          "daemon",
+          "read",
+          "file"
+        ],
+        [
+          "interface",
+          "read",
+          "job script"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "receive",
+      "domain": null,
+      "range": null,
+      "support": 15,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4908,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurmctld",
+          "receive",
+          "signal"
+        ],
+        [
+          "job",
+          "receive",
+          "limit"
+        ],
+        [
+          "controller",
+          "receive",
+          "address"
+        ],
+        [
+          "slurmd daemon",
+          "receive",
+          "credential"
+        ],
+        [
+          "cluster",
+          "receive",
+          "job submission"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "refer to",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm documentation",
+          "refer to",
+          "cpu"
+        ],
+        [
+          "slurm documentation",
+          "refer to",
+          "cpu"
+        ],
+        [
+          "slurm",
+          "refer to",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "rely on",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "plugin",
+          "rely on",
+          "library"
+        ],
+        [
+          "slurm",
+          "rely on",
+          "linux kernel"
+        ],
+        [
+          "slurm communication",
+          "rely on",
+          "node configuration"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "rely upon",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "plugin",
+          "rely upon",
+          "slurmstepd daemon"
+        ],
+        [
+          "job accounting",
+          "rely upon",
+          "slurmstepd daemon"
+        ],
+        [
+          "slurm",
+          "rely upon",
+          "process"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "remain in",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "burst buffer",
+          "remain in",
+          "state"
+        ],
+        [
+          "job",
+          "remain in",
+          "completing state"
+        ],
+        [
+          "job",
+          "remain in",
+          "memory"
+        ],
+        [
+          "job",
+          "remain in",
+          "memory"
+        ],
+        [
+          "job",
+          "remain in",
+          "completing state"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "remove from",
+      "domain": null,
+      "range": null,
+      "support": 8,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4408,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm elasticsearch plugin",
+          "remove from",
+          "url"
+        ],
+        [
+          "node",
+          "remove from",
+          "running job"
+        ],
+        [
+          "cluster",
+          "remove from",
+          "federation"
+        ],
+        [
+          "job",
+          "remove from",
+          "cluster"
+        ],
+        [
+          "message",
+          "remove from",
+          "library"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "report",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "sacct command",
+          "report",
+          "resource usage"
+        ],
+        [
+          "line",
+          "report",
+          "field"
+        ],
+        [
+          "command",
+          "report",
+          "job state"
+        ],
+        [
+          "sinfo",
+          "report",
+          "state"
+        ],
+        [
+          "squeue",
+          "report",
+          "state"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "represent",
+      "domain": null,
+      "range": null,
+      "support": 13,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4792,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "statistic",
+          "represent",
+          "resource"
+        ],
+        [
+          "hierarchy",
+          "represent",
+          "portion"
+        ],
+        [
+          "string",
+          "represent",
+          "absolute path"
+        ],
+        [
+          "char",
+          "represent",
+          "list"
+        ],
+        [
+          "node_inx",
+          "represent",
+          "list"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "request",
+      "domain": null,
+      "range": null,
+      "support": 28,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.5425,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job",
+          "request",
+          "amount"
+        ],
+        [
+          "job",
+          "request",
+          "space"
+        ],
+        [
+          "job",
+          "request",
+          "pool"
+        ],
+        [
+          "job",
+          "request",
+          "number"
+        ],
+        [
+          "job",
+          "request",
+          "amount"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "require",
+      "domain": null,
+      "range": null,
+      "support": 43,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.5787,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurmdbd",
+          "require",
+          "file"
+        ],
+        [
+          "communication",
+          "require",
+          "time"
+        ],
+        [
+          "plugin",
+          "require",
+          "directive"
+        ],
+        [
+          "cluster",
+          "require",
+          "set"
+        ],
+        [
+          "rootless docker",
+          "require",
+          "directory"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "require for",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "image",
+          "require for",
+          "job"
+        ],
+        [
+          "node",
+          "require for",
+          "cluster"
+        ],
+        [
+          "slurmdbd",
+          "require for",
+          "slurmdbd execution"
+        ],
+        [
+          "job",
+          "require for",
+          "performance reason"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "require in",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "option",
+          "require in",
+          "environment"
+        ],
+        [
+          "line",
+          "require in",
+          "order"
+        ],
+        [
+          "energy datum",
+          "require in",
+          "slurm.conf"
+        ],
+        [
+          "jobacctgathertype",
+          "require in",
+          "slurm.conf"
+        ],
+        [
+          "architecture",
+          "require in",
+          "thread"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "reserve for",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "number",
+          "reserve for",
+          "system"
+        ],
+        [
+          "resource",
+          "reserve for",
+          "job"
+        ],
+        [
+          "node",
+          "reserve for",
+          "preemptor job"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "respond",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "string",
+          "respond",
+          "primary controller"
+        ],
+        [
+          "mode",
+          "respond",
+          "primary controller"
+        ],
+        [
+          "slurm",
+          "respond",
+          "ping"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "restrict to",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job",
+          "restrict to",
+          "resource"
+        ],
+        [
+          "option",
+          "restrict to",
+          "single node"
+        ],
+        [
+          "preemption",
+          "restrict to",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "result in",
+      "domain": null,
+      "range": null,
+      "support": 11,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4658,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "attempt",
+          "result in",
+          "job"
+        ],
+        [
+          "policy",
+          "result in",
+          "utilization"
+        ],
+        [
+          "command line",
+          "result in",
+          "request"
+        ],
+        [
+          "failure",
+          "result in",
+          "job"
+        ],
+        [
+          "failure",
+          "result in",
+          "error message"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "return",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "function",
+          "return",
+          "slurm"
+        ],
+        [
+          "burst buffer script",
+          "return",
+          "error"
+        ],
+        [
+          "request",
+          "return",
+          "information"
+        ],
+        [
+          "request",
+          "return",
+          "error"
+        ],
+        [
+          "function",
+          "return",
+          "array"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "return to",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurmdbd",
+          "return to",
+          "service"
+        ],
+        [
+          "error message",
+          "return to",
+          "user"
+        ],
+        [
+          "node",
+          "return to",
+          "service"
+        ],
+        [
+          "node",
+          "return to",
+          "service"
+        ],
+        [
+          "node",
+          "return to",
+          "service"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "run",
+      "domain": null,
+      "range": null,
+      "support": 22,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.5223,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "node",
+          "run",
+          "daemon"
+        ],
+        [
+          "teardown",
+          "run",
+          "maximum"
+        ],
+        [
+          "job",
+          "run",
+          "task"
+        ],
+        [
+          "node",
+          "run",
+          "job"
+        ],
+        [
+          "core",
+          "run",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "run for",
+      "domain": null,
+      "range": null,
+      "support": 9,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.45,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "run for",
+          "job"
+        ],
+        [
+          "burst buffer stage",
+          "run for",
+          "job"
+        ],
+        [
+          "hook",
+          "run for",
+          "component"
+        ],
+        [
+          "teardown",
+          "run for",
+          "plugin"
+        ],
+        [
+          "database",
+          "run for",
+          "accountingstorageport"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "run from",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "node",
+          "run from",
+          "partition"
+        ],
+        [
+          "resource",
+          "run from",
+          "partition"
+        ],
+        [
+          "command",
+          "run from",
+          "cluster"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "run in",
+      "domain": null,
+      "range": null,
+      "support": 11,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4658,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "plugin",
+          "run in",
+          "partition"
+        ],
+        [
+          "job",
+          "run in",
+          "node"
+        ],
+        [
+          "slurm system",
+          "run in",
+          "parallel"
+        ],
+        [
+          "option",
+          "run in",
+          "mode"
+        ],
+        [
+          "slurm system",
+          "run in",
+          "parallel"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "run on",
+      "domain": null,
+      "range": null,
+      "support": 22,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.5223,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "script",
+          "run on",
+          "slurmctld node"
+        ],
+        [
+          "job",
+          "run on",
+          "system"
+        ],
+        [
+          "job",
+          "run on",
+          "cluster"
+        ],
+        [
+          "job",
+          "run on",
+          "cluster"
+        ],
+        [
+          "job",
+          "run on",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "run under",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm process",
+          "run under",
+          "shell"
+        ],
+        [
+          "account",
+          "run under",
+          "comment"
+        ],
+        [
+          "job",
+          "run under",
+          "comment"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "run with",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "program",
+          "run with",
+          "slurm"
+        ],
+        [
+          "job",
+          "run with",
+          "permission"
+        ],
+        [
+          "app",
+          "run with",
+          "srun"
+        ],
+        [
+          "slurmd daemon",
+          "run with",
+          "command"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "satisfy",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "layer",
+          "satisfy",
+          "request"
+        ],
+        [
+          "layer",
+          "satisfy",
+          "request"
+        ],
+        [
+          "option",
+          "satisfy",
+          "expression"
+        ],
+        [
+          "node",
+          "satisfy",
+          "resource requirement"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "save",
+      "domain": null,
+      "range": null,
+      "support": 9,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.45,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurmctld daemon",
+          "save",
+          "state"
+        ],
+        [
+          "slurmd",
+          "save",
+          "state"
+        ],
+        [
+          "slurmd state",
+          "save",
+          "define"
+        ],
+        [
+          "slurmctld daemon",
+          "save",
+          "state"
+        ],
+        [
+          "slurmd",
+          "save",
+          "state"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "save to",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "information",
+          "save to",
+          "file"
+        ],
+        [
+          "exit code",
+          "save to",
+          "record"
+        ],
+        [
+          "message",
+          "save to",
+          "file"
+        ],
+        [
+          "controller",
+          "save to",
+          "disk"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "see",
+      "domain": null,
+      "range": null,
+      "support": 7,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4306,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "node",
+          "see",
+          "guide"
+        ],
+        [
+          "part",
+          "see",
+          "sinfo"
+        ],
+        [
+          "part",
+          "see",
+          "squeue"
+        ],
+        [
+          "reason",
+          "see",
+          "scontrol"
+        ],
+        [
+          "set",
+          "see",
+          "tre"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "see for",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "grestype",
+          "see for",
+          "detail"
+        ],
+        [
+          "part",
+          "see for",
+          "user"
+        ],
+        [
+          "library",
+          "see for",
+          "information"
+        ],
+        [
+          "set",
+          "see for",
+          "list"
+        ],
+        [
+          "tesla",
+          "see for",
+          "detail"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "see in",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "grestype",
+          "see in",
+          "slurm.conf man page"
+        ],
+        [
+          "information",
+          "see in",
+          "file"
+        ],
+        [
+          "data",
+          "see in",
+          "database"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "select",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "select",
+          "set"
+        ],
+        [
+          "preemptmode",
+          "select",
+          "mechanism"
+        ],
+        [
+          "slurm",
+          "select",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "send",
+      "domain": null,
+      "range": null,
+      "support": 9,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.45,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurmd daemon",
+          "send",
+          "information"
+        ],
+        [
+          "job",
+          "send",
+          "signal"
+        ],
+        [
+          "sbatch",
+          "send",
+          "environment"
+        ],
+        [
+          "salloc",
+          "send",
+          "environment"
+        ],
+        [
+          "srun",
+          "send",
+          "request"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "send to",
+      "domain": null,
+      "range": null,
+      "support": 8,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4408,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "change",
+          "send to",
+          "daemon"
+        ],
+        [
+          "job",
+          "send to",
+          "cluster"
+        ],
+        [
+          "slurmd daemon",
+          "send to",
+          "slurmctld daemon"
+        ],
+        [
+          "slurm control daemon",
+          "send to",
+          "slurm database"
+        ],
+        [
+          "salloc",
+          "send to",
+          "slurmctld"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "set",
+      "domain": null,
+      "range": null,
+      "support": 13,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4792,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "user limit",
+          "set",
+          "high"
+        ],
+        [
+          "oversubscribe",
+          "set",
+          "entity"
+        ],
+        [
+          "priorityweightfairshare",
+          "set",
+          "number"
+        ],
+        [
+          "distribution",
+          "set",
+          "default"
+        ],
+        [
+          "preemptmode",
+          "set",
+          "gang option"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "set for",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "user limit",
+          "set for",
+          "memory size"
+        ],
+        [
+          "oversubscribe",
+          "set for",
+          "partition"
+        ],
+        [
+          "cuda_visible_device",
+          "set for",
+          "step"
+        ],
+        [
+          "variable",
+          "set for",
+          "salloc command"
+        ],
+        [
+          "attempt",
+          "set for",
+          "component"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "set in",
+      "domain": null,
+      "range": null,
+      "support": 8,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4408,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "parameter",
+          "set in",
+          "slurm.conf"
+        ],
+        [
+          "gpu type",
+          "set in",
+          "slurm.conf"
+        ],
+        [
+          "cuda_visible_device",
+          "set in",
+          "case"
+        ],
+        [
+          "variable",
+          "set in",
+          "program"
+        ],
+        [
+          "nodename",
+          "set in",
+          "slurm.conf"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "set to",
+      "domain": null,
+      "range": null,
+      "support": 11,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4658,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "field",
+          "set to",
+          "error message"
+        ],
+        [
+          "oversubscribe",
+          "set to",
+          "force"
+        ],
+        [
+          "gpu type",
+          "set to",
+          "substring"
+        ],
+        [
+          "slurm_array_task_count",
+          "set to",
+          "number"
+        ],
+        [
+          "accountingstoragetype",
+          "set to",
+          "plugin"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "set with",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "default",
+          "set with",
+          "schedulerparameter"
+        ],
+        [
+          "default",
+          "set with",
+          "schedulerparameter"
+        ],
+        [
+          "memory limit",
+          "set with",
+          "unit"
+        ],
+        [
+          "architecture",
+          "set with",
+          "context"
+        ],
+        [
+          "slurm job submission command",
+          "set with",
+          "context"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "share",
+      "domain": null,
+      "range": null,
+      "support": 8,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4408,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job",
+          "share",
+          "core"
+        ],
+        [
+          "job",
+          "share",
+          "compute resource"
+        ],
+        [
+          "partition",
+          "share",
+          "resource"
+        ],
+        [
+          "task",
+          "share",
+          "arrayjobid"
+        ],
+        [
+          "job",
+          "share",
+          "resource"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "show",
+      "domain": null,
+      "range": null,
+      "support": 25,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.533,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "allocation",
+          "show",
+          "resource"
+        ],
+        [
+          "table",
+          "show",
+          "pattern"
+        ],
+        [
+          "table",
+          "show",
+          "allocation"
+        ],
+        [
+          "table",
+          "show",
+          "pattern"
+        ],
+        [
+          "table",
+          "show",
+          "pattern"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "spawn",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "srun command",
+          "spawn",
+          "application"
+        ],
+        [
+          "interface",
+          "spawn",
+          "separate processing thread"
+        ],
+        [
+          "interface",
+          "spawn",
+          "separate processing thread"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "spawn on",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job step",
+          "spawn on",
+          "option"
+        ],
+        [
+          "interface",
+          "spawn on",
+          "success"
+        ],
+        [
+          "interface",
+          "spawn on",
+          "success"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "specify",
+      "domain": null,
+      "range": null,
+      "support": 30,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.5483,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "minjobage",
+          "specify",
+          "minimum number"
+        ],
+        [
+          "batch job",
+          "specify",
+          "burst buffer requirement"
+        ],
+        [
+          "job",
+          "specify",
+          "capacity"
+        ],
+        [
+          "job",
+          "specify",
+          "pool"
+        ],
+        [
+          "option",
+          "specify",
+          "string"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "specify as",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurmctld",
+          "specify as",
+          "list"
+        ],
+        [
+          "job id",
+          "specify as",
+          "input"
+        ],
+        [
+          "billing weight",
+          "specify as",
+          "list"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "specify at",
+      "domain": null,
+      "range": "level",
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 1.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "gang option",
+          "specify at",
+          "cluster level"
+        ],
+        [
+          "count",
+          "specify at",
+          "high level"
+        ],
+        [
+          "gang option",
+          "specify at",
+          "cluster level"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "specify for",
+      "domain": null,
+      "range": null,
+      "support": 6,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.419,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "overcommitment",
+          "specify for",
+          "job"
+        ],
+        [
+          "option",
+          "specify for",
+          "component"
+        ],
+        [
+          "option",
+          "specify for",
+          "user association"
+        ],
+        [
+          "option",
+          "specify for",
+          "account"
+        ],
+        [
+          "option",
+          "specify for",
+          "cluster"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "specify in",
+      "domain": null,
+      "range": null,
+      "support": 9,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.45,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "option",
+          "specify in",
+          "burst_buffer.conf"
+        ],
+        [
+          "slurmctld",
+          "specify in",
+          "priority order"
+        ],
+        [
+          "job",
+          "specify in",
+          "order"
+        ],
+        [
+          "node",
+          "specify in",
+          "slurm.conf file"
+        ],
+        [
+          "gang option",
+          "specify in",
+          "order"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "specify on",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "option",
+          "specify on",
+          "line"
+        ],
+        [
+          "option",
+          "specify on",
+          "line"
+        ],
+        [
+          "preemptmode",
+          "specify on",
+          "basi"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "start",
+      "domain": null,
+      "range": null,
+      "support": 8,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4408,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "authtype",
+          "start",
+          "slurm daemon"
+        ],
+        [
+          "user",
+          "start",
+          "ssh session"
+        ],
+        [
+          "logic",
+          "start",
+          "job"
+        ],
+        [
+          "user",
+          "start",
+          "job"
+        ],
+        [
+          "job",
+          "start",
+          "return"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "start for",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "mps server",
+          "start for",
+          "gpu"
+        ],
+        [
+          "single job step",
+          "start for",
+          "instance"
+        ],
+        [
+          "process id",
+          "start for",
+          "task"
+        ],
+        [
+          "single job step",
+          "start for",
+          "instance"
+        ],
+        [
+          "daemon",
+          "start for",
+          "time"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "start in",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "program",
+          "start in",
+          "case"
+        ],
+        [
+          "daemon",
+          "start in",
+          "order"
+        ],
+        [
+          "job",
+          "start in",
+          "partition"
+        ],
+        [
+          "daemon",
+          "start in",
+          "order"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "start on",
+      "domain": null,
+      "range": null,
+      "support": 7,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4306,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "systemctl",
+          "start on",
+          "head node"
+        ],
+        [
+          "systemctl",
+          "start on",
+          "head node"
+        ],
+        [
+          "logic",
+          "start on",
+          "basi"
+        ],
+        [
+          "slurmd daemon",
+          "start on",
+          "node"
+        ],
+        [
+          "step",
+          "start on",
+          "compute node"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "start with",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurmctld",
+          "start with",
+          "option"
+        ],
+        [
+          "slurmd",
+          "start with",
+          "option"
+        ],
+        [
+          "job",
+          "start with",
+          "sbatch"
+        ],
+        [
+          "integration",
+          "start with",
+          "release"
+        ],
+        [
+          "job",
+          "start with",
+          "resource"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "store in",
+      "domain": null,
+      "range": null,
+      "support": 9,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.45,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "information",
+          "store in",
+          "accounting"
+        ],
+        [
+          "information",
+          "store in",
+          "accounting"
+        ],
+        [
+          "data",
+          "store in",
+          "database"
+        ],
+        [
+          "job accounting storage",
+          "store in",
+          "fashion"
+        ],
+        [
+          "slurmctld",
+          "store in",
+          "memory"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "submit",
+      "domain": null,
+      "range": null,
+      "support": 8,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4408,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "user",
+          "submit",
+          "step"
+        ],
+        [
+          "user",
+          "submit",
+          "job"
+        ],
+        [
+          "user",
+          "submit",
+          "job"
+        ],
+        [
+          "job",
+          "submit",
+          "cluster"
+        ],
+        [
+          "job submission",
+          "submit",
+          "copy"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "submit to",
+      "domain": null,
+      "range": null,
+      "support": 10,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4583,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job",
+          "submit to",
+          "partition"
+        ],
+        [
+          "job",
+          "submit to",
+          "federation"
+        ],
+        [
+          "job",
+          "submit to",
+          "local cluster"
+        ],
+        [
+          "job",
+          "submit to",
+          "federation"
+        ],
+        [
+          "job submission",
+          "submit to",
+          "cluster"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "support",
+      "domain": null,
+      "range": null,
+      "support": 42,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.5767,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurmdbd",
+          "support",
+          "age"
+        ],
+        [
+          "slurm",
+          "support",
+          "number"
+        ],
+        [
+          "tool",
+          "support",
+          "slurm version"
+        ],
+        [
+          "tool",
+          "support",
+          "slurm version"
+        ],
+        [
+          "job submission command",
+          "support",
+          "option"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "support for",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "support for",
+          "specification"
+        ],
+        [
+          "nvml",
+          "support for",
+          "mig"
+        ],
+        [
+          "mode",
+          "support for",
+          "mig"
+        ],
+        [
+          "email notification",
+          "support for",
+          "heterogeneous job leader"
+        ],
+        [
+          "option",
+          "support for",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "support in",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "node",
+          "support in",
+          "partition"
+        ],
+        [
+          "slurm",
+          "support in",
+          "hold"
+        ],
+        [
+          "maximum",
+          "support in",
+          "slurm"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "support with",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job completion",
+          "support with",
+          "slurmdbd"
+        ],
+        [
+          "node",
+          "support with",
+          "cons_tre"
+        ],
+        [
+          "slurm",
+          "support with",
+          "state"
+        ],
+        [
+          "slurmdbd",
+          "support with",
+          "version"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "take",
+      "domain": null,
+      "range": null,
+      "support": 18,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.5058,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "systemd",
+          "take",
+          "care"
+        ],
+        [
+          "option",
+          "take",
+          "precedence"
+        ],
+        [
+          "uid",
+          "take",
+          "effect"
+        ],
+        [
+          "slurmd",
+          "take",
+          "advantage"
+        ],
+        [
+          "slurmd",
+          "take",
+          "advantage"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "take for",
+      "domain": "billing",
+      "range": null,
+      "support": 2,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 1.0,
+      "purity_range": 0.0,
+      "confidence": 0.3454,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "billing",
+          "take for",
+          "requested association"
+        ],
+        [
+          "billing",
+          "take for",
+          "qos"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "take into",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "billing",
+          "take into",
+          "account"
+        ],
+        [
+          "billing",
+          "take into",
+          "account"
+        ],
+        [
+          "resource",
+          "take into",
+          "account"
+        ],
+        [
+          "scheduler",
+          "take into",
+          "consideration"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "take over",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "option",
+          "take over",
+          "record"
+        ],
+        [
+          "qos option",
+          "take over",
+          "option"
+        ],
+        [
+          "partition qos",
+          "take over",
+          "job qos"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "terminate",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "return",
+          "terminate",
+          "execution"
+        ],
+        [
+          "return",
+          "terminate",
+          "execution"
+        ],
+        [
+          "prolog",
+          "terminate",
+          "server"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "track",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "track",
+          "amount"
+        ],
+        [
+          "slurm",
+          "track",
+          "info"
+        ],
+        [
+          "list",
+          "track",
+          "tre type"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "treat",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "selector",
+          "treat",
+          "cpu"
+        ],
+        [
+          "selector",
+          "treat",
+          "cpu"
+        ],
+        [
+          "slurm",
+          "treat",
+          "instance"
+        ],
+        [
+          "program",
+          "treat",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "treat as",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "command",
+          "treat as",
+          "option"
+        ],
+        [
+          "selector",
+          "treat as",
+          "resource"
+        ],
+        [
+          "selector",
+          "treat as",
+          "resource"
+        ],
+        [
+          "qos limit",
+          "treat as",
+          "percentage"
+        ],
+        [
+          "service",
+          "treat as",
+          "client"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "update",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "scontrol",
+          "update",
+          "state"
+        ],
+        [
+          "scontrol",
+          "update",
+          "state"
+        ],
+        [
+          "slurm daemon",
+          "update",
+          "file"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "use",
+      "domain": null,
+      "range": null,
+      "support": 57,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.6027,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "client command",
+          "use",
+          "mechanism"
+        ],
+        [
+          "slurm",
+          "use",
+          "hierarchical communication"
+        ],
+        [
+          "job",
+          "use",
+          "burst buffer"
+        ],
+        [
+          "job",
+          "use",
+          "burst buffer"
+        ],
+        [
+          "job",
+          "use",
+          "portion"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "use as",
+      "domain": null,
+      "range": null,
+      "support": 4,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3898,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "tresusageintot",
+          "use as",
+          "maximum memory"
+        ],
+        [
+          "burst buffer",
+          "use as",
+          "storage"
+        ],
+        [
+          "argument",
+          "use as",
+          "key"
+        ],
+        [
+          "character",
+          "use as",
+          "argument"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "use for",
+      "domain": null,
+      "range": null,
+      "support": 10,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4583,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "directive",
+          "use for",
+          "burst buffer directive"
+        ],
+        [
+          "directive",
+          "use for",
+          "system"
+        ],
+        [
+          "node",
+          "use for",
+          "step"
+        ],
+        [
+          "limit",
+          "use for",
+          "job"
+        ],
+        [
+          "slurmctld",
+          "use for",
+          "thread"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "use in",
+      "domain": null,
+      "range": null,
+      "support": 17,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.5011,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "use in",
+          "mysql"
+        ],
+        [
+          "mysqldump",
+          "use in",
+          "order"
+        ],
+        [
+          "parameter",
+          "use in",
+          "order"
+        ],
+        [
+          "slurm",
+          "use in",
+          "order"
+        ],
+        [
+          "defaultpool",
+          "use in",
+          "burst_buffer.conf"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "use on",
+      "domain": null,
+      "range": null,
+      "support": 7,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4306,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "job",
+          "use on",
+          "node"
+        ],
+        [
+          "mode",
+          "use on",
+          "node"
+        ],
+        [
+          "command",
+          "use on",
+          "compute node"
+        ],
+        [
+          "features_act",
+          "use on",
+          "system"
+        ],
+        [
+          "job",
+          "use on",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "use with",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "plugin",
+          "use with",
+          "layer"
+        ],
+        [
+          "slurmd",
+          "use with",
+          "nodename"
+        ],
+        [
+          "pam_slurm_adopt",
+          "use with",
+          "plugin"
+        ],
+        [
+          "flag",
+          "use with",
+          "qos"
+        ],
+        [
+          "option",
+          "use with",
+          "entity"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "utilize",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurmctld",
+          "utilize",
+          "cache"
+        ],
+        [
+          "command",
+          "utilize",
+          "resource"
+        ],
+        [
+          "command",
+          "utilize",
+          "resource"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "work with",
+      "domain": null,
+      "range": null,
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.3704,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "work with",
+          "configuration"
+        ],
+        [
+          "multi instance gpu",
+          "work with",
+          "slurm"
+        ],
+        [
+          "multi instance gpu",
+          "work with",
+          "slurm"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "write",
+      "domain": null,
+      "range": null,
+      "support": 5,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4056,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "slurmctld",
+          "write",
+          "state"
+        ],
+        [
+          "administrator",
+          "write",
+          "plugin"
+        ],
+        [
+          "plugin",
+          "write",
+          "file"
+        ],
+        [
+          "acct_gather_profile plugin",
+          "write",
+          "data"
+        ],
+        [
+          "slurmctld",
+          "write",
+          "state"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    },
+    {
+      "property": "write to",
+      "domain": null,
+      "range": null,
+      "support": 10,
+      "typed_subjects": 0,
+      "typed_objects": 0,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.0,
+      "purity_range": 0.0,
+      "confidence": 0.4583,
+      "status": "candidate",
+      "method": "lca(subject_terms) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "accounting record",
+          "write to",
+          "file"
+        ],
+        [
+          "job",
+          "write to",
+          "cache"
+        ],
+        [
+          "accounting record",
+          "write to",
+          "database"
+        ],
+        [
+          "output",
+          "write to",
+          "file"
+        ],
+        [
+          "core file",
+          "write to",
+          "directory"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {}
+    }
+  ]
+}

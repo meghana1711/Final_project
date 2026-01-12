@@ -1,0 +1,424 @@
+edge_id,head_lemma,relation_label,tail_lemma,head_term,tail_term,relation_type,doc_id,chunk_id,confidence,evidence_json,raw_json
+1,nvidia-container-runtime,uses_option,--root,nvidia-container-runtime,--root,command_option,doc_0ac6,doc_0ac6_chunk_0005,0.9,"{""head"": ""nvidia-container-runtime"", ""tail"": ""--root"", ""relation"": ""uses_option"", ""relation_type"": ""command_option"", ""confidence"": 0.9, ""reason"": ""The documentation provides examples of using the --root option with nvidia-container-runtime."", ""raw_item"": {""head"": ""nvidia-container-runtime"", ""relation"": ""uses_option"", ""tail"": ""--root"", ""relation_type"": ""command_option"", ""confidence"": 0.9, ""reason"": ""The documentation provides examples of using the --root option with nvidia-container-runtime.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""nvidia-container-runtime"",
+      ""relation"": ""uses_option"",
+      ""tail"": ""--root"",
+      ""relation_type"": ""command_option"",
+      ""confidence"": 0.9,
+      ""reason"": ""The documentation provides examples of using the --root option with nvidia-container-runtime.""
+    },
+    {
+      ""head"": ""oci.conf"",
+      ""relation"": ""uses_option"",
+      ""tail"": ""EnvExclude"",
+      ""relation_type"": ""config_param_behavior"",
+      ""confidence"": 0.9,
+      ""reason"": ""The documentation provides examples of using the EnvExclude option in oci.conf files.""
+    }
+  ]
+}"
+2,slurm,provides,rest api,Slurm,REST API,scheduler_component,doc_0e42,doc_0e42_chunk_0001,0.9,"{""head"": ""slurm"", ""tail"": ""rest api"", ""relation"": ""provides"", ""relation_type"": ""scheduler_component"", ""confidence"": 0.9, ""reason"": ""Slurm is described as providing a REST API through the slurmrestd daemon."", ""raw_item"": {""head"": ""slurm"", ""relation"": ""provides"", ""tail"": ""REST API"", ""relation_type"": ""scheduler_component"", ""confidence"": 0.9, ""reason"": ""Slurm is described as providing a REST API through the slurmrestd daemon.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""slurm"",
+      ""relation"": ""provides"",
+      ""tail"": ""REST API"",
+      ""relation_type"": ""scheduler_component"",
+      ""confidence"": 0.9,
+      ""reason"": ""Slurm is described as providing a REST API through the slurmrestd daemon.""
+    }
+  ]
+}"
+3,--cpu-bind,controls,cpu affinity,--cpu-bind,CPU affinity,config_param_behavior,doc_10c5,doc_10c5_chunk_0007,0.9,"{""head"": ""--cpu-bind"", ""tail"": ""cpu affinity"", ""relation"": ""controls"", ""relation_type"": ""config_param_behavior"", ""confidence"": 0.9, ""reason"": ""The documentation states that the --cpu-bind flag is used to set CPU affinity, implying that it controls the behavior of CPU affinity."", ""raw_item"": {""head"": ""--cpu-bind"", ""relation"": ""controls"", ""tail"": ""cpu affinity"", ""relation_type"": ""config_param_behavior"", ""confidence"": 0.9, ""reason"": ""The documentation states that the --cpu-bind flag is used to set CPU affinity, implying that it controls the behavior of CPU affinity.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""--cpu-bind"",
+      ""relation"": ""controls"",
+      ""tail"": ""cpu affinity"",
+      ""relation_type"": ""config_param_behavior"",
+      ""confidence"": 0.9,
+      ""reason"": ""The documentation states that the --cpu-bind flag is used to set CPU affinity, implying that it controls the behavior of CPU affinity.""
+    },
+    {
+      ""head"": ""core numbering"",
+      ""relation"": ""affects"",
+      ""tail"": ""task IDs"",
+      ""relation_type"": ""resource_usage"",
+      ""confidence"": 0.8,
+      ""reason"": ""The documentation explains that the core numbering determines the mapping between processors/cores and task IDs.""
+    }
+  ]
+}"
+4,allocation,suspends,job step creation,allocation,Job step creation,resource_usage,doc_1988,doc_1988_chunk_0006,0.9,"{""head"": ""allocation"", ""tail"": ""job step creation"", ""relation"": ""suspends"", ""relation_type"": ""resource_usage"", ""confidence"": 0.9, ""reason"": ""The text describes that an allocation can suspend job step creation."", ""raw_item"": {""head"": ""allocation"", ""relation"": ""suspends"", ""tail"": ""job step creation"", ""relation_type"": ""resource_usage"", ""confidence"": 0.9, ""reason"": ""The text describes that an allocation can suspend job step creation.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""allocation"",
+      ""relation"": ""suspends"",
+      ""tail"": ""job step creation"",
+      ""relation_type"": ""resource_usage"",
+      ""confidence"": 0.9,
+      ""reason"": ""The text describes that an allocation can suspend job step creation.""
+    },
+    {
+      ""head"": ""gang scheduler"",
+      ""relation"": ""controls"",
+      ""tail"": ""job step creation"",
+      ""relation_type"": ""scheduler_component"",
+      ""confidence"": 0.9,
+      ""reason"": ""The text describes that the gang scheduler controls job step creation.""
+    },
+    {
+      ""head"": ""timeslicer algorithm"",
+      ""relation"": ""timeslices"",
+      ""tail"": ""jobs"",
+      ""relation_type"": ""resource_usage"",
+      ""confidence"": 0.9,
+      ""reason"": ""The text describes that the timeslicer algorithm timeslices jobs.""
+    }
+  ]
+}"
+5,gang scheduler,controls,job step creation,gang scheduler,Job step creation,scheduler_component,doc_1988,doc_1988_chunk_0006,0.9,"{""head"": ""gang scheduler"", ""tail"": ""job step creation"", ""relation"": ""controls"", ""relation_type"": ""scheduler_component"", ""confidence"": 0.9, ""reason"": ""The text describes that the gang scheduler controls job step creation."", ""raw_item"": {""head"": ""gang scheduler"", ""relation"": ""controls"", ""tail"": ""job step creation"", ""relation_type"": ""scheduler_component"", ""confidence"": 0.9, ""reason"": ""The text describes that the gang scheduler controls job step creation.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""allocation"",
+      ""relation"": ""suspends"",
+      ""tail"": ""job step creation"",
+      ""relation_type"": ""resource_usage"",
+      ""confidence"": 0.9,
+      ""reason"": ""The text describes that an allocation can suspend job step creation.""
+    },
+    {
+      ""head"": ""gang scheduler"",
+      ""relation"": ""controls"",
+      ""tail"": ""job step creation"",
+      ""relation_type"": ""scheduler_component"",
+      ""confidence"": 0.9,
+      ""reason"": ""The text describes that the gang scheduler controls job step creation.""
+    },
+    {
+      ""head"": ""timeslicer algorithm"",
+      ""relation"": ""timeslices"",
+      ""tail"": ""jobs"",
+      ""relation_type"": ""resource_usage"",
+      ""confidence"": 0.9,
+      ""reason"": ""The text describes that the timeslicer algorithm timeslices jobs.""
+    }
+  ]
+}"
+6,libraries,causes_conflict,package manager,libraries,package manager,resource_usage,doc_2329,doc_2329_chunk_0004,0.9,"{""head"": ""libraries"", ""tail"": ""package manager"", ""relation"": ""causes_conflict"", ""relation_type"": ""resource_usage"", ""confidence"": 0.9, ""reason"": ""Libraries might end up being installed under standard locations like /usr/lib64, causing a conflict with the package manager."", ""raw_item"": {""head"": ""libraries"", ""relation"": ""causes_conflict"", ""tail"": ""package manager"", ""relation_type"": ""resource_usage"", ""confidence"": 0.9, ""reason"": ""Libraries might end up being installed under standard locations like /usr/lib64, causing a conflict with the package manager.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""libraries"",
+      ""relation"": ""causes_conflict"",
+      ""tail"": ""package manager"",
+      ""relation_type"": ""resource_usage"",
+      ""confidence"": 0.9,
+      ""reason"": ""Libraries might end up being installed under standard locations like /usr/lib64, causing a conflict with the package manager.""
+    }
+  ]
+}"
+7,default value,is_associated_with,time,default value,time,config_param_resource,doc_2770,doc_2770_chunk_0007,0.9,"{""head"": ""default value"", ""tail"": ""time"", ""relation"": ""is_associated_with"", ""relation_type"": ""config_param_resource"", ""confidence"": 0.9, ""reason"": ""The default value is associated with the time for which the locks are relinquished."", ""raw_item"": {""head"": ""default value"", ""relation"": ""is_associated_with"", ""tail"": ""time"", ""relation_type"": ""config_param_resource"", ""confidence"": 0.9, ""reason"": ""The default value is associated with the time for which the locks are relinquished.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""default value"",
+      ""relation"": ""is_associated_with"",
+      ""tail"": ""time"",
+      ""relation_type"": ""config_param_resource"",
+      ""confidence"": 0.9,
+      ""reason"": ""The default value is associated with the time for which the locks are relinquished.""
+    },
+    {
+      ""head"": ""locks"",
+      ""relation"": ""has_duration"",
+      ""tail"": ""time"",
+      ""relation_type"": ""resource_usage"",
+      ""confidence"": 0.9,
+      ""reason"": ""The length of time for which the locks are relinquished is a duration of time associated with the locks.""
+    }
+  ]
+}"
+8,locks,has_duration,time,locks,time,resource_usage,doc_2770,doc_2770_chunk_0007,0.9,"{""head"": ""locks"", ""tail"": ""time"", ""relation"": ""has_duration"", ""relation_type"": ""resource_usage"", ""confidence"": 0.9, ""reason"": ""The length of time for which the locks are relinquished is a duration of time associated with the locks."", ""raw_item"": {""head"": ""locks"", ""relation"": ""has_duration"", ""tail"": ""time"", ""relation_type"": ""resource_usage"", ""confidence"": 0.9, ""reason"": ""The length of time for which the locks are relinquished is a duration of time associated with the locks.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""default value"",
+      ""relation"": ""is_associated_with"",
+      ""tail"": ""time"",
+      ""relation_type"": ""config_param_resource"",
+      ""confidence"": 0.9,
+      ""reason"": ""The default value is associated with the time for which the locks are relinquished.""
+    },
+    {
+      ""head"": ""locks"",
+      ""relation"": ""has_duration"",
+      ""tail"": ""time"",
+      ""relation_type"": ""resource_usage"",
+      ""confidence"": 0.9,
+      ""reason"": ""The length of time for which the locks are relinquished is a duration of time associated with the locks.""
+    }
+  ]
+}"
+9,git,uses_command,command,git,command,command_option,doc_2ec1,doc_2ec1_chunk_0003,0.9,"{""head"": ""git"", ""tail"": ""command"", ""relation"": ""uses_command"", ""relation_type"": ""command_option"", ""confidence"": 0.9, ""reason"": ""The text mentions using a command in the context of git, implying that git uses the command."", ""raw_item"": {""head"": ""git"", ""relation"": ""uses_command"", ""tail"": ""command"", ""relation_type"": ""command_option"", ""confidence"": 0.9, ""reason"": ""The text mentions using a command in the context of git, implying that git uses the command.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""git"",
+      ""relation"": ""uses_command"",
+      ""tail"": ""command"",
+      ""relation_type"": ""command_option"",
+      ""confidence"": 0.9,
+      ""reason"": ""The text mentions using a command in the context of git, implying that git uses the command.""
+    }
+  ]
+}"
+10,rest api,provides,cross-version compatibility,REST API,cross-version compatibility,other,doc_3583,doc_3583_chunk_0001,0.8,"{""head"": ""rest api"", ""tail"": ""cross-version compatibility"", ""relation"": ""provides"", ""relation_type"": ""other"", ""confidence"": 0.8, ""reason"": ""Developers are encouraged to target Slurm's REST API for broader cross-version compatibility."", ""raw_item"": {""head"": ""REST API"", ""relation"": ""provides"", ""tail"": ""cross-version compatibility"", ""relation_type"": ""other"", ""confidence"": 0.8, ""reason"": ""Developers are encouraged to target Slurm's REST API for broader cross-version compatibility.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""slurm commands"",
+      ""relation"": ""uses_api"",
+      ""tail"": ""APIs"",
+      ""relation_type"": ""scheduler_component"",
+      ""confidence"": 0.9,
+      ""reason"": ""Slurm commands are described as utilizing APIs exposed through slurm.h and slurmdb.h headers.""
+    },
+    {
+      ""head"": ""REST API"",
+      ""relation"": ""provides"",
+      ""tail"": ""cross-version compatibility"",
+      ""relation_type"": ""other"",
+      ""confidence"": 0.8,
+      ""reason"": ""Developers are encouraged to target Slurm's REST API for broader cross-version compatibility.""
+    }
+  ]
+}"
+11,scontrol,displays,mcs_label,scontrol,MCS_label,command_option,doc_50f7,doc_50f7_chunk_0006,0.9,"{""head"": ""scontrol"", ""tail"": ""mcs_label"", ""relation"": ""displays"", ""relation_type"": ""command_option"", ""confidence"": 0.9, ""reason"": ""The scontrol command is shown to display the MCS_label."", ""raw_item"": {""head"": ""scontrol"", ""relation"": ""displays"", ""tail"": ""MCS_label"", ""relation_type"": ""command_option"", ""confidence"": 0.9, ""reason"": ""The scontrol command is shown to display the MCS_label.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""scontrol"",
+      ""relation"": ""displays"",
+      ""tail"": ""MCS_label"",
+      ""relation_type"": ""command_option"",
+      ""confidence"": 0.9,
+      ""reason"": ""The scontrol command is shown to display the MCS_label.""
+    },
+    {
+      ""head"": ""scontrol show nodes"",
+      ""relation"": ""provides_info_on"",
+      ""tail"": ""node"",
+      ""relation_type"": ""command_option"",
+      ""confidence"": 0.9,
+      ""reason"": ""The scontrol show nodes command is shown to provide information about a node.""
+    }
+  ]
+}"
+12,awk,processes_string,launch string,awk,launch string,command_option,doc_5755,doc_5755_chunk_0063,0.8,"{""head"": ""awk"", ""tail"": ""launch string"", ""relation"": ""processes_string"", ""relation_type"": ""command_option"", ""confidence"": 0.8, ""reason"": ""The awk command is used to process strings, and in this context, it is used to strip away domain name suffixes from the launch string."", ""raw_item"": {""head"": ""awk"", ""relation"": ""processes_string"", ""tail"": ""launch string"", ""relation_type"": ""command_option"", ""confidence"": 0.8, ""reason"": ""The awk command is used to process strings, and in this context, it is used to strip away domain name suffixes from the launch string.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""dset"",
+      ""relation"": ""sets_as_default"",
+      ""tail"": ""TV::bulk_launch_tmpfile1_host_lines"",
+      ""relation_type"": ""config_param_behavior"",
+      ""confidence"": 0.9,
+      ""reason"": ""The dset command is used to set a value as the default, and in this context, it is setting the TV::bulk_launch_tmpfile1_host_lines as the default.""
+    },
+    {
+      ""head"": ""awk"",
+      ""relation"": ""processes_string"",
+      ""tail"": ""launch string"",
+      ""relation_type"": ""command_option"",
+      ""confidence"": 0.8,
+      ""reason"": ""The awk command is used to process strings, and in this context, it is used to strip away domain name suffixes from the launch string.""
+    }
+  ]
+}"
+13,datawarp,uses_option,access,Datawarp,access,config_param_resource,doc_6722,doc_6722_chunk_0014,0.9,"{""head"": ""datawarp"", ""tail"": ""access"", ""relation"": ""uses_option"", ""relation_type"": ""config_param_resource"", ""confidence"": 0.9, ""reason"": ""The documentation states that when using the --bb option with Datawarp, the format can include the 'access' option."", ""raw_item"": {""head"": ""datawarp"", ""relation"": ""uses_option"", ""tail"": ""access"", ""relation_type"": ""config_param_resource"", ""confidence"": 0.9, ""reason"": ""The documentation states that when using the --bb option with Datawarp, the format can include the 'access' option.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""datawarp"",
+      ""relation"": ""uses_option"",
+      ""tail"": ""access"",
+      ""relation_type"": ""config_param_resource"",
+      ""confidence"": 0.9,
+      ""reason"": ""The documentation states that when using the --bb option with Datawarp, the format can include the 'access' option.""
+    }
+  ]
+}"
+14,sview,controls,job modification,sview,job modification,user_role_relation,doc_7940,doc_7940_chunk_0009,0.8,"{""head"": ""sview"", ""tail"": ""job modification"", ""relation"": ""controls"", ""relation_type"": ""user_role_relation"", ""confidence"": 0.8, ""reason"": ""sview is described as a tool that allows job modification, but modifications to anything other than jobs are disabled in sview."", ""raw_item"": {""head"": ""sview"", ""relation"": ""controls"", ""tail"": ""job modification"", ""relation_type"": ""user_role_relation"", ""confidence"": 0.8, ""reason"": ""sview is described as a tool that allows job modification, but modifications to anything other than jobs are disabled in sview.""}}","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""federated job"",
+      ""parent"": ""job"",
+      ""confidence"": 0.9,
+      ""reason"": ""The federated job is a specific type of job that runs across multiple clusters.""
+    }
+  ],
+  ""other_relations"": [
+    {
+      ""head"": ""sview"",
+      ""relation"": ""controls"",
+      ""tail"": ""job modification"",
+      ""relation_type"": ""user_role_relation"",
+      ""confidence"": 0.8,
+      ""reason"": ""sview is described as a tool that allows job modification, but modifications to anything other than jobs are disabled in sview.""
+    },
+    {
+      ""head"": ""sview grid"",
+      ""relation"": ""is_disabled"",
+      ""tail"": ""federated view"",
+      ""relation_type"": ""other"",
+      ""confidence"": 0.9,
+      ""reason"": ""sview grid is described as being disabled in a federated view.""
+    }
+  ]
+}"
+15,sview grid,is_disabled,federated view,sview grid,federated view,other,doc_7940,doc_7940_chunk_0009,0.9,"{""head"": ""sview grid"", ""tail"": ""federated view"", ""relation"": ""is_disabled"", ""relation_type"": ""other"", ""confidence"": 0.9, ""reason"": ""sview grid is described as being disabled in a federated view."", ""raw_item"": {""head"": ""sview grid"", ""relation"": ""is_disabled"", ""tail"": ""federated view"", ""relation_type"": ""other"", ""confidence"": 0.9, ""reason"": ""sview grid is described as being disabled in a federated view.""}}","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""federated job"",
+      ""parent"": ""job"",
+      ""confidence"": 0.9,
+      ""reason"": ""The federated job is a specific type of job that runs across multiple clusters.""
+    }
+  ],
+  ""other_relations"": [
+    {
+      ""head"": ""sview"",
+      ""relation"": ""controls"",
+      ""tail"": ""job modification"",
+      ""relation_type"": ""user_role_relation"",
+      ""confidence"": 0.8,
+      ""reason"": ""sview is described as a tool that allows job modification, but modifications to anything other than jobs are disabled in sview.""
+    },
+    {
+      ""head"": ""sview grid"",
+      ""relation"": ""is_disabled"",
+      ""tail"": ""federated view"",
+      ""relation_type"": ""other"",
+      ""confidence"": 0.9,
+      ""reason"": ""sview grid is described as being disabled in a federated view.""
+    }
+  ]
+}"
+16,maximum allocation,is_limit_for,resources,maximum allocation,resources,resource_usage,doc_9ca6,doc_9ca6_chunk_0003,0.9,"{""head"": ""maximum allocation"", ""tail"": ""resources"", ""relation"": ""is_limit_for"", ""relation_type"": ""resource_usage"", ""confidence"": 0.9, ""reason"": ""The maximum allocation is described as the limit for the resources, as it is the maximum that can be allocated."", ""raw_item"": {""head"": ""maximum allocation"", ""relation"": ""is_limit_for"", ""tail"": ""resources"", ""relation_type"": ""resource_usage"", ""confidence"": 0.9, ""reason"": ""The maximum allocation is described as the limit for the resources, as it is the maximum that can be allocated.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""maximum allocation"",
+      ""relation"": ""is_limit_for"",
+      ""tail"": ""resources"",
+      ""relation_type"": ""resource_usage"",
+      ""confidence"": 0.9,
+      ""reason"": ""The maximum allocation is described as the limit for the resources, as it is the maximum that can be allocated.""
+    }
+  ]
+}"
+17,fair-share factor,affects,scheduling priority,fair-share factor,scheduling priority,job_state_relation,doc_c721,doc_c721_chunk_0007,0.9,"{""head"": ""fair-share factor"", ""tail"": ""scheduling priority"", ""relation"": ""affects"", ""relation_type"": ""job_state_relation"", ""confidence"": 0.9, ""reason"": ""The text explains that the fair-share factor is used to determine scheduling priority for jobs."", ""raw_item"": {""head"": ""fair-share factor"", ""relation"": ""affects"", ""tail"": ""scheduling priority"", ""relation_type"": ""job_state_relation"", ""confidence"": 0.9, ""reason"": ""The text explains that the fair-share factor is used to determine scheduling priority for jobs.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""fair-share factor"",
+      ""relation"": ""affects"",
+      ""tail"": ""scheduling priority"",
+      ""relation_type"": ""job_state_relation"",
+      ""confidence"": 0.9,
+      ""reason"": ""The text explains that the fair-share factor is used to determine scheduling priority for jobs.""
+    },
+    {
+      ""head"": ""Slurm fair-share formula"",
+      ""relation"": ""calculates"",
+      ""tail"": ""fair-share factor"",
+      ""relation_type"": ""config_param_behavior"",
+      ""confidence"": 0.9,
+      ""reason"": ""The text describes the Slurm fair-share formula as a method for calculating fair-share factors.""
+    }
+  ]
+}"
+18,slurm fair-share formula,calculates,fair-share factor,Slurm fair-share formula,fair-share factor,config_param_behavior,doc_c721,doc_c721_chunk_0007,0.9,"{""head"": ""slurm fair-share formula"", ""tail"": ""fair-share factor"", ""relation"": ""calculates"", ""relation_type"": ""config_param_behavior"", ""confidence"": 0.9, ""reason"": ""The text describes the Slurm fair-share formula as a method for calculating fair-share factors."", ""raw_item"": {""head"": ""Slurm fair-share formula"", ""relation"": ""calculates"", ""tail"": ""fair-share factor"", ""relation_type"": ""config_param_behavior"", ""confidence"": 0.9, ""reason"": ""The text describes the Slurm fair-share formula as a method for calculating fair-share factors.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""fair-share factor"",
+      ""relation"": ""affects"",
+      ""tail"": ""scheduling priority"",
+      ""relation_type"": ""job_state_relation"",
+      ""confidence"": 0.9,
+      ""reason"": ""The text explains that the fair-share factor is used to determine scheduling priority for jobs.""
+    },
+    {
+      ""head"": ""Slurm fair-share formula"",
+      ""relation"": ""calculates"",
+      ""tail"": ""fair-share factor"",
+      ""relation_type"": ""config_param_behavior"",
+      ""confidence"": 0.9,
+      ""reason"": ""The text describes the Slurm fair-share formula as a method for calculating fair-share factors.""
+    }
+  ]
+}"
+19,loopback interface,associated_with,ipv4,loopback interface,IPv4,resource_usage,doc_e2a1,doc_e2a1_chunk_0006,0.8,"{""head"": ""loopback interface"", ""tail"": ""ipv4"", ""relation"": ""associated_with"", ""relation_type"": ""resource_usage"", ""confidence"": 0.8, ""reason"": ""The loopback interface is mentioned as potentially resolving to IPv4, indicating an association."", ""raw_item"": {""head"": ""loopback interface"", ""relation"": ""associated_with"", ""tail"": ""IPv4"", ""relation_type"": ""resource_usage"", ""confidence"": 0.8, ""reason"": ""The loopback interface is mentioned as potentially resolving to IPv4, indicating an association.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""loopback interface"",
+      ""relation"": ""associated_with"",
+      ""tail"": ""IPv4"",
+      ""relation_type"": ""resource_usage"",
+      ""confidence"": 0.8,
+      ""reason"": ""The loopback interface is mentioned as potentially resolving to IPv4, indicating an association.""
+    },
+    {
+      ""head"": ""loopback interface"",
+      ""relation"": ""associated_with"",
+      ""tail"": ""IPv6"",
+      ""relation_type"": ""resource_usage"",
+      ""confidence"": 0.8,
+      ""reason"": ""The loopback interface is mentioned as potentially resolving to IPv6, indicating an association.""
+    }
+  ]
+}"
+20,loopback interface,associated_with,ipv6,loopback interface,IPv6,resource_usage,doc_e2a1,doc_e2a1_chunk_0006,0.8,"{""head"": ""loopback interface"", ""tail"": ""ipv6"", ""relation"": ""associated_with"", ""relation_type"": ""resource_usage"", ""confidence"": 0.8, ""reason"": ""The loopback interface is mentioned as potentially resolving to IPv6, indicating an association."", ""raw_item"": {""head"": ""loopback interface"", ""relation"": ""associated_with"", ""tail"": ""IPv6"", ""relation_type"": ""resource_usage"", ""confidence"": 0.8, ""reason"": ""The loopback interface is mentioned as potentially resolving to IPv6, indicating an association.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""loopback interface"",
+      ""relation"": ""associated_with"",
+      ""tail"": ""IPv4"",
+      ""relation_type"": ""resource_usage"",
+      ""confidence"": 0.8,
+      ""reason"": ""The loopback interface is mentioned as potentially resolving to IPv4, indicating an association.""
+    },
+    {
+      ""head"": ""loopback interface"",
+      ""relation"": ""associated_with"",
+      ""tail"": ""IPv6"",
+      ""relation_type"": ""resource_usage"",
+      ""confidence"": 0.8,
+      ""reason"": ""The loopback interface is mentioned as potentially resolving to IPv6, indicating an association.""
+    }
+  ]
+}"
+21,slurmctld,executes,script,slurmctld,script,command_option,doc_e8f0,doc_e8f0_chunk_0002,0.9,"{""head"": ""slurmctld"", ""tail"": ""script"", ""relation"": ""executes"", ""relation_type"": ""command_option"", ""confidence"": 0.9, ""reason"": ""slurmctld is described as executing the script for each job submission."", ""raw_item"": {""head"": ""slurmctld"", ""relation"": ""executes"", ""tail"": ""script"", ""relation_type"": ""command_option"", ""confidence"": 0.9, ""reason"": ""slurmctld is described as executing the script for each job submission.""}}","{
+  ""is_a_edges"": [],
+  ""other_relations"": [
+    {
+      ""head"": ""slurmctld"",
+      ""relation"": ""executes"",
+      ""tail"": ""script"",
+      ""relation_type"": ""command_option"",
+      ""confidence"": 0.9,
+      ""reason"": ""slurmctld is described as executing the script for each job submission.""
+    }
+  ]
+}"

@@ -1,0 +1,2066 @@
+edge_id,child_term,parent_term,child_canonical,parent_canonical,doc_id,chunk_id,reason,raw_json
+1,with_usage,query parameter,with_usage,query parameter,doc_05b9,doc_05b9_chunk_0008,with_usage is a specific type of query parameter.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""result of delete cluster request"",
+      ""parent"": ""response"",
+      ""reason"": ""The text describes the result of a delete cluster request as a response.""
+    },
+    {
+      ""child"": ""v0.0.43_openapi_clusters_removed_resp"",
+      ""parent"": ""response"",
+      ""reason"": ""The text specifies the response type as v0.0.43_openapi_clusters_removed_resp.""
+    },
+    {
+      ""child"": ""query parameter"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""Query parameters are explicitly mentioned as a configuration option.""
+    },
+    {
+      ""child"": ""with_usage"",
+      ""parent"": ""query parameter"",
+      ""reason"": ""with_usage is a specific type of query parameter.""
+    }
+  ]
+}"
+2,slurmdbv0043getassociation,get,slurmdbv0043getassociation,get,doc_05b9,doc_05b9_chunk_0009,slurmdbv0043getassociation is a specific type of get operation.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""slurmdbv0043getassociation"",
+      ""parent"": ""get"",
+      ""reason"": ""slurmdbv0043getassociation is a specific type of get operation.""
+    },
+    {
+      ""child"": ""v0.0.43_openapi_accounts_resp"",
+      ""parent"": ""responses"",
+      ""reason"": ""v0.0.43_openapi_accounts_resp is a specific type of response.""
+    },
+    {
+      ""child"": ""list"",
+      ""parent"": ""responses"",
+      ""reason"": ""list is a more general type of response.""
+    },
+    {
+      ""child"": ""default_qos"",
+      ""parent"": ""query parameters"",
+      ""reason"": ""default_qos is a specific type of query parameter.""
+    }
+  ]
+}"
+3,v0.0.43_openapi_accounts_resp,responses,v0.0.43_openapi_accounts_resp,responses,doc_05b9,doc_05b9_chunk_0009,v0.0.43_openapi_accounts_resp is a specific type of response.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""slurmdbv0043getassociation"",
+      ""parent"": ""get"",
+      ""reason"": ""slurmdbv0043getassociation is a specific type of get operation.""
+    },
+    {
+      ""child"": ""v0.0.43_openapi_accounts_resp"",
+      ""parent"": ""responses"",
+      ""reason"": ""v0.0.43_openapi_accounts_resp is a specific type of response.""
+    },
+    {
+      ""child"": ""list"",
+      ""parent"": ""responses"",
+      ""reason"": ""list is a more general type of response.""
+    },
+    {
+      ""child"": ""default_qos"",
+      ""parent"": ""query parameters"",
+      ""reason"": ""default_qos is a specific type of query parameter.""
+    }
+  ]
+}"
+4,list,responses,list,responses,doc_05b9,doc_05b9_chunk_0009,list is a more general type of response.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""slurmdbv0043getassociation"",
+      ""parent"": ""get"",
+      ""reason"": ""slurmdbv0043getassociation is a specific type of get operation.""
+    },
+    {
+      ""child"": ""v0.0.43_openapi_accounts_resp"",
+      ""parent"": ""responses"",
+      ""reason"": ""v0.0.43_openapi_accounts_resp is a specific type of response.""
+    },
+    {
+      ""child"": ""list"",
+      ""parent"": ""responses"",
+      ""reason"": ""list is a more general type of response.""
+    },
+    {
+      ""child"": ""default_qos"",
+      ""parent"": ""query parameters"",
+      ""reason"": ""default_qos is a specific type of query parameter.""
+    }
+  ]
+}"
+5,default_qos,query parameters,default_qos,query parameters,doc_05b9,doc_05b9_chunk_0009,default_qos is a specific type of query parameter.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""slurmdbv0043getassociation"",
+      ""parent"": ""get"",
+      ""reason"": ""slurmdbv0043getassociation is a specific type of get operation.""
+    },
+    {
+      ""child"": ""v0.0.43_openapi_accounts_resp"",
+      ""parent"": ""responses"",
+      ""reason"": ""v0.0.43_openapi_accounts_resp is a specific type of response.""
+    },
+    {
+      ""child"": ""list"",
+      ""parent"": ""responses"",
+      ""reason"": ""list is a more general type of response.""
+    },
+    {
+      ""child"": ""default_qos"",
+      ""parent"": ""query parameters"",
+      ""reason"": ""default_qos is a specific type of query parameter.""
+    }
+  ]
+}"
+6,application/json,content-type,application/json,content-type,doc_05b9,doc_05b9_chunk_0010,"The term 'application/json' is a specific type of content-type, as it refers to the format of the data being transmitted.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""list of associations v0.0.43_openapi_assocs_resp"",
+      ""parent"": ""list"",
+      ""reason"": ""The term 'list of associations v0.0.43_openapi_assocs_resp' is a specific type of list, as it refers to a collection of associations with a specific version and format.""
+    },
+    {
+      ""child"": ""application/json"",
+      ""parent"": ""content-type"",
+      ""reason"": ""The term 'application/json' is a specific type of content-type, as it refers to the format of the data being transmitted.""
+    },
+    {
+      ""child"": ""csv"",
+      ""parent"": ""format"",
+      ""reason"": ""The term 'csv' is a specific type of format, as it refers to a comma-separated values format.""
+    }
+  ]
+}"
+7,cli_filter.lua,lua plugin,cli_filter.lua,lua plugin,doc_05be,doc_05be_chunk_0002,cli_filter.lua is a specific instance of the lua plugin.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""cli_filter plugins"",
+      ""parent"": ""Slurm plugins"",
+      ""reason"": ""cli_filter plugins are explicitly mentioned as a type of Slurm plugins.""
+    },
+    {
+      ""child"": ""cli_filter.lua"",
+      ""parent"": ""lua plugin"",
+      ""reason"": ""cli_filter.lua is a specific instance of the lua plugin.""
+    },
+    {
+      ""child"": ""cli_filter.major"",
+      ""parent"": ""plugin_type"",
+      ""reason"": ""cli_filter.major is a specific type of plugin_type.""
+    },
+    {
+      ""child"": ""cli_filter.minor"",
+      ""parent"": ""plugin_type"",
+      ""reason"": ""cli_filter.minor is a specific type of plugin_type.""
+    },
+    {
+      ""child"": ""default script directory"",
+      ""parent"": ""script directory"",
+      ""reason"": ""default script directory is a specific instance of script directory.""
+    }
+  ]
+}"
+8,cli_filter.major,plugin_type,cli_filter.major,plugin_type,doc_05be,doc_05be_chunk_0002,cli_filter.major is a specific type of plugin_type.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""cli_filter plugins"",
+      ""parent"": ""Slurm plugins"",
+      ""reason"": ""cli_filter plugins are explicitly mentioned as a type of Slurm plugins.""
+    },
+    {
+      ""child"": ""cli_filter.lua"",
+      ""parent"": ""lua plugin"",
+      ""reason"": ""cli_filter.lua is a specific instance of the lua plugin.""
+    },
+    {
+      ""child"": ""cli_filter.major"",
+      ""parent"": ""plugin_type"",
+      ""reason"": ""cli_filter.major is a specific type of plugin_type.""
+    },
+    {
+      ""child"": ""cli_filter.minor"",
+      ""parent"": ""plugin_type"",
+      ""reason"": ""cli_filter.minor is a specific type of plugin_type.""
+    },
+    {
+      ""child"": ""default script directory"",
+      ""parent"": ""script directory"",
+      ""reason"": ""default script directory is a specific instance of script directory.""
+    }
+  ]
+}"
+9,cli_filter.minor,plugin_type,cli_filter.minor,plugin_type,doc_05be,doc_05be_chunk_0002,cli_filter.minor is a specific type of plugin_type.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""cli_filter plugins"",
+      ""parent"": ""Slurm plugins"",
+      ""reason"": ""cli_filter plugins are explicitly mentioned as a type of Slurm plugins.""
+    },
+    {
+      ""child"": ""cli_filter.lua"",
+      ""parent"": ""lua plugin"",
+      ""reason"": ""cli_filter.lua is a specific instance of the lua plugin.""
+    },
+    {
+      ""child"": ""cli_filter.major"",
+      ""parent"": ""plugin_type"",
+      ""reason"": ""cli_filter.major is a specific type of plugin_type.""
+    },
+    {
+      ""child"": ""cli_filter.minor"",
+      ""parent"": ""plugin_type"",
+      ""reason"": ""cli_filter.minor is a specific type of plugin_type.""
+    },
+    {
+      ""child"": ""default script directory"",
+      ""parent"": ""script directory"",
+      ""reason"": ""default script directory is a specific instance of script directory.""
+    }
+  ]
+}"
+10,rootless,root,rootless,root,doc_0ac6,doc_0ac6_chunk_0004,"rootless is a specific form of root, referring to a containerized root.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""runc --rootless=true"",
+      ""parent"": ""runc"",
+      ""reason"": ""runc --rootless=true is a specific command-line invocation of runc.""
+    },
+    {
+      ""child"": ""crun --rootless=true"",
+      ""parent"": ""crun"",
+      ""reason"": ""crun --rootless=true is a specific command-line invocation of crun.""
+    },
+    {
+      ""child"": ""nvidia-container-runtime --rootless=true"",
+      ""parent"": ""nvidia-container-runtime"",
+      ""reason"": ""nvidia-container-runtime --rootless=true is a specific command-line invocation of nvidia-container-runtime.""
+    },
+    {
+      ""child"": ""rootless"",
+      ""parent"": ""root"",
+      ""reason"": ""rootless is a specific form of root, referring to a containerized root.""
+    }
+  ]
+}"
+11,slurmrestd group,group,slurmrestd group,group,doc_0e42,doc_0e42_chunk_0002,slurmrestd group is created for running the slurmrestd daemon.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""slurmrestd group"",
+      ""parent"": ""group"",
+      ""reason"": ""slurmrestd group is created for running the slurmrestd daemon.""
+    },
+    {
+      ""child"": ""slurmrestd user"",
+      ""parent"": ""user"",
+      ""reason"": ""slurmrestd user is created for running the slurmrestd daemon.""
+    },
+    {
+      ""child"": ""slurmrestd daemon"",
+      ""parent"": ""daemon"",
+      ""reason"": ""slurmrestd daemon is explicitly mentioned as a specific daemon component.""
+    },
+    {
+      ""child"": ""slurmrestd_listen"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""slurmrestd_listen is a specific configuration option for slurmrestd.""
+    },
+    {
+      ""child"": ""socket"",
+      ""parent"": ""resource"",
+      ""reason"": ""socket is a resource that is configured for slurmrestd.""
+    }
+  ]
+}"
+12,slurmrestd user,user,slurmrestd user,user,doc_0e42,doc_0e42_chunk_0002,slurmrestd user is created for running the slurmrestd daemon.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""slurmrestd group"",
+      ""parent"": ""group"",
+      ""reason"": ""slurmrestd group is created for running the slurmrestd daemon.""
+    },
+    {
+      ""child"": ""slurmrestd user"",
+      ""parent"": ""user"",
+      ""reason"": ""slurmrestd user is created for running the slurmrestd daemon.""
+    },
+    {
+      ""child"": ""slurmrestd daemon"",
+      ""parent"": ""daemon"",
+      ""reason"": ""slurmrestd daemon is explicitly mentioned as a specific daemon component.""
+    },
+    {
+      ""child"": ""slurmrestd_listen"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""slurmrestd_listen is a specific configuration option for slurmrestd.""
+    },
+    {
+      ""child"": ""socket"",
+      ""parent"": ""resource"",
+      ""reason"": ""socket is a resource that is configured for slurmrestd.""
+    }
+  ]
+}"
+13,active bitmap,job queue,active bitmap,job queue,doc_1988,doc_1988_chunk_0004,"The active bitmap is maintained within the gang scheduler logic, which is a part of the job queue.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""active bitmap"",
+      ""parent"": ""job queue"",
+      ""reason"": ""The active bitmap is maintained within the gang scheduler logic, which is a part of the job queue.""
+    },
+    {
+      ""child"": ""timeslicer thread"",
+      ""parent"": ""daemon"",
+      ""reason"": ""The timeslicer thread is spawned by the gang scheduler on startup, which is a daemon.""
+    }
+  ]
+}"
+14,squeue --start,squeue,squeue --start,squeue,doc_2770,doc_2770_chunk_0003,squeue --start is a specific command of squeue.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""squeue --start"",
+      ""parent"": ""squeue"",
+      ""reason"": ""squeue --start is a specific command of squeue.""
+    },
+    {
+      ""child"": ""job-partition pairs"",
+      ""parent"": ""job"",
+      ""reason"": ""job-partition pairs are a specific type of job configuration.""
+    },
+    {
+      ""child"": ""MaxTime"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""MaxTime is a specific job configuration parameter.""
+    }
+  ]
+}"
+15,default value,time,default value,time,doc_2770,doc_2770_chunk_0007,"The default value is a specific instance of time, as it represents a duration.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""default value"",
+      ""parent"": ""time"",
+      ""reason"": ""The default value is a specific instance of time, as it represents a duration.""
+    }
+  ]
+}"
+16,job qos,qos,job qos,qos,doc_289e,doc_289e_chunk_0002,"Job qos is a specific type of qos, as it is associated with jobs and has preemption characteristics.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job qos"",
+      ""parent"": ""qos"",
+      ""reason"": ""Job qos is a specific type of qos, as it is associated with jobs and has preemption characteristics.""
+    },
+    {
+      ""child"": ""partition qos"",
+      ""parent"": ""qos"",
+      ""reason"": ""Partition qos is a specific type of qos, as it can be attached to partitions and have limits.""
+    },
+    {
+      ""child"": ""floating partition"",
+      ""parent"": ""partition"",
+      ""reason"": ""Floating partition is a specific type of partition, as it can access a limited amount of resources with no restrictions on which nodes it uses.""
+    },
+    {
+      ""child"": ""overpartqos"",
+      ""parent"": ""qos option"",
+      ""reason"": ""Overpartqos is a specific qos option, as it reverses the order of precedence for partition qos and job qos.""
+    }
+  ]
+}"
+17,partition qos,qos,partition qos,qos,doc_289e,doc_289e_chunk_0002,"Partition qos is a specific type of qos, as it can be attached to partitions and have limits.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job qos"",
+      ""parent"": ""qos"",
+      ""reason"": ""Job qos is a specific type of qos, as it is associated with jobs and has preemption characteristics.""
+    },
+    {
+      ""child"": ""partition qos"",
+      ""parent"": ""qos"",
+      ""reason"": ""Partition qos is a specific type of qos, as it can be attached to partitions and have limits.""
+    },
+    {
+      ""child"": ""floating partition"",
+      ""parent"": ""partition"",
+      ""reason"": ""Floating partition is a specific type of partition, as it can access a limited amount of resources with no restrictions on which nodes it uses.""
+    },
+    {
+      ""child"": ""overpartqos"",
+      ""parent"": ""qos option"",
+      ""reason"": ""Overpartqos is a specific qos option, as it reverses the order of precedence for partition qos and job qos.""
+    }
+  ]
+}"
+18,relative resource limits,resource limits,relative resource limits,resource limits,doc_289e,doc_289e_chunk_0003,"Relative resource limits are a specific type of resource limits, as they are defined as percentages of the total resources available.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""relative resource limits"",
+      ""parent"": ""resource limits"",
+      ""reason"": ""Relative resource limits are a specific type of resource limits, as they are defined as percentages of the total resources available.""
+    },
+    {
+      ""child"": ""partition QOS"",
+      ""parent"": ""QOS"",
+      ""reason"": ""Partition QOS is a specific type of QOS, as it is configured for a partition and uses GrpTRES to set resource limits.""
+    },
+    {
+      ""child"": ""reconfiguration"",
+      ""parent"": ""restart"",
+      ""reason"": ""Reconfiguration is a specific type of restart, as it refers to modifying the configuration of a system, not just restarting it.""
+    }
+  ]
+}"
+19,reconfiguration,restart,reconfiguration,restart,doc_289e,doc_289e_chunk_0003,"Reconfiguration is a specific type of restart, as it refers to modifying the configuration of a system, not just restarting it.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""relative resource limits"",
+      ""parent"": ""resource limits"",
+      ""reason"": ""Relative resource limits are a specific type of resource limits, as they are defined as percentages of the total resources available.""
+    },
+    {
+      ""child"": ""partition QOS"",
+      ""parent"": ""QOS"",
+      ""reason"": ""Partition QOS is a specific type of QOS, as it is configured for a partition and uses GrpTRES to set resource limits.""
+    },
+    {
+      ""child"": ""reconfiguration"",
+      ""parent"": ""restart"",
+      ""reason"": ""Reconfiguration is a specific type of restart, as it refers to modifying the configuration of a system, not just restarting it.""
+    }
+  ]
+}"
+20,command,git,command,git,doc_2ec1,doc_2ec1_chunk_0003,A command can be a part of a git operation.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""command"",
+      ""parent"": ""git"",
+      ""reason"": ""A command can be a part of a git operation.""
+    }
+  ]
+}"
+21,granted job allocation,job allocation,granted job allocation,job allocation,doc_3740,doc_3740_chunk_0002,Granted job allocation is a specific instance of job allocation.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""granted job allocation"",
+      ""parent"": ""job allocation"",
+      ""reason"": ""Granted job allocation is a specific instance of job allocation.""
+    },
+    {
+      ""child"": ""specialized cores"",
+      ""parent"": ""cores"",
+      ""reason"": ""Specialized cores are a specific type of cores.""
+    },
+    {
+      ""child"": ""cpus_allowed"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""cpus_allowed is a specific configuration parameter.""
+    },
+    {
+      ""child"": ""cpus_allowed_list"",
+      ""parent"": ""cpus_allowed"",
+      ""reason"": ""cpus_allowed_list is a specific form of cpus_allowed.""
+    },
+    {
+      ""child"": ""srun"",
+      ""parent"": ""job"",
+      ""reason"": ""srun is a specific job type.""
+    }
+  ]
+}"
+22,cpus_allowed_list,cpus_allowed,cpus_allowed_list,cpus_allowed,doc_3740,doc_3740_chunk_0002,cpus_allowed_list is a specific form of cpus_allowed.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""granted job allocation"",
+      ""parent"": ""job allocation"",
+      ""reason"": ""Granted job allocation is a specific instance of job allocation.""
+    },
+    {
+      ""child"": ""specialized cores"",
+      ""parent"": ""cores"",
+      ""reason"": ""Specialized cores are a specific type of cores.""
+    },
+    {
+      ""child"": ""cpus_allowed"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""cpus_allowed is a specific configuration parameter.""
+    },
+    {
+      ""child"": ""cpus_allowed_list"",
+      ""parent"": ""cpus_allowed"",
+      ""reason"": ""cpus_allowed_list is a specific form of cpus_allowed.""
+    },
+    {
+      ""child"": ""srun"",
+      ""parent"": ""job"",
+      ""reason"": ""srun is a specific job type.""
+    }
+  ]
+}"
+23,default allocation,allocation method,default allocation,allocation method,doc_385e,doc_385e_chunk_0006,Default allocation is a specific type of allocation method.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""default allocation"",
+      ""parent"": ""allocation method"",
+      ""reason"": ""Default allocation is a specific type of allocation method.""
+    },
+    {
+      ""child"": ""exclusive mode"",
+      ""parent"": ""allocation method"",
+      ""reason"": ""Exclusive mode is a specific type of allocation method.""
+    },
+    {
+      ""child"": ""serial job"",
+      ""parent"": ""job"",
+      ""reason"": ""Serial job is a specific type of job.""
+    },
+    {
+      ""child"": ""parallel job"",
+      ""parent"": ""job"",
+      ""reason"": ""Parallel job is a specific type of job.""
+    },
+    {
+      ""child"": ""node"",
+      ""parent"": ""resource"",
+      ""reason"": ""Node is described as a specific resource.""
+    }
+  ]
+}"
+24,exclusive mode,allocation method,exclusive mode,allocation method,doc_385e,doc_385e_chunk_0006,Exclusive mode is a specific type of allocation method.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""default allocation"",
+      ""parent"": ""allocation method"",
+      ""reason"": ""Default allocation is a specific type of allocation method.""
+    },
+    {
+      ""child"": ""exclusive mode"",
+      ""parent"": ""allocation method"",
+      ""reason"": ""Exclusive mode is a specific type of allocation method.""
+    },
+    {
+      ""child"": ""serial job"",
+      ""parent"": ""job"",
+      ""reason"": ""Serial job is a specific type of job.""
+    },
+    {
+      ""child"": ""parallel job"",
+      ""parent"": ""job"",
+      ""reason"": ""Parallel job is a specific type of job.""
+    },
+    {
+      ""child"": ""node"",
+      ""parent"": ""resource"",
+      ""reason"": ""Node is described as a specific resource.""
+    }
+  ]
+}"
+25,serial job,job,serial job,job,doc_385e,doc_385e_chunk_0006,Serial job is a specific type of job.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""default allocation"",
+      ""parent"": ""allocation method"",
+      ""reason"": ""Default allocation is a specific type of allocation method.""
+    },
+    {
+      ""child"": ""exclusive mode"",
+      ""parent"": ""allocation method"",
+      ""reason"": ""Exclusive mode is a specific type of allocation method.""
+    },
+    {
+      ""child"": ""serial job"",
+      ""parent"": ""job"",
+      ""reason"": ""Serial job is a specific type of job.""
+    },
+    {
+      ""child"": ""parallel job"",
+      ""parent"": ""job"",
+      ""reason"": ""Parallel job is a specific type of job.""
+    },
+    {
+      ""child"": ""node"",
+      ""parent"": ""resource"",
+      ""reason"": ""Node is described as a specific resource.""
+    }
+  ]
+}"
+26,parallel job,job,parallel job,job,doc_385e,doc_385e_chunk_0006,Parallel job is a specific type of job.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""default allocation"",
+      ""parent"": ""allocation method"",
+      ""reason"": ""Default allocation is a specific type of allocation method.""
+    },
+    {
+      ""child"": ""exclusive mode"",
+      ""parent"": ""allocation method"",
+      ""reason"": ""Exclusive mode is a specific type of allocation method.""
+    },
+    {
+      ""child"": ""serial job"",
+      ""parent"": ""job"",
+      ""reason"": ""Serial job is a specific type of job.""
+    },
+    {
+      ""child"": ""parallel job"",
+      ""parent"": ""job"",
+      ""reason"": ""Parallel job is a specific type of job.""
+    },
+    {
+      ""child"": ""node"",
+      ""parent"": ""resource"",
+      ""reason"": ""Node is described as a specific resource.""
+    }
+  ]
+}"
+27,api,categories,api,categories,doc_3bdd,doc_3bdd_chunk_0003,api is a specific category of functions.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""api"",
+      ""parent"": ""categories"",
+      ""reason"": ""api is a specific category of functions.""
+    },
+    {
+      ""child"": ""slurm code"",
+      ""parent"": ""source code"",
+      ""reason"": ""slurm code is a specific type of source code.""
+    },
+    {
+      ""child"": ""man pages"",
+      ""parent"": ""documentation"",
+      ""reason"": ""man pages are a specific type of documentation.""
+    },
+    {
+      ""child"": ""doc/html"",
+      ""parent"": ""documentation"",
+      ""reason"": ""doc/html is a specific type of documentation.""
+    },
+    {
+      ""child"": ""testsuite"",
+      ""parent"": ""source code"",
+      ""reason"": ""testsuite is a specific type of source code.""
+    },
+    {
+      ""child"": ""pytest tests"",
+      ""parent"": ""tests"",
+      ""reason"": ""pytest tests are a specific type of tests.""
+    }
+  ]
+}"
+28,slurmdbd,slurm database,slurmdbd,slurm database,doc_4387,doc_4387_chunk_0009,slurmdbd is a specific implementation of the slurm database.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""slurmdbd"",
+      ""parent"": ""slurm database"",
+      ""reason"": ""slurmdbd is a specific implementation of the slurm database.""
+    },
+    {
+      ""child"": ""show table status"",
+      ""parent"": ""command"",
+      ""reason"": ""show table status is a specific command used to view table information.""
+    },
+    {
+      ""child"": ""case-insensitive"",
+      ""parent"": ""collation"",
+      ""reason"": ""case-insensitive is a specific type of collation.""
+    }
+  ]
+}"
+29,qos,quality of service,qos,quality of service,doc_4387,doc_4387_chunk_0010,qos is described as a specific quality of service.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""tres-minutes"",
+      ""parent"": ""limit"",
+      ""reason"": ""tres-minutes is a specific type of limit.""
+    },
+    {
+      ""child"": ""qos"",
+      ""parent"": ""quality of service"",
+      ""reason"": ""qos is described as a specific quality of service.""
+    },
+    {
+      ""child"": ""wckeys"",
+      ""parent"": ""access control"",
+      ""reason"": ""wckeys is a specific form of access control.""
+    }
+  ]
+}"
+30,slurm_acct_db,database,slurm_acct_db,database,doc_4387,doc_4387_chunk_0014,slurm_acct_db is explicitly mentioned as the default database for accounting records.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""slurm_acct_db"",
+      ""parent"": ""database"",
+      ""reason"": ""slurm_acct_db is explicitly mentioned as the default database for accounting records.""
+    },
+    {
+      ""child"": ""slurmUser"",
+      ""parent"": ""user"",
+      ""reason"": ""slurmUser is described as the name of the user that the slurmdbd daemon executes as, and it should be the same on all clusters reporting to the SlurmDBD.""
+    },
+    {
+      ""child"": ""slurmdbd daemon"",
+      ""parent"": ""daemon"",
+      ""reason"": ""slurmdbd daemon is explicitly mentioned as a specific daemon component.""
+    },
+    {
+      ""child"": ""slurmctld"",
+      ""parent"": ""daemon"",
+      ""reason"": ""slurmctld is mentioned as a component that must be restarted if the user for slurmdbd is changed.""
+    }
+  ]
+}"
+31,accounting_storage/mysql,accounting storage mechanism,accounting_storage/mysql,accounting storage mechanism,doc_4387,doc_4387_chunk_0015,accounting_storage/mysql is a specific value for the accounting storage mechanism.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""accounting_storage/mysql"",
+      ""parent"": ""accounting storage mechanism"",
+      ""reason"": ""accounting_storage/mysql is a specific value for the accounting storage mechanism.""
+    },
+    {
+      ""child"": ""MySQL Configuration"",
+      ""parent"": ""mysql configuration"",
+      ""reason"": ""MySQL Configuration is a specific example of mysql configuration.""
+    },
+    {
+      ""child"": ""StorageUser"",
+      ""parent"": ""mysql user"",
+      ""reason"": ""StorageUser is a specific name of the user for connecting to the MySQL or MariaDB database.""
+    }
+  ]
+}"
+32,$jobid,job,$jobid,job,doc_4600,doc_4600_chunk_0002,The text describes $jobid as a specific instance of a job.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""$jobid"",
+      ""parent"": ""job"",
+      ""reason"": ""The text describes $jobid as a specific instance of a job.""
+    },
+    {
+      ""child"": ""_tmp"",
+      ""parent"": ""directory"",
+      ""reason"": ""_tmp is described as a directory within the context of the job.""
+    },
+    {
+      ""child"": ""bind mount"",
+      ""parent"": ""mount"",
+      ""reason"": ""The text describes bind mount as a specific type of mount operation.""
+    }
+  ]
+}"
+33,node list,partition,node list,partition,doc_48b2,doc_48b2_chunk_0005,The node list is a part of the partition information.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""node list"",
+      ""parent"": ""partition"",
+      ""reason"": ""The node list is a part of the partition information.""
+    },
+    {
+      ""child"": ""state"",
+      ""parent"": ""job"",
+      ""reason"": ""The state is a property of a job.""
+    },
+    {
+      ""child"": ""timelimit"",
+      ""parent"": ""partition"",
+      ""reason"": ""Timelimit is a property of a partition.""
+    }
+  ]
+}"
+34,timelimit,partition,timelimit,partition,doc_48b2,doc_48b2_chunk_0005,Timelimit is a property of a partition.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""node list"",
+      ""parent"": ""partition"",
+      ""reason"": ""The node list is a part of the partition information.""
+    },
+    {
+      ""child"": ""state"",
+      ""parent"": ""job"",
+      ""reason"": ""The state is a property of a job.""
+    },
+    {
+      ""child"": ""timelimit"",
+      ""parent"": ""partition"",
+      ""reason"": ""Timelimit is a property of a partition.""
+    }
+  ]
+}"
+35,script options,options,script options,options,doc_48b2,doc_48b2_chunk_0007,Script options are specific options that can be supplied within the script.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job steps"",
+      ""parent"": ""job"",
+      ""reason"": ""Job steps are a part of a job, as they are initiated using the srun command and executed sequentially.""
+    },
+    {
+      ""child"": ""node range expression"",
+      ""parent"": ""option"",
+      ""reason"": ""Node range expression is a specific type of option used to specify a range of nodes.""
+    },
+    {
+      ""child"": ""script options"",
+      ""parent"": ""options"",
+      ""reason"": ""Script options are specific options that can be supplied within the script.""
+    },
+    {
+      ""child"": ""timelimit"",
+      ""parent"": ""job option"",
+      ""reason"": ""Timelimit is a specific job option that sets a time limit for the job.""
+    }
+  ]
+}"
+36,4d_torus,plugin,4d_torus,plugin,doc_4ff0,doc_4ff0_chunk_0001,4d_torus is a specific plugin mentioned in the text.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""4d_torus"",
+      ""parent"": ""plugin"",
+      ""reason"": ""4d_torus is a specific plugin mentioned in the text.""
+    },
+    {
+      ""child"": ""src/plugins/topology/4d_torus"",
+      ""parent"": ""new directory"",
+      ""reason"": ""src/plugins/topology/4d_torus is a specific new directory created for the plugin.""
+    },
+    {
+      ""child"": ""src/plugins/topology/Makefile.am"",
+      ""parent"": ""Makefile.am"",
+      ""reason"": ""src/plugins/topology/Makefile.am is a specific Makefile.am file for the plugin.""
+    }
+  ]
+}"
+37,command to execute,command,command to execute,command,doc_5755,doc_5755_chunk_0014,command to execute is a specific type of command.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""$slurm_ntasks"",
+      ""parent"": ""number of tasks"",
+      ""reason"": ""$slurm_ntasks is a specific number of tasks.""
+    },
+    {
+      ""child"": ""srun"",
+      ""parent"": ""job submission command"",
+      ""reason"": ""srun is described as a job submission command.""
+    },
+    {
+      ""child"": ""command to execute"",
+      ""parent"": ""command"",
+      ""reason"": ""command to execute is a specific type of command.""
+    },
+    {
+      ""child"": ""--overcommit"",
+      ""parent"": ""srun option"",
+      ""reason"": ""--overcommit is a specific srun option.""
+    }
+  ]
+}"
+38,srun --pty,srun,srun --pty,srun,doc_5755,doc_5755_chunk_0016,"srun --pty is a specific command option of srun, used to run task zero in pseudo terminal mode.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""batch step"",
+      ""parent"": ""interactive step"",
+      ""reason"": ""A batch step is described as having access to all resources in the allocation on the node it is running on, similar to an interactive step, but does not provide interactive shell prompts.""
+    },
+    {
+      ""child"": ""srun --pty"",
+      ""parent"": ""srun"",
+      ""reason"": ""srun --pty is a specific command option of srun, used to run task zero in pseudo terminal mode.""
+    },
+    {
+      ""child"": ""task zero"",
+      ""parent"": ""task"",
+      ""reason"": ""Task zero is a specific task, as it is the first task launched in a job and runs in pseudo terminal mode when using srun --pty.""
+    }
+  ]
+}"
+39,job's namespace,namespace,job's namespace,namespace,doc_5755,doc_5755_chunk_0053,"The text describes the job's namespace as being constructed by the plugin, implying it is a specific type of namespace.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job's namespace"",
+      ""parent"": ""namespace"",
+      ""reason"": ""The text describes the job's namespace as being constructed by the plugin, implying it is a specific type of namespace.""
+    },
+    {
+      ""child"": ""initialization script"",
+      ""parent"": ""script"",
+      ""reason"": ""The text mentions an initialization script that is invoked before the job's namespace is constructed, suggesting it is a specific type of script.""
+    },
+    {
+      ""child"": ""/tmp"",
+      ""parent"": ""mount"",
+      ""reason"": ""The text describes /tmp as being mounted, implying it is a specific type of mount.""
+    },
+    {
+      ""child"": ""pam_slurm_adopt"",
+      ""parent"": ""PAM module"",
+      ""reason"": ""The text mentions pam_slurm_adopt as a PAM module, implying it is a specific type of PAM module.""
+    }
+  ]
+}"
+40,/tmp,mount,/tmp,mount,doc_5755,doc_5755_chunk_0053,"The text describes /tmp as being mounted, implying it is a specific type of mount.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job's namespace"",
+      ""parent"": ""namespace"",
+      ""reason"": ""The text describes the job's namespace as being constructed by the plugin, implying it is a specific type of namespace.""
+    },
+    {
+      ""child"": ""initialization script"",
+      ""parent"": ""script"",
+      ""reason"": ""The text mentions an initialization script that is invoked before the job's namespace is constructed, suggesting it is a specific type of script.""
+    },
+    {
+      ""child"": ""/tmp"",
+      ""parent"": ""mount"",
+      ""reason"": ""The text describes /tmp as being mounted, implying it is a specific type of mount.""
+    },
+    {
+      ""child"": ""pam_slurm_adopt"",
+      ""parent"": ""PAM module"",
+      ""reason"": ""The text mentions pam_slurm_adopt as a PAM module, implying it is a specific type of PAM module.""
+    }
+  ]
+}"
+41,awk,launch string,awk,launch string,doc_5755,doc_5755_chunk_0063,awk is used within the launch string.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""awk"",
+      ""parent"": ""launch string"",
+      ""reason"": ""awk is used within the launch string.""
+    },
+    {
+      ""child"": ""bulk_launch_tmpfile1_host_lines"",
+      ""parent"": ""dset"",
+      ""reason"": ""bulk_launch_tmpfile1_host_lines is a parameter for dset.""
+    }
+  ]
+}"
+42,bulk_launch_tmpfile1_host_lines,dset,bulk_launch_tmpfile1_host_lines,dset,doc_5755,doc_5755_chunk_0063,bulk_launch_tmpfile1_host_lines is a parameter for dset.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""awk"",
+      ""parent"": ""launch string"",
+      ""reason"": ""awk is used within the launch string.""
+    },
+    {
+      ""child"": ""bulk_launch_tmpfile1_host_lines"",
+      ""parent"": ""dset"",
+      ""reason"": ""bulk_launch_tmpfile1_host_lines is a parameter for dset.""
+    }
+  ]
+}"
+43,persistent burst buffer,burst buffer,persistent burst buffer,burst buffer,doc_5d35,doc_5d35_chunk_0003,Persistent burst buffer can be accessed by all components of a heterogeneous job.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job component"",
+      ""parent"": ""job"",
+      ""reason"": ""Each component of a heterogeneous job counts as a 'job' with respect to resource limits.""
+    },
+    {
+      ""child"": ""persistent burst buffer"",
+      ""parent"": ""burst buffer"",
+      ""reason"": ""Persistent burst buffer can be accessed by all components of a heterogeneous job.""
+    },
+    {
+      ""child"": ""job-specific burst buffer"",
+      ""parent"": ""burst buffer"",
+      ""reason"": ""Job-specific burst buffer is associated with only one heterogeneous job component.""
+    }
+  ]
+}"
+44,job-specific burst buffer,burst buffer,job-specific burst buffer,burst buffer,doc_5d35,doc_5d35_chunk_0003,Job-specific burst buffer is associated with only one heterogeneous job component.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job component"",
+      ""parent"": ""job"",
+      ""reason"": ""Each component of a heterogeneous job counts as a 'job' with respect to resource limits.""
+    },
+    {
+      ""child"": ""persistent burst buffer"",
+      ""parent"": ""burst buffer"",
+      ""reason"": ""Persistent burst buffer can be accessed by all components of a heterogeneous job.""
+    },
+    {
+      ""child"": ""job-specific burst buffer"",
+      ""parent"": ""burst buffer"",
+      ""reason"": ""Job-specific burst buffer is associated with only one heterogeneous job component.""
+    }
+  ]
+}"
+45,het_job_id,job_id,het_job_id,job_id,doc_5d35,doc_5d35_chunk_0004,"het_job_id is a specific type of job_id, as it applies to all components of a heterogeneous job.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""#EXCLUDED directive"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""The directive is a specific configuration option added to the batch script.""
+    },
+    {
+      ""child"": ""batch script"",
+      ""parent"": ""job"",
+      ""reason"": ""The batch script is a specific type of job component.""
+    },
+    {
+      ""child"": ""het_job_id"",
+      ""parent"": ""job_id"",
+      ""reason"": ""het_job_id is a specific type of job_id, as it applies to all components of a heterogeneous job.""
+    },
+    {
+      ""child"": ""het_job_offset"",
+      ""parent"": ""job_id"",
+      ""reason"": ""het_job_offset is a specific type of job_id, as it uniquely identifies each component of a heterogeneous job.""
+    }
+  ]
+}"
+46,het_job_offset,job_id,het_job_offset,job_id,doc_5d35,doc_5d35_chunk_0004,"het_job_offset is a specific type of job_id, as it uniquely identifies each component of a heterogeneous job.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""#EXCLUDED directive"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""The directive is a specific configuration option added to the batch script.""
+    },
+    {
+      ""child"": ""batch script"",
+      ""parent"": ""job"",
+      ""reason"": ""The batch script is a specific type of job component.""
+    },
+    {
+      ""child"": ""het_job_id"",
+      ""parent"": ""job_id"",
+      ""reason"": ""het_job_id is a specific type of job_id, as it applies to all components of a heterogeneous job.""
+    },
+    {
+      ""child"": ""het_job_offset"",
+      ""parent"": ""job_id"",
+      ""reason"": ""het_job_offset is a specific type of job_id, as it uniquely identifies each component of a heterogeneous job.""
+    }
+  ]
+}"
+47,burst_buffer/datawarp,burst buffer plugin,burst_buffer/datawarp,burst buffer plugin,doc_6722,doc_6722_chunk_0003,burst_buffer/datawarp is a specific type of burst buffer plugin.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""burst buffer plugin"",
+      ""parent"": ""plugin"",
+      ""reason"": ""burst buffer plugin is a specific type of plugin.""
+    },
+    {
+      ""child"": ""burst buffer resources"",
+      ""parent"": ""resources"",
+      ""reason"": ""burst buffer resources are a specific type of resources.""
+    },
+    {
+      ""child"": ""dw_wlm_cli"",
+      ""parent"": ""script"",
+      ""reason"": ""dw_wlm_cli is a specific type of script.""
+    },
+    {
+      ""child"": ""getsysstate"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""getsysstate is a specific configuration parameter.""
+    },
+    {
+      ""child"": ""burst_buffer/datawarp"",
+      ""parent"": ""burst buffer plugin"",
+      ""reason"": ""burst_buffer/datawarp is a specific type of burst buffer plugin.""
+    }
+  ]
+}"
+48,--bbf options,command-line job options,--bbf options,command-line job options,doc_6722,doc_6722_chunk_0008,The --bbf options are explicitly mentioned as options within the command-line job options.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""--bbf options"",
+      ""parent"": ""command-line job options"",
+      ""reason"": ""The --bbf options are explicitly mentioned as options within the command-line job options.""
+    },
+    {
+      ""child"": ""burst buffer stages"",
+      ""parent"": ""job's life cycle"",
+      ""reason"": ""Burst buffer stages are described as happening at specific points in the job's life cycle.""
+    },
+    {
+      ""child"": ""burst buffer"",
+      ""parent"": ""resource"",
+      ""reason"": ""Burst buffer is described as a resource that jobs can request.""
+    },
+    {
+      ""child"": ""job request"",
+      ""parent"": ""job"",
+      ""reason"": ""Job request is mentioned as the action of requesting resources from the system.""
+    }
+  ]
+}"
+49,burst buffer stages,job's life cycle,burst buffer stages,job's life cycle,doc_6722,doc_6722_chunk_0008,Burst buffer stages are described as happening at specific points in the job's life cycle.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""--bbf options"",
+      ""parent"": ""command-line job options"",
+      ""reason"": ""The --bbf options are explicitly mentioned as options within the command-line job options.""
+    },
+    {
+      ""child"": ""burst buffer stages"",
+      ""parent"": ""job's life cycle"",
+      ""reason"": ""Burst buffer stages are described as happening at specific points in the job's life cycle.""
+    },
+    {
+      ""child"": ""burst buffer"",
+      ""parent"": ""resource"",
+      ""reason"": ""Burst buffer is described as a resource that jobs can request.""
+    },
+    {
+      ""child"": ""job request"",
+      ""parent"": ""job"",
+      ""reason"": ""Job request is mentioned as the action of requesting resources from the system.""
+    }
+  ]
+}"
+50,afterburstbuffer,dependency,afterburstbuffer,dependency,doc_6722,doc_6722_chunk_0016,afterburstbuffer is a specific type of dependency.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""burst buffer states"",
+      ""parent"": ""job states"",
+      ""reason"": ""burst buffer states are a specific type of job state.""
+    },
+    {
+      ""child"": ""afterburstbuffer"",
+      ""parent"": ""dependency"",
+      ""reason"": ""afterburstbuffer is a specific type of dependency.""
+    },
+    {
+      ""child"": ""create reservation"",
+      ""parent"": ""job submission commands"",
+      ""reason"": ""create reservation is a specific type of job submission command.""
+    },
+    {
+      ""child"": ""burstbuffer"",
+      ""parent"": ""resource"",
+      ""reason"": ""burstbuffer is a specific type of resource.""
+    }
+  ]
+}"
+51,pam_slurm_adopt,account,pam_slurm_adopt,account,doc_732b,doc_732b_chunk_0003,pam_slurm_adopt is a specific account configuration option.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""pam_slurm_adopt"",
+      ""parent"": ""account"",
+      ""reason"": ""pam_slurm_adopt is a specific account configuration option.""
+    }
+  ]
+}"
+52,pam_slurm_adopt,pam module,pam_slurm_adopt,pam module,doc_732b,doc_732b_chunk_0004,pam_slurm_adopt is a specific pam module mentioned in the text.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""pam_slurm_adopt"",
+      ""parent"": ""pam module"",
+      ""reason"": ""pam_slurm_adopt is a specific pam module mentioned in the text.""
+    }
+  ]
+}"
+53,group,user,group,user,doc_732b,doc_732b_chunk_0005,Group is a specific type of user.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""pam_slurm_adopt"",
+      ""parent"": ""daemon"",
+      ""reason"": ""pam_slurm_adopt is a specific daemon component.""
+    },
+    {
+      ""child"": ""pam_listfile"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""pam_listfile is a specific configuration option.""
+    },
+    {
+      ""child"": ""pam_systemd"",
+      ""parent"": ""daemon"",
+      ""reason"": ""pam_systemd is a specific daemon component.""
+    },
+    {
+      ""child"": ""account"",
+      ""parent"": ""job"",
+      ""reason"": ""Account is a specific type of job.""
+    },
+    {
+      ""child"": ""group"",
+      ""parent"": ""user"",
+      ""reason"": ""Group is a specific type of user.""
+    }
+  ]
+}"
+54,mem_per_cpu,memory_per_cpu,mem_per_cpu,memory_per_cpu,doc_7425,doc_7425_chunk_0024,mem_per_cpu is a specific configuration parameter for memory_per_cpu.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job_info"",
+      ""parent"": ""job"",
+      ""reason"": ""job_info is a specific type of job.""
+    },
+    {
+      ""child"": ""mem_per_cpu"",
+      ""parent"": ""memory_per_cpu"",
+      ""reason"": ""mem_per_cpu is a specific configuration parameter for memory_per_cpu.""
+    },
+    {
+      ""child"": ""mem_per_node"",
+      ""parent"": ""memory_per_cpu"",
+      ""reason"": ""mem_per_node is a specific configuration parameter for memory_per_node.""
+    }
+  ]
+}"
+55,mem_per_node,memory_per_cpu,mem_per_node,memory_per_cpu,doc_7425,doc_7425_chunk_0024,mem_per_node is a specific configuration parameter for memory_per_node.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job_info"",
+      ""parent"": ""job"",
+      ""reason"": ""job_info is a specific type of job.""
+    },
+    {
+      ""child"": ""mem_per_cpu"",
+      ""parent"": ""memory_per_cpu"",
+      ""reason"": ""mem_per_cpu is a specific configuration parameter for memory_per_cpu.""
+    },
+    {
+      ""child"": ""mem_per_node"",
+      ""parent"": ""memory_per_cpu"",
+      ""reason"": ""mem_per_node is a specific configuration parameter for memory_per_node.""
+    }
+  ]
+}"
+56,local licenses,licenses,local licenses,licenses,doc_85cb,doc_85cb_chunk_0001,"Local licenses are a specific type of licenses, as they are local to the cluster and configured using the slurm.conf.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""local licenses"",
+      ""parent"": ""licenses"",
+      ""reason"": ""Local licenses are a specific type of licenses, as they are local to the cluster and configured using the slurm.conf.""
+    },
+    {
+      ""child"": ""remote licenses"",
+      ""parent"": ""licenses"",
+      ""reason"": ""Remote licenses are a specific type of licenses, as they are served by the database and configured using the sacctmgr command.""
+    },
+    {
+      ""child"": ""pending jobs"",
+      ""parent"": ""jobs"",
+      ""reason"": ""Pending jobs are a specific type of jobs, as they are kept waiting until licenses become available.""
+    },
+    {
+      ""child"": ""shared resources"",
+      ""parent"": ""resources"",
+      ""reason"": ""Licenses in Slurm are described as shared resources, meaning they are not tied to a specific host but are associated with the entire cluster.""
+    }
+  ]
+}"
+57,remote licenses,licenses,remote licenses,licenses,doc_85cb,doc_85cb_chunk_0001,"Remote licenses are a specific type of licenses, as they are served by the database and configured using the sacctmgr command.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""local licenses"",
+      ""parent"": ""licenses"",
+      ""reason"": ""Local licenses are a specific type of licenses, as they are local to the cluster and configured using the slurm.conf.""
+    },
+    {
+      ""child"": ""remote licenses"",
+      ""parent"": ""licenses"",
+      ""reason"": ""Remote licenses are a specific type of licenses, as they are served by the database and configured using the sacctmgr command.""
+    },
+    {
+      ""child"": ""pending jobs"",
+      ""parent"": ""jobs"",
+      ""reason"": ""Pending jobs are a specific type of jobs, as they are kept waiting until licenses become available.""
+    },
+    {
+      ""child"": ""shared resources"",
+      ""parent"": ""resources"",
+      ""reason"": ""Licenses in Slurm are described as shared resources, meaning they are not tied to a specific host but are associated with the entire cluster.""
+    }
+  ]
+}"
+58,job step manager,job,job step manager,job,doc_868e,doc_868e_chunk_0004,"slurmstepd is described as a manager for jobs, making it a specific type of job.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""slurm rest API daemon"",
+      ""parent"": ""slurmrestd"",
+      ""reason"": ""The text explicitly states that slurmrestd is the Slurm REST API daemon.""
+    },
+    {
+      ""child"": ""job step manager"",
+      ""parent"": ""job"",
+      ""reason"": ""slurmstepd is described as a manager for jobs, making it a specific type of job.""
+    },
+    {
+      ""child"": ""Slurm Plug-in Architecture for Node and job (K)control"",
+      ""parent"": ""spank"",
+      ""reason"": ""The text mentions SPANK as the Slurm Plug-in Architecture, making it a more general concept.""
+    }
+  ]
+}"
+59,plugin,data_parser,plugin,data_parser,doc_8f5e,doc_8f5e_chunk_0006,The text describes plugin as a specific form of data_parser.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""--json"",
+      ""parent"": ""CLI command argument"",
+      ""reason"": ""The text describes --json as a command argument.""
+    },
+    {
+      ""child"": ""--yaml"",
+      ""parent"": ""CLI command argument"",
+      ""reason"": ""The text describes --yaml as a command argument.""
+    },
+    {
+      ""child"": ""json_diff"",
+      ""parent"": ""command"",
+      ""reason"": ""The text describes json_diff as a command.""
+    },
+    {
+      ""child"": ""slurmrestd web clients"",
+      ""parent"": ""client"",
+      ""reason"": ""The text describes slurmrestd web clients as a type of client.""
+    },
+    {
+      ""child"": ""plugin"",
+      ""parent"": ""data_parser"",
+      ""reason"": ""The text describes plugin as a specific form of data_parser.""
+    }
+  ]
+}"
+60,slurmd (compute nodes),slurmd,slurmd (compute nodes),slurmd,doc_8f5e,doc_8f5e_chunk_0010,"slurmd (compute nodes) is a specific type of slurmd, as it refers to the slurmd daemons on the compute nodes.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""slurmd (compute nodes)"",
+      ""parent"": ""slurmd"",
+      ""reason"": ""slurmd (compute nodes) is a specific type of slurmd, as it refers to the slurmd daemons on the compute nodes.""
+    },
+    {
+      ""child"": ""rolling upgrade"",
+      ""parent"": ""upgrade"",
+      ""reason"": ""rolling upgrade is a specific type of upgrade, as it is described as a method for upgrading slurmd nodes.""
+    },
+    {
+      ""child"": ""scontrol reconfig"",
+      ""parent"": ""reconfig"",
+      ""reason"": ""scontrol reconfig is a specific implementation of the reconfig operation.""
+    }
+  ]
+}"
+61,slurmd nodes,compute nodes,slurmd nodes,compute nodes,doc_8f5e,doc_8f5e_chunk_0011,Slurmd nodes are a specific type of compute nodes.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""rolling upgrade"",
+      ""parent"": ""upgrade"",
+      ""reason"": ""Rolling upgrade is a specific type of upgrade process.""
+    },
+    {
+      ""child"": ""slurmd nodes"",
+      ""parent"": ""compute nodes"",
+      ""reason"": ""Slurmd nodes are a specific type of compute nodes.""
+    },
+    {
+      ""child"": ""slurmd"",
+      ""parent"": ""daemon"",
+      ""reason"": ""Slurmd is a specific daemon used in HPC.""
+    },
+    {
+      ""child"": ""scontrol reconfig"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""scontrol reconfig is a specific configuration parameter used to change Slurm configuration.""
+    },
+    {
+      ""child"": ""slurmdtimeout"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""slurmdtimeout is a specific configuration parameter related to Slurmd.""
+    }
+  ]
+}"
+62,knl_generic plugin,node features plugin,knl_generic plugin,node features plugin,doc_96c0,doc_96c0_chunk_0004,It is a specific type of node features plugin for Intel KNL systems.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""available and active features"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""They are defined and managed by a configuration file and plugin.""
+    },
+    {
+      ""child"": ""drained nodes"",
+      ""parent"": ""job state"",
+      ""reason"": ""They are in a state where they are no longer available for allocation.""
+    },
+    {
+      ""child"": ""knl_generic plugin"",
+      ""parent"": ""node features plugin"",
+      ""reason"": ""It is a specific type of node features plugin for Intel KNL systems.""
+    },
+    {
+      ""child"": ""node features plugin"",
+      ""parent"": ""daemon/component"",
+      ""reason"": ""It is a component that manages the available and active features information.""
+    },
+    {
+      ""child"": ""portable hardware locality (hwloc)"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""Slurm relies on it for determining the node's current topology.""
+    }
+  ]
+}"
+63,knl_generic,plugin,knl_generic,plugin,doc_96c0,doc_96c0_chunk_0006,knl_generic is a specific plugin mentioned in the text.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""knl_generic"",
+      ""parent"": ""plugin"",
+      ""reason"": ""knl_generic is a specific plugin mentioned in the text.""
+    },
+    {
+      ""child"": ""DefaultMCDRAM"",
+      ""parent"": ""mcdram"",
+      ""reason"": ""DefaultMCDRAM is a specific value of mcdram.""
+    },
+    {
+      ""child"": ""DefaultNUMA"",
+      ""parent"": ""numa mode"",
+      ""reason"": ""DefaultNUMA is a specific value of numa mode.""
+    },
+    {
+      ""child"": ""AllowNUMA"",
+      ""parent"": ""numa mode"",
+      ""reason"": ""AllowNUMA is a configuration parameter that specifies valid numa modes.""
+    }
+  ]
+}"
+64,independent hierarchical topologies,hierarchical topologies,independent hierarchical topologies,hierarchical topologies,doc_9ca6,doc_9ca6_chunk_0001,Independent hierarchical topologies are explicitly defined as a specific type of hierarchical topologies.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""hierarchical resources"",
+      ""parent"": ""resource"",
+      ""reason"": ""Hierarchical resources are defined as a specific type of resource.""
+    },
+    {
+      ""child"": ""independent hierarchical topologies"",
+      ""parent"": ""hierarchical topologies"",
+      ""reason"": ""Independent hierarchical topologies are explicitly defined as a specific type of hierarchical topologies.""
+    },
+    {
+      ""child"": ""Mode 1"",
+      ""parent"": ""planning modes"",
+      ""reason"": ""Mode 1 is described as a specific mode of resource planning.""
+    }
+  ]
+}"
+65,maximum allocation,resources,maximum allocation,resources,doc_9ca6,doc_9ca6_chunk_0003,Maximum allocation is a constraint or limit applied to resources.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""maximum allocation"",
+      ""parent"": ""resources"",
+      ""reason"": ""Maximum allocation is a constraint or limit applied to resources.""
+    }
+  ]
+}"
+66,job's derived exit code,exitcode,job's derived exit code,exitcode,doc_9fd4,doc_9fd4_chunk_0002,The text describes the job's derived exit code as a specific form of exitcode.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job's derived exit code"",
+      ""parent"": ""exitcode"",
+      ""reason"": ""The text describes the job's derived exit code as a specific form of exitcode.""
+    },
+    {
+      ""child"": ""slurm control daemon"",
+      ""parent"": ""daemon"",
+      ""reason"": ""The text describes the slurm control daemon as a specific daemon.""
+    },
+    {
+      ""child"": ""slurm database"",
+      ""parent"": ""database"",
+      ""reason"": ""The text describes the slurm database as a specific database.""
+    }
+  ]
+}"
+67,composite usage value,historical usage,composite usage value,historical usage,doc_ac8b,doc_ac8b_chunk_0008,The composite usage value is a specific form of historical usage.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""composite usage value"",
+      ""parent"": ""historical usage"",
+      ""reason"": ""The composite usage value is a specific form of historical usage.""
+    },
+    {
+      ""child"": ""priority/multifactor"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""priority/multifactor is a specific value of prioritytype.""
+    },
+    {
+      ""child"": ""prioritydecayhalflife"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""prioritydecayhalflife is a specific config parameter of prioritytype.""
+    },
+    {
+      ""child"": ""priorityusageresetperiod"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""priorityusageresetperiod is a specific config parameter of prioritytype.""
+    },
+    {
+      ""child"": ""prioritycalcperiod"",
+      ""parent"": ""time string"",
+      ""reason"": ""prioritycalcperiod is a specific type of time string.""
+    }
+  ]
+}"
+68,priority/multifactor,prioritytype,priority/multifactor,prioritytype,doc_ac8b,doc_ac8b_chunk_0008,priority/multifactor is a specific value of prioritytype.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""composite usage value"",
+      ""parent"": ""historical usage"",
+      ""reason"": ""The composite usage value is a specific form of historical usage.""
+    },
+    {
+      ""child"": ""priority/multifactor"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""priority/multifactor is a specific value of prioritytype.""
+    },
+    {
+      ""child"": ""prioritydecayhalflife"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""prioritydecayhalflife is a specific config parameter of prioritytype.""
+    },
+    {
+      ""child"": ""priorityusageresetperiod"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""priorityusageresetperiod is a specific config parameter of prioritytype.""
+    },
+    {
+      ""child"": ""prioritycalcperiod"",
+      ""parent"": ""time string"",
+      ""reason"": ""prioritycalcperiod is a specific type of time string.""
+    }
+  ]
+}"
+69,prioritydecayhalflife,prioritytype,prioritydecayhalflife,prioritytype,doc_ac8b,doc_ac8b_chunk_0008,prioritydecayhalflife is a specific config parameter of prioritytype.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""composite usage value"",
+      ""parent"": ""historical usage"",
+      ""reason"": ""The composite usage value is a specific form of historical usage.""
+    },
+    {
+      ""child"": ""priority/multifactor"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""priority/multifactor is a specific value of prioritytype.""
+    },
+    {
+      ""child"": ""prioritydecayhalflife"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""prioritydecayhalflife is a specific config parameter of prioritytype.""
+    },
+    {
+      ""child"": ""priorityusageresetperiod"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""priorityusageresetperiod is a specific config parameter of prioritytype.""
+    },
+    {
+      ""child"": ""prioritycalcperiod"",
+      ""parent"": ""time string"",
+      ""reason"": ""prioritycalcperiod is a specific type of time string.""
+    }
+  ]
+}"
+70,priorityusageresetperiod,prioritytype,priorityusageresetperiod,prioritytype,doc_ac8b,doc_ac8b_chunk_0008,priorityusageresetperiod is a specific config parameter of prioritytype.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""composite usage value"",
+      ""parent"": ""historical usage"",
+      ""reason"": ""The composite usage value is a specific form of historical usage.""
+    },
+    {
+      ""child"": ""priority/multifactor"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""priority/multifactor is a specific value of prioritytype.""
+    },
+    {
+      ""child"": ""prioritydecayhalflife"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""prioritydecayhalflife is a specific config parameter of prioritytype.""
+    },
+    {
+      ""child"": ""priorityusageresetperiod"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""priorityusageresetperiod is a specific config parameter of prioritytype.""
+    },
+    {
+      ""child"": ""prioritycalcperiod"",
+      ""parent"": ""time string"",
+      ""reason"": ""prioritycalcperiod is a specific type of time string.""
+    }
+  ]
+}"
+71,prioritycalcperiod,time string,prioritycalcperiod,time string,doc_ac8b,doc_ac8b_chunk_0008,prioritycalcperiod is a specific type of time string.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""composite usage value"",
+      ""parent"": ""historical usage"",
+      ""reason"": ""The composite usage value is a specific form of historical usage.""
+    },
+    {
+      ""child"": ""priority/multifactor"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""priority/multifactor is a specific value of prioritytype.""
+    },
+    {
+      ""child"": ""prioritydecayhalflife"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""prioritydecayhalflife is a specific config parameter of prioritytype.""
+    },
+    {
+      ""child"": ""priorityusageresetperiod"",
+      ""parent"": ""prioritytype"",
+      ""reason"": ""priorityusageresetperiod is a specific config parameter of prioritytype.""
+    },
+    {
+      ""child"": ""prioritycalcperiod"",
+      ""parent"": ""time string"",
+      ""reason"": ""prioritycalcperiod is a specific type of time string.""
+    }
+  ]
+}"
+72,gpu type,gres,gpu type,gres,doc_b2f9,doc_b2f9_chunk_0009,gpu type is a specific type of gres.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job request"",
+      ""parent"": ""job"",
+      ""reason"": ""A job request is a specific type of job.""
+    },
+    {
+      ""child"": ""gpu type"",
+      ""parent"": ""gres"",
+      ""reason"": ""gpu type is a specific type of gres.""
+    },
+    {
+      ""child"": ""mps type"",
+      ""parent"": ""gres"",
+      ""reason"": ""mps type is a specific type of gres.""
+    },
+    {
+      ""child"": ""count"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""Count is a specific type of configuration parameter.""
+    },
+    {
+      ""child"": ""opt_multiple_sharing_gres_pj"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""opt_multiple_sharing_gres_pj is a specific configuration parameter.""
+    }
+  ]
+}"
+73,mps type,gres,mps type,gres,doc_b2f9,doc_b2f9_chunk_0009,mps type is a specific type of gres.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job request"",
+      ""parent"": ""job"",
+      ""reason"": ""A job request is a specific type of job.""
+    },
+    {
+      ""child"": ""gpu type"",
+      ""parent"": ""gres"",
+      ""reason"": ""gpu type is a specific type of gres.""
+    },
+    {
+      ""child"": ""mps type"",
+      ""parent"": ""gres"",
+      ""reason"": ""mps type is a specific type of gres.""
+    },
+    {
+      ""child"": ""count"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""Count is a specific type of configuration parameter.""
+    },
+    {
+      ""child"": ""opt_multiple_sharing_gres_pj"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""opt_multiple_sharing_gres_pj is a specific configuration parameter.""
+    }
+  ]
+}"
+74,gpu configuration,gres/gpu,gpu configuration,gres/gpu,doc_b2f9,doc_b2f9_chunk_0014,The gpu configuration is a specific form of gres/gpu.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""gpu configuration"",
+      ""parent"": ""gres/gpu"",
+      ""reason"": ""The gpu configuration is a specific form of gres/gpu.""
+    },
+    {
+      ""child"": ""gres/shard"",
+      ""parent"": ""shard"",
+      ""reason"": ""gres/shard is a specific type of shard, used for GPU resources.""
+    },
+    {
+      ""child"": ""opt_multiple_sharing_gres_pj"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""opt_multiple_sharing_gres_pj is a specific configuration parameter for job requests.""
+    }
+  ]
+}"
+75,effective usage,fair-share factor,effective usage,fair-share factor,doc_c721,doc_c721_chunk_0003,Effective usage is a component of the fair-share factor calculation.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""effective usage"",
+      ""parent"": ""fair-share factor"",
+      ""reason"": ""Effective usage is a component of the fair-share factor calculation.""
+    },
+    {
+      ""child"": ""account hierarchy"",
+      ""parent"": ""fair-share factor"",
+      ""reason"": ""Account hierarchy is a context for the fair-share factor concept.""
+    }
+  ]
+}"
+76,account hierarchy,fair-share factor,account hierarchy,fair-share factor,doc_c721,doc_c721_chunk_0003,Account hierarchy is a context for the fair-share factor concept.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""effective usage"",
+      ""parent"": ""fair-share factor"",
+      ""reason"": ""Effective usage is a component of the fair-share factor calculation.""
+    },
+    {
+      ""child"": ""account hierarchy"",
+      ""parent"": ""fair-share factor"",
+      ""reason"": ""Account hierarchy is a context for the fair-share factor concept.""
+    }
+  ]
+}"
+77,qos values,quality of service,qos values,quality of service,doc_d41b,doc_d41b_chunk_0003,"qos values are defined for each association in the database, which implies they are a specific type of quality of service.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""qos values"",
+      ""parent"": ""quality of service"",
+      ""reason"": ""qos values are defined for each association in the database, which implies they are a specific type of quality of service.""
+    },
+    {
+      ""child"": ""safe"",
+      ""parent"": ""job"",
+      ""reason"": ""safe ensures a job will only be launched when using an association or qos that has a TRES-minutes limit set, implying it is a specific type of job.""
+    },
+    {
+      ""child"": ""wckeys"",
+      ""parent"": ""accounting policy"",
+      ""reason"": ""wckeys prevents users from running jobs under a wckey that they don't have access to, which implies it is a specific part of the accounting policy.""
+    }
+  ]
+}"
+78,wckeys,accounting policy,wckeys,accounting policy,doc_d41b,doc_d41b_chunk_0003,"wckeys prevents users from running jobs under a wckey that they don't have access to, which implies it is a specific part of the accounting policy.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""qos values"",
+      ""parent"": ""quality of service"",
+      ""reason"": ""qos values are defined for each association in the database, which implies they are a specific type of quality of service.""
+    },
+    {
+      ""child"": ""safe"",
+      ""parent"": ""job"",
+      ""reason"": ""safe ensures a job will only be launched when using an association or qos that has a TRES-minutes limit set, implying it is a specific type of job.""
+    },
+    {
+      ""child"": ""wckeys"",
+      ""parent"": ""accounting policy"",
+      ""reason"": ""wckeys prevents users from running jobs under a wckey that they don't have access to, which implies it is a specific part of the accounting policy.""
+    }
+  ]
+}"
+79,account limits,limits,account limits,limits,doc_d41b,doc_d41b_chunk_0004,Account limits are a specific type of limits.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""account limits"",
+      ""parent"": ""limits"",
+      ""reason"": ""Account limits are a specific type of limits.""
+    },
+    {
+      ""child"": ""association specific limits and scheduling policies"",
+      ""parent"": ""scheduling policies"",
+      ""reason"": ""Association specific limits and scheduling policies are a specific type of scheduling policies.""
+    },
+    {
+      ""child"": ""partition records"",
+      ""parent"": ""records"",
+      ""reason"": ""Partition records are a specific type of records.""
+    },
+    {
+      ""child"": ""user association limits"",
+      ""parent"": ""limits"",
+      ""reason"": ""User association limits are a specific type of limits.""
+    }
+  ]
+}"
+80,user association limits,limits,user association limits,limits,doc_d41b,doc_d41b_chunk_0004,User association limits are a specific type of limits.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""account limits"",
+      ""parent"": ""limits"",
+      ""reason"": ""Account limits are a specific type of limits.""
+    },
+    {
+      ""child"": ""association specific limits and scheduling policies"",
+      ""parent"": ""scheduling policies"",
+      ""reason"": ""Association specific limits and scheduling policies are a specific type of scheduling policies.""
+    },
+    {
+      ""child"": ""partition records"",
+      ""parent"": ""records"",
+      ""reason"": ""Partition records are a specific type of records.""
+    },
+    {
+      ""child"": ""user association limits"",
+      ""parent"": ""limits"",
+      ""reason"": ""User association limits are a specific type of limits.""
+    }
+  ]
+}"
+81,allocated cpus,consumable resources,allocated cpus,consumable resources,doc_d9be,doc_d9be_chunk_0008,Allocated cpus are a specific type of consumable resources.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""allocated cpus"",
+      ""parent"": ""consumable resources"",
+      ""reason"": ""Allocated cpus are a specific type of consumable resources.""
+    },
+    {
+      ""child"": ""cores"",
+      ""parent"": ""cpus"",
+      ""reason"": ""Cores are a specific type of CPUs.""
+    },
+    {
+      ""child"": ""selecttype"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""Selecttype is a specific configuration parameter.""
+    },
+    {
+      ""child"": ""selecttypeparameters"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""Selecttypeparameters is a specific configuration parameter.""
+    },
+    {
+      ""child"": ""single node"",
+      ""parent"": ""node"",
+      ""reason"": ""Single node is a specific type of node.""
+    }
+  ]
+}"
+82,cores,cpus,cores,cpus,doc_d9be,doc_d9be_chunk_0008,Cores are a specific type of CPUs.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""allocated cpus"",
+      ""parent"": ""consumable resources"",
+      ""reason"": ""Allocated cpus are a specific type of consumable resources.""
+    },
+    {
+      ""child"": ""cores"",
+      ""parent"": ""cpus"",
+      ""reason"": ""Cores are a specific type of CPUs.""
+    },
+    {
+      ""child"": ""selecttype"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""Selecttype is a specific configuration parameter.""
+    },
+    {
+      ""child"": ""selecttypeparameters"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""Selecttypeparameters is a specific configuration parameter.""
+    },
+    {
+      ""child"": ""single node"",
+      ""parent"": ""node"",
+      ""reason"": ""Single node is a specific type of node.""
+    }
+  ]
+}"
+83,single node,node,single node,node,doc_d9be,doc_d9be_chunk_0008,Single node is a specific type of node.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""allocated cpus"",
+      ""parent"": ""consumable resources"",
+      ""reason"": ""Allocated cpus are a specific type of consumable resources.""
+    },
+    {
+      ""child"": ""cores"",
+      ""parent"": ""cpus"",
+      ""reason"": ""Cores are a specific type of CPUs.""
+    },
+    {
+      ""child"": ""selecttype"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""Selecttype is a specific configuration parameter.""
+    },
+    {
+      ""child"": ""selecttypeparameters"",
+      ""parent"": ""configuration parameter"",
+      ""reason"": ""Selecttypeparameters is a specific configuration parameter.""
+    },
+    {
+      ""child"": ""single node"",
+      ""parent"": ""node"",
+      ""reason"": ""Single node is a specific type of node.""
+    }
+  ]
+}"
+84,optimized resource utilization,resource utilization,optimized resource utilization,resource utilization,doc_e2d8,doc_e2d8_chunk_0001,Optimized resource utilization is mentioned as a benefit of integrating Slurm and Kubernetes.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""Slurm and Kubernetes"",
+      ""parent"": ""integration"",
+      ""reason"": ""Slurm and Kubernetes are being integrated to achieve a unified cluster.""
+    },
+    {
+      ""child"": ""Kubernetes"",
+      ""parent"": ""hpc clusters"",
+      ""reason"": ""Kubernetes is being adopted into HPC clusters.""
+    },
+    {
+      ""child"": ""workflows"",
+      ""parent"": ""Slurm"",
+      ""reason"": ""Workflows are leveraged with Slurm.""
+    },
+    {
+      ""child"": ""optimized resource utilization"",
+      ""parent"": ""resource utilization"",
+      ""reason"": ""Optimized resource utilization is mentioned as a benefit of integrating Slurm and Kubernetes.""
+    }
+  ]
+}"
+85,struct passwd info,passwd,struct passwd info,passwd,doc_e643,doc_e643_chunk_0001,struct passwd info is a more detailed form of passwd.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""cloud node"",
+      ""parent"": ""node"",
+      ""reason"": ""cloud node is a specific type of node.""
+    },
+    {
+      ""child"": ""struct passwd info"",
+      ""parent"": ""passwd"",
+      ""reason"": ""struct passwd info is a more detailed form of passwd.""
+    },
+    {
+      ""child"": ""struct group"",
+      ""parent"": ""group"",
+      ""reason"": ""struct group is a more detailed form of group.""
+    },
+    {
+      ""child"": ""slurmstepd"",
+      ""parent"": ""daemon"",
+      ""reason"": ""slurmstepd is a specific daemon component.""
+    }
+  ]
+}"
+86,struct group,group,struct group,group,doc_e643,doc_e643_chunk_0001,struct group is a more detailed form of group.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""cloud node"",
+      ""parent"": ""node"",
+      ""reason"": ""cloud node is a specific type of node.""
+    },
+    {
+      ""child"": ""struct passwd info"",
+      ""parent"": ""passwd"",
+      ""reason"": ""struct passwd info is a more detailed form of passwd.""
+    },
+    {
+      ""child"": ""struct group"",
+      ""parent"": ""group"",
+      ""reason"": ""struct group is a more detailed form of group.""
+    },
+    {
+      ""child"": ""slurmstepd"",
+      ""parent"": ""daemon"",
+      ""reason"": ""slurmstepd is a specific daemon component.""
+    }
+  ]
+}"
+87,job_desc,job_desc_msg_t,job_desc,job_desc_msg_t,doc_e8f0,doc_e8f0_chunk_0005,job_desc is a specific instance of job_desc_msg_t.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job_desc"",
+      ""parent"": ""job_desc_msg_t"",
+      ""reason"": ""job_desc is a specific instance of job_desc_msg_t.""
+    },
+    {
+      ""child"": ""slurmctld"",
+      ""parent"": ""slurmctld daemon"",
+      ""reason"": ""slurmctld is a specific instance of slurmctld daemon.""
+    },
+    {
+      ""child"": ""slurmrestd"",
+      ""parent"": ""slurm daemon"",
+      ""reason"": ""slurmrestd is a specific instance of slurm daemon.""
+    },
+    {
+      ""child"": ""submit_uid"",
+      ""parent"": ""user id"",
+      ""reason"": ""submit_uid is a specific representation of user id.""
+    }
+  ]
+}"
+88,slurmctld,slurmctld daemon,slurmctld,slurmctld daemon,doc_e8f0,doc_e8f0_chunk_0005,slurmctld is a specific instance of slurmctld daemon.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job_desc"",
+      ""parent"": ""job_desc_msg_t"",
+      ""reason"": ""job_desc is a specific instance of job_desc_msg_t.""
+    },
+    {
+      ""child"": ""slurmctld"",
+      ""parent"": ""slurmctld daemon"",
+      ""reason"": ""slurmctld is a specific instance of slurmctld daemon.""
+    },
+    {
+      ""child"": ""slurmrestd"",
+      ""parent"": ""slurm daemon"",
+      ""reason"": ""slurmrestd is a specific instance of slurm daemon.""
+    },
+    {
+      ""child"": ""submit_uid"",
+      ""parent"": ""user id"",
+      ""reason"": ""submit_uid is a specific representation of user id.""
+    }
+  ]
+}"
+89,submit_uid,user id,submit_uid,user id,doc_e8f0,doc_e8f0_chunk_0005,submit_uid is a specific representation of user id.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""job_desc"",
+      ""parent"": ""job_desc_msg_t"",
+      ""reason"": ""job_desc is a specific instance of job_desc_msg_t.""
+    },
+    {
+      ""child"": ""slurmctld"",
+      ""parent"": ""slurmctld daemon"",
+      ""reason"": ""slurmctld is a specific instance of slurmctld daemon.""
+    },
+    {
+      ""child"": ""slurmrestd"",
+      ""parent"": ""slurm daemon"",
+      ""reason"": ""slurmrestd is a specific instance of slurm daemon.""
+    },
+    {
+      ""child"": ""submit_uid"",
+      ""parent"": ""user id"",
+      ""reason"": ""submit_uid is a specific representation of user id.""
+    }
+  ]
+}"
+90,partition time limit,time limit,partition time limit,time limit,doc_f2ec,doc_f2ec_chunk_0002,The text describes partition time limit as a specific type of time limit.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""backfill scheduler"",
+      ""parent"": ""scheduler"",
+      ""reason"": ""The text describes backfill as a specific type of scheduler.""
+    },
+    {
+      ""child"": ""builtin scheduler"",
+      ""parent"": ""scheduler"",
+      ""reason"": ""The text describes builtin as a specific type of scheduler.""
+    },
+    {
+      ""child"": ""completing state"",
+      ""parent"": ""job state"",
+      ""reason"": ""The text describes completing state as a specific job state.""
+    },
+    {
+      ""child"": ""partition time limit"",
+      ""parent"": ""time limit"",
+      ""reason"": ""The text describes partition time limit as a specific type of time limit.""
+    },
+    {
+      ""child"": ""pending"",
+      ""parent"": ""job state"",
+      ""reason"": ""The text describes pending as a specific job state.""
+    }
+  ]
+}"

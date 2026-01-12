@@ -1,5 +1,3 @@
-# file: olaf_llm/term_enrichment_llm.py
-
 from __future__ import annotations
 
 import sqlite3
@@ -70,6 +68,8 @@ ALLOWED VALUES FOR "category":
                          node features, GRES types, burst buffer).
 - "job_state"          : job states and similar status labels (PENDING, RUNNING,
                          COMPLETED, FAILED, CANCELLED).
+- "user_role"          : user or role concepts such as admin, cluster administrator,
+                         operator, or end user.
 - "other_hpc"          : other HPC-specific concepts that do not fit cleanly into the above
                          but are clearly domain terms (e.g. job submission script,
                          login node, compute node, scheduler API).
@@ -81,7 +81,7 @@ HOW TO DECIDE is_hpc_domain_term:
   - a CLI option or flag related to job submission or control,
   - a configuration parameter or plugin type,
   - a config/log/state file or directory tied to the scheduler,
-  - a resource, queue/partition, QoS, job state, or clearly HPC-specific concept.
+  - a resource, queue/partition, QoS, job state, role, or clearly HPC-specific concept.
 - Set is_hpc_domain_term = false when the term is:
   - a generic English phrase not tied to HPC/scheduling,
   - a pure example value or numeric quantity (time, counts, ranges),
@@ -109,7 +109,7 @@ The JSON schema is:
   "canonical": "lowercased, trimmed canonical form",
   "is_hpc_domain_term": true or false,
   "scheduler": "slurm | lsf | both | generic | unknown",
-  "category": "scheduler | command | option_flag | config_param | config_file | log_or_state_path | queue_or_partition | resource | job_state | other_hpc | non_domain",
+  "category": "scheduler | command | option_flag | config_param | config_file | log_or_state_path | queue_or_partition | resource | job_state | user_role | other_hpc | non_domain",
   "short_definition": "one or two short sentences in HPC/scheduler context",
   "aliases": ["optional", "aliases", "may", "be", "empty"]
 }
@@ -260,8 +260,11 @@ def init_llm_enrich_table(conn: sqlite3.Connection) -> None:
     """
     Ensure llm_enrich exists.
 
-    One row per canonical_term with LLM-enriched information +
+    One row per canonical_term (here: lemma) with LLM-enriched information +
     frequency statistics and aliases.
+
+    Now also stores example_term_id from llm_terms_unique so we can track
+    where each enriched row came from.
     """
     cur = conn.cursor()
     cur.execute(
@@ -270,6 +273,7 @@ def init_llm_enrich_table(conn: sqlite3.Connection) -> None:
             enrich_id        INTEGER PRIMARY KEY AUTOINCREMENT,
             canonical_term   TEXT    NOT NULL UNIQUE,
             example_term     TEXT    NOT NULL,
+            example_term_id  INTEGER,
             scheduler        TEXT,
             category         TEXT,
             short_definition TEXT,
@@ -281,6 +285,11 @@ def init_llm_enrich_table(conn: sqlite3.Connection) -> None:
         )
         """
     )
+    # If table already existed from an older version, add example_term_id if missing
+    cur.execute("PRAGMA table_info(llm_enrich)")
+    cols = [row[1] for row in cur.fetchall()]
+    if "example_term_id" not in cols:
+        cur.execute("ALTER TABLE llm_enrich ADD COLUMN example_term_id INTEGER")
     conn.commit()
 
 
@@ -304,49 +313,68 @@ def load_mistral():
 
 
 # -----------------------------------------------------------------------------
-# Fetch terms to enrich (resume-safe)
+# Fetch terms to enrich (from lemmatised + deduped table)
 # -----------------------------------------------------------------------------
 
 def fetch_terms_to_enrich(conn: sqlite3.Connection) -> List[Dict[str, Any]]:
     """
-    Fetch ALL distinct canonical terms from llm_terms that are not yet enriched in llm_enrich,
-    together with an example doc_id, chunk_id, context text, and frequency stats.
+    Fetch ALL distinct lemma terms from llm_terms_unique that are not yet enriched in llm_enrich,
+    together with an example surface term, example doc/chunk, context text, and frequency stats.
+
+    Data source:
+      - llm_terms_unique (built by term_extraction_llm with lemmatisation + dedupe)
+        columns: lemma, example_term_id, example_term, example_doc_id, example_chunk_id,
+                 freq_total, doc_count
 
     Resume logic:
-    - A term is "already enriched" if its canonical form exists in llm_enrich.canonical_term.
+    - A term is "already enriched" if its lemma exists in llm_enrich.canonical_term.
     - If a job is killed, all rows already inserted into llm_enrich are preserved.
-    - On the next run, those terms are skipped automatically, so we continue where we stopped.
+    - On the next run, those lemma terms are skipped automatically, so we continue
+      where we stopped (even though the counter starts again at 1 for this run).
     """
     init_llm_enrich_table(conn)
     cur = conn.cursor()
 
+    # Ensure llm_terms_unique exists
+    cur.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='llm_terms_unique'"
+    )
+    if cur.fetchone() is None:
+        raise RuntimeError(
+            "Table 'llm_terms_unique' not found. "
+            "Run term_extraction_llm with --dedupe-after or --dedupe-only first "
+            "to build lemmatised + deduped terms."
+        )
+
     cur.execute(
         """
         SELECT
-            LOWER(TRIM(t.term))          AS canonical_term,
-            MIN(t.term)                  AS example_term,
-            MIN(t.doc_id)                AS example_doc_id,
-            MIN(t.chunk_id)              AS example_chunk_id,
-            MIN(c.text)                  AS context_text,
-            COUNT(*)                     AS freq_total,
-            COUNT(DISTINCT t.doc_id)     AS doc_count
-        FROM llm_terms t
-        JOIN contextual_chunk c
-          ON c.doc_id = t.doc_id AND c.chunk_id = t.chunk_id
-        LEFT JOIN llm_enrich e
-          ON e.canonical_term = LOWER(TRIM(t.term))
+            u.lemma             AS canonical_term,
+            u.example_term_id   AS example_term_id,
+            u.example_term      AS example_term,
+            u.example_doc_id    AS example_doc_id,
+            u.example_chunk_id  AS example_chunk_id,
+            c.text              AS context_text,
+            u.freq_total        AS freq_total,
+            u.doc_count         AS doc_count
+        FROM llm_terms_unique AS u
+        LEFT JOIN llm_enrich AS e
+          ON e.canonical_term = u.lemma
+        LEFT JOIN contextual_chunk AS c
+          ON c.doc_id = u.example_doc_id
+         AND c.chunk_id = u.example_chunk_id
         WHERE e.canonical_term IS NULL
-        GROUP BY LOWER(TRIM(t.term))
-        ORDER BY canonical_term
+        ORDER BY u.example_term_id
         """
     )
 
     rows = cur.fetchall()
     terms: List[Dict[str, Any]] = []
-    for canonical, example_term, doc_id, chunk_id, ctx, freq_total, doc_count in rows:
+    for canonical, example_term_id, example_term, doc_id, chunk_id, ctx, freq_total, doc_count in rows:
         terms.append(
             {
                 "canonical_term": canonical,
+                "example_term_id": example_term_id,
                 "example_term": example_term,
                 "doc_id": doc_id,
                 "chunk_id": chunk_id,
@@ -509,16 +537,18 @@ def enrich_terms(
     init_llm_enrich_table(conn)
 
     candidates = fetch_terms_to_enrich(conn)
-    total = len(candidates)
-    print(f"Enriching {total} terms...")
+    total_remaining = len(candidates)
 
-    if total == 0:
+    print(f"Enriching {total_remaining} terms...")
+
+    if total_remaining == 0:
         return
 
     cur = conn.cursor()
 
     for idx, item in enumerate(candidates, start=1):
         canonical = item["canonical_term"]
+        ex_id = item["example_term_id"]
         term = item["example_term"]
         ctx = item["context_text"]
         freq_total = item["freq_total"]
@@ -526,8 +556,9 @@ def enrich_terms(
 
         if idx == 1 or idx % 10 == 0:
             print(
-                f"  -> term {idx}/{total}: '{term}' "
-                f"(canonical='{canonical}', freq_total={freq_total}, doc_count={doc_count})"
+                f"  -> term {idx}/{total_remaining}, "
+                f"example_term_id={ex_id}, canonical='{canonical}', "
+                f"freq_total={freq_total}, doc_count={doc_count}"
             )
 
         raw = call_enrich_llm(tokenizer, model, device, term, ctx)
@@ -546,6 +577,7 @@ def enrich_terms(
             INSERT OR IGNORE INTO llm_enrich (
                 canonical_term,
                 example_term,
+                example_term_id,
                 scheduler,
                 category,
                 short_definition,
@@ -555,11 +587,12 @@ def enrich_terms(
                 aliases_json,
                 raw_json
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 parsed["canonical_term"],
                 parsed["example_term"],
+                ex_id,
                 parsed["scheduler"],
                 parsed["category"],
                 parsed["short_definition"],
@@ -583,7 +616,7 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="LLM-based term enrichment over llm_terms (HPC docs)."
+        description="LLM-based term enrichment over lemmatised + deduped llm_terms_unique (HPC docs)."
     )
     parser.add_argument(
         "--debug-first",
@@ -605,7 +638,8 @@ if __name__ == "__main__":
                 canonical = item["canonical_term"]
                 term = item["example_term"]
                 ctx = item["context_text"]
-                print(f"DEBUG term='{term}', canonical='{canonical}'")
+                ex_id = item["example_term_id"]
+                print(f"DEBUG example_term_id={ex_id}, term='{term}', canonical='{canonical}'")
 
                 raw = call_enrich_llm(tokenizer, model, device, term, ctx)
                 print("\n=== RAW OUTPUT (first 800 chars) ===")
