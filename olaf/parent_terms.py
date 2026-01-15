@@ -1,48 +1,9 @@
+import argparse
 import json
 import re
 import sqlite3
 from collections import Counter, defaultdict
 from typing import Dict, List, Set
-
-# ---------------------------------------------------------
-# CONFIG
-# ---------------------------------------------------------
-
-DB_PATH = r"onto_db/onto_new.db"  # <-- change if needed
-
-MAX_EXAMPLES_PER_HEAD = 15  # examples stored per head
-MIN_HEAD_LEN = 3             # words shorter than this cannot be heads
-MIN_HEAD_FREQ = 3            # strong heads: must appear >= 2 times as last token
-
-
-# ---------------------------------------------------------
-# DB helpers
-# ---------------------------------------------------------
-
-def get_connection(db_path: str) -> sqlite3.Connection:
-    conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row
-    return conn
-
-
-def init_parent_candidates_table(conn: sqlite3.Connection) -> None:
-    """
-    Table to store automatically derived candidate parent heads.
-    """
-    conn.execute(
-        """
-        CREATE TABLE IF NOT EXISTS taxonomy_parent_candidates (
-            head_text            TEXT PRIMARY KEY,
-            head_canonical_id    INTEGER,
-            frequency            INTEGER NOT NULL,
-            example_terms_json   TEXT,
-            FOREIGN KEY (head_canonical_id)
-                REFERENCES term_enrichment(canonical_id)
-        )
-        """
-    )
-    conn.commit()
-    print("[INFO] Ensured taxonomy_parent_candidates table exists.")
 
 
 # ---------------------------------------------------------
@@ -50,6 +11,7 @@ def init_parent_candidates_table(conn: sqlite3.Connection) -> None:
 # ---------------------------------------------------------
 
 _CAMEL_SPLIT_RE = re.compile(r"(?<!^)(?=[A-Z])")
+
 
 def normalize_spaces(s: str) -> str:
     s = s.strip()
@@ -60,87 +22,104 @@ def normalize_spaces(s: str) -> str:
 def tokenize_for_head(text: str) -> List[str]:
     """
     Turn a term label into tokens for head detection:
-
-      - replace '_' and '/' with spaces
       - split CamelCase (CpuBind -> 'Cpu Bind')
       - normalize spaces
       - lowercase and split on spaces
-
-    Returns list of tokens (lowercased).
     """
     if not text:
         return []
-
-    # unify underscores/slashes with spaces
-    t = re.sub(r"[_/]+", " ", text)
-
-    # split CamelCase boundaries
-    t = _CAMEL_SPLIT_RE.sub(" ", t)
-
+    t = _CAMEL_SPLIT_RE.sub(" ", text)
     t = normalize_spaces(t)
-    tokens = t.split()
-    return [tok.lower() for tok in tokens]
+    return [tok.lower() for tok in t.split()]
 
 
 def normalize_head_token(tok: str) -> str:
-    """
-    Extra normalization for head tokens:
-      - map tres/tress/TRES/Tres -> 'tres'
-      - other tokens: just return (already lowercased)
-    """
     if tok in {"tres", "tress"}:
         return "tres"
     return tok
 
 
-def valid_head(tok: str) -> bool:
-    """
-    Check if token can be a head term.
-    - length >= MIN_HEAD_LEN
-    - has at least one alphabetic character
-    """
-    if len(tok) < MIN_HEAD_LEN:
+def valid_head(tok: str, min_head_len: int) -> bool:
+    if len(tok) < min_head_len:
         return False
     return any(ch.isalpha() for ch in tok)
+
+
+# ---------------------------------------------------------
+# DB helpers
+# ---------------------------------------------------------
+
+def get_connection(db_path: str) -> sqlite3.Connection:
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA foreign_keys = ON;")
+    return conn
+
+
+def init_parent_candidates_table(
+    conn: sqlite3.Connection,
+    out_table: str,
+    enrichment_table: str,
+) -> None:
+    """
+    Store derived candidate parent heads.
+    Note: head_canonical_id FK points to enrichment_table(canonical_id).
+    """
+    conn.execute(
+        f"""
+        CREATE TABLE IF NOT EXISTS {out_table} (
+            head_text            TEXT PRIMARY KEY,
+            head_canonical_id    INTEGER,
+            frequency            INTEGER NOT NULL,
+            example_terms_json   TEXT,
+            FOREIGN KEY (head_canonical_id)
+                REFERENCES {enrichment_table}(canonical_id)
+        )
+        """
+    )
+    conn.commit()
+    print(f"[INFO] Ensured {out_table} table exists.")
 
 
 # ---------------------------------------------------------
 # Core logic
 # ---------------------------------------------------------
 
-def derive_parent_candidates(conn: sqlite3.Connection) -> None:
+def derive_parent_candidates(
+    conn: sqlite3.Connection,
+    enrichment_table: str,
+    out_table: str,
+    max_examples_per_head: int,
+    min_head_len: int,
+    min_head_freq: int,
+) -> None:
     """
-    1) Read canonical terms from term_enrichment (including synonyms_json).
-    2) Collect all labels (canonical + synonyms).
-    3) Pass 1: for each label, take the last token as candidate head and count frequencies.
-    4) Keep only "strong heads" with freq >= MIN_HEAD_FREQ.
-    5) Pass 2: for each label, look at ALL tokens; if a token is a strong head,
-       attach that label to that head (so 'Cpu bind' will be counted under 'bind'
-       if 'bind' is already a strong head).
-    6) Map heads back to canonical_id when there is a canonical_term == head.
-    7) Write final heads into taxonomy_parent_candidates.
+    Derive frequent "head tokens" from canonical_term + synonyms_json.
+
+    Two-pass logic:
+      Pass 1: last-token heads only (find strong heads)
+      Pass 2: attach labels to any strong head appearing in tokens
     """
+
     rows = conn.execute(
-        """
+        f"""
         SELECT canonical_id, canonical_term, synonyms_json
-        FROM term_enrichment
+        FROM {enrichment_table}
         WHERE canonical_term IS NOT NULL
           AND TRIM(canonical_term) != ''
         """
     ).fetchall()
 
-    # 1) Build label -> canonical_id for canonical labels only
+    # label -> canonical_id (canonical only)
     label2id: Dict[str, int] = {}
     for r in rows:
         cid = int(r["canonical_id"])
         label = (r["canonical_term"] or "").strip()
-        if not label:
-            continue
-        label2id[label.lower()] = cid
+        if label:
+            label2id[label.lower()] = cid
 
-    # 2) Collect all labels we want to analyse (canonical + synonyms)
+    # collect labels: canonical + synonyms
     labels: List[str] = []
-
     for r in rows:
         canon_label = (r["canonical_term"] or "").strip()
         if canon_label:
@@ -159,35 +138,30 @@ def derive_parent_candidates(conn: sqlite3.Connection) -> None:
 
     print(f"[INFO] Collected {len(labels)} labels (canonical + synonyms).")
 
-    # -----------------------------------------------------
-    # PASS 1: count heads from LAST TOKEN ONLY
-    # -----------------------------------------------------
+    # ----------------------------
+    # PASS 1: count last-token heads
+    # ----------------------------
     head_counts_initial: Counter = Counter()
 
     for label in labels:
         tokens = tokenize_for_head(label)
         if len(tokens) < 2:
-            continue  # only multi-word labels contribute
+            continue
 
         head = normalize_head_token(tokens[-1])
-        if not valid_head(head):
+        if not valid_head(head, min_head_len):
             continue
 
         head_counts_initial[head] += 1
 
-    print(f"[INFO] Found {len(head_counts_initial)} distinct heads in initial pass.")
+    strong_heads: Set[str] = {h for h, c in head_counts_initial.items() if c >= min_head_freq}
 
-    # Only keep strong heads (freq >= MIN_HEAD_FREQ)
-    strong_heads: Set[str] = {
-        h for h, c in head_counts_initial.items() if c >= MIN_HEAD_FREQ
-    }
+    print(f"[INFO] Found {len(head_counts_initial)} distinct heads in pass 1.")
+    print(f"[INFO] Strong heads (freq >= {min_head_freq}): {len(strong_heads)}")
 
-    print(f"[INFO] Strong heads (freq >= {MIN_HEAD_FREQ}): {len(strong_heads)}")
-
-    # -----------------------------------------------------
-    # PASS 2: for each label, attach to any strong head appearing
-    #         in its tokens (not just last token)
-    # -----------------------------------------------------
+    # ----------------------------
+    # PASS 2: attach label to any strong head inside it
+    # ----------------------------
     head_counts_final: Counter = Counter()
     head_examples: Dict[str, Set[str]] = defaultdict(set)
 
@@ -197,24 +171,21 @@ def derive_parent_candidates(conn: sqlite3.Connection) -> None:
             continue
 
         norm_tokens = [normalize_head_token(t) for t in tokens]
-        # Heads this label contributes to (avoid counting same head twice per label)
-        heads_here = {
-            t for t in norm_tokens if valid_head(t) and t in strong_heads
-        }
+        heads_here = {t for t in norm_tokens if t in strong_heads and valid_head(t, min_head_len)}
         if not heads_here:
             continue
 
         for h in heads_here:
             head_counts_final[h] += 1
-            if len(head_examples[h]) < MAX_EXAMPLES_PER_HEAD:
+            if len(head_examples[h]) < max_examples_per_head:
                 head_examples[h].add(label)
 
     print(f"[INFO] Final heads after pass 2: {len(head_counts_final)}")
 
-    # -----------------------------------------------------
-    # Save into DB
-    # -----------------------------------------------------
-    init_parent_candidates_table(conn)
+    # ----------------------------
+    # save to DB
+    # ----------------------------
+    init_parent_candidates_table(conn, out_table, enrichment_table)
 
     cur = conn.cursor()
     inserted = 0
@@ -222,12 +193,11 @@ def derive_parent_candidates(conn: sqlite3.Connection) -> None:
     for head, freq in head_counts_final.most_common():
         examples_list = list(head_examples[head])
         examples_json = json.dumps(examples_list, ensure_ascii=False)
-
-        head_canonical_id = label2id.get(head)  # if head itself is a canonical term
+        head_canonical_id = label2id.get(head)
 
         cur.execute(
-            """
-            INSERT INTO taxonomy_parent_candidates
+            f"""
+            INSERT INTO {out_table}
                 (head_text, head_canonical_id, frequency, example_terms_json)
             VALUES (?, ?, ?, ?)
             ON CONFLICT(head_text) DO UPDATE SET
@@ -240,9 +210,8 @@ def derive_parent_candidates(conn: sqlite3.Connection) -> None:
         inserted += 1
 
     conn.commit()
-    print(f"[INFO] Inserted/updated {inserted} rows in taxonomy_parent_candidates.")
+    print(f"[INFO] Inserted/updated {inserted} rows in {out_table}.")
 
-    # Optional: print top heads for quick inspection
     print("\n[TOP HEAD CANDIDATES]")
     for head, freq in head_counts_final.most_common(30):
         print(f"{head:20s}  freq={freq}")
@@ -252,13 +221,37 @@ def derive_parent_candidates(conn: sqlite3.Connection) -> None:
 
 
 # ---------------------------------------------------------
-# MAIN
+# CLI
 # ---------------------------------------------------------
 
 def main():
-    conn = get_connection(DB_PATH)
-    derive_parent_candidates(conn)
-    conn.close()
+    ap = argparse.ArgumentParser(description="Derive taxonomy parent head candidates from term enrichment table.")
+    ap.add_argument("--db", required=True)
+
+    ap.add_argument("--enrichment_table", default="term_enrichment_v2",
+                    help="Source enrichment table with canonical_term + synonyms_json")
+    ap.add_argument("--out_table", default="taxonomy_parent_candidates",
+                    help="Destination table for head candidates")
+
+    ap.add_argument("--max_examples_per_head", type=int, default=15)
+    ap.add_argument("--min_head_len", type=int, default=3)
+    ap.add_argument("--min_head_freq", type=int, default=3)
+
+    args = ap.parse_args()
+
+    conn = get_connection(args.db)
+    try:
+        derive_parent_candidates(
+            conn,
+            enrichment_table=args.enrichment_table,
+            out_table=args.out_table,
+            max_examples_per_head=args.max_examples_per_head,
+            min_head_len=args.min_head_len,
+            min_head_freq=args.min_head_freq,
+        )
+    finally:
+        conn.close()
+
     print("[INFO] Done deriving parent candidates.")
 
 

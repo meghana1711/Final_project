@@ -1,32 +1,20 @@
+import argparse
 import json
 import re
 import sqlite3
 import unicodedata
 from datetime import datetime
-from typing import List, Tuple, Dict, Set
+from typing import List, Tuple, Dict, Set, Optional
 import string
 import math
 import statistics
 
-# Path to your stopwords file
-STOP_WORDS_FILE = "stop_word/stop_words.txt"
 
-# Only terms with length_tokens <= this value get TF-IDF
-# (set to 3 for 1–3-gram terms, or increase if you want longer phrases scored)
-MAX_TOKENS_FOR_TFIDF = 3
-
+# -----------------------------
+# Stopwords
+# -----------------------------
 
 def load_stop_terms(path: str) -> Set[str]:
-    """
-    Load stop terms from a text file.
-
-    Supports:
-      - one word per line
-      - comma-separated or whitespace-separated lists per line
-        e.g. "a, able, about, above"
-      - lines starting with '#' as comments
-    All terms are lowercased.
-    """
     terms: Set[str] = set()
     try:
         with open(path, encoding="utf-8") as f:
@@ -34,7 +22,6 @@ def load_stop_terms(path: str) -> Set[str]:
                 line = line.strip()
                 if not line or line.startswith("#"):
                     continue
-                # split on commas and/or whitespace
                 for token in re.split(r"[,\s]+", line):
                     token = token.strip().lower()
                     if token:
@@ -44,38 +31,32 @@ def load_stop_terms(path: str) -> Set[str]:
     return terms
 
 
-STOP_TERMS: Set[str] = load_stop_terms(STOP_WORDS_FILE)
-
-# Keep only terms that appear in at least this many documents
-MIN_DOC_FREQ = 1
-
-# Maximum tokens per candidate term to avoid very long noisy phrases
-MAX_TERM_TOKENS = 7
-
-# Maximum characters in the lemma to avoid very long noisy phrases
-MAX_TERM_CHARS = 60
-
-# Optional: substrings that mark generic noisy phrases to drop
-# patterns like "this section", "following example", etc.
-GENERIC_NOISE_SUBSTRINGS: Set[str] = set()
+# -----------------------------
+# Defaults (can be overridden by CLI)
+# -----------------------------
+DEFAULT_STOP_WORDS_FILE = "stop_word/stop_words.txt"
+DEFAULT_MIN_DOC_FREQ = 1
+DEFAULT_MAX_TERM_TOKENS = 7
+DEFAULT_MAX_TERM_CHARS = 60
+DEFAULT_MAX_TOKENS_FOR_TFIDF = 3
 
 
-# -------------------------------------------------------------------
-# DB term extraction and term occurrences
-# -------------------------------------------------------------------
+# -----------------------------
+# DB schema
+# -----------------------------
 
-def init_term_tables(db_path: str) -> None:
-    """Create term_candidates and term_occurrences tables if missing,
-    and ensure term_candidates has idf / tf_idf columns.
-    """
+def init_term_tables(
+    db_path: str,
+    term_candidates_table: str,
+    term_occurrences_table: str,
+) -> None:
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     cur.execute("PRAGMA foreign_keys = ON;")
 
-    # Create base term_candidates table if needed
     cur.execute(
-        """
-        CREATE TABLE IF NOT EXISTS term_candidates (
+        f"""
+        CREATE TABLE IF NOT EXISTS {term_candidates_table} (
             term_id        INTEGER PRIMARY KEY AUTOINCREMENT,
             term_text      TEXT NOT NULL,
             term_lemma     TEXT NOT NULL,
@@ -91,22 +72,20 @@ def init_term_tables(db_path: str) -> None:
         """
     )
 
-    # If table already existed before we added idf/tf_idf, add columns
-    cur.execute("PRAGMA table_info(term_candidates);")
+    cur.execute(f"PRAGMA table_info({term_candidates_table});")
     existing_cols = {row[1] for row in cur.fetchall()}
     if "idf" not in existing_cols:
         cur.execute(
-            "ALTER TABLE term_candidates ADD COLUMN idf REAL NOT NULL DEFAULT 0.0;"
+            f"ALTER TABLE {term_candidates_table} ADD COLUMN idf REAL NOT NULL DEFAULT 0.0;"
         )
     if "tf_idf" not in existing_cols:
         cur.execute(
-            "ALTER TABLE term_candidates ADD COLUMN tf_idf REAL NOT NULL DEFAULT 0.0;"
+            f"ALTER TABLE {term_candidates_table} ADD COLUMN tf_idf REAL NOT NULL DEFAULT 0.0;"
         )
 
-    # term_occurrences as before
     cur.execute(
-        """
-        CREATE TABLE IF NOT EXISTS term_occurrences (
+        f"""
+        CREATE TABLE IF NOT EXISTS {term_occurrences_table} (
             term_id         INTEGER NOT NULL,
             doc_id          TEXT NOT NULL,
             sent_idx        INTEGER NOT NULL,
@@ -114,7 +93,7 @@ def init_term_tables(db_path: str) -> None:
             token_end       INTEGER NOT NULL,
             cleaned_version INTEGER NOT NULL,
             PRIMARY KEY (term_id, doc_id, sent_idx, token_start, token_end, cleaned_version),
-            FOREIGN KEY (term_id) REFERENCES term_candidates(term_id) 
+            FOREIGN KEY (term_id) REFERENCES {term_candidates_table}(term_id)
                 ON UPDATE CASCADE
                 ON DELETE CASCADE
         );
@@ -125,34 +104,46 @@ def init_term_tables(db_path: str) -> None:
     conn.close()
 
 
-# -------------------------------------------------------------------
+# -----------------------------
 # Candidate extraction
-# -------------------------------------------------------------------
+# -----------------------------
+
+def _is_cli_flag(term: str) -> bool:
+    """
+    Accept common HPC/CLI flags:
+      --nodes
+      -N
+      --gres=gpu:1
+      --wrap="..."
+      --time=01:00:00
+    """
+    if not term or " " in term:
+        return False
+    if not term.startswith("-"):
+        return False
+
+    # Must contain at least one alphabetic character (reject '--' or '-')
+    if not any(ch.isalpha() for ch in term):
+        return False
+
+    # Allow: -X, -X=..., --flag, --flag=..., --flag:..., --flag=value:value
+    # Disallow spaces, brackets are handled elsewhere.
+    return re.match(r"^-{1,2}[A-Za-z][A-Za-z0-9_-]*(?:[=:][^\s]+)?$", term) is not None
+
 
 def _extract_candidates_from_sentence(
     tokens: List[str],
     lemmas: List[str],
     pos: List[str],
+    stop_terms: Set[str],
+    min_doc_freq: int,
+    max_term_tokens: int,
+    max_term_chars: int,
+    generic_noise_substrings: Set[str],
 ) -> List[Tuple[int, int, str, str, int]]:
-    """
-    Return list of spans as:
-        (start, end, term_text, term_lemma, length_tokens)
-
-    Patterns:
-      (1) (ADJ|NOUN|PROPN)+ ending in (NOUN|PROPN)
-      (2) (NOUN|PROPN) ADP (NOUN|PROPN)+
-      (3) PROPN (PROPN|NOUN)+
-
-    With many filters (numbers, junk, code, table noise, etc.) and:
-      - Unicode normalization
-      - simple singularization for NOUN/PROPN
-      - pipe splitting
-      - edge stopword stripping
-    """
     candidates: List[Tuple[int, int, str, str, int]] = []
     n = len(tokens)
     i = 0
-
     seen_lemmas: Set[str] = set()
 
     EDGE_STRIP_CHARS = "".join(ch for ch in string.punctuation if ch not in "_-")
@@ -180,12 +171,8 @@ def _extract_candidates_from_sentence(
                     lemma_norm = lemma_norm[:-1]
             norm_lemmas.append(lemma_norm)
 
-        term_text = " ".join(norm_tokens)
-        term_text = term_text.replace(" - ", "-").replace(" / ", "/")
-
-        term_lemma = " ".join(norm_lemmas).lower()
-        term_lemma = term_lemma.replace(" - ", "-").replace(" / ", "/")
-
+        term_text = " ".join(norm_tokens).replace(" - ", "-").replace(" / ", "/")
+        term_lemma = " ".join(norm_lemmas).lower().replace(" - ", "-").replace(" / ", "/")
         length_tokens = len(norm_tokens)
         return term_text, term_lemma, length_tokens
 
@@ -196,8 +183,6 @@ def _extract_candidates_from_sentence(
             return "", "", 0
 
         def clean_tok_list(tok_list: List[str]) -> List[str]:
-            if not tok_list:
-                return []
             tok_list[0] = tok_list[0].strip(EDGE_STRIP_CHARS)
             tok_list[-1] = tok_list[-1].strip(EDGE_STRIP_CHARS)
             return [t for t in tok_list if t]
@@ -212,9 +197,7 @@ def _extract_candidates_from_sentence(
         text_tokens = text_tokens[:min_len]
         lemma_tokens = lemma_tokens[:min_len]
 
-        text_clean = " ".join(text_tokens)
-        lemma_clean = " ".join(lemma_tokens).lower()
-        return text_clean, lemma_clean, len(text_tokens)
+        return " ".join(text_tokens), " ".join(lemma_tokens).lower(), len(text_tokens)
 
     def _emit(term_text: str, term_lemma: str, length_tokens: int, start: int, end: int) -> None:
         nonlocal seen_lemmas, candidates
@@ -226,27 +209,24 @@ def _extract_candidates_from_sentence(
         if not term_text or not term_lemma or length_tokens <= 0:
             return
 
+        # strip leading/trailing stopwords for multiword terms
         text_tokens = term_text.split()
         lemma_tokens = term_lemma.split()
 
         if len(text_tokens) > 1 and len(lemma_tokens) == len(text_tokens):
-            # strip leading stopwords
-            while len(text_tokens) > 1 and lemma_tokens[0].lower() in STOP_TERMS:
+            while len(text_tokens) > 1 and lemma_tokens[0].lower() in stop_terms:
                 text_tokens.pop(0)
                 lemma_tokens.pop(0)
-            # strip trailing stopwords
-            while len(text_tokens) > 1 and lemma_tokens[-1].lower() in STOP_TERMS:
+            while len(text_tokens) > 1 and lemma_tokens[-1].lower() in stop_terms:
                 text_tokens.pop()
                 lemma_tokens.pop()
-
-            if not text_tokens or not lemma_tokens:
+            if not text_tokens:
                 return
-
             term_text = " ".join(text_tokens)
-            term_lemma = " ".join(lemma_tokens)
+            term_lemma = " ".join(lemma_tokens).lower()
             length_tokens = len(text_tokens)
 
-        # ----- junk filters for pipes / punctuation -----
+        # pipe splitting cleanup
         if "|" in term_text:
             text_parts = [p.strip() for p in term_text.split("|") if p.strip()]
             lemma_parts = [p.strip() for p in term_lemma.split("|") if p.strip()]
@@ -272,45 +252,52 @@ def _extract_candidates_from_sentence(
         if alpha_chars / len(compact) < 0.4:
             return
 
-        # code / brackets
+        # code / brackets (keep strict)
         if any(ch in term_text for ch in "<>(){}[]"):
             return
 
-        if length_tokens > MAX_TERM_TOKENS:
+        if length_tokens > max_term_tokens:
             return
-        if len(term_lemma) > MAX_TERM_CHARS:
+        if len(term_lemma) > max_term_chars:
             return
 
-        for noise in GENERIC_NOISE_SUBSTRINGS:
+        for noise in generic_noise_substrings:
             if noise in term_lemma:
                 return
 
-        if length_tokens == 1 and len(term_lemma) < 3:
-            return
-
+        # single token stopword
         if length_tokens == 1:
-            lemma_token = term_lemma.strip().lower()
-            if lemma_token in STOP_TERMS:
+            if term_lemma.strip().lower() in stop_terms:
+                return
+            if len(term_lemma) < 3 and not _is_cli_flag(term_text):
                 return
 
         stripped = term_lemma.strip(string.punctuation + " ")
         if stripped.isdigit():
             return
-
         if re.search(r"\d{3,}", term_lemma):
             return
-        if "=" in term_lemma:
-            return
-        if term_lemma.startswith("-") or term_lemma.endswith("?"):
+        if "=" in term_lemma and not _is_cli_flag(term_text):
+            # allow '=' only for CLI flags like --gres=gpu:1
             return
 
-        m = re.match(r"(.+?)(\d+)$", term_lemma)
-        if m:
-            base = m.group(1).strip()
-            if len(base) >= 3 and not base.replace(" ", "").isdigit():
-                term_lemma = base
-                term_text = re.sub(r"\d+$", "", term_text).strip()
-                length_tokens = len(term_text.split())
+        # Previously: drop anything starting with '-' (kills --nodes, --gres, -N)
+        # Now: allow if it's a CLI flag; otherwise drop dash-start junk.
+        if term_lemma.startswith("-") and not _is_cli_flag(term_text):
+            return
+
+        if term_lemma.endswith("?"):
+            return
+
+        # normalize trailing digits like foo123 -> foo (but keep flags)
+        if not _is_cli_flag(term_text):
+            m = re.match(r"(.+?)(\d+)$", term_lemma)
+            if m:
+                base = m.group(1).strip()
+                if len(base) >= 3 and not base.replace(" ", "").isdigit():
+                    term_lemma = base
+                    term_text = re.sub(r"\d+$", "", term_text).strip()
+                    length_tokens = len(term_text.split())
 
         if term_lemma in seen_lemmas:
             return
@@ -320,7 +307,10 @@ def _extract_candidates_from_sentence(
 
     def _push(start: int, end: int) -> None:
         term_text, term_lemma, length_tokens = _make_text_lemma(start, end)
-        if not term_text or not term_lemma or length_tokens <= 0:
+
+        # If it's a single-token CLI flag, emit directly (even if POS patterns would be weird)
+        if length_tokens == 1 and _is_cli_flag(term_text):
+            _emit(term_text, term_lemma, length_tokens, start, end)
             return
 
         if "|" in term_text:
@@ -328,8 +318,7 @@ def _extract_candidates_from_sentence(
             lemma_parts = [p.strip() for p in term_lemma.split("|") if p.strip()]
             if len(text_parts) == len(lemma_parts) and len(text_parts) > 1:
                 for t_sub, l_sub in zip(text_parts, lemma_parts):
-                    sub_len_tokens = len(t_sub.split())
-                    _emit(t_sub, l_sub.lower(), sub_len_tokens, start, end)
+                    _emit(t_sub, l_sub.lower(), len(t_sub.split()), start, end)
                 return
 
         _emit(term_text, term_lemma, length_tokens, start, end)
@@ -338,6 +327,7 @@ def _extract_candidates_from_sentence(
     allowed_end = {"NOUN", "PROPN"}
 
     while i < n:
+        # Pattern 1: (ADJ|NOUN|PROPN)+ ending in (NOUN|PROPN)
         if pos[i] in allowed_inside:
             start = i
             j = i + 1
@@ -349,6 +339,7 @@ def _extract_candidates_from_sentence(
             i = j
             continue
 
+        # Pattern 2: NOUN/PROPN ADP NOUN/PROPN+
         if (
             i + 2 < n
             and pos[i] in {"NOUN", "PROPN"}
@@ -364,6 +355,7 @@ def _extract_candidates_from_sentence(
             i = j
             continue
 
+        # Pattern 3: PROPN (PROPN|NOUN)+
         if pos[i] == "PROPN":
             start = i
             j = i + 1
@@ -375,32 +367,41 @@ def _extract_candidates_from_sentence(
                 i = j
                 continue
 
+        # Also: if token itself looks like a CLI flag, try emitting it
+        if _is_cli_flag(tokens[i]):
+            _push(i, i)
+
         i += 1
 
     return candidates
 
 
-# -------------------------------------------------------------------
-# Run extraction onto DB
-# -------------------------------------------------------------------
+# -----------------------------
+# Extraction + occurrences
+# -----------------------------
 
-def extract_term_candidates(db_path: str, cleaned_version: int) -> Tuple[int, int]:
-    """
-    Read from sentence_lemmatized and populate term_candidates + term_occurrences.
-
-    Returns:
-        (number_of_unique_terms_touched, number_of_occurrences_inserted)
-    """
-    init_term_tables(db_path)
+def extract_term_candidates(
+    db_path: str,
+    cleaned_version: int,
+    sentence_table: str,
+    term_candidates_table: str,
+    term_occurrences_table: str,
+    stop_terms: Set[str],
+    min_doc_freq: int,
+    max_term_tokens: int,
+    max_term_chars: int,
+    generic_noise_substrings: Set[str],
+) -> Tuple[int, int]:
+    init_term_tables(db_path, term_candidates_table, term_occurrences_table)
 
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     cur.execute("PRAGMA foreign_keys = ON;")
 
     cur.execute(
-        """
+        f"""
         SELECT doc_id, sent_idx, tokens_json, lemmas_json, pos_tags_json
-        FROM sentence_lemmatized
+        FROM {sentence_table}
         WHERE cleaned_version = ?
         ORDER BY doc_id, sent_idx
         """,
@@ -423,30 +424,30 @@ def extract_term_candidates(db_path: str, cleaned_version: int) -> Tuple[int, in
         lemmas = json.loads(lemmas_json)
         pos = json.loads(pos_json) if pos_json is not None else ["X"] * len(tokens)
 
-        cands = _extract_candidates_from_sentence(tokens, lemmas, pos)
+        cands = _extract_candidates_from_sentence(
+            tokens=tokens,
+            lemmas=lemmas,
+            pos=pos,
+            stop_terms=stop_terms,
+            min_doc_freq=min_doc_freq,
+            max_term_tokens=max_term_tokens,
+            max_term_chars=max_term_chars,
+            generic_noise_substrings=generic_noise_substrings,
+        )
+
         for start, end, term_text, term_lemma, length_tokens in cands:
             key = (term_lemma, length_tokens)
             if key not in term_stats:
-                term_stats[key] = {
-                    "term_text": term_text,
-                    "freq_total": 0,
-                    "docs": set(),
-                }
+                term_stats[key] = {"term_text": term_text, "freq_total": 0, "docs": set()}
             term_stats[key]["freq_total"] += 1
             term_stats[key]["docs"].add(doc_id)
 
             occurrences.append((term_lemma, length_tokens, doc_id, sent_idx, start, end))
 
-    if MIN_DOC_FREQ > 1:
-        term_stats = {
-            k: v for k, v in term_stats.items()
-            if len(v["docs"]) >= MIN_DOC_FREQ
-        }
+    if min_doc_freq > 1:
+        term_stats = {k: v for k, v in term_stats.items() if len(v["docs"]) >= min_doc_freq}
         keep_keys = set(term_stats.keys())
-        occurrences = [
-            occ for occ in occurrences
-            if (occ[0], occ[1]) in keep_keys
-        ]
+        occurrences = [occ for occ in occurrences if (occ[0], occ[1]) in keep_keys]
 
     now = datetime.utcnow().isoformat(timespec="seconds") + "Z"
     term_key_to_id: Dict[Tuple[str, int], int] = {}
@@ -457,22 +458,22 @@ def extract_term_candidates(db_path: str, cleaned_version: int) -> Tuple[int, in
         freq_docs = len(info["docs"])
 
         cur.execute(
-            """
-            INSERT INTO term_candidates
+            f"""
+            INSERT INTO {term_candidates_table}
                 (term_text, term_lemma, length_tokens, freq_total, freq_docs, created_at, updated_at)
             VALUES (?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(term_lemma, length_tokens) DO UPDATE SET
-                freq_total = term_candidates.freq_total + excluded.freq_total,
-                freq_docs  = MAX(term_candidates.freq_docs, excluded.freq_docs),
+                freq_total = {term_candidates_table}.freq_total + excluded.freq_total,
+                freq_docs  = MAX({term_candidates_table}.freq_docs, excluded.freq_docs),
                 updated_at = excluded.updated_at
             """,
             (term_text, term_lemma, length_tokens, freq_total, freq_docs, now, now),
         )
 
         cur.execute(
-            """
+            f"""
             SELECT term_id
-            FROM term_candidates
+            FROM {term_candidates_table}
             WHERE term_lemma = ? AND length_tokens = ?
             """,
             (term_lemma, length_tokens),
@@ -482,12 +483,12 @@ def extract_term_candidates(db_path: str, cleaned_version: int) -> Tuple[int, in
 
     occ_count = 0
     for term_lemma, length_tokens, doc_id, sent_idx, start, end in occurrences:
-        if (term_lemma, length_tokens) not in term_key_to_id:
+        term_id = term_key_to_id.get((term_lemma, length_tokens))
+        if not term_id:
             continue
-        term_id = term_key_to_id[(term_lemma, length_tokens)]
         cur.execute(
-            """
-            INSERT OR IGNORE INTO term_occurrences
+            f"""
+            INSERT OR IGNORE INTO {term_occurrences_table}
                 (term_id, doc_id, sent_idx, token_start, token_end, cleaned_version)
             VALUES (?, ?, ?, ?, ?, ?)
             """,
@@ -502,9 +503,9 @@ def extract_term_candidates(db_path: str, cleaned_version: int) -> Tuple[int, in
     return len(term_stats), occ_count
 
 
-# -------------------------------------------------------------------
-# TF-IDF inline on term_candidates
-# -------------------------------------------------------------------
+# -----------------------------
+# TF-IDF
+# -----------------------------
 
 def _percentile(sorted_vals: List[float], p: float) -> float:
     if not sorted_vals:
@@ -522,40 +523,52 @@ def _percentile(sorted_vals: List[float], p: float) -> float:
     d1 = sorted_vals[c] * (k - f)
     return d0 + d1
 
-
-def compute_tf_idf_for_terms(db_path: str) -> None:
+def reset_term_tables(
+    db_path: str,
+    term_candidates_table: str,
+    term_occurrences_table: str,
+) -> None:
     """
-    Compute TF-IDF scores and write them into term_candidates.idf and term_candidates.tf_idf.
-
-    Uses:
-      tf = freq_total
-      df = freq_docs
-      N  = number of distinct docs in term_occurrences
-
-    Only updates terms with length_tokens <= MAX_TOKENS_FOR_TFIDF.
+    Delete all rows from occurrences first (FK dependency),
+    then candidates. Keeps schema intact.
     """
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     cur.execute("PRAGMA foreign_keys = ON;")
 
-    # make sure table exists + has columns
-    init_term_tables(db_path)
+    # Occurrences first because it references candidates
+    cur.execute(f"DELETE FROM {term_occurrences_table};")
+    cur.execute(f"DELETE FROM {term_candidates_table};")
 
-    # count docs
-    cur.execute("SELECT COUNT(DISTINCT doc_id) FROM term_occurrences;")
-    row = cur.fetchone()
-    total_docs = row[0] if row and row[0] is not None else 0
+    conn.commit()
+    conn.close()
+    print(f"[RESET] Cleared {term_occurrences_table} and {term_candidates_table}.")
+
+def compute_tf_idf_for_terms(
+    db_path: str,
+    term_candidates_table: str,
+    term_occurrences_table: str,
+    max_tokens_for_tfidf: int,
+) -> None:
+    init_term_tables(db_path, term_candidates_table, term_occurrences_table)
+
+    conn = sqlite3.connect(db_path)
+    cur = conn.cursor()
+    cur.execute("PRAGMA foreign_keys = ON;")
+
+    cur.execute(f"SELECT COUNT(DISTINCT doc_id) FROM {term_occurrences_table};")
+    total_docs = cur.fetchone()[0] or 0
     if total_docs == 0:
         print("No documents in term_occurrences; skipping TF-IDF.")
         conn.close()
         return
 
-    print(f"Computing TF-IDF inside term_candidates (N={total_docs})...")
+    print(f"Computing TF-IDF inside {term_candidates_table} (N={total_docs})...")
 
     cur.execute(
-        """
+        f"""
         SELECT term_id, length_tokens, freq_total, freq_docs
-        FROM term_candidates
+        FROM {term_candidates_table}
         """
     )
     rows = cur.fetchall()
@@ -568,14 +581,10 @@ def compute_tf_idf_for_terms(db_path: str) -> None:
 
     for term_id, length_tokens, freq_total, freq_docs in rows:
         length_tokens = int(length_tokens)
-        tf = float(freq_total) if freq_total is not None else 0.0
-        df = int(freq_docs) if freq_docs is not None else 0
+        tf = float(freq_total or 0.0)
+        df = int(freq_docs or 1)
 
-        if df <= 0:
-            df = 1
-
-        # terms longer than MAX_TOKENS_FOR_TFIDF: leave idf / tf_idf as 0
-        if length_tokens > MAX_TOKENS_FOR_TFIDF:
+        if length_tokens > max_tokens_for_tfidf:
             idf = 0.0
             tf_idf = 0.0
         else:
@@ -584,7 +593,7 @@ def compute_tf_idf_for_terms(db_path: str) -> None:
             tfidf_values.append(tf_idf)
 
         cur.execute(
-            "UPDATE term_candidates SET idf = ?, tf_idf = ? WHERE term_id = ?",
+            f"UPDATE {term_candidates_table} SET idf = ?, tf_idf = ? WHERE term_id = ?",
             (idf, tf_idf, term_id),
         )
 
@@ -594,68 +603,66 @@ def compute_tf_idf_for_terms(db_path: str) -> None:
     if tfidf_values:
         tfidf_values_sorted = sorted(tfidf_values)
         n = len(tfidf_values_sorted)
-        tfidf_min = tfidf_values_sorted[0]
-        tfidf_max = tfidf_values_sorted[-1]
-        tfidf_mean = statistics.mean(tfidf_values_sorted)
-        tfidf_median = statistics.median(tfidf_values_sorted)
-
-        p25 = _percentile(tfidf_values_sorted, 25)
-        p50 = _percentile(tfidf_values_sorted, 50)
-        p75 = _percentile(tfidf_values_sorted, 75)
-        p90 = _percentile(tfidf_values_sorted, 90)
-        p95 = _percentile(tfidf_values_sorted, 95)
-        p99 = _percentile(tfidf_values_sorted, 99)
 
         print("\n=== TF-IDF statistics (stored in term_candidates) ===")
-        print(f"Total scored terms (len <= {MAX_TOKENS_FOR_TFIDF}): {n}")
-        print(f"Min tf_idf: {tfidf_min:.4f}")
-        print(f"25th pct : {p25:.4f}")
-        print(f"50th pct : {p50:.4f}")
-        print(f"75th pct : {p75:.4f}")
-        print(f"90th pct : {p90:.4f}")
-        print(f"95th pct : {p95:.4f}")
-        print(f"99th pct : {p99:.4f}")
-        print(f"Max tf_idf: {tfidf_max:.4f}")
-        print(f"Mean tf_idf: {tfidf_mean:.4f}")
-        print(f"Median tf_idf: {tfidf_median:.4f}")
-
-        bins = [5, 10, 20, 40, 80, 160]
-        counts = [0] * (len(bins) + 1)
-        for v in tfidf_values_sorted:
-            placed = False
-            for i, b in enumerate(bins):
-                if v < b:
-                    counts[i] += 1
-                    placed = True
-                    break
-            if not placed:
-                counts[-1] += 1
-
-        print("\nTF-IDF buckets (counts):")
-        prev = 0.0
-        for i, b in enumerate(bins):
-            print(f"  [{prev:>5.1f}, {b:>5.1f}) : {counts[i]}")
-            prev = b
-        print(f"  [ {bins[-1]:>5.1f}, +inf) : {counts[-1]}")
+        print(f"Total scored terms (len <= {max_tokens_for_tfidf}): {n}")
+        print(f"Min tf_idf: {tfidf_values_sorted[0]:.4f}")
+        print(f"Median:     {statistics.median(tfidf_values_sorted):.4f}")
+        print(f"Mean:       {statistics.mean(tfidf_values_sorted):.4f}")
+        print(f"90th pct:   {_percentile(tfidf_values_sorted, 90):.4f}")
+        print(f"95th pct:   {_percentile(tfidf_values_sorted, 95):.4f}")
+        print(f"Max tf_idf: {tfidf_values_sorted[-1]:.4f}")
         print("=========================================\n")
 
 
-# -------------------------------------------------------------------
+# -----------------------------
 # CLI
-# -------------------------------------------------------------------
+# -----------------------------
 
 def main():
-    DB_PATH = r"onto_db/onto_new.db"
-    CLEANED_VERSION = 1
+    ap = argparse.ArgumentParser()
 
-    print("Running term extraction...")
-    n_terms, n_occ = extract_term_candidates(DB_PATH, CLEANED_VERSION)
-    print(f"Loaded {len(STOP_TERMS)} stop terms from {STOP_WORDS_FILE}")
-    print("'way' in STOP_TERMS?", "way" in STOP_TERMS)
-    print(f"Done: {n_terms} unique terms, {n_occ} occurrences.")
+    ap.add_argument("--db", required=True)
+    ap.add_argument("--cleaned_version", type=int, default=1)
 
-    # Now compute TF-IDF directly into term_candidates
-    compute_tf_idf_for_terms(DB_PATH)
+    ap.add_argument("--sentence_table", default="sentence_lemmatized")
+    ap.add_argument("--term_candidates_table", default="term_candidates")
+    ap.add_argument("--term_occurrences_table", default="term_occurrences")
+
+    ap.add_argument("--stopwords", default=DEFAULT_STOP_WORDS_FILE)
+    ap.add_argument("--reset_terms", action="store_true", help="Clear term tables before extraction")
+  
+    ap.add_argument("--min_doc_freq", type=int, default=DEFAULT_MIN_DOC_FREQ)
+    ap.add_argument("--max_term_tokens", type=int, default=DEFAULT_MAX_TERM_TOKENS)
+    ap.add_argument("--max_term_chars", type=int, default=DEFAULT_MAX_TERM_CHARS)
+    ap.add_argument("--max_tfidf_tokens", type=int, default=DEFAULT_MAX_TOKENS_FOR_TFIDF)
+    args = ap.parse_args()
+
+    stop_terms = load_stop_terms(args.stopwords)
+
+    print("Running term extraction (TF-IDF)...")
+    n_terms, n_occ = extract_term_candidates(
+        db_path=args.db,
+        cleaned_version=args.cleaned_version,
+        sentence_table=args.sentence_table,
+        term_candidates_table=args.term_candidates_table,
+        term_occurrences_table=args.term_occurrences_table,
+        stop_terms=stop_terms,
+        min_doc_freq=args.min_doc_freq,
+        max_term_tokens=args.max_term_tokens,
+        max_term_chars=args.max_term_chars,
+        generic_noise_substrings=set(),
+    )
+
+    print(f"Loaded {len(stop_terms)} stop terms from {args.stopwords}")
+    print(f"Done extraction: {n_terms} unique terms, {n_occ} occurrences.")
+
+    compute_tf_idf_for_terms(
+        db_path=args.db,
+        term_candidates_table=args.term_candidates_table,
+        term_occurrences_table=args.term_occurrences_table,
+        max_tokens_for_tfidf=args.max_tfidf_tokens,
+    )
 
 
 if __name__ == "__main__":

@@ -1,75 +1,16 @@
+import argparse
 import json
 import re
 import sqlite3
 from datetime import datetime
-from typing import Dict, Optional, Any
-
-# -------------------------------------------------------------------
-# Config: TF-IDF threshold for enrichment
-# -------------------------------------------------------------------
-
-# Primary filter: keep statistically important terms
-MIN_TF_IDF = 10.0
-
-DB_PATH = r"onto_db/onto_new.db"
-
-
-# -------------------------------------------------------------------
-# DB schema helpers
-# -------------------------------------------------------------------
-
-def init_term_enrichment_table(db_path: str) -> None:
-    """
-    Create term_enrichment table if missing.
-
-    One row per canonical group.
-
-    Columns:
-      - canonical_id         : INTEGER PK, also term_id of the canonical member in term_candidates
-      - canonical_term       : canonical label (display string)
-      - term_type            : coarse type (command, config, file, ...)
-      - synonyms_json        : JSON list of non-canonical surface variants
-      - abbreviations_json   : JSON list of abbreviations
-      - member_term_ids_json : JSON list of term_ids grouped under this canonical_term
-      - freq_total           : sum of freq_total over all member terms
-      - freq_docs            : max of freq_docs over all member terms
-      - created_at, updated_at
-    """
-    conn = sqlite3.connect(db_path)
-    cur = conn.cursor()
-    cur.execute("PRAGMA foreign_keys = ON;")
-
-    cur.execute(
-        """
-        CREATE TABLE IF NOT EXISTS term_enrichment (
-            canonical_id          INTEGER PRIMARY KEY,
-            canonical_term        TEXT NOT NULL,
-            term_type             TEXT,
-            synonyms_json         TEXT,
-            abbreviations_json    TEXT,
-            member_term_ids_json  TEXT,
-            freq_total            INTEGER,
-            freq_docs             INTEGER,
-            created_at            TEXT NOT NULL,
-            updated_at            TEXT NOT NULL,
-            FOREIGN KEY (canonical_id)
-                REFERENCES term_candidates(term_id)
-                ON UPDATE CASCADE
-                ON DELETE CASCADE
-        );
-        """
-    )
-
-    conn.commit()
-    conn.close()
+from typing import Dict, Optional, Any, Set
 
 
 # -------------------------------------------------------------------
 # Canonicalization helpers
 # -------------------------------------------------------------------
 
-# Words we are happy to drop from the *front* of a term
-LIGHT_PREFIXES = {
+LIGHT_PREFIXES: Set[str] = {
     "a", "an", "the",
     "this", "that", "these", "those",
     "some", "any", "each", "every",
@@ -82,17 +23,19 @@ LIGHT_PREFIXES = {
 
 def is_technical_token(term_text: str) -> bool:
     """
-    Heuristic: keep rare but important HPC/config tokens even if tf_idf is low.
+    Heuristic keep rules for important HPC/config tokens even if tf_idf is low.
 
-    Examples:
-      - ALLCAPS + underscores: SLURM_JOB_ID, EGO_AUDIT_MAX_SIZE
-      - Config files: slurm.conf, lsf.conf
-      - Obvious scheduler mentions: contains 'slurm' or 'lsf'
+    Keeps:
+      - ALLCAPS + underscores (env/config vars): SLURM_JOB_ID, EGO_AUDIT_MAX_SIZE
+      - Config-ish files: slurm.conf, lsf.conf, *.cfg, *.ini
+      - Explicit scheduler mentions: contains 'slurm' or 'lsf'
     """
     if not term_text:
         return False
 
     t = term_text.strip()
+    if not t:
+        return False
 
     # Env/config style: ALLCAPS + '_' (or digits)
     if re.fullmatch(r"[A-Z0-9_]+", t) and "_" in t:
@@ -104,7 +47,7 @@ def is_technical_token(term_text: str) -> bool:
     if lower.endswith(".conf") or lower.endswith(".cfg") or lower.endswith(".ini"):
         return True
 
-    # Explicit scheduler mentions
+    # Scheduler mentions
     if "slurm" in lower or "lsf" in lower:
         return True
 
@@ -113,33 +56,30 @@ def is_technical_token(term_text: str) -> bool:
 
 def _canonical_key(term_lemma: str, term_text: str) -> str:
     """
-    Compute a canonical key using lemma first, with fallback to text.
+    Canonical key based on lemma (preferred), fallback to text.
 
     Behaviour:
-      - Use lemma tokens (already lowercased, singularised from extraction).
-      - Drop only light quantifiers/modifiers at the *front*.
-      - Group ALLCAPS/underscore env/acro terms by first *lemma* token.
-      - Normalise simple punctuation (hyphens, slashes) for non-env terms.
+      - Lemma tokens are already lowercased/singularized from extraction.
+      - Normalize hyphens and slashes into spaces for non-env tokens.
+      - Drop light prefixes at the *front* only.
+      - For env-like tokens (ALLCAPS/underscore): keep as a single token.
     """
     lemma_raw = (term_lemma or "").strip()
     text = (term_text or "").strip()
-
     text_tokens = text.split() if text else []
 
-    # Detect env/acro style based on surface form
     first_text = text_tokens[0] if text_tokens else ""
     is_env_like = bool(re.fullmatch(r"[A-Z0-9_]+", first_text))
 
     if is_env_like:
-        # For env-like tokens, keep the first lemma token as-is (no splitting on '_')
+        # Keep whole token shape (no splitting on _)
         lemma_tokens = [lemma_raw.lower()] if lemma_raw else [first_text.lower()]
     else:
-        # Normalise hyphens/underscores/slashes → spaces
         lemma_norm = lemma_raw.lower()
         lemma_norm = re.sub(r"[-/]+", " ", lemma_norm)
         lemma_tokens = lemma_norm.split() if lemma_norm else []
 
-        # Fallback: if lemma is missing, approximate from text
+        # fallback: approximate from text if lemma is missing
         if not lemma_tokens and text_tokens:
             lemma_norm = " ".join(text_tokens).lower()
             lemma_norm = re.sub(r"[-/]+", " ", lemma_norm)
@@ -148,7 +88,6 @@ def _canonical_key(term_lemma: str, term_text: str) -> str:
     if not lemma_tokens:
         return ""
 
-    # Drop light prefixes at the FRONT (most, particular, specific, ...)
     while lemma_tokens and lemma_tokens[0] in LIGHT_PREFIXES:
         lemma_tokens.pop(0)
 
@@ -160,32 +99,23 @@ def _canonical_key(term_lemma: str, term_text: str) -> str:
 
 def _canonical_term_from_key(key: str) -> str:
     """
-    Turn canonical key into canonical_term for display.
-
-    - ALLCAPS/underscore looking tokens → upper-case it.
-    - Otherwise: keep lemma form (lowercase).
+    Display label:
+      - If ALLCAPS/underscore form -> upper
+      - else -> keep lowercase lemma form
     """
     if not key:
         return key
-
     if re.fullmatch(r"[A-Z0-9_]+", key):
         return key.upper()
-
     return key
 
 
-# -------------------------------------------------------------------
-# Type inference (rules only)
-# -------------------------------------------------------------------
-
 def infer_term_type(term_text: str) -> Optional[str]:
     """
-    Very coarse type tagging using rules:
-
-      - ^[A-Z0-9_]+$ and contains _  → "config"
-      - ends with .conf/.cfg/.ini    → "file"
-
-    Everything else → None.
+    Very coarse type tagging (rules only):
+      - ALLCAPS + underscores -> config
+      - endswith .conf/.cfg/.ini -> file
+      else None
     """
     if not term_text:
         return None
@@ -193,72 +123,111 @@ def infer_term_type(term_text: str) -> Optional[str]:
     t = term_text.strip()
     lower = t.lower()
 
-    # Config-like variables: ALLCAPS + underscore(s)
     if re.fullmatch(r"[A-Z0-9_]+", t) and "_" in t:
         return "config"
-
-    # Config files
     if lower.endswith(".conf") or lower.endswith(".cfg") or lower.endswith(".ini"):
         return "file"
-
     return None
+
+
+# -------------------------------------------------------------------
+# DB schema
+# -------------------------------------------------------------------
+
+def init_term_enrichment_table(
+    db_path: str,
+    term_candidates_table: str,
+    term_enrichment_table: str,
+) -> None:
+    """
+    Create term_enrichment table if missing.
+
+    canonical_id is both the PK and a FK to term_candidates(term_id).
+    """
+    conn = sqlite3.connect(db_path)
+    cur = conn.cursor()
+    cur.execute("PRAGMA foreign_keys = ON;")
+
+    cur.execute(
+        f"""
+        CREATE TABLE IF NOT EXISTS {term_enrichment_table} (
+            canonical_id          INTEGER PRIMARY KEY,
+            canonical_term        TEXT NOT NULL,
+            term_type             TEXT,
+            synonyms_json         TEXT,
+            abbreviations_json    TEXT,
+            member_term_ids_json  TEXT,
+            freq_total            INTEGER,
+            freq_docs             INTEGER,
+            created_at            TEXT NOT NULL,
+            updated_at            TEXT NOT NULL,
+            FOREIGN KEY (canonical_id)
+                REFERENCES {term_candidates_table}(term_id)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
+        );
+        """
+    )
+
+    conn.commit()
+    conn.close()
 
 
 # -------------------------------------------------------------------
 # Main enrichment routine
 # -------------------------------------------------------------------
 
-def enrich_terms(db_path: str) -> None:
+def enrich_terms(
+    db_path: str,
+    term_candidates_table: str,
+    term_enrichment_table: str,
+    min_tf_idf: float,
+    reset_enrichment: bool = True,
+) -> None:
     """
-    Read term_candidates, compute lemma-based canonical_term, synonyms, type,
+    Read term_candidates, filter, canonicalize, group variants,
     and populate term_enrichment.
 
-    Behaviour:
-      - Use tf_idf from term_candidates.
-      - Only keep terms that are either:
-          * tf_idf >= MIN_TF_IDF  (statistically important), OR
-          * is_technical_token(term_text)  (HPC configs/env vars/etc.)
-      - Rebuild term_enrichment from scratch each run.
+    Filters:
+      - keep if tf_idf >= min_tf_idf OR is_technical_token(term_text)
 
-    One row per canonical group.
+    Canonicalization:
+      - lemma-based canonical key + light prefix stripping + hyphen/slash normalize
 
-    Aggregates:
-      - member_term_ids_json
-      - freq_total (sum over members)
-      - freq_docs (max over members)
+    Grouping:
+      - one row per canonical term
+
+    Rebuild:
+      - if reset_enrichment=True, deletes all rows from term_enrichment first
     """
-    init_term_enrichment_table(db_path)
+    init_term_enrichment_table(db_path, term_candidates_table, term_enrichment_table)
 
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     cur.execute("PRAGMA foreign_keys = ON;")
 
-    # Rebuild from scratch
-    cur.execute("DELETE FROM term_enrichment;")
+    if reset_enrichment:
+        cur.execute(f"DELETE FROM {term_enrichment_table};")
 
-    # Pull everything, filter in Python so we can apply the OR rule
     cur.execute(
-        """
-        SELECT term_id, term_text, term_lemma, freq_total, freq_docs,
-               COALESCE(tf_idf, 0.0)
-        FROM term_candidates
+        f"""
+        SELECT term_id, term_text, term_lemma, freq_total, freq_docs, COALESCE(tf_idf, 0.0)
+        FROM {term_candidates_table}
         """
     )
     rows = cur.fetchall()
-    print(f"Loaded {len(rows)} term_candidates for enrichment filtering.")
+    print(f"Loaded {len(rows)} rows from {term_candidates_table} for enrichment.")
 
     groups: Dict[str, Dict[str, Any]] = {}
-
     kept_count = 0
 
     for term_id, term_text, term_lemma, freq_total, freq_docs, tf_idf in rows:
-        tf_idf = float(tf_idf or 0.0)
         term_text = term_text or ""
+        tf_idf = float(tf_idf or 0.0)
 
-        # Filter: keep if statistically important OR technical pattern
-        if tf_idf < MIN_TF_IDF and not is_technical_token(term_text):
+        # Filter: keep if statistically important OR technical token
+        if tf_idf < min_tf_idf and not is_technical_token(term_text):
             continue
-
         kept_count += 1
 
         key = _canonical_key(term_lemma, term_text)
@@ -276,39 +245,38 @@ def enrich_terms(db_path: str) -> None:
             }
 
         g = groups[canonical_term]
-        g["ids"].add(term_id)
-        g["texts"].add(term_text)
+        g["ids"].add(int(term_id))
+        if term_text.strip():
+            g["texts"].add(term_text.strip())
         g["freq_total"] += int(freq_total or 0)
         g["freq_docs"] = max(g["freq_docs"], int(freq_docs or 0))
 
-    print(f"Kept {kept_count} terms after tf_idf/technical filtering.")
+    print(f"Kept {kept_count} terms after filtering (tf_idf >= {min_tf_idf} OR technical).")
     print(f"Formed {len(groups)} canonical groups.")
 
-    now = datetime.utcnow().isoformat(timespec="seconds") 
+    now = datetime.utcnow().isoformat(timespec="seconds")
 
-    #cur.execute("BEGIN;")
     for canonical_term, data in groups.items():
         member_ids = sorted(data["ids"])
         member_texts = sorted(data["texts"])
         freq_total = data["freq_total"]
         freq_docs = data["freq_docs"]
 
-        # canonical_id = smallest term_id in the group
+        # canonical_id = smallest term_id in the group (deterministic)
         canonical_id = member_ids[0]
 
-        # Synonyms: all member texts except the canonical label itself (if present)
+        # synonyms: all member texts except canonical label if present
         if canonical_term in member_texts:
             synonyms = [t for t in member_texts if t != canonical_term]
         else:
             synonyms = member_texts
 
-        # Abbreviations: ALLCAPS/underscore tokens
+        # abbreviations: ALLCAPS/underscore tokens only (rule-based)
         abbreviations = [
             t for t in member_texts
             if re.fullmatch(r"[A-Z0-9_]+", t) and len(t) > 1
         ]
 
-        # Coarse type from canonical term, fallback to any member
         term_type = infer_term_type(canonical_term)
         if term_type is None:
             for t in member_texts:
@@ -317,13 +285,11 @@ def enrich_terms(db_path: str) -> None:
                     break
 
         cur.execute(
-            """
-            INSERT INTO term_enrichment
+            f"""
+            INSERT INTO {term_enrichment_table}
                 (canonical_id, canonical_term, term_type,
-                 synonyms_json, abbreviations_json,
-                 member_term_ids_json,
-                 freq_total, freq_docs,
-                 created_at, updated_at)
+                 synonyms_json, abbreviations_json, member_term_ids_json,
+                 freq_total, freq_docs, created_at, updated_at)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
@@ -342,12 +308,32 @@ def enrich_terms(db_path: str) -> None:
 
     conn.commit()
     conn.close()
-    print("term_enrichment rebuilt.")
+    print(f"{term_enrichment_table} rebuilt.")
 
+
+# -------------------------------------------------------------------
+# CLI
+# -------------------------------------------------------------------
 
 def main():
-    print(f"Running term enrichment (tf_idf >= {MIN_TF_IDF} OR technical)...")
-    enrich_terms(DB_PATH)
+    ap = argparse.ArgumentParser(description="Rule-based term enrichment (canonicalization + grouping).")
+
+    ap.add_argument("--db", required=True)
+    ap.add_argument("--term_candidates_table", default="term_candidates")
+    ap.add_argument("--term_enrichment_table", default="term_enrichment")
+    ap.add_argument("--min_tf_idf", type=float, default=9.0)
+    ap.add_argument("--no_reset", action="store_true", help="Do not delete existing enrichment rows first")
+
+    args = ap.parse_args()
+
+    print(f"Running term enrichment: tf_idf >= {args.min_tf_idf} OR technical token...")
+    enrich_terms(
+        db_path=args.db,
+        term_candidates_table=args.term_candidates_table,
+        term_enrichment_table=args.term_enrichment_table,
+        min_tf_idf=args.min_tf_idf,
+        reset_enrichment=(not args.no_reset),
+    )
     print("Done term enrichment.")
 
 

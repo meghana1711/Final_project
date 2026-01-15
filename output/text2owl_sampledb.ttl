@@ -8,8 +8,8 @@
 # Fragment: doc_doc_4387_chunk_doc_4387_chunk_0001.ttl
 hpc:Slurm a owl:Class .
 hpc:AccountingRecord a owl:Class .
-hpc:TextFile a owl:Class, rdfs:subClassOf hpc:AccountingRecord .
-hpc:SlurmDB a owl:Class, rdfs:subClassOf hpc:AccountingRecord .
+hpc:TextFile a owl:Class; rdfs:subClassOf hpc:AccountingRecord .
+hpc:SlurmDB a owl:Class; rdfs:subClassOf hpc:AccountingRecord .
 hpc:CurrentlyExecutingJob a owl:Class, rdfs:subClassOf hpc:Job .
 hpc:TerminatedJob a owl:Class, rdfs:subClassOf hpc:Job .
 hpc:ResourceUsage a owl:Class .

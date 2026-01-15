@@ -1,0 +1,2699 @@
+{
+  "count": 449,
+  "axioms": [
+    {
+      "child": "open file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "userspace somaxconn default",
+      "parent": "default",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "commitdelay option slurmdbd.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "commitdelay option slurmdbd.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job slurmctld daemon record point time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "running",
+      "parent": "job_state",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job submit time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "sbatch",
+      "parent": "command",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctlddebug detailed logging",
+      "parent": "logging",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "operating system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmddebug detailed logging",
+      "parent": "logging",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "purge option slurmdbd.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "purge option slurmdbd.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "query parameter â",
+      "parent": "â",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "return type",
+      "parent": "type",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "media type",
+      "parent": "type",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "body parameter â",
+      "parent": "â",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node",
+      "parent": "resource",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "list qos v0.0.43_openapi_slurmdbd_qos_resp",
+      "parent": "v0.0.43_openapi_slurmdbd_qos_resp",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "qos information v0.0.43_openapi_slurmdbd_qos_resp",
+      "parent": "v0.0.43_openapi_slurmdbd_qos_resp",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "true number",
+      "parent": "number",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cpu",
+      "parent": "resource",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "integer number",
+      "parent": "number",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "core",
+      "parent": "resource",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "long total time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "boolean true number",
+      "parent": "number",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "tre type",
+      "parent": "type",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "default script directory",
+      "parent": "directory",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "installation directory",
+      "parent": "directory",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "time system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm init slurm fini",
+      "parent": "fini",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "system fini",
+      "parent": "fini",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "salloc",
+      "parent": "command",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "default configuration directory",
+      "parent": "directory",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "srun",
+      "parent": "command",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "development file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm index",
+      "parent": "index",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job slurm index",
+      "parent": "index",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "configuration oci runtime",
+      "parent": "runtime",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "oci runtime",
+      "parent": "runtime",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "oci.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm poll oci runtime",
+      "parent": "runtime",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "generic oci.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm oci slurm oci run default",
+      "parent": "default",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "opt slurm oci slurm oci run default",
+      "parent": "default",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm scrun",
+      "parent": "scrun",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "present node scrun",
+      "parent": "scrun",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "sufficient environment path",
+      "parent": "path",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "correct path",
+      "parent": "path",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "container containers.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "token management",
+      "parent": "management",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmrestd build time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "default slurmrestd.service file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "scontrol",
+      "parent": "command",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmrestd service permission parent directory",
+      "parent": "directory",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cores",
+      "parent": "resource",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "mem",
+      "parent": "resource",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "taskplugin parameter slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "select linear",
+      "parent": "linear",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "multi core system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "memory",
+      "parent": "resource",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "task ids",
+      "parent": "ids",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "extension slurm utility",
+      "parent": "utility",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "sinfo",
+      "parent": "command",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "processor information number",
+      "parent": "number",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "squeue",
+      "parent": "command",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "configuration setting slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "configuration setting slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "gpu",
+      "parent": "resource",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "configuration file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmd slurmctld daemon node registration time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "config file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "enable_configless slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "enable_configless slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmd.service file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "additional config file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "adjacent slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "adjacent slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "local slurm config file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "acct_gather.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cgroup.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "gres.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "helpers.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job_container.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "mpi.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "memory limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "interval second slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "interval second slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "partition active bitmap",
+      "parent": "bitmap",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "active bitmap",
+      "parent": "bitmap",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "discussion slurm community",
+      "parent": "community",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm system administrator discussion community",
+      "parent": "community",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "test environment multiple slurmd tmpf option slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "test environment multiple slurmd tmpf option slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "mpi plugin type",
+      "parent": "type",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "pmi2 slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "pmi2 slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "infinity slurmd.service file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm installation path",
+      "parent": "path",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "mpich slurm integration",
+      "parent": "integration",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "configure time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "submit time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "start time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "early start time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "time limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "resource limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "attachment slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "attachment slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "max limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "aggregate limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "partition qos limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm database sacctmgr utility",
+      "parent": "utility",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "preempt qos slurm.conf file limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm configuration file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "log file file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "critical file system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "field interest",
+      "parent": "interest",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm port number",
+      "parent": "number",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm build time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "reliable file system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "default mpi type",
+      "parent": "type",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "type mpi default",
+      "parent": "default",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "mpi type",
+      "parent": "type",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cgroup.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "resource selection",
+      "parent": "selection",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "task launch",
+      "parent": "launch",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "qualified path",
+      "parent": "path",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "event logging",
+      "parent": "logging",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "debug file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "qualified pathname file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job completion logging",
+      "parent": "logging",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "system type",
+      "parent": "type",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "linux system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "process id logging",
+      "parent": "logging",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job termination",
+      "parent": "termination",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "sacct",
+      "parent": "command",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "parameter slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "parameter slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "scontrol reconfigure",
+      "parent": "reconfigure",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cpus",
+      "parent": "resource",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "gpus",
+      "parent": "resource",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "selecttype parameter slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "selecttype parameter slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "excerpt sample slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm default allocation method exclusive mode",
+      "parent": "mode",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm default node allocation non shared mode",
+      "parent": "mode",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job default",
+      "parent": "default",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "entire slurm system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "version number",
+      "parent": "number",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "sample configuration file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm header file api use file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "level slurm source directory",
+      "parent": "directory",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.spec file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "subdirectory slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "subdirectory slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "maximum limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "aggregate billing limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "aggregate cpu limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "aggregate energy limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "aggregate gre limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "maximum number",
+      "parent": "number",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "aggregate license limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "aggregate memory limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "aggregate node limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job time limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmdbd.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "key file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm slurmdbd configuration file slurm.conf slurmdbd.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm slurmdbd configuration file slurm.conf slurmdbd.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmdbd separate configuration file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "qos limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "tre minute limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "limit limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "equal accountingstorageport parameter slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "large system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "dirs option job_container.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "directory slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "directory slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "file system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "scancel",
+      "parent": "command",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job array",
+      "parent": "array",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "size time limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job array index",
+      "parent": "index",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "task job array",
+      "parent": "array",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "element job array",
+      "parent": "array",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "c file slurm code base",
+      "parent": "base",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm level directory",
+      "parent": "directory",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "version file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "plugin slurm code base",
+      "parent": "base",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm configure time file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job size",
+      "parent": "size",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "patch file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cluster management",
+      "parent": "management",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "user management",
+      "parent": "management",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "core file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "backtrace core file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "party integration",
+      "parent": "integration",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "overhead slurm task launch",
+      "parent": "launch",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm 17.02 libexec",
+      "parent": "libexec",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm spank x11 opt slurm 17.02 libexec",
+      "parent": "libexec",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "execution time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "reasonable time limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "timeout",
+      "parent": "job_state",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "ulimit command etc sysconfig slurm file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "propagation specific limit slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "advantage limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "infinity systemd slurmd.service file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "test version different location different slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "test version different location different slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "test system slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "test system slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "api request different slurm system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "path option slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "path option slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "build time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm package repository",
+      "parent": "repository",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctldhost value slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cluster current slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "error slurm log file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "license configuration parameter slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "unlimited etc sysconfig slurm file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "partition slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "partition slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmdlogfile node interest",
+      "parent": "interest",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctld daemon bitmap",
+      "parent": "bitmap",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "run scontrol reconfigure",
+      "parent": "reconfigure",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "security limits.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "line slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "line slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmuser intensive validation file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job_container tmpf slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "realmemory slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "realmemory slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctldlogfile absolute path core file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "permission slurmuser core file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmdlogfile absolute path core file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmstepd core file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "sysctl.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "package data.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "long time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "user limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "current limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctld job launch",
+      "parent": "launch",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "burstbuffertype slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "burstbuffertype slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "burst_buffer.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "getsysstate burst_buffer.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "getsysstate burst_buffer.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "getsysstatu burst_buffer.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "getsysstatu burst_buffer.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "burst_buffer.lua.example file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "directive option burst_buffer.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "directive option burst_buffer.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "authentication system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm slurm var spool slurm statesave",
+      "parent": "statesave",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "spool slurm statesave",
+      "parent": "statesave",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.conf slurmdbd.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.conf slurmdbd.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "jwk file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "import time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm source directory",
+      "parent": "directory",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "pam_slurm_adopt.so file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "pam_access configuration file etc security access.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "option end pam_slurm_adopt line appropriate file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "srun compute node slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "srun compute node slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "inet service mode",
+      "parent": "mode",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "run mode",
+      "parent": "mode",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm jwt generator",
+      "parent": "generator",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm local authentication mode",
+      "parent": "mode",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "local license local license local cluster slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "local license local license local cluster slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "accountingstoragetre option slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "accountingstoragetre option slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm crontab file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "mpi.confslurm configuration file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.confslurm configuration file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "topology.yamlslurm configuration file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "flag autodetect option gres.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "flag autodetect option gres.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job job array",
+      "parent": "array",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm_job_end_time unix timestamp job end time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm_job_gid group id job owner",
+      "parent": "owner",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm_job_uid user id job owner",
+      "parent": "owner",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm_job_user user job owner",
+      "parent": "owner",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm_local_globals_file global file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm distribution contrib perlapi directory",
+      "parent": "directory",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm‘ spank.h header file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "plugstack.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "power saving mode",
+      "parent": "mode",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.conf configuration file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "option interest",
+      "parent": "interest",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "result limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "maximum time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "workload default",
+      "parent": "default",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctld daemon shut slurm_resume_file temporary file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "excerpt slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "excerpt slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "epel repository",
+      "parent": "repository",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm version number",
+      "parent": "number",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmd system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "grep statesavelocationentire slurm configuration directory",
+      "parent": "directory",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "memory usage slurmctld dbd agent queue size",
+      "parent": "size",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmdb url path",
+      "parent": "path",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmdbd daemon binary library systemd unit file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "optional step simultaneous upgrade slurmd system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmd daemon systemd service file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmd daemon systemd unit file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "version slurm unique directory",
+      "parent": "directory",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm authentication type",
+      "parent": "type",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.jwks file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "presence slurm.jwks file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.key file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "memory slurm generic resource gre option hbm",
+      "parent": "hbm",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm gre hbm",
+      "parent": "hbm",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "mem_sort option slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "minute time limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm intel knl system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "numa mode",
+      "parent": "mode",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node interest",
+      "parent": "interest",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "sample knl_generic.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "sample slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "sample slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "sample slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "current time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "wckey accountingstorageenforce option slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "trackwckey option slurm.conf slurmdbd.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmdbd.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "layer definition",
+      "parent": "definition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "priority basic slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "point number",
+      "parent": "number",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "state priorityfavorsmall boolean slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "sum tre type",
+      "parent": "type",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "max_tre priority flag slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "max_tre priority flag slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "max_tres_gre priority flag slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "max_tres_gre priority flag slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "decay time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm native mode resource selection",
+      "parent": "selection",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "configuration generator",
+      "parent": "generator",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "omni path opa switch opa2slurm",
+      "parent": "opa2slurm",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "https: gitlab.com jtfrey opa2slurm",
+      "parent": "opa2slurm",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "snippet example slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "gres.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "gpu type",
+      "parent": "type",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "gpu frequency",
+      "parent": "frequency",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "type file gres.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "type file gres.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "autodetect disabled gres.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "autodetect disabled gres.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.conf gres.conf gpu type",
+      "parent": "type",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "excerpt example slurm.conf gres.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "excerpt example slurm.conf gres.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "configuration gres.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "overridden flag slurm.conf configuration file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "configuration slurm gres.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.conf system",
+      "parent": "system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "accountingstoragetre relevant setting example slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "accountingstoragetre relevant setting example slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "partition queue default",
+      "parent": "default",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "preemption preemptmode main section slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "preemption preemptmode main section slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cluster wide jobrequeue parameter slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cluster wide jobrequeue parameter slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "grep partitionname shared slurm slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "grep partitionname shared slurm slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "total number",
+      "parent": "number",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "parent directory slurm log file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.conf configuration file default",
+      "parent": "default",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cd directory",
+      "parent": "directory",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm source type",
+      "parent": "type",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmuser slurm.conf configuration file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "runtime authtype keyword slurm configuration file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmrestd generate openapi spec",
+      "parent": "spec",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "configuration slurmrestd run time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "time arg slurmrestd slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "time arg slurmrestd slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmdb path",
+      "parent": "path",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "v0.0.41 s slurmdbd slurmctld generate openapi spec",
+      "parent": "spec",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm hierarchical limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "consideration time limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "association limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "preemption grace time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "consumable resource type",
+      "parent": "type",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "step 1slurm.conf parameterpossible valuesdescription",
+      "parent": "valuesdescription",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "parameter partition definition",
+      "parent": "definition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "information node definition",
+      "parent": "definition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "selecttypeselect linear",
+      "parent": "linear",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "step 2slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "parameterpossible valuesdescription",
+      "parent": "valuesdescription",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "step 3slurm.conf parameterpossible valuesdescription",
+      "parent": "valuesdescription",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cpu ids",
+      "parent": "ids",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node definition slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node definition slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cpu management slurm user subject limit",
+      "parent": "limit",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cpu task overcommitment",
+      "parent": "overcommitment",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "task overcommitment",
+      "parent": "overcommitment",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "ipv4 traffic",
+      "parent": "traffic",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "srun notifie slurmctld job termination",
+      "parent": "termination",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "enableipv6 slurm.conf slurmdbd.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "enableipv6 slurm.conf slurmdbd.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.conf important non dynamic setup slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.conf important non dynamic setup slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "hdf5 file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node step file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "acct_gather.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "profilehdf5default option acct_gather.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "profilehdf5default option acct_gather.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "datum type",
+      "parent": "type",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "energyipmifrequency acct_gather.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "energyipmifrequency acct_gather.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "date time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cpu frequency",
+      "parent": "frequency",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "megabyte read",
+      "parent": "read",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm build directory",
+      "parent": "directory",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "nss_slurm optional configuration file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "default system nsswitch.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "nsswitch.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmd nodename slurmdspooldir parameter nss_slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "access multitude slurm header file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm slurm.h.in file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "subsequent loop array",
+      "parent": "array",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cgroup resource specialization",
+      "parent": "specialization",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "extended information slurm internal cgroup plugin read",
+      "parent": "read",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "task cgroupthere specific option plugin cgroup.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "resource specialization",
+      "parent": "specialization",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm.conf core specialization",
+      "parent": "specialization",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm uid job_id step_id hierarchy controller directory",
+      "parent": "directory",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "configuration sure system.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "optional support tls encryption slurm rpc traffic",
+      "parent": "traffic",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "log file slurmctldlog slurm.conf file indication",
+      "parent": "indication",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctlddebug slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "log file indication",
+      "parent": "indication",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node change slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node change slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "network address slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "network address slurm.conf",
+      "parent": "config_file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "log file slurmdlog slurm.conf file indication",
+      "parent": "indication",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctld msg time",
+      "parent": "time",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmddebug slurm.conf file",
+      "parent": "file",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "file slurmctldlog slurmdlog slurm.conf file indication",
+      "parent": "indication",
+      "status": "accepted",
+      "confidence": 1.0
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+edge_id,doc_id,chunk_id,child_term,parent_term,justification
+1,doc_0605,doc_0605_chunk_0001,Job Completion Plugins,plugins,"Job Completion Plugins are described as an orthogonal way to provide historical job accounting data, indicating they are a type of plugin."
+2,doc_0605,doc_0605_chunk_0001,JobCompType=jobcomp/elasticsearch,JobCompType,"The JobCompType option is specifically set to jobcomp/elasticsearch, indicating that jobcomp/elasticsearch is a specific type of JobCompType."
+3,doc_0605,doc_0605_chunk_0001,Elasticsearch instance,instance,"An Elasticsearch instance is mentioned as something that should be running and reachable, implying it is a specific type of instance."
+4,doc_16b3,doc_16b3_chunk_0003,job step,job,"The text mentions that the GRES information of a job step is similar to that of a job, implying that a job step is a specific type of job."
+5,doc_1988,doc_1988_chunk_0003,GANG option,option,The text mentions that GANG is an option that can be specified in slurm.conf to enable job preemption.
+6,doc_1988,doc_1988_chunk_0004,OverSubscribe=FORCE:2,oversubscribe,"The text describes OverSubscribe=FORCE:2 as a way to limit job timeslicing on the same resources, which is a specific form of oversubscription."
+7,doc_1988,doc_1988_chunk_0004,partition job queue,job queue,The text describes the partition job queue as a specific type of job queue within the gang scheduler logic.
+8,doc_2770,doc_2770_chunk_0003,backfill scheduler,scheduler,The text describes the backfill scheduler as a specific type of scheduler that considers various factors for job scheduling.
+9,doc_2770,doc_2770_chunk_0003,pending job,job,"Pending jobs are described as jobs considered by the backfill scheduler, indicating that every pending job is a type of job."
+10,doc_2770,doc_2770_chunk_0003,job-partition pairs,job,"Job-partition pairs are described as entries in the list built by the scheduling logic, indicating that every job-partition pair is a type of job."
+11,doc_289e,doc_289e_chunk_0001,Partition QOS,QOS,The text states that Partition QOS is a specific type of QOS defined in the Slurm database.
+12,doc_289e,doc_289e_chunk_0002,Partition QOS,QOS,The text states that a Partition QOS is a specific type of QOS that can be attached to a partition.
+13,doc_289e,doc_289e_chunk_0002,job QOS,QOS,The text describes job QOS as another type of QOS that can be assigned to jobs.
+14,doc_289e,doc_289e_chunk_0003,Partition QOS,QOS,The text explicitly states that Partition QOS is a specific type of QOS.
+15,doc_289e,doc_289e_chunk_0004,relative QOS,QOS,"The text describes relative QOS as a specific type of QOS with unique conditions, making it a subtype of QOS."
+16,doc_289e,doc_289e_chunk_0004,partition QOS,QOS,"The text explicitly states that partition QOS is a type of QOS, specifically mentioning it can be assigned to partitions."
+17,doc_289e,doc_289e_chunk_0006,QOS limits,limits,The text describes QOS limits as a specific type of limits that can be set as percentages.
+18,doc_289e,doc_289e_chunk_0006,Partition QOS,QOS,The text explicitly states that Partition QOS is a specific type of QOS.
+19,doc_289e,doc_289e_chunk_0007,job's QOS,QOS,"The text states that the usage factor only applies to the job's QOS, implying that the job's QOS is a specific type of QOS."
+20,doc_289e,doc_289e_chunk_0007,Partition QOS,QOS,"The text mentions Partition QOS and QOS separately, indicating that Partition QOS is a specific type of QOS."
+21,doc_33d3,doc_33d3_chunk_0001,job allocation,job,"A job allocation is a claim on compute resources, which is a step in the job allocation process, thus making it a specific type of job."
+22,doc_33d3,doc_33d3_chunk_0003,slurmstepd program,program,"The text describes the slurmstepd program as executing a single job step, indicating it is a specific type of program."
+23,doc_3740,doc_3740_chunk_0001,CpuSpecList,list,"CpuSpecList is mentioned in the context of specifying core counts, suggesting it is a list of specifications."
+24,doc_385e,doc_385e_chunk_0004,select/cons_tres plugin,plugin,The text describes the select/cons_tres plugin as a specific type of plugin that can be enabled or disabled cluster-wide.
+25,doc_385e,doc_385e_chunk_0004,Generic Resources,resources,The text refers to Generic Resources as a category of resources that can be tracked with the select/cons_tres plugin.
+26,doc_4387,doc_4387_chunk_0001,accounting information,information,"The text mentions that accounting information is recorded and provides details about job and job step execution, which is a specific type of information."
+27,doc_4387,doc_4387_chunk_0003,SlurmDBD,Slurm,"The text describes SlurmDBD as a component of the Slurm suite, implying that it is a specific type of Slurm."
+28,doc_4387,doc_4387_chunk_0021,Account Options,Options,"Account Options are a specific set of options related to adding or modifying an account, which are a type of option."
+29,doc_4387,doc_4387_chunk_0021,Cluster Options,Options,"Cluster Options are a specific set of options related to adding or modifying a cluster, which are a type of option."
+30,doc_4387,doc_4387_chunk_0021,User Options,Options,"User Options are a specific set of options related to adding or modifying a user, which are a type of option."
+31,doc_4387,doc_4387_chunk_0022,AdminLevel,Admin,"The text describes AdminLevel as a field used to allow a user to add accounting privileges, which aligns with the Admin level of privileges."
+32,doc_4387,doc_4387_chunk_0022,DefaultAccount,account,The text explains that DefaultAccount is a specific type of account used when no account is specified when a job is submitted.
+33,doc_48b2,doc_48b2_chunk_0004,specific nodes,nodes,"The text mentions specifying specific nodes to use or not use, implying that specific nodes are a type of node."
+34,doc_48b2,doc_48b2_chunk_0009,Slurm commands,commands,"Most Slurm commands are mentioned as being able to manage job arrays, implying that Slurm commands are a type of command."
+35,doc_4d9f,doc_4d9f_chunk_0003,job array,job,"The text mentions that when a job array is submitted to Slurm, only one job record is created, implying that a job array is a specific type of job."
+36,doc_4d9f,doc_4d9f_chunk_0006,job array,job,"The text describes job arrays as a specific type of job, implying every job array is a job."
+37,doc_4ff0,doc_4ff0_chunk_0001,new plugin,Plugin,"The text describes adding a new plugin to the Slurm code base, indicating that a new plugin is a specific type of Plugin."
+38,doc_50f7,doc_50f7_chunk_0001,Preemption restrictions,Preemption,"The text specifies that the use of MCS restricts the operation of Preemption, indicating that Preemption restrictions are a specific type of restriction applied to Preemption."
+39,doc_50f7,doc_50f7_chunk_0003,MCS_labels,labels,MCS_labels are a specific type of labels used for jobs and nodes.
+40,doc_50f7,doc_50f7_chunk_0003,pending jobs,jobs,Pending jobs are a specific type of jobs mentioned in the context.
+41,doc_5755,doc_5755_chunk_0005,partitions (job queues),job queues,The text refers to partitions as a specific type of job queues.
+42,doc_5755,doc_5755_chunk_0005,database plugins,plugins,"The text mentions 'none' plugins, implying that database plugins are a type of plugin."
+43,doc_5755,doc_5755_chunk_0042,slurmctld,Slurm,"The slurmctld daemon is a component of the Slurm system, so every slurmctld is a type of Slurm component."
+44,doc_5755,doc_5755_chunk_0042,slurmd,Slurm,"The slurmd daemon is also a component of the Slurm system, so every slurmd is a type of Slurm component."
+45,doc_5d35,doc_5d35_chunk_0001,heterogeneous jobs,jobs,"The text describes heterogeneous jobs as a specific type of jobs, mentioning their ability to have different resource specifications for each component."
+46,doc_5d35,doc_5d35_chunk_0003,heterogeneous job,job,The text describes a heterogeneous job as a specific type of job that is submitted to run in multiple clusters.
+47,doc_5d35,doc_5d35_chunk_0003,job component,job,"Each component of a heterogeneous job is described as a 'job' with respect to resource limits, indicating that job components are a type of job."
+48,doc_5d35,doc_5d35_chunk_0005,heterogeneous job,job,"The text describes a heterogeneous job as a specific type of job, indicating that every heterogeneous job is a job."
+49,doc_5d35,doc_5d35_chunk_0010,heterogeneous job,job,"The text describes heterogeneous jobs as a specific type of job, indicating that every heterogeneous job is a job."
+50,doc_5d35,doc_5d35_chunk_0011,heterogeneous jobs,job,"The text discusses heterogeneous jobs in the context of scheduling and job submission, indicating they are a specific type of job."
+51,doc_5d35,doc_5d35_chunk_0011,heterogeneous job steps,job steps,The text specifically mentions heterogeneous job steps as a type of job step with certain characteristics and limitations.
+52,doc_5d35,doc_5d35_chunk_0013,heterogeneous job,job,"The text describes heterogeneous jobs as a specific type of job, noting their unique scheduling considerations."
+53,doc_5d35,doc_5d35_chunk_0013,job component,job,"The text refers to job components as individual parts of a job, implying that each component is a type of job."
+54,doc_5d35,doc_5d35_chunk_0013,regular job,job,"The text describes regular jobs as a distinct category of jobs, separate from heterogeneous jobs."
+55,doc_5d35,doc_5d35_chunk_0014,heterogeneous job components,job,"Each component of a heterogeneous job is counted as a 'job' with respect to resource limits, indicating that each component is a type of job."
+56,doc_6722,doc_6722_chunk_0001,persistent burst buffer,burst buffer,"A persistent burst buffer is a specific type of burst buffer, as mentioned in the text."
+57,doc_6722,doc_6722_chunk_0009,burst buffer script,script,The burst buffer script is mentioned as a script that Slurm runs during job submission.
+58,doc_6722,doc_6722_chunk_0009,job script,script,The job script is mentioned as a script that Slurm runs during job submission.
+59,doc_6722,doc_6722_chunk_0015,datawarp plugin,plugin,The text describes the datawarp plugin as a specific type of plugin used for burst buffer resources.
+60,doc_6722,doc_6722_chunk_0015,DefaultPool,pool,"The text mentions DefaultPool as a specific type of pool, which is a component of the burst buffer configuration."
+61,doc_6b88,doc_6b88_chunk_0002,authenticating proxy,proxy,"The text describes the authenticating proxy as a solution that can use any authentication method since it is the trusted point that tells Slurm which user the request is from, indicating that it is a specific type of proxy."
+62,doc_6b88,doc_6b88_chunk_0004,256 bit keys,keys,256 bit keys are a specific type of keys used for signing JWTs.
+63,doc_8186,doc_8186_chunk_0001,slurmrestd,Slurm,"The text mentions that slurmrestd is a component of Slurm, implying that it is a specific type of Slurm component."
+64,doc_85cb,doc_85cb_chunk_0001,Local Licenses,licenses,Local Licenses are a specific type of licenses as they are defined in the slurm.conf file.
+65,doc_85cb,doc_85cb_chunk_0001,Remote licenses,licenses,Remote licenses are a specific type of licenses as they are served by the database and managed through the sacctmgr command.
+66,doc_868e,doc_868e_chunk_0004,Slurm REST API daemon,Slurm,"The Slurm REST API daemon is a specific component of the Slurm system, making it a type of Slurm."
+67,doc_8a75,doc_8a75_chunk_0002,TaskProlog script,script,The TaskProlog script is a specific type of script used for preliminary work before running a job step.
+68,doc_8a75,doc_8a75_chunk_0013,network switches,switch,Network switches are a specific type of switch mentioned in the context of SLURM_TOPOLOGY_ADDR.
+69,doc_8a75,doc_8a75_chunk_0013,nodes,node,Nodes are a specific type of node mentioned in the context of SLURM_WCKEY and SLURMD_NODENAME.
+70,doc_8ca0,doc_8ca0_chunk_0008,node name,node,"The text refers to the node name as the name by which Slurm refers to the node, making it a specific type of node."
+71,doc_8ca0,doc_8ca0_chunk_0008,PowerDownOnIdle (partition parameter),partition parameter,"The text describes PowerDownOnIdle as a partition parameter, indicating it is a specific type of partition parameter."
+72,doc_8ca0,doc_8ca0_chunk_0014,sbatch --wait-all-nodes,sbatch,"The text describes sbatch --wait-all-nodes as an option for the sbatch command, meaning every sbatch --wait-all-nodes is a type of sbatch."
+73,doc_8ca0,doc_8ca0_chunk_0014,salloc --wait-all-nodes,salloc,"The text describes salloc --wait-all-nodes as an option for the salloc command, meaning every salloc --wait-all-nodes is a type of salloc."
+74,doc_8e0f,doc_8e0f_chunk_0004,partitions (job queues),partitions,The text explains that partitions group nodes into logical sets and can be considered job queues.
+75,doc_8f5e,doc_8f5e_chunk_0009,slurmctld daemons,slurmctld,The text refers to slurmctld daemons as a specific form of slurmctld.
+76,doc_8f5e,doc_8f5e_chunk_0009,slurmctld system,slurmctld,The text refers to slurmctld systems as a specific form of slurmctld.
+77,doc_977e,doc_977e_chunk_0001,resource reservation,reservation,A resource reservation is a specific type of reservation that identifies resources and a time period during which the reservation is available.
+78,doc_9ca6,doc_9ca6_chunk_0002,infinite count,count,"An infinite count is described as a specific type of count that will always satisfy the request, making it a specific kind of count."
+79,doc_9ca6,doc_9ca6_chunk_0002,zero count,count,"A zero count is described as a specific type of count that impacts scheduling, making it a specific kind of count."
+80,doc_ac8b,doc_ac8b_chunk_0005,QOS factor,QOS,"The text describes QOS factor as a specific type of QOS, indicating that every QOS factor is a QOS."
+81,doc_ac8b,doc_ac8b_chunk_0007,Classic Fairshare,FairShare,"The text mentions that the 'Classic' fairshare algorithm is no longer the default and is only used if a specific flag is set, indicating it is a type of FairShare algorithm."
+82,doc_b2f9,doc_b2f9_chunk_0010,gres/gpu,GRES,"The text states that GPUs can be allocated as gres/gpu resources, indicating that gres/gpu is a specific type of GRES."
+83,doc_b2f9,doc_b2f9_chunk_0010,gres/mps,GRES,"The text states that GPUs can be allocated as gres/mps resources, indicating that gres/mps is a specific type of GRES."
+84,doc_b2f9,doc_b2f9_chunk_0014,gres/gpu,gres,"The text mentions that gres/gpu is a type of gres, indicating that every gres/gpu is a gres."
+85,doc_b2f9,doc_b2f9_chunk_0014,gres/shard,gres,"The text mentions that gres/shard is a type of gres, indicating that every gres/shard is a gres."
+86,doc_c721,doc_c721_chunk_0001,Fair Tree algorithm,algorithm,"The Fair Tree algorithm is described as the default algorithm, implying it is a specific type of algorithm."
+87,doc_c721,doc_c721_chunk_0001,classic fair share algorithm,algorithm,"The classic fair share algorithm is mentioned as an alternative, indicating it is a specific type of algorithm."
+88,doc_c721,doc_c721_chunk_0001,fair-share hierarchy,hierarchy,"The fair-share hierarchy is described as representing the allocation of computing resources, which implies it is a specific type of hierarchy."
+89,doc_c721,doc_c721_chunk_0004,Account A,account,"Account A is described as an account in the fair-share hierarchy, making it a specific type of account."
+90,doc_c721,doc_c721_chunk_0004,children accounts,account,"Children accounts are described as accounts in the fair-share hierarchy, making them a specific type of account."
+91,doc_c8a9,doc_c8a9_chunk_0001,job preemption,preemption,"Job preemption is described as the act of stopping one or more low-priority jobs to let a high-priority job run, which makes it a specific type of preemption."
+92,doc_c8a9,doc_c8a9_chunk_0003,Preemptable jobs,jobs,"The text refers to preemptable jobs as a subset of jobs that can be preempted, indicating that every preemptable job is a job."
+93,doc_c8a9,doc_c8a9_chunk_0006,ExclusiveUser=YES,ExclusiveUser,"The text states that jobs with ExclusiveUser=YES will not preempt or be preempted by any job from any other user, indicating that ExclusiveUser=YES is a specific type of ExclusiveUser setting."
+94,doc_cc8b,doc_cc8b_chunk_0002,AccountingStorageTRES,TRES,"The text explains that AccountingStorageTRES is used to define which TRES are tracked on the system, indicating that it is a specific type of TRES."
+95,doc_cc8b,doc_cc8b_chunk_0003,PriorityWeightTRES,TRES,"The text states that PriorityWeightTRES defines billing weights for TRES types, indicating that PriorityWeightTRES is a specific type of TRES."
+96,doc_cc8b,doc_cc8b_chunk_0003,Billing TRES,TRES,"The text mentions that Billing TRES is not available for priority calculations, implying that Billing TRES is a specific type of TRES."
+97,doc_cc8b,doc_cc8b_chunk_0005,Billing TRES,TRES,"The text states that Billing TRES is a type of TRES, as it is mentioned in the context of TRES and its calculation."
+98,doc_ce7f,doc_ce7f_chunk_0006,controller node,controller,The text refers to the controller node as a specific type of controller.
+99,doc_ce7f,doc_ce7f_chunk_0006,backup controller,controller,The text describes the backup controller as a type of controller.
+100,doc_ce7f,doc_ce7f_chunk_0008,primary slurmctld,slurmctld,"The text describes the primary slurmctld as a specific instance of the slurmctld daemon, indicating that every primary slurmctld is a type of slurmctld."
+101,doc_ce7f,doc_ce7f_chunk_0013,partitions (job queues),queue,"The text describes partitions as separate queues, meaning every partition is a type of queue."
+102,doc_d41b,doc_d41b_chunk_0008,Partition QOS,QOS,The text explicitly states that Partition QOS is a specific type of QOS.
+103,doc_d41b,doc_d41b_chunk_0009,job's QOS,QOS,"The text mentions that the limit only applies to the job's QOS, indicating that job's QOS is a specific type of QOS."
+104,doc_d41b,doc_d41b_chunk_0009,partition's QOS,QOS,"The text explicitly states that the limit does not apply to the partition's QOS, implying that partition's QOS is a different type of QOS."
+105,doc_d41b,doc_d41b_chunk_0013,Partition QOS,QOS,"The text mentions that limits assigned to a QOS are enforced at the QOS level, indicating that Partition QOS is a specific type of QOS."
+106,doc_e541,doc_e541_chunk_0005,HDF5 file,HDF5,"An HDF5 file is a specific instance of the HDF5 format, as described in the text."
+107,doc_e541,doc_e541_chunk_0009,Elapsed time,time,"The text mentions 'Elapsed time since the beginning of the step' and 'Time of day at which the data sample was taken', indicating that elapsed time and time are related concepts."
+108,doc_e541,doc_e541_chunk_0009,Megabytes Read,Megabytes,Megabytes Read is a specific type of Megabytes coming in through the interface.
+109,doc_e541,doc_e541_chunk_0009,Megabytes Write,Megabytes,Megabytes Write is a specific type of Megabytes going out through the interface.
+110,doc_e541,doc_e541_chunk_0009,Packets In,Packets,Packets In is a specific type of packets coming in.
+111,doc_e541,doc_e541_chunk_0009,Packets Out,Packets,Packets Out is a specific type of packets going out.
+112,doc_e643,doc_e643_chunk_0001,struct passwd info,passwd,"The text mentions that the job's user will have their full struct passwd info securely sent, which is a specific type of passwd information."
+113,doc_e643,doc_e643_chunk_0001,struct group,Group,"The text describes providing an abbreviated view of struct group for group information, indicating it is a specific type of group."
+114,doc_ebf2,doc_ebf2_chunk_0001,cgroup v1,cgroup,"The text describes 'cgroup v1' as a specific type of cgroup, stating that it is one of the two cgroup modes supported by Slurm."
+115,doc_ebf2,doc_ebf2_chunk_0001,cgroup v2,cgroup,"Similarly, 'cgroup v2' is described as another specific type of cgroup, making it a subclass of cgroup."
+116,doc_ebf2,doc_ebf2_chunk_0003,proctrack/cgroup plugin,proctrack,"The proctrack/cgroup plugin is described as an alternative to other proctrack plugins, indicating it is a specific type of proctrack."
+117,doc_ebf2,doc_ebf2_chunk_0007,freezer controller,controller,"In cgroup/v2, the freezer controller is inherently present, indicating it is a type of controller."
+118,doc_ebf2,doc_ebf2_chunk_0007,devices controller,controller,"The devices controller is mentioned as not existing in cgroup/v2, implying it is a different type of controller found in cgroup/v1."
+119,doc_ebf2,doc_ebf2_chunk_0007,cgroup/v1,cgroup,"cgroup/v1 is described as a specific version of cgroup, indicating it is a type of cgroup."
+120,doc_ebf2,doc_ebf2_chunk_0007,cgroup/v2,cgroup,"cgroup/v2 is described as another specific version of cgroup, indicating it is a type of cgroup."
+121,doc_f486,doc_f486_chunk_0002,OverSubscribe configuration parameter,configuration parameter,The OverSubscribe configuration parameter is a specific type of configuration parameter related to partition management.
+122,doc_f486,doc_f486_chunk_0002,compute resource,resource,Compute resource is a specific type of resource that can be allocated to jobs.
+123,doc_f486,doc_f486_chunk_0002,job sharing,sharing,Job sharing is a specific type of sharing where jobs can share resources within a partition.
+124,doc_f486,doc_f486_chunk_0002,Preemptable jobs,jobs,Preemptable jobs are a specific type of jobs that can be preempted to allocate resources to new jobs.

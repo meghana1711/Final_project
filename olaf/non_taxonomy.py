@@ -1,3 +1,30 @@
+"""
+olaf/non_taxonomy.py  (simple version)
+
+- Extract non-taxonomic (subject, relation, object) triples from sentences using spaCy
+- Canonicalize subject/object spans to term_enrichment canonical IDs
+- Store raw triples in non_taxonomic_edges
+- Store filtered triples in non_taxonomic_edges_clean
+- DOES NOT drop tables every run
+- DOES NOT use run_id/rule/score/support columns (back to "usual")
+
+CLI:
+  python -m olaf.non_taxonomy \
+    --db onto_db/onto_new.db \
+    --spacy_model en_core_web_sm \
+    --stopwords stop_word/stop_words.txt \
+    --sentence_table sentence_segmented \
+    --term_candidates_table term_candidates \
+    --term_enrichment_table term_enrichment \
+    --raw_edges_table non_taxonomic_edges \
+    --clean_edges_table non_taxonomic_edges_clean \
+    --method openie_spacy
+
+Notes:
+- Requires spaCy model installed: python -m spacy download en_core_web_sm
+"""
+
+import argparse
 import json
 import re
 import sqlite3
@@ -8,16 +35,20 @@ import spacy
 
 
 # -------------------------------------------------------------------
-# CONFIG
+# DEFAULTS
 # -------------------------------------------------------------------
 
-DB_PATH = r"onto_db/onto_new.db"          # <-- adjust if needed
-SPACY_MODEL = "en_core_web_sm"
+DEFAULT_SPACY_MODEL = "en_core_web_sm"
+DEFAULT_METHOD = "openie_spacy"
 
-METHOD_NAME = "openie_spacy"
+DEFAULT_STOP_WORDS_FILE = "stop_word/stop_words.txt"
 
-# Path to your custom stop-word list (one word per line, lowercase recommended)
-STOP_WORDS_FILE = r"stop_word/stop_words.txt"          # <-- set to your file
+DEFAULT_SENTENCE_TABLE = "sentence_segmented"
+DEFAULT_TERM_CANDIDATES_TABLE = "term_candidates"
+DEFAULT_TERM_ENRICHMENT_TABLE = "term_enrichment"
+
+DEFAULT_RAW_EDGES_TABLE = "non_taxonomic_edges"
+DEFAULT_CLEAN_EDGES_TABLE = "non_taxonomic_edges_clean"
 
 # Fully automatic filters
 MAX_REL_LEN = 80        # "very long" relation text; adjust if needed
@@ -25,10 +56,8 @@ MIN_REL_TOTAL = 3       # ReVerb-style: relation must appear at least this many 
 MIN_REL_SUBJ = 2        # ... with at least this many distinct subjects
 MIN_REL_OBJ = 2         # ... and at least this many distinct objects
 
-# Heads that are likely attribute-like and not good as subjects of actions
 ATTRIBUTE_HEADS = {"time", "size", "value"}
 
-# Global stop-word set (filled at runtime)
 STOP_WORDS: set[str] = set()
 
 
@@ -39,16 +68,18 @@ STOP_WORDS: set[str] = set()
 def get_connection(db_path: str) -> sqlite3.Connection:
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA foreign_keys = ON;")
     return conn
 
 
-def init_non_taxonomic_edges_table(conn: sqlite3.Connection) -> None:
+def init_non_taxonomic_edges_table(conn: sqlite3.Connection, table_name: str) -> None:
     """
     Raw OpenIE-style triples with canonical mapping.
+    No drop; upserts prevented via UNIQUE + INSERT OR IGNORE.
     """
     conn.execute(
-        """
-        CREATE TABLE IF NOT EXISTS non_taxonomic_edges (
+        f"""
+        CREATE TABLE IF NOT EXISTS {table_name} (
             id                    INTEGER PRIMARY KEY AUTOINCREMENT,
             doc_id                TEXT,
             sentence_id           TEXT,
@@ -72,18 +103,17 @@ def init_non_taxonomic_edges_table(conn: sqlite3.Connection) -> None:
         """
     )
     conn.commit()
-    print("[INFO] Ensured non_taxonomic_edges table exists.")
+    print(f"[INFO] Ensured {table_name} exists (no drop).")
 
 
-def init_non_taxonomic_edges_clean_table(conn: sqlite3.Connection) -> None:
+def init_non_taxonomic_edges_clean_table(conn: sqlite3.Connection, table_name: str) -> None:
     """
     Cleaned triples after automatic filtering.
+    Do NOT drop table every run.
     """
-    conn.execute("DROP TABLE IF EXISTS non_taxonomic_edges_clean;")
-
     conn.execute(
-        """
-        CREATE TABLE non_taxonomic_edges_clean (
+        f"""
+        CREATE TABLE IF NOT EXISTS {table_name} (
             id                    INTEGER PRIMARY KEY AUTOINCREMENT,
             doc_id                TEXT,
             sentence_id           TEXT,
@@ -107,7 +137,7 @@ def init_non_taxonomic_edges_clean_table(conn: sqlite3.Connection) -> None:
         """
     )
     conn.commit()
-    print("[INFO] Created non_taxonomic_edges_clean table.")
+    print(f"[INFO] Ensured {table_name} exists (no drop).")
 
 
 # -------------------------------------------------------------------
@@ -129,13 +159,9 @@ def load_stop_words(path: str) -> set:
                 words.add(w)
         print(f"[INFO] Loaded {len(words)} stop words from '{path}'.")
     except FileNotFoundError:
-        # Fallback minimal set if file is missing
         fallback = ["a", "an", "the", "this", "that", "these", "those", "it", "its"]
         words.update(fallback)
-        print(
-            f"[WARN] Stop-word file '{path}' not found. "
-            f"Using fallback list: {fallback}"
-        )
+        print(f"[WARN] Stop-word file '{path}' not found. Using fallback list: {fallback}")
     return words
 
 
@@ -149,7 +175,11 @@ def normalize_text(s: str) -> str:
     return s
 
 
-def load_canonical_maps(conn: sqlite3.Connection):
+def load_canonical_maps(
+    conn: sqlite3.Connection,
+    term_enrichment_table: str,
+    term_candidates_table: str,
+):
     """
     Build:
       id2term: canonical_id -> canonical_term
@@ -158,9 +188,9 @@ def load_canonical_maps(conn: sqlite3.Connection):
                          via member_term_ids_json + term_candidates
     """
     rows = conn.execute(
-        """
+        f"""
         SELECT canonical_id, canonical_term, member_term_ids_json
-        FROM term_enrichment
+        FROM {term_enrichment_table}
         WHERE canonical_term IS NOT NULL
           AND TRIM(canonical_term) != ''
         """
@@ -185,11 +215,15 @@ def load_canonical_maps(conn: sqlite3.Connection):
             member_ids = json.loads(mjson)
         except json.JSONDecodeError:
             continue
-        for tid in member_ids:
-            termid2canonical[int(tid)] = cid
+        if isinstance(member_ids, list):
+            for tid in member_ids:
+                try:
+                    termid2canonical[int(tid)] = cid
+                except Exception:
+                    continue
 
     surface2canonical: Dict[str, int] = {}
-    trows = conn.execute("SELECT term_id, term_text FROM term_candidates").fetchall()
+    trows = conn.execute(f"SELECT term_id, term_text FROM {term_candidates_table}").fetchall()
     for tr in trows:
         term_id = int(tr["term_id"])
         text = (tr["term_text"] or "").strip()
@@ -198,8 +232,7 @@ def load_canonical_maps(conn: sqlite3.Connection):
         cid = termid2canonical.get(term_id)
         if cid is None:
             continue
-        key = normalize_text(text)
-        surface2canonical[key] = cid
+        surface2canonical[normalize_text(text)] = cid
 
     print(
         f"[INFO] Canonical maps: id2term={len(id2term)}, "
@@ -216,7 +249,7 @@ def canonicalize_span(
     """
     Map a raw NP span string to canonical_id, if possible.
 
-    Steps (all automatic):
+    Steps:
       1) exact match on canonical_term
       2) exact match on term_candidates.term_text
       3) strip leading 'the', 'a', 'an' and retry
@@ -227,17 +260,14 @@ def canonicalize_span(
 
     norm = normalize_text(span_text)
 
-    # 1) exact match on canonical labels
     cid = label2id.get(norm)
     if cid is not None:
         return cid
 
-    # 2) exact match on surface terms
     cid = surface2canonical.get(norm)
     if cid is not None:
         return cid
 
-    # 3) strip leading determiners and retry
     norm2 = re.sub(r"^(the|a|an)\s+", "", norm)
     if norm2 != norm:
         cid = label2id.get(norm2)
@@ -247,7 +277,6 @@ def canonicalize_span(
         if cid is not None:
             return cid
 
-    # 4) fall back to head word (last token)
     tokens = norm2.split()
     if len(tokens) > 1:
         head = tokens[-1]
@@ -262,23 +291,18 @@ def canonicalize_span(
 
 
 # -------------------------------------------------------------------
-# TEXT HELPERS (stop words, heads, relation validity)
+# TEXT HELPERS
 # -------------------------------------------------------------------
 
 def is_generic_span(span_text: str) -> bool:
     """
-    Return True if the span is only made of stop-words
-    (e.g. 'the', 'a', 'this'), so we don't want it as subject/object.
-    Uses STOP_WORDS loaded from file.
+    Return True if the span is only made of stop-words.
     """
     if not span_text:
         return True
-
     tokens = re.findall(r"[A-Za-z0-9_]+", span_text.lower())
     if not tokens:
         return True
-
-    # If *all* tokens are stop-words, treat as generic/junk.
     return all(tok in STOP_WORDS for tok in tokens)
 
 
@@ -296,26 +320,19 @@ def is_valid_relation_text(rel_text: str) -> bool:
       - not empty
       - not too long
       - contain at least one alphabetic character
-      - composed only of letters and spaces (no symbols like '=')
+      - composed only of letters and spaces
     """
     if not rel_text:
         return False
-
     rel = rel_text.strip()
     if not rel:
         return False
-
     if len(rel) > MAX_REL_LEN:
         return False
-
-    # must contain at least one letter
     if not re.search(r"[A-Za-z]", rel):
         return False
-
-    # must NOT contain non-letter, non-space characters (so no '=' etc.)
     if re.search(r"[^A-Za-z\s]", rel):
         return False
-
     return True
 
 
@@ -329,16 +346,14 @@ def get_noun_span(token) -> str:
     Prefer noun chunks; fallback to subtree.
     """
     doc = token.doc
-    # If token is inside a noun chunk, use that chunk
     for nc in doc.noun_chunks:
         if token.i >= nc.start and token.i < nc.end:
             return nc.text.strip()
-    # else use subtree
-    subtree_tokens = list(token.subtree)
-    subtree_tokens = [t for t in subtree_tokens if not t.is_space]
+
+    subtree_tokens = [t for t in token.subtree if not t.is_space]
     if not subtree_tokens:
         return token.text
-    return doc[subtree_tokens[0].i : subtree_tokens[-1].i + 1].text.strip()
+    return doc[subtree_tokens[0].i: subtree_tokens[-1].i + 1].text.strip()
 
 
 def extract_triples_from_sentence(doc) -> List[Tuple[str, str, str]]:
@@ -346,10 +361,10 @@ def extract_triples_from_sentence(doc) -> List[Tuple[str, str, str]]:
     Very simple OpenIE-like extractor:
 
     For each VERB:
-      - find subjects (nsubj / nsubjpass)
-      - find objects (dobj / attr / oprd)
-      - also objects from prepositions: verb -> prep -> pobj
-      - relation text = verb lemma + optional preposition (e.g. 'submit to', 'run on')
+      - subjects (nsubj / nsubjpass)
+      - objects (dobj / attr / oprd)
+      - prep objects: verb -> prep -> pobj
+      - rel_text = verb lemma + optional preposition (e.g. 'submit to')
 
     Returns list of (subj_text, rel_text, obj_text).
     """
@@ -360,38 +375,32 @@ def extract_triples_from_sentence(doc) -> List[Tuple[str, str, str]]:
             continue
 
         verb = token
-
-        # subjects
         subjects = [w for w in verb.children if w.dep_ in ("nsubj", "nsubjpass")]
         if not subjects:
-            continue  # we want at least a subject
+            continue
 
-        # direct / attribute objects
         direct_objs = [w for w in verb.children if w.dep_ in ("dobj", "attr", "oprd")]
 
-        # prepositional objects: verb -> prep -> pobj
         prep_objs = []
         preps = [w for w in verb.children if w.dep_ == "prep"]
         for p in preps:
-            pobj = [c for c in p.children if c.dep_ == "pobj"]
-            for o in pobj:
+            for o in [c for c in p.children if c.dep_ == "pobj"]:
                 prep_objs.append((p, o))
 
         base_rel = verb.lemma_.lower()
 
-        # subject × direct object
         for subj in subjects:
             subj_text = get_noun_span(subj)
+
             for obj in direct_objs:
                 obj_text = get_noun_span(obj)
                 rel_text = base_rel
                 if is_valid_relation_text(rel_text):
                     triples.append((subj_text, rel_text, obj_text))
 
-            # subject × prepositional object
             for p, pobj in prep_objs:
                 obj_text = get_noun_span(pobj)
-                rel_text = f"{base_rel} {p.text.lower()}"  # e.g. 'submit to'
+                rel_text = f"{base_rel} {p.text.lower()}"
                 if is_valid_relation_text(rel_text):
                     triples.append((subj_text, rel_text, obj_text))
 
@@ -408,24 +417,24 @@ def induce_openie_edges(
     id2term: Dict[int, str],
     label2id: Dict[str, int],
     surface2canonical: Dict[str, int],
-    method: str = METHOD_NAME,
+    sentence_table: str,
+    raw_edges_table: str,
+    method: str,
 ) -> None:
     """
-    Scan sentence_segmentation, run spaCy-based OpenIE, and store triples
-    into non_taxonomic_edges.
+    Scan sentence_table, run spaCy-based OpenIE, store triples into raw_edges_table.
 
-    We only keep triples where BOTH subject and object are mapped
-    to canonical terms.
+    Only keep triples where BOTH subject and object map to canonical terms.
     """
     try:
-        sents = conn.execute("SELECT * FROM sentence_segmented").fetchall()
+        sents = conn.execute(f"SELECT * FROM {sentence_table}").fetchall()
     except sqlite3.OperationalError as e:
-        print("[ERROR] Could not read sentence_segmentation:", e)
+        print(f"[ERROR] Could not read {sentence_table}:", e)
         return
 
-    print(f"[DEBUG] Loaded {len(sents)} sentences from sentence_segmented.")
+    print(f"[DEBUG] Loaded {len(sents)} rows from {sentence_table}.")
 
-    init_non_taxonomic_edges_table(conn)
+    init_non_taxonomic_edges_table(conn, raw_edges_table)
     cur = conn.cursor()
 
     now = datetime.utcnow().isoformat(timespec="seconds") + "Z"
@@ -473,15 +482,12 @@ def induce_openie_edges(
         total_triples += len(triples)
 
         for subj_text, rel_text, obj_text in triples:
-            # Skip if subject/object span is just stop-words
             if is_generic_span(subj_text) or is_generic_span(obj_text):
                 continue
 
-            # Map spans to canonical terms
             subj_cid = canonicalize_span(subj_text, label2id, surface2canonical)
             obj_cid = canonicalize_span(obj_text, label2id, surface2canonical)
 
-            # Only keep triples where BOTH subject and object are canonical
             if subj_cid is None or obj_cid is None:
                 continue
 
@@ -490,7 +496,6 @@ def induce_openie_edges(
             if not subj_term or not obj_term:
                 continue
 
-            # Remove self-loops
             if subj_cid == obj_cid:
                 continue
 
@@ -504,8 +509,8 @@ def induce_openie_edges(
                 debug_examples += 1
 
             cur.execute(
-                """
-                INSERT OR IGNORE INTO non_taxonomic_edges
+                f"""
+                INSERT OR IGNORE INTO {raw_edges_table}
                 (doc_id,
                  sentence_id,
                  sentence_text,
@@ -535,19 +540,19 @@ def induce_openie_edges(
                     now,
                 ),
             )
-            inserted += 1
+            inserted += cur.rowcount
 
     conn.commit()
     print(f"[STATS] total raw triples extracted (before filters): {total_triples}")
     print(f"[STATS] triples with BOTH canonical arguments:       {canonicalized}")
-    print(f"[STATS] rows inserted into non_taxonomic_edges:      {inserted}")
+    print(f"[STATS] NEW rows inserted into {raw_edges_table}:     {inserted}")
 
 
 # -------------------------------------------------------------------
 # RELATION FREQUENCY & CLEANING
 # -------------------------------------------------------------------
 
-def build_good_relation_set(conn: sqlite3.Connection) -> set:
+def build_good_relation_set(conn: sqlite3.Connection, raw_edges_table: str) -> set:
     """
     ReVerb-style frequency & diversity filter:
       - min total count
@@ -555,13 +560,13 @@ def build_good_relation_set(conn: sqlite3.Connection) -> set:
       - min distinct objects
     """
     rows = conn.execute(
-        """
+        f"""
         SELECT
             rel_text,
             COUNT(*) AS n_total,
             COUNT(DISTINCT subj_canonical_id) AS n_subj,
             COUNT(DISTINCT obj_canonical_id) AS n_obj
-        FROM non_taxonomic_edges
+        FROM {raw_edges_table}
         GROUP BY rel_text
         """
     ).fetchall()
@@ -577,56 +582,47 @@ def build_good_relation_set(conn: sqlite3.Connection) -> set:
     return good
 
 
-def apply_automatic_filters(conn: sqlite3.Connection) -> None:
+def apply_automatic_filters(
+    conn: sqlite3.Connection,
+    raw_edges_table: str,
+    clean_edges_table: str,
+) -> None:
     """
-    Build non_taxonomic_edges_clean from non_taxonomic_edges
-    applying:
-      - relation frequency & diversity filter
-      - remove self-loops (defensive)
-      - remove long rel_text
-      - stop-word spans for subj/obj
-      - attribute-like subjects (* time, * size, * value)
-      - relation must be only alphabetic + spaces (no '=' etc.)
+    Append into clean_edges_table from raw_edges_table using automatic filters.
+    Does NOT drop clean table.
     """
-    init_non_taxonomic_edges_clean_table(conn)
+    init_non_taxonomic_edges_clean_table(conn, clean_edges_table)
 
-    good_relations = build_good_relation_set(conn)
-    rows = conn.execute("SELECT * FROM non_taxonomic_edges").fetchall()
+    good_relations = build_good_relation_set(conn, raw_edges_table)
+    rows = conn.execute(f"SELECT * FROM {raw_edges_table}").fetchall()
     cur = conn.cursor()
 
-    kept = 0
+    inserted = 0
 
     for r in rows:
         rel_text = r["rel_text"]
         if rel_text not in good_relations:
             continue
-
         if not is_valid_relation_text(rel_text):
             continue
 
         subj_id = r["subj_canonical_id"]
         obj_id = r["obj_canonical_id"]
-
-        # self-loop check (again, just in case)
         if subj_id == obj_id:
             continue
 
         subj_text = r["subj_text"]
         obj_text = r["obj_text"]
-
-        # stop-word span check
         if is_generic_span(subj_text) or is_generic_span(obj_text):
             continue
 
-        # attribute-head subject filter
         subj_term = r["subj_canonical_term"]
-        subj_head = get_head(subj_term)
-        if subj_head in ATTRIBUTE_HEADS:
+        if get_head(subj_term) in ATTRIBUTE_HEADS:
             continue
 
         cur.execute(
-            """
-            INSERT OR IGNORE INTO non_taxonomic_edges_clean
+            f"""
+            INSERT OR IGNORE INTO {clean_edges_table}
             (doc_id,
              sentence_id,
              sentence_text,
@@ -645,46 +641,84 @@ def apply_automatic_filters(conn: sqlite3.Connection) -> None:
                 r["doc_id"],
                 r["sentence_id"],
                 r["sentence_text"],
-                subj_text,
+                r["subj_text"],
                 subj_id,
                 subj_term,
                 rel_text,
-                obj_text,
+                r["obj_text"],
                 obj_id,
                 r["obj_canonical_term"],
                 r["method"],
                 r["created_at"],
             ),
         )
-        kept += 1
+        inserted += cur.rowcount
 
     conn.commit()
-    print(f"[STATS] rows kept in non_taxonomic_edges_clean: {kept}")
+    print(f"[STATS] NEW rows inserted into {clean_edges_table}: {inserted}")
 
 
 # -------------------------------------------------------------------
-# MAIN
+# CLI
 # -------------------------------------------------------------------
 
-def main():
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(description="Non-taxonomic relation extraction (simple OpenIE via spaCy).")
+
+    p.add_argument("--db", required=True, help="Path to SQLite DB.")
+    p.add_argument("--spacy_model", default=DEFAULT_SPACY_MODEL, help="spaCy model name (e.g., en_core_web_sm).")
+    p.add_argument("--stopwords", default=DEFAULT_STOP_WORDS_FILE, help="Path to stopwords file.")
+
+    p.add_argument("--sentence_table", default=DEFAULT_SENTENCE_TABLE, help="Input sentence table (segmented sentences).")
+    p.add_argument("--term_candidates_table", default=DEFAULT_TERM_CANDIDATES_TABLE, help="term_candidates table name.")
+    p.add_argument("--term_enrichment_table", default=DEFAULT_TERM_ENRICHMENT_TABLE, help="term_enrichment table name.")
+
+    p.add_argument("--raw_edges_table", default=DEFAULT_RAW_EDGES_TABLE, help="Output raw edges table name.")
+    p.add_argument("--clean_edges_table", default=DEFAULT_CLEAN_EDGES_TABLE, help="Output clean edges table name.")
+
+    p.add_argument("--method", default=DEFAULT_METHOD, help="Method name to store in DB.")
+
+    return p.parse_args()
+
+
+def main() -> None:
     global STOP_WORDS
 
-    print(f"[INFO] Loading spaCy model '{SPACY_MODEL}'...")
-    nlp = spacy.load(SPACY_MODEL)
+    args = parse_args()
 
-    # Load stop words from your file
-    STOP_WORDS = load_stop_words(STOP_WORDS_FILE)
+    print(f"[INFO] Loading spaCy model '{args.spacy_model}'...")
+    nlp = spacy.load(args.spacy_model)
 
-    conn = get_connection(DB_PATH)
-    id2term, label2id, surface2canonical = load_canonical_maps(conn)
+    STOP_WORDS = load_stop_words(args.stopwords)
 
-    # 1) extract raw canonical–canonical triples
-    induce_openie_edges(conn, nlp, id2term, label2id, surface2canonical)
+    conn = get_connection(args.db)
+    try:
+        id2term, label2id, surface2canonical = load_canonical_maps(
+            conn,
+            term_enrichment_table=args.term_enrichment_table,
+            term_candidates_table=args.term_candidates_table,
+        )
 
-    # 2) apply fully automatic filters into the _clean table
-    apply_automatic_filters(conn)
+        induce_openie_edges(
+            conn=conn,
+            nlp=nlp,
+            id2term=id2term,
+            label2id=label2id,
+            surface2canonical=surface2canonical,
+            sentence_table=args.sentence_table,
+            raw_edges_table=args.raw_edges_table,
+            method=args.method,
+        )
 
-    conn.close()
+        apply_automatic_filters(
+            conn=conn,
+            raw_edges_table=args.raw_edges_table,
+            clean_edges_table=args.clean_edges_table,
+        )
+
+    finally:
+        conn.close()
+
     print("[INFO] OpenIE-style non-taxonomic extraction + automatic filtering completed.")
 
 

@@ -1,0 +1,298 @@
+edge_id,doc_id,chunk_id,subj_term,rel_text,obj_term,justification
+1,doc_0117,doc_0117_chunk_0002,slurm.conf,configures,PriorityFlags,The text mentions that the slurm.conf parameters are used to enable the depth-oblivious flavor of the fair-share factor.
+2,doc_0117,doc_0117_chunk_0002,slurm.conf,configures,PriorityType,The text specifies that the PriorityType value needs to be set to 'priority/multifactor'.
+3,doc_05b9,doc_05b9_chunk_0027,federation_siblings_viable,is_a_type_of,String,The text mentions 'federation_siblings_viable' as a String type.
+4,doc_05b9,doc_05b9_chunk_0027,Viable sibling job names,is_a_type_of,String,The text mentions 'Viable sibling job names' as a String type.
+5,doc_05b9,doc_05b9_chunk_0031,schedule_cycle_depth,mean_of,schedule_cycle_mean_depth,"schedule_cycle_depth is defined as the mean time in microseconds of backfilling scheduling cycles since last reset, and schedule_cycle_mean_depth is the mean of the number of jobs processed in a scheduling cycle."
+6,doc_05b9,doc_05b9_chunk_0031,bf_depth_mean,mean_of,bf_depth_mean_try,"bf_depth_mean is defined as the mean number of eligible to run jobs processed during all backfilling scheduling cycles since last reset, and bf_depth_mean_try is the subset of Depth Mean that the backfill scheduler attempted to schedule."
+7,doc_05b9,doc_05b9_chunk_0035,Integer PriorityTier,controls_order_of_evaluation,scheduler,The text mentions that Integer PriorityTier controls the order in which the scheduler evaluates jobs from different partitions.
+8,doc_05b9,doc_05b9_chunk_0035,DenyQOS,applies_to,jobs_in_partition,The text describes DenyQOS as a comma-separated list of Qos which may not execute jobs in the partition.
+9,doc_05b9,doc_05b9_chunk_0035,assigned,applies_to,QOS,The text mentions that assigned is an optional field for QOS which will apply to all jobs in this partition.
+10,doc_0ac6,doc_0ac6_chunk_0006,RunTimeCreate,excludes_env_vars,^(SLURM_CONF|SLURM_CONF_SERVER),The RunTimeCreate line in the oci.conf example excludes environment variables matching SLURM_CONF and SLURM_CONF_SERVER.
+11,doc_0ac6,doc_0ac6_chunk_0006,RunTimeDelete,excludes_env_vars,^(SLURM_CONF|SLURM_CONF_SERVER),The RunTimeDelete line in the oci.conf example also excludes environment variables matching SLURM_CONF and SLURM_CONF_SERVER.
+12,doc_0ac6,doc_0ac6_chunk_0006,RunTimeEnvExclude,excludes_env_vars,^(SLURM_CONF|SLURM_CONF_SERVER),The RunTimeEnvExclude line in the oci.conf example excludes environment variables matching SLURM_CONF and SLURM_CONF_SERVER.
+13,doc_0ac6,doc_0ac6_chunk_0013,podman,requires_configuration,containers.conf,The setup procedure involves configuring Podman using containers.conf file.
+14,doc_0ac6,doc_0ac6_chunk_0013,rootless Podman,configured_by,containers.conf,The configuration locations and loading order for containers.conf are provided for setting up rootless Podman.
+15,doc_0ac6,doc_0ac6_chunk_0013,scrun,called_by,Podman,Podman is configured to call scrun instead of the default OCI runtime.
+16,doc_0ac6,doc_0ac6_chunk_0013,containers.conf,contains_configuration_for,Podman,"Containers.conf file contains settings for Podman including cgroupns, cgroups, etc."
+17,doc_0e42,doc_0e42_chunk_0001,Slurm,provides_api_through,slurmrestd daemon,The text states that Slurm provides a REST API through the slurmrestd daemon.
+18,doc_0e42,doc_0e42_chunk_0001,slurmrestd daemon,uses_authn_mechanism,JSON Web Tokens,The text mentions that slurmrestd uses JSON Web Tokens for authentication.
+19,doc_0e42,doc_0e42_chunk_0006,other slurm commands,attempt_to_use,JWT authentication,The text mentions that other slurm commands will attempt to use JWT authentication if SLURM_JWT is set.
+20,doc_0e42,doc_0e42_chunk_0006,unset,fixes,SLURM_JWT,The text suggests fixing the issue by clearing the SLURM_JWT variable using the unset command.
+21,doc_1988,doc_1988_chunk_0006,sbatch,submits_jobs_to,allocation,"The text mentions that sbatch is used to submit jobs, and these jobs are submitted to an allocation that can be suspended."
+22,doc_1988,doc_1988_chunk_0006,gang_scheduler,suspends_allocation,allocation,"The text states that the gang scheduler suspends the allocation, causing srun to retry launching the job step."
+23,doc_1988,doc_1988_chunk_0006,timeslicer_algorithm,keeps_resources_busy,jobs,"The text explains that the timeslicer algorithm keeps the resources busy by timeslicing jobs, such as jobs 9 and 11."
+24,doc_2329,doc_2329_chunk_0004,libraries,installed_under,/usr/lib64,The text mentions that libraries might end up being installed under standard locations like /usr/lib64.
+25,doc_2329,doc_2329_chunk_0004,package_manager,reports_conflict,conflict,"The text states that the package manager would error out, reporting the conflict if libraries are installed in conflicting locations."
+26,doc_2660,doc_2660_chunk_0002,job_desc,sets_selinux_context_to,selinux_context,job_desc.selinux_context is set based on the contents of job_desc.req_context if they are considered valid.
+27,doc_2660,doc_2660_chunk_0002,srun,changes_context_of,id,Running 'srun id' changes the context as shown in the example output.
+28,doc_2660,doc_2660_chunk_0002,job_desc,uses_for_admin_comment,admin_comment,job_desc.admin_comment is set to show what context we will try to set for the job.
+29,doc_2770,doc_2770_chunk_0006,bf_resolution,sets_time_resolution_for,backfill scheduling,bf_resolution defines the time resolution of backfill scheduling.
+30,doc_2770,doc_2770_chunk_0006,bf_window,determines_start_time_of,jobs,bf_window specifies how far into the future to look when determining when and where jobs can start.
+31,doc_2770,doc_2770_chunk_0006,bf_yield_interval,specifies_lock_relinquishment_times_for,backfill scheduler,bf_yield_interval specifies the times when the backfill scheduler will relinquish locks.
+32,doc_2770,doc_2770_chunk_0006,bf_yield_sleep,specifies_lock_relinquishment_duration_for,backfill scheduler,bf_yield_sleep specifies the length of time for which the backfill scheduler will relinquish locks.
+33,doc_289e,doc_289e_chunk_0003,Partition QOS,configured_with,GrpTRES,The text mentions configuring a Partition QOS with GrpTRES set to the desired resource limits.
+34,doc_289e,doc_289e_chunk_0003,QOS,configured_with,sacctmgr,Most QOS attributes are set using the sacctmgr command.
+35,doc_289e,doc_289e_chunk_0003,QOS,configured_in,slurm.conf,Setting a QOS as a partition QOS is accomplished in slurm.conf through the QOS= option in the configuration of the associated partition.
+36,doc_289e,doc_289e_chunk_0003,slurmctld,requires_restart_for,reconfiguration,slurmctld must be restarted or reconfigured for the flag to take effect when Flags=Relative is added to a QOS.
+37,doc_3583,doc_3583_chunk_0001,Slurm commands,utilize,Application Programming Interfaces (APIs),The text states that all of the Slurm commands utilize a collection of Application Programming Interfaces (APIs).
+38,doc_3583,doc_3583_chunk_0001,Slurm's APIs,exposed_through,"""slurm.h"" and ""slurmdb.h"" headers",The text mentions that Slurm's APIs are exposed through the 'slurm.h' and 'slurmdb.h' headers.
+39,doc_3583,doc_3583_chunk_0001,Slurm's APIs,fixed_within,each major release,The text states that Slurm's APIs are fixed within each major release.
+40,doc_3583,doc_3583_chunk_0001,REST API,provides,broader cross-version compatibility,The text encourages developers to target Slurm's REST API for broader cross-version compatibility.
+41,doc_3740,doc_3740_chunk_0004,job's core specialization,will_be_silently_cleared_on,other configurations,The text states that a job's core specialization option will be silently cleared on other configurations.
+42,doc_3740,doc_3740_chunk_0004,compute node,requires_core_count_configuration,configuration parameter,The text mentions that each compute node's core count must be configured or the CPUs count must be configured to the node's core count.
+43,doc_3740,doc_3740_chunk_0004,configuration parameter,must_be_set_to,AllowSpecResourcesUsage,"The text states that if users are to be granted the right to control the number of specialized cores for their job, the configuration parameter AllowSpecResourcesUsage must be set to a value of 1."
+44,doc_3773,doc_3773_chunk_0002,fini,called_when,plugin_is_removed,The text describes that fini is called when the plugin is removed.
+45,doc_3773,doc_3773_chunk_0002,site_factor_p_reconfig,called_when,slurmctld_is_reconfigured,The text states that site_factor_p_reconfig is called whenever slurmctld is reconfigured.
+46,doc_3773,doc_3773_chunk_0002,site_factor_p_set,sets,site_priority_of_job,The text explains that site_factor_p_set sets the site_priority of the job.
+47,doc_3773,doc_3773_chunk_0002,site_factor_p_update,handles_periodic_updates_to,all_site_priority_values_in_job_list,The text mentions that site_factor_p_update handles periodic updates to all site_priority values in the job_list.
+48,doc_3773,doc_3773_chunk_0003,PrioritySiteFactorPlugin,specifies,PriorityCalcPeriod,The text indicates that PrioritySiteFactorPlugin specifies PriorityCalcPeriod.
+49,doc_3bdd,doc_3bdd_chunk_0002,autoconf,required_for,building_slurm,The text notes that autoconf version 2.52 or higher is required to build Slurm.
+50,doc_3bdd,doc_3bdd_chunk_0002,README file,describes,build_process,The text mentions that the build process is described in the README file.
+51,doc_405b,doc_405b_chunk_0002,AssocGrpBB,reaches_limit_of,Burst Buffer,The text states that AssocGrpBB indicates the job's association has reached its aggregate Burst Buffer limit.
+52,doc_405b,doc_405b_chunk_0002,AssocGrpBilling,reaches_limit_of,Billing limit,The text states that AssocGrpBilling indicates the job's association has reached its aggregate Billing limit.
+53,doc_405b,doc_405b_chunk_0002,AssocGrpCpuLimit,reaches_limit_of,CPU,The text states that AssocGrpCpuLimit indicates the job's association has reached its aggregate CPU limit.
+54,doc_405b,doc_405b_chunk_0019,nodes,identified_as,UnavailableNodes,"Nodes which are DOWN, DRAINED, or not responding will be identified as part of the job's 'reason' field as 'UnavailableNodes'."
+55,doc_405b,doc_405b_chunk_0019,slurm.conf,configures,SchedDefer,The text mentions that SchedDefer is configured in the slurm.conf.
+56,doc_405b,doc_405b_chunk_0019,resources,not_available,job,"The resources requested by the job are not available, which can cause the job to be in a certain state."
+57,doc_4387,doc_4387_chunk_0015,accounting_storage/mysql,indicates_writing_to,MySQL or MariaDB database,The text states that the value 'accounting_storage/mysql' indicates that accounting records should be written to a MySQL or MariaDB database.
+58,doc_4387,doc_4387_chunk_0015,Slurm,creates_database_tables,database tables,The text mentions that Slurm will create the database tables automatically.
+59,doc_4387,doc_4387_chunk_0015,StorageUser,connects_to_database_with,mysql user,The text explains that the StorageUser is the name of the user we are going to connect to the database with to store the job accounting data.
+60,doc_4387,doc_4387_chunk_0015,StorageUser,needs_permissions_in,MySQL or MariaDB database,The text states that the StorageUser needs to be granted permissions in the MySQL or MariaDB database to create the necessary tables.
+61,doc_4387,doc_4387_chunk_0016,MySQL,grants_access_to,slurm_acct_db,The text describes granting access to the slurm_acct_db database using MySQL commands.
+62,doc_4387,doc_4387_chunk_0016,GRANT,assigns_privileges_to,slurm_acct_db,The text mentions using the GRANT command to assign privileges to the slurm_acct_db database.
+63,doc_4387,doc_4387_chunk_0016,'slurm'@'localhost',identified_by,password,The text specifies that the user 'slurm'@'localhost' is identified by a password.
+64,doc_4387,doc_4387_chunk_0016,'slurm'@'system0',identified_by,some_pass,The text specifies that the user 'slurm'@'system0' is identified by a password 'some_pass'.
+65,doc_4600,doc_4600_chunk_0002,root,can_confirm_exists_and_is_empty,/$BasePath/$JobID/_tmp,The text states that root should be able to confirm that /$BasePath/$JobID/_tmp exists and is empty.
+66,doc_4600,doc_4600_chunk_0002,/$BasePath/$JobID/_tmp,bind_mounted_into,job,The text mentions that this directory is bind mounted into the job.
+67,doc_4600,doc_4600_chunk_0002,plugin,interfaces_with,SPANK api,The text states that the plugin interfaces with the SPANK api.
+68,doc_4600,doc_4600_chunk_0002,TaskProlog,executed_inside,container,The text mentions that the TaskProlog will also be executed inside the container.
+69,doc_4d9f,doc_4d9f_chunk_0002,sbatch,submits_jobs_to,job array,The text explains that sbatch is used to submit jobs which are part of a job array.
+70,doc_4d9f,doc_4d9f_chunk_0002,SLURM_ARRAY_TASK_COUNT,set_to,number_of_tasks_in_job_array,The text states that SLURM_ARRAY_TASK_COUNT will be set to the number of tasks in the job array.
+71,doc_4d9f,doc_4d9f_chunk_0002,SLURM_ARRAY_TASK_MAX,set_to,highest_job_array_index_value,The text states that SLURM_ARRAY_TASK_MAX will be set to the highest job array index value.
+72,doc_4d9f,doc_4d9f_chunk_0002,SLURM_ARRAY_TASK_MIN,set_to,lowest_job_array_index_value,The text states that SLURM_ARRAY_TASK_MIN will be set to the lowest job array index value.
+73,doc_4d9f,doc_4d9f_chunk_0007,job array,starts_tasks,task,The text mentions that a job array starts tasks when needed.
+74,doc_4d9f,doc_4d9f_chunk_0007,task,shares_arrayjobid_with,job array,Each task of the job array shares the same ArrayJobId.
+75,doc_4d9f,doc_4d9f_chunk_0007,task,has_unique_arraytaskid,job array,Each task of the job array has its own unique ArrayTaskId.
+76,doc_4d9f,doc_4d9f_chunk_0007,task,gets_assigned_jobid,job,"As tasks are started, each job gets assigned a unique JobId."
+77,doc_4ff0,doc_4ff0_chunk_0001,new plugin,added_to,Slurm code base,The text describes the procedure to add a new plugin to the Slurm code base.
+78,doc_4ff0,doc_4ff0_chunk_0001,new plugin,modified_files_in,src/plugins/topology/Makefile.am,The text specifies that a new directory for the plugin needs to be added to its parent directory's Makefile.am.
+79,doc_4ff0,doc_4ff0_chunk_0001,Makefile.am,modified_by,new directory,The text mentions modifying the Makefile.am file in the file's parent directory when adding a new directory for a plugin.
+80,doc_4ff0,doc_4ff0_chunk_0001,git branch,used_for,adding_files_or_plugins,The text recommends using a git branch for adding new files or plugins to the Slurm code base.
+81,doc_5755,doc_5755_chunk_0009,Slurm,runs_multiple_jobs_within_allocation,job,The text explains that a Slurm job is a resource allocation where you can execute many job steps either in parallel or sequentially.
+82,doc_5755,doc_5755_chunk_0011,scontrol,shows_node_info_for,nodes,The text mentions using the command 'scontrol show node' to determine if nodes have more than one thread per core.
+83,doc_5755,doc_5755_chunk_0011,srun,distributes_tasks_across,nodes,The text explains how to use the '-m arbitrary' option with srun to distribute tasks across specific nodes.
+84,doc_5755,doc_5755_chunk_0011,tasks,run_on,nodes,The text describes how to specify which nodes to run specific tasks on using srun and SLURM_JOB_NODELIST.
+85,doc_5755,doc_5755_chunk_0011,Slurm_commands,contain_options_for,resource_allocation,"The text mentions that Slurm commands contain options to control resource allocation with respect to base boards, sockets, cores, and threads."
+86,doc_5755,doc_5755_chunk_0023,scontrol,changes_state_of,NodeName,The text explains that the scontrol command can be used to change the node's state to DOWN.
+87,doc_5755,doc_5755_chunk_0023,scontrol,terminates_jobs_associated_with,NodeName,Setting the node DOWN will terminate all running or suspended jobs associated with that node.
+88,doc_5755,doc_5755_chunk_0023,scontrol_requeue,requeues_job_in,PENDING state,The scontrol requeue command requeues jobs in a done or failed state back into the PENDING state and schedules them again.
+89,doc_5755,doc_5755_chunk_0023,job,enters_failed_state,FAILED state,The job enters a failed state because it exits with a non-zero value.
+90,doc_5755,doc_5755_chunk_0027,slurmd process,memlock,memory,"The text mentions that the slurmd process's memory is memlocked so that if a node starts swapping, the slurmd will continue to respond."
+91,doc_5755,doc_5755_chunk_0027,slurm.conf,specifies,different pathnames and port numbers,The text states that the test system's slurm.conf should specify different pathnames and port numbers to avoid conflicts.
+92,doc_5755,doc_5755_chunk_0027,Slurm systems,can_run_in_parallel_for,testing_purposes,The text explains that multiple Slurm systems can be run in parallel for testing purposes.
+93,doc_5755,doc_5755_chunk_0027,Slurm systems,can_emulate,larger_cluster,The text mentions that Slurm can emulate a larger cluster for testing purposes.
+94,doc_5755,doc_5755_chunk_0030,patch_command,applies_to,source_tarball,The text explains that the patch command can be used to apply a patch to the extracted source code.
+95,doc_5755,doc_5755_chunk_0030,patch_file,applied_to,source_tarball,The text describes how to apply a patch file to the extracted source code using the patch command.
+96,doc_5755,doc_5755_chunk_0030,tar,creates,tarball,The text mentions using the tar command to create a tarball of the patched source code.
+97,doc_5755,doc_5755_chunk_0030,rpmbuild,requires,tarball,The text states that rpmbuild requires creating a tarball with the patched files to avoid errors.
+98,doc_5755,doc_5755_chunk_0032,inconsistent clocks,cause,nodes_to_be_unusable_and_generate_errors_in_Slurm_log_files,Having inconsistent clocks may cause nodes to be unusable and generate errors in Slurm log files regarding expired credentials.
+99,doc_5755,doc_5755_chunk_0032,PartitionName,sets_state_to,DOWN,Setting the PartitionName state to DOWN can stop Slurm from scheduling jobs on that partition.
+100,doc_5755,doc_5755_chunk_0032,PartitionName,sets_state_to,UP,Setting the PartitionName state to UP resumes scheduling jobs on that partition.
+101,doc_5755,doc_5755_chunk_0032,resource_reservation,can_dry_up_workload_for,maintenance_period,Creating a resource reservation can be used to dry up the workload for a maintenance period.
+102,doc_5755,doc_5755_chunk_0036,job submit plugin,has_access_to,job request from user,"A job submit plugin is designed to have access to a job request from a user, plus information about all of the available system partitions/queue."
+103,doc_5755,doc_5755_chunk_0036,job submit plugin,can_set_partition,incoming job's partition,"An administrator can write a C plugin or LUA script to set an incoming job's partition based upon its size, time limit, etc."
+104,doc_5755,doc_5755_chunk_0036,slurmdbd,provides_authenticated_connection_to,database,Using the slurmdbd you can have an authenticated connection to the database.
+105,doc_5755,doc_5755_chunk_0043,slurmctld,runs_on,head node,The text mentions restarting the slurmctld daemon on the head node.
+106,doc_5755,doc_5755_chunk_0043,scontrol reconfigure,updates,slurm.conf,The text states to run scontrol reconfigure to update the slurm.conf file.
+107,doc_5755,doc_5755_chunk_0043,slurmctld,causes_node_down,compute node,The text explains that the condition of slurmctld running on the head node and slurmd on the compute node can cause the node to go down.
+108,doc_5755,doc_5755_chunk_0043,ReturnToService,configures,slurm.conf,The text suggests configuring ReturnToService in the slurm.conf man page.
+109,doc_5755,doc_5755_chunk_0045,slurm.conf,prevents_propagation_of,MEMLOCK,Adding the line 'PropagateResourceLimitsExcept=MEMLOCK' to slurm.conf prevents the locked memory limit from being propagated.
+110,doc_5755,doc_5755_chunk_0045,pam_slurm_adopt module,controls,user's_access,"The pam_slurm_adopt module prevents users from logging into nodes that they have not been allocated, controlling their access."
+111,doc_5755,doc_5755_chunk_0045,pam_slurm module,controls,user's_access,"The pam_slurm module also prevents users from logging into nodes that they have not been allocated, controlling their access."
+112,doc_5755,doc_5755_chunk_0049,TaskProlog,prints_to,user stdout,The script within TaskProlog prints information to the job's standard output.
+113,doc_5755,doc_5755_chunk_0049,EpilogSlurmctld,could_prepare_job_summary,central_place,The text suggests that EpilogSlurmctld could be used as a central place to prepare some kind of job summary.
+114,doc_5755,doc_5755_chunk_0049,srun,runs_even_when_job_completed,user process,The text mentions that user processes and srun are running even though the job is supposed to be completed.
+115,doc_5755,doc_5755_chunk_0051,EpilogSlurmctld,checks_job_exit_value,SLURM_JOB_EXIT2,The text describes an EpilogSlurmctld that checks the job exit value using the SLURM_JOB_EXIT2 environment variable.
+116,doc_5755,doc_5755_chunk_0051,EpilogSlurmctld,requeues_job_if,SLURM_JOB_EXIT_CODE2==8,"If the exit code is 8, the EpilogSlurmctld requeues the job."
+117,doc_5755,doc_5755_chunk_0051,scontrol,requeues_job,SLURM_JOB_ID,The scontrol command is used to requeue the job with the SpecialExit state.
+118,doc_5755,doc_5755_chunk_0054,pam_slurm_adopt,configures_with,join_container=false,The text mentions enabling functionality by appending join_container=false to pam_slurm_adopt.
+119,doc_5755,doc_5755_chunk_0054,Slurm,works_with,System V IPC,The text states that Slurm is generally agnostic to System V IPC.
+120,doc_5755,doc_5755_chunk_0054,kernel.shmmax,influences,RealMemory,The text suggests configuring kernel.shmmax and deducting its value times the maximum number of job processes from each node's configured RealMemory.
+121,doc_5755,doc_5755_chunk_0054,Slurm,reports_memory_usage_of,processes_using_sysv_ipc,The text explains that Slurm reports memory usage of processes using sysv ipc based on the value of kernel.shm_rmid_forced.
+122,doc_5755,doc_5755_chunk_0057,PropagateResourceLimits,needed_for,SlurmUser,The text mentions that the PropagateResourceLimits=CORE parameter in slurm.conf could be needed to give SlurmUser the appropriate permissions to write in the core location directories.
+123,doc_5755,doc_5755_chunk_0057,core file,goes_to,persistent_storage,The text encourages making coredumps go to a persistent storage to avoid filling up the machine's memory.
+124,doc_5755,doc_5755_chunk_0057,core file,may_impact,shared filesystem,The text warns that multiple nodes writing a core dump to a shared filesystem may significantly impact it.
+125,doc_5755,doc_5755_chunk_0062,TotalView,configures_with,Slurm,The text explains how to configure TotalView to operate with Slurm by adding specific lines to the global .tvdrc file.
+126,doc_5755,doc_5755_chunk_0062,srun,used_in,TV::bulk_launch_string,The text mentions using srun in the TV::bulk_launch_string to operate with Slurm.
+127,doc_5755,doc_5755_chunk_0063,dset,sets_as_default,TV::bulk_launch_tmpfile1_host_lines,"The text mentions dset -set_as_default TV::bulk_launch_tmpfile1_host_lines, indicating that dset sets this variable as default."
+128,doc_5755,doc_5755_chunk_0063,awk,strips_away,domain_name_suffixes,The text states to use awk in the launch string to strip away domain name suffixes.
+129,doc_582b,doc_582b_chunk_0001,Slurm,supports_large_number_of_open_files_and_tcp_connections_with_large_bursts_of_messages,system_configuration_parameters,The document mentions that three system configuration parameters must be set to support a large number of open files and TCP connections with large bursts of messages.
+130,doc_582b,doc_582b_chunk_0001,system_configuration_parameters,can_be_modified_using,/etc/rc.d/rc.local_or_/etc/sysctl.conf_script,Changes can be made using the /etc/rc.d/rc.local or /etc/sysctl.conf script to preserve changes after reboot.
+131,doc_582b,doc_582b_chunk_0001,performance,depends_on,hardware_software_and_configuration,"Performance may vary due to differences in hardware, software, and configuration."
+132,doc_582b,doc_582b_chunk_0002,/proc/sys/fs/file-max,depends_on,system_specs_and_workload,The text mentions that the appropriate amount of /proc/sys/fs/file-max is highly dependent on system specs and workload.
+133,doc_582b,doc_582b_chunk_0002,/proc/sys/net/core/somaxconn,limits,socket_listen_backlog,The text states that /proc/sys/net/core/somaxconn limits the socket listen backlog.
+134,doc_582b,doc_582b_chunk_0002,somaxconn,should_be_raised_for,bursts_of_request,The text suggests raising the value of somaxconn substantially to support bursts of requests.
+135,doc_582b,doc_582b_chunk_0002,ifconfig,modifies,txqueuelen,The text mentions modifying the transmit queue length (txqueuelen) using the ifconfig command.
+136,doc_5d35,doc_5d35_chunk_0002,job_component,allocated_on,node,The text states that job components are allocated on specific nodes.
+137,doc_5d35,doc_5d35_chunk_0002,task_distribution,distributes_tasks_cyclically_on,nodes,The text mentions that a task distribution of 'cyclic' will distribute tasks cyclically on nodes.
+138,doc_5d35,doc_5d35_chunk_0002,batch_job,uses_default_output_file_name,hetjob_component,The text explains that specifying a batch job output file in the second hetjob component's options will result in the first hetjob component using the default output file name.
+139,doc_5d35,doc_5d35_chunk_0002,environment_variables,applied_to_every_component,hetjob,The text states that environment variables used to specify default options for the job submit command will be applied to every component of the heterogeneous job.
+140,doc_5d35,doc_5d35_chunk_0014,heterogeneous job,counts_as,job,Each component of a heterogeneous job counts as a 'job' with respect to resource limits.
+141,doc_5d35,doc_5d35_chunk_0014,resource_allocations,performed_by,whole_core_or_socket_or_node,"Resource allocations might be performed by whole core, socket or node, not considering individual CPUs."
+142,doc_5d35,doc_5d35_chunk_0014,concurrent_running_jobs,limits,Job,A user might have a limit of 2 concurrent running jobs.
+143,doc_5d35,doc_5d35_chunk_0014,heterogeneous_job_components,affect,scheduling_other_jobs,"Such a situation will have an adverse effect upon scheduling other jobs, especially other heterogeneous jobs."
+144,doc_61ca,doc_61ca_chunk_0001,Slurm PrEp,provides_interface_for,prep plugins,"The document describes the Slurm PrEp plugins API as providing a native C interface to the same hooks traditionally used by Prolog, Epilog, PrologSlurmctld, and EpilogSlurmctld scripts."
+145,doc_61ca,doc_61ca_chunk_0001,prep/script plugin,serves_as_example_for,additional plugins,The document mentions that the prep/script plugin serves as a good example of how to approach development of additional plugins.
+146,doc_61ca,doc_61ca_chunk_0001,configuration option,configures,PrEpPlugins,The document states that Slurm can be configured to use multiple prep plugins if desired through the PrEpPlugins configuration option.
+147,doc_6722,doc_6722_chunk_0004,dwstat,calls_script,burst_buffer/lua,The text states that dwstat is a Slurm burst_buffer/datawarp plugin that calls this script to get status information.
+148,doc_6722,doc_6722_chunk_0004,BurstBufferType,defined_in,slurm.conf,The text mentions that BurstBufferType is defined in slurm.conf.
+149,doc_6722,doc_6722_chunk_0004,burst_buffer.lua,called_by,slurmctld,The text states that slurmctld calls burst_buffer.lua using Lua's C API instead of using fork().
+150,doc_6722,doc_6722_chunk_0004,slurm_bb_job_process,exists_in,burst_buffer.lua,The text lists slurm_bb_job_process as one of the required functions in burst_buffer.lua.
+151,doc_6722,doc_6722_chunk_0014,Datawarp,tracks_burst_buffer_info_with,scontrol show burst,The text mentions that Burst buffer information tracked by Slurm is available using the scontrol show burst command.
+152,doc_6722,doc_6722_chunk_0014,Datawarp,tracks_burst_buffer_info_with,sview command's Burst Buffer tab,The text also states that Burst buffer information is available via the sview command's Burst Buffer tab.
+153,doc_6722,doc_6722_chunk_0019,slurmctld,kills_burst_buffer_scripts_for,jobs,"If slurmctld is stopped, it kills all running burst buffer scripts for all jobs."
+154,doc_6722,doc_6722_chunk_0019,slurmctld,reads_burst_buffer_state_from,job,"When slurmctld restarts, it reads the burst buffer state for each job."
+155,doc_6722,doc_6722_chunk_0019,job,has_state,Job State,"The job can have various states such as pending, post-run, pre-run, running, staged-in, staging-in, staging-out, teardown, and teardown-fail."
+156,doc_6b88,doc_6b88_chunk_0006,libjwt,views_and_verifies,RFC7519 JWT tokens,The text states that libjwt is used to view and verify RFC7519 JWT tokens.
+157,doc_6b88,doc_6b88_chunk_0006,slurmctld,provides_signing_key_to,slurmdbd,The text mentions that the signing key is provided to slurmctld and slurmdbd to allow decryption of the tokens.
+158,doc_732b,doc_732b_chunk_0004,pam_slurm_adopt,allows_access_to,root user,The text states that pam_slurm_adopt will always allow the root user access.
+159,doc_732b,doc_732b_chunk_0004,pam_slurm_adopt,stacked_with,pam_access,The text mentions stacking pam_slurm_adopt with pam_access in the /etc/pam.d/sshd file.
+160,doc_732b,doc_732b_chunk_0004,pam_access,stacked_with,pam_slurm_adopt,The text discusses stacking pam_access with pam_slurm_adopt in different orders.
+161,doc_732b,doc_732b_chunk_0004,pam_listfile,stacked_with,pam_slurm_adopt,The text mentions stacking pam_listfile with pam_slurm_adopt to achieve similar results.
+162,doc_732b,doc_732b_chunk_0007,action_adopt_failure,performs_when,process_cannot_be_adopted_into_job,"If the process is unable to be adopted into any job for whatever reason, the action_adopt_failure is taken."
+163,doc_732b,doc_732b_chunk_0007,action_unknown,performs_when,failure_at_attempting_to_adopt_into_callerid_job_or_only_one_job_exists,"If the process cannot be adopted into the job identified by the callerid RPC, or if there is only one job, it will fall through to the action_unknown code."
+164,doc_732b,doc_732b_chunk_0007,action_generic_failure,performs_when,certain_failures_such_as_inability_to_talk_to_local_slurmd_or_kernel_facilities_not_offered,"If there are certain failures such as the inability to talk to the local slurmd or if the kernel doesn't offer the correct facilities, the action_generic_failure is performed."
+165,doc_732b,doc_732b_chunk_0008,DISPLAY variable,overwritten_by,job,"If the job the connection is adopted into has Slurm's X11 forwarding enabled, the DISPLAY variable will be overwritten with the X11 tunnel endpoint details."
+166,doc_732b,doc_732b_chunk_0008,Slurm,controls,X11 forwarding,The text mentions that Slurm's X11 forwarding can be enabled or disabled based on the job configuration.
+167,doc_732b,doc_732b_chunk_0008,Slurm,configurable_via,slurm.conf,Configurable values are listed under SlurmdDebug in slurm.conf.
+168,doc_732b,doc_732b_chunk_0008,join_container,controls_interaction_with,job_container/tmpfs plugin,join_container controls the interaction with the job_container/tmpfs plugin.
+169,doc_732b,doc_732b_chunk_0010,SELinux,may_conflict_with,pam_slurm_adopt,The text mentions that SELinux may conflict with pam_slurm_adopt.
+170,doc_732b,doc_732b_chunk_0010,pam_slurm_adopt,requires_permissions,permissions,The module definition includes various permissions that pam_slurm_adopt requires.
+171,doc_732b,doc_732b_chunk_0010,pam_slurm_adopt,can_confuse_pam_modules,PAM modules,The text states that using SELinux support in Slurm can confuse PAM modules when using pam_slurm_adopt.
+172,doc_732b,doc_732b_chunk_0010,pam_slurm_adopt,affects_process_adoption,process adoption,"The text mentions that the session started via pam_slurm_adopt won't necessarily be in the same context as the job it is associated with, affecting process adoption."
+173,doc_7425,doc_7425_chunk_0024,mem_per_cpu,added_to,v0.0.39_job,The text mentions adding 'required/memory_per_cpu' to 'v0.0.39_job'.
+174,doc_7425,doc_7425_chunk_0024,mem_per_node,added_to,v0.0.39_job,The text mentions adding 'required/memory_per_node' to 'v0.0.39_job'.
+175,doc_7425,doc_7425_chunk_0031,get,uses_input_parameter,with_deleted,The text mentions adding the with_deleted input parameter to the GET /qos and GET /account endpoints.
+176,doc_7425,doc_7425_chunk_0031,GET /associations,uses_input_parameter,filter_parameters,The text states that filter parameters are added to the GET /associations method.
+177,doc_7425,doc_7425_chunk_0031,fields.components.schemas.dbv0.0.38_job,includes_new_field,container,The text mentions adding the container field to the job description.
+178,doc_7940,doc_7940_chunk_0009,federated job,rejected_by,local cluster,A federated job that fails due to resources on the local cluster will be rejected and won't be submitted to other sibling clusters.
+179,doc_7940,doc_7940_chunk_0009,job arrays,run_on,cluster_they_were_submitted_to,Job arrays only run on the cluster that they were submitted to.
+180,doc_7940,doc_7940_chunk_0009,job_modification,must_succeed_on,origin_cluster,Job modification must succeed on the origin cluster for the changes to be pushed to the sibling jobs on remote clusters.
+181,doc_7940,doc_7940_chunk_0009,sview_grid,disabled_in,federated_view,sview grid is disabled in a federated view.
+182,doc_8186,doc_8186_chunk_0006,authenticated proxy,provides_http_headers_to,slurmrestd,The text states that an authenticated proxy will provide the correct HTTP headers (X-SLURM-USER-NAME and X-SLURM-USER-TOKEN) to slurmrestd.
+183,doc_8186,doc_8186_chunk_0006,HTTP headers,contain_user_info,SlurmUser,The text mentions that HTTP headers (X-SLURM-USER-NAME and X-SLURM-USER-TOKEN) contain user information.
+184,doc_8186,doc_8186_chunk_0006,Slurm,trusts_http_headers_provided,authenticating_proxy,Slurm will explicitly trust the HTTP headers provided by the authenticating proxy.
+185,doc_85cb,doc_85cb_chunk_0004,sbatch,submits_jobs_to,remote licenses,The text explains that sbatch is used to submit jobs to remote licenses.
+186,doc_85cb,doc_85cb_chunk_0004,sacctmgr,modifies_resource,resource,"The text mentions modifying resources using sacctmgr, such as setting counts and allowed values."
+187,doc_85cb,doc_85cb_chunk_0004,sacctmgr,deletes_resource,resource,"The text describes deleting resources using sacctmgr, such as removing licenses from clusters."
+188,doc_85cb,doc_85cb_chunk_0004,LastConsumed,updated_by,sacctmgr,"The text states that when the LastConsumed value is changed through sacctmgr, an update is automatically pushed to the Slurm controllers."
+189,doc_85cb,doc_85cb_chunk_0005,sacctmgr,updates,LastConsumed,The text explains that sacctmgr is used to update the LastConsumed value.
+190,doc_85cb,doc_85cb_chunk_0005,Slurm controllers,uses,LastConsumed,The text states that Slurm controllers use the LastConsumed value to calculate a LastDeficit value.
+191,doc_85cb,doc_85cb_chunk_0005,LastConsumed,affects,LastDeficit,The text explains that the LastConsumed value affects the calculation of the LastDeficit value.
+192,doc_868e,doc_868e_chunk_0004,slurmrestd,is_daemon_for,Slurm REST API,slurmrestd is described as the Slurm REST API daemon.
+193,doc_868e,doc_868e_chunk_0004,slurmstepd,manages_steps_of,job,slurmstepd is described as the job step manager for Slurm.
+194,doc_868e,doc_868e_chunk_0004,SPANK,provides,kcontrol_for_nodes_and_jobs,SPANK is described as the Slurm Plug-in Architecture for Node and job (K)control.
+195,doc_8a75,doc_8a75_chunk_0004,GPU_DEVICE_ORDINAL,specifies_allocation_for,job,The text mentions that GPU_DEVICE_ORDINAL specifies the GPU devices for the job allocation.
+196,doc_8a75,doc_8a75_chunk_0004,ROCR_VISIBLE_DEVICES,specifies_allocation_for,job,The text mentions that ROCR_VISIBLE_DEVICES specifies the GPU devices for the job allocation.
+197,doc_8a75,doc_8a75_chunk_0004,SLURM_ARRAY_JOB_ID,sets_to_job_id,job,"If this job is part of a job array, SLURM_ARRAY_JOB_ID will be set to the job ID."
+198,doc_8a75,doc_8a75_chunk_0004,SLURM_ARRAY_TASK_COUNT,sets_to_task_count,job,"If this job is part of a job array, SLURM_ARRAY_TASK_COUNT will be set to the number of tasks in the array."
+199,doc_8a75,doc_8a75_chunk_0008,Prolog,available_in,TaskProlog,Both Prolog and TaskProlog are mentioned as available in Prolog.
+200,doc_8a75,doc_8a75_chunk_0008,Epilog,available_in,SrunEpilog,Both Epilog and SrunEpilog are mentioned as available in Epilog.
+201,doc_8a75,doc_8a75_chunk_0008,PrologSlurmctld,available_in,EpilogSlurmctld,Both PrologSlurmctld and EpilogSlurmctld are mentioned as available in PrologSlurmctld.
+202,doc_96c0,doc_96c0_chunk_0006,plugin,uses,syscfg_program,The plugin performs operations using Intel's syscfg program to get and modify the node's MCDRAM and NUMA mode.
+203,doc_96c0,doc_96c0_chunk_0006,plugin,uses,linux_reboot_program,The plugin uses the Linux reboot program to reboot the compute node.
+204,doc_96c0,doc_96c0_chunk_0006,syscfg_program,reports,mcdram_and_numa_mode,The syscfg program reports the MCDRAM and NUMA mode to be used when the node is next booted.
+205,doc_96c0,doc_96c0_chunk_0006,slurm_conf_file,defines,rebootprogram,The RebootProgram is defined in the slurm.conf file.
+206,doc_977e,doc_977e_chunk_0009,scontrol,creates_reservation,reservation,The text shows an example of using scontrol to create a reservation.
+207,doc_977e,doc_977e_chunk_0009,sbatch,submits_jobs_to,reservation,The text demonstrates submitting jobs to a reservation using sbatch.
+208,doc_9964,doc_9964_chunk_0002,sacctmgr,manages,WCKeys,The text states that sacctmgr is used to manage WCKeys.
+209,doc_9964,doc_9964_chunk_0002,sacctmgr,adds_to,user,The text mentions 'sacctmgr add user da wckey=secret_project' to add a user to a WCKey.
+210,doc_9964,doc_9964_chunk_0002,sacctmgr,removes_from,user,The text mentions 'sacctmgr del user da wckey=secret_project' to remove a user from a WCKey.
+211,doc_9964,doc_9964_chunk_0002,sacctmgr,modifies,user,The text mentions 'sacctmgr mod user da cluster=snowflake set defaultwckey=secret_project' to alter the user's default WCKey.
+212,doc_9ca6,doc_9ca6_chunk_0003,highest level,limits_maximum_allocation,maximum allocation,"The text states that the highest level only contains 24, which limits the maximum allocation."
+213,doc_9ca6,doc_9ca6_chunk_0003,maximum allocation,is_allocated_to,resources,The text implies that the maximum allocation is applied to a fixed set of resources.
+214,doc_ac8b,doc_ac8b_chunk_0011,DEPTH_OBLIVIOUS,enables,NO_FAIR_TREE,DEPTH_OBLIVIOUS automatically enables NO_FAIR_TREE according to the text.
+215,doc_ac8b,doc_ac8b_chunk_0011,priority,calculated_based_on,multifactor,DEPTH_OBLIVIOUS calculates priority similar to the normal multifactor calculation.
+216,doc_ac8b,doc_ac8b_chunk_0011,priority,never_decreases,INCR_ONLY,INCR_ONLY ensures that job priority will never decrease in value.
+217,doc_ac8b,doc_ac8b_chunk_0011,TRESBillingWeights,calculated_as,MAX_TRES,MAX_TRES calculates the weighted TRES value as the MAX of individual TRESs on a node plus the sum of all global TRESs.
+218,doc_b00c,doc_b00c_chunk_0001,Slurm,supports,topology-aware_resource_allocation,The text mentions that Slurm can be configured to support topology-aware resource allocation to optimize job performance.
+219,doc_b00c,doc_b00c_chunk_0001,Slurm,allocates_resources_on,best-fit_basis,The text states that Slurm's native mode of resource selection is to consider the nodes as a one-dimensional array and allocate resources on a best-fit basis.
+220,doc_b00c,doc_b00c_chunk_0001,Slurm,uses,Hilbert_curve,The text explains that Slurm uses a Hilbert curve to map nodes from a three-dimensional space into a one-dimensional space.
+221,doc_b00c,doc_b00c_chunk_0001,Slurm,minimizes_network_contention,hierarchical_networks,The text mentions that Slurm can be configured to allocate resources to jobs on a hierarchical network to minimize network contention.
+222,doc_b00c,doc_b00c_chunk_0007,Slurm,uses_topology_for,resource_allocation,The text states that the Slurm controller will use the selected topology to optimize resource allocation for jobs submitted to a partition.
+223,doc_b00c,doc_b00c_chunk_0007,partition,configured_with,topology,Each partition can be configured to use a specific topology by specifying the Topology in its partition configuration line.
+224,doc_b00c,doc_b00c_chunk_0007,topology.yaml,defines,network_topologies,Slurm 25.05 introduced the ability to define multiple network topologies using the topology.yaml configuration file.
+225,doc_b2f9,doc_b2f9_chunk_0008,GRES,configured_in,slurm.conf,The text mentions that the total count of MPS resources available on a node should be configured in the slurm.conf file.
+226,doc_b2f9,doc_b2f9_chunk_0008,gres/mps,evenly_distributed_across,all_GPUs_configured_on_the_node,The text states that the count of gres/mps elements defined in the slurm.conf will be evenly distributed across all GPUs configured on the node.
+227,doc_b2f9,doc_b2f9_chunk_0008,CUDA Multi-Process Service,provides_mechanism_for,GPUs_to_be_shared_by_multiple_jobs,The text explains that CUDA Multi-Process Service provides a mechanism where GPUs can be shared by multiple jobs.
+228,doc_b406,doc_b406_chunk_0001,per-partition OverSubscribe,controls_allocation_of,whole nodes,"The text states that when OverSubscribe=NO, whole nodes are allocated to jobs, and when OverSubscribe=FORCE, each whole node can be allocated to multiple jobs."
+229,doc_b406,doc_b406_chunk_0001,per-partition OverSubscribe,controls_allocation_of,cores,"The text states that when OverSubscribe=NO, cores are allocated to jobs, and when OverSubscribe=FORCE, each core can be allocated to multiple jobs."
+230,doc_b406,doc_b406_chunk_0001,srun,allows_sharing_of,consumable_resource,The text mentions that srun --oversubscribe allows sharing of consumable resources among jobs.
+231,doc_c721,doc_c721_chunk_0001,Fair Tree algorithm,is_default_algorithm,19.05 release,The text states that the Fair Tree algorithm is now the default as of the 19.05 release.
+232,doc_c721,doc_c721_chunk_0001,classic fair share algorithm,is_available_if,PriorityFlags=NO_FAIR_TREE,The text mentions that the classic fair share algorithm is only available if PriorityFlags=NO_FAIR_TREE has been explicitly configured.
+233,doc_c721,doc_c721_chunk_0001,fair-share hierarchy,represents_allocation,computing resources,The text explains that the fair-share hierarchy represents the portion of the computing resources allocated to different projects.
+234,doc_c721,doc_c721_chunk_0001,fair-share hierarchy,is_assigned_to,account,The text states that allocations are assigned to an account within the fair-share hierarchy.
+235,doc_c721,doc_c721_chunk_0003,fair-share factor,reflects_usage_of,account,The fair-share factor reflects the usage of the account based on the portion of the machine allocated to the user and the historical usage of all the jobs run by that user under a specific account.
+236,doc_c721,doc_c721_chunk_0003,job priority,affected_by,fair-share_factor,"The job priority is influenced by the fair-share factor, which takes into account the usage of other users drawing from the same account."
+237,doc_c721,doc_c721_chunk_0003,effective_usage,is_calculated_as,UE,Effective usage is calculated as the sum of the actual usage of the child user or account plus the adjusted effective usage of the parent account.
+238,doc_c721,doc_c721_chunk_0003,Slurm fair-share formula,uses,effective_usage,The Slurm fair-share formula uses the effective usage in its calculation.
+239,doc_c721,doc_c721_chunk_0007,Slurm fair-share formula,calculates,fair-share factor,The text explains that the Slurm fair-share formula is used to calculate the fair-share factor for each user.
+240,doc_c721,doc_c721_chunk_0007,fair-share factor,influences,scheduling priority,"The text states that based on the fair-share factor alone, user 5's job would be granted the highest scheduling priority."
+241,doc_c721,doc_c721_chunk_0007,jobs,affect,fair-share factor,"The text mentions that even though user 3 has yet to submit a job, his/her fair-share factor is negatively influenced by the jobs users 1 and 2 have run."
+242,doc_c8a9,doc_c8a9_chunk_0011,sbatch,submits_jobs_to,partition,"The text mentions 'sbatch: Submitted batch job 20', indicating that sbatch submits jobs to a partition."
+243,doc_c8a9,doc_c8a9_chunk_0011,job placement,requires,required nodes,"The text states that it would be more ideal if the 'hipri' job were placed on nodes n[3-5], which requires specific nodes."
+244,doc_c8a9,doc_c8a9_chunk_0011,job placement,requires,job size,The text mentions including factors such as job size in the 'intelligent' algorithm for job placement.
+245,doc_c8a9,doc_c8a9_chunk_0011,intelligent algorithm,supports,ideal placements,The text states that an 'intelligent' algorithm would support ideal placements such as placing the 'hipri' job on nodes n[3-5].
+246,doc_ce7f,doc_ce7f_chunk_0003,rpmbuild,executes_build_of,RPMs,The text explains that rpmbuild is used to build RPMs directly.
+247,doc_ce7f,doc_ce7f_chunk_0003,.rpmmacros,controls,RPM_build_options,The text mentions that a .rpmmacros file can be used to control some aspects of the RPM built.
+248,doc_ce7f,doc_ce7f_chunk_0003,with_munge,specifies,MUNGE_installation_location,The text states that with_munge specifies the MUNGE (authentication library) installation location.
+249,doc_ce7f,doc_ce7f_chunk_0004,slurm*tar.bz2,unpacks_into,directory containing the Slurm source,The text states to unpack the distributed tarball into the directory containing the Slurm source.
+250,doc_ce7f,doc_ce7f_chunk_0004,mk-build-deps,installs_dependencies_for,Slurm,The text mentions using mk-build-deps to install the Slurm package dependencies.
+251,doc_ce7f,doc_ce7f_chunk_0004,debuild,builds_packages,Slurm,The text explains that debuild is used to build the Slurm packages.
+252,doc_ce7f,doc_ce7f_chunk_0004,apt,removes_packages_due_to_conflicts,Slurm,The text states that apt is willing to automatically remove Slurm packages due to dependency conflicts.
+253,doc_d41b,doc_d41b_chunk_0002,SlurmDBD,uses,Slurm authentication plugin,The text mentions that SlurmDBD uses a Slurm authentication plugin (e.g. MUNGE).
+254,doc_d41b,doc_d41b_chunk_0002,SlurmDBD,uses,Slurm accounting storage plugin,The text states that SlurmDBD uses an existing Slurm accounting storage plugin to maximize code reuse.
+255,doc_d41b,doc_d41b_chunk_0002,SlurmDBD,uses,data caching,The text mentions that SlurmDBD uses data caching and prioritization of pending requests to optimize performance.
+256,doc_d41b,doc_d41b_chunk_0002,association,configures,accounting and scheduling policies,The text states that both accounting and scheduling policies are configured based upon an association.
+257,doc_d41b,doc_d41b_chunk_0010,GrpWall,consumes_time_limit_of,running jobs,The text mentions that GrpWall considers the time limit of running jobs.
+258,doc_d41b,doc_d41b_chunk_0010,LimitFactor,applies_to,associations_running_in_this_qos,The text states that LimitFactor is factored into associations running in this QOS.
+259,doc_d41b,doc_d41b_chunk_0010,MaxJobsAccruePerAccount,limits,pending_jobs_accruing_age_priority_per_account,The text specifies that MaxJobsAccruePerAccount limits the number of pending jobs an account can have.
+260,doc_d41b,doc_d41b_chunk_0010,MaxJobsAccruePerUser,limits,pending_jobs_accruing_age_priority_per_user,The text specifies that MaxJobsAccruePerUser limits the number of pending jobs a user can have.
+261,doc_d41b,doc_d41b_chunk_0012,usagefactor,applies_to,job's TRES usage,The text explains that the usage factor is factored into a job's TRES usage.
+262,doc_d41b,doc_d41b_chunk_0012,UsageFactorSafe,applies_to,AccountingStorageEnforce,The text mentions that the UsageFactorSafe flag interacts with the AccountingStorageEnforce setting.
+263,doc_d41b,doc_d41b_chunk_0012,AccountingStorageEnforce,determines_job_scheduling,jobs,The text describes how the AccountingStorageEnforce setting affects job scheduling based on the UsageFactorSafe flag.
+264,doc_d41b,doc_d41b_chunk_0014,lua job submit plugin,forces_users_to_specify,gpu_with_type,The script checks that users specify a type when requesting GPU GRES.
+265,doc_d41b,doc_d41b_chunk_0014,TRESBillingWeights,should_include,typed_and_non_typed_resources,It is mentioned that both typed and non-typed resources should be included when TRESBillingWeights are defined for a partition.
+266,doc_d41b,doc_d41b_chunk_0014,AccountingStorageTRES,tracks,generic_and_specific_gres_types,Setting AccountingStorageTRES for both generic and specific GRES types allows tracking of both types.
+267,doc_d41b,doc_d41b_chunk_0014,scheduler,assigns_reason,job_reason_codes,The scheduler assigns job reason codes when a pending job exceeds a configured resource limit.
+268,doc_d9be,doc_d9be_chunk_0002,SelectType,controls_allocation_of,CPU_resources,The text explains that SelectType controls whether CPU resources are allocated to jobs and job steps in units of whole nodes or as consumable resources.
+269,doc_d9be,doc_d9be_chunk_0002,SlurmdParameters,controls,information_usage,The text mentions that SlurmdParameters config_overrides controls how the information in a node definition is used.
+270,doc_d9be,doc_d9be_chunk_0002,SelectType,defines_consumable_resource_type,SelectTypeParameters,The text states that SelectTypeParameters defines the consumable resource type when using a SelectType of select/cons_tres.
+271,doc_d9be,doc_d9be_chunk_0007,CPU Management,is_subject_to_limits_imposed_by,Slurm Accounting,The text states that CPU management by Slurm users is subject to limits imposed by Slurm Accounting.
+272,doc_d9be,doc_d9be_chunk_0007,Slurm Accounting,applies_limits_on,CPU usage,"The text mentions that Accounting limits may be applied on CPU usage at the level of users, groups and clusters."
+273,doc_d9be,doc_d9be_chunk_0007,srun,allocates_nodes_to,job,The text explains that the srun command with the --nodes=2 option causes Slurm to allocate at least 2 nodes to the job.
+274,doc_d9be,doc_d9be_chunk_0007,allocation,uses_plugin,cons_tres plugin,The text mentions that these examples show the use of the cons_tres plugin.
+275,doc_e541,doc_e541_chunk_0008,AcctGatherInterconnectType,is_required_in,slurm.conf,The text states that AcctGatherInterconnectType=acct_gather_interconnect/ofed is required in slurm.conf to collect task data.
+276,doc_e541,doc_e541_chunk_0008,network,is_set_to,freq,The text mentions appropriately set network=freq in either JobAcctGatherFrequency in slurm.conf or in --acctg-freq on the command line.
+277,doc_e541,doc_e541_chunk_0008,Date Time,correlates_with,logs,The text states that Date Time can be used to correlate activity with other sources such as logs.
+278,doc_e8f0,doc_e8f0_chunk_0002,slurmctld,runs_script_during_submission,script,The text mentions that slurmctld runs the script while holding internal locks and only a single copy of this script can run at a time.
+279,doc_e8f0,doc_e8f0_chunk_0002,Slurm,uses_job_submit_plugin,job_submit,The text states that Slurm can be configured to use multiple job_submit plugins.
+280,doc_e8f0,doc_e8f0_chunk_0008,gcc,compiles,job_submit_mine,The text mentions compiling with gcc the file job_submit_mine.c.
+281,doc_e8f0,doc_e8f0_chunk_0008,gcc,uses,-pthread,The text includes -pthread as one of the compilation flags for gcc.
+282,doc_e8f0,doc_e8f0_chunk_0008,gcc,uses,-fno-gcse,The text includes -fno-gcse as one of the compilation flags for gcc.
+283,doc_e8f0,doc_e8f0_chunk_0008,gcc,uses,-Werror,The text includes -Werror as one of the compilation flags for gcc.
+284,doc_e8f0,doc_e8f0_chunk_0008,gcc,links,.deps/job_submit_partition.Plo,The text mentions linking with .deps/job_submit_partition.Plo using gcc.
+285,doc_e992,doc_e992_chunk_0002,plugin_version,identifies_version_of,Slurm,The text states that plugin_version identifies the version of Slurm used to build the plugin.
+286,doc_e992,doc_e992_chunk_0002,Slurm init(),called_after,init,"The text notes that the C run-time system co-opts the symbols for its own initialization, and Slurm init() is called before the system's _init()."
+287,doc_e992,doc_e992_chunk_0002,Slurm fini(),called_before,fini,The text states that Slurm fini() is called before the system's _fini().
+288,doc_ebf2,doc_ebf2_chunk_0008,feature,can_be_disabled_with,CONFIG_MEMCG_SWAP,The text mentions that a feature can be disabled with the parameter CONFIG_MEMCG_SWAP.
+289,doc_ebf2,doc_ebf2_chunk_0008,system.conf,does_not_use,JoinControllers,The text states that Slurm does not work correctly with JoinControllers and should not be used in system.conf.
+290,doc_ebf2,doc_ebf2_chunk_0008,cgroup controllers,should_be_under_separate_directories,separate directories,The text advises that all cgroup controllers should be under separate directories.
+291,doc_f0f8,doc_f0f8_chunk_0003,slurmctld,requires_user,Slurm user,The text recommends creating a user 'slurm' for the slurmctld controller.
+292,doc_f0f8,doc_f0f8_chunk_0003,slurmd,saves_state_in,state_save_directory,The text defines the location of a directory where slurmd saves its state.
+293,doc_f0f8,doc_f0f8_chunk_0003,slurmctld,saves_state_in,state_save_directory,The text defines the location of a directory where the slurmctld daemon saves its state.
+294,doc_f0f8,doc_f0f8_chunk_0003,ReturnToService,defines_condition_for,non-responding_node,The text defines conditions under which a non-responding node is returned to service.
+295,doc_f0f8,doc_f0f8_chunk_0004,SchedulerType,defines_mechanism_for,controlling_job_ordering,The text defines the mechanism to be used for controlling job ordering based on the selected SchedulerType.
+296,doc_f0f8,doc_f0f8_chunk_0004,SwitchType,defines_node_interconnect_used,Interconnect,The text defines the node interconnect used based on the selected SwitchType.
+297,doc_f0f8,doc_f0f8_chunk_0004,MpiDefault,specifies_default_mpi_type,MPI,The text specifies the type of MPI to be used by default based on the selected MpiDefault.

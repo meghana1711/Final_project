@@ -32,7 +32,7 @@ In this project, the OLAF pipeline operates in multiple sequential stages:
 
 
 # Project Structure
-
+```text
 Final_project/  
 ├── data/                           # Raw input data (SLURM / IBM LSF documents)  
 │
@@ -89,27 +89,30 @@ Final_project/
 └── README.md  
 
 # Installation  
+```bash
 git clone https://github.com/meghana1711/Final_project.git   
 cd Final_project  
-python -m venv venv  
-.\venv\Scripts\Activate.ps1  
+python -m venv venv 
+source venv/bin/activate   # Linux   
+.\venv\Scripts\Activate.ps1  # Windows  
 
 # Install PyTorch with CUDA
+```bash
 pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu124  
 pip install -r requirements.txt  
 python -m spacy download en_core_web_sm  
 
 # Technologies Used
 1. Programming Languages: Python
-2. Libraries/Frameworks:
-    • SpaCy – sentence segmentation, lemmatization, POS tagging
-
-3. Databases:
-    • SQLite – lightweight relational database used for storing and querying processed data
-
-4. Tools & Platforms:
-    • Jupyter Notebooks
-    • Git and GitHub for version control
-
-5. LLM Models used:
-    • mistralai/Mistral-7B-Instruct-v0.3
+2. Libraries/Frameworks:  
+    • SpaCy – sentence segmentation, lemmatization, POS tagging  
+  
+3. Databases:  
+    • SQLite – lightweight relational database used for storing and querying processed data  
+  
+4. Tools & Platforms:  
+    • Jupyter Notebooks  
+    • Git and GitHub for version control  
+  
+5. LLM Models used:  
+    • mistralai/Mistral-7B-Instruct-v0.3  
