@@ -1,0 +1,433 @@
+@prefix hpc: <http://example.org/hpc-onto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+hpc:account a rdfs:Class,
+        owl:Class ;
+    rdfs:label "account" .
+
+hpc:accounting a rdfs:Class,
+        owl:Class ;
+    rdfs:label "accounting" .
+
+hpc:accounting_record a rdfs:Class,
+        owl:Class ;
+    rdfs:label "accounting record" .
+
+hpc:bhost a rdfs:Class,
+        owl:Class ;
+    rdfs:label "bhost" .
+
+hpc:bsub a rdfs:Class,
+        owl:Class ;
+    rdfs:label "bsub" .
+
+hpc:case a rdfs:Class,
+        owl:Class ;
+    rdfs:label "case" .
+
+hpc:cluster a rdfs:Class,
+        owl:Class ;
+    rdfs:label "cluster" .
+
+hpc:command a rdfs:Class,
+        owl:Class ;
+    rdfs:label "command" ;
+    rdfs:subClassOf hpc:command .
+
+hpc:core a rdfs:Class,
+        owl:Class ;
+    rdfs:label "core" .
+
+hpc:cpu a rdfs:Class,
+        owl:Class ;
+    rdfs:label "cpu" .
+
+hpc:cpu_factor a rdfs:Class,
+        owl:Class ;
+    rdfs:label "cpu factor" .
+
+hpc:cpu_ids a rdfs:Class,
+        owl:Class ;
+    rdfs:label "cpu ids" .
+
+hpc:daemon a rdfs:Class,
+        owl:Class ;
+    rdfs:label "daemon" ;
+    rdfs:subClassOf hpc:daemon .
+
+hpc:database a rdfs:Class,
+        owl:Class ;
+    rdfs:label "database" .
+
+hpc:database_slurm_acct_db a rdfs:Class,
+        owl:Class ;
+    rdfs:label "database slurm_acct_db" .
+
+hpc:datum a rdfs:Class,
+        owl:Class ;
+    rdfs:label "datum" .
+
+hpc:directory a rdfs:Class,
+        owl:Class ;
+    rdfs:label "directory" .
+
+hpc:elim a rdfs:Class,
+        owl:Class ;
+    rdfs:label "elim" .
+
+hpc:error a rdfs:Class,
+        owl:Class ;
+    rdfs:label "error" .
+
+hpc:external_load_index a rdfs:Class,
+        owl:Class ;
+    rdfs:label "external load index" .
+
+hpc:external_slurmdbd a rdfs:Class,
+        owl:Class ;
+    rdfs:label "external slurmdbd" .
+
+hpc:file a rdfs:Class,
+        owl:Class ;
+    rdfs:label "file" .
+
+hpc:group_lsf_host a rdfs:Class,
+        owl:Class ;
+    rdfs:label "group lsf host" ;
+    rdfs:subClassOf hpc:host .
+
+hpc:host a rdfs:Class,
+        owl:Class ;
+    rdfs:label "host" .
+
+hpc:hosta a rdfs:Class,
+        owl:Class ;
+    rdfs:label "hosta" .
+
+hpc:information a rdfs:Class,
+        owl:Class ;
+    rdfs:label "information" .
+
+hpc:job a rdfs:Class,
+        owl:Class ;
+    rdfs:label "job" .
+
+hpc:job_queue a rdfs:Class,
+        owl:Class ;
+    rdfs:label "job queue" ;
+    rdfs:subClassOf hpc:queue .
+
+hpc:lim a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lim" ;
+    rdfs:subClassOf hpc:daemon .
+
+hpc:lsadmin_badmin_command a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsadmin badmin command" ;
+    rdfs:subClassOf hpc:command .
+
+hpc:lsf a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf" .
+
+hpc:lsf_administration a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf administration" ;
+    rdfs:subClassOf hpc:daemon .
+
+hpc:lsf_client_host a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf client host" ;
+    rdfs:subClassOf hpc:host .
+
+hpc:lsf_command a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf command" ;
+    rdfs:subClassOf hpc:command .
+
+hpc:lsf_daemon a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf daemon" ;
+    rdfs:subClassOf hpc:daemon .
+
+hpc:lsf_following_command a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf following command" ;
+    rdfs:subClassOf hpc:command .
+
+hpc:lsf_host a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf host" ;
+    rdfs:subClassOf hpc:host .
+
+hpc:lsf_job a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf job" ;
+    rdfs:subClassOf hpc:job .
+
+hpc:lsf_management_host a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf management host" ;
+    rdfs:subClassOf hpc:host .
+
+hpc:lsf_problem a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf problem" ;
+    rdfs:subClassOf hpc:daemon .
+
+hpc:lsf_queue a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf queue" ;
+    rdfs:subClassOf hpc:queue .
+
+hpc:lsf_server a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf server" .
+
+hpc:lsf_server_host a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf server host" ;
+    rdfs:subClassOf hpc:host .
+
+hpc:lsf_system a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf system" .
+
+hpc:lsid_command a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsid command" .
+
+hpc:lsrun_command a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsrun command" .
+
+hpc:management_host_lim a rdfs:Class,
+        owl:Class ;
+    rdfs:label "management host lim" ;
+    rdfs:subClassOf hpc:daemon .
+
+hpc:mbatchd a rdfs:Class,
+        owl:Class ;
+    rdfs:label "mbatchd" .
+
+hpc:mbatchd_daemon a rdfs:Class,
+        owl:Class ;
+    rdfs:label "mbatchd daemon" ;
+    rdfs:subClassOf hpc:daemon .
+
+hpc:message a rdfs:Class,
+        owl:Class ;
+    rdfs:label "message" .
+
+hpc:mysql a rdfs:Class,
+        owl:Class ;
+    rdfs:label "mysql" .
+
+hpc:node a rdfs:Class,
+        owl:Class ;
+    rdfs:label "node" .
+
+hpc:number a rdfs:Class,
+        owl:Class ;
+    rdfs:label "number" .
+
+hpc:option a rdfs:Class,
+        owl:Class ;
+    rdfs:label "option" .
+
+hpc:parameter a rdfs:Class,
+        owl:Class ;
+    rdfs:label "parameter" .
+
+hpc:pattern_allocation_job a rdfs:Class,
+        owl:Class ;
+    rdfs:label "pattern allocation job" ;
+    rdfs:subClassOf hpc:job .
+
+hpc:plugin a rdfs:Class,
+        owl:Class ;
+    rdfs:label "plugin" .
+
+hpc:procedure a rdfs:Class,
+        owl:Class ;
+    rdfs:label "procedure" .
+
+hpc:queue a rdfs:Class,
+        owl:Class ;
+    rdfs:label "queue" .
+
+hpc:record a rdfs:Class,
+        owl:Class ;
+    rdfs:label "record" .
+
+hpc:remote_host a rdfs:Class,
+        owl:Class ;
+    rdfs:label "remote host" .
+
+hpc:res a rdfs:Class,
+        owl:Class ;
+    rdfs:label "res" .
+
+hpc:resource a rdfs:Class,
+        owl:Class ;
+    rdfs:label "resource" .
+
+hpc:root a rdfs:Class,
+        owl:Class ;
+    rdfs:label "root" .
+
+hpc:running_job a rdfs:Class,
+        owl:Class ;
+    rdfs:label "running job" ;
+    rdfs:subClassOf hpc:job .
+
+hpc:sbatchd_daemon a rdfs:Class,
+        owl:Class ;
+    rdfs:label "sbatchd daemon" .
+
+hpc:slurm a rdfs:Class,
+        owl:Class ;
+    rdfs:label "slurm" .
+
+hpc:slurm_daemon a rdfs:Class,
+        owl:Class ;
+    rdfs:label "slurm daemon" ;
+    rdfs:subClassOf hpc:daemon .
+
+hpc:slurm_plugin a rdfs:Class,
+        owl:Class ;
+    rdfs:label "slurm plugin" ;
+    rdfs:subClassOf hpc:plugin .
+
+hpc:slurmctld a rdfs:Class,
+        owl:Class ;
+    rdfs:label "slurmctld" .
+
+hpc:slurmctld_select_plugin a rdfs:Class,
+        owl:Class ;
+    rdfs:label "slurmctld select plugin" ;
+    rdfs:subClassOf hpc:plugin .
+
+hpc:slurmd_task_plugin a rdfs:Class,
+        owl:Class ;
+    rdfs:label "slurmd task plugin" ;
+    rdfs:subClassOf hpc:plugin .
+
+hpc:slurmdbd a rdfs:Class,
+        owl:Class ;
+    rdfs:label "slurmdbd" .
+
+hpc:socket a rdfs:Class,
+        owl:Class ;
+    rdfs:label "socket" .
+
+hpc:step a rdfs:Class,
+        owl:Class ;
+    rdfs:label "step" .
+
+hpc:step_lsf_host a rdfs:Class,
+        owl:Class ;
+    rdfs:label "step lsf host" ;
+    rdfs:subClassOf hpc:host .
+
+hpc:table a rdfs:Class,
+        owl:Class ;
+    rdfs:label "table" .
+
+hpc:task a rdfs:Class,
+        owl:Class ;
+    rdfs:label "task" .
+
+hpc:task_ids a rdfs:Class,
+        owl:Class ;
+    rdfs:label "task ids" .
+
+hpc:user a rdfs:Class,
+        owl:Class ;
+    rdfs:label "user" .
+
+hpc:v a rdfs:Class,
+        owl:Class ;
+    rdfs:label "v" .
+
+<http://example.org/hpc-onto> a owl:Ontology .
+
+hpc:add_to a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "add_to" .
+
+hpc:allocate_on a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "allocate_on" .
+
+hpc:bind a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "bind" .
+
+hpc:bind_to a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "bind_to" .
+
+hpc:create a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "create" .
+
+hpc:display a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "display" .
+
+hpc:distribute_to a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "distribute_to" .
+
+hpc:exist_on a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "exist_on" .
+
+hpc:have a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "have" .
+
+hpc:receive a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "receive" .
+
+hpc:require a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "require" .
+
+hpc:run a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "run" .
+
+hpc:run_in a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "run_in" .
+
+hpc:run_on a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "run_on" .
+
+hpc:store_in a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "store_in" .
+
+hpc:submit a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "submit" .
+
+hpc:submit_to a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "submit_to" .
+
+hpc:use a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "use" .
+
+hpc:write_to a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "write_to" .
+

@@ -2,13 +2,22 @@ import argparse
 import json
 import sqlite3
 from pathlib import Path
-from typing import List, Tuple, Dict, Set
-
-import math
-import statistics
+from typing import List, Tuple, Dict, Set, Optional
 
 import numpy as np
 from gensim.models import Word2Vec
+import re
+from collections import defaultdict, Counter
+
+
+# -----------------------------
+# Normalization helpers
+# -----------------------------
+
+def norm_text(s: Optional[str]) -> str:
+    s = (s or "").strip().lower()
+    s = re.sub(r"\s+", " ", s)
+    return s
 
 
 # -----------------------------
@@ -186,6 +195,7 @@ def build_phrase_vectors(
             skipped.append((term_id, lemma, "no tokens in vocab"))
             continue
 
+        # NOTE: simple mean (works, but can be noisy for long phrases)
         phrase_vec = np.mean(token_vecs, axis=0)
         term_ids.append(term_id)
         vecs.append(phrase_vec)
@@ -211,14 +221,14 @@ def compute_and_store_neighbors(
     term_candidates_table: str,
     term_ids: List[int],
     matrix: np.ndarray,
-    top_k: int,
+    top_k_max: int,
 ) -> None:
     n_terms = len(term_ids)
     if n_terms == 0:
         print("No term vectors available; cannot compute neighbors.")
         return
 
-    print(f"Computing neighbors for {n_terms} terms (top_k={top_k})...")
+    print(f"Computing neighbors for {n_terms} terms (top_k_max={top_k_max})...")
 
     norms = np.linalg.norm(matrix, axis=1, keepdims=True)
     norms[norms == 0.0] = 1.0
@@ -252,10 +262,15 @@ def compute_and_store_neighbors(
         sims = matrix_norm @ vec_i
         sims[i] = -1.0
 
-        if top_k >= n_terms - 1:
+        k = min(top_k_max, n_terms - 1)
+        if k <= 0:
+            continue
+
+        # fast top-k selection
+        if k >= n_terms - 1:
             top_indices = np.argsort(-sims)
         else:
-            top_indices = np.argpartition(-sims, top_k)[:top_k]
+            top_indices = np.argpartition(-sims, k)[:k]
             top_indices = top_indices[np.argsort(-sims[top_indices])]
 
         term_id_i = term_ids[i]
@@ -264,7 +279,6 @@ def compute_and_store_neighbors(
         for j in top_indices:
             neighbor_id = term_ids[j]
             similarity = float(sims[j])
-
             neighbor_text, neighbor_tfidf = term_meta.get(neighbor_id, ("", 0.0))
 
             cur.execute(
@@ -293,6 +307,289 @@ def compute_and_store_neighbors(
     conn.commit()
     conn.close()
     print(f"Finished writing {neighbors_table}.")
+
+
+# -----------------------------
+# Evaluation: choosing k (5 vs 10)
+# -----------------------------
+
+def eval_similarity_curve(
+    conn: sqlite3.Connection,
+    neighbors_table: str,
+    ranks: List[int],
+) -> None:
+    """
+    Prints avg similarity at selected ranks across all terms.
+    Uses SQLite window function ROW_NUMBER (SQLite >= 3.25).
+    """
+    cur = conn.cursor()
+    ranks_sorted = sorted(set(ranks))
+    rank_list = ",".join(str(r) for r in ranks_sorted)
+
+    q = f"""
+    WITH ranked AS (
+      SELECT
+        term_id,
+        similarity,
+        ROW_NUMBER() OVER (PARTITION BY term_id ORDER BY similarity DESC) AS rnk
+      FROM {neighbors_table}
+    )
+    SELECT rnk, AVG(similarity) AS avg_sim, MIN(similarity) AS min_sim, MAX(similarity) AS max_sim
+    FROM ranked
+    WHERE rnk IN ({rank_list})
+    GROUP BY rnk
+    ORDER BY rnk;
+    """
+    rows = cur.execute(q).fetchall()
+    print("\n[EVAL] Similarity curve (by rank):")
+    for rnk, avg_sim, min_sim, max_sim in rows:
+        print(f"  rank={int(rnk):>2d}  avg={avg_sim:.3f}  min={min_sim:.3f}  max={max_sim:.3f}")
+
+    # knee proxy: drop from 5 to 10 if those ranks exist
+    if 5 in ranks_sorted and 10 in ranks_sorted:
+        q2 = f"""
+        WITH ranked AS (
+          SELECT term_id, similarity,
+                 ROW_NUMBER() OVER (PARTITION BY term_id ORDER BY similarity DESC) AS rnk
+          FROM {neighbors_table}
+        ),
+        p AS (
+          SELECT
+            term_id,
+            MAX(CASE WHEN rnk=5 THEN similarity END) AS sim5,
+            MAX(CASE WHEN rnk=10 THEN similarity END) AS sim10
+          FROM ranked
+          GROUP BY term_id
+        )
+        SELECT AVG(sim5 - sim10) AS avg_drop_5_to_10, AVG(sim10) AS avg_sim10
+        FROM p
+        WHERE sim5 IS NOT NULL AND sim10 IS NOT NULL;
+        """
+        row = cur.execute(q2).fetchone()
+        if row and row[0] is not None:
+            print(f"\n[EVAL] Knee proxy: avg_drop(sim5-sim10)={row[0]:.3f}, avg_sim@10={row[1]:.3f}")
+
+
+def load_eligible_terms(
+    conn: sqlite3.Connection,
+    terms_table: str,
+    canonical_col: str,
+    role_col: str,
+    hpc_col: str,
+    role_value: str = "class",
+) -> Set[str]:
+    """
+    Eligible = ontology_role == 'class' AND is_hpc_domain_term != 0
+    """
+    cur = conn.cursor()
+    q = f"""
+    SELECT {canonical_col} AS t
+    FROM {terms_table}
+    WHERE LOWER({role_col}) = ?
+      AND COALESCE({hpc_col}, 0) != 0
+      AND {canonical_col} IS NOT NULL AND TRIM({canonical_col}) != ''
+    """
+    out = set()
+    for (t,) in cur.execute(q, (role_value,)).fetchall():
+        out.add(norm_text(t))
+    return out
+
+
+def eval_eligible_neighbor_rate(
+    conn: sqlite3.Connection,
+    neighbors_table: str,
+    eligible_terms: Set[str],
+    k_list: List[int],
+) -> None:
+    """
+    For each term, among top-k neighbors, what fraction are eligible terms?
+    Uses neighbor_term_text string matching against canonical terms.
+    """
+    cur = conn.cursor()
+    ks = sorted(set(k_list))
+
+    # Pull ranked neighbors once
+    q = f"""
+    WITH ranked AS (
+      SELECT
+        term_id,
+        term_text,
+        neighbor_term_text,
+        similarity,
+        ROW_NUMBER() OVER (PARTITION BY term_id ORDER BY similarity DESC) AS rnk
+      FROM {neighbors_table}
+    )
+    SELECT term_id, term_text, neighbor_term_text, rnk
+    FROM ranked
+    WHERE rnk <= {max(ks)};
+    """
+    rows = cur.execute(q).fetchall()
+
+    # accumulate per term
+    per_term_neighbors: Dict[int, List[str]] = defaultdict(list)
+    for term_id, term_text, nb_text, rnk in rows:
+        per_term_neighbors[int(term_id)].append(norm_text(nb_text))
+
+    print("\n[EVAL] EligibleNeighborRate@k (neighbors passing class+hpc gate):")
+    for k in ks:
+        rates = []
+        for term_id, nbs in per_term_neighbors.items():
+            topk = nbs[:k]
+            if not topk:
+                continue
+            eligible = sum(1 for nb in topk if nb in eligible_terms)
+            rates.append(eligible / float(len(topk)))
+        if rates:
+            avg = sum(rates) / len(rates)
+            print(f"  k={k:>2d}: avg_rate={avg:.3f} over {len(rates)} terms")
+        else:
+            print(f"  k={k:>2d}: no data")
+
+
+def eval_sibling_hit_rate(
+    conn: sqlite3.Connection,
+    neighbors_table: str,
+    taxonomy_seed_table: str,
+    term_candidates_table: str,
+    k_list: List[int],
+) -> None:
+    """
+    Correct sibling hit rate:
+    - taxonomy uses labels (child,parent)
+    - skipgram is by (term_id, neighbor_term_id)
+    - we align via term_candidates.term_lemma (lowercased)
+    """
+    cur = conn.cursor()
+    ks = sorted(set(k_list))
+    maxk = max(ks)
+
+    # 1) Build lemma -> term_id mapping
+    lemma2id: Dict[str, int] = {}
+    id2lemma: Dict[int, str] = {}
+    for tid, lemma in cur.execute(
+        f"SELECT term_id, term_lemma FROM {term_candidates_table} WHERE term_lemma IS NOT NULL AND TRIM(term_lemma) != ''"
+    ).fetchall():
+        l = norm_text(lemma)
+        lemma2id[l] = int(tid)
+        id2lemma[int(tid)] = l
+
+    # 2) Read taxonomy seed edges in lemma space
+    parent2kids: Dict[str, Set[str]] = defaultdict(set)
+    child2parent: Dict[str, str] = {}
+
+    seed_rows = cur.execute(f"SELECT child, parent FROM {taxonomy_seed_table}").fetchall()
+    mapped_children = 0
+    for child, parent in seed_rows:
+        c = norm_text(child)
+        p = norm_text(parent)
+        if not c or not p:
+            continue
+        if c not in lemma2id:
+            continue
+        if p not in lemma2id:
+            # parent might still be a valid taxonomy label but not in term_candidates;
+            # still allow sibling test using child alignment only
+            pass
+        child2parent[c] = p
+        parent2kids[p].add(c)
+        mapped_children += 1
+
+    if mapped_children == 0:
+        print("\n[EVAL] SiblingHitRate@k: 0 seed children mapped to term_candidates.term_lemma. Check label alignment.")
+        return
+
+    # 3) Pull neighbors up to maxk for the mapped children term_ids
+    # Use SQL window ranking by similarity for each term_id
+    q = f"""
+    WITH ranked AS (
+      SELECT
+        term_id,
+        neighbor_term_id,
+        similarity,
+        ROW_NUMBER() OVER (PARTITION BY term_id ORDER BY similarity DESC) AS rnk
+      FROM {neighbors_table}
+    )
+    SELECT term_id, neighbor_term_id, rnk
+    FROM ranked
+    WHERE rnk <= ?;
+    """
+    rows = cur.execute(q, (maxk,)).fetchall()
+
+    termid2neighbors: Dict[int, List[int]] = defaultdict(list)
+    for term_id, nb_id, rnk in rows:
+        termid2neighbors[int(term_id)].append(int(nb_id))
+
+    print("\n[EVAL] SiblingHitRate@k (aligned via term_lemma):")
+    for k in ks:
+        rates = []
+        used = 0
+        for child_lemma, parent_lemma in child2parent.items():
+            tid = lemma2id.get(child_lemma)
+            if tid is None:
+                continue
+            nb_ids = termid2neighbors.get(tid, [])
+            if not nb_ids:
+                continue
+            topk = nb_ids[:k]
+            # convert neighbor ids to lemmas
+            nb_lemmas = [id2lemma.get(nid, "") for nid in topk]
+            siblings = parent2kids.get(parent_lemma, set())
+            hits = sum(1 for nb in nb_lemmas if nb in siblings and nb != child_lemma)
+            rates.append(hits / float(len(topk)))
+            used += 1
+
+        if rates:
+            avg = sum(rates) / len(rates)
+            print(f"  k={k:>2d}: avg_hit_rate={avg:.3f} over {used} seed-children")
+        else:
+            print(f"  k={k:>2d}: no comparable terms (unexpected)")
+
+def evaluate_k_choices(
+    db_path: str,
+    neighbors_table: str,
+    taxonomy_seed_table: str,
+    term_candidates_table: str,   # <-- ADD THIS
+    terms_table: str,
+    canonical_col: str,
+    role_col: str,
+    hpc_col: str,
+    k_list: List[int],
+) -> None:
+    conn = sqlite3.connect(db_path)
+    cur = conn.cursor()
+
+    # quick existence checks
+    def exists(name: str) -> bool:
+        cur.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (name,))
+        return cur.fetchone() is not None
+
+    if not exists(neighbors_table):
+        conn.close()
+        print(f"[EVAL] Missing neighbors table: {neighbors_table}")
+        return
+
+    if not exists(taxonomy_seed_table):
+        conn.close()
+        print(f"[EVAL] Missing taxonomy seed table: {taxonomy_seed_table} (needed for sibling hit rate)")
+        return
+
+    if not exists(terms_table):
+        conn.close()
+        print(f"[EVAL] Missing terms table: {terms_table} (needed for eligible neighbor rate)")
+        return
+
+    # Similarity curve
+    eval_similarity_curve(conn, neighbors_table, ranks=[1, 3, 5, 10])
+
+    # Eligible neighbor rate
+    eligible = load_eligible_terms(conn, terms_table, canonical_col, role_col, hpc_col, role_value="class")
+    print(f"\n[EVAL] Eligible terms loaded: {len(eligible)}")
+    eval_eligible_neighbor_rate(conn, neighbors_table, eligible, k_list)
+
+    # Sibling hit rate
+    eval_sibling_hit_rate(conn, neighbors_table, taxonomy_seed_table, term_candidates_table, k_list)
+
+    conn.close()
 
 
 # -----------------------------
@@ -334,8 +631,18 @@ def evaluate_embedding_coverage(
 # CLI
 # -----------------------------
 
+def parse_k_list(s: str) -> List[int]:
+    out = []
+    for part in (s or "").split(","):
+        part = part.strip()
+        if not part:
+            continue
+        out.append(int(part))
+    return out or [5, 10]
+
+
 def main():
-    ap = argparse.ArgumentParser(description="Train Skip-gram Word2Vec from DB and store nearest neighbors.")
+    ap = argparse.ArgumentParser(description="Train Skip-gram Word2Vec from DB and store nearest neighbors + evaluate k.")
 
     ap.add_argument("--db", required=True)
     ap.add_argument("--sentences_table", default="sentence_lemmatized")
@@ -351,7 +658,8 @@ def main():
     ap.add_argument("--min_count", type=int, default=3)
     ap.add_argument("--workers", type=int, default=4)
 
-    ap.add_argument("--top_k", type=int, default=10)
+    # IMPORTANT: store more once, evaluate multiple ks later
+    ap.add_argument("--top_k_max", type=int, default=5, help="Store top-K neighbors per term (max).")
     ap.add_argument("--min_tfidf", type=float, default=10.0)
 
     ap.add_argument("--model_dir", default="models")
@@ -359,7 +667,22 @@ def main():
     ap.add_argument("--skipped_terms_path", default="output/skipgram_skipped_terms.tsv")
 
     ap.add_argument("--train", action="store_true", help="Force retrain Word2Vec model")
-    ap.add_argument("--eval", action="store_true", help="Run small coverage eval")
+
+    # small coverage eval
+    ap.add_argument("--eval", action="store_true", help="Run coverage eval")
+
+    # NEW: k validation eval
+    ap.add_argument("--eval_k", action="store_true", help="Evaluate whether k=5 vs 10 is good using neighbors + taxonomy + gates.")
+    ap.add_argument("--k_list", default="5", help="Comma-separated k values to evaluate, e.g. '3,5,10,15'")
+
+    ap.add_argument("--taxonomy_seed_table", default="taxonomy_is_a_clean",
+                    help="Silver truth table with child,parent (for SiblingHitRate@k).")
+
+    ap.add_argument("--terms_table", default="term_enrichment_exten",
+                    help="Table with canonical_term, ontology_role, is_hpc_domain_term (for EligibleNeighborRate@k).")
+    ap.add_argument("--canonical_col", default="canonical_term")
+    ap.add_argument("--role_col", default="ontology_role")
+    ap.add_argument("--hpc_col", default="is_hpc_domain_term")
 
     args = ap.parse_args()
 
@@ -411,11 +734,25 @@ def main():
         args.term_candidates_table,
         term_ids,
         matrix,
-        top_k=args.top_k,
+        top_k_max=args.top_k_max,
     )
 
     if args.eval:
         evaluate_embedding_coverage(args.db, args.term_candidates_table, term_ids, args.min_tfidf)
+
+    if args.eval_k:
+        ks = parse_k_list(args.k_list)
+        evaluate_k_choices(
+            db_path=args.db,
+            neighbors_table=args.neighbors_table,
+            taxonomy_seed_table=args.taxonomy_seed_table,
+            term_candidates_table=args.term_candidates_table,  # <-- ADD THIS
+            terms_table=args.terms_table,
+            canonical_col=args.canonical_col,
+            role_col=args.role_col,
+            hpc_col=args.hpc_col,
+            k_list=ks,
+        )
 
 
 if __name__ == "__main__":

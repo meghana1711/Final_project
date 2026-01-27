@@ -1,402 +1,547 @@
+"""
+olaf/taxonomy.py
+
+Final taxonomy builder:
+- Seed taxonomy (head-match using extracted parents)
+- Embedding expansion using skipgram_neighbors (ID-based) [DEFAULT ON]
+- Hearst confirmation from sentence table [DEFAULT ON]
+
+output table: taxonomy_is_a (configurable via --out_table)
+"""
+
+from __future__ import annotations
+
 import argparse
-import re
 import sqlite3
-from datetime import datetime
-from typing import Dict, Tuple, Optional, List
+import re
+from collections import Counter, defaultdict
+from typing import Dict, List, Optional, Set, Tuple
+
 
 # -----------------------------
-# Tokenization helpers
+# Helpers
 # -----------------------------
-_CAMEL_SPLIT_RE = re.compile(r"(?<!^)(?=[A-Z])")
+
+def norm(s: Optional[str]) -> str:
+    return re.sub(r"\s+", " ", (s or "").strip())
+
+def norm_l(s: Optional[str]) -> str:
+    return norm(s).lower()
+
+def tokenize(text: str) -> List[str]:
+    t = norm_l(text)
+    t = re.sub(r"[^a-z0-9_\- ]", " ", t)
+    t = re.sub(r"\s+", " ", t).strip()
+    return [x for x in t.split() if x]
+
+def table_exists(cur: sqlite3.Cursor, name: str) -> bool:
+    cur.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (name,))
+    return cur.fetchone() is not None
+
+def col_exists(cur: sqlite3.Cursor, table: str, col: str) -> bool:
+    cur.execute(f"PRAGMA table_info({table})")
+    return any(r[1] == col for r in cur.fetchall())
+
+def ensure_out_table(cur: sqlite3.Cursor, out_table: str) -> None:
+    # (2) confidence column removed
+    cur.execute(f"""
+    CREATE TABLE IF NOT EXISTS {out_table} (
+      child TEXT NOT NULL,
+      parent TEXT NOT NULL,
+      method TEXT NOT NULL,
+      evidence TEXT,
+      PRIMARY KEY(child, parent, method)
+    )
+    """)
+
+def is_identity_edge(child: str, parent: str) -> bool:
+    return norm_l(child) == norm_l(parent)
 
 
-def normalize_spaces(s: str) -> str:
-    s = (s or "").strip()
-    s = re.sub(r"\s+", " ", s)
+# -----------------------------
+# Parent extraction from definitions (simple, stable)
+# -----------------------------
+
+DEF_HEAD_RE = re.compile(r"^\s*(?:a|an|the)\s+(?P<head>[^.]{1,240})", re.IGNORECASE)
+CLAUSE_CUT_RE = re.compile(r"\b(that|which|used|for|to|with|provides|responsible)\b", re.I)
+TRAILING_PREP_RE = re.compile(r"\b(of|in|on|for|to|at|by|from)\b\s*$", re.I)
+
+BAD_PARENTS = {"thing", "type", "types", "value", "values", "property", "properties", "details", "information", "data"}
+DROP_TOKENS = {"the", "a", "an", "this", "that", "these", "those"}
+SCHEDULER_TOKENS = {"slurm", "lsf", "pbs", "torque", "sge"}
+
+def normalize_parent_phrase(raw_phrase: str) -> Optional[str]:
+    if not raw_phrase:
+        return None
+    p = norm_l(raw_phrase)
+    p = CLAUSE_CUT_RE.split(p, maxsplit=1)[0]
+    p = re.sub(r"[^a-z0-9_\- ]", " ", p)
+    p = re.sub(r"\s+", " ", p).strip()
+    if not p:
+        return None
+
+    toks = [t for t in p.split() if t and t not in DROP_TOKENS and t not in SCHEDULER_TOKENS]
+    if not toks:
+        return None
+
+    p = " ".join(toks).strip()
+    p = TRAILING_PREP_RE.sub("", p).strip()
+
+    if not p or p in BAD_PARENTS:
+        return None
+
+    # keep last up to 3 tokens
+    tt = p.split()
+    if len(tt) > 3:
+        p = " ".join(tt[-3:])
+
+    if p in BAD_PARENTS or len(p) < 3:
+        return None
+    return p
+
+def parent_from_definition(defn: str) -> Optional[str]:
+    if not defn:
+        return None
+    m = DEF_HEAD_RE.match(defn)
+    if not m:
+        return None
+    return normalize_parent_phrase(m.group("head"))
+
+
+# -----------------------------
+# Seed taxonomy: head match
+# -----------------------------
+
+ROLE_TOKENS = {"user", "administrator", "admin", "owner", "operator", "manager"}
+FILE_WORDS = {"file", "files", "path", "directory", "dir", "conf", "config", "cfg"}
+BAD_CHILD_RE = re.compile(r"\b(one|two|three|[0-9]+)\s+or\s+more\b|\bor\s+more\b", re.I)
+
+def is_bad_child(term: str) -> bool:
+    t = term.lower()
+    if BAD_CHILD_RE.search(t):
+        return True
+    toks = set(tokenize(term))
+    if toks & ROLE_TOKENS:
+        return True
+    if toks & FILE_WORDS:
+        return True
+    if "/etc/" in t or "/var/" in t or "\\" in t:
+        return True
+    return False
+
+def head_match(child: str, parent: str, max_parent_tokens: int = 3) -> bool:
+    ct = tokenize(child)
+    pt = tokenize(parent)
+    if not ct or not pt:
+        return False
+    if len(pt) > max_parent_tokens:
+        return False
+    if len(ct) < len(pt):
+        return False
+    return ct[-len(pt):] == pt
+
+
+# -----------------------------
+# Hearst patterns (small, high precision)
+# -----------------------------
+
+PAT_ISA = re.compile(r"\b(?P<x>[a-z0-9_\- ]{2,80})\s+is\s+(?:a|an)\s+(?P<y>[a-z0-9_\- ]{2,80})\b", re.I)
+PAT_OTHER = re.compile(r"\b(?P<x>[a-z0-9_\- ]{2,80})\s+(?:and|or)\s+other\s+(?P<y>[a-z0-9_\- ]{2,80})\b", re.I)
+PAT_SUCH_AS = re.compile(r"\b(?P<y>[a-z0-9_\- ]{2,80})\s+such\s+as\s+(?P<x>[a-z0-9_\- ]{2,80})\b", re.I)
+
+def clean_np(s: str) -> str:
+    s = norm_l(s)
+    s = re.sub(r"[^a-z0-9_\- ]", " ", s)
+    s = re.sub(r"\s+", " ", s).strip()
+    toks = s.split()
+    if len(toks) > 4:
+        s = " ".join(toks[-4:])
     return s
 
 
-def tokenize(text: str) -> List[str]:
+# -----------------------------
+# (6) Simple duplicate normalization for swapped scheduler phrases
+# Example: "host lsf" -> "lsf host"
+# Only applied to 2-token phrases where one token is scheduler and the other is a generic head.
+# -----------------------------
+
+GENERIC_HEADS = {"host", "job", "daemon", "command", "queue", "plugin"}
+
+def canonicalize_swapped_scheduler_phrase(term: str) -> str:
+    t = norm_l(term)
+    toks = t.split()
+    if len(toks) == 2:
+        a, b = toks
+        if a in SCHEDULER_TOKENS and b in GENERIC_HEADS:
+            return f"{a} {b}"
+        if b in SCHEDULER_TOKENS and a in GENERIC_HEADS:
+            return f"{b} {a}"
+    return t
+
+def build_term_rep_map(terms: List[str]) -> Dict[str, str]:
     """
-    Tokenize a canonical label more robustly than split():
-      - '_' and '/' -> spaces
-      - split CamelCase
-      - normalize spaces
-      - lowercase tokens
+    Map a "duplicate key" -> chosen representative label.
+    duplicate key is based on canonicalize_swapped_scheduler_phrase(lowercase term).
+    Representative chosen: prefer scheduler-first form, else keep first seen.
     """
-    if not text:
-        return []
-    t = _CAMEL_SPLIT_RE.sub(" ", text)
-    t = normalize_spaces(t)
-    return [tok.lower() for tok in t.split() if tok.strip()]
+    key2rep: Dict[str, str] = {}
+    for original in terms:
+        orig_norm = norm(original)
+        key = canonicalize_swapped_scheduler_phrase(orig_norm)
+        if key not in key2rep:
+            # representative label: reconstruct scheduler-first if applicable, else original
+            # preserve original casing/spacing where possible
+            if key != norm_l(orig_norm):
+                # key is normalized lowercase; use original but normalized spacing
+                # and also force scheduler-first tokens for display
+                key2rep[key] = " ".join(key.split())
+            else:
+                key2rep[key] = orig_norm
+    return key2rep
+
+def to_rep(label: str, key2rep: Dict[str, str]) -> str:
+    key = canonicalize_swapped_scheduler_phrase(label)
+    return key2rep.get(key, norm(label))
 
 
 # -----------------------------
-# Type rules (typed parents)
+# Skipgram expansion (ID-based)
+# skipgram_neighbors schema:
+#   term_id, neighbor_term_id, similarity ...
+# We align canonical_term -> term_candidates.term_lemma -> term_id
 # -----------------------------
-JOB_STATES = {
-    "pending", "running", "completed", "failed", "cancelled", "configuring",
-    "completing", "suspended", "timeout", "node_fail", "preempted"
-}
 
-def infer_parent_type(term: str) -> Optional[str]:
-    """
-    Returns a type-parent label like:
-      option_flag | config_param | config_file | log_or_state_path | job_state | command | resource | other_hpc
-    or None if no rule matches.
-    """
-    if not term:
-        return None
-    t = term.strip()
-    lower = t.lower()
-
-    # Option flags
-    if lower.startswith("--") or re.fullmatch(r"-[A-Za-z]\b", t):
-        return "option_flag"
-
-    # Config params / env vars (ALLCAPS with underscores)
-    if re.fullmatch(r"[A-Z0-9_]+", t) and "_" in t:
-        return "config_param"
-
-    # Config files
-    if lower.endswith((".conf", ".cfg", ".ini")):
-        return "config_file"
-
-    # Paths (rough)
-    if lower.startswith("/") or "\\" in t:
-        return "log_or_state_path"
-
-    # Job states (rough list)
-    if lower in JOB_STATES:
-        return "job_state"
-
-    # Commands (common HPC scheduler command shape)
-    # sbatch/srun/squeue/sacct/bsub/bjobs/lsload etc.
-    if re.fullmatch(r"[a-z][a-z0-9_-]{1,20}", lower) and lower in {
-        "sbatch", "srun", "salloc", "squeue", "sacct", "scancel", "sinfo", "scontrol",
-        "bsub", "bjobs", "bqueues", "bhosts", "lsload", "lsid", "bhist"
-    }:
-        return "command"
-
-    # Resources (simple heuristic)
-    if lower in {"cpu", "cpus", "core", "cores", "gpu", "gpus", "memory", "mem", "node", "nodes"}:
-        return "resource"
-
-    return None
-
-
-# -----------------------------
-# DB helpers
-# -----------------------------
-def get_connection(db_path: str) -> sqlite3.Connection:
-    conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA foreign_keys = ON;")
-    return conn
-
-
-def init_taxonomy_is_a_table(conn: sqlite3.Connection, out_table: str) -> None:
-    """
-    Upgraded taxonomy table.
-
-    Adds:
-      - score   : numeric confidence signal (e.g. head frequency)
-      - support : count of supporting signals (head match + optional type rule)
-      - rule    : which rule created it (head_last_token / typed_rule)
-    """
-    conn.execute(
-        f"""
-        CREATE TABLE IF NOT EXISTS {out_table} (
-            id                     INTEGER PRIMARY KEY AUTOINCREMENT,
-            child_canonical_id     INTEGER NOT NULL,
-            child_canonical_term   TEXT    NOT NULL,
-            parent_head_text       TEXT    NOT NULL,
-            parent_canonical_id    INTEGER,
-            parent_canonical_term  TEXT    NOT NULL,
-            method                 TEXT    NOT NULL,
-            rule                   TEXT    NOT NULL,
-            score                  REAL    NOT NULL DEFAULT 0.0,
-            support                INTEGER NOT NULL DEFAULT 1,
-            created_at             TEXT    NOT NULL,
-            UNIQUE(child_canonical_id, parent_head_text, method, rule)
-        )
-        """
-    )
-
-    # lightweight upgrade if table existed without new columns
-    cols = {r[1] for r in conn.execute(f"PRAGMA table_info({out_table});").fetchall()}
-    if "rule" not in cols:
-        conn.execute(f"ALTER TABLE {out_table} ADD COLUMN rule TEXT NOT NULL DEFAULT 'head_last_token';")
-    if "score" not in cols:
-        conn.execute(f"ALTER TABLE {out_table} ADD COLUMN score REAL NOT NULL DEFAULT 0.0;")
-    if "support" not in cols:
-        conn.execute(f"ALTER TABLE {out_table} ADD COLUMN support INTEGER NOT NULL DEFAULT 1;")
-
-    conn.commit()
-    print(f"[INFO] Ensured {out_table} exists (with rule/score/support).")
-
-
-def load_canonical_terms(conn: sqlite3.Connection, enrichment_table: str):
-    rows = conn.execute(
-        f"""
-        SELECT canonical_id, canonical_term
-        FROM {enrichment_table}
-        WHERE canonical_term IS NOT NULL
-          AND TRIM(canonical_term) != ''
-        """
-    ).fetchall()
-
-    id2term: Dict[int, str] = {}
-    label2id: Dict[str, int] = {}
-
-    for r in rows:
-        cid = int(r["canonical_id"])
-        label = (r["canonical_term"] or "").strip()
-        if not label:
-            continue
-        id2term[cid] = label
-        label2id[label.lower()] = cid
-
-    print(f"[INFO] Loaded {len(id2term)} canonical terms from {enrichment_table}.")
-    return id2term, label2id
-
-
-def load_parent_heads(
-    conn: sqlite3.Connection,
-    parent_candidates_table: str,
-    enrichment_table: str,
-    label2id: Dict[str, int],
-) -> Dict[str, Tuple[Optional[int], str, int]]:
-    """
-    Returns head2parent:
-      head_text -> (parent_canonical_id or None, parent_label, frequency)
-
-    Also tries:
-      - parent_candidates.head_canonical_id
-      - fallback exact match head_text to canonical_term
-      - else parent_canonical_id None, label=head_text
-    """
-    rows = conn.execute(
-        f"""
-        SELECT head_text, head_canonical_id, frequency
-        FROM {parent_candidates_table}
-        """
-    ).fetchall()
-
-    head2parent: Dict[str, Tuple[Optional[int], str, int]] = {}
-
-    for r in rows:
-        head = (r["head_text"] or "").strip().lower()
-        if not head:
-            continue
-
-        freq = int(r["frequency"] or 0)
-        cid = r["head_canonical_id"]
-
-        parent_id: Optional[int] = None
-        parent_label: Optional[str] = None
-
-        if cid is not None:
-            crow = conn.execute(
-                f"SELECT canonical_term FROM {enrichment_table} WHERE canonical_id = ?",
-                (cid,),
-            ).fetchone()
-            if crow is not None:
-                parent_id = int(cid)
-                parent_label = (crow["canonical_term"] or "").strip()
-
-        if parent_label is None:
-            cid_guess = label2id.get(head)
-            if cid_guess is not None:
-                parent_id = cid_guess
-                prow = conn.execute(
-                    f"SELECT canonical_term FROM {enrichment_table} WHERE canonical_id = ?",
-                    (cid_guess,),
-                ).fetchone()
-                parent_label = (prow["canonical_term"] or "").strip() if prow else head
-
-        if parent_label is None:
-            parent_label = head
-
-        head2parent[head] = (parent_id, parent_label, freq)
-
-    print(f"[INFO] Loaded {len(head2parent)} heads from {parent_candidates_table}.")
-    return head2parent
-
-
-# -----------------------------
-# Core taxonomy building
-# -----------------------------
-def insert_edge(
+def load_term_candidates_lemma_maps(
     cur: sqlite3.Cursor,
-    out_table: str,
-    child_id: int,
-    child_label: str,
-    parent_head_text: str,
-    parent_id: Optional[int],
-    parent_label: str,
-    method: str,
-    rule: str,
-    score: float,
-    support: int,
-    now: str,
-) -> None:
+    term_candidates_table: str,
+) -> Tuple[Dict[str, int], Dict[int, str]]:
+    lemma2id: Dict[str, int] = {}
+    id2lemma: Dict[int, str] = {}
     cur.execute(
         f"""
-        INSERT OR REPLACE INTO {out_table}
-        (child_canonical_id, child_canonical_term,
-         parent_head_text, parent_canonical_id, parent_canonical_term,
-         method, rule, score, support, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """,
-        (
-            child_id,
-            child_label,
-            parent_head_text,
-            parent_id,
-            parent_label,
-            method,
-            rule,
-            float(score),
-            int(support),
-            now,
-        ),
+        SELECT term_id, term_lemma
+        FROM {term_candidates_table}
+        WHERE term_lemma IS NOT NULL AND TRIM(term_lemma) != ''
+        """
     )
-
-
-def build_taxonomy(
-    conn: sqlite3.Connection,
-    enrichment_table: str,
-    parent_candidates_table: str,
-    out_table: str,
-    method: str,
-    clear_out: bool,
-    add_typed_parents: bool,
-):
-    id2term, label2id = load_canonical_terms(conn, enrichment_table)
-    head2parent = load_parent_heads(conn, parent_candidates_table, enrichment_table, label2id)
-
-    init_taxonomy_is_a_table(conn, out_table)
-
-    cur = conn.cursor()
-    if clear_out:
-        cur.execute(f"DELETE FROM {out_table};")
-        conn.commit()
-        print(f"[INFO] Cleared existing rows from {out_table}.")
-
-    inserted = 0
-    now = datetime.utcnow().isoformat(timespec="seconds") + "Z"
-
-    # --- optional typed parent nodes (no canonical_id) ---
-    # These are meta-parents you can later map to OWL classes: OptionFlag, ConfigParam, ConfigFile, JobState, etc.
-    # We store them as parent_head_text like "type:option_flag" to avoid collisions with normal heads.
-    def typed_parent_label(ptype: str) -> str:
-        return f"type:{ptype}"
-
-    for child_id, label in id2term.items():
-        toks = tokenize(label)
-        if len(toks) < 2:
-            # still allow typed rules for single-token things like "--nodes"
-            pass
-
-        # --------------------------
-        # Rule 1: head-last-token
-        # --------------------------
-        if len(toks) >= 2:
-            head = toks[-1]
-            parent_info = head2parent.get(head)
-            if parent_info is not None:
-                parent_id, parent_label, freq = parent_info
-
-                # avoid trivial self loops
-                if parent_id == child_id or parent_label.lower() == label.lower():
-                    pass
-                else:
-                    # score = head frequency (simple, strong baseline)
-                    score = float(freq)
-                    support = 1
-                    insert_edge(
-                        cur=cur,
-                        out_table=out_table,
-                        child_id=child_id,
-                        child_label=label,
-                        parent_head_text=head,
-                        parent_id=parent_id,
-                        parent_label=parent_label,
-                        method=method,
-                        rule="head_last_token",
-                        score=score,
-                        support=support,
-                        now=now,
-                    )
-                    inserted += 1
-
-        # --------------------------
-        # Rule 2: typed parents (optional)
-        # --------------------------
-        if add_typed_parents:
-            ptype = infer_parent_type(label)
-            if ptype:
-                # avoid nonsensical case: if head is literally the same as type token
-                # This is a meta-type edge; parent_id is None.
-                insert_edge(
-                    cur=cur,
-                    out_table=out_table,
-                    child_id=child_id,
-                    child_label=label,
-                    parent_head_text=typed_parent_label(ptype),
-                    parent_id=None,
-                    parent_label=typed_parent_label(ptype),
-                    method=method,
-                    rule="typed_rule",
-                    score=5.0,      # fixed baseline; you can tune later
-                    support=1,
-                    now=now,
-                )
-                inserted += 1
-
-    conn.commit()
-    print(f"[INFO] Inserted/updated {inserted} edges into {out_table}.")
+    for tid, lem in cur.fetchall():
+        l = norm_l(lem)
+        lemma2id[l] = int(tid)
+        id2lemma[int(tid)] = l
+    return lemma2id, id2lemma
 
 
 # -----------------------------
-# CLI
+# Main
 # -----------------------------
+
 def main():
-    ap = argparse.ArgumentParser(description="Taxonomy extraction (head-based + optional typed parents).")
+    ap = argparse.ArgumentParser(
+        description="Build taxonomy_is_a (seed + embeddings + hearst). Embeddings/Hearst enabled by default."
+    )
     ap.add_argument("--db", required=True)
+    ap.add_argument("--terms_table", default="term_enrichment_exten")
 
-    ap.add_argument("--enrichment_table", default="term_enrichment",
-                    help="Canonical term table (term_enrichment / term_enrichment_v2 / term_enrichment_exten)")
-    ap.add_argument("--parent_candidates_table", default="taxonomy_parent_candidates",
-                    help="Head candidates table from parent_terms step")
+    # (4) This script writes taxonomy_is_a by default
     ap.add_argument("--out_table", default="taxonomy_is_a")
 
-    ap.add_argument("--method", default="head_parent_candidates_v2",
-                    help="Method label stored in taxonomy table")
-    ap.add_argument("--clear_out", action="store_true",
-                    help="Delete existing taxonomy rows in out_table before inserting")
+    # Seed parent selection
+    # (5) removed --top_parents; auto-select parents
+    ap.add_argument("--min_children_per_parent", type=int, default=2)
 
-    ap.add_argument("--add_typed_parents", action="store_true",
-                    help="Add extra is_a edges to meta-type parents (type:option_flag, type:config_param, etc.)")
+    # Embeddings (3) default ON; disable via flag
+    ap.add_argument("--no_embeddings", action="store_true", help="Disable embedding expansion.")
+    ap.add_argument("--sim_table", default="skipgram_neighbors")
+    ap.add_argument("--term_candidates_table", default="term_candidates")
+    ap.add_argument("--top_k_neighbors", type=int, default=5)
+    ap.add_argument("--min_cos", type=float, default=0.75)
+    ap.add_argument("--require_same_category", action="store_true")
+
+    # Hearst (3) default ON; disable via flag
+    ap.add_argument("--no_hearst", action="store_true", help="Disable Hearst extraction.")
+    ap.add_argument("--sent_table", default="sentence_lemmatized")
+    ap.add_argument("--sent_col", default="sentence")
+    ap.add_argument("--max_sents", type=int, default=200000)
 
     args = ap.parse_args()
 
-    conn = get_connection(args.db)
-    try:
-        build_taxonomy(
-            conn=conn,
-            enrichment_table=args.enrichment_table,
-            parent_candidates_table=args.parent_candidates_table,
-            out_table=args.out_table,
-            method=args.method,
-            clear_out=args.clear_out,
-            add_typed_parents=args.add_typed_parents,
-        )
-    finally:
-        conn.close()
+    con = sqlite3.connect(args.db)
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
 
-    print("[INFO] Done building taxonomy.")
+    if not table_exists(cur, args.terms_table):
+        raise RuntimeError(f"Missing terms_table: {args.terms_table}")
+
+    # Required cols in term table
+    for c in ["canonical_term", "ontology_role", "is_hpc_domain_term", "confidence"]:
+        if not col_exists(cur, args.terms_table, c):
+            raise RuntimeError(f"{args.terms_table} missing column: {c}")
+
+    has_cat = col_exists(cur, args.terms_table, "category")
+    has_def = col_exists(cur, args.terms_table, "short_definition")
+
+    ensure_out_table(cur, args.out_table)
+    cur.execute(f"DELETE FROM {args.out_table}")
+
+    # ---- Load meta (canonical truth) ----
+    cur.execute(f"""
+      SELECT canonical_term, ontology_role, is_hpc_domain_term, confidence
+             {", category" if has_cat else ""}
+             {", short_definition" if has_def else ""}
+      FROM {args.terms_table}
+      WHERE canonical_term IS NOT NULL AND TRIM(canonical_term) != ''
+    """)
+
+    meta: Dict[str, Dict] = {}
+    all_terms_raw: List[str] = []
+
+    for r in cur.fetchall():
+        term = norm(r["canonical_term"])
+        if not term:
+            continue
+        all_terms_raw.append(term)
+
+        role = norm_l(r["ontology_role"])
+        try:
+            hpc = int(r["is_hpc_domain_term"])
+        except Exception:
+            hpc = 0
+        conf = float(r["confidence"]) if (r["confidence"] is not None) else 0.0
+        cat = norm_l(r["category"]) if has_cat else ""
+        dfn = norm(r["short_definition"]) if has_def else ""
+        meta[term.lower()] = {"term": term, "role": role, "hpc": hpc, "cat": cat, "conf": conf, "defn": dfn}
+
+    # (6) build representative map to collapse swapped duplicates like "host lsf" -> "lsf host"
+    key2rep = build_term_rep_map(all_terms_raw)
+
+    # (1) eligibility is hard-coded per your requirement
+    def eligible_class(label: str) -> bool:
+        m = meta.get(label.lower())
+        if not m:
+            return False
+        if m["role"] != "class":
+            return False
+        if m["hpc"] != 1:
+            return False
+        if m["conf"] < 0.7:
+            return False
+        return True
+
+    eligible_terms_raw = [m["term"] for m in meta.values() if eligible_class(m["term"])]
+
+    # apply representative normalization (drop duplicates)
+    eligible_terms = sorted({to_rep(t, key2rep) for t in eligible_terms_raw})
+
+    # ---- Step 1: Build parent list (from defs + frequent class terms) ----
+    class_support = Counter()
+    def_support = Counter()
+
+    for m in meta.values():
+        if not eligible_class(m["term"]):
+            continue
+
+        rep = to_rep(m["term"], key2rep).lower()
+        if rep in BAD_PARENTS:
+            continue
+        class_support[rep] += 1
+
+        if has_def and m["defn"]:
+            p = parent_from_definition(m["defn"])
+            if p:
+                p_rep = canonicalize_swapped_scheduler_phrase(p)
+                if p_rep and p_rep not in BAD_PARENTS:
+                    def_support[p_rep] += 1
+
+    # parent scoring: definitions weighted higher
+    score: Dict[str, float] = {}
+    for p, n in class_support.items():
+        if p in BAD_PARENTS:
+            continue
+        score[p] = max(score.get(p, 0.0), 1.0 * n)
+    for p, n in def_support.items():
+        if p in BAD_PARENTS:
+            continue
+        score[p] = max(score.get(p, 0.0), 2.0 * n)
+
+    # (5) No top-N cut. Keep all parents that have some score and are not bad.
+    parents_ranked = sorted(score.items(), key=lambda x: x[1], reverse=True)
+    parent_list = [p for p, sc in parents_ranked if sc > 0.0 and p not in BAD_PARENTS]
+
+    # ---- Step 2: Seed edges by head-match ----
+    scaffold: List[Tuple[str, str]] = []
+    for child in eligible_terms:
+        if is_bad_child(child):
+            continue
+        for parent in parent_list:
+            # parent is lowercase normalized string
+            if norm_l(child) == parent:
+                continue
+            if head_match(child, parent, max_parent_tokens=3):
+                scaffold.append((child, parent))
+
+    parent_counts = Counter(p for _, p in scaffold)
+    whitelist = {p for p, n in parent_counts.items() if n >= args.min_children_per_parent and p not in BAD_PARENTS}
+
+    seed_edges = 0
+    parent2seeds: Dict[str, Set[str]] = defaultdict(set)
+
+    for child, parent in scaffold:
+        if parent not in whitelist:
+            continue
+        # (6) identity removal
+        if is_identity_edge(child, parent):
+            continue
+
+        # store parent as canonical display (scheduler-first if applicable)
+        parent_label = " ".join(parent.split())
+
+        # (2) no confidence column
+        cur.execute(
+            f"INSERT OR REPLACE INTO {args.out_table}(child,parent,method,evidence) VALUES (?,?,?,?)",
+            (child, parent_label, "seed", "head_match"),
+        )
+        seed_edges += 1
+        parent2seeds[parent_label].add(child)
+
+    # ---- Step 3: Embedding expansion (skipgram_neighbors) ----
+    embed_added = 0
+    use_embeddings = not args.no_embeddings
+    if use_embeddings:
+        if not table_exists(cur, args.sim_table):
+            raise RuntimeError(f"Missing sim_table: {args.sim_table}")
+        if not table_exists(cur, args.term_candidates_table):
+            raise RuntimeError(f"Missing term_candidates_table: {args.term_candidates_table}")
+
+        for c in ["term_id", "neighbor_term_id", "similarity"]:
+            if not col_exists(cur, args.sim_table, c):
+                raise RuntimeError(f"{args.sim_table} missing column {c}. Expected skipgram_neighbors schema.")
+
+        lemma2id, id2lemma = load_term_candidates_lemma_maps(cur, args.term_candidates_table)
+
+        for parent_label, seeds in parent2seeds.items():
+            if not seeds:
+                continue
+
+            target_cat = None
+            if args.require_same_category and has_cat:
+                cats = []
+                for s in seeds:
+                    # map to raw meta if possible
+                    s_key = to_rep(s, key2rep).lower()
+                    cats.append(meta.get(s_key, {}).get("cat", ""))
+                cats = [c for c in cats if c]
+                if cats:
+                    target_cat = max(set(cats), key=cats.count)
+
+            added_children = set(seeds)
+
+            for seed in list(seeds):
+                seed_lemma = norm_l(seed)
+                seed_id = lemma2id.get(seed_lemma)
+                if seed_id is None:
+                    continue
+
+                cur.execute(
+                    f"""
+                    SELECT neighbor_term_id, similarity
+                    FROM {args.sim_table}
+                    WHERE term_id = ?
+                      AND similarity >= ?
+                    ORDER BY similarity DESC
+                    LIMIT ?
+                    """,
+                    (seed_id, args.min_cos, args.top_k_neighbors),
+                )
+
+                for nb_id, sim in cur.fetchall():
+                    nb_lemma = id2lemma.get(int(nb_id))
+                    if not nb_lemma:
+                        continue
+
+                    # neighbor must exist as canonical term
+                    if nb_lemma not in meta:
+                        continue
+                    nb_term_raw = meta[nb_lemma]["term"]
+                    nb_term = to_rep(nb_term_raw, key2rep)
+
+                    if nb_term in added_children:
+                        continue
+                    if not eligible_class(nb_term) or is_bad_child(nb_term):
+                        continue
+                    if is_identity_edge(nb_term, parent_label):
+                        continue
+
+                    if args.require_same_category and target_cat:
+                        nb_cat = meta.get(nb_lemma, {}).get("cat", "")
+                        if not nb_cat or nb_cat != target_cat:
+                            continue
+
+                    cur.execute(
+                        f"INSERT OR REPLACE INTO {args.out_table}(child,parent,method,evidence) VALUES (?,?,?,?)",
+                        (nb_term, parent_label, f"embed_expand(k={args.top_k_neighbors},min_cos={args.min_cos})",
+                         f"seed={seed};sim={float(sim):.3f}"),
+                    )
+                    embed_added += 1
+                    added_children.add(nb_term)
+
+    # ---- Step 4: Hearst confirmation ----
+    hearst_added = 0
+    use_hearst = not args.no_hearst
+    if use_hearst:
+        if not table_exists(cur, args.sent_table):
+            raise RuntimeError(f"Missing sent_table: {args.sent_table}")
+        if not col_exists(cur, args.sent_table, args.sent_col):
+            raise RuntimeError(f"{args.sent_table} missing column {args.sent_col}")
+
+        # known eligible class keys (lowercase, representative-normalized)
+        known = {to_rep(v["term"], key2rep).lower() for k, v in meta.items() if eligible_class(v["term"])}
+
+        cur.execute(f"SELECT {args.sent_col} AS s FROM {args.sent_table} LIMIT ?", (args.max_sents,))
+        for (s,) in cur.fetchall():
+            if not s:
+                continue
+            text = str(s)
+
+            for pat in (PAT_ISA, PAT_OTHER, PAT_SUCH_AS):
+                for m in pat.finditer(text):
+                    x = clean_np(m.group("x"))
+                    y = clean_np(m.group("y"))
+                    if not x or not y or x == y:
+                        continue
+                    if y in BAD_PARENTS:
+                        continue
+
+                    # representative-normalize x,y if they correspond to known terms
+                    x_rep = to_rep(x, key2rep).lower()
+                    y_rep = to_rep(y, key2rep).lower()
+
+                    if x_rep not in known or y_rep not in known:
+                        continue
+
+                    child = to_rep(meta[x_rep]["term"] if x_rep in meta else x_rep, key2rep)
+                    parent = to_rep(meta[y_rep]["term"] if y_rep in meta else y_rep, key2rep)
+
+                    if is_bad_child(child):
+                        continue
+                    if is_identity_edge(child, parent):
+                        continue
+
+                    cur.execute(
+                        f"INSERT OR REPLACE INTO {args.out_table}(child,parent,method,evidence) VALUES (?,?,?,?)",
+                        (child, parent, "hearst", text[:220]),
+                    )
+                    hearst_added += 1
+
+    con.commit()
+    con.close()
+
+    print(f"[OK] Wrote {args.out_table}")
+    print(f"     eligible terms (class,hpc,conf>=0.7): {len(eligible_terms)}")
+    print(f"     parents scored: {len(parent_list)} (no top-N cut)")
+    print(f"     seed edges:     {seed_edges}")
+    print(f"     embed added:    {embed_added} (embeddings={'ON' if use_embeddings else 'OFF'})")
+    print(f"     hearst added:   {hearst_added} (hearst={'ON' if use_hearst else 'OFF'})")
+    print(f"     parents kept:   {len(whitelist)} (min_children_per_parent={args.min_children_per_parent})")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,310 @@
+id,doc_id,sentence_id,sentence_text,subj_text,subj_canonical_id,subj_canonical_term,rel_text_raw,rel_key,obj_text,obj_canonical_id,obj_canonical_term,method,created_at
+1,doc_7ceb,doc_7ceb_sent_00023,"A job can be in ZOMBI state, if:
+A job in UNKWN status gets a kill signal, LSF will change the job to ZOMBI state.",LSF,445,lsf,change,change,the job,6,job,openie_spacy,2026-01-26T12:57:46Z
+2,doc_7ceb,doc_7ceb_sent_00038,"Job ﬁles
+When a job is submitted to a queue, LSF holds it in a job ﬁle until conditions are right for it run.",a job,6,job,submit to,submit_to,a queue,757,queue,openie_spacy,2026-01-26T12:57:46Z
+3,doc_7ceb,doc_7ceb_sent_00070,"The ELIM also updates
+LIM when new values are received.",The ELIM,539,elim,update,update,LIM,1075,lim lsf_server_host,openie_spacy,2026-01-26T12:57:46Z
+4,doc_7ceb,doc_7ceb_sent_00076,"If a host’s load is beyond any deﬁned loadSched,
+a job cannot be started on the host.",a job,6,job,start on,start_on,the host,489,host,openie_spacy,2026-01-26T12:57:46Z
+5,doc_7ceb,doc_7ceb_sent_00089,"When LSF schedules a job, it collects the load index values of all the candidate hosts and
+compares them to the scheduling conditions.",LSF,445,lsf,schedule,schedule,a job,6,job,openie_spacy,2026-01-26T12:57:46Z
+6,doc_7ceb,doc_7ceb_sent_00138,"File Example
+Load information manager (lim) /usr/share/lsf/cluster1/log/lim.log.hosta
+Remote execution server (res) /usr/share/lsf/cluster1/log/res.log.hosta
+Management batch daemon (mbatchd) /usr/share/lsf/cluster1/log/ mbatchd.log.hosta
+Management scheduler daemon (mbschd)/usr/share/lsf/cluster1/log/mbschd.log.hosta
+Server batch daemon (sbatchd) /usr/share/lsf/cluster1/log/sbatchd.log.hosta
+process information manager (pim) /usr/share/lsf/cluster1/log/ pim.log.hosta
+Who owns and who should write to LSF_LOGDIR
+Note: Make sure that the primary LSF administrator owns the LSF log directory (LSF_LOGDIR parameter), and that root can write to this directory. If
+an LSF server cannot write to LSF_LOGDIR parameter, the error logs are created in /tmp.",the primary LSF administrator,663,primary lsf administrator,own,own,the LSF log directory,1054,lsf_logdir error log,openie_spacy,2026-01-26T12:57:46Z
+7,doc_7ceb,doc_7ceb_sent_00163,"LSF Cluster Management and Operations
+Setting up the LSF environment with cshrc.lsf and proﬁle.lsf
+Before you use LSF, you must set up the LSF execution environment with the cshrc.lsf or proﬁle.lsf ﬁle.",LSF Cluster Management,684,operation lsf cluster,set,set,the LSF environment,662,lsf operating environment,openie_spacy,2026-01-26T12:57:46Z
+8,doc_7ceb,doc_7ceb_sent_00163,"LSF Cluster Management and Operations
+Setting up the LSF environment with cshrc.lsf and proﬁle.lsf
+Before you use LSF, you must set up the LSF execution environment with the cshrc.lsf or proﬁle.lsf ﬁle.",LSF Cluster Management,684,operation lsf cluster,set with,set_with,cshrc.lsf,1066,lsf environment cshrc.lsf,openie_spacy,2026-01-26T12:57:46Z
+9,doc_7ceb,doc_7ceb_sent_00214,"it tmp swp mem
+hosta ok 0.0 0.0 0.1 1% 0.0 1 224 43G 67G 3G
+hostc -ok 0.0 0.0 0.0 3% 0.0 3 0 38G 40G 7G
+hostf busy *6.2 6.9 9.5 85% 1.1 30 0 5G 400G 385G
+hosth busy 0.1 0.1 0.3 7% *17 6 0 9G 23G 28G
+hostv unavail
+A busy status is shown for hosts with any load index beyond their conﬁgured thresholds. An asterisk (*) marks load indexes that are beyond their
+thresholds, causing the host status to be busy. A minus sign (-) in front of the value ok means that res is not running on that host.",res,1232,res,run on,run_on,that host,489,host,openie_spacy,2026-01-26T12:57:46Z
+10,doc_7ceb,doc_7ceb_sent_00241,"it tmp swp mem
+ loadSched - - - - - - - - - - -
+ loadStop - - - - - - - - - - -
+SCHEDULING POLICIES: FAIRSHARE NO_INTERACTIVE
+USER_SHARES: [default, 1]
+USERS: all
+HOSTS: all
+The bqueues -l command shows the following kinds of information about the queue:
+What kinds of jobs are meant to run on the queue
+Resource usage limits
+Hosts and users able to use the queue
+Scheduling threshold values:
+loadSched is the threshold for LSF to stop dispatching jobs automatically
+loadStop is the threshold for LSF to suspend a job automatically
+Other useful commands",LSF,445,lsf,suspend,suspend,a job,6,job,openie_spacy,2026-01-26T12:57:46Z
+11,doc_7ceb,doc_7ceb_sent_00252,"Run interactive tasks with lsrun and lsgrun
+ The lsrun command runs a task on either the current local host or remotely on the best available host, provided it can ﬁnd the necessary
+resources and the appropriate host type.",The lsrun command,781,lsrun command,run,run,a task,428,task,openie_spacy,2026-01-26T12:57:46Z
+12,doc_7ceb,doc_7ceb_sent_00257,"When a job is submitted to LSF, it is assigned a unique job ID, in this case 3616.",a job,6,job,submit to,submit_to,LSF,445,lsf,openie_spacy,2026-01-26T12:57:46Z
+13,doc_7ceb,doc_7ceb_sent_00288,"The lsrun command runs a task on either the current local host or remotely on the best available host, provided it can ﬁnd the necessary resources
+and the appropriate host type.",The lsrun command,781,lsrun command,run,run,a task,428,task,openie_spacy,2026-01-26T12:57:46Z
+14,doc_7ceb,doc_7ceb_sent_00291,"In this case, the command ran through LSF on the local host:
+% lsrun ls -l /usr/share/lsf/cluster1/conf/
+total 742
+-rw-r--r-- 1 root lsf 11372 Jul 16 16:23 cshrc.lsf
+-rw-r--r-- 1 root lsf 365 Oct 25 10:55 hosts
+drwxr-xr-x 3 lsfadmin lsf 512 Jul 16 15:53 lsbatch
+-rw-r--r-- 1 lsfadmin lsf 1776 Nov 23 15:13 lsf.conf
+-rw-r--r-- 1 lsfadmin lsf 8453 Nov 16 17:46 lsf.shared
+-rw-r--r-- 1 root lsf 10485 Jul 16 17:08 profile.lsf
+You can also specify a host where you want to run a command.",the command,281,command,run in,run_in,this case,1520,case,openie_spacy,2026-01-26T12:57:46Z
+15,doc_7ceb,doc_7ceb_sent_00291,"In this case, the command ran through LSF on the local host:
+% lsrun ls -l /usr/share/lsf/cluster1/conf/
+total 742
+-rw-r--r-- 1 root lsf 11372 Jul 16 16:23 cshrc.lsf
+-rw-r--r-- 1 root lsf 365 Oct 25 10:55 hosts
+drwxr-xr-x 3 lsfadmin lsf 512 Jul 16 15:53 lsbatch
+-rw-r--r-- 1 lsfadmin lsf 1776 Nov 23 15:13 lsf.conf
+-rw-r--r-- 1 lsfadmin lsf 8453 Nov 16 17:46 lsf.shared
+-rw-r--r-- 1 root lsf 10485 Jul 16 17:08 profile.lsf
+You can also specify a host where you want to run a command.",the command,281,command,run through,run_through,LSF,445,lsf,openie_spacy,2026-01-26T12:57:46Z
+16,doc_7ceb,doc_7ceb_sent_00436,"Jobs remain pending until the user or the queue administrator uses the bswitch
+command to switch the jobs into a regular queue.",the user,59,user,use,use,"the bswitch
+command",942,bswitch,openie_spacy,2026-01-26T12:57:46Z
+17,doc_7ceb,doc_7ceb_sent_00447,"Nov 21 18:17
+bswitch -q night idle 0
+Job <5308> is switched to queue <idle>
+Job <5310> is switched to queue <idle>
+4.",Job,6,job,switch to,switch_to,queue,757,queue,openie_spacy,2026-01-26T12:57:46Z
+18,doc_7ceb,doc_7ceb_sent_00493,"For LSF to track the resources correctly over time, you must deﬁne them as external load indexes.",LSF,445,lsf,track over,track_over,time,159,time,openie_spacy,2026-01-26T12:57:46Z
+19,doc_7ceb,doc_7ceb_sent_00525,"= license1
+RES_REQ=rusage[license1=1:duration=1]
+End Queue
+Then, submit a batch job that uses one license1 resource by using the following command:
+% bsub -q license1 myjob
+When licenses are available, LSF runs your jobs right away; when all licenses are in use, LSF puts your job in a queue and dispatches them as licenses
+become available. This way, all of your licenses are used to the best advantage.",LSF,445,lsf,put in,put_in,a queue,757,queue,openie_spacy,2026-01-26T12:57:46Z
+20,doc_7ceb,doc_7ceb_sent_00538,"Procedure
+Make sure that the primary LSF administrator owns LSF_LOGDIR, and that root can write to this directory.",the primary LSF administrator,663,primary lsf administrator,own,own,LSF_LOGDIR,1052,lsf_logdir parameter lsf.conf,openie_spacy,2026-01-26T12:57:46Z
+21,doc_7ceb,doc_7ceb_sent_00551,"About this task
+By default, LSF checks the directory that is deﬁned by the LSF_ENVDIR parameter for the lsf.conf ﬁle.",LSF,445,lsf,check about,check_about,this task,428,task,openie_spacy,2026-01-26T12:57:46Z
+22,doc_7ceb,doc_7ceb_sent_00562,"About this task
+If the LIM just started, LIM needs time to get initialized by reading conﬁguration ﬁles and contacting other instances of LIM.",LIM,1075,lim lsf_server_host,need,need,time,159,time,openie_spacy,2026-01-26T12:57:46Z
+23,doc_7ceb,doc_7ceb_sent_00562,"About this task
+If the LIM just started, LIM needs time to get initialized by reading conﬁguration ﬁles and contacting other instances of LIM.",LIM,1075,lim lsf_server_host,need about,need_about,this task,428,task,openie_spacy,2026-01-26T12:57:46Z
+24,doc_7ceb,doc_7ceb_sent_00571,"About this task
+If the /etc/hosts ﬁle on the host where the management host LIM is running is conﬁgured with the host name that is assigned to the loopback IP
+address (127.0.0.1), LSF client LIM cannot contact the management host LIM.",LSF client LIM,1085,lsf client lim,contact,contact,the management host,1081,management host lim,openie_spacy,2026-01-26T12:57:46Z
+25,doc_7ceb,doc_7ceb_sent_00571,"About this task
+If the /etc/hosts ﬁle on the host where the management host LIM is running is conﬁgured with the host name that is assigned to the loopback IP
+address (127.0.0.1), LSF client LIM cannot contact the management host LIM.",LSF client LIM,1085,lsf client lim,contact about,contact_about,this task,428,task,openie_spacy,2026-01-26T12:57:46Z
+26,doc_7ceb,doc_7ceb_sent_00576,"The following example correctly sets the management host LIM IP address:
+For a management host LIM running on a host that uses an IPv6 address, the loopback address is ::1.",LIM,1075,lim lsf_server_host,run on,run_on,a host,489,host,openie_spacy,2026-01-26T12:57:46Z
+27,doc_7ceb,doc_7ceb_sent_00593,"Procedure
+If the directory exists, but is mapped to a different name on the remote host, you must create symbolic links to make them consistent.",Procedure,488,procedure,map on,map_on,the remote host,1095,remote host,openie_spacy,2026-01-26T12:57:46Z
+28,doc_7ceb,doc_7ceb_sent_00598,"About this task
+If the mbatchd daemon is running but the sbatchd daemon dies on some hosts, it might be because mbatchd is not conﬁgured to use those hosts.",the mbatchd daemon,470,mbatchd daemon,run about,run_about,this task,428,task,openie_spacy,2026-01-26T12:57:46Z
+29,doc_7ceb,doc_7ceb_sent_00618,"If you conﬁgure an
+unknown host in the following conﬁgurations, mbatchd logs an error message: HostGroup or HostPartition sections of the lsb.hosts ﬁle, or as a
+HOSTS deﬁnition for a queue in the lsb.queues ﬁle.",mbatchd,678,mbatchd,log,log,an error message,1049,error message,openie_spacy,2026-01-26T12:57:46Z
+30,doc_7ceb,doc_7ceb_sent_00633,"If you do not specify a host name, LIM is started on the host from
+which the command is submitted.",LIM,1075,lim lsf_server_host,start on,start_on,the host,489,host,openie_spacy,2026-01-26T12:57:46Z
+31,doc_7ceb,doc_7ceb_sent_00638,"If you see DEFAULT, it means that automatic detection of
+host type or model failed, and the host type that is conﬁgured in the lsf.shared ﬁle cannot be found. LSF works on the host, but a DEFAULT
+model might be inefﬁcient because of incorrect CPU factors. A DEFAULT type might also cause binary incompatibility because a job from a
+DEFAULT host type can be migrated to another DEFAULT host type.",LSF,445,lsf,work on,work_on,the host,489,host,openie_spacy,2026-01-26T12:57:46Z
+32,doc_7ceb,doc_7ceb_sent_00640,"-t, it means that automatic detection of host type or model failed, and the host type that is conﬁgured in the lsf.shared ﬁle
+cannot be found. LSF works on the host, but a DEFAULT model might be inefﬁcient because of incorrect CPU factors.",LSF,445,lsf,work on,work_on,the host,489,host,openie_spacy,2026-01-26T12:57:46Z
+33,doc_7ceb,doc_7ceb_sent_00647,"If the host model is DEFAULT, LSF works correctly but the host has a CPU factor of 1, which might not make efﬁcient use of the host model.",the host,489,host,have,have,a CPU factor,522,cpu factor,openie_spacy,2026-01-26T12:57:46Z
+34,doc_7ceb,doc_7ceb_sent_00675,"userok: Request from bad port
+(<port_number>), denied
+The LSF_AUTH=ident parameter is not deﬁned, and the LSF daemon received a request that originates from a non-privileged port. The request
+is not serviced.",the LSF daemon,1227,lsf service,receive,receive,a request,1210,request,openie_spacy,2026-01-26T12:57:46Z
+35,doc_7ceb,doc_7ceb_sent_00684,"error,
+exiting
+init_ServSock: Could not bind socket to port <port>:
+error
+These error messages can occur if you try to start a second LSF daemon (for example, RES is already running, and you run RES again).",error,469,error,bind,bind,socket,1525,socket d,openie_spacy,2026-01-26T12:57:46Z
+36,doc_7ceb,doc_7ceb_sent_00708,"error
+main: Request from unknown host <host>/<port>:
+error
+function: Received request from non-LSF host
+The daemon does not recognize host. The request is not serviced. These messages can occur if host was added to the conﬁguration ﬁles, but
+not all the daemons were reconﬁgured to read the new information. If the problem still occurs after reconﬁguring all the daemons, check
+whether the host is a multi-addressed host.",The daemon,78,daemon,recognize,recognize,host,489,host,openie_spacy,2026-01-26T12:57:46Z
+37,doc_7ceb,doc_7ceb_sent_00715,"bctrld stop lim host
+saveIndx: Unknown index name <name> from ELIM
+LIM received an external load index name that is not deﬁned in the lsf.shared ﬁle.",bctrld,667,bctrld,stop,stop,lim host,902,lim host,openie_spacy,2026-01-26T12:57:46Z
+38,doc_7ceb,doc_7ceb_sent_00719,"LIM uses the value from ELIM in place of the
+value that is obtained from the kernel.
+getusr:",LIM,1075,lim lsf_server_host,use from,use_from,ELIM,539,elim,openie_spacy,2026-01-26T12:57:46Z
+39,doc_7ceb,doc_7ceb_sent_00733,"The mbatchd received a request from sbatchd on host host_name, but that host is not known to mbatchd. Either the conﬁguration ﬁle has
+changed but mbatchd was not reconﬁgured to pick up the new conﬁguration, or host_name is a client host but the sbatchd daemon is
+running on that host. Run the following badmin reconﬁgcommand to reconﬁgure the mbatchd daemon or kill the sbatchd daemon on
+host_name.",The mbatchd,678,mbatchd,receive,receive,a request,1210,request,openie_spacy,2026-01-26T12:57:46Z
+40,doc_7ceb,doc_7ceb_sent_00733,"The mbatchd received a request from sbatchd on host host_name, but that host is not known to mbatchd. Either the conﬁguration ﬁle has
+changed but mbatchd was not reconﬁgured to pick up the new conﬁguration, or host_name is a client host but the sbatchd daemon is
+running on that host. Run the following badmin reconﬁgcommand to reconﬁgure the mbatchd daemon or kill the sbatchd daemon on
+host_name.",that host,489,host,know to,know_to,mbatchd,678,mbatchd,openie_spacy,2026-01-26T12:57:46Z
+41,doc_7ceb,doc_7ceb_sent_00733,"The mbatchd received a request from sbatchd on host host_name, but that host is not known to mbatchd. Either the conﬁguration ﬁle has
+changed but mbatchd was not reconﬁgured to pick up the new conﬁguration, or host_name is a client host but the sbatchd daemon is
+running on that host. Run the following badmin reconﬁgcommand to reconﬁgure the mbatchd daemon or kill the sbatchd daemon on
+host_name.",the sbatchd daemon,1124,sbatchd daemon,run on,run_on,that host,489,host,openie_spacy,2026-01-26T12:57:46Z
+42,doc_4387,doc_4387_sent_00028,"Note if you switch from using the MySQL plugin to use the SlurmDBD plugin you must make sure the cluster has been added to the database. The MySQL plugin doesn't require this, but also will not hurt things if you have it there when using the MySQL plugin. You can verify with
+sacctmgr list cluster",the cluster,43,cluster,add to,add_to,the database,103,database,openie_spacy,2026-01-26T12:57:46Z
+43,doc_4387,doc_4387_sent_00030,If SlurmDBD is configured for use but not responding then slurmctld will utilize an internal cache until SlurmDBD is returned to service.,SlurmDBD,337,datum slurmdbd daemon,return to,return_to,service,36,service,openie_spacy,2026-01-26T12:57:46Z
+44,doc_4387,doc_4387_sent_00067,Slurm uses the InnoDB storage engine in MySQL to make rollback possible.,Slurm,1,slurm,use in,use_in,MySQL,115,mysql,openie_spacy,2026-01-26T12:57:46Z
+45,doc_4387,doc_4387_sent_00084,In very specific situations using a format other than DYNAMIC can lead to rows not fitting into pages and MySQL can throw an error during the creation of the table because of that.,MySQL,115,mysql,throw,throw,an error,469,error,openie_spacy,2026-01-26T12:57:46Z
+46,doc_4387,doc_4387_sent_00092,Using or changing the collation to a case-sensitive one is not supported and will cause slurmdbd to log an error message at start up if these are found.,slurmdbd,337,datum slurmdbd daemon,log,log,an error message,1049,error message,openie_spacy,2026-01-26T12:57:46Z
+47,doc_4387,doc_4387_sent_00117,"[,...]) to register with. If no port is given, the AccountingStoragePort will be used. This allows clusters registered with the external slurmdbd to communicate with each other using the --cluster/-M client command options. The cluster will add itself to the external slurmdbd if it doesn't exist. If a non-external cluster already exists on the external slurmdbd, the slurmctld will ignore registering to the external slurmdbd.",The cluster,43,cluster,add to,add_to,the external slurmdbd,214,external slurmdbd slurmctld,openie_spacy,2026-01-26T12:57:46Z
+48,doc_4387,doc_4387_sent_00165,"If you want Slurm to create the database itself, and any future databases, you can change your grant line to be *.*",Slurm,1,slurm,create,create,the database,103,database,openie_spacy,2026-01-26T12:57:46Z
+49,doc_4387,doc_4387_sent_00171,"mysql> create user 'slurm'@'localhost' identified by 'password';
+Query OK, 0 rows affected (0.00 sec)
+mysql> grant all on slurm_acct_db.*",mysql,115,mysql,create,create,user,59,user,openie_spacy,2026-01-26T12:57:46Z
+50,doc_4387,doc_4387_sent_00171,"mysql> create user 'slurm'@'localhost' identified by 'password';
+Query OK, 0 rows affected (0.00 sec)
+mysql> grant all on slurm_acct_db.*",mysql,115,mysql,grant on,grant_on,slurm_acct_db,289,slurm_acct_db,openie_spacy,2026-01-26T12:57:46Z
+51,doc_4387,doc_4387_sent_00173,"You may also need to do the same with the system name in order for mysql to work correctly:
+mysql> grant all on slurm_acct_db.*",mysql,115,mysql,grant on,grant_on,slurm_acct_db,289,slurm_acct_db,openie_spacy,2026-01-26T12:57:46Z
+52,doc_4387,doc_4387_sent_00183,"| | | | | |
+Then create the database:
+mysql> create database slurm_acct_db;
+This will grant user 'slurm' access to do what it needs to do on the local host or the storage host system.",mysql,115,mysql,create,create,database slurm_acct_db,300,database slurm_acct_db,openie_spacy,2026-01-26T12:57:46Z
+53,doc_4387,doc_4387_sent_00216,"For example, to add a cluster named ""snowflake"" to the database execute this line (NOTE: as of 20.02, slurmctld will add the cluster to the database upon start if it doesn't exist. Associations still need to be created after addition):
+sacctmgr add cluster snowflake
+Add accounts ""none"" and ""test"" to cluster ""snowflake"" with an execute line of this sort:
+sacctmgr add account none,test Cluster=snowflake \
+ Description=""none"" Organization=""none""
+If you have more clusters you want to add these accounts, to you can either not specify a cluster, which will add the accounts to all clusters in the system, or comma separate the cluster names you want to add to in the cluster option. Note that multiple accounts can be added at the same time by comma separating the names.",slurmctld,48,slurmctld,add,add,the cluster,43,cluster,openie_spacy,2026-01-26T12:57:46Z
+54,doc_4387,doc_4387_sent_00216,"For example, to add a cluster named ""snowflake"" to the database execute this line (NOTE: as of 20.02, slurmctld will add the cluster to the database upon start if it doesn't exist. Associations still need to be created after addition):
+sacctmgr add cluster snowflake
+Add accounts ""none"" and ""test"" to cluster ""snowflake"" with an execute line of this sort:
+sacctmgr add account none,test Cluster=snowflake \
+ Description=""none"" Organization=""none""
+If you have more clusters you want to add these accounts, to you can either not specify a cluster, which will add the accounts to all clusters in the system, or comma separate the cluster names you want to add to in the cluster option. Note that multiple accounts can be added at the same time by comma separating the names.",slurmctld,48,slurmctld,add to,add_to,the database,103,database,openie_spacy,2026-01-26T12:57:46Z
+55,doc_4387,doc_4387_sent_00256,"A user can submit a step with many parallel tasks, e.g. by calling srun -n.",A user,59,user,submit,submit,a step,886,step,openie_spacy,2026-01-26T12:57:46Z
+56,doc_d9be,doc_d9be_sent_00048,"Controls the maximum number of tasks per allocated core
+--ntasks-per-socket<number>Controls the maximum number of tasks per allocated socket
+--ntasks-per-node<number>Controls the maximum number of tasks per allocated node
+-r, --relativeN/AControls which node is used for a job step
+Step 4: Optional Distribution and Binding of Tasks to CPUs within a Node
+In optional Step 4, Slurm distributes and binds each task to a specified subset of the allocated CPUs on the node to which the task was distributed in Step 3.",the task,428,task,distribute in,distribute_in,Step,886,step,openie_spacy,2026-01-26T12:57:46Z
+57,doc_d9be,doc_d9be_sent_00050,This step is known as task affinity or task/CPU binding.,This step,886,step,know as,know_as,task affinity,1420,task affinity,openie_spacy,2026-01-26T12:57:46Z
+58,doc_d9be,doc_d9be_sent_00116,The --hint=nomultithread srun option causes Slurm to allocate only one thread from each core to this job. The following table shows a possible pattern of allocation for this job.,Slurm,1,slurm,allocate to,allocate_to,this job,6,job,openie_spacy,2026-01-26T12:57:46Z
+59,doc_d9be,doc_d9be_sent_00119,"srun --nodes=1-1 --ntasks=6 --cpu-bind=cores ...
+Comments:
+Using the default allocation method within nodes (cyclic), Slurm allocates 3 CPUs on each socket of 1 node. Using the default distribution method within nodes (cyclic), Slurm distributes and binds each task to an allocated core in a round-robin fashion across the sockets. The following table shows a possible pattern of allocation, distribution and binding for this job. For example, task id 2 is bound to CPU id 1.
+Nodenamen0
+Socket id01
+Number of Allocated CPUs33
+Allocated CPU ids0 1 24 5 6
+Binding of Tasks to CPUsCPU id01234567
+Task id024-135-
+Example 11: Consumable resources with task affinity and socket binding, Case 1
+A job requires 6 CPUs (6 tasks with no overcommitment).",task,428,task,bind to,bind_to,CPU,1425,cpu,openie_spacy,2026-01-26T12:57:46Z
+60,doc_d9be,doc_d9be_sent_00121,"srun --nodes=1-1 --ntasks=6 --cpu-bind=sockets ...
+Comments:
+Using the default allocation method within nodes (cyclic), Slurm allocates 3 CPUs on each socket of 1 node. Using the default distribution method within nodes (cyclic), Slurm distributes and binds each task to all of the allocated CPUs in one socket in a round-robin fashion across the sockets. The following table shows a possible pattern of allocation, distribution and binding for this job. For example, task ids 1, 3 and 5 are all bound to CPU ids 4, 5 and 6.",task ids,1521,task ids,bind to,bind_to,CPU ids,1440,cpu ids,openie_spacy,2026-01-26T12:57:46Z
+61,doc_d9be,doc_d9be_sent_00137,"Using the cyclic distribution method, CPU ids 0, 1 and 4 were distributed to task id 0, and CPU ids 2, 3 and 5 were distributed to task id 1.",CPU ids,1440,cpu ids,distribute to,distribute_to,task,428,task,openie_spacy,2026-01-26T12:57:46Z
+62,doc_d9be,doc_d9be_sent_00147,"For example, task id 10 is bound to CPU id 3 on node n1.",task,428,task,bind to,bind_to,CPU,1425,cpu,openie_spacy,2026-01-26T12:57:46Z
+65,doc_7ceb,doc_7ceb_sent_00047,"LSF locates the resources that are needed by the task and chooses the best host among the candidate hosts that has the required resources and is
+lightly loaded.",LSF,445,lsf,locate,locate,the resources,509,resource,openie_spacy,2026-01-27T10:41:08Z
+66,doc_7ceb,doc_7ceb_sent_00064,Jobs that are submitted through the LSF system will have the resources that they use monitored while they are running.,Jobs,6,job,have,have,the resources,509,resource,openie_spacy,2026-01-27T10:41:08Z
+67,doc_7ceb,doc_7ceb_sent_00070,"The ELIM also updates
+LIM when new values are received.",The ELIM,539,elim,update,update,LIM,534,lim,openie_spacy,2026-01-27T10:41:08Z
+70,doc_7ceb,doc_7ceb_sent_00090,Jobs are only dispatched to a host if all load values are within the scheduling thresholds.,Jobs,6,job,dispatch to,dispatch_to,a host,489,host,openie_spacy,2026-01-27T10:41:08Z
+71,doc_7ceb,doc_7ceb_sent_00126,"By default, LSF checks the directory that is deﬁned by the LSF_ENVDIR parameter for the location of the lsf.conf ﬁle.",LSF,445,lsf,check,check,the directory,608,directory,openie_spacy,2026-01-27T10:41:08Z
+73,doc_7ceb,doc_7ceb_sent_00138,"File Example
+Load information manager (lim) /usr/share/lsf/cluster1/log/lim.log.hosta
+Remote execution server (res) /usr/share/lsf/cluster1/log/res.log.hosta
+Management batch daemon (mbatchd) /usr/share/lsf/cluster1/log/ mbatchd.log.hosta
+Management scheduler daemon (mbschd)/usr/share/lsf/cluster1/log/mbschd.log.hosta
+Server batch daemon (sbatchd) /usr/share/lsf/cluster1/log/sbatchd.log.hosta
+process information manager (pim) /usr/share/lsf/cluster1/log/ pim.log.hosta
+Who owns and who should write to LSF_LOGDIR
+Note: Make sure that the primary LSF administrator owns the LSF log directory (LSF_LOGDIR parameter), and that root can write to this directory. If
+an LSF server cannot write to LSF_LOGDIR parameter, the error logs are created in /tmp.",that root,275,root,write to,write_to,this directory,608,directory,openie_spacy,2026-01-27T10:41:08Z
+74,doc_7ceb,doc_7ceb_sent_00142,"Run LSF jobs
+ Use the bsub and lsrun commands to run jobs through LSF. Use the bjobs command to see the status of your jobs. Control job execution with
+the bstop, bresume, and bkill commands.",LSF jobs,447,lsf job,use,use,the bsub,779,bsub,openie_spacy,2026-01-27T10:41:08Z
+75,doc_7ceb,doc_7ceb_sent_00163,"LSF Cluster Management and Operations
+Setting up the LSF environment with cshrc.lsf and proﬁle.lsf
+Before you use LSF, you must set up the LSF execution environment with the cshrc.lsf or proﬁle.lsf ﬁle.",LSF Cluster Management,684,operation lsf cluster,set,set,the LSF environment,656,lsf environment,openie_spacy,2026-01-27T10:41:08Z
+76,doc_7ceb,doc_7ceb_sent_00163,"LSF Cluster Management and Operations
+Setting up the LSF environment with cshrc.lsf and proﬁle.lsf
+Before you use LSF, you must set up the LSF execution environment with the cshrc.lsf or proﬁle.lsf ﬁle.",LSF Cluster Management,684,operation lsf cluster,set with,set_with,cshrc.lsf,716,cshrc lsf,openie_spacy,2026-01-27T10:41:08Z
+77,doc_7ceb,doc_7ceb_sent_00189,"Find batch system status using the bhosts and bqueues commands
+ Use the bhosts command to see whether the LSF batch workload system is running properly.",commands,281,command,use,use,the bhosts,689,bhost,openie_spacy,2026-01-27T10:41:08Z
+79,doc_7ceb,doc_7ceb_sent_00225,"Find batch system status using the bhosts and bqueues commands
+Use the bhosts command to see whether the LSF batch workload system is running properly.",commands,281,command,use,use,the bhosts,689,bhost,openie_spacy,2026-01-27T10:41:08Z
+80,doc_7ceb,doc_7ceb_sent_00233,"bqueues command
+LSF queues organize jobs with different priorities and different scheduling policies.",LSF queues,756,lsf queue,organize,organize,jobs,6,job,openie_spacy,2026-01-27T10:41:08Z
+82,doc_7ceb,doc_7ceb_sent_00244,"Run LSF jobs
+Use the bsub and lsrun commands to run jobs through LSF. Use the bjobs command to see the status of your jobs. Control job execution with the
+bstop, bresume, and bkill commands.",LSF jobs,447,lsf job,use,use,the bsub,779,bsub,openie_spacy,2026-01-27T10:41:08Z
+83,doc_7ceb,doc_7ceb_sent_00245,"Run LSF jobs with bsub and lsrun
+Use two basic commands to run jobs through LSF:
+bsub submits jobs to the LSF batch scheduler. LSF schedules and dispatches jobs to the best available host based on the scheduling policies
+you conﬁgure in your LSF queues.",bsub,779,bsub,submit,submit,jobs,6,job,openie_spacy,2026-01-27T10:41:08Z
+91,doc_7ceb,doc_7ceb_sent_00493,"For LSF to track the resources correctly over time, you must deﬁne them as external load indexes.",LSF,445,lsf,track,track,the resources,509,resource,openie_spacy,2026-01-27T10:41:08Z
+93,doc_7ceb,doc_7ceb_sent_00494,"LSF updates load indexes periodically with a
+program called an External Load Information Manager (ELIM).",LSF updates,986,lsf update,load,load,indexes,987,index,openie_spacy,2026-01-27T10:41:08Z
+94,doc_7ceb,doc_7ceb_sent_00508,"Monitor dynamic shared resources
+For LSF to receive external load indexes correctly, the ELIM must send a count of the available resources to standard output in the following format:
+number_indexes",LSF,445,lsf,receive,receive,external load indexes,985,external load index,openie_spacy,2026-01-27T10:41:08Z
+96,doc_7ceb,doc_7ceb_sent_00538,"Procedure
+Make sure that the primary LSF administrator owns LSF_LOGDIR, and that root can write to this directory.",the primary LSF administrator,663,primary lsf administrator,own,own,LSF_LOGDIR,631,lsf_logdir,openie_spacy,2026-01-27T10:41:08Z
+97,doc_7ceb,doc_7ceb_sent_00538,"Procedure
+Make sure that the primary LSF administrator owns LSF_LOGDIR, and that root can write to this directory.",that root,275,root,write to,write_to,this directory,608,directory,openie_spacy,2026-01-27T10:41:08Z
+98,doc_7ceb,doc_7ceb_sent_00551,"About this task
+By default, LSF checks the directory that is deﬁned by the LSF_ENVDIR parameter for the lsf.conf ﬁle.",LSF,445,lsf,check,check,the directory,608,directory,openie_spacy,2026-01-27T10:41:08Z
+100,doc_7ceb,doc_7ceb_sent_00562,"About this task
+If the LIM just started, LIM needs time to get initialized by reading conﬁguration ﬁles and contacting other instances of LIM.",LIM,534,lim,need,need,time,159,time,openie_spacy,2026-01-27T10:41:08Z
+101,doc_7ceb,doc_7ceb_sent_00562,"About this task
+If the LIM just started, LIM needs time to get initialized by reading conﬁguration ﬁles and contacting other instances of LIM.",LIM,534,lim,need about,need_about,this task,428,task,openie_spacy,2026-01-27T10:41:08Z
+104,doc_7ceb,doc_7ceb_sent_00576,"The following example correctly sets the management host LIM IP address:
+For a management host LIM running on a host that uses an IPv6 address, the loopback address is ::1.",LIM,534,lim,run on,run_on,a host,489,host,openie_spacy,2026-01-27T10:41:08Z
+108,doc_7ceb,doc_7ceb_sent_00633,"If you do not specify a host name, LIM is started on the host from
+which the command is submitted.",LIM,534,lim,start on,start_on,the host,489,host,openie_spacy,2026-01-27T10:41:08Z
+112,doc_7ceb,doc_7ceb_sent_00675,"userok: Request from bad port
+(<port_number>), denied
+The LSF_AUTH=ident parameter is not deﬁned, and the LSF daemon received a request that originates from a non-privileged port. The request
+is not serviced.",the LSF daemon,642,lsf daemon,receive,receive,a request,1210,request,openie_spacy,2026-01-27T10:41:08Z
+113,doc_7ceb,doc_7ceb_sent_00684,"error,
+exiting
+init_ServSock: Could not bind socket to port <port>:
+error
+These error messages can occur if you try to start a second LSF daemon (for example, RES is already running, and you run RES again).",error,469,error,bind,bind,socket,1414,socket,openie_spacy,2026-01-27T10:41:08Z
+116,doc_7ceb,doc_7ceb_sent_00719,"LIM uses the value from ELIM in place of the
+value that is obtained from the kernel.
+getusr:",LIM,534,lim,use from,use_from,ELIM,539,elim,openie_spacy,2026-01-27T10:41:08Z
+117,doc_7ceb,doc_7ceb_sent_00731,"Destination queue <queue> not found, switching to queue
+<lost_and_found>
+When the mbatchd daemon was reconﬁgured, jobs were found in queue but that queue is no longer in the conﬁguration.",jobs,6,job,find in,find_in,queue,757,queue,openie_spacy,2026-01-27T10:41:08Z
+122,doc_4387,doc_4387_sent_00030,If SlurmDBD is configured for use but not responding then slurmctld will utilize an internal cache until SlurmDBD is returned to service.,SlurmDBD,37,slurmdbd,return to,return_to,service,36,service,openie_spacy,2026-01-27T10:41:08Z
+125,doc_4387,doc_4387_sent_00092,Using or changing the collation to a case-sensitive one is not supported and will cause slurmdbd to log an error message at start up if these are found.,slurmdbd,37,slurmdbd,log,log,an error message,1049,error message,openie_spacy,2026-01-27T10:41:08Z
+126,doc_4387,doc_4387_sent_00098,"This option will prevent users from accessing invalid accounts.
+limits - This will enforce limits set on associations and qos'.",This option,83,option,prevent,prevent,limits,185,limit,openie_spacy,2026-01-27T10:41:08Z
+127,doc_4387,doc_4387_sent_00110,"Without this option set, jobs will be launched as long as their usage hasn't reached the TRES-minutes limit which can lead to jobs being launched but then killed when the limit is reached. With the 'safe' option set, a job won't be killed due to limits, even if the limits are changed after a job was started and the association or qos violates the updated limits. By setting this option, both the 'associations' option and the 'limits' option are set automatically.",a job,6,job,kill due,kill_due,limits,185,limit,openie_spacy,2026-01-27T10:41:08Z
+128,doc_4387,doc_4387_sent_00117,"[,...]) to register with. If no port is given, the AccountingStoragePort will be used. This allows clusters registered with the external slurmdbd to communicate with each other using the --cluster/-M client command options. The cluster will add itself to the external slurmdbd if it doesn't exist. If a non-external cluster already exists on the external slurmdbd, the slurmctld will ignore registering to the external slurmdbd.",The cluster,43,cluster,add to,add_to,the external slurmdbd,212,external slurmdbd,openie_spacy,2026-01-27T10:41:08Z
+137,doc_4387,doc_4387_sent_00266,"After the job is done, the data will be stored in the database, and can be queried with other tools, like sacct.",the data,32,datum,store in,store_in,the database,103,database,openie_spacy,2026-01-27T10:41:08Z
+138,doc_d9be,doc_d9be_sent_00041,"Step 3: Distribution of Tasks to the selected Nodes
+In Step 3, Slurm distributes tasks to the nodes that were selected for the job/step in Step 1.",Slurm,1,slurm,distribute,distribute,tasks,428,task,openie_spacy,2026-01-27T10:41:08Z
+139,doc_d9be,doc_d9be_sent_00041,"Step 3: Distribution of Tasks to the selected Nodes
+In Step 3, Slurm distributes tasks to the nodes that were selected for the job/step in Step 1.",Slurm,1,slurm,distribute to,distribute_to,the nodes,22,node,openie_spacy,2026-01-27T10:41:08Z
+140,doc_d9be,doc_d9be_sent_00046,"|arbitrary|plane=<options>[:block|cyclic]The first specified distribution (before the "":"") controls the sequence in which tasks are distributed to each of the selected nodes. Note that this option does not affect the number of tasks distributed to each node, but only the sequence of distribution.",this option,83,option,affect,affect,the number,54,number,openie_spacy,2026-01-27T10:41:08Z
+143,doc_d9be,doc_d9be_sent_00054,"Controls the maximum number of tasks per allocated core
+--distribution, -mblock|cyclic
+|arbitrary|plane=<options>[:block|cyclic]The second specified distribution (after the "":"") controls the sequence in which tasks are distributed to allocated CPUs within a node for binding of tasks to CPUs
+Additional Notes on CPU Management Steps
+For consumable resources, it is important for users to understand the difference between cpu allocation (Step 2) and task affinity/binding (Step 4).",tasks,428,task,distribute within,distribute_within,a node,22,node,openie_spacy,2026-01-27T10:41:08Z
+144,doc_d9be,doc_d9be_sent_00095,"The options specify the following conditions for the job: 6 tasks, 2 unique CPUs per task, using exactly 2 nodes, and with 3 tasks per node. To satisfy these conditions, Slurm must allocate 6 CPUs from each of the 2 nodes. The --distribution=cyclic option causes the tasks to be distributed to the nodes in a round-robin fashion. The following table shows a possible pattern of allocation and distribution for this job.",the tasks,428,task,distribute to,distribute_to,the nodes,22,node,openie_spacy,2026-01-27T10:41:08Z
+145,doc_d9be,doc_d9be_sent_00099,"The --distribution=plane=2 option causes Slurm to distribute tasks in blocks of two to each of the nodes in a round-robin fashion, subject to the number of CPUs allocated on each node.",Slurm,1,slurm,distribute,distribute,tasks,428,task,openie_spacy,2026-01-27T10:41:08Z
+151,doc_d9be,doc_d9be_sent_00158,"Slurm distributes tasks to the cores but without cpu binding, each task has access to all the allocated CPUs.",Slurm,1,slurm,distribute,distribute,tasks,428,task,openie_spacy,2026-01-27T10:41:08Z
+152,doc_d9be,doc_d9be_sent_00158,"Slurm distributes tasks to the cores but without cpu binding, each task has access to all the allocated CPUs.",Slurm,1,slurm,distribute to,distribute_to,the cores,1382,core,openie_spacy,2026-01-27T10:41:08Z

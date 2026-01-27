@@ -1,0 +1,891 @@
+{
+  "min_support": 10,
+  "min_purity": 0.75,
+  "accepted_count": 1,
+  "candidate_count": 18,
+  "axioms": [
+    {
+      "property": "add_to",
+      "domain": "object",
+      "range": "object",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 1.0,
+      "confidence": 0.6037,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "cluster",
+          "add_to",
+          "database"
+        ],
+        [
+          "cluster",
+          "add_to",
+          "external slurmdbd"
+        ],
+        [
+          "slurmctld",
+          "add_to",
+          "database"
+        ]
+      ],
+      "subject_type_hist": {
+        "object": 2,
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "object": 3
+      }
+    },
+    {
+      "property": "allocate_on",
+      "domain": "object",
+      "range": "object",
+      "support": 6,
+      "typed_subjects": 6,
+      "typed_objects": 6,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.769,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "cpu",
+          "allocate_on",
+          "node"
+        ],
+        [
+          "slurm",
+          "allocate_on",
+          "socket"
+        ],
+        [
+          "slurm",
+          "allocate_on",
+          "socket"
+        ],
+        [
+          "slurm",
+          "allocate_on",
+          "socket"
+        ],
+        [
+          "slurm",
+          "allocate_on",
+          "socket"
+        ]
+      ],
+      "subject_type_hist": {
+        "object": 6
+      },
+      "object_type_hist": {
+        "object": 6
+      }
+    },
+    {
+      "property": "bind",
+      "domain": "object",
+      "range": "object",
+      "support": 5,
+      "typed_subjects": 4,
+      "typed_objects": 1,
+      "subject_type_coverage": 0.8,
+      "object_type_coverage": 0.2,
+      "purity_domain": 0.75,
+      "purity_range": 1.0,
+      "confidence": 0.5481,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "error",
+          "bind",
+          "socket"
+        ],
+        [
+          "slurm",
+          "bind",
+          "task"
+        ],
+        [
+          "slurm",
+          "bind",
+          "task"
+        ],
+        [
+          "slurm",
+          "bind",
+          "task"
+        ],
+        [
+          "number",
+          "bind",
+          "task"
+        ]
+      ],
+      "subject_type_hist": {
+        "object": 3,
+        "situation": 1
+      },
+      "object_type_hist": {
+        "object": 1
+      }
+    },
+    {
+      "property": "bind_to",
+      "domain": "object",
+      "range": "object",
+      "support": 8,
+      "typed_subjects": 4,
+      "typed_objects": 8,
+      "subject_type_coverage": 0.5,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.75,
+      "purity_range": 0.875,
+      "confidence": 0.6283,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "task",
+          "bind_to",
+          "cpu"
+        ],
+        [
+          "task ids",
+          "bind_to",
+          "cpu ids"
+        ],
+        [
+          "slurm",
+          "bind_to",
+          "cpu"
+        ],
+        [
+          "slurm",
+          "bind_to",
+          "cpu"
+        ],
+        [
+          "task",
+          "bind_to",
+          "cpu"
+        ]
+      ],
+      "subject_type_hist": {
+        "object": 3,
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "object": 7,
+        "information_object": 1
+      }
+    },
+    {
+      "property": "create",
+      "domain": "object",
+      "range": "object",
+      "support": 4,
+      "typed_subjects": 2,
+      "typed_objects": 2,
+      "subject_type_coverage": 0.5,
+      "object_type_coverage": 0.5,
+      "purity_domain": 1.0,
+      "purity_range": 0.5,
+      "confidence": 0.4898,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "create",
+          "table"
+        ],
+        [
+          "slurm",
+          "create",
+          "database"
+        ],
+        [
+          "mysql",
+          "create",
+          "user"
+        ],
+        [
+          "mysql",
+          "create",
+          "database slurm_acct_db"
+        ]
+      ],
+      "subject_type_hist": {
+        "object": 2
+      },
+      "object_type_hist": {
+        "object": 1,
+        "role": 1
+      }
+    },
+    {
+      "property": "display",
+      "domain": null,
+      "range": "situation",
+      "support": 10,
+      "typed_subjects": 0,
+      "typed_objects": 2,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 0.2,
+      "purity_domain": 0.0,
+      "purity_range": 0.5,
+      "confidence": 0.3083,
+      "status": "candidate",
+      "method": "lca(subject_terms) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "option",
+          "display",
+          "information"
+        ],
+        [
+          "lsid command",
+          "display",
+          "number"
+        ],
+        [
+          "command",
+          "display",
+          "information"
+        ],
+        [
+          "command",
+          "display",
+          "information"
+        ],
+        [
+          "option",
+          "display",
+          "information"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {
+        "situation": 1,
+        "information_object": 1
+      }
+    },
+    {
+      "property": "distribute_to",
+      "domain": "object",
+      "range": "object",
+      "support": 9,
+      "typed_subjects": 5,
+      "typed_objects": 6,
+      "subject_type_coverage": 0.5556,
+      "object_type_coverage": 0.6667,
+      "purity_domain": 0.8,
+      "purity_range": 1.0,
+      "confidence": 0.6633,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "distribute_to",
+          "node"
+        ],
+        [
+          "task",
+          "distribute_to",
+          "node"
+        ],
+        [
+          "task",
+          "distribute_to",
+          "cpu"
+        ],
+        [
+          "task",
+          "distribute_to",
+          "node"
+        ],
+        [
+          "task",
+          "distribute_to",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {
+        "object": 4,
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "object": 6
+      }
+    },
+    {
+      "property": "exist_on",
+      "domain": "object",
+      "range": "object",
+      "support": 3,
+      "typed_subjects": 1,
+      "typed_objects": 3,
+      "subject_type_coverage": 0.3333,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.6204,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "directory",
+          "exist_on",
+          "remote host"
+        ],
+        [
+          "directory",
+          "exist_on",
+          "remote host"
+        ],
+        [
+          "cluster",
+          "exist_on",
+          "external slurmdbd"
+        ]
+      ],
+      "subject_type_hist": {
+        "object": 1
+      },
+      "object_type_hist": {
+        "object": 3
+      }
+    },
+    {
+      "property": "have",
+      "domain": "object",
+      "range": "object",
+      "support": 8,
+      "typed_subjects": 4,
+      "typed_objects": 3,
+      "subject_type_coverage": 0.5,
+      "object_type_coverage": 0.375,
+      "purity_domain": 0.75,
+      "purity_range": 1.0,
+      "confidence": 0.6096,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "job",
+          "have",
+          "resource"
+        ],
+        [
+          "cluster",
+          "have",
+          "host"
+        ],
+        [
+          "host",
+          "have",
+          "cpu factor"
+        ],
+        [
+          "slurmdbd",
+          "have",
+          "file"
+        ],
+        [
+          "number",
+          "have",
+          "task"
+        ]
+      ],
+      "subject_type_hist": {
+        "object": 3,
+        "situation": 1
+      },
+      "object_type_hist": {
+        "object": 3
+      }
+    },
+    {
+      "property": "receive",
+      "domain": "object",
+      "range": null,
+      "support": 5,
+      "typed_subjects": 5,
+      "typed_objects": 0,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 0.8,
+      "purity_range": 0.0,
+      "confidence": 0.2556,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "lsf",
+          "receive",
+          "external load index"
+        ],
+        [
+          "lsf daemon",
+          "receive",
+          "request"
+        ],
+        [
+          "error",
+          "receive",
+          "request"
+        ],
+        [
+          "res",
+          "receive",
+          "request"
+        ],
+        [
+          "mbatchd",
+          "receive",
+          "request"
+        ]
+      ],
+      "subject_type_hist": {
+        "object": 4,
+        "situation": 1
+      },
+      "object_type_hist": {}
+    },
+    {
+      "property": "require",
+      "domain": "situation",
+      "range": "object",
+      "support": 21,
+      "typed_subjects": 9,
+      "typed_objects": 20,
+      "subject_type_coverage": 0.4286,
+      "object_type_coverage": 0.9524,
+      "purity_domain": 0.8889,
+      "purity_range": 1.0,
+      "confidence": 0.7439,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurmdbd",
+          "require",
+          "file"
+        ],
+        [
+          "job",
+          "require",
+          "cpu"
+        ],
+        [
+          "number",
+          "require",
+          "cpu"
+        ],
+        [
+          "resource",
+          "require",
+          "cpu"
+        ],
+        [
+          "number",
+          "require",
+          "cpu"
+        ]
+      ],
+      "subject_type_hist": {
+        "situation": 8,
+        "object": 1
+      },
+      "object_type_hist": {
+        "object": 20
+      }
+    },
+    {
+      "property": "run",
+      "domain": "object",
+      "range": "situation",
+      "support": 6,
+      "typed_subjects": 2,
+      "typed_objects": 1,
+      "subject_type_coverage": 0.3333,
+      "object_type_coverage": 0.1667,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.644,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "lsrun command",
+          "run",
+          "task"
+        ],
+        [
+          "lsrun command",
+          "run",
+          "task"
+        ],
+        [
+          "lsrun command",
+          "run",
+          "task"
+        ],
+        [
+          "hosta",
+          "run",
+          "command"
+        ],
+        [
+          "lsf",
+          "run",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {
+        "object": 2
+      },
+      "object_type_hist": {
+        "situation": 1
+      }
+    },
+    {
+      "property": "run_in",
+      "domain": "situation",
+      "range": "information_object",
+      "support": 3,
+      "typed_subjects": 2,
+      "typed_objects": 2,
+      "subject_type_coverage": 0.6667,
+      "object_type_coverage": 0.6667,
+      "purity_domain": 1.0,
+      "purity_range": 0.5,
+      "confidence": 0.4954,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "command",
+          "run_in",
+          "case"
+        ],
+        [
+          "job",
+          "run_in",
+          "queue"
+        ],
+        [
+          "job",
+          "run_in",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {
+        "situation": 2
+      },
+      "object_type_hist": {
+        "information_object": 1,
+        "object": 1
+      }
+    },
+    {
+      "property": "run_on",
+      "domain": "object",
+      "range": "object",
+      "support": 9,
+      "typed_subjects": 3,
+      "typed_objects": 9,
+      "subject_type_coverage": 0.3333,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.7,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "res",
+          "run_on",
+          "host"
+        ],
+        [
+          "lsrun command",
+          "run_on",
+          "host"
+        ],
+        [
+          "lsrun command",
+          "run_on",
+          "host"
+        ],
+        [
+          "command",
+          "run_on",
+          "host"
+        ],
+        [
+          "elim",
+          "run_on",
+          "host"
+        ]
+      ],
+      "subject_type_hist": {
+        "object": 3
+      },
+      "object_type_hist": {
+        "object": 9
+      }
+    },
+    {
+      "property": "store_in",
+      "domain": "object",
+      "range": "information_object",
+      "support": 3,
+      "typed_subjects": 1,
+      "typed_objects": 3,
+      "subject_type_coverage": 0.3333,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 0.6667,
+      "confidence": 0.5037,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "information",
+          "store_in",
+          "accounting"
+        ],
+        [
+          "information",
+          "store_in",
+          "accounting"
+        ],
+        [
+          "datum",
+          "store_in",
+          "database"
+        ]
+      ],
+      "subject_type_hist": {
+        "object": 1
+      },
+      "object_type_hist": {
+        "information_object": 2,
+        "object": 1
+      }
+    },
+    {
+      "property": "submit",
+      "domain": "role",
+      "range": "situation",
+      "support": 8,
+      "typed_subjects": 4,
+      "typed_objects": 7,
+      "subject_type_coverage": 0.5,
+      "object_type_coverage": 0.875,
+      "purity_domain": 0.75,
+      "purity_range": 1.0,
+      "confidence": 0.6283,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "user",
+          "submit",
+          "job"
+        ],
+        [
+          "account",
+          "submit",
+          "job"
+        ],
+        [
+          "bsub",
+          "submit",
+          "job"
+        ],
+        [
+          "command",
+          "submit",
+          "job"
+        ],
+        [
+          "command",
+          "submit",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {
+        "role": 3,
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "situation": 7
+      }
+    },
+    {
+      "property": "submit_to",
+      "domain": "situation",
+      "range": "object",
+      "support": 5,
+      "typed_subjects": 4,
+      "typed_objects": 5,
+      "subject_type_coverage": 0.8,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.5,
+      "purity_range": 0.6,
+      "confidence": 0.5506,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "job",
+          "submit_to",
+          "queue"
+        ],
+        [
+          "user",
+          "submit_to",
+          "cluster"
+        ],
+        [
+          "account",
+          "submit_to",
+          "cluster"
+        ],
+        [
+          "command",
+          "submit_to",
+          "queue"
+        ],
+        [
+          "job",
+          "submit_to",
+          "lsf"
+        ]
+      ],
+      "subject_type_hist": {
+        "situation": 2,
+        "role": 2
+      },
+      "object_type_hist": {
+        "object": 3,
+        "information_object": 2
+      }
+    },
+    {
+      "property": "use",
+      "domain": "object",
+      "range": "information_object",
+      "support": 8,
+      "typed_subjects": 5,
+      "typed_objects": 5,
+      "subject_type_coverage": 0.625,
+      "object_type_coverage": 0.625,
+      "purity_domain": 0.4,
+      "purity_range": 0.8,
+      "confidence": 0.5246,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "lsf",
+          "use",
+          "job"
+        ],
+        [
+          "lsf system",
+          "use",
+          "resource"
+        ],
+        [
+          "lsf job",
+          "use",
+          "bsub"
+        ],
+        [
+          "command",
+          "use",
+          "bhost"
+        ],
+        [
+          "command",
+          "use",
+          "bhost"
+        ]
+      ],
+      "subject_type_hist": {
+        "object": 2,
+        "situation": 2,
+        "role": 1
+      },
+      "object_type_hist": {
+        "information_object": 4,
+        "situation": 1
+      }
+    },
+    {
+      "property": "write_to",
+      "domain": "role",
+      "range": "information_object",
+      "support": 6,
+      "typed_subjects": 3,
+      "typed_objects": 2,
+      "subject_type_coverage": 0.5,
+      "object_type_coverage": 0.3333,
+      "purity_domain": 0.6667,
+      "purity_range": 0.5,
+      "confidence": 0.494,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "root",
+          "write_to",
+          "directory"
+        ],
+        [
+          "lsf server",
+          "write_to",
+          "parameter"
+        ],
+        [
+          "root",
+          "write_to",
+          "directory"
+        ],
+        [
+          "accounting record",
+          "write_to",
+          "file"
+        ],
+        [
+          "record",
+          "write_to",
+          "file"
+        ]
+      ],
+      "subject_type_hist": {
+        "role": 2,
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "information_object": 1,
+        "object": 1
+      }
+    }
+  ]
+}

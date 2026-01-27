@@ -1,0 +1,302 @@
+@prefix anno: <https://example.org/hpc-onto/anno#> .
+@prefix hpc: <https://example.org/hpc-onto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+hpc:bhost__bee40dd6 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "bhost" .
+
+hpc:bsub__f9d367a6 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "bsub" .
+
+hpc:bswitch__755ec428 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "bswitch" .
+
+hpc:cluster__06b2d4b9 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "cluster" .
+
+hpc:command__1dccadfe a rdfs:Class,
+        owl:Class ;
+    rdfs:label "command" .
+
+hpc:core__a74ad8df a rdfs:Class,
+        owl:Class ;
+    rdfs:label "core" .
+
+hpc:cpu__d9747e2d a rdfs:Class,
+        owl:Class ;
+    rdfs:label "cpu" .
+
+hpc:cpu_ids__eb2ad7bb a rdfs:Class,
+        owl:Class ;
+    rdfs:label "cpu ids" .
+
+hpc:daemon__1f15fcf5 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "daemon" .
+
+hpc:database__11e0eed8 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "database" .
+
+hpc:database_slurm_acct_db__c9d2cdaa a rdfs:Class,
+        owl:Class ;
+    rdfs:label "database slurm_acct_db" .
+
+hpc:description__b5a7adde a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Description" .
+
+hpc:entity__1a434bef a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Entity" .
+
+hpc:event__a4ecfc70 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Event" .
+
+hpc:external_load_index__bf05b997 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "external load index" .
+
+hpc:external_slurmdbd__27badc0f a rdfs:Class,
+        owl:Class ;
+    rdfs:label "external slurmdbd" .
+
+hpc:external_slurmdbd_slurmctld__d6374ba9 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "external slurmdbd slurmctld" .
+
+hpc:group_lsf_host__2902bf79 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "group lsf host" ;
+    rdfs:subClassOf hpc:host__67b3dba8 .
+
+hpc:host__67b3dba8 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "host" .
+
+hpc:information_object__aa5bf392 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "information_object" .
+
+hpc:informationobject__6ee0f79c a rdfs:Class,
+        owl:Class ;
+    rdfs:label "InformationObject" .
+
+hpc:job__9dddd5ce a rdfs:Class,
+        owl:Class ;
+    rdfs:label "job" .
+
+hpc:job_queue__ee9b0cd4 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "job queue" ;
+    rdfs:subClassOf hpc:queue__a9d1cbf7 .
+
+hpc:lsadmin_badmin_command__a05971e5 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsadmin badmin command" ;
+    rdfs:subClassOf hpc:command__1dccadfe .
+
+hpc:lsf__7ef60e27 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf" .
+
+hpc:lsf_client_host__17467faa a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf client host" ;
+    rdfs:subClassOf hpc:host__67b3dba8 .
+
+hpc:lsf_command__b1dcc002 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf command" ;
+    rdfs:subClassOf hpc:command__1dccadfe .
+
+hpc:lsf_daemon__9124a882 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf daemon" ;
+    rdfs:subClassOf hpc:daemon__1f15fcf5 .
+
+hpc:lsf_following_command__ec18d958 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf following command" ;
+    rdfs:subClassOf hpc:command__1dccadfe .
+
+hpc:lsf_host__931e5873 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf host" ;
+    rdfs:subClassOf hpc:host__67b3dba8 .
+
+hpc:lsf_job__b93c050c a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf job" ;
+    rdfs:subClassOf hpc:job__9dddd5ce .
+
+hpc:lsf_management_host__903e039a a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf management host" ;
+    rdfs:subClassOf hpc:host__67b3dba8 .
+
+hpc:lsf_queue__6b38de54 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf queue" ;
+    rdfs:subClassOf hpc:queue__a9d1cbf7 .
+
+hpc:lsf_server_host__9e7108a3 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf server host" ;
+    rdfs:subClassOf hpc:host__67b3dba8 .
+
+hpc:lsf_service__5ca5e4c6 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "lsf service" .
+
+hpc:mbatchd__78e631c1 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "mbatchd" .
+
+hpc:mbatchd_daemon__80b5031d a rdfs:Class,
+        owl:Class ;
+    rdfs:label "mbatchd daemon" ;
+    rdfs:subClassOf hpc:daemon__1f15fcf5 .
+
+hpc:mysql__81c3b080 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "mysql" .
+
+hpc:node__36c45369 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "node" .
+
+hpc:pattern_allocation_job__664cb47f a rdfs:Class,
+        owl:Class ;
+    rdfs:label "pattern allocation job" ;
+    rdfs:subClassOf hpc:job__9dddd5ce .
+
+hpc:plugin__a24bcf21 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "plugin" .
+
+hpc:process__b6ec7abe a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Process" .
+
+hpc:queue__a9d1cbf7 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "queue" .
+
+hpc:role__bbbabdbe a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Role" .
+
+hpc:running_job__5f5899fa a rdfs:Class,
+        owl:Class ;
+    rdfs:label "running job" ;
+    rdfs:subClassOf hpc:job__9dddd5ce .
+
+hpc:situation__e8d9fefc a rdfs:Class,
+        owl:Class ;
+    rdfs:label "Situation" .
+
+hpc:slurm__8c338f9e a rdfs:Class,
+        owl:Class ;
+    rdfs:label "slurm" .
+
+hpc:slurm_daemon__cd35b86a a rdfs:Class,
+        owl:Class ;
+    rdfs:label "slurm daemon" ;
+    rdfs:subClassOf hpc:daemon__1f15fcf5 .
+
+hpc:slurm_plugin__d54f9530 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "slurm plugin" ;
+    rdfs:subClassOf hpc:plugin__a24bcf21 .
+
+hpc:slurmctld__85fa6c22 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "slurmctld" .
+
+hpc:slurmctld_select_plugin__faffa77c a rdfs:Class,
+        owl:Class ;
+    rdfs:label "slurmctld select plugin" ;
+    rdfs:subClassOf hpc:plugin__a24bcf21 .
+
+hpc:slurmd_task_plugin__d6c04d89 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "slurmd task plugin" ;
+    rdfs:subClassOf hpc:plugin__a24bcf21 .
+
+hpc:step_lsf_host__c1c2459f a rdfs:Class,
+        owl:Class ;
+    rdfs:label "step lsf host" ;
+    rdfs:subClassOf hpc:host__67b3dba8 .
+
+hpc:task__478f3a4c a rdfs:Class,
+        owl:Class ;
+    rdfs:label "task" .
+
+hpc:task_ids__198f9d7b a rdfs:Class,
+        owl:Class ;
+    rdfs:label "task ids" .
+
+hpc:unknown__ad921d60 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "unknown" .
+
+hpc:user__ee11cbb1 a rdfs:Class,
+        owl:Class ;
+    rdfs:label "user" .
+
+<https://example.org/hpc-onto> a owl:Ontology .
+
+hpc:add_to__f01f6728 a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "add_to" ;
+    rdfs:domain hpc:unknown__ad921d60 ;
+    rdfs:range hpc:entity__1a434bef ;
+    anno:confidence 7.398e-01 ;
+    anno:method "mode(dul_bucket_subject) + mode(dul_bucket_object)" ;
+    anno:support 4 .
+
+hpc:bind_to__deef42c9 a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "bind_to" ;
+    rdfs:domain hpc:entity__1a434bef ;
+    rdfs:range hpc:unknown__ad921d60 ;
+    anno:confidence 6.037e-01 ;
+    anno:method "mode(dul_bucket_subject) + mode(dul_bucket_object)" ;
+    anno:support 3 .
+
+hpc:distribute_to__a191cd6a a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "distribute_to" ;
+    rdfs:domain hpc:entity__1a434bef ;
+    rdfs:range hpc:entity__1a434bef ;
+    anno:confidence 6.523e-01 ;
+    anno:method "mode(dul_bucket_subject) + mode(dul_bucket_object)" ;
+    anno:support 4 .
+
+hpc:receive__cbd71f0d a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "receive" ;
+    rdfs:domain hpc:entity__1a434bef ;
+    rdfs:range hpc:entity__1a434bef ;
+    anno:confidence 6.523e-01 ;
+    anno:method "mode(dul_bucket_subject) + mode(dul_bucket_object)" ;
+    anno:support 4 .
+
+hpc:use__5ef76d30 a rdf:Property,
+        owl:ObjectProperty ;
+    rdfs:label "use" ;
+    rdfs:domain hpc:entity__1a434bef ;
+    rdfs:range hpc:information_object__aa5bf392 ;
+    anno:confidence 6.856e-01 ;
+    anno:method "mode(dul_bucket_subject) + mode(dul_bucket_object)" ;
+    anno:support 5 .
+

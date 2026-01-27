@@ -1,0 +1,108 @@
+{
+  "system_prompt": "You are validating IS-A (hypernym) relations for an HPC scheduler ontology (SLURM/LSF/etc.).\n\nReturn ONLY a single JSON object with EXACTLY these keys (no extra keys, no extra text):\n{\n  \"is_a_valid\": true/false,\n  \"suggested_child\": \"<one of known_terms or 'none'>\",\n  \"suggested_parent\": \"<one of candidate_parents or 'none'>\",\n  \"example_sentence\": \"<short evidence sentence or 'none'>\",\n  \"confidence\": 0.0-1.0,\n  \"reason\": \"<one sentence>\"\n}\n\nRules:\n- is_a_valid=true means the original (child_term IS-A parent_term) is correct.\n- If is_a_valid=false, propose a fix using suggested_parent OR suggested_child:\n  - Prefer suggesting a better parent (suggested_parent).\n  - Only suggest a different child if the child is clearly not a class term.\n- suggested_child MUST be either 'none' or one string from known_terms.\n- suggested_parent MUST be either 'none' or one string from candidate_parents.\n- If you cannot confidently fix it with allowed terms, set suggested_child='none' and suggested_parent='none'.\n- Use example_sentence from the provided evidence when possible; otherwise 'none'.\n- Be conservative.",
+  "few_shots": [
+  {
+    "input": {
+      "child_term": "slurmctld",
+      "parent_term": "daemon",
+      "candidate_parents": ["daemon", "host", "command", "plugin", "job", "queue", "none"],
+      "known_terms": ["slurmctld", "slurmd", "daemon", "command", "plugin"],
+      "evidence": ["The slurmctld daemon provides the central management service for SLURM."]
+    },
+    "output": {
+      "is_a_valid": true,
+      "suggested_child": "none",
+      "suggested_parent": "none",
+      "example_sentence": "The slurmctld daemon provides the central management service for SLURM.",
+      "confidence": 0.95,
+      "reason": "slurmctld is explicitly described as a daemon, so the is-a relation is correct."
+    }
+  },
+  {
+    "input": {
+      "child_term": "sbatch",
+      "parent_term": "job",
+      "candidate_parents": ["job", "command", "daemon", "plugin", "none"],
+      "known_terms": ["sbatch", "command", "job"],
+      "evidence": ["Use sbatch to submit a batch script to SLURM."]
+    },
+    "output": {
+      "is_a_valid": false,
+      "suggested_child": "none",
+      "suggested_parent": "command",
+      "example_sentence": "Use sbatch to submit a batch script to SLURM.",
+      "confidence": 0.92,
+      "reason": "sbatch is a user command, not a job; command is the appropriate parent."
+    }
+  },
+  {
+    "input": {
+      "child_term": "SlurmctldHost",
+      "parent_term": "host",
+      "candidate_parents": ["host", "config_param", "resource", "none"],
+      "known_terms": ["SlurmctldHost", "config_param", "host"],
+      "evidence": ["SlurmctldHost specifies the hostname of the primary slurmctld controller."]
+    },
+    "output": {
+      "is_a_valid": false,
+      "suggested_child": "none",
+      "suggested_parent": "config_param",
+      "example_sentence": "SlurmctldHost specifies the hostname of the primary slurmctld controller.",
+      "confidence": 0.9,
+      "reason": "SlurmctldHost is a configuration parameter name, so config_param is a better parent than host."
+    }
+  },
+  {
+    "input": {
+      "child_term": "slurm.conf",
+      "parent_term": "file",
+      "candidate_parents": ["file", "config_file", "path", "none"],
+      "known_terms": ["slurm.conf", "config_file", "file"],
+      "evidence": ["The slurm.conf file controls core SLURM configuration parameters."]
+    },
+    "output": {
+      "is_a_valid": false,
+      "suggested_child": "none",
+      "suggested_parent": "config_file",
+      "example_sentence": "The slurm.conf file controls core SLURM configuration parameters.",
+      "confidence": 0.93,
+      "reason": "slurm.conf is a configuration file; config_file is the correct typed parent."
+    }
+  },
+  {
+    "input": {
+      "child_term": "RUNNING",
+      "parent_term": "state",
+      "candidate_parents": ["state", "job_state", "other_hpc", "none"],
+      "known_terms": ["RUNNING", "job_state", "state"],
+      "evidence": ["A job may be in the RUNNING state when it is executing."]
+    },
+    "output": {
+      "is_a_valid": false,
+      "suggested_child": "none",
+      "suggested_parent": "job_state",
+      "example_sentence": "A job may be in the RUNNING state when it is executing.",
+      "confidence": 0.94,
+      "reason": "RUNNING is a job state; job_state is the appropriate typed parent."
+    }
+  },
+  {
+    "input": {
+      "child_term": "lsf administration",
+      "parent_term": "daemon",
+      "candidate_parents": ["daemon", "command", "host", "queue", "none"],
+      "known_terms": ["lsf administration", "command", "daemon"],
+      "evidence": ["Use LSF administration commands lsadmin and badmin to start and stop LSF daemons."]
+    },
+    "output": {
+      "is_a_valid": false,
+      "suggested_child": "none",
+      "suggested_parent": "command",
+      "example_sentence": "Use LSF administration commands lsadmin and badmin to start and stop LSF daemons.",
+      "confidence": 0.86,
+      "reason": "The phrase refers to administration commands/concepts, not a daemon instance; command fits better than daemon."
+    }
+  }
+]
+
+}

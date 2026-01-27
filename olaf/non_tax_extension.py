@@ -1,93 +1,139 @@
+from __future__ import annotations
+
 import argparse
 import json
 import re
 import sqlite3
-from dataclasses import dataclass
-from datetime import datetime
-from typing import Dict, List, Optional, Tuple
-
-# -----------------------------
-# Defaults (safe + bounded)
-# -----------------------------
-
-DEFAULT_RELATION_BLACKLIST = {
-    "use", "have", "make", "do", "get", "set",
-    "include", "contain", "provide", "allow",
-}
-
-DEFAULT_ALLOWED_RELATIONS = [
-    # keep small + ontology-friendly
-    "uses",
-    "requires",
-    "configures",
-    "runs_on",
-    "writes_to",
-    "reads_from",
-    "submits",
-    "allocates",
-    "limits",
-    "sets",
-    "enables",
-    "disables",
-    "reports",
-    "stores",
-    "manages",
-    "depends_on",
-    "unknown",  # model may choose if truly unclear
-]
-
-SYSTEM_PROMPT = """\
-You are an expert in High Performance Computing (HPC) and job schedulers such as SLURM and IBM LSF.
-
-Task: RELATION NORMALIZATION + TRIPLE VALIDATION for knowledge graph building.
-
-You are given:
-- subject (canonical term)
-- relation phrase (free text extracted by OpenIE)
-- object (canonical term)
-- sentence evidence (the exact sentence it came from)
-
-You must return JSON ONLY with:
-{
-  "accept": true|false,
-  "normalized_relation": "<must be one of ALLOWED_RELATIONS>",
-  "reason": "<short reason tied to the sentence evidence>",
-  "evidence": "<short quote (<=20 words) from the sentence that supports your decision>"
-}
-
-Rules:
-- Be conservative. If the triple is not clearly supported by the sentence, accept=false.
-- "normalized_relation" MUST be exactly one of ALLOWED_RELATIONS.
-- If relation is too vague ("use", "have", "do") and sentence does not specify a clear relation, accept=false.
-- Do NOT hallucinate facts not present in the sentence.
-- Output MUST be valid JSON and nothing else.
-"""
-
-def build_user_prompt(
-    subj: str,
-    rel_text: str,
-    obj: str,
-    sentence: str,
-    allowed_relations: List[str],
-) -> str:
-    allowed = ", ".join(allowed_relations)
-    return f"""\
-ALLOWED_RELATIONS: [{allowed}]
-
-SUBJECT: {subj}
-RELATION: {rel_text}
-OBJECT: {obj}
-
-SENTENCE: {sentence}
-
-Return JSON only.
-"""
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional, Tuple
 
 
 # -----------------------------
-# DB helpers
+# Prompt config loader
 # -----------------------------
+def load_prompt_config(path: str) -> dict:
+    with open(path, "r", encoding="utf-8") as f:
+        cfg = json.load(f)
+    if "system_prompt" not in cfg:
+        raise ValueError("prompt_config missing required key: system_prompt")
+    return cfg
 
+
+def _render_template(t: str, mapping: Dict[str, str]) -> str:
+    out = t
+    for k, v in mapping.items():
+        out = out.replace("{" + k + "}", v)
+    return out
+
+
+def build_prompt(cfg: dict, subj: str, rel: str, obj: str, sentence: str) -> str:
+    system_prompt = str(cfg.get("system_prompt", "")).strip()
+    user_template = cfg.get(
+        "user_template",
+        "SUBJECT: {SUBJECT}\nRELATION_KEY: {REL}\nOBJECT: {OBJECT}\nSENTENCE: {SENTENCE}\nReturn JSON only.",
+    )
+    user_block = _render_template(
+        str(user_template),
+        {"SUBJECT": subj, "REL": rel, "OBJECT": obj, "SENTENCE": sentence},
+    )
+    return system_prompt + "\n\n" + user_block.strip() + "\n"
+
+
+# -----------------------------
+# HF runner (batched)
+# -----------------------------
+def load_hf_textgen(model_name: str, device: str = "auto"):
+    from transformers import pipeline
+    return pipeline(
+        "text-generation",
+        model=model_name,
+        device_map=device,
+        torch_dtype="auto",
+    )
+
+
+_JSON_OBJ_RE = re.compile(r"\{.*\}", flags=re.DOTALL)
+
+
+def _extract_json(text: str) -> Optional[dict]:
+    if not text:
+        return None
+    m = _JSON_OBJ_RE.search(text)
+    if not m:
+        return None
+    try:
+        return json.loads(m.group(0))
+    except Exception:
+        return None
+
+
+def _as_str(x: Any) -> str:
+    return str(x).strip() if x is not None else ""
+
+
+def _decision_binary(x: Any) -> str:
+    s = str(x or "").strip().upper()
+    return s if s in {"ACCEPT", "REJECT"} else "REJECT"
+
+
+def _confidence_01(x: Any) -> float:
+    # accept: 0..1 expected; if model outputs 1..10, convert to 0..1
+    try:
+        v = float(x)
+    except Exception:
+        return 0.0
+    if v > 1.0 and v <= 10.0:
+        v = v / 10.0
+    if v < 0.0:
+        return 0.0
+    if v > 1.0:
+        return 1.0
+    return v
+
+
+def run_llm_batch(gen, prompts: List[str], max_new_tokens: int, temperature: float) -> List[Optional[dict]]:
+    outs = gen(
+        prompts,
+        max_new_tokens=max_new_tokens,
+        do_sample=(temperature > 0),
+        temperature=temperature,
+        return_full_text=False,
+    )
+
+    results: List[Optional[dict]] = []
+    for out in outs:
+        txt = ""
+        if isinstance(out, list) and out:
+            txt = (out[0].get("generated_text") or "").strip()
+        elif isinstance(out, dict):
+            txt = (out.get("generated_text") or "").strip()
+
+        data = _extract_json(txt)
+        if not isinstance(data, dict):
+            results.append(None)
+            continue
+
+        needed = {"decision", "confidence", "reason"}
+        if not needed.issubset(set(data.keys())):
+            results.append(None)
+            continue
+
+        results.append(
+            {
+                "decision": _decision_binary(data.get("decision")),
+                "confidence": _confidence_01(data.get("confidence")),
+                "reason": _as_str(data.get("reason")),
+            }
+        )
+
+    if len(results) != len(prompts):
+        results = (results + [None] * len(prompts))[:len(prompts)]
+    return results
+
+
+# -----------------------------
+# DB helpers / schema
+# -----------------------------
 def connect(db: str) -> sqlite3.Connection:
     conn = sqlite3.connect(db)
     conn.row_factory = sqlite3.Row
@@ -95,257 +141,105 @@ def connect(db: str) -> sqlite3.Connection:
     return conn
 
 
-def ensure_llm_table(
-    conn: sqlite3.Connection,
-    out_table: str,
-) -> None:
-    """
-    Stores LLM decisions (normalized relation + accept/reject + evidence).
-    Does NOT drop the table.
-    """
+def table_exists(conn: sqlite3.Connection, table: str) -> bool:
+    r = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name=?",
+        (table,),
+    ).fetchone()
+    return r is not None
+
+
+def table_columns(conn: sqlite3.Connection, table: str) -> set[str]:
+    cols = set()
+    rows = conn.execute(f"PRAGMA table_info({table})").fetchall()
+    for r in rows:
+        cols.add(str(r["name"]))
+    return cols
+
+
+def ensure_llm_table(conn: sqlite3.Connection, out_table: str) -> None:
+    # If you changed schema before, easiest is to DROP TABLE manually once.
     conn.execute(
         f"""
         CREATE TABLE IF NOT EXISTS {out_table} (
-            id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
 
-            -- reference to original edge (if present)
-            source_edge_id      INTEGER,
-
-            doc_id              TEXT,
-            sentence_id         TEXT,
+            source_edge_id      INTEGER NOT NULL,
             sentence_text       TEXT,
 
-            subj_canonical_id   INTEGER,
-            subj_canonical_term TEXT,
-            rel_text            TEXT,
-            obj_canonical_id    INTEGER,
-            obj_canonical_term  TEXT,
+            subj_canonical_term TEXT NOT NULL,
+            rel_key             TEXT NOT NULL,
+            obj_canonical_term  TEXT NOT NULL,
 
-            -- computed features (for debugging/filtering)
-            rel_len             INTEGER,
-            has_prep            INTEGER,
-            is_generic_rel      INTEGER,
-            rel_support_total   INTEGER,
-            rel_support_subj    INTEGER,
-            rel_support_obj     INTEGER,
+            decision            TEXT NOT NULL,   -- ACCEPT/REJECT
+            confidence          REAL NOT NULL,   -- 0..1
+            reason              TEXT NOT NULL,
 
-            -- LLM outputs
-            accept              INTEGER,
-            normalized_relation TEXT,
-            reason              TEXT,
-            evidence            TEXT,
-
-            model_name          TEXT,
+            model_name          TEXT NOT NULL,
             created_at          TEXT NOT NULL,
 
-            UNIQUE(subj_canonical_id, rel_text, obj_canonical_id, sentence_id, model_name)
+            UNIQUE(source_edge_id, model_name)
         )
         """
     )
     conn.commit()
 
 
-def compute_relation_support(
-    conn: sqlite3.Connection,
-    edges_table: str,
-) -> Dict[str, Tuple[int, int, int]]:
-    """
-    Return rel_text -> (n_total, n_subj_distinct, n_obj_distinct)
-    """
-    rows = conn.execute(
+def materialize_accept_only(conn: sqlite3.Connection, llm_table: str, out_accept_table: str) -> None:
+    conn.execute(f"DROP TABLE IF EXISTS {out_accept_table}")
+    conn.execute(
         f"""
-        SELECT
-            rel_text AS rel,
-            COUNT(*) AS n_total,
-            COUNT(DISTINCT subj_canonical_id) AS n_subj,
-            COUNT(DISTINCT obj_canonical_id) AS n_obj
-        FROM {edges_table}
-        GROUP BY rel_text
+        CREATE TABLE {out_accept_table} AS
+        SELECT *
+        FROM {llm_table}
+        WHERE UPPER(decision)='ACCEPT'
         """
-    ).fetchall()
-
-    out: Dict[str, Tuple[int, int, int]] = {}
-    for r in rows:
-        out[str(r["rel"])] = (int(r["n_total"]), int(r["n_subj"]), int(r["n_obj"]))
-    return out
-
-
-# -----------------------------
-# Hard-case selection features
-# -----------------------------
-
-_PREP_WORDS = {"to", "for", "in", "on", "with", "from", "into", "over", "under", "by", "as", "at", "via"}
-
-def has_preposition(rel_text: str) -> bool:
-    toks = re.findall(r"[A-Za-z]+", (rel_text or "").lower())
-    return any(t in _PREP_WORDS for t in toks)
-
-def is_generic_relation(rel_text: str, blacklist: set) -> bool:
-    rel = (rel_text or "").strip().lower()
-    if not rel:
-        return True
-    # exact blacklist hit
-    if rel in blacklist:
-        return True
-    # very short, single-verb relations tend to be generic
-    toks = re.findall(r"[A-Za-z]+", rel)
-    if len(toks) == 1 and len(toks[0]) <= 4:
-        return True
-    return False
-
-
-@dataclass
-class HardCasePolicy:
-    """
-    Decide which edges go to LLM.
-    """
-    validate_generic_rels: bool = True
-    validate_low_support: bool = True
-    min_support_total: int = 3
-    min_support_subj: int = 2
-    min_support_obj: int = 2
-
-
-def should_send_to_llm(
-    rel_text: str,
-    support: Tuple[int, int, int],
-    policy: HardCasePolicy,
-    blacklist: set,
-) -> bool:
-    n_total, n_subj, n_obj = support
-
-    generic = is_generic_relation(rel_text, blacklist)
-    if policy.validate_generic_rels and generic:
-        return True
-
-    if policy.validate_low_support:
-        if n_total < policy.min_support_total:
-            return True
-        if n_subj < policy.min_support_subj:
-            return True
-        if n_obj < policy.min_support_obj:
-            return True
-
-    return False
-
-
-# -----------------------------
-# HuggingFace model runner
-# -----------------------------
-
-def load_hf_textgen(model_name: str, device: str = "auto"):
-    """
-    Uses transformers pipeline. Works for Mistral Instruct.
-    """
-    from transformers import pipeline
-
-    # device="auto" will choose GPU if available (accelerate)
-    gen = pipeline(
-        "text-generation",
-        model=model_name,
-        device_map=device,
-        torch_dtype="auto",
     )
-    return gen
-
-
-def run_llm_one(
-    gen,
-    model_name: str,
-    subj: str,
-    rel_text: str,
-    obj: str,
-    sentence: str,
-    allowed_relations: List[str],
-    max_new_tokens: int = 220,
-    temperature: float = 0.0,
-) -> Optional[dict]:
-    """
-    Returns parsed JSON dict or None if parsing failed.
-    """
-    user_prompt = build_user_prompt(subj, rel_text, obj, sentence, allowed_relations)
-
-    prompt = SYSTEM_PROMPT + "\n\n" + user_prompt
-
-    out = gen(
-        prompt,
-        max_new_tokens=max_new_tokens,
-        do_sample=(temperature > 0),
-        temperature=temperature,
-        return_full_text=False,
-    )
-
-    text = out[0]["generated_text"].strip()
-
-    # Try to extract JSON object if model surrounds it with text
-    m = re.search(r"\{.*\}", text, flags=re.DOTALL)
-    if not m:
-        return None
-
-    json_str = m.group(0)
-    try:
-        data = json.loads(json_str)
-    except json.JSONDecodeError:
-        return None
-
-    # Validate schema keys
-    needed = {"accept", "normalized_relation", "reason", "evidence"}
-    if not needed.issubset(set(data.keys())):
-        return None
-
-    # Enforce allowed list
-    nr = str(data.get("normalized_relation", "")).strip()
-    if nr not in allowed_relations:
-        data["normalized_relation"] = "unknown"
-
-    # Normalize accept to bool-ish
-    acc = data.get("accept", False)
-    data["accept"] = bool(acc)
-
-    # Clamp evidence length (soft)
-    ev = str(data.get("evidence", "")).strip()
-    if len(ev.split()) > 25:
-        data["evidence"] = " ".join(ev.split()[:25])
-
-    return data
+    conn.commit()
 
 
 # -----------------------------
 # Main routine
 # -----------------------------
-
-def process_llm_extension(
+def process_all_edges(
     db: str,
     in_edges_table: str,
     out_llm_table: str,
+    out_accept_table: str,
     model_name: str,
-    allowed_relations: List[str],
-    relation_blacklist: set,
-    limit: int = 0,
-    only_hard_cases: bool = True,
-    policy: HardCasePolicy = HardCasePolicy(),
-    device: str = "auto",
-    max_new_tokens: int = 220,
-    temperature: float = 0.0,
+    device: str,
+    prompt_config: str,
+    limit: int,
+    batch_size: int,
+    max_new_tokens: int,
+    temperature: float,
+    commit_every: int,
+    log_every: int,
 ) -> None:
+    cfg = load_prompt_config(prompt_config)
+
     conn = connect(db)
     try:
+        if not table_exists(conn, in_edges_table):
+            raise RuntimeError(f"Missing input table: {in_edges_table}")
+
+        cols = table_columns(conn, in_edges_table)
+        required = {"id", "subj_canonical_term", "rel_key", "obj_canonical_term"}
+        missing = required - cols
+        if missing:
+            raise RuntimeError(f"{in_edges_table} missing required columns: {sorted(missing)}")
+
+        sent_col = "sentence_text" if "sentence_text" in cols else ("sentence" if "sentence" in cols else None)
+
         ensure_llm_table(conn, out_llm_table)
 
-        support_map = compute_relation_support(conn, in_edges_table)
-
-        # Load candidate edges
         q = f"""
         SELECT
-            id,
-            doc_id,
-            sentence_id,
-            sentence_text,
-            subj_canonical_id,
-            subj_canonical_term,
-            rel_text,
-            obj_canonical_id,
-            obj_canonical_term
+          id,
+          subj_canonical_term,
+          rel_key,
+          obj_canonical_term
+          {"," + sent_col + " AS sentence_text" if sent_col else ", '' AS sentence_text"}
         FROM {in_edges_table}
         """
         if limit and limit > 0:
@@ -355,108 +249,89 @@ def process_llm_extension(
             rows = conn.execute(q).fetchall()
 
         print(f"[INFO] Loaded {len(rows)} edges from {in_edges_table}.")
+        if not rows:
+            return
 
         gen = load_hf_textgen(model_name, device=device)
-
-        inserted = 0
-        processed = 0
-        skipped = 0
-
-        now = datetime.utcnow().isoformat(timespec="seconds") + "Z"
         cur = conn.cursor()
+        now = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
-        for r in rows:
-            processed += 1
+        processed = 0
+        inserted = 0
+        forced_reject = 0  # cases where we store REJECT because JSON parse failed or fields missing
 
-            rel_text = (r["rel_text"] or "").strip()
-            subj_term = (r["subj_canonical_term"] or "").strip()
-            obj_term = (r["obj_canonical_term"] or "").strip()
-            sent = (r["sentence_text"] or "").strip()
+        for i in range(0, len(rows), batch_size):
+            batch = rows[i:i + batch_size]
+            prompts: List[str] = []
+            meta: List[Tuple[int, str, str, str, str]] = []
 
-            if not rel_text or not subj_term or not obj_term or not sent:
-                skipped += 1
-                continue
+            for r in batch:
+                eid = int(r["id"])
+                s = str(r["subj_canonical_term"] or "").strip()
+                rel = str(r["rel_key"] or "").strip()
+                o = str(r["obj_canonical_term"] or "").strip()
+                sent = str(r["sentence_text"] or "").strip()
 
-            sup = support_map.get(rel_text, (0, 0, 0))
-            generic = is_generic_relation(rel_text, relation_blacklist)
-            hp = int(has_preposition(rel_text))
+                # We still build a prompt only when fields exist;
+                # but we will ALWAYS write an output row (forced reject if missing).
+                if s and rel and o:
+                    prompts.append(build_prompt(cfg, s, rel, o, sent if sent else "none"))
+                else:
+                    prompts.append("")  # placeholder
 
-            if only_hard_cases:
-                if not should_send_to_llm(rel_text, sup, policy, relation_blacklist):
-                    skipped += 1
-                    continue
+                meta.append((eid, s, rel, o, sent))
 
-            # Run LLM
-            data = run_llm_one(
-                gen=gen,
-                model_name=model_name,
-                subj=subj_term,
-                rel_text=rel_text,
-                obj=obj_term,
-                sentence=sent,
-                allowed_relations=allowed_relations,
-                max_new_tokens=max_new_tokens,
-                temperature=temperature,
-            )
-            if data is None:
-                skipped += 1
-                continue
+            idx = [k for k, p in enumerate(prompts) if p]
+            sub_prompts = [prompts[k] for k in idx]
+            sub_outs: List[Optional[dict]] = []
+            if sub_prompts:
+                sub_outs = run_llm_batch(gen, sub_prompts, max_new_tokens=max_new_tokens, temperature=temperature)
 
-            accept = 1 if data["accept"] else 0
-            norm_rel = str(data["normalized_relation"]).strip()
-            reason = str(data.get("reason", "")).strip()
-            evidence = str(data.get("evidence", "")).strip()
+            outs: List[Optional[dict]] = [None] * len(prompts)
+            for j, k in enumerate(idx):
+                outs[k] = sub_outs[j] if j < len(sub_outs) else None
 
-            rel_len = len(rel_text)
-            n_total, n_subj, n_obj = sup
+            for (eid, s, rel, o, sent), data in zip(meta, outs):
+                processed += 1
 
-            cur.execute(
-                f"""
-                INSERT OR IGNORE INTO {out_llm_table} (
-                    source_edge_id,
-                    doc_id, sentence_id, sentence_text,
-                    subj_canonical_id, subj_canonical_term,
-                    rel_text,
-                    obj_canonical_id, obj_canonical_term,
-                    rel_len, has_prep, is_generic_rel,
-                    rel_support_total, rel_support_subj, rel_support_obj,
-                    accept, normalized_relation, reason, evidence,
-                    model_name, created_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    int(r["id"]),
-                    r["doc_id"],
-                    r["sentence_id"],
-                    sent,
-                    int(r["subj_canonical_id"]),
-                    subj_term,
-                    rel_text,
-                    int(r["obj_canonical_id"]),
-                    obj_term,
-                    int(rel_len),
-                    int(hp),
-                    int(1 if generic else 0),
-                    int(n_total),
-                    int(n_subj),
-                    int(n_obj),
-                    int(accept),
-                    norm_rel,
-                    reason,
-                    evidence,
-                    model_name,
-                    now,
-                ),
-            )
-            inserted += cur.rowcount
+                if not (s and rel and o):
+                    # missing fields -> forced reject
+                    decision, conf, reason = "REJECT", 0.0, "Missing subject/relation/object"
+                    forced_reject += 1
+                elif data is None:
+                    # model output didn't match strict JSON -> forced reject
+                    decision, conf, reason = "REJECT", 0.0, "LLM output not valid JSON with required keys"
+                    forced_reject += 1
+                else:
+                    decision = data["decision"]
+                    conf = float(data["confidence"])
+                    reason = data["reason"] or ""
 
-            if processed % 50 == 0:
-                conn.commit()
-                print(f"[INFO] processed {processed}/{len(rows)} | inserted={inserted} | skipped={skipped}")
+                cur.execute(
+                    f"""
+                    INSERT OR REPLACE INTO {out_llm_table} (
+                      source_edge_id, sentence_text,
+                      subj_canonical_term, rel_key, obj_canonical_term,
+                      decision, confidence, reason,
+                      model_name, created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (eid, sent, s, rel, o, decision, conf, reason, model_name, now),
+                )
+                inserted += 1
+
+                if processed % log_every == 0:
+                    print(f"[INFO] processed={processed} inserted={inserted} forced_reject={forced_reject}")
+                if processed % commit_every == 0:
+                    conn.commit()
 
         conn.commit()
-        print(f"[DONE] processed={processed} inserted={inserted} skipped={skipped}")
-        print(f"[INFO] LLM outputs stored in table: {out_llm_table}")
+        print(f"[DONE] processed={processed} inserted={inserted} forced_reject={forced_reject}")
+        print(f"[INFO] LLM decisions table: {out_llm_table}")
+
+        # Optional: accept-only table for downstream KG/axioms
+        materialize_accept_only(conn, out_llm_table, out_accept_table)
+        print(f"[OK] Accept-only table: {out_accept_table}")
 
     finally:
         conn.close()
@@ -465,72 +340,48 @@ def process_llm_extension(
 # -----------------------------
 # CLI
 # -----------------------------
-
 def parse_args():
-    ap = argparse.ArgumentParser(description="LLM extension: normalize+validate non-taxonomic edges")
+    ap = argparse.ArgumentParser(description="Binary LLM validation of non-tax edges: ACCEPT/REJECT only, store decision for every edge.")
+
     ap.add_argument("--db", required=True)
 
-    ap.add_argument("--in_edges_table", default="non_taxonomic_edges_clean",
-                    help="Input edges table to validate (clean recommended).")
-    ap.add_argument("--out_llm_table", default="non_taxonomic_edges_llm",
-                    help="Output table that stores LLM decisions (no drop).")
+    ap.add_argument("--in_edges_table", default="non_taxonomic_edges_clean")
+    ap.add_argument("--out_llm_table", default="non_taxonomic_edges_llm_binary")
+    ap.add_argument("--out_accept_table", default="non_taxonomic_edges_accept")
 
-    ap.add_argument("--model", required=True, help="HuggingFace model id, e.g. mistralai/Mistral-7B-Instruct-v0.2")
-    ap.add_argument("--device", default="auto", help="device_map for HF pipeline: auto/cuda/cpu")
+    ap.add_argument("--model", required=True, help="HF model id")
+    ap.add_argument("--device", default="auto", help="HF device_map: auto/cuda/cpu")
 
-    ap.add_argument("--allowed_relations_json", default="",
-                    help="JSON list string of allowed relations. If empty, uses defaults.")
-    ap.add_argument("--relation_blacklist_json", default="",
-                    help="JSON list string of blacklisted generic relations. If empty, uses defaults.")
+    ap.add_argument("--non_tax_config", default="prompts/non_tax_extension.json")
 
-    ap.add_argument("--only_hard_cases", action="store_true",
-                    help="If set, LLM runs only on hard cases (recommended).")
-    ap.add_argument("--limit", type=int, default=0, help="Limit how many edges to scan (0 = all)")
+    ap.add_argument("--limit", type=int, default=0, help="Limit edges (0=all)")
+    ap.add_argument("--batch_size", type=int, default=6)
 
-    # Hard-case thresholds
-    ap.add_argument("--min_support_total", type=int, default=3)
-    ap.add_argument("--min_support_subj", type=int, default=2)
-    ap.add_argument("--min_support_obj", type=int, default=2)
-
-    # generation settings
-    ap.add_argument("--max_new_tokens", type=int, default=220)
+    ap.add_argument("--max_new_tokens", type=int, default=120)
     ap.add_argument("--temperature", type=float, default=0.0)
+
+    ap.add_argument("--commit_every", type=int, default=200)
+    ap.add_argument("--log_every", type=int, default=50)
 
     return ap.parse_args()
 
 
 def main():
     args = parse_args()
-
-    allowed = DEFAULT_ALLOWED_RELATIONS
-    if args.allowed_relations_json.strip():
-        allowed = json.loads(args.allowed_relations_json)
-
-    blacklist = DEFAULT_RELATION_BLACKLIST
-    if args.relation_blacklist_json.strip():
-        blacklist = set(json.loads(args.relation_blacklist_json))
-
-    policy = HardCasePolicy(
-        validate_generic_rels=True,
-        validate_low_support=True,
-        min_support_total=args.min_support_total,
-        min_support_subj=args.min_support_subj,
-        min_support_obj=args.min_support_obj,
-    )
-
-    process_llm_extension(
+    process_all_edges(
         db=args.db,
         in_edges_table=args.in_edges_table,
         out_llm_table=args.out_llm_table,
+        out_accept_table=args.out_accept_table,
         model_name=args.model,
-        allowed_relations=allowed,
-        relation_blacklist=blacklist,
-        limit=args.limit,
-        only_hard_cases=args.only_hard_cases,
-        policy=policy,
         device=args.device,
-        max_new_tokens=args.max_new_tokens,
-        temperature=args.temperature,
+        prompt_config=args.non_tax_config,
+        limit=int(args.limit),
+        batch_size=max(1, int(args.batch_size)),
+        max_new_tokens=int(args.max_new_tokens),
+        temperature=float(args.temperature),
+        commit_every=max(1, int(args.commit_every)),
+        log_every=max(1, int(args.log_every)),
     )
 
 

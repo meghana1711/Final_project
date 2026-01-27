@@ -1,0 +1,67 @@
+id,doc_id,sentence_id,sentence_text,subj_text,subj_canonical_id,subj_canonical_term,rel_text_raw,rel_key,obj_text,obj_canonical_id,obj_canonical_term,method,created_at
+1,doc_4387,doc_4387_sent_00028,"Note if you switch from using the MySQL plugin to use the SlurmDBD plugin you must make sure the cluster has been added to the database. The MySQL plugin doesn't require this, but also will not hurt things if you have it there when using the MySQL plugin. You can verify with
+sacctmgr list cluster",the cluster,43,cluster,add to,add_to,the database,103,database,openie_spacy,2026-01-26T12:57:46Z
+2,doc_4387,doc_4387_sent_00117,"[,...]) to register with. If no port is given, the AccountingStoragePort will be used. This allows clusters registered with the external slurmdbd to communicate with each other using the --cluster/-M client command options. The cluster will add itself to the external slurmdbd if it doesn't exist. If a non-external cluster already exists on the external slurmdbd, the slurmctld will ignore registering to the external slurmdbd.",The cluster,43,cluster,add to,add_to,the external slurmdbd,214,external slurmdbd slurmctld,openie_spacy,2026-01-26T12:57:46Z
+3,doc_4387,doc_4387_sent_00165,"If you want Slurm to create the database itself, and any future databases, you can change your grant line to be *.*",Slurm,1,slurm,create,create,the database,103,database,openie_spacy,2026-01-26T12:57:46Z
+4,doc_4387,doc_4387_sent_00171,"mysql> create user 'slurm'@'localhost' identified by 'password';
+Query OK, 0 rows affected (0.00 sec)
+mysql> grant all on slurm_acct_db.*",mysql,115,mysql,create,create,user,59,user,openie_spacy,2026-01-26T12:57:46Z
+5,doc_4387,doc_4387_sent_00183,"| | | | | |
+Then create the database:
+mysql> create database slurm_acct_db;
+This will grant user 'slurm' access to do what it needs to do on the local host or the storage host system.",mysql,115,mysql,create,create,database slurm_acct_db,300,database slurm_acct_db,openie_spacy,2026-01-26T12:57:46Z
+6,doc_4387,doc_4387_sent_00216,"For example, to add a cluster named ""snowflake"" to the database execute this line (NOTE: as of 20.02, slurmctld will add the cluster to the database upon start if it doesn't exist. Associations still need to be created after addition):
+sacctmgr add cluster snowflake
+Add accounts ""none"" and ""test"" to cluster ""snowflake"" with an execute line of this sort:
+sacctmgr add account none,test Cluster=snowflake \
+ Description=""none"" Organization=""none""
+If you have more clusters you want to add these accounts, to you can either not specify a cluster, which will add the accounts to all clusters in the system, or comma separate the cluster names you want to add to in the cluster option. Note that multiple accounts can be added at the same time by comma separating the names.",slurmctld,48,slurmctld,add to,add_to,the database,103,database,openie_spacy,2026-01-26T12:57:46Z
+7,doc_d9be,doc_d9be_sent_00119,"srun --nodes=1-1 --ntasks=6 --cpu-bind=cores ...
+Comments:
+Using the default allocation method within nodes (cyclic), Slurm allocates 3 CPUs on each socket of 1 node. Using the default distribution method within nodes (cyclic), Slurm distributes and binds each task to an allocated core in a round-robin fashion across the sockets. The following table shows a possible pattern of allocation, distribution and binding for this job. For example, task id 2 is bound to CPU id 1.
+Nodenamen0
+Socket id01
+Number of Allocated CPUs33
+Allocated CPU ids0 1 24 5 6
+Binding of Tasks to CPUsCPU id01234567
+Task id024-135-
+Example 11: Consumable resources with task affinity and socket binding, Case 1
+A job requires 6 CPUs (6 tasks with no overcommitment).",task,428,task,bind to,bind_to,CPU,1425,cpu,openie_spacy,2026-01-26T12:57:46Z
+8,doc_d9be,doc_d9be_sent_00121,"srun --nodes=1-1 --ntasks=6 --cpu-bind=sockets ...
+Comments:
+Using the default allocation method within nodes (cyclic), Slurm allocates 3 CPUs on each socket of 1 node. Using the default distribution method within nodes (cyclic), Slurm distributes and binds each task to all of the allocated CPUs in one socket in a round-robin fashion across the sockets. The following table shows a possible pattern of allocation, distribution and binding for this job. For example, task ids 1, 3 and 5 are all bound to CPU ids 4, 5 and 6.",task ids,1521,task ids,bind to,bind_to,CPU ids,1440,cpu ids,openie_spacy,2026-01-26T12:57:46Z
+9,doc_d9be,doc_d9be_sent_00147,"For example, task id 10 is bound to CPU id 3 on node n1.",task,428,task,bind to,bind_to,CPU,1425,cpu,openie_spacy,2026-01-26T12:57:46Z
+10,doc_7ceb,doc_7ceb_sent_00436,"Jobs remain pending until the user or the queue administrator uses the bswitch
+command to switch the jobs into a regular queue.",the user,59,user,use,use,"the bswitch
+command",942,bswitch,openie_spacy,2026-01-26T12:57:46Z
+11,doc_7ceb,doc_7ceb_sent_00675,"userok: Request from bad port
+(<port_number>), denied
+The LSF_AUTH=ident parameter is not deﬁned, and the LSF daemon received a request that originates from a non-privileged port. The request
+is not serviced.",the LSF daemon,1227,lsf service,receive,receive,a request,1210,request,openie_spacy,2026-01-26T12:57:46Z
+12,doc_7ceb,doc_7ceb_sent_00733,"The mbatchd received a request from sbatchd on host host_name, but that host is not known to mbatchd. Either the conﬁguration ﬁle has
+changed but mbatchd was not reconﬁgured to pick up the new conﬁguration, or host_name is a client host but the sbatchd daemon is
+running on that host. Run the following badmin reconﬁgcommand to reconﬁgure the mbatchd daemon or kill the sbatchd daemon on
+host_name.",The mbatchd,678,mbatchd,receive,receive,a request,1210,request,openie_spacy,2026-01-26T12:57:46Z
+21,doc_d9be,doc_d9be_sent_00137,"Using the cyclic distribution method, CPU ids 0, 1 and 4 were distributed to task id 0, and CPU ids 2, 3 and 5 were distributed to task id 1.",CPU ids,1440,cpu ids,distribute to,distribute_to,task,428,task,openie_spacy,2026-01-26T12:57:46Z
+23,doc_7ceb,doc_7ceb_sent_00142,"Run LSF jobs
+ Use the bsub and lsrun commands to run jobs through LSF. Use the bjobs command to see the status of your jobs. Control job execution with
+the bstop, bresume, and bkill commands.",LSF jobs,447,lsf job,use,use,the bsub,779,bsub,openie_spacy,2026-01-27T10:41:08Z
+24,doc_7ceb,doc_7ceb_sent_00189,"Find batch system status using the bhosts and bqueues commands
+ Use the bhosts command to see whether the LSF batch workload system is running properly.",commands,281,command,use,use,the bhosts,689,bhost,openie_spacy,2026-01-27T10:41:08Z
+25,doc_7ceb,doc_7ceb_sent_00225,"Find batch system status using the bhosts and bqueues commands
+Use the bhosts command to see whether the LSF batch workload system is running properly.",commands,281,command,use,use,the bhosts,689,bhost,openie_spacy,2026-01-27T10:41:08Z
+26,doc_7ceb,doc_7ceb_sent_00244,"Run LSF jobs
+Use the bsub and lsrun commands to run jobs through LSF. Use the bjobs command to see the status of your jobs. Control job execution with the
+bstop, bresume, and bkill commands.",LSF jobs,447,lsf job,use,use,the bsub,779,bsub,openie_spacy,2026-01-27T10:41:08Z
+27,doc_7ceb,doc_7ceb_sent_00508,"Monitor dynamic shared resources
+For LSF to receive external load indexes correctly, the ELIM must send a count of the available resources to standard output in the following format:
+number_indexes",LSF,445,lsf,receive,receive,external load indexes,985,external load index,openie_spacy,2026-01-27T10:41:08Z
+28,doc_7ceb,doc_7ceb_sent_00675,"userok: Request from bad port
+(<port_number>), denied
+The LSF_AUTH=ident parameter is not deﬁned, and the LSF daemon received a request that originates from a non-privileged port. The request
+is not serviced.",the LSF daemon,642,lsf daemon,receive,receive,a request,1210,request,openie_spacy,2026-01-27T10:41:08Z
+29,doc_4387,doc_4387_sent_00117,"[,...]) to register with. If no port is given, the AccountingStoragePort will be used. This allows clusters registered with the external slurmdbd to communicate with each other using the --cluster/-M client command options. The cluster will add itself to the external slurmdbd if it doesn't exist. If a non-external cluster already exists on the external slurmdbd, the slurmctld will ignore registering to the external slurmdbd.",The cluster,43,cluster,add to,add_to,the external slurmdbd,212,external slurmdbd,openie_spacy,2026-01-27T10:41:08Z
+30,doc_d9be,doc_d9be_sent_00041,"Step 3: Distribution of Tasks to the selected Nodes
+In Step 3, Slurm distributes tasks to the nodes that were selected for the job/step in Step 1.",Slurm,1,slurm,distribute to,distribute_to,the nodes,22,node,openie_spacy,2026-01-27T10:41:08Z
+31,doc_d9be,doc_d9be_sent_00095,"The options specify the following conditions for the job: 6 tasks, 2 unique CPUs per task, using exactly 2 nodes, and with 3 tasks per node. To satisfy these conditions, Slurm must allocate 6 CPUs from each of the 2 nodes. The --distribution=cyclic option causes the tasks to be distributed to the nodes in a round-robin fashion. The following table shows a possible pattern of allocation and distribution for this job.",the tasks,428,task,distribute to,distribute_to,the nodes,22,node,openie_spacy,2026-01-27T10:41:08Z
+32,doc_d9be,doc_d9be_sent_00158,"Slurm distributes tasks to the cores but without cpu binding, each task has access to all the allocated CPUs.",Slurm,1,slurm,distribute to,distribute_to,the cores,1382,core,openie_spacy,2026-01-27T10:41:08Z

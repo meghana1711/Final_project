@@ -36,7 +36,7 @@ def load_stop_terms(path: str) -> Set[str]:
 # -----------------------------
 DEFAULT_STOP_WORDS_FILE = "stop_word/stop_words.txt"
 DEFAULT_MIN_DOC_FREQ = 1
-DEFAULT_MAX_TERM_TOKENS = 7
+DEFAULT_MAX_TERM_TOKENS = 3
 DEFAULT_MAX_TERM_CHARS = 60
 DEFAULT_MAX_TOKENS_FOR_TFIDF = 3
 
@@ -281,6 +281,7 @@ def _extract_candidates_from_sentence(
             # allow '=' only for CLI flags like --gres=gpu:1
             return
 
+        # ✅ IMPORTANT CHANGE:
         # Previously: drop anything starting with '-' (kills --nodes, --gres, -N)
         # Now: allow if it's a CLI flag; otherwise drop dash-start junk.
         if term_lemma.startswith("-") and not _is_cli_flag(term_text):
@@ -523,26 +524,6 @@ def _percentile(sorted_vals: List[float], p: float) -> float:
     d1 = sorted_vals[c] * (k - f)
     return d0 + d1
 
-def reset_term_tables(
-    db_path: str,
-    term_candidates_table: str,
-    term_occurrences_table: str,
-) -> None:
-    """
-    Delete all rows from occurrences first (FK dependency),
-    then candidates. Keeps schema intact.
-    """
-    conn = sqlite3.connect(db_path)
-    cur = conn.cursor()
-    cur.execute("PRAGMA foreign_keys = ON;")
-
-    # Occurrences first because it references candidates
-    cur.execute(f"DELETE FROM {term_occurrences_table};")
-    cur.execute(f"DELETE FROM {term_candidates_table};")
-
-    conn.commit()
-    conn.close()
-    print(f"[RESET] Cleared {term_occurrences_table} and {term_candidates_table}.")
 
 def compute_tf_idf_for_terms(
     db_path: str,
@@ -630,12 +611,11 @@ def main():
     ap.add_argument("--term_occurrences_table", default="term_occurrences")
 
     ap.add_argument("--stopwords", default=DEFAULT_STOP_WORDS_FILE)
-    ap.add_argument("--reset_terms", action="store_true", help="Clear term tables before extraction")
-  
     ap.add_argument("--min_doc_freq", type=int, default=DEFAULT_MIN_DOC_FREQ)
     ap.add_argument("--max_term_tokens", type=int, default=DEFAULT_MAX_TERM_TOKENS)
     ap.add_argument("--max_term_chars", type=int, default=DEFAULT_MAX_TERM_CHARS)
     ap.add_argument("--max_tfidf_tokens", type=int, default=DEFAULT_MAX_TOKENS_FOR_TFIDF)
+
     args = ap.parse_args()
 
     stop_terms = load_stop_terms(args.stopwords)

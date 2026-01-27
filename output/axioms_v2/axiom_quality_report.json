@@ -1,0 +1,227 @@
+{
+  "taxonomy_edges_raw": 197,
+  "taxonomy_edges_kept": 155,
+  "taxonomy_edges_dropped": 42,
+  "taxonomy_nodes": 220,
+  "triple_count": 130,
+  "relation_count": 19,
+  "inverse_axioms_count": 0,
+  "flagged_count": 43,
+  "flagged": [
+    {
+      "relation": "add_to",
+      "reason": "low_support<10",
+      "support": 3
+    },
+    {
+      "relation": "add_to",
+      "reason": "candidate_domain_range",
+      "confidence": 0.6037
+    },
+    {
+      "relation": "allocate_on",
+      "reason": "low_support<10",
+      "support": 6
+    },
+    {
+      "relation": "allocate_on",
+      "reason": "candidate_domain_range",
+      "confidence": 0.769
+    },
+    {
+      "relation": "bind",
+      "reason": "low_support<10",
+      "support": 5
+    },
+    {
+      "relation": "bind",
+      "reason": "candidate_domain_range",
+      "confidence": 0.5481
+    },
+    {
+      "relation": "bind",
+      "reason": "low_type_coverage",
+      "subj_cov": 0.8,
+      "obj_cov": 0.2
+    },
+    {
+      "relation": "bind_to",
+      "reason": "low_support<10",
+      "support": 8
+    },
+    {
+      "relation": "bind_to",
+      "reason": "candidate_domain_range",
+      "confidence": 0.6283
+    },
+    {
+      "relation": "create",
+      "reason": "generic_relation_phrase"
+    },
+    {
+      "relation": "create",
+      "reason": "low_support<10",
+      "support": 4
+    },
+    {
+      "relation": "create",
+      "reason": "candidate_domain_range",
+      "confidence": 0.4898
+    },
+    {
+      "relation": "display",
+      "reason": "candidate_domain_range",
+      "confidence": 0.3083
+    },
+    {
+      "relation": "display",
+      "reason": "low_type_coverage",
+      "subj_cov": 0.0,
+      "obj_cov": 0.2
+    },
+    {
+      "relation": "distribute_to",
+      "reason": "low_support<10",
+      "support": 9
+    },
+    {
+      "relation": "distribute_to",
+      "reason": "candidate_domain_range",
+      "confidence": 0.6633
+    },
+    {
+      "relation": "exist_on",
+      "reason": "low_support<10",
+      "support": 3
+    },
+    {
+      "relation": "exist_on",
+      "reason": "candidate_domain_range",
+      "confidence": 0.6204
+    },
+    {
+      "relation": "have",
+      "reason": "low_support<10",
+      "support": 8
+    },
+    {
+      "relation": "have",
+      "reason": "candidate_domain_range",
+      "confidence": 0.6096
+    },
+    {
+      "relation": "receive",
+      "reason": "generic_relation_phrase"
+    },
+    {
+      "relation": "receive",
+      "reason": "low_support<10",
+      "support": 5
+    },
+    {
+      "relation": "receive",
+      "reason": "candidate_domain_range",
+      "confidence": 0.2556
+    },
+    {
+      "relation": "receive",
+      "reason": "low_type_coverage",
+      "subj_cov": 1.0,
+      "obj_cov": 0.0
+    },
+    {
+      "relation": "require",
+      "reason": "generic_relation_phrase"
+    },
+    {
+      "relation": "run",
+      "reason": "low_support<10",
+      "support": 6
+    },
+    {
+      "relation": "run",
+      "reason": "candidate_domain_range",
+      "confidence": 0.644
+    },
+    {
+      "relation": "run",
+      "reason": "low_type_coverage",
+      "subj_cov": 0.3333,
+      "obj_cov": 0.1667
+    },
+    {
+      "relation": "run_in",
+      "reason": "low_support<10",
+      "support": 3
+    },
+    {
+      "relation": "run_in",
+      "reason": "candidate_domain_range",
+      "confidence": 0.4954
+    },
+    {
+      "relation": "run_on",
+      "reason": "low_support<10",
+      "support": 9
+    },
+    {
+      "relation": "run_on",
+      "reason": "candidate_domain_range",
+      "confidence": 0.7
+    },
+    {
+      "relation": "store_in",
+      "reason": "low_support<10",
+      "support": 3
+    },
+    {
+      "relation": "store_in",
+      "reason": "candidate_domain_range",
+      "confidence": 0.5037
+    },
+    {
+      "relation": "submit",
+      "reason": "low_support<10",
+      "support": 8
+    },
+    {
+      "relation": "submit",
+      "reason": "candidate_domain_range",
+      "confidence": 0.6283
+    },
+    {
+      "relation": "submit_to",
+      "reason": "low_support<10",
+      "support": 5
+    },
+    {
+      "relation": "submit_to",
+      "reason": "candidate_domain_range",
+      "confidence": 0.5506
+    },
+    {
+      "relation": "use",
+      "reason": "generic_relation_phrase"
+    },
+    {
+      "relation": "use",
+      "reason": "low_support<10",
+      "support": 8
+    },
+    {
+      "relation": "use",
+      "reason": "candidate_domain_range",
+      "confidence": 0.5246
+    },
+    {
+      "relation": "write_to",
+      "reason": "low_support<10",
+      "support": 6
+    },
+    {
+      "relation": "write_to",
+      "reason": "candidate_domain_range",
+      "confidence": 0.494
+    }
+  ]
+}

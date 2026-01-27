@@ -1,0 +1,133 @@
+{
+  "system_prompt": "You are an expert in High Performance Computing (HPC) and job schedulers such as SLURM and IBM LSF.\nYour task is PRECISE TERM ENRICHMENT for ONTOLOGY BUILDING.\n\nFor each input, you receive:\n- a TERM string (already extracted and canonicalized), and\n- a SHORT CONTEXT snippet (a few sentences of documentation where the term appears).\n\nYou must decide:\n1) whether this is truly a meaningful HPC / scheduler domain term,\n2) which scheduler(s) it belongs to,\n3) which category it falls into,\n4) what OWL/ontology role it should have (class/property/value/drop),\n5) which DUL/DnS bucket it best fits,\n6) provide a short, accurate definition and optional aliases.\n\nIMPORTANT RULES:\n- Example identifiers (hosta, hostb, node001, user1, queue1) are NOT domain terms → drop.\n- Documentation artifacts (note, example, installation, section headers) → drop.\n- Configuration parameters, commands, files ARE domain terms.\n\nIf unsure, be conservative.\n\nOUTPUT JSON ONLY.\n",
+  "fewshot": [
+   {
+        "term": "hosta",
+        "context": "In this example, hostA hostB hostC are used as sample hostnames to illustrate configuration. Replace hostA with your real host.",
+        "json": {
+        "term": "hosta",
+        "canonical": "hosta",
+        "is_hpc_domain_term": false,
+        "scheduler": "unknown",
+        "category": "non_domain",
+        "ontology_role": "drop",
+        "dul_bucket": "unknown",
+        "confidence": 0.15,
+        "short_definition": "Example placeholder hostname used in documentation; not a real domain concept.",
+        "aliases": []
+        }
+    },
+    {
+        "term": "hostb",
+        "context": "The following examples use hostB to demonstrate how daemons communicate between nodes. hostB is not a specific system component.",
+        "json": {
+        "term": "hostb",
+        "canonical": "hostb",
+        "is_hpc_domain_term": false,
+        "scheduler": "unknown",
+        "category": "non_domain",
+        "ontology_role": "drop",
+        "dul_bucket": "unknown",
+        "confidence": 0.15,
+        "short_definition": "Example placeholder hostname; not an ontology entity.",
+        "aliases": []
+        }
+    },
+    {
+        "term": "note lsf",
+        "context": "Note: LSF may require additional configuration depending on your environment. See the manual for details.",
+        "json": {
+        "term": "note lsf",
+        "canonical": "note lsf",
+        "is_hpc_domain_term": false,
+        "scheduler": "unknown",
+        "category": "non_domain",
+        "ontology_role": "drop",
+        "dul_bucket": "unknown",
+        "confidence": 0.1,
+        "short_definition": "Documentation note/metadata, not a domain term.",
+        "aliases": []
+        }
+    },
+    {
+        "term": "installation lsfinstall command",
+        "context": "Installation: run the lsfinstall command to set up IBM Spectrum LSF. This section explains steps to install LSF.",
+        "json": {
+        "term": "installation lsfinstall command",
+        "canonical": "lsfinstall",
+        "is_hpc_domain_term": true,
+        "scheduler": "lsf",
+        "category": "command",
+        "ontology_role": "individual",
+        "dul_bucket": "information_object",
+        "confidence": 0.7,
+        "short_definition": "The LSF installation command used to install/configure IBM Spectrum LSF.",
+        "aliases": ["lsfinstall"]
+        }
+    },
+    {
+        "term": "lsb_api_verbose",
+        "context": "Set LSB_API_VERBOSE to increase verbosity of LSF API calls for debugging and troubleshooting.",
+        "json": {
+        "term": "lsb_api_verbose",
+        "canonical": "lsb_api_verbose",
+        "is_hpc_domain_term": true,
+        "scheduler": "lsf",
+        "category": "config_param",
+        "ontology_role": "datatype_property",
+        "dul_bucket": "description",
+        "confidence": 0.75,
+        "short_definition": "An LSF environment/configuration parameter controlling API verbosity.",
+        "aliases": ["LSB_API_VERBOSE"]
+        }
+    },
+    {
+        "term": "lsf.conf",
+        "context": "Edit lsf.conf to set LSF_ENVDIR and other LSF environment configuration parameters.",
+        "json": {
+        "term": "lsf.conf",
+        "canonical": "lsf.conf",
+        "is_hpc_domain_term": true,
+        "scheduler": "lsf",
+        "category": "config_file",
+        "ontology_role": "individual",
+        "dul_bucket": "information_object",
+        "confidence": 0.8,
+        "short_definition": "The LSF configuration file that defines environment and system parameters.",
+        "aliases": ["LSF config file", "lsf.conf file"]
+        }
+    },
+    {
+        "term": "lsf_envdir_new\\passwd.lsfuser",
+        "context": "The file passwd.lsfuser is stored under the LSF_ENVDIR directory and defines user-related settings for LSF tools.",
+        "json": {
+        "term": "lsf_envdir_new\\passwd.lsfuser",
+        "canonical": "passwd.lsfuser",
+        "is_hpc_domain_term": true,
+        "scheduler": "lsf",
+        "category": "log_or_state_path",
+        "ontology_role": "individual",
+        "dul_bucket": "information_object",
+        "confidence": 0.65,
+        "short_definition": "A file path example for an LSF user-related file (e.g., passwd.lsfuser) under the LSF environment directory.",
+        "aliases": ["passwd.lsfuser"]
+        }
+    },
+    {
+        "term": "queue",
+        "context": "LSF uses queues to control policies such as limits, priorities, and where jobs can run. A queue has a name and configuration.",
+        "json": {
+        "term": "queue",
+        "canonical": "queue",
+        "is_hpc_domain_term": true,
+        "scheduler": "lsf",
+        "category": "queue_or_partition",
+        "ontology_role": "class",
+        "dul_bucket": "object",
+        "confidence": 0.6,
+        "short_definition": "A scheduling queue that defines policies and constraints for job execution.",
+        "aliases": ["LSF queue"]
+        }
+    }
+  ]
+}

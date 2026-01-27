@@ -1,0 +1,52 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex:   <http://example.org/hpc#> .
+
+<http://example.org/hpc/ontology/clean> a owl:Ontology ;
+  rdfs:label "HPC Scheduler Ontology (Clean Taxonomy)" ;
+  ex:generatedAt "2026-01-25T12:32:19Z"^^xsd:dateTime .
+
+# -------------------------
+# Classes
+# -------------------------
+<http://example.org/hpc#Command> a owl:Class ; rdfs:label "command" .
+<http://example.org/hpc#GroupLsfHost> a owl:Class ; rdfs:label "group lsf host" .
+<http://example.org/hpc#Host> a owl:Class ; rdfs:label "host" .
+<http://example.org/hpc#Job> a owl:Class ; rdfs:label "job" .
+<http://example.org/hpc#LsadminBadminCommand> a owl:Class ; rdfs:label "lsadmin badmin command" .
+<http://example.org/hpc#LsfClientHost> a owl:Class ; rdfs:label "lsf client host" .
+<http://example.org/hpc#LsfCommand> a owl:Class ; rdfs:label "lsf command" .
+<http://example.org/hpc#LsfFollowingCommand> a owl:Class ; rdfs:label "lsf following command" .
+<http://example.org/hpc#LsfHost> a owl:Class ; rdfs:label "lsf host" .
+<http://example.org/hpc#LsfJob> a owl:Class ; rdfs:label "lsf job" .
+<http://example.org/hpc#LsfManagementHost> a owl:Class ; rdfs:label "lsf management host" .
+<http://example.org/hpc#LsfServerHost> a owl:Class ; rdfs:label "lsf server host" .
+<http://example.org/hpc#PatternAllocationJob> a owl:Class ; rdfs:label "pattern allocation job" .
+<http://example.org/hpc#Plugin> a owl:Class ; rdfs:label "plugin" .
+<http://example.org/hpc#RunningJob> a owl:Class ; rdfs:label "running job" .
+<http://example.org/hpc#SlurmPlugin> a owl:Class ; rdfs:label "slurm plugin" .
+<http://example.org/hpc#SlurmctldSelectPlugin> a owl:Class ; rdfs:label "slurmctld select plugin" .
+<http://example.org/hpc#SlurmdTaskPlugin> a owl:Class ; rdfs:label "slurmd task plugin" .
+<http://example.org/hpc#StepLsfHost> a owl:Class ; rdfs:label "step lsf host" .
+
+# -------------------------
+# Taxonomy (SubClassOf)
+# -------------------------
+<http://example.org/hpc#LsfJob> rdfs:subClassOf <http://example.org/hpc#Job> .
+<http://example.org/hpc#RunningJob> rdfs:subClassOf <http://example.org/hpc#Job> .
+<http://example.org/hpc#PatternAllocationJob> rdfs:subClassOf <http://example.org/hpc#Job> .
+<http://example.org/hpc#LsadminBadminCommand> rdfs:subClassOf <http://example.org/hpc#Command> .
+<http://example.org/hpc#LsfCommand> rdfs:subClassOf <http://example.org/hpc#Command> .
+<http://example.org/hpc#LsfFollowingCommand> rdfs:subClassOf <http://example.org/hpc#Command> .
+<http://example.org/hpc#LsfHost> rdfs:subClassOf <http://example.org/hpc#Host> .
+<http://example.org/hpc#LsfServerHost> rdfs:subClassOf <http://example.org/hpc#Host> .
+<http://example.org/hpc#LsfClientHost> rdfs:subClassOf <http://example.org/hpc#Host> .
+<http://example.org/hpc#LsfManagementHost> rdfs:subClassOf <http://example.org/hpc#Host> .
+<http://example.org/hpc#StepLsfHost> rdfs:subClassOf <http://example.org/hpc#Host> .
+<http://example.org/hpc#GroupLsfHost> rdfs:subClassOf <http://example.org/hpc#Host> .
+<http://example.org/hpc#SlurmPlugin> rdfs:subClassOf <http://example.org/hpc#Plugin> .
+<http://example.org/hpc#SlurmctldSelectPlugin> rdfs:subClassOf <http://example.org/hpc#Plugin> .
+<http://example.org/hpc#SlurmdTaskPlugin> rdfs:subClassOf <http://example.org/hpc#Plugin> .
+

@@ -10,7 +10,7 @@ echo "Activating virtual environment..."
 cd /vast.mnt/home/20236193/projects/Final_project
 source venv/bin/activate
 
-echo "✅ Environment ready!"
+echo "Environment ready!"
 echo "Python: $(python --version)"
 echo "Location: $(which python)"
 echo ""

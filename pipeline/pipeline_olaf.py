@@ -7,8 +7,12 @@ import sys
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional
+from typing import List
 
+
+# =============================
+# Step model + runner
+# =============================
 
 @dataclass
 class Step:
@@ -38,19 +42,145 @@ def run_step(step: Step, python_exe: str, stop_on_fail: bool) -> int:
     return p.returncode
 
 
-def build_steps(args: argparse.Namespace) -> List[Step]:
+# =============================
+# Filtering helpers
+# =============================
+
+def step_key(st: Step) -> str:
+    return st.module.split(".")[-1]
+
+
+def apply_only_filter(steps: List[Step], only: str) -> List[Step]:
+    if not only:
+        return steps
+    wanted = {s.strip() for s in only.split(",") if s.strip()}
+    if not wanted:
+        return steps
+
+    kept: List[Step] = []
+    for st in steps:
+        if step_key(st) in wanted or st.module in wanted or st.name in wanted:
+            kept.append(st)
+
+    if not kept:
+        print(f"[WARN] --only matched nothing. Wanted={sorted(wanted)}.")
+        print(f"       Available={[step_key(s) for s in steps]}")
+    return kept
+
+
+def apply_range_filter(steps: List[Step], start: str, end: str) -> List[Step]:
+    if not start and not end:
+        return steps
+
+    def matches(st: Step, token: str) -> bool:
+        return token in {st.name, st.module, step_key(st)}
+
+    i0 = 0
+    i1 = len(steps) - 1
+
+    if start:
+        found = None
+        for i, st in enumerate(steps):
+            if matches(st, start):
+                found = i
+                break
+        if found is None:
+            print(f"[WARN] --from_step '{start}' not found. No range start applied.")
+        else:
+            i0 = found
+
+    if end:
+        found = None
+        for i, st in enumerate(steps):
+            if matches(st, end):
+                found = i
+        if found is None:
+            print(f"[WARN] --to_step '{end}' not found. No range end applied.")
+        else:
+            i1 = found
+
+    if i0 > i1:
+        print("[WARN] Range invalid (start after end). Returning empty step list.")
+        return []
+
+    return steps[i0 : i1 + 1]
+
+
+def list_steps(steps: List[Step]) -> None:
+    print("\n" + "-" * 90)
+    print("Available steps (use with --only / --from_step / --to_step):")
+    for i, st in enumerate(steps, 1):
+        print(f"{i:02d}. key={step_key(st):<28} module={st.module:<35} name={st.name}")
+    print("-" * 90 + "\n")
+
+
+# =============================
+# Utilities
+# =============================
+
+def remove_db(db_path: str) -> None:
+    p = Path(db_path)
+    if p.exists():
+        print(f"[INFO] Removing DB: {p}")
+        p.unlink()
+    else:
+        print(f"[INFO] DB not found, skip remove: {p}")
+
+
+def ensure_gpu_if_needed(require_gpu: bool) -> None:
+    try:
+        import torch
+        has_cuda = torch.cuda.is_available()
+    except Exception:
+        has_cuda = False
+
+    if not has_cuda:
+        msg = (
+            "[WARN] CUDA GPU not available. LLM steps may be very slow or may OOM on CPU.\n"
+            "       If you're on HPC, run inside a GPU allocation (srun/sbatch with --gres=gpu...)."
+        )
+        print(msg)
+        if require_gpu:
+            raise SystemExit("[ERROR] --require_gpu set but CUDA is not available. Exiting.")
+    else:
+        try:
+            import torch
+            print(f"[INFO] CUDA available: {torch.cuda.get_device_name(0)}")
+        except Exception:
+            print("[INFO] CUDA available.")
+
+
+def choose_next_pipeline(mode: str) -> str:
+    if mode != "ask":
+        return mode
+
+    print("\n" + "=" * 80)
+    print("Choose next pipeline:")
+    print("  [1] OLAF (symbolic / hybrid NLP)")
+    print("  [2] OLAF + LLM (separate branch)")
+    print("  [0] Stop here")
+    print("=" * 80)
+
+    while True:
+        choice = input("Enter choice [1/2/0]: ").strip()
+        if choice == "1":
+            return "olaf"
+        if choice == "2":
+            return "olaf_llm"
+        if choice == "0":
+            return "stop"
+        print("Invalid choice. Please enter 1, 2, or 0.")
+
+
+# =============================
+# PREPROCESSING STEPS
+# =============================
+
+def build_preprocess_steps(args: argparse.Namespace) -> List[Step]:
     steps: List[Step] = []
 
-    # 0) PATTERNS (run before anything else)
-    steps.append(
-        Step(
-            name="Run patterns.py",
-            module="pre_processing.patterns",
-            args=[],  
-        )
-    )
+    steps.append(Step(name="Run patterns.py", module="pre_processing.patterns", args=[]))
 
-    # 1) INGEST
     steps.append(
         Step(
             name="Ingest .txt files -> raw table",
@@ -64,7 +194,6 @@ def build_steps(args: argparse.Namespace) -> List[Step]:
         )
     )
 
-    # 2) CLEAN
     steps.append(
         Step(
             name="Clean raw -> cleaned table",
@@ -80,7 +209,6 @@ def build_steps(args: argparse.Namespace) -> List[Step]:
         )
     )
 
-    # 3) SEGMENT
     steps.append(
         Step(
             name="Sentence segmentation cleaned -> segmented table",
@@ -96,7 +224,6 @@ def build_steps(args: argparse.Namespace) -> List[Step]:
         )
     )
 
-    # 4) LEMMATIZE
     lem_args = [
         "--db", args.db,
         "--segmented_table", args.segmented_table,
@@ -120,10 +247,9 @@ def build_steps(args: argparse.Namespace) -> List[Step]:
         )
     )
 
-    # 5) Contextual Chunking
     steps.append(
         Step(
-            name="Chunk lemmatized sentences -> contextual chunks",
+            name="Chunk segmented sentences -> contextual chunks",
             module="pre_processing.contextual_chunking",
             args=[
                 "--db", args.db,
@@ -139,40 +265,17 @@ def build_steps(args: argparse.Namespace) -> List[Step]:
         )
     )
 
-   
-    # Optional: run subset
-    if args.only:
-        wanted = set(s.strip() for s in args.only.split(","))
-        steps = [s for s in steps if s.module.split(".")[-1] in wanted]
-
     return steps
 
-def choose_next_pipeline(mode: str) -> str:
-    if mode != "ask":
-        return mode
 
-    print("\n" + "=" * 80)
-    print("Choose next pipeline:")
-    print("  [1] OLAF (symbolic / hybrid NLP)")
-    print("  [2] OLAF + LLM")
-    print("  [0] Stop here")
-    print("=" * 80)
-
-    while True:
-        choice = input("Enter choice [1/2/0]: ").strip()
-        if choice == "1":
-            return "olaf"
-        if choice == "2":
-            return "olaf_llm"
-        if choice == "0":
-            return "stop"
-        print("Invalid choice. Please enter 1, 2, or 0.")
-
+# =============================
+# OLAF STEPS
+# =============================
 
 def build_olaf_steps(args: argparse.Namespace) -> List[Step]:
     steps: List[Step] = []
 
-    # 1) Term Extraction (TF-IDF)
+    # 1) term extraction
     steps.append(
         Step(
             name="OLAF: Term Extraction (TF-IDF)",
@@ -189,7 +292,7 @@ def build_olaf_steps(args: argparse.Namespace) -> List[Step]:
         )
     )
 
-    # 2) Term Enrichment (rule-based)
+    # 2) rule-based enrichment
     steps.append(
         Step(
             name="OLAF: Term enrichment (rule-based)",
@@ -203,40 +306,33 @@ def build_olaf_steps(args: argparse.Namespace) -> List[Step]:
         )
     )
 
-    # 3) Optional: Term Enrichment with LLM (guarded behind --use_llm_enrich)
+    # 3) LLM enrichment extension -> term_enrichment_exten
     if args.use_llm_enrich:
         ensure_gpu_if_needed(args.require_gpu)
-
-        if not args.hf_model:
-            raise SystemExit("[ERROR] --use_llm_enrich requires --hf_model to be set.")
-
         steps.append(
             Step(
-                name="OLAF: Term Enrichment (LLM HF Mistral) -> term_enrichment_exten",
+                name="OLAF: Term Enrichment v2 (LLM) -> term_enrichment_exten",
                 module="olaf.term_enrichment_extension",
                 args=[
                     "--db", args.db,
-                    "--term_candidates_table", args.term_candidates_table,
+                    "--src_table", args.term_enrichment_src_table,
+                    "--dst_table", args.term_enrichment_ext_table,
                     "--term_occurrences_table", args.term_occurrences_table,
                     "--sentences_table", args.lemmatized_table,
-                    "--dst_table", args.term_enrichment_ext_table,
                     "--cleaned_version", str(args.cleaned_version),
-                    "--min_tf_idf_keep", str(args.min_tf_idf),
-                    "--hardcase_p_low", str(args.hardcase_p_low),
-                    "--hardcase_p_high", str(args.hardcase_p_high),
                     "--max_terms_llm", str(args.max_terms_llm),
                     "--max_evidence_sents", str(args.max_evidence_sents),
+                    "--log_every", str(args.log_every),
+                    "--prompt_config", args.term_enrich_prompt_config,
                     "--hf_model", args.hf_model,
                     "--dtype", args.hf_dtype,
                     "--device", args.hf_device,
-                    "--max_new_tokens", str(args.hf_max_new_tokens),
-                    "--temperature", str(args.hf_temperature),
-                    "--top_p", str(args.hf_top_p),
-                ] + (["--fewshot_json", args.fewshot_json] if args.fewshot_json else []),
+                    "--batch_size", str(args.hf_batch_size),
+                ] + (["--classify_all"] if args.classify_all else []),
             )
         )
 
-    # 4) Skip-gram embeddings + neighbors
+    # 4) embeddings
     steps.append(
         Step(
             name="OLAF: Skip-gram embeddings + neighbors",
@@ -245,180 +341,202 @@ def build_olaf_steps(args: argparse.Namespace) -> List[Step]:
                 "--db", args.db,
                 "--sentences_table", args.lemmatized_table,
                 "--term_candidates_table", args.term_candidates_table,
-                "--neighbors_table", "skipgram_neighbors",
+                "--neighbors_table", args.skipgram_neighbors_table,
                 "--cleaned_version", str(args.cleaned_version),
-                "--min_tfidf", "10",
-                "--top_k", "10",
-                "--train",
-            ],
+                "--min_tfidf", str(args.skipgram_min_tfidf),
+                "--top_k_max", str(args.skipgram_top_k_max),
+            ] + (["--train"] if args.skipgram_train else []),
         )
     )
 
-    # 5) Parent terms (taxonomy scaffolding)
+    # 5) taxonomy (NO LLM) => taxonomy_is_a
+    # NOTE: your updated olaf.taxonomy has defaults: use_embeddings=True, use_hearst=True, no top_parents cap.
     steps.append(
         Step(
-            name="OLAF: Parent head candidates (taxonomy scaffolding)",
-            module="olaf.parent_terms",
-            args=[
-                "--db", args.db,
-                "--enrichment_table", args.term_enrichment_table,
-                "--out_table", "taxonomy_parent_candidates",
-                "--max_examples_per_head", "15",
-                "--min_head_len", "3",
-                "--min_head_freq", "3",
-            ],
-        )
-    )
-
-    # 6) Taxonomy extraction
-    steps.append(
-        Step(
-            name="OLAF: Taxonomy (head-based + typed parents)",
+            name="OLAF: Taxonomy extraction (seed + embeddings + Hearst) -> taxonomy_is_a",
             module="olaf.taxonomy",
             args=[
                 "--db", args.db,
-                "--enrichment_table", args.term_enrichment_table,
-                "--parent_candidates_table", "taxonomy_parent_candidates",
-                "--out_table", "taxonomy_is_a",
-                "--method", "head_parent_candidates_v2",
-                "--clear_out",
-                "--add_typed_parents",
-            ],
+                "--terms_table", args.term_enrichment_ext_table,
+                "--out_table", args.taxonomy_table,             # taxonomy_is_a
+                "--term_candidates_table", args.term_candidates_table,
+                "--sim_table", args.taxonomy_sim_table,
+                "--sent_table", args.taxonomy_sent_table,
+                "--sent_col", args.taxonomy_sent_col,
+                "--max_sents", str(args.taxonomy_max_sents),
+                "--min_children_per_parent", str(args.taxonomy_min_children_per_parent),
+                "--top_k_neighbors", str(args.taxonomy_top_k_neighbors),
+                "--min_cos", str(args.taxonomy_min_cos),
+            ] + (["--require_same_category"] if args.taxonomy_require_same_category else []),
         )
     )
 
-    # Taxonomic part 2, LLM for validation
+    # 6) taxonomy_extension (LLM) => taxonomy_is_a_final
     if args.use_llm_taxonomy:
+        ensure_gpu_if_needed(args.require_gpu)
         steps.append(
             Step(
-                name="LLM validate taxonomy (hard cases only)",
-                module="olaf_llm.taxonomy_llm_validate",
+                name="OLAF: Taxonomy LLM validation -> taxonomy_is_a_final (no dropping; invalid parent='none')",
+                module="olaf.taxonomy_extension",
                 args=[
                     "--db", args.db,
-                    "--taxonomy_table", "taxonomy_is_a",
-                    "--enrichment_table", args.term_enrichment_table,  # whichever you used
-                    "--parent_candidates_table", "taxonomy_parent_candidates",
-                    "--chunks_table", args.chunks_table,               # likely contextual_chunk
-                    "--out_table", args.taxonomy_validated_table,
+                    "--in_table", args.taxonomy_table,              # taxonomy_is_a
+                    "--out_table", args.taxonomy_final_table,       # taxonomy_is_a_final
+                    "--terms_table", args.term_enrichment_ext_table,
                     "--model", args.llm_taxonomy_model,
-                    "--evidence_k", "2",
-                    "--global_heads_k", "10",
+                    "--prompt_config", args.taxonomy_prompt_config,
+                    "--batch_size", str(args.taxonomy_llm_batch_size),
+                    "--max_new_tokens", str(args.taxonomy_llm_max_new_tokens),
+                    "--temperature", str(args.taxonomy_llm_temperature),
+                    "--log_every", str(args.taxonomy_llm_log_every),
+                    "--include_sentence", str(int(args.taxonomy_llm_include_sentence)),
                 ],
             )
         )
 
-    # Non-taxonomic extraction
+    # 7) non-taxonomy (OpenIE) => raw + clean
     steps.append(
         Step(
-            name="Non-taxonomic extraction (OpenIE spaCy)",
+            name="Non-taxonomic extraction (OpenIE spaCy) -> non_taxonomic_edges(_clean)",
             module="olaf.non_taxonomy",
             args=[
                 "--db", args.db,
-                "--sentence_table", args.segmented_table,          # or "sentence_segmented"
-                "--term_candidates_table", args.term_candidates_table,
-                "--term_enrichment_table", args.term_enrichment_table,  # default "term_enrichment"
-                "--raw_edges_table", "non_taxonomic_edges",
-                "--clean_edges_table", "non_taxonomic_edges_clean",
+                "--spacy_model", args.non_tax_spacy_model,
                 "--stopwords", args.stopwords,
-                "--spacy_model", args.spacy_model,
-                "--method", "openie_spacy",
+                "--sentence_table", args.non_tax_sentence_table,
+                "--cleaned_version", str(args.cleaned_version),
+                "--term_candidates_table", args.term_candidates_table,
+                "--term_enrichment_table", args.term_enrichment_table,
+                "--term_enrichment_ext_table", args.term_enrichment_ext_table,
+                "--taxonomy_table", args.taxonomy_final_table,  # use final taxonomy for taxonomy-filter if enabled
+                "--use_taxonomy_filter" if args.non_tax_use_taxonomy_filter else "",
+                "--raw_edges_table", args.non_tax_raw_table,
+                "--clean_edges_table", args.non_tax_clean_table,
+                "--method", args.non_tax_method,
+                "--max_rel_len", str(args.non_tax_max_rel_len),
+                "--min_rel_total", str(args.non_tax_min_rel_total),
+                "--min_rel_subj", str(args.non_tax_min_rel_subj),
+                "--min_rel_obj", str(args.non_tax_min_rel_obj),
+                "--debug_k", str(args.non_tax_debug_k),
             ],
         )
     )
+    # remove empty "" tokens from args list (because of conditional flag above)
+    steps[-1].args = [a for a in steps[-1].args if a != ""]
 
-    # Non taxonomic LLM
+    # 8) non_taxonomy_extension (LLM) => non_taxonomic_edges_final (no dropping)
     if args.use_llm_non_taxonomy:
+        ensure_gpu_if_needed(args.require_gpu)
         steps.append(
             Step(
-                name="LLM validate + normalize non-tax edges",
-                module="olaf.non_taxonomy_llm_extension",
+                name="LLM validate non-tax edges -> non_taxonomic_edges_final (accept/reject/revise; no drop)",
+                module="olaf.non_taxonomy_extension",
                 args=[
                     "--db", args.db,
-                    "--in_edges_table", "non_taxonomic_edges_clean",
-                    "--out_llm_table", "non_taxonomic_edges_llm",
-                    "--model", args.llm_model,                 # reuse your HF model arg
-                    "--device", "auto",
-                    "--only_hard_cases",
+                    "--in_table", args.non_tax_clean_table,
+                    "--out_table", args.non_tax_final_table,
+                    "--model", args.llm_non_tax_model,
+                    "--non_tax_config", args.non_tax_prompt_config,
+                    "--batch_size", str(args.non_tax_llm_batch_size),
+                    "--max_new_tokens", str(args.non_tax_llm_max_new_tokens),
+                    "--temperature", str(args.non_tax_llm_temperature),
+                    "--log_every", str(args.non_tax_llm_log_every),
+                    "--include_sentence", str(int(args.non_tax_llm_include_sentence)),
+                    "--dedupe_mode", args.non_tax_dedupe_mode,
                 ],
             )
         )
 
+   if args.run_axioms:
+        # choose inputs depending on whether LLM validation steps ran
+        taxonomy_for_axioms = args.axiom_taxonomy_table
+        triples_for_axioms = args.axiom_triple_table
+
+        # If user didn’t override, auto-pick best based on pipeline toggles
+        if args.auto_pick_axiom_inputs:
+            taxonomy_for_axioms = args.taxonomy_final_table if args.use_llm_taxonomy else args.taxonomy_table
+            triples_for_axioms = args.non_tax_final_table if args.use_llm_non_taxonomy else args.non_tax_clean_table
+
+        ax_out_dir = os.path.join(args.out_dir_root, args.axiom_out_dir)
+
+        steps.append(
+            Step(
+                name=f"AXIOMS: Generate OWL (.ttl) -> {ax_out_dir}",
+                module="olaf.axiom",
+                args=[
+                    "--db", args.db,
+                    "--out_dir", ax_out_dir,
+                    "--taxonomy_table", taxonomy_for_axioms,
+                    "--triple_table", triples_for_axioms,
+                    "--types_table", args.term_enrichment_ext_table,  # term_enrichment_exten
+                    "--tax_child_col", args.axiom_tax_child_col,
+                    "--tax_parent_col", args.axiom_tax_parent_col,
+                    "--triple_subj_col", args.axiom_triple_subj_col,
+                    "--triple_rel_col", args.axiom_triple_rel_col,
+                    "--triple_obj_col", args.axiom_triple_obj_col,
+                    "--taxonomy_where", args.axiom_taxonomy_where,
+                    "--triple_where", args.axiom_triple_where,
+                    "--min_support", str(args.axiom_min_support),
+                    "--min_purity", str(args.axiom_min_purity),
+                    "--evidence_k", str(args.axiom_evidence_k),
+                    "--export_owl",
+                    "--base_iri", args.axiom_base_iri,
+                ] + (["--no_hash_iris"] if args.axiom_no_hash_iris else []),
+            )
+        )
 
     return steps
 
 
-def build_olaf_llm_steps(args) -> List[Step]:
+# =============================
+# OLAF-LLM STEPS (separate pipeline)
+# =============================
+
+def build_olaf_llm_steps(args: argparse.Namespace) -> List[Step]:
     return [
         Step("OLAF-LLM: Term Enrichment", "olaf_llm.term_enrichment_llm", ["--db", args.db]),
         Step("OLAF-LLM: Relation Induction", "olaf_llm.relations_llm", ["--db", args.db]),
         Step("OLAF-LLM: Axiom Generation", "olaf_llm.axioms_llm", ["--db", args.db]),
     ]
 
-def apply_only_filter(steps, only: str):
-    if not only:
-        return steps
-    wanted = {s.strip() for s in only.split(",") if s.strip()}
-    if not wanted:
-        return steps
 
-    def key(step):
-        # module suffix, e.g. "olaf.term_extraction_tfidf" -> "term_extraction_tfidf"
-        return step.module.split(".")[-1]
+# =============================
+# Build one combined plan
+# =============================
 
-    kept = [st for st in steps if key(st) in wanted or st.name in wanted]
-    if not kept:
-        print(f"[WARN] --only matched nothing. Wanted={sorted(wanted)}. Available={[key(s) for s in steps]}")
-    return kept
+def build_plan(args: argparse.Namespace) -> List[Step]:
+    plan: List[Step] = []
+    plan += build_preprocess_steps(args)
+
+    stage = choose_next_pipeline(args.next)
+    if stage == "stop":
+        return plan
+    if stage == "olaf":
+        plan += build_olaf_steps(args)
+    elif stage == "olaf_llm":
+        plan += build_olaf_llm_steps(args)
+
+    return plan
 
 
-def remove_db(db_path: str) -> None:
-    p = Path(db_path)
-    if p.exists():
-        print(f"[INFO] Removing DB: {p}")
-        p.unlink()
-    else:
-        print(f"[INFO] DB not found, skip remove: {p}")
-
-def ensure_gpu_if_needed(require_gpu: bool) -> None:
-    """
-    LLM steps often require GPU (HF Mistral).
-    This checks CUDA availability and either warns or fails.
-    """
-    try:
-        import torch
-        has_cuda = torch.cuda.is_available()
-    except Exception:
-        has_cuda = False
-
-    if not has_cuda:
-        msg = (
-            "[WARN] CUDA GPU not available. HF Mistral step may be very slow or may OOM on CPU.\n"
-            "       If you're on HPC, run inside a GPU allocation (srun/sbatch with --gres=gpu...)."
-        )
-        print(msg)
-        if require_gpu:
-            raise SystemExit("[ERROR] --require_gpu set but CUDA is not available. Exiting.")
-    else:
-        # Optional: print the GPU name
-        try:
-            import torch
-            print(f"[INFO] CUDA available: {torch.cuda.get_device_name(0)}")
-        except Exception:
-            print("[INFO] CUDA available.")
-
+# =============================
+# CLI
+# =============================
 
 def parse_args() -> argparse.Namespace:
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser(description="Run preprocessing + OLAF pipeline")
 
     # Core
     ap.add_argument("--db", required=True, help="SQLite DB path")
     ap.add_argument("--input", required=True, help="Folder containing .txt files")
+    ap.add_argument("--python", default=sys.executable, help="Python executable to use")
 
-    # Tables
+    # Tables (preprocess)
     ap.add_argument("--raw_table", default="raw_documents")
     ap.add_argument("--cleaned_table", default="cleaned_documents")
     ap.add_argument("--segmented_table", default="sentence_segmented")
     ap.add_argument("--lemmatized_table", default="sentence_lemmatized")
+    ap.add_argument("--chunks_table", default="contextual_chunk")
 
     # Versions
     ap.add_argument("--raw_version", type=int, default=1)
@@ -429,154 +547,216 @@ def parse_args() -> argparse.Namespace:
 
     # spaCy params
     ap.add_argument("--spacy_model", default="en_core_web_sm")
-    ap.add_argument("--max_length", type=int, default=1500000)
+    ap.add_argument("--max_length", type=int, default=5_000_000)
 
     # Lemmatization params
-    ap.add_argument("--keep_pos", action="store_true")
-    ap.add_argument("--remove_stopwords", action="store_true")
-    ap.add_argument("--remove_punct", action="store_true")
-    ap.add_argument("--batch_size", type=int, default=200)
+    ap.add_argument("--keep_pos", dest="keep_pos", action="store_true", default=True)
+    ap.add_argument("--no_keep_pos", dest="keep_pos", action="store_false")
+
+    ap.add_argument("--remove_stopwords", dest="remove_stopwords", action="store_true", default=True)
+    ap.add_argument("--keep_stopwords", dest="remove_stopwords", action="store_false")
+
+    ap.add_argument("--remove_punct", dest="remove_punct", action="store_true", default=True)
+    ap.add_argument("--keep_punct", dest="remove_punct", action="store_false")
+
+    ap.add_argument("--batch_size", type=int, default=2000)
 
     # Chunking params
-    ap.add_argument("--chunks_table", default="contextual_chunk")
     ap.add_argument("--chunk_min_sentences", type=int, default=5)
     ap.add_argument("--chunk_max_sentences", type=int, default=12)
     ap.add_argument("--chunk_min_tokens", type=int, default=400)
     ap.add_argument("--chunk_max_tokens", type=int, default=800)
     ap.add_argument("--chunk_overlap", type=int, default=1)
 
-    # Runner options
-    ap.add_argument("--clean_db", action="store_true", help="Delete DB before starting")
-    ap.add_argument("--stop_on_fail", action="store_true", help="Stop at first failure")
-    ap.add_argument("--python", default=sys.executable, help="Python executable to use")
-    ap.add_argument(
-        "--only",
-        default="",
-        help="Run only specific steps by module suffix: data_ingest,data_clean,sentence_segment,sentence_lemmatize",
-    )
+    # Next stage
+    ap.add_argument("--next", choices=["ask", "olaf", "olaf_llm", "stop"], default="ask")
 
-    # Choose a which pipeline to continue with
-    ap.add_argument(
-        "--next",
-        choices=["ask", "olaf", "olaf_llm", "stop"],
-        default="ask",
-        help="What to run after chunking/term extraction: ask | olaf | olaf_llm | stop",
-    )
-
-    #Term extraction with TF_IDF
+    # Term extraction
     ap.add_argument("--term_candidates_table", default="term_candidates")
     ap.add_argument("--term_occurrences_table", default="term_occurrences")
     ap.add_argument("--stopwords", default="stop_word/stop_words.txt")
     ap.add_argument("--max_tfidf_tokens", type=int, default=3)
-    ap.add_argument("--reset_terms", action="store_true", help="Clear term tables before term extraction")
+    ap.add_argument("--reset_terms", action="store_true")
 
-    # Term enrichment (part-1)
+    # Term enrichment
     ap.add_argument("--term_enrichment_table", default="term_enrichment")
     ap.add_argument("--min_tf_idf", type=float, default=5.0)
 
-    # Term enrichment with LLM (part-2)
-    ap.add_argument("--use_llm_enrich", action="store_true",
-                help="Run HF Mistral term enrichment extension into term_enrichment_exten")
+    # LLM term enrichment extension
+    ap.add_argument("--use_llm_enrich", dest="use_llm_enrich", action="store_true", default=True)
+    ap.add_argument("--no_llm_enrich", dest="use_llm_enrich", action="store_false")
+    ap.add_argument("--require_gpu", action="store_true")
 
-    ap.add_argument("--require_gpu", action="store_true",
-                    help="Fail if CUDA GPU is not available when running LLM steps")
+    ap.add_argument("--term_enrichment_src_table", default="term_enrichment")
+    ap.add_argument("--term_enrichment_ext_table", default="term_enrichment_exten")
+    ap.add_argument("--classify_all", dest="classify_all", action="store_true", default=True)
+    ap.add_argument("--hf_batch_size", type=int, default=8)
 
-    ap.add_argument("--term_enrichment_ext_table", default="term_enrichment_exten",
-                    help="Destination table for LLM-enriched term enrichment output")
-
-    # HF model config
     ap.add_argument("--hf_model", default="mistralai/Mistral-7B-Instruct-v0.2")
-    ap.add_argument("--hf_dtype", default="auto", choices=["auto", "float16", "bfloat16"])
-    ap.add_argument("--hf_device", default="auto",
-                    help="transformers device_map: auto|cuda|cpu")
+    ap.add_argument("--hf_dtype", default="float16", choices=["auto", "float16", "bfloat16"])
+    ap.add_argument("--hf_device", default="cuda")
 
-    ap.add_argument("--hf_max_new_tokens", type=int, default=350)
-    ap.add_argument("--hf_temperature", type=float, default=0.0)
-    ap.add_argument("--hf_top_p", type=float, default=1.0)
+    # Prompt configs
+    ap.add_argument("--term_enrich_prompt_config", default="prompts/term_enrichment_extension.json")
 
-    # few-shot + selection knobs
-    ap.add_argument("--fewshot_json", default=None,
-                    help="Path to few-shot examples JSON file")
-    ap.add_argument("--hardcase_p_low", type=float, default=60.0)
-    ap.add_argument("--hardcase_p_high", type=float, default=85.0)
-    ap.add_argument("--max_terms_llm", type=int, default=200)
+    # Enrichment knobs
+    ap.add_argument("--max_terms_llm", type=int, default=0)   # 0=all
     ap.add_argument("--max_evidence_sents", type=int, default=3)
+    ap.add_argument("--log_every", type=int, default=1000)
 
-    # taxonomic LLM validation
-    ap.add_argument("--use_llm_taxonomy", action="store_true",
-                help="Run LLM validation/rerank for taxonomy hard-cases (GPU recommended)")
+    # Embeddings
+    ap.add_argument("--skipgram_neighbors_table", default="skipgram_neighbors")
+    ap.add_argument("--skipgram_min_tfidf", type=float, default=10.0)
+    ap.add_argument("--skipgram_top_k_max", type=int, default=20)
+    ap.add_argument("--skipgram_train", action="store_true")
+
+    # TAXONOMY (no LLM) -> taxonomy_is_a
+    ap.add_argument("--taxonomy_table", default="taxonomy_is_a")
+    ap.add_argument("--taxonomy_sim_table", default="skipgram_neighbors")
+    ap.add_argument("--taxonomy_sent_table", default="sentence_lemmatized")
+    ap.add_argument("--taxonomy_sent_col", default="sentence")
+    ap.add_argument("--taxonomy_max_sents", type=int, default=200000)
+    ap.add_argument("--taxonomy_min_children_per_parent", type=int, default=2)
+    ap.add_argument("--taxonomy_top_k_neighbors", type=int, default=5)
+    ap.add_argument("--taxonomy_min_cos", type=float, default=0.75)
+    ap.add_argument("--taxonomy_require_same_category", action="store_true", default=True)
+
+    # TAXONOMY LLM extension -> taxonomy_is_a_final
+    ap.add_argument("--use_llm_taxonomy", dest="use_llm_taxonomy", action="store_true", default=True)
+    ap.add_argument("--no_llm_taxonomy", dest="use_llm_taxonomy", action="store_false")
+
+    ap.add_argument("--taxonomy_final_table", default="taxonomy_is_a_final")
     ap.add_argument("--llm_taxonomy_model", default="mistralai/Mistral-7B-Instruct-v0.2")
-    ap.add_argument("--taxonomy_validated_table", default="taxonomy_is_a_validated")
-    
-    # Non-taxonomy (OpenIE) step
-    parser.add_argument("--non_tax_sentence_table", default="sentence_segmented")
-    parser.add_argument("--non_tax_raw_table", default="non_taxonomic_edges")
-    parser.add_argument("--non_tax_clean_table", default="non_taxonomic_edges_clean")
-    parser.add_argument("--non_tax_spacy_model", default="en_core_web_sm")
-    parser.add_argument("--non_tax_method", default="openie_spacy")
+    ap.add_argument("--taxonomy_prompt_config", default="prompts/taxonomy_extension.json")
+    ap.add_argument("--taxonomy_llm_batch_size", type=int, default=6)
+    ap.add_argument("--taxonomy_llm_max_new_tokens", type=int, default=240)
+    ap.add_argument("--taxonomy_llm_temperature", type=float, default=0.0)
+    ap.add_argument("--taxonomy_llm_log_every", type=int, default=50)
+    ap.add_argument("--taxonomy_llm_include_sentence", action="store_true", default=True)
 
-    ap.add_argument("--use_llm_non_taxonomy", action="store_true",
-                    help="Run LLM normalization/validation for non-taxonomic edges")
-    ap.add_argument("--llm_model", default="mistralai/Mistral-7B-Instruct-v0.2")
-    ap.add_argument("--llm_device", default="auto")
-    ap.add_argument("--non_tax_llm_out_table", default="non_taxonomic_edges_llm")
-    ap.add_argument("--non_tax_llm_in_table", default="non_taxonomic_edges_clean")
+    # NON-TAXONOMY extraction
+    ap.add_argument("--non_tax_sentence_table", default="sentence_segmented")
+    ap.add_argument("--non_tax_raw_table", default="non_taxonomic_edges")
+    ap.add_argument("--non_tax_clean_table", default="non_taxonomic_edges_clean")
+    ap.add_argument("--non_tax_spacy_model", default="en_core_web_sm")
+    ap.add_argument("--non_tax_method", default="openie_spacy")
+    ap.add_argument("--non_tax_use_taxonomy_filter", action="store_true", default=False)
+    ap.add_argument("--non_tax_max_rel_len", type=int, default=80)
+    ap.add_argument("--non_tax_min_rel_total", type=int, default=3)
+    ap.add_argument("--non_tax_min_rel_subj", type=int, default=2)
+    ap.add_argument("--non_tax_min_rel_obj", type=int, default=2)
+    ap.add_argument("--non_tax_debug_k", type=int, default=15)
+
+    # NON-TAXONOMY LLM extension -> non_taxonomic_edges_final
+    ap.add_argument("--use_llm_non_taxonomy", dest="use_llm_non_taxonomy", action="store_true", default=True)
+    ap.add_argument("--no_llm_non_taxonomy", dest="use_llm_non_taxonomy", action="store_false")
+
+    ap.add_argument("--llm_non_tax_model", default="mistralai/Mistral-7B-Instruct-v0.2")
+    ap.add_argument("--non_tax_prompt_config", default="prompts/non_tax_extension.json")
+    ap.add_argument("--non_tax_final_table", default="non_taxonomic_edges_final")
+    ap.add_argument("--non_tax_llm_batch_size", type=int, default=6)
+    ap.add_argument("--non_tax_llm_max_new_tokens", type=int, default=220)
+    ap.add_argument("--non_tax_llm_temperature", type=float, default=0.0)
+    ap.add_argument("--non_tax_llm_log_every", type=int, default=50)
+    ap.add_argument("--non_tax_llm_include_sentence", action="store_true", default=True)
+    ap.add_argument("--non_tax_dedupe_mode", choices=["none", "soft", "hard"], default="soft")
+
+    # Runner controls
+    ap.add_argument("--clean_db", action="store_true")
+    ap.add_argument("--stop_on_fail", action="store_true")
+
+    # Filters
+    ap.add_argument("--only", default="")
+    ap.add_argument("--from_step", default="")
+    ap.add_argument("--to_step", default="")
+    ap.add_argument("--list_steps", action="store_true")
+
+    ap.add_argument("--out_dir_root", default="out", help="Root output folder for artifacts (axioms, logs, etc.)")
+  
+    # AXIOMS 
+    ap.add_argument("--run_axioms", action="store_true", default=True)
+    ap.add_argument("--no_axioms", dest="run_axioms", action="store_false")
+
+    ap.add_argument("--axiom_out_dir", default="axioms", help="Subfolder under --out_dir_root for axiom outputs")
+    ap.add_argument("--axiom_base_iri", default="http://example.org/hpc#")
+    ap.add_argument("--axiom_no_hash_iris", action="store_true", default=True)
+
+    # Auto-pick: uses taxonomy_final/non_tax_final when LLM steps enabled
+    ap.add_argument("--auto_pick_axiom_inputs", action="store_true", default=True)
+    ap.add_argument("--no_auto_pick_axiom_inputs", dest="auto_pick_axiom_inputs", action="store_false")
+
+    # Defaults aligned to YOUR DB schema (from your table photo)
+    ap.add_argument("--axiom_taxonomy_table", default="taxonomy_exten")
+    ap.add_argument("--axiom_triple_table", default="non_taxonomic_edges_accept")
+
+    ap.add_argument("--axiom_tax_child_col", default="child")
+    ap.add_argument("--axiom_tax_parent_col", default="parent")  
+
+    ap.add_argument("--axiom_triple_subj_col", default="subj_canonical_term")
+    ap.add_argument("--axiom_triple_rel_col", default="rel_key")
+    ap.add_argument("--axiom_triple_obj_col", default="obj_canonical_term")
+
+    # Safe filters for your LLM tables
+    ap.add_argument(
+        "--axiom_taxonomy_where",
+        default=(
+            "child IS NOT NULL AND TRIM(child) != '' "
+            "AND LOWER(child) NOT IN ('none','null','unknown') "
+            "AND llm_best_parent IS NOT NULL AND TRIM(llm_best_parent) != '' "
+            "AND LOWER(llm_best_parent) NOT IN ('none','null','unknown') "
+            "AND (llm_accept = 1 OR LOWER(llm_accept) IN ('true','yes','accept'))"
+        ),
+    )
+    ap.add_argument(
+        "--axiom_triple_where",
+        default="decision IS NULL OR LOWER(decision) IN ('accept','accepted','yes','true','1')",
+    )
+
+    ap.add_argument("--axiom_min_support", type=int, default=2)
+    ap.add_argument("--axiom_min_purity", type=float, default=0.55)
+    ap.add_argument("--axiom_evidence_k", type=int, default=5)
 
     return ap.parse_args()
 
 
+# =============================
+# MAIN
+# =============================
+
 def main() -> None:
     args = parse_args()
 
-    # Ensure we run from repo root (so python -m works reliably)
     repo_root = Path(__file__).resolve().parents[1]
     os.chdir(repo_root)
 
     if args.clean_db:
         remove_db(args.db)
 
-    steps = build_steps(args)
-    if not steps:
-        print("[INFO] No steps selected.")
+    plan = build_plan(args)
+
+    if args.list_steps:
+        list_steps(plan)
+        return
+
+    plan = apply_only_filter(plan, args.only)
+    plan = apply_range_filter(plan, args.from_step, args.to_step)
+
+    if not plan:
+        print("[INFO] No steps selected after filters.")
         return
 
     failures = 0
-    for step in steps:
-        rc = run_step(step, python_exe=args.python, stop_on_fail=args.stop_on_fail)
+    for st in plan:
+        rc = run_step(st, python_exe=args.python, stop_on_fail=args.stop_on_fail)
         failures += int(rc != 0)
 
     print("\n" + "-" * 90)
     if failures == 0:
-        print("[DONE] Preprocessing pipeline finished successfully.")
+        print("[DONE] Pipeline finished successfully.")
     else:
-        print(f"[DONE] Preprocessing pipeline finished with {failures} failing step(s).")
+        print(f"[DONE] Pipeline finished with {failures} failing step(s).")
     print("-" * 90)
 
-    # Decide what to do next (after chunking / term extraction)
-    next_stage = choose_next_pipeline(args.next)
-
-    if next_stage == "stop":
-        print("\n[INFO] Stopping after preprocessing/chunking/term extraction.")
-        return
-
-    if next_stage == "olaf":
-        print("\n[INFO] Running OLAF pipeline...")
-        for step in build_olaf_steps(args):
-            run_step(step, python_exe=args.python, stop_on_fail=args.stop_on_fail)
-
-    elif next_stage == "olaf_llm":
-        print("\n[INFO] Running OLAF + LLM pipeline...")
-        for step in build_olaf_llm_steps(args):
-            run_step(step, python_exe=args.python, stop_on_fail=args.stop_on_fail)
-    
-    steps = build_steps(args)
-    steps = build_olaf_steps(args)
-    steps = build_olaf_llm_steps(args)
-    
-    steps = apply_only_filter(steps, args.only)
-    run_steps(steps)
-
-    
 
 if __name__ == "__main__":
     main()
