@@ -1,9 +1,0 @@
-hpc:TresResponse a owl:Class .
-hpc:TresRequest a owl:Class .
-
-hpc:hasTresResponse hpc:TresRequest owl:ObjectProperty .
-hpc:hasTresResponse rdfs:domain hpc:TresRequest ;
-                     rdfs:range hpc:TresResponse .
-```
-
-This ontology fragment represents two classes `TresResponse` and `TresRequest`, and an object property `hasTresResponse` that connects a `TresRequest` to its corresponding `TresResponse`.
