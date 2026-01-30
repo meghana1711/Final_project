@@ -1,0 +1,2255 @@
+{
+  "count": 375,
+  "axioms": [
+    {
+      "child": "accounting database",
+      "parent": "database",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "accounting storage plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "additional job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "advanced reservation",
+      "parent": "reservation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "aggregate burst buffer",
+      "parent": "buffer",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "allocation cpu",
+      "parent": "cpu",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "api function",
+      "parent": "function",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "association database",
+      "parent": "database",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "association tree",
+      "parent": "tree",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "auth slurm plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "auth slurm plugin",
+      "parent": "slurm plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "authentication plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "authentication slurm communication",
+      "parent": "communication",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "backfill plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "backfill scheduler",
+      "parent": "scheduler",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "backfill scheduling",
+      "parent": "scheduling",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "backfill scheduling plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "backup host",
+      "parent": "host",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "batch interactive step",
+      "parent": "step",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "batch job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "behavior job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "build slurm package",
+      "parent": "package",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "burst buffer plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "c0 c1 processor",
+      "parent": "processor",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "case job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cgroup plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "client command",
+      "parent": "command",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cluster job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cluster new cluster",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "communication slurm component",
+      "parent": "component",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "component heterogeneous job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "component heterogeneous job",
+      "parent": "heterogeneous job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "compute machine",
+      "parent": "machine",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "configless slurm feature",
+      "parent": "feature",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "connection request",
+      "parent": "request",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cons_tre plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "container job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "container job step",
+      "parent": "step",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "container job step",
+      "parent": "job step",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "context job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "control machine",
+      "parent": "machine",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "core job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cpu frequency job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cpu socket task",
+      "parent": "task",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "customized slurm plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "customized slurm plugin",
+      "parent": "slurm plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "daemon slurm step",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "dakota program",
+      "parent": "program",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "data_parser v0 0 39 plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "database job accounting",
+      "parent": "accounting",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "dbv0 0 38 plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "dbv0 0 39 plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "define algorithm",
+      "parent": "algorithm",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "designing job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "distribution task",
+      "parent": "task",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "drain node job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "elasticsearch plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "entire cluster",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "entire slurm system",
+      "parent": "slurm'@'system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "entire slurm system",
+      "parent": "slurm system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "environment job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "error job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "eslurm job submission",
+      "parent": "submission",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "exit function",
+      "parent": "function",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "external slurmdbd slurmctld",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "fabric task scheduling",
+      "parent": "scheduling",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "fair tree",
+      "parent": "tree",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "fair tree algorithm",
+      "parent": "algorithm",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "fit algorithm",
+      "parent": "algorithm",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "force terminated job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "free software",
+      "parent": "software",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "gang scheduler",
+      "parent": "scheduler",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "gang scheduling job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "gang scheduling logic",
+      "parent": "logic",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "gang scheduling operation",
+      "parent": "operation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "gpu:",
+      "parent": "gpu",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "gre request",
+      "parent": "request",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "hdf5 profile plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "heterogeneou job support",
+      "parent": "support",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "heterogeneous job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "heterogeneous job component",
+      "parent": "component",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "hetjob component",
+      "parent": "component",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "high availability database",
+      "parent": "database",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "high priority job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "incoming request",
+      "parent": "request",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "indicative slurmctld daemon",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "individual processor allocation",
+      "parent": "allocation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "information partition",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "information slurmctld daemon",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "initiation job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "instance slurmstepd",
+      "parent": "slurmstepd",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "intel mpi",
+      "parent": "mpi",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "interactive job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "ipv6 communication",
+      "parent": "communication",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job accounting",
+      "parent": "accounting",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job association",
+      "parent": "association",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job cluster",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job component",
+      "parent": "component",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job default partition",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job default partition",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job different partition",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job execution",
+      "parent": "execution",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job job array",
+      "parent": "job array",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job job step",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job job step",
+      "parent": "job step",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job order",
+      "parent": "order",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job origin cluster",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job partition queue",
+      "parent": "queue",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job priority order",
+      "parent": "order",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job process",
+      "parent": "process",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job request",
+      "parent": "request",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job reservation",
+      "parent": "reservation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job scheduler",
+      "parent": "scheduler",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job script",
+      "parent": "script",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job slurm cluster",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job slurmstepd",
+      "parent": "slurmstepd",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job step allocation",
+      "parent": "allocation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job submission",
+      "parent": "submission",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job submit plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job_submit plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "jobacct_gather cgroup",
+      "parent": "cgroup",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "jobstep allocation",
+      "parent": "allocation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "json c library",
+      "parent": "library",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "killable process",
+      "parent": "process",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "knl processor",
+      "parent": "processor",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "large cluster",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "large job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "late component",
+      "parent": "component",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "license request",
+      "parent": "request",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "lightweight slurm daemon",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "linux cgroup job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "linux distribution",
+      "parent": "distribution",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "linux kernel",
+      "parent": "kernel",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "local slurmd kernel",
+      "parent": "kernel",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "logical processor",
+      "parent": "processor",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "lua plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "major release",
+      "parent": "release",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "major slurm release",
+      "parent": "release",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "major slurm release",
+      "parent": "slurm release",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "man page detail",
+      "parent": "detail",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "managing job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "memory job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "message slurmctld daemon",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "minimum job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "minor upgrade",
+      "parent": "upgrade",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "mode operation",
+      "parent": "operation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "mpich2 mvapich2 job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "multi instance gpu",
+      "parent": "gpu",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "multi instance gpu",
+      "parent": "gpu:",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "munge daemon",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "mysql mariadb database",
+      "parent": "database",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "networking configuration problem",
+      "parent": "problem",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node cluster",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node default partition",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node default partition",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node process",
+      "parent": "process",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node resume request",
+      "parent": "request",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node task",
+      "parent": "task",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "nodelist node partition",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "normal operation",
+      "parent": "operation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "nvidia gpu",
+      "parent": "gpu",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "nvidia gpu",
+      "parent": "gpu:",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "nvidia nvml library",
+      "parent": "library",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "open mpi",
+      "parent": "mpi",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "openapi slurmctld plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "openapi slurmdbd plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "openapi specification oas",
+      "parent": "oas",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "option use database",
+      "parent": "database",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "order submission",
+      "parent": "submission",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "pam module",
+      "parent": "module",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "pam_access pam_slurm_adopt",
+      "parent": "pam_slurm_adopt",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "pam_listfile module",
+      "parent": "module",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "pam_slurm_adopt module",
+      "parent": "module",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "parallel task",
+      "parent": "task",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "parallel task job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "partition partition",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "partition reservation",
+      "parent": "reservation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "partitionname partition",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "pattern allocation job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "pmi library",
+      "parent": "library",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "pool pool",
+      "parent": "pool",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "portion allocation",
+      "parent": "allocation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "preempted job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "present future job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "primary backup controller",
+      "parent": "controller",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "primary controller",
+      "parent": "controller",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "priority multifactor plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "priority order",
+      "parent": "order",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "proctrack cgroup",
+      "parent": "cgroup",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "prolog epilog program",
+      "parent": "program",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "prolog program",
+      "parent": "program",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "proxy slurmrestd client",
+      "parent": "client",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "record database",
+      "parent": "database",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "record job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "regular job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "requested association",
+      "parent": "association",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "reservation reservation",
+      "parent": "reservation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "resource allocation job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "resource cluster",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "resource job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "resource job allocation",
+      "parent": "job allocation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "resource job allocation",
+      "parent": "allocation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "resource partition",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "resource reservation",
+      "parent": "reservation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "resource use job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "result process",
+      "parent": "process",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "routing queue",
+      "parent": "queue",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "running job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "sample lua script",
+      "parent": "script",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "sample slurm distribution",
+      "parent": "distribution",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "scheduling logic",
+      "parent": "logic",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "scontrol job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "seamless upgrade",
+      "parent": "upgrade",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "select linear plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "select plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "sequence task",
+      "parent": "task",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "server slurm controller",
+      "parent": "controller",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "setup procedure",
+      "parent": "procedure",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "shell step",
+      "parent": "step",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "single job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "site large cluster",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm accounting",
+      "parent": "accounting",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm accounting database",
+      "parent": "database",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm authentication mechanism",
+      "parent": "mechanism",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm authentication plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm backfill scheduler",
+      "parent": "scheduler",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm cgroup plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm cli_filter plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm client",
+      "parent": "client",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm cluster",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm code",
+      "parent": "code",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm command",
+      "parent": "command",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm communication",
+      "parent": "communication",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm component",
+      "parent": "component",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm compute node",
+      "parent": "compute node",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm control daemon",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm controller",
+      "parent": "controller",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm daemon",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm database",
+      "parent": "database",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm distribution",
+      "parent": "distribution",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm documentation",
+      "parent": "documentation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm free software",
+      "parent": "software",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm function",
+      "parent": "function",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm gang scheduler",
+      "parent": "scheduler",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm heterogeneous job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm heterogeneous job",
+      "parent": "heterogeneous job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm job allocation",
+      "parent": "job allocation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm job allocation",
+      "parent": "allocation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm major release",
+      "parent": "release",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm oas",
+      "parent": "oas",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm package",
+      "parent": "package",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm pam module",
+      "parent": "module",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm partition",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm plugin library",
+      "parent": "library",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm prep plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm process",
+      "parent": "process",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm release",
+      "parent": "release",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm scheduling job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm scheduling queue",
+      "parent": "queue",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm site_factor plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm system",
+      "parent": "slurm'@'system",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm upgrade",
+      "parent": "upgrade",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm_job_partition partition job",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm_job_reservation reservation",
+      "parent": "reservation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm_step_launch_params_t data structure",
+      "parent": "data structure",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm_step_launch_params_t data structure",
+      "parent": "structure",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm_step_layout_req_t data structure",
+      "parent": "data structure",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm_step_layout_req_t data structure",
+      "parent": "structure",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm_step_layout_t data structure",
+      "parent": "data structure",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm_step_layout_t data structure",
+      "parent": "structure",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctld controller",
+      "parent": "controller",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctld host",
+      "parent": "host",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctld job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctld machine",
+      "parent": "machine",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctld primary controller",
+      "parent": "controller",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctld primary controller",
+      "parent": "primary controller",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctld program",
+      "parent": "program",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctld section detail",
+      "parent": "detail",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctld select plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmd autodetect mechanism",
+      "parent": "mechanism",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmd compute node",
+      "parent": "compute node",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmd daemon",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmd daemon host",
+      "parent": "host",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmd task plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmdbd accounting",
+      "parent": "accounting",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmdbd execution",
+      "parent": "execution",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmdbd functionality cluster",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmdbd primary controller",
+      "parent": "controller",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmdbd primary controller",
+      "parent": "primary controller",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmdbd software",
+      "parent": "software",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmrestd documentation",
+      "parent": "documentation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmstepd process",
+      "parent": "process",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmuser cluster",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "source code",
+      "parent": "code",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "space pool",
+      "parent": "pool",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "src slurmrestd plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "state change",
+      "parent": "change",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "submission request",
+      "parent": "request",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "switch plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "synchronized clock cluster",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "system job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "table slurm database",
+      "parent": "database",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "table slurm database",
+      "parent": "slurm database",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "task job allocation",
+      "parent": "job allocation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "task job allocation",
+      "parent": "allocation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "task job array",
+      "parent": "job array",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "task job step",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "task job step",
+      "parent": "job step",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "task launch plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "task specific processor",
+      "parent": "processor",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "template script",
+      "parent": "script",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "time beginning step",
+      "parent": "step",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "tmpf plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "topology tree",
+      "parent": "tree",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "tresbillingunit second job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "true interface",
+      "parent": "interface",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "type mpi",
+      "parent": "mpi",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "upgrade procedure",
+      "parent": "procedure",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "upgrade process",
+      "parent": "process",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "upstream slurm release",
+      "parent": "release",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "upstream slurm release",
+      "parent": "slurm release",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "v0 0 38 plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "v0 0 43 job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "version slurm plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "version slurm plugin",
+      "parent": "slurm plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "word gpu",
+      "parent": "gpu",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "word gpu",
+      "parent": "gpu:",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "accounting",
+      "parent": "database",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmctld slurmdbd",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "select linear",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "condition slurm",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm api",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm rest api",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cgroup v",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cgroup",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job submission",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job component",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job container",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job allocation",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job step allocation",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job different partition",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job cluster",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "association",
+      "parent": "tree",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm controller",
+      "parent": "scheduler",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "scheduling logic",
+      "parent": "scheduling",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "gang scheduling logic",
+      "parent": "scheduling",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "task launch plugin",
+      "parent": "plugin",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "node default partition",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "resource management node",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm control daemon",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm daemon",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "cluster federation",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job component",
+      "parent": "heterogeneous job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job container",
+      "parent": "heterogeneous job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job submission",
+      "parent": "request",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "order submission",
+      "parent": "request",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "minimum job",
+      "parent": "job",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "task node",
+      "parent": "task",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurmd compute node",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job accounting gather",
+      "parent": "accounting",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "submission request",
+      "parent": "submission",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "scheduling",
+      "parent": "logic",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "upgrade procedure",
+      "parent": "operation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm cluster",
+      "parent": "cluster",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "pattern allocation job",
+      "parent": "allocation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "core job",
+      "parent": "allocation",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "maximum job",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "condition slurm",
+      "parent": "partition",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "job submission",
+      "parent": "association",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "association tree",
+      "parent": "association",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm backfill scheduler",
+      "parent": "controller",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "upgrade",
+      "parent": "procedure",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "login node",
+      "parent": "compute node",
+      "status": "accepted",
+      "confidence": 1.0
+    },
+    {
+      "child": "slurm controller",
+      "parent": "daemon",
+      "status": "accepted",
+      "confidence": 1.0
+    }
+  ]
+}

@@ -6,32 +6,6 @@ LLM taxonomy validator (IS-A):
 Input (non-LLM taxonomy):  taxonomy_is_a
 Output (LLM-labeled):      taxonomy_is_a_final
 
-What it does:
-- Reads ALL edges from taxonomy_is_a (no hard-case filter; no dropping).
-- For each (child,parent), asks LLM:
-    1) is_a_valid? (0/1)
-    2) accept? (0/1)
-    3) best_parent (either one of candidates OR "none")
-    4) confidence + reason + evidence_sentence (optional)
-- Writes ONE row per source edge into taxonomy_is_a_final.
-- Never deletes edges. If reject -> llm_accept=0 and llm_best_parent='none'.
-- Robust JSON extraction + tolerant parsing (extra keys allowed).
-- Stores raw_llm_json so you can debug parse failures.
-
-CLI example:
-python -m olaf.taxonomy_extension \
-  --db onto_db/sample2.db \
-  --model mistralai/Mistral-7B-Instruct-v0.2 \
-  --prompt_config prompts/taxonomy_extension.json
-
-Prompt JSON file format (required keys):
-{
-  "system_prompt": "...",
-  "few_shots": [
-     { "input": {...}, "output": {...} },
-     ...
-  ]
-}
 """
 
 from __future__ import annotations
@@ -41,7 +15,7 @@ import json
 import re
 import sqlite3
 from datetime import datetime
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 
 # -----------------------------
@@ -79,17 +53,7 @@ def load_prompt_config(path: str) -> Tuple[str, List[Dict]]:
 
 
 # -----------------------------
-# Tokenize helpers
-# -----------------------------
-def tokenize(text: str) -> List[str]:
-    t = (text or "").strip().lower()
-    t = re.sub(r"[^a-z0-9_\- ]", " ", t)
-    t = re.sub(r"\s+", " ", t).strip()
-    return [x for x in t.split() if x]
-
-
-# -----------------------------
-# Evidence retrieval (optional but useful)
+# Evidence retrieval
 # -----------------------------
 def table_exists(cur: sqlite3.Cursor, table: str) -> bool:
     cur.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (table,))
@@ -109,10 +73,6 @@ def fetch_sentence_evidence(
     parent: str,
     limit: int,
 ) -> List[str]:
-    """
-    Simple LIKE evidence.
-    Prefer sentences containing BOTH child and parent; fallback to child only.
-    """
     child = (child or "").strip()
     parent = (parent or "").strip()
     if not child:
@@ -161,10 +121,7 @@ def top_parents_from_taxonomy(conn: sqlite3.Connection, taxonomy_table: str, k: 
 # Robust JSON extraction
 # -----------------------------
 def extract_first_json_object(text: str) -> Optional[str]:
-    """
-    Finds the first balanced {...} substring that parses as JSON dict.
-    Works better than "last { }" when prompts/few-shots contain braces.
-    """
+    """Find first balanced {...} that parses as a JSON dict."""
     if not text:
         return None
     start = text.find("{")
@@ -188,16 +145,44 @@ def extract_first_json_object(text: str) -> Optional[str]:
     return None
 
 
-def generate_raw(tok, model, system: str, user: str, max_new_tokens: int = 240) -> str:
+def extract_last_json_object(text: str) -> Optional[str]:
+    """Find last balanced {...} that parses as a JSON dict. Helpful if model outputs multiple JSON blocks."""
+    if not text:
+        return None
+    starts = [m.start() for m in re.finditer(r"\{", text)]
+    for start in reversed(starts):
+        depth = 0
+        for i in range(start, len(text)):
+            ch = text[i]
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    cand = text[start : i + 1]
+                    try:
+                        obj = json.loads(cand)
+                        if isinstance(obj, dict):
+                            return cand
+                    except Exception:
+                        break
+    return None
+
+
+# -----------------------------
+# Completion-only generation  ✅ FIX
+# -----------------------------
+def generate_completion(tok, model, system: str, user: str, max_new_tokens: int = 240) -> str:
     import torch
 
     if hasattr(tok, "apply_chat_template"):
         messages = [{"role": "system", "content": system}, {"role": "user", "content": user}]
-        text = tok.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        prompt_text = tok.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
     else:
-        text = system + "\n\nUSER:\n" + user + "\n\nASSISTANT:\n"
+        prompt_text = system + "\n\nUSER:\n" + user + "\n\nASSISTANT:\n"
 
-    inputs = tok(text, return_tensors="pt").to(model.device)
+    inputs = tok(prompt_text, return_tensors="pt").to(model.device)
+
     with torch.no_grad():
         out = model.generate(
             **inputs,
@@ -206,16 +191,36 @@ def generate_raw(tok, model, system: str, user: str, max_new_tokens: int = 240) 
             temperature=0.0,
             eos_token_id=tok.eos_token_id,
         )
-    decoded = tok.decode(out[0], skip_special_tokens=True)
-    return decoded
+
+    # ✅ ONLY decode newly generated tokens
+    gen_ids = out[0][inputs["input_ids"].shape[1] :]
+    completion = tok.decode(gen_ids, skip_special_tokens=True)
+    return completion.strip()
+
+
+# -----------------------------
+# Tolerant parsing
+# -----------------------------
+def to_bool(x: Any) -> Optional[bool]:
+    if isinstance(x, bool):
+        return x
+    if isinstance(x, (int, float)):
+        try:
+            return bool(int(x))
+        except Exception:
+            return None
+    if isinstance(x, str):
+        s = x.strip().lower()
+        if s in ("true", "t", "yes", "y", "1"):
+            return True
+        if s in ("false", "f", "no", "n", "0"):
+            return False
+    return None
 
 
 def safe_parse_llm_json(s: str) -> Optional[Dict]:
     """
-    Tolerant parser:
-    - allows extra keys
-    - accepts missing optional evidence_sentence
-    Required keys (minimum):
+    Required keys:
       child_is_class, parent_is_class, is_a_valid, accept, best_parent, confidence, reason
     """
     if not s:
@@ -239,20 +244,20 @@ def safe_parse_llm_json(s: str) -> Optional[Dict]:
     if not required.issubset(set(obj.keys())):
         return None
 
-    # types
-    if not isinstance(obj["child_is_class"], bool):
-        return None
-    if not isinstance(obj["parent_is_class"], bool):
-        return None
-    if not isinstance(obj["is_a_valid"], bool):
-        return None
-    if not isinstance(obj["accept"], bool):
+    b1 = to_bool(obj.get("child_is_class"))
+    b2 = to_bool(obj.get("parent_is_class"))
+    b3 = to_bool(obj.get("is_a_valid"))
+    b4 = to_bool(obj.get("accept"))
+    if None in (b1, b2, b3, b4):
         return None
 
+    obj["child_is_class"] = bool(b1)
+    obj["parent_is_class"] = bool(b2)
+    obj["is_a_valid"] = bool(b3)
+    obj["accept"] = bool(b4)
+
     bp = obj.get("best_parent", "none")
-    if bp is None:
-        bp = "none"
-    obj["best_parent"] = str(bp).strip()
+    obj["best_parent"] = str(bp if bp is not None else "none").strip()
 
     try:
         obj["confidence"] = float(obj["confidence"])
@@ -328,12 +333,9 @@ def run(
     if not table_exists(cur, in_taxonomy_table):
         raise RuntimeError(f"Missing taxonomy table: {in_taxonomy_table}")
 
-    # input columns: child,parent,method,confidence,evidence are optional except child,parent
     cols = [r[1] for r in conn.execute(f"PRAGMA table_info({in_taxonomy_table})").fetchall()]
     if "child" not in cols or "parent" not in cols:
-        raise RuntimeError(
-            f"{in_taxonomy_table} must have columns child,parent. Found: {cols}"
-        )
+        raise RuntimeError(f"{in_taxonomy_table} must have columns child,parent. Found: {cols}")
 
     has_method = "method" in cols
     has_conf = "confidence" in cols
@@ -353,7 +355,7 @@ def run(
     print(f"[INFO] Loading HF model: {llm_model}")
     tok, model = load_textgen(llm_model)
 
-    q = f"SELECT rowid AS src_rowid, child, parent"
+    q = "SELECT rowid AS src_rowid, child, parent"
     if has_method:
         q += ", method"
     if has_conf:
@@ -382,7 +384,6 @@ def run(
         src_evidence = (e["evidence"] or "") if has_ev else ""
 
         if not child or not parent:
-            # still write a row (keep traceability) but mark reject
             conn.execute(
                 f"""
                 INSERT OR REPLACE INTO {out_table} (
@@ -402,7 +403,7 @@ def run(
             inserted += 1
             continue
 
-        # candidates: proposed parent + some globals + none
+        # candidates
         candidates: List[str] = [parent]
         for gp in global_parents:
             if gp and gp.lower() != parent.lower():
@@ -411,9 +412,9 @@ def run(
                 break
         candidates.append("none")
 
-        # dedupe candidates
+        # dedupe
         seen = set()
-        cand_final = []
+        cand_final: List[str] = []
         for c in candidates:
             c = (c or "").strip()
             if not c:
@@ -428,7 +429,7 @@ def run(
         if has_sent:
             evidence = fetch_sentence_evidence(conn, sent_table, sent_col, child, parent, limit=evidence_k)
 
-        # prompt
+        # build prompt
         parts: List[str] = []
         for ex in few_shots:
             parts.append("EXAMPLE_INPUT:\n" + json.dumps(ex["input"], ensure_ascii=False))
@@ -440,7 +441,8 @@ def run(
             "candidates": cand_final,
             "evidence": evidence[:3],
             "instruction": (
-                "Return JSON only. Decide if (child is-a proposed_parent). "
+                "Return a single JSON object ONLY (no prose, no markdown). "
+                "Decide if (child is-a proposed_parent). "
                 "If reject, set accept=false and best_parent='none' OR choose a better best_parent from candidates."
             ),
             "required_output_schema": {
@@ -457,19 +459,19 @@ def run(
         parts.append("INPUT:\n" + json.dumps(payload, ensure_ascii=False))
         user_prompt = "\n\n".join(parts)
 
-        decoded = generate_raw(tok, model, system_prompt, user_prompt, max_new_tokens=max_new_tokens)
+        completion = generate_completion(tok, model, system_prompt, user_prompt, max_new_tokens=max_new_tokens)
 
-        json_str = extract_first_json_object(decoded)  # robust
+        # ✅ Extract from completion (not the prompt)
+        json_str = extract_first_json_object(completion) or extract_last_json_object(completion)
         parsed = safe_parse_llm_json(json_str or "")
 
         if parsed is None:
             if parse_failed_printed < max(0, debug_print_fail_k):
                 print("\n=== LLM PARSE FAILED (sample) ===")
                 print(f"edge: child='{child}' parent='{parent}'")
-                print("decoded_tail:", decoded[-800:])
+                print("completion_tail:", completion[-800:])
                 parse_failed_printed += 1
 
-            # conservative fallback: do NOT accept; keep none
             child_is_class = True
             parent_is_class = True
             is_a_valid = False
@@ -545,28 +547,22 @@ def main():
     ap = argparse.ArgumentParser(description="Taxonomy IS-A validation with LLM (process ALL edges; no dropping).")
 
     ap.add_argument("--db", required=True)
-
-    # Naming you requested:
-    # - taxonomy_is_a : non-LLM taxonomy table
-    # - taxonomy_is_a_final : taxonomy with LLM labels/decisions
     ap.add_argument("--in_taxonomy_table", default="taxonomy_is_a")
     ap.add_argument("--out_table", default="taxonomy_is_a_final")
 
     ap.add_argument("--model", required=True, help="HF model name/path")
     ap.add_argument("--prompt_config", default="prompts/taxonomy_extension.json")
-
     ap.add_argument("--few_shots_k", type=int, default=6)
 
     ap.add_argument("--max_rows", type=int, default=0, help="0=all rows")
     ap.add_argument("--max_new_tokens", type=int, default=260)
 
-    # evidence is optional but recommended
     ap.add_argument("--sent_table", default="sentence_lemmatized")
     ap.add_argument("--sent_col", default="sentence")
     ap.add_argument("--evidence_k", type=int, default=2)
     ap.add_argument("--global_parents_k", type=int, default=12)
 
-    ap.add_argument("--debug_print_fail_k", type=int, default=3, help="Print K parse-fail samples")
+    ap.add_argument("--debug_print_fail_k", type=int, default=3)
 
     args = ap.parse_args()
 

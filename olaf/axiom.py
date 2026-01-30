@@ -1,19 +1,16 @@
 """
-olaf/axiom.py (UPDATED to your real DB tables)
+olaf/axiom.py (UPDATED v3)
 
-Defaults aligned to your tables (from your photo):
-- term_enrichment_exten: canonical_id, canonical_term, is_hpc_domain, scheduler, category, ontology_role, dul_bucket, ...
-- taxonomy: child, parent, method, evidence
-- taxonomy_extension: child, parent, llm_accept, llm_best_parent, ...
-- non_taxonomic: subj_canonical_term, rel_key, obj_canonical_term, ...
-- non_taxonomic_extension: subj_canonical_term, rel_key, obj_canonical_term, decision, ...
+Adds robust cycle handling:
+- New flag: --break_cycles
+- If enabled, detects cycles in taxonomy and removes cycle-causing edges using a specificity heuristic,
+  instead of crashing (e.g., job -> heterogeneous job -> job).
 
-Key fixes:
-1) Default column names are set to your schema.
-2) If taxonomy_where uses 'child'/'parent' but table uses different cols (e.g., llm_best_parent),
-   the WHERE is auto-rewritten to the detected columns.
-3) Filters drop OWL meta-vocabulary from becoming HPC classes (Thing/Nothing/Class/Property/Resource/Literal/etc).
-4) TTL export uses PascalCase IRIs like hpc:Account and hpc:FairShareFactor (more like your example).
+Also keeps your earlier improvements:
+- Explicit default table/column names
+- Safe WHERE filters
+- Drops OWL/RDF/XSD meta-vocabulary from becoming HPC classes
+- Exports GraphDB-friendly Turtle (requires rdflib)
 """
 
 from __future__ import annotations
@@ -84,14 +81,9 @@ def prefer_column_if_exists(columns: List[str], preferred: Optional[str], fallba
 
 
 def _rewrite_where(where: Optional[str], child_col: str, parent_col: str) -> Optional[str]:
-    """
-    If user/default WHERE references literal words 'child'/'parent',
-    rewrite to detected column names (word-boundary safe).
-    """
     if not where or not where.strip():
         return where
     w = where
-    # Replace whole word child/parent only (avoids touching 'childish' etc.)
     w = re.sub(r"\bchild\b", child_col, w, flags=re.I)
     w = re.sub(r"\bparent\b", parent_col, w, flags=re.I)
     return w
@@ -109,9 +101,6 @@ def detect_taxonomy_columns(
 ) -> Tuple[str, str]:
     cols = get_table_columns(conn, taxonomy_table)
 
-    # Your tables:
-    # taxonomy: child, parent, method, evidence
-    # taxonomy_extension: child, parent, llm_best_parent, llm_accept, ...
     child_candidates = [
         "child",
         "child_canonical_term",
@@ -123,7 +112,6 @@ def detect_taxonomy_columns(
         "term",
     ]
     parent_candidates = [
-        # LLM table variants in your project
         "llm_best_parent",
         "llm_best_parent_canonical_term",
         "parent",
@@ -154,8 +142,6 @@ def detect_triple_columns(
 ) -> Tuple[str, str, str]:
     cols = get_table_columns(conn, triple_table)
 
-    # Your non-taxonomy tables use:
-    # subj_canonical_term, rel_key, obj_canonical_term
     subj_candidates = [
         "subj_canonical_term",
         "subj_text",
@@ -203,7 +189,6 @@ def detect_enrichment_columns(
 ) -> Tuple[str, Optional[str], Optional[str], Optional[str]]:
     cols = get_table_columns(conn, types_table)
 
-    # Your term_enrichment_exten has: canonical_term, ontology_role, dul_bucket, category
     term_candidates = ["canonical_term", "term", "label", "name"]
     role_candidates = ["ontology_role", "role", "owl_role", "ont_role"]
     dul_candidates = ["dul_bucket", "dul", "bucket"]
@@ -332,6 +317,82 @@ def lca(nodes: List[str], parents: Dict[str, Set[str]], depth: Dict[str, int]) -
 
 
 # ============================================================
+# NEW: Cycle breaking (heuristic)
+# ============================================================
+
+def _is_more_specific(a: str, b: str) -> bool:
+    """
+    Return True if 'a' looks more specific than 'b' (heuristic).
+    e.g., "heterogeneous job" more specific than "job".
+    """
+    a0 = a.strip().lower()
+    b0 = b.strip().lower()
+    if a0 == b0:
+        return False
+    if b0 in a0 and len(a0) > len(b0):
+        return True
+    if len(a0) >= len(b0) + 4:
+        return True
+    return False
+
+
+def break_taxonomy_cycles(edges: List[Tuple[str, str]]) -> Tuple[List[Tuple[str, str]], List[Tuple[str, str]]]:
+    """
+    Iteratively detects a cycle and removes one edge from it using specificity heuristic.
+    Returns (kept_edges, removed_edges).
+    """
+    kept = edges[:]
+    removed: List[Tuple[str, str]] = []
+
+    while True:
+        parents, _ = build_taxonomy_graph(kept)
+        cyc = detect_cycle(parents)
+        if not cyc:
+            break
+
+        # cyc like [job, heterogeneous job, job]
+        cycle_nodes = cyc[:-1]
+        if len(cycle_nodes) < 2:
+            # fallback: remove something arbitrary
+            to_remove = kept[-1]
+            kept.remove(to_remove)
+            removed.append(to_remove)
+            continue
+
+        cycle_edges = [(cycle_nodes[i], cycle_nodes[i + 1]) for i in range(len(cycle_nodes) - 1)]
+        cycle_edges.append((cycle_nodes[-1], cycle_nodes[0]))
+
+        # Remove reversed edge: general -> specific
+        to_remove = None
+        for c, p in cycle_edges:
+            if _is_more_specific(p, c):  # parent is more specific than child => reversed
+                to_remove = (c, p)
+                break
+
+        if to_remove is None:
+            to_remove = cycle_edges[-1]
+
+        # ensure edge exists in kept (cycle edge should, but be safe)
+        if to_remove in kept:
+            kept.remove(to_remove)
+            removed.append(to_remove)
+        else:
+            # try any edge in cycle that exists
+            fallback = None
+            for e in cycle_edges:
+                if e in kept:
+                    fallback = e
+                    break
+            if fallback is None and kept:
+                fallback = kept[-1]
+            if fallback:
+                kept.remove(fallback)
+                removed.append(fallback)
+
+    return kept, removed
+
+
+# ============================================================
 # Typing from term_enrichment_exten
 # ============================================================
 
@@ -407,19 +468,15 @@ INSTANCE_LIKE_PARENTS = {
     "srun", "sbatch", "salloc", "sacct", "scontrol", "squeue", "sinfo",
 }
 
-# ✅ Extended: drop OWL/RDF meta-vocabulary (what you complained about)
+# ✅ Drop OWL/RDF/XSD meta vocabulary from becoming classes
 RESERVED_OWL_TERMS = {
-    # core
     "thing", "nothing", "literal",
     "resource", "class", "property",
     "objectproperty", "datatypeproperty",
     "functionalproperty", "transitiveproperty", "symmetricproperty", "asymmetricproperty", "irreflexiveproperty",
-    # OWL top/bottom
     "topdataproperty", "bottomdataproperty",
     "topobjectproperty", "bottomobjectproperty",
-    # common XSD datatypes that should not become classes
     "nonnegativeinteger", "integer", "decimal", "boolean", "string",
-    # prefixed variants sometimes appear
     "owl:thing", "owl:nothing",
     "rdf:property", "rdfs:class", "rdfs:resource",
     "xsd:nonnegativeinteger", "xsd:integer", "xsd:decimal", "xsd:boolean", "xsd:string",
@@ -441,7 +498,6 @@ def _term_key(term: str) -> str:
 
 
 def _strip_prefixes(t: str) -> str:
-    # normalize "owl:Thing" -> "thing", "xsd:nonNegativeInteger" -> "nonnegativeinteger"
     s = t.strip().lower()
     s = s.replace("owl:", "").replace("rdf:", "").replace("rdfs:", "").replace("xsd:", "")
     return s
@@ -458,10 +514,6 @@ def is_action_like(term: str) -> bool:
 
 
 def normalize_relation_key(rel_key: str) -> str:
-    """
-    rel_key in your tables is already a normalized key. Keep it stable,
-    but sanitize just in case.
-    """
     r = rel_key.strip().lower()
     r = r.replace("-", "_")
     r = re.sub(r"\s+", "_", r)
@@ -476,14 +528,14 @@ def keep_as_class(term: str, type_info: Optional[Dict[str, TermTypeInfo]] = None
 
     t = term.strip()
     k = _strip_prefixes(_term_key(t))
-    if k in {_term_key(x) for x in RESERVED_OWL_TERMS}:
+    reserved_keys = {_term_key(_strip_prefixes(x)) for x in RESERVED_OWL_TERMS}
+    if k in reserved_keys:
         return False
     if looks_like_section_id(t):
         return False
     if is_action_like(t):
         return False
 
-    # if LLM/enrichment says it’s a property, drop as class
     if type_info and t in type_info:
         role = (type_info[t].ontology_role or "").strip().lower()
         if role in {"property", "predicate", "relation", "objectproperty", "datatypeproperty", "datatype_property"}:
@@ -502,9 +554,8 @@ def accept_tax_edge(child: str, parent: str, type_info: Optional[Dict[str, TermT
 
     ck = _strip_prefixes(_term_key(child))
     pk = _strip_prefixes(_term_key(parent))
-    if ck in {_term_key(x) for x in RESERVED_OWL_TERMS}:
-        return False
-    if pk in {_term_key(x) for x in RESERVED_OWL_TERMS}:
+    reserved_keys = {_term_key(_strip_prefixes(x)) for x in RESERVED_OWL_TERMS}
+    if ck in reserved_keys or pk in reserved_keys:
         return False
 
     if parent.strip().lower() in INSTANCE_LIKE_PARENTS:
@@ -598,8 +649,8 @@ def load_triples(
     where: Optional[str] = None,
 ) -> Tuple[List[Tuple[str, str, str]], str, str, str]:
     s_col, r_col, o_col = detect_triple_columns(conn, triple_table, subj_override, rel_override, obj_override)
-    cur = conn.execute(_select_sql(triple_table, [s_col, r_col, o_col], where))
 
+    cur = conn.execute(_select_sql(triple_table, [s_col, r_col, o_col], where))
     triples: List[Tuple[str, str, str]] = []
     for s, r, o in cur.fetchall():
         s2, r2, o2 = normalize_term(s), normalize_term(r), normalize_term(o)
@@ -820,7 +871,7 @@ def compute_domain_range_for_relation(
 
 
 # ============================================================
-# OWL export (TTL) - PascalCase IRIs like hpc:Account
+# OWL export (GraphDB friendly Turtle)
 # ============================================================
 
 def export_to_owl(
@@ -852,8 +903,6 @@ def export_to_owl(
     g.add((ONTO, RDF.type, OWL.Ontology))
 
     def pascalize(label: str) -> str:
-        # "fair_share_factor" -> "FairShareFactor"
-        # "Accounting Storage Type" -> "AccountingStorageType"
         s = label.strip()
         if not s:
             return "Unnamed"
@@ -871,7 +920,6 @@ def export_to_owl(
         return NS[frag]
 
     def iri_for_property(rel_key: str) -> URIRef:
-        # rel_key is typically snake_case already; convert to PascalCase.
         frag = pascalize(rel_key.replace("_", " "))
         if use_hash_iris:
             h = hashlib.md5(rel_key.encode("utf-8")).hexdigest()[:8]
@@ -896,12 +944,10 @@ def export_to_owl(
         g.add((u, RDFS.label, Literal(rel_key)))
         return u
 
-    # Declare classes
     for c in sorted(classes):
         if keep_as_class(c, None):
             declare_class(c)
 
-    # SubClassOf axioms
     for ax in subclass_axioms:
         if ax.status != "accepted":
             continue
@@ -909,7 +955,6 @@ def export_to_owl(
             continue
         g.add((declare_class(ax.child), RDFS.subClassOf, declare_class(ax.parent)))
 
-    # Domain/Range axioms
     for ax in dr_axioms:
         if ax.status != "accepted":
             continue
@@ -917,7 +962,6 @@ def export_to_owl(
         dom = ax.domain
         ran = ax.range
 
-        # If we inferred DUL buckets, keep them as upper classes
         if dom and dom.strip().lower() in DUL_BUCKET_MAP:
             dom = DUL_BUCKET_MAP[dom.strip().lower()]
         if ran and ran.strip().lower() in DUL_BUCKET_MAP:
@@ -949,10 +993,9 @@ def main() -> None:
     ap.add_argument("--db", required=True)
     ap.add_argument("--out_dir", required=True)
 
-    ap.add_argument("--taxonomy_table", default="taxonomy_is_a_final",
-                    help="Use taxonomy_extension if you want LLM-accepted parent choices.")
-    ap.add_argument("--triple_table", default="non_taxonomic_edges_accept",
-                    help="Use non_taxonomic_extension to apply LLM decisions (decision/accept).")
+    # Defaults aligned to your pipeline/tables
+    ap.add_argument("--taxonomy_table", default="taxonomy_is_a_final")
+    ap.add_argument("--triple_table", default="non_taxonomic_edges_accept")
     ap.add_argument("--types_table", default="term_enrichment_exten")
 
     ap.add_argument("--tax_child_col", default="child")
@@ -965,18 +1008,14 @@ def main() -> None:
     ap.add_argument(
         "--taxonomy_where",
         default=(
-            "child IS NOT NULL AND TRIM(child) != '' "
-            "AND LOWER(child) NOT IN ('none','null','unknown') "
-            "AND llm_best_parent IS NOT NULL AND TRIM(llm_best_parent) != '' "
-            "AND LOWER(llm_best_parent) NOT IN ('none','null','unknown') "
+            "child IS NOT NULL AND TRIM(child) != '' AND LOWER(child) NOT IN ('none','null','unknown') "
+            "AND llm_best_parent IS NOT NULL AND TRIM(llm_best_parent) != '' AND LOWER(llm_best_parent) NOT IN ('none','null','unknown') "
             "AND (llm_accept = 1 OR LOWER(llm_accept) IN ('true','yes','accept'))"
-        ),
-        help="Default expects taxonomy_extension (llm_best_parent + llm_accept). Auto-rewritten if column names differ."
+        )
     )
     ap.add_argument(
         "--triple_where",
-        default="decision IS NULL OR LOWER(decision) IN ('accept','accepted','yes','true','1')",
-        help="Default keeps accepted edges in non_taxonomic_extension. Set to NULL to keep all."
+        default="decision IS NULL OR LOWER(decision) IN ('accept','accepted','yes','true','1')"
     )
 
     ap.add_argument("--min_support", type=int, default=2)
@@ -986,12 +1025,8 @@ def main() -> None:
     ap.add_argument("--export_owl", action="store_true")
     ap.add_argument("--base_iri", default="http://example.org/hpc#")
     ap.add_argument("--no_hash_iris", action="store_true")
-
-    # Optional: override enrichment col prefs
-    ap.add_argument("--types_term_col", default="canonical_term")
-    ap.add_argument("--types_role_col", default="ontology_role")
-    ap.add_argument("--types_dul_col", default="dul_bucket")
-    ap.add_argument("--types_cat_col", default="category")
+    ap.add_argument("--break_cycles", action="store_true",
+                    help="Automatically remove cycle-causing taxonomy edges instead of crashing.")
 
     args = ap.parse_args()
 
@@ -1008,14 +1043,7 @@ def main() -> None:
     type_info: Optional[Dict[str, TermTypeInfo]] = None
     if args.types_table:
         print(f"[INFO] Loading types from: {args.types_table}")
-        type_info = load_term_type_info(
-            conn,
-            args.types_table,
-            term_col_pref=args.types_term_col,
-            role_col_pref=args.types_role_col,
-            dul_col_pref=args.types_dul_col,
-            cat_col_pref=args.types_cat_col,
-        )
+        type_info = load_term_type_info(conn, args.types_table)
         print(f"[INFO] Types loaded: {len(type_info)}")
 
     print(f"[INFO] Loading taxonomy edges from: {args.taxonomy_table}")
@@ -1045,9 +1073,16 @@ def main() -> None:
             "No taxonomy edges kept. Likely causes:\n"
             "1) Wrong table\n"
             "2) Wrong columns\n"
-            "3) taxonomy_where removed everything (esp if using taxonomy not taxonomy_extension)\n"
-            "Fix: set --taxonomy_table taxonomy and --tax_parent_col parent and adjust --taxonomy_where accordingly."
+            "3) taxonomy_where removed everything\n"
+            "Fix: set --tax_child_col/--tax_parent_col and adjust --taxonomy_where."
         )
+
+    # ✅ Break cycles if requested
+    if args.break_cycles:
+        tax_edges, removed_cycle_edges = break_taxonomy_cycles(tax_edges)
+        if removed_cycle_edges:
+            print(f"[WARN] Removed {len(removed_cycle_edges)} cycle-causing taxonomy edges.")
+            write_json(os.path.join(args.out_dir, "removed_taxonomy_cycle_edges.json"), removed_cycle_edges)
 
     parents, _children = build_taxonomy_graph(tax_edges)
     cyc = detect_cycle(parents)
@@ -1086,16 +1121,13 @@ def main() -> None:
             classes.add(s)
         else:
             dropped += 1
-        # object can be literal -> don't force as class
         if keep_as_class(o, type_info):
             classes.add(o)
         else:
-            # don't count literals as "dropped classes" harshly; but keep stats
             dropped += 1
     if dropped:
         print(f"[INFO] Dropped {dropped} subject/object terms from owl:Class due to filters/meta-vocab/literals.")
 
-    # Add top buckets (optional, helps structure)
     for upper in set(DUL_BUCKET_MAP.values()):
         classes.add(upper)
 
@@ -1118,7 +1150,6 @@ def main() -> None:
     accepted_dr = [a for a in dr_axioms if a.status == "accepted"]
     print(f"[INFO] Domain/Range accepted: {len(accepted_dr)} ; candidate: {len(dr_axioms) - len(accepted_dr)}")
 
-    # Write JSON outputs (handy debugging)
     write_json(os.path.join(args.out_dir, "classes.json"),
                {"count": len(classes), "classes": sorted(classes)})
     write_json(os.path.join(args.out_dir, "subclass_axioms.json"),

@@ -376,20 +376,22 @@ def build_olaf_steps(args: argparse.Namespace) -> List[Step]:
         ensure_gpu_if_needed(args.require_gpu)
         steps.append(
             Step(
-                name="OLAF: Taxonomy LLM validation -> taxonomy_is_a_final (no dropping; invalid parent='none')",
+                name="OLAF: Taxonomy LLM validation -> taxonomy_is_a_final",
                 module="olaf.taxonomy_extension",
                 args=[
                     "--db", args.db,
-                    "--in_table", args.taxonomy_table,              # taxonomy_is_a
-                    "--out_table", args.taxonomy_final_table,       # taxonomy_is_a_final
-                    "--terms_table", args.term_enrichment_ext_table,
+                    "--in_taxonomy_table", args.taxonomy_table,        # NOT --in_table
+                    "--out_table", args.taxonomy_final_table,
                     "--model", args.llm_taxonomy_model,
                     "--prompt_config", args.taxonomy_prompt_config,
-                    "--batch_size", str(args.taxonomy_llm_batch_size),
+                    "--few_shots_k", str(args.taxonomy_llm_few_shots_k),
+                    "--max_rows", str(args.taxonomy_llm_max_rows),
                     "--max_new_tokens", str(args.taxonomy_llm_max_new_tokens),
-                    "--temperature", str(args.taxonomy_llm_temperature),
-                    "--log_every", str(args.taxonomy_llm_log_every),
-                    "--include_sentence", str(int(args.taxonomy_llm_include_sentence)),
+                    "--sent_table", args.taxonomy_sent_table,
+                    "--sent_col", args.taxonomy_sent_col,
+                    "--evidence_k", str(args.taxonomy_llm_evidence_k),
+                    "--global_parents_k", str(args.taxonomy_llm_global_parents_k),
+                    "--debug_print_fail_k", str(args.taxonomy_llm_debug_print_fail_k),
                 ],
             )
         )
@@ -429,33 +431,34 @@ def build_olaf_steps(args: argparse.Namespace) -> List[Step]:
         ensure_gpu_if_needed(args.require_gpu)
         steps.append(
             Step(
-                name="LLM validate non-tax edges -> non_taxonomic_edges_final (accept/reject/revise; no drop)",
-                module="olaf.non_taxonomy_extension",
+                name="LLM validate non-tax edges -> non_taxonomic_edges_llm_binary + accept table",
+                module="olaf.non_tax_extension",
                 args=[
                     "--db", args.db,
-                    "--in_table", args.non_tax_clean_table,
-                    "--out_table", args.non_tax_final_table,
+                    "--in_edges_table", args.non_tax_clean_table,
+                    "--out_llm_table", args.non_tax_llm_table,
+                    "--out_accept_table", args.non_tax_accept_table,
                     "--model", args.llm_non_tax_model,
+                    "--device", args.hf_device,  # "auto" or "cuda"
                     "--non_tax_config", args.non_tax_prompt_config,
                     "--batch_size", str(args.non_tax_llm_batch_size),
                     "--max_new_tokens", str(args.non_tax_llm_max_new_tokens),
                     "--temperature", str(args.non_tax_llm_temperature),
                     "--log_every", str(args.non_tax_llm_log_every),
-                    "--include_sentence", str(int(args.non_tax_llm_include_sentence)),
-                    "--dedupe_mode", args.non_tax_dedupe_mode,
+                    "--commit_every", "200",
                 ],
             )
         )
 
-   if args.run_axioms:
-        # choose inputs depending on whether LLM validation steps ran
-        taxonomy_for_axioms = args.axiom_taxonomy_table
-        triples_for_axioms = args.axiom_triple_table
-
-        # If user didn’t override, auto-pick best based on pipeline toggles
+    # 9) AXIOM GENERATION (UPDATED olaf.axiom)
+    if args.run_axioms:
+        # If enabled, auto-pick the best upstream tables unless user overrides explicitly
         if args.auto_pick_axiom_inputs:
             taxonomy_for_axioms = args.taxonomy_final_table if args.use_llm_taxonomy else args.taxonomy_table
-            triples_for_axioms = args.non_tax_final_table if args.use_llm_non_taxonomy else args.non_tax_clean_table
+            triples_for_axioms = args.non_tax_accept_table if args.use_llm_non_taxonomy else args.non_tax_accept_table
+        else:
+            taxonomy_for_axioms = args.axiom_taxonomy_table
+            triples_for_axioms = args.axiom_triple_table
 
         ax_out_dir = os.path.join(args.out_dir_root, args.axiom_out_dir)
 
@@ -466,25 +469,32 @@ def build_olaf_steps(args: argparse.Namespace) -> List[Step]:
                 args=[
                     "--db", args.db,
                     "--out_dir", ax_out_dir,
+
                     "--taxonomy_table", taxonomy_for_axioms,
                     "--triple_table", triples_for_axioms,
-                    "--types_table", args.term_enrichment_ext_table,  # term_enrichment_exten
+                    "--types_table", args.term_enrichment_ext_table,
+
                     "--tax_child_col", args.axiom_tax_child_col,
                     "--tax_parent_col", args.axiom_tax_parent_col,
+
                     "--triple_subj_col", args.axiom_triple_subj_col,
                     "--triple_rel_col", args.axiom_triple_rel_col,
                     "--triple_obj_col", args.axiom_triple_obj_col,
+
                     "--taxonomy_where", args.axiom_taxonomy_where,
                     "--triple_where", args.axiom_triple_where,
+
                     "--min_support", str(args.axiom_min_support),
                     "--min_purity", str(args.axiom_min_purity),
                     "--evidence_k", str(args.axiom_evidence_k),
+
                     "--export_owl",
                     "--base_iri", args.axiom_base_iri,
+                    "--break_cycles"
                 ] + (["--no_hash_iris"] if args.axiom_no_hash_iris else []),
             )
         )
-
+        
     return steps
 
 
@@ -594,7 +604,7 @@ def parse_args() -> argparse.Namespace:
 
     ap.add_argument("--hf_model", default="mistralai/Mistral-7B-Instruct-v0.2")
     ap.add_argument("--hf_dtype", default="float16", choices=["auto", "float16", "bfloat16"])
-    ap.add_argument("--hf_device", default="cuda")
+    ap.add_argument("--hf_device", default="auto")
 
     # Prompt configs
     ap.add_argument("--term_enrich_prompt_config", default="prompts/term_enrichment_extension.json")
@@ -628,11 +638,13 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--taxonomy_final_table", default="taxonomy_is_a_final")
     ap.add_argument("--llm_taxonomy_model", default="mistralai/Mistral-7B-Instruct-v0.2")
     ap.add_argument("--taxonomy_prompt_config", default="prompts/taxonomy_extension.json")
-    ap.add_argument("--taxonomy_llm_batch_size", type=int, default=6)
     ap.add_argument("--taxonomy_llm_max_new_tokens", type=int, default=240)
-    ap.add_argument("--taxonomy_llm_temperature", type=float, default=0.0)
-    ap.add_argument("--taxonomy_llm_log_every", type=int, default=50)
-    ap.add_argument("--taxonomy_llm_include_sentence", action="store_true", default=True)
+    ap.add_argument("--taxonomy_llm_few_shots_k", type=int, default=6)
+    ap.add_argument("--taxonomy_llm_max_rows", type=int, default=0)
+    ap.add_argument("--taxonomy_llm_evidence_k", type=int, default=2)
+    ap.add_argument("--taxonomy_llm_global_parents_k", type=int, default=12)
+    ap.add_argument("--taxonomy_llm_debug_print_fail_k", type=int, default=3)
+
 
     # NON-TAXONOMY extraction
     ap.add_argument("--non_tax_sentence_table", default="sentence_segmented")
@@ -660,6 +672,9 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--non_tax_llm_log_every", type=int, default=50)
     ap.add_argument("--non_tax_llm_include_sentence", action="store_true", default=True)
     ap.add_argument("--non_tax_dedupe_mode", choices=["none", "soft", "hard"], default="soft")
+    ap.add_argument("--non_tax_llm_table", default="non_taxonomic_edges_llm_binary")
+    ap.add_argument("--non_tax_accept_table", default="non_taxonomic_edges_accept")
+
 
     # Runner controls
     ap.add_argument("--clean_db", action="store_true")
@@ -671,7 +686,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--to_step", default="")
     ap.add_argument("--list_steps", action="store_true")
 
-    ap.add_argument("--out_dir_root", default="out", help="Root output folder for artifacts (axioms, logs, etc.)")
+    ap.add_argument("--out_dir_root", default="out_lsf", help="Root output folder for artifacts (axioms, logs, etc.)")
   
     # AXIOMS 
     ap.add_argument("--run_axioms", action="store_true", default=True)
@@ -690,11 +705,14 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--axiom_triple_table", default="non_taxonomic_edges_accept")
 
     ap.add_argument("--axiom_tax_child_col", default="child")
-    ap.add_argument("--axiom_tax_parent_col", default="parent")  
+    ap.add_argument("--axiom_tax_parent_col", default="llm_best_parent")  
 
     ap.add_argument("--axiom_triple_subj_col", default="subj_canonical_term")
     ap.add_argument("--axiom_triple_rel_col", default="rel_key")
     ap.add_argument("--axiom_triple_obj_col", default="obj_canonical_term")
+
+    ap.add_argument("--break_cycles", action="store_true",
+                    help="Automatically remove cycle-causing taxonomy edges instead of crashing.")
 
     # Safe filters for your LLM tables
     ap.add_argument(

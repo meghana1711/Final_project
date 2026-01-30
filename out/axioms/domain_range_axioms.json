@@ -1,0 +1,3384 @@
+{
+  "min_support": 2,
+  "min_purity": 0.55,
+  "accepted_count": 49,
+  "candidate_count": 28,
+  "axioms": [
+    {
+      "property": "accept",
+      "domain": "Entity",
+      "range": "Entity",
+      "support": 2,
+      "typed_subjects": 2,
+      "typed_objects": 2,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.5,
+      "purity_range": 1.0,
+      "confidence": 0.5204,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "database",
+          "accept",
+          "communication"
+        ],
+        [
+          "slurmdbd",
+          "accept",
+          "communication"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 1,
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "Entity": 2
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "add",
+      "domain": "information_object",
+      "range": "unknown",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 1.0,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurmctld",
+          "add",
+          "cluster"
+        ],
+        [
+          "i",
+          "add",
+          "node"
+        ],
+        [
+          "i",
+          "add",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 2,
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "unknown": 3
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "add_from",
+      "domain": "setting",
+      "range": "Entity",
+      "support": 2,
+      "typed_subjects": 0,
+      "typed_objects": 2,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.5454,
+      "status": "candidate",
+      "method": "lca(subject_terms) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "setting",
+          "add_from",
+          "job"
+        ],
+        [
+          "setting",
+          "add_from",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {
+        "Entity": 2
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "add_to",
+      "domain": "unknown",
+      "range": "Entity",
+      "support": 8,
+      "typed_subjects": 8,
+      "typed_objects": 8,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.625,
+      "purity_range": 0.75,
+      "confidence": 0.6596,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "cluster",
+          "add_to",
+          "database"
+        ],
+        [
+          "cluster",
+          "add_to",
+          "external slurmdbd"
+        ],
+        [
+          "slurmctld",
+          "add_to",
+          "database"
+        ],
+        [
+          "cluster",
+          "add_to",
+          "federation"
+        ],
+        [
+          "slurm_job_comment comment",
+          "add_to",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 5,
+        "Description": 2,
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "Entity": 6,
+        "unknown": 2
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "allocate",
+      "domain": "Entity",
+      "range": "unknown",
+      "support": 10,
+      "typed_subjects": 10,
+      "typed_objects": 10,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.9,
+      "purity_range": 0.7,
+      "confidence": 0.7033,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "allocate",
+          "node"
+        ],
+        [
+          "job",
+          "allocate",
+          "device"
+        ],
+        [
+          "job",
+          "allocate",
+          "gres"
+        ],
+        [
+          "job",
+          "allocate",
+          "resource"
+        ],
+        [
+          "job",
+          "allocate",
+          "resource"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 9,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "unknown": 7,
+        "Entity": 3
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "allocate_to",
+      "domain": "unknown",
+      "range": "Entity",
+      "support": 6,
+      "typed_subjects": 6,
+      "typed_objects": 6,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.8333,
+      "purity_range": 0.8333,
+      "confidence": 0.7107,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "allocate_to",
+          "job"
+        ],
+        [
+          "job",
+          "allocate_to",
+          "node"
+        ],
+        [
+          "node",
+          "allocate_to",
+          "job"
+        ],
+        [
+          "node",
+          "allocate_to",
+          "job"
+        ],
+        [
+          "slurm",
+          "allocate_to",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 5,
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "Entity": 5,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "apply",
+      "domain": "information_object",
+      "range": "information_object",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "i",
+          "apply",
+          "patch"
+        ],
+        [
+          "i",
+          "apply",
+          "patch"
+        ],
+        [
+          "site",
+          "apply",
+          "policy"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 2,
+        "Description": 1
+      },
+      "object_type_hist": {
+        "information_object": 2,
+        "Entity": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "apply_to",
+      "domain": "unknown",
+      "range": "Entity",
+      "support": 1,
+      "typed_subjects": 1,
+      "typed_objects": 1,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.6602,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "factor",
+          "apply_to",
+          "association"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "Entity": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "assign",
+      "domain": "Entity",
+      "range": "unknown",
+      "support": 5,
+      "typed_subjects": 5,
+      "typed_objects": 5,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.4,
+      "purity_range": 1.0,
+      "confidence": 0.5456,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "job",
+          "assign",
+          "set"
+        ],
+        [
+          "qos",
+          "assign",
+          "list"
+        ],
+        [
+          "resource limit",
+          "assign",
+          "set"
+        ],
+        [
+          "job",
+          "assign",
+          "set"
+        ],
+        [
+          "priority multifactor plugin",
+          "assign",
+          "priority"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 2,
+        "unknown": 2,
+        "Description": 1
+      },
+      "object_type_hist": {
+        "unknown": 5
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "bind",
+      "domain": "unknown",
+      "range": "unknown",
+      "support": 2,
+      "typed_subjects": 2,
+      "typed_objects": 2,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.6954,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "task",
+          "bind",
+          "d"
+        ],
+        [
+          "flag",
+          "bind",
+          "enum"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 2
+      },
+      "object_type_hist": {
+        "unknown": 2
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "bind_to",
+      "domain": "unknown",
+      "range": "Entity",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "task ids",
+          "bind_to",
+          "cpu ids"
+        ],
+        [
+          "task",
+          "bind_to",
+          "cpu"
+        ],
+        [
+          "task",
+          "bind_to",
+          "gpus"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 3
+      },
+      "object_type_hist": {
+        "Entity": 2,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "charge_for",
+      "domain": "Entity",
+      "range": "unknown",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.7204,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "job",
+          "charge_for",
+          "resource"
+        ],
+        [
+          "accounting",
+          "charge_for",
+          "resource allocation"
+        ],
+        [
+          "job",
+          "charge_for",
+          "resource allocation"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 3
+      },
+      "object_type_hist": {
+        "unknown": 3
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "configure",
+      "domain": "unknown",
+      "range": "unknown",
+      "support": 6,
+      "typed_subjects": 6,
+      "typed_objects": 6,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.5,
+      "purity_range": 0.6667,
+      "confidence": 0.594,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "configure",
+          "environment variable"
+        ],
+        [
+          "slurm",
+          "configure",
+          "environment variable"
+        ],
+        [
+          "i",
+          "configure",
+          "slurm"
+        ],
+        [
+          "system administrator",
+          "configure",
+          "cr_cpu"
+        ],
+        [
+          "i",
+          "configure",
+          "slurm"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 3,
+        "information_object": 2,
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "unknown": 4,
+        "Description": 1,
+        "Entity": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "contain",
+      "domain": "unknown",
+      "range": "unknown",
+      "support": 5,
+      "typed_subjects": 5,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.6,
+      "purity_domain": 0.6,
+      "purity_range": 0.6667,
+      "confidence": 0.5556,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "document",
+          "contain",
+          "slurm administrator information"
+        ],
+        [
+          "version",
+          "contain",
+          "support"
+        ],
+        [
+          "slurm_job_id",
+          "contain",
+          "job id"
+        ],
+        [
+          "document",
+          "contain",
+          "slurm administrator information"
+        ],
+        [
+          "my script",
+          "contain",
+          "command"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 3,
+        "Description": 1,
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "unknown": 2,
+        "Entity": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "create",
+      "domain": "unknown",
+      "range": "unknown",
+      "support": 10,
+      "typed_subjects": 10,
+      "typed_objects": 10,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.8,
+      "purity_range": 0.7,
+      "confidence": 0.7033,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "create",
+          "database"
+        ],
+        [
+          "mysql",
+          "create",
+          "user"
+        ],
+        [
+          "mysql",
+          "create",
+          "database slurm_acct_db"
+        ],
+        [
+          "scontrol",
+          "create",
+          "nodename"
+        ],
+        [
+          "srun command",
+          "create",
+          "resource allocation"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 8,
+        "information_object": 2
+      },
+      "object_type_hist": {
+        "unknown": 7,
+        "Entity": 2,
+        "information_object": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "define",
+      "domain": "Entity",
+      "range": "Entity",
+      "support": 4,
+      "typed_subjects": 4,
+      "typed_objects": 4,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.5,
+      "purity_range": 0.5,
+      "confidence": 0.5648,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "scheduling",
+          "define",
+          "mechanism"
+        ],
+        [
+          "slurmctldport",
+          "define",
+          "location"
+        ],
+        [
+          "scheduling",
+          "define",
+          "mechanism"
+        ],
+        [
+          "process id logging",
+          "define",
+          "location"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 2,
+        "Description": 2
+      },
+      "object_type_hist": {
+        "Entity": 2,
+        "unknown": 2
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "define_in",
+      "domain": "unknown",
+      "range": "information_object",
+      "support": 3,
+      "typed_subjects": 2,
+      "typed_objects": 3,
+      "subject_type_coverage": 0.6667,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 0.6667,
+      "confidence": 0.5537,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "location",
+          "define_in",
+          "burst_buffer conf"
+        ],
+        [
+          "location",
+          "define_in",
+          "burst_buffer conf"
+        ],
+        [
+          "configuration",
+          "define_in",
+          "slurm database"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 2
+      },
+      "object_type_hist": {
+        "information_object": 2,
+        "Entity": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "determine",
+      "domain": "unknown",
+      "range": "Literal",
+      "support": 3,
+      "typed_subjects": 2,
+      "typed_objects": 3,
+      "subject_type_coverage": 0.6667,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.6704,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + datatype_heuristic(objects)",
+      "evidence_examples": [
+        [
+          "configuration parameter",
+          "determine",
+          "interval"
+        ],
+        [
+          "slurm",
+          "determine",
+          "gpus"
+        ],
+        [
+          "qos",
+          "determine",
+          "job preemption"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 2
+      },
+      "object_type_hist": {},
+      "property_kind": "datatype",
+      "datatype_iri": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    {
+      "property": "distribute",
+      "domain": "unknown",
+      "range": "unknown",
+      "support": 4,
+      "typed_subjects": 4,
+      "typed_objects": 4,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.75,
+      "purity_range": 1.0,
+      "confidence": 0.6523,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "cgroup",
+          "distribute",
+          "resource"
+        ],
+        [
+          "slurm",
+          "distribute",
+          "task"
+        ],
+        [
+          "slurm",
+          "distribute",
+          "task"
+        ],
+        [
+          "slurm",
+          "distribute",
+          "task"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 3,
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "unknown": 4
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "distribute_to",
+      "domain": "unknown",
+      "range": "unknown",
+      "support": 5,
+      "typed_subjects": 5,
+      "typed_objects": 5,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 0.8,
+      "confidence": 0.6856,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "distribute_to",
+          "node"
+        ],
+        [
+          "task",
+          "distribute_to",
+          "node"
+        ],
+        [
+          "cpu ids",
+          "distribute_to",
+          "task"
+        ],
+        [
+          "slurm",
+          "distribute_to",
+          "cores"
+        ],
+        [
+          "documentation",
+          "distribute_to",
+          "page"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 5
+      },
+      "object_type_hist": {
+        "unknown": 4,
+        "Description": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "exceed",
+      "domain": "Description",
+      "range": "unknown",
+      "support": 36,
+      "typed_subjects": 31,
+      "typed_objects": 15,
+      "subject_type_coverage": 0.8611,
+      "object_type_coverage": 0.4167,
+      "purity_domain": 0.5161,
+      "purity_range": 1.0,
+      "confidence": 0.6568,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "burst buffer request",
+          "exceed",
+          "maximum number"
+        ],
+        [
+          "burst buffer request",
+          "exceed",
+          "maximum"
+        ],
+        [
+          "burst buffer request",
+          "exceed",
+          "maximum number"
+        ],
+        [
+          "request",
+          "exceed",
+          "maximum number"
+        ],
+        [
+          "cpu request",
+          "exceed",
+          "maximum number"
+        ]
+      ],
+      "subject_type_hist": {
+        "Description": 16,
+        "Entity": 12,
+        "Event": 3
+      },
+      "object_type_hist": {
+        "unknown": 15
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "execute",
+      "domain": "information_object",
+      "range": "unknown",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "execute",
+          "order"
+        ],
+        [
+          "healthcheckprogram",
+          "execute",
+          "node"
+        ],
+        [
+          "healthcheckprogram",
+          "execute",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 2,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "unknown": 2,
+        "Description": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "execute_in",
+      "domain": "Entity",
+      "range": "Description",
+      "support": 6,
+      "typed_subjects": 6,
+      "typed_objects": 6,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.8333,
+      "purity_range": 0.8333,
+      "confidence": 0.7107,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "job",
+          "execute_in",
+          "order"
+        ],
+        [
+          "job",
+          "execute_in",
+          "order"
+        ],
+        [
+          "heterogeneous job",
+          "execute_in",
+          "federation"
+        ],
+        [
+          "taskprolog",
+          "execute_in",
+          "addition"
+        ],
+        [
+          "job",
+          "execute_in",
+          "order"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 5,
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "Description": 5,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "execute_on",
+      "domain": "Entity",
+      "range": "unknown",
+      "support": 2,
+      "typed_subjects": 2,
+      "typed_objects": 2,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.5,
+      "purity_range": 1.0,
+      "confidence": 0.5204,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "heterogeneous job",
+          "execute_on",
+          "cluster"
+        ],
+        [
+          "resume",
+          "execute_on",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 1,
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "unknown": 2
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "exist_on",
+      "domain": "Entity",
+      "range": "Entity",
+      "support": 5,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 0.6,
+      "object_type_coverage": 0.6,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.579,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "user",
+          "exist_on",
+          "machine"
+        ],
+        [
+          "directory",
+          "exist_on",
+          "compute node"
+        ],
+        [
+          "partition",
+          "exist_on",
+          "system"
+        ],
+        [
+          "job",
+          "exist_on",
+          "system"
+        ],
+        [
+          "file",
+          "exist_on",
+          "local disk"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 2,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "Entity": 2,
+        "Description": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "find",
+      "domain": "information_object",
+      "range": "Entity",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 1,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.3333,
+      "purity_domain": 0.6667,
+      "purity_range": 1.0,
+      "confidence": 0.5037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "i",
+          "find",
+          "core file"
+        ],
+        [
+          "i",
+          "find",
+          "core file"
+        ],
+        [
+          "gres",
+          "find",
+          "gpu"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 2,
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "Entity": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "gather_from",
+      "domain": null,
+      "range": "Entity",
+      "support": 3,
+      "typed_subjects": 0,
+      "typed_objects": 3,
+      "subject_type_coverage": 0.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.0,
+      "purity_range": 1.0,
+      "confidence": 0.2204,
+      "status": "candidate",
+      "method": "lca(subject_terms) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "gpu configuration",
+          "gather_from",
+          "library"
+        ],
+        [
+          "gpu configuration",
+          "gather_from",
+          "library"
+        ],
+        [
+          "information",
+          "gather_from",
+          "slurmctld node"
+        ]
+      ],
+      "subject_type_hist": {},
+      "object_type_hist": {
+        "Entity": 3
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "generate",
+      "domain": "information_object",
+      "range": "information_object",
+      "support": 4,
+      "typed_subjects": 4,
+      "typed_objects": 4,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.75,
+      "purity_range": 0.5,
+      "confidence": 0.5648,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "scontrol command",
+          "generate",
+          "script"
+        ],
+        [
+          "i",
+          "generate",
+          "slurm conf"
+        ],
+        [
+          "tmp",
+          "generate",
+          "job array"
+        ],
+        [
+          "plugin",
+          "generate",
+          "error message"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 3,
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "information_object": 2,
+        "Entity": 1,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "get",
+      "domain": "information_object",
+      "range": "Description",
+      "support": 6,
+      "typed_subjects": 6,
+      "typed_objects": 6,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.3333,
+      "confidence": 0.5357,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurmdbd",
+          "get",
+          "uid"
+        ],
+        [
+          "i",
+          "get",
+          "task id"
+        ],
+        [
+          "i",
+          "get",
+          "backtrace"
+        ],
+        [
+          "i",
+          "get",
+          "task id"
+        ],
+        [
+          "job",
+          "get",
+          "job size factor"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 4,
+        "Entity": 1,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "Description": 2,
+        "information_object": 2,
+        "Entity": 2
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "have",
+      "domain": "Entity",
+      "range": "unknown",
+      "support": 23,
+      "typed_subjects": 23,
+      "typed_objects": 21,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.913,
+      "purity_domain": 0.6522,
+      "purity_range": 0.5238,
+      "confidence": 0.6963,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "cluster",
+          "have",
+          "access"
+        ],
+        [
+          "step",
+          "have",
+          "access"
+        ],
+        [
+          "node",
+          "have",
+          "allowspecresourcesusage"
+        ],
+        [
+          "i",
+          "have",
+          "allocation"
+        ],
+        [
+          "job",
+          "have",
+          "cuda_visible_device"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 15,
+        "unknown": 7,
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "unknown": 11,
+        "Entity": 7,
+        "Description": 3
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "identify",
+      "domain": "Entity",
+      "range": "Entity",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "authentication plugin",
+          "identify",
+          "user"
+        ],
+        [
+          "resource reservation",
+          "identify",
+          "resource"
+        ],
+        [
+          "slurm",
+          "identify",
+          "network switch"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 2,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "Entity": 2,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "include",
+      "domain": "unknown",
+      "range": "unknown",
+      "support": 10,
+      "typed_subjects": 10,
+      "typed_objects": 9,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.9,
+      "purity_domain": 0.6,
+      "purity_range": 0.6667,
+      "confidence": 0.6533,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "include",
+          "spank plugin"
+        ],
+        [
+          "slurm",
+          "include",
+          "support"
+        ],
+        [
+          "user tool",
+          "include",
+          "srun"
+        ],
+        [
+          "entity",
+          "include",
+          "node"
+        ],
+        [
+          "slurm entity",
+          "include",
+          "count"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 6,
+        "Entity": 3,
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "unknown": 6,
+        "Description": 2,
+        "information_object": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "include_in",
+      "domain": "Description",
+      "range": "Entity",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "uid",
+          "include_in",
+          "credential"
+        ],
+        [
+          "partition",
+          "include_in",
+          "association"
+        ],
+        [
+          "slurm support",
+          "include_in",
+          "slurm"
+        ]
+      ],
+      "subject_type_hist": {
+        "Description": 2,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "Entity": 2,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "initiate",
+      "domain": "Description",
+      "range": "Entity",
+      "support": 2,
+      "typed_subjects": 2,
+      "typed_objects": 2,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.6954,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "uid",
+          "initiate",
+          "request"
+        ],
+        [
+          "uid",
+          "initiate",
+          "request"
+        ]
+      ],
+      "subject_type_hist": {
+        "Description": 2
+      },
+      "object_type_hist": {
+        "Entity": 2
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "launch",
+      "domain": "unknown",
+      "range": "unknown",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "launch",
+          "task"
+        ],
+        [
+          "user",
+          "launch",
+          "ssh"
+        ],
+        [
+          "slurm",
+          "launch",
+          "task"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 2,
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "unknown": 2,
+        "information_object": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "listen_for",
+      "domain": "information_object",
+      "range": "Event",
+      "support": 5,
+      "typed_subjects": 5,
+      "typed_objects": 5,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6,
+      "purity_range": 0.4,
+      "confidence": 0.5456,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "instance slurmdbd",
+          "listen_for",
+          "work"
+        ],
+        [
+          "slurmctld",
+          "listen_for",
+          "incoming request"
+        ],
+        [
+          "slurmctld",
+          "listen_for",
+          "ipv4 traffic"
+        ],
+        [
+          "slurmdbd",
+          "listen_for",
+          "incoming request"
+        ],
+        [
+          "slurmdbd",
+          "listen_for",
+          "ipv4 traffic"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 3,
+        "Entity": 2
+      },
+      "object_type_hist": {
+        "Event": 2,
+        "Description": 2,
+        "Entity": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "offer",
+      "domain": "unknown",
+      "range": "Entity",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 1.0,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "job array",
+          "offer",
+          "mechanism"
+        ],
+        [
+          "slurm",
+          "offer",
+          "ability"
+        ],
+        [
+          "slurm",
+          "offer",
+          "ability"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 2,
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "Entity": 3
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "permit",
+      "domain": "unknown",
+      "range": "Entity",
+      "support": 1,
+      "typed_subjects": 1,
+      "typed_objects": 1,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.6602,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "srun",
+          "permit",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "Entity": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "prevent",
+      "domain": "information_object",
+      "range": "Entity",
+      "support": 7,
+      "typed_subjects": 7,
+      "typed_objects": 7,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.5714,
+      "purity_range": 0.7143,
+      "confidence": 0.6306,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "managing job",
+          "prevent",
+          "job"
+        ],
+        [
+          "i",
+          "prevent",
+          "job"
+        ],
+        [
+          "i",
+          "prevent",
+          "slurmd"
+        ],
+        [
+          "managing job",
+          "prevent",
+          "job"
+        ],
+        [
+          "i",
+          "prevent",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 4,
+        "Entity": 2,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "Entity": 5,
+        "information_object": 2
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "provide",
+      "domain": "unknown",
+      "range": "Entity",
+      "support": 12,
+      "typed_subjects": 12,
+      "typed_objects": 12,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.8333,
+      "purity_range": 0.5833,
+      "confidence": 0.677,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "sreport",
+          "provide",
+          "ability"
+        ],
+        [
+          "slurm",
+          "provide",
+          "support"
+        ],
+        [
+          "cons_tre plugin",
+          "provide",
+          "functionality"
+        ],
+        [
+          "shifter",
+          "provide",
+          "presentation"
+        ],
+        [
+          "slurm",
+          "provide",
+          "limited support"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 10,
+        "information_object": 1,
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "Entity": 7,
+        "unknown": 3,
+        "Description": 2
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "reach",
+      "domain": "unknown",
+      "range": "Entity",
+      "support": 8,
+      "typed_subjects": 6,
+      "typed_objects": 3,
+      "subject_type_coverage": 0.75,
+      "object_type_coverage": 0.375,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.5804,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "state information",
+          "reach",
+          "disk"
+        ],
+        [
+          "job",
+          "reach",
+          "system"
+        ],
+        [
+          "job",
+          "reach",
+          "inactivelimit"
+        ],
+        [
+          "state information",
+          "reach",
+          "disk"
+        ],
+        [
+          "integer",
+          "reach",
+          "number"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 4,
+        "Entity": 2
+      },
+      "object_type_hist": {
+        "Entity": 2,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "read",
+      "domain": "unknown",
+      "range": "unknown",
+      "support": 2,
+      "typed_subjects": 2,
+      "typed_objects": 1,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.5,
+      "purity_domain": 0.5,
+      "purity_range": 1.0,
+      "confidence": 0.4454,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "daemon",
+          "read",
+          "configuration file"
+        ],
+        [
+          "service",
+          "read",
+          "environment variable"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 1,
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "rebuild",
+      "domain": "information_object",
+      "range": "unknown",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "i",
+          "rebuild",
+          "database hierarchy"
+        ],
+        [
+          "i",
+          "rebuild",
+          "database hierarchy"
+        ],
+        [
+          "slurm",
+          "rebuild",
+          "script"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 2,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "unknown": 2,
+        "information_object": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "receive",
+      "domain": "Entity",
+      "range": "Description",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurmctld",
+          "receive",
+          "signal"
+        ],
+        [
+          "slurmdbd",
+          "receive",
+          "connection"
+        ],
+        [
+          "system job",
+          "receive",
+          "job size factor"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 2,
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "Description": 2,
+        "Entity": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "refer_to",
+      "domain": "unknown",
+      "range": "Description",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurm documentation",
+          "refer_to",
+          "cpus"
+        ],
+        [
+          "slurm documentation",
+          "refer_to",
+          "cpus"
+        ],
+        [
+          "slurm",
+          "refer_to",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 3
+      },
+      "object_type_hist": {
+        "Description": 2,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "register_with",
+      "domain": "information_object",
+      "range": "Entity",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "dynamic slurmd registration",
+          "register_with",
+          "controller"
+        ],
+        [
+          "slurmd",
+          "register_with",
+          "controller"
+        ],
+        [
+          "slurmd",
+          "register_with",
+          "c"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 2,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "Entity": 2,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "remove_from",
+      "domain": "unknown",
+      "range": "Entity",
+      "support": 2,
+      "typed_subjects": 2,
+      "typed_objects": 2,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 0.5,
+      "confidence": 0.5204,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "node",
+          "remove_from",
+          "running job"
+        ],
+        [
+          "cluster",
+          "remove_from",
+          "federation"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 2
+      },
+      "object_type_hist": {
+        "Entity": 1,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "represent",
+      "domain": "unknown",
+      "range": "number",
+      "support": 1,
+      "typed_subjects": 1,
+      "typed_objects": 0,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.5102,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "factor",
+          "represent",
+          "number"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 1
+      },
+      "object_type_hist": {},
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "request",
+      "domain": "Entity",
+      "range": "unknown",
+      "support": 10,
+      "typed_subjects": 10,
+      "typed_objects": 8,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.8,
+      "purity_domain": 1.0,
+      "purity_range": 0.625,
+      "confidence": 0.647,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "job",
+          "request",
+          "pool"
+        ],
+        [
+          "job",
+          "request",
+          "number"
+        ],
+        [
+          "job",
+          "request",
+          "pool"
+        ],
+        [
+          "job",
+          "request",
+          "license"
+        ],
+        [
+          "job",
+          "request",
+          "memory"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 10
+      },
+      "object_type_hist": {
+        "unknown": 5,
+        "Entity": 2,
+        "Description": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "require",
+      "domain": "Entity",
+      "range": "Entity",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "plugin",
+          "require",
+          "directive"
+        ],
+        [
+          "fair tree",
+          "require",
+          "slurm accounting database"
+        ],
+        [
+          "slurm",
+          "require",
+          "operation"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 2,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "Entity": 2,
+        "Description": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "restrict_to",
+      "domain": "unknown",
+      "range": "unknown",
+      "support": 2,
+      "typed_subjects": 2,
+      "typed_objects": 2,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.6954,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "c",
+          "restrict_to",
+          "node"
+        ],
+        [
+          "c",
+          "restrict_to",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 2
+      },
+      "object_type_hist": {
+        "unknown": 2
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "result_in",
+      "domain": "Description",
+      "range": "unknown",
+      "support": 2,
+      "typed_subjects": 2,
+      "typed_objects": 2,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 0.5,
+      "confidence": 0.5204,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "plane",
+          "result_in",
+          "block"
+        ],
+        [
+          "failure",
+          "result_in",
+          "action"
+        ]
+      ],
+      "subject_type_hist": {
+        "Description": 2
+      },
+      "object_type_hist": {
+        "unknown": 1,
+        "Entity": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "return",
+      "domain": "Entity",
+      "range": "information",
+      "support": 1,
+      "typed_subjects": 1,
+      "typed_objects": 0,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.5102,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + lca(object_terms)",
+      "evidence_examples": [
+        [
+          "request",
+          "return",
+          "information"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 1
+      },
+      "object_type_hist": {},
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "run",
+      "domain": "information_object",
+      "range": "Entity",
+      "support": 12,
+      "typed_subjects": 12,
+      "typed_objects": 12,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.4167,
+      "purity_range": 0.5,
+      "confidence": 0.6186,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "node",
+          "run",
+          "job"
+        ],
+        [
+          "i",
+          "run",
+          "job"
+        ],
+        [
+          "i",
+          "run",
+          "job"
+        ],
+        [
+          "i",
+          "run",
+          "job"
+        ],
+        [
+          "i",
+          "run",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 5,
+        "Entity": 3,
+        "unknown": 2,
+        "Description": 2
+      },
+      "object_type_hist": {
+        "Entity": 6,
+        "unknown": 3,
+        "information_object": 3
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "run_on",
+      "domain": "Entity",
+      "range": "unknown",
+      "support": 9,
+      "typed_subjects": 9,
+      "typed_objects": 9,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.7778,
+      "purity_range": 0.6667,
+      "confidence": 0.6833,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "script",
+          "run_on",
+          "slurmctld node"
+        ],
+        [
+          "job",
+          "run_on",
+          "cluster"
+        ],
+        [
+          "job",
+          "run_on",
+          "cluster"
+        ],
+        [
+          "container",
+          "run_on",
+          "compute node"
+        ],
+        [
+          "job process",
+          "run_on",
+          "node"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 7,
+        "information_object": 2
+      },
+      "object_type_hist": {
+        "unknown": 6,
+        "Entity": 3
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "run_with",
+      "domain": "Entity",
+      "range": "unknown",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "i",
+          "run_with",
+          "slurm"
+        ],
+        [
+          "app",
+          "run_with",
+          "srun"
+        ],
+        [
+          "slurmd daemon",
+          "run_with",
+          "command"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 2,
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "unknown": 2,
+        "Entity": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "save",
+      "domain": "information_object",
+      "range": "unknown",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 1.0,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurmd",
+          "save",
+          "state"
+        ],
+        [
+          "slurmd",
+          "save",
+          "state"
+        ],
+        [
+          "backup",
+          "save",
+          "state"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 2,
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "unknown": 3
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "save_to",
+      "domain": "unknown",
+      "range": "Entity",
+      "support": 2,
+      "typed_subjects": 2,
+      "typed_objects": 1,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.5,
+      "purity_domain": 0.5,
+      "purity_range": 1.0,
+      "confidence": 0.4454,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "exit code",
+          "save_to",
+          "job step record"
+        ],
+        [
+          "controller",
+          "save_to",
+          "disk"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 1,
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "Entity": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "see",
+      "domain": "unknown",
+      "range": "unknown",
+      "support": 2,
+      "typed_subjects": 2,
+      "typed_objects": 1,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.5,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.6204,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "set",
+          "see",
+          "tre"
+        ],
+        [
+          "qos",
+          "see",
+          "qos option"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 2
+      },
+      "object_type_hist": {
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "send",
+      "domain": "Entity",
+      "range": "Description",
+      "support": 4,
+      "typed_subjects": 4,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.75,
+      "purity_domain": 0.5,
+      "purity_range": 0.3333,
+      "confidence": 0.469,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurmd daemon",
+          "send",
+          "information"
+        ],
+        [
+          "job",
+          "send",
+          "signal"
+        ],
+        [
+          "srun",
+          "send",
+          "step"
+        ],
+        [
+          "user root",
+          "send",
+          "message"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 2,
+        "unknown": 2
+      },
+      "object_type_hist": {
+        "Description": 1,
+        "Entity": 1,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "send_to",
+      "domain": "Entity",
+      "range": "Entity",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurmd daemon",
+          "send_to",
+          "slurmctld daemon"
+        ],
+        [
+          "slurm control daemon",
+          "send_to",
+          "slurm database"
+        ],
+        [
+          "integer port",
+          "send_to",
+          "format"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 2,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "Entity": 2,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "set",
+      "domain": "Description",
+      "range": "unknown",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 1,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.3333,
+      "purity_domain": 0.6667,
+      "purity_range": 1.0,
+      "confidence": 0.5037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "priorityweightfairshare",
+          "set",
+          "number"
+        ],
+        [
+          "preemptmode",
+          "set",
+          "gang option"
+        ],
+        [
+          "slurm",
+          "set",
+          "environment variable"
+        ]
+      ],
+      "subject_type_hist": {
+        "Description": 2,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "set_in",
+      "domain": "unknown",
+      "range": "information_object",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "oneapi",
+          "set_in",
+          "gres conf"
+        ],
+        [
+          "nodename",
+          "set_in",
+          "slurm conf"
+        ],
+        [
+          "tre",
+          "set_in",
+          "database"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 3
+      },
+      "object_type_hist": {
+        "information_object": 2,
+        "Entity": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "set_to",
+      "domain": "Description",
+      "range": "unknown",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 2,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.6667,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.6704,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurm_array_task_count",
+          "set_to",
+          "number"
+        ],
+        [
+          "preemptmode",
+          "set_to",
+          "requeue"
+        ],
+        [
+          "authtype",
+          "set_to",
+          "slurm"
+        ]
+      ],
+      "subject_type_hist": {
+        "Description": 3
+      },
+      "object_type_hist": {
+        "unknown": 2
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "show",
+      "domain": "information_object",
+      "range": "Entity",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "statu command",
+          "show",
+          "view"
+        ],
+        [
+          "scontrol",
+          "show",
+          "config"
+        ],
+        [
+          "query parameter â",
+          "show",
+          "detail"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 2,
+        "Description": 1
+      },
+      "object_type_hist": {
+        "Entity": 2,
+        "information_object": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "spawn",
+      "domain": "Entity",
+      "range": "Entity",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "srun command",
+          "spawn",
+          "application"
+        ],
+        [
+          "interface",
+          "spawn",
+          "separate processing thread"
+        ],
+        [
+          "interface",
+          "spawn",
+          "separate processing thread"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 2,
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "Entity": 2,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "specify",
+      "domain": "Entity",
+      "range": "Entity",
+      "support": 9,
+      "typed_subjects": 7,
+      "typed_objects": 6,
+      "subject_type_coverage": 0.7778,
+      "object_type_coverage": 0.6667,
+      "purity_domain": 1.0,
+      "purity_range": 0.5,
+      "confidence": 0.575,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "job",
+          "specify",
+          "pool"
+        ],
+        [
+          "job",
+          "specify",
+          "pool"
+        ],
+        [
+          "job",
+          "specify",
+          "pool"
+        ],
+        [
+          "mpi type",
+          "specify",
+          "type"
+        ],
+        [
+          "job request",
+          "specify",
+          "memory requirement"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 7
+      },
+      "object_type_hist": {
+        "Entity": 3,
+        "Description": 2,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "specify_in",
+      "domain": "Entity",
+      "range": "Description",
+      "support": 3,
+      "typed_subjects": 1,
+      "typed_objects": 3,
+      "subject_type_coverage": 0.3333,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.6204,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurmctld",
+          "specify_in",
+          "priority order"
+        ],
+        [
+          "gang option",
+          "specify_in",
+          "order"
+        ],
+        [
+          "gang option",
+          "specify_in",
+          "order"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "Description": 3
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "start",
+      "domain": "information_object",
+      "range": "Entity",
+      "support": 1,
+      "typed_subjects": 1,
+      "typed_objects": 1,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.6602,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurmd",
+          "start",
+          "slurmctld"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 1
+      },
+      "object_type_hist": {
+        "Entity": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "submit",
+      "domain": "Entity",
+      "range": "Entity",
+      "support": 4,
+      "typed_subjects": 4,
+      "typed_objects": 4,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.5,
+      "purity_range": 0.75,
+      "confidence": 0.5648,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "user",
+          "submit",
+          "step"
+        ],
+        [
+          "job submission",
+          "submit",
+          "copy"
+        ],
+        [
+          "script sh",
+          "submit",
+          "job"
+        ],
+        [
+          "slurm",
+          "submit",
+          "job"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 2,
+        "information_object": 1,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "Entity": 3,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "submit_to",
+      "domain": "Entity",
+      "range": "unknown",
+      "support": 5,
+      "typed_subjects": 5,
+      "typed_objects": 5,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.8,
+      "purity_range": 1.0,
+      "confidence": 0.6856,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "job",
+          "submit_to",
+          "federation"
+        ],
+        [
+          "job",
+          "submit_to",
+          "federation"
+        ],
+        [
+          "slurm",
+          "submit_to",
+          "cluster"
+        ],
+        [
+          "job",
+          "submit_to",
+          "partition"
+        ],
+        [
+          "job",
+          "submit_to",
+          "partition"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 4,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "unknown": 5
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "support",
+      "domain": "unknown",
+      "range": "Literal",
+      "support": 13,
+      "typed_subjects": 13,
+      "typed_objects": 13,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6923,
+      "purity_range": 1.0,
+      "confidence": 0.7215,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + datatype_heuristic(objects)",
+      "evidence_examples": [
+        [
+          "tool",
+          "support",
+          "slurm version"
+        ],
+        [
+          "tool",
+          "support",
+          "slurm version"
+        ],
+        [
+          "slurm",
+          "support",
+          "ability"
+        ],
+        [
+          "slurm",
+          "support",
+          "requeue"
+        ],
+        [
+          "slurm",
+          "support",
+          "gang scheduling job"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 9,
+        "Entity": 3,
+        "Description": 1
+      },
+      "object_type_hist": {},
+      "property_kind": "datatype",
+      "datatype_iri": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    {
+      "property": "take",
+      "domain": "unknown",
+      "range": "Description",
+      "support": 4,
+      "typed_subjects": 4,
+      "typed_objects": 4,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.75,
+      "purity_range": 0.5,
+      "confidence": 0.5648,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "systemd",
+          "take",
+          "care"
+        ],
+        [
+          "change",
+          "take",
+          "effect"
+        ],
+        [
+          "job",
+          "take",
+          "long time"
+        ],
+        [
+          "flag",
+          "take",
+          "effect"
+        ]
+      ],
+      "subject_type_hist": {
+        "unknown": 3,
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "Description": 2,
+        "Entity": 1,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "use",
+      "domain": "information_object",
+      "range": "Entity",
+      "support": 21,
+      "typed_subjects": 21,
+      "typed_objects": 21,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.4286,
+      "purity_range": 0.4286,
+      "confidence": 0.6685,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "use",
+          "innodb"
+        ],
+        [
+          "client command",
+          "use",
+          "mechanism"
+        ],
+        [
+          "site",
+          "use",
+          "user namespace support"
+        ],
+        [
+          "site",
+          "use",
+          "user namespace support"
+        ],
+        [
+          "accounting database",
+          "use",
+          "slurmdbd"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 9,
+        "Entity": 5,
+        "unknown": 4,
+        "Description": 3
+      },
+      "object_type_hist": {
+        "Entity": 9,
+        "unknown": 8,
+        "information_object": 4
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "use_in",
+      "domain": "information_object",
+      "range": "Description",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 3,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 1.0,
+      "purity_domain": 0.6667,
+      "purity_range": 0.6667,
+      "confidence": 0.6037,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurm",
+          "use_in",
+          "mysql"
+        ],
+        [
+          "mysqldump",
+          "use_in",
+          "order"
+        ],
+        [
+          "slurmdbd",
+          "use_in",
+          "order"
+        ]
+      ],
+      "subject_type_hist": {
+        "information_object": 2,
+        "unknown": 1
+      },
+      "object_type_hist": {
+        "Description": 2,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "write",
+      "domain": "Entity",
+      "range": "unknown",
+      "support": 3,
+      "typed_subjects": 3,
+      "typed_objects": 2,
+      "subject_type_coverage": 1.0,
+      "object_type_coverage": 0.6667,
+      "purity_domain": 1.0,
+      "purity_range": 1.0,
+      "confidence": 0.6704,
+      "status": "accepted",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "slurmctld",
+          "write",
+          "state"
+        ],
+        [
+          "plugin",
+          "write",
+          "file"
+        ],
+        [
+          "slurmctld",
+          "write",
+          "state"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 3
+      },
+      "object_type_hist": {
+        "unknown": 2
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    },
+    {
+      "property": "write_to",
+      "domain": "Entity",
+      "range": "Description",
+      "support": 4,
+      "typed_subjects": 1,
+      "typed_objects": 3,
+      "subject_type_coverage": 0.25,
+      "object_type_coverage": 0.75,
+      "purity_domain": 1.0,
+      "purity_range": 0.6667,
+      "confidence": 0.5106,
+      "status": "candidate",
+      "method": "mode(dul_bucket_subject) + mode(dul_bucket_object)",
+      "evidence_examples": [
+        [
+          "job",
+          "write_to",
+          "cache"
+        ],
+        [
+          "core file",
+          "write_to",
+          "directory"
+        ],
+        [
+          "core file",
+          "write_to",
+          "statesavelocation"
+        ],
+        [
+          "core file",
+          "write_to",
+          "slurmdspooldir"
+        ]
+      ],
+      "subject_type_hist": {
+        "Entity": 1
+      },
+      "object_type_hist": {
+        "Description": 2,
+        "unknown": 1
+      },
+      "property_kind": "object",
+      "datatype_iri": null
+    }
+  ]
+}
