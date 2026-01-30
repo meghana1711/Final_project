@@ -79,3 +79,8 @@ models/*.pth
 # Logs
 logs/
 *.log
+
+# SQLite artifacts
+*.db
+*.db-wal
+*.db-shm
