@@ -1,44 +1,13 @@
-#!/usr/bin/env python3
-"""
-olaf_llm/axioms_llm.py
-
-LLM-only lightweight axiom extraction from *LLM-generated* edge tables in SQLite.
-
-DEFAULT INPUT TABLES (your schema):
-- taxonomy: llm_is_a_edges
-    columns: child_term, parent_term, doc_id, chunk_id, justification
-- non-taxonomy: llm_non_taxonomy_edges
-    columns: subject_term, predicate, object_term, doc_id, chunk_id, relation_type, justification, raw_json
-
-For each distinct predicate, the LLM proposes:
-- ObjectProperty name/label
-- domain class + range class (best guess using only provided evidence + taxonomy context)
-- optional: subPropertyOf, inverseOf
-- optional candidate: disjointness and restrictions
-Writes:
-- axioms_llm.jsonl (one JSON object per predicate)
-- axioms_llm_merged.json (full combined)
-
-Backend options:
-- openai_compatible (OpenAI API OR vLLM OpenAI server, LMStudio, etc.)
-- transformers (local HF model)
-
-NOTE:
-This is "LLM-only" w.r.t. axiom decisions.
-The code only samples evidence rows + taxonomy context and enforces JSON schema.
-"""
-
 from __future__ import annotations
 
 import argparse
 import json
 import os
-import random
+import re
 import sqlite3
 import time
-from collections import defaultdict
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 
 # -----------------------------
@@ -60,89 +29,81 @@ def ensure_dir(p: str) -> None:
     os.makedirs(p, exist_ok=True)
 
 
-def write_json(path: str, obj: Any) -> None:
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(obj, f, indent=2, ensure_ascii=False)
+def snake_ok(s: str) -> bool:
+    # allow a-z0-9_ with at least one letter
+    return bool(re.fullmatch(r"[a-z0-9_]{2,80}", s)) and any(c.isalpha() for c in s)
 
 
-def write_jsonl(path: str, records: List[Dict[str, Any]]) -> None:
-    with open(path, "w", encoding="utf-8") as f:
-        for r in records:
-            f.write(json.dumps(r, ensure_ascii=False) + "\n")
+def to_safe_localname(s: str) -> str:
+    """
+    Convert a label/canonical into an IRI-safe localname.
+    We keep it predictable and stable (no hashes) for prototype work.
+    """
+    t = (s or "").strip()
+    if not t:
+        return "Thing"
+    t = t.lower()
+    t = re.sub(r"[^a-z0-9]+", "_", t)
+    t = re.sub(r"_+", "_", t).strip("_")
+    if not t:
+        t = "thing"
+    if t[0].isdigit():
+        t = "t_" + t
+    return t[:80]
 
 
-def extract_first_json_object(text: str) -> Optional[Dict[str, Any]]:
-    """Find and parse first JSON object in a string (brace matching)."""
+def brace_match_first_json_object(text: str) -> Optional[Dict[str, Any]]:
+    """
+    Find first {...} JSON object in a string using brace matching.
+    Returns dict or None.
+    """
     if not text:
         return None
     start = text.find("{")
     if start == -1:
         return None
     depth = 0
+    in_str = False
+    esc = False
     for i in range(start, len(text)):
         c = text[i]
+        if in_str:
+            if esc:
+                esc = False
+            elif c == "\\":
+                esc = True
+            elif c == '"':
+                in_str = False
+            continue
+
+        if c == '"':
+            in_str = True
+            continue
         if c == "{":
             depth += 1
         elif c == "}":
             depth -= 1
             if depth == 0:
-                chunk = text[start:i+1]
+                chunk = text[start:i + 1]
                 try:
                     obj = json.loads(chunk)
-                    if isinstance(obj, dict):
-                        return obj
+                    return obj if isinstance(obj, dict) else None
                 except Exception:
                     return None
     return None
 
 
-def validate_output(obj: Dict[str, Any]) -> Tuple[bool, str]:
-    # Minimal strict schema validation
-    required_top = ["relation", "axioms", "confidence", "evidence"]
-    for k in required_top:
-        if k not in obj:
-            return False, f"Missing top-level key '{k}'"
-
-    if not isinstance(obj["relation"], str):
-        return False, "relation must be a string"
-    if not isinstance(obj["axioms"], dict):
-        return False, "axioms must be an object"
-    if not isinstance(obj["confidence"], (int, float)):
-        return False, "confidence must be a number"
-    if not isinstance(obj["evidence"], list):
-        return False, "evidence must be a list"
-
-    axioms = obj["axioms"]
-    for k in ["property", "domain", "range", "subPropertyOf", "inverseOf",
-              "disjointness_candidates", "restriction_candidates"]:
-        if k not in axioms:
-            return False, f"Missing axioms.{k}"
-
-    prop = axioms["property"]
-    for k in ["name", "label", "kind"]:
-        if k not in prop:
-            return False, f"Missing axioms.property.{k}"
-        if not isinstance(prop[k], str):
-            return False, f"axioms.property.{k} must be a string"
-
-    for side in ["domain", "range"]:
-        if "class" not in axioms[side] or "rationale" not in axioms[side]:
-            return False, f"axioms.{side} must have 'class' and 'rationale'"
-        if not isinstance(axioms[side]["class"], str):
-            return False, f"axioms.{side}.class must be a string"
-        if not isinstance(axioms[side]["rationale"], str):
-            return False, f"axioms.{side}.rationale must be a string"
-
-    if not isinstance(axioms["subPropertyOf"], list):
-        return False, "axioms.subPropertyOf must be a list"
-    if not isinstance(axioms["inverseOf"], list):
-        return False, "axioms.inverseOf must be a list"
-    if not isinstance(axioms["disjointness_candidates"], list):
-        return False, "axioms.disjointness_candidates must be a list"
-    if not isinstance(axioms["restriction_candidates"], list):
-        return False, "axioms.restriction_candidates must be a list"
-
-    return True, "ok"
+def load_yaml(path: str) -> Dict[str, Any]:
+    """
+    Option B: YAML prompt config (external).
+    Requires PyYAML.
+    """
+    import yaml  # type: ignore
+    with open(path, "r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+    if not isinstance(data, dict):
+        raise RuntimeError(f"YAML config must be a mapping. Got: {type(data)}")
+    return data
 
 
 # -----------------------------
@@ -152,118 +113,12 @@ def validate_output(obj: Dict[str, Any]) -> Tuple[bool, str]:
 @dataclass
 class EvidenceRow:
     subj: str
-    rel: str
+    pred: str
     obj: str
     doc_id: Optional[str]
     chunk_id: Optional[str]
     relation_type: Optional[str]
     justification: Optional[str]
-    raw_json: Optional[str]
-
-
-# -----------------------------
-# DB access (your schema defaults)
-# -----------------------------
-
-def table_exists(conn: sqlite3.Connection, name: str) -> bool:
-    row = conn.execute(
-        "SELECT name FROM sqlite_master WHERE type='table' AND name=?;",
-        (name,),
-    ).fetchone()
-    return row is not None
-
-
-def load_taxonomy_parents(
-    conn: sqlite3.Connection,
-    taxonomy_table: str,
-    child_col: str,
-    parent_col: str,
-) -> Dict[str, List[str]]:
-    """
-    Returns parents[child] = [parent1, parent2,...]
-    """
-    q = f"SELECT {child_col}, {parent_col} FROM {taxonomy_table};"
-    parents: Dict[str, List[str]] = defaultdict(list)
-    for c, p in conn.execute(q).fetchall():
-        c2, p2 = norm(c), norm(p)
-        if c2 and p2:
-            parents[c2].append(p2)
-    return parents
-
-
-def top_ancestors(term: str, parents: Dict[str, List[str]], max_hops: int = 3, max_out: int = 8) -> List[str]:
-    seen = set()
-    frontier = [(term, 0)]
-    out: List[str] = []
-    while frontier:
-        node, d = frontier.pop(0)
-        if node in seen:
-            continue
-        seen.add(node)
-        if d >= max_hops:
-            continue
-        for p in parents.get(node, []):
-            if p not in seen:
-                out.append(p)
-                frontier.append((p, d + 1))
-        if len(out) >= max_out:
-            break
-    # unique-preserve
-    uniq: List[str] = []
-    for x in out:
-        if x not in uniq:
-            uniq.append(x)
-    return uniq[:max_out]
-
-
-def load_relation_inventory(
-    conn: sqlite3.Connection,
-    non_tax_table: str,
-    rel_col: str,
-) -> List[str]:
-    q = f"SELECT DISTINCT {rel_col} FROM {non_tax_table} ORDER BY {rel_col};"
-    return [norm(r[0]) for r in conn.execute(q).fetchall() if norm(r[0])]
-
-
-def load_evidence_for_relation(
-    conn: sqlite3.Connection,
-    non_tax_table: str,
-    subj_col: str,
-    rel_col: str,
-    obj_col: str,
-    doc_col: str,
-    chunk_col: str,
-    reltype_col: str,
-    just_col: str,
-    rawjson_col: str,
-    relation: str,
-    k: int,
-) -> List[EvidenceRow]:
-    q = f"""
-    SELECT {subj_col}, {rel_col}, {obj_col},
-           {doc_col}, {chunk_col}, {reltype_col}, {just_col}, {rawjson_col}
-    FROM {non_tax_table}
-    WHERE {rel_col} = ?
-    """
-    rows = conn.execute(q, (relation,)).fetchall()
-    if not rows:
-        return []
-    if len(rows) > k:
-        rows = random.sample(rows, k)
-
-    out: List[EvidenceRow] = []
-    for s, r, o, doc_id, chunk_id, reltype, just, rawj in rows:
-        out.append(EvidenceRow(
-            subj=norm(s) or "",
-            rel=norm(r) or "",
-            obj=norm(o) or "",
-            doc_id=norm(doc_id),
-            chunk_id=norm(chunk_id),
-            relation_type=norm(reltype),
-            justification=norm(just),
-            raw_json=norm(rawj),
-        ))
-    return out
 
 
 # -----------------------------
@@ -277,7 +132,7 @@ class LLMClient:
 
 class OpenAICompatibleClient(LLMClient):
     """
-    Works with OpenAI API *and* OpenAI-compatible servers (vLLM, LM Studio OpenAI mode, etc.)
+    Works with OpenAI API and OpenAI-compatible servers (vLLM, LM Studio OpenAI mode, etc.)
     pip install openai
     """
     def __init__(self, model: str, api_key: str, api_base: Optional[str] = None):
@@ -298,7 +153,7 @@ class OpenAICompatibleClient(LLMClient):
                 {"role": "user", "content": user},
             ],
         )
-        return resp.choices[0].message.content or ""
+        return (resp.choices[0].message.content or "").strip()
 
 
 class TransformersClient(LLMClient):
@@ -306,13 +161,14 @@ class TransformersClient(LLMClient):
     Local HF transformers backend.
     pip install transformers accelerate torch
     """
-    def __init__(self, model_path: str, max_new_tokens: int = 900):
+    def __init__(self, model_path: str, max_new_tokens: int = 700):
         try:
-            from transformers import AutoTokenizer, AutoModelForCausalLM
             import torch
+            from transformers import AutoTokenizer, AutoModelForCausalLM
         except Exception as e:
             raise RuntimeError("Missing transformers/torch. Install with: pip install transformers accelerate torch") from e
 
+        self.torch = torch
         self.tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=True)
         self.model = AutoModelForCausalLM.from_pretrained(
             model_path,
@@ -336,95 +192,341 @@ class TransformersClient(LLMClient):
 
 
 # -----------------------------
-# Prompting (LLM-only axioms)
+# DB helpers: schema + indexes + resume
 # -----------------------------
 
-SYSTEM_PROMPT = """You are an expert ontology engineer for HPC documentation (SLURM + IBM LSF domain).
-Your job: generate LIGHTWEIGHT ontology axioms for ONE relation based ONLY on the provided evidence.
-
-Return ONLY valid JSON (single object). No markdown. No commentary.
-Be conservative: if unsure, set low confidence and explain rationale.
-
-Do NOT invent evidence. Use only the supplied triples + their justifications and taxonomy context.
-"""
-
-USER_PROMPT_TEMPLATE = """Generate axioms for relation (predicate): "{relation}"
-
-EVIDENCE (triples + LLM justifications / raw context):
-{evidence_block}
-
-TAXONOMY CONTEXT (ancestors sampled from llm_is_a_edges):
-- subject ancestors examples: {subj_ancestors}
-- object ancestors examples: {obj_ancestors}
-
-Output JSON schema (must match exactly):
-{{
-  "relation": "{relation}",
-  "axioms": {{
-    "property": {{
-      "name": "<normalized property name>",
-      "label": "<human label>",
-      "kind": "ObjectProperty"
-    }},
-    "domain": {{
-      "class": "<best domain class>",
-      "rationale": "<evidence-based rationale>"
-    }},
-    "range": {{
-      "class": "<best range class>",
-      "rationale": "<evidence-based rationale>"
-    }},
-    "subPropertyOf": ["<optional super-property names>"],
-    "inverseOf": ["<optional inverse property names>"],
-    "disjointness_candidates": [
-      {{
-        "classes": ["<A>", "<B>"],
-        "rationale": "<why candidate disjoint>",
-        "confidence": 0.0
-      }}
-    ],
-    "restriction_candidates": [
-      {{
-        "class": "<some class>",
-        "restriction": "<e.g., Class ⊑ ∃property.RangeClass>",
-        "rationale": "<why candidate>",
-        "confidence": 0.0
-      }}
-    ]
-  }},
-  "confidence": 0.0,
-  "evidence": [
-    {{
-      "subj": "<subj term>",
-      "obj": "<obj term>",
-      "doc_id": "<doc_id or null>",
-      "chunk_id": "<chunk_id or null>",
-      "justification": "<justification or null>"
-    }}
-  ]
-}}
-
-Constraints:
-- evidence list must include at least 3 items (unless fewer were provided).
-- Keep disjointness_candidates / restriction_candidates empty if you have no strong support.
-- If you propose a domain/range class not present in taxonomy context, mention that explicitly.
-"""
+def table_exists(conn: sqlite3.Connection, name: str) -> bool:
+    row = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name=?;",
+        (name,),
+    ).fetchone()
+    return row is not None
 
 
-def normalize_property_name(rel_text: str) -> str:
-    s = (rel_text or "").strip().lower()
-    s = "".join(ch if ch.isalnum() else "_" for ch in s)
-    s = "_".join([p for p in s.split("_") if p])
-    return s[:80] if s else "related_to"
+def init_axiom_tables(conn: sqlite3.Connection, runs_table: str, out_table: str) -> None:
+    cur = conn.cursor()
+
+    # Resume table: one row per predicate
+    cur.execute(
+        f"""
+        CREATE TABLE IF NOT EXISTS {runs_table} (
+            predicate      TEXT PRIMARY KEY,
+            status         TEXT NOT NULL, -- 'done' | 'skipped' | 'error'
+            processed_at   TEXT,
+            error          TEXT
+        );
+        """
+    )
+
+    # Store parsed JSON per predicate (for audit/repro)
+    cur.execute(
+        f"""
+        CREATE TABLE IF NOT EXISTS {out_table} (
+            predicate      TEXT PRIMARY KEY,
+            axiom_json     TEXT NOT NULL,
+            created_at     TEXT NOT NULL
+        );
+        """
+    )
+
+    # Useful indexes
+    cur.execute(f"CREATE INDEX IF NOT EXISTS idx_{runs_table}_status ON {runs_table}(status);")
+    conn.commit()
 
 
-def build_evidence_block(evs: List[EvidenceRow], max_chars: int = 4200) -> str:
-    lines: List[str] = []
+def mark_run(conn: sqlite3.Connection, runs_table: str, pred: str, status: str, error: str = "") -> None:
+    conn.execute(
+        f"""
+        INSERT INTO {runs_table}(predicate, status, processed_at, error)
+        VALUES(?, ?, ?, ?)
+        ON CONFLICT(predicate) DO UPDATE SET
+            status=excluded.status,
+            processed_at=excluded.processed_at,
+            error=excluded.error;
+        """,
+        (pred, status, now_iso(), error[:2000]),
+    )
+    conn.commit()
+
+
+def store_axiom_json(conn: sqlite3.Connection, out_table: str, pred: str, obj: Dict[str, Any]) -> None:
+    conn.execute(
+        f"""
+        INSERT INTO {out_table}(predicate, axiom_json, created_at)
+        VALUES(?, ?, ?)
+        ON CONFLICT(predicate) DO UPDATE SET
+            axiom_json=excluded.axiom_json,
+            created_at=excluded.created_at;
+        """,
+        (pred, json.dumps(obj, ensure_ascii=False), now_iso()),
+    )
+    conn.commit()
+
+
+# -----------------------------
+# Load term enrichment -> vocab + role maps
+# -----------------------------
+
+@dataclass
+class TermInfo:
+    term_id: int
+    term: str
+    canonical: str
+    scheduler: str
+    ontology_role: str
+    category: str
+    dul_bucket: str
+    is_hpc_domain: int
+    definition: str
+    freq_total: int
+
+
+def load_term_info(
+    conn: sqlite3.Connection,
+    enrich_table: str,
+    *,
+    canonical_col: str = "canonical",
+    term_col: str = "term",
+    role_col: str = "ontology_role",
+    is_domain_col: str = "is_hpc_domain",
+    dul_col: str = "dul_bucket",
+    category_col: str = "category",
+    scheduler_col: str = "scheduler",
+    definition_col: str = "definition",
+    freq_col: str = "freq_total",
+    id_col: str = "term_id",
+) -> Tuple[Dict[str, TermInfo], Dict[str, str], Set[str]]:
+    """
+    Returns:
+      - canonical_map: canonical_lower -> TermInfo
+      - surface_to_canonical: lower(term) -> canonical_lower
+      - class_set: set of canonical_lower that are safe classes
+    """
+    q = f"""
+    SELECT
+      {id_col}, {term_col}, {canonical_col},
+      COALESCE({scheduler_col}, 'unknown'),
+      COALESCE({role_col}, 'unknown'),
+      COALESCE({category_col}, 'other_hpc'),
+      COALESCE({dul_col}, 'unknown'),
+      COALESCE({is_domain_col}, 1),
+      COALESCE({definition_col}, ''),
+      COALESCE({freq_col}, 0)
+    FROM {enrich_table};
+    """
+    canonical_map: Dict[str, TermInfo] = {}
+    surface_to_canonical: Dict[str, str] = {}
+    class_set: Set[str] = set()
+
+    rows = conn.execute(q).fetchall()
+    for (term_id, term, canonical, scheduler, role, category, dul, is_dom, definition, freq_total) in rows:
+        t = norm(term) or ""
+        c = (norm(canonical) or t).strip().lower()
+        if not c:
+            continue
+        info = TermInfo(
+            term_id=int(term_id) if term_id is not None else -1,
+            term=t,
+            canonical=c,
+            scheduler=str(scheduler or "unknown"),
+            ontology_role=str(role or "unknown"),
+            category=str(category or "other_hpc"),
+            dul_bucket=str(dul or "unknown"),
+            is_hpc_domain=int(is_dom or 0),
+            definition=str(definition or ""),
+            freq_total=int(freq_total or 0),
+        )
+        canonical_map[c] = info
+        if t:
+            surface_to_canonical[t.strip().lower()] = c
+
+        # safe class criterion
+        if info.is_hpc_domain == 1 and info.ontology_role == "class":
+            class_set.add(c)
+
+    return canonical_map, surface_to_canonical, class_set
+
+
+def resolve_to_canonical(
+    s: str,
+    canonical_map: Dict[str, TermInfo],
+    surface_to_canonical: Dict[str, str],
+) -> str:
+    t = (s or "").strip()
+    if not t:
+        return ""
+    key = t.lower()
+    if key in canonical_map:
+        return key
+    if key in surface_to_canonical:
+        return surface_to_canonical[key]
+    # fallback: lowercase original
+    return key
+
+
+# -----------------------------
+# Taxonomy parents (for ancestor lookup)
+# -----------------------------
+
+def load_parents(
+    conn: sqlite3.Connection,
+    taxonomy_table: str,
+    child_col: str,
+    parent_col: str,
+    canonical_map: Dict[str, TermInfo],
+    surface_to_canonical: Dict[str, str],
+) -> Dict[str, List[str]]:
+    """
+    parents[child_canonical] = [parent_canonical,...]
+    """
+    q = f"SELECT {child_col}, {parent_col} FROM {taxonomy_table};"
+    parents: Dict[str, List[str]] = {}
+    for c, p in conn.execute(q).fetchall():
+        c2 = resolve_to_canonical(norm(c) or "", canonical_map, surface_to_canonical)
+        p2 = resolve_to_canonical(norm(p) or "", canonical_map, surface_to_canonical)
+        if not c2 or not p2 or c2 == p2:
+            continue
+        parents.setdefault(c2, []).append(p2)
+
+    # dedupe preserve order
+    for k, vals in list(parents.items()):
+        seen = set()
+        out = []
+        for v in vals:
+            if v not in seen:
+                seen.add(v)
+                out.append(v)
+        parents[k] = out
+    return parents
+
+
+def ancestors_bfs(term: str, parents: Dict[str, List[str]], max_hops: int = 4, max_out: int = 12) -> List[str]:
+    seen = set([term])
+    q: List[Tuple[str, int]] = [(term, 0)]
+    out: List[str] = []
+    while q:
+        node, d = q.pop(0)
+        if d >= max_hops:
+            continue
+        for p in parents.get(node, []):
+            if p in seen:
+                continue
+            seen.add(p)
+            out.append(p)
+            q.append((p, d + 1))
+            if len(out) >= max_out:
+                return out
+    return out
+
+
+def clamp_to_class(
+    term_canonical: str,
+    canonical_map: Dict[str, TermInfo],
+    class_set: Set[str],
+    parents: Dict[str, List[str]],
+) -> Optional[str]:
+    """
+    Return a canonical that is a class:
+    - if term itself is a class, return it
+    - else return nearest class ancestor
+    - else None
+    """
+    if not term_canonical:
+        return None
+    info = canonical_map.get(term_canonical)
+    if info and info.ontology_role == "class" and info.is_hpc_domain == 1:
+        return term_canonical
+    # search ancestors
+    for a in ancestors_bfs(term_canonical, parents, max_hops=4, max_out=20):
+        ai = canonical_map.get(a)
+        if ai and ai.ontology_role == "class" and ai.is_hpc_domain == 1:
+            return a
+        if a in class_set:
+            return a
+    return None
+
+
+# -----------------------------
+# Non-tax evidence + predicate inventory (deterministic)
+# -----------------------------
+
+def predicate_counts(
+    conn: sqlite3.Connection,
+    non_tax_table: str,
+    pred_col: str,
+) -> Dict[str, int]:
+    q = f"SELECT {pred_col}, COUNT(*) FROM {non_tax_table} GROUP BY {pred_col};"
+    out: Dict[str, int] = {}
+    for pred, cnt in conn.execute(q).fetchall():
+        p = norm(pred)
+        if p:
+            out[p] = int(cnt or 0)
+    return out
+
+
+def load_predicates(
+    conn: sqlite3.Connection,
+    non_tax_table: str,
+    pred_col: str,
+) -> List[str]:
+    q = f"SELECT DISTINCT {pred_col} FROM {non_tax_table} ORDER BY {pred_col};"
+    preds = []
+    for (p,) in conn.execute(q).fetchall():
+        p2 = norm(p)
+        if p2:
+            preds.append(p2)
+    return preds
+
+
+def load_evidence_for_predicate(
+    conn: sqlite3.Connection,
+    non_tax_table: str,
+    subj_col: str,
+    pred_col: str,
+    obj_col: str,
+    doc_col: str,
+    chunk_col: str,
+    reltype_col: str,
+    just_col: str,
+    predicate: str,
+    k: int,
+) -> List[EvidenceRow]:
+    """
+    Deterministic evidence: stable ordering and LIMIT.
+    """
+    q = f"""
+    SELECT {subj_col}, {pred_col}, {obj_col}, {doc_col}, {chunk_col}, {reltype_col}, {just_col}
+    FROM {non_tax_table}
+    WHERE {pred_col} = ?
+    ORDER BY COALESCE({doc_col}, ''), COALESCE({chunk_col}, ''), COALESCE({subj_col}, ''), COALESCE({obj_col}, '')
+    LIMIT ?;
+    """
+    rows = conn.execute(q, (predicate, k)).fetchall()
+    out: List[EvidenceRow] = []
+    for s, p, o, doc, chunk, rt, just in rows:
+        out.append(EvidenceRow(
+            subj=norm(s) or "",
+            pred=norm(p) or "",
+            obj=norm(o) or "",
+            doc_id=norm(doc),
+            chunk_id=norm(chunk),
+            relation_type=norm(rt),
+            justification=norm(just),
+        ))
+    return out
+
+
+# -----------------------------
+# Prompting + strict output validation
+# -----------------------------
+
+def build_evidence_block(evs: List[EvidenceRow], max_chars: int = 4500) -> str:
+    lines = []
     for e in evs:
-        just = (e.justification or e.raw_json or "").replace("\n", " ").strip()
-        just = just[:300]
+        just = (e.justification or "").replace("\n", " ").strip()
+        just = just[:260]
         lines.append(
-            f'- ({e.subj}) {e.rel} ({e.obj}) | doc={e.doc_id} chunk={e.chunk_id} rel_type={e.relation_type} | just="{just}"'
+            f'- ({e.subj}) {e.pred} ({e.obj}) | doc={e.doc_id} chunk={e.chunk_id} type={e.relation_type} | just="{just}"'
         )
     block = "\n".join(lines)
     if len(block) > max_chars:
@@ -432,87 +534,130 @@ def build_evidence_block(evs: List[EvidenceRow], max_chars: int = 4200) -> str:
     return block
 
 
-def build_prompt(
-    relation: str,
+def validate_axiom_json(obj: Dict[str, Any]) -> Tuple[bool, str]:
+    """
+    Strict-ish schema:
+    {
+      "predicate": "...",
+      "property": {"name": "...", "label": "...", "kind": "ObjectProperty"},
+      "domain_class": "...",
+      "range_class": "...",
+      "subPropertyOf": [...],
+      "inverseOf": [...],
+      "confidence": 0.0,
+      "rationale": "...",
+      "evidence": [{"subj":..,"obj":..,"doc_id":..,"chunk_id":..,"justification":..}, ...]
+    }
+    """
+    need = ["predicate", "property", "domain_class", "range_class", "subPropertyOf", "inverseOf", "confidence", "rationale", "evidence"]
+    for k in need:
+        if k not in obj:
+            return False, f"Missing key: {k}"
+    if not isinstance(obj["predicate"], str):
+        return False, "predicate must be string"
+    if not isinstance(obj["property"], dict):
+        return False, "property must be object"
+    prop = obj["property"]
+    for k in ["name", "label", "kind"]:
+        if k not in prop or not isinstance(prop[k], str):
+            return False, f"property.{k} must be string"
+    if prop["kind"] not in ("ObjectProperty", "DatatypeProperty"):
+        return False, "property.kind must be ObjectProperty|DatatypeProperty"
+    if not isinstance(obj["domain_class"], str) or not isinstance(obj["range_class"], str):
+        return False, "domain_class and range_class must be strings"
+    if not isinstance(obj["subPropertyOf"], list) or not isinstance(obj["inverseOf"], list):
+        return False, "subPropertyOf and inverseOf must be lists"
+    if not isinstance(obj["confidence"], (int, float)):
+        return False, "confidence must be number"
+    if not isinstance(obj["rationale"], str):
+        return False, "rationale must be string"
+    if not isinstance(obj["evidence"], list):
+        return False, "evidence must be list"
+    return True, "ok"
+
+
+def build_prompts_from_yaml(
+    yaml_cfg: Dict[str, Any],
+    *,
+    predicate: str,
     evidence: List[EvidenceRow],
-    parents: Dict[str, List[str]],
+    subj_ancestors: Dict[str, List[str]],
+    obj_ancestors: Dict[str, List[str]],
 ) -> Tuple[str, str]:
-    subj_terms = [e.subj for e in evidence][:6]
-    obj_terms = [e.obj for e in evidence][:6]
-    subj_anc = {t: top_ancestors(t, parents, max_hops=3, max_out=6) for t in subj_terms}
-    obj_anc = {t: top_ancestors(t, parents, max_hops=3, max_out=6) for t in obj_terms}
+    """
+    YAML expected keys:
+      - system_prompt: str
+      - user_template: str  (uses {predicate}, {evidence_block}, {subj_ancestors_json}, {obj_ancestors_json})
+    """
+    system = yaml_cfg.get("system_prompt")
+    user_template = yaml_cfg.get("user_template")
+    if not isinstance(system, str) or not system.strip():
+        raise RuntimeError("YAML missing system_prompt (string).")
+    if not isinstance(user_template, str) or not user_template.strip():
+        raise RuntimeError("YAML missing user_template (string).")
 
-    user = USER_PROMPT_TEMPLATE.format(
-        relation=relation,
+    user = user_template.format(
+        predicate=predicate,
         evidence_block=build_evidence_block(evidence),
-        subj_ancestors=json.dumps(subj_anc, ensure_ascii=False),
-        obj_ancestors=json.dumps(obj_anc, ensure_ascii=False),
+        subj_ancestors_json=json.dumps(subj_ancestors, ensure_ascii=False),
+        obj_ancestors_json=json.dumps(obj_ancestors, ensure_ascii=False),
     )
-    return SYSTEM_PROMPT, user
+    return system, user
 
 
-def llm_extract_for_relation(
+def llm_axioms_for_predicate(
     client: LLMClient,
-    relation: str,
+    yaml_cfg: Dict[str, Any],
+    predicate: str,
     evidence: List[EvidenceRow],
     parents: Dict[str, List[str]],
+    canonical_map: Dict[str, TermInfo],
+    surface_to_canonical: Dict[str, str],
+    *,
     max_retries: int = 2,
 ) -> Dict[str, Any]:
-    system, user = build_prompt(relation, evidence, parents)
-    last_text = ""
+    subj_terms = [resolve_to_canonical(e.subj, canonical_map, surface_to_canonical) for e in evidence][:6]
+    obj_terms = [resolve_to_canonical(e.obj, canonical_map, surface_to_canonical) for e in evidence][:6]
+    subj_anc = {t: ancestors_bfs(t, parents, max_hops=3, max_out=8) for t in subj_terms if t}
+    obj_anc = {t: ancestors_bfs(t, parents, max_hops=3, max_out=8) for t in obj_terms if t}
 
-    for attempt in range(max_retries + 1):
+    system, user = build_prompts_from_yaml(
+        yaml_cfg,
+        predicate=predicate,
+        evidence=evidence,
+        subj_ancestors=subj_anc,
+        obj_ancestors=obj_anc,
+    )
+
+    last = ""
+    for _ in range(max_retries + 1):
         text = client.complete(system=system, user=user)
-        last_text = text
-
-        obj = extract_first_json_object(text)
+        last = text
+        obj = brace_match_first_json_object(text)
         if obj is None:
-            user += "\n\nYour response was not valid JSON. Return ONLY a single valid JSON object."
+            user += "\n\nYour response was not valid JSON. Return ONLY one valid JSON object."
             continue
-
-        ok, msg = validate_output(obj)
+        ok, msg = validate_axiom_json(obj)
         if not ok:
             user += f"\n\nYour JSON did not match schema: {msg}. Return corrected JSON ONLY."
             continue
 
-        # Force relation exact match
-        obj["relation"] = relation
-
-        # Ensure evidence list
-        ev_out = []
-        for e in evidence[: max(3, min(len(evidence), 10))]:
-            ev_out.append({
-                "subj": e.subj,
-                "obj": e.obj,
-                "doc_id": e.doc_id,
-                "chunk_id": e.chunk_id,
-                "justification": e.justification,
-            })
-        if not obj.get("evidence"):
-            obj["evidence"] = ev_out
-        else:
-            # keep model evidence but ensure at least 3 if possible
-            if len(obj["evidence"]) < 3 and len(ev_out) >= 3:
-                obj["evidence"] = ev_out
-
-        # Fill defaults if missing
-        obj.setdefault("confidence", 0.5)
+        # force predicate match
+        obj["predicate"] = predicate
         obj.setdefault("created_at", now_iso())
+        obj.setdefault("raw_output", last)
         return obj
 
-    # fallback
+    # hard fallback
     return {
-        "relation": relation,
-        "axioms": {
-            "property": {"name": normalize_property_name(relation), "label": relation, "kind": "ObjectProperty"},
-            "domain": {"class": "UNKNOWN", "rationale": "LLM output invalid; see raw_output"},
-            "range": {"class": "UNKNOWN", "rationale": "LLM output invalid; see raw_output"},
-            "subPropertyOf": [],
-            "inverseOf": [],
-            "disjointness_candidates": [],
-            "restriction_candidates": [],
-        },
+        "predicate": predicate,
+        "property": {"name": predicate, "label": predicate, "kind": "ObjectProperty"},
+        "domain_class": "owl:Thing",
+        "range_class": "owl:Thing",
+        "subPropertyOf": [],
+        "inverseOf": [],
         "confidence": 0.0,
+        "rationale": "LLM failed to produce valid JSON after retries; using owl:Thing/Thing fallback.",
         "evidence": [
             {
                 "subj": e.subj,
@@ -522,64 +667,189 @@ def llm_extract_for_relation(
                 "justification": e.justification,
             } for e in evidence[:3]
         ],
-        "raw_output": last_text,
-        "error": "Failed to produce valid JSON after retries",
+        "error": "invalid_json",
+        "raw_output": last,
         "created_at": now_iso(),
     }
 
 
 # -----------------------------
-# Main
+# TTL export (DEFAULT GRAPH)
 # -----------------------------
 
+def ttl_escape(s: str) -> str:
+    return (s or "").replace("\\", "\\\\").replace('"', '\\"')
+
+
+def write_ttl(
+    out_path: str,
+    *,
+    base_iri: str,
+    class_terms: Sequence[str],
+    canonical_map: Dict[str, TermInfo],
+    predicate_axioms: Sequence[Dict[str, Any]],
+    known_predicates: Set[str],
+) -> None:
+    """
+    Writes a single TTL file for default graph load:
+      - declares classes
+      - declares properties + domain/range + optional subPropertyOf/inverseOf
+    """
+    # prefix IRI must end with # or /
+    if not (base_iri.endswith("#") or base_iri.endswith("/")):
+        base_iri = base_iri + "#"
+
+    lines: List[str] = []
+    lines.append(f"@prefix hpc: <{base_iri}> .")
+    lines.append("@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .")
+    lines.append("@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .")
+    lines.append("@prefix owl: <http://www.w3.org/2002/07/owl#> .")
+    lines.append("")
+    lines.append("### Classes (from llm_enrich_final)")
+    for c in sorted(set(class_terms)):
+        info = canonical_map.get(c)
+        label = info.term if info and info.term else c
+        local = to_safe_localname(c)
+        lines.append(f"hpc:{local} a owl:Class ;")
+        lines.append(f'  rdfs:label "{ttl_escape(label)}" .')
+        lines.append("")
+
+    lines.append("### Properties (from non-tax predicates + LLM axiom suggestions clamped to classes)")
+    for ax in predicate_axioms:
+        pred = ax.get("predicate", "")
+        prop = ax.get("property", {}) if isinstance(ax.get("property"), dict) else {}
+        pname = prop.get("name") or pred
+        plabel = prop.get("label") or pred
+        kind = prop.get("kind") or "ObjectProperty"
+
+        local_p = to_safe_localname(pname)
+        rdf_kind = "owl:ObjectProperty" if kind == "ObjectProperty" else "owl:DatatypeProperty"
+        lines.append(f"hpc:{local_p} a {rdf_kind} ;")
+        lines.append(f'  rdfs:label "{ttl_escape(str(plabel))}" ;')
+
+        dom = str(ax.get("domain_class") or "owl:Thing")
+        rng = str(ax.get("range_class") or "owl:Thing")
+
+        # allow owl:Thing explicitly
+        if dom == "owl:Thing":
+            lines.append("  rdfs:domain owl:Thing ;")
+        else:
+            lines.append(f"  rdfs:domain hpc:{to_safe_localname(dom)} ;")
+        if rng == "owl:Thing":
+            lines.append("  rdfs:range owl:Thing")
+        else:
+            lines.append(f"  rdfs:range hpc:{to_safe_localname(rng)}")
+
+        # optional: subPropertyOf / inverseOf (only if they point to known predicates)
+        subs = ax.get("subPropertyOf", [])
+        invs = ax.get("inverseOf", [])
+        if isinstance(subs, list) and subs:
+            good = [s for s in subs if isinstance(s, str) and s in known_predicates]
+            if good:
+                # append as extra triples after main statement
+                lines.append(" .")
+                for s in good:
+                    lines.append(f"hpc:{local_p} rdfs:subPropertyOf hpc:{to_safe_localname(s)} .")
+                # inverseOf handled similarly below
+            else:
+                lines.append(" .")
+        else:
+            lines.append(" .")
+
+        if isinstance(invs, list) and invs:
+            good = [s for s in invs if isinstance(s, str) and s in known_predicates]
+            for inv in good:
+                lines.append(f"hpc:{local_p} owl:inverseOf hpc:{to_safe_localname(inv)} .")
+        lines.append("")
+
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+
+
+# -----------------------------
+# Main pipeline: predicate -> LLM -> clamp -> DB -> TTL
+# -----------------------------
+
+BANNED_PREDICATES = {
+    "related_to", "associated_with", "has", "have", "do", "does", "did",
+    "make", "made", "create", "created", "add", "add_to", "use", "uses",
+    "set", "sets", "enable", "enabled", "disable", "disabled",
+}
+
 def main() -> None:
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser(description="Generate TBox axioms (TTL) from LLM tables with strong guards.")
 
     ap.add_argument("--db", required=True)
     ap.add_argument("--out_dir", required=True)
+    ap.add_argument("--base_iri", default="http://example.org/hpc#")
 
-    # Defaults aligned to your LLM tables
+    # Input tables
+    ap.add_argument("--enrich_table", default="llm_enrich_final")
     ap.add_argument("--taxonomy_table", default="llm_is_a_edges")
     ap.add_argument("--non_tax_table", default="llm_non_taxonomy_edges")
 
-    # Column overrides (in case schema changes)
+    # Column overrides (taxonomy)
     ap.add_argument("--tax_child_col", default="child_term")
     ap.add_argument("--tax_parent_col", default="parent_term")
 
+    # Column overrides (non-tax)
     ap.add_argument("--subj_col", default="subject_term")
-    ap.add_argument("--rel_col", default="predicate")
+    ap.add_argument("--pred_col", default="predicate")
     ap.add_argument("--obj_col", default="object_term")
     ap.add_argument("--doc_col", default="doc_id")
     ap.add_argument("--chunk_col", default="chunk_id")
     ap.add_argument("--reltype_col", default="relation_type")
     ap.add_argument("--just_col", default="justification")
-    ap.add_argument("--rawjson_col", default="raw_json")
 
-    ap.add_argument("--examples_per_relation", type=int, default=12)
-    ap.add_argument("--max_relations", type=int, default=0, help="0 = all")
-    ap.add_argument("--seed", type=int, default=13)
-    ap.add_argument("--sleep_s", type=float, default=0.0)
+    # Output/Resume tables
+    ap.add_argument("--runs_table", default="axioms_llm_runs")
+    ap.add_argument("--axioms_table", default="axioms_llm_predicates")
 
+    # Controls
+    ap.add_argument("--min_predicate_count", type=int, default=5, help="Skip predicates that appear < N times.")
+    ap.add_argument("--examples_per_predicate", type=int, default=12)
+    ap.add_argument("--max_predicates", type=int, default=0, help="0 = all")
+    ap.add_argument("--resume", action="store_true", default=True)
+    ap.add_argument("--no_resume", dest="resume", action="store_false")
+
+    # Prompt config (Option B)
+    ap.add_argument("--prompt_config", default="prompts/non_tax_llm.yaml")
+
+    # Backend
     ap.add_argument("--backend", choices=["openai_compatible", "transformers"], required=True)
     ap.add_argument("--model", default=None, help="Model name for openai_compatible backend")
     ap.add_argument("--api_key", default=os.environ.get("OPENAI_API_KEY", ""), help="API key (or OPENAI_API_KEY)")
     ap.add_argument("--api_base", default=None, help="e.g., http://localhost:8000/v1 for vLLM")
     ap.add_argument("--model_path", default=None, help="Local HF model path for transformers backend")
+
+    ap.add_argument("--debug_one", default="", help="Only run for this predicate (exact match).")
     args = ap.parse_args()
 
-    random.seed(args.seed)
     ensure_dir(args.out_dir)
 
+    # Load YAML prompt config
+    try:
+        yaml_cfg = load_yaml(args.prompt_config)
+    except ModuleNotFoundError:
+        raise RuntimeError("PyYAML not installed. Install with: pip install pyyaml")
+    except Exception as e:
+        raise RuntimeError(f"Failed to load YAML prompt_config: {e}") from e
+
     conn = sqlite3.connect(args.db)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    conn.execute("PRAGMA synchronous=NORMAL;")
 
-    if not table_exists(conn, args.taxonomy_table):
-        raise RuntimeError(f"Missing taxonomy table: {args.taxonomy_table}")
-    if not table_exists(conn, args.non_tax_table):
-        raise RuntimeError(f"Missing non-taxonomy table: {args.non_tax_table}")
+    # Validate required tables
+    for t in (args.enrich_table, args.taxonomy_table, args.non_tax_table):
+        if not table_exists(conn, t):
+            raise RuntimeError(f"Missing required table: {t}")
 
-    parents = load_taxonomy_parents(conn, args.taxonomy_table, args.tax_child_col, args.tax_parent_col)
+    init_axiom_tables(conn, args.runs_table, args.axioms_table)
 
-    # Backend
+    canonical_map, surface_to_canonical, class_set = load_term_info(conn, args.enrich_table)
+    parents = load_parents(conn, args.taxonomy_table, args.tax_child_col, args.tax_parent_col, canonical_map, surface_to_canonical)
+
+    # Backend client
     if args.backend == "openai_compatible":
         if not args.model:
             raise RuntimeError("--model is required for openai_compatible backend")
@@ -590,63 +860,193 @@ def main() -> None:
             raise RuntimeError("--model_path is required for transformers backend")
         client = TransformersClient(model_path=args.model_path)
 
-    relations = load_relation_inventory(conn, args.non_tax_table, args.rel_col)
-    if args.max_relations and args.max_relations > 0:
-        relations = relations[: args.max_relations]
+    # Predicate inventory + counts
+    counts = predicate_counts(conn, args.non_tax_table, args.pred_col)
+    preds = load_predicates(conn, args.non_tax_table, args.pred_col)
 
-    print(f"[INFO] Relations to process: {len(relations)}")
+    if args.debug_one:
+        preds = [p for p in preds if p == args.debug_one]
+        if not preds:
+            raise RuntimeError(f"--debug_one predicate not found: {args.debug_one}")
 
-    results: List[Dict[str, Any]] = []
-    t0 = time.time()
+    # Filter + order
+    filtered: List[str] = []
+    for p in preds:
+        p_norm = p.strip().lower()
+        cnt = counts.get(p, 0)
 
-    for i, rel in enumerate(relations, 1):
-        evidence = load_evidence_for_relation(
-            conn=conn,
-            non_tax_table=args.non_tax_table,
-            subj_col=args.subj_col,
-            rel_col=args.rel_col,
-            obj_col=args.obj_col,
-            doc_col=args.doc_col,
-            chunk_col=args.chunk_col,
-            reltype_col=args.reltype_col,
-            just_col=args.just_col,
-            rawjson_col=args.rawjson_col,
-            relation=rel,
-            k=args.examples_per_relation,
-        )
+        # validate predicate form (prefer snake_case)
+        if not snake_ok(p_norm):
+            continue
+        if p_norm in BANNED_PREDICATES:
+            continue
+        if cnt < args.min_predicate_count:
+            continue
 
-        out = llm_extract_for_relation(client, rel, evidence, parents, max_retries=2)
-        out["created_at"] = now_iso()
-        results.append(out)
+        filtered.append(p_norm)
 
-        if args.sleep_s > 0:
-            time.sleep(args.sleep_s)
+    # deterministic order
+    filtered = sorted(set(filtered))
 
-        if i % 10 == 0:
-            print(f"[INFO] {i}/{len(relations)} done")
+    if args.max_predicates and args.max_predicates > 0:
+        filtered = filtered[: args.max_predicates]
 
-    conn.close()
+    print(f"[INFO] Predicates after filtering: {len(filtered)} (min_count={args.min_predicate_count})")
 
-    jsonl_path = os.path.join(args.out_dir, "axioms_llm.jsonl")
-    write_jsonl(jsonl_path, results)
+    # If resume: skip predicates already done/skipped
+    if args.resume:
+        done = set(r[0] for r in conn.execute(
+            f"SELECT predicate FROM {args.runs_table} WHERE status IN ('done','skipped');"
+        ).fetchall())
+        filtered = [p for p in filtered if p not in done]
+        print(f"[INFO] After resume-skip: {len(filtered)} remaining")
 
+    # Run LLM for each predicate, then clamp domain/range to classes
+    axiom_objs: List[Dict[str, Any]] = []
+    known_predicates: Set[str] = set(filtered) | set(counts.keys())
+
+    for i, pred in enumerate(filtered, 1):
+        try:
+            ev = load_evidence_for_predicate(
+                conn=conn,
+                non_tax_table=args.non_tax_table,
+                subj_col=args.subj_col,
+                pred_col=args.pred_col,
+                obj_col=args.obj_col,
+                doc_col=args.doc_col,
+                chunk_col=args.chunk_col,
+                reltype_col=args.reltype_col,
+                just_col=args.just_col,
+                predicate=pred,
+                k=args.examples_per_predicate,
+            )
+            if len(ev) < 2:
+                mark_run(conn, args.runs_table, pred, "skipped", "too_few_evidence")
+                continue
+
+            # Ask LLM for suggestions (property name/label + domain/range)
+            obj = llm_axioms_for_predicate(
+                client=client,
+                yaml_cfg=yaml_cfg,
+                predicate=pred,
+                evidence=ev,
+                parents=parents,
+                canonical_map=canonical_map,
+                surface_to_canonical=surface_to_canonical,
+                max_retries=2,
+            )
+
+            # ---- Clamp domain/range to CLASSES only (super important) ----
+            # Resolve suggested domain/range to canonical, then clamp to class/ancestor class
+            suggested_dom = str(obj.get("domain_class") or "").strip()
+            suggested_rng = str(obj.get("range_class") or "").strip()
+
+            dom_can = resolve_to_canonical(suggested_dom, canonical_map, surface_to_canonical)
+            rng_can = resolve_to_canonical(suggested_rng, canonical_map, surface_to_canonical)
+
+            dom_class = clamp_to_class(dom_can, canonical_map, class_set, parents)
+            rng_class = clamp_to_class(rng_can, canonical_map, class_set, parents)
+
+            # If LLM suggestion fails, fall back to evidence-driven clamping
+            if dom_class is None:
+                # try from subjects
+                subj_cans = [resolve_to_canonical(e.subj, canonical_map, surface_to_canonical) for e in ev]
+                for sc in subj_cans:
+                    dom_class = clamp_to_class(sc, canonical_map, class_set, parents)
+                    if dom_class:
+                        break
+            if rng_class is None:
+                # try from objects
+                obj_cans = [resolve_to_canonical(e.obj, canonical_map, surface_to_canonical) for e in ev]
+                for oc in obj_cans:
+                    rng_class = clamp_to_class(oc, canonical_map, class_set, parents)
+                    if rng_class:
+                        break
+
+            obj["domain_class"] = dom_class if dom_class else "owl:Thing"
+            obj["range_class"] = rng_class if rng_class else "owl:Thing"
+
+            # normalize property.name to snake_case if missing/invalid
+            prop = obj.get("property", {}) if isinstance(obj.get("property"), dict) else {}
+            pname = (prop.get("name") or pred).strip().lower()
+            if not snake_ok(pname):
+                pname = pred
+            prop["name"] = pname
+            prop["kind"] = "ObjectProperty"  # safe default (edges are term-term)
+            obj["property"] = prop
+
+            # keep only known predicates for subPropertyOf/inverseOf
+            subs = obj.get("subPropertyOf", [])
+            invs = obj.get("inverseOf", [])
+            if isinstance(subs, list):
+                obj["subPropertyOf"] = [s for s in subs if isinstance(s, str) and s in known_predicates]
+            else:
+                obj["subPropertyOf"] = []
+            if isinstance(invs, list):
+                obj["inverseOf"] = [s for s in invs if isinstance(s, str) and s in known_predicates]
+            else:
+                obj["inverseOf"] = []
+
+            # Store in DB + mark run
+            store_axiom_json(conn, args.axioms_table, pred, obj)
+            mark_run(conn, args.runs_table, pred, "done", "")
+
+            axiom_objs.append(obj)
+
+            if i % 10 == 0:
+                print(f"[INFO] {i}/{len(filtered)} predicates processed")
+
+        except Exception as e:
+            mark_run(conn, args.runs_table, pred, "error", str(e))
+            print(f"[WARN] predicate={pred} failed: {e}")
+
+    # If resume mode and we want TTL for ALL processed ever, load from DB table
+    all_axioms: List[Dict[str, Any]] = []
+    for (pred, ax_json) in conn.execute(f"SELECT predicate, axiom_json FROM {args.axioms_table} ORDER BY predicate;").fetchall():
+        try:
+            obj = json.loads(ax_json)
+            if isinstance(obj, dict):
+                all_axioms.append(obj)
+        except Exception:
+            continue
+
+    # Declare classes from llm_enrich_final (safe classes only)
+    class_terms = sorted(class_set)
+
+    ttl_path = os.path.join(args.out_dir, "tbox_axioms_llm.ttl")
+    write_ttl(
+        ttl_path,
+        base_iri=args.base_iri,
+        class_terms=class_terms,
+        canonical_map=canonical_map,
+        predicate_axioms=all_axioms,
+        known_predicates=set(counts.keys()),
+    )
+
+    # Also dump merged JSON for audit
+    merged_path = os.path.join(args.out_dir, "tbox_axioms_llm_merged.json")
     merged = {
         "created_at": now_iso(),
         "db": os.path.abspath(args.db),
+        "base_iri": args.base_iri,
+        "enrich_table": args.enrich_table,
         "taxonomy_table": args.taxonomy_table,
         "non_tax_table": args.non_tax_table,
+        "prompt_config": os.path.abspath(args.prompt_config),
         "backend": args.backend,
         "model": args.model if args.backend == "openai_compatible" else args.model_path,
-        "examples_per_relation": args.examples_per_relation,
-        "count": len(results),
-        "axioms": results,
+        "min_predicate_count": args.min_predicate_count,
+        "examples_per_predicate": args.examples_per_predicate,
+        "axiom_count": len(all_axioms),
+        "class_count": len(class_terms),
+        "axioms": all_axioms,
     }
-    json_path = os.path.join(args.out_dir, "axioms_llm_merged.json")
-    write_json(json_path, merged)
+    with open(merged_path, "w", encoding="utf-8") as f:
+        json.dump(merged, f, indent=2, ensure_ascii=False)
 
-    print(f"[OK] Wrote: {jsonl_path}")
-    print(f"[OK] Wrote: {json_path}")
-    print(f"[INFO] Total time: {round(time.time() - t0, 2)}s")
+    conn.close()
+    print(f"[OK] Wrote TTL (default graph): {ttl_path}")
+    print(f"[OK] Wrote audit JSON: {merged_path}")
 
 
 if __name__ == "__main__":

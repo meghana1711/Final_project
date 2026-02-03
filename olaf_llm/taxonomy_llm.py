@@ -1,319 +1,156 @@
-# file: olaf_llm/taxonomy_is_a_llm.py
-
 from __future__ import annotations
 
-import sqlite3
-import json
+import argparse
 import ast
-from typing import List, Dict, Any, Optional
+import json
+import sqlite3
+import time
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Tuple
 
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
+import yaml
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# -----------------------------------------------------------------------------
-# CONFIG
-# -----------------------------------------------------------------------------
 
-DB_PATH = "onto_db/onto_new.db"
-MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.3"
-
-# For speed/stability on GPU
+# -----------------------------
+# GPU knobs
+# -----------------------------
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
 
-# How many candidate terms per chunk we pass to the LLM
-MAX_TERMS_PER_CHUNK = 16
 
-# Heuristic phrases that *should not* appear in a good is-a justification
-BAD_JUSTIFICATION_PATTERNS = [
-    "consequence of",
-    "result of",
-    "caused by",
-    "due to",
-    "used in",
-    "used by",
-    "stored in",
-    "written to",
-    "example of",
-    "for example",
-    "e.g.",
-    "illustrate",
-    "illustration",
-    "sample of",
-    "part of",         # part-of belongs in non-taxonomy, not is-a
-]
+# -----------------------------
+# YAML config
+# -----------------------------
+@dataclass
+class PromptCfg:
+    system_prompt: str
+    prompt_mode: str = "few-shot"  # "few-shot" | "zero-shot"
+    max_terms_per_chunk: int = 16
+    max_new_tokens: int = 256
+    temperature: float = 0.0
+    top_p: float = 1.0
+    few_shots: Optional[List[Dict[str, Any]]] = None  # list of {chunk, candidate_terms, output}
 
-# -----------------------------------------------------------------------------
-# SYSTEM PROMPT
-# -----------------------------------------------------------------------------
 
-SYSTEM_PROMPT = """\
-You are an expert in High Performance Computing (HPC) and schedulers like SLURM and IBM LSF.
-Your task is to identify ONLY TRUE "is-a" (subclass) relations between HPC terms.
+def load_prompt_cfg(path: str) -> PromptCfg:
+    with open(path, "r", encoding="utf-8") as f:
+        obj = yaml.safe_load(f) or {}
 
-You will be given:
-- A short documentation CHUNK (text).
-- A list of CANDIDATE TERMS that appear in or are relevant to that chunk.
+    system_prompt = (obj.get("system_prompt") or "").strip()
+    if not system_prompt:
+        raise ValueError(f"YAML prompt_config missing system_prompt: {path}")
 
-Your job:
-- Look for statements where one term is a more specific KIND of another term.
-- Extract ONLY "X is a type of Y" relations (subclass / hyponym).
-- Express these as "is_a_edges".
+    return PromptCfg(
+        system_prompt=system_prompt,
+        prompt_mode=(obj.get("prompt_mode") or "few-shot").strip(),
+        max_terms_per_chunk=int(obj.get("max_terms_per_chunk") or 16),
+        max_new_tokens=int(obj.get("max_new_tokens") or 256),
+        temperature=float(obj.get("temperature") or 0.0),
+        top_p=float(obj.get("top_p") or 1.0),
+        few_shots=obj.get("few_shots"),
+    )
 
-DEFINITION OF TRUE IS-A (SUBCLASS):
-- "child" is-a "parent" if and only if, in HPC context, the sentence
-  "Every CHILD is a PARENT" is generally true.
-  Examples:
-    - "Partition QOS is a specific type of QOS."
-      → Every partition QOS is a QOS. This IS an is-a relation.
-    - "Job QOS is a type of QOS."
-      → Every job QOS is a QOS. This IS an is-a relation.
-    - "Default partition is a partition."
-      → Every default partition is a partition. This IS an is-a relation.
 
-WHAT IS **NOT** IS-A (MUST BE EXCLUDED):
-- part-of:
-    - "Suspended jobs are part of the job queue."
-      → This is a part_of relation, NOT is-a. Do NOT output.
-    - "Active bitmap is maintained in the gang scheduler logic."
-      → "active bitmap" is stored/maintained in something, NOT a subtype of it.
-- used-in / used-by / stored-in / logged-to:
-    - "Square brackets are used in node range expressions."
-      → usage, NOT is-a. Do NOT output.
-    - "slurmctld.log is written under /var/log/slurm."
-      → logging, NOT is-a. Do NOT output.
-- effect / consequence:
-    - "Non-negligible delays are a consequence of lock contention."
-      → effect_of, NOT is-a. Do NOT output.
-- example-of / instance-of:
-    - "Singularity is an example of an hpcng container runtime."
-      → This is an instance-of relation. For this task, DO NOT output.
-- purely numeric / value statements:
-    - "0.5 seconds is an example timeout value."
-      → numeric example, NOT an is-a relation.
-
-If the text expresses ONLY part-of, used-in, example-of, consequence-of, or other
-non-taxonomic relations, then you MUST output an empty list of is_a_edges.
-
-OUTPUT FORMAT (STRICT):
-You MUST output exactly ONE JSON object and nothing else.
-
-The JSON schema is:
-
-{
-  "is_a_edges": [
-    {
-      "child": "more specific term",
-      "parent": "more general term",
-      "justification": "one or two sentences explaining why this is a true subclass relation"
-    },
-    ...
-  ]
-}
-
-- child and parent MUST come from the candidate terms list (or obvious variants).
-- justification MUST explicitly reflect an "X is a type of Y" reading.
-- If no valid is-a relations exist, return: { "is_a_edges": [] }.
-"""
-
-# -----------------------------------------------------------------------------
-# FEW-SHOT EXAMPLES (GOOD AND BAD)
-# -----------------------------------------------------------------------------
-
-IS_A_FEW_SHOT_EXAMPLES: List[Dict[str, Any]] = [
-    # Example 1 – good is-a: Partition QOS and QOS
-    {
-        "chunk": (
-            "Partition QOS is a specific type of QOS assigned to a partition. "
-            "Job QOS is another type of QOS associated with individual jobs."
-        ),
-        "candidate_terms": [
-            "Partition QOS",
-            "QOS",
-            "Job QOS",
-            "partition",
-            "job",
-        ],
-        "json": {
-            "is_a_edges": [
-                {
-                    "child": "Partition QOS",
-                    "parent": "QOS",
-                    "justification": "The text explicitly states that Partition QOS is a specific type of QOS."
-                },
-                {
-                    "child": "Job QOS",
-                    "parent": "QOS",
-                    "justification": "The text describes Job QOS as another type of QOS."
-                }
-            ]
-        },
-    },
-    # Example 2 – good is-a: default partition, partition
-    {
-        "chunk": (
-            "The default partition is the partition used when users do not specify one explicitly. "
-            "Each partition represents a group of compute nodes with shared limits and QOS."
-        ),
-        "candidate_terms": [
-            "default partition",
-            "partition",
-            "compute nodes",
-            "QOS",
-        ],
-        "json": {
-            "is_a_edges": [
-                {
-                    "child": "default partition",
-                    "parent": "partition",
-                    "justification": "The default partition is described as a particular partition used when none is specified, so it is a specific kind of partition."
-                }
-            ]
-        },
-    },
-    # Example 3 – good is-a: slurmctld daemon, slurmctld
-    {
-        "chunk": (
-            "The slurmctld daemon is the main Slurm controller process responsible for managing job queues and "
-            "distributing work to slurmd on compute nodes."
-        ),
-        "candidate_terms": [
-            "slurmctld daemon",
-            "slurmctld",
-            "slurmd",
-            "compute nodes",
-            "job queues",
-        ],
-        "json": {
-            "is_a_edges": [
-                {
-                    "child": "slurmctld daemon",
-                    "parent": "slurmctld",
-                    "justification": "The text refers to the slurmctld daemon as the controller process, making it a specific form of slurmctld."
-                }
-            ]
-        },
-    },
-    # Example 4 – BAD example: part-of and usage only (must produce empty list)
-    {
-        "chunk": (
-            "Suspended jobs are part of the job queue, as they are tracked within it. "
-            "The active bitmap is maintained inside the gang scheduler logic, which itself is part of the job queue."
-        ),
-        "candidate_terms": [
-            "suspended jobs",
-            "job queue",
-            "active bitmap",
-            "gang scheduler logic",
-        ],
-        "json": {
-            "is_a_edges": []
-        },
-    },
-    # Example 5 – BAD example: consequence-of (must produce empty list)
-    {
-        "chunk": (
-            "Non-negligible delays are a consequence of increased lock contention on the slurmctld. "
-            "These delays affect how quickly jobs move from pending to running."
-        ),
-        "candidate_terms": [
-            "non-negligible delays",
-            "lock contention",
-            "slurmctld",
-            "pending",
-            "running",
-        ],
-        "json": {
-            "is_a_edges": []
-        },
-    },
-    # Example 6 – BAD example: used-in / syntax (must produce empty list)
-    {
-        "chunk": (
-            "Square brackets are used in node range expressions to specify multiple nodes, such as node[01-08]. "
-            "This syntax helps users submit jobs to many nodes at once."
-        ),
-        "candidate_terms": [
-            "square brackets",
-            "node range expressions",
-            "nodes",
-            "jobs",
-        ],
-        "json": {
-            "is_a_edges": []
-        },
-    },
-]
-
-# -----------------------------------------------------------------------------
-# DB HELPERS
-# -----------------------------------------------------------------------------
-
-def init_is_a_table(conn: sqlite3.Connection) -> None:
+# -----------------------------
+# DB schema
+# -----------------------------
+def init_tables(conn: sqlite3.Connection, edges_table: str, runs_table: str) -> None:
     cur = conn.cursor()
+
     cur.execute(
-        """
-        CREATE TABLE IF NOT EXISTS llm_is_a_edges (
-            edge_id     INTEGER PRIMARY KEY AUTOINCREMENT,
-            doc_id      TEXT NOT NULL,
-            chunk_id    TEXT NOT NULL,
-            child_term  TEXT NOT NULL,
-            parent_term TEXT NOT NULL,
-            justification TEXT
+        f"""
+        CREATE TABLE IF NOT EXISTS {edges_table} (
+            edge_id        INTEGER PRIMARY KEY AUTOINCREMENT,
+            doc_id         TEXT NOT NULL,
+            chunk_id       TEXT NOT NULL,
+            child_term_id  INTEGER,
+            parent_term_id INTEGER,
+            child_term     TEXT NOT NULL,
+            parent_term    TEXT NOT NULL,
+            justification  TEXT,
+            raw_json       TEXT,
+            created_at     TEXT DEFAULT (datetime('now')),
+            UNIQUE(doc_id, chunk_id, child_term, parent_term)
         )
         """
     )
+
+    # Runs table fixes the resume bug: mark a chunk processed even when zero edges.
+    cur.execute(
+        f"""
+        CREATE TABLE IF NOT EXISTS {runs_table} (
+            doc_id        TEXT NOT NULL,
+            chunk_id      TEXT NOT NULL,
+            rowid_src     INTEGER,
+            candidate_n   INTEGER,
+            kept_edges_n  INTEGER,
+            raw_output    TEXT,
+            parsed_json   TEXT,
+            processed_at  TEXT DEFAULT (datetime('now')),
+            PRIMARY KEY (doc_id, chunk_id)
+        )
+        """
+    )
+
     conn.commit()
 
 
-def load_mistral():
+# -----------------------------
+# Model loading
+# -----------------------------
+def load_model(model_id: str):
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
-    tokenizer.padding_side = "left"
+    tok = AutoTokenizer.from_pretrained(model_id)
+    if tok.pad_token is None:
+        tok.pad_token = tok.eos_token
+    tok.padding_side = "left"
 
     model = AutoModelForCausalLM.from_pretrained(
-        MODEL_ID,
+        model_id,
         torch_dtype=torch.float16 if device == "cuda" else torch.float32,
         device_map="auto" if device == "cuda" else None,
     )
     if model.config.pad_token_id is None:
-        model.config.pad_token_id = tokenizer.pad_token_id
+        model.config.pad_token_id = tok.pad_token_id
 
-    return tokenizer, model, device
+    return tok, model, device
 
 
-# -----------------------------------------------------------------------------
-# CANDIDATE TERMS PER CHUNK (from llm_terms + llm_enrich)
-# -----------------------------------------------------------------------------
-
-def fetch_chunks_for_is_a(
+# -----------------------------
+# Resume-safe chunk selection
+# -----------------------------
+def fetch_chunks(
     conn: sqlite3.Connection,
-    max_chunks: Optional[int] = None,
-    offset_rowid: int = 0,
-) -> List[tuple]:
+    chunks_table: str,
+    doc_id_col: str,
+    chunk_id_col: str,
+    text_col: str,
+    runs_table: str,
+    offset_rowid: int,
+    max_chunks: int,
+) -> List[Tuple[int, str, str, str]]:
     """
-    Fetch contextual_chunk rows that still need is-a extraction.
-
-    We skip chunks where we already have at least one is-a edge for that chunk.
+    Resume-safe:
+    - select chunks whose (doc_id, chunk_id) NOT IN runs_table
+    - so a chunk that produced 0 edges still gets marked "done" via runs_table
     """
-    init_is_a_table(conn)
     cur = conn.cursor()
 
-    sql = """
-        SELECT cc.rowid, cc.doc_id, cc.chunk_id, cc.text
-        FROM contextual_chunk AS cc
-        WHERE cc.rowid > ?
+    sql = f"""
+        SELECT c.rowid, c.{doc_id_col}, c.{chunk_id_col}, c.{text_col}
+        FROM {chunks_table} c
+        WHERE c.rowid > ?
           AND NOT EXISTS (
-              SELECT 1 FROM llm_is_a_edges e
-              WHERE e.doc_id = cc.doc_id AND e.chunk_id = cc.chunk_id
+              SELECT 1 FROM {runs_table} r
+              WHERE r.doc_id = c.{doc_id_col} AND r.chunk_id = c.{chunk_id_col}
           )
-        ORDER BY cc.rowid
+        ORDER BY c.rowid
     """
-    params = [offset_rowid]
-    if max_chunks is not None:
+    params: List[Any] = [offset_rowid]
+    if max_chunks and max_chunks > 0:
         sql += " LIMIT ?"
         params.append(max_chunks)
 
@@ -321,344 +158,445 @@ def fetch_chunks_for_is_a(
     return cur.fetchall()
 
 
-def fetch_candidate_terms_for_chunk(
+# -----------------------------
+# Candidate terms per chunk
+# -----------------------------
+def fetch_candidate_terms(
     conn: sqlite3.Connection,
+    terms_table: str,          # llm_terms_final
+    enrich_table: str,         # llm_enrich_final
     doc_id: str,
     chunk_id: str,
-) -> List[str]:
+    min_freq: int,
+    max_terms: int,
+) -> Tuple[List[Dict[str, Any]], List[str]]:
     """
-    Get candidate terms for a given chunk from llm_terms + llm_enrich.
-
-    Heuristics:
-    - Use llm_terms.term for that (doc_id, chunk_id).
-    - Join with llm_enrich on canonical_term.
-    - Keep only is_hpc_domain=1 and category != 'non_domain'.
-    - Optionally skip scheduler='unknown'.
-
-    Returns a de-duplicated list of terms (example_term from llm_enrich if available).
+    Returns:
+      - candidates: list of dicts {term_id, term, canonical, ontology_role, is_hpc_domain, freq_total}
+      - surface_terms: list of strings to show to LLM
     """
     cur = conn.cursor()
 
+    # Join by term_id (correct for your PK/FK design)
     cur.execute(
-        """
-        SELECT DISTINCT
-            COALESCE(e.example_term, t.term) AS term
-        FROM llm_terms t
-        LEFT JOIN llm_enrich e
-          ON LOWER(TRIM(t.term)) = e.canonical_term
+        f"""
+        SELECT
+            t.term_id,
+            t.term,
+            COALESCE(e.canonical, LOWER(TRIM(t.term))) AS canonical,
+            COALESCE(e.ontology_role, 'unknown') AS ontology_role,
+            COALESCE(e.is_hpc_domain, 1) AS is_hpc_domain,
+            t.freq_total
+        FROM {terms_table} t
+        LEFT JOIN {enrich_table} e
+          ON e.term_id = t.term_id
         WHERE t.doc_id = ?
           AND t.chunk_id = ?
-          AND (
-              e.canonical_term IS NULL
-              OR e.is_hpc_domain = 1
-          )
-          AND (
-              e.category IS NULL
-              OR e.category <> 'non_domain'
-          )
-          AND (
-              e.scheduler IS NULL
-              OR e.scheduler IN ('slurm', 'lsf', 'both', 'generic', 'unknown')
-          )
+          AND t.freq_total >= ?
+          AND COALESCE(e.is_hpc_domain, 1) = 1
+          AND COALESCE(e.ontology_role, 'unknown') IN ('class', 'unknown')
+        ORDER BY t.freq_total DESC, t.term_id ASC
         """,
-        (doc_id, chunk_id),
+        (doc_id, chunk_id, max(1, min_freq)),
     )
 
-    terms = [row[0] for row in cur.fetchall()]
-    # Simple safety: filter obviously tiny junk from here as well
-    cleaned = []
+    rows = cur.fetchall()
+    candidates: List[Dict[str, Any]] = []
+    surface: List[str] = []
     seen = set()
-    for term in terms:
-        t = (term or "").strip()
-        if not t:
+
+    for term_id, term, canonical, role, is_dom, freq_total in rows:
+        s = (term or "").strip()
+        if not s:
             continue
-        # require at least 3 letters in the term
-        letters = "".join(ch for ch in t if ch.isalpha())
+
+        # lightweight “junk guard”
+        letters = "".join(ch for ch in s if ch.isalpha())
         if len(letters) < 3:
             continue
-        key = t.lower()
-        if key in seen:
+
+        k = s.lower()
+        if k in seen:
             continue
-        seen.add(key)
-        cleaned.append(t)
+        seen.add(k)
 
-    # truncate to max per chunk
-    return cleaned[:MAX_TERMS_PER_CHUNK]
-
-
-# -----------------------------------------------------------------------------
-# PROMPT BUILDING + LLM CALL
-# -----------------------------------------------------------------------------
-
-def build_is_a_prompt(chunk_text: str, candidate_terms: List[str]) -> str:
-    """
-    Build a Mistral [INST] style prompt for is-a taxonomy extraction with few-shot examples.
-    """
-    # Build examples block
-    example_blocks = []
-    for i, ex in enumerate(IS_A_FEW_SHOT_EXAMPLES, start=1):
-        example_blocks.append(
-            "Example {}:\nCHUNK:\n{}\n\nCANDIDATE_TERMS:\n{}\n\nJSON:\n{}\n".format(
-                i,
-                ex["chunk"],
-                ", ".join(ex["candidate_terms"]),
-                json.dumps(ex["json"], ensure_ascii=False, indent=2),
-            )
+        candidates.append(
+            {
+                "term_id": int(term_id),
+                "term": s,
+                "canonical": str(canonical or "").strip(),
+                "ontology_role": str(role or "unknown").strip(),
+                "is_hpc_domain": int(is_dom) if is_dom is not None else 1,
+                "freq_total": int(freq_total) if freq_total is not None else 1,
+            }
         )
-    examples_str = "\n\n".join(example_blocks)
+        surface.append(s)
 
-    user_content = (
-        "You are given a short HPC documentation CHUNK and a list of CANDIDATE TERMS.\n"
-        "Your job is to output ONLY true is-a (subclass) relations between those terms.\n\n"
-        "Here are some examples of CORRECT and INCORRECT behavior:\n\n"
-        f"{examples_str}\n\n"
-        "Now process the NEW CHUNK below.\n\n"
-        "CHUNK:\n"
-        f"{chunk_text}\n\n"
-        "CANDIDATE_TERMS:\n"
-        f"{', '.join(candidate_terms)}\n\n"
-        "Return exactly one JSON object with the key \"is_a_edges\" as described in the system prompt.\n"
-    )
+        if max_terms and len(surface) >= max_terms:
+            break
+
+    return candidates, surface
+
+
+# -----------------------------
+# Prompt building
+# -----------------------------
+def build_prompt(cfg: PromptCfg, chunk_text: str, candidate_terms: List[str]) -> str:
+    candidate_str = ", ".join(candidate_terms)
+
+    if cfg.prompt_mode == "few-shot" and cfg.few_shots:
+        blocks: List[str] = []
+        for i, ex in enumerate(cfg.few_shots, start=1):
+            ex_chunk = ex.get("chunk", "")
+            ex_terms = ex.get("candidate_terms", [])
+            ex_out = ex.get("output", {"is_a_edges": []})
+            blocks.append(
+                f"Example {i}:\n"
+                f"CHUNK:\n{ex_chunk}\n\n"
+                f"CANDIDATE_TERMS:\n{', '.join(ex_terms)}\n\n"
+                f"JSON:\n{json.dumps(ex_out, ensure_ascii=False, indent=2)}\n"
+            )
+        examples_str = "\n\n".join(blocks)
+
+        user = (
+            "You will see examples of HPC documentation CHUNKS and correct is-a outputs.\n"
+            "Follow the same behavior for the NEW CHUNK.\n\n"
+            f"{examples_str}\n\n"
+            "NOW process ONLY this NEW CHUNK:\n\n"
+            f"CHUNK:\n{chunk_text}\n\n"
+            f"CANDIDATE_TERMS:\n{candidate_str}\n\n"
+            "Return ONLY one JSON object with key \"is_a_edges\".\n"
+        )
+    else:
+        user = (
+            "Extract ONLY true is-a (subclass) relations.\n\n"
+            f"CHUNK:\n{chunk_text}\n\n"
+            f"CANDIDATE_TERMS:\n{candidate_str}\n\n"
+            "Return ONLY one JSON object with key \"is_a_edges\".\n"
+        )
 
     return (
-        f"<s>[INST] <<SYS>>\n{SYSTEM_PROMPT}\n<</SYS>>\n\n"
-        f"{user_content}\n"
+        f"<s>[INST] <<SYS>>\n{cfg.system_prompt}\n<</SYS>>\n\n"
+        f"{user}\n"
         "[/INST]"
     )
 
 
-def call_is_a_llm(tokenizer, model, device: str, chunk_text: str, candidate_terms: List[str]) -> str:
-    prompt = build_is_a_prompt(chunk_text, candidate_terms)
-
-    encoded = tokenizer(
-        prompt,
-        return_tensors="pt",
-        truncation=True,
-        max_length=4096,
-    )
-    input_ids = encoded["input_ids"].to(device)
-    attention_mask = encoded["attention_mask"].to(device)
+# -----------------------------
+# LLM call
+# -----------------------------
+def call_llm(tok, model, device: str, prompt: str, cfg: PromptCfg) -> str:
+    enc = tok(prompt, return_tensors="pt", truncation=True, max_length=4096)
+    input_ids = enc["input_ids"].to(device)
+    attn = enc["attention_mask"].to(device)
 
     with torch.no_grad():
-        generated_ids = model.generate(
+        out = model.generate(
             input_ids=input_ids,
-            attention_mask=attention_mask,
-            max_new_tokens=256,
-            do_sample=False,
-            pad_token_id=tokenizer.pad_token_id,
+            attention_mask=attn,
+            max_new_tokens=cfg.max_new_tokens,
+            do_sample=(cfg.temperature and cfg.temperature > 0),
+            temperature=cfg.temperature if cfg.temperature and cfg.temperature > 0 else None,
+            top_p=cfg.top_p,
+            pad_token_id=tok.pad_token_id,
         )
 
-    gen_only = generated_ids[0, input_ids.shape[-1]:]
-    return tokenizer.decode(gen_only, skip_special_tokens=True)
+    gen_only = out[0, input_ids.shape[-1]:]
+    return tok.decode(gen_only, skip_special_tokens=True)
 
 
-# -----------------------------------------------------------------------------
-# PARSING + HEURISTIC FILTERING
-# -----------------------------------------------------------------------------
-
-def _is_lexical_subtype(child: str, parent: str) -> bool:
+# -----------------------------
+# Robust JSON extraction (brace matching)
+# -----------------------------
+def extract_json_object(text: str) -> Optional[str]:
     """
-    Heuristic: parent should look like the head / more general noun of the child.
-
-    - parent appearing as a substring in child (case-insensitive) but not identical
-    - or child ends with parent
+    Finds the last balanced {...} object in the text (most likely the answer).
     """
-    c = child.lower().strip()
-    p = parent.lower().strip()
-    if not c or not p or c == p:
-        return False
+    best = None
+    stack = 0
+    start = None
+    for i, ch in enumerate(text):
+        if ch == "{":
+            if stack == 0:
+                start = i
+            stack += 1
+        elif ch == "}":
+            if stack > 0:
+                stack -= 1
+                if stack == 0 and start is not None:
+                    best = text[start:i+1]
+                    start = None
+    return best
 
-    if p in c:
-        return True
-    if c.endswith(p):
-        return True
-    return False
 
-
-def _fails_justification_rules(justification: str) -> bool:
+# -----------------------------
+# Parsing + validation
+# -----------------------------
+def parse_edges(raw_output: str, candidate_terms: List[str]) -> Tuple[List[Dict[str, str]], Dict[str, Any]]:
     """
-    Return True if justification contains phrases that indicate non-taxonomic relations.
+    Validates:
+    - JSON schema key is_a_edges
+    - child/parent are in candidate terms (case-insensitive match)
     """
-    j = justification.lower()
-    for pattern in BAD_JUSTIFICATION_PATTERNS:
-        if pattern in j:
-            return True
-    return False
+    candidate_lc = {t.lower(): t for t in candidate_terms}
 
+    blob = extract_json_object(raw_output)
+    if not blob:
+        return [], {"error": "no_json_object"}
 
-def parse_is_a_output(raw_output: str) -> List[Dict[str, str]]:
-    """
-    Parse the LLM output and apply heuristic filters.
-
-    Returns a list of dicts with keys: child, parent, justification.
-    """
-    start = raw_output.find("{")
-    end = raw_output.rfind("}")
-    if start == -1 or end == -1 or end <= start:
-        return []
-
-    json_str = raw_output[start : end + 1]
+    data: Any
     try:
-        data = json.loads(json_str)
+        data = json.loads(blob)
     except json.JSONDecodeError:
         try:
-            data = ast.literal_eval(json_str)
+            data = ast.literal_eval(blob)
         except Exception:
-            return []
+            return [], {"error": "json_parse_failed"}
 
     if not isinstance(data, dict):
-        return []
+        return [], {"error": "not_a_dict"}
 
     edges = data.get("is_a_edges", [])
     if not isinstance(edges, list):
-        return []
+        return [], {"error": "is_a_edges_not_list"}
 
-    cleaned_edges: List[Dict[str, str]] = []
-    seen_pairs = set()
+    kept: List[Dict[str, str]] = []
+    seen = set()
 
-    for item in edges:
-        if not isinstance(item, dict):
+    for e in edges:
+        if not isinstance(e, dict):
             continue
-        child = str(item.get("child", "")).strip()
-        parent = str(item.get("parent", "")).strip()
-        justification = str(item.get("justification", "")).strip()
+        child = str(e.get("child", "")).strip()
+        parent = str(e.get("parent", "")).strip()
+        just = str(e.get("justification", "")).strip()
 
         if not child or not parent:
             continue
         if child.lower() == parent.lower():
             continue
 
-        # Drop edges clearly describing non-taxonomic relations
-        if _fails_justification_rules(justification):
+        # Must map to candidate terms (case-insensitive)
+        c_key = child.lower()
+        p_key = parent.lower()
+        if c_key not in candidate_lc or p_key not in candidate_lc:
             continue
 
-        # Enforce lexical subtype pattern for precision
-        if not _is_lexical_subtype(child, parent):
-            continue
+        # Normalize to candidate surface form (prevents minor variants)
+        child_norm = candidate_lc[c_key]
+        parent_norm = candidate_lc[p_key]
 
-        key = (child.lower(), parent.lower())
-        if key in seen_pairs:
+        pair = (child_norm.lower(), parent_norm.lower())
+        if pair in seen:
             continue
-        seen_pairs.add(key)
+        seen.add(pair)
 
-        cleaned_edges.append(
-            {"child": child, "parent": parent, "justification": justification}
+        kept.append({"child": child_norm, "parent": parent_norm, "justification": just})
+
+    meta = {"parsed_json": data}
+    return kept, meta
+
+
+def map_term_ids(candidates: List[Dict[str, Any]]) -> Dict[str, int]:
+    # surface term lower -> term_id
+    return {c["term"].lower(): int(c["term_id"]) for c in candidates}
+
+
+# -----------------------------
+# Main loop
+# -----------------------------
+def run(
+    db: str,
+    model_id: str,
+    prompt_config: str,
+    chunks_table: str,
+    doc_id_col: str,
+    chunk_id_col: str,
+    text_col: str,
+    terms_table: str,
+    enrich_table: str,
+    edges_table: str,
+    runs_table: str,
+    max_chunks: int,
+    offset_rowid: int,
+    min_freq: int,
+    debug_first: bool,
+    commit_every: int,
+) -> None:
+    cfg = load_prompt_cfg(prompt_config)
+
+    conn = sqlite3.connect(db)
+    try:
+        init_tables(conn, edges_table=edges_table, runs_table=runs_table)
+        tok, model, device = load_model(model_id)
+
+        rows = fetch_chunks(
+            conn=conn,
+            chunks_table=chunks_table,
+            doc_id_col=doc_id_col,
+            chunk_id_col=chunk_id_col,
+            text_col=text_col,
+            runs_table=runs_table,
+            offset_rowid=offset_rowid,
+            max_chunks=max_chunks,
         )
 
-    return cleaned_edges
-
-
-# -----------------------------------------------------------------------------
-# MAIN PROCESSING LOOP
-# -----------------------------------------------------------------------------
-
-def process_chunks(
-    conn: sqlite3.Connection,
-    tokenizer,
-    model,
-    device: str,
-    max_chunks: Optional[int] = None,
-    offset_rowid: int = 0,
-    debug_first: bool = False,
-) -> None:
-    init_is_a_table(conn)
-
-    rows = fetch_chunks_for_is_a(conn, max_chunks=max_chunks, offset_rowid=offset_rowid)
-    total = len(rows)
-    print(f"Processing {total} chunks for is-a taxonomy (offset_rowid={offset_rowid})...")
-
-    if total == 0:
-        return
-
-    cur = conn.cursor()
-
-    for idx, (rowid, doc_id, chunk_id, chunk_text) in enumerate(rows, start=1):
-        candidate_terms = fetch_candidate_terms_for_chunk(conn, doc_id, chunk_id)
-
-        if len(candidate_terms) < 2:
-            # Not enough terms to form relations
-            continue
-
-        if debug_first and idx > 1:
-            break
-
-        if idx == 1 or idx % 10 == 0:
-            print(
-                f"  -> chunk {idx}/{total} "
-                f"(rowid={rowid}, doc_id={doc_id}, chunk_id={chunk_id}, {len(candidate_terms)} candidate terms)"
-            )
-
-        raw = call_is_a_llm(tokenizer, model, device, chunk_text, candidate_terms)
-        edges = parse_is_a_output(raw)
-
-        if debug_first:
-            print(f"\nDEBUG rowid={rowid}, doc_id={doc_id}, chunk_id={chunk_id}, {len(candidate_terms)} candidate terms")
-            print("\n=== RAW OUTPUT (first 800 chars) ===")
-            print(raw[:800])
-            print("\n=== PARSED IS-A EDGES ===")
-            if edges:
-                for e in edges:
-                    print(f"- {e['child']}  ->  {e['parent']}  ({e['justification']})")
-            else:
-                print("(No is-a edges kept after filtering)")
+        print(f"[INFO] Pending chunks for is-a: {len(rows)} (offset_rowid={offset_rowid})")
+        if not rows:
             return
 
-        for e in edges:
-            cur.execute(
-                """
-                INSERT INTO llm_is_a_edges (
-                    doc_id, chunk_id, child_term, parent_term, justification
-                )
-                VALUES (?, ?, ?, ?, ?)
-                """,
-                (doc_id, chunk_id, e["child"], e["parent"], e["justification"]),
+        cur = conn.cursor()
+        n_since_commit = 0
+
+        for i, (rowid, doc_id, chunk_id, chunk_text) in enumerate(rows, start=1):
+            candidates, surface_terms = fetch_candidate_terms(
+                conn=conn,
+                terms_table=terms_table,
+                enrich_table=enrich_table,
+                doc_id=doc_id,
+                chunk_id=chunk_id,
+                min_freq=min_freq,
+                max_terms=cfg.max_terms_per_chunk,
             )
+
+            if i == 1 or i % 10 == 0:
+                print(f"[INFO] chunk {i}/{len(rows)} rowid={rowid} doc_id={doc_id} chunk_id={chunk_id} candidates={len(surface_terms)}")
+
+            if len(surface_terms) < 2:
+                # Still must mark processed to avoid infinite re-tries
+                if debug_first:
+                    print("[DEBUG] <2 candidate terms; would mark run with 0 edges.")
+                    return
+                cur.execute(
+                    f"""
+                    INSERT OR REPLACE INTO {runs_table}
+                      (doc_id, chunk_id, rowid_src, candidate_n, kept_edges_n, raw_output, parsed_json, processed_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'))
+                    """,
+                    (doc_id, chunk_id, rowid, len(surface_terms), 0, "", json.dumps({"is_a_edges": []})),
+                )
+                n_since_commit += 1
+                if n_since_commit >= max(1, commit_every):
+                    conn.commit()
+                    n_since_commit = 0
+                continue
+
+            prompt = build_prompt(cfg, chunk_text, surface_terms)
+            raw = call_llm(tok, model, device, prompt, cfg)
+            edges, meta = parse_edges(raw, surface_terms)
+
+            if debug_first:
+                print(f"\nDEBUG rowid={rowid} doc_id={doc_id} chunk_id={chunk_id}")
+                print("\n=== RAW OUTPUT (first 900 chars) ===")
+                print(raw[:900])
+                print("\n=== KEPT EDGES ===")
+                for e in edges:
+                    print(f"- {e['child']} -> {e['parent']} :: {e['justification']}")
+                print("\n=== PARSE META ===")
+                print(meta)
+                return
+
+            term_id_map = map_term_ids(candidates)
+
+            # Insert edges (dedup safe via UNIQUE + OR IGNORE)
+            for e in edges:
+                child_id = term_id_map.get(e["child"].lower())
+                parent_id = term_id_map.get(e["parent"].lower())
+                cur.execute(
+                    f"""
+                    INSERT OR IGNORE INTO {edges_table}
+                      (doc_id, chunk_id, child_term_id, parent_term_id, child_term, parent_term, justification, raw_json)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        doc_id, chunk_id,
+                        child_id, parent_id,
+                        e["child"], e["parent"],
+                        e["justification"],
+                        extract_json_object(raw) or "",
+                    ),
+                )
+
+            # Mark chunk processed ALWAYS (even when 0 edges)
+            cur.execute(
+                f"""
+                INSERT OR REPLACE INTO {runs_table}
+                  (doc_id, chunk_id, rowid_src, candidate_n, kept_edges_n, raw_output, parsed_json, processed_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'))
+                """,
+                (
+                    doc_id, chunk_id, rowid,
+                    len(surface_terms),
+                    len(edges),
+                    raw,
+                    json.dumps(meta.get("parsed_json", {}), ensure_ascii=False),
+                ),
+            )
+
+            n_since_commit += 1
+            if n_since_commit >= max(1, commit_every):
+                conn.commit()
+                n_since_commit = 0
+
         conn.commit()
+        print("[DONE] is-a taxonomy extraction complete.")
 
-    print("is-a taxonomy extraction completed.")
-
-
-# -----------------------------------------------------------------------------
-# ENTRY POINT
-# -----------------------------------------------------------------------------
-
-if __name__ == "__main__":
-    import argparse
-
-    parser = argparse.ArgumentParser(
-        description="LLM-based is-a taxonomy extraction over contextual_chunk (HPC docs)."
-    )
-    parser.add_argument(
-        "--max-chunks",
-        type=int,
-        default=None,
-        help="Limit the number of chunks processed in this run.",
-    )
-    parser.add_argument(
-        "--offset-rowid",
-        type=int,
-        default=0,
-        help="Start from contextual_chunk.rowid > offset_rowid (for job arrays / resume).",
-    )
-    parser.add_argument(
-        "--debug-first-chunk",
-        action="store_true",
-        help="Run on a single (first) unprocessed chunk and print raw + parsed output (no DB writes).",
-    )
-
-    args = parser.parse_args()
-
-    conn = sqlite3.connect(DB_PATH)
-    try:
-        tokenizer, model, device = load_mistral()
-        process_chunks(
-            conn,
-            tokenizer,
-            model,
-            device,
-            max_chunks=args.max_chunks,
-            offset_rowid=args.offset_rowid,
-            debug_first=args.debug_first_chunk,
-        )
     finally:
         conn.close()
+
+
+# -----------------------------
+# CLI
+# -----------------------------
+def main():
+    ap = argparse.ArgumentParser(description="OLAF_LLM: is-a taxonomy extraction (LLM)")
+
+    ap.add_argument("--db", required=True)
+    ap.add_argument("--model-id", default="mistralai/Mistral-7B-Instruct-v0.3")
+    ap.add_argument("--prompt-config", required=True, help="YAML prompt config")
+
+    # Chunk source
+    ap.add_argument("--chunks-table", default="contextual_chunk")
+    ap.add_argument("--doc-id-col", default="doc_id")
+    ap.add_argument("--chunk-id-col", default="chunk_id")
+    ap.add_argument("--text-col", default="text")
+
+    # Terms/enrich source
+    ap.add_argument("--terms-table", default="llm_terms_final")
+    ap.add_argument("--enrich-table", default="llm_enrich_final")
+
+    # Outputs
+    ap.add_argument("--edges-table", default="llm_is_a_edges_final")
+    ap.add_argument("--runs-table", default="llm_is_a_runs")
+
+    # Controls
+    ap.add_argument("--max-chunks", type=int, default=0)
+    ap.add_argument("--offset-rowid", type=int, default=0)
+    ap.add_argument("--min-freq", type=int, default=2)
+    ap.add_argument("--commit-every", type=int, default=25)
+
+    ap.add_argument("--debug-first-chunk", action="store_true")
+
+    args = ap.parse_args()
+
+    run(
+        db=args.db,
+        model_id=args.model_id,
+        prompt_config=args.prompt_config,
+        chunks_table=args.chunks_table,
+        doc_id_col=args.doc_id_col,
+        chunk_id_col=args.chunk_id_col,
+        text_col=args.text_col,
+        terms_table=args.terms_table,
+        enrich_table=args.enrich_table,
+        edges_table=args.edges_table,
+        runs_table=args.runs_table,
+        max_chunks=args.max_chunks,
+        offset_rowid=args.offset_rowid,
+        min_freq=args.min_freq,
+        debug_first=args.debug_first_chunk,
+        commit_every=args.commit_every,
+    )
+
+
+if __name__ == "__main__":
+    main()

@@ -1,308 +1,151 @@
 from __future__ import annotations
 
-import sqlite3
-import json
+import argparse
 import ast
-from typing import List, Dict, Any
+import json
+import sqlite3
+from dataclasses import dataclass
+from datetime import datetime
+from typing import Any, Dict, List, Optional, Tuple
 
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# -----------------------------------------------------------------------------
-# Config
-# -----------------------------------------------------------------------------
+import yaml  # PyYAML
 
-# Adjust DB_PATH if your DB filename is different
-DB_PATH = "onto_db/onto_new.db"
-MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.3"
 
-torch.backends.cuda.matmul.allow_tf32 = True
-torch.backends.cudnn.allow_tf32 = True
+# =============================================================================
+# Prompt config (YAML)
+# =============================================================================
 
-# -----------------------------------------------------------------------------
-# SYSTEM PROMPT (TERM ENRICHMENT, PRECISE)
-# -----------------------------------------------------------------------------
+@dataclass
+class PromptConfig:
+    system_prompt: str
+    prompt_mode: str = "few-shot"  # "few-shot" or "zero-shot"
+    max_new_tokens: int = 240
+    few_shot_examples: List[Dict[str, Any]] = None  # examples list
 
-SYSTEM_PROMPT = """\
-You are an expert in High Performance Computing (HPC) and job schedulers such as SLURM and IBM LSF.
-Your task is PRECISE TERM ENRICHMENT for ONTOLOGY BUILDING.
+    @staticmethod
+    def from_yaml(path: str) -> "PromptConfig":
+        with open(path, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
 
-For each input, you receive:
-- a TERM string (already extracted as a candidate HPC/scheduler term), and
-- a SHORT CONTEXT snippet (a few sentences of documentation where the term appears).
+        if not isinstance(data, dict):
+            raise ValueError("YAML prompt config must be a mapping/dict at top level.")
 
-You must decide:
-1) whether this is truly a meaningful HPC / scheduler domain term,
-2) which scheduler(s) it belongs to,
-3) which category it falls into, and
-4) provide a short, accurate definition and optional aliases.
+        system_prompt = data.get("system_prompt")
+        if not system_prompt or not isinstance(system_prompt, str):
+            raise ValueError("YAML prompt config must contain a string key: system_prompt")
 
-Be conservative. If the term does not clearly refer to an HPC / scheduling concept,
-classify it as non-domain.
+        prompt_mode = data.get("prompt_mode", "few-shot")
+        if prompt_mode not in ("few-shot", "zero-shot"):
+            raise ValueError("prompt_mode must be 'few-shot' or 'zero-shot'")
 
-ALLOWED VALUES FOR "scheduler":
-- "slurm"     : specific to SLURM configuration, commands, or components.
-- "lsf"       : specific to IBM LSF configuration, commands, or components.
-- "both"      : used in both SLURM and LSF with similar meaning.
-- "generic"   : generic HPC resource / job concept, not tied to a single scheduler
-                (e.g. compute node, GPU resources, memory limit, job array).
-- "unknown"   : you genuinely cannot tell from the term and context.
+        few_shot_examples = data.get("few_shot_examples", []) or []
+        if not isinstance(few_shot_examples, list):
+            raise ValueError("few_shot_examples must be a list (or omitted).")
 
-ALLOWED VALUES FOR "category":
-- "scheduler"          : names of schedulers or major components (SLURM, IBM LSF,
-                         Slurmctld, SlurmDBD, JobScheduler).
-- "command"            : CLI commands or subcommands (sbatch, srun, sacct, squeue,
-                         bsub, bjobs, lsload).
-- "option_flag"        : command-line options or flags (--partition, --time, -q, --gres, etc.).
-- "config_param"       : configuration parameters or plugin-type keys
-                         (AccountingStorageType, JobAcctGatherType, JobCompType,
-                          SelectType, GresTypes, SchedulerType, SlurmctldPort).
-- "config_file"        : configuration or include files (slurm.conf, gres.conf,
-                         lsb.queues, lsf.cluster, slurmdbd.conf).
-- "log_or_state_path"  : log or state file paths, or state directories that are clearly
-                         scheduler-related (/var/log/slurm/slurmctld.log,
-                         /var/spool/slurm/statesave/jwt_hs256.key).
-- "queue_or_partition" : queues, partitions, or QoS names (gpu partition, debug queue,
-                         normal queue, qos-high, qos-debug).
-- "resource"           : resource concepts (GPU resources, CPU cores, memory limit,
-                         node features, GRES types, burst buffer).
-- "job_state"          : job states and similar status labels (PENDING, RUNNING,
-                         COMPLETED, FAILED, CANCELLED).
-- "user_role"          : user or role concepts such as admin, cluster administrator,
-                         operator, or end user.
-- "other_hpc"          : other HPC-specific concepts that do not fit cleanly into the above
-                         but are clearly domain terms (e.g. job submission script,
-                         login node, compute node, scheduler API).
-- "non_domain"         : clearly not a useful HPC/scheduler term.
+        # Light validation
+        cleaned: List[Dict[str, Any]] = []
+        for ex in few_shot_examples:
+            if not isinstance(ex, dict):
+                continue
+            term = ex.get("term", "")
+            ctx = ex.get("context", "")
+            js = ex.get("json", None)
+            if isinstance(term, str) and isinstance(ctx, str) and isinstance(js, dict):
+                cleaned.append({"term": term, "context": ctx, "json": js})
 
-HOW TO DECIDE is_hpc_domain_term:
-- Set is_hpc_domain_term = true when the term denotes:
-  - a scheduler, scheduler component, or scheduler command,
-  - a CLI option or flag related to job submission or control,
-  - a configuration parameter or plugin type,
-  - a config/log/state file or directory tied to the scheduler,
-  - a resource, queue/partition, QoS, job state, role, or clearly HPC-specific concept.
-- Set is_hpc_domain_term = false when the term is:
-  - a generic English phrase not tied to HPC/scheduling,
-  - a pure example value or numeric quantity (time, counts, ranges),
-  - a generic filesystem path unrelated to SLURM/LSF (e.g. /tmp used only as an example),
-  - any token that appears to be noise from parsing or formatting.
+        return PromptConfig(
+            system_prompt=system_prompt,
+            prompt_mode=prompt_mode,
+            max_new_tokens=int(data.get("max_new_tokens", 240)),
+            few_shot_examples=cleaned,
+        )
 
-SHORT DEFINITION:
-- Provide 1–2 concise sentences describing the term in its HPC / scheduler context.
-- If the term is marked non-domain, you may return an empty definition ("") or a brief
-  explanation such as "Not an HPC/scheduler-specific domain term.".
 
-ALIASES:
-- "aliases" should list alternative spellings, abbreviations, closely related names,
-  or obvious variants that might appear in documentation.
-- Example: for "SLURM", aliases might include ["Slurm", "Simple Linux Utility for Resource Management"].
-- If you do not know any aliases, use an empty list [].
+# =============================================================================
+# Enums + validation
+# =============================================================================
 
-OUTPUT FORMAT (STRICT):
-You MUST respond with EXACTLY one JSON object and nothing else.
+SCHEDULER_ALLOWED = {"slurm", "lsf", "both", "generic", "unknown"}
 
-The JSON schema is:
-
-{
-  "term": "original term string",
-  "canonical": "lowercased, trimmed canonical form",
-  "is_hpc_domain_term": true or false,
-  "scheduler": "slurm | lsf | both | generic | unknown",
-  "category": "scheduler | command | option_flag | config_param | config_file | log_or_state_path | queue_or_partition | resource | job_state | user_role | other_hpc | non_domain",
-  "short_definition": "one or two short sentences in HPC/scheduler context",
-  "aliases": ["optional", "aliases", "may", "be", "empty"]
+CATEGORY_ALLOWED = {
+    "scheduler",
+    "command",
+    "option_flag",
+    "config_param",
+    "config_file",
+    "log_or_state_path",
+    "queue_or_partition",
+    "resource",
+    "job_state",
+    "user_role",
+    "other_hpc",
+    "non_domain",
 }
 
-- Do NOT add any extra keys.
-- Do NOT output any text before or after the JSON.
-- If you are unsure about scheduler or category, choose "unknown" (scheduler) or "other_hpc"/"non_domain" (category)
-  instead of guessing wildly.
-"""
+ONTOLOGY_ROLE_ALLOWED = {"class", "object_property", "datatype_property", "individual", "drop", "unknown"}
 
-# -----------------------------------------------------------------------------
-# Few-shot examples (built from your extracted terms)
-# -----------------------------------------------------------------------------
-
-FEW_SHOT_EXAMPLES: List[Dict[str, Any]] = [
-    # 1. Option flag: --root
-    {
-        "term": "--root",
-        "context": "When launching containerized jobs from the cluster, use the --root option to set the container's root filesystem path.",
-        "json": {
-            "term": "--root",
-            "canonical": "--root",
-            "is_hpc_domain_term": True,
-            "scheduler": "generic",
-            "category": "option_flag",
-            "short_definition": "--root is a command-line option used to set the root filesystem path for a container or job environment on the cluster.",
-            "aliases": []
-        },
-    },
-    # 2. Option flag: --security-opt
-    {
-        "term": "--security-opt",
-        "context": "The --security-opt option can be passed in job scripts to configure additional security settings for containerized workloads.",
-        "json": {
-            "term": "--security-opt",
-            "canonical": "--security-opt",
-            "is_hpc_domain_term": True,
-            "scheduler": "generic",
-            "category": "option_flag",
-            "short_definition": "--security-opt is a command-line option used to configure extra security options for containerized jobs on the cluster.",
-            "aliases": []
-        },
-    },
-    # 3. Path used by plugins: /BasePath
-    {
-        "term": "/BasePath",
-        "context": "The Burst Buffer plugin stores its metadata under /BasePath, which must be accessible from all compute nodes.",
-        "json": {
-            "term": "/BasePath",
-            "canonical": "basepath",
-            "is_hpc_domain_term": True,
-            "scheduler": "generic",
-            "category": "log_or_state_path",
-            "short_definition": "/BasePath is a filesystem location used by the Burst Buffer or storage subsystem to store persistent state or metadata for jobs.",
-            "aliases": ["/basepath"]
-        },
-    },
-    # 4. Binary commonly used in job scripts: /bin/hostname
-    {
-        "term": "/bin/hostname",
-        "context": "Many job scripts invoke /bin/hostname to log which compute node the job is running on.",
-        "json": {
-            "term": "/bin/hostname",
-            "canonical": "/bin/hostname",
-            "is_hpc_domain_term": True,
-            "scheduler": "generic",
-            "category": "other_hpc",
-            "short_definition": "/bin/hostname is the system binary often called in job scripts to print the name of the compute node.",
-            "aliases": ["hostname"]
-        },
-    },
-    # 5. API family
-    {
-        "term": "API",
-        "context": "The scheduler's API allows applications to submit and monitor jobs programmatically instead of using only command-line tools.",
-        "json": {
-            "term": "API",
-            "canonical": "api",
-            "is_hpc_domain_term": True,
-            "scheduler": "generic",
-            "category": "other_hpc",
-            "short_definition": "The scheduler API is a programmatic interface that lets applications submit, control, and query jobs on the cluster.",
-            "aliases": [
-                "APIs",
-                "API call",
-                "API calls",
-                "API Functions",
-                "Application Program Interfaces",
-                "Application Programming Interfaces (APIs)"
-            ]
-        },
-    },
-    # 6. API call
-    {
-        "term": "API call",
-        "context": "Each API call to the workload manager returns a status code indicating whether the job submission or query succeeded.",
-        "json": {
-            "term": "API call",
-            "canonical": "api",
-            "is_hpc_domain_term": True,
-            "scheduler": "generic",
-            "category": "other_hpc",
-            "short_definition": "An API call is a single request made to the scheduler's API, such as submitting, cancelling, or querying a job.",
-            "aliases": ["API calls"]
-        },
-    },
-    # 7. Burst Buffer as a resource
-    {
-        "term": "Burst Buffer",
-        "context": "A Burst Buffer provides high-speed intermediate storage to accelerate I/O for jobs that read or write large volumes of data.",
-        "json": {
-            "term": "Burst Buffer",
-            "canonical": "burst buffer",
-            "is_hpc_domain_term": True,
-            "scheduler": "generic",
-            "category": "resource",
-            "short_definition": "A Burst Buffer is a high-performance storage layer used on HPC systems to stage or absorb I/O for data-intensive jobs.",
-            "aliases": [
-                "Burst Buffers",
-                "Burst buffers",
-                "Burst Buffer Resources",
-                "Burst Buffer States",
-                "Burst Buffer plugin"
-            ]
-        },
-    },
-    # 8. Non-domain example: numeric-heavy phrase
-    {
-        "term": "500 simple batch jobs",
-        "context": "This example shows 500 simple batch jobs used only to illustrate the scheduler's scaling behavior.",
-        "json": {
-            "term": "500 simple batch jobs",
-            "canonical": "500 simple batch jobs",
-            "is_hpc_domain_term": False,
-            "scheduler": "unknown",
-            "category": "non_domain",
-            "short_definition": "Not an HPC/scheduler-specific term; this is just a numeric example used in the documentation.",
-            "aliases": []
-        },
-    },
-]
-
-# -----------------------------------------------------------------------------
-# DB helpers
-# -----------------------------------------------------------------------------
-
-def init_llm_enrich_table(conn: sqlite3.Connection) -> None:
-    """
-    Ensure llm_enrich exists.
-
-    One row per canonical_term (here: lemma) with LLM-enriched information +
-    frequency statistics and aliases.
-
-    Now also stores example_term_id from llm_terms_unique so we can track
-    where each enriched row came from.
-    """
-    cur = conn.cursor()
-    cur.execute(
-        """
-        CREATE TABLE IF NOT EXISTS llm_enrich (
-            enrich_id        INTEGER PRIMARY KEY AUTOINCREMENT,
-            canonical_term   TEXT    NOT NULL UNIQUE,
-            example_term     TEXT    NOT NULL,
-            example_term_id  INTEGER,
-            scheduler        TEXT,
-            category         TEXT,
-            short_definition TEXT,
-            is_hpc_domain    INTEGER NOT NULL DEFAULT 1,
-            freq_total       INTEGER,
-            doc_count        INTEGER,
-            aliases_json     TEXT,
-            raw_json         TEXT
-        )
-        """
-    )
-    # If table already existed from an older version, add example_term_id if missing
-    cur.execute("PRAGMA table_info(llm_enrich)")
-    cols = [row[1] for row in cur.fetchall()]
-    if "example_term_id" not in cols:
-        cur.execute("ALTER TABLE llm_enrich ADD COLUMN example_term_id INTEGER")
-    conn.commit()
+DUL_BUCKET_ALLOWED = {"unknown", "information_object", "object", "description", "event"}
 
 
-def load_mistral():
+def clamp_enum(val: Any, allowed: set[str], default: str) -> str:
+    s = str(val).strip().lower() if val is not None else ""
+    return s if s in allowed else default
+
+
+def to_bool_int(val: Any, default: int = 1) -> int:
+    if val is None:
+        return default
+    if isinstance(val, bool):
+        return 1 if val else 0
+    if isinstance(val, (int, float)):
+        return 1 if val != 0 else 0
+    if isinstance(val, str):
+        t = val.strip().lower()
+        if t in ("true", "yes", "1", "y", "accept"):
+            return 1
+        if t in ("false", "no", "0", "n", "reject"):
+            return 0
+    return default
+
+
+def canonicalize(term: str) -> str:
+    # Conservative canonical form: lowercase + trim + collapse spaces
+    t = (term or "").strip().lower()
+    t = " ".join(t.split())
+    return t
+
+
+def clean_aliases(x: Any) -> str:
+    # store JSON list string
+    if not isinstance(x, list):
+        x = []
+    out: List[str] = []
+    for a in x:
+        s = str(a).strip()
+        if s:
+            out.append(s)
+    return json.dumps(out, ensure_ascii=False)
+
+
+# =============================================================================
+# Model loading
+# =============================================================================
+
+def load_model(model_id: str):
     device = "cuda" if torch.cuda.is_available() else "cpu"
+    torch.backends.cuda.matmul.allow_tf32 = True
+    torch.backends.cudnn.allow_tf32 = True
 
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
+    tokenizer = AutoTokenizer.from_pretrained(model_id)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "left"
 
     model = AutoModelForCausalLM.from_pretrained(
-        MODEL_ID,
+        model_id,
         torch_dtype=torch.float16 if device == "cuda" else torch.float32,
         device_map="auto" if device == "cuda" else None,
     )
@@ -312,351 +155,397 @@ def load_mistral():
     return tokenizer, model, device
 
 
-# -----------------------------------------------------------------------------
-# Fetch terms to enrich (from lemmatised + deduped table)
-# -----------------------------------------------------------------------------
+# =============================================================================
+# Prompt building
+# =============================================================================
 
-def fetch_terms_to_enrich(conn: sqlite3.Connection) -> List[Dict[str, Any]]:
-    """
-    Fetch ALL distinct lemma terms from llm_terms_unique that are not yet enriched in llm_enrich,
-    together with an example surface term, example doc/chunk, context text, and frequency stats.
+def build_prefix(cfg: PromptConfig) -> str:
+    if cfg.prompt_mode == "zero-shot":
+        return f"<s>[INST] <<SYS>>\n{cfg.system_prompt}\n<</SYS>>\n\n"
 
-    Data source:
-      - llm_terms_unique (built by term_extraction_llm with lemmatisation + dedupe)
-        columns: lemma, example_term_id, example_term, example_doc_id, example_chunk_id,
-                 freq_total, doc_count
-
-    Resume logic:
-    - A term is "already enriched" if its lemma exists in llm_enrich.canonical_term.
-    - If a job is killed, all rows already inserted into llm_enrich are preserved.
-    - On the next run, those lemma terms are skipped automatically, so we continue
-      where we stopped (even though the counter starts again at 1 for this run).
-    """
-    init_llm_enrich_table(conn)
-    cur = conn.cursor()
-
-    # Ensure llm_terms_unique exists
-    cur.execute(
-        "SELECT name FROM sqlite_master WHERE type='table' AND name='llm_terms_unique'"
-    )
-    if cur.fetchone() is None:
-        raise RuntimeError(
-            "Table 'llm_terms_unique' not found. "
-            "Run term_extraction_llm with --dedupe-after or --dedupe-only first "
-            "to build lemmatised + deduped terms."
-        )
-
-    cur.execute(
-        """
-        SELECT
-            u.lemma             AS canonical_term,
-            u.example_term_id   AS example_term_id,
-            u.example_term      AS example_term,
-            u.example_doc_id    AS example_doc_id,
-            u.example_chunk_id  AS example_chunk_id,
-            c.text              AS context_text,
-            u.freq_total        AS freq_total,
-            u.doc_count         AS doc_count
-        FROM llm_terms_unique AS u
-        LEFT JOIN llm_enrich AS e
-          ON e.canonical_term = u.lemma
-        LEFT JOIN contextual_chunk AS c
-          ON c.doc_id = u.example_doc_id
-         AND c.chunk_id = u.example_chunk_id
-        WHERE e.canonical_term IS NULL
-        ORDER BY u.example_term_id
-        """
-    )
-
-    rows = cur.fetchall()
-    terms: List[Dict[str, Any]] = []
-    for canonical, example_term_id, example_term, doc_id, chunk_id, ctx, freq_total, doc_count in rows:
-        terms.append(
-            {
-                "canonical_term": canonical,
-                "example_term_id": example_term_id,
-                "example_term": example_term,
-                "doc_id": doc_id,
-                "chunk_id": chunk_id,
-                "context_text": ctx or "",
-                "freq_total": freq_total,
-                "doc_count": doc_count,
-            }
-        )
-    return terms
-
-
-# -----------------------------------------------------------------------------
-# Prompt + LLM call (few-shot)
-# -----------------------------------------------------------------------------
-
-def build_enrich_prompt(term: str, context: str) -> str:
-    """
-    Build a Mistral [INST] style prompt for enriching a single term, with few-shot examples.
-    """
-    example_blocks = []
-    for i, ex in enumerate(FEW_SHOT_EXAMPLES, start=1):
-        example_blocks.append(
-            "Example {}:\n"
-            "TERM: {}\n"
-            "CONTEXT:\n{}\n"
-            "JSON:\n{}\n".format(
+    blocks: List[str] = []
+    for i, ex in enumerate(cfg.few_shot_examples or [], start=1):
+        blocks.append(
+            "Example {}:\nTERM: {}\nCONTEXT:\n{}\nJSON:\n{}\n".format(
                 i,
                 ex["term"],
                 ex["context"],
                 json.dumps(ex["json"], ensure_ascii=False),
             )
         )
-    examples_str = "\n".join(example_blocks)
+    examples_str = "\n".join(blocks)
 
-    user_content = (
-        "You will be given a single term and a short context snippet from HPC scheduler documentation.\n"
-        "Your job is to enrich the term STRICTLY following the JSON schema and rules in the system prompt.\n\n"
-        "Here are some examples of CORRECT enrichments:\n\n"
+    return (
+        f"<s>[INST] <<SYS>>\n{cfg.system_prompt}\n<</SYS>>\n\n"
+        "You will see examples of correct enrichments.\n"
+        "Follow the same schema and strictness for the NEW term.\n\n"
         f"{examples_str}\n"
-        "Now enrich the NEW term below. Follow exactly the same JSON structure and style.\n\n"
-        f"TERM:\n{term}\n\n"
-        "CONTEXT (excerpt where the term appears):\n"
+        "Now enrich ONLY the following NEW term.\n"
+    )
+
+
+def build_prompt(prefix: str, term: str, context: str) -> str:
+    user = (
+        "TERM:\n"
+        f"{term}\n\n"
+        "CONTEXT:\n"
         f"{context}\n\n"
         "Respond ONLY with a single JSON object and nothing else."
     )
-
-    return (
-        f"<s>[INST] <<SYS>>\n{SYSTEM_PROMPT}\n<</SYS>>\n\n"
-        f"{user_content}\n"
-        "[/INST]"
-    )
+    return f"{prefix}{user}[/INST]"
 
 
-def call_enrich_llm(tokenizer, model, device: str, term: str, context: str) -> str:
-    prompt = build_enrich_prompt(term, context)
-
-    encoded = tokenizer(
-        prompt,
-        return_tensors="pt",
-        truncation=True,
-        max_length=4096,
-    )
+def call_llm(tokenizer, model, device: str, prompt: str, max_new_tokens: int) -> str:
+    encoded = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=4096)
     input_ids = encoded["input_ids"].to(device)
     attention_mask = encoded["attention_mask"].to(device)
 
     with torch.no_grad():
-        generated_ids = model.generate(
+        generated = model.generate(
             input_ids=input_ids,
             attention_mask=attention_mask,
-            max_new_tokens=256,
+            max_new_tokens=max_new_tokens,
             do_sample=False,
             pad_token_id=tokenizer.pad_token_id,
+            eos_token_id=tokenizer.eos_token_id,
         )
 
-    # decode only the completion (new tokens)
-    gen_only_ids = generated_ids[0, input_ids.shape[-1]:]
+    gen_only_ids = generated[0, input_ids.shape[-1]:]
     return tokenizer.decode(gen_only_ids, skip_special_tokens=True)
 
 
-# -----------------------------------------------------------------------------
-# Parsing enrichment JSON
-# -----------------------------------------------------------------------------
+# =============================================================================
+# Robust brace-matching JSON extraction
+# =============================================================================
 
-def parse_enrich_output(raw_output: str, fallback_canonical: str, fallback_term: str) -> Dict[str, Any]:
-    """
-    Parse the LLM enrichment JSON safely.
+def extract_json_objects(text: str) -> List[str]:
+    objs: List[str] = []
+    start_positions: List[int] = []
+    for i, ch in enumerate(text):
+        if ch == "{":
+            start_positions.append(i)
 
-    Returns a dict with:
-      canonical_term, example_term, scheduler, category,
-      short_definition, is_hpc_domain, aliases_json, raw_json
+    for start in start_positions:
+        depth = 0
+        end = None
+        for j in range(start, len(text)):
+            c = text[j]
+            if c == "{":
+                depth += 1
+            elif c == "}":
+                depth -= 1
+                if depth == 0:
+                    end = j + 1
+                    break
+        if end is not None:
+            objs.append(text[start:end])
+
+    return objs
+
+
+def parse_enrich_output(raw: str, fallback_term: str) -> Dict[str, Any]:
     """
-    # Try to isolate the outermost JSON object
-    start = raw_output.find("{")
-    end = raw_output.rfind("}")
-    if start == -1 or end == -1 or end <= start:
-        data = {}
-    else:
-        json_str = raw_output[start : end + 1]
+    Returns normalized dict ready for DB insert.
+    """
+    data: Dict[str, Any] = {}
+
+    candidates = extract_json_objects(raw)
+    for js in reversed(candidates):
+        parsed: Any = None
         try:
-            data = json.loads(json_str)
+            parsed = json.loads(js)
         except json.JSONDecodeError:
             try:
-                data = ast.literal_eval(json_str)
+                parsed = ast.literal_eval(js)
             except Exception:
-                data = {}
+                parsed = None
 
-    if not isinstance(data, dict):
-        data = {}
+        if isinstance(parsed, dict):
+            data = parsed
+            break
 
-    # Normalise fields
+    # Pull fields (with fallbacks)
     term = str(data.get("term", fallback_term)).strip() or fallback_term
-    canonical = str(data.get("canonical", fallback_canonical)).strip().lower()
-    if not canonical:
-        canonical = fallback_canonical
+    canonical = str(data.get("canonical", "")).strip()
+    canonical = canonicalize(canonical) if canonical else canonicalize(term)
 
-    is_domain = data.get("is_hpc_domain_term", True)
-    if isinstance(is_domain, str):
-        is_domain_lower = is_domain.strip().lower()
-        is_hpc_domain = 1 if is_domain_lower in ("true", "yes", "1") else 0
-    else:
-        is_hpc_domain = 1 if bool(is_domain) else 0
+    is_hpc_domain = to_bool_int(data.get("is_hpc_domain", data.get("is_hpc_domain_term", 1)), default=1)
 
-    scheduler = str(data.get("scheduler", "unknown")).strip() or "unknown"
-    category = str(data.get("category", "other_hpc")).strip() or "other_hpc"
-    short_def = str(data.get("short_definition", "")).strip()
+    scheduler = clamp_enum(data.get("scheduler", "unknown"), SCHEDULER_ALLOWED, "unknown")
+    category = clamp_enum(data.get("category", "other_hpc"), CATEGORY_ALLOWED, "other_hpc")
+    ontology_role = clamp_enum(data.get("ontology_role", "unknown"), ONTOLOGY_ROLE_ALLOWED, "unknown")
+    dul_bucket = clamp_enum(data.get("dul_bucket", "unknown"), DUL_BUCKET_ALLOWED, "unknown")
 
-    # Aliases: list of strings → JSON-encoded
-    aliases = data.get("aliases", [])
-    if not isinstance(aliases, list):
-        aliases = []
-    cleaned_aliases = []
-    for a in aliases:
-        s = str(a).strip()
-        if s:
-            cleaned_aliases.append(s)
-    aliases_json = json.dumps(cleaned_aliases, ensure_ascii=False)
+    definition = str(
+        data.get("definition", data.get("short_definition", ""))
+    ).strip()
+
+    aliases_json = clean_aliases(data.get("aliases", []))
+
+    # If clearly non-domain, force conservative outputs
+    if is_hpc_domain == 0 or category == "non_domain":
+        is_hpc_domain = 0
+        category = "non_domain"
+        scheduler = "unknown" if scheduler not in {"slurm", "lsf", "both", "generic"} else scheduler
+        ontology_role = "drop" if ontology_role == "unknown" else ontology_role
+        dul_bucket = "unknown" if dul_bucket not in DUL_BUCKET_ALLOWED else dul_bucket
 
     return {
-        "canonical_term": canonical,
-        "example_term": term,
+        "term": term,
+        "canonical": canonical,
         "scheduler": scheduler,
+        "ontology_role": ontology_role,
         "category": category,
-        "short_definition": short_def,
+        "dul_bucket": dul_bucket,
         "is_hpc_domain": is_hpc_domain,
+        "definition": definition,
         "aliases_json": aliases_json,
-        "raw_json": raw_output.strip(),
+        "raw_json": raw.strip(),
     }
 
 
-# -----------------------------------------------------------------------------
-# Main processing loop (process all pending terms; resume via DB)
-# -----------------------------------------------------------------------------
+# =============================================================================
+# DB schema
+# =============================================================================
+
+def init_enrich_table(conn: sqlite3.Connection, table: str) -> None:
+    cur = conn.cursor()
+    cur.execute(
+        f"""
+        CREATE TABLE IF NOT EXISTS {table} (
+            term_id        INTEGER PRIMARY KEY,
+            term           TEXT    NOT NULL,
+            canonical      TEXT    NOT NULL,
+            scheduler      TEXT    NOT NULL,
+            ontology_role  TEXT    NOT NULL,
+            category       TEXT    NOT NULL,
+            dul_bucket     TEXT    NOT NULL,
+            is_hpc_domain  INTEGER NOT NULL,
+            definition     TEXT,
+            aliases_json   TEXT,
+            raw_json       TEXT,
+            freq_total     INTEGER NOT NULL,
+            FOREIGN KEY(term_id) REFERENCES llm_terms_final(term_id)
+        )
+        """
+    )
+    conn.commit()
+
+
+def fetch_terms_to_enrich(
+    conn: sqlite3.Connection,
+    terms_table: str,
+    enrich_table: str,
+    min_freq: int,
+    max_rows: int,
+    offset_term_id: int,
+) -> List[Tuple[int, str, str, str, int]]:
+    """
+    Returns list of (term_id, term, doc_id, chunk_id, freq_total) for terms that are not yet enriched.
+    """
+    cur = conn.cursor()
+
+    sql = f"""
+        SELECT t.term_id, t.term, t.doc_id, t.chunk_id, t.freq_total
+        FROM {terms_table} t
+        LEFT JOIN {enrich_table} e
+          ON e.term_id = t.term_id
+        WHERE e.term_id IS NULL
+          AND t.term_id > ?
+    """
+    params: List[Any] = [offset_term_id]
+
+    if min_freq and min_freq > 1:
+        sql += " AND t.freq_total >= ?"
+        params.append(min_freq)
+
+    sql += " ORDER BY t.term_id"
+
+    if max_rows and max_rows > 0:
+        sql += " LIMIT ?"
+        params.append(max_rows)
+
+    cur.execute(sql, params)
+    return cur.fetchall()
+
+
+def fetch_context(conn: sqlite3.Connection, chunks_table: str, doc_id: str, chunk_id: str, text_col: str) -> str:
+    cur = conn.cursor()
+    cur.execute(
+        f"""
+        SELECT {text_col}
+        FROM {chunks_table}
+        WHERE doc_id = ? AND chunk_id = ?
+        """,
+        (doc_id, chunk_id),
+    )
+    row = cur.fetchone()
+    return (row[0] if row and row[0] else "") or ""
+
+
+def insert_enrichment(
+    conn: sqlite3.Connection,
+    enrich_table: str,
+    term_id: int,
+    term: str,
+    canonical: str,
+    scheduler: str,
+    ontology_role: str,
+    category: str,
+    dul_bucket: str,
+    is_hpc_domain: int,
+    definition: str,
+    aliases_json: str,
+    raw_json: str,
+    freq_total: int,
+) -> None:
+    cur = conn.cursor()
+    cur.execute(
+        f"""
+        INSERT OR REPLACE INTO {enrich_table} (
+            term_id, term, canonical, scheduler, ontology_role, category, dul_bucket,
+            is_hpc_domain, definition, aliases_json, raw_json, freq_total
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            term_id, term, canonical, scheduler, ontology_role, category, dul_bucket,
+            is_hpc_domain, definition, aliases_json, raw_json, freq_total
+        ),
+    )
+
+
+# =============================================================================
+# Main loop
+# =============================================================================
 
 def enrich_terms(
     conn: sqlite3.Connection,
     tokenizer,
     model,
     device: str,
+    cfg: PromptConfig,
+    model_id: str,
+    terms_table: str,
+    enrich_table: str,
+    chunks_table: str,
+    chunks_text_col: str,
+    min_freq: int,
+    max_rows: int,
+    offset_term_id: int,
+    debug_first: bool,
+    commit_every: int,
 ) -> None:
-    init_llm_enrich_table(conn)
+    init_enrich_table(conn, enrich_table)
 
-    candidates = fetch_terms_to_enrich(conn)
-    total_remaining = len(candidates)
+    prefix = build_prefix(cfg)
 
-    print(f"Enriching {total_remaining} terms...")
+    rows = fetch_terms_to_enrich(
+        conn=conn,
+        terms_table=terms_table,
+        enrich_table=enrich_table,
+        min_freq=min_freq,
+        max_rows=(1 if debug_first else max_rows),
+        offset_term_id=offset_term_id,
+    )
 
-    if total_remaining == 0:
+    total = len(rows)
+    print(f"Enriching {total} terms from {terms_table} -> {enrich_table} (min_freq={min_freq})")
+    if total == 0:
         return
 
-    cur = conn.cursor()
+    for i, (term_id, term, doc_id, chunk_id, freq_total) in enumerate(rows, start=1):
+        if i == 1 or i % 10 == 0:
+            print(f"  -> {i}/{total}: term_id={term_id}, term='{term}', freq_total={freq_total}")
 
-    for idx, item in enumerate(candidates, start=1):
-        canonical = item["canonical_term"]
-        ex_id = item["example_term_id"]
-        term = item["example_term"]
-        ctx = item["context_text"]
-        freq_total = item["freq_total"]
-        doc_count = item["doc_count"]
+        context = fetch_context(conn, chunks_table, doc_id, chunk_id, chunks_text_col)
 
-        if idx == 1 or idx % 10 == 0:
-            print(
-                f"  -> term {idx}/{total_remaining}, "
-                f"example_term_id={ex_id}, canonical='{canonical}', "
-                f"freq_total={freq_total}, doc_count={doc_count}"
-            )
+        prompt = build_prompt(prefix, term=term, context=context)
+        raw = call_llm(tokenizer, model, device, prompt, max_new_tokens=cfg.max_new_tokens)
+        parsed = parse_enrich_output(raw, fallback_term=term)
 
-        raw = call_enrich_llm(tokenizer, model, device, term, ctx)
-        parsed = parse_enrich_output(raw, fallback_canonical=canonical, fallback_term=term)
-
-        # Debug for first term in this run
-        if idx == 1:
-            print("\n=== DEBUG FIRST TERM RAW (first 600 chars) ===")
-            print(raw[:600])
-            print("\n=== DEBUG FIRST TERM PARSED ===")
+        if debug_first:
+            print("\n=== RAW OUTPUT (first 900 chars) ===")
+            print(raw[:900])
+            print("\n=== PARSED ===")
             print(parsed)
-            print("------\n")
+            return
 
-        cur.execute(
-            """
-            INSERT OR IGNORE INTO llm_enrich (
-                canonical_term,
-                example_term,
-                example_term_id,
-                scheduler,
-                category,
-                short_definition,
-                is_hpc_domain,
-                freq_total,
-                doc_count,
-                aliases_json,
-                raw_json
-            )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """,
-            (
-                parsed["canonical_term"],
-                parsed["example_term"],
-                ex_id,
-                parsed["scheduler"],
-                parsed["category"],
-                parsed["short_definition"],
-                parsed["is_hpc_domain"],
-                freq_total,
-                doc_count,
-                parsed["aliases_json"],
-                parsed["raw_json"],
-            ),
+        insert_enrichment(
+            conn=conn,
+            enrich_table=enrich_table,
+            term_id=term_id,
+            term=term,
+            canonical=parsed["canonical"],
+            scheduler=parsed["scheduler"],
+            ontology_role=parsed["ontology_role"],
+            category=parsed["category"],
+            dul_bucket=parsed["dul_bucket"],
+            is_hpc_domain=parsed["is_hpc_domain"],
+            definition=parsed["definition"],
+            aliases_json=parsed["aliases_json"],
+            raw_json=parsed["raw_json"],
+            freq_total=freq_total,
         )
-        conn.commit()  # commit after each term so progress is saved even if the job is killed
 
-    print("Term enrichment done.")
+        if commit_every > 0 and (i % commit_every == 0):
+            conn.commit()
+
+    conn.commit()
+    print("Done.")
 
 
-# -----------------------------------------------------------------------------
-# Entry point
-# -----------------------------------------------------------------------------
+# =============================================================================
+# CLI
+# =============================================================================
 
-if __name__ == "__main__":
-    import argparse
+def main():
+    ap = argparse.ArgumentParser(description="OLAF-LLM: term enrichment from llm_terms_final into llm_enrich_final (YAML prompt).")
 
-    parser = argparse.ArgumentParser(
-        description="LLM-based term enrichment over lemmatised + deduped llm_terms_unique (HPC docs)."
-    )
-    parser.add_argument(
-        "--debug-first",
-        action="store_true",
-        help="Enrich only the first pending term and print raw + parsed output (no DB writes).",
-    )
-    args = parser.parse_args()
+    ap.add_argument("--db", required=True, help="Path to SQLite DB.")
+    ap.add_argument("--prompt-config", default="prompts/term_enrich_llm.yaml")
+    ap.add_argument("--model-id", default="mistralai/Mistral-7B-Instruct-v0.3", help="HF model id.")
 
-    conn = sqlite3.connect(DB_PATH)
+    ap.add_argument("--terms-table", default="llm_terms_final", help="Input terms table")
+    ap.add_argument("--enrich-table", default="llm_enrich_final", help="Output enrichment table.")
+    ap.add_argument("--chunks-table", default="contextual_chunk", help="Chunks table for context lookups.")
+    ap.add_argument("--chunks-text-col", default="text", help="Text column in chunks table.")
+
+    ap.add_argument("--min-freq", type=int, default=2, help="Only enrich terms with freq_total >= min_freq (set 0/1 to disable).")
+    ap.add_argument("--max-rows", type=int, default=0, help="0=all; otherwise limit number of terms enriched this run.")
+    ap.add_argument("--offset-term-id", type=int, default=0, help="Only enrich terms with term_id > offset-term-id.")
+    ap.add_argument("--commit-every", type=int, default=50, help="Commit every N terms (0 disables periodic commits).")
+
+    ap.add_argument("--debug-first", action="store_true", help="Enrich only 1 term; print raw+parsed; no DB writes.")
+
+    args = ap.parse_args()
+
+    cfg = PromptConfig.from_yaml(args.prompt_config)
+
+    conn = sqlite3.connect(args.db)
     try:
-        tokenizer, model, device = load_mistral()
+        tokenizer, model, device = load_model(args.model_id)
 
-        if args.debug_first:
-            candidates = fetch_terms_to_enrich(conn)
-            if not candidates:
-                print("No terms left to enrich.")
-            else:
-                item = candidates[0]
-                canonical = item["canonical_term"]
-                term = item["example_term"]
-                ctx = item["context_text"]
-                ex_id = item["example_term_id"]
-                print(f"DEBUG example_term_id={ex_id}, term='{term}', canonical='{canonical}'")
-
-                raw = call_enrich_llm(tokenizer, model, device, term, ctx)
-                print("\n=== RAW OUTPUT (first 800 chars) ===")
-                print(raw[:800])
-
-                parsed = parse_enrich_output(raw, fallback_canonical=canonical, fallback_term=term)
-                print("\n=== PARSED ENRICHMENT ===")
-                print(parsed)
-                if not parsed["short_definition"]:
-                    print("(Warning: empty short_definition)")
-        else:
-            enrich_terms(
-                conn,
-                tokenizer,
-                model,
-                device,
-            )
-
+        enrich_terms(
+            conn=conn,
+            tokenizer=tokenizer,
+            model=model,
+            device=device,
+            cfg=cfg,
+            model_id=args.model_id,
+            terms_table=args.terms_table,
+            enrich_table=args.enrich_table,
+            chunks_table=args.chunks_table,
+            chunks_text_col=args.chunks_text_col,
+            min_freq=args.min_freq,
+            max_rows=args.max_rows,
+            offset_term_id=args.offset_term_id,
+            debug_first=args.debug_first,
+            commit_every=args.commit_every,
+        )
     finally:
         conn.close()
+
+
+if __name__ == "__main__":
+    main()

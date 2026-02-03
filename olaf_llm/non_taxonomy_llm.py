@@ -1,473 +1,347 @@
-# file: olaf_llm/non_taxonomy_llm.py
 from __future__ import annotations
 
-import sqlite3
+import argparse
 import json
-import ast
+import os
 import re
-from typing import List, Dict, Any, Optional, Set
+import sqlite3
+from dataclasses import dataclass
+from datetime import datetime
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
+import yaml
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# -----------------------------------------------------------------------------
-# Config
-# -----------------------------------------------------------------------------
 
-DB_PATH = "onto_db/onto_new.db"
-MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.3"
+# =============================================================================
+# Enums / validation
+# =============================================================================
 
-torch.backends.cuda.matmul.allow_tf32 = True
-torch.backends.cudnn.allow_tf32 = True
-
-# -----------------------------------------------------------------------------
-# SYSTEM PROMPT (NON-TAXONOMIC RELATIONS)
-# -----------------------------------------------------------------------------
-
-SYSTEM_PROMPT_NON_TAX = """\
-You are an expert in High Performance Computing (HPC) and job schedulers such as SLURM and IBM LSF.
-Your task is STRICT NON-TAXONOMIC RELATION EXTRACTION for ONTOLOGY BUILDING.
-
-You are given:
-- A short documentation CHUNK (HPC scheduler text).
-- A list of DOMAIN TERMS that occur in that chunk.
-- For each term: its CATEGORY and a short DEFINITION from a previous enrichment step.
-
-You must propose only high-quality NON-TAXONOMIC relations between these terms.
-
-WHAT COUNTS AS NON-TAXONOMIC:
-These are relations that are NOT IS-A (type-of) hypernyms. Examples include:
-- part_of / component_of:
-  - "suspended jobs are part of the job queue"
-  - "slurmctld is a component of the Slurm controller"
-  - "task/rank is part of an application"
-  - "CPU cores are part of a node"
-- provided_by / exposed_via:
-  - "REST API is provided by Slurm"
-  - "Slurm's REST API is exposed via the slurmrestd daemon"
-- configured_by / configured_via:
-  - "slurmctld provides configuration to slurmd"
-  - "a floating partition is configured with a Partition QOS"
-- uses / consumes / depends_on:
-  - "jobs use GPU resources"
-  - "the Burst Buffer plugin uses a base path"
-- stored_in / logged_to / maintained_in:
-  - "state is stored under /var/spool/slurm"
-  - "active bitmap is maintained inside the gang scheduler logic"
-  - "logs are written to slurmctld.log"
-- other clear structural or functional relations (runs_on, submitted_via, scheduled_by, communicates_with, etc.).
-
-WHAT YOU MUST *NOT* OUTPUT HERE:
-- IS-A / type-of relations:
-  - "job preemption is a type of preemption"
-  - "Partition QOS is a type of QOS"
-  - "Singularity is a type of hpcng container runtime"
-  These belong to the TAXONOMY component and MUST NOT be output by this script.
-- ALIASES / SYNONYMS:
-  - "slurmd (compute nodes)" vs "slurmd"
-  - "pmi2" vs "pmi-2"
-  - "mem_per_cpu" vs "memory_per_cpu"
-  Do NOT output alias_of / same_as edges here. Synonyms are handled elsewhere.
-- PURELY NUMERIC OR EXAMPLE-ONLY content:
-  - "500 simple batch jobs", "1,024 nodes", "0.5 seconds"
-  These are examples, not stable relations between domain concepts.
-
-CATEGORY HINTS:
-Each term belongs to a category such as:
-- scheduler, command, option_flag, config_param, config_file, log_or_state_path,
-  queue_or_partition, resource, job_state, other_hpc, non_domain.
-Use these to guide reasonable relations, e.g.:
-- scheduler / component  → provides_configuration_to → daemon
-- job / queue_or_partition → submitted_to / runs_in
-- job / resource → uses_resource / requests_resource
-- plugin / resource → manages / exposes / allocates
-
-HARD CONSTRAINT (VERY IMPORTANT):
-- Both "subject" and "object" MUST be EXACTLY one of the DOMAIN TERMS listed.
-- You are NOT allowed to invent or introduce new subjects or objects such as
-  "flavor", "feature", "man page", "factor", "modifier", etc., unless that exact string
-  appears as a DOMAIN TERM.
-- If there are NO valid NON-TAXONOMIC relations using ONLY the provided terms,
-  you MUST return:
-  { "relations": [] }.
-
-PREDICATE FORMAT:
-- Use short, lower_snake_case predicates that describe the relation, such as:
-  - "part_of", "component_of", "provided_by", "exposed_via",
-    "configured_by", "configured_via", "uses_resource", "depends_on",
-    "submitted_to", "runs_in", "scheduled_by", "logs_to",
-    "stored_in", "maintained_in", "communicates_with", "runs_on", "uses_plugin".
-- Avoid extremely vague predicates like "related_to" or "associated_with" unless you
-  genuinely cannot be more specific.
-
-RELATION TYPE:
-Set "relation_type" to a coarse label summarising the relation:
-- "part_of"
-- "configuration"
-- "provision"
-- "usage"
-- "data_flow"
-- "logging"
-- "scheduling"
-- "other"
-
-OUTPUT FORMAT (STRICT):
-You MUST output EXACTLY one JSON object and nothing else.
-
-The JSON schema is:
-
-{
-  "relations": [
-    {
-      "subject": "term_from_the_list",
-      "predicate": "lower_snake_case_relation",
-      "object": "term_from_the_list",
-      "relation_type": "part_of | configuration | provision | usage | data_flow | logging | scheduling | other",
-      "justification": "one short sentence explaining why this relation holds in the text"
-    },
-    ...
-  ]
+RELATION_TYPE_ENUM: Set[str] = {
+    "part_of",
+    "configuration",
+    "provision",
+    "usage",
+    "data_flow",
+    "logging",
+    "scheduling",
+    "other",
 }
 
-Rules:
-- Every subject and object MUST be taken from the provided term list ONLY.
-- Do NOT invent new concepts.
-- Do NOT output is-a / type-of edges.
-- Do NOT output alias/synonym relations.
-- Do NOT output duplicate edges.
-- If NO valid non-taxonomic relations exist, return:
-  { "relations": [] }.
-"""
+PREDICATE_RE = re.compile(r"^[a-z][a-z0-9_]{1,63}$")  # lower_snake_case-ish
 
-# -----------------------------------------------------------------------------
-# FEW-SHOT EXAMPLES (HPC NON-TAX RELATIONS)
-# -----------------------------------------------------------------------------
 
-NON_TAX_FEW_SHOT_EXAMPLES: List[Dict[str, Any]] = [
-    # Example 1 – suspended jobs, job queue, active bitmap
-    {
-        "text": (
-            "Suspended jobs are part of the job queue, as they are tracked within it. "
-            "The active bitmap is maintained inside the gang scheduler logic, which itself is part of the job queue."
-        ),
-        "terms": [
-            "suspended jobs",
-            "job queue",
-            "active bitmap",
-            "gang scheduler logic",
-        ],
-        "json": {
-            "relations": [
-                {
-                    "subject": "suspended jobs",
-                    "predicate": "part_of",
-                    "object": "job queue",
-                    "relation_type": "part_of",
-                    "justification": "The text explicitly states that suspended jobs are part of the job queue.",
-                },
-                {
-                    "subject": "active bitmap",
-                    "predicate": "maintained_in",
-                    "object": "gang scheduler logic",
-                    "relation_type": "data_flow",
-                    "justification": "The active bitmap is described as being maintained inside the gang scheduler logic.",
-                },
-                {
-                    "subject": "gang scheduler logic",
-                    "predicate": "part_of",
-                    "object": "job queue",
-                    "relation_type": "part_of",
-                    "justification": "The gang scheduler logic is described as part of the job queue.",
-                },
-            ]
-        },
-    },
-    # Example 2 – Slurm, REST API, slurmrestd
-    {
-        "text": (
-            "Slurm provides a REST API that allows external tools to submit and inspect jobs over HTTP. "
-            "This REST API is exposed via the slurmrestd daemon, which runs as a service on the controller node."
-        ),
-        "terms": [
-            "Slurm",
-            "REST API",
-            "slurmrestd daemon",
-            "controller node",
-        ],
-        "json": {
-            "relations": [
-                {
-                    "subject": "REST API",
-                    "predicate": "provided_by",
-                    "object": "Slurm",
-                    "relation_type": "provision",
-                    "justification": "The text says that Slurm provides a REST API.",
-                },
-                {
-                    "subject": "REST API",
-                    "predicate": "exposed_via",
-                    "object": "slurmrestd daemon",
-                    "relation_type": "provision",
-                    "justification": "The REST API is described as being exposed via the slurmrestd daemon.",
-                },
-                {
-                    "subject": "slurmrestd daemon",
-                    "predicate": "runs_on",
-                    "object": "controller node",
-                    "relation_type": "other",
-                    "justification": "The slurmrestd daemon is said to run as a service on the controller node.",
-                },
-            ]
-        },
-    },
-    # Example 3 – slurmctld, slurmd, configuration
-    {
-        "text": (
-            "The slurmctld daemon is responsible for providing configuration and job information to slurmd on "
-            "each compute node. slurmd uses this configuration to launch and manage job steps locally."
-        ),
-        "terms": [
-            "slurmctld",
-            "slurmd",
-            "compute node",
-            "job steps",
-        ],
-        "json": {
-            "relations": [
-                {
-                    "subject": "slurmctld",
-                    "predicate": "provides_configuration_to",
-                    "object": "slurmd",
-                    "relation_type": "configuration",
-                    "justification": "slurmctld is described as providing configuration to slurmd.",
-                },
-                {
-                    "subject": "slurmd",
-                    "predicate": "runs_on",
-                    "object": "compute node",
-                    "relation_type": "other",
-                    "justification": "slurmd runs on each compute node according to the text.",
-                },
-                {
-                    "subject": "slurmd",
-                    "predicate": "manages",
-                    "object": "job steps",
-                    "relation_type": "scheduling",
-                    "justification": "slurmd is said to launch and manage job steps locally.",
-                },
-            ]
-        },
-    },
-    # Example 4 – task/rank, application, CPUs and nodes
-    {
-        "text": (
-            "Each task or rank in an MPI application is bound to specific CPU cores on a node. "
-            "These tasks or ranks are part of the application, which may span multiple nodes."
-        ),
-        "terms": [
-            "task/rank",
-            "application",
-            "CPU cores",
-            "node",
-        ],
-        "json": {
-            "relations": [
-                {
-                    "subject": "task/rank",
-                    "predicate": "part_of",
-                    "object": "application",
-                    "relation_type": "part_of",
-                    "justification": "The text states that each task or rank is part of the application.",
-                },
-                {
-                    "subject": "task/rank",
-                    "predicate": "bound_to",
-                    "object": "CPU cores",
-                    "relation_type": "usage",
-                    "justification": "Tasks or ranks are described as being bound to specific CPU cores.",
-                },
-                {
-                    "subject": "CPU cores",
-                    "predicate": "part_of",
-                    "object": "node",
-                    "relation_type": "part_of",
-                    "justification": "CPU cores are implicitly part of a node, as they are cores on a node.",
-                },
-            ]
-        },
-    },
-    # Example 5 – negative example: only is-a (no non-tax relations)
-    {
-        "text": (
-            "Job preemption is a specific type of preemption in Slurm. Partition QOS is a specific type of QOS "
-            "assigned to a partition. Singularity is an example of an hpcng container runtime."
-        ),
-        "terms": [
-            "job preemption",
-            "preemption",
-            "Partition QOS",
-            "QOS",
-            "Singularity",
-            "hpcng container runtime",
-        ],
-        "json": {
-            "relations": []
-        },
-    },
-]
+# =============================================================================
+# Prompt config (STRICT: YAML required)
+# =============================================================================
 
-# -----------------------------------------------------------------------------
-# DB helpers
-# -----------------------------------------------------------------------------
+@dataclass(frozen=True)
+class PromptConfig:
+    system_prompt: str
+    few_shots: List[Dict[str, Any]]
+    max_terms_per_chunk: int
+    max_new_tokens: int
+    allowed_predicates: Optional[Set[str]]
 
-def init_llm_non_tax_table(conn: sqlite3.Connection) -> None:
-    """
-    Ensure llm_non_taxonomy_edges exists.
 
-    One row per NON-TAX relation, with doc + chunk context and raw JSON.
-    """
-    cur = conn.cursor()
-    cur.execute(
-        """
-        CREATE TABLE IF NOT EXISTS llm_non_taxonomy_edges (
-            edge_id       INTEGER PRIMARY KEY AUTOINCREMENT,
-            doc_id        TEXT    NOT NULL,
-            chunk_id      TEXT    NOT NULL,
-            subject_term  TEXT    NOT NULL,
-            predicate     TEXT    NOT NULL,
-            object_term   TEXT    NOT NULL,
-            relation_type TEXT,
-            justification TEXT,
-            raw_json      TEXT,
-            UNIQUE(doc_id, chunk_id, subject_term, predicate, object_term)
-        )
-        """
+def load_prompt_config(path: str) -> PromptConfig:
+    if not path:
+        raise RuntimeError("--prompt-config is required (YAML prompt file).")
+    if not os.path.exists(path):
+        raise RuntimeError(f"Prompt config not found: {path}")
+
+    with open(path, "r", encoding="utf-8") as f:
+        obj = yaml.safe_load(f) or {}
+
+    if not isinstance(obj, dict):
+        raise RuntimeError("Invalid YAML prompt config: expected a mapping/object at top level.")
+
+    system_prompt = obj.get("system_prompt")
+    few_shots = obj.get("few_shots") or obj.get("few_shot_examples")
+
+    if not system_prompt or not isinstance(system_prompt, str):
+        raise RuntimeError("YAML prompt config must include 'system_prompt' as a non-empty string.")
+
+    if few_shots is None or not isinstance(few_shots, list):
+        raise RuntimeError("YAML prompt config must include 'few_shots' as a list (can be empty).")
+
+    # Validate few-shots structure strictly
+    for i, ex in enumerate(few_shots, start=1):
+        if not isinstance(ex, dict):
+            raise RuntimeError(f"few_shots[{i}] must be a mapping with keys: text, terms, json.")
+        if "text" not in ex or "terms" not in ex or "json" not in ex:
+            raise RuntimeError(f"few_shots[{i}] must contain keys: text, terms, json.")
+        if not isinstance(ex["text"], str):
+            raise RuntimeError(f"few_shots[{i}].text must be a string.")
+        if not isinstance(ex["terms"], list) or not all(isinstance(t, str) for t in ex["terms"]):
+            raise RuntimeError(f"few_shots[{i}].terms must be a list of strings.")
+        if not isinstance(ex["json"], dict):
+            raise RuntimeError(f"few_shots[{i}].json must be a dict (structured JSON object).")
+
+    max_terms_per_chunk = int(obj.get("max_terms_per_chunk") or 18)
+    max_new_tokens = int(obj.get("max_new_tokens") or 256)
+
+    allowed_predicates = obj.get("allowed_predicates")
+    if allowed_predicates is not None:
+        if not isinstance(allowed_predicates, list) or not all(isinstance(p, str) for p in allowed_predicates):
+            raise RuntimeError("'allowed_predicates' must be a list of strings when provided.")
+        allowed_predicates_set: Optional[Set[str]] = {p.strip() for p in allowed_predicates if p.strip()}
+    else:
+        allowed_predicates_set = None
+
+    return PromptConfig(
+        system_prompt=system_prompt.strip(),
+        few_shots=few_shots,
+        max_terms_per_chunk=max_terms_per_chunk,
+        max_new_tokens=max_new_tokens,
+        allowed_predicates=allowed_predicates_set,
     )
-    conn.commit()
 
 
-def load_mistral():
+# =============================================================================
+# JSON brace-matching extraction
+# =============================================================================
+
+def extract_first_json_object(text: str) -> Optional[str]:
+    """
+    Extract the first top-level JSON object by brace matching.
+    Handles leading/trailing junk (LLM sometimes prints extra text).
+    """
+    if not text:
+        return None
+
+    in_str = False
+    esc = False
+    depth = 0
+    start = None
+
+    for i, ch in enumerate(text):
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+            continue
+
+        if ch == '"':
+            in_str = True
+            continue
+
+        if ch == "{":
+            if depth == 0:
+                start = i
+            depth += 1
+        elif ch == "}":
+            if depth > 0:
+                depth -= 1
+                if depth == 0 and start is not None:
+                    return text[start : i + 1]
+
+    return None
+
+
+# =============================================================================
+# Model loading
+# =============================================================================
+
+def load_model(model_id: str):
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
-    tokenizer.padding_side = "left"
+    tok = AutoTokenizer.from_pretrained(model_id)
+    if tok.pad_token is None:
+        tok.pad_token = tok.eos_token
+    tok.padding_side = "left"
 
     model = AutoModelForCausalLM.from_pretrained(
-        MODEL_ID,
+        model_id,
         torch_dtype=torch.float16 if device == "cuda" else torch.float32,
         device_map="auto" if device == "cuda" else None,
     )
     if model.config.pad_token_id is None:
-        model.config.pad_token_id = tokenizer.pad_token_id
+        model.config.pad_token_id = tok.pad_token_id
 
-    return tokenizer, model, device
+    return tok, model, device
 
 
-# -----------------------------------------------------------------------------
-# Fetch chunks + candidate terms
-# -----------------------------------------------------------------------------
+# =============================================================================
+# DB schema + indexes
+# =============================================================================
 
-def fetch_chunks_for_non_taxonomy(
-    conn: sqlite3.Connection,
-    max_chunks: Optional[int] = None,
-    offset_rowid: int = 0,
-) -> List[tuple]:
-    """
-    Fetch chunks that still need non-taxonomic relation extraction.
-
-    - Use contextual_chunk.rowid for stable ordering.
-    - Skip chunks that already have at least one entry in llm_non_taxonomy_edges.
-    """
-    init_llm_non_tax_table(conn)
+def ensure_tables(conn: sqlite3.Connection, out_table: str, runs_table: str) -> None:
     cur = conn.cursor()
 
-    sql = """
-        SELECT rowid, doc_id, chunk_id, text
-        FROM contextual_chunk
-        WHERE rowid > ?
-          AND NOT EXISTS (
-              SELECT 1
-              FROM llm_non_taxonomy_edges e
-              WHERE e.chunk_id = contextual_chunk.chunk_id
-          )
-        ORDER BY rowid
+    # Output table with provenance (doc_id, chunk_id) + raw_json for auditability
+    cur.execute(
+        f"""
+        CREATE TABLE IF NOT EXISTS {out_table} (
+            edge_id        INTEGER PRIMARY KEY AUTOINCREMENT,
+            doc_id         TEXT NOT NULL,
+            chunk_id       TEXT NOT NULL,
+            subject        TEXT NOT NULL,
+            predicate      TEXT NOT NULL,
+            object         TEXT NOT NULL,
+            relation_type  TEXT NOT NULL,
+            justification  TEXT,
+            raw_json       TEXT,
+            UNIQUE(doc_id, chunk_id, subject, predicate, object)
+        )
+        """
+    )
+
+    # Runs table: mark each (doc_id,chunk_id) as done even if 0 edges.
+    cur.execute(
+        f"""
+        CREATE TABLE IF NOT EXISTS {runs_table} (
+            doc_id        TEXT NOT NULL,
+            chunk_id      TEXT NOT NULL,
+            rowid_src     INTEGER,
+            status        TEXT NOT NULL,   -- 'done' | 'error'
+            processed_at  TEXT NOT NULL,
+            error_msg     TEXT,
+            PRIMARY KEY (doc_id, chunk_id)
+        )
+        """
+    )
+
+    # Indexes for stability/perf
+    cur.execute(f"CREATE INDEX IF NOT EXISTS idx_{out_table}_doc_chunk ON {out_table}(doc_id, chunk_id)")
+    cur.execute(f"CREATE INDEX IF NOT EXISTS idx_{out_table}_pred ON {out_table}(predicate)")
+    cur.execute(f"CREATE INDEX IF NOT EXISTS idx_{runs_table}_status ON {runs_table}(status)")
+    conn.commit()
+
+
+# =============================================================================
+# Fetch chunks that are not processed (resume)
+# =============================================================================
+
+def fetch_unprocessed_chunks(
+    conn: sqlite3.Connection,
+    input_table: str,
+    doc_col: str,
+    chunk_col: str,
+    text_col: str,
+    runs_table: str,
+    offset_rowid: int,
+    max_chunks: int,
+) -> List[Tuple[int, str, str, str]]:
     """
-    params = [offset_rowid]
-    if max_chunks is not None:
-        sql += " LIMIT ?"
+    Returns rows: (rowid, doc_id, chunk_id, text) for chunks not yet in runs_table (status=done/error).
+    Using runs_table is safer than checking out_table existence, because a chunk may legitimately yield 0 edges.
+    """
+    cur = conn.cursor()
+
+    lim_sql = ""
+    params: List[Any] = [offset_rowid]
+    if max_chunks and max_chunks > 0:
+        lim_sql = "LIMIT ?"
         params.append(max_chunks)
 
+    sql = f"""
+    SELECT cc.rowid, cc.{doc_col}, cc.{chunk_col}, cc.{text_col}
+    FROM {input_table} AS cc
+    WHERE cc.rowid > ?
+      AND NOT EXISTS (
+          SELECT 1 FROM {runs_table} r
+          WHERE r.doc_id = cc.{doc_col} AND r.chunk_id = cc.{chunk_col}
+      )
+    ORDER BY cc.rowid
+    {lim_sql}
+    """
     cur.execute(sql, params)
     return cur.fetchall()
 
 
-def get_candidate_terms_for_chunk(
-    conn: sqlite3.Connection, doc_id: str, chunk_id: str
+# =============================================================================
+# Candidate terms per chunk (from llm_terms_final + term_enrich_final)
+# =============================================================================
+
+def fetch_terms_for_chunk(
+    conn: sqlite3.Connection,
+    terms_table: str,
+    enrich_table: str,
+    doc_id: str,
+    chunk_id: str,
+    max_terms: int,
 ) -> List[Dict[str, str]]:
     """
-    Return domain terms for a given (doc_id, chunk_id) with metadata from llm_enrich:
-      - canonical_term
-      - category
-      - short_definition
-
-    Filter:
+    Return term list with enrichment metadata.
+    Filters:
       - is_hpc_domain = 1
+      - ontology_role != 'drop'
       - category != 'non_domain'
     """
     cur = conn.cursor()
     cur.execute(
-        """
-        SELECT DISTINCT
-            e.canonical_term,
-            e.category,
-            COALESCE(e.short_definition, '')
-        FROM llm_terms t
-        JOIN llm_enrich e
-          ON LOWER(TRIM(t.term)) = e.canonical_term
+        f"""
+        SELECT
+            e.term,
+            COALESCE(e.category, 'other_hpc') as category,
+            COALESCE(e.definition, '') as definition,
+            COALESCE(e.ontology_role, 'unknown') as ontology_role,
+            COALESCE(e.dul_bucket, 'unknown') as dul_bucket
+        FROM {terms_table} t
+        JOIN {enrich_table} e
+          ON e.term_id = t.term_id
         WHERE t.doc_id = ?
           AND t.chunk_id = ?
-          AND e.is_hpc_domain = 1
-          AND e.category != 'non_domain'
-        ORDER BY e.canonical_term
+          AND COALESCE(e.is_hpc_domain, 0) = 1
+          AND COALESCE(e.category, '') <> 'non_domain'
+          AND COALESCE(e.ontology_role, 'unknown') <> 'drop'
+        ORDER BY t.freq_total DESC, e.term ASC
         """,
         (doc_id, chunk_id),
     )
     rows = cur.fetchall()
-    return [
-        {
-            "term": canonical,
-            "category": category or "other_hpc",
-            "definition": short_def.strip(),
-        }
-        for (canonical, category, short_def) in rows
-    ]
+
+    out: List[Dict[str, str]] = []
+    seen = set()
+    for term, cat, defin, role, dul in rows:
+        term = (term or "").strip()
+        if not term:
+            continue
+        key = term.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(
+            {
+                "term": term,
+                "category": (cat or "other_hpc").strip(),
+                "definition": (defin or "").strip(),
+                "ontology_role": (role or "unknown").strip(),
+                "dul_bucket": (dul or "unknown").strip(),
+            }
+        )
+        if max_terms and len(out) >= max_terms:
+            break
+
+    return out
 
 
-# -----------------------------------------------------------------------------
+# =============================================================================
 # Prompt building
-# -----------------------------------------------------------------------------
+# =============================================================================
 
-def build_non_taxonomy_prompt(chunk_text: str, candidate_terms: List[Dict[str, str]]) -> str:
-    """
-    Build a Mistral [INST] style prompt with positive AND negative few-shot examples,
-    including category + short definition for each term.
-    """
-    example_blocks = []
-    for i, ex in enumerate(NON_TAX_FEW_SHOT_EXAMPLES, start=1):
-        ex_json = json.dumps(ex["json"], indent=2, ensure_ascii=False)
-        example_blocks.append(
+def build_prompt(cfg: PromptConfig, chunk_text: str, terms: List[Dict[str, str]]) -> str:
+    # Few-shot blocks from YAML
+    ex_blocks: List[str] = []
+    for i, ex in enumerate(cfg.few_shots, start=1):
+        ex_json = json.dumps(ex["json"], ensure_ascii=False, indent=2)
+        ex_terms = ", ".join(ex["terms"])
+        ex_blocks.append(
             f"Example {i}:\n"
             f"TEXT:\n{ex['text']}\n"
-            f"TERMS_IN_CHUNK: {', '.join(ex['terms'])}\n"
+            f"TERMS_IN_CHUNK:\n{ex_terms}\n"
             f"CORRECT_JSON:\n{ex_json}\n"
         )
-    examples_str = "\n".join(example_blocks)
+    examples_str = "\n".join(ex_blocks)
 
-    term_lines = []
-    for t in candidate_terms:
-        line = f"- {t['term']} [category={t['category']}]"
+    term_lines: List[str] = []
+    for t in terms:
+        line = f"- {t['term']} [category={t['category']}, role={t['ontology_role']}, dul={t['dul_bucket']}]"
         if t["definition"]:
             line += f" – {t['definition']}"
         term_lines.append(line)
@@ -475,372 +349,345 @@ def build_non_taxonomy_prompt(chunk_text: str, candidate_terms: List[Dict[str, s
 
     user_content = (
         "You will receive a chunk of HPC scheduler documentation and a list of DOMAIN TERMS.\n"
-        "Each term has a category and a short definition from a previous enrichment step.\n\n"
-        "Your job is to propose ONLY NON-TAXONOMIC relations between these terms, following the rules in the system prompt.\n\n"
-        "Here are examples of CORRECT behaviour (including a case where no non-taxonomic relations exist):\n\n"
+        "Each term includes category/role/bucket and a short definition.\n\n"
+        "Extract ONLY NON-TAXONOMIC relations using ONLY the provided terms as subject/object.\n\n"
         f"{examples_str}\n"
         "Now process the NEW chunk.\n\n"
         f"NEW_TEXT:\n{chunk_text}\n\n"
-        "DOMAIN TERMS IN THIS CHUNK (with category and brief meaning):\n"
+        "DOMAIN TERMS (use ONLY these as subject/object):\n"
         f"{terms_block}\n\n"
-        "From ONLY the terms listed above, propose NON-TAXONOMIC relations where:\n"
-        "- subject and object describe a structural or functional relationship (part_of, provided_by, configured_by, uses_resource, stored_in, runs_on, etc.).\n"
-        "- you AVOID is-a/type-of edges (those are handled separately).\n"
-        "- you AVOID alias/synonym edges.\n\n"
-        "Return ONLY one JSON object with a single key 'relations', as in the examples above."
+        "Return ONLY one JSON object with a single key 'relations'."
     )
 
     return (
-        f"<s>[INST] <<SYS>>\n{SYSTEM_PROMPT_NON_TAX}\n<</SYS>>\n\n"
+        f"<s>[INST] <<SYS>>\n{cfg.system_prompt}\n<</SYS>>\n\n"
         f"{user_content}\n"
         "[/INST]"
     )
 
 
-# -----------------------------------------------------------------------------
+# =============================================================================
 # LLM call
-# -----------------------------------------------------------------------------
+# =============================================================================
 
-def call_non_taxonomy_llm(
-    tokenizer,
-    model,
-    device: str,
-    chunk_text: str,
-    candidate_terms: List[Dict[str, str]],
-) -> str:
-    prompt = build_non_taxonomy_prompt(chunk_text, candidate_terms)
-
-    encoded = tokenizer(
-        prompt,
-        return_tensors="pt",
-        truncation=True,
-        max_length=4096,
-    )
-    input_ids = encoded["input_ids"].to(device)
-    attention_mask = encoded["attention_mask"].to(device)
+def call_llm(tok, model, device: str, prompt: str, max_new_tokens: int) -> str:
+    enc = tok(prompt, return_tensors="pt", truncation=True, max_length=4096)
+    input_ids = enc["input_ids"].to(device)
+    attn = enc["attention_mask"].to(device)
 
     with torch.no_grad():
-        generated_ids = model.generate(
+        out = model.generate(
             input_ids=input_ids,
-            attention_mask=attention_mask,
-            max_new_tokens=256,
-            do_sample=False,  # deterministic
-            pad_token_id=tokenizer.pad_token_id,
+            attention_mask=attn,
+            max_new_tokens=max_new_tokens,
+            do_sample=False,
+            pad_token_id=tok.pad_token_id,
         )
 
-    gen_only_ids = generated_ids[0, input_ids.shape[-1]:]
-    return tokenizer.decode(gen_only_ids, skip_special_tokens=True)
+    gen_only = out[0, input_ids.shape[-1] :]
+    return tok.decode(gen_only, skip_special_tokens=True)
 
 
-# -----------------------------------------------------------------------------
-# Parsing
-# -----------------------------------------------------------------------------
+# =============================================================================
+# Parse + validate output
+# =============================================================================
 
-def parse_non_tax_output(raw_output: str, allowed_terms: Set[str]) -> List[Dict[str, str]]:
+def validate_predicate(pred: str, allowed_predicates: Optional[Set[str]]) -> bool:
+    pred = pred.strip()
+    if not pred:
+        return False
+    if not PREDICATE_RE.match(pred):
+        return False
+    if allowed_predicates is not None and pred not in allowed_predicates:
+        return False
+    return True
+
+
+def parse_relations(
+    raw_output: str,
+    allowed_terms: Set[str],
+    allowed_predicates: Optional[Set[str]],
+) -> List[Dict[str, str]]:
     """
-    Parse the LLM output for non-taxonomic relations.
-
-    expected JSON:
-    {
-      "relations": [
-        {
-          "subject": "...",
-          "predicate": "...",
-          "object": "...",
-          "relation_type": "...",
-          "justification": "..."
-        },
-        ...
-      ]
-    }
-
-    - Only keep edges where subject and object are in allowed_terms.
-    - Accept either 'justification' or 'reason' as the explanation key.
-    - Drop duplicates and self-edges.
+    Parse LLM output using brace-matching extraction, then strict validation:
+    - subject/object must be exactly from allowed_terms
+    - predicate passes validation (regex + optional allowlist)
+    - relation_type must be in RELATION_TYPE_ENUM
+    - drop duplicates, drop self-edges
     """
-
-    def _from_structured(obj: Any) -> List[Dict[str, str]]:
-        if not isinstance(obj, dict):
-            return []
-        rels_raw = obj.get("relations", [])
-        if not isinstance(rels_raw, list):
-            return []
-
-        result: List[Dict[str, str]] = []
-        seen_keys: Set[tuple] = set()
-
-        for item in rels_raw:
-            if not isinstance(item, dict):
-                continue
-            subject = str(item.get("subject", "")).strip()
-            predicate = str(item.get("predicate", "")).strip()
-            obj_term = str(item.get("object", "")).strip()
-            relation_type = str(item.get("relation_type", "")).strip() or "other"
-            justification = str(
-                item.get("justification") or item.get("reason") or ""
-            ).strip()
-
-            if not subject or not predicate or not obj_term:
-                continue
-
-            if subject not in allowed_terms or obj_term not in allowed_terms:
-                continue
-
-            if subject.lower() == obj_term.lower():
-                continue
-
-            key = (subject.lower(), predicate.lower(), obj_term.lower())
-            if key in seen_keys:
-                continue
-            seen_keys.add(key)
-
-            result.append(
-                {
-                    "subject": subject,
-                    "predicate": predicate,
-                    "object": obj_term,
-                    "relation_type": relation_type,
-                    "justification": justification,
-                }
-            )
-        return result
-
-    # ---------------------------
-    # 1) Try full JSON / dict parse
-    # ---------------------------
-    start = raw_output.find("{")
-    end = raw_output.rfind("}")
-    data: Any = {}
-
-    if start != -1 and end != -1 and end > start:
-        json_str = raw_output[start : end + 1]
-        try:
-            data = json.loads(json_str)
-        except json.JSONDecodeError:
-            try:
-                data = ast.literal_eval(json_str)
-            except Exception:
-                data = {}
-
-    rels = _from_structured(data)
-    if rels:
-        return rels
-
-    # --------------------------------
-    # 2) Fallback: regex extraction for truncated/messy JSON
-    # --------------------------------
-    idx = raw_output.find('"relations"')
-    if idx == -1:
+    json_obj = extract_first_json_object(raw_output)
+    if not json_obj:
         return []
 
-    sub = raw_output[idx:]
+    try:
+        data = json.loads(json_obj)
+    except Exception:
+        return []
 
-    # Look for objects with subject/predicate/object(/relation_type)(/justification|reason)
-    pattern = re.compile(
-        r'"subject"\s*:\s*"([^"]+)"\s*,\s*'
-        r'"predicate"\s*:\s*"([^"]+)"\s*,\s*'
-        r'"object"\s*:\s*"([^"]+)"'
-        r'(?:\s*,\s*"relation_type"\s*:\s*"([^"]*)")?'
-        r'(?:\s*,\s*"(?:justification|reason)"\s*:\s*"([^"]*)")?',
-        re.DOTALL,
-    )
+    if not isinstance(data, dict):
+        return []
+    rels = data.get("relations", [])
+    if not isinstance(rels, list):
+        return []
 
-    result: List[Dict[str, str]] = []
-    seen_keys: Set[tuple] = set()
+    out: List[Dict[str, str]] = []
+    seen: Set[Tuple[str, str, str]] = set()
 
-    for match in pattern.finditer(sub):
-        subject = match.group(1).strip()
-        predicate = match.group(2).strip()
-        obj_term = match.group(3).strip()
-        relation_type = (match.group(4) or "").strip() or "other"
-        justification = (match.group(5) or "").strip()
-
-        if not subject or not predicate or not obj_term:
+    for item in rels:
+        if not isinstance(item, dict):
             continue
 
-        if subject not in allowed_terms or obj_term not in allowed_terms:
+        subj = str(item.get("subject", "")).strip()
+        pred = str(item.get("predicate", "")).strip()
+        obj = str(item.get("object", "")).strip()
+        rtype = str(item.get("relation_type", "")).strip() or "other"
+        just = str(item.get("justification", "")).strip()
+
+        if not subj or not pred or not obj:
             continue
 
-        if subject.lower() == obj_term.lower():
+        # exact match constraint
+        if subj not in allowed_terms or obj not in allowed_terms:
             continue
 
-        key = (subject.lower(), predicate.lower(), obj_term.lower())
-        if key in seen_keys:
+        if subj.lower() == obj.lower():
             continue
-        seen_keys.add(key)
 
-        result.append(
+        if rtype not in RELATION_TYPE_ENUM:
+            continue
+
+        if not validate_predicate(pred, allowed_predicates):
+            continue
+
+        key = (subj.lower(), pred.lower(), obj.lower())
+        if key in seen:
+            continue
+        seen.add(key)
+
+        out.append(
             {
-                "subject": subject,
-                "predicate": predicate,
-                "object": obj_term,
-                "relation_type": relation_type,
-                "justification": justification,
+                "subject": subj,
+                "predicate": pred,
+                "object": obj,
+                "relation_type": rtype,
+                "justification": just,
             }
         )
 
-    return result
+    return out
 
 
-# -----------------------------------------------------------------------------
-# Main processing loop
-# -----------------------------------------------------------------------------
+# =============================================================================
+# Main loop (runs table resume)
+# =============================================================================
 
-def process_chunks_for_non_taxonomy(
+def mark_run(
     conn: sqlite3.Connection,
-    tokenizer,
-    model,
-    device: str,
-    max_chunks: Optional[int] = None,
-    offset_rowid: int = 0,
+    runs_table: str,
+    doc_id: str,
+    chunk_id: str,
+    rowid_src: int,
+    status: str,
+    error_msg: Optional[str] = None,
 ) -> None:
-    init_llm_non_tax_table(conn)
-
-    rows = fetch_chunks_for_non_taxonomy(conn, max_chunks=max_chunks, offset_rowid=offset_rowid)
-    total = len(rows)
-    print(f"Processing {total} chunks for NON-TAXONOMIC relations (offset_rowid={offset_rowid})...")
-
-    if total == 0:
-        return
-
     cur = conn.cursor()
-
-    for idx, (rowid, doc_id, chunk_id, text) in enumerate(rows, start=1):
-        candidate_terms = get_candidate_terms_for_chunk(conn, doc_id, chunk_id)
-        if len(candidate_terms) < 2:
-            # need at least two terms to form a relation
-            continue
-
-        if idx == 1 or idx % 10 == 0:
-            print(
-                f"  -> chunk {idx}/{total} (rowid={rowid}, doc_id={doc_id}, "
-                f"chunk_id={chunk_id}, terms={len(candidate_terms)})"
-            )
-
-        raw = call_non_taxonomy_llm(tokenizer, model, device, text, candidate_terms)
-        allowed_terms = {t["term"] for t in candidate_terms}
-        rels = parse_non_tax_output(raw, allowed_terms=allowed_terms)
-
-        # Debug for the first processed chunk in this run
-        if idx == 1:
-            print("\n=== DEBUG FIRST CHUNK RAW (first 600 chars) ===")
-            print(raw[:600])
-            print("\n=== DEBUG FIRST CHUNK PARSED RELATIONS ===")
-            for r in rels:
-                print(
-                    f"- {r['subject']}  --{r['predicate']}-->  {r['object']}  "
-                    f"[type={r['relation_type']}]  ({r['justification']})"
-                )
-            if not rels:
-                print("(No non-taxonomic relations parsed)")
-            print("------\n")
-
-        for r in rels:
-            cur.execute(
-                """
-                INSERT OR IGNORE INTO llm_non_taxonomy_edges (
-                    doc_id,
-                    chunk_id,
-                    subject_term,
-                    predicate,
-                    object_term,
-                    relation_type,
-                    justification,
-                    raw_json
-                )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    doc_id,
-                    chunk_id,
-                    r["subject"],
-                    r["predicate"],
-                    r["object"],
-                    r["relation_type"],
-                    r["justification"],
-                    raw.strip(),
-                ),
-            )
-        conn.commit()
-
-    print("Non-taxonomic relation extraction done.")
-
-
-# -----------------------------------------------------------------------------
-# Entry point
-# -----------------------------------------------------------------------------
-
-if __name__ == "__main__":
-    import argparse
-
-    parser = argparse.ArgumentParser(
-        description="LLM-based non-taxonomic relation extraction over contextual_chunk (HPC docs)."
+    cur.execute(
+        f"""
+        INSERT OR REPLACE INTO {runs_table} (doc_id, chunk_id, rowid_src, status, processed_at, error_msg)
+        VALUES (?, ?, ?, ?, ?, ?)
+        """,
+        (
+            doc_id,
+            chunk_id,
+            rowid_src,
+            status,
+            datetime.utcnow().isoformat(timespec="seconds"),
+            error_msg,
+        ),
     )
-    parser.add_argument(
-        "--debug-first-chunk",
-        action="store_true",
-        help="Run on a single first eligible chunk and print raw + parsed output (no DB writes).",
-    )
-    parser.add_argument(
-        "--max-chunks",
-        type=int,
-        default=None,
-        help="Limit the number of chunks processed in this run.",
-    )
-    parser.add_argument(
-        "--offset-rowid",
-        type=int,
-        default=0,
-        help="Start from contextual_chunk.rowid > offset-rowid (for resuming / job arrays).",
-    )
-    args = parser.parse_args()
 
-    conn = sqlite3.connect(DB_PATH)
+
+def insert_edges(
+    conn: sqlite3.Connection,
+    out_table: str,
+    doc_id: str,
+    chunk_id: str,
+    rels: List[Dict[str, str]],
+    raw_json: str,
+) -> None:
+    cur = conn.cursor()
+    for r in rels:
+        cur.execute(
+            f"""
+            INSERT OR IGNORE INTO {out_table}
+              (doc_id, chunk_id, subject, predicate, object, relation_type, justification, raw_json)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                doc_id,
+                chunk_id,
+                r["subject"],
+                r["predicate"],
+                r["object"],
+                r["relation_type"],
+                r["justification"],
+                raw_json,
+            ),
+        )
+
+
+def run(
+    db_path: str,
+    model_id: str,
+    prompt_config_path: str,
+    input_table: str,
+    doc_id_col: str,
+    chunk_id_col: str,
+    text_col: str,
+    terms_table: str,
+    enrich_table: str,
+    out_table: str,
+    runs_table: str,
+    max_chunks: int,
+    offset_rowid: int,
+    debug_first_chunk: bool,
+    require_gpu: bool,
+    commit_every: int,
+) -> None:
+    if require_gpu and not torch.cuda.is_available():
+        raise SystemExit("[ERROR] --require-gpu set but CUDA is not available.")
+
+    cfg = load_prompt_config(prompt_config_path)
+
+    conn = sqlite3.connect(db_path)
     try:
-        tokenizer, model, device = load_mistral()
+        ensure_tables(conn, out_table=out_table, runs_table=runs_table)
+        tok, model, device = load_model(model_id)
 
-        if args.debug_first_chunk:
-            rows = fetch_chunks_for_non_taxonomy(
-                conn, max_chunks=1000, offset_rowid=args.offset_rowid
+        rows = fetch_unprocessed_chunks(
+            conn=conn,
+            input_table=input_table,
+            doc_col=doc_id_col,
+            chunk_col=chunk_id_col,
+            text_col=text_col,
+            runs_table=runs_table,
+            offset_rowid=offset_rowid,
+            max_chunks=max_chunks,
+        )
+
+        print(f"[INFO] Unprocessed chunks: {len(rows)} (offset_rowid={offset_rowid})")
+
+        processed = 0
+        for idx, (rowid, doc_id, chunk_id, text) in enumerate(rows, start=1):
+            terms = fetch_terms_for_chunk(
+                conn=conn,
+                terms_table=terms_table,
+                enrich_table=enrich_table,
+                doc_id=str(doc_id),
+                chunk_id=str(chunk_id),
+                max_terms=cfg.max_terms_per_chunk,
             )
-            # find first chunk that actually has >=2 candidate terms
-            chosen = None
-            for rowid, doc_id, chunk_id, text in rows:
-                c_terms = get_candidate_terms_for_chunk(conn, doc_id, chunk_id)
-                if len(c_terms) >= 2:
-                    chosen = (rowid, doc_id, chunk_id, text, c_terms)
-                    break
 
-            if chosen is None:
-                print("No eligible chunks (with >=2 domain terms) found.")
-            else:
-                rowid, doc_id, chunk_id, text, c_terms = chosen
-                print(
-                    f"DEBUG rowid={rowid}, doc_id={doc_id}, chunk_id={chunk_id}, "
-                    f"{len(c_terms)} candidate terms"
-                )
-                raw = call_non_taxonomy_llm(tokenizer, model, device, text, c_terms)
-                allowed_terms = {t["term"] for t in c_terms}
-                rels = parse_non_tax_output(raw, allowed_terms=allowed_terms)
+            # even if <2 terms, mark done (important for resume correctness)
+            if len(terms) < 2:
+                mark_run(conn, runs_table, str(doc_id), str(chunk_id), int(rowid), "done", None)
+                processed += 1
+                if commit_every <= 1 or processed % commit_every == 0:
+                    conn.commit()
+                if debug_first_chunk:
+                    print(f"[DEBUG] rowid={rowid} has <2 terms; marked done.")
+                    return
+                continue
 
-                print("\n=== RAW OUTPUT (first 800 chars) ===")
-                print(raw[:800])
-                print("\n=== PARSED NON-TAXONOMIC RELATIONS ===")
-                for r in rels:
-                    print(
-                        f"- {r['subject']}  --{r['predicate']}-->  {r['object']}  "
-                        f"[type={r['relation_type']}]  ({r['justification']})"
-                    )
+            prompt = build_prompt(cfg, chunk_text=str(text), terms=terms)
+            raw = call_llm(tok, model, device, prompt, max_new_tokens=cfg.max_new_tokens)
+
+            allowed_terms = {t["term"] for t in terms}
+            rels = parse_relations(raw, allowed_terms=allowed_terms, allowed_predicates=cfg.allowed_predicates)
+
+            if debug_first_chunk:
+                print(f"\n[DEBUG] rowid={rowid}, doc_id={doc_id}, chunk_id={chunk_id}")
+                print("\n=== RAW OUTPUT (first 900 chars) ===")
+                print(raw[:900])
+                print("\n=== KEPT RELATIONS ===")
                 if not rels:
-                    print("(No non-taxonomic relations parsed)")
-        else:
-            process_chunks_for_non_taxonomy(
-                conn,
-                tokenizer,
-                model,
-                device,
-                max_chunks=args.max_chunks,
-                offset_rowid=args.offset_rowid,
-            )
+                    print("(none)")
+                else:
+                    for r in rels:
+                        print(f"- {r['subject']} --{r['predicate']}--> {r['object']} [{r['relation_type']}] ({r['justification']})")
+                print("\n[DEBUG] Not writing to DB in --debug-first-chunk mode.")
+                return
+
+            try:
+                json_obj = extract_first_json_object(raw) or ""
+                insert_edges(conn, out_table, str(doc_id), str(chunk_id), rels, raw_json=json_obj)
+                mark_run(conn, runs_table, str(doc_id), str(chunk_id), int(rowid), "done", None)
+            except Exception as e:
+                mark_run(conn, runs_table, str(doc_id), str(chunk_id), int(rowid), "error", str(e))
+
+            processed += 1
+            if commit_every <= 1 or processed % commit_every == 0:
+                conn.commit()
+
+            if idx == 1 or idx % 10 == 0:
+                print(f"[INFO] chunk {idx}/{len(rows)} rowid={rowid} terms={len(terms)} kept_rels={len(rels)}")
+
+        conn.commit()
+        print("[DONE] Non-taxonomy LLM extraction completed.")
     finally:
         conn.close()
+
+
+# =============================================================================
+# CLI
+# =============================================================================
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description="OLAF-LLM: non-taxonomic relation extraction.")
+
+    ap.add_argument("--db", required=True, help="SQLite DB path")
+    ap.add_argument("--model-id", required=True, help="HF model id (e.g., mistralai/Mistral-7B-Instruct-v0.3)")
+    ap.add_argument("--prompt-config", default="prompts/non_tax_llm.yaml")
+
+    ap.add_argument("--input-table", default="contextual_chunk")
+    ap.add_argument("--doc-id-col", default="doc_id")
+    ap.add_argument("--chunk-id-col", default="chunk_id")
+    ap.add_argument("--text-col", default="text")
+
+    ap.add_argument("--terms-table", default="llm_terms_final")
+    ap.add_argument("--enrich-table", default="llm_enrich_final")
+
+    ap.add_argument("--out-table", default="non_tax_llm")
+    ap.add_argument("--runs-table", default="non_tax_llm_runs")
+
+    ap.add_argument("--max-chunks", type=int, default=0, help="0=all; else limit")
+    ap.add_argument("--offset-rowid", type=int, default=0)
+    ap.add_argument("--debug-first-chunk", action="store_true")
+
+    ap.add_argument("--require-gpu", action="store_true")
+    ap.add_argument("--commit-every", type=int, default=50)
+
+    args = ap.parse_args()
+
+    run(
+        db_path=args.db,
+        model_id=args.model_id,
+        prompt_config_path=args.prompt_config,
+        input_table=args.input_table,
+        doc_id_col=args.doc_id_col,
+        chunk_id_col=args.chunk_id_col,
+        text_col=args.text_col,
+        terms_table=args.terms_table,
+        enrich_table=args.enrich_table,
+        out_table=args.out_table,
+        runs_table=args.runs_table,
+        max_chunks=args.max_chunks,
+        offset_rowid=args.offset_rowid,
+        debug_first_chunk=args.debug_first_chunk,
+        require_gpu=args.require_gpu,
+        commit_every=args.commit_every,
+    )
+
+
+if __name__ == "__main__":
+    main()

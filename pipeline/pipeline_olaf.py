@@ -156,20 +156,23 @@ def choose_next_pipeline(mode: str) -> str:
 
     print("\n" + "=" * 80)
     print("Choose next pipeline:")
-    print("  [1] OLAF (symbolic / hybrid NLP)")
-    print("  [2] OLAF + LLM (separate branch)")
+    print("  [1] OLAF - Hybrid (NLP + LLM enrichment and vaidation)")
+    print("  [2] OLAF - LLM ")
+    print("  [3] Text2OWL (LLM generates Turtle ontology using Text2OWL)")
     print("  [0] Stop here")
     print("=" * 80)
 
     while True:
-        choice = input("Enter choice [1/2/0]: ").strip()
+        choice = input("Enter choice [1/2/3/0]: ").strip()
         if choice == "1":
-            return "olaf"
+            return "olaf_hybrid"
         if choice == "2":
             return "olaf_llm"
+        if choice == "3":
+            return "text2owl"
         if choice == "0":
             return "stop"
-        print("Invalid choice. Please enter 1, 2, or 0.")
+        print("Invalid choice. Please enter 1, 2, 3, or 0.")
 
 
 # =============================
@@ -349,8 +352,7 @@ def build_olaf_steps(args: argparse.Namespace) -> List[Step]:
         )
     )
 
-    # 5) taxonomy (NO LLM) => taxonomy_is_a
-    # NOTE: your updated olaf.taxonomy has defaults: use_embeddings=True, use_hearst=True, no top_parents cap.
+    # 5) taxonomy => taxonomy_is_a
     steps.append(
         Step(
             name="OLAF: Taxonomy extraction (seed + embeddings + Hearst) -> taxonomy_is_a",
@@ -380,7 +382,7 @@ def build_olaf_steps(args: argparse.Namespace) -> List[Step]:
                 module="olaf.taxonomy_extension",
                 args=[
                     "--db", args.db,
-                    "--in_taxonomy_table", args.taxonomy_table,        # NOT --in_table
+                    "--in_taxonomy_table", args.taxonomy_table,        
                     "--out_table", args.taxonomy_final_table,
                     "--model", args.llm_taxonomy_model,
                     "--prompt_config", args.taxonomy_prompt_config,
@@ -446,11 +448,12 @@ def build_olaf_steps(args: argparse.Namespace) -> List[Step]:
                     "--temperature", str(args.non_tax_llm_temperature),
                     "--log_every", str(args.non_tax_llm_log_every),
                     "--commit_every", "200",
+ 
                 ],
             )
         )
 
-    # 9) AXIOM GENERATION (UPDATED olaf.axiom)
+    # 9) AXIOM GENERATION 
     if args.run_axioms:
         # If enabled, auto-pick the best upstream tables unless user overrides explicitly
         if args.auto_pick_axiom_inputs:
@@ -499,19 +502,217 @@ def build_olaf_steps(args: argparse.Namespace) -> List[Step]:
 
 
 # =============================
-# OLAF-LLM STEPS (separate pipeline)
+# OLAF-LLM STEPS
 # =============================
 
 def build_olaf_llm_steps(args: argparse.Namespace) -> List[Step]:
+ 
+    # Term Extraction (LLM)
+    ensure_gpu_if_needed(args.require_gpu)
+    term_args = [
+        "--db", args.db,
+        "--prompt-config", args.olaf_llm_prompt_config,
+        "--model-id", args.olaf_llm_model_id,
+
+        "--input-table", args.olaf_llm_input_table,
+        "--doc-id-col", args.olaf_llm_doc_id_col,
+        "--chunk-id-col", args.olaf_llm_chunk_id_col,
+        "--text-col", args.olaf_llm_text_col,
+
+        "--terms-table", args.olaf_llm_terms_table,
+
+        "--stop-words", args.olaf_llm_stop_words,
+        "--offset-rowid", str(args.olaf_llm_offset_rowid),
+    ]
+
+    if args.olaf_llm_no_runs_table:
+        term_args.append("--no-runs-table")
+    else:
+        term_args += ["--runs-table", args.olaf_llm_runs_table]
+
+    if args.olaf_llm_max_chunks > 0:
+        term_args += ["--max-chunks", str(args.olaf_llm_max_chunks)]
+
+    if args.olaf_llm_debug_first_chunk:
+        term_args.append("--debug-first-chunk")
+
+    # min-freq threshold (only if > 2)
+    if args.olaf_llm_min_freq and args.olaf_llm_min_freq > 2:
+        term_args += ["--min-freq", str(args.olaf_llm_min_freq)]
+
+    steps: List[Step] = []
+
+    steps.append(
+        Step(
+            name="OLAF-LLM: Term Extraction (YAML prompt) -> llm_terms_final",
+            module="olaf_llm.term_extraction_llm",
+            args=term_args,
+        )
+    )
+
+
+    # Step 2: Term Enrichment (LLM) 
+    enrich_args = [
+        "--db", args.db,
+        "--prompt-config", args.olaf_llm_enrich_prompt_config,
+        "--model-id", args.olaf_llm_enrich_model_id,
+
+        "--terms-table", args.olaf_llm_terms_table,          
+        "--enrich-table", args.olaf_llm_enrich_table,        
+
+        "--chunks-table", args.olaf_llm_enrich_chunks_table,
+        "--chunks-text-col", args.olaf_llm_enrich_text_col,
+
+        "--min-freq", str(args.olaf_llm_enrich_min_freq),
+        "--max-rows", str(args.olaf_llm_enrich_max_rows),
+        "--offset-term-id", str(args.olaf_llm_enrich_offset_term_id),
+        "--commit-every", str(args.olaf_llm_enrich_commit_every),
+    ]
+
+    if args.olaf_llm_enrich_debug_first:
+        enrich_args.append("--debug-first")
+
+    steps.append(
+        Step(
+            name="OLAF-LLM: Term Enrichment (YAML prompt) -> llm_enrich_final",
+            module="olaf_llm.term_enrichment_llm",
+            args=enrich_args,
+        )
+    )
+
+    # Taxonomy is_a with LLM
+    tax_args = [
+        "--db", args.db,
+        "--model-id", args.olaf_llm_tax_model_id,
+        "--prompt-config", args.olaf_llm_tax_prompt_config,
+
+        "--chunks-table", args.olaf_llm_input_table,
+        "--doc-id-col", args.olaf_llm_doc_id_col,
+        "--chunk-id-col", args.olaf_llm_chunk_id_col,
+        "--text-col", args.olaf_llm_text_col,
+
+        "--terms-table", args.olaf_llm_terms_table,
+        "--enrich-table", args.olaf_llm_enrich_table,
+
+        "--edges-table", args.olaf_llm_tax_edges_table,
+        "--runs-table", args.olaf_llm_tax_runs_table,
+
+        "--offset-rowid", str(args.olaf_llm_tax_offset_rowid),
+        "--min-freq", str(args.olaf_llm_tax_min_freq),
+        "--commit-every", str(args.olaf_llm_tax_commit_every),
+    ]
+
+    if args.olaf_llm_tax_max_chunks and args.olaf_llm_tax_max_chunks > 0:
+        tax_args += ["--max-chunks", str(args.olaf_llm_tax_max_chunks)]
+
+    if args.olaf_llm_tax_debug_first_chunk:
+        tax_args.append("--debug-first-chunk")
+
+    steps.append(
+        Step(
+            name="OLAF-LLM: Taxonomy is-a (YAML prompt) -> llm_is_a_edges_final",
+            module="olaf_llm.taxonomy_llm",
+            args=tax_args,
+        )
+    )
+
+     # NON Taxonomy with LLM
+    non_tax_args = [
+        "--db", args.db,
+        "--model-id", args.olaf_llm_non_tax_model_id,
+        "--prompt-config", args.olaf_llm_non_tax_prompt_config,
+
+        "--input-table", args.olaf_llm_non_tax_input_table,
+        "--doc-id-col", args.olaf_llm_non_tax_doc_id_col,
+        "--chunk-id-col", args.olaf_llm_non_tax_chunk_id_col,
+        "--text-col", args.olaf_llm_non_tax_text_col,
+
+        "--terms-table", args.olaf_llm_non_tax_terms_table,
+        "--enrich-table", args.olaf_llm_non_tax_enrich_table,
+
+        "--out-table", args.olaf_llm_non_tax_out_table,
+        "--runs-table", args.olaf_llm_non_tax_runs_table,
+
+        "--offset-rowid", str(args.olaf_llm_non_tax_offset_rowid),
+        "--commit-every", str(args.olaf_llm_non_tax_commit_every),
+    ]
+
+    if args.olaf_llm_non_tax_max_chunks and args.olaf_llm_non_tax_max_chunks > 0:
+        non_tax_args += ["--max-chunks", str(args.olaf_llm_non_tax_max_chunks)]
+
+    if args.olaf_llm_non_tax_debug_first_chunk:
+        non_tax_args.append("--debug-first-chunk")
+
+    if args.olaf_llm_non_tax_require_gpu:
+        non_tax_args.append("--require-gpu")
+
+    steps.append(
+        Step(
+            name="OLAF-LLM: Non-taxonomy extraction (YAML prompt) -> non_tax_llm",
+            module="olaf_llm.non_taxonomy_llm",
+            args=non_tax_args,
+        )
+    )
+
+    #Axioms generation with LLM
+    ax_out_dir = os.path.join(args.out_dir_root, args.olaf_llm_axioms_out_dir)
+    axioms_args = [
+        "--db", args.db,
+        "--out_dir", ax_out_dir,
+        "--prompt_config", args.olaf_llm_axioms_prompt_config,
+        "--base_iri", args.olaf_llm_axioms_base_iri,
+        "--enrich_table", args.olaf_llm_axioms_enrich_table,
+        "--taxonomy_table", args.olaf_llm_axioms_tax_table,
+        "--non_tax_table", args.olaf_llm_axioms_nontax_table,
+        "--examples_per_predicate", str(args.olaf_llm_axioms_examples_per_rel),
+        "--max_predicates", str(args.olaf_llm_axioms_max_relations),
+        "--backend", args.olaf_llm_axioms_backend,
+        "--model_path", args.olaf_llm_axioms_model,
+    ]
+
+    steps.append(Step(
+        name=f"OLAF-LLM: Axioms -> {ax_out_dir} (TTL default graph)",
+        module="olaf_llm.axioms_llm",
+        args=axioms_args,
+    ))
+    
+    return steps
+        
+    
+
+def build_text2owl_steps(args: argparse.Namespace) -> List[Step]:
+    # Optional: just warn; don't fail
+    ensure_gpu_if_needed(require_gpu=False)
+
+    out_dir = os.path.join(args.out_dir_root, args.text2owl_out_dir)
+
+    text2owl_args = [
+        "--db-path", args.db,
+        "--output-dir", out_dir,
+        "--model", args.text2owl_model,
+        "--prompt-config", args.text2owl_prompt_config,
+        "--max-new-tokens", str(args.text2owl_max_new_tokens),
+        "--temperature", str(args.text2owl_temperature),
+        "--top-p", str(args.text2owl_top_p),
+
+        # Hard-enabled safety & quality flags
+        "--canonicalize-names",
+        "--validate-turtle",
+        "--repair-invalid",
+        "--resume",
+    ]
+    text2owl_args += ["--max-repair-attempts", "1"]
     return [
-        Step("OLAF-LLM: Term Enrichment", "olaf_llm.term_enrichment_llm", ["--db", args.db]),
-        Step("OLAF-LLM: Relation Induction", "olaf_llm.relations_llm", ["--db", args.db]),
-        Step("OLAF-LLM: Axiom Generation", "olaf_llm.axioms_llm", ["--db", args.db]),
+        Step(
+            name=f"TEXT2OWL: Generate + merge -> {out_dir}",
+            module="text2owl.text2owl",
+            args=text2owl_args,
+        )
     ]
 
 
 # =============================
-# Build one combined plan
+# Pipeline choices
 # =============================
 
 def build_plan(args: argparse.Namespace) -> List[Step]:
@@ -521,11 +722,12 @@ def build_plan(args: argparse.Namespace) -> List[Step]:
     stage = choose_next_pipeline(args.next)
     if stage == "stop":
         return plan
-    if stage == "olaf":
+    if stage == "olaf_hybrid":
         plan += build_olaf_steps(args)
     elif stage == "olaf_llm":
         plan += build_olaf_llm_steps(args)
-
+    elif stage == "text2owl":
+        plan += build_text2owl_steps(args)
     return plan
 
 
@@ -534,7 +736,11 @@ def build_plan(args: argparse.Namespace) -> List[Step]:
 # =============================
 
 def parse_args() -> argparse.Namespace:
-    ap = argparse.ArgumentParser(description="Run preprocessing + OLAF pipeline")
+    ap = argparse.ArgumentParser(description="Run preprocessing")
+
+    # =============================
+    # Pre-processing
+    # =============================
 
     # Core
     ap.add_argument("--db", required=True, help="SQLite DB path")
@@ -562,13 +768,10 @@ def parse_args() -> argparse.Namespace:
     # Lemmatization params
     ap.add_argument("--keep_pos", dest="keep_pos", action="store_true", default=True)
     ap.add_argument("--no_keep_pos", dest="keep_pos", action="store_false")
-
     ap.add_argument("--remove_stopwords", dest="remove_stopwords", action="store_true", default=True)
     ap.add_argument("--keep_stopwords", dest="remove_stopwords", action="store_false")
-
     ap.add_argument("--remove_punct", dest="remove_punct", action="store_true", default=True)
     ap.add_argument("--keep_punct", dest="remove_punct", action="store_false")
-
     ap.add_argument("--batch_size", type=int, default=2000)
 
     # Chunking params
@@ -579,7 +782,11 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--chunk_overlap", type=int, default=1)
 
     # Next stage
-    ap.add_argument("--next", choices=["ask", "olaf", "olaf_llm", "stop"], default="ask")
+    ap.add_argument("--next", choices=["ask", "olaf_hybrid", "olaf_llm","text2owl","stop"], default="ask")
+
+    # =============================
+    # OLAF-Hybrid
+    # =============================
 
     # Term extraction
     ap.add_argument("--term_candidates_table", default="term_candidates")
@@ -596,20 +803,16 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--use_llm_enrich", dest="use_llm_enrich", action="store_true", default=True)
     ap.add_argument("--no_llm_enrich", dest="use_llm_enrich", action="store_false")
     ap.add_argument("--require_gpu", action="store_true")
-
     ap.add_argument("--term_enrichment_src_table", default="term_enrichment")
     ap.add_argument("--term_enrichment_ext_table", default="term_enrichment_exten")
     ap.add_argument("--classify_all", dest="classify_all", action="store_true", default=True)
     ap.add_argument("--hf_batch_size", type=int, default=8)
-
     ap.add_argument("--hf_model", default="mistralai/Mistral-7B-Instruct-v0.2")
     ap.add_argument("--hf_dtype", default="float16", choices=["auto", "float16", "bfloat16"])
     ap.add_argument("--hf_device", default="auto")
 
     # Prompt configs
     ap.add_argument("--term_enrich_prompt_config", default="prompts/term_enrichment_extension.json")
-
-    # Enrichment knobs
     ap.add_argument("--max_terms_llm", type=int, default=0)   # 0=all
     ap.add_argument("--max_evidence_sents", type=int, default=3)
     ap.add_argument("--log_every", type=int, default=1000)
@@ -645,7 +848,6 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--taxonomy_llm_global_parents_k", type=int, default=12)
     ap.add_argument("--taxonomy_llm_debug_print_fail_k", type=int, default=3)
 
-
     # NON-TAXONOMY extraction
     ap.add_argument("--non_tax_sentence_table", default="sentence_segmented")
     ap.add_argument("--non_tax_raw_table", default="non_taxonomic_edges")
@@ -662,19 +864,17 @@ def parse_args() -> argparse.Namespace:
     # NON-TAXONOMY LLM extension -> non_taxonomic_edges_final
     ap.add_argument("--use_llm_non_taxonomy", dest="use_llm_non_taxonomy", action="store_true", default=True)
     ap.add_argument("--no_llm_non_taxonomy", dest="use_llm_non_taxonomy", action="store_false")
-
     ap.add_argument("--llm_non_tax_model", default="mistralai/Mistral-7B-Instruct-v0.2")
     ap.add_argument("--non_tax_prompt_config", default="prompts/non_tax_extension.json")
     ap.add_argument("--non_tax_final_table", default="non_taxonomic_edges_final")
-    ap.add_argument("--non_tax_llm_batch_size", type=int, default=6)
+    ap.add_argument("--non_tax_llm_batch_size", type=int, default=10)
     ap.add_argument("--non_tax_llm_max_new_tokens", type=int, default=220)
     ap.add_argument("--non_tax_llm_temperature", type=float, default=0.0)
-    ap.add_argument("--non_tax_llm_log_every", type=int, default=50)
+    ap.add_argument("--non_tax_llm_log_every", type=int, default=1000)
     ap.add_argument("--non_tax_llm_include_sentence", action="store_true", default=True)
     ap.add_argument("--non_tax_dedupe_mode", choices=["none", "soft", "hard"], default="soft")
     ap.add_argument("--non_tax_llm_table", default="non_taxonomic_edges_llm_binary")
     ap.add_argument("--non_tax_accept_table", default="non_taxonomic_edges_accept")
-
 
     # Runner controls
     ap.add_argument("--clean_db", action="store_true")
@@ -696,11 +896,10 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--axiom_base_iri", default="http://example.org/hpc#")
     ap.add_argument("--axiom_no_hash_iris", action="store_true", default=True)
 
-    # Auto-pick: uses taxonomy_final/non_tax_final when LLM steps enabled
+    # uses taxonomy_final/non_tax_final when LLM steps enabled
     ap.add_argument("--auto_pick_axiom_inputs", action="store_true", default=True)
     ap.add_argument("--no_auto_pick_axiom_inputs", dest="auto_pick_axiom_inputs", action="store_false")
 
-    # Defaults aligned to YOUR DB schema (from your table photo)
     ap.add_argument("--axiom_taxonomy_table", default="taxonomy_exten")
     ap.add_argument("--axiom_triple_table", default="non_taxonomic_edges_accept")
 
@@ -714,7 +913,6 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--break_cycles", action="store_true",
                     help="Automatically remove cycle-causing taxonomy edges instead of crashing.")
 
-    # Safe filters for your LLM tables
     ap.add_argument(
         "--axiom_taxonomy_where",
         default=(
@@ -733,6 +931,117 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--axiom_min_support", type=int, default=2)
     ap.add_argument("--axiom_min_purity", type=float, default=0.55)
     ap.add_argument("--axiom_evidence_k", type=int, default=5)
+
+    # =============================
+    # TEXT2OWL 
+    # =============================
+    ap.add_argument("--text2owl_out_dir", default="out/text2owl_slurm")
+    ap.add_argument("--text2owl_model", default="mistralai/Mistral-7B-Instruct-v0.3")
+    ap.add_argument("--text2owl_prompt_config", default="prompts/text2owl.json")
+    ap.add_argument("--text2owl_max_new_tokens", type=int, default=800)
+    ap.add_argument("--text2owl_temperature", type=float, default=0.0)
+    ap.add_argument("--text2owl_top_p", type=float, default=1.0)
+    ap.add_argument("--text2owl_validate_turtle", action="store_true", default=True)
+    ap.add_argument("--text2owl_canonicalize_names", action="store_true", default=True)
+    ap.add_argument("--text2owl_repair_invalid", action="store_true", default=True)
+    ap.add_argument("--text2owl_max_repair_attempts", type=int, default=1)
+    ap.add_argument("--text2owl_resume", action="store_true")
+    ap.add_argument("--text2owl_output_ttl", default="hpc_lsf.ttl")
+
+    # =============================
+    # OLAF-LLM
+    # =============================
+    
+    #Term Extraction with LLM
+    ap.add_argument("--olaf_llm_model_id", default="mistralai/Mistral-7B-Instruct-v0.3")
+    ap.add_argument("--olaf_llm_prompt_config", default="prompts/term_extract_llm.yaml",
+                    help="YAML prompt config for LLM term extraction")
+    ap.add_argument("--olaf_llm_stop_words", default="stop_word/stop_words.txt",
+                    help="Generic stop words list (one per line)")
+    ap.add_argument("--olaf_llm_input_table", default="contextual_chunk")
+    ap.add_argument("--olaf_llm_doc_id_col", default="doc_id")
+    ap.add_argument("--olaf_llm_chunk_id_col", default="chunk_id")
+    ap.add_argument("--olaf_llm_text_col", default="text")
+    ap.add_argument("--olaf_llm_terms_table", default="llm_terms_final",
+                    help="Single final terms table with freq_total")
+    ap.add_argument("--olaf_llm_runs_table", default="llm_term_runs",
+                    help="Resume table tracking processed (doc_id, chunk_id)")
+    ap.add_argument("--olaf_llm_no_runs_table", action="store_true",
+                    help="Disable runs table ")
+
+    ap.add_argument("--olaf_llm_max_chunks", type=int, default=0,
+                    help="0=all; else limit number of chunks processed")
+    ap.add_argument("--olaf_llm_offset_rowid", type=int, default=0)
+    ap.add_argument("--olaf_llm_debug_first_chunk", action="store_true")
+
+    ap.add_argument("--olaf_llm_min_freq", type=int, default=2,
+                    help="Delete terms with freq_total < min_freq after extraction; set 0/1 to disable")
+
+    # Term- enrichment with LLM
+    ap.add_argument("--olaf_llm_enrich_model_id", default="mistralai/Mistral-7B-Instruct-v0.3")
+    ap.add_argument("--olaf_llm_enrich_prompt_config", default="prompts/term_enrich_llm.yaml")
+    ap.add_argument("--olaf_llm_enrich_table", default="llm_enrich_final")
+    ap.add_argument("--olaf_llm_enrich_chunks_table", default="contextual_chunk")
+    ap.add_argument("--olaf_llm_enrich_text_col", default="text")
+
+    # Runtime controls for enrichment
+    ap.add_argument("--olaf_llm_enrich_min_freq", type=int, default=2,
+                    help="Only enrich terms with freq_total >= min_freq (0/1 disables)")
+    ap.add_argument("--olaf_llm_enrich_max_rows", type=int, default=0, help="0=all")
+    ap.add_argument("--olaf_llm_enrich_offset_term_id", type=int, default=0,
+                    help="Only enrich terms with term_id > offset-term-id")
+    ap.add_argument("--olaf_llm_enrich_commit_every", type=int, default=50,
+                    help="Commit every N terms during enrichment")
+    ap.add_argument("--olaf_llm_enrich_debug_first", action="store_true",
+                    help="Debug only first term for enrichment")
+    
+    # Taxonomy is_a with LLM
+    ap.add_argument("--olaf_llm_tax_model_id", default="mistralai/Mistral-7B-Instruct-v0.3")
+    ap.add_argument("--olaf_llm_tax_prompt_config", default="prompts/taxonomy_llm.yaml",
+                    help="YAML prompt config for is-a taxonomy extraction")
+    ap.add_argument("--olaf_llm_tax_edges_table", default="llm_is_a_edges_final")
+    ap.add_argument("--olaf_llm_tax_runs_table", default="llm_is_a_runs")
+
+    ap.add_argument("--olaf_llm_tax_max_chunks", type=int, default=0,
+                    help="0=all; else limit number of chunks processed")
+    ap.add_argument("--olaf_llm_tax_offset_rowid", type=int, default=0)
+    ap.add_argument("--olaf_llm_tax_min_freq", type=int, default=2,
+                    help="Minimum freq_total for terms included as candidates")
+    ap.add_argument("--olaf_llm_tax_commit_every", type=int, default=25)
+    ap.add_argument("--olaf_llm_tax_debug_first_chunk", action="store_true")
+
+    # Non-Taxonomy with LLM
+    ap.add_argument("--olaf_llm_non_tax_model_id", default="mistralai/Mistral-7B-Instruct-v0.3")
+    ap.add_argument("--olaf_llm_non_tax_prompt_config", default="prompts/non_tax_llm.yaml")
+    ap.add_argument("--olaf_llm_non_tax_input_table", default="contextual_chunk")
+    ap.add_argument("--olaf_llm_non_tax_doc_id_col", default="doc_id")
+    ap.add_argument("--olaf_llm_non_tax_chunk_id_col", default="chunk_id")
+    ap.add_argument("--olaf_llm_non_tax_text_col", default="text")
+    ap.add_argument("--olaf_llm_non_tax_terms_table", default="llm_terms_final")
+    ap.add_argument("--olaf_llm_non_tax_enrich_table", default="llm_enrich_final")
+    # Output tables
+    ap.add_argument("--olaf_llm_non_tax_out_table", default="non_tax_llm")
+    ap.add_argument("--olaf_llm_non_tax_runs_table", default="non_tax_llm_runs")
+    ap.add_argument("--olaf_llm_non_tax_max_chunks", type=int, default=0, help="0=all")
+    ap.add_argument("--olaf_llm_non_tax_offset_rowid", type=int, default=0)
+    ap.add_argument("--olaf_llm_non_tax_debug_first_chunk", action="store_true")
+    ap.add_argument("--olaf_llm_non_tax_commit_every", type=int, default=50)
+    ap.add_argument("--olaf_llm_non_tax_require_gpu", action="store_true", default=False)
+
+    #Axiom LLM
+    ap.add_argument("--olaf_llm_axioms_prompt_config", default="prompts/axioms_llm.yaml")
+    ap.add_argument("--olaf_llm_axioms_model", default="mistralai/Mistral-7B-Instruct-v0.3")
+    ap.add_argument("--olaf_llm_axioms_backend", choices=["transformers"], default="transformers")
+    ap.add_argument("--olaf_llm_axioms_out_dir", default="axioms_llm")
+    ap.add_argument("--olaf_llm_axioms_base_iri", default="http://example.org/hpc#")
+
+    # Inputs
+    ap.add_argument("--olaf_llm_axioms_enrich_table", default="llm_enrich_final")
+    ap.add_argument("--olaf_llm_axioms_tax_table", default="llm_is_a_edges")
+    ap.add_argument("--olaf_llm_axioms_nontax_table", default="llm_non_taxonomy_edges")
+
+    ap.add_argument("--olaf_llm_axioms_examples_per_rel", type=int, default=12)
+    ap.add_argument("--olaf_llm_axioms_max_relations", type=int, default=0)
 
     return ap.parse_args()
 
