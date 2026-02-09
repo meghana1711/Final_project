@@ -1,0 +1,39 @@
+hpc:Job a owl:Class .
+hpc:Jobarray a owl:Class .
+
+hpc:Runstate hpc:Job a owl:Class .
+hpc:Ususpstate hpc:Job a owl:Class .
+hpc:Ssuspstate hpc:Job a owl:Class .
+hpc:Donestate hpc:Job a owl:Class .
+hpc:Exitstate hpc:Job a owl:Class .
+hpc:Postdone hpc:Job a owl:Class .
+hpc:Posterr hpc:Job a owl:Class .
+
+hpc:Hasnumberofjobsinrunstate hpc:jobarray hpc:ObjectProperty .
+hpc:Hasnumberofjobsinrunususpssuspstates hpc:jobarray hpc:ObjectProperty .
+hpc:Hasjobid hpc:jobarray owl:DatatypeProperty .
+
+hpc:hasjobname hpc:job a owl:DatatypeProperty .
+hpc:hasjobstate hpc:job a owl:DatatypeProperty .
+hpc:haspreexecutioncommand hpc:job a owl:ObjectProperty .
+
+hpc:Numstart rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Postdone rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:Posterr rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:Started rdfs:domain hpc:Job ;
+    rdfs:range rdfs:Literal .
+
+hpc:Jobwarningaction hpc:objectproperty .
+hpc:Jobwarningtime hpc:datatypeproperty .
+
+hpc:Jobwarningaction hpc:hasjobwarningaction xsd:string .
+hpc:Jobwarningtime rdfs:domain hpc:Jobwarningaction ;
+    rdfs:range xsd:duration .
+
+hpc:Jobarray hpc:hasjob hpc:Job .

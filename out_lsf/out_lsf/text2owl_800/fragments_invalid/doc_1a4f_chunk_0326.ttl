@@ -1,0 +1,17 @@
+hpc:LsbParams a owl:Class .
+hpc:LsbQueues a owl:Class .
+hpc:LsbApplications a owl:Class .
+
+hpc:maxJobPreempt a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbApplications ;
+    rdfs:range xsd:integer .
+
+hpc:INFINIT_INT a xsd:integer ;
+    rdf:value "INFINIT_INT"^^xsd:string .
+
+hpc:preemptDelay a owl:DatatypeProperty ;
+    rdfs:domain (hpc:LsbQueues union hpc:LsbApplications) ;
+    rdfs:range xsd:decimal .
+
+hpc:LSB_Params MAX_JOB_PREEMPT_RESET a xsd:integer ;
+    rdf:value "N"^^xsd:string .

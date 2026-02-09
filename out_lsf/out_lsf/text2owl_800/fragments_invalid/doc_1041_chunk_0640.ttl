@@ -1,0 +1,48 @@
+# Classes
+hpc:Interactiveshell a owl:Class .
+hpc:Pseudoterminal a owl:Class .
+
+# Object Properties
+hpc:requirespseudoterminal a owl:ObjectProperty .
+hpc:supportsshellmode a owl:ObjectProperty .
+hpc:redefinesctrlkeys a owl:ObjectProperty .
+hpc:sendsoutputtoterminal a owl:ObjectProperty .
+hpc:doesnotsendmailoncompletion a owl:ObjectProperty .
+hpc:cannotbecheckpointed a owl:ObjectProperty .
+hpc:hasinputfile a owl:ObjectProperty .
+hpc:hasoutputfile a owl:ObjectProperty .
+hpc:haserrorfile a owl:ObjectProperty .
+hpc:displaysoutputonscreen a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:conflictingoptions a owl:DatatypeProperty .
+hpc:synopsis a owl:DatatypeProperty .
+hpc:description a owl:DatatypeProperty .
+
+# Property Domains and Ranges
+hpc:Requirespseudoterminal rdfs:domain hpc:Interactiveshell ;
+  rdfs:range xsd:string .
+hpc:Supportsshellmode rdfs:domain hpc:Interactiveshell ;
+  rdfs:range xsd:boolean .
+hpc:Redefinesctrlkeys rdfs:domain hpc:Interactiveshell ;
+  rdfs:range xsd:boolean .
+hpc:Sendsoutputtoterminal rdfs:domain hpc:Interactiveshell ;
+  rdfs:range xsd:boolean .
+hpc:Doesnotsendmailoncompletion rdfs:domain hpc:Interactiveshell ;
+  rdfs:range xsd:boolean .
+hpc:Cannotbecheckpointed rdfs:domain hpc:Interactiveshell ;
+  rdfs:range xsd:boolean .
+hpc:Hasinputfile rdfs:domain hpc:Interactiveshell ;
+  rdfs:range xsd:string .
+hpc:Hasoutputfile rdfs:domain hpc:Interactiveshell ;
+  rdfs:range xsd:string .
+hpc:Haserrorfile rdfs:domain hpc:Interactiveshell ;
+  rdfs:range xsd:string .
+hpc:Displaysoutputonscreen rdfs:domain hpc:Interactiveshell ;
+  rdfs:range xsd:boolean .
+
+# Subclass Relations
+hpc:Pseudoterminal rdfs:subClassOf hpc:Interactiveshell .
+
+# Conflicting Options
+hpc:conflictingOptions a rdf:PlainLiteral "Do not use with the following options: -I, -Ip, -IS, -IS

@@ -1,0 +1,10 @@
+hpc:Blocksize a owl:Class.
+hpc:Block a owl:Class.
+hpc:Job a owl:Class.
+hpc:resourcerequest a owl:DatatypeProperty; rdfs:domain hpc:job .
+hpc:blocklevel a owl:DatatypeProperty; rdfs:range xsd:nonNegativeInteger .
+hpc:Lowerlevelblock a owl:Class.
+hpc:Baseblock a owl:Class.
+hpc:bestfitalgorithm a owl:ObjectProperty.
+hpc:aggregatingblock a owl:ObjectProperty.
+hpc:llblock a owl:ObjectProperty.

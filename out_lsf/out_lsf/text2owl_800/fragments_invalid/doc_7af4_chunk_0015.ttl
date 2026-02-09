@@ -1,0 +1,58 @@
+hpc:Configurationtemplate a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a configuration template for LSF installation." .
+
+hpc:Installationoption a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents an option that can be specified during LSF installation." .
+
+# Object Properties
+hpc:hasname a owl:ObjectProperty ;
+    rdfs:domain hpc:Installationoption ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of an installation option." .
+
+hpc:hasvalue a owl:ObjectProperty ;
+    rdfs:domain hpc:Installationoption ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The value of an installation option, if any." .
+
+hpc:hastemplate a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationtemplate ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "The configuration template that an installation option belongs to." .
+
+# Datatype Properties
+hpc:description a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationtemplate ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The description of a configuration template." .
+
+# Instances
+hpc:ConfigurationTemplate_DEFAULT a hpc:ConfigurationTemplate ;
+    hpc:description "LSF Standard Edition on UNIX or Linux only. Selects the configuration template for this installation, which determines the initial LSF configuration parameters that are specified when the installation is complete. The following are valid values for this parameter: DEFAULT" .
+
+hpc:ConfigurationTemplate_PARALLEL a hpc:ConfigurationTemplate ;
+    hpc:description "LSF Standard Edition on UNIX or Linux only. Selects the configuration template for this installation, which determines the initial LSF configuration parameters that are specified when the installation is complete. The following are valid values for this parameter: PARALLEL" .
+
+hpc:ConfigurationTemplate_HIGH_THROUGHPUT a hpc:ConfigurationTemplate ;
+    hpc:description "LSF Standard Edition on UNIX or Linux only. Selects the configuration template for this installation, which determines the initial LSF configuration parameters that are specified when the installation is complete. The following are valid values for this parameter: HIGH_THROUGHPUT" .
+
+# Example Installation Options
+hpc:CONFIGURATION_TEMPLATE a hpc:InstallationOption ;
+    hpc:hasName "CONFIGURATION_TEMPLATE" ;
+    hpc:hasValue "DEFAULT" .
+
+hpc:EGO_DAEMON_CONTROL a hpc:InstallationOption ;
+    hpc:hasName "EGO_DAEMON_CONTROL" .
+
+hpc:ENABLE_CGROUP a hpc:InstallationOption ;
+    hpc:hasName "ENABLE_CGROUP" .
+
+hpc:ENABLE_DYNAMIC_HOSTS a hpc:InstallationOption ;
+    hpc:hasName "ENABLE_DYNAMIC_HOSTS" .
+
+hpc:ENABLE_EGO a hpc:InstallationOption ;
+    hpc:hasName "ENABLE_EGO" .
+
+hpc:ENABLE_STREAM a hpc:InstallationOption ;

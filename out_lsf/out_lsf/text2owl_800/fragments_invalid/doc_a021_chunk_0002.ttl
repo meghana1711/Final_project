@@ -1,0 +1,41 @@
+hpc:Allocatedvm a owl:Class .
+hpc:Openstack a owl:Class .
+hpc:Lsf a owl:Class .
+hpc:Hostfactory a owl:Class .
+hpc:Cluster a owl:Class .
+
+hpc:isidle a owl:ObjectProperty ;
+    rdfs:domain hpc:Allocatedvm ;
+    rdfs:range xsd:boolean .
+
+hpc:timetolive a owl:DatatypeProperty ;
+    rdfs:domain hpc:Allocatedvm ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hostready a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostfactory ;
+    rdfs:range hpc:Allocatedvm .
+
+hpc:joincluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Allocatedvm ;
+    rdfs:range hpc:Cluster .
+
+hpc:closedRc a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Cluster .
+
+hpc:runningjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Allocatedvm .
+
+hpc:billingperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostprovider .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:LsbRcExternalHostIdleTime rdfs:subClassOf xsd:nonNegativeInteger .
+hpc:LsbRcExternalHostMaxTtl rdfs:subClassOf xsd:nonNegativeInteger .
+
+hpc:Hostprovider a owl:Class .
+hpc:hostprovidersJson a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostprovider ;
+    rdfs:range xsd:string .

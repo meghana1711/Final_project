@@ -1,0 +1,65 @@
+hpc:SymbolicLinking
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Processing and handling symbolic links for LSF configuration." .
+
+hpc:UpgradedSoftwareSupport
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Upgraded support for various software in IBM Spectrum LSF Predictor." .
+
+hpc:Software
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Software used with IBM Spectrum LSF components." .
+
+hpc:hasSoftwareVersion
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Software ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The version of the software." .
+
+hpc:Cloud
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Public and private cloud environments." .
+
+hpc:JobManagement
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Managing LSF historical job data, choosing job features, cleaning up job data, etc." .
+
+hpc:ModelTraining
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Starting model training with clean job data." .
+
+hpc:Pipeline
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Viewing training pipelines, publishing the best pipeline as a model." .
+
+hpc:WorkloadOptimization
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Optimizing workload snapshots by selected model." .
+
+hpc:WorkloadComparison
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Comparing optimized workloads by total throughput, average wait time, and cluster memory usage." .
+
+hpc:ModelDeployment
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Deploying models to LSF production cluster and optimizing future job submissions." .
+
+hpc:IBMCloudPakForData
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "IBM Cloud Pak for Data." .
+
+hpc:AutoAIIBMCloudPakForData
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "AutoAI IBM

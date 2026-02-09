@@ -1,0 +1,34 @@
+hpc:maxAcctArchiveFile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Accountarchiving ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum number of archived lsb.acct files maintained by LSF." .
+
+hpc:acctArchiveAge a owl:ObjectProperty ;
+    rdfs:domain hpc:Accountarchiving ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Enables automatic archiving of lsb.acct files." .
+
+hpc:maxConcurrentQuery a owl:DatatypeProperty ;
+    rdfs:domain hpc:Querymanagement ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum number of concurrent query commands that mbatchd can handle." .
+
+hpc:lsbQueryPort a owl:ObjectProperty ;
+    rdfs:domain hpc:Querymanagement ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The port used for query commands." .
+
+hpc:lsbQueryEnh a owl:DatatypeProperty ;
+    rdfs:domain hpc:Querymanagement ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates whether query enhancement is enabled." .
+
+hpc:maxEventStreamFileNumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eventstreammanagement ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum number of different lsb.stream.utc files that mbatchd uses." .
+
+hpc:maxEventStreamSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eventstreammanagement ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum size in MB of the lsb.stream file used by system performance analysis tools." .

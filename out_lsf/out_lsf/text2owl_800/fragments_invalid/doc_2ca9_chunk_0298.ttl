@@ -1,0 +1,32 @@
+hpc:Disablepreemptionparameter a owl:Class .
+hpc:hasSupportProjectMode rdf:Property ;
+    rdfs:domain hpc:Disablepreemptionparameter ;
+    rdfs:range xsd:boolean .
+hpc:hasDefaultValue rdf:Property ;
+    rdfs:domain hpc:Disablepreemptionparameter ;
+    rdfs:range xsd:string .
+
+# Pending Reason Information
+hpc:Pendingreasoninformation a owl:Class .
+hpc:hasLevel rdf:Property ;
+    rdfs:domain hpc:Pendingreasoninformation ;
+    rdfs:range xsd:integer .
+hpc:hasLicense rdf:Property ;
+    rdfs:domain hpc:Pendingreasoninformation ;
+    rdfs:range hpc:License .
+hpc:hasProjectName rdf:Property ;
+    rdfs:domain hpc:Pendingreasoninformation ;
+    rdfs:range xsd:string .
+hpc:hasClusterName rdf:Property ;
+    rdfs:domain hpc:Pendingreasoninformation ;
+    rdfs:range xsd:string .
+
+# Pending Reason Messages
+hpc:Pendingreasonmessage a owl:Class ;
+    rdfs:subClassOf hpc:Pendingreasoninformation .
+
+# Support for Reserved FlexNet Manager Licenses
+hpc:Reservedflexnetmanagerlicenses a owl:Class .
+hpc:hasReservationKeyword rdf:Property ;
+    rdfs:domain hpc:Reservedflexnetmanagerlicenses ;
+    rdfs:range xsd:string .

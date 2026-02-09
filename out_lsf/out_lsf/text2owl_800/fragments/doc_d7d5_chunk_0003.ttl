@@ -1,0 +1,24 @@
+hpc:Userspace a owl:Class .
+hpc:Cpuspeed a owl:Class .
+
+hpc:disables a owl:ObjectProperty ;
+    rdfs:domain hpc:Userspace ;
+    rdfs:range hpc:Cpuspeed .
+
+hpc:Feature a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:prevents a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+
+hpc:nicing a owl:ObjectProperty ;
+    rdfs:domain hpc:Cpuspeed ;
+    rdfs:range xsd:string .
+
+hpc:increasingcpuspeed a owl:ObjectProperty ;
+    rdfs:domain hpc:Cpuspeed ;
+    rdfs:range xsd:string .
+
+hpc:donottreatnicedprogramsasidletime a owl:ObjectProperty ;
+    rdfs:domain hpc:Cpuspeed .

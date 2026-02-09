@@ -1,0 +1,28 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Lsfentitlementfile a owl:Class .
+hpc:Lsfentitlementfile rdfs:subClassOf owl:NamedIndividual .
+hpc:Lsfentitlementfile rdfs:domain xsd:string .
+hpc:Lsfentitlementfile rdfs:range [ a owl:Restriction ;
+                                      owl:onProperty hpc:LSFEntitlementFile ;
+                                      owl:hasValue rdf:nil ;
+                                      owl:allValuesFrom xsd:string ] .
+
+hpc:Lsfmasterlist a owl:Class .
+hpc:Lsfmasterlist rdfs:subClassOf owl:NamedIndividual .
+hpc:Lsfmasterlist rdfs:domain xsd:string .
+hpc:Lsfmasterlist rdfs:range [ a owl:Restriction ;
+                                 owl:onProperty hpc:LSFMasterList ;
+                                 owl:hasValue rdf:nil ;
+                                 owl:allValuesFrom xsd:string ] .
+
+hpc:Lsfquietinst a owl:Class .
+hpc:Lsfquietinst rdfs:subClassOf owl:NamedIndividual .
+hpc:Lsfquietinst rdfs:domain xsd:string .
+hpc:Lsfquietinst rdfs:range [ a owl:Restriction ;
+                                 owl:onProperty hpc:LSFQuietInst ;
+                                 owl:hasValue "Y" ;
+                                 owl:allValuesFrom xsd:string ] .

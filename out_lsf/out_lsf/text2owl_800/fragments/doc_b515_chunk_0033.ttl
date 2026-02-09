@@ -1,0 +1,20 @@
+hpc:Computeunit a owl:Class .
+hpc:Host a owl:Class .
+hpc:Hostgroup a owl:Class .
+hpc:computeunitpreference a owl:ObjectProperty .
+hpc:firstexecutionhost a owl:ObjectProperty .
+hpc:hostgroupmembership a owl:ObjectProperty .
+
+hpc:Computeunitpreference rdfs:domain hpc:Computeunit ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:HostPreference .
+
+hpc:Firstexecutionhost rdfs:domain hpc:Computeunit ;
+    rdfs:range hpc:Host .
+
+hpc:Hostgroupmembership rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Host .
+
+hpc:Hostpreference rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:subClassOf (hpc:Hostgroupmembership owl:inverseOf hpc:Hostgroupmembership) ;
+    rdfs:subClassOf (hpc:Computeunitpreference owl:inverseOf hpc:Computeunitpreference) .

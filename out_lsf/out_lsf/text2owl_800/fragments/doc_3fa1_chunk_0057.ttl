@@ -1,0 +1,25 @@
+hpc:User a owl:Class .
+hpc:Group a owl:Class .
+hpc:Job a owl:Class .
+hpc:fairsharescheduling a owl:ObjectProperty .
+hpc:userbelongstogroup a owl:ObjectProperty .
+
+hpc:User rdfs:subClassOf owl:Class .
+hpc:Group rdfs:subClassOf owl:Class .
+hpc:Job rdfs:subClassOf owl:Class .
+
+hpc:FairShareScheduling rdf:type owl:ObjectProperty .
+hpc:UserBelongsToGroup rdf:type owl:ObjectProperty .
+
+hpc:Fairsharescheduling rdfs:domain hpc:User .
+hpc:Fairsharescheduling rdfs:domain hpc:Group .
+hpc:Userbelongstogroup rdfs:domain hpc:User .
+hpc:Userbelongstogroup rdfs:range hpc:Group .
+
+hpc:JobAssociatedWithGroup rdf:type owl:ObjectProperty .
+hpc:Jobassociatedwithgroup rdfs:domain hpc:Job .
+hpc:Jobassociatedwithgroup rdfs:range hpc:Group .
+
+hpc:HighestPriorityUser rdf:type owl:ObjectProperty .
+hpc:Highestpriorityuser rdfs:domain hpc:Job .
+hpc:Highestpriorityuser rdfs:range hpc:User .

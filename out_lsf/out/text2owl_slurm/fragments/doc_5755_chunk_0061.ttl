@@ -1,0 +1,76 @@
+hpc:Databasemanagement a owl:Class .
+hpc:upgrade a owl:ObjectProperty ;
+    rdfs:domain hpc:Databasemanagement ;
+    rdfs:range hpc:Database .
+
+hpc:backup a owl:ObjectProperty ;
+    rdfs:domain hpc:Databasemanagement ;
+    rdfs:range hpc:Database .
+
+hpc:removeduplicaterecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Databasemanagement ;
+    rdfs:range hpc:Databaseoperation .
+
+hpc:restartslurmdbd a owl:ObjectProperty ;
+    rdfs:domain hpc:Databasemanagement ;
+    rdfs:range hpc:Databaseoperation .
+
+# Database
+hpc:Database a owl:Class .
+hpc:Databaseoperation a owl:Class .
+
+# MariaDB Upgrade
+hpc:mariadbupgrade a owl:ObjectProperty ;
+    rdfs:domain hpc:Databasemanagement ;
+    rdfs:range hpc:Database .
+
+# Database Backup
+hpc:databasebackup a owl:DatatypeProperty ;
+    rdfs:domain hpc:Database ;
+    rdfs:range xsd:string .
+
+# Database Dump
+hpc:databasedump a owl:ObjectProperty ;
+    rdfs:domain hpc:Database ;
+    rdfs:range hpc:Databaseoperation .
+
+# Database Delete
+hpc:databasedelete a owl:ObjectProperty ;
+    rdfs:domain hpc:Databaseoperation ;
+    rdfs:range hpc:Database .
+
+# Database Create
+hpc:databasecreate a owl:ObjectProperty ;
+    rdfs:domain hpc:Databaseoperation ;
+    rdfs:range hpc:Database .
+
+# Slurmdbd Restart
+hpc:slurmdbdrestart a owl:ObjectProperty ;
+    rdfs:domain hpc:Databaseoperation ;
+    rdfs:range xsd:string .
+
+# Duplicate Entry Error
+hpc:Duplicateentryerror a owl:Class .
+hpc:duplicateentry a owl:DatatypeProperty ;
+    rdfs:domain hpc:Databaseoperation ;
+    rdfs:range xsd:string .
+
+# JSON Serializer
+hpc:Jsonserializer a owl:Class .
+hpc:jsonrequired a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmfunctionality ;
+    rdfs:range hpc:Jsonserializer .
+
+# YAML Serializer
+hpc:Yamlserializer a owl:Class .
+hpc:yamlrequired a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmfunctionality ;
+    rdfs:range hpc:Yamlserializer .
+
+# Slurm Functionality
+hpc:Slurmfunctionality a owl:Class .
+
+# Globus Integration
+hpc:globusintegration a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmfunctionality ;
+    rdfs:range hpc:Integration .

@@ -1,0 +1,28 @@
+hpc:Procedure a owl:Class .
+hpc:uninstallcluster hpc:prop1 a owl:ObjectProperty ;
+    rdfs:domain hpc:Procedure ;
+    rdfs:range rdf:Resource .
+hpc:restartmanagementhosts hpc:prop2 a owl:ObjectProperty ;
+    rdfs:domain hpc:Procedure ;
+    rdfs:range rdf:Resource .
+hpc:removeoldinstallationdirectories hpc:prop3 a owl:ObjectProperty ;
+    rdfs:domain hpc:Procedure ;
+    rdfs:range rdf:Resource .
+hpc:lsfTop hpc:prop4 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Procedure ;
+    rdfs:range xsd:string .
+
+hpc:Procedureuninstallation a owl:Class ;
+    rdfs:subClassOf hpc:Procedure .
+hpc:Procedureuninstallation rdfs:subClassOf (hpc:Procedure [ rdf:type owl:Restriction ;
+    owl:onProperty hpc:uninstallCluster ;
+    owl:allValuesFrom rdf:Resource ] ) .
+hpc:Procedureuninstallation rdfs:subClassOf (hpc:Procedure [ rdf:type owl:Restriction ;
+    owl:onProperty hpc:restartManagementHosts ;
+    owl:allValuesFrom rdf:Resource ] ) .
+hpc:Procedureuninstallation rdfs:subClassOf (hpc:Procedure [ rdf:type owl:Restriction ;
+    owl:onProperty hpc:removeOldInstallationDirectories ;
+    owl:allValuesFrom rdf:Resource ] ) .
+hpc:Procedureuninstallation rdfs:subClassOf (hpc:Procedure [ rdf:type owl:Restriction ;
+    owl:onProperty hpc:LSF_TOP ;
+    owl:hasValue "http://example.org/hpc#LSF_TOP" ] ) .

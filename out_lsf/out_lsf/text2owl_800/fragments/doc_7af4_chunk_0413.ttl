@@ -1,0 +1,21 @@
+hpc:datalimit a owl:DatatypeProperty .
+hpc:hasdatalimit a owl:ObjectProperty .
+hpc:Datatransfer a owl:Class .
+hpc:isdatatransferqueue a owl:ObjectProperty .
+hpc:hasdefaultdatalimit a owl:DatatypeProperty .
+hpc:maximumdatalimit a owl:DatatypeProperty .
+
+hpc:Datalimit rdfs:domain hpc:Job .
+hpc:Hasdatalimit rdfs:domain hpc:Queue .
+hpc:Isdatatransferqueue rdfs:domain hpc:Cluster .
+hpc:Hasdefaultdatalimit rdfs:domain hpc:Queue .
+hpc:Maximumdatalimit rdfs:domain hpc:Queue .
+
+hpc:Datalimit rdfs:range xsd:nonNegativeInteger .
+hpc:Hasdatalimit rdfs:range xsd:boolean .
+hpc:Isdatatransferqueue rdfs:range hpc:Queue .
+hpc:Hasdefaultdatalimit rdfs:range xsd:nonNegativeInteger .
+hpc:Maximumdatalimit rdfs:range xsd:nonNegativeInteger .
+
+hpc:Datatransfer rdfs:subClassOf hpc:Queue .
+hpc:Datatransfer rdfs:subClassOf rdf:Resource .

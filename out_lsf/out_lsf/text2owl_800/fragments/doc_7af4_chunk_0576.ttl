@@ -1,0 +1,54 @@
+hpc:Usergroup a owl:Class .
+hpc:User a owl:Class .
+hpc:Serviceclass a owl:Class .
+hpc:Sla a owl:Class .
+hpc:Queue a owl:Class .
+hpc:usergroupmembership a owl:ObjectProperty .
+hpc:hassla a owl:ObjectProperty .
+hpc:hasqueue a owl:ObjectProperty .
+hpc:hasgoal a owl:ObjectProperty .
+hpc:hasdescription a owl:DatatypeProperty .
+hpc:hasname a owl:DatatypeProperty .
+hpc:haspriority a owl:DatatypeProperty .
+
+hpc:Usergroup rdfs:subClassOf hpc:Group .
+hpc:Group rdf:type owl:Class .
+hpc:Usergroupmembership rdfs:domain hpc:Usergroup .
+hpc:Usergroupmembership rdfs:range hpc:User .
+hpc:Hassla rdfs:domain hpc:Usergroup .
+hpc:Hassla rdfs:range hpc:Sla .
+hpc:Hasqueue rdfs:domain hpc:Serviceclass .
+hpc:Hasqueue rdfs:range hpc:Queue .
+hpc:Hasgoal rdfs:domain hpc:Serviceclass .
+hpc:Hasgoal rdfs:range hpc:Goal .
+hpc:Hasdescription rdfs:domain hpc:Serviceclass .
+hpc:Hasdescription rdfs:range xsd:string .
+hpc:Hasname rdfs:domain hpc:Serviceclass .
+hpc:Hasname rdfs:range xsd:string .
+hpc:Haspriority rdfs:domain hpc:Serviceclass .
+hpc:Haspriority rdfs:range xsd:integer .
+
+hpc:Goal a owl:Class .
+hpc:Deadline a owl:Class .
+hpc:timewindow a owl:ObjectProperty .
+
+hpc:Sla rdfs:subClassOf hpc:Resourceallocation .
+hpc:ResourceAllocation rdf:type owl:Class .
+hpc:fairshare a owl:ObjectProperty .
+
+hpc:USER_GROUP rdf:type xsd:string .
+hpc:GOALS rdf:type xsd:string .
+hpc:GUARANTEE rdf:type xsd:string .
+
+hpc:AccountingSLA a hpc:ServiceClass ;
+    hpc:NAME "AccountingSLA" ;
+    hpc:GOALS "GUARANTEE" ;
+    hpc:DESCRIPTION "Guaranteed hosts for the accounting department" ;
+    hpc:ACCESS_CONTROL "QUEUES[longjobs] USERS[accountingUG]" ;
+    hpc:AUTO_ATTACH "Y" .
+
+hpc:Sooke a hpc:ServiceClass ;
+    hpc:PRIORITY "20" ;
+    hpc:GOALS "DEADLINE timeWindow (8:30-16:00)" .
+
+hpc:Nanaimo a hpc:ServiceClass .

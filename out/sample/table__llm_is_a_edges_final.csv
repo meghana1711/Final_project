@@ -1,0 +1,105 @@
+edge_id,doc_id,chunk_id,child_term_id,parent_term_id,child_term,parent_term,justification,raw_json,created_at
+1,doc_4387,doc_4387_chunk_0003,43,44,Slurm plugins,authentication,The text mentions that SlurmDBD (a Slurm plugin) is used for authentication.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""Slurm plugins"",
+      ""parent"": ""authentication"",
+      ""justification"": ""The text mentions that SlurmDBD (a Slurm plugin) is used for authentication.""
+    }
+  ]
+}",2026-02-03 19:46:26
+2,doc_4387,doc_4387_chunk_0022,385,390,Partition,entity,"The text describes Partition as an entity that can be modified using sacctmgr, which implies it is a specific type of entity.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""Partition"",
+      ""parent"": ""entity"",
+      ""justification"": ""The text describes Partition as an entity that can be modified using sacctmgr, which implies it is a specific type of entity.""
+    }
+  ]
+}",2026-02-03 19:46:32
+3,doc_4387,doc_4387_chunk_0024,415,416,task,user processes,A task is defined as a set of user processes which run in a step.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""task"",
+      ""parent"": ""user processes"",
+      ""justification"": ""A task is defined as a set of user processes which run in a step.""
+    }
+  ]
+}",2026-02-03 19:46:35
+4,doc_7ceb,doc_7ceb_chunk_0005,556,551,host type,host types,The text defines host type as a specific type of host types.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""host type"",
+      ""parent"": ""host types"",
+      ""justification"": ""The text defines host type as a specific type of host types.""
+    }
+  ]
+}",2026-02-03 19:46:47
+5,doc_7ceb,doc_7ceb_chunk_0007,605,592,pending jobs,hosts,"The text states that pending jobs cannot be started on a host if its load is beyond any defined loadSched, implying that pending jobs are a type of job that can be present on a host.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""pending jobs"",
+      ""parent"": ""hosts"",
+      ""justification"": ""The text states that pending jobs cannot be started on a host if its load is beyond any defined loadSched, implying that pending jobs are a type of job that can be present on a host.""
+    }
+  ]
+}",2026-02-03 19:46:54
+6,doc_7ceb,doc_7ceb_chunk_0008,624,610,candidate hosts,host,The text states that candidate hosts are a set of hosts that match the resource requirements for a job.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""candidate hosts"",
+      ""parent"": ""host"",
+      ""justification"": ""The text states that candidate hosts are a set of hosts that match the resource requirements for a job.""
+    }
+  ]
+}",2026-02-03 19:46:56
+7,doc_7ceb,doc_7ceb_chunk_0009,647,640,batch job,Hosts,"The text states that batch jobs are dispatched to a host, implying that a batch job is a type of activity or event that occurs on a host.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""batch job"",
+      ""parent"": ""Hosts"",
+      ""justification"": ""The text states that batch jobs are dispatched to a host, implying that a batch job is a type of activity or event that occurs on a host.""
+    }
+  ]
+}",2026-02-03 19:46:59
+8,doc_7ceb,doc_7ceb_chunk_0016,774,778,LSF server host,LSF cluster,The text states that LSF server hosts are part of the LSF cluster.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""LSF server host"",
+      ""parent"": ""LSF cluster"",
+      ""justification"": ""The text states that LSF server hosts are part of the LSF cluster.""
+    },
+    {
+      ""child"": ""daemons"",
+      ""parent"": ""LSF daemons"",
+      ""justification"": ""The text uses the term 'LSF daemons' as a category for the specific daemons (bctrld, sbd, res) mentioned in the text.""
+    }
+  ]
+}",2026-02-03 19:47:04
+9,doc_7ceb,doc_7ceb_chunk_0045,1295,1302,Resource,misc/examples,"The text explains that defining dynamic shared resources in an ELIM (External Load Information Manager) requires defining examples in the misc/examples directory, implying that Resources are a type of example.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""Resource"",
+      ""parent"": ""misc/examples"",
+      ""justification"": ""The text explains that defining dynamic shared resources in an ELIM (External Load Information Manager) requires defining examples in the misc/examples directory, implying that Resources are a type of example.""
+    }
+  ]
+}",2026-02-03 19:47:11
+10,doc_7ceb,doc_7ceb_chunk_0058,1560,1544,binary incompatibility,RESOURCES,"The text implies that 'binary incompatibility' is a type of resource issue, as it mentions that a job from a DEFAULT host type can be migrated to another DEFAULT host type, which suggests that the host type is a resource.","{
+  ""is_a_edges"": [
+    {
+      ""child"": ""binary incompatibility"",
+      ""parent"": ""RESOURCES"",
+      ""justification"": ""The text implies that 'binary incompatibility' is a type of resource issue, as it mentions that a job from a DEFAULT host type can be migrated to another DEFAULT host type, which suggests that the host type is a resource.""
+    }
+  ]
+}",2026-02-03 19:47:15
+11,doc_d9be,doc_d9be_chunk_0008,2021,2010,allocation,consumable resources,The text explicitly states that allocation is a process of managing consumable resources.,"{
+  ""is_a_edges"": [
+    {
+      ""child"": ""allocation"",
+      ""parent"": ""consumable resources"",
+      ""justification"": ""The text explicitly states that allocation is a process of managing consumable resources.""
+    }
+  ]
+}",2026-02-03 19:47:21

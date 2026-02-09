@@ -1,0 +1,23 @@
+hpc:Command a owl:Class.
+hpc:Bhist a hpc:Command.
+hpc:Bjobs a hpc:Command.
+hpc:Bmig a hpc:Command.
+hpc:Bchkpnt rdfs:subClassOf owl:Class; rdf:type rdf:Property.
+hpc:Brestart rdfs:subClassOf owl:Class; rdf:type rdf:Property.
+hpc:Bmod a hpc:Command.
+
+hpc:migratejob a owl:ObjectProperty;
+    rdfs:domain hpc:Command;
+    rdfs:range hpc:Job.
+
+hpc:jobmigrationthreshold a owl:DatatypeProperty;
+    rdfs:domain hpc:Command;
+    rdfs:range xsd:nonNegativeInteger.
+
+hpc:Checkpointablejob a owl:Class.
+hpc:Rerunnablejob a owl:Class.
+hpc:Checkpointableorrerunnablejob a owl:Class;
+    rdfs:subClassOf hpc:Job;
+    rdfs:subClassOf (hpc:Checkpointablejob owl:or hpc:Rerunnablejob) .
+
+hpc:

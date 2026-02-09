@@ -1,0 +1,59 @@
+hpc:Jobsubmission a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Submitting jobs as other users using the bsubmit command with the lsf.usermapping configuration file." .
+
+hpc:Jobexecutioncontrol a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Controls for job submission and execution using external, site-specific executable files." .
+
+hpc:validation a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexecutioncontrol ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Validating jobs." .
+
+hpc:modification a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexecutioncontrol ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Modifying and rejecting jobs." .
+
+hpc:datatransfer a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexecutioncontrol ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Transferring data." .
+
+hpc:jobenvironmentmodification a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexecutioncontrol ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Modifying the job execution environment." .
+
+hpc:Preexecution a owl:Class ;
+    rdfs:subClassOf hpc:Jobexecutioncontrol ;
+    rdfs:comment "Pre-execution processing feature for running commands on an execution host prior to the completion of LSF jobs." .
+
+hpc:Postexecution a owl:Class ;
+    rdfs:subClassOf hpc:Jobexecutioncontrol ;
+    rdfs:comment "Post-execution processing feature for defining post-job processing such as cleaning up job files or transferring job output." .
+
+hpc:preexecutioncommand a owl:DatatypeProperty ;
+    rdfs:domain hpc:Preexecution ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Command to set up an execution host with the required directories, files, environment, and user permissions." .
+
+hpc:postexecutioncommand a owl:DatatypeProperty ;
+    rdfs:domain hpc:Postexecution ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Command to define post-job processing such as cleaning up job files or transferring job output." .
+
+hpc:Prepostexecutionprocessingconfiguration a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Configuration to enable pre- and post-execution processing." .
+
+hpc:prepostexecutionprocessingenabled a owl:ObjectProperty ;
+    rdfs:domain hpc:Prepostexecutionprocessingconfiguration ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Enabling pre- and post-execution processing by defining at least one of the parameters in the list below at the application or queue level, or by using the -E option of the bsub command to specify a pre-execution command." .
+
+hpc:queuelevelpreexecutioncommand a owl:DatatypeProperty ;
+    rdfs:domain hpc:Prepostexecutionprocessingenabled ;
+    rdfs:range xsd:string ;
+    rdfs

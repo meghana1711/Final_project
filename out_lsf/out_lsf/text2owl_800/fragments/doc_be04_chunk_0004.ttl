@@ -1,0 +1,35 @@
+hpc:Performancelogfile a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Name of the log file where performance metric information is saved." ;
+    rdfs:label "LogFile" ;
+    rdfs:domain hpc:Performancelog ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <http://example.org/hpc#> .
+
+hpc:Performancelog a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Duration in minutes to keep logging performance metric data." ;
+    rdfs:label "Duration" ;
+    rdfs:domain hpc:Performance ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:isDefinedBy <http://example.org/hpc#> .
+
+hpc:performancelogpath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Performancelog ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Full path to a file name if the log file path is specified." ;
+    rdfs:label "logPath" ;
+    rdfs:isDefinedBy <http://example.org/hpc#> .
+
+hpc:performancelogname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Performancelog ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Name of the log file if the log file name is specified." ;
+    rdfs:label "logName" ;
+    rdfs:isDefinedBy <http://example.org/hpc#> .
+
+hpc:Performance a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Performance data logged by mbatchd." ;
+    rdfs:label "Performance" ;
+    rdfs:isDefinedBy <http://example.org/hpc#> .

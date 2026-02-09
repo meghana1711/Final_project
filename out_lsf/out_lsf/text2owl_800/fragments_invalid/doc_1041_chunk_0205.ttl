@@ -1,0 +1,48 @@
+hpc:year a owl:DatatypeProperty ;
+    rdfs:domain hpc:Time ;
+    rdfs:range xsd:integer .
+
+hpc:month a owl:DatatypeProperty ;
+    rdfs:domain hpc:Time ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:range xsd:maxInclusive "12" .
+
+hpc:day a owl:DatatypeProperty ;
+    rdfs:domain hpc:Time ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:range xsd:maxInclusive "31" .
+
+hpc:hour a owl:DatatypeProperty ;
+    rdfs:domain hpc:Time ;
+    rdfs:range xsd:integer ;
+    rdfs:range xsd:minInclusive "0" ;
+    rdfs:range xsd:maxInclusive "23" .
+
+hpc:minute a owl:DatatypeProperty ;
+    rdfs:domain hpc:Time ;
+    rdfs:range xsd:integer ;
+    rdfs:range xsd:minInclusive "0" ;
+    rdfs:range xsd:maxInclusive "59" .
+
+hpc:Period a owl:Class .
+
+hpc:relativeint a owl:DatatypeProperty ;
+    rdfs:domain hpc:Time ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:range xsd:maxInclusive "31" .
+
+hpc:starttime a owl:ObjectProperty ;
+    rdfs:domain hpc:Timeinterval ;
+    rdfs:range hpc:Timeinterval ;
+    rdfs:subPropertyOf hpc:hasStartTime .
+
+hpc:endtime a owl:ObjectProperty ;
+    rdfs:domain hpc:Timeinterval ;
+    rdfs:range hpc:Timeinterval ;
+    rdfs:subPropertyOf hpc:hasEndTime .
+
+hpc:Timeinterval a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty hpc:hasStartTime ;
+                      owl:hasValue hpc:Period ;
+                      owl:allValuesFrom (hpc:Time . hpc:TimeInterval) ] .

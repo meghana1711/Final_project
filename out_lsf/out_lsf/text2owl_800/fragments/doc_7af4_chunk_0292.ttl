@@ -1,0 +1,40 @@
+hpc:Usergroup a owl:Class .
+hpc:Hasusergroupmembers rdfs:domain hpc:Usergroup .
+hpc:Hasusergroupmembers rdfs:range rdf:Resource .
+
+# Resource Limit
+hpc:Resourcelimit a owl:Class .
+hpc:Hasname rdfs:domain hpc:Resourcelimit .
+hpc:Hasname rdfs:range xsd:string .
+hpc:Hasusers rdfs:domain hpc:Resourcelimit .
+hpc:Hasusers rdfs:range hpc:Usergroup .
+hpc:Hasperhost rdfs:domain hpc:Resourcelimit .
+hpc:Hasperhost rdfs:range xsd:nonNegativeInteger .
+hpc:Hasslots rdfs:domain hpc:Resourcelimit .
+hpc:Hasslots rdfs:range xsd:nonNegativeInteger .
+hpc:Haseligiblependingjobs rdfs:domain hpc:Resourcelimit .
+hpc:Haseligiblependingjobs rdfs:range xsd:nonNegativeInteger .
+hpc:Hasjobs rdfs:domain hpc:Resourcelimit .
+hpc:Hasjobs rdfs:range xsd:nonNegativeInteger .
+
+# User Group Tree
+hpc:Usergrouptree a owl:Class .
+hpc:Hasparentusergroup rdfs:domain hpc:Usergrouptree .
+hpc:Hasparentusergroup rdfs:range hpc:Usergroup .
+hpc:Haschildusergroup rdfs:domain hpc:Usergrouptree .
+hpc:Haschildusergroup rdfs:range hpc:Usergroup .
+
+# ENFORCE_ONE_UG_LIMIT
+hpc:enforceOneUgLimit a owl:DatatypeProperty .
+hpc:EnforceOneUgLimit rdfs:domain hpc:Usergrouptree .
+hpc:EnforceOneUgLimit rdfs:range xsd:boolean .
+
+# ENFORCE_UG_TREE
+hpc:enforceUgTree a owl:DatatypeProperty .
+hpc:EnforceUgTree rdfs:domain hpc:Usergrouptree .
+hpc:EnforceUgTree rdfs:range xsd:boolean .
+
+# ESTIMATED_RUNTIME
+hpc:estimatedRuntime a owl:DatatypeProperty .
+hpc:EstimatedRuntime rdfs:domain rdf:Resource .
+hpc:EstimatedRuntime rdfs:range xsd:duration .

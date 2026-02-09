@@ -1,0 +1,12 @@
+hpc:LcAuth a owl:Class .
+hpc:LcComm a owl:Class .
+hpc:LcFlex a owl:Class .
+hpc:LcLicense a owl:Class .
+hpc:LcPreempt a owl:Class .
+hpc:LcResreq a owl:Class .
+hpc:LcTrace a owl:Class .
+hpc:LcXdr a owl:Class .
+
+hpc:hasloglevel a owl:ObjectProperty .
+hpc:Hasloglevel rdfs:domain hpc:Logclass .
+hpc:Hasloglevel rdfs:range xsd:nonNegativeInteger .

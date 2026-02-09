@@ -1,0 +1,57 @@
+hpc:Jobgraceperiod a owl:Class .
+hpc:Hasgraceperiodminutes rdfs:domain hpc:Jobgraceperiod .
+hpc:Hasgraceperiodminutes rdfs:range xsd:nonNegativeInteger .
+
+hpc:Job a owl:Class .
+hpc:Job rdfs:subClassOf hpc:Outputfileassociatedjob .
+
+hpc:Outputfile a owl:Class .
+hpc:Outputfile rdfs:subClassOf hpc:Stagedoutfile .
+
+hpc:Outputfilerecord a owl:Class .
+hpc:Outputfilerecord rdfs:subClassOf hpc:Filerecord .
+
+hpc:Stageoutrequirement a owl:Class .
+hpc:Stageoutrequirement rdfs:subClassOf hpc:Filerequirement .
+
+hpc:Hasgraceperiod hpc:Jobgraceperiod rdfs:domain hpc:Job .
+hpc:Hasgraceperiod hpc:Outputfilerecord rdfs:domain hpc:Outputfilerecord .
+hpc:Hasgraceperiod hpc:Stageoutrequirement rdfs:domain hpc:Stageoutrequirement .
+
+hpc:Isassociatedwith hpc:Job rdfs:domain hpc:Outputfile .
+hpc:Isassociatedwith hpc:Outputfilerecord rdfs:domain hpc:Outputfilerecord .
+hpc:Isassociatedwith hpc:Stageoutrequirement rdfs:domain hpc:Stageoutrequirement .
+
+hpc:Isstagedout hpc:Filerecord rdfs:domain hpc:Filerecord .
+hpc:Isstagedout rdfs:range xsd:boolean .
+
+hpc:Istransferredorerror hpc:Outputfilerecord rdfs:domain hpc:Outputfilerecord .
+hpc:Istransferredorerror rdfs:range xsd:boolean .
+
+hpc:Iscleanedup hpc:File rdfs:domain hpc:File .
+hpc:Iscleanedup rdfs:range xsd:boolean .
+
+hpc:Isqueryable hpc:Outputfile rdfs:domain hpc:Outputfile .
+hpc:Isqueryable rdfs:range xsd:boolean .
+
+hpc:Issuccessfultransfer hpc:Filetransfer rdfs:domain hpc:Filetransfer .
+hpc:Issuccessfultransfer rdfs:range xsd:boolean .
+
+hpc:filetransfer a owl:ObjectProperty .
+hpc:Hasfile hpc:Filetransfer rdfs:domain hpc:Filetransfer .
+hpc:Hasfile rdfs:range hpc:File .
+
+hpc:File a owl:Class .
+hpc:File rdfs:subClassOf rdf:Resource .
+
+hpc:Filerecord a owl:Class .
+hpc:Filerecord rdfs:subClassOf hpc:File .
+
+hpc:Jobrecord a owl:Class .
+hpc:Jobrecord rdfs:subClassOf hpc:Job .
+
+hpc:Stageouthistory a owl:Class .
+hpc:Stageouthistory rdfs:subClassOf hpc:Jobrecord .
+
+hpc:Stageoutrequirementrecord a owl:Class .
+hpc:Stageoutrequirementrecord rdfs:subClassOf hpc:

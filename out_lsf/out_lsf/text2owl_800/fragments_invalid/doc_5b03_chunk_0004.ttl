@@ -1,0 +1,30 @@
+hpc:Servicejob a owl:Class .
+hpc:threadlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Servicejob ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:jobterminationdeadline a owl:DatatypeProperty ;
+    rdfs:domain hpc:Servicejob ;
+    rdfs:range xsd:dateTime .
+hpc:swaplimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Servicejob ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:runtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Servicejob ;
+    rdfs:range xsd:duration .
+hpc:Hostname rdfs:range xsd:string .
+hpc:Hostmodel rdfs:range xsd:string .
+hpc:runTime rdfs:subPropertyOf hpc:runTime .
+hpc:runtime/hostName a owl:ObjectProperty .
+hpc:runtime/hostModel a owl:ObjectProperty .
+hpc:help a owl:ObjectProperty ;
+    rdfs:domain hpc:Servicejob ;
+    rdfs:range xsd:string .
+hpc:version a owl:ObjectProperty ;
+    rdfs:domain hpc:Servicejob ;
+    rdfs:range xsd:string .
+hpc:Keyboardoperations a owl:Class .
+hpc:Screenreaderoperations a owl:Class .
+hpc:Cli a owl:Class .
+
+
+This ontology fragment defines classes for ServiceJob, its properties, and accessibility features like KeyboardOperations, ScreenReaderOperations, and CLI. It also includes properties for command-line options such as thread limit, job termination deadline, swap limit, run time, and accessibility features like help and version. The properties have appropriate domains and ranges defined.

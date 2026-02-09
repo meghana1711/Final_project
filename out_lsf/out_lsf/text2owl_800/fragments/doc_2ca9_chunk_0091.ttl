@@ -1,0 +1,61 @@
+hpc:Joblevelfeature a owl:Class .
+hpc:Joblevelfeature rdfs:subClassOf owl:Class .
+
+hpc:bsubne a owl:ObjectProperty .
+hpc:Bsubne rdfs:domain hpc:Joblevelfeature ;
+                                rdfs:range rdf:Resource .
+
+hpc:bmodne a owl:ObjectProperty .
+hpc:Bmodne rdfs:domain hpc:Joblevelfeature ;
+                                rdfs:range rdf:Resource .
+
+hpc:brestartne a owl:ObjectProperty .
+hpc:Brestartne rdfs:domain hpc:Joblevelfeature ;
+                                rdfs:range rdf:Resource .
+
+# Job Notification
+hpc:Jobnotification a owl:Class .
+hpc:Jobnotification rdfs:subClassOf owl:Class .
+
+hpc:bsubnotify a owl:ObjectProperty .
+hpc:Bsubnotify rdfs:domain hpc:Jobnotification ;
+                                rdfs:range xsd:string .
+
+hpc:bmodnotify a owl:ObjectProperty .
+hpc:Bmodnotify rdfs:domain hpc:Joblevelfeature ;
+                                rdfs:range xsd:string .
+
+hpc:lsfAcJobNotification a owl:DatatypeProperty .
+hpc:LsfAcJobNotification rdfs:domain hpc:Joblevelfeature ;
+                                 rdfs:range xsd:string .
+
+# Job States for Notification
+hpc:Jobstate a owl:Class .
+hpc:Jobstate rdfs:subClassOf owl:Class .
+
+hpc:exit a hpc:JobState .
+hpc:done a hpc:JobState .
+hpc:suspend a hpc:JobState .
+
+# Memory Support
+hpc:Memorysupport a owl:Class .
+hpc:Memorysupport rdfs:subClassOf owl:Class .
+
+hpc:supports3tbmemory a owl:ObjectProperty .
+hpc:Supports3tbmemory rdfs:domain hpc:Memorysupport ;
+                               rdfs:range rdf:Resource .
+
+# Version and Enhancements
+hpc:Version a owl:Class .
+hpc:Version rdfs:subClassOf owl:Class .
+
+hpc:fixpack a owl:DatatypeProperty .
+hpc:Fixpack rdfs:domain hpc:Version ;
+                         rdfs:range xsd:string .
+
+hpc:releasedate a owl:DatatypeProperty .
+hpc:Releasedate rdfs:domain hpc:Version ;
+                      rdfs:range xsd:date .
+
+hpc:Gpuenhancements a owl:Class .
+hpc:Gpuenhancements rdfs:subClassOf owl:Class .

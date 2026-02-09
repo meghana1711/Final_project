@@ -1,0 +1,27 @@
+hpc:Clusters a owl:Class.
+hpc:Clustersresponse a owl:Class.
+hpc:Jobs a owl:Class.
+hpc:Jobsresponse a owl:Class.
+hpc:Users a owl:Class.
+hpc:Wckey a owl:Class.
+hpc:Wckeyresponse a owl:Class.
+
+hpc:hasresponse a owl:ObjectProperty;
+    rdfs:domain hpc:Clusters;
+    rdfs:range hpc:Clustersresponse.
+
+hpc:getclusters a owl:ObjectProperty;
+    rdfs:domain hpc:Clusters;
+    rdfs:range rdf:Resource.
+
+hpc:postclusters a owl:ObjectProperty;
+    rdfs:domain hpc:Clusters;
+    rdfs:range rdf:Resource.
+
+hpc:deletecluster a owl:ObjectProperty;
+    rdfs:domain hpc:Clusters;
+    rdfs:range rdf:Resource.
+
+hpc:hasgetresponse200 a owl:ObjectProperty;
+    rdfs:domain hpc:Clustersresponse;
+    rd

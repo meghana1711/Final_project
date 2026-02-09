@@ -1,0 +1,52 @@
+hpc:Apsqueue a owl:Class .
+hpc:FairshareQueues rdfs:subClassOf hpc:Apsqueue .
+hpc:FAIRSHARE_QUEUES rdfs:obsolete rdf:resource("http://example.org/hpc#LSF_7.0") .
+
+hpc:QueueGroup a owl:Class .
+hpc:QueueGroup rdfs:subClassOf hpc:Apsqueue .
+
+hpc:Suspendedjob a owl:Class .
+hpc:Migratedjob a owl:Class .
+
+hpc:scheduledBefore rdf:type owl:ObjectProperty .
+hpc:Scheduledbefore rdfs:domain hpc:Job .
+hpc:Scheduledbefore rdfs:range hpc:Job .
+
+hpc:jobPriority rdf:type owl:DatatypeProperty .
+hpc:Jobpriority rdfs:domain hpc:Job .
+hpc:Jobpriority rdfs:range xsd:decimal .
+
+hpc:LSB_REQUEUE_TO_BOTTOM rdf:type owl:ObjectProperty .
+hpc:LsbRequeueToBottom rdfs:domain hpc:Configuration .
+hpc:LsbRequeueToBottom rdfs:range hpc:Apsqueue .
+
+hpc:LSB_MIG2PEND rdf:type owl:ObjectProperty .
+hpc:LsbMig2pend rdfs:domain hpc:Configuration .
+hpc:LsbMig2pend rdfs:range hpc:Apsqueue .
+
+hpc:brequeue rdf:type owl:ObjectProperty .
+hpc:Brequeue rdfs:domain hpc:Apsqueue .
+
+hpc:backfill rdf:type owl:DatatypeProperty .
+hpc:Backfill rdfs:domain hpc:Queue .
+hpc:Backfill rdfs:range xsd:boolean .
+
+hpc:PREEMPTION rdf:type owl:DatatypeProperty .
+hpc:Preemption rdfs:domain hpc:Queue .
+hpc:Preemption rdfs:range xsd:boolean .
+
+hpc:PREEMPT_JOBTYPE rdf:type owl:DatatypeProperty .
+hpc:PreemptJobtype rdfs:domain hpc:Configuration .
+hpc:PreemptJobtype rdfs:range xsd:string .
+
+hpc:INTERRUPTIBLE_BACKFILL rdf:type owl:DatatypeProperty .
+hpc:InterruptibleBackfill rdfs:domain hpc:Queue .
+hpc:InterruptibleBackfill rdfs:range xsd:nonNegativeInteger .
+
+hpc:MAX_SLOTS_IN_POOL rdf:type owl:DatatypeProperty .
+hpc:MaxSlotsInPool rdfs:domain hpc:Queue .
+hpc:MaxSlotsInPool rdfs:range xsd:nonNegativeInteger .
+
+hpc:SLOT_RESERVE rdf:type owl:DatatypeProperty .
+hpc:SlotReserve rdfs:domain hpc:Queue .
+hpc:SLOT_RESER

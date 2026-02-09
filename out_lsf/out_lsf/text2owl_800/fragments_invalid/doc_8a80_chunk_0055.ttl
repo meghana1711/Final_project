@@ -1,0 +1,24 @@
+hpc:Lsffeaturedefinition a owl:Class .
+hpc:HaslmremoveSuspJobsvalue hpc:hasvalue an owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsffeaturedefinition ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:HaslsFeaturePercentagevalue hpc:hasvalue an owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsffeaturedefinition ;
+    rdfs:range xsd:boolean .
+hpc:isobsolete hpc:lmremoveSuspJobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsffeaturedefinition ;
+    rdfs:range hpc:Boolean .
+hpc:lsFeaturePercentageApplication hpc:lsFeaturePercentage a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsffeaturedefinition ;
+    rdfs:range hpc:Projectapplication .
+hpc:lsFeaturePercentageAffects hpc:lsFeaturePercentage a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsffeaturedefinition ;
+    rdfs:range hpc:Lsffeature .
+hpc:Lsffeature a owl:Class ;
+    rdfs:subClassOf hpc:Lsffeaturedefinition .
+hpc:Lsfprojectapplication a owl:Class .
+hpc:Lsflicenseserver a owl:Class .
+hpc:Lsflicensescheduler a owl:Class .
+hpc:Lsfproject a owl:Class ;
+    rdfs:subClassOf hpc:Lsffeature .
+hpc:Lsffeaturevalue a owl:Class .

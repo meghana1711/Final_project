@@ -1,0 +1,27 @@
+hpc:Apps a owl:Class .
+hpc:Eligiblependingjobs a owl:Class .
+hpc:Ineligible a owl:Class .
+hpc:Jobs a owl:Class .
+hpc:Jobsperschedcycle a owl:Class .
+hpc:Licprojects a owl:Class .
+hpc:Mem a owl:Class .
+hpc:name a owl:DatatypeProperty .
+hpc:perapp a owl:ObjectProperty .
+hpc:perlicproject a owl:ObjectProperty .
+
+hpc:Name rdfs:domain hpc:Mem .
+hpc:Perapp rdfs:domain hpc:Limit .
+hpc:Perlicproject rdfs:domain hpc:Limit .
+hpc:Eligiblependingjobs rdfs:range xsd:nonNegativeInteger .
+hpc:Jobs rdfs:range xsd:nonNegativeInteger .
+hpc:Licprojects rdfs:range rdf:List .
+hpc:Mem rdfs:range xsd:nonNegativeDecimal .
+
+hpc:Limit a owl:Class .
+hpc:Apps rdfs:subClassOf hpc:Limit .
+hpc:Eligiblependingjobs rdfs:subClassOf hpc:Limit .
+hpc:Ineligible rdfs:subClassOf hpc:Limit .
+hpc:Jobs rdfs:subClassOf hpc:Limit .
+hpc:Jobsperschedcycle rdfs:subClassOf hpc:Limit .
+hpc:Licprojects rdfs:subClassOf hpc:Limit .
+hpc:Mem rdfs:subClassOf hpc:Limit .

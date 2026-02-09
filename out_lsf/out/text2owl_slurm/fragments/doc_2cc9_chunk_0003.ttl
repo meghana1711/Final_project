@@ -1,0 +1,29 @@
+hpc:Corespersocket a owl:Class .
+hpc:Corespersocket rdfs:subClassOf owl:Integer .
+hpc:Corespersocket rdfs:domain hpc:Physicalprocessor .
+
+hpc:Threadspercore a owl:Class .
+hpc:Threadspercore rdfs:subClassOf owl:Integer .
+hpc:Threadspercore rdfs:domain hpc:Physicalcore .
+
+hpc:Realmemory a owl:Class .
+hpc:Realmemory rdfs:subClassOf xsd:nonNegativeInteger .
+hpc:Realmemory rdfs:domain hpc:Memory .
+
+hpc:Slurmuser a owl:Class .
+
+hpc:slurmctldport a owl:ObjectProperty .
+hpc:Slurmctldport rdfs:domain hpc:Slurmcontroller .
+hpc:Slurmctldport rdfs:range xsd:nonNegativeInteger .
+
+hpc:slurmdport a owl:ObjectProperty .
+hpc:Slurmdport rdfs:domain hpc:Computenode .
+hpc:Slurmdport rdfs:range xsd:nonNegativeInteger .
+
+hpc:statepreservationdirectory a owl:ObjectProperty .
+hpc:Statepreservationdirectory rdfs:domain hpc:Slurmcontroller .
+hpc:Statepreservationdirectory rdfs:range xsd:string .
+
+hpc:statepreservationcomputeserverdirectory a owl:ObjectProperty .
+hpc:Statepreservationcomputeserverdirectory rdfs:domain hpc:Computenode .
+hpc:Statepreservationcomputeserverdirectory rdfs:range xsd:string .

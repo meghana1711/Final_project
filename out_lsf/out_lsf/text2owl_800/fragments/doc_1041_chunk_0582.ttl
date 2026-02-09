@@ -1,0 +1,58 @@
+hpc:Jobsubmission a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Submits a job using a JSON file to specify job submission options." .
+
+hpc:waitsforcompletion a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Submits a job and waits for the job to complete." .
+
+hpc:sendsstatusmessages a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Sends job status messages to the terminal." .
+
+hpc:makescheckpointable a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Makes a job checkpointable and specifies the checkpoint directory." .
+
+hpc:initializesexecutionenvironment a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Initializes the execution environment using the specified login shell." .
+
+hpc:assignstoproject a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range hpc:Project ;
+    rdfs:comment "Assigns the job to the specified LSF License Scheduler project." .
+
+hpc:lnmemorylimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies the memory limit on the launch node (LN) host for the CSM job." .
+
+hpc:lnslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies the number of slots to use on the launch node (LN) host for the CSM job." .
+
+hpc:jobmemorylimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Sets a memory limit for all the processes that belong to the job." .
+
+hpc:runonhosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Submits a job to be run on specific hosts, host groups, or compute units." .
+
+hpc:migrationthreshold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Checkpointablejob ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies the migration threshold for checkpointable or re-runnable jobs, in minutes." .
+
+hpc:sendjobreportonfinish a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Sends the job report to you by mail when the job finishes." .

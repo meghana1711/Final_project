@@ -1,0 +1,40 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "A job in the HPC system." .
+
+hpc:Jobrequeuelimit a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "The limit for re-queuing jobs in the HPC system." .
+
+hpc:Jobstatusevent a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "An event related to the status of a job in the HPC system." .
+
+hpc:Lsbevents a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Events related to the LSB system." .
+
+hpc:joblevelautorequeue a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Indicates if a job is configured for automatic re-queuing at the job level." .
+
+hpc:submittedjob a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "The job that was submitted by a user." .
+
+hpc:exitcode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The exit code of a job." .
+
+hpc:requeueexitvalues a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The exit codes for which a job is re-queued." .
+
+hpc:exclusivejobrequeue a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Indicates that jobs with the specified exit code are re-queued exclusively, not to be run on the same host." .

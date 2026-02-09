@@ -1,0 +1,55 @@
+hpc:Submissioncluster a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:datafilepush a owl:ObjectProperty ;
+    rdfs:domain hpc:Submissioncluster ;
+    rdfs:range rdf:Resource .
+
+hpc:stacklimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Submissioncluster ;
+    rdfs:range xsd:integer ;
+    rdfs:range rdf:First hpc:Unlimited ;
+    rdfs:comment "Specify this parameter to place a per-process hard stack segment size limit, in KB, for all of the processes belonging to a job from this queue (see getrlimit(2)). Default: Unlimited." .
+
+hpc:stopCond a owl:ObjectProperty ;
+    rdfs:domain hpc:Submissioncluster ;
+    rdfs:range rdf:Resource .
+    rdfs:comment "Specifies conditions for LSF to automatically suspend a running job in this queue." .
+
+hpc:Resreq a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:loadthresholds a owl:ObjectProperty ;
+    rdfs:domain hpc:Resreq ;
+    rdfs:range rdf:Resource .
+    rdfs:comment "Use the select section of the resource requirement string to specify load thresholds. All other sections are ignored." .
+
+hpc:suspendjob a owl:ObjectProperty ;
+    rdfs:domain hpc:StopCond ;
+    rdfs:range rdf:Resource .
+    rdfs:comment "LSF automatically suspends a running job in this queue if the load on the host satisfies the speciﬁed conditions." .
+
+hpc:hostload a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loadthresholds ;
+    rdfs:range xsd:string .
+    rdfs:comment "The conditions only support load indices and static boolean resources." .
+
+hpc:interactivelyidle a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostload ;
+    rdfs:range xsd:boolean .
+    rdfs:comment "LSF does not suspend the only job running on the host if the machine is interactively idle (it > 0)." .
+
+hpc:forcedjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Suspendjob ;
+    rdfs:range xsd:boolean .
+    rdfs:comment "LSF does not suspend a forced job (brun -f)." .
+
+hpc:pagingrate a owl:ObjectProperty ;
+    rdfs:domain hpc:Suspendjob ;
+    rdfs:range xsd:boolean .
+    rdfs:comment "LSF does not suspend a job because of paging rate if the machine is interactively idle." .
+
+hpc:noloadthresholds a owl:ObjectProperty ;
+    rdfs:domain hpc:StopCond ;
+    rdfs:range rdf:Resource .
+    rdfs:comment "If STOP_COND is speciﬁed in the queue and there are no load thresholds, the suspending reasons for each individual load index is not displayed by bjobs." .

@@ -1,0 +1,19 @@
+hpc:Job a owl:Class .
+hpc:Multiclusterjob a owl:Class .
+hpc:Localjob a owl:Class .
+hpc:Sendjobsqueue a owl:Class .
+hpc:propmaxrschedtime a owl:DatatypeProperty .
+hpc:propuserassignedpriority a owl:ObjectProperty .
+hpc:MaxUserPriority a xsd:integer .
+
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Multiclusterjob rdfs:subClassOf hpc:Job .
+hpc:Localjob rdfs:subClassOf hpc:Job .
+hpc:Sendjobsqueue rdfs:subClassOf owl:Class .
+
+hpc:Propmaxrschedtime rdfs:domain hpc:Sendjobsqueue ;
+                        rdfs:range xsd:integer .
+hpc:Propuserassignedpriority rdfs:domain hpc:Job ;
+                               rdfs:range xsd:integer .
+
+hpc:propmaxuserpriority a owl:DatatypeProperty .

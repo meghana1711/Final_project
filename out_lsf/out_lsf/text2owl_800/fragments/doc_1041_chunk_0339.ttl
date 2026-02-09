@@ -1,0 +1,35 @@
+hpc:Job a owl:Class .
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:Queue a owl:Class .
+
+hpc:killjob a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Job .
+
+hpc:signal a owl:DatatypeProperty ;
+    rdfs:domain hpc:Killjob ;
+    rdfs:range xsd:integer .
+
+hpc:Serviceclass a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Jobgroup a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Applicationprofile a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:queuename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Killjob ;
+    rdfs:range hpc:Queue .
+
+hpc:riskgroup a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range xsd:string .
+
+hpc:application a owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:string .

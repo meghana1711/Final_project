@@ -1,0 +1,43 @@
+hpc:LicenseSchedulerAdmin
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a License Scheduler administrator." .
+
+hpc:hasAdmin
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Licensescheduler ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Relates a License Scheduler to its administrators." .
+
+hpc:Installation
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the installation of License Scheduler." .
+
+hpc:isInstalled
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Licensescheduler ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether License Scheduler is installed." .
+
+hpc:ClusterAdministrator
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a cluster administrator." .
+
+hpc:Upgrade
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Licensescheduler ;
+    rdfs:range hpc:Upgrade ;
+    rdfs:comment "Relates a License Scheduler to its upgrade." .
+
+hpc:Upgrade
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents an upgrade of License Scheduler." .
+
+hpc:DeactivateQueue
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a queue is deactivated." .

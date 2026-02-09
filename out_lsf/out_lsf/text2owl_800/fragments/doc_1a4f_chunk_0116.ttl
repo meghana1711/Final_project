@@ -1,0 +1,29 @@
+hpc:requeue a owl:ObjectProperty .
+hpc:Requeue rdfs:domain hpc:Job .
+hpc:Requeue rdfs:range xsd:boolean .
+
+hpc:Job a owl:Class .
+
+hpc:extendableRunlimit a owl:ObjectProperty .
+hpc:ExtendableRunlimit rdfs:domain hpc:Queue .
+hpc:ExtendableRunlimit rdfs:range hpc:Runlimit .
+
+hpc:Runlimit a owl:Class .
+hpc:Runlimit rdfs:subClassOf hpc:Timelimit .
+hpc:Runlimit rdfs:range xsd:nonNegativeInteger .
+
+hpc:Timelimit a owl:Class .
+hpc:Timelimit rdfs:subClassOf owl:QuantitativeValue .
+hpc:Timelimit rdfs:range xsd:duration .
+
+hpc:base a owl:DatatypeProperty .
+hpc:Base rdfs:domain hpc:Runlimit .
+hpc:Base rdfs:range xsd:duration .
+
+hpc:increment a owl:DatatypeProperty .
+hpc:Increment rdfs:domain hpc:Runlimit .
+hpc:Increment rdfs:range xsd:nonNegativeInteger .
+
+hpc:grace a owl:DatatypeProperty .
+hpc:Grace rdfs:domain hpc:Runlimit .
+hpc:Grace rdfs:range xsd:nonNegativeInteger .

@@ -1,0 +1,27 @@
+hpc:Monitorjobinformation a owl:Class .
+
+hpc:bjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Monitorjobinformation ;
+    rdfs:range hpc:Job .
+
+hpc:bhist a owl:ObjectProperty ;
+    rdfs:domain hpc:Monitorjobinformation ;
+    rdfs:range hpc:JobHistory .
+
+hpc:bjdepinfo a owl:ObjectProperty ;
+    rdfs:domain hpc:Monitorjobinformation ;
+    rdfs:range hpc:Jobdependency .
+
+hpc:bhosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Monitorjobinformation ;
+    rdfs:range hpc:Host .
+
+hpc:bqueues a owl:ObjectProperty ;
+    rdfs:domain hpc:Monitorjobinformation ;
+    rdfs:range hpc:Queue .
+
+hpc:bhostsl a owl:ObjectProperty ;
+    rdfs:domain hpc:Monitorjobinformation ;
+    rdfs:range hpc:Suspendingconditionhost .
+
+hpc:bqueuesl a owl:ObjectProperty ;

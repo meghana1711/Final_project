@@ -1,0 +1,42 @@
+hpc:Admin a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Defines the LSF License Scheduler administrator using a valid UNIX user account." .
+
+hpc:auth a owl:ObjectProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Enables LSF License Scheduler user authentication for projects for taskman jobs." .
+
+hpc:blcHeartbeatFactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Enables bld to detect blcollect failure." .
+
+hpc:Configuration a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a configuration for the LSF License Scheduler." .
+
+hpc:hosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "List of hosts for the LSF License Scheduler." .
+
+hpc:lmStatInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Interval in minutes for LM statistics." .
+
+hpc:lmstatPath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Path to the LMSTAT executable." .
+
+hpc:port a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:positiveInteger ;
+    rdfs:comment "Port number for the LSF License Scheduler." .
+
+hpc:rlmstatPath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Path to the RLMSTAT executable." .

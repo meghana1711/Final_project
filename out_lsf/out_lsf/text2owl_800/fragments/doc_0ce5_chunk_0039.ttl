@@ -1,0 +1,26 @@
+hpc:Scheduler a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a scheduler in an HPC system." .
+
+hpc:schedulerThreads a owl:DatatypeProperty ;
+    rdfs:domain hpc:Scheduler ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of threads used by the scheduler to evaluate resource requirements." .
+
+hpc:settingtozero a owl:DatatypeProperty ;
+    rdfs:domain hpc:SchedulerThreads ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the scheduler does not create any threads to evaluate resource requirements." .
+
+hpc:LsfStrictResreq a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A parameter related to the LSF strict resource requirement." .
+
+hpc:Limitjobdependencyevaluation a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A process that limits the amount of time mbatchd spends on evaluating job dependencies." .
+
+hpc:evaluateJobDependency a owl:DatatypeProperty ;
+    rdfs:domain hpc:Limitjobdependencyevaluation ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of job dependencies mbatchd evaluates in one scheduling cycle." .

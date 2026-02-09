@@ -1,0 +1,20 @@
+hpc:Groupa a owl:Class .
+hpc:Groupb a owl:Class .
+hpc:Default a owl:Class .
+
+hpc:chargebackfairshare a owl:ObjectProperty ;
+    rdfs:domain hpc:Chargebackfairshare .
+hpc:Usergroup a owl:Class ;
+    rdfs:subClassOf hpc:Chargebackfairshare .
+hpc:Hostpartition a owl:Class ;
+    rdfs:subClassOf hpc:Chargebackfairshare .
+
+hpc:usershares a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostpartition ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:groupName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Usergroup .
+hpc:groupMember a owl:ObjectProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range rdf:List .

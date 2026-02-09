@@ -1,0 +1,61 @@
+hpc:Joblevel a owl:Class ;
+    rdfs:subClassOf hpc:Postexecutioncommandlevel ;
+    rdfs:comment "Level of post-execution commands for a job." .
+
+hpc:Applicationlevel a owl:Class ;
+    rdfs:subClassOf hpc:Postexecutioncommandlevel ;
+    rdfs:comment "Level of post-execution commands for an application." .
+
+hpc:Queuelevel a owl:Class ;
+    rdfs:subClassOf hpc:Postexecutioncommandlevel ;
+    rdfs:comment "Level of post-execution commands for a queue." .
+
+hpc:Postexecutioncommandlevel a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Level at which post-execution commands are specified." .
+
+hpc:overrides a owl:ObjectProperty ;
+    rdfs:domain hpc:Postexecutioncommandlevel ;
+    rdfs:range hpc:Postexecutioncommandlevel ;
+    rdfs:comment "A job-level post-execution command overrides an application-level post-execution command." .
+
+hpc:firsthostoverridden a owl:ObjectProperty ;
+    rdfs:domain hpc:Postexecutioncommandlevel ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the first host is overridden by job-level post-execution commands." .
+
+hpc:applicationlevelpostexecution a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationlevel ;
+    rdfs:range hpc:Postexecutioncommand ;
+    rdfs:comment "The post-execution commands specified at the application level." .
+
+hpc:joblevelpostexecution a owl:ObjectProperty ;
+    rdfs:domain hpc:Joblevel ;
+    rdfs:range hpc:Postexecutioncommand ;
+    rdfs:comment "The post-execution commands specified at the job level." .
+
+hpc:queuelevelpostexecution a owl:ObjectProperty ;
+    rdfs:domain hpc:Queuelevel ;
+    rdfs:range hpc:Postexecutioncommand ;
+    rdfs:comment "The post-execution commands specified at the queue level." .
+
+hpc:Rerunnable a owl:Class ;
+    rdfs:subClassOf hpc:Joblevel ;
+    rdfs:comment "A job that can be re-run." .
+
+hpc:queuelevelrerun a owl:ObjectProperty ;
+    rdfs:domain hpc:Queuelevel ;
+    rdfs:range hpc:Rerunnable ;
+    rdfs:comment "Indicates whether a non-rerunnable queue can accept re-runnable jobs." .
+
+hpc:applicationprofilererun a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range hpc:Rerunnable ;
+    rdfs:comment "Indicates whether an application profile allows re-runnable jobs." .
+
+hpc:Simpleresourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement ;
+    rdfs:comment "A simple resource requirement for a single resource." .
+
+hpc:Compoundresourcerequirement a owl:Class ;
+    rdfs:subClass

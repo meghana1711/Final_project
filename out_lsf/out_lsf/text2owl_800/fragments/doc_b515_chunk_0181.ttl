@@ -1,0 +1,38 @@
+hpc:Defaultusergroup a owl:Class .
+hpc:Fairsharequeue a owl:Class .
+hpc:Job a owl:Class .
+hpc:Shareassignment a owl:Class .
+hpc:Usergroup a owl:Class .
+
+hpc:hasshares a owl:ObjectProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range hpc:Shareassignment .
+
+hpc:submittedusergroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Usergroup .
+
+hpc:shareattributeaccountpath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Shareassignment ;
+    rdfs:range xsd:string .
+
+hpc:fairshare a owl:ObjectProperty ;
+    rdfs:domain hpc:Fairsharequeue ;
+    rdfs:range hpc:Usergroup .
+
+hpc:lsbSacctOneUg a owl:ObjectProperty ;
+    rdfs:domain hpc:Fairsharequeue ;
+    rdfs:range xsd:boolean .
+
+hpc:userShares a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fairshare ;
+    rdfs:range xsd:string .
+
+hpc:Usershare a owl:Class ;
+    rdfs:subClassOf hpc:Shareassignment .
+
+hpc:Usershareassignment a owl:Class ;
+    rdfs:subClassOf hpc:Shareassignment .
+
+hpc:Defaultusergroup rdfs:subClassOf hpc:Usergroup .
+hpc:Fairsharequeue rdfs:subClassOf hpc:Queue .

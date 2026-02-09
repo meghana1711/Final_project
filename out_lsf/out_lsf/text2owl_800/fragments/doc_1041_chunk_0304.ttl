@@ -1,0 +1,32 @@
+hpc:Job
+    a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a job in the system." .
+
+hpc:User
+    a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a user in the system." .
+
+hpc:AdvanceReservation
+    a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents an advance reservation in the system." .
+
+hpc:jobSlotCount
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of job slots for a job." .
+
+hpc:user
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:User ;
+    rdfs:comment "The user associated with a job." .
+
+hpc:associatedWithAdvanceReservation
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "The jobs associated with an advance reservation." .

@@ -1,0 +1,61 @@
+hpc:Host a owl:Class .
+hpc:Hostgroup a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Queue a owl:Class .
+hpc:User a owl:Class .
+
+hpc:hasmaxwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:integer .
+
+hpc:isrightjustified a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .
+
+hpc:displaysqueueinformation a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Queue .
+
+hpc:haswidthformat a owl:DatatypeProperty ;
+    rdfs:domain hpc:Displaysqueueinformation ;
+    rdfs:range xsd:string .
+
+hpc:truncationfree a owl:DatatypeProperty ;
+    rdfs:domain hpc:Displaysqueueinformation ;
+    rdfs:range xsd:boolean .
+
+hpc:separatedbycharacter a owl:DatatypeProperty ;
+    rdfs:domain hpc:Displaysqueueinformation ;
+    rdfs:range xsd:string .
+
+hpc:specifiedhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Displaysqueues ;
+    rdfs:range hpc:Host .
+
+hpc:specifiedhostgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Displaysqueues ;
+    rdfs:range hpc:Hostgroup .
+
+hpc:specifiedclustername a owl:ObjectProperty ;
+    rdfs:domain hpc:Displaysqueues ;
+    rdfs:range hpc:Cluster .
+
+hpc:specifiedall a owl:ObjectProperty ;
+    rdfs:domain hpc:Displaysqueues ;
+    rdfs:range hpc:Queue .
+
+hpc:acceptsjobsfromuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:User .
+
+hpc:islocalcluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:boolean .
+
+hpc:isspecifiedcluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Displaysqueues ;
+    rdfs:range hpc:Cluster .
+
+hpc:bmgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Hostgroup .

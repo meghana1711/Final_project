@@ -1,0 +1,25 @@
+hpc:EnvVars a owl:Class .
+hpc:hasname a owl:DatatypeProperty ;
+    rdfs:domain hpc:EnvVars ;
+    rdfs:range xsd:string .
+hpc:hasvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:EnvVars ;
+    rdfs:range xsd:string .
+hpc:isoverwrittenby a owl:ObjectProperty ;
+    rdfs:domain hpc:EnvVars ;
+    rdfs:range (hpc:Applicationprofile | hpc:Userenvironment) .
+hpc:isdefinedin a owl:ObjectProperty ;
+    rdfs:domain hpc:EnvVars ;
+    rdfs:range hpc:Queue .
+hpc:hasmultiplevalues a owl:ObjectProperty ;
+    rdfs:domain hpc:EnvVars ;
+    rdfs:range rdf:List .
+hpc:NULL_ENV_VAR a hpc:ENV_VARS ;
+    hpc:hasName "TEST_CAR" ;
+    hpc:hasValue "" .
+hpc:JobLevelEligiblePendingTimeLimit a hpc:ENV_VARS ;
+    hpc:hasName "bsub -eptl" .
+hpc:ApplicationLevelLimit a hpc:ENV_VARS ;
+    hpc:hasName "ELIGIBLE_PEND_TIME_LIMIT" .
+hpc:QueueLevelLimit a hpc:ENV_VARS ;
+    hpc:hasName "LSB_QUEUES" .

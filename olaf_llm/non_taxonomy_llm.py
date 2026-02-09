@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import json
 import os
 import re
@@ -29,7 +30,20 @@ RELATION_TYPE_ENUM: Set[str] = {
     "other",
 }
 
-PREDICATE_RE = re.compile(r"^[a-z][a-z0-9_]{1,63}$")  # lower_snake_case-ish
+# lower_snake_case-ish
+PREDICATE_RE = re.compile(r"^[a-z][a-z0-9_]{1,63}$")
+
+# Hard block "taxonomy-ish" relations in non-tax stage
+DISALLOWED_PREDICATES = {
+    "is_a",
+    "isa",
+    "type_of",
+    "typeof",
+    "kind_of",
+    "subclass_of",
+    "subclass",
+    "superclass_of",
+}
 
 
 # =============================================================================
@@ -66,18 +80,28 @@ def load_prompt_config(path: str) -> PromptConfig:
     if few_shots is None or not isinstance(few_shots, list):
         raise RuntimeError("YAML prompt config must include 'few_shots' as a list (can be empty).")
 
-    # Validate few-shots structure strictly
+    # Validate few-shots structure
     for i, ex in enumerate(few_shots, start=1):
         if not isinstance(ex, dict):
-            raise RuntimeError(f"few_shots[{i}] must be a mapping with keys: text, terms, json.")
-        if "text" not in ex or "terms" not in ex or "json" not in ex:
-            raise RuntimeError(f"few_shots[{i}] must contain keys: text, terms, json.")
+            raise RuntimeError(f"few_shots[{i}] must be a mapping.")
+        # We support either:
+        #  - legacy: keys text, terms, json
+        #  - new indexed: keys text, indexed_terms, json
+        if "text" not in ex or "json" not in ex:
+            raise RuntimeError(f"few_shots[{i}] must contain keys: text, json.")
         if not isinstance(ex["text"], str):
             raise RuntimeError(f"few_shots[{i}].text must be a string.")
-        if not isinstance(ex["terms"], list) or not all(isinstance(t, str) for t in ex["terms"]):
-            raise RuntimeError(f"few_shots[{i}].terms must be a list of strings.")
         if not isinstance(ex["json"], dict):
-            raise RuntimeError(f"few_shots[{i}].json must be a dict (structured JSON object).")
+            raise RuntimeError(f"few_shots[{i}].json must be a dict.")
+        if "indexed_terms" in ex:
+            if not isinstance(ex["indexed_terms"], list) or not all(isinstance(t, str) for t in ex["indexed_terms"]):
+                raise RuntimeError(f"few_shots[{i}].indexed_terms must be a list of strings.")
+        elif "terms" in ex:
+            if not isinstance(ex["terms"], list) or not all(isinstance(t, str) for t in ex["terms"]):
+                raise RuntimeError(f"few_shots[{i}].terms must be a list of strings.")
+        else:
+            # allow empty list
+            ex["indexed_terms"] = []
 
     max_terms_per_chunk = int(obj.get("max_terms_per_chunk") or 18)
     max_new_tokens = int(obj.get("max_new_tokens") or 256)
@@ -173,7 +197,6 @@ def load_model(model_id: str):
 def ensure_tables(conn: sqlite3.Connection, out_table: str, runs_table: str) -> None:
     cur = conn.cursor()
 
-    # Output table with provenance (doc_id, chunk_id) + raw_json for auditability
     cur.execute(
         f"""
         CREATE TABLE IF NOT EXISTS {out_table} (
@@ -191,7 +214,6 @@ def ensure_tables(conn: sqlite3.Connection, out_table: str, runs_table: str) -> 
         """
     )
 
-    # Runs table: mark each (doc_id,chunk_id) as done even if 0 edges.
     cur.execute(
         f"""
         CREATE TABLE IF NOT EXISTS {runs_table} (
@@ -206,7 +228,6 @@ def ensure_tables(conn: sqlite3.Connection, out_table: str, runs_table: str) -> 
         """
     )
 
-    # Indexes for stability/perf
     cur.execute(f"CREATE INDEX IF NOT EXISTS idx_{out_table}_doc_chunk ON {out_table}(doc_id, chunk_id)")
     cur.execute(f"CREATE INDEX IF NOT EXISTS idx_{out_table}_pred ON {out_table}(predicate)")
     cur.execute(f"CREATE INDEX IF NOT EXISTS idx_{runs_table}_status ON {runs_table}(status)")
@@ -227,10 +248,6 @@ def fetch_unprocessed_chunks(
     offset_rowid: int,
     max_chunks: int,
 ) -> List[Tuple[int, str, str, str]]:
-    """
-    Returns rows: (rowid, doc_id, chunk_id, text) for chunks not yet in runs_table (status=done/error).
-    Using runs_table is safer than checking out_table existence, because a chunk may legitimately yield 0 edges.
-    """
     cur = conn.cursor()
 
     lim_sql = ""
@@ -255,7 +272,7 @@ def fetch_unprocessed_chunks(
 
 
 # =============================================================================
-# Candidate terms per chunk (from llm_terms_final + term_enrich_final)
+# Candidate terms per chunk (from llm_terms_final + llm_enrich_final)
 # =============================================================================
 
 def fetch_terms_for_chunk(
@@ -306,6 +323,7 @@ def fetch_terms_for_chunk(
         if key in seen:
             continue
         seen.add(key)
+
         out.append(
             {
                 "term": term,
@@ -322,48 +340,70 @@ def fetch_terms_for_chunk(
 
 
 # =============================================================================
-# Prompt building
+# Prompt building (UPDATED: uses per-chunk indices)
 # =============================================================================
 
-def build_prompt(cfg: PromptConfig, chunk_text: str, terms: List[Dict[str, str]]) -> str:
-    # Few-shot blocks from YAML
-    ex_blocks: List[str] = []
-    for i, ex in enumerate(cfg.few_shots, start=1):
-        ex_json = json.dumps(ex["json"], ensure_ascii=False, indent=2)
-        ex_terms = ", ".join(ex["terms"])
-        ex_blocks.append(
-            f"Example {i}:\n"
-            f"TEXT:\n{ex['text']}\n"
-            f"TERMS_IN_CHUNK:\n{ex_terms}\n"
-            f"CORRECT_JSON:\n{ex_json}\n"
-        )
-    examples_str = "\n".join(ex_blocks)
-
+def build_prompt(cfg: PromptConfig, chunk_text: str, terms: List[Dict[str, str]]) -> Tuple[str, Dict[int, str]]:
+    """
+    Returns (prompt, idx_to_term).
+    The LLM must output subject_idx/object_idx instead of free text, preventing paraphrase.
+    """
+    idx_to_term: Dict[int, str] = {}
     term_lines: List[str] = []
-    for t in terms:
-        line = f"- {t['term']} [category={t['category']}, role={t['ontology_role']}, dul={t['dul_bucket']}]"
+    for i, t in enumerate(terms, start=1):
+        idx_to_term[i] = t["term"]
+        line = f"{i}. {t['term']} [category={t['category']}, role={t['ontology_role']}, dul={t['dul_bucket']}]"
         if t["definition"]:
             line += f" – {t['definition']}"
         term_lines.append(line)
     terms_block = "\n".join(term_lines)
 
+    # Few-shot blocks: support either legacy or indexed
+    ex_blocks: List[str] = []
+    for i, ex in enumerate(cfg.few_shots, start=1):
+        ex_json = json.dumps(ex["json"], ensure_ascii=False, indent=2)
+        if "indexed_terms" in ex and isinstance(ex["indexed_terms"], list):
+            ex_terms = "\n".join(f"{j+1}. {t}" for j, t in enumerate(ex["indexed_terms"]))
+        else:
+            # legacy "terms" list -> format as indexed for consistency
+            ex_terms = "\n".join(f"{j+1}. {t}" for j, t in enumerate(ex.get("terms", [])))
+        ex_blocks.append(
+            f"Example {i}:\n"
+            f"TEXT:\n{ex['text']}\n"
+            f"TERM_LIST:\n{ex_terms}\n"
+            f"CORRECT_JSON:\n{ex_json}\n"
+        )
+    examples_str = "\n".join(ex_blocks)
+
     user_content = (
-        "You will receive a chunk of HPC scheduler documentation and a list of DOMAIN TERMS.\n"
-        "Each term includes category/role/bucket and a short definition.\n\n"
-        "Extract ONLY NON-TAXONOMIC relations using ONLY the provided terms as subject/object.\n\n"
+        "You will receive a chunk of HPC scheduler documentation and a TERM_LIST.\n"
+        "Each term has an integer index.\n\n"
+        "Task: Extract ONLY NON-TAXONOMIC relations.\n"
+        "IMPORTANT RULES:\n"
+        "- For subject/object, you MUST use subject_idx/object_idx integers from TERM_LIST.\n"
+        "- Do NOT output free-text phrases as subject/object.\n"
+        "- Do NOT output is-a/type_of/kind_of/subclass relations (those belong to taxonomy stage).\n\n"
         f"{examples_str}\n"
         "Now process the NEW chunk.\n\n"
         f"NEW_TEXT:\n{chunk_text}\n\n"
-        "DOMAIN TERMS (use ONLY these as subject/object):\n"
-        f"{terms_block}\n\n"
-        "Return ONLY one JSON object with a single key 'relations'."
+        f"TERM_LIST (use ONLY these indices):\n{terms_block}\n\n"
+        "Return ONLY one JSON object with key 'relations'.\n"
+        "Each relation item must have:\n"
+        "{\n"
+        '  "subject_idx": 1,\n'
+        '  "predicate": "lower_snake_case",\n'
+        '  "object_idx": 2,\n'
+        '  "relation_type": "part_of|configuration|provision|usage|data_flow|logging|scheduling|other",\n'
+        '  "justification": "short reason"\n'
+        "}\n"
     )
 
-    return (
+    prompt = (
         f"<s>[INST] <<SYS>>\n{cfg.system_prompt}\n<</SYS>>\n\n"
         f"{user_content}\n"
         "[/INST]"
     )
+    return prompt, idx_to_term
 
 
 # =============================================================================
@@ -389,12 +429,14 @@ def call_llm(tok, model, device: str, prompt: str, max_new_tokens: int) -> str:
 
 
 # =============================================================================
-# Parse + validate output
+# Parse + validate output (UPDATED: idx-based subject/object)
 # =============================================================================
 
 def validate_predicate(pred: str, allowed_predicates: Optional[Set[str]]) -> bool:
     pred = pred.strip()
     if not pred:
+        return False
+    if pred in DISALLOWED_PREDICATES:
         return False
     if not PREDICATE_RE.match(pred):
         return False
@@ -403,26 +445,31 @@ def validate_predicate(pred: str, allowed_predicates: Optional[Set[str]]) -> boo
     return True
 
 
-def parse_relations(
+def parse_relations_idx(
     raw_output: str,
-    allowed_terms: Set[str],
+    idx_to_term: Dict[int, str],
     allowed_predicates: Optional[Set[str]],
 ) -> List[Dict[str, str]]:
     """
-    Parse LLM output using brace-matching extraction, then strict validation:
-    - subject/object must be exactly from allowed_terms
-    - predicate passes validation (regex + optional allowlist)
-    - relation_type must be in RELATION_TYPE_ENUM
-    - drop duplicates, drop self-edges
+    Strict validation:
+    - subject_idx/object_idx must be valid ints in idx_to_term
+    - predicate passes validation
+    - relation_type in RELATION_TYPE_ENUM
+    - drop duplicates/self-edges
     """
     json_obj = extract_first_json_object(raw_output)
     if not json_obj:
         return []
 
+    # Parse JSON robustly
     try:
-        data = json.loads(json_obj)
+        data: Any = json.loads(json_obj)
     except Exception:
-        return []
+        # last resort: python literal
+        try:
+            data = ast.literal_eval(json_obj)
+        except Exception:
+            return []
 
     if not isinstance(data, dict):
         return []
@@ -437,18 +484,23 @@ def parse_relations(
         if not isinstance(item, dict):
             continue
 
-        subj = str(item.get("subject", "")).strip()
+        subj_idx = item.get("subject_idx")
+        obj_idx = item.get("object_idx")
         pred = str(item.get("predicate", "")).strip()
-        obj = str(item.get("object", "")).strip()
         rtype = str(item.get("relation_type", "")).strip() or "other"
         just = str(item.get("justification", "")).strip()
 
-        if not subj or not pred or not obj:
+        try:
+            si = int(subj_idx)
+            oi = int(obj_idx)
+        except Exception:
             continue
 
-        # exact match constraint
-        if subj not in allowed_terms or obj not in allowed_terms:
+        if si not in idx_to_term or oi not in idx_to_term:
             continue
+
+        subj = idx_to_term[si]
+        obj = idx_to_term[oi]
 
         if subj.lower() == obj.lower():
             continue
@@ -478,7 +530,7 @@ def parse_relations(
 
 
 # =============================================================================
-# Main loop (runs table resume)
+# Runs table resume
 # =============================================================================
 
 def mark_run(
@@ -536,6 +588,10 @@ def insert_edges(
         )
 
 
+# =============================================================================
+# Run
+# =============================================================================
+
 def run(
     db_path: str,
     model_id: str,
@@ -588,7 +644,7 @@ def run(
                 max_terms=cfg.max_terms_per_chunk,
             )
 
-            # even if <2 terms, mark done (important for resume correctness)
+            # even if <2 terms, mark done (resume correctness)
             if len(terms) < 2:
                 mark_run(conn, runs_table, str(doc_id), str(chunk_id), int(rowid), "done", None)
                 processed += 1
@@ -599,11 +655,10 @@ def run(
                     return
                 continue
 
-            prompt = build_prompt(cfg, chunk_text=str(text), terms=terms)
+            prompt, idx_to_term = build_prompt(cfg, chunk_text=str(text), terms=terms)
             raw = call_llm(tok, model, device, prompt, max_new_tokens=cfg.max_new_tokens)
 
-            allowed_terms = {t["term"] for t in terms}
-            rels = parse_relations(raw, allowed_terms=allowed_terms, allowed_predicates=cfg.allowed_predicates)
+            rels = parse_relations_idx(raw, idx_to_term=idx_to_term, allowed_predicates=cfg.allowed_predicates)
 
             if debug_first_chunk:
                 print(f"\n[DEBUG] rowid={rowid}, doc_id={doc_id}, chunk_id={chunk_id}")
@@ -643,7 +698,7 @@ def run(
 # =============================================================================
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="OLAF-LLM: non-taxonomic relation extraction.")
+    ap = argparse.ArgumentParser(description="OLAF-LLM: non-taxonomic relation extraction (INDEXED subject/object).")
 
     ap.add_argument("--db", required=True, help="SQLite DB path")
     ap.add_argument("--model-id", required=True, help="HF model id (e.g., mistralai/Mistral-7B-Instruct-v0.3)")

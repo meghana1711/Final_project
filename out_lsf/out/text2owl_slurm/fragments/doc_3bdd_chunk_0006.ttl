@@ -1,0 +1,50 @@
+hpc:Makefile a owl:Class .
+hpc:makefileam a owl:DatatypeProperty ;
+    rdfs:domain hpc:Makefile ;
+    rdfs:range xsd:string .
+
+hpc:autoreconf a owl:ObjectProperty ;
+    rdfs:domain hpc:Developer ;
+    rdfs:range hpc:Makefile .
+
+hpc:slurmspec a owl:DatatypeProperty ;
+    rdfs:domain hpc:Makefile ;
+    rdfs:range xsd:string .
+
+hpc:configureac a owl:ObjectProperty ;
+    rdfs:domain hpc:Developer ;
+    rdfs:range hpc:Directory .
+
+hpc:make a owl:ObjectProperty ;
+    rdfs:domain hpc:Developer ;
+    rdfs:range hpc:Makefile .
+
+hpc:makeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Developer ;
+    rdfs:range xsd:string .
+
+hpc:Slurmconf a owl:Class .
+hpc:configurationtool a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmconf ;
+    rdfs:range xsd:string .
+
+hpc:Initdslurm a owl:Class .
+hpc:Daemon a owl:Class ;
+    rdfs:subClassOf hpc:Process .
+
+hpc:Testsuite a owl:Class .
+hpc:check a owl:ObjectProperty ;
+    rdfs:domain hpc:Testsuite ;
+    rdfs:range xsd:string .
+
+hpc:expect a owl:ObjectProperty ;
+    rdfs:domain hpc:Testsuite ;
+    rdfs:range xsd:string .
+
+hpc:pytest a owl:ObjectProperty ;
+    rdfs:domain hpc:Testsuite ;
+    rdfs:range xsd:string .
+
+hpc:slurmdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Expecttest ;
+    rdfs:range xsd:string .

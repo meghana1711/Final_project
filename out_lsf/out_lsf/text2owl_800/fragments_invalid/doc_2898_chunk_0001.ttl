@@ -1,0 +1,62 @@
+hpc:Lsfconfiguration a owl:Class .
+hpc:Lsfconfsetting a owl:Class .
+
+# LSF configuration properties
+hpc:hassetting a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range hpc:Lsfconfsetting .
+
+# Example LSF configuration settings
+hpc:EgoDefineNCPUs a hpc:LsfConfSetting ;
+    rdfs:label "Number of cores" ;
+    rdfs:comment "Default value set explicitly" ;
+    rdfs:subClassOf hpc:Lsfconfsetting .
+
+hpc:LsbDisplayYear a hpc:LsfConfSetting ;
+    rdfs:label "Display year" ;
+    rdfs:comment "Default value set explicitly" ;
+    rdfs:subClassOf hpc:Lsfconfsetting .
+
+hpc:LsbEnablePerfMetricsLog a hpc:LsfConfSetting ;
+    rdfs:label "Enable performance metrics log" ;
+    rdfs:comment "Default value set explicitly" ;
+    rdfs:subClassOf hpc:Lsfconfsetting .
+
+hpc:LsbShareLocationEnh a hpc:LsfConfSetting ;
+    rdfs:label "Share location enhancement" ;
+    rdfs:comment "Default value set explicitly" ;
+    rdfs:subClassOf hpc:Lsfconfsetting .
+
+hpc:LsbSubCommandName a hpc:LsfConfSetting ;
+    rdfs:label "Sub command name" ;
+    rdfs:comment "Default value set explicitly" ;
+    rdfs:subClassOf hpc:Lsfconfsetting .
+
+hpc:LsfAcceptNumClients a hpc:LsfConfSetting ;
+    rdfs:label "Accept number of clients" ;
+    rdfs:comment "Default value set explicitly" ;
+    rdfs:subClassOf hpc:Lsfconfsetting .
+
+hpc:LsfDiscardLog a hpc:LsfConfSetting ;
+    rdfs:label "Discard log" ;
+    rdfs:comment "Default value set explicitly" ;
+    rdfs:subClassOf hpc:Lsfconfsetting .
+
+hpc:LsfGpuResourceIgnore a hpc:LsfConfSetting ;
+    rdfs:label "Ignore GPU resource" ;
+    rdfs:comment "Requires further adjustment or consideration before enabling" ;
+    rdfs:subClassOf hpc:Lsfconfsetting .
+
+hpc:LsfIntelligentCpuBind a hpc:LsfConfSetting ;
+    rdfs:label "Intelligent CPU binding" ;
+    rdfs:comment "Default value set explicitly" ;
+    rdfs:subClassOf hpc:Lsfconfsetting .
+
+hpc:LsfLinuxCgroupAcct a hpc:LsfConfSetting ;
+    rdfs:label "Linux cgroups accounting" ;
+    rdfs:comment "Linux only" ;
+    rdfs:subClassOf hpc:Lsfconfsetting .
+
+hpc:LsfStrictChecking a hpc:LsfConfSetting ;
+    rdfs:label "Strict checking" ;
+    rdfs:comment "Important: Do not change this parameter

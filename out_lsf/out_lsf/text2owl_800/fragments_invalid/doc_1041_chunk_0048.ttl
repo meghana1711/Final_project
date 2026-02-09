@@ -1,0 +1,67 @@
+hpc:loggingduration a owl:DatatypeProperty ;
+ rdfs:domain hpc:Loggingconfiguration ;
+ rdfs:range xsd:nonNegativeInteger ;
+ rdfs:comment "The duration in minutes you specify to track the query information." .
+
+hpc:loggingfile a owl:ObjectProperty ;
+ rdfs:domain hpc:Loggingconfiguration ;
+ rdfs:range hpc:Logfile ;
+ rdfs:comment "The log file for dynamic logging." .
+
+hpc:staticlogfile a owl:ObjectProperty ;
+ rdfs:domain hpc:Loggingconfiguration ;
+ rdfs:range hpc:Logfile ;
+ rdfs:comment "The log file for static logging." .
+
+# Logging Control
+hpc:startdynamiclogging a owl:ObjectProperty ;
+ rdfs:domain hpc:Loggingcontrol ;
+ rdfs:range hpc:Loggingstate ;
+ rdfs:comment "Starts dynamic logging." .
+
+hpc:stopdynamiclogging a owl:ObjectProperty ;
+ rdfs:domain hpc:Loggingcontrol ;
+ rdfs:range hpc:Loggingstate ;
+ rdfs:comment "Stops dynamic logging." .
+
+hpc:reconfigure a owl:ObjectProperty ;
+ rdfs:domain hpc:Loggingcontrol ;
+ rdfs:range hpc:Loggingconfiguration ;
+ rdfs:comment "Reconfigures the logging settings." .
+
+hpc:restart a owl:ObjectProperty ;
+ rdfs:domain hpc:Loggingcontrol ;
+ rdfs:range hdi:RestartCommand ;
+ rdfs:comment "Restarts the logging daemon." .
+
+# Logging State
+hpc:Loggingstate a owl:Class ;
+ rdfs:subClassOf owl:Enum ;
+ hpc:LoggingEnabled rdfs:member ;
+ hpc:LoggingDisabled rdfs:member .
+
+# Log File
+hpc:Logfile a owl:Class .
+
+# Logging Configuration
+hpc:Loggingconfiguration a owl:Class ;
+ rdfs:subClassOf owl:NamedIndividual ;
+ rdfs:comment "Configuration for logging settings." .
+
+hpc:Loggingconfiguration rdfs:subClassOf hpc:Dynamicloggingconfiguration ;
+ hpc:Loggingconfiguration rdfs:subClassOf hpc:Staticloggingconfiguration ;
+
+# Dynamic Logging Configuration
+hpc:Dynamicloggingconfiguration a owl:Class ;
+ rdfs:subClassOf hpc:Loggingconfiguration ;
+ rdfs:comment "Configuration for dynamic logging." .
+ rdfs:domain hpc:Dynamicloggingconfiguration rdfs:subClassOf hpc:Loggingconfiguration ;
+ hpc:Loggingduration rdfs:domain hpc:Dynamicloggingconfiguration ;
+ hpc:Loggingfile rdfs:domain hpc:Dynamicloggingconfiguration ;
+
+# Static Logging Configuration
+hpc:Staticloggingconfiguration a owl:Class ;
+ rdfs:subClassOf hpc:Loggingconfiguration ;
+ rdfs:comment "Configuration for static logging." .
+ rdfs:domain hpc:Staticloggingconfiguration rdfs:subClassOf hpc:Loggingconfiguration ;
+ hpc:Staticlogfile rdfs:domain hpc:Staticloggingconfiguration .

@@ -1,0 +1,49 @@
+hpc:File a owl:Class ;
+    rdfs:subClassOf hpc:Entity .
+
+hpc:filepath a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+
+hpc:Stagingarea a owl:Class ;
+    rdfs:subClassOf hpc:Location .
+
+hpc:Stgout a owl:Class ;
+    rdfs:subClassOf hpc:Stagingarea .
+
+hpc:Cache a owl:Class ;
+    rdfs:subClassOf hpc:Location .
+
+hpc:Transferjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Symboliclink a owl:Class ;
+    rdfs:subClassOf hpc:Path .
+
+hpc:srcfolderpath a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+
+hpc:dst a owl:ObjectProperty ;
+    rdfs:domain hpc:Transferjob ;
+    rdfs:range xsd:string .
+
+hpc:Lsf a owl:Class .
+hpc:Datamanager a owl:Class ;
+    rdfs:subClassOf hpc:Lsf .
+
+hpc:stagesfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Datamanager ;
+    rdfs:range hpc:File .
+
+hpc:stagesfolder a owl:ObjectProperty ;
+    rdfs:domain hpc:Datamanager ;
+    rdfs:range hpc:Folder .
+
+hpc:copiescontents a owl:ObjectProperty ;
+    rdfs:domain hpc:Datamanager ;
+    rdfs:range hpc:File .
+
+hpc:usessymboliclink a owl:ObjectProperty ;
+    rdfs:domain hpc:Datamanager ;
+    rdfs:range hpc:Symboliclink .

@@ -1,0 +1,63 @@
+hpc:DataTransferNode
+    a owl:Class ;
+    rdfs:subClassOf hpc:Executionhost ;
+    rdfs:comment "Execution hosts for transfer jobs submitted to a data transfer queue." .
+
+hpc:hasDataTransferTool
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Datatransfernode ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The transfer tool configured for data transfer." .
+
+hpc:hasDataTransferCommand
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datatransfernode ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The transfer command specified by the FILE_TRANSFER_CMD parameter in the lsf.datamanager file." .
+
+hpc:isExecutable
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datatransfercommand ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the transfer command is executable from the data transfer node." .
+
+hpc:transferJobExitCode
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Transferjob ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The exit code of a transfer job." .
+
+hpc:transferJobFailureReason
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Transferjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The reason for a transfer job failure." .
+
+hpc:stagingAreaMountLocation
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datatransfernode ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The location where the staging area is statically mounted on data transfer nodes." .
+
+hpc:dataSourceLocation
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datatransfernode ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The location from which data transfer nodes can reach input data." .
+
+hpc:dataDestinationLocation
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datatransfernode ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The location to which data transfer nodes can reach output data." .
+
+hpc:cacheAreaAccessibility
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Datatransfernode ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a new file or directory created in the cache area is accessible from any data transfer node within 1 minute." .
+
+hpc:TransferJob
+    a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "A job that transfers data." .

@@ -1,0 +1,38 @@
+hpc:Paralleljob a owl:Class .
+hpc:velocitygoal a owl:ObjectProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range xsd:integer .
+
+hpc:Serviceclass a owl:Class .
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Serviceclass .
+
+hpc:slotreserve a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:integer .
+
+hpc:Lsfparalleljob a owl:Class ;
+    rdfs:subClassOf hpc:Paralleljob .
+
+hpc:jobsizereservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Lsfparalleljob .
+
+hpc:Resourcerequirement a owl:Class .
+hpc:Joblevelresourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:resourcesharingplan a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range hpc:Resourcerequirement .
+
+hpc:resourcepreemption a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range hpc:Resourcerequirement .
+
+hpc:Lsfparalleljobconsumer a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:slotborrowing a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfparalleljobconsumer ;
+    rdfs:range hpc:Lsfparalleljobconsumer .

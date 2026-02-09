@@ -1,0 +1,40 @@
+hpc:LsfHpcExtensions a owl:Class .
+hpc:TaskSwaplimit rdfs:subClassOf hpc:LsfHpcExtensions .
+hpc:TaskMemlimit rdfs:subClassOf hpc:LsfHpcExtensions .
+
+hpc:enforces rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfHpcExtensions ;
+    rdfs:range xsd:boolean .
+
+hpc:affects rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfHpcExtensions ;
+    rdfs:range hpc:Paralleljob .
+
+hpc:overrides rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfHpcExtensions ;
+    rdfs:range hpc:Jobsetting .
+
+hpc:terminates rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfHpcExtensions ;
+    rdfs:range hpc:Paralleljob .
+
+hpc:sets rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfHpcExtensions ;
+    rdfs:range hpc:Environmentvariable .
+
+hpc:logs rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfHpcExtensions ;
+    rdfs:range hpc:Logfile .
+
+hpc:advanceReservation rdf:type owl:Class .
+hpc:reserves rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range hpc:Hostorslot .
+
+hpc:activeTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range xsd:dateTime .
+
+hpc:associatedUsersOrGroups rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range hpc:Userorgroup .

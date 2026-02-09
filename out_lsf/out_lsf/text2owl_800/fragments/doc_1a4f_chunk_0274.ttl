@@ -1,0 +1,36 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Represents a batch job." .
+
+hpc:cpulimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Sets the soft CPU time limit for a batch job." .
+
+hpc:cpulimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies the CPU time limit in the form [hour:]minute." .
+
+hpc:graceperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The time period after which LSF sends SIGINT, SIGTERM, and SIGKILL signals to the job to kill it." .
+
+hpc:lsbJobCpulimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the CPU limit is a per-process limit enforced by the OS or a per-job limit enforced by LSF." .
+
+hpc:Jobtermination a owl:Class ;
+    rdfs:subClassOf hpc:Event ;
+    rdfs:comment "Represents the termination of a batch job." .
+
+hpc:jobterminationreason a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobtermination ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The reason for the termination of a batch job." .
+
+hpc:Runawayjob a owl:Class ;
+    rdfs:subClassOf hpc:Jobtermination ;
+    rdfs:comment "Represents a batch job that was terminated due to exceeding the CPU time limit." .

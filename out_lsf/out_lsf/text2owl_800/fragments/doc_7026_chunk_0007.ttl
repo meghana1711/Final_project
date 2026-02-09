@@ -1,0 +1,58 @@
+hpc:LsfServer a owl:Class .
+hpc:lsfServerdirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfServer ;
+    rdfs:range xsd:string .
+
+hpc:Eauth a owl:Class .
+hpc:eauthinternalkey a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eauth ;
+    rdfs:range xsd:string .
+hpc:customizedexternalkey a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eauth ;
+    rdfs:range xsd:string .
+
+hpc:eauthprotocol a owl:ObjectProperty .
+hpc:eauthexecutable a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eauth ;
+    rdfs:range xsd:string .
+
+hpc:LsfVersion a owl:Class .
+hpc:fixpack a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfVersion ;
+    rdfs:range xsd:string .
+
+hpc:eauthcommand a owl:ObjectProperty .
+hpc:timeoffset a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eauthcommand ;
+    rdfs:range xsd:integer .
+
+hpc:lsfEauthKey a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfCluster ;
+    rdfs:range xsd:string .
+
+hpc:Interactivetask a owl:Class .
+hpc:runbycommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivetask ;
+    rdfs:range rdf:List ;
+        rdf:first hpc:lsrun ;
+        rdf:rest hpc:InteractiveTask .
+
+hpc:Datamanager a owl:Class .
+
+hpc:LsfSudoers a owl:Class .
+hpc:setuidbit a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfSudoers ;
+    rdfs:range xsd:boolean .
+
+hpc:LsfAdministrationcommand a owl:Class .
+hpc:executablefile a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfAdministrationcommand ;
+    rdfs:range xsd:string .
+
+hpc:IbmSpectrumLsfRtm a owl:Class .
+hpc:neweauthexecutable a owl:DatatypeProperty ;
+    rdfs:domain hpc:IbmSpectrumLsfRtm ;
+    rdfs:range xsd:string .
+
+hpc:LsfCluster a owl:Class ;
+    rdfs:subClassOf hpc:Computingcluster .

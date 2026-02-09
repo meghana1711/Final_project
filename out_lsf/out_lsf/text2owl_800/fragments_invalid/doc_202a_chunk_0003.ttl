@@ -1,0 +1,29 @@
+hpc:LsbTsjob a owl:Class .
+hpc:hasValue an owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbTsjob ;
+    rdfs:range xsd:string .
+
+hpc:Bsubjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:mstsResourceRequirement an owl:ObjectProperty ;
+    rdfs:domain hpc:Bsubjob ;
+    rdfs:range hpc:Resourcerequirement .
+
+hpc:Installlinuxcluster a owl:Class .
+hpc:sharedFileSystem an owl:DatatypeProperty ;
+    rdfs:domain hpc:Installlinuxcluster .
+
+hpc:configureLinuxCluster an owl:ObjectProperty .
+hpc:restartLSFCluster an owl:ObjectProperty .
+
+hpc:Installwindowscomputenode a owl:Class .
+hpc:startWindowsComputeNode an owl:ObjectProperty .
+
+hpc:enableDynamicHosts an owl:DatatypeProperty ;
+    rdfs:domain hpc:Installlinuxcluster .
+    rdfs:range xsd:boolean .
+
+hpc:allowEGOControl an owl:DatatypeProperty ;
+    rdfs:domain hpc:Installlinuxcluster .
+    rdfs:range xsd:boolean .

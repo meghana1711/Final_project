@@ -1,0 +1,36 @@
+hpc:Googlecloudproject a owl:Class .
+hpc:hasGoogleCloudProjectId rdf:Property ;
+    rdfs:domain hpc:Googlecloudproject ;
+    rdfs:range xsd:string .
+
+hpc:Hostproject a owl:Class ;
+    rdfs:subClassOf hpc:Googlecloudproject .
+
+hpc:usesHostProjectId rdf:Property ;
+    rdfs:domain hpc:Lsfresourceconnector ;
+    rdfs:range hpc:Hostproject .
+
+# AWS Launch Templates
+hpc:Awslaunchtemplate a owl:Class .
+hpc:hasLaunchTemplateId rdf:Property ;
+    rdfs:domain hpc:Awsresourceconnector ;
+    rdfs:range xsd:string .
+
+hpc:hasLaunchTemplateVersion rdf:Property ;
+    rdfs:domain hpc:Awsresourceconnector ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# EFA Network Interfaces for AWS
+hpc:efainterfacetype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awsnetworkinterface .
+hpc:interfaceType rdf:Property ;
+    rdfs:range xsd:string .
+
+# Image Names for CycleCloud
+hpc:azureimagename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cyclecloudresourceconnector .
+hpc:imageName rdf:Property ;
+    rdfs:range xsd:string .
+
+# Resource Management
+hpc:Resourcemanagement a owl:Class .

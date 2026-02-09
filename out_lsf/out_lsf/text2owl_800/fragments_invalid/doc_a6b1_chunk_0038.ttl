@@ -1,0 +1,27 @@
+hpc:Ostype a owl:Class .
+hpc:Osversion a owl:Class .
+hpc:Hosttype a owl:Class .
+hpc:Hostmodel a owl:Class .
+
+hpc:Hasostype hpc:Ostype rdfs:domain hpc:Operatingsystem .
+hpc:Hasosversion hpc:Osversion rdfs:domain hpc:Operatingsystem .
+hpc:Hashosttype hpc:Hosttype rdfs:domain hpc:Host .
+hpc:Hashostmodel hpc:Hostmodel rdfs:domain hpc:Host .
+
+hpc:Ostype rdfs:subClassOf xsd:string .
+hpc:Osversion rdfs:subClassOf xsd:string .
+hpc:Hosttype rdfs:subClassOf xsd:string .
+hpc:Hostmodel rdfs:subClassOf xsd:string .
+
+hpc:egoEslimTimeout a owl:DatatypeProperty .
+hpc:EgoEslimTimeout rdfs:domain hpc:Lsfconfiguration .
+hpc:EgoEslimTimeout rdfs:range xsd:integer .
+
+hpc:LsfShared a owl:Class .
+hpc:OS_types rdfs:property hpc:lsf_shared .
+hpc:OsTypes rdfs:range hpc:Ostypelist .
+hpc:OS_models rdfs:property hpc:lsf_shared .
+hpc:OsModels rdfs:range hpc:Osmodellist .
+
+hpc:Ostypelist a owl:Class .
+hpc:Osmodellist a owl:Class .

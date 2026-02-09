@@ -1,0 +1,68 @@
+hpc:Socket a owl:Class ;
+    rdfs:subClassOf hpc:Architecturalentity ;
+    rdfs:comment "A collection of cores with a direct pipe to memory." .
+
+hpc:Core a owl:Class ;
+    rdfs:subClassOf hpc:Computationalentity ;
+    rdfs:comment "A single entity capable of performing computations." .
+
+hpc:hasCore rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Socket ;
+    rdfs:range rdf:List ;
+    rdfs:comment "A socket contains one or more cores." .
+
+hpc:hasThread rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Core ;
+    rdfs:range rdf:List ;
+    rdfs:comment "On hosts with hyper-threading enabled, a core can contain one or more threads." .
+
+hpc:Memory a owl:Class ;
+    rdfs:subClassOf hpc:Architecturalentity ;
+    rdfs:comment "The memory of the machine." .
+
+hpc:hasMemory rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Socket ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "The memory associated with a socket." .
+
+hpc:CPUF a xsd:decimal ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "CPU frequency." .
+
+hpc:MAX a xsd:nonNegativeInteger ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Maximum number of jobs." .
+
+hpc:RUN a xsd:nonNegativeInteger ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Current number of running jobs." .
+
+hpc:SSUSP a xsd:nonNegativeInteger ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Current number of suspended jobs." .
+
+hpc:USUSP a xsd:nonNegativeInteger ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Current number of jobs in uninterruptible sleep." .
+
+hpc:RSV a xsd:nonNegativeInteger ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Current number of reserved jobs." .
+
+hpc:DISPATCH_WINDOW a xsd:string ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Dispatch window for scheduling." .
+
+hpc:CURRENT_LOAD a xsd:string ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Current load used for scheduling." .
+
+hpc:USED_FOR_SCHEDULING a xsd:string ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The current load used for scheduling, broken down by resource." .
+
+hpc:LOAD_THRESHOLD a xsd:string ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Load threshold used for scheduling." .
+
+hpc:CONFIGURED_AFFINITY_CPU_LIST a x

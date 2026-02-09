@@ -1,0 +1,40 @@
+hpc:Awshost a owl:Class .
+hpc:awshostresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Awshost ;
+    rdfs:range hpc:Awshostresource .
+
+hpc:Awshostresource a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:zone a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awshost .
+
+hpc:userdata a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awshost .
+
+hpc:subnetid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awshost .
+
+hpc:keyname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awshost .
+
+hpc:securitygroupids a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awshost .
+
+hpc:instancetags a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awshost .
+
+hpc:ebsoptimized a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awshost .
+
+hpc:templateid a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:maxnumber a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:mem a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:awshost1 a owl:DatatypeProperty ;
+    rdfs:range xsd:boolean .

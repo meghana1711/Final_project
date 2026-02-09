@@ -1,0 +1,17 @@
+hpc:Genericresource a owl:Class .
+hpc:GPU a hpc:GenericResource .
+
+hpc:jobsubmit a owl:ObjectProperty .
+hpc:jobaccountinggather a owl:ObjectProperty .
+hpc:jobcompletionlogging a owl:ObjectProperty .
+hpc:Jobcompletionlogging rdfs:subClassOf xsd:string .
+hpc:launchers a owl:ObjectProperty .
+hpc:mpi a owl:ObjectProperty .
+hpc:preempt a owl:ObjectProperty .
+hpc:priority a owl:ObjectProperty .
+hpc:processtracking a owl:ObjectProperty .
+hpc:Processtracking rdfs:domain hpc:Genericresource ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:plugin a owl:ObjectProperty .
+hpc:Plugin rdfs:domain hpc:Scheduler .
+hpc:Scheduler a owl:Class .

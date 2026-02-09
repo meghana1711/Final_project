@@ -1,0 +1,79 @@
+hpc:JobBasedResource
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] .
+
+hpc:LicA
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobbasedresource ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Mem
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobbasedresource ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Tmp
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobbasedresource ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Perslot
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobbasedresource ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Duration
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobbasedresource ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Decay
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobbasedresource ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Hosts
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobbasedresource ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Type
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobbasedresource ;
+    rdfs:range hpc:Architecture .
+
+hpc:Architecture
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] .
+
+hpc:CompoundJobRequirement
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] .
+
+hpc:JobLevelRequirement
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] .
+
+hpc:SimpleJobRequirement
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] .
+
+hpc:CompoundQueueRequirement
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] .
+
+hpc:SimpleQueueRequirement
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] .
+
+hpc:JobBasedQueueRequirement
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] .
+
+hpc:Joblevelrequirement rdfs:subClassOf hpc:Jobbasedresource .
+hpc:Simplejobrequirement rdfs:subClassOf hpc:Jobbasedresource .
+hpc:Compoundjobrequirement rdfs:subClassOf hpc:Jobbasedresource .
+hpc:Jobbasedqueuerequirement rdfs:subClassOf hpc:Jobbasedresource .
+
+Example 1:
+hpc:JobLevelRequirement

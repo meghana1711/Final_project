@@ -1,0 +1,13 @@
+hpc:IbmPower9 a owl:Class .
+hpc:Supports rdfs:domain hpc:LsfVersion .
+hpc:Supports rdfs:range hpc:Platform .
+
+hpc:Platform a owl:Class .
+hpc:Platform rdfs:subClassOf xsd:string .
+
+hpc:linuxOnIbmPowerLe a owl:DatatypeProperty .
+hpc:LinuxOnIbmPowerLe rdfs:domain hpc:Package .
+hpc:LinuxOnIbmPowerLe rdfs:range xsd:string .
+
+hpc:Package a owl:Class .
+hpc:Package rdfs:subClassOf xsd:string .

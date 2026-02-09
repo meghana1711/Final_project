@@ -1,0 +1,77 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Apspriority a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Adminfactor a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Resizablejob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Autoresizablejob a owl:Class ;
+    rdfs:subClassOf hpc:Resizablejob .
+
+hpc:modifyapspriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Apspriority ;
+    rdfs:range xsd:integer .
+
+hpc:setadminfactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Adminfactor ;
+    rdfs:range xsd:integer .
+
+hpc:cancelapspriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Apspriority ;
+    rdfs:range hpc:Apspriority .
+
+hpc:applytorunningjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Modifyapspriority ;
+    rdfs:range xsd:boolean .
+
+hpc:hasapsqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Apspriority ;
+    rdfs:range hpc:Queue .
+
+hpc:modifyresizablejob a owl:ObjectProperty ;
+    rdfs:domain hpc:Resizablejob ;
+    rdfs:range hpc:Resizablejob .
+
+hpc:setautoresizable a owl:ObjectProperty ;
+    rdfs:domain hpc:Resizablejob ;
+    rdfs:range xsd:boolean .
+
+hpc:removeautoresizable a owl:ObjectProperty ;
+    rdfs:domain hpc:Resizablejob ;
+    rdfs:range hpc:Resizablejob .
+
+hpc:ispending a owl:ObjectProperty ;
+    rdfs:domain hpc:Resizablejob ;
+    rdfs:range xsd:boolean .
+
+hpc:isfinished a owl:ObjectProperty ;
+    rdfs:domain hpc:Resizablejob ;
+    rdfs:range xsd:boolean .
+
+hpc:isdone a owl:ObjectProperty ;
+    rdfs:domain hpc:Resizablejob ;
+    rdfs:range xsd:boolean .
+
+hpc:isexit a owl:ObjectProperty ;
+    rdfs:domain hpc:Resizablejob ;
+    rdfs:range xsd:boolean .
+
+hpc:resizenotificationcommand a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resizablejob ;
+    rdfs:range xsd:string .
+
+hpc:resizenotificationcmd a owl:ObjectProperty ;
+    rdfs:domain hpc:Resizenotificationcommand ;
+    rdfs:range hpc:Executable .
+
+hpc:removenotificationcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Resizenotificationcommand ;
+    rdfs:range hpc:Resizenotificationcommand .
+
+hpc:isautoresizable a owl:DatatypeProperty ;
+    rdfs:domain hpc:

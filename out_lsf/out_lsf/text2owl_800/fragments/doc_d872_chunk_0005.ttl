@@ -1,0 +1,27 @@
+hpc:Managementhost a owl:Class .
+hpc:Hasmanagementhost rdfs:domain hpc:Cluster .
+hpc:Hasmanagementhost rdfs:range hpc:Host .
+
+hpc:Submissionhost a owl:Class .
+hpc:Hassubmissionhost rdfs:domain hpc:Cluster .
+hpc:Hassubmissionhost rdfs:range (hpc:Clienthost hpc:Serverhost) .
+
+hpc:Executionhost a owl:Class .
+hpc:Hasexecutionhost rdfs:domain hpc:Job .
+hpc:Hasexecutionhost rdfs:range hpc:Serverhost .
+
+hpc:lsfcommand a owl:ObjectProperty .
+hpc:Lsfcommand rdfs:domain (hpc:Managementhost hpc:Submissionhost hpc:Job) .
+
+hpc:Bsubcommand rdfs:subClassOf hpc:Lsfcommand .
+hpc:Bjobscommand rdfs:subClassOf hpc:Lsfcommand .
+
+hpc:Bsubmits rdfs:domain hpc:Submissionhost .
+hpc:Bsubmits rdfs:range hpc:Job .
+
+hpc:Bjobsshows rdfs:domain hpc:Job .
+hpc:Bjobsshows rdfs:range hpc:Executionhost .
+
+hpc:Lsfdaemon a owl:Class .
+hpc:Haslsfdaemon rdfs:domain hpc:Lsf .
+hpc:Haslsfdaemon rdfs:range hpc:Daemon .

@@ -1,0 +1,65 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a job with alternative resource requirements." .
+
+hpc:alternativeresourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:List ;
+    rdfs:comment "The alternative resource requirements for a job." .
+
+hpc:mandatoryfirstexecutionhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "The mandatory first execution host for a job." .
+
+hpc:Jobpending a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "A job that is pending because none of the alternatives can satisfy the mandatory first execution host." .
+
+hpc:Applicationlevelrequirement a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Resource requirements specified at the application-level." .
+
+hpc:Queuelevelrequirement a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Resource requirements defined for a queue." .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "A queue in the HPC system." .
+
+hpc:Jobresizerequest a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "A request to resize a running job." .
+
+hpc:Restartjob a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "A job that is a restart of another job." .
+
+hpc:mergeableresourcerequirements a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobresizerequest ;
+    rdfs:range rdf:List ;
+    rdfs:comment "The merged resource requirements for a job resize request." .
+
+hpc:queuelevelrequirementmergedwith a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "The merged queue-level resource requirements for a job." .
+
+hpc:joblevelresourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "The resource requirements specified for a job." .
+
+hpc:applicationprofileresourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "The resource requirements in an application profile for a job." .
+
+hpc:Multiplebsubrcommands a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "A job with multiple bsub -R commands." .
+
+hpc:Tsjob a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "A TS job or a job with the tssub command." .

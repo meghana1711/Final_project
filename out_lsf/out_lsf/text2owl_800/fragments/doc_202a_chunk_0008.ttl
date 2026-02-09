@@ -1,0 +1,23 @@
+hpc:Useraccount a owl:Class .
+hpc:LSF_ADMIN rdf:type owl:ObjectProperty .
+hpc:LsfAdmin rdfs:domain hpc:Useraccount ;
+                                rdfs:range xsd:string .
+
+hpc:LSF_TOP rdf:type owl:DatatypeProperty .
+hpc:LsfTop rdfs:domain hpc:Useraccount ;
+                                rdfs:range xsd:string .
+
+hpc:Clusterpasswordfile a owl:Class .
+hpc:registerPassword rdf:type owl:ObjectProperty .
+hpc:Registerpassword rdfs:domain hpc:Useraccount ;
+                                rdfs:range xsd:string .
+
+hpc:Windowscomputenodestartupprocedure a owl:Class .
+hpc:startComputeNode rdf:type owl:ObjectProperty .
+hpc:Startcomputenode rdfs:domain hpc:Windowscomputenodestartupprocedure .
+
+hpc:Linuxcomputenodesetupprocedure a owl:Class .
+hpc:installClusterManagementHost rdf:type owl:ObjectProperty .
+hpc:addLSFUserDomain rdf:type owl:ObjectProperty .
+hpc:editLsfConfFile rdf:type owl:ObjectProperty .
+hpc:Linuxcomputenodesetupprocedure rdfs:subClassOf hpc:Windowscomputenodestartupprocedure .

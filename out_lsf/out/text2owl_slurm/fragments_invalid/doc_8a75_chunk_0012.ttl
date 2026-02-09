@@ -1,0 +1,17 @@
+hpc:Slurmrlimitnproc a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "Resource limit on the number of processes that can be opened by the calling process." ;
+    rdfs:domain hpc:Srunprolog, hpc:Taskprolog, hpc:Srunepilog, hpc:Taskepilog .
+
+hpc:Slurmrlimitrss a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "Resource limit on the job's resident set size." ;
+    rdfs:domain hpc:Srunprolog, hpc:Taskprolog, hpc:Srunepilog, hpc:Taskepilog .
+
+hpc:Slurmrlimitstack a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "Resource limit on the job's process stack." ;
+    rdfs:domain hpc:Srunprolog, hpc:Taskprolog, hpc:Srunepilog, hpc:Taskepilog .
+
+hpc:Slurmscriptcontext a owl:Class ;
+    r

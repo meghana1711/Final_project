@@ -1,0 +1,39 @@
+hpc:Host a owl:Class .
+hpc:Numa a owl:Class .
+hpc:Socket a owl:Class .
+hpc:Core a owl:Class .
+hpc:hasnuma a owl:ObjectProperty .
+hpc:hassocket a owl:ObjectProperty .
+hpc:hascore a owl:ObjectProperty .
+hpc:hostname a owl:DatatypeProperty .
+hpc:gpuid a owl:DatatypeProperty .
+hpc:gpumodel a owl:DatatypeProperty .
+
+hpc:Host rdfs:subClassOf owl:Class .
+hpc:Numa rdfs:subClassOf hpc:Host .
+hpc:Socket rdfs:subClassOf hpc:Numa .
+hpc:Core rdfs:subClassOf hpc:Socket .
+
+hpc:Hasnuma rdfs:domain hpc:Host .
+hpc:Hasnuma rdfs:range hpc:Numa .
+hpc:Hassocket rdfs:domain hpc:Numa .
+hpc:Hassocket rdfs:range hpc:Socket .
+hpc:Hascore rdfs:domain hpc:Socket .
+hpc:Hascore rdfs:range hpc:Core .
+
+hpc:Hostname rdfs:domain hpc:Host .
+hpc:Hostname rdfs:range xsd:string .
+hpc:Gpuid rdfs:domain hpc:Host .
+hpc:Gpuid rdfs:range xsd:string .
+hpc:Gpumodel rdfs:domain hpc:Host .
+hpc:Gpumodel rdfs:range xsd:string .
+
+hpc:Gpu a owl:Class .
+hpc:hasgpu a owl:ObjectProperty .
+
+hpc:HostName rdfs:domain hpc:Gpu .
+hpc:Hasgpu rdfs:domain hpc:Host .
+hpc:GpuId rdfs:domain hpc:Gpu .
+hpc:GpuId rdfs:range xsd:string .
+hpc:GpuModel rdfs:domain hpc:Gpu .
+hpc:GpuModel rdfs:range xsd:string .

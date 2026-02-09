@@ -1,0 +1,25 @@
+hpc:Largeslurmcluster a owl:Class .
+hpc:Hascorecount rdfs:domain hpc:Largeslurmcluster ;
+    rdfs:range xsd:integer .
+
+hpc:Optimalperformancetuning a owl:Class .
+
+hpc:Performancedata a owl:Class ;
+    rdfs:subClassOf hpc:Optimalperformancetuning ;
+    rdfs:comment "Represents performance data for a given Slurm cluster." .
+
+hpc:Numberoftasks rdfs:domain hpc:Performancedata ;
+    rdfs:range xsd:integer .
+hpc:Executiontime rdfs:domain hpc:Performancedata ;
+    rdfs:range xsd:float .
+hpc:Numberofcomputenodes rdfs:domain hpc:Performancedata ;
+    rdfs:range xsd:integer .
+
+hpc:Systemconfiguration a owl:Class .
+
+hpc:Maxopenfiles rdfs:domain hpc:Systemconfiguration ;
+    rdfs:range xsd:integer .
+hpc:Filemaxlocation rdfs:domain hpc:Systemconfiguration ;
+    rdfs:range xsd:string .
+hpc:Sysctlconfigfile rdfs:domain hpc:Systemconfiguration ;
+    rdfs:range xsd:string .

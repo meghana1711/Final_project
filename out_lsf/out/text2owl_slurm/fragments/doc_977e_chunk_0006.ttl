@@ -1,0 +1,50 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf hpc:Resourceallocation ;
+    rdfs:subClassOf hpc:Schedulableresource ;
+    rdfs:subClassOf hpc:Manageableresource .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Schedulableresource ;
+    rdfs:subClassOf hpc:Manageableresource ;
+    rdfs:subClassOf hpc:Resourceallocation ;
+    rdfs:subClassOf hpc:Runnableresource .
+
+hpc:hasJob rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Job ;
+    owl:inverseOf hpc:belongsToReservation .
+
+hpc:hasEndTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:dateTime .
+
+hpc:hasStartTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:dateTime .
+
+hpc:hasNodes rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:Resource .
+
+hpc:Isoverlappingreservation a owl:Class ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:subClassOf hpc:Overlappingresourceallocation .
+
+hpc:Ismaintenancereservation a owl:Class ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:subClassOf hpc:Overlappingresourceallocation ;
+    rdfs:subClassOf hpc:Nonaccountingreservation .
+
+hpc:Isnonaccountingreservation a owl:Class ;
+    rdfs:subClassOf hpc:Reservation .
+
+hpc:cannotDeleteWhileRunningJobs rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation .
+
+hpc:noHoldJobsAfterEnd rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation .
+
+hpc:hasFlag rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .

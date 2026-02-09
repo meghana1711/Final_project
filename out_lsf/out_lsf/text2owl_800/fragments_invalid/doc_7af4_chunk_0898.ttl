@@ -1,0 +1,38 @@
+hpc:Job a owl:Class .
+hpc:Transferjob a owl:Class .
+hpc:Symboliclink a owl:Class .
+hpc:Cache a owl:Class .
+hpc:Inputfile a owl:Class .
+hpc:Outputfile a owl:Class .
+
+hpc:hasTransferJob rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Transferjob .
+
+hpc:hasSymbolicLink rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Symboliclink .
+
+hpc:isInCache rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range hpc:Cache .
+
+hpc:isInputFile rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Inputfile .
+
+hpc:isOutputFile rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Outputfile .
+
+hpc:cacheAccessibleFiles a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanager .
+    rdfs:range xsd:boolean .
+
+hpc:cacheInputGracePeriod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:cacheOutputGracePeriod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:nonNegativeInteger .

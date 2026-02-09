@@ -1,0 +1,74 @@
+hpc:hasName
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceconfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Name of the guaranteed resource pool." .
+
+hpc:hasType
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceconfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Type of the guaranteed resource pool." .
+
+hpc:hasStatus
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceconfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Status of the guaranteed resource pool." .
+
+hpc:hasAvailableResources
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceconfiguration ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Available resources in the guaranteed resource pool." .
+
+hpc:hasUnusedResources
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceconfiguration ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Unused resources in the guaranteed resource pool." .
+
+hpc:hasTotalConfiguredGuarantees
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceconfiguration ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Total configured resource guarantees in the guaranteed resource pool." .
+
+hpc:hasUnusedGuaranteedResources
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceconfiguration ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Number of guaranteed resources currently unused." .
+
+hpc:hasLoanedResources
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceconfiguration ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Number of resources that are loaned for the guaranteed resource pool." .
+
+hpc:hasDescription
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceconfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Description of the guaranteed resource pool." .
+
+hpc:hasDistributionOfGuarantees
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceconfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Distribution of guarantees among service classes." .
+
+hpc:hasSpecialPolicies
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceconfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Special policies of the guaranteed resource pool." .
+
+hpc:hasConfiguredHostsList
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceconfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "List of configured hosts for the guaranteed resource pool." .
+
+hpc:hasStaticResourceRequirementSelectString
+    a

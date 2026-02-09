@@ -1,0 +1,58 @@
+hpc:ExecutionCluster
+    a owl:Class ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:comment "Cluster responsible for job execution." .
+
+hpc:Cluster
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A computing cluster." .
+
+hpc:LsbParams
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Parameters related to LSB (Linux Standard Base)." .
+
+hpc:MC_PLUGIN_SCHEDULE_ENHANCE
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Lsbparams ;
+    rdfs:comment "Enhancement for job scheduling plugin." .
+
+hpc:MC_PLUGIN_UPDATE_INTERVAL
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Non-zero value for updating the job scheduling plugin." .
+
+hpc:PENDING_WHEN_NOSLOTS
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Value for pending jobs when no slots are available." .
+
+hpc:remoteResource
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Resource located remotely." .
+
+hpc:preemptableJob
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Job that can be preempted." .
+
+hpc:queuePriority
+    a owl:Class ;
+    rdfs:subClassOf ow:Class ;
+    rdfs:comment "Priority of a queue." .
+
+hpc:freeSlot
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A slot available for a job." .
+
+hpc:badminReconfig
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Command to reconfigure the cluster." .

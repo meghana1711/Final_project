@@ -1,0 +1,69 @@
+hpc:Checkpointperiod a owl:Class .
+hpc:kn an owl:ObjectProperty .
+
+hpc:Loginshell a owl:Class .
+hpc:l a owl:ObjectProperty .
+
+hpc:Lprojectname a owl:Class .
+hpc:Ln an owl:ObjectProperty .
+
+hpc:memlimit a owl:DatatypeProperty .
+hpc:host_name a rdfs:Class .
+hpc:cluster_name a rdfs:Class .
+hpc:pref_level a rdfs:Class .
+
+hpc:Hostgroup a owl:Class .
+hpc:pref_level an owl:ObjectProperty .
+
+hpc:Computeunit a owl:Class .
+hpc:pref_level an owl:ObjectProperty .
+
+hpc:mig a owl:DatatypeProperty .
+hpc:migration_threshold a rdfs:Class .
+
+hpc:migthreshold a owl:DatatypeProperty .
+
+hpc:mintasks a owl:DatatypeProperty .
+hpc:max_tasks rdfs:Class .
+hpc:min_tasks rdfs:Class .
+
+hpc:networkresreq a owl:DatatypeProperty .
+hpc:network_res_req a rdfs:Class .
+
+hpc:Network a owl:Class .
+hpc:network_res_req an owl:ObjectProperty .
+
+hpc:notify a owl:DatatypeProperty .
+hpc:exit rdfs:Class .
+hpc:done rdfs:Class .
+hpc:suspend rdfs:Class .
+hpc:notify a rdfs:Class .
+
+hpc:outfile a owl:DatatypeProperty .
+hpc:out_file rdfs:Class .
+
+hpc:Checkpointperiod rdfs:subClassOf owl:Class .
+hpc:Loginshell rdfs:subClassOf owl:Class .
+hpc:Lprojectname rdfs:subClassOf owl:Class .
+hpc:Hostgroup rdfs:subClassOf owl:Class .
+hpc:Computeunit rdfs:subClassOf owl:Class .
+
+hpc:Kn rdfs:domain hpc:Checkpointperiod .
+hpc:L rdfs:domain hpc:Loginshell .
+hpc:Ln rdfs:domain hpc:Lprojectname .
+hpc:Memlimit rdfs:domain hpc:Computeunit .
+hpc:HostName rdfs:range hpc:Memlimit .
+hpc:ClusterName rdfs:range hpc:Memlimit .
+hpc:PrefLevel rdfs:range hpc:Memlimit .
+
+hpc:PrefLevel rdfs:domain hpc:Hostgroup .
+hpc:PrefLevel rdfs:domain hpc:Computeunit .
+
+hpc:MigrationThreshold rdfs:range xsd:decimal .
+hpc:Mig rdfs:range hpc:MigrationThreshold .
+hpc:Migthreshold rdfs:range hpc:Mig .
+
+hpc:MinTasks rdfs:range xsd:nonNegativeInteger .
+hpc:MaxTasks rdfs:range xsd:nonNegativeInteger .
+hpc:N rdfs:domain hpc:Checkpointperiod .
+hpc:nn rdfs:

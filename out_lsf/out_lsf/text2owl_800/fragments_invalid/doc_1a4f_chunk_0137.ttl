@@ -1,0 +1,61 @@
+hpc:Unixhost a owl:Class .
+hpc:Windowshost a owl:Class .
+hpc:Mixedcluster a owl:Class .
+hpc:Multipleuniformcluster a owl:Class .
+
+hpc:operatingon a owl:ObjectProperty .
+hpc:applicableon a owl:ObjectProperty .
+hpc:requiresvalidaccounts a owl:ObjectProperty .
+hpc:hasuserlevelmapping a owl:ObjectProperty .
+hpc:hassystemlevelmapping a owl:ObjectProperty .
+hpc:ignoressystemlevelmapping a owl:ObjectProperty .
+hpc:configuredon a owl:ObjectProperty .
+
+hpc:Unixhost rdfs:subClassOf hpc:Operatingsystem .
+hpc:Windowshost rdfs:subClassOf hpc:Operatingsystem .
+hpc:Mixedcluster rdfs:subClassOf hpc:Cluster .
+hpc:Multipleuniformcluster rdfs:subClassOf hpc:Cluster .
+
+hpc:Operatingsystem rdfs:subClassOf owl:Class .
+hpc:Cluster rdfs:subClassOf owl:Class .
+
+hpc:Operatingsystem rdfs:domain rdf:nil .
+hpc:Cluster rdfs:domain rdf:nil .
+
+hpc:Operatingsystem rdfs:range hpc:Unixhost .
+hpc:Operatingsystem rdfs:range hpc:Windowshost .
+hpc:Cluster rdfs:range hpc:Mixedcluster .
+hpc:Cluster rdfs:range hpc:Multipleuniformcluster .
+
+hpc:Requiresvalidaccounts rdfs:domain hpc:Cluster .
+hpc:Requiresvalidaccounts rdfs:range rdf:List .
+hpc:Requiresvalidaccounts rdfs:range hpc:Useraccount .
+
+hpc:Useraccount rdfs:subClassOf owl:Class .
+hpc:Useraccount rdfs:range xsd:string .
+
+hpc:Hasuserlevelmapping rdfs:domain hpc:Useraccount .
+hpc:Hasuserlevelmapping rdfs:range hpc:Lsfhostsfile .
+hpc:Hassystemlevelmapping rdfs:domain hpc:Useraccount .
+hpc:Hassystemlevelmapping rdfs:range hpc:Usermap .
+
+hpc:Lsfhostsfile a owl:Class .
+hpc:Usermap a owl:Class .
+
+hpc:Lsfhostsfile rdfs:subClassOf owl:Class .
+hpc:Usermap rdfs:subClassOf owl:Class .
+
+hpc:Lsfhostsfile rdfs:domain rdf:nil .
+hpc:Usermap rdfs:domain rdf:nil .
+
+hpc:Lsfhostsfile rdfs:range hpc:Useraccount .
+hpc:Usermap rdfs:range hpc:Useraccount .
+
+hpc:Operatingon rdfs:domain hpc:Cluster .
+hpc:Operatingon rdfs:range hpc:Operatingsystem .
+
+hpc:Applicableon rdfs:domain hpc:Cluster .
+hpc:Applicableon rdfs:range hpc:Operatingsystem .
+
+hpc:Ignoressystemlevelmapping rdfs:domain hpc:Useraccount .
+hpc

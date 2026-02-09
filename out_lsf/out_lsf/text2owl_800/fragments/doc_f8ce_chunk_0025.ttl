@@ -1,0 +1,7 @@
+hpc:Errlog a owl:Class .
+hpc:tryagaininterval a owl:ObjectProperty .
+hpc:Tryagaininterval rdfs:domain hpc:Errlog ;
+                      rdfs:range xsd:decimal .
+hpc:sleepduration a owl:DatatypeProperty .
+hpc:Sleepduration rdfs:domain hpc:Errlog ;
+                   rdfs:range xsd:decimal .

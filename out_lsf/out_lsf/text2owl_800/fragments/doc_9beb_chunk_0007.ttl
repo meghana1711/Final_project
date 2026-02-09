@@ -1,0 +1,44 @@
+hpc:Multilinecommand a owl:Class ;
+    rdfs:comment "A command containing a semi-colon (;)." .
+
+hpc:Taskdefinitionfile a owl:Class ;
+    rdfs:subClassOf hpc:Multilinecommand ;
+    rdfs:comment "A file containing task definitions." .
+
+hpc:Task a owl:Class ;
+    rdfs:subClassOf hpc:Multilinecommand ;
+    rdfs:comment "A unit of work to be executed by the LSF Session Scheduler." .
+
+hpc:sschedcommandline a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:Multilinecommand ;
+    rdfs:comment "The command line to be executed by ssched." .
+
+hpc:taskaccounting a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:Multilinecommand ;
+    rdfs:comment "The command to enable task accounting." .
+
+hpc:accountingfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The file containing task accounting information." .
+
+hpc:Lsfsessionscheduler a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:comment "The LSF Session Scheduler." .
+
+hpc:signalhandling a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsessionscheduler ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The signals handled by the LSF Session Scheduler." .
+
+hpc:delaybeforedispatch a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfsessionscheduler ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The delay before tasks are dispatched to execution agents." .
+
+hpc:maxdelaybeforetermination a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfsessionscheduler ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum delay for terminating all execution agents and cleaning up temporary files." .

@@ -1,13 +1,13 @@
 import sqlite3
 import csv
 
-DB_PATH = r"onto_db/sample2.db"
-OUT_CSV = r"new_output/taxonomy_is_a_final.csv"
+DB_PATH = r"onto_db/slurm_llm_final.db"
+OUT_CSV = r"llm_is_a_edges_core.csv"
 
 conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()
 
-cur.execute("SELECT * FROM taxonomy_is_a_final")
+cur.execute("SELECT * FROM llm_is_a_edges_core")
 rows = cur.fetchall()
 col_names = [d[0] for d in cur.description]
 

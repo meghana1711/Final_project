@@ -1,0 +1,20 @@
+hpc:Slurmctld a owl:Class .
+hpc:Slurmd a owl:Class .
+hpc:hasconfigserver a owl:ObjectProperty .
+hpc:slurmdspooldir a owl:DatatypeProperty .
+hpc:slurmdpidfile a owl:DatatypeProperty .
+hpc:nodename a owl:DatatypeProperty .
+hpc:slurmctldpriority a owl:DatatypeProperty .
+
+hpc:Hasconfigserver rdfs:domain hpc:Slurmd .
+hpc:Hasconfigserver rdfs:range rdf:List ;
+    rdfs:range rdf:first rdf:Resource ;
+    rdfs:range rdf:rest rdf:Resource .
+
+hpc:Slurmdspooldir rdfs:domain hpc:Slurmd .
+hpc:Slurmdspooldir rdfs:range rdf:Resource .
+
+hpc:Slurmdpidfile rdfs:domain hpc:Slurmd .
+hpc:Slurmdpidfile rdfs:range rdf:Resource .
+
+hpc:Nodename rdfs:domain hpc:Slurmd .

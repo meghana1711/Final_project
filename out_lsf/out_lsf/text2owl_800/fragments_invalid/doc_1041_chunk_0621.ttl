@@ -1,0 +1,34 @@
+hpc:Gpurequirement a owl:Class .
+hpc:gvendor a owl:DatatypeProperty .
+hpc:Gvendor rdfs:domain hpc:Gpurequirement .
+hpc:Gvendor rdfs:range xsd:string .
+
+hpc:Mps a owl:Class .
+hpc:MPSMode a owl:Enum .
+hpc:Mpsmode rdfs:subClassOf hpc:Mps .
+hpc:MPSMode "EXCLUSIVE_PROCESS" a hpc:MPSMode .
+hpc:MPSMode "shared" a hpc:MPSMode .
+hpc:MPSMode "nocvd" a hpc:MPSMode .
+
+hpc:Mpsdaemon a owl:Class .
+hpc:mpsdaemonsharing a owl:ObjectProperty .
+hpc:Mpsdaemonsharing rdfs:domain hpc:Mpsdaemon .
+hpc:Mpsdaemonsharing rdfs:range hpc:Mpsdaemon .
+
+hpc:Mpsrequirement a owl:Class .
+hpc:Mpsrequirement rdfs:subClassOf hpc:Gpurequirement .
+hpc:MPSRequirement rdf:subClassOf hpc:GPURequirement .
+hpc:MPSRequirement rdfs:comment "Requirement for MPS on GPUs." .
+
+hpc:mpsstartpolicy a owl:ObjectProperty .
+hpc:Mpsstartpolicy rdfs:domain hpc:Mpsrequirement .
+hpc:Mpsstartpolicy rdfs:range hpc:Mpsstartpolicyvalue .
+
+hpc:Mpsstartpolicyvalue a owl:Class .
+hpc:MPSStartPolicyValue "per_job" a hpc:MPSStartPolicyValue .
+hpc:MPSStartPolicyValue "per_host_per_job" a hpc:MPSStartPolicyValue .
+hpc:MPSStartPolicyValue "per_host_for_user" a hpc:MPSStartPolicyValue .
+
+hpc:cudavisibledevicesenvironmentvariable a owl:DatatypeProperty .
+hpc:Cudavisibledevicesenvironmentvariable rdfs:domain hpc:Mpsrequirement .
+hpc:Cudavisibledevicesenvironmentvariable rdfs:range xsd:string .

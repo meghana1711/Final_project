@@ -1,0 +1,34 @@
+hpc:Lsfhost a owl:Class .
+hpc:Lsfadministrator a owl:Class .
+hpc:Lsffeature a owl:Class .
+hpc:Lim a owl:Class .
+hpc:Resourcemap a owl:Class .
+hpc:Remoteclusters a owl:Class .
+
+hpc:Hasadministrator rdfs:domain hpc:Lsfhost .
+hpc:Hasadministrator rdfs:range hpc:Lsfadministrator .
+hpc:Hasfeature rdfs:domain hpc:Lsfhost .
+hpc:Hasfeature rdfs:range hpc:Lsffeature .
+hpc:Ispartof rdfs:domain hpc:Lsfhost .
+hpc:Ispartof rdfs:range hpc:Lsfcluster .
+hpc:Hasresourcemap rdfs:domain hpc:Lsfcluster .
+hpc:Hasresourcemap rdfs:range hpc:Resourcemap .
+hpc:Hasremotecluster rdfs:domain hpc:Lsfcluster .
+hpc:Hasremotecluster rdfs:range hpc:Remoteclusters .
+
+hpc:adjustduration a owl:DatatypeProperty .
+hpc:elimabortvalue a owl:DatatypeProperty .
+hpc:elimpollinterval a owl:DatatypeProperty .
+hpc:elimargs a owl:ObjectProperty .
+hpc:exinterval a owl:DatatypeProperty .
+
+hpc:Adjustduration rdfs:domain hpc:Lsfcluster .
+hpc:Adjustduration rdfs:range xsd:integer .
+hpc:Elimabortvalue rdfs:domain hpc:Lsfcluster .
+hpc:Elimabortvalue rdfs:range xsd:integer .
+hpc:Elimpollinterval rdfs:domain hpc:Lsfcluster .
+hpc:Elimpollinterval rdfs:range xsd:integer .
+hpc:Elimargs rdfs:domain hpc:Lsfcluster .
+hpc:Elimargs rdfs:range xsd:string .
+hpc:Exinterval rdfs:domain hpc:Lsfcluster .
+hpc:Exinterval rdfs:range xsd:integer .

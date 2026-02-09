@@ -1,0 +1,75 @@
+hpc:Tokenusage a owl:Class .
+hpc:reservedtoken a owl:ObjectProperty ;
+    rdfs:domain hpc:Tokenusage ;
+    rdfs:range hpc:Token .
+
+hpc:freetoken a owl:ObjectProperty ;
+    rdfs:domain hpc:Tokenusage ;
+    rdfs:range hpc:Token .
+
+hpc:demand a owl:ObjectProperty ;
+    rdfs:domain hpc:Tokenusage ;
+    rdfs:range hpc:Token .
+
+hpc:accumulatedvalue a owl:ObjectProperty ;
+    rdfs:domain hpc:Tokenusage ;
+    rdfs:range xsd:decimal .
+
+hpc:scaledaccumulatedvalue a owl:ObjectProperty ;
+    rdfs:domain hpc:Tokenusage ;
+    rdfs:range xsd:decimal .
+
+hpc:Fastdispatchprojectmode a owl:Class ;
+    rdfs:subClassOf hpc:Tokenusage .
+
+hpc:idealnumberoftokens a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fastdispatchprojectmode ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:idealnumberoflicenses a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fastdispatchprojectmode ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:excesslicenses a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fastdispatchprojectmode ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:unusedlicenses a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tokenusage ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:requiredtokens a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tokenusage ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Hierarchicallicenseinformation a owl:Class .
+
+hpc:blstatg a owl:ObjectProperty ;
+    rdfs:domain hpc:Hierarchicallicenseinformation ;
+    rdfs:range hpc:Command .
+
+hpc:specifiedfeaturenames a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blstatg ;
+    rdfs:range xsd:string .
+
+hpc:Projectdescription a owl:Class .
+
+hpc:nonhierarchicalprojects a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectdescription ;
+    rdfs:range hpc:Project .
+
+hpc:projectnames a owl:DatatypeProperty ;
+    rdfs:domain hpc:Nonhierarchicalprojects ;
+    rdfs:range xsd:string .
+
+hpc:Projectgrouppaths a owl:Class .
+
+hpc:associatedlicenseprojects a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectgrouppaths ;
+    rdfs:range hpc:Project .
+
+hpc:specifiedproject a owl:DatatypeProperty ;
+    rdfs:domain hpc:Associatedlicenseprojects ;
+    rdfs:range xsd:string .
+
+hpc:FeatureNames a owl

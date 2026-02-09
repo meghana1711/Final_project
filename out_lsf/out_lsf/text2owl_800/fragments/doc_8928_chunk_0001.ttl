@@ -1,0 +1,45 @@
+hpc:Datamanager a owl:Class .
+
+# ASCP Command Configuration property
+hpc:filetransfercmd a owl:ObjectProperty ;
+    rdfs:domain hpc:Datamanager ;
+    rdfs:range xsd:string .
+
+# Administrators property
+hpc:admins a owl:ObjectProperty ;
+    rdfs:domain hpc:Datamanager ;
+    rdfs:range xsd:string .
+
+# Staging Area property
+hpc:stagingarea a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datamanager ;
+    rdfs:range xsd:string .
+
+# Cache Input Grace Period property
+hpc:cacheinputgraceperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datamanager ;
+    rdfs:range xsd:integer .
+
+# Cache Output Grace Period property
+hpc:cacheoutputgraceperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datamanager ;
+    rdfs:range xsd:integer .
+
+# Cache Permissions property
+hpc:cachepermissions a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datamanager ;
+    rdfs:range xsd:string .
+
+# Query NThreads property
+hpc:querynthreads a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datamanager ;
+    rdfs:range xsd:integer .
+
+# Remote Cache Refresh Interval property
+hpc:remotecacherefreshinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datamanager ;
+    rdfs:range xsd:integer .
+
+# File Transfer Command value for the specific LSF version
+hpc:ascp_wrap_sh_9_1_linux2_6_glibc2_3_x86_64 a hpc:fileTransferCmd ;
+    rdf:value "/usr/share/lsf/9.1/linux2.6-glibc2.3-x86_64/etc/ascp_wrap.sh" .

@@ -1,0 +1,31 @@
+hpc:Pendingtimelimit a owl:Class ;
+    rdfs:subClassOf owl:Restriction ;
+    rdfs:label "Pending Time Limit" ;
+    owl:onProperty hpc:jobQueue ;
+    owl:hasValue ?pendingTimeLimit .
+
+hpc:Jobqueue a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:label "Job Queue" ;
+    rdfs:domain hpc:Pendingtimelimit ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Exitcode a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:label "Exit Code" ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobqueueexitcode a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobqueue ;
+    rdfs:range hpc:Exitcode ;
+    rdfs:label "Job Queue Exit Code" .
+
+hpc:excludeexitcodes a owl:ObjectProperty ;
+    rdfs:domain hpc:Exitcode ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "Exclude Exit Codes" .
+
+hpc:allexitcodes a owl:ObjectProperty ;
+    rdfs:domain hpc:Exitcode ;
+    rdfs:range xsd:string ;
+    rdfs:label "All Exit Codes" .

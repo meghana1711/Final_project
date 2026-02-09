@@ -1,0 +1,26 @@
+hpc:Workloaddistribution a owl:Class .
+hpc:Lsfworkload a owl:Class .
+hpc:Nonlsfworkload a owl:Class .
+hpc:Licensefeatureinformation a owl:Class .
+hpc:sortalphabetically a owl:ObjectProperty .
+hpc:sortbytotallicenses a owl:ObjectProperty .
+hpc:sortbyavailablelicenses a owl:ObjectProperty .
+hpc:totallicenses a owl:DatatypeProperty .
+hpc:availablelicenses a owl:DatatypeProperty .
+hpc:blstat a owl:ObjectProperty .
+hpc:optionsLp a owl:NamedIndividual, rdf:value "Lp" .
+hpc:optionsT a owl:NamedIndividual, rdf:value "t" .
+hpc:optionsD a owl:NamedIndividual, rdf:value "D" .
+hpc:optionsG a owl:NamedIndividual, rdf:value "G" .
+hpc:optionsS a owl:NamedIndividual, rdf:value "s" .
+hpc:optionsSs a owl:NamedIndividual, rdf:value "S" .
+hpc:totallicensescalculation a owl:ObjectProperty .
+hpc:calculatedWithAllServiceDomains a owl:NamedIndividual, rdf:value "All service domains" .
+hpc:calculatedWithLSFWorkload a owl:NamedIndividual, rdf:value "LSF workload" .
+hpc:calculatedWithNonBorrowedLicenses a owl:NamedIndividual, rdf:value "Non-borrowed licenses" .
+hpc:calculatedWithAllLicenses a owl:NamedIndividual, rdf:value "All licenses" .
+hpc:calculatedWithVendorDaemon a owl:NamedIndividual, rdf:value "License vendor daemon" .
+hpc:Multiplejobslimitations a owl:Class .
+hpc:insufficientinfo a owl:ObjectProperty .
+hpc:estimatedJob a owl:NamedIndividual, rdf:value "Estimated job" .
+hpc:executionhost a owl:DatatypeProperty .

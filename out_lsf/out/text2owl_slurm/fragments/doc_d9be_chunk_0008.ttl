@@ -1,0 +1,27 @@
+hpc:Job a owl:Class .
+hpc:requirescpus a owl:ObjectProperty .
+hpc:Task a owl:Class .
+hpc:cpupertask a owl:DatatypeProperty .
+hpc:Overcommitment a xsd:boolean .
+hpc:allocatedonnode a owl:ObjectProperty .
+hpc:Node a owl:Class .
+hpc:numberofallocatedcpus a owl:DatatypeProperty .
+hpc:numberoftasks a owl:DatatypeProperty .
+
+hpc:Consumableresource a owl:Class .
+hpc:allocatedfromnode a owl:ObjectProperty .
+
+hpc:selecttypeparameters a owl:DatatypeProperty .
+
+hpc:Job rdfs:subClassOf hpc:Consumableresource .
+hpc:Task rdfs:subClassOf hpc:Consumableresource .
+
+hpc:Requirescpus rdfs:domain hpc:Job .
+hpc:Cpupertask rdfs:domain hpc:Job .
+hpc:Overcommitment rdfs:range xsd:boolean .
+hpc:Allocatedonnode rdfs:domain hpc:Job .
+hpc:Allocatedfromnode rdfs:domain hpc:Consumableresource .
+hpc:Selecttypeparameters rdfs:domain hpc:Selecttype .
+
+hpc:Numberofallocatedcpus rdfs:range xsd:nonNegativeInteger .
+hpc:Numberoftasks rdfs:range xsd:nonNegativeInteger .

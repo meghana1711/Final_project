@@ -1,0 +1,24 @@
+hpc:Logclass a owl:Class .
+hpc:LsDebugBld rdfs:subClassOf hpc:Logclass .
+hpc:LsEnableMaxPreempt a owl:Class .
+hpc:LsLogMask a owl:Class .
+
+hpc:haslogclass a owl:ObjectProperty .
+hpc:Haslogclass rdfs:domain hpc:Logclass ;
+                 rdfs:range xsd:string .
+
+hpc:isenabledmaxpreemption a owl:ObjectProperty .
+hpc:Isenabledmaxpreemption rdfs:domain hpc:LsEnableMaxPreempt ;
+                            rdfs:range xsd:boolean .
+
+hpc:loglevel a owl:DatatypeProperty .
+hpc:Loglevel rdfs:domain hpc:LsLogMask ;
+             rdfs:range xsd:string .
+
+hpc:LogLevel_ERR a xsd:string .
+hpc:LogLevel_WARNING a xsd:string .
+hpc:LogLevel_INFO a xsd:string .
+hpc:LogLevel_DEBUG a xsd:string .
+hpc:LogLevel_DEBUG1 a xsd:string .
+hpc:LogLevel_DEBUG2 a xsd:string .
+hpc:LogLevel_DEBUG3 a xsd:string .

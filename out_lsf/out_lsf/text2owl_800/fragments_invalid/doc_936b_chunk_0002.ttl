@@ -1,0 +1,41 @@
+hpc:Lsf lsmake a owl:Class .
+hpc:lsmaketool a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Commandlinetool .
+
+hpc:lsmakerm a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsmaketool ;
+    rdfs:range hpc:Lsfserver .
+
+hpc:Lsmakeserver a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf hpc:Lsfcomponent .
+
+hpc:Lsfcomponent a owl:Class .
+
+hpc:useslsfapi a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsmakerm ;
+    rdfs:range xsd:boolean .
+
+hpc:buildsworkloadinparallel a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsmake ;
+    rdfs:range xsd:boolean .
+
+hpc:distributedtask a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsmake ;
+    rdfs:range hpc:Task .
+
+hpc:Task a owl:Class .
+
+hpc:Androidsourcecodebuild a owl:Class ;
+    rdfs:subClassOf hpc:Workload .
+
+hpc:shareddirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Androidsourcecodebuild ;
+    rdfs:range xsd:string .
+
+hpc:requiresandroidbuildenvironment a owl:ObjectProperty ;
+    rdfs:domain hpc:Androidsourcecodebuild ;
+    rdfs:range hpc:Buildenvironment .
+
+hpc:Buildenvironment a owl:Class .

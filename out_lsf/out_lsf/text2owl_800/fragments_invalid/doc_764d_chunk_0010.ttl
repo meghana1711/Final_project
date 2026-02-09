@@ -1,0 +1,32 @@
+hpc:Lsf a owl:Class .
+hpc:Sbatchd hpc:hasdefaultport rdf:Description( rdf:type owl:DatatypeProperty ;
+                                               rdfs:domain hpc:Lsf ;
+                                               rdfs:range xsd:integer ;
+                                               rdf:value 6878 ) .
+hpc:Sbatchd hpc:hasdefaultport2 rdf:Description( rdf:type owl:DatatypeProperty ;
+                                                    rdfs:domain hpc:Lsf ;
+                                                    rdfs:range xsd:integer ;
+                                                    rdf:value 6881 ) .
+hpc:Sbatchd hpc:hasdefaultport3 rdf:Description( rdf:type owl:DatatypeProperty ;
+                                                    rdfs:domain hpc:Lsf ;
+                                                    rdfs:range xsd:integer ;
+                                                    rdf:value 6882 ) .
+hpc:Upgrade hpc:preservesportsettings rdf:Description( rdf:type owl:ObjectProperty ;
+                                                         rdfs:domain hpc:Lsf ) .
+hpc:Ego hpc:usesdefaultports rdf:Description( rdf:type owl:ObjectProperty ) .
+hpc:Ego hpc:usesdefaultport rdf:Description( rdf:type owl:DatatypeProperty ;
+                                               rdfs:domain hpc:Ego ;
+                                               rdfs:range xsd:integer ;
+                                               rdf:value 7870 ) .
+hpc:LsfTop hpc:hasconffile rdf:Description( rdf:type owl:ObjectProperty ) .
+hpc:LsfTop hpc:hasinstalldir rdf:Description( rdf:type owl:DatatypeProperty ) .
+hpc:Installconfig hpc:defineslsfTop rdf:Description( rdf:type owl:ObjectProperty ) .
+hpc:Lsfconf hpc:containslsfPorts rdf:Description( rdf:type owl:ObjectProperty ) .
+hpc:Lsfshared hpc:hascommondefinitions rdf:Description( rdf:type owl:ObjectProperty ) .
+hpc:Lsfshared hpc:hashosttypes rdf:Description( rdf:type owl:DatatypeProperty ) .
+hpc:Lsfshared hpc:hashostmodels rdf:Description( rdf:type owl:DatatypeProperty ) .
+hpc:Lsfshared hpc:hasresources rdf:Description( rdf:type owl:DatatypeProperty ) .
+hpc:Multicluster hpc:requiresidenticallsfShared rdf:Description( rdf:type owl:ObjectProperty ) .
+hpc:Multicluster hpc:allowsdifferentlsfShared rdf:Description( rdf:type owl:ObjectProperty ) .
+hpc:Participatingcluster hpc:isdefinedinlsfShared rdf:Description( rdf:type owl:ObjectProperty ) .
+hpc:Managementhost hpc:isdefinedinlsfShared rdf:Description( rdf:type owl:ObjectProperty ) .

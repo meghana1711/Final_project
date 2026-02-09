@@ -1,0 +1,14 @@
+hpc:Queueleveljobstarter a owl:Class .
+hpc:hasjobstarter a owl:ObjectProperty .
+hpc:jobstartercommand a owl:DatatypeProperty .
+hpc:optionaljobstarterarguments a owl:DatatypeProperty .
+
+hpc:Queue a owl:Class .
+hpc:Hasjobstarter rdfs:domain hpc:Queue ;
+                   rdfs:range hpc:Queueleveljobstarter .
+
+hpc:Queueleveljobstarter rdfs:subClassOf rdf:Resource .
+hpc:Jobstartercommand rdfs:domain hpc:Queueleveljobstarter ;
+                       rdfs:range xsd:string .
+hpc:Optionaljobstarterarguments rdfs:domain hpc:Queueleveljobstarter ;
+                               rdfs:range xsd:string+ .

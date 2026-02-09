@@ -1,0 +1,49 @@
+hpc:Host            a owl:Class .
+hpc:Loadinformation a owl:Class .
+hpc:Field           a owl:Class .
+
+# Object Properties
+hpc:hashost         a owl:ObjectProperty .
+hpc:hasloadinformation a owl:ObjectProperty .
+hpc:hasfield a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:fieldname       a owl:DatatypeProperty .
+hpc:outputwidth     a owl:DatatypeProperty .
+hpc:unit            a owl:DatatypeProperty .
+
+# Domain and Range
+hpc:Hasloadinformation rdfs:domain hpc:Host .
+hpc:Hasloadinformation rdfs:range hpc:Loadinformation .
+hpc:Hasfield rdfs:domain hpc:Loadinformation .
+hpc:Hasfield rdfs:range hpc:Field .
+
+# Subclass
+hpc:Customloadinformation a owl:Class .
+hpc:Customloadinformation rdfs:subClassOf hpc:Loadinformation .
+
+# Custom Load Information Field
+hpc:Customloadformat a owl:Class .
+hpc:Customloadformat rdfs:subClassOf hpc:Field .
+
+# Custom Load Format Definition
+hpc:customloadformatdefinition a owl:ObjectProperty .
+hpc:Customloadformatdefinition rdfs:domain hpc:Customloadformat .
+hpc:Customloadformatdefinition rdfs:range hpc:Customloadformatdefinition .
+
+# Custom Load Format Definition Triples
+hpc:customLoadFormatDefinition(?customLoadFormat, ?formatDefinition) .
+?formatDefinition rdf:type hpc:CustomLoadFormatDefinition .
+?formatDefinition hpc:fieldName ?fieldName ;
+                   hpc:outputWidth ?outputWidth ;
+                   hpc:unit ?unit ;
+                   rdfs:label ?label .
+
+# Wildcard Field
+hpc:Wildcardfield a owl:Class .
+hpc:Wildcardfield rdfs:subClassOf hpc:Field .
+
+# Wildcard Field Triples
+hpc:wildcardField(?wildcardField) .
+?wildcardField rdf:type hpc:WildcardField .
+?wildcardField hpc:fieldName "*" .

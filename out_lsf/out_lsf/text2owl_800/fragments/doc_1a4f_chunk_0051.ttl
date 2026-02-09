@@ -1,0 +1,54 @@
+hpc:Eslimexecutable a owl:Class .
+hpc:Shellscript a owl:Class .
+hpc:Cprogram a owl:Class .
+hpc:Resourceconfiguration a owl:Class .
+hpc:Eslimscript a owl:Class .
+
+# Object Properties
+hpc:hasreturnvalue a owl:ObjectProperty .
+hpc:usessetbuf a owl:ObjectProperty .
+hpc:reportsresources a owl:ObjectProperty .
+hpc:mapsresources a owl:ObjectProperty .
+hpc:includesheader a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:executabletype a owl:DatatypeProperty .
+hpc:returnvalue a owl:DatatypeProperty .
+hpc:resourcename a owl:DatatypeProperty .
+hpc:type a owl:DatatypeProperty .
+hpc:interval a owl:DatatypeProperty .
+hpc:increasing a owl:DatatypeProperty .
+hpc:description a owl:DatatypeProperty .
+
+# Class and Property Relations
+hpc:Eslimexecutable rdfs:subClassOf owl:Class .
+hpc:Shellscript rdfs:subClassOf hpc:Eslimexecutable .
+hpc:Cprogram rdfs:subClassOf hpc:Eslimexecutable .
+hpc:Resourceconfiguration rdfs:subClassOf owl:Class .
+hpc:Eslimscript rdfs:subClassOf hpc:Eslimexecutable .
+
+hpc:Hasreturnvalue rdfs:domain hpc:Eslimexecutable ;
+                    rdfs:range xsd:integer .
+hpc:Usessetbuf rdfs:domain hpc:Cprogram ;
+                    rdfs:range rdf:Boolean .
+hpc:Reportsresources rdfs:domain hpc:Eslimexecutable ;
+                     rdfs:range rdf:Resource .
+hpc:Mapsresources rdfs:domain hpc:Eslimexecutable ;
+                     rdfs:range rdf:Resource .
+hpc:Includesheader rdfs:domain hpc:Eslimscript ;
+                     rdfs:range rdf:Boolean .
+
+hpc:Executabletype rdfs:domain hpc:Eslimexecutable ;
+                     rdfs:range xsd:string .
+hpc:Returnvalue rdfs:domain hpc:Eslimexecutable ;
+                     rdfs:range xsd:integer .
+hpc:Resourcename rdfs:domain hpc:Resource ;
+                     rdfs:range xsd:string .
+hpc:Type rdfs:domain hpc:Resource ;
+                     rdfs:range xsd:string .
+hpc:Interval rdfs:domain hpc:Resource ;
+                     rdfs:range xsd:string .
+hpc:Increasing rdfs:domain hpc:Resource ;
+                     rdfs:range rdf:Boolean .
+hpc:Description rdfs:domain hpc:Resource ;
+                     rdfs:range xsd:string .

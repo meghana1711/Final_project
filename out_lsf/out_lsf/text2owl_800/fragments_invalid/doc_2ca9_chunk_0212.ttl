@@ -1,0 +1,76 @@
+hpc:Lsfversion a owl:Class .
+hpc:Fixpack a owl:Class .
+
+hpc:bhosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion ;
+    rdfs:range hpc:Bhostcommandoption .
+
+hpc:Bhostcommandoption a owl:Class ;
+    rdfs:subClassOf hpc:Commandoption ;
+    rdfs:subClassOf hpc:Hasdisplayedinfo .
+
+hpc:hasdisplayedinfo a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhostcommandoption ;
+    rdfs:range xsd:string .
+
+hpc:gpuvendortype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hasdisplayedinfo ;
+    rdfs:range xsd:string .
+
+hpc:migdeviceinfo a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hasdisplayedinfo .
+
+hpc:migallocationinfo a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hascustomizedoutput .
+
+hpc:hascustomizedoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhostcommandoption ;
+    rdfs:range xsd:string .
+
+hpc:bimages a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion .
+
+hpc:TRACK_ELIGIBLE_PENDINFO a xsd:boolean .
+
+hpc:bjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion .
+
+hpc:eligiblependingstate a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:string .
+
+hpc:ineligiblependingstate a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:string .
+
+hpc:totaltime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:duration .
+
+hpc:pendingeligible a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range hpc:Joblist .
+
+hpc:pendingineligible a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range hpc:Joblist .
+
+hpc:pendstate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:string .
+
+hpc:ependtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:dateTime .
+
+hpc:ipendtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:dateTime .
+
+hpc:ResourceName a xsd:string .
+
+hpc:rusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range hpc:Resourcenamelist .
+
+hpc:Resourcenamelist a owl:Class ;

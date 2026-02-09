@@ -1,0 +1,46 @@
+hpc:Host a owl:Class .
+hpc:allocatedslots a owl:ObjectProperty .
+hpc:total a owl:DatatypeProperty .
+hpc:task a owl:DatatypeProperty .
+hpc:Systemsuspendedjobs a owl:Class .
+hpc:Usersuspendedjobs a owl:Class .
+hpc:Pendingjobs a owl:Class .
+hpc:reservedslots a owl:ObjectProperty .
+
+hpc:Systemsuspendedjobs rdfs:subClassOf hpc:Jobs .
+hpc:Usersuspendedjobs rdfs:subClassOf hpc:Jobs .
+hpc:Pendingjobs rdfs:subClassOf hpc:Jobs .
+
+hpc:Host rdfs:subClassOf hpc:Condensable .
+hpc:Condensable a owl:Class .
+
+hpc:Allocatedslots rdfs:domain hpc:Host .
+hpc:Total rdfs:range xsd:nonNegativeInteger .
+hpc:Task rdfs:range xsd:nonNegativeInteger .
+hpc:Reservedslots rdfs:domain hpc:Host .
+hpc:Reservedslots rdfs:range hpc:Task .
+
+hpc:SystemSuspendedJobs rdfs:subPropertyChain rdfs:subPropertyOf hpc:AllocatedSlots hpc:Total .
+hpc:UserSuspendedJobs rdfs:subPropertyChain rdfs:subPropertyOf hpc:AllocatedSlots hpc:Total .
+hpc:PendingJobs rdfs:subPropertyChain rdfs:subPropertyOf hpc:AllocatedSlots rdfs:someValuesFrom hpc:ReservedSlots .
+
+hpc:Condensedhostgroups a owl:Class .
+hpc:Computeunits a owl:Class .
+
+hpc:ssusp a owl:DatatypeProperty .
+hpc:ususp a owl:DatatypeProperty .
+hpc:rsvp a owl:DatatypeProperty .
+
+hpc:Condensedhostgroups rdfs:subClassOf hpc:Host .
+hpc:Computeunits rdfs:subClassOf hpc:Host .
+
+hpc:CondensedHostGroups rdfs:subPropertyChain rdfs:subPropertyOf hpc:SystemSuspendedJobs hpc:Total .
+hpc:ComputeUnits rdfs:subPropertyChain rdfs:subPropertyOf hpc:SystemSuspendedJobs hpc:Total .
+hpc:CondensedHostGroups rdfs:subPropertyChain rdfs:subPropertyOf hpc:UserSuspendedJobs hpc:Total .
+hpc:ComputeUnits rdfs:subPropertyChain rdfs:subPropertyOf hpc:UserSuspendedJobs hpc:Total .
+hpc:CondensedHostGroups rdfs:subPropertyChain rdfs:subPropertyOf hpc:PendingJobs hpc:ReservedSlots .
+hpc:ComputeUnits rdfs:subPropertyChain rdfs:subPropertyOf hpc:PendingJobs hpc:ReservedSlots .
+
+hpc:Ssusp rdfs:domain hpc:Condensedhostgroups .
+hpc:Ususp rdfs:domain hpc:Condensedhostgroups .
+hpc:Rsvp rdfs:domain hpc:Condensedhost

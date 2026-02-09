@@ -1,0 +1,48 @@
+hpc:Jobresizingevent a owl:Class .
+hpc:Joballocationchange a owl:Class .
+hpc:Bjobs a owl:Class .
+hpc:Bhist a owl:Class .
+hpc:Baccount a owl:Class .
+hpc:Busers a owl:Class .
+hpc:Bqueues a owl:Class .
+
+hpc:jobrequeuing a owl:ObjectProperty .
+hpc:userspecifiedjobrequeuing a owl:ObjectProperty .
+hpc:sendjobsqueuerequeuing a owl:ObjectProperty .
+hpc:executionclusterrequeuing a owl:ObjectProperty .
+hpc:receivejobsqueuerequeuing a owl:ObjectProperty .
+hpc:automaticjobrequeuing a owl:ObjectProperty .
+hpc:exclusivejobrequeuing a owl:ObjectProperty .
+hpc:jobretrylimits a owl:ObjectProperty .
+
+hpc:Jobresizingevent rdfs:subClassOf hpc:Joballocationchange .
+hpc:Joballocationchange rdfs:domain hpc:Job .
+
+hpc:Jobrequeuing rdfs:domain hpc:Job .
+hpc:Userspecifiedjobrequeuing rdfs:domain hpc:Job .
+hpc:Sendjobsqueuerequeuing rdfs:domain hpc:Queue .
+hpc:Executionclusterrequeuing rdfs:domain hpc:Executioncluster .
+hpc:Receivejobsqueuerequeuing rdfs:domain hpc:Receivejobsqueue .
+hpc:Automaticjobrequeuing rdfs:domain hpc:Job .
+hpc:Exclusivejobrequeuing rdfs:domain hpc:Job .
+hpc:Jobretrylimits rdfs:domain hpc:Job .
+
+hpc:Jobrequeuing rdfs:range hpc:Queue .
+hpc:Userspecifiedjobrequeuing rdfs:range hpc:Queue .
+hpc:Sendjobsqueuerequeuing rdfs:range hpc:Sendjobsqueue .
+hpc:Executionclusterrequeuing rdfs:range hpc:Receivejobsqueue .
+hpc:Receivejobsqueuerequeuing rdfs:range hpc:Receivejobsqueue .
+hpc:Automaticjobrequeuing rdfs:range hpc:Job .
+hpc:Exclusivejobrequeuing rdfs:range hpc:Job .
+hpc:Jobretrylimits rdfs:range xsd:nonNegativeInteger .
+
+hpc:RequeueExitValues a owl:Class .
+hpc:maxPreexecRetry a owl:DatatypeProperty .
+hpc:localMaxPreexecRetry a owl:DatatypeProperty .
+hpc:remoteMaxPreexecRetry a owl:DatatypeProperty .
+hpc:maxJobRequeue a owl:DatatypeProperty .
+hpc:maxJobPreempt a owl:DatatypeProperty .
+
+hpc:RequeueExitValues rdfs:subClassOf xsd:nonNegativeInteger .
+hpc:MaxPreexecRetry rdfs:domain hpc:Executioncluster .
+hpc:LocalMaxPreexecRetry rdfs:domain

@@ -1,0 +1,63 @@
+hpc:lsfTopdPort        a owl:DatatypeProperty ;
+                          rdfs:domain hpc:LsfConf ;
+                          rdfs:range xsd:string .
+
+hpc:lsfTopdTimeout     a owl:DatatypeProperty ;
+                          rdfs:domain hpc:LsfConf ;
+                          rdfs:range xsd:nonNegativeInteger .
+
+hpc:CorrespondingDeprecated a owl:Class .
+
+hpc:AlternativeFeature   a owl:Class .
+
+# Chunk job scheduling
+hpc:lsbChunkRusage     a owl:DatatypeProperty ;
+                          rdfs:domain hpc:LsbConf ;
+                          rdfs:range xsd:string .
+
+hpc:LsbParamsFile      a owl:Class .
+
+hpc:chunkJobDuratio    a owl:DatatypeProperty ;
+                          rdfs:domain hpc:LsbParamsFile ;
+                          rdfs:range xsd:nonNegativeInteger .
+
+# lsb.applications and lsb.queues
+hpc:chunkJobSize       a owl:DatatypeProperty ;
+                          rdfs:domain hpc:LsbFile ;
+                          rdfs:range xsd:nonNegativeInteger .
+
+hpc:relaxJobDispatchOrder a owl:DatatypeProperty ;
+                              rdfs:domain hpc:LsbParamsFile ;
+                              rdfs:range xsd:boolean .
+
+# HPC integrations for parallel job support
+hpc:ParallelJobSupport a owl:Class .
+
+hpc:Pam                  a owl:Class ;
+                          rdfs:subClassOf hpc:ParallelJobSupport .
+
+hpc:IbmPe               a owl:Class ;
+                          rdfs:subClassOf hpc:ParallelJobSupport .
+
+hpc:SgiCpuset           a owl:Class ;
+                          rdfs:subClassOf hpc:ParallelJobSupport .
+
+# LSF_conf file properties
+hpc:lsfPamApplChkp    a owl:DatatypeProperty ;
+                          rdfs:domain hpc:LsfConf ;
+                          rdfs:range xsd:string .
+
+hpc:lsfPamCleanJobDelay a owl:DatatypeProperty ;
+                              rdfs:domain hpc:LsfConf ;
+                              rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsfPamHostlistU   a owl:DatatypeProperty ;
+                          rdfs:domain hpc:LsfConf ;
+                          rdfs:range xsd:string .
+
+hpc:lsfPamPlugindir    a owl:DatatypeProperty ;
+                          rdfs:domain hpc:LsfConf ;
+                          rdfs:range xsd:string .
+
+hpc:lsfPamUseAsh      a owl:DatatypeProperty ;
+                          rdfs

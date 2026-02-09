@@ -1,0 +1,15 @@
+hpc:lsbCgroupCpuSharesOldDefault a owl:DatatypeProperty .
+hpc:LsbCgroupCpuSharesOldDefault rdfs:domain hpc:Job .
+hpc:LsbCgroupCpuSharesOldDefault rdfs:range xsd:string .
+
+hpc:lsbCgroupMemIncludeCache a owl:DatatypeProperty .
+hpc:LsbCgroupMemIncludeCache rdfs:domain hpc:Job .
+hpc:LsbCgroupMemIncludeCache rdfs:range xsd:string .
+
+hpc:lsbCheckJobPidReuseOnReboot a owl:DatatypeProperty .
+hpc:LsbCheckJobPidReuseOnReboot rdfs:domain hpc:Job .
+hpc:LsbCheckJobPidReuseOnReboot rdfs:range xsd:string .
+
+hpc:lsbCmdLogMask a owl:DatatypeProperty .
+hpc:LsbCmdLogMask rdfs:domain hpc:Command .
+hpc:LsbCmdLogMask rdfs:range xsd:string .

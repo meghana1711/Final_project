@@ -1,0 +1,20 @@
+hpc:Slurm a owl:Class .
+hpc:Burstbuffer a owl:Class .
+hpc:BurstBufferType rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:string .
+
+hpc:Jobstate a owl:Class .
+hpc:JobSubmissionCommands rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:Jobstate .
+
+hpc:Burstbufferplugin a owl:Class ;
+    rdfs:subClassOf hpc:Plugin .
+
+hpc:burstbufferapi a owl:ObjectProperty ;
+    rdfs:domain hpc:Burstbufferplugin ;
+    rdfs:range hpc:Luascript .
+
+hpc:DebugFlags rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmconf .

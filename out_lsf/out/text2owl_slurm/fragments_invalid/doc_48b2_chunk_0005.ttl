@@ -1,0 +1,19 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Partition a owl:Class .
+hpc:Partition rdfs:subClassOf owl:Class .
+
+hpc:partition hpc:availtime a owl:DatatypeProperty .
+hpc:partition htimelimit a owl:DatatypeProperty .
+hpc:partition hpc:nodes a owl:ObjectProperty .
+hpc:partition hpc:state a owl:ObjectProperty .
+hpc:partition hpc:nodelist a owl:ObjectProperty .
+
+hpc:Node a owl:Class .
+hpc:Node rdfs:subClassOf owl:Class .
+
+hpc:node hpc:partition a owl:ObjectProperty .

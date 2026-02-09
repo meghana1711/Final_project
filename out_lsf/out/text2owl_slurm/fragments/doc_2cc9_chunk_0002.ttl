@@ -1,0 +1,28 @@
+hpc:Cluster a owl:Class .
+hpc:Controlmachine a owl:Class .
+hpc:Controlmachinehostname rdfs:domain hpc:Controlmachine ;
+    rdfs:range xsd:string .
+
+hpc:Computemachine a owl:Class .
+hpc:Computemachineaddress rdfs:domain hpc:Computemachine ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:NodeAddress .
+
+hpc:Backupcontrollerhostname rdfs:domain hpc:Controlmachine ;
+    rdfs:range xsd:string .
+
+hpc:Computenode a owl:Class .
+hpc:Partitionname rdfs:domain hpc:Computenode ;
+    rdfs:range xsd:string .
+hpc:Maxtime rdfs:domain hpc:Computenode ;
+    rdfs:range xsd:string .
+
+hpc:Nodeconfiguration a owl:Class .
+hpc:Cpus rdfs:domain hpc:Nodeconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Sockets rdfs:domain hpc:Nodeconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Corespersocket rdfs:domain hpc:Nodeconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Threadspercore rdfs:domain hpc:Nodeconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .

@@ -1,0 +1,28 @@
+hpc:Jobcheckpoint a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "A job that is checkpointed and can be restarted." .
+
+hpc:checkpointdirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcheckpoint ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The directory where checkpoint and restart executables are saved." .
+
+hpc:echkpntmethod a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobcheckpoint ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The application used for checkpointing and restarting the job." .
+
+hpc:echkpntmethoddir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcheckpoint ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The directory containing the checkpoint and restart executables." .
+
+hpc:keepoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobcheckpoint ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Whether to keep the standard output and standard error for checkpoint and restart executables." .
+
+# Job Suspension and Termination Checkpointing
+hpc:Strictcheckpoint a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "A queue that checkpoints jobs before suspending or terminating them." .

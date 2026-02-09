@@ -1,0 +1,34 @@
+hpc:Bstageout a owl:Class .
+
+hpc:hassource a owl:ObjectProperty ;
+    rdfs:domain hpc:Bstageout ;
+    rdfs:range hpc:Filepath .
+
+hpc:hasdestination a owl:ObjectProperty ;
+    rdfs:domain hpc:Bstageout ;
+    rdfs:range hpc:Destination .
+
+hpc:hastag a owl:ObjectProperty ;
+    rdfs:domain hpc:Bstageout ;
+    rdfs:range hpc:Tag .
+
+hpc:haslink a owl:ObjectProperty ;
+    rdfs:domain hpc:Bstageout ;
+    rdfs:range xsd:boolean .
+
+hpc:Filetransferjob a owl:Class ;
+    rdfs:subClassOf hpc:Bstageout .
+
+hpc:Filepath a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Destination a owl:Class ;
+    rdfs:subClassOf hpc:Filepath ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Tag a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:StagingArea a owl:Class .
+hpc:Stgout a owl:Class ;
+    rdfs:subClassOf hpc:StagingArea .

@@ -1,0 +1,63 @@
+hpc:Queuelevelresourcerequirement a owl:Class .
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:hasqueuelevelresourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Queuelevelresourcerequirement .
+
+hpc:Resourcerequirement a owl:Class .
+hpc:resReq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:string .
+
+hpc:Resourcerequirementcondition a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+hpc:hasresourcerequirementcondition a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement .
+    rdfs:range hpc:Resourcerequirementcondition .
+
+hpc:Resourcerequirementtype a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirementcondition .
+hpc:hasresourcerequirementtype a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirementcondition .
+    rdfs:range xsd:string .
+
+hpc:Resourcerequirementhost a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirementcondition .
+hpc:hasresourcerequirementhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirementcondition .
+    rdfs:range hpc:Host .
+
+hpc:resourcerequirementhostproperty a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirementhost .
+    rdfs:range xsd:string .
+
+hpc:Resourcerequirementhostvalue a owl:Class .
+hpc:hasresourcerequirementhostvalue a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirementhost .
+    rdfs:range hpc:Resourcerequirementhostvalue .
+
+hpc:Resourcerequirementhostvaluecomparison a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirementhostvalue .
+hpc:hasresourcerequirementhostvaluecomparison a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirementhostvalue .
+    rdfs:range xsd:string .
+
+hpc:Resourcerequirementhostvaluecomparisonoperator a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirementhostvaluecomparison .
+hpc:hasresourcerequirementhostvaluecomparisonoperator a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirementhostvaluecomparison .
+    rdfs:range xsd:string .
+
+hpc:Resourcerequirementhostvaluethreshold a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirementhostvalue .
+hpc:hasresourcerequirementhostvaluethreshold a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirementhostvalue .
+    rdfs:range xsd:decimal .
+
+hpc:Loadschedulingthreshold a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+hpc:hasloadschedulingthreshold a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement .
+    rdfs:range xsd:

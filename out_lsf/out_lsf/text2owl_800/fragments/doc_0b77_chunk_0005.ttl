@@ -1,0 +1,50 @@
+hpc:Accountingfile a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents an accounting file." .
+
+hpc:acctarchiveage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Accountingfile ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Defines an archiving interval in days." .
+
+hpc:acctarchivesize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Accountingfile ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Defines an accounting file size threshold in kilobytes." .
+
+hpc:acctarchivetime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Accountingfile ;
+    rdfs:range xsd:time ;
+    rdfs:comment "Defines a time of day for LSF to automatically archive the current accounting file." .
+
+hpc:acctarchivetimemutualexclusion a owl:ObjectProperty ;
+    rdfs:domain hpc:Accountingfile ;
+    rdfs:range hpc:Accountingfile ;
+    rdfs:comment "Indicates that ACCT_ARCHIVE_AGE and ACCT_ARCHIVE_TIME are mutually exclusive." .
+
+hpc:acctarchivetimemutualexclusioninverse a owl:ObjectProperty ;
+    rdfs:domain hpc:Accountingfile ;
+    rdfs:range hpc:Accountingfile ;
+    rdfs:comment "Indicates that if ACCT_ARCHIVE_TIME is defined, ACCT_ARCHIVE_AGE is ignored." .
+
+hpc:acctarchivefilenumbering a owl:ObjectProperty ;
+    rdfs:domain hpc:Accountingfile ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Represents the index number of archived files." .
+
+hpc:acctarchivefilenumberinginverse a owl:ObjectProperty ;
+    rdfs:domain hpc:Archivedaccountingfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the name of the archived accounting file." .
+
+hpc:Archivedaccountingfile a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents an archived accounting file." .
+
+hpc:maxacctarchivefile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Defines the maximum number of archived files under the LSF working directory." .
+
+hpc:Lsf a owl:Class ;
+    rdfs:comment "Represents the LSF system." .

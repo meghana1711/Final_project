@@ -1,0 +1,50 @@
+hpc:Bresize a owl:Class .
+
+hpc:hassubcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Bresize ;
+    rdfs:range hpc:Subcommand .
+
+hpc:Release a hpc:Subcommand ;
+    rdfs:comment "Releases tasks from a running job." .
+
+hpc:Request a hpc:Subcommand ;
+    rdfs:comment "Increases or decreases tasks that are allocated to a running resizable job, or cancels pending job resize allocation requests." .
+
+hpc:Cancel a hpc:Subcommand ;
+    rdfs:comment "Cancels a job." .
+
+hpc:Releasedhostspecification a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Jobid a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeInteger .
+
+hpc:mintask a owl:DatatypeProperty ;
+    rdfs:domain hpc:Request ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:tasks a owl:DatatypeProperty ;
+    rdfs:domain hpc:Request ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:resizenotificationcmd a owl:ObjectProperty ;
+    rdfs:domain hpc:Release ;
+    rdfs:range hpc:Resizenotificationcmdvalue .
+
+hpc:Resizenotificationcmdvalue a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Compoundresourcerequirement a owl:Class .
+
+hpc:retainonetask a owl:ObjectProperty ;
+    rdfs:domain hpc:Release ;
+    rdfs:range hpc:Compoundresourcerequirement .
+
+hpc:releasehost a owl:ObjectProperty ;
+    rdfs:domain hpc:Release ;
+    rdfs:range hpc:Host .
+
+hpc:lastterm a owl:DatatypeProperty ;
+    rdfs:domain hpc:Compoundresourcerequirement .
+
+hpc:Host a owl:Class .

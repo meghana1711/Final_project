@@ -1,0 +1,38 @@
+hpc:Mbdeventswitch a owl:Class .
+hpc:hasmaxruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbdeventswitch ;
+    rdfs:range xsd:duration .
+hpc:islogged a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbdeventswitch .
+
+hpc:Mbdupdateload a owl:Class .
+hpc:hasmaxruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbdupdateload ;
+    rdfs:range xsd:duration .
+hpc:islogged a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbdupdateload .
+
+hpc:Mbdqueryxxx a owl:Class .
+hpc:hasmaxruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbdqueryxxx ;
+    rdfs:range xsd:duration .
+hpc:totalruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbdqueryxxx ;
+    rdfs:range xsd:duration .
+hpc:islogged a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbdqueryxxx .
+
+hpc:Mbdchannel a owl:Class .
+hpc:isidletime a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbdchannel ;
+    rdfs:range xsd:boolean .
+hpc:islogged a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbdchannel .
+
+hpc:Packingpolicy a owl:Class .
+hpc:placesjobsonleastavailableslotsfirst a owl:ObjectProperty ;
+    rdfs:domain hpc:Packingpolicy .
+
+hpc:Spreadingpolicy a owl:Class .
+hpc:placesjobsonmostavailableslotsfirst a owl:ObjectProperty ;
+    rdfs:domain hpc:Spreadingpolicy .

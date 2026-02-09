@@ -1,0 +1,47 @@
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Jobcontrol ;
+    rdfs:comment "Configures the queue to invoke the TERMINATE action instead of the SUSPEND action in the specified circumstance." .
+
+hpc:Load a owl:Class ;
+    rdfs:subClassOf hpc:Terminatecondition ;
+    rdfs:comment "Kills jobs when the load exceeds the suspending thresholds." .
+
+hpc:Preempt a owl:Class ;
+    rdfs:subClassOf hpc:Terminatecondition ;
+    rdfs:comment "Kills jobs that are being preempted." .
+
+hpc:Window a owl:Class ;
+    rdfs:subClassOf hpc:Terminatecondition ;
+    rdfs:comment "Kills jobs if the run window closes." .
+
+hpc:terminatewhen a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Terminatecondition ;
+    rdfs:comment "If the TERMINATE_WHEN job control action is applied to a chunk job, sbatchd kills the chunk job element that is running and puts the rest of the waiting elements into pending state to be rescheduled later." .
+
+hpc:runwindow a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:time ;
+    rdfs:comment "Defines the time window for the queue." .
+
+hpc:jobcontrols a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The job control actions for the queue." .
+
+hpc:terminate a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Terminateaction ;
+    rdfs:comment "The action to take when the termination condition is met." .
+
+hpc:Terminateaction a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "The action to be performed when a job is terminated." .
+
+hpc:Kill a owl:Class ;
+    rdfs:subClassOf hpc:Terminateaction ;
+    rdfs:comment "Kills the job." .
+
+hpc:Mail a owl:Class ;
+    rdfs:subClassOf hpc:Terminateaction ;
+    rdfs:comment "Sends an email notification when a job is killed." .

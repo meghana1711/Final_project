@@ -1,0 +1,19 @@
+hpc:Lsf a owl:Class .
+hpc:resourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Resourcerequirementstring .
+
+hpc:resourcerequirementstring a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .
+
+hpc:Exclusiveresource a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirementstring .
+
+hpc:Host a owl:Class .
+hpc:Cluster a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+hpc:MyCluster a hpc:Cluster .
+
+hpc:bigmem a hpc:ExclusiveResource .
+hpc:hostE a hpc:Host .

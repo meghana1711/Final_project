@@ -1,0 +1,67 @@
+hpc:bdatachgrp a owl:ObjectProperty ;
+    rdfs:domain hpc:Datamanagementcache ;
+    rdfs:range hpc:Bdatachgrpinstance .
+
+hpc:Bdatachgrpinstance a owl:Class ;
+    rdfs:subClassOf hpc:Command .
+
+hpc:bdatachgrpinstanceHasgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Bdatachgrpinstance ;
+    rdfs:range xsd:string .
+
+hpc:bdatachgrpinstanceHastagname a owl:ObjectProperty ;
+    rdfs:domain hpc:Bdatachgrpinstance ;
+    rdfs:range xsd:string .
+
+hpc:bdatachmod a owl:ObjectProperty ;
+    rdfs:domain hpc:Datamanagementcache ;
+    rdfs:range hpc:Bdatachmodinstance .
+
+hpc:Bdatachmodinstance a owl:Class ;
+    rdfs:subClassOf hpc:Command .
+
+hpc:bdatachmodinstanceHasclustername a owl:ObjectProperty ;
+    rdfs:domain hpc:Bdatachmodinstance ;
+    rdfs:range xsd:string .
+
+hpc:bdatachmodinstanceHasoctalmode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bdatachmodinstance ;
+    rdfs:range xsd:string .
+
+hpc:bdatachmodinstanceHasfilepath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bdatachmodinstance ;
+    rdfs:range xsd:string .
+
+hpc:Datamanagementcache a owl:Class .
+
+hpc:Datatag a owl:Class .
+
+hpc:hasdatatag a owl:ObjectProperty ;
+    rdfs:domain hpc:Datamanagementcache ;
+    rdfs:range hpc:Datatag .
+
+hpc:hasgroup a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datatag ;
+    rdfs:range xsd:string .
+
+hpc:hasowner a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datatag ;
+    rdfs:range xsd:string .
+
+hpc:haspermissionmode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datatag ;
+    rdfs:range xsd:string .
+
+hpc:hastagdirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Datatag ;
+    rdfs:range hpc:Directory .
+
+hpc:Command a owl:Class .
+
+hpc:Lsfdatamanagementcache a owl:Class ;
+    rdfs:subClassOf hpc:Datamanagementcache .
+
+hpc:Lsfdatatag a owl:Class ;
+    rdfs:subClassOf hpc:Datatag .
+
+hpc:Directory a owl:Class .

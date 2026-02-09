@@ -1,0 +1,43 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:subClassOf hpc:Schedule ;
+    rdfs:comment "A reservation created with the brsvadd command." .
+
+hpc:hasreservationid a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The identifier of the reservation." .
+
+hpc:reservedby a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The user who created the reservation." .
+
+hpc:starttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:time ;
+    rdfs:comment "The start time of the reservation." .
+
+hpc:endtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:time ;
+    rdfs:comment "The end time of the reservation." .
+
+hpc:hostsreserved a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range rdf:List ;
+    rdfs:comment "The hosts reserved by the reservation." .
+
+hpc:specifiedhosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:List ;
+    rdfs:comment "The hosts specified by the job within the reservation." .
+
+hpc:defaultresourcetype a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The default resource type for the job if not specified." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A job that can use a reservation." .

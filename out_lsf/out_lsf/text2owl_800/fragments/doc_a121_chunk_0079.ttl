@@ -1,0 +1,26 @@
+hpc:Posterr a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate .
+
+hpc:Started a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate ;
+    rdfs:domain hpc:Job .
+
+hpc:post_err rdf:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:started rdf:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:dependency a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:dependencycondition a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:jobarraydependency a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:jobpriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .

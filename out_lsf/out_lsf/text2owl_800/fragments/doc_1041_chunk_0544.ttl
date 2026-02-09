@@ -1,0 +1,23 @@
+hpc:Host a owl:Class .
+hpc:Hasnumcpus rdfs:domain hpc:Host .
+hpc:Hasnumcpus rdfs:range xsd:nonNegativeInteger .
+hpc:hasnumcpus a owl:DatatypeProperty .
+
+hpc:Job a owl:Class .
+hpc:Runon rdfs:domain hpc:Job .
+hpc:Runon rdfs:range rdf:List .
+hpc:runon a owl:ObjectProperty .
+
+hpc:Jobid rdfs:domain hpc:Job .
+hpc:jobid a owl:DatatypeProperty .
+
+hpc:Jobarrayelement rdfs:subClassOf hpc:Job .
+hpc:Jobarray rdfs:domain hpc:Job .
+hpc:Jobarray rdfs:range rdf:List .
+hpc:jobarray a owl:ObjectProperty .
+
+hpc:Indexlist rdfs:domain hpc:Jobarrayelement .
+hpc:indexlist a owl:DatatypeProperty .
+
+hpc:Command rdfs:domain hpc:Job .
+hpc:command a owl:DatatypeProperty .

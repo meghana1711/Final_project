@@ -1,0 +1,71 @@
+hpc:Cgroupv1 a owl:Class .
+hpc:Cgroupv2 a owl:Class .
+
+hpc:hasmemorylimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cgroupv1 ;
+    rdfs:range xsd:unsignedLong .
+
+hpc:hasmemorymax a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cgroupv2 ;
+    rdfs:range xsd:unsignedLong .
+
+hpc:hassoftmemorylimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cgroupv1 ;
+    rdfs:range xsd:unsignedLong .
+
+hpc:hashighmemory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cgroupv2 ;
+    rdfs:range xsd:unsignedLong .
+
+hpc:hasswapmemorylimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cgroupv1 ;
+    rdfs:range xsd:unsignedLong .
+
+hpc:hasswapmax a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cgroupv2 ;
+    rdfs:range xsd:unsignedLong .
+
+hpc:hasswappiness a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cgroupv2 ;
+    rdfs:range xsd:float .
+
+hpc:hasfreezerstate a owl:ObjectProperty ;
+    rdfs:domain hpc:Cgroupv1 ;
+    rdfs:range hpc:Cgroupfreeze .
+
+hpc:hasfreeze a owl:ObjectProperty ;
+    rdfs:domain hpc:Cgroupv2 ;
+    rdfs:range hpc:Cgroupfreeze .
+
+hpc:hascpus a owl:ObjectProperty ;
+    rdfs:domain hpc:Cgroupv1 ;
+    rdfs:range hpc:Cpus .
+
+hpc:haseffectivecpus a owl:ObjectProperty ;
+    rdfs:domain hpc:Cgroupv2 ;
+    rdfs:range hpc:Cpus .
+
+hpc:hasmems a owl:ObjectProperty ;
+    rdfs:domain hpc:Cgroupv1 ;
+    rdfs:range hpc:Mems .
+
+hpc:haseffectivemems a owl:ObjectProperty ;
+    rdfs:domain hpc:Cgroupv2 ;
+    rdfs:range hpc:Mems .
+
+hpc:hascpuacctstat a owl:ObjectProperty ;
+    rdfs:domain hpc:Cgroupv1 ;
+    rdfs:range hpc:Cpuacctstat .
+
+hpc:hascpustat a owl:ObjectProperty ;
+    rdfs:domain hpc:Cgroupv2 ;
+    rdfs:range hpc:Cpustat .
+
+hpc:hasebpfprogram a owl:ObjectProperty ;
+    rdfs:domain hpc:Cgroupv2 ;
+    rdfs:range xsd:string .
+
+hpc:Cpus a owl:Class .
+hpc:Mems a owl:Class .
+hpc:Cpuacctstat a owl:Class .
+hpc:Cpustat a owl:Class .

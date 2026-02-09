@@ -1,0 +1,62 @@
+hpc:Lsfversion a owl:Class .
+hpc:IBM10_1 rdf:type hpc:LSFVersion ;
+    rdfs:label "IBM Spectrum LSF License Scheduler 10.1" .
+
+hpc:Lsfversion rdfs:subClassOf xsd:string .
+
+hpc:lsfcompatibleversion a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion ;
+    rdfs:range hpc:Lsfversion .
+
+hpc:LSFVersion_7_0_6 rdf:type hpc:LSFVersion ;
+    hpc:Lsfcompatibleversion hpc:ibm101 .
+
+hpc:LSFVersion_8_0 rdf:type hpc:LSFVersion ;
+    hpc:Lsfcompatibleversion hpc:ibm101 .
+
+hpc:LSFVersion_8_0_1 rdf:type hpc:LSFVersion ;
+    hpc:Lsfcompatibleversion hpc:ibm101 .
+
+hpc:LSFVersion_8_3 rdf:type hpc:LSFVersion ;
+    hpc:Lsfcompatibleversion hpc:ibm101 .
+
+hpc:LSFVersion_9_1 rdf:type hpc:LSFVersion ;
+    hpc:Lsfcompatibleversion hpc:ibm101 .
+
+hpc:LSFVersion_9_1_1 rdf:type hpc:LSFVersion ;
+    hpc:Lsfcompatibleversion hpc:ibm101 .
+
+hpc:LSFVersion_9_1_1_1 rdf:type hpc:LSFVersion ;
+    hpc:Lsfcompatibleversion hpc:ibm101 .
+
+hpc:LSFVersion_9_1_2 rdf:type hpc:LSFVersion ;
+    hpc:Lsfcompatibleversion hpc:ibm101 .
+
+hpc:Lsfedition a owl:Class .
+
+hpc:BasicEdition rdf:type hpc:LSFEdition ;
+    rdfs:label "Basic Edition" .
+
+hpc:StandardEdition rdf:type hpc:LSFEdition ;
+    rdfs:label "Standard Edition" .
+
+hpc:Lsfedition rdfs:subClassOf xsd:string .
+
+hpc:includedwith a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfedition ;
+    rdfs:range hpc:Lsfedition .
+
+hpc:notintendedfor a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfedition ;
+    rdfs:range hpc:String .
+
+hpc:intendedforpolicy a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfedition ;
+    rdfs:range xsd:string .
+
+hpc:Basicedition rdfs:subClassOf hpc:Lsfedition ;
+    hpc:Includedwith hpc:standardedition ;
+    hpc:Notintendedfor hpc:projectbaseddistribution .
+
+hpc:Standardedition rdfs:subClassOf hpc:Lsfedition ;
+    hpc:IntendedForPolicy "

@@ -1,0 +1,21 @@
+hpc:Lsfaccountingfile a owl:Class .
+hpc:LsbAcctFile a hpc:LSFAccountingFile .
+
+hpc:Paralleljob a owl:Class .
+hpc:blockallocation a owl:ObjectProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range xsd:integer .
+
+hpc:Executionproblem a owl:Class .
+hpc:blaundchcontrol a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionproblem .
+
+hpc:Datatransfertool a owl:Class .
+hpc:Aspera a hpc:DataTransferTool .
+
+hpc:Jobquery a owl:Class .
+hpc:outputformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobquery .
+
+hpc:networktraffic a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal .

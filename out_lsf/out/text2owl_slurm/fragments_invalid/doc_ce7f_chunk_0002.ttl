@@ -1,0 +1,19 @@
+hpc:Slurmdaemon a owl:Class.
+hpc:Slurmlogfilesdirectory a owl:Class;
+    rdfs:subClassOf hpc:Directory.
+hpc:Slurmprocessidfilesdirectory a owl:Class;
+    rdfs:subClassOf hpc:Directory.
+hpc:Slurmstatesavedirectory a owl:Class;
+    rdfs:subClassOf hpc:Directory.
+hpc:Slurmuser a owl:Class.
+hpc:slurmdaemonstartupdirectory a owl:ObjectProperty;
+    rdfs:domain hpc:Slurmdaemon;
+    rdfs:range hpc:Directory.
+hpc:slurmusercreates hpc:slurmdaemonstartupdirectory a owl:ObjectProperty.
+hpc:slurmdaemonpermissions a owl:DatatypeProperty;
+    rdfs:domain hpc:Slurmdaemonstartupdirectory;
+    rdfs:range xsd:string.
+hpc:umaskvalue a owl:DatatypeProperty;
+    rdfs:domain hpc:Slurmdaemonpermissions;
+    rdfs:range xsd:integer.
+hpc:slurmdaemoninstallationdirectory a owl:ObjectProperty;

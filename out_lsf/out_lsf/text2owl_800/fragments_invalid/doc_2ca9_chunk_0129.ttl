@@ -1,0 +1,34 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Linuxonibmpowerle a owl:Class .
+hpc:Performanceenhancement a owl:Class .
+hpc:IbmSpectrumLsfExplorer a owl:Class .
+hpc:lsfQueryEsServers a owl:DatatypeProperty .
+hpc:lsfQueryEsFunctions a owl:DatatypeProperty .
+hpc:Bacctcommand a owl:Class .
+hpc:Bhistcommand a owl:Class .
+hpc:Resourcemanagement a owl:Class .
+hpc:AwsSupport a owl:Class .
+hpc:Exclusiveresourceassignment a owl:Class .
+hpc:awsprovTemplatesjson a owl:DatatypeProperty .
+hpc:Googlecomputecloudinstance a owl:Class .
+
+hpc:Linuxonibmpowerle rdfs:subClassOf [ a owl:Class ;
+                                          rdfs:subClassOf hpc:Operatingsystem ] .
+hpc:Performanceenhancement rdfs:subClassOf hpc:Generalimprovement .
+hpc:IbmSpectrumLsfExplorer rdfs:subClassOf hpc:Software .
+hpc:LsfQueryEsServers rdfs:domain hpc:Linuxonibmpowerle ;
+                               rdfs:range xsd:string .
+hpc:LsfQueryEsFunctions rdfs:domain hpc:Linuxonibmpowerle ;
+                               rdfs:range xsd:string .
+hpc:Bacctcommand rdfs:subClassOf hpc:Command .
+hpc:Bhistcommand rdfs:subClassOf hpc:Command .
+hpc:Resourcemanagement rdfs:subClassOf hpc:Systemmanagement .
+hpc:AwsSupport rdfs:subClassOf hpc:Cloudsupport .
+hpc:Exclusiveresourceassignment rdfs:subClassOf hpc:Resourceallocation .
+hpc:AwsprovTemplatesjson rdfs:domain hpc:AwsSupport ;
+                               rdfs:range xsd:string .
+hpc:Googlecomputecloudinstance rdfs:subClassOf hpc:Cloudinstance .

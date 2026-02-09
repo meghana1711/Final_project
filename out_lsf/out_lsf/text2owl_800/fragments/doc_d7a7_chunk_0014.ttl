@@ -1,0 +1,55 @@
+hpc:Lsfcluster a owl:Class .
+hpc:Lsfadminaccount a owl:Class .
+
+hpc:hasPrimaryAdmin rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Lsfadminaccount .
+
+hpc:hasAdministrators rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range rdf:List .
+
+hpc:hasAdminAccount rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfadminaccount ;
+    rdfs:range xsd:string .
+
+hpc:hasWritePermission rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadminaccount ;
+    rdfs:range hpc:Lsfworkingdirectory .
+
+hpc:Lsfworkingdirectory a owl:Class .
+
+hpc:runSymbolicLink rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Lsfworkingdirectory .
+
+hpc:runCronBasedSynchronization rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .
+
+hpc:checkFirewallOrNetworkIssue rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .
+
+hpc:runBladminReconfig rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .
+
+hpc:runBctrldRestart rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .
+
+hpc:runBadminMbdrestart rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .
+
+hpc:configureMultipleAdministrators rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .
+
+hpc:editAdminParameter rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadminaccount ;
+    rdfs:range hpc:Lsfcluster .
+
+hpc:Primarylicensescheduleradminaccount a owl:Class ;
+    rdfs:subClassOf hpc:Lsfadminaccount .

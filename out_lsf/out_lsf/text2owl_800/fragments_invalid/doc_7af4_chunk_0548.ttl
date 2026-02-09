@@ -1,0 +1,66 @@
+hpc:Guaranteedresourcepool a owl:Class .
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range xsd:string .
+hpc:type a owl:DatatypeProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range xsd:string .
+hpc:hosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range hpc:Hostgroup .
+hpc:distribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range hpc:Distribution .
+hpc:loanPolicies a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range hpc:Loanpolicy .
+hpc:description a owl:DatatypeProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range xsd:string .
+
+hpc:Hostgroup a owl:Class .
+
+hpc:Distribution a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:unionOf (hpc:SlotAssignment+) ] .
+hpc:Slotassignment a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:intersectionOf (hpc:SlotAssignmentType rdfs:with hpc:Resource) ] .
+hpc:Slotassignmenttype a owl:Class .
+hpc:Resource a owl:Class .
+
+hpc:Queue a owl:Class .
+hpc:queuename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue .
+hpc:Queuename rdfs:range xsd:string .
+
+hpc:Sc1 a owl:Class .
+hpc:Sc2 a owl:Class .
+
+hpc:LinuxGroup a hpc:HostGroup ;
+    hpc:Name "linux_group" .
+hpc:LinuxX86 a hpc:HostGroup ;
+    hpc:Name "linux_x86" .
+
+hpc:LinuxGuarantee a hpc:GuaranteedResourcePool ;
+    hpc:Name "linuxGuarantee" ;
+    hpc:Type "slots" ;
+    hpc:Hosts hpc:linuxgroup ;
+    hpc:DISTRIBUTION (hpc:SlotAssignment [
+        hpc:Resource hpc:sc2 ;
+        hpc:Amount 30
+    ]) ;
+    hpc:LOAN_POLICIES (hpc:LoanPolicy [
+        hpc:Queue hpc:all ;
+        hpc:Duration 15
+    ]) .
+
+hpc:X86Guarantee a hpc:GuaranteedResourcePool ;
+    hpc:Name "x86Guarantee" ;
+    hpc:Type "slots" ;
+    hpc:Hosts hpc:linuxx86 ;
+    hpc:DISTRIBUTION (hpc:SlotAssignment [
+        hpc:Resource hpc:sc1 ;
+        hpc:Amount 25
+    ]) ;
+    hpc:LOAN

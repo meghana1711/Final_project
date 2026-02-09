@@ -1,0 +1,70 @@
+hpc:Administratorcommentrecord a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:hascomment a owl:ObjectProperty ;
+    rdfs:domain hpc:Administratorcommentrecord ;
+    rdfs:range xsd:string ;
+    rdfs:maxLength "512"^^xsd:nonNegativeInteger .
+
+hpc:Lsbeventsfile a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:verbosemode a owl:ObjectProperty ;
+    rdfs:domain hpc:Administratorcommentrecord ;
+    rdfs:range xsd:boolean .
+
+hpc:Configurationfile a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:detailedmessages a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range xsd:boolean .
+
+hpc:messagestostderr a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range xsd:boolean .
+
+hpc:unrecoverableerrors a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range xsd:boolean .
+
+hpc:parallelrestarts a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range xsd:boolean .
+
+hpc:minimizedowntime a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range xsd:boolean .
+
+hpc:replayeventfile a owl:ObjectProperty ;
+    rdfs:domain hmbatchdDaemon ;
+    rdfs:range hpc:Configurationfile .
+
+hpc:Oldmbatchddaemon a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:Neworchildmbatchddaemon a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:childtakesover a owl:ObjectProperty ;
+    rdfs:domain hpc:Oldmbatchddaemon ;
+    rdfs:range hpc:Neworchildmbatchddaemon .
+
+hpc:oldmbatchddaemondies a owl:ObjectProperty ;
+    rdfs:domain hpc:Oldmbatchddaemon ;
+    rdfs:range xsd:boolean .
+
+hpc:restartoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range xsd:string .
+
+hpc:serialrestarts a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range xsd:boolean .
+
+hpc:timingLevel

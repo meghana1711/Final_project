@@ -1,0 +1,22 @@
+hpc:Reliablefilesystem a owl:Class.
+hpc:slurmctldstatesavedir a owl:ObjectProperty.
+hpc:slurmdstatesavedir a owl:ObjectProperty.
+hpc:returntoservice a owl:DatatypeProperty.
+hpc:schedulertype a owl:ObjectProperty.
+hpc:interconnect a owl:ObjectProperty.
+hpc:switchtype a owl:ObjectProperty.
+hpc:defaultmpitype a owl:DatatypeProperty.
+
+rdfs:domain hpc:Slurmctldstatesavedir rdf:Resource.
+rdfs:domain hpc:Slurmdstatesavedir rdf:Resource.
+rdfs:domain hpc:Returntoservice rdf:Resource.
+rdfs:domain hpc:Schedulertype rdf:Resource.
+rdfs:domain hpc:Interconnect rdf:Resource.
+rdfs:domain hpc:Defaultmpitype rdf:Resource.
+
+rdfs:range hpc:Returntoservice xsd:integer.
+
+hpc:Reliablefilesystem rdfs:subClassOf rdf:Resource.
+hpc:RAID a hpc:ReliableFileSystem.
+
+hpc:Slurmctldstatesavedir rd

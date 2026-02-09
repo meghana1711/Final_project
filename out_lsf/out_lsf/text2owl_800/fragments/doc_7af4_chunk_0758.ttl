@@ -1,0 +1,27 @@
+hpc:LsbSharedir a owl:Class .
+hpc:LsbSharedir rdfs:subClassOf owl:NamedIndividual .
+hpc:LSB_SHAREDIR rdfs:comment "Directory in which the job history and accounting logs are kept for each cluster." .
+hpc:LSB_SHAREDIR rdfs:label "LSB_SHAREDIR" .
+hpc:LsbSharedir rdfs:domain hpc:Lsfconfiguration .
+
+hpc:haslsbSharedir a owl:ObjectProperty .
+hpc:HaslsbSharedir rdfs:domain hpc:Lsfconfiguration .
+hpc:HaslsbSharedir rdfs:range xsd:string .
+
+hpc:LsbShortHostlist a owl:Class .
+hpc:LsbShortHostlist rdfs:subClassOf owl:NamedIndividual .
+hpc:LSB_SHORT_HOSTLIST rdfs:comment "Displays an abbreviated list of hosts in bjobs and bhist for a parallel job where multiple processes of a job are running on a host." .
+hpc:LSB_SHORT_HOSTLIST rdfs:label "LSB_SHORT_HOSTLIST" .
+
+hpc:haslsbShortHostlistvalue a owl:DatatypeProperty .
+hpc:HaslsbShortHostlistvalue rdfs:domain hpc:LsbShortHostlist .
+hpc:HaslsbShortHostlistvalue rdfs:range xsd:boolean .
+
+hpc:LsbSigstop a owl:Class .
+hpc:LsbSigstop rdfs:subClassOf owl:NamedIndividual .
+hpc:LSB_SIGSTOP rdfs:comment "Specifies the signal sent by the SUSPEND action in LSF." .
+hpc:LSB_SIGSTOP rdfs:label "LSB_SIGSTOP" .
+
+hpc:haslsbSigstopvalue a owl:DatatypeProperty .
+hpc:HaslsbSigstopvalue rdfs:domain hpc:LsbSigstop .
+hpc:HaslsbSigstopvalue rdfs:range xsd:string .

@@ -1,0 +1,46 @@
+hpc:Automaticretrylimit a owl:Class .
+hpc:preexecutioncommandretrylimit a owl:ObjectProperty .
+hpc:jobrequeuelimit a owl:ObjectProperty .
+hpc:jobpreemptionretrylimit a owl:ObjectProperty .
+hpc:MAX_PREEXEC_RETRY rdf:type xsd:nonNegativeInteger .
+hpc:LOCAL_MAX_PREEXEC_RETRY rdf:type xsd:nonNegativeInteger .
+hpc:REMOTE_MAX_PREEXEC_RETRY rdf:type xsd:nonNegativeInteger .
+hpc:MAX_JOB_REQUEUE rdf:type xsd:nonNegativeInteger .
+hpc:MAX_JOB_PREEMPT rdf:type xsd:nonNegativeInteger .
+
+hpc:Job a owl:Class .
+hpc:Job rdfs:subClassOf hpc:Automaticretrylimit .
+
+hpc:Executioncluster a owl:Class .
+hpc:Submissioncluster a owl:Class .
+
+hpc:requeue a owl:ObjectProperty .
+hpc:Requeue rdfs:domain hpc:Job .
+hpc:Requeue rdfs:range hpc:Executioncluster .
+
+hpc:Remotependingjob a owl:Class .
+hpc:Remotependingjob rdfs:subClassOf hpc:Job .
+
+hpc:brequeue a owl:ObjectProperty .
+hpc:Brequeue rdfs:domain hpc:Submissioncluster .
+hpc:Brequeue rdfs:range hpc:Job .
+
+hpc:Jobowner a owl:Class .
+hpc:Lsfclusteradmin a owl:Class .
+hpc:Lsfgroupadmin a owl:Class .
+hpc:Jobowner rdfs:subClassOf xsd:string .
+hpc:Lsfclusteradmin rdfs:subClassOf xsd:string .
+hpc:Lsfgroupadmin rdfs:subClassOf xsd:string .
+
+hpc:jobrerun a owl:ObjectProperty .
+hpc:Jobrerun rdfs:domain hpc:Job .
+hpc:Jobrerun rdfs:range hpc:Executioncluster .
+
+hpc:rerunable a owl:ObjectProperty .
+hpc:Rerunable rdfs:domain hpc:Queue .
+hpc:Rerunable rdfs:range xsd:boolean .
+
+hpc:Sendjobsqueue a owl:Class .
+hpc:Receivejobsqueue a owl:Class .
+hpc:Sendjobsqueue rdfs:subClassOf hpc:Queue .
+hpc:Receivejobsqueue rdfs:subClassOf hpc:Queue .

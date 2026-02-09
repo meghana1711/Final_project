@@ -1,0 +1,28 @@
+hpc:Cloudresource a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "A cloud resource that is returned and terminated when the associated workload is done." .
+
+hpc:badminhopencommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Cloudresource ;
+    rdfs:range hpc:Command ;
+    rdfs:comment "Used to open a borrowed host in closed_RC status." .
+
+hpc:lsbRcExternalHostMaxTtl a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cloudresource ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum time in minutes that a borrowed host can remain in the cluster." .
+
+hpc:lsbRcMaxInstancesPerTemplate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cloudresource ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of resource instances that can be launched for any template for any resource provider in the cluster." .
+
+hpc:maxnumber a owl:ObjectProperty ;
+    rdfs:domain hpc:Providertemplate ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of instances that can be launched for a provider template." .
+
+hpc:lsbRcMqttErrorLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cloudresource ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of API error messages that are stored in Mosquitto per host provider." .

@@ -1,0 +1,25 @@
+hpc:Usergroup a owl:Class .
+hpc:Username a owl:Class .
+hpc:Allusers a owl:Class .
+hpc:Externallydefinedgroup a owl:Class .
+hpc:Groupadmin a owl:Class .
+
+hpc:hasuser a owl:ObjectProperty .
+hpc:isadminof a owl:ObjectProperty .
+hpc:Isallusers rdfs:domain hpc:Usergroup ;
+    rdfs:range rdf:Resource .
+hpc:Isexternallydefined rdfs:domain hpc:Usergroup ;
+    rdfs:range rdf:Literal .
+hpc:Hasadmin rdfs:domain hpc:Groupadmin ;
+    rdfs:range hpc:Usergroup .
+
+hpc:Username rdfs:subClassOf xsd:string .
+hpc:Usergroup rdfs:subClassOf rdf:List .
+hpc:Groupadmin rdfs:subClassOf rdf:List .
+
+hpc:Usergroup rdfs:subClassOf (hpc:Username | hpc:Allusers | hpc:Externallydefinedgroup) .
+hpc:Externallydefinedgroup rdfs:subClassOf xsd:string .
+hpc:Hasuser rdfs:range hpc:Username .
+hpc:Isallusers rdfs:range hpc:Usergroup .
+hpc:Isexternallydefined rdfs:range hpc:Externallydefinedgroup .
+hpc:Hasadmin rdfs:range hpc:Groupadmin .

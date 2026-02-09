@@ -1,0 +1,61 @@
+hpc:Stringparameter a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:stringParameter ;
+                        rdfs:hasValue 'LSB_SUB_MODIFY_FILE' ;
+                        owl:allValuesFrom xsd:string ] .
+
+hpc:Spaceseparatedstringparameter a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:stringParameter ;
+                        rdfs:hasValue ' ' ] .
+
+hpc:lsbSubModifyFile a owl:ObjectProperty ;
+    rdfs:domain hpc:Esub ;
+    rdfs:range xsd:string .
+
+hpc:lsbSubAdditional a owl:ObjectProperty ;
+    rdfs:domain hpc:Esub ;
+    rdfs:range xsd:string ;
+    owl:inverseOf hpc:cannotChangeAtJobSubmission .
+
+hpc:lsbSubAbortValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Esub .
+
+hpc:cannotchangeatjobsubmission a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSubAdditional .
+
+hpc:lsbSubModifyEnvfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Esub ;
+    rdfs:range xsd:string .
+
+hpc:variablevalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSubModifyEnvfile ;
+    rdfs:range xsd:string .
+
+hpc:lsbSubModifyEnvfileFormat a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSubModifyEnvfile ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:variableValue .
+
+hpc:variablename a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSubModifyEnvfile ;
+    rdfs:range xsd:string .
+
+hpc:lsbSubAbortValueRestriction a owl:ObjectProperty ;
+    rdfs:domain hpc:Esub ;
+    rdfs:range hpc:LsbSubAbortValue .
+
+hpc:lsbSubAbortValueRestriction a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSubAbortValue ;
+    rdfs:range xsd:string ;
+    owl:inverseOf hpc:indicatesRejection .
+
+hpc:indicatesrejection a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSubAbortValue .
+
+hpc:lsfInvokeCmd a owl:DatatypeProperty .
+
+hpc:Environmentvariable a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:environmentVariable ;
+                        rdfs:hasValue 'LSB_SUB_JOB_ERR' ;

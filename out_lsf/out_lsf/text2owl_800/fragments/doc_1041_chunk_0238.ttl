@@ -1,0 +1,20 @@
+hpc:Shares a owl:Class .
+hpc:priority a owl:ObjectProperty ;
+    rdfs:domain hpc:Shares ;
+    rdfs:range xsd:decimal .
+
+hpc:started a owl:DatatypeProperty ;
+    rdfs:domain hpc:Shares ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:reserved a owl:DatatypeProperty ;
+    rdfs:domain hpc:Shares ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:cpuTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Shares ;
+    rdfs:range xsd:decimal .
+
+hpc:runTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Shares ;
+    rdfs:range xsd:decimal .

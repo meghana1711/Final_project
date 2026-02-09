@@ -1,0 +1,30 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:LsfNiosIgnoreSigwindow a owl:Class .
+hpc:lsfNiosPendTimeout a owl:DatatypeProperty .
+hpc:haspendingtime a owl:ObjectProperty .
+hpc:LsfNiosPendTimeout rdfs:domain hpc:Interactivebatchjob .
+hpc:LsfNiosPendTimeout rdfs:range xsd:integer .
+hpc:hasSpecifiedPendingTime rdfs:subPropertyOf hpc:LSF_NIOS_PEND_TIMEOUT .
+hpc:LsfNiosPendTimeout rdfs:range xsd:string .
+hpc:lsfNiosDieCmd a owl:ObjectProperty .
+hpc:hasDieCommand rdfs:subPropertyOf hpc:LSF_NIOS_PEND_TIMEOUT .
+hpc:LsfNiosDieCmd rdfs:domain hpc:Interactivebatchjob .
+hpc:lsfNiosPortRange a owl:DatatypeProperty .
+hpc:hasportrange a owl:ObjectProperty .
+hpc:LsfNiosPortRange rdfs:domain hpc:Nios .
+hpc:lsfResources a owl:ObjectProperty .
+hpc:hasresources a owl:ObjectProperty .
+hpc:LsfResources rdfs:domain hpc:Lim .
+hpc:Resourcemap a owl:Class .
+hpc:resourcemapping a owl:ObjectProperty .
+hpc:Hasresourcemapping rdfs:domain hpc:Resourcemap .
+hpc:Resourcemap rdfs:subClassOf hpc:Dynamicexternalresourcemapping .
+hpc:Dynamicexternalresourcemapping a owl:Class .
+hpc:dynamicExternalResourceName a owl:DatatypeProperty .
+hpc:hasdynamicexternalresourcename a owl:ObjectProperty .
+hpc:DynamicExternalResourceName rdfs:domain hpc:Dynamicexternalresourcemapping .
+hpc:DynamicExternalResourceName rdfs:range xsd:string .

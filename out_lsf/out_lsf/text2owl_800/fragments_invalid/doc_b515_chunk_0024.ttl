@@ -1,0 +1,24 @@
+hpc:Computeunit a owl:Class .
+hpc:Rack a owl:Class .
+hpc:Enclosure a owl:Class .
+hpc:Host a owl:Class .
+
+hpc:hasSlots rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:balance a owl:ObjectProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range hpc:Computeunit .
+
+hpc:span a owl:ObjectProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ptile a owl:ObjectProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:requires a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range hpc:Computeunit .

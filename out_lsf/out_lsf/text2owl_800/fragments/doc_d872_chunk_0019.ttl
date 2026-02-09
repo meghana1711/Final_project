@@ -1,0 +1,11 @@
+hpc:Sbatchd a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Communicates job information including errors and output to mbatchd." .
+
+hpc:communicatesjobinformation a owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchd ;
+    rdfs:range hpc:Mbatchd ;
+    rdfs:comment "Communicates job information including errors and output." .
+
+hpc:Mbatchd a owl:Class ;
+    rdfs:subClassOf owl:Class .

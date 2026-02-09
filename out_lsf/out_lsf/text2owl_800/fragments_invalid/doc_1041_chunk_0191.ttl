@@ -1,0 +1,66 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:label "Job" ;
+    rdfs:comment "Represents a job in the HPC system." .
+
+hpc:Jobevent a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:label "Job Event" ;
+    rdfs:comment "Represents an event related to a job in the HPC system." .
+
+hpc:Jobsubmission a owl:Class ;
+    rdfs:subClassOf hpc:Jobevent ;
+    rdfs:label "Job Submission" ;
+    rdfs:comment "Represents the submission of a job to the HPC system." .
+
+hpc:Jobcompletion a owl:Class ;
+    rdfs:subClassOf hpc:Jobevent ;
+    rdfs:label "Job Completion" ;
+    rdfs:comment "Represents the completion or exit of a job in the HPC system." .
+
+hpc:Jobdispatch a owl:Class ;
+    rdfs:subClassOf hpc:Jobevent ;
+    rdfs:label "Job Dispatch" ;
+    rdfs:comment "Represents the dispatch of a job in the HPC system." .
+
+# Time-related Properties
+hpc:timeinterval a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobevent ;
+    rdfs:range xsd:string ;
+    rdfs:label "timeInterval" ;
+    rdfs:comment "The time interval associated with a job event." .
+
+hpc:timeformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobevent ;
+    rdfs:range xsd:string ;
+    rdfs:label "timeFormat" ;
+    rdfs:comment "The format of the time interval associated with a job event." .
+
+hpc:applicationprofile a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Applicationprofile ;
+    rdfs:label "applicationProfile" ;
+    rdfs:comment "The application profile associated with a job." .
+
+hpc:wideformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "wideFormat" ;
+    rdfs:comment "Indicates whether the job information is displayed in wide format." .
+
+hpc:resourceusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobevent ;
+    rdfs:range xsd:string ;
+    rdfs:label "resourceUsage" ;
+    rdfs:comment "The resource usage information associated with a job event." .
+
+hpc:unformatted a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "unformatted" ;
+    rdfs:comment "Indicates whether the job detail information is unformatted." .
+
+# Application Profile Class
+hpc:Applicationprofile a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:label "Application

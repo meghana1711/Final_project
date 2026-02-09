@@ -1,0 +1,39 @@
+hpc:Lsfentitlementfile a owl:Class .
+hpc:LsfEntitlementFile rdfs:domain xsd:string .
+hpc:LsfEntitlementFile rdfs:range hpc:Lsfinstallation .
+
+hpc:Lsfinstallation a owl:Class .
+
+hpc:Lsfstandardedition a owl:Class ;
+  rdfs:subClassOf hpc:Lsfinstallation .
+hpc:LSFStandardEdition rdfs:comment "Edition of the product for which the standard entitlement file is used." .
+hpc:lsf_std_entitlement_dat rdf:value "lsf_std_entitlement.dat" ;
+  rdf:type xsd:string .
+
+hpc:Lsfexpressedition a owl:Class ;
+  rdfs:subClassOf hpc:Lsfinstallation .
+hpc:LSFExpressEdition rdfs:comment "Edition of the product for which the express entitlement file is used." .
+hpc:lsf_exp_entitlement_dat rdf:value "lsf_exp_entitlement.dat" ;
+  rdf:type xsd:string .
+
+hpc:Lsfadvancededition a owl:Class ;
+  rdfs:subClassOf hpc:Lsfinstallation .
+hpc:LSFAdvancedEdition rdfs:comment "Edition of the product for which the advanced entitlement file is used." .
+hpc:lsf_adv_entitlement_dat rdf:value "lsf_adv_entitlement.dat" ;
+  rdf:type xsd:string .
+
+hpc:lsfentitlementfilelocation a owl:ObjectProperty ;
+  rdfs:domain hpc:Lsfinstallation ;
+  rdfs:range hpc:Filelocation .
+
+hpc:Filelocation a owl:Class .
+
+hpc:lsfLimPort a owl:DatatypeProperty ;
+  rdfs:domain hpc:Lsfinstallation ;
+  rdfs:range xsd:integer .
+
+hpc:lsfServerHosts a owl:ObjectProperty ;
+  rdfs:domain hpc:Lsfinstallation ;
+  rdfs:range hpc:Host .
+
+hpc:Host a owl:Class .

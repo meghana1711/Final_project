@@ -1,0 +1,26 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Projectgroup a owl:Class .
+hpc:Groupmember a owl:Class .
+hpc:Project a owl:Class .
+hpc:Hasdescription rdfs:domain hpc:Project .
+hpc:Hasdescription rdfs:range xsd:string .
+hpc:Hasshares rdfs:domain hpc:Groupmember .
+hpc:Hasshares rdfs:range xsd:nonNegativeInteger .
+hpc:Hasownership rdfs:domain hpc:Groupmember .
+hpc:Hasownership rdfs:range xsd:nonNegativeInteger .
+hpc:Haspriority rdfs:domain hpc:Groupmember .
+hpc:Haspriority rdfs:range xsd:nonNegativeInteger .
+hpc:Hasnonshared rdfs:domain hpc:Groupmember .
+hpc:Hasnonshared rdfs:range xsd:boolean .
+hpc:Haslimits rdfs:domain hpc:Group .
+hpc:Haslimits rdfs:range xsd:nonNegativeInteger .
+
+hpc:Group a owl:Class .
+hpc:Groupmember a owl:Class .
+
+
+This ontology fragment defines classes for ProjectGroup, GroupMember, and Project, as well as properties for describing each project group member, such as shares, ownership, non-shared, priority, and limits. The properties are defined as object properties, and their domains and ranges are specified using rdfs:domain and rdfs:range. The ProjectGroup class is a subclass of owl:Collection for better organization.

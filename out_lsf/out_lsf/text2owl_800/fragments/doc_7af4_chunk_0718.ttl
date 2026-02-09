@@ -1,0 +1,25 @@
+hpc:LsbKrbLibPath a owl:Class .
+hpc:haskrb5libpath a owl:ObjectProperty .
+hpc:Haskrb5libpath rdfs:domain hpc:LsbKrbLibPath ;
+                    rdfs:range xsd:string .
+
+hpc:Pathtokrb5libs a owl:Class ;
+                     rdfs:subClassOf hpc:Haskrb5libpath .
+
+hpc:LsbKrbRenewMargin a owl:Class .
+hpc:renewmargin a owl:DatatypeProperty ;
+                  rdfs:domain hpc:LsbKrbRenewMargin ;
+                  rdfs:range xsd:nonNegativeInteger .
+
+hpc:LsbKrbTgtFwd a owl:Class .
+hpc:tgtforwarding a owl:DatatypeProperty ;
+                    rdfs:domain hpc:LsbKrbTgtFwd ;
+                    rdfs:range xsd:string .
+
+hpc:Y a xsd:string .
+hpc:N a xsd:string .
+
+hpc:LsbKrbTgtDir a owl:Class .
+hpc:tgtdir a owl:DatatypeProperty ;
+               rdfs:domain hpc:LsbKrbTgtDir ;
+               rdfs:range xsd:string .

@@ -1,0 +1,16 @@
+hpc:EgoTimePim        a owl:Class .
+hpc:lsfTimeProxyd     a owl:ObjectProperty .
+hpc:lsfTimeRes        a owl:ObjectProperty .
+hpc:lsfTmpdir          a owl:ObjectProperty .
+
+hpc:LsfTimeProxyd     rdfs:domain hpc:EgoTimePim ;
+                         rdfs:range xsd:integer ;
+                         rdfs:comment "The timing level for checking how long LSF rate limiter (lsfproxyd daemon) routines run." .
+
+hpc:LsfTimeRes        rdfs:domain hpc:EgoTimePim ;
+                         rdfs:range xsd:integer ;
+                         rdfs:comment "The timing level for checking how long RES routines run. Time usage is logged in milliseconds. Specify a positive integer. LSF_TIME_RES is not supported on Windows." .
+
+hpc:LsfTmpdir          rdfs:domain hpc:EgoTimePim ;
+                         rdfs:range xsd:string ;
+                         rdfs:comment "Specifies the path and directory for temporary LSF internal files. If LSB_JOB_TMPDIR is not set, a job-specific temporary directory is also created under LSF_TMPDIR. For more details on the job-specific temporary directory, refer to LSB_JOB_TMPDIR." .

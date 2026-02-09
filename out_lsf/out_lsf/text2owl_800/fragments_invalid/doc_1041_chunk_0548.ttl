@@ -1,0 +1,73 @@
+hpc:SystemSuspendedJob
+    a owl:Class ;
+    rdfs:subClassOf [ hpc:Job ] ;
+    rdfs:comment "The number of system-suspended jobs in the service class." .
+
+hpc:UserSuspendedJob
+    a owl:Class ;
+    rdfs:subClassOf [ hpc:Job ] ;
+    rdfs:comment "The number of user-suspended jobs in the specified service class." .
+
+hpc:JobState
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "The state of a job." .
+
+hpc:EXIT
+    a owl:Class ;
+    rdfs:subClassOf [ hpc:Jobstate ] ;
+    rdfs:comment "The job is in the EXIT state." .
+
+hpc:DONE
+    a owl:Class ;
+    rdfs:subClassOf [ hpc:Jobstate ] ;
+    rdfs:comment "The job is in the DONE state." .
+
+hpc:ResourceBasedSLA
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Resource-based SLA service class." .
+
+hpc:ServiceClass
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A service class with guarantee goals." .
+
+hpc:ServiceClassName
+    a owl:DatatypeProperty ;
+    rdfs:domain [ hpc:Serviceclass ] ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the service class, followed by its description, if any." .
+
+hpc:Goal
+    a owl:ObjectProperty ;
+    rdfs:domain [ hpc:Serviceclass ] ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The type of service class goal." .
+
+hpc:Guarantee
+    a owl:ObjectProperty ;
+    rdfs:domain [ hpc:Goal ] ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The configured value of the guarantee goal." .
+
+hpc:AutoAttach
+    a owl:ObjectProperty ;
+    rdfs:domain [ hpc:Serviceclass ] ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Automatic attachment configuration." .
+
+hpc:AccessControl
+    a owl:ObjectProperty ;
+    rdfs:domain [ hpc:Serviceclass ] ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Configured access restrictions for the guarantee SLA, if any." .
+
+hpc:PoolName
+    a owl:DatatypeProperty ;
+    rdfs:domain [ hpc:Resourcebasedsla ] ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Name of the guaranteed resource pool." .
+
+hpc:Type
+    a owl

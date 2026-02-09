@@ -1,0 +1,63 @@
+hpc:Cpufactor a owl:Class .
+hpc:hasdefaultvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cpufactor ;
+    rdfs:range xsd:float .
+
+hpc:Cpu a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:hascpufactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Cpu ;
+    rdfs:range hpc:Cpufactor .
+
+hpc:Host a owl:Class .
+
+hpc:ncpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cpu ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ncores a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cpu ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:threadspercore a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cpu ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Egoenabledcpu a owl:Class ;
+    rdfs:subClassOf hpc:Cpu .
+
+hpc:egodefinencpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Egoenabledcpu ;
+    rdfs:range xsd:string .
+
+hpc:Egoprocs a owl:Class ;
+    rdfs:subClassOf hpc:Egoenabledcpu .
+
+hpc:Egocores a owl:Class ;
+    rdfs:subClassOf hpc:Egoenabledcpu .
+
+hpc:Egothreads a owl:Class ;
+    rdfs:subClassOf hpc:Egoenabledcpu .
+
+hpc:egoprocsdefinition a owl:ObjectProperty ;
+    rdfs:domain hpc:Egoprocs ;
+    rdfs:range hpc:Ncpus .
+
+hpc:egocoresdefinition a owl:ObjectProperty ;
+    rdfs:domain hpc:Egocores ;
+    rdfs:range hpc:Ncpus .
+
+hpc:egothreadsdefinition a owl:ObjectProperty ;
+    rdfs:domain hpc:Egothreads ;
+    rdfs:range hpc:Ncpus .
+
+hpc:Lsfmulticore a owl:Class ;
+    rdfs:subClassOf hpc:Cpu .
+
+hpc:Lsfdualcore a owl:Class ;
+    rdfs:subClassOf hpc:Cpu .
+
+hpc:lsfdualcoredefinition a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfdualcore ;
+    rdfs:range hpc:Ncores .

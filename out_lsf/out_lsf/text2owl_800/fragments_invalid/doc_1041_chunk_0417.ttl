@@ -1,0 +1,66 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a job in the LSF system." .
+
+hpc:begintime a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The time at which the job is to begin." .
+
+hpc:endtime a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The time at which the job is to terminate." .
+
+hpc:clustername a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the cluster for LSF multicluster capability jobs." .
+
+hpc:modifybegintime a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "Modifies the job begin time for LSF." .
+
+hpc:modifyterminationtime a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "Modifies job termination time." .
+
+hpc:modifypendingjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Modifies pending jobs only on the submission cluster." .
+
+hpc:currentworkingdirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The current working directory (CWD) for a job." .
+
+hpc:submissiondirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The directory from which the job was submitted." .
+
+hpc:logicalhomedirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The logical home directory of the execution host." .
+
+hpc:tmpdirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The temporary directory used for the CWD if the submission directory does not exist." .
+
+hpc:cwdn a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Currentworkingdirectory ;
+    rdfs:comment "Resets the value for the -cwd option to the submission directory from the bsub command." .
+
+hpc:Applicationprofile a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents an application profile." .
+
+hpc:cwdinapplicationprofile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs

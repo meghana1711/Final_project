@@ -1,0 +1,18 @@
+hpc:Equalsharepartition a owl:Class .
+hpc:Equalsharepartition rdfs:subClassOf hpc:Hostpartition .
+
+hpc:usershare a owl:DatatypeProperty .
+hpc:Usershare rdfs:domain hpc:Equalsharepartition ;
+                 rdfs:range xsd:decimal .
+
+hpc:Priorityuserfairshare a owl:Class .
+hpc:Priorityuserfairshare rdfs:subClassOf hpc:Fairshare .
+
+hpc:Keyusers a owl:Class .
+hpc:Keyusers rdfs:subClassOf hpc:Users .
+
+hpc:Staticpriorityfairshare a owl:Class .
+hpc:Staticpriorityfairshare rdfs:subClassOf hpc:Fairshare .
+
+hpc:Dynamicpriorityfairshare a owl:Class .
+hpc:Dynamicpriorityfairshare rdfs:subClassOf hpc:Fairshare .

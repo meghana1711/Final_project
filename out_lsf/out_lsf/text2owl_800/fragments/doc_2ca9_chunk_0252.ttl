@@ -1,0 +1,38 @@
+hpc:Dockerimagepreferenceparameter a owl:Class .
+hpc:Dockerimagepreferenceparameter rdfs:subClassOf owl:Property .
+
+hpc:Gpumergeparameter a owl:Class .
+hpc:Gpumergeparameter rdfs:subClassOf owl:ObjectProperty .
+
+hpc:Simplifiedguaranteeparameter a owl:Class .
+hpc:Simplifiedguaranteeparameter rdfs:subClassOf owl:Property .
+
+hpc:Attrcreateusersparameter a owl:Class .
+hpc:Attrcreateusersparameter rdfs:subClassOf owl:Property .
+
+hpc:Attrmaxnumparameter a owl:Class .
+hpc:Attrmaxnumparameter rdfs:subClassOf owl:DatatypeProperty .
+
+hpc:Attrttlparameter a owl:Class .
+hpc:Attrttlparameter rdfs:subClassOf owl:DatatypeProperty .
+
+hpc:Affinitypreferenceparameter a owl:Class .
+hpc:Affinitypreferenceparameter rdfs:subClassOf owl:ObjectProperty .
+
+hpc:samehostpreference a owl:ObjectProperty .
+hpc:Samehostpreference rdfs:domain hpc:Affinitypreferenceparameter .
+hpc:Samehostpreference rdfs:range hpc:Job .
+
+hpc:samecupreference a owl:ObjectProperty .
+hpc:Samecupreference rdfs:domain hpc:Affinitypreferenceparameter .
+hpc:Samecupreference rdfs:range hpc:Job .
+
+hpc:Globallimitparameter a owl:Class .
+hpc:Globallimitparameter rdfs:subClassOf owl:Property .
+
+hpc:Relaxjobdispatchorderparameter a owl:Class .
+hpc:Relaxjobdispatchorderparameter rdfs:subClassOf owl:Property .
+
+hpc:RelaxJobDispatchOrderParameter rdfs:subPropertyOf hpc:SHARE .
+
+hpc:Attrmaxnum rdfs:range xsd:integer .

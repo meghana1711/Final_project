@@ -1,0 +1,47 @@
+hpc:SubReset a owl:Class .
+hpc:filepath a owl:DatatypeProperty ;
+    rdfs:domain hpc:SubReset ;
+    rdfs:range xsd:string .
+
+hpc:LsbSubOtherFiles a owl:Class .
+hpc:number a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSubOtherFiles ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:lsbSubOtherFilesNumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSubOtherFiles ;
+    rdfs:range xsd:string .
+
+hpc:LsbSubOutFile a owl:Class .
+hpc:standardoutputfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSubOutFile ;
+    rdfs:range xsd:string .
+
+hpc:LsbSubPreExec a owl:Class .
+hpc:preexecutioncommand a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSubPreExec ;
+    rdfs:range xsd:string .
+
+hpc:LsbSubProjectName a owl:Class .
+hpc:projectname a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSubProjectName ;
+    rdfs:range xsd:string .
+
+hpc:LsbSubPty a owl:Class .
+hpc:interactivejobwithpty a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSubPty ;
+    rdfs:range xsd:boolean .
+hpc:lsbSubPtyShell a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSubPty ;
+    rdfs:range xsd:boolean .
+
+hpc:LsbSubQueue a owl:Class .
+hpc:submissionqueuename a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSubQueue ;
+    rdfs:range xsd:string .
+
+hpc:LsbSubRerunnable a owl:Class .
+hpc:rerunnablejob a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSubRerunnable ;
+    rdfs:range xsd:boolean .
+hpc:LsbSubNonRerunnable a owl:Class ;
+    rdfs:subClassOf hpc:LsbSubRerunnable .

@@ -1,0 +1,26 @@
+hpc:File a owl:Class .
+hpc:hash a owl:DatatypeProperty .
+hpc:size a owl:DatatypeProperty .
+hpc:Status a owl:EnumProperty ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf hpc:Property .
+hpc:permission a owl:DatatypeProperty .
+hpc:refJob a owl:ObjectProperty ;
+  rdfs:domain hpc:File ;
+  rdfs:range xsd:string .
+hpc:xferJob a owl:ObjectProperty ;
+  rdfs:domain hpc:File ;
+  rdfs:range xsd:string .
+hpc:cacheLocation a owl:DatatypeProperty .
+hpc:output a owl:ObjectProperty ;
+  rdfs:domain hpc:File ;
+  rdfs:range xsd:string .
+hpc:to a owl:ObjectProperty ;
+  rdfs:domain hpc:Output ;
+  rdfs:range xsd:string .
+
+hpc:File rdfs:subClassOf rdf:Resource .
+hpc:Output rdfs:subClassOf rdf:Statement .
+
+
+This ontology fragment defines classes for `File`, `Output`, and properties for `Hash`, `Size`, `Status`, `Permission`, `Ref_Job`, `Xfer_Job`, `Cache_Location`, and `To`. The properties are defined as datatype properties or object properties with their domains and ranges specified. The `Status` property is an enumerated property with the string values. The `Output` class is a subclass of `Statement`.

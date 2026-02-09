@@ -1,0 +1,28 @@
+hpc:Project a owl:Class .
+hpc:Groupofprojects a owl:Class .
+hpc:Projectgroup a owl:Class .
+
+hpc:ownership a owl:ObjectProperty .
+hpc:limits a owl:DatatypeProperty .
+hpc:nonshared a owl:DatatypeProperty .
+hpc:distribution a owl:DatatypeProperty .
+
+hpc:Ownership rdfs:domain hpc:Project ;
+                 rdfs:range xsd:decimal .
+hpc:Limits rdfs:domain hpc:Project ;
+             rdfs:range xsd:decimal .
+hpc:Nonshared rdfs:domain hpc:Project ;
+               rdfs:range xsd:decimal .
+hpc:Distribution rdfs:domain hpc:Project ;
+                rdfs:range xsd:decimalList .
+
+hpc:activeownership a owl:ObjectProperty ;
+                      rdfs:subPropertyOf hpc:Ownership ;
+                      rdfs:domain (hpc:Project | hpc:Groupofprojects | hpc:Projectgroup) .
+
+hpc:lsActivePercentage a owl:DatatypeProperty ;
+                           rdfs:domain hpc:Project ;
+                           rdfs:range xsd:decimal .
+hpc:lsFeaturePercentage a owl:DatatypeProperty ;
+                            rdfs:domain hpc:Project ;
+                            rdfs:range xsd:boolean .

@@ -1,0 +1,17 @@
+hpc:LsRootUser a owl:Class .
+hpc:LsStreamFile a owl:Class .
+hpc:MbdHeartbeatInterval a owl:Class .
+
+hpc:hasSyntax rdf:Property .
+hpc:description rdf:Property .
+
+hpc:LsRootUser rdfs:subClassOf owl:Class .
+hpc:LsStreamFile rdfs:subClassOf owl:Class .
+hpc:MbdHeartbeatInterval rdfs:subClassOf owl:Class .
+
+hpc:Hassyntax rdfs:domain hpc:LsRootUser, hpc:LsStreamFile, hpc:MbdHeartbeatInterval .
+hpc:Description rdfs:domain hpc:LsRootUser, hpc:LsStreamFile, hpc:MbdHeartbeatInterval .
+
+hpc:LsRootUser rdfs:range xsd:string .
+hpc:LsStreamFile rdfs:range xsd:string .
+hpc:MbdHeartbeatInterval rdfs:range xsd:integer .

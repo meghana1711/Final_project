@@ -1,0 +1,34 @@
+hpc:lsbKrbTgtFwd a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range hpc:Boolean .
+
+hpc:lsbAfsJobSupport a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range hpc:Boolean .
+
+hpc:lsbKrbCheckInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsbKrbRenewMargin a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:nonNegativeDuration .
+
+hpc:lsbAfsBinDir a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:string .
+
+hpc:Jobsubmission a owl:Class ;
+    rdfs:subClassOf hpc:Activity .
+
+hpc:Tgtfile a owl:Class .
+
+hpc:kerberos5clientcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range hpc:Command .
+
+hpc:afsrenewalcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range hpc:Command .
+
+hpc:Command a owl:Class .

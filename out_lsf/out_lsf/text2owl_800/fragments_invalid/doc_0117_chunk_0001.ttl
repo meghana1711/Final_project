@@ -1,0 +1,12 @@
+hpc:Account a owl:Class .
+hpc:effectiveusageratio a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+hpc:usageratio a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+hpc:normalizedshares a owl:DatatypeProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+hpc:normalizedusage a owl:DatatypeProperty ;
+    rdfs:domain h

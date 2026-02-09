@@ -1,0 +1,67 @@
+hpc:Serviceclass a owl:Class .
+
+hpc:goals a owl:ObjectProperty .
+hpc:name a owl:DatatypeProperty .
+hpc:priority a owl:DatatypeProperty .
+hpc:description a owl:DatatypeProperty .
+hpc:accessControl a owl:ObjectProperty .
+hpc:autoAttach a owl:DatatypeProperty .
+hpc:consumer a owl:DatatypeProperty .
+hpc:controlAction a owl:DatatypeProperty .
+hpc:maxHostIdleTime a owl:DatatypeProperty .
+hpc:egoResReq a owl:DatatypeProperty .
+hpc:egoResourceGroup a owl:DatatypeProperty .
+hpc:userGroup a owl:ObjectProperty .
+
+hpc:Goals rdfs:domain hpc:Serviceclass ;
+        rdfs:range rdf:List .
+
+hpc:Name rdfs:domain hpc:Serviceclass ;
+        rdfs:range xsd:string .
+
+hpc:Priority rdfs:domain hpc:Serviceclass ;
+        rdfs:range xsd:integer .
+
+hpc:Description rdfs:domain hpc:Serviceclass ;
+        rdfs:range xsd:string .
+
+hpc:AccessControl rdfs:domain hpc:Serviceclass ;
+        rdfs:range rdf:List .
+
+hpc:AutoAttach rdfs:domain hpc:Serviceclass ;
+        rdfs:range xsd:string .
+
+hpc:Consumer rdfs:domain hpc:Serviceclass ;
+        rdfs:range xsd:string .
+
+hpc:ControlAction rdfs:domain hpc:Serviceclass ;
+        rdfs:range xsd:string .
+
+hpc:MaxHostIdleTime rdfs:domain hpc:Serviceclass ;
+        rdfs:range xsd:integer .
+
+hpc:EgoResReq rdfs:domain hpc:Serviceclass ;
+        rdfs:range xsd:string .
+
+hpc:EgoResourceGroup rdfs:domain hpc:Serviceclass ;
+        rdfs:range xsd:string .
+
+hpc:UserGroup rdfs:domain hpc:Serviceclass ;
+        rdfs:range rdf:List .
+
+hpc:Queue a owl:Class .
+hpc:UserGroup a owl:Class .
+hpc:AppName a owl:Class .
+hpc:ProjName a owl:Class .
+
+hpc:Queue rdfs:subClassOf hpc:UserGroup .
+hpc:UserGroup rdfs:subClassOf hpc:Serviceclass .
+hpc:AppName rdfs:subClassOf hpc:FairshareGroup .
+hpc:ProjName rdfs:subClassOf hpc:FairshareGroup .
+
+hpc:Queue rdfs:range xsd:string .
+hpc:UserGroup rdfs:range rdf:List .
+hpc:AppName rdfs:range xsd:string .
+hpc:ProjName rdfs:range xsd:string .
+
+hpc:

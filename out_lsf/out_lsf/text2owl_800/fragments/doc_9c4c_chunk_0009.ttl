@@ -1,0 +1,40 @@
+hpc:Lsfinstallation a owl:Class .
+hpc:Platform a owl:Class .
+hpc:Jre a owl:Class .
+hpc:Version a owl:Class .
+hpc:Installerpackage a owl:Class .
+hpc:Edition a owl:Class .
+hpc:Entitlementfile a owl:Class .
+
+hpc:requiresjre a owl:ObjectProperty .
+hpc:hasversion a owl:DatatypeProperty .
+hpc:forplatform a owl:ObjectProperty .
+hpc:foredition a owl:ObjectProperty .
+hpc:isinstallerfor a owl:ObjectProperty .
+
+hpc:Platform rdfs:subClassOf xsd:string .
+hpc:Version rdfs:subClassOf xsd:string .
+hpc:Edition rdfs:subClassOf xsd:string .
+
+hpc:Lsfinstallation rdfs:subClassOf owl:Class .
+hpc:Platform rdfs:domain hpc:Lsfinstallation .
+hpc:Jre rdfs:domain hpc:Lsfinstallation .
+hpc:Version rdfs:domain hpc:Lsfinstallation .
+hpc:Installerpackage rdfs:domain hpc:Lsfinstallation .
+hpc:Edition rdfs:domain hpc:Entitlementfile .
+
+hpc:Requiresjre rdfs:range hpc:Jre ;
+    rdfs:domain hpc:Lsfinstallation .
+
+hpc:Hasversion rdfs:range xsd:decimal ;
+    rdfs:domain hpc:Lsfinstallation .
+
+hpc:Forplatform rdfs:range hpc:Platform ;
+    rdfs:domain hpc:Installerpackage .
+
+hpc:Isinstallerfor rdfs:range hpc:Lsfinstallation ;
+    rdfs:domain hpc:Installerpackage .
+
+hpc:Entitlementfile rdfs:subClassOf owl:Class .
+hpc:Foredition rdfs:range hpc:Edition ;
+    rdfs:domain hpc:Entitlementfile .

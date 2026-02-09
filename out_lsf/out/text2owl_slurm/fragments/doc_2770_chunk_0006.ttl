@@ -1,0 +1,23 @@
+hpc:bfresolution a owl:DatatypeProperty ;
+    rdfs:domain hpc:Backfillscheduler ;
+    rdfs:range xsd:unsignedLong ;
+    rdfs:comment "Time resolution of backfill scheduling. Default value is 60 seconds." .
+
+hpc:bfwindow a owl:DatatypeProperty ;
+    rdfs:domain hpc:Backfillscheduler ;
+    rdfs:range xsd:unsignedLong ;
+    rdfs:comment "How long, in minutes, into the future to look when determining when and where jobs can start. Higher values result in more overhead and less responsiveness." .
+
+hpc:bfyieldinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Backfillscheduler ;
+    rdfs:range xsd:unsignedLong ;
+    rdfs:comment "The backfill scheduler will periodically relinquish locks in order for other pending operations to take place. This specifies the times when the locks are relinquished in microseconds." .
+
+hpc:bfyieldsleep a owl:DatatypeProperty ;
+    rdfs:domain hpc:Backfillscheduler ;
+    rdfs:range xsd:unsignedLong ;
+    rdfs:comment "The backfill scheduler will periodically relinquish locks in order for other pending operations to take place. This specifies the length of time for which the locks are relinquished in microseconds." .
+
+hpc:Backfillscheduler a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a backfill scheduler." .

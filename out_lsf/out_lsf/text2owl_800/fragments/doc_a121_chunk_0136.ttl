@@ -1,0 +1,76 @@
+hpc:Hostbasedqueuelevelpreprocessing a owl:Class ;
+    rdfs:subClassOf hpc:Preprocessing .
+
+hpc:Hostbasedapplicationlevelpreprocessing a owl:Class ;
+    rdfs:subClassOf hpc:Preprocessing .
+
+hpc:Jobbasedqueuelevelpreprocessing a owl:Class ;
+    rdfs:subClassOf hpc:Preprocessing .
+
+hpc:Jobbasedjoblevelpreprocessing a owl:Class ;
+    rdfs:subClassOf hpc:Preprocessing ;
+    rdfs:subClassOf hpc:Jobbasedpreprocessing .
+
+hpc:Jobbasedapplicationlevelpreprocessing a owl:Class ;
+    rdfs:subClassOf hpc:Preprocessing ;
+    rdfs:subClassOf hpc:Jobbasedpreprocessing .
+
+hpc:Jobbasedqueuelevelpostprocessing a owl:Class ;
+    rdfs:subClassOf hpc:Postprocessing .
+
+hpc:Jobbasedjoblevelpostprocessing a owl:Class ;
+    rdfs:subClassOf hpc:Postprocessing ;
+    rdfs:subClassOf hpc:Jobbasedpostprocessing .
+
+hpc:Jobbasedapplicationlevelpostprocessing a owl:Class ;
+    rdfs:subClassOf hpc:Postprocessing ;
+    rdfs:subClassOf hpc:Jobbasedpostprocessing .
+
+hpc:Hostbasedapplicationlevelpostprocessing a owl:Class ;
+    rdfs:subClassOf hpc:Postprocessing .
+
+hpc:Hostbasedqueuelevelpostprocessing a owl:Class ;
+    rdfs:subClassOf hpc:Postprocessing .
+
+hpc:Preexecutionfailure a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:preexecutioncommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Preprocessing ;
+    rdfs:range xsd:int .
+
+hpc:exitstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Preexecutioncommand .
+
+hpc:Executionresult a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:postprocessingresult a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionresult ;
+    rdfs:range hpc:Host .
+
+hpc:cleanupactivity a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostbasedpostprocessing .
+
+hpc:Managementhost a owl:Class .
+
+hpc:bhist a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionresult .
+
+hpc:failurepropagationrule a owl:ObjectProperty ;
+    rdfs:domain hpc:Preprocessing ;
+    rdfs:range hpc:Preprocessing .
+
+hpc:hostbasedpreexecutionfailurepropagatesto a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostbasedpreprocessing ;
+    rdfs:range hpc:Preprocessing .
+
+hpc:Preprocessing a owl:Class .
+
+hpc:Jobbasedpreprocessing a owl:Class ;
+    rdfs:subClassOf hpc:Preprocessing .
+
+hpc:Postprocessing a owl:Class .
+
+hpc:Hostbasedpostprocessing a owl:Class ;
+    rdfs:subClassOf hpc:Postprocessing .

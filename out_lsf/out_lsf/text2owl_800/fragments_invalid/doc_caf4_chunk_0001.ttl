@@ -1,0 +1,22 @@
+hpc:Jobsubmission a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "LSF creates a job file under the LSF working directory at job submission." ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range hpc:Jobsubmissionlogjobfile .
+
+hpc:jobsubmissionlogjobfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The job_submission_log_jobfile item is a sub item of job_submission." .
+
+hpc:jobstatusupdate a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Event ;
+    rdfs:comment "Job status updates from sbatchd." ;
+    rdfs:subPropertyOf hpc:JobEvent .
+
+hpc:Event a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "An event in the job." .
+
+hpc:JobStatusUpdate_LoggingPeriod a x

@@ -1,0 +1,32 @@
+hpc:Command a owl:Class .
+hpc:hasdefaultorder a owl:ObjectProperty .
+hpc:defaultresourcerequirementorder a owl:DatatypeProperty .
+hpc:configure a owl:ObjectProperty .
+hpc:run a owl:ObjectProperty .
+hpc:verify a owl:ObjectProperty .
+hpc:submitjob a owl:ObjectProperty .
+hpc:Resourcerequirementdetails a owl:Class .
+hpc:Job a owl:Class .
+hpc:User a owl:Class .
+hpc:Project a owl:Class .
+hpc:Status a owl:Class .
+hpc:Queue a owl:Class .
+hpc:Command a rdfs:subClassOf owl:NamedIndividual .
+hpc:Resourcerequirementdetails a rdfs:subClassOf owl:NamedIndividual .
+hpc:Job a rdfs:subClassOf owl:NamedIndividual .
+hpc:User a rdfs:subClassOf owl:NamedIndividual .
+hpc:Project a rdfs:subClassOf owl:NamedIndividual .
+hpc:Status a rdfs:subClassOf owl:NamedIndividual .
+hpc:Queue a rdfs:subClassOf owl:NamedIndividual .
+hpc:Hasdefaultorder rdfs:domain hpc:Command ;
+    rdfs:range hpc:Defaultresourcerequirementorder .
+hpc:Configure rdfs:domain hpc:Command ;
+    rdfs:range hpc:Command .
+hpc:Run rdfs:domain hpc:Command ;
+    rdfs:range hpc:Command .
+hpc:Verify rdfs:domain hpc:Command ;
+    rdfs:range hpc:Command .
+hpc:Submitjob rdfs:domain hpc:Command ;
+    rdfs:range hpc:Job .
+hpc:Resourcerequirementdetails rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resourcerequirementdetails .

@@ -1,0 +1,28 @@
+hpc:ELIGIBLE_PENDINFO_SNAPSHOT_INTERVAL
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbatchconfig ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "If TRACK_ELIGIBLE_PENDINFO is enabled, this parameter allows the eligible and ineligible pending job data to be saved to disk so that it is not lost when mbatchd restarts. Specify the time interval, in minutes, for mbschd to save eligible and ineligible pending data to disk." .
+
+hpc:TRACK_ELIGIBLE_PENDINFO
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchconfig ;
+    rdfs:range hpc:Boolean ;
+    rdfs:comment "If enabled, this parameter is used to track eligible and ineligible pending information." .
+
+hpc:ENABLE_DEFAULT_EGO_SLA
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfig ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the default service class or EGO consumer name for EGO-enabled SLA scheduling." .
+
+hpc:LSF_SLA_SERVICE_CLASS
+    a owl:Class ;
+    rdfs:subClassOf hpc:Serviceclass ;
+    rdfs:comment "A service class for EGO-enabled SLA scheduling." .
+
+hpc:ENABLE_DIAGNOSE
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Daemonconfig ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Enable this parameter for the mbatchd daemon, or starting in Fix Pack 14, also the lsfproxyd daemon, to write request source information to a log file." .

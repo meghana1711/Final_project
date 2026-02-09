@@ -1,0 +1,51 @@
+hpc:RequiresLSFFixPack1
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Requires IBM Spectrum LSF Version 10.1, Fix Pack 1 or later." .
+
+hpc:RequiresRootAccess
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Requires root access to the LSF management host." .
+
+hpc:RequiresDNS
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Requires LSF cluster to have a DNS server." .
+
+hpc:RequiresDNSPermissions
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Requires correct permissions to update the DNS server." .
+
+hpc:RequiresOpenStackLibertyOrLater
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Requires OpenStack Liberty, or later." .
+
+hpc:RequiresOpenStackModifications
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "OpenStack provider scripts for the LSF resource connector might require minor modifications for future releases of OpenStack." .
+
+hpc:RequiresOpenStackAdministrativeSkills
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Requires familiarity with and ability to perform OpenStack administrative operations." .
+
+hpc:RequiresConfiguredVirtualNetwork
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The virtual network to be used by OpenStack virtual instances must be configured so that they can communicate with LSF hosts." .
+
+hpc:RequiresKeystone
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Openstackprovider ;
+    rdfs:range hpc:Identityservice ;
+    rdfs:comment "The Identity service (Keystone) is required for LSF resource connector with OpenStack as the resource provider." .
+
+hpc:RequiresGlance
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Openstackprovider ;
+    rdfs:range hpc:Imageservice ;
+    rdfs:comment "The Image service (Glance) is required for LSF resource connector with OpenStack as the resource provider." .

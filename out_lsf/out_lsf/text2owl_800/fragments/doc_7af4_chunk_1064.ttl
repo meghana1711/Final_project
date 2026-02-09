@@ -1,0 +1,40 @@
+hpc:Useraccountmapping a owl:Class .
+hpc:Defaultusermapping rdfs:subClassOf hpc:Useraccountmapping .
+hpc:Windowsonlycluster rdfs:subClassOf hpc:Defaultusermapping .
+hpc:Mixedcluster rdfs:subClassOf hpc:Defaultusermapping .
+hpc:Unixuserdomain rdfs:subClassOf hpc:Defaultusermapping .
+
+hpc:username a owl:DatatypeProperty ;
+    rdfs:domain hpc:Useraccountmapping ;
+    rdfs:range xsd:string .
+
+hpc:domainname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mixedcluster ;
+    rdfs:range xsd:string .
+
+hpc:onetooneusermap a owl:ObjectProperty ;
+    rdfs:domain hpc:Mixedcluster ;
+    rdfs:range hpc:Onetooneusermapinstance .
+
+hpc:Onetooneusermapinstance a owl:Class .
+
+hpc:Crossplatformjob rdfs:subClassOf hpc:Job .
+
+# LSF Configuration Parameters
+
+hpc:Lsfconf a owl:Class .
+hpc:nocheckviewpostexec a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconf ;
+    rdfs:range xsd:boolean .
+
+hpc:ompnumthreads a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconf ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Lsfintegrationforrationalclearcase rdfs:subClassOf hpc:Lsfconf .
+
+hpc:setenvcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfintegrationforrationalclearcase ;
+    rdfs:range hpc:Setenvcommandinstance .
+
+hpc:Setenvcommandinstance a owl:Class .

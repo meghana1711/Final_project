@@ -1,0 +1,42 @@
+hpc:Staticresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+hpc:Host a owl:Class .
+hpc:Cluster a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+# Object Properties
+hpc:hasresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Staticresource .
+hpc:haslocation a owl:ObjectProperty ;
+    rdfs:domain hpc:Staticresource ;
+    rdfs:range xsd:string .
+
+hpc:isshared a owl:ObjectProperty ;
+    rdfs:domain hpc:Staticresource ;
+    rdfs:range xsd:boolean .
+
+hpc:hasassignedname a owl:ObjectProperty ;
+    rdfs:domain hpc:Staticresource ;
+    rdfs:range xsd:string .
+
+hpc:isincluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Cluster .
+
+hpc:hastopology a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+# Datatype Properties
+hpc:resourceamount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Staticresource ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:locationtype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Staticresource ;
+    rdfs:range xsd:string .
+
+hpc:commandusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .

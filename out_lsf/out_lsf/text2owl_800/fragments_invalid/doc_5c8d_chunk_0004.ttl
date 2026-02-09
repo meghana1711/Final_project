@@ -1,0 +1,49 @@
+hpc:Lsfintegration a owl:Class .
+hpc:Installationpackage a owl:Class .
+hpc:Rpmfile a owl:Class .
+
+hpc:hasBuildNumber rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Installationpackage ;
+    rdfs:range xsd:string .
+
+hpc:extractsRPMFile rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Installationpackage .
+
+hpc:RPMFile hasRPM rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Rpmfile ;
+    rdfs:range xsd:string .
+
+hpc:RPMFile hasBuildDate rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Rpmfile ;
+    rdfs:range xsd:string .
+
+hpc:isCommonRPM axiom:equivalentTo hpc:RPMFile [ hpc:hasBuildDate ?buildDate ; hpc:hasRPM "lsf-common-10.1.0-" ++ ?buildDate ++ ".ppc64le.rpm" ] .
+hpc:isServerRPM axiom:equivalentTo hpc:RPMFile [ hpc:hasBuildDate ?buildDate ; hpc:hasRPM "lsf-server-10.1.0-" ++ ?buildDate ++ ".ppc64le.rpm" ] .
+hpc:isMasterRPM axiom:equivalentTo hpc:RPMFile [ hpc:hasBuildDate ?buildDate ; hpc:hasRPM "lsf-master-10.1.0-" ++ ?buildDate ++ ".ppc64le.rpm" ] .
+
+hpc:deployOnHost axiom:equivalentTo owl:ObjectProperty .
+hpc:Deployonhost rdfs:domain hpc:Rpmfile ;
+    rdfs:range hpc:Host .
+
+hpc:Host a owl:Class .
+
+hpc:isCSMHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host .
+
+hpc:isWLM rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host .
+
+hpc:isLN rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host .
+
+hpc:installationDirectory rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Rpmfile .
+
+hpc:installationCommand rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Installationpackage .
+
+hpc:InstallationPackage installsRPMFile rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Installationpackage ;
+    rdfs:range hpc:Rpmfile .
+
+hpc:InstallationPackage hasInstallationCommand "./" ++ ?package ++ ".bin" .

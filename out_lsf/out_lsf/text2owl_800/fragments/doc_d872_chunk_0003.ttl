@@ -1,0 +1,37 @@
+hpc:Queue a owl:Class .
+hpc:hasqueuename a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Queue .
+
+hpc:Command a owl:Class .
+hpc:bqueues a hpc:Command .
+hpc:bsub a hpc:Command .
+hpc:bparams a hpc:Command .
+
+hpc:Configuration a owl:Class .
+hpc:lsbdotqueues a owl:ObjectProperty ;
+    rdfs:domain hpc:Configuration .
+
+hpc:Host a owl:Class .
+hpc:hashostname a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+hpc:hasnumberofcpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host .
+hpc:isclient a owl:ObjectProperty ;
+    rdfs:domain hpc:Host .
+hpc:isserver a owl:ObjectProperty ;
+    rdfs:domain hpc:Host .
+hpc:hashosttype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host .
+
+hpc:Schedulingpolicy a owl:Class .
+hpc:firstComeFirstServed a hpc:SchedulingPolicy .
+
+hpc:Hostcommand a owl:Class .
+hpc:lsload a hpc:HostCommand .
+hpc:lshosts a hpc:HostCommand .
+hpc:bhosts a hpc:HostCommand .

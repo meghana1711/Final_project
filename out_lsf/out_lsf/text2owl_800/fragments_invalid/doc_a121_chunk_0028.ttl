@@ -1,0 +1,38 @@
+hpc:Effectiveresourcerequirement a owl:Class .
+hpc:CombinedResreq rdfs:domain hpc:Effectiveresourcerequirement ;
+    rdfs:range xsd:integer .
+
+hpc:Maxprocessors a owl:Class .
+hpc:EffectiveResreq rdfs:domain hpc:Maxprocessors ;
+    rdfs:range xsd:integer .
+
+hpc:Networkrequirement a owl:Class .
+hpc:NetworkReq rdfs:domain hpc:Networkrequirement ;
+    rdfs:range xsd:integer .
+
+hpc:Filelimit a owl:Class .
+hpc:Filelimit rdfs:domain hpc:Filelimit ;
+    rdfs:range xsd:integer .
+
+hpc:Resourcelimit a owl:Class .
+
+hpc:Corelimit rdfs:domain hpc:Resourcelimit ;
+    rdfs:range xsd:integer .
+
+hpc:Stacklimit rdfs:domain hpc:Resourcelimit ;
+    rdfs:range xsd:integer .
+
+hpc:Processlimit rdfs:domain hpc:Resourcelimit ;
+    rdfs:range xsd:integer .
+
+hpc:Runtimelimit rdfs:domain hpc:Resourcelimit ;
+    rdfs:range xsd:integer .
+
+hpc:Plimit rdfs:domain hpc:Resourcelimit ;
+    rdfs:range xsd:string .
+
+hpc:Pendingtimelimit a owl:Class .
+hpc:Plimit rdfs:domain hpc:Pendingtimelimit ;
+    rdfs:range xsd:string ;
+    rdfs:range rdfs:datatype xsd:string ;
+    rdfs:range rdfs:datatype xsd:duration .

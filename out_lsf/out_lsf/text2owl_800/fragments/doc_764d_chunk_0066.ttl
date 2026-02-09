@@ -1,0 +1,14 @@
+hpc:Queuepreference a owl:Class .
+hpc:mcPluginScheduleEnhance a owl:ObjectProperty .
+hpc:mcPluginUpdateInterval a owl:DatatypeProperty .
+hpc:sndjobsTo a owl:ObjectProperty .
+
+hpc:Queuepreference rdfs:subClassOf hpc:Queue .
+hpc:Queue rdfs:subClassOf owl:Class .
+
+hpc:McPluginScheduleEnhance rdfs:domain hpc:Queuepreference ;
+                                 rdfs:range xsd:string .
+hpc:McPluginUpdateInterval rdfs:domain hpc:Queuepreference ;
+                                 rdfs:range xsd:integer .
+hpc:SndjobsTo rdfs:domain hpc:Queuepreference ;
+                                rdfs:range rdf:Resource .

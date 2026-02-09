@@ -1,0 +1,35 @@
+hpc:Slurmbuildsystem a owl:Class .
+hpc:Makefileam hpc:hasbuildsystem hpc:SlurmBuildSystem ;
+    rdfs:domain hpc:Slurmbuildsystem ;
+    rdfs:range rdf:Resource .
+
+hpc:Makefilein hpc:hasbuildsystem hpc:SlurmBuildSystem ;
+    rdfs:domain hpc:Slurmbuildsystem ;
+    rdfs:range rdf:Resource .
+
+hpc:Configureac hpc:hasbuildsystem hpc:SlurmBuildSystem ;
+    rdfs:domain hpc:Slurmbuildsystem ;
+    rdfs:range rdf:Resource .
+
+hpc:Auxdir hpc:hasbuildsystem hpc:SlurmBuildSystem ;
+    rdfs:domain hpc:Slurmbuildsystem ;
+    rdfs:range rdf:Resource .
+
+hpc:changelog a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmbuildsystem ;
+    rdfs:range xsd:string .
+
+hpc:Patch a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:logicalpatch a owl:ObjectProperty ;
+    rdfs:domain hpc:Patch ;
+    rdfs:range hpc:Logicalpatch .
+
+hpc:functionalchange a owl:DatatypeProperty ;
+    rdfs:domain hpc:Patch ;
+    rdfs:range xsd:string .
+
+hpc:automatedchange a owl:DatatypeProperty ;
+    rdfs:domain hpc:Patch ;
+    rdfs:range xsd:string .

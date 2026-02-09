@@ -1,0 +1,46 @@
+hpc:Workloadsnapshot rdfs:subClassOf owl:Set .
+
+hpc:Jobsubmission a owl:Class ;
+    rdfs:subClassOf hpc:Workloadsnapshot ;
+    rdfs:comment "A job submission in a workload snapshot." .
+
+hpc:Completionrecord a owl:Class ;
+    rdfs:subClassOf hpc:Workloadsnapshot ;
+    rdfs:comment "A completion record in a workload snapshot." .
+
+hpc:Lsfclustereventsfile a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:comment "An LSF cluster events file from which workload snapshots are imported." .
+
+hpc:Prediction a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:comment "An AI model training process." .
+
+hpc:optimizeaction a owl:ObjectProperty ;
+    rdfs:domain hpc:Workloadsnapshot ;
+    rdfs:range hpc:Workloadsnapshot ;
+    rdfs:comment "The action to optimize a workload snapshot." .
+
+hpc:selectpredictionmodel a owl:ObjectProperty ;
+    rdfs:domain hpc:Optimizeaction ;
+    rdfs:range hpc:Predictionmodel ;
+    rdfs:comment "The selection of a prediction model for optimization." .
+
+hpc:rerunaction a owl:ObjectProperty ;
+    rdfs:domain hpc:Experiment ;
+    rdfs:range hpc:Experiment ;
+    rdfs:comment "The action to rerun an experiment." .
+
+hpc:modifyandrerunexperimentwizard a owl:ObjectProperty ;
+    rdfs:domain hpc:Rerunaction ;
+    rdfs:range hpc:Modifyandrerunexperimentwizard ;
+    rdfs:comment "The wizard for modifying and rerunning an experiment." .
+
+hpc:selectworkloadsnapshot a owl:ObjectProperty ;
+    rdfs:domain hpc:Modifyandrerunexperimentwizard ;
+    rdfs:range hpc:Workloadsnapshot ;
+    rdfs:comment "The selection of a workload snapshot for rerunning an experiment." .
+
+hpc:Samplemodelmaxmemmodel a owl:Class ;
+    rdfs:subClassOf hpc:Predictionmodel ;
+    rdfs:comment "A sample prediction model with maximum memory." .

@@ -1,0 +1,26 @@
+hpc:Project a owl:Class .
+hpc:License a owl:Class .
+hpc:lmLicenseName a owl:DatatypeProperty .
+hpc:distribution a owl:ObjectProperty .
+hpc:nonSharedDistribution a owl:ObjectProperty .
+
+hpc:Lanserver rdfs:subClassOf owl:Class .
+hpc:Project rdfs:subClassOf owl:Class .
+hpc:License rdfs:subClassOf owl:Class .
+
+hpc:LmLicenseName rdfs:domain hpc:Lanserver ;
+                     rdfs:range xsd:string .
+hpc:Distribution rdfs:domain hpc:Lanserver ;
+                  rdfs:range rdf:List .
+hpc:NonSharedDistribution rdfs:domain hpc:Lanserver ;
+                             rdfs:range rdf:List .
+
+hpc:LanServer_f1 a hpc:LanServer ;
+                hpc:LM_LICENSE_NAME "VCS-RUNTIME" ;
+                hpc:DISTRIBUTION (hpc:Lp1 1/10 hpc:Lp2 4 hpc:Lp3 2) ;
+                hpc:NON_SHARED_DISTRIBUTION (hpc:Lp1 10) .
+
+hpc:LanServer_f2 a hpc:LanServer ;
+                hpc:LM_LICENSE_NAME "VCS-RUNTIME" ;
+                hpc:DISTRIBUTION (hpc:Lp1 1/10 hpc:Lp2 4 hpc:Lp3 2/5) ;
+                hpc:NON_SHARED_DISTRIBUTION (hpc:Lp1 10 hpc:Lp3 5) .

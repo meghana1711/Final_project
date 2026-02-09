@@ -1,0 +1,67 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resourceallocation ;
+    rdfs:comment "Represents a job in a high-performance computing system." .
+
+hpc:Resourceallocation a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a resource allocation in a high-performance computing system." .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a user in a high-performance computing system." .
+
+hpc:Project a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a project in a high-performance computing system." .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a queue in a high-performance computing system." .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a host in a high-performance computing system." .
+
+hpc:Task a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a task in a high-performance computing system." .
+
+hpc:Resourcerequest a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a resource request in a high-performance computing system." .
+
+hpc:Gpuallocation a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequest ;
+    rdfs:comment "Represents a GPU allocation request in a high-performance computing system." .
+
+hpc:hasgpuallocation a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Gpuallocation ;
+    rdfs:comment "Indicates the GPU allocation for a job." .
+
+hpc:hasuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:User ;
+    rdfs:comment "Indicates the user who submitted the job." .
+
+hpc:hasproject a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Project ;
+    rdfs:comment "Indicates the project associated with the job." .
+
+hpc:hasqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queue ;
+    rdfs:comment "Indicates the queue where the job is submitted." .
+
+hpc:hashost a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpuallocation ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Indicates the hosts where the GPU allocation is made." .
+
+hpc:hastask a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Indicates the tasks associated with the job." .
+
+hpc

@@ -1,0 +1,32 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:LsfJobStarter a owl:Class .
+hpc:hascommand a owl:ObjectProperty .
+hpc:isdefault a owl:DatatypeProperty .
+hpc:isdefined a owl:DatatypeProperty .
+hpc:wheredefined a owl:DatatypeProperty .
+hpc:Interactivejob a owl:Class .
+hpc:Batchjob a owl:Class .
+hpc:Commandline a owl:Class .
+hpc:Windowscommand a owl:Class .
+hpc:Unixcommand a owl:Class .
+
+hpc:LsfJobStarter rdfs:subClassOf owl:Object .
+hpc:Hascommand rdfs:domain hpc:LsfJobStarter ;
+                   rdfs:range hpc:Command .
+hpc:Isdefault rdfs:domain hpc:LsfJobStarter ;
+                   rdfs:range xsd:boolean .
+hpc:Isdefined rdfs:domain hpc:LsfJobStarter ;
+                   rdfs:range xsd:string .
+hpc:Wheredefined rdfs:domain hpc:LsfJobStarter ;
+                   rdfs:range xsd:string .
+hpc:Interactivejob rdfs:subClassOf owl:Class .
+hpc:Batchjob rdfs:subClassOf owl:Class .
+hpc:Commandline rdfs:subClassOf owl:Object .
+hpc:Unixcommand rdfs:subClassOf hpc:Command ;
+                 rdfs:subClassOf hpc:Commandline .
+hpc:Windowscommand rdfs:subClassOf hpc:Command ;
+                 rdfs:subClassOf hpc:Commandline .

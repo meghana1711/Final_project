@@ -1,0 +1,51 @@
+hpc:Consumableresource a owl:Class .
+hpc:Nonconsumableresource a owl:Class .
+hpc:Numericresource a owl:Class .
+hpc:Stringresource a owl:Class .
+hpc:Booleanresource a owl:Class .
+
+hpc:isconsumable a owl:ObjectProperty .
+hpc:hastype a owl:DatatypeProperty .
+hpc:isnumericresource a owl:ObjectProperty, rdfs:domain hpc:nonconsumableresource;
+                                             rdfs:range xsd:decimal .
+hpc:isstringresource a owl:ObjectProperty, rdfs:domain hpc:nonconsumableresource .
+hpc:isbooleanresource a owl:ObjectProperty, rdfs:domain hpc:nonconsumableresource .
+
+hpc:Releasable a owl:Class .
+hpc:usedinorder a owl:ObjectProperty, rdfs:domain hpc:nonconsumableresource;
+                               rdfs:range hpc:Nonconsumableresource .
+hpc:select a owl:ObjectProperty, rdfs:domain hpc:nonconsumableresource;
+                             rdfs:range hpc:Nonconsumableresource .
+hpc:same a owl:ObjectProperty, rdfs:domain hpc:nonconsumableresource;
+                             rdfs:range hpc:Nonconsumableresource .
+
+hpc:Rusage a owl:Class .
+hpc:rusageContains a owl:ObjectProperty .
+
+hpc:Builtinstaticresource a owl:Class .
+hpc:Externalsharedresource a owl:Class .
+
+hpc:r15s a hpc:ConsumableResource .
+hpc:r1m a hpc:ConsumableResource .
+hpc:r15m a hpc:ConsumableResource .
+hpc:ut a hpc:ConsumableResource .
+hpc:pg a hpc:ConsumableResource .
+hpc:io a hpc:ConsumableResource .
+hpc:ls a hpc:ConsumableResource .
+hpc:it a hpc:ConsumableResource .
+hpc:tmp a hpc:ConsumableResource .
+hpc:swp a hpc:ConsumableResource .
+hpc:mem a hpc:ConsumableResource .
+
+hpc:ncpus a hpc:NonConsumableResource .
+hpc:ndisks a hpc:NonConsumableResource .
+hpc:maxmem a hpc:NonConsumableResource .
+hpc:maxswp a hpc:NonConsumableResource .
+hpc:maxtmp a hpc:NonConsumableResource .
+hpc:cpuf a hpc:NonConsumableResource .
+hpc:type a hpc:NonConsumableResource .
+hpc:model a hpc:NonConsumableResource .
+hpc:status a hpc:NonConsumableResource .
+hpc:rexpri a hpc:NonConsumableResource .
+hpc:server a hpc:NonConsumableResource .
+hpc:hname

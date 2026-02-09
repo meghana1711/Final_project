@@ -1,0 +1,26 @@
+hpc:Ibmcloudgen2provider a owl:Class .
+hpc:hasType rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Ibmcloudgen2provider ;
+    rdfs:range owl:String .
+
+hpc:confpath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Ibmcloudgen2provider .
+
+hpc:scriptpath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Ibmcloudgen2provider .
+
+hpc:Ibmcloudgen2config a owl:Class .
+hpc:hasIBMCLOUDGEN2_KEY_FILE rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Ibmcloudgen2config .
+
+hpc:hasIBMCLOUDGEN2_SSH_FILE rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Ibmcloudgen2config .
+
+hpc:hasIBMCLOUDGEN2_PROVISION_FILE rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Ibmcloudgen2config .
+
+hpc:hasIBMCLOUDGEN2_MACHINE_PREFIX rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Ibmcloudgen2config .
+
+hpc:hasLogLevel rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Ibmcloudgen2config .

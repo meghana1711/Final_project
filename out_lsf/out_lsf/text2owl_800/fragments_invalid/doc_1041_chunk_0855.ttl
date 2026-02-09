@@ -1,0 +1,53 @@
+hpc:Localexecution a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "By default, if execution fails and the local host satisﬁes resource requirements, LSF runs the task locally." .
+
+hpc:Remoteexecution a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "If execution on another host fails, runs the task locally." .
+
+hpc:forceres a owl:ObjectProperty ;
+    rdfs:domain hpc:Localexecution ;
+    rdfs:range hpc:Localexecution ;
+    rdfs:comment "Forces the lsrun command to go through RES to run a task." .
+
+hpc:Localhostresourcerequirement a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The local host satisﬁes resource requirements." .
+
+hpc:Nopseudoterminal a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "By default, the lsrun command does not create a pseudo-terminal when it runs the task." .
+
+hpc:lsfUgroupTransfer a owl:ObjectProperty ;
+    rdfs:domain hpc:Nopseudoterminal ;
+    rdfs:range hpc:Unixgroupinformation ;
+    rdfs:comment "If the LSF_UGROUP_TRANSFER parameter is enabled in the lsf.conf file, tasks in the execution side that the lsrun command runs use the UNIX group information that is set by the user on the client side." .
+
+hpc:Remotehostexecution a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Tasks in the execution side that the lsrun command runs use the UNIX group information that is set by the user on the client side." .
+
+hpc:Unixgroupinformation a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "UNIX group information." .
+
+hpc:Localhostdirectexecution a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "If RES execution fails and the local host satisﬁes resource requirements, LSF runs the task directly on local host." .
+
+hpc:Pseudoterminal a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Creates a pseudo-terminal when the task is started on UNIX hosts." .
+
+hpc:Shellmodesupport a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Creates a pseudo-terminal with shell mode support when the task is started on a UNIX host. Shell mode support is required for running interactive shells or applications that redeﬁne the CTRL-C and CTRL-Z keys." .
+
+hpc:Vieditor a owl:Class ;
+    rdfs:subClassOf hpc:Pseudoterminal ;
+    rdfs:comment "The vi editor." .
+
+hpc:Jove a owl:Class ;
+    rdfs:subClassOf hpc:Shellmodesupport ;
+    rdfs:comment "An example of an application that redeﬁnes

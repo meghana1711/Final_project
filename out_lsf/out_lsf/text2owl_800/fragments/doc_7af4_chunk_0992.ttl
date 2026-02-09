@@ -1,0 +1,11 @@
+hpc:LsfEauthOldkey a owl:Class .
+hpc:LsfEauthOldkeyExpiry a owl:Class .
+
+hpc:LsfEauthOldkey rdfs:subClassOf owl:String .
+hpc:LsfEauthOldkeyExpiry rdfs:subClassOf xsd:date .
+
+hpc:hasoldkey a owl:ObjectProperty .
+hpc:Hasoldkeyexpiry rdfs:domain hpc:LsfEauthOldkey .
+hpc:Hasoldkeyexpiry rdfs:range hpc:LsfEauthOldkeyExpiry .
+
+hpc:Usesinternalkey rdfs:subClassOf owl:Boolean .

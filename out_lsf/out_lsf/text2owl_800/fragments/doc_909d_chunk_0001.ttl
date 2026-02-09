@@ -1,0 +1,34 @@
+hpc:delay a owl:ObjectProperty ;
+    rdfs:domain hpc:Buildworkloadoption ;
+    rdfs:range xsd:integer .
+
+hpc:Delayedtarget a owl:Class ;
+    rdfs:subClassOf hpc:Target .
+
+hpc:delaytime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Delay .
+
+hpc:environmentvariables a owl:ObjectProperty ;
+    rdfs:domain hpc:Buildworkloadoption .
+
+hpc:Filesystemlatency a owl:Class .
+
+hpc:Lsmakecommand a owl:Class .
+
+hpc:numretries a owl:DatatypeProperty ;
+    rdfs:domain hpc:Buildworkloadoption .
+
+hpc:retries a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsmakecommand ;
+    rdfs:range hpc:Command .
+
+hpc:Taskdatafile a owl:Class ;
+    rdfs:subClassOf hpc:Datafile .
+
+hpc:taskrunningdata a owl:DatatypeProperty ;
+    rdfs:domain hpc:Taskdatafile .
+
+hpc:taskrunningovertime a owl:ObjectProperty ;
+    rdfs:domain hpc:Taskdatafile .
+
+hpc:Workloadoptimization a owl:Class .

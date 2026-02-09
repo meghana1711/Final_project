@@ -1,0 +1,18 @@
+hpc:LsfAdministrator a owl:Class .
+hpc:Lsfconf a owl:Class .
+hpc:Lsbparams a owl:Class .
+hpc:mbdrefreshtime a owl:DatatypeProperty .
+hpc:lsbqueryport a owl:ObjectProperty .
+hpc:expirytime a owl:DatatypeProperty .
+hpc:newjobrefresh a owl:ObjectProperty .
+
+hpc:Lsfconf rdfs:subClassOf owl:Class .
+hpc:Lsbparams rdfs:subClassOf hpc:Lsfconf .
+
+hpc:Mbdrefreshtime rdfs:domain hpc:Lsbparams .
+hpc:Mbdrefreshtime rdfs:range xsd:nonNegativeInteger .
+hpc:Lsbqueryport rdfs:domain hpc:Lsfconf .
+hpc:Lsbqueryport rdfs:range xsd:nonNegativeInteger .
+hpc:Expirytime rdfs:domain hpc:Lsbparams .
+hpc:Expirytime rdfs:range xsd:nonNegativeInteger .
+hpc:Newjobrefresh rdfs:domain hpc:Lsbparams .

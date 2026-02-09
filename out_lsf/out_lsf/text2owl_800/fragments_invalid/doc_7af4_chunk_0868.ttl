@@ -1,0 +1,20 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Lsfserverhost a owl:Class .
+hpc:Validvalues a owl:Class .
+hpc:Example a owl:Class .
+hpc:Syntax a owl:Class .
+hpc:Description a owl:Class .
+hpc:Validvalues rdfs:subClassOf hpc:Value .
+hpc:Default rdfs:subClassOf hpc:Validvalues .
+hpc:Positiveinteger rdfs:subClassOf hpc:Validvalues .
+hpc:InfinitInt rdfs:subClassOf hpc:Positiveinteger .
+hpc:lsfProxydNotokenNtries a owl:DatatypeProperty .
+hpc:lsfProxydPort a owl:ObjectProperty .
+hpc:port_number a xsd:integer .
+hpc:PortNumber1 rdfs:range xsd:integer .
+hpc:PortNumber2 rdfs:range xsd:integer .
+hpc:LsfProxydPort rdfs:domain hpc:Lsfserverhost .

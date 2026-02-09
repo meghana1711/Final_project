@@ -1,0 +1,22 @@
+hpc:Adminlevel a owl:Class. .
+hpc:defaultaccount a owl:Enum.
+hpc:Defaultaccount rdfs:domain hpc:Adminlevel;
+    rdfs:range xsd:string. .
+hpc:defaultwckey a owl:Enum.
+hpc:Defaultwckey rdfs:domain hpc:Adminlevel;
+    rdfs:range xsd:string. .
+hpc:accounts a owl:DatatypeProperty;
+    rdfs:domain hpc:Adminlevel;
+    rdfs:range rdf:array. .
+hpc:association a owl:ObjectProperty. .
+hpc:clusters a owl:DatatypeProperty;
+    rdfs:domain hpc:Adminlevel;
+    rdfs:range rdf:array. .
+hpc:partitions a owl:DatatypeProperty;
+    rdfs:domain hpc:Adminlevel;
+    rdfs:range rdf:array. .
+hpc:users a owl:DatatypeProperty;
+    rdfs:domain hpc:Adminlevel;
+    rdfs:range rdf:array. .
+hpc:wckeys a owl:DatatypeProperty;
+    rdfs:domain hpc:Adminlevel;

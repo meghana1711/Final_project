@@ -1,0 +1,18 @@
+hpc:Configurationchange a owl:Class .
+hpc:Testenvironment a owl:Class;
+    rdfs:comment "Environment for preparing and testing configuration changes." ;
+    rdfs:isDefinedBy <https://example.org/hpc-ontology/> .
+hpc:Testenvironment rdfs:subClassOf hpc:Configurationchange .
+
+hpc:Testinproduction a owl:Class;
+    rdfs:comment "Testing configuration changes in production." ;
+    rdfs:isDefinedBy <https://example.org/hpc-ontology/> .
+hpc:Testinproduction rdfs:subClassOf hpc:Configurationchange .
+
+hpc:Lookupinmanpages a owl:Class;
+    rdfs:comment "Looking up configuration changes in man pages." ;
+    rdfs:isDefinedBy <https://example.org/hpc-ontology/> .
+hpc:Changeinconfigurationfiles a owl:Class;
+    rdfs:comment "Changing options in configuration files." ;
+    rdfs:isDefinedBy <https://example.org/hpc-ontology/> .
+hpc:ChangeInConfigurationFiles rdfs:sub

@@ -1,0 +1,62 @@
+hpc:AwsTemplate a owl:Class .
+
+# Template Attributes
+hpc:templateid a owl:DatatypeProperty ;
+    rdfs:domain hpc:AwsTemplate ;
+    rdfs:range xsd:string .
+
+hpc:spotprice a owl:DatatypeProperty ;
+    rdfs:domain hpc:AwsTemplate ;
+    rdfs:range xsd:decimal .
+
+hpc:marketspotprice a owl:DatatypeProperty ;
+    rdfs:domain hpc:AwsTemplate ;
+    rdfs:range xsd:decimal .
+
+hpc:templatedisabled a owl:DatatypeProperty ;
+    rdfs:domain hpc:AwsTemplate ;
+    rdfs:range xsd:boolean .
+
+# Template Priority
+hpc:priority a owl:DatatypeProperty ;
+    rdfs:domain hpc:AwsTemplate ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Template Attributes (Numeric)
+hpc:mem a owl:DatatypeProperty ;
+    rdfs:domain hpc:AwsTemplate ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ncores a owl:DatatypeProperty ;
+    rdfs:domain hpc:AwsTemplate ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Template Attributes (String)
+hpc:ncpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:AwsTemplate ;
+    rdfs:range xsd:string .
+
+hpc:awshost a owl:DatatypeProperty ;
+    rdfs:domain hpc:AwsTemplate ;
+    rdfs:range xsd:boolean .
+
+hpc:type a owl:DatatypeProperty ;
+    rdfs:domain hpc:AwsTemplate ;
+    rdfs:range xsd:string .
+
+hpc:pricing a owl:DatatypeProperty ;
+    rdfs:domain hpc:AwsTemplate ;
+    rdfs:range xsd:string .
+
+# Allocation Rules (subclass of AWS_Template)
+hpc:Allocationrule a owl:Class ;
+    rdfs:subClassOf hpc:AwsTemplate .
+
+# Optimizations (subclass of AllocationRule)
+hpc:Optimization a owl:Class ;
+    rdfs:subClassOf hpc:Allocationrule .
+
+# Optimization Example
+hpc:hostreplacement a owl:ObjectProperty ;
+    rdfs:domain hpc:Optimization ;
+    rdfs:range hpc:Allocationrule .

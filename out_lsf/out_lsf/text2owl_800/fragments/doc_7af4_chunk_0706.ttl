@@ -1,0 +1,24 @@
+hpc:lsbIgnoreElimRes a owl:ObjectProperty .
+hpc:LsbIgnoreElimRes rdfs:domain hpc:Job .
+hpc:LsbIgnoreElimRes rdfs:range xsd:string .
+hpc:LSB_IGNORE_ELIM_RES rdfs:subPropertyOf hpc:JobProperty .
+
+hpc:lsbIndexByJob a owl:ObjectProperty .
+hpc:LsbIndexByJob rdfs:domain hpc:Job .
+hpc:LsbIndexByJob rdfs:range xsd:string .
+hpc:LSB_INDEX_BY_JOB rdfs:subPropertyOf hpc:JobProperty .
+
+hpc:LSB_INDEX_BY_JOB_NAME a owl:NamedIndividual .
+hpc:LSB_INDEX_BY_JOB_NAME rdf:value "JOBNAME" .
+
+hpc:lsbInteractMsgEnh a owl:ObjectProperty .
+hpc:LsbInteractMsgEnh rdfs:domain hpc:Job .
+hpc:LsbInteractMsgEnh rdfs:range xsd:string .
+hpc:LSB_INTERACT_MSG_ENH rdfs:subPropertyOf hpc:JobProperty .
+
+hpc:lsbInteractMsgIntval a owl:DatatypeProperty .
+hpc:LsbInteractMsgIntval rdfs:domain hpc:Job .
+hpc:LsbInteractMsgIntval rdfs:range xsd:integer .
+
+hpc:lsbJobCpulimit a owl:ObjectProperty .
+hpc:LsbJobCpulimit rdfs:domain hpc:Job .

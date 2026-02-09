@@ -1,0 +1,32 @@
+hpc:usagefactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:float ;
+    rdfs:comment "The usage factor determines how much time a job counts towards the system's resources." .
+
+hpc:usagefactorsafe a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the UsageFactor applies to job scheduling and resource limits." .
+
+hpc:accountingstorageenforce a owl:ObjectProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Defines the accounting storage enforcement policy for a QOS." .
+
+hpc:Qos a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A Quality of Service (QOS) in a computing cluster." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A job submitted to a computing cluster." .
+
+hpc:priorityweightqos a owl:DatatypeProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range xsd:float ;
+    rdfs:comment "The weight given to a QOS in the multi-factor priority plugin." .
+
+hpc:usagethreshold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:float ;
+    rdfs:comment "The lowest fairshare of an association allowable to run a job." .

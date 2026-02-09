@@ -1,0 +1,46 @@
+hpc:Jobprocessorbindingstate a owl:Class .
+hpc:NONE a hpc:JobProcessorBindingState .
+
+# Interaction with Other Features
+hpc:MbdQueryCpus rdfs:domain hpc:Cluster .
+hpc:LsfDaemonsCpus rdfs:domain hpc:Cluster .
+hpc:EgoDaemonsCpus rdfs:domain hpc:Cluster .
+
+# Job Lifecycle Events
+hpc:Joblifecycleevent a owl:Class .
+hpc:Requeue a hpc:JobLifecycleEvent .
+hpc:Rerun a hpc:JobLifecycleEvent .
+hpc:Migration a hpc:JobLifecycleEvent .
+
+# Job Process Binding in Lifecycle Events
+rdfs:domain hpc:Joblifecycleevent rdfs:range hpc:Jobprocess .
+hpc:Jobprocess rdfs:subClassOf hpc:Process .
+
+# Job Process Restart after sbatchd Restart
+hpc:Sbatchdrestart a owl:Class .
+hpc:Sbatchdrestart rdfs:subClassOf hpc:Systemevent .
+
+# Job Process Binding Restoration after sbatchd Restart
+rdfs:domain hpc:Sbatchdrestart rdfs:range hpc:Jobprocess .
+
+# badmin reconﬁg and Running Jobs
+hpc:badminReconﬁg a owl:Class .
+hpc:badminReconﬁg rdfs:subClassOf hpc:Systemevent .
+
+# Job Profile Modification and Pending Jobs
+rdfs:domain hpc:badminReconﬁg rdfs:range hpc:Job .
+
+# LSF Multicluster Capability Job Forwarding Model
+hpc:Lsfmulticlustercapability a owl:Class .
+
+# Job Forwarding in LSF Multicluster Capability Environment
+rdfs:domain hpc:Lsfmulticlustercapability rdfs:range hpc:Job .
+
+# Parallel Job Processor Binding
+hpc:Paralleljobprocessorbinding a owl:Class .
+
+# Default Processor Binding for LSF Job Processes
+hpc:DefaultProcessorBinding a hpc:ParallelJobProcessorBinding .
+
+# Binding Options for Sequential and Parallel Jobs
+hpc:Bindingoption a owl:Class .

@@ -1,0 +1,18 @@
+hpc:Grpwall a owl:Class.
+hpc:hastimelimit a owl:ObjectProperty;
+    rdfs:domain hpc:Grpwall;
+    rdfs:range xsd:float.
+
+hpc:Qos a owl:Class;
+    rdfs:subClassOf hpc:Grpwall;
+    hpc:decays a owl:ObjectProperty;
+    hpc:Decays rdfs:domain hpc:Qos;
+    hpc:Decays rdfs:range xsd:float.
+    hpc:hasdecayhalflife a owl:DatatypeProperty;
+    hpc:Hasdecayhalflife rdfs:domain hpc:Qos;
+    hpc:Hasdecayhalflife rdfs:range xsd:nonNegativeFloat.
+    hpc:hasnodecay a owl:ObjectProperty;
+    hpc:Hasnodecay rdfs:domain hpc:Qos.
+    hpc:hasprioritydecayhalflife a owl:DatatypeProperty;
+    hpc:Hasprioritydecayhalflife rdfs:domain hpc:Qos;
+    hpc:Hasprioritydecayhalflife rdfs:range xsd:nonNeg

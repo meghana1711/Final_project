@@ -1,0 +1,44 @@
+hpc:Operator a owl:Class.
+
+hpc:copytolocal a owl:ObjectProperty;
+    rdfs:domain hpc:Operator;
+    rdfs:range hpc:File.
+
+hpc:copyfromlocal a owl:ObjectProperty;
+    rdfs:domain hpc:Operator;
+    rdfs:range hpc:File.
+
+hpc:appendtolocal a owl:ObjectProperty;
+    rdfs:domain hpc:Operator;
+    rdfs:range hpc:File.
+
+hpc:overwritelocal a owl:ObjectProperty;
+    rdfs:domain hpc:Operator;
+    rdfs:range hpc:File.
+
+hpc:overwriteremote a owl:ObjectProperty;
+    rdfs:domain hpc:Operator;
+    rdfs:range hpc:File.
+
+hpc:copytoremote a owl:ObjectProperty;
+    rdfs:domain hpc:Operator;
+    rdfs:range hpc:File.
+
+hpc:joboutdir a owl:DatatypeProperty;
+    rdfs:domain hpc:Job.
+
+hpc:inputfile a owl:DatatypeProperty;
+    rdfs:domain hpc:Job;
+    rdfs:range xsd:string.
+
+hpc:Checkpointedjob a owl:Class;
+    rdfs:subClassOf hpc:Job.
+
+hpc:Migratedjob a owl:Class;
+    rdfs:subClassOf hpc:Job.
+
+hpc:Requeuedjob a owl:Class;
+    rdfs:subClassOf hpc:Job.
+
+hpc:Rerunjob a owl:Class;
+    rdfs:subClassOf hpc:Job.

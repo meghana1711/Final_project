@@ -1,0 +1,24 @@
+@base <http://example.org/hpc/>
+
+hpc:Fairshare
+    a owl:Class ;
+    rdfs:subClassOf owl:Integer ;
+    rdfs:comment "Integer value used for determining priority." ;
+    rdfs:label "Fairshare" ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:integer ;
+    owl:hasValue "parent" xsd:integer ;
+    rdfs:comment "When used on a user, this means that the parent association is used for fairshare calculations." .
+
+hpc:GrpJobs
+    a owl:Class ;
+    rdfs:subClassOf owl:Integer ;
+    rdfs:comment "The total number of jobs able to run at any given time from an association and its children." ;
+    rdfs:label "GrpJobs" ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:integer ;
+    owl:functional true ;
+    rdfs:comment "If this limit is reached, new jobs will be queued but only allowed to run after previous jobs complete from this group." .
+
+hpc:GrpJobsAccrue
+    a owl:

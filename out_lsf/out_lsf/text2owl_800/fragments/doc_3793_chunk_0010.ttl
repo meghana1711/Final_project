@@ -1,0 +1,50 @@
+hpc:Vnode a owl:Class .
+hpc:Gpu a owl:Class .
+hpc:Frontnode a owl:Class .
+hpc:Craylinux a owl:Class .
+
+# Configuration files and directories
+hpc:lsfCrayRurAccounting a owl:DatatypeProperty .
+hpc:lsfConf a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Craylinux .
+
+hpc:rurConf a owl:ObjectProperty ;
+    rdfs:domain hpc:Craylinux ;
+    rdfs:range hpc:RurFile .
+
+hpc:alpsConf a owl:ObjectProperty ;
+    rdfs:domain hpc:Craylinux ;
+    rdfs:range hpc:AlpsFile .
+
+hpc:alpsDaemon a owl:ObjectProperty ;
+    rdfs:domain hpc:Craylinux ;
+    rdfs:range xsd:string .
+
+hpc:lsfServices a owl:ObjectProperty ;
+    rdfs:domain hpc:Craylinux ;
+    rdfs:range xsd:string .
+
+# Integration directory and file structure
+hpc:IntegrationDirectory a owl:Class .
+hpc:Lsfhpc a owl:Class ;
+    rdfs:subClassOf hpc:IntegrationDirectory .
+hpc:Log a owl:Class ;
+    rdfs:subClassOf hpc:IntegrationDirectory .
+hpc:clusterName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Log .
+hpc:Craylinux a owl:Class ;
+    rdfs:subClassOf hpc:Log .
+hpc:Logdir a owl:Class ;
+    rdfs:subClassOf hpc:IntegrationDirectory .
+hpc:LsfCmddir a owl:Class ;
+    rdfs:subClassOf hpc:IntegrationDirectory .
+hpc:LiveConfdir a owl:Class ;
+    rdfs:subClassOf hpc:LsfCmddir .
+hpc:LsfIndir a owl:Class ;
+    rdfs:subClassOf hpc:IntegrationDirectory .
+
+hpc:version a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfVersion .
+hpc:Include a owl:Class ;
+    rdfs:subClassOf hpc:LsfCmddir .

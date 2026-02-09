@@ -1,0 +1,19 @@
+hpc:Host a owl:Class.
+hpc:Datamanager a owl:Class.
+hpc:Lsfdatamanager a owl:Class.
+hpc:Stagingarea a owl:Class.
+hpc:manages a owl:ObjectProperty.
+hpc:mountedat a owl:DatatypeProperty.
+hpc:LSFDataManagerManagementHost a owl:FunctionalProperty.
+hpc:lsfdatamanagerorder a owl:ObjectProperty.
+hpc:lsfdatahosts a owl:DatatypeProperty.
+hpc:lsfmasterlist a owl:DatatypeProperty.
+hpc:Stagingareamanager rdfs:domain hpc:Stagingarea;
+    rdfs:range hpc:Datamanager.
+hpc:Manages rdfs:domain hpc:Datamanager;
+    rdfs:range hpc:Stagingarea.
+hpc:Mountedat rdfs:domain hpc:Stagingarea;
+    rdfs:range xsd:string.
+hpc:Lsfdatamanagermanagementhost rdfs:domain hpc:Lsfdatamanager.
+hpc:Lsfdatamanagerorder rdfs:domain hpc:Lsfdatamanager.
+hpc

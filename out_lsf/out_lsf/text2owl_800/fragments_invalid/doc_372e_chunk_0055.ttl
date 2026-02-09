@@ -1,0 +1,16 @@
+hpc:Blddaemon a owl:Class .
+hpc:Lsflicensescheduler a owl:Class .
+hpc:lmremoveforkinterval a owl:ObjectProperty .
+hpc:Lsfconf a owl:Class .
+hpc:Blcollect a owl:Class .
+hpc:LsfCluster restartedBy rdf:type owl:ObjectProperty .
+hpc:BldDaemon restartedBy rdf:type owl:ObjectProperty .
+hpc:LsfLicenseScheduler hasForkInterval rdf:type owl:DatatypeProperty .
+hpc:LsfConf requiresRestart rdf:type owl:ObjectProperty .
+hpc:Lsfcluster rdfs:subClassOf hpc:Hpcresource .
+hpc:Blddaemon rdfs:subClassOf hpc:Hpcdaemon .
+hpc:Lsflicensescheduler rdfs:subClassOf hpc:Hpcsoftware .
+hpc:Lmremoveforkinterval rdfs:domain hpc:Lsflicensescheduler ;
+                                rdfs:range xsd:nonNegativeInteger .
+hpc:Blcollect rdfs:subClassOf hpc:Hpcdaemon .
+hpc:Lsfconf rdfs:subClassOf hpc:Hpcconfiguration .

@@ -1,0 +1,35 @@
+hpc:Compute a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Template for computing instances." .
+
+hpc:Imageid rdfs:domain hpc:Compute ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The unique identifier of the image." .
+
+hpc:Imagename rdfs:domain hpc:Compute ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the image." .
+
+hpc:Maxnumber rdfs:domain hpc:Compute ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of available instances of this template." .
+
+hpc:Vmtype rdfs:domain hpc:Compute ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The instance size used to launch virtual instances." .
+
+hpc:Subnetid rdfs:domain hpc:Compute ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The subnet name (virtual private cloud) used to launch virtual instances." .
+
+hpc:Customscripturi rdfs:domain hpc:Compute ;
+    rdfs:range xsd:anyURI ;
+    rdfs:comment "URI that is injected into the instance after instance creation and executed during instance startup." .
+
+hpc:Nodearray rdfs:domain hpc:Compute ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The Azure Cycle Cloud node array to be used for the Azure hosts created by the resource connector." .
+
+hpc:Instancetags rdfs:domain hpc:Compute ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A string representing a list of keys and their values. These N key value pairs are used to tag the instance." .

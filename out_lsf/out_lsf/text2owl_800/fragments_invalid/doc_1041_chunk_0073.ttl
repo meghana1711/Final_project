@@ -1,0 +1,58 @@
+hpc:Logfile a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Specifies a log file in which to save the information." .
+
+hpc:logFileLocation rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Either a file name or a full path file name." .
+
+hpc:defaultPath rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "If you do not specify the path for the log file, then its default path is used." .
+
+hpc:defaultName rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The default name for the log file is mbatchd.perflog.<host_name>." .
+
+hpc:owner rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The owner of the log file is the user who is specified in the LSF_ADMIN parameter." .
+
+hpc:filePermissions rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The log file permissions are the same as mbatchd daemon log permissions." .
+
+hpc:readAndExecuteAccess rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Filepermissions ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Everyone has read and execute access." .
+
+hpc:writeAccess rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Filepermissions ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The LSF_ADMIN user has write, read and execute access." .
+
+hpc:duration rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The duration in minutes to keep logging performance metric data." .
+
+hpc:loggingEnabled rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Turns off dynamic performance metric logging (stop logging)." .
+
+hpc:LSB_ENABLE_PERF_METRICS_LOG rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "If the LSB_ENABLE_PERF_METRICS_LOG parameter is enabled, logging returns to the static conﬁguration." .
+
+hpc:perfmonStart rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Dynamically enables and controls schedul

@@ -1,0 +1,34 @@
+hpc:Queues a owl:Class .
+hpc:Users a owl:Class .
+hpc:PerHost a owl:Class .
+
+hpc:Limit a owl:Class .
+hpc:name a owl:DatatypeProperty .
+hpc:slots a owl:DatatypeProperty .
+hpc:mem a owl:DatatypeProperty .
+hpc:swp a owl:DatatypeProperty .
+hpc:slotsPerProcessor a owl:DatatypeProperty .
+hpc:jobs a owl:DatatypeProperty .
+
+hpc:Consumers rdfs:domain hpc:Limit ;
+    rdfs:range hpc:Users .
+
+hpc:Affectedhosts rdfs:domain hpc:Limit ;
+    rdfs:range hpc:PerHost .
+
+hpc:Queue rdfs:domain hpc:Limit ;
+    rdfs:range hpc:Queues .
+
+hpc:Develop_group_limit a hpc:Limit ;
+    hpc:NAME "develop_group_limit" ;
+    hpc:SLOTS 1 ;
+    hpc:MEM "50%" .
+
+hpc:Default_limit a hpc:Limit ;
+    hpc:SLOTS_PER_PROCESSOR 1 ;
+    hpc:Affectedhosts hpc:all .
+
+hpc:Shortq_limit a hpc:Limit ;
+    hpc:NAME "shortq_limit" ;
+    hpc:Queue hpc:short ;
+    hpc:JOBS 200 .

@@ -1,0 +1,48 @@
+hpc:Mbatchd a owl:Class ;
+    rdfs:subClassOf owl:Process ;
+    rdfs:comment "Management batch daemon that runs on the management host. Responsible for the overall state of jobs in the system.";
+    hpc:managesJob rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range hpc:Job ;
+    hpc:receivesJobSubmission rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range hpc:Jobrequest ;
+    hpc:managesJobQueue rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range hpc:Jobqueue ;
+    hpc:dispatchesJob rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range hpc:Host ;
+
+hpc:Mbschd a owl:Class ;
+    rdfs:subClassOf owl:Process ;
+    rdfs:comment "Management batch scheduler daemon that runs on the management host. Works with mbatchd. Makes scheduling decisions based on job requirements, policies, and resource availability. Sends scheduling decisions to the mbatchd.";
+    hpc:makesSchedulingDecisions rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Mbschd ;
+    rdfs:range hpc:Schedulingdecision ;
+    hpc:sendsSchedulingDecision rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Mbschd ;
+    rdfs:range hpc:Mbatchd ;
+
+hpc:Sbatchd a owl:Class ;
+    rdfs:subClassOf owl:Process ;
+    rdfs:comment "Server batch daemon that runs on each server host, including the management host. Receives the request to run the job from mbatchd and manages local execution of the job. Responsible for enforcing local policies and maintaining the state of jobs on the host.";
+    hpc:receivesJobRequest rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchd ;
+    rdfs:range hpc:Jobrequest ;
+    hpc:managesJobExecution rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchd ;
+    rdfs:range hpc:Job ;
+    hpc:enforcesLocalPolicies rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchd ;
+    rdfs:range hpc:Localpolicy ;
+    hpc:maintainsJobState rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchd ;
+    rdfs:range hpc:Job ;
+
+hpc:Res a owl:Class ;
+    rdfs:subClassOf owl:Process ;
+    rdfs:comment "Process responsible for creating the execution environment in which the job runs.";
+    hpc:createsExecutionEnvironment rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Res ;
+    rdfs:range hpc:Executionenvironment ;

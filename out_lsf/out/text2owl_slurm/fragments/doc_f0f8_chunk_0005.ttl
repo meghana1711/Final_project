@@ -1,0 +1,43 @@
+hpc:Processtracking a owl:Class .
+hpc:Cgroup rdfs:subClassOf hpc:Processtracking .
+hpc:Linuxcgroup rdfs:subClassOf hpc:Cgroup .
+hpc:cgroupConfFile rdf:datatype xsd:string ;
+    rdfs:domain hpc:Linuxcgroup ;
+    rdfs:range hpc:Cgroupfile .
+
+hpc:Linuxproc rdfs:subClassOf hpc:Processtracking .
+hpc:parentProcessID rdf:datatype xsd:positiveInteger ;
+    rdfs:domain hpc:Linuxproc .
+
+hpc:Pgid rdfs:subClassOf hpc:Processtracking .
+hpc:processGroupID rdf:datatype xsd:positiveInteger ;
+    rdfs:domain hpc:Pgid .
+
+hpc:Resourceselection a owl:Class .
+hpc:SelectType rdf:datatype xsd:string ;
+    rdfs:domain hpc:Resourceselection .
+
+hpc:ConsTres rdfs:subClassOf hpc:Selecttype .
+hpc:Linear rdfs:subClassOf hpc:Selecttype .
+
+hpc:Tasklaunch a owl:Class .
+hpc:TaskPlugin rdf:datatype xsd:string ;
+    rdfs:domain hpc:Tasklaunch .
+
+hpc:None rdfs:subClassOf hpc:Taskplugin .
+hpc:Affinity rdfs:subClassOf hpc:Taskplugin .
+
+hpc:Tasklaunchplugin a owl:Class .
+hpc:resourceManagementWithinANode rdf:datatype xsd:string ;
+    rdfs:domain hpc:Tasklaunchplugin .
+
+hpc:Eventlogging a owl:Class .
+hpc:SlurmctldLogFile rdf:datatype xsd:string ;
+    rdfs:domain hpc:Eventlogging ;
+    rdfs:range hpc:Logfile .
+
+hpc:SlurmdLogFile rdf:datatype xsd:string ;
+    rdfs:domain hpc:Eventlogging ;
+    rdfs:range hpc:Logfile .
+
+hpc:Logfile a owl:Class .

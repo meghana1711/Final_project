@@ -1,0 +1,48 @@
+hpc:ServiceClass
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A job container for guarantee policies." .
+
+hpc:GuaranteePolicy
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A policy that specifies a resource pool and the amounts of resources to be reserved for each service class." .
+
+hpc:ResourcePool
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The pool of resources that a guarantee policy applies to." .
+
+hpc:ResourceType
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The type of resource in a resource pool (whole hosts, slots, packages, or licenses)." .
+
+hpc:HostSet
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A set of hosts from which resources are to be reserved." .
+
+hpc:hasResourcePool
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteepolicy ;
+    rdfs:range hpc:Resourcepool ;
+    rdfs:comment "The resource pool that a guarantee policy applies to." .
+
+hpc:hasResourceType
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcepool ;
+    rdfs:range hpc:Resourcetype ;
+    rdfs:comment "The type of resource in the resource pool." .
+
+hpc:hasHostSet
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcepool ;
+    rdfs:range hpc:Hostset ;
+    rdfs:comment "The set of hosts from which resources are to be reserved." .
+
+hpc:hasServiceClass
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcepool ;
+    rdfs:range hpc:Serviceclass ;
+    rdfs:comment "The service class that a resource pool guarantees resources for." .

@@ -1,0 +1,54 @@
+hpc:Lsbevent a owl:Class .
+hpc:Lsbeventfile a owl:Class .
+hpc:Infodirectory a owl:Class .
+hpc:Jobscriptfile a owl:Class .
+hpc:Jobinfocache a owl:Class .
+hpc:Lsbparamsfile a owl:Class .
+
+hpc:isassociatedwith a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbevent ;
+    rdfs:range hpc:Jobscriptfile .
+
+hpc:isstoredin a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbeventfile ;
+    rdfs:range hpc:File .
+
+hpc:isreferredby a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchddaemon ;
+    rdfs:range hpc:Lsbeventfile .
+
+hpc:isreferredbyforrerun a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchddaemon ;
+    rdfs:range hpc:Jobscriptfile .
+
+hpc:ismanagedby a owl:ObjectProperty ;
+    rdfs:domain hpc:Infodirectory ;
+    rdfs:range hpc:Directory .
+
+hpc:isstoredinjobinfocache a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobinfocache ;
+    rdfs:range hpc:Jobscriptfile .
+
+hpc:isnotstoredin a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobscriptfile ;
+    rdfs:range hpc:Infodirectory .
+
+hpc:hasloglevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logmessage .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasdescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loglevel .
+    rdfs:range xsd:string .
+
+hpc:Mbatchddaemon a owl:Class .
+hpc:bhistcommand a owl:ObjectProperty .
+hpc:bsubcommand a owl:ObjectProperty .
+
+hpc:File a owl:Class .
+hpc:Infodirectory a owl:Class .
+hpc:Jobinfocache a owl:Class .
+hpc:Logmessage a owl:Class .
+hpc:Lsbevent a owl:Class .
+hpc:Lsbeventfile a owl:Class .
+hpc:Lsbparamsfile a owl:Class .

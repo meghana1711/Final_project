@@ -1,0 +1,46 @@
+hpc:CgroupCpuSharesFactor a owl:Class .
+hpc:cpuSharesFactorValue a xsd:positiveInteger .
+hpc:CgroupCpuSharesFactor rdfs:subClassOf owl:Real .
+hpc:CgroupCpuSharesFactor rdfs:domain hpc:CgroupCpuSharesFactor .
+hpc:hasCGROUP_CPU_SHARES_FACTORValue rdf:type owl:ObjectProperty .
+hpc:HascgroupCpuSharesFactorvalue rdfs:domain hpc:CgroupCpuSharesFactor .
+hpc:HascgroupCpuSharesFactorvalue rdfs:range hpc:Cpusharesfactorvalue .
+
+hpc:Migrationthreshold a owl:Class .
+hpc:migrationThresholdValue a xsd:nonNegativeInteger .
+hpc:Migrationthreshold rdfs:subClassOf owl:Real .
+hpc:Migrationthreshold rdfs:domain hpc:Migrationthreshold .
+hpc:hasMigrationThresholdValue rdf:type owl:ObjectProperty .
+hpc:Hasmigrationthresholdvalue rdfs:domain hpc:Migrationthreshold .
+hpc:Hasmigrationthresholdvalue rdfs:range hpc:Migrationthresholdvalue .
+
+hpc:Scheduledelay a owl:Class .
+hpc:scheduleDelayValue a xsd:nonNegativeInteger .
+hpc:Scheduledelay rdfs:subClassOf owl:Real .
+hpc:Scheduledelay rdfs:domain hpc:Scheduledelay .
+hpc:hasScheduleDelayValue rdf:type owl:ObjectProperty .
+hpc:Hasscheduledelayvalue rdfs:domain hpc:Scheduledelay .
+hpc:Hasscheduledelayvalue rdfs:range hpc:Scheduledelayvalue .
+
+hpc:Jobacceptinterval a owl:Class .
+hpc:jobAcceptIntervalValue a xsd:nonNegativeInteger .
+hpc:Jobacceptinterval rdfs:subClassOf owl:Real .
+hpc:Jobacceptinterval rdfs:domain hpc:Jobacceptinterval .
+hpc:hasJobAcceptIntervalValue rdf:type owl:ObjectProperty .
+hpc:Hasjobacceptintervalvalue rdfs:domain hpc:Jobacceptinterval .
+hpc:Hasjobacceptintervalvalue rdfs:range hpc:Jobacceptintervalvalue .
+
+hpc:Resourcelimits a owl:Class .
+hpc:Resourcelimit a owl:Class .
+hpc:resourceLimitType a xsd:string .
+hpc:resourceLimitValue a xsd:nonNegativeInteger .
+hpc:Resourcelimits rdfs:subClassOf owl:Real .
+hpc:Resourcelimits rdfs:domain hpc:Resourcelimits .
+hpc:hasResourceLimit rdf:type owl:ObjectProperty .
+hpc:Hasresourcelimit rdfs:domain hpc:Resourcelimits .
+hpc:Hasresourcelimit rdfs:range hpc:Resourcelimit .
+hpc:Resourcelimit rdfs:subClassOf hpc:Resourcelimit .
+hpc:Resourcelimit rdfs:domain hpc:Resourcelimits .
+hpc:hasResourceLimitType rdf:type owl:DatatypeProperty .
+hpc:Hasresourcelimittype rdfs:domain hpc:Resourcelimit .
+hpc:hasResourceLimit

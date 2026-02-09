@@ -1,0 +1,48 @@
+hpc:LsfStartupUser a owl:Class .
+hpc:LsfStartupPath a owl:Class .
+
+hpc:hasuser a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfStartupUser ;
+    rdfs:range xsd:string .
+
+hpc:haspath a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfStartupPath ;
+    rdfs:range xsd:string .
+
+hpc:ClusterAdmin a owl:Class ;
+    rdfs:subClassOf hpc:LsfStartupUser .
+
+hpc:AdminEgo a owl:Class ;
+    rdfs:subClassOf hpc:LsfStartupUser .
+
+hpc:LsfCommand a owl:Class .
+
+hpc:iscommand a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfCommand ;
+    rdfs:range xsd:string .
+
+hpc:issubcommandof a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfCommand ;
+    rdfs:range rdf:List .
+
+hpc:LsfSudoersFile a owl:Class .
+
+hpc:hassudoersfile a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfStartupUser ;
+    rdfs:range hpc:LsfSudoersFile .
+
+hpc:hassetuidbit a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfSudoersFile ;
+    rdfs:range xsd:boolean .
+
+hpc:applicableTo a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfCommand ;
+    rdfs:range hpc:LsfCommand .
+
+hpc:UnixHost a owl:Class .
+
+hpc:haslsfStartupControl a owl:ObjectProperty ;
+    rdfs:domain hpc:UnixHost ;
+    rdfs:range hpc:LsfSudoersFile .
+
+hpc:WindowsHost a owl:Class .

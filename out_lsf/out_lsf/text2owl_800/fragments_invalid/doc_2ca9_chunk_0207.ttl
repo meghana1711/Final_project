@@ -1,0 +1,65 @@
+hpc:LockID
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        rdfs:onProperty hpc:lockID ;
+                        rdfs:allValuesFrom xsd:string ;
+                        owl:maxLength xsd:integer "128" ] ;
+    rdfs:comment "Each lock ID is a string that can contain up to 128 alphanumeric and underscore (_) characters. The keyword all is reserved and cannot be used as the lock ID." .
+
+hpc:ReservedKeyword
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        rdfs:onProperty hpc:lockID ;
+                        owl:hasValue "all" ] .
+
+hpc:ClosedHost
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A closed host can have multiple lock IDs, and the host remains closed until there are no more lock IDs attached to the host." .
+
+hpc:hasLockID
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Closedhost ;
+    rdfs:range hpc:Lockid ;
+    rdfs:comment "Relates a closed host to a lock ID." .
+
+hpc:RemovedLockID
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Closedhost ;
+    rdfs:range hpc:Lockid ;
+    rdfs:comment "Relates a closed host to a lock ID that is removed in LSF Version 10.1 Fix Pack 10." .
+
+hpc:OpensHost
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Closedhost ;
+    rdfs:range hpc:Closedhost ;
+    rdfs:comment "Relates a closed host to itself when there are no more lock IDs attached to the host." .
+
+hpc:SetuidBit
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Relates a command to whether it has the setuid bit set." .
+
+hpc:HasSetuidBit
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a command has the setuid bit set." .
+
+hpc:SchedulerEfficiency
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Perfmonview ;
+    rdfs:range xsd:real ;
+    rdfs:comment "Relates a perfmon view to the scheduler efficiency for finished jobs within a sampling period." .
+
+hpc:ObsoleteCommand
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents an obsolete sbatchd daemon control command." .
+
+hpc:DeprecatedCommand
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Obsoletecommand ;
+    rdfs:range hpc:Command ;
+    rdfs:comment "

@@ -1,0 +1,35 @@
+hpc:Hostsetup a owl:Class .
+hpc:setuid an owl:ObjectProperty .
+
+hpc:Badmin hpc:setuid some hpc:Executable .
+hpc:Lsadmin hpc:setuid some hpc:Executable .
+hpc:Egosh hpc:setuid some hpc:Executable .
+hpc:Utmpreg hpc:setuid some hpc:Executable .
+hpc:SwtblApi hpc:setuid some hpc:Executable .
+hpc:NtblApi hpc:setuid some hpc:Executable .
+hpc:LstblNid hpc:setuid some hpc:Executable .
+hpc:SwtblPoe hpc:setuid some hpc:Executable .
+
+hpc:ForceMode an owl:ObjectProperty .
+hpc:pdsh an owl:ObjectProperty .
+
+hpc:Managementhost a owl:Class .
+hpc:Managementcandidate a owl:Class .
+hpc:ChunkSize a xsd:integer .
+
+hpc:commandusage a owl:ObjectProperty .
+hpc:lsfreleaseversion a owl:ObjectProperty .
+
+hpc:Lsfshutdown a owl:Class .
+hpc:shutdownDaemons an owl:ObjectProperty .
+hpc:Forcemode rdfs:subClassOf hpc:Lsfshutdown .
+hpc:Pdsh rdfs:domain hpc:Lsfshutdown ;
+    rdfs:range hpc:Lsfshutdown .
+
+hpc:Lim a owl:Class .
+hpc:Res a owl:Class .
+hpc:Sbatchd a owl:Class .
+hpc:Mbatchd a owl:Class .
+
+hpc:Confirmationprompt rdfs:domain hpc:Lsfshutdown ;
+    rdfs:range xsd:boolean .

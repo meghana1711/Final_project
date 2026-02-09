@@ -1,0 +1,64 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Advancereservation ;
+    rdfs:subClassOf hpc:Openadvancereservation ;
+    rdfs:subClassOf hpc:Manualadvancereservation ;
+    rdfs:subClassOf hpc:Suspendedreservation .
+
+hpc:Advancereservation a owl:Class ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:subClassOf hpc:Closedadvancereservation ;
+    rdfs:subClassOf hpc:Nonsuspendreservation .
+
+hpc:Openadvancereservation a owl:Class ;
+    rdfs:subClassOf hpc:Advancereservation ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:subClassOf hpc:Suspendedreservation ;
+    rdfs:subClassOf hpc:Manualadvancereservation ;
+    rdfs:subClassOf hpc:Closedadvancereservation ;
+    rdfs:subClassOf hpc:Normaljob .
+
+hpc:Closedadvancereservation a owl:Class ;
+    rdfs:subClassOf hpc:Advancereservation ;
+    rdfs:subClassOf hpc:Reservation .
+
+hpc:Nonsuspendreservation a owl:Class ;
+    rdfs:subClassOf hpc:Advancereservation ;
+    rdfs:subClassOf hpc:Reservation .
+
+hpc:Suspendedreservation a owl:Class ;
+    rdfs:subClassOf hpc:Reservation .
+
+hpc:Manualadvancereservation a owl:Class ;
+    rdfs:subClassOf hpc:Advancereservation ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:subClassOf hpc:Openadvancereservation ;
+    rdfs:subClassOf hpc:Closedadvancereservation ;
+    rdf:seeAlso <http://example.org/hpc#brsvsub> .
+
+hpc:hasstarttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:time .
+
+hpc:hasendtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:time .
+
+hpc:isWithinReservedPeriod owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Reservation .
+
+hpc:hasuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Manualadvancereservation ;
+    rdfs:range rdf:Resource .
+
+hpc:isopen a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:boolean .
+
+hpc:issuspended a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:boolean .
+
+hpc:isadvancereservation a owl:ObjectProperty ;
+    rdfs:domain hpc:

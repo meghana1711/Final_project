@@ -1,0 +1,43 @@
+hpc:Job a owl:Class .
+hpc:User a owl:Class .
+hpc:Jobqueue a owl:Class .
+hpc:hasjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobqueue .
+hpc:hasuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+hpc:hasposition a owl:DatatypeProperty ;
+    rdfs:range xsd:integer .
+hpc:isrunning a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+hpc:ispending a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+hpc:isadmin a owl:ObjectProperty ;
+    rdfs:domain hpc:User .
+
+hpc:Jobqueue a rdfs:subClassOf owl:Class .
+hpc:Job a rdfs:subClassOf owl:Class .
+hpc:User a rdfs:subClassOf owl:Class .
+
+hpc:Jobqueue hpc:hasjob rdf:type rdf:Property .
+hpc:Job hpc:hasuser rdf:type rdf:Property .
+hpc:Job hpc:hasposition rdf:type rdf:Property .
+hpc:Job hpc:isrunning rdf:type rdf:Property .
+hpc:Job hpc:ispending rdf:type rdf:Property .
+hpc:User hpc:isadmin rdf:type rdf:Property .
+
+hpc:Job
+    hpc:hasUser "user1"^^xsd:string ;
+    hpc:hasPosition 10 .
+hpc:Job
+    hpc:hasUser "user2"^^xsd:string ;
+    hpc:hasPosition 9 ;
+    hpc:isRunning true ;
+    hpc:hasPositionInQueue 8 .
+hpc:Job
+    hpc:hasUser "user2"^^xsd:string ;
+    hpc:hasPosition 8 ;
+    hpc:isPending true .
+hpc:Job
+    hpc:hasUser "user2"^^xsd:string ;
+    hpc:hasPosition 7 ;
+    hpc:isPending true .

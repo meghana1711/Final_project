@@ -1,0 +1,26 @@
+hpc:Job a owl:Class .
+hpc:billingtres a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:maxtres a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:maxtresgres a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:tresbillingweights a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:PriorityFlags a owl:Enum ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:member hpc:MAX_TRES ;
+    rdfs:member hpc:MAX_TRES_GRES .
+
+hpc:Accountingstoragetres rdfs:subClassOf hpc:Tres .
+
+hpc:Joblimits a owl:Class ;
+    rdfs:subClassOf hpc:Job .

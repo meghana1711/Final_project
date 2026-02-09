@@ -1,0 +1,52 @@
+hpc:Ebrokerddaemon a owl:Class .
+hpc:grepCommand an owl:ObjectProperty ;
+    rdfs:domain hpc:Ebrokerddaemon ;
+    rdfs:range rdf:String .
+
+hpc:badminCommand an owl:ObjectProperty ;
+    rdfs:domain hpc:Ebrokerddaemon ;
+    rdfs:range rdf:String .
+
+hpc:badminRcViewCommand an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfresourceconnector ;
+    rdfs:range rdf:String .
+
+hpc:badminRcErrorCommand an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfresourceconnector ;
+    rdfs:range rdf:String .
+
+hpc:LSFResourceConnectorMosquittoDependentErrorCommand an owl:ObjectProperty ;
+    rdfs:domain hpc:Badminrcerrorcommand ;
+    rdfs:range rdf:Boolean .
+
+hpc:Lsfresourceconnector a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf (hpc:Lsfresourceconnectorinstances owl:unionOf (hpc:Lsfresourceconnectorpolicies owl:unionOf hpc:Lsfresourceconnectortemplates)) .
+
+hpc:Lsfresourceconnectorinstances a owl:Class ;
+    rdfs:subClassOf hpc:Lsfresourceconnector ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Lsfresourceconnectorpolicies a owl:Class ;
+    rdfs:subClassOf hpc:Lsfresourceconnector ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Lsfresourceconnectortemplates a owl:Class ;
+    rdfs:subClassOf hpc:Lsfresourceconnector ;
+    rdfs:subClassOf owl:Class .
+
+hpc:viewInfoType an owl:DatatypeProperty ;
+    rdfs:domain hpc:Badminrcviewcommand ;
+    rdfs:range xsd:string .
+
+hpc:provider an owl:DatatypeProperty ;
+    rdfs:domain hpc:Badminrcviewcommand ;
+    rdfs:range xsd:string .
+
+hpc:viewInfoTypes an owl:DatatypeProperty ;
+    rdfs:domain hpc:Badminrcviewcommand ;
+    rdfs:range xsd:string .
+
+hpc:hostProvider an owl:DatatypeProperty ;
+    rdfs:domain hpc:Badminrcerrorcommand ;
+    rdfs:range xsd:string .

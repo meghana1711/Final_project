@@ -1,0 +1,37 @@
+hpc:Job a owl:Class .
+hpc:User a owl:Class .
+hpc:Project a owl:Class .
+hpc:Status a owl:Class .
+hpc:Queue a owl:Class .
+hpc:command a owl:DatatypeProperty .
+hpc:submissiontime a owl:DatatypeProperty .
+hpc:Host a owl:Class .
+hpc:hostslot a owl:DatatypeProperty .
+hpc:submittedby a owl:ObjectProperty .
+hpc:hasjobname a owl:DatatypeProperty .
+hpc:hasjobdescription a owl:DatatypeProperty .
+
+hpc:Job rdfs:subClassOf owl:NamedIndividual .
+hpc:User rdfs:subClassOf owl:NamedIndividual .
+hpc:Project rdfs:subClassOf owl:NamedIndividual .
+hpc:Status rdfs:subClassOf owl:NamedIndividual .
+hpc:Queue rdfs:subClassOf owl:NamedIndividual .
+hpc:Host rdfs:subClassOf owl:NamedIndividual .
+
+hpc:Command rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Submissiontime rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .
+
+hpc:Submittedby rdfs:domain hpc:Job ;
+    rdfs:range hpc:User .
+
+hpc:Hasjobname rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Hasjobdescription rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Hostslot rdfs:domain hpc:Host ;
+    rdfs:range xsd:integer .

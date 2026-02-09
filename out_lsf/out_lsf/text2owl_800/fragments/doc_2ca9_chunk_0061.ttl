@@ -1,0 +1,31 @@
+hpc:Gpuenhancement a owl:Class .
+hpc:hascudavisibledevices a owl:ObjectProperty .
+hpc:hasblockdistribution a owl:ObjectProperty .
+
+hpc:Gpuenhancement rdfs:subClassOf owl:Class .
+hpc:Hascudavisibledevices rdfs:domain hpc:Gpuenhancement ;
+                            rdfs:range xsd:string .
+hpc:Hasblockdistribution rdfs:domain hpc:Gpuenhancement ;
+                            rdfs:range xsd:boolean .
+
+hpc:DisablingCUDAVisibleDevicesForMPS a hpc:GPUEnhancement .
+hpc:Disablingcudavisibledevicesformps hpc:hascudavisibledevices "nocvd" .
+
+hpc:BlockDistributionOfAllocatedGPUs a hpc:GPUEnhancement .
+hpc:Blockdistributionofallocatedgpus hpc:hasblockdistribution true .
+
+hpc:ConfiguringGPUResourceRequirements a hpc:GPUEnhancement .
+hpc:SubmittingJobsWithGPUResources a hpc:GPUEnhancement .
+
+hpc:bsubCommandOption rdf:type owl:DatatypeProperty ;
+                         rdfs:domain hpc:Configuringgpuresourcerequirements ;
+                         rdfs:range xsd:string .
+hpc:LSB_GPU_NEW_SYNTAX rdf:type owl:DatatypeProperty ;
+                       rdfs:domain hpc:Configuringgpuresourcerequirements ;
+                       rdfs:range xsd:string .
+hpc:LSB_GPU_REQ rdf:type owl:DatatypeProperty ;
+                 rdfs:domain hpc:Configuringgpuresourcerequirements ;
+                 rdfs:range xsd:string .
+hpc:GPU_REQ rdf:type owl:DatatypeProperty ;
+                 rdfs:domain hpc:Submittingjobswithgpuresources ;
+                 rdfs:range xsd:string .

@@ -1,0 +1,24 @@
+hpc:Job a owl:Class .
+hpc:Partition a owl:Class .
+hpc:Resource a owl:Class .
+hpc:prioritytier a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:integer .
+hpc:preempttype a owl:ObjectProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:string .
+hpc:oversubscribe a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:string .
+hpc:MaxShare a xsd:integer ;
+    rdfs:range hpc:Oversubscribe .
+hpc:mcslabel a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:ExclusiveUser a xsd:boolean ;
+    rdfs:range hpc:Job .
+hpc:preemptionrestriction a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+h

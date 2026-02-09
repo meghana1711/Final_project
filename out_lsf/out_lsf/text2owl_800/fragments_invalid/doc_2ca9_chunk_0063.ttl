@@ -1,0 +1,49 @@
+hpc:Gpujob a owl:Class .
+hpc:Sharedmodegpujob a owl:Class .
+hpc:packscheduling a owl:ObjectProperty .
+hpc:gpack rdf:datatype xsd:xboolean .
+hpc:lsbGpuNewSyntax a owl:ObjectProperty .
+hpc:lsbGpuReq a owl:DatatypeProperty .
+hpc:gpuReq a owl:DatatypeProperty .
+hpc:Dcgmintegration a owl:Class .
+hpc:lsfDcgmPort a owl:DatatypeProperty .
+hpc:Hostattribute a owl:Class .
+hpc:jobaffinity a owl:ObjectProperty .
+hpc:attrCreateUsers a owl:DatatypeProperty .
+hpc:attrMaxNum a owl:DatatypeProperty .
+
+hpc:Gpujob rdfs:subClassOf hpc:Resource .
+hpc:SharedModeGPUJob rdf:type hpc:GPUJob ;
+    rdfs:subClassOf hpc:Gpujob ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Packscheduling rdfs:domain hpc:Sharedmodegpujob ;
+    rdfs:range xsd:boolean .
+
+hpc:Gpack rdfs:domain hpc:Sharedmodegpujob ;
+    rdfs:range xsd:boolean .
+
+hpc:LsbGpuNewSyntax rdfs:domain hpc:LsbConfiguration ;
+    rdfs:range hpc:Packscheduling .
+
+hpc:LsbGpuReq rdfs:domain (hpc:LsbConfiguration | hpc:Queue | hpc:Application) ;
+    rdfs:range xsd:string .
+
+hpc:GpuReq rdfs:domain (hpc:Queue | hpc:Application) ;
+    rdfs:range xsd:string .
+
+hpc:Dcgmintegration rdfs:subClassOf hpc:LsbConfiguration .
+
+hpc:LsfDcgmPort rdfs:domain hpc:LsbConfiguration ;
+    rdfs:range xsd:positiveInteger .
+
+hpc:Hostattribute rdfs:subClassOf hpc:Resource .
+
+hpc:Jobaffinity rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+
+hpc:AttrCreateUsers rdfs:domain hpc:LsbConfiguration ;
+    rdfs:range xsd:string .
+
+hpc:AttrMaxNum rdfs:domain hpc:LsbConfiguration ;
+    rdfs:range xsd:nonNegativeInteger .

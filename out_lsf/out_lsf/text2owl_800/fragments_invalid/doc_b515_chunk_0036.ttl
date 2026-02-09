@@ -1,0 +1,37 @@
+hpc:Host a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:Hostgroup a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:Collection ] .
+
+hpc:Computeunit a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:hasMember an owl:ObjectProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range hpc:Host .
+
+hpc:exclude an owl:ObjectProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range rdf:PlainLiteral .
+
+hpc:wildcard an owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range rdf:PlainLiteral .
+
+hpc:range an owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range [ a xsd:nonNegativeInteger ;
+                  rdfs:range [ xsd:nonNegativeInteger ] ] .
+
+hpc:individualRange an owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range [ a xsd:nonNegativeInteger ;
+                  rdfs:range [ xsd:nonNegativeInteger ] ] .
+
+hpc:condensed a owl:DatatypeProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range xsd:boolean .

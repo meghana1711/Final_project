@@ -1,0 +1,31 @@
+hpc:Reserve a owl:Class .
+hpc:InUse an owl:DatatypeProperty ;
+    rdfs:domain hpc:Reserve ;
+    rdfs:range xsd:decimal .
+
+hpc:Free an owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:decimal .
+
+hpc:Demand an owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:decimal .
+
+hpc:Projectgroup a owl:Class .
+hpc:ShareInfoFor an owl:ObjectProperty ;
+    rdfs:domain hpc:Projectgroup ;
+    rdfs:range hpc:Project .
+
+hpc:Project a owl:Class .
+
+hpc:Group a owl:Class .
+hpc:hasgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectgroup ;
+    rdfs:range hpc:Group .
+
+hpc:Slot a owl:Class .
+hpc:isUsedBy an owl:ObjectProperty ;
+    rdfs:domain hpc:Slot ;
+    rdfs:range hpc:Job .
+
+hpc:Job a owl:Class .

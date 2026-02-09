@@ -1,0 +1,54 @@
+hpc:JobSpooldir
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        rdfs:onProperty hpc:hasSpooldir ;
+                        rdfs:hasValue 'http://example.org/hpc#Path'^^xsd:string ;
+                        owl:maxLength '4094'^^xsd:integer . ] ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        rdfs:onProperty hpc:hasSpooldir ;
+                        rdfs:hasValue '255'^^xsd:integer [ rdf:type rdf:First ;
+                                                                rdf:rest 'Windows'^^xsd:string ] ] ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        rdfs:onProperty hpc:hasSpooldir ;
+                        rdfs:hasValue '4094'^^xsd:integer [ rdf:type rdf:First ;
+                                                                rdf:rest 'UNIX'^^xsd:string ] ] ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        rdfs:onProperty hpc:hasSpooldir ;
+                        rdfs:hasValue '4094'^^xsd:integer [ rdf:type rdf:First ;
+                                                                rdf:rest 'Linux'^^xsd:string ] ] ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        rdfs:onProperty hpc:hasSpooldir ;
+                        rdfs:hasValue 'rw'^^xsd:string ;
+                        owl:someValuesFrom hpc:AccessibleByUser ] ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        rdfs:onProperty hpc:hasSpooldir ;
+                        rdfs:hasValue 'rw'^^xsd:string ;
+                        owl:someValuesFrom hpc:SharedByHost ] .
+
+hpc:JobName
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:maxLength '4094'^^xsd:integer .
+
+hpc:JobArray
+    a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        rdfs:onProperty hpc:hasJobName ;
+                        rdfs:hasValue '*'^^xsd:string ] .
+
+hpc:JobArrayIndexList
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:string .
+
+hpc:JobArraySlotLimit
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:integer .
+
+hpc:JobSlotLimit
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd

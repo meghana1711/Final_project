@@ -1,0 +1,44 @@
+hpc:Jobpack a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Use LSF job packs to speed up the submission of a large number of jobs." .
+
+hpc:Jobarray a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Job arrays are groups of jobs with the same executable and resource requirements, but different input files." .
+
+hpc:Fairsharescheduling a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "fair share scheduling divides the processing power of the LSF cluster among users and queues to provide fair access to resources." .
+
+hpc:Guaranteedresourcepools a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Guaranteed resource pools provide a minimum resource guarantee to a group of users or other consumers." .
+
+hpc:reservedmemoryresources a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepools ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Use LSF to reserve memory resources for high-throughput workload." .
+
+hpc:reservedlicenseresources a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepools ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Reserving license resources" .
+
+hpc:Jobpackoverview a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Job packs overview" .
+
+hpc:jobpacksize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobpack ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Job pack size is configurable." .
+
+hpc:batchdblocked a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpack ;
+    rdfs:range rdf:Boolean ;
+    rdfs:comment "While LSF is processing a job pack, mbatchd is blocked from processing other requests." .
+
+hpc:reasonableresponsetime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobpack ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Limiting the number of jobs in each pack ensures a reasonable response time for other job submissions." .

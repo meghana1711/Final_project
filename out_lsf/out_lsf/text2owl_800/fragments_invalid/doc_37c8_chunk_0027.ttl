@@ -1,0 +1,50 @@
+hpc:Job a owl:Class .
+hpc:ApplicationProfile rdf:type owl:Class .
+hpc:Queue rdf:type owl:Class .
+hpc:Container rdf:type owl:Class .
+hpc:ExecDriver rdf:type owl:ObjectProperty .
+hpc:Precedence rdf:type owl:ObjectProperty .
+hpc:CWD rdf:type owl:ObjectProperty .
+hpc:ContainerInaccessible rdf:type owl:ObjectProperty .
+hpc:RootDirectory rdf:type owl:ObjectProperty .
+hpc:LSFSessionScheduler rdf:type owl:Class .
+hpc:Podman rdf:type owl:Class .
+hpc:LSFSessionSchedulerIncompatible rdf:type owl:ObjectProperty .
+hpc:LSFPodman rdf:type owl:Class .
+hpc:PrepareLSF rdf:type owl:ObjectProperty .
+hpc:ConfigureLSF rdf:type owl:ObjectProperty .
+hpc:PodmanProfile rdf:type owl:Class .
+hpc:PodmanQueue rdf:type owl:Class .
+hpc:SubmitPodmanJob rdf:type owl:ObjectProperty .
+hpc:DockerIncompatible rdf:type owl:ObjectProperty .
+
+hpc:Job rdfs:subClassOf [ a owl:Class ;
+                             rdfs:subClassOf owl:Thing ] .
+hpc:Applicationprofile rdfs:subClassOf hpc:Job .
+hpc:Queue rdfs:subClassOf hpc:Job .
+hpc:Container rdfs:subClassOf hpc:Job .
+
+hpc:Execdriver rdfs:domain hpc:Job ;
+                rdfs:range hpc:Container .
+hpc:Precedence rdfs:domain hpc:Job ;
+                rdfs:range hpc:Container .
+hpc:Cwd rdfs:domain hpc:Container ;
+                rdfs:range xsd:string .
+hpc:Containerinaccessible rdfs:domain hpc:Container ;
+                rdfs:range xsd:boolean .
+hpc:Rootdirectory rdfs:domain hpc:Container ;
+                rdfs:range xsd:string .
+hpc:Lsfsessionscheduler rdfs:subClassOf hpc:Job ;
+                     rdfs:subClassOf owl:Thing .
+hpc:Podman rdfs:subClassOf hpc:Job ;
+                     rdfs:subClassOf owl:Thing .
+hpc:Lsfsessionschedulerincompatible rdfs:domain hpc:Lsfsessionscheduler ;
+                                 rdfs:range hpc:Podman .
+hpc:Lsfpodman rdfs:subClassOf hpc:Job ;
+                     rdfs:subClassOf owl:Thing .
+hpc:Preparelsf rdfs:domain hpc:Lsfpodman ;
+                rdfs:range hpc:Podman .
+hpc:Configurelsf rdfs:domain hpc:Lsfpodman ;
+                rdfs:range hpc:Podman .
+hpc:Podmanprofile rdfs:subClassOf hpc:Job ;
+                     rdfs:subClassOf owl:Th

@@ -1,0 +1,31 @@
+hpc:Enablegpuhistruntime a owl:Class .
+hpc:hasgpuhistruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Enablegpuhistruntime ;
+    rdfs:range xsd:string .
+
+hpc:Historicalgpuruntime a owl:Class .
+
+hpc:Enablehistruntime a owl:Class .
+hpc:hashistruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Enablehistruntime ;
+    rdfs:range xsd:string .
+
+hpc:Estimatedruntime a owl:Class .
+hpc:hasestimatedruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Estimatedruntime ;
+    rdfs:range xsd:string .
+
+hpc:Hour a xsd:nonNegativeInteger .
+hpc:Minute a xsd:nonNegativeInteger .
+
+hpc:Exclusivequeue a owl:Class .
+hpc:isexclusivequeue a owl:ObjectProperty ;
+    rdfs:domain hpc:Exclusivequeue ;
+    rdfs:range xsd:boolean .
+
+hpc:Exclusivecu a owl:Class .
+hpc:isexclusivecu a owl:ObjectProperty ;
+    rdfs:domain hpc:Exclusivecu ;
+    rdfs:range xsd:string .
+
+hpc:Cutype a owl:Class .

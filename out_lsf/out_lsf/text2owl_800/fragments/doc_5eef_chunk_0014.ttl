@@ -1,0 +1,38 @@
+hpc:Usergroup a owl:Class .
+hpc:User a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Job a owl:Class .
+hpc:File a owl:Class .
+hpc:Folder a owl:Class .
+hpc:Cache a owl:Class .
+hpc:absfilepath a owl:DatatypeProperty .
+hpc:absfolderpath a owl:DatatypeProperty .
+hpc:jobid a owl:DatatypeProperty .
+hpc:clustername a owl:ObjectProperty .
+hpc:username a owl:ObjectProperty .
+hpc:hostname a owl:ObjectProperty .
+hpc:cachepermission a owl:ObjectProperty .
+
+hpc:Absfilepath rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+hpc:Absfolderpath rdfs:domain hpc:Folder ;
+    rdfs:range xsd:string .
+hpc:Jobid rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:Clustername rdfs:domain hpc:File, hpc:Folder, hpc:Job ;
+    rdfs:range xsd:string .
+hpc:Username rdfs:domain hpc:Bdatacache ;
+    rdfs:range xsd:string .
+hpc:Hostname rdfs:domain hpc:Absfilepath, hpc:Absfolderpath ;
+    rdfs:range xsd:string .
+hpc:Cachepermission rdfs:domain hpc:Bdatacache ;
+    rdfs:range xsd:string .
+
+hpc:Bdatacache a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:cachePermission ;
+                        owl:hasValue "user" ] .
+hpc:Bdatacache a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:cachePermission ;
+                        owl:hasValue "all" ] .

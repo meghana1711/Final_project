@@ -1,0 +1,33 @@
+hpc:Macosinstallation hpc:a owl:Class ;
+  rdfs:subClassOf hpc:Installation .
+
+hpc:Jreinstallation hpc:a owl:Class ;
+  rdfs:subClassOf hpc:Installation .
+
+hpc:Jreonmacos hpc:a owl:Class ;
+  rdfs:subClassOf hpc:Jreinstallation ;
+  rdfs:subClassOf hpc:Macosinstallation .
+
+hpc:JavaHome hpc:a owl:ObjectProperty ;
+  rdfs:domain hpc:Jreonmacos ;
+  rdfs:range xsd:string .
+
+hpc:Searchforjre hpc:a owl:ObjectProperty ;
+  rdfs:domain hpc:Jreonmacos ;
+  rdfs:range xsd:boolean .
+
+hpc:Standardinstallerpackage hpc:a owl:Class ;
+  rdfs:subClassOf hpc:Installerpackage .
+
+hpc:Heterogeneouscluster hpc:a owl:Class .
+
+hpc:Smallinstallerpackage hpc:a owl:Class ;
+  rdfs:subClassOf hpc:Installerpackage .
+
+hpc:Homogeneousx8664cluster hpc:a owl:Class .
+
+hpc:Installerpackagerequirement hpc:a owl:DatatypeProperty ;
+  rdfs:domain hpc:Installerpackage ;
+  rdfs:range xsd:integer .
+
+hpc:Installerpackage hpc:a owl:Class .

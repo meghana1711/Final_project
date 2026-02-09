@@ -1,0 +1,68 @@
+hpc:Eventlogfile a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "Represents a log file containing historical events." .
+
+hpc:Currenteventlogfile a owl:Class ;
+    rdfs:subClassOf hpc:Eventlogfile ;
+    rdfs:comment "Default event log file in the LSF system." .
+
+hpc:Specifiedeventlogfile a owl:Class ;
+    rdfs:subClassOf hpc:Eventlogfile ;
+    rdfs:comment "Event log file specified by the user." .
+
+hpc:Administratorcomment a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "Comment text specified by the administrator." .
+
+hpc:time a owl:DatatypeProperty ;
+    rdfs:domain hpc:Historicalevent ;
+    rdfs:range xsd:dateTime .
+
+hpc:Time0 rdfs:domain hpc:Displayhistoricalevents ;
+    rdfs:range xsd:dateTime .
+
+hpc:Time1 rdfs:domain hpc:Displayhistoricalevents ;
+    rdfs:range xsd:dateTime .
+
+hpc:logfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Eventlogfile ;
+    rdfs:range hpc:Specifiedeventlogfile ;
+    rdfs:comment "The specified event log file." .
+
+hpc:displayhistoricalevents a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Historicaleventlist ;
+    rdfs:comment "Displays historical events for all the queues, hosts, and mbatchd." .
+
+hpc:Historicaleventlist a owl:Class ;
+    rdfs:subClassOf owl:Collection ;
+    rdfs:comment "List of historical events." .
+
+hpc:Historicalevent a owl:Class ;
+    rdfs:subClassOf owl:Event ;
+    rdfs:comment "Historical event in the event log." .
+
+hpc:Command a owl:Class ;
+    rdfs:subClassOf owl:Action ;
+    rdfs:comment "Command executed to display historical events." .
+
+hpc:offlineanalysis a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the analysis is done offline." .
+
+hpc:Queueevent a owl:Class ;
+    rdfs:subClassOf hpc:Historicalevent ;
+    rdfs:comment "Event related to a queue." .
+
+hpc:Hostevent a owl:Class ;
+    rdfs:subClassOf hpc:Historicalevent ;
+    rdfs:comment "Event related to a host." .
+
+hpc:Mbatchdevent a owl:Class ;
+    rdfs:subClassOf hpc:Historicalevent ;
+    rdfs:comment "Event related to mbatchd." .
+
+hpc:Powerevent a owl:Class ;
+    rdfs:subClassOf hpc:Historicalevent ;
+    rdfs:comment "Power

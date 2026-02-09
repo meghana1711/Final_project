@@ -1,0 +1,56 @@
+hpc:Taskplacement a owl:Class .
+hpc:Candidatehost a owl:Class .
+hpc:Host a owl:Class .
+hpc:Task a owl:Class .
+hpc:Hastask hpc:objectproperty ;
+    rdfs:domain hpc:Candidatehost ;
+    rdfs:range hpc:Task .
+hpc:Numtasks hpc:datatypeproperty ;
+    rdfs:domain hpc:Taskplacement ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Freeresources hpc:objectproperty ;
+    rdfs:domain hpc:Taskplacement ;
+    rdfs:range hpc:Candidatehost .
+hpc:Stripe hpc:objectproperty ;
+    rdfs:domain hpc:Taskplacement .
+hpc:Ptile hpc:objectproperty ;
+    rdfs:domain hpc:Taskplacement .
+hpc:Maxtasks hpc:datatypeproperty ;
+    rdfs:domain hpc:Taskplacement ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Hoststatus a owl:Class .
+hpc:Job a owl:Class .
+hpc:jobname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:jobqueue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:jobsubmittime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:jobstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:jobuser a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:fromhost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:SpanType a owl:Enum ;
+    rdfs:subClassOf owl:Class ;
+    owl:oneOf ( hpc:stripe hpc:ptile ) .
+hpc:Taskdistribution a owl:Class .
+hpc:Taskdistributiononhost hpc:objectproperty ;
+    rdfs:domain hpc:Taskdistribution ;
+    rdfs:range hpc:Host .
+hpc:Taskcountonhost hpc:datatypeproperty ;
+    rdfs:domain hpc:Taskdistribution ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:TaskPlacement a hpc:TaskPlacement, hpc:TaskDistribution .
+hpc:CandidateHost a hpc:Host, hpc:TaskPlacement .
+hpc:Host a hpc:Host, hpc:CandidateHost .
+hpc:Task a hpc:Task, hpc:hasTask .
+hpc:HostStatus a hpc:Host, rdf:type rdfs:Literal .
+hpc:Job a hpc:Job, hpc:JobID, hpc:JobName, hpc:JobQueue, hpc:JobSubmitTime, hpc:JobStatus, hpc:JobUser, hpc:FromHost .
+hpc:Spantype rdfs:subClassOf owl:Class .
+hpc:Taskdistribution a owl:Class .
+``

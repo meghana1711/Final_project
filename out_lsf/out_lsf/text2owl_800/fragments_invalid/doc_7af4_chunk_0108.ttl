@@ -1,0 +1,41 @@
+hpc:Lsfschedulerslot a owl:Class .
+hpc:Runslot hpc:Ssuspslot hpc:Usupslot hpc:Rsvslot rdfs:subClassOf hpc:Lsfschedulerslot .
+
+hpc:Schedulingphase a owl:Class .
+
+hpc:Joblevelspan hpc:Applicationlevelspan hpc:Queuelevelspan rdfs:subClassOf hpc:Span .
+hpc:JobLevelSpan rdfs:subPropertyOf hpc:SchedulingPhase .
+hpc:ApplicationLevelSpan rdfs:subPropertyOf hpc:JobLevelSpan .
+hpc:QueueLevelSpan rdfs:subPropertyOf hpc:JobLevelSpan .
+hpc:Span rdfs:domain hpc:Lsfschedulerslot ;
+    rdfs:range hpc:Schedulingphase .
+
+hpc:Overridingspan hpc:Joblevelspanoverridesapplicationlevelspan hpc:Applicationlevelspanoverridesqueuelevelspan rdfs:subClassOf hpc:Span .
+
+hpc:Combinedresources a owl:Class .
+
+hpc:Joblevelcu hpc:Applicationlevelcu hpc:Queuelevelcu rdfs:subClassOf hpc:Combinedresources .
+hpc:JobLevelCu rdfs:subPropertyOf hpc:CombinedResources .
+hpc:ApplicationLevelCu rdfs:subPropertyOf hpc:JobLevelCu .
+hpc:QueueLevelCu rdfs:subPropertyOf hpc:JobLevelCu .
+
+hpc:Joblevelaffinity hpc:Applicationlevelaffinity hpc:Queuelevelaffinity rdfs:subClassOf hpc:Combinedresources .
+hpc:JobLevelAffinity rdfs:subPropertyOf hpc:CombinedResources .
+hpc:ApplicationLevelAffinity rdfs:subPropertyOf hpc:JobLevelAffinity .
+hpc:QueueLevelAffinity rdfs:subPropertyOf hpc:JobLevelAffinity .
+
+hpc:Default a owl:Class .
+hpc:Localtype hpc:Pgorder rdfs:subClassOf hpc:Default .
+
+hpc:Resizablejobs a owl:Class .
+hpc:Resizablejobsresized hpc:Resizablejobsdisabled rdfs:subClassOf hpc:Resizablejobs .
+
+hpc:ResizableJobsResized rdfs:subPropertyOf hpc:ResizableJobs .
+hpc:ResizableJobsDisabled rdfs:subPropertyOf hpc:ResizableJobs .
+
+hpc:Resizablejobsresized rdfs:domain hpc:Resizablejobs ;
+    rdfs:range hpc:Resized .
+hpc:Resizablejobsdisabled rdfs:domain hpc:Resizablejobs ;
+    rdfs:range hpc:Disabled .
+
+hpc:hostsminusonespan a owl:DatatypeProperty .

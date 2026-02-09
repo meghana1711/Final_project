@@ -1,0 +1,39 @@
+hpc:Singleprocessorhost a owl:Class .
+hpc:slots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Singleprocessorhost ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Singleprocessorhost ;
+    rdfs:range rdf:List .
+
+hpc:Exclusivejob a owl:Class .
+hpc:submitexclusivejob a owl:ObjectProperty ;
+    rdfs:domain hpc:Exclusivejob ;
+    rdfs:range rdf:List .
+
+hpc:Exclusivequeue a owl:Class .
+hpc:exclusive a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusivequeue ;
+    rdfs:range xsd:string .
+hpc:computeunittype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusivequeue ;
+    rdfs:range xsd:string .
+
+hpc:Computeunitexclusivejob a owl:Class .
+hpc:submitcomputeunitexclusivejob a owl:ObjectProperty ;
+    rdfs:domain hpc:Computeunitexclusivejob ;
+    rdfs:range rdf:List .
+
+hpc:cuexclusive a owl:DatatypeProperty ;
+    rdfs:domain hpc:Computeunitexclusivejob ;
+    rdfs:range xsd:string .
+
+hpc:Jobdependency a owl:Class .
+hpc:jobresult a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobdependency ;
+    rdfs:range hpc:Exclusivejob .
+
+hpc:Jobpriority a owl:Class .
+hpc:jobscheduling a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpriority ;
+    rdfs:range rdf:List .

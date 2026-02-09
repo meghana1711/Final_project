@@ -1,0 +1,60 @@
+hpc:AccountsAssociation a owl:Class .
+hpc:UsersAssociation a owl:Class .
+
+hpc:v0.0.40_openapi_users_add_cond_resp_str a xsd:string .
+hpc:V0.0.40_openapi_users_add_cond_resp a owl:Class .
+
+hpc:Slurmdb a owl:Class .
+hpc:Slurm a owl:Class .
+
+hpc:V0.0.39_assoc a owl:Class .
+hpc:V0.0.39_qos a owl:Class .
+
+hpc:max a owl:ObjectProperty ;
+    rdfs:domain hpc:V0.0.39_assoc ;
+    rdfs:range hpc:V0.0.39_assoc .
+
+hpc:jobs a owl:ObjectProperty ;
+    rdfs:domain hpc:V0.0.39_assoc ;
+    rdfs:range hpc:V0.0.39_assoc .
+
+hpc:count a xsd:nonNegativeInteger ;
+    rdfs:range hpc:Max .
+
+hpc:active a xsd:nonNegativeInteger ;
+    rdfs:range hpc:Max .
+
+hpc:accruing a xsd:nonNegativeInteger ;
+    rdfs:range hpc:Max .
+
+hpc:total a xsd:nonNegativeInteger ;
+    rdfs:range hpc:Max .
+
+hpc:grace_time a xsd:nonNegativeInteger ;
+    rdfs:range hpc:Limits .
+
+hpc:limits a owl:ObjectProperty ;
+    rdfs:domain hpc:V0.0.39_qos ;
+    rdfs:range hpc:V0.0.39_qos .
+
+hpc:max a owl:ObjectProperty ;
+    rdfs:domain hpc:Limits ;
+    rdfs:range hpc:Limits .
+
+hpc:activeJobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Limits ;
+    rdfs:range hpc:Limits .
+
+hpc:wallClock a owl:ObjectProperty ;
+    rdfs:domain hpc:Limits ;
+    rdfs:range hpc:Limits .
+
+hpc:per a owl:ObjectProperty ;
+    rdfs:domain hpc:WallClock ;
+    rdfs:range hpc:WallClock .
+
+hpc:qos a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:V0.0.39_qos .
+
+hpc:Job a owl:Class .

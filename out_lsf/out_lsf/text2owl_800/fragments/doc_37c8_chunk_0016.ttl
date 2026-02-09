@@ -1,0 +1,31 @@
+hpc:Containerjob a owl:Class .
+hpc:Applicationprofile a owl:Class .
+hpc:Queue a owl:Class .
+hpc:Dockerjob a owl:Class .
+
+# Object Properties
+hpc:usesapplicationprofile a owl:ObjectProperty .
+hpc:usesqueue a owl:ObjectProperty .
+hpc:overridesqueuesettings a owl:ObjectProperty .
+hpc:requestsgpus a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hascontainer a owl:DatatypeProperty .
+hpc:hasexecDriver a owl:DatatypeProperty .
+hpc:hasgpuresources a owl:DatatypeProperty .
+
+# Domain and Range
+hpc:Usesapplicationprofile rdfs:domain hpc:Dockerjob ;
+    rdfs:range hpc:Applicationprofile .
+hpc:Usesqueue rdfs:domain hpc:Dockerjob ;
+    rdfs:range hpc:Queue .
+hpc:Overridesqueuesettings rdfs:domain hpc:Dockerjob ;
+    rdfs:range hpc:Dockerjob .
+hpc:Requestsgpus rdfs:domain hpc:Dockerjob ;
+    rdfs:range xsd:string .
+hpc:Hascontainer rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:string .
+hpc:HasexecDriver rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:string .
+hpc:Hasgpuresources rdfs:domain hpc:Dockerjob ;
+    rdfs:range xsd:string .

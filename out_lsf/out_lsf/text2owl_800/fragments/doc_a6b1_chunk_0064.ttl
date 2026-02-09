@@ -1,0 +1,50 @@
+hpc:Kerberosauthentication a owl:Class .
+hpc:Lsf a owl:Class .
+hpc:Ibmspectrumlsf a owl:Class .
+
+hpc:eauthexecutable a owl:ObjectProperty .
+hpc:configlsf a owl:ObjectProperty .
+hpc:configkerberosserver a owl:ObjectProperty .
+hpc:modifykerberosauthentication a owl:ObjectProperty .
+hpc:securedataexchange a owl:ObjectProperty .
+hpc:forwardcredentials a owl:ObjectProperty .
+hpc:kerberosintegration a owl:ObjectProperty .
+hpc:krbrenewd a owl:ObjectProperty .
+hpc:tgthandling a owl:ObjectProperty .
+hpc:usertgtforwarding a owl:ObjectProperty .
+hpc:lsbKrbTgtFwd a owl:ObjectProperty .
+
+hpc:Kerberosauthentication rdfs:subClassOf hpc:Authenticationmethod .
+hpc:Lsf rdfs:subClassOf hpc:Computingresource .
+
+hpc:Eauthexecutable rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .
+
+hpc:Configlsf rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Kerberosauthentication .
+
+hpc:Configkerberosserver rdfs:domain hpc:Kerberosauthentication ;
+    rdfs:range hpc:Kerberosserver .
+
+hpc:Modifykerberosauthentication rdfs:domain hpc:Kerberosauthentication .
+
+hpc:Securedataexchange rdfs:domain hpc:Kerberosauthentication ;
+    rdfs:range xsd:boolean .
+
+hpc:Forwardcredentials rdfs:domain hpc:Kerberosauthentication ;
+    rdfs:range xsd:boolean .
+
+hpc:Kerberosintegration rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Kerberosintegrationfeatures .
+
+hpc:Krbrenewd rdfs:domain hpc:Kerberosintegrationfeatures ;
+    rdfs:range hpc:Kerberosbinary .
+
+hpc:Tgthandling rdfs:domain hpc:Kerberosintegrationfeatures ;
+    rdfs:range xsd:string .
+
+hpc:Usertgtforwarding rdfs:domain hpc:Kerberosintegrationfeatures ;
+    rdfs:range xsd:boolean .
+
+hpc:LsbKrbTgtFwd rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .

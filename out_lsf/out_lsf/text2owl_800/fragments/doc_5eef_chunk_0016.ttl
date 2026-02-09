@@ -1,0 +1,36 @@
+hpc:Jobrecord a owl:Class .
+hpc:Inputfilerecord a owl:Class .
+hpc:Outputfilerecord a owl:Class .
+hpc:DONE a xsd:string .
+hpc:EXIT a xsd:string .
+hpc:TRANSFERRED a xsd:string .
+hpc:ERROR a xsd:string .
+hpc:UNKNOWN a xsd:string .
+hpc:STAGING a xsd:string .
+hpc:NEW a xsd:string .
+hpc:LINKED a xsd:string .
+
+# Cache Output Grace Period property
+hpc:cacheoutputgraceperiod a owl:DatatypeProperty .
+hpc:Cacheoutputgraceperiod rdfs:domain hpc:Jobrecord .
+hpc:Cacheoutputgraceperiod rdfs:range xsd:duration .
+
+# File properties
+hpc:hash a owl:DatatypeProperty .
+hpc:Hash rdfs:domain hpc:Filerecord .
+hpc:Hash rdfs:range xsd:string .
+
+hpc:status a owl:ObjectProperty .
+hpc:Status rdfs:domain hpc:Filerecord .
+hpc:Status rdfs:range hpc:Status .
+
+# File statuses
+hpc:Status a owl:Class .
+hpc:Done rdfs:subClassOf hpc:Status .
+hpc:Exit rdfs:subClassOf hpc:Status .
+hpc:Transferred rdfs:subClassOf hpc:Status .
+hpc:Error rdfs:subClassOf hpc:Status .
+hpc:Unknown rdfs:subClassOf hpc:Status .
+hpc:Staging rdfs:subClassOf hpc:Status .
+hpc:New rdfs:subClassOf hpc:Status .
+hpc:Linked rdfs:subClassOf hpc:Status .

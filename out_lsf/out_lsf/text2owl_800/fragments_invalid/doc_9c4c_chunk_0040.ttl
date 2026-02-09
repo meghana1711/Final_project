@@ -1,0 +1,54 @@
+hpc:Patchbackupdir a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Full path to the directory where backup files of patches are saved." ;
+    rdfs:label "PatchBackupDir" ;
+    rdfs:domain hpc:Lsfconfiguration .
+
+hpc:patchBackupDir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The default path for Patch Backup Directory." ;
+    rdfs:label "PATCH_BACKUP_DIR" .
+
+hpc:Patchhistorydir a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Full path to the patch history directory." ;
+    rdfs:label "PatchHistoryDir" ;
+    rdfs:domain hpc:Lsfconfiguration .
+
+hpc:patchHistoryDir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The full path to the patch history directory, used only when installing a new cluster for the first time." ;
+    rdfs:label "PATCH_HISTORY_DIR" .
+
+hpc:PatchHistoryDirConstraints a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Constraints for Patch History Directory." ;
+    rdfs:label "PATCH_HISTORY_DIR_CONSTRAINTS" ;
+    rdfs:domain hpc:Lsfconfiguration .
+
+hpc:patchHistoryDirConstraintsRootDir a owl:ObjectProperty ;
+    rdfs:domain hpc:PatchHistoryDirConstraints ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the directory can be the root directory (/)." ;
+    rdfs:label "PATCH_HISTORY_DIR_CONSTRAINTS_ROOT_DIR" .
+
+hpc:patchHistoryDirConstraintsWritable a owl:ObjectProperty ;
+    rdfs:domain hpc:PatchHistoryDirConstraints ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the directory is writable by lsfadmin." ;
+    rdfs:label "PATCH_HISTORY_DIR_CONSTRAINTS_WRITABLE" .
+
+hpc:Lsfconfiguration a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Configuration for LSF." ;
+    rdfs:label "LSFConfiguration" .
+
+hpc:SilentInstall a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Indicates whether the installation is silent." ;
+    rdfs:label "SILENT_INSTALL" ;
+    rdfs:domain hpc:Lsfconfiguration .
+
+hpc:SILENT_INST

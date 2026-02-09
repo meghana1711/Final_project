@@ -1,0 +1,56 @@
+hpc:Licenseserver a owl:Class .
+hpc:Remotelicenseserver a owl:Class .
+hpc:Locallicenseserver a owl:Class .
+hpc:Remoteagenthost a owl:Class .
+
+hpc:haslicense a owl:ObjectProperty .
+hpc:isremote a owl:ObjectProperty .
+hpc:islocal a owl:ObjectProperty .
+hpc:isagentfor a owl:ObjectProperty .
+
+hpc:hassubnet a owl:ObjectProperty .
+
+hpc:LicenseServer hasSubnet xsd:string .
+hpc:Remotelicenseserver rdfs:domain hpc:Remotelicenseserver .
+hpc:Locallicenseserver rdfs:domain hpc:Locallicenseserver .
+hpc:Remoteagenthost rdfs:domain hpc:Remoteagenthost .
+
+hpc:Licenseserver rdfs:range hpc:License .
+hpc:Remotelicenseserver rdfs:range hpc:Remotelicense .
+hpc:Locallicenseserver rdfs:range hpc:Locallicense .
+hpc:Remoteagenthost rdfs:range hpc:Remoteagent .
+
+hpc:License a owl:Class .
+hpc:Remotelicense a owl:Class .
+hpc:Locallicense a owl:Class .
+
+hpc:hostA a hpc:LocalLicenseServer ;
+    hpc:hasLicense (1700@hostA) .
+
+hpc:hostB a hpc:RemoteLicenseServer ;
+    hpc:hasLicense (1700@hostB) ;
+    hpc:isRemote true ;
+    hpc:hasSubnet "hostB_subnet" .
+
+hpc:hostC a hpc:RemoteAgentHost ;
+    hpc:isAgentFor (1700@hostC) ;
+    hpc:hasSubnet "hostC_subnet" .
+hpc:hostD a hpc:RemoteAgentHost ;
+    hpc:isAgentFor (1700@hostD) ;
+    hpc:hasSubnet "hostD_subnet" .
+hpc:hostE a hpc:RemoteLicenseServer ;
+    hpc:hasLicense (1700@hostE) ;
+    hpc:isRemote true ;
+    hpc:hasSubnet "hostE_subnet" ;
+    hpc:isAgentFor hostD .
+hpc:hostF a hpc:RemoteLicenseServer ;
+    hpc:hasLicense (1700@hostF) ;
+    hpc:isRemote true ;
+    hpc:hasSubnet "hostF_subnet" ;
+    hpc:isAgentFor hostD .
+
+hpc:Lanservicedomain a owl:Class .
+hpc:hascluster a owl:ObjectProperty .
+hpc:hasstaticallocation a owl:ObjectProperty .
+
+hpc:Cluster a owl:Class .

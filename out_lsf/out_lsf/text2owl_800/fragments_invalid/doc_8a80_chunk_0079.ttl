@@ -1,0 +1,34 @@
+hpc:Lsfsystemlogfile a owl:Class .
+hpc:defaultlogfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsystemlogfile ;
+    rdfs:range xsd:string .
+
+hpc:collectorname a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsystemlogfile ;
+    rdfs:range xsd:string .
+
+hpc:Allcollectors a owl:Class .
+
+hpc:Blcollect a owl:Class .
+hpc:licenseInformationCollectionDaemon a rdfs:label "License information collection daemon for LSF License Scheduler"@en ;
+    rdfs:comment "The blcollect daemon collects license usage information." .
+
+hpc:synopsis a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blcollect .
+hpc:Synopsis rdfs:range xsd:string .
+
+hpc:collectornameArg a owl:ObjectProperty ;
+    rdfs:domain hpc:Blcollect ;
+    rdfs:range xsd:string .
+
+hpc:hostname a owl:ObjectProperty ;
+    rdfs:domain hpc:Blcollect ;
+    rdfs:range xsd:string .
+
+hpc:licenseschedulerport a owl:ObjectProperty ;
+    rdfs:domain hpc:Blcollect ;
+    rdfs:range xsd:integer .
+
+hpc:lmstatinterval a owl:ObjectProperty ;
+    rdfs:domain hpc:Blcollect ;
+    rdfs:range xsd:nonNegativeInteger .

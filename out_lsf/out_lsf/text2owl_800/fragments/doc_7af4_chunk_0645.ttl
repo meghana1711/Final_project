@@ -1,0 +1,63 @@
+hpc:Bhostsformat a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents the customized output format for the bhosts command." .
+
+hpc:Field a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a field in the bhosts output format." .
+
+hpc:Alias a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents an alias for a field in the bhosts output format." .
+
+# Object Properties
+hpc:hasfield a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhostsformat ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Indicates the fields in the bhosts output format." .
+
+hpc:fieldorder a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhostsformat ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Indicates the order of fields in the bhosts output format." .
+
+hpc:fieldwidth a owl:ObjectProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Indicates the width of a field in the bhosts output format." .
+
+hpc:fieldjustification a owl:ObjectProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates the justification of a field in the bhosts output format." .
+
+hpc:useallfields a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhostsformat ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether all fields should be displayed." .
+
+hpc:truncatefield a owl:ObjectProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the field should be truncated when its value exceeds the specified width." .
+
+hpc:rightjustifyfield a owl:ObjectProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates whether the field should be right justified." .
+
+hpc:unitprefix a owl:ObjectProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates the unit prefix for a field." .
+
+# Datatype Properties
+hpc:fieldname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates the name of a field." .
+
+hpc:fieldalias a owl:DatatypeProperty ;
+    rdfs:domain hpc:Alias ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates the alias of a field." .

@@ -1,0 +1,27 @@
+hpc:Cluster a owl:Class .
+hpc:LocalCluster a subClassOf hpc:Cluster .
+hpc:RemoteCluster a subClassOf hpc:Cluster .
+hpc:hasremoteclusters a owl:ObjectProperty .
+hpc:clustername a owl:DatatypeProperty .
+
+hpc:Cluster
+  rdfs:subClass rdf:union ;
+    (hpc:LocalCluster ;
+     hpc:hasRemoteClusters rdf:nil) ;
+    (hpc:RemoteCluster ;
+     rdfs:domain hpc:Cluster ;
+     rdfs:range rdf:List) .
+
+hpc:RemoteClusters
+  rdfs:domain hpc:Cluster ;
+  rdfs:range rdf:List ;
+  rdfs:subPropertyOf hpc:hasRemoteClusters .
+
+hpc:Remoteclusterlist a owl:Class .
+hpc:Remoteclusterlist rdfs:subClassOf rdf:List .
+hpc:Remoteclusterlist rdfs:subClassOf rdf:Seq .
+hpc:Remoteclusterlist rdfs:subClassOf rdf:Bag .
+hpc:Remoteclusterlist rdfs:subClassOf rdf:Alt .
+
+hpc:remoteclustername a owl:DatatypeProperty ;
+  rdfs:domain hpc:Remoteclusterlist .

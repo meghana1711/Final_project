@@ -1,0 +1,37 @@
+hpc:Job a owl:Class .
+hpc:Host a owl:Class .
+hpc:Task a owl:Class .
+hpc:Processauthenticationgroup a owl:Class .
+hpc:submitjob a owl:ObjectProperty .
+hpc:runon a owl:ObjectProperty .
+hpc:span a owl:ObjectProperty .
+hpc:renewedtgt a owl:ObjectProperty .
+hpc:afsjobsupport a owl:ObjectProperty .
+hpc:Sequentialjob a owl:Class .
+hpc:Paralleljob a owl:Class .
+hpc:Blanuchjob a owl:Class .
+hpc:lsbKrbTgtFwd a owl:DatatypeProperty .
+hpc:lsbAfsJobSupport a owl:DatatypeProperty .
+
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Host rdfs:subClassOf owl:Class .
+hpc:Task rdfs:subClassOf hpc:Job .
+hpc:Processauthenticationgroup rdfs:subClassOf owl:Class .
+
+hpc:Submitjob rdfs:domain hpc:User .
+hpc:Submitjob rdfs:range hpc:Job .
+hpc:Runon rdfs:domain hpc:Job .
+hpc:Runon rdfs:range hpc:Host .
+hpc:Span rdfs:domain hpc:Job .
+hpc:Span rdfs:range xsd:string .
+hpc:Renewedtgt rdfs:domain hpc:Job .
+hpc:Renewedtgt rdfs:range xsd:boolean .
+hpc:Afsjobsupport rdfs:domain hpc:Job .
+hpc:Afsjobsupport rdfs:range xsd:string .
+
+hpc:Sequentialjob rdfs:subClassOf hpc:Job .
+hpc:Paralleljob rdfs:subClassOf hpc:Job .
+hpc:Blanuchjob rdfs:subClassOf hpc:Paralleljob .
+
+hpc:LsbKrbTgtFwd rdfs:range xsd:boolean .
+hpc:LsbAfsJobSupport rdfs:range xsd:string .

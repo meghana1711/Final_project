@@ -1,0 +1,29 @@
+hpc:pulledtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Containerimage ;
+    rdfs:range xsd:string .
+
+# LSF Image Info Expire Interval
+hpc:lsfImageInfoExpireInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# LSF Image Info Publish Interval
+hpc:lsfImageInfoPublishInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Job Dependency Information
+hpc:jobdependencyinfo a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+# Job Dependency Level
+hpc:dependencylevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobdependencyinfo ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Job
+hpc:Job a owl:Class .
+
+# LSF Configuration
+hpc:Lsfconfiguration a owl:Class .

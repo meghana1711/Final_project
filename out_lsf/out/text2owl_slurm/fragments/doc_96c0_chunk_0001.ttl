@@ -1,0 +1,40 @@
+hpc:Mcdram a owl:Class .
+hpc:mcdramcache a owl:ObjectProperty .
+hpc:mcdramequal a owl:ObjectProperty .
+hpc:mcdramflat a owl:ObjectProperty .
+
+hpc:Numa a owl:Class .
+hpc:a2a a owl:ObjectProperty .
+hpc:hemi a owl:ObjectProperty .
+hpc:snc2 a owl:ObjectProperty .
+hpc:snc4 a owl:ObjectProperty .
+hpc:quad a owl:ObjectProperty .
+
+hpc:Gres a owl:Class .
+hpc:hbm a owl:ObjectProperty .
+
+hpc:launchparameters a owl:DatatypeProperty .
+
+hpc:Mcdramcache rdfs:domain hpc:Mcdram ;
+    rdfs:range xsd:string .
+hpc:Mcdramequal rdfs:domain hpc:Mcdram ;
+    rdfs:range xsd:string .
+hpc:Mcdramflat rdfs:domain hpc:Mcdram ;
+    rdfs:range xsd:string .
+hpc:A2a rdfs:domain hpc:Numa ;
+    rdfs:range xsd:string .
+hpc:Hemi rdfs:domain hpc:Numa ;
+    rdfs:range xsd:string .
+hpc:Snc2 rdfs:domain hpc:Numa ;
+    rdfs:range xsd:string .
+hpc:Snc4 rdfs:domain hpc:Numa ;
+    rdfs:range xsd:string .
+hpc:Quad rdfs:domain hpc:Numa ;
+    rdfs:range xsd:string .
+hpc:Hbm rdfs:domain hpc:Gres ;
+    rdfs:range xsd:string .
+hpc:Launchparameters rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Slurmjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .

@@ -1,0 +1,65 @@
+hpc:Licensefeature a owl:Class .
+hpc:lmLicenseName a owl:DatatypeProperty .
+hpc:distribution a owl:ObjectProperty .
+hpc:nonSharedDistribution a owl:ObjectProperty .
+
+hpc:Project a owl:Class .
+
+hpc:License a owl:Class .
+
+hpc:shareratio a owl:ObjectProperty .
+
+hpc:Totallicenses rdfs:domain hpc:Licensefeature ;
+                   rdfs:range xsd:nonNegativeInteger .
+
+hpc:Nonsharedlicenses rdfs:domain hpc:Licensefeature ;
+                      rdfs:range hpc:Project .
+
+hpc:Distributionshareratio rdfs:domain hpc:Licensefeature ;
+                            rdfs:range hpc:Project .
+
+hpc:Normallicenses rdfs:subClassOf hpc:Nonsharedlicenses ;
+                    rdfs:domain hpc:Licensefeature .
+
+hpc:Remaininglicenses rdfs:subClassOf hpc:Nonsharedlicenses ;
+                      rdfs:domain hpc:Licensefeature .
+
+hpc:Totallicensesforproject rdfs:subClassOf hpc:Nonsharedlicenses ;
+                             rdfs:domain hpc:Project .
+
+hpc:Featurename rdfs:domain hpc:Licensefeature ;
+                rdfs:range xsd:string .
+
+hpc:peakinuseperiod a owl:DatatypeProperty .
+
+hpc:Cluster rdfs:domain hpc:Peakinuseperiod ;
+            rdfs:range hpc:Cluster .
+
+hpc:Default rdfs:domain hpc:Peakinuseperiod ;
+            rdfs:range xsd:string .
+
+hpc:Interactive rdfs:domain hpc:Peakinuseperiod ;
+                rdfs:range xsd:string .
+
+hpc:PeakInusePeriodForMegaCluster rdfs:subPropertyOf hpc:PeakInusePeriod ;
+                                     rdfs:domain hpc:Licensefeature .
+
+
+For the specific examples:
+
+hpc:Feature1 a hpc:LicenseFeature ;
+             hpc:TotalLicenses "15"^^xsd:nonNegativeInteger ;
+             hpc:LM_LICENSE_NAME "VCS-RUNTIME"^^xsd:string ;
+             hpc:Distribution hpc:lanserver ( hpc:Project1 1/10 hpc:Project2 4 hpc:Project3 2/5 ) ;
+             hpc:NonSharedDistribution hpc:lanserver ( hpc:Project1 10 hpc:Project3 5 ) .
+
+hpc:Project1 a hpc:Project ;
+             hpc:FeatureName "f1" .
+
+hpc:Project3 a hpc:Project ;
+             hpc:FeatureName "f2" .
+
+hpc:Feature2 a hpc:LicenseFeature ;
+             hpc:TotalLicenses "10"^^xsd:nonNegativeInteger ;
+             hpc:LM_LICENSE_NAME "VCS-RUNTIME"^^xsd:string ;
+             hpc:Distribution hpc:lanserver ( hpc

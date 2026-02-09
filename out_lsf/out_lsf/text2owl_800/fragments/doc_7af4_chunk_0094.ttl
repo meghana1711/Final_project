@@ -1,0 +1,39 @@
+hpc:Persistenthostorder a owl:Class .
+hpc:haspersistenthostorder a owl:ObjectProperty .
+hpc:Haspersistenthostorder rdfs:domain hpc:Persistenthostorder .
+hpc:Haspersistenthostorder rdfs:range xsd:string .
+hpc:Persistenthostorder rdfs:subClassOf owl:Enum .
+hpc:Persistenthostorder rdfs:subClassOf owl:FunctionalProperty .
+
+hpc:PersistenthostorderY hpc:haspersistenthostorder "Y" .
+hpc:PersistenthostorderYes hpc:haspersistenthostorder "yes" .
+hpc:PersistenthostorderN hpc:haspersistenthostorder "N" .
+
+hpc:Allocationplanner a owl:Class .
+hpc:hasallocationplanner a owl:ObjectProperty .
+hpc:Hasallocationplanner rdfs:domain hpc:Allocationplanner .
+hpc:Hasallocationplanner rdfs:range xsd:boolean .
+
+hpc:Plan a owl:Class .
+hpc:hasplan a owl:ObjectProperty .
+hpc:Hasplan rdfs:domain hpc:Plan .
+hpc:Hasplan rdfs:range xsd:boolean .
+hpc:PlanY hpc:hasplan true .
+hpc:PlanN hpc:hasplan false .
+
+hpc:PlanKeyvaluepair a owl:Class .
+hpc:haskeyvaluepair a owl:ObjectProperty .
+hpc:Haskeyvaluepair rdfs:domain hpc:PlanKeyvaluepair .
+hpc:Haskeyvaluepair rdfs:range xsd:string .
+hpc:HaskeyvaluepairKey rdfs:domain hpc:PlanKeyvaluepair .
+hpc:HaskeyvaluepairKey rdfs:range xsd:string .
+hpc:HaskeyvaluepairValue rdfs:domain hpc:PlanKeyvaluepair .
+hpc:HaskeyvaluepairValue rdfs:range xsd:string .
+
+hpc:delay a owl:DatatypeProperty .
+hpc:Delay rdfs:domain hpc:PlanKeyvaluepair .
+hpc:Delay rdfs:range xsd:positiveInteger .
+
+hpc:maxjobs a owl:DatatypeProperty .
+hpc:Maxjobs rdfs:domain hpc:PlanKeyvaluepair .
+hpc:Maxjobs rdfs:range xsd:positiveInteger .

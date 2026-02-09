@@ -536,8 +536,8 @@ def build_olaf_llm_steps(args: argparse.Namespace) -> List[Step]:
     if args.olaf_llm_debug_first_chunk:
         term_args.append("--debug-first-chunk")
 
-    # min-freq threshold (only if > 2)
-    if args.olaf_llm_min_freq and args.olaf_llm_min_freq > 2:
+    # min-freq threshold (all)
+    if args.olaf_llm_min_freq and args.olaf_llm_min_freq > 0:
         term_args += ["--min-freq", str(args.olaf_llm_min_freq)]
 
     steps: List[Step] = []
@@ -602,7 +602,7 @@ def build_olaf_llm_steps(args: argparse.Namespace) -> List[Step]:
         "--commit-every", str(args.olaf_llm_tax_commit_every),
     ]
 
-    if args.olaf_llm_tax_max_chunks and args.olaf_llm_tax_max_chunks > 0:
+    if args.olaf_llm_tax_max_chunks and args.olaf_llm_tax_max_chunks > 2:
         tax_args += ["--max-chunks", str(args.olaf_llm_tax_max_chunks)]
 
     if args.olaf_llm_tax_debug_first_chunk:
@@ -666,7 +666,6 @@ def build_olaf_llm_steps(args: argparse.Namespace) -> List[Step]:
         "--non_tax_table", args.olaf_llm_axioms_nontax_table,
         "--examples_per_predicate", str(args.olaf_llm_axioms_examples_per_rel),
         "--max_predicates", str(args.olaf_llm_axioms_max_relations),
-        "--backend", args.olaf_llm_axioms_backend,
         "--model_path", args.olaf_llm_axioms_model,
     ]
 
@@ -974,7 +973,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--olaf_llm_offset_rowid", type=int, default=0)
     ap.add_argument("--olaf_llm_debug_first_chunk", action="store_true")
 
-    ap.add_argument("--olaf_llm_min_freq", type=int, default=2,
+    ap.add_argument("--olaf_llm_min_freq", type=int, default=3,
                     help="Delete terms with freq_total < min_freq after extraction; set 0/1 to disable")
 
     # Term- enrichment with LLM
@@ -985,7 +984,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--olaf_llm_enrich_text_col", default="text")
 
     # Runtime controls for enrichment
-    ap.add_argument("--olaf_llm_enrich_min_freq", type=int, default=2,
+    ap.add_argument("--olaf_llm_enrich_min_freq", type=int, default=3,
                     help="Only enrich terms with freq_total >= min_freq (0/1 disables)")
     ap.add_argument("--olaf_llm_enrich_max_rows", type=int, default=0, help="0=all")
     ap.add_argument("--olaf_llm_enrich_offset_term_id", type=int, default=0,
@@ -1031,14 +1030,13 @@ def parse_args() -> argparse.Namespace:
     #Axiom LLM
     ap.add_argument("--olaf_llm_axioms_prompt_config", default="prompts/axioms_llm.yaml")
     ap.add_argument("--olaf_llm_axioms_model", default="mistralai/Mistral-7B-Instruct-v0.3")
-    ap.add_argument("--olaf_llm_axioms_backend", choices=["transformers"], default="transformers")
     ap.add_argument("--olaf_llm_axioms_out_dir", default="axioms_llm")
     ap.add_argument("--olaf_llm_axioms_base_iri", default="http://example.org/hpc#")
 
     # Inputs
     ap.add_argument("--olaf_llm_axioms_enrich_table", default="llm_enrich_final")
-    ap.add_argument("--olaf_llm_axioms_tax_table", default="llm_is_a_edges")
-    ap.add_argument("--olaf_llm_axioms_nontax_table", default="llm_non_taxonomy_edges")
+    ap.add_argument("--olaf_llm_axioms_tax_table", default="llm_is_a_edges_final")
+    ap.add_argument("--olaf_llm_axioms_nontax_table", default="non_tax_llm")
 
     ap.add_argument("--olaf_llm_axioms_examples_per_rel", type=int, default=12)
     ap.add_argument("--olaf_llm_axioms_max_relations", type=int, default=0)

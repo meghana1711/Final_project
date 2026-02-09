@@ -1,0 +1,75 @@
+hpc:Jobfield a owl:Class ;
+    rdfs:subClassOf hpc:Outputfield .
+
+hpc:Bjobsfield a owl:Class ;
+    rdfs:subClassOf hpc:Jobfield .
+
+# Properties
+hpc:hasalias a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobfield ;
+    rdfs:range xsd:string .
+
+hpc:hasunit a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobfield ;
+    rdfs:range xsd:string .
+
+hpc:hasjustification a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobsfield ;
+    rdfs:range xsd:string .
+
+hpc:hastruncation a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobsfield ;
+    rdfs:range xsd:string .
+
+hpc:hasdelimiter a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobsfield ;
+    rdfs:range xsd:string .
+
+hpc:haswidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobfield .
+
+hpc:hasunitprefix a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobsfield .
+
+# Specific Fields
+hpc:JobID a hpc:JobField ;
+    hpc:hasAlias "id" ;
+    hpc:hasWidth 7 .
+
+hpc:Mem a hpc:BjobsField ;
+    rdfs:subClassOf hpc:Bjobsfieldwithunit ;
+    hpc:hasJustification "left" ;
+    hpc:hasUnitPrefix "K" .
+
+hpc:Max_Mem a hpc:BjobsField ;
+    rdfs:subClassOf hpc:Bjobsfieldwithunit ;
+    hpc:hasJustification "left" ;
+    hpc:hasUnitPrefix "M" .
+
+hpc:Avg_Mem a hpc:BjobsField ;
+    rdfs:subClassOf hpc:Bjobsfieldwithunit ;
+    hpc:hasJustification "left" ;
+    hpc:hasUnitPrefix "M" .
+
+hpc:Memlimit a hpc:BjobsField ;
+    rdfs:subClassOf hpc:Bjobsfieldwithunit ;
+    hpc:hasJustification "left" ;
+    hpc:hasUnitPrefix "G" .
+
+hpc:Swap a hpc:BjobsField ;
+    rdfs:subClassOf hpc:Bjobsfieldwithunit ;
+    hpc:hasJustification "left" ;
+    hpc:hasUnitPrefix "M" .
+
+hpc:Swaplimit a hpc:BjobsField ;
+    rdfs:subClassOf hpc:Bjobsfieldwithunit ;
+    hpc:hasJustification "left" ;
+    hpc:hasUnitPrefix "G" .
+
+hpc:Corelimit a hpc:BjobsField ;
+    hpc:hasJustification "left" .
+
+hpc:Stacklimit a hpc:BjobsField ;
+    hpc:hasJustification "left" .
+
+hpc:Hrusage a h

@@ -1,0 +1,76 @@
+hpc:Vcs a owl:Class .
+
+hpc:allocBuffer a owl:DatatypeProperty ;
+    rdfs:domain hpc:Vcs ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:allocation a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs ;
+    rdfs:range hpc:Buffer .
+
+hpc:checkoutFromFirstHostOnly a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:clusterDistribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:clusterMode a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:demandLimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:disablePreemption a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:distribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:dynamic a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:enableDynamicRusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:enableMinjobPreemption a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:fastDispatch a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:featureDelta a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:flexName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Vcs ;
+    rdfs:range xsd:string .
+
+hpc:groupDistribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:inuseFromRusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:lmLicenseName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Vcs ;
+    rdfs:range xsd:string .
+
+hpc:lmRemoveInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Vcs ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lmRemoveSuspJobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:lmReservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Vcs .
+
+hpc:lsFeaturePercentage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Vcs ;
+    rdfs:range xsd:decimal .
+
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Vcs ;
+    rdfs:range xsd:string .
+
+hpc:

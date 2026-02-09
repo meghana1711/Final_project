@@ -1,0 +1,25 @@
+hpc:Host a owl:Class .
+hpc:LsbDisableLimlockExcl rdfs:subClassOf hpc:Host .
+hpc:limunlock a owl:ObjectProperty .
+hpc:resrestart a owl:ObjectProperty .
+hpc:resshutdown a owl:ObjectProperty .
+hpc:resstartup a owl:ObjectProperty .
+hpc:logtasks a owl:ObjectProperty .
+
+hpc:Host rdfs:subClassOf rdf:Resource .
+hpc:Limunlock rdfs:domain hpc:Host ;
+    rdfs:range rdf:Resource .
+hpc:Resrestart rdfs:domain hpc:Host ;
+    rdfs:range rdf:Resource .
+hpc:Resshutdown rdfs:domain hpc:Host ;
+    rdfs:range rdf:Resource .
+hpc:Resstartup rdfs:domain hpc:Host ;
+    rdfs:range rdf:Resource .
+hpc:Logtasks rdfs:domain hpc:Host ;
+    rdfs:range rdf:Resource .
+
+hpc:CPU_Time rdf:type xsd:nonNegativeInteger .
+hpc:Logtasks rdfs:range rdf:List .
+hpc:List rdf:type owl:Class ;
+    rdfs:subClassOf rdf:Bag .
+hpc:List rdfs:subClassOf rdf:Seq .

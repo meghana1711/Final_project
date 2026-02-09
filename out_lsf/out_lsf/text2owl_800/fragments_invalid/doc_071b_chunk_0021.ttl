@@ -1,0 +1,46 @@
+hpc:User            a owl:Class .
+hpc:Clusteradmin    a owl:Class ;
+                     rdfs:subClassOf hpc:User .
+hpc:Root           a owl:Class ;
+                     rdfs:subClassOf hpc:User .
+hpc:Staticserver   a owl:Class .
+hpc:Dynamichost    a owl:Class .
+hpc:Clienthost     a owl:Class .
+hpc:Regularuser    a owl:Class ;
+                     rdfs:subClassOf hpc:User .
+hpc:Usergroupadmin a owl:Class ;
+                     rdfs:subClassOf hpc:User .
+
+hpc:hasrights a owl:ObjectProperty ;
+             rdfs:domain hpc:Usergroupadmin ;
+             rdfs:range xsd:string .
+
+hpc:usersharerights a owl:DatatypeProperty ;
+                    rdfs:domain hpc:Usergroupadmin ;
+                    rdfs:range xsd:string .
+hpc:fullrights a owl:DatatypeProperty ;
+               rdfs:domain hpc:Usergroupadmin ;
+               rdfs:range xsd:string .
+
+hpc:Bconfcommand a owl:Class .
+hpc:bconfhistcommand a owl:ObjectProperty ;
+             rdfs:domain hpc:Bconfcommand ;
+             rdfs:range rdf:Resource .
+hpc:bconfallcommands a owl:ObjectProperty ;
+             rdfs:domain hpc:Bconfcommand ;
+             rdfs:range rdf:Resource .
+hpc:bconfliveconfig a owl:ObjectProperty ;
+             rdfs:domain hpc:Bconfcommand ;
+             rdfs:range rdf:Resource .
+hpc:bconffromstaticserver a owl:ObjectProperty ;
+             rdfs:domain hpc:Bconfcommand ;
+             rdfs:range rdf:Resource .
+
+hpc:Fairsharequeue a owl:Class .
+hpc:addusershare a owl:ObjectProperty ;
+             rdfs:domain hpc:Fairsharequeue ;
+             rdfs:range rdf:Resource .
+
+hpc:lsfLiveConfdir a owl:DatatypeProperty ;
+                     rdfs:domain rdf:Resource .
+                     rdfs:range xsd:string .

@@ -1,0 +1,24 @@
+hpc:Lsfconfigurationcheck a owl:Class .
+hpc:Lsfreconfiguration a owl:Class .
+hpc:Lsfshutdown a owl:Class .
+hpc:Bladmindebug a owl:Class .
+hpc:Blddebug a owl:Class .
+
+# Object Properties
+hpc:hasdebuglevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Bladmindebug ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:haslogfile a owl:ObjectProperty ;
+    rdfs:domain (hpc:Bladmindebug hpc:Blddebug) ;
+    rdfs:range xsd:string .
+hpc:forhost a owl:ObjectProperty ;
+    rdfs:domain (hpc:Lsfconfigurationcheck hpc:Lsfreconfiguration hpc:Lsfshutdown) ;
+    rdfs:range xsd:string .
+
+# Datatype Properties
+hpc:hasdebugclass a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blddebug ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hascollectorname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bladmindebug ;
+    rdfs:range xsd:string .

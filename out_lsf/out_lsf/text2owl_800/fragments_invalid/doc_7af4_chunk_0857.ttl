@@ -1,0 +1,34 @@
+hpc:LSF_NIOS_DEBUG
+    a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "If LSF_NIOS_DEBUG is defined, and the directory defined by the LSF_CMD_LOGDIR value is inaccessible, NIOS debug messages are logged to /tmp/nios.log.host_name instead of stderr. On Windows, NIOS debug messages are also logged to the temporary directory. Default Not deﬁned" ;
+    rdfs:seeAlso hpc:LSF_CMD_LOGDIR, hpc:LSF_CMD_LOG_MASK, hpc:LSF_LOG_MASK, hpc:LSF_LOGDIR, hpc:LSF_NIOS_ERR_LOGDIR .
+
+hpc:LSF_NIOS_ERR_LOGDIR
+    a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Applies to Windows only. If LSF_NIOS_ERR_LOGDIR is speciﬁed, logs NIOS errors to directory/nios.error.log.hostname.txt. If the attempt fails, LSF tries to write to another directory instead. The order is:
+1. the speciﬁed log directory
+2. LSF_TMPDIR
+5. the system directory, for example, C:\winnt
+If LSF_NIOS_DEBUG is also speciﬁed, NIOS debugging overrides the LSF_NIOS_ERR_LOGDIR setting. LSF_NIOS_ERR_LOGDIR is an alternative to using the NIOS debug functionality. This parameter can also be deﬁned as an environment variable. Default Not deﬁned
+See also hpc:LSF_NIOS_DEBUG, hpc:LSF_CMD_LOGDIR, hpc:LSF_NIOS_JOBSTATUS_INTERVAL" ;
+    rdfs:domain hpc:LsfNiosErrLogdir rdf:Resource ;
+    rdfs:range xsd:string .
+
+hpc:hasLogDirectory
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfNiosErrLogdir ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The directory where NIOS errors are logged" .
+
+hpc:LSF_CMD_LOGDIR
+    a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The directory where NIOS logs are written" ;
+    rdfs:seeAlso hpc:LSF_NIOS_DEBUG, hpc:LSF_CMD_LOG_MASK, hpc:LSF_LOG_MASK, hpc:LSF_LOGDIR, hpc:LSF_NIOS_ERR_LOGDIR .
+
+hpc:LSF_NIOS_JOBSTATUS_INTERVAL
+    a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Time interval at which NIOS polls mbatchd to check if a job is still running. Applies to interactive batch jobs and blocking jobs. Use this parameter if you have scripts that depend on an exit code being returned. If this parameter is not deﬁned and a network connection is lost, mbatchd cannot communicate with NIOS and the return code of a

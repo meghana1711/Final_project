@@ -1,0 +1,61 @@
+hpc:Interactivejob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Pseudoterminal a owl:Class ;
+    rdfs:subClassOf hpc:Interactivejob ;
+    rdfs:subClassOf owl:Class .
+
+# Object Properties
+hpc:hasOutputFile an owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:hasErrorFile an owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:displaysOnTerminal an owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminal ;
+    rdfs:range xsd:boolean .
+
+hpc:conflictsWith an owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminal ;
+    rdfs:range hpc:Option .
+
+# Datatype Properties
+hpc:hasStandardOutput an owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:hasStandardError an owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:isNotRerunnable an owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:isCheckpointable an owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:supportsOn an owl:DatatypeProperty ;
+    rdfs:domain hpc:Option ;
+    rdfs:range xsd:string .
+
+hpc:isNotSupportedOn an owl:DatatypeProperty ;
+    rdfs:domain hpc:Option ;
+    rdfs:range xsd:string .
+
+# Instances
+hpc:InteractiveJob_ls a hpc:InteractiveJob ;
+    hpc:hasStandardOutput "ls" .
+
+hpc:PseudoTerminal_bsub a hpc:PseudoTerminal ;
+    hpc:displaysOnTerminal true ;
+    hpc:Conflictswith hpc:interactivejobIs ;
+    hpc:Conflictswith hpc:interactivejobIsp ;
+    hpc:Conflictswith hpc:interactivejobIss ;
+    hpc:Conflictswith hpc:interactivejobIs ;
+    hpc:Conflictswith hpc:interactivejobIx ;
+    hpc:Conflictswith hpc:interactivejobK .

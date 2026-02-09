@@ -1,0 +1,43 @@
+hpc:LsfMcForwardFairshareChargeDuration a owl:Class ;
+  rdfs:subClassOf hpc:Lsfparameter .
+
+hpc:LsfHwlocDynamic a owl:Class ;
+  rdfs:subClassOf hpc:Lsfparameter .
+
+hpc:Portablehardwarelocality a owl:Class .
+
+# Object Properties
+hpc:hasplatform a owl:ObjectProperty ;
+  rdfs:domain hpc:Portablehardwarelocality ;
+  rdfs:range xsd:string .
+
+hpc:requireslibrary a owl:ObjectProperty ;
+  rdfs:domain hpc:LsfHwlocDynamic ;
+  rdfs:range xsd:string .
+
+# Datatype Properties
+hpc:version a owl:DatatypeProperty ;
+  rdfs:domain hpc:Portablehardwarelocality ;
+  rdfs:range xsd:string .
+
+# Supported Platforms
+hpc:Linux_x64_Kernel_2_6 a hpc:PortableHardwareLocality ;
+  hpc:version "2.6" ;
+  hpc:requiresLibrary "glibc 2.5" .
+
+hpc:Linux_x64_Kernel_3_10 a hpc:PortableHardwareLocality ;
+  hpc:version "3.10" ;
+  hpc:requiresLibrary "glibc 2.17" .
+
+hpc:Linux_ppc64le_Kernel_3_10 a hpc:PortableHardwareLocality ;
+  hpc:version "3.10" ;
+  hpc:requiresLibrary "glibc 2.17" .
+
+hpc:Linux_ARMv8_Kernel_3_12 a hpc:PortableHardwareLocality ;
+  hpc:version "3.12" ;
+  hpc:requiresLibrary "glibc 2.17" .
+
+hpc:Windows a hpc:PortableHardwareLocality .
+
+# LSF Configuration
+hpc:LsfConf a owl:Class .

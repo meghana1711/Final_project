@@ -1,0 +1,42 @@
+hpc:Srcjobid a owl:Class .
+hpc:Dstjobid a owl:Class .
+hpc:SourceCluster a owl:Class .
+hpc:Energy a owl:Class ;
+    rdfs:subClassOf owl:QuantitativeValue ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:decimal .
+
+hpc:Dstjobid rdfs:subClassOf hpc:Job .
+hpc:SourceCluster rdfs:subClassOf hpc:Job .
+
+hpc:srcluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:SourceCluster .
+
+hpc:Gpfsio a owl:Class ;
+    rdfs:subClassOf owl:QuantitativeValue ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:decimal .
+
+hpc:Block a owl:Class ;
+    rdfs:subClassOf owl:Boolean .
+    rdfs:domain hpc:Job .
+
+hpc:CpuPeak a owl:Class ;
+    rdfs:subClassOf owl:QuantitativeValue ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:CpuEfficiency a owl:Class ;
+    rdfs:subClassOf owl:QuantitativeValue ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:decimal .
+
+hpc:MemEfficiency a owl:Class ;
+    rdfs:subClassOf owdl:QuantitativeValue ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:decimal .
+
+hpc:AverageCpuEfficiency a owl:Class ;
+    rdfs:subClassOf owl:QuantitativeValue ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:decimal .

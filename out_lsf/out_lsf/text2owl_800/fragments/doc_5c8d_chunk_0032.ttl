@@ -1,0 +1,12 @@
+hpc:CsmReq a owl:Class .
+hpc:LsbQueues a owl:Class .
+hpc:propduplicatevalues a owl:ObjectProperty .
+
+hpc:Propduplicatevalues rdfs:domain hpc:CsmReq .
+hpc:Propduplicatevalues rdfs:range xsd:string .
+
+hpc:propsmtvalue a owl:DatatypeProperty .
+hpc:Propsmtvalue rdfs:domain hpc:CsmReq .
+hpc:Propsmtvalue rdfs:range xsd:string .
+
+hpc:CsmReqFromLsbQueues rdfs:subClassOf hpc:CsmReq .

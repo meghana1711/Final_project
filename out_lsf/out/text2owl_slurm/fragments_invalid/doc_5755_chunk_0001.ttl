@@ -1,0 +1,29 @@
+hpc:Researcher
+    a owl:Class ;
+    rdfs:subClassOf a owl:Class ;
+    rdfs:comment "A person who uses Slurm for research." .
+
+hpc:Slurm
+    a owl:Class ;
+    rdfs:comment "A workload manager and batch processing system for Linux and Unix-based clusters." .
+
+hpc:CitingSlurm
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Researcher ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The way to cite work involving Slurm." .
+
+hpc:DesigningJobs
+    a owl:Class ;
+    rdfs:subClassOf a owl:Class ;
+    rdfs:comment "The process of creating jobs for Slurm." .
+
+hpc:RunningMultipleJobs
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Designingjobs ;
+    rdfs:range xsd:string ;
+    rdfs:comment "How to run multiple jobs from within a single script." .
+
+hpc:RunningJobWithinAllocation
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Designing

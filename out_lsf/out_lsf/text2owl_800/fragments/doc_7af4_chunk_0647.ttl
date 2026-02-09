@@ -1,0 +1,63 @@
+hpc:outputwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Joboutput ;
+    rdfs:range xsd:positiveInteger .
+
+hpc:Hostname a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:cpuf a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string ;
+    xsd:maxLength "10" .
+
+hpc:jlU a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string ;
+    xsd:maxLength "8" ;
+    xsd:totalDigits "8" ;
+    xsd:textMatch "^[0-9]*$" .
+
+hpc:max a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string ;
+    xsd:maxLength "6" ;
+    xsd:textMatch "^[0-9]*$" ;
+    xsd:pattern "^[0-9]{1,6}$" .
+
+hpc:Bhosts a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:bjobsconsistentexitcode a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhosts ;
+    rdfs:range xsd:boolean .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:user a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:stat a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:queue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:fromHost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:jobName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:submitTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .

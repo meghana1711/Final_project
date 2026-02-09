@@ -1,0 +1,19 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Jobresource a owl:Class ;
+  rdfs:subClassOf owl:Class ;
+  rdfs:comment "Job resources for a component" ;
+  rdfs:label "job_res" .
+
+hpc:selecttype a owl:ObjectProperty ;
+  rdfs:domain hpc:Jobresource ;
+  rdfs:range xsd:string ;
+  rdfs:comment "The type of job resource" ;
+  rdfs:label "select_type" .
+
+hpc:select_type rdfs:subPropertyOf owl:ObjectProperty ;
+hpc:select_type rdfs:subPropertyOf rdf:list ;

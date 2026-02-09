@@ -1,0 +1,31 @@
+hpc:LsfPackage a owl:Class .
+hpc:Libtirpc_Package a hpc:LSF_Package .
+hpc:Libnsl_Package a hpc:LSF_Package .
+hpc:LibcryptCompat a owl:Class .
+hpc:LibxcryptCompat a owl:Class .
+hpc:LsfDaemon a owl:Class .
+hpc:LsfCommand a owl:Class .
+hpc:Rhel9X a owl:Class .
+hpc:IbmPower10 a owl:Class .
+hpc:X86 a owl:Class .
+hpc:Rhel8X a owl:Class .
+hpc:LsfNisIntegration a owl:Class .
+hpc:DcgmIntegration a owl:Class .
+hpc:NvidiaMig a owl:Class .
+hpc:lsfDcgmPort a owl:DatatypeProperty .
+hpc:LsfCluster a owl:Class .
+hpc:libnslSo1 a owl:DatatypeProperty .
+hpc:libcryptSo1 a owl:DatatypeProperty .
+hpc:libdcgmSo a owl:DatatypeProperty .
+hpc:LsfDaemonRequiresLibtirpc hpc:LibtirpcPackage rdfs:subClassOf hpc:Requirement .
+hpc:LsfImageRequiresLibtirpc hpc:LibtirpcPackage rdfs:subClassOf hpc:ContainerRequirement .
+hpc:LsfDaemonRequiresLibnsl hpc:LibnslPackage rdfs:subClassOf hpc:Requirement .
+hpc:LsfNisIntegrationRequiresLibnsl hpc:LibnslPackage rdfs:subClassOf hpc:NisRequirement .
+hpc:RHEL_9_x_LSF_Cluster_Issue rdf:type owl:Class .
+hpc:RHEL_9_x_IBM_Power_10_LSF_Cluster_Issue rdf:type hpc:RHEL_9_x_LSF_Cluster_Issue .
+hpc:RHEL_9_x_x86_LSF_Cluster_Issue rdf:type hpc:RHEL_9_x_LSF_Cluster_Issue .
+hpc:Rhel9XLsfClusterIssue rdfs:subClassOf hpc:LsfClusterIssue .
+hpc:RHEL_9_x_IBM_Power_10_LSF_Cluster_Issue_Resolution rdf:type owl:Class .
+hpc:RHEL_9_0_to_9_5_LSF_Cluster_Issue_Resolution rdf:type hpc:RHEL_9_x_IBM_Power_10_LSF_Cluster_Issue_Resolution .
+hpc:RHEL_9_6_and_later_LSF_Cluster_Issue_Resolution rdf:type hpc:RHEL_9_x_IBM_Power_10_LSF_Cluster_Issue_Resolution .
+hpc:R

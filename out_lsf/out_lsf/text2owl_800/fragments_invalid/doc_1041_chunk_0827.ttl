@@ -1,0 +1,59 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Cpuutilization a owl:Class ;
+  rdfs:subClassOf [ a owl:Restriction ;
+                     rdfs:onProperty hpc:averageCPUUtilization ;
+                     owl:hasValueMinInclusive xsd:decimal ;
+                     owl:allValuesFrom [ rdf:type xsd:decimal ;
+                                          owl:minValue 0 ;
+                                          owl:maxValue 1 ] ] .
+
+hpc:averagecpuutilization a owl:ObjectProperty ;
+  rdfs:domain hpc:Cpuutilization ;
+  rdfs:range xsd:decimal .
+
+hpc:Io a owl:Class ;
+  rdfs:subClassOf [ a owl:Restriction ;
+                     rdfs:onProperty hpc:averageIO ;
+                     owl:hasValueMinInclusive xsd:decimal ] .
+
+hpc:averageio a owl:ObjectProperty ;
+  rdfs:domain hpc:Io ;
+  rdfs:range xsd:decimal .
+
+hpc:Pagingrate a owl:Class ;
+  rdfs:subClassOf [ a owl:Restriction ;
+                     rdfs:onProperty hpc:pagingRate ;
+                     owl:hasValueMinInclusive xsd:nonNegativeInteger ] .
+
+hpc:pagingrate a owl:ObjectProperty ;
+  rdfs:domain hpc:Pagingrate ;
+  rdfs:range xsd:nonNegativeInteger .
+
+hpc:Loginusers a owl:Class ;
+  rdfs:subClassOf [ a owl:Restriction ;
+                     rdfs:onProperty hpc:loginUsers ] .
+
+hpc:loginusers a owl:DatatypeProperty ;
+  rdfs:domain hpc:Loginusers ;
+  rdfs:range xsd:nonNegativeInteger .
+
+hpc:Idletime a owl:Class ;
+  rdfs:subClassOf [ a owl:Restriction ;
+                     rdfs:onProperty hpc:idleTime ;
+                     owl:hasValueMinInclusive xsd:nonNegativeInteger ] .
+
+hpc:idletime a owl:DatatypeProperty ;
+  rdfs:domain hpc:Idletime ;
+  rdfs:range xsd:nonNegativeInteger .
+
+hpc:Tmpspace a owl:Class ;
+  rdfs:subClassOf [ a owl:Restriction ;
+                     rdfs:onProperty hpc:tmpSpace ;
+                     owl:hasValueMinInclusive xsd:decimal ] .
+
+hpc:tmpspace a owl:DatatypeProperty ;
+  rdfs:domain

@@ -1,0 +1,36 @@
+hpc:numrmtctrlresult2 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Modifyrequest ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Rmtctrlresult2 a owl:Class .
+
+hpc:indexrangestart1 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rmtctrlresult2 ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:indexrangeend1 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rmtctrlresult2 ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:indexrangestep1 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rmtctrlresult2 ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:indexrangestartn a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rmtctrlresult2 ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:indexrangeendn a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rmtctrlresult2 ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobarrayindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobmoverecord ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:numrmtctrlresult2move a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobmoverecord ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Jobmoverecord a owl:Class ;
+    rdfs:subClassOf hpc:Rmtctrlresult2 .

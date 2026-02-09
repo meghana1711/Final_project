@@ -1,0 +1,46 @@
+hpc:Distributepolicy a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Policy for resource distribution." .
+
+hpc:name a owl:ObjectProperty ;
+    rdfs:domain hpc:Distributepolicy ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Name of the policy." .
+
+hpc:distribute a owl:ObjectProperty ;
+    rdfs:domain hpc:Distributepolicy ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Resource or limit to distribute." .
+
+hpc:policy a owl:ObjectProperty ;
+    rdfs:domain hpc:Distributepolicy ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Distribution policy." .
+
+hpc:Reservationusage a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Specifies global resources to reserve and the method of resource reservation." .
+
+hpc:resource a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservationusage ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Name of the resource." .
+
+hpc:method a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservationusage ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Resource reservation method." .
+
+hpc:reserve a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservationusage ;
+    rdfs:range xsd:xsd:boolean ;
+    rdfs:comment "Reserves the resource for pending jobs." .
+
+hpc:Resourceusageprocedure a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Procedure for using and displaying global resources." .
+
+hpc:bgpinfo a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Command to display information on global resources." .

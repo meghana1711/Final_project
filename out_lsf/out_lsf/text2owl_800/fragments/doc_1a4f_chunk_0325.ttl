@@ -1,0 +1,30 @@
+hpc:Exclusivejob a owl:Class .
+hpc:Backfilljob a owl:Class .
+hpc:Preemptablejob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Preempts rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Preemptablejob ;
+    rdfs:range hpc:Job .
+
+hpc:preemptfor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Preemptablejob ;
+    rdfs:range xsd:string .
+
+hpc:preemptwhen a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+
+hpc:maxpreempts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Preemptablejob ;
+    rdfs:range xsd:integer .
+
+hpc:terminatewhenpreempted a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Controlaction .
+
+hpc:Controlaction a owl:Class .
+hpc:Suspend a owl:Class ;
+    rdfs:subClassOf hpc:Controlaction .
+hpc:Terminate a owl:Class ;
+    rdfs:subClassOf hpc:Controlaction .

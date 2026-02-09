@@ -1,0 +1,50 @@
+hpc:Video a owl:Class .
+hpc:YouTube a hpc:Video ;
+    rdfs:label "YouTube" ;
+    rdfs:comment "Link to YouTube video about downloading LSF through IBM Passport Advantage." .
+
+hpc:IBMEducationAssistant a hpc:Video ;
+    rdfs:label "IBM Education Assistant" ;
+    rdfs:comment "Link to IBM Education Assistant video about downloading LSF through IBM Passport Advantage." .
+
+hpc:Addhost a owl:Class .
+
+hpc:installlsfbinaryfiles a owl:ObjectProperty ;
+    rdfs:domain hpc:Addhost ;
+    rdfs:range hpc:Binaryfiles .
+
+hpc:addhostinformation a owl:ObjectProperty ;
+    rdfs:domain hpc:Addhost ;
+    rdfs:range hpc:Hostinformation .
+
+hpc:setupnewhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Addhost ;
+    rdfs:range hpc:Host .
+
+hpc:Host a owl:Class .
+
+hpc:installationscriptdirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:installconfigfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:installcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:editfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:options a owl:DatatypeProperty ;
+    rdfs:domain hpc:Installconfigfile ;
+    rdfs:range xsd:string .
+
+hpc:Installationscriptdirectorytype a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:Installconfigfiletype a owl:Class ;
+    rdfs:subClassOf hpc:Host .

@@ -1,0 +1,44 @@
+hpc:Hosta a owl:Class ;
+    rdfs:label "HostA" ;
+    hpc:runsJobAtTime rdf:PlainLiteral "19:00-08:30"^^xsd:string ;
+    hpc:acceptsJobFromTime rdf:PlainLiteral "20:00-08:30"^^xsd:string ;
+    hpc:acceptsJobIf rdfs:Description "r1m index is below 0.6 and pg index is below 10" ;
+    hpc:stopsJobIf rdfs:Description "r1m index goes above 1.6 or pg index goes above 20" ;
+    hpc:hostType rdf:Resource hpc:Linux ;
+    hpc:maxConcurrentJobs 1 ;
+    hpc:pgIndex rdf:PlainLiteral "1-20"^^xsd:string ;
+    hpc:r1mIndex rdf:PlainLiteral "1-0.6/1.6"^^xsd:string .
+
+hpc:Default a owl:Class ;
+    rdfs:label "default" ;
+    hpc:maxConcurrentJobs 2 ;
+    hpc:maxJobsPerUser 1 ;
+    hpc:r1mIndex rdf:PlainLiteral "0.6/1.6"^^xsd:string ;
+    hpc:pgIndex rdf:PlainLiteral "20/40"^^xsd:string .
+
+hpc:Linux a owl:Class ;
+    rdfs:subClassOf hpc:Hosttype ;
+    rdfs:label "Linux" ;
+    hpc:pgIndex rdf:type owl:DatatypeProperty ;
+    hpc:Pgindex rdfs:domain hpc:Host ;
+    hpc:Pgindex rdfs:range xsd:string ;
+    hpc:hasOvernightAvailability rdf:PlainLiteral "23:00-08:00"^^xsd:string .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:label "Host" ;
+    hpc:hasName rdf:DatatypeProperty ;
+    hpc:Hasname rdfs:domain hpc:Host ;
+    hpc:Hasname rdfs:range xsd:string ;
+    hpc:hasHostType rdf:ObjectProperty ;
+    hpc:Hashosttype rdfs:domain hpc:Host ;
+    hpc:Hashosttype rdfs:range rdf:Resource ;
+    hpc:hasMaxConcurrentJobs owl:DatatypeProperty ;
+    hpc:Hasmaxconcurrentjobs rdfs:domain hpc:Host ;
+    hpc:Hasmaxconcurrentjobs rdfs:range xsd:nonNegativeInteger ;
+    hpc:hasMaxJobsPerUser owl:DatatypeProperty ;
+    hpc:Hasmaxjobsperuser rdfs:domain hpc:Host ;
+    hpc:Hasmaxjobsperuser rdfs:range xsd:nonNegativeInteger ;
+    hpc:hasR1mIndex owl:DatatypeProperty ;
+    hpc:Hasr1mindex rdfs:domain hpc:Host ;
+    hpc:Hasr1mindex rdfs:range xsd:

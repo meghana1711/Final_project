@@ -1,0 +1,31 @@
+hpc:Resourcemap a owl:Class .
+hpc:Localresource a owl:Class .
+hpc:Exclusiveresource a owl:Class .
+hpc:EGO_LOCAL_RESOURCES rdf:type owl:DatatypeProperty .
+hpc:LSF_LOCAL_RESOURCES rdf:type owl:DatatypeProperty .
+hpc:LSF_LOG_MASK rdf:type owl:DatatypeProperty .
+hpc:LSF_LOG_MASK_MBD rdf:type owl:DatatypeProperty .
+hpc:LSF_LOG_MASK_SCH rdf:type owl:DatatypeProperty .
+hpc:LSB_CMD_LOG_MASK rdf:type owl:DatatypeProperty .
+hpc:LSF_CMD_LOG_MASK rdf:type owl:DatatypeProperty .
+
+hpc:Resourcemap rdfs:subClassOf owl:Class .
+hpc:Localresource rdfs:subClassOf hpc:Resourcemap .
+hpc:Exclusiveresource rdfs:subClassOf hpc:Localresource .
+
+hpc:Resourcemap rdfs:domain xsd:string .
+hpc:Localresource rdfs:domain xsd:string .
+hpc:Exclusiveresource rdfs:domain xsd:string .
+
+hpc:EgoLocalResources rdfs:range xsd:string .
+hpc:LsfLocalResources rdfs:range xsd:string .
+hpc:LsfLogMask rdfs:range xsd:string .
+hpc:LsfLogMaskMbd rdfs:range xsd:string .
+hpc:LsfLogMaskSch rdfs:range xsd:string .
+hpc:LsbCmdLogMask rdfs:range xsd:string .
+hpc:LsfCmdLogMask rdfs:range xsd:string .
+
+hpc:ExclusiveResource rdfs:subPropertyOf hpc:LocalResource .
+hpc:Exclusiveresource rdfs:domain xsd:string .
+hpc:Exclusiveresource rdfs:range xsd:string .
+hpc:ExclusiveResource rdf:value "!" .

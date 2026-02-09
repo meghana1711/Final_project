@@ -1,0 +1,17 @@
+hpc:suspendtimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Maximum time permitted (in second) between when a node suspend request is issued and when the node shutdown is complete." .
+
+hpc:Node a owl:Class ;
+    rdfs:subClassOf (owl:Class
+                      owl:equivalentClass (owl:Class
+                                             rdfs:subClassOf (owl:Class
+                                                                   owl:intersectionOf (owl:Class
+                                                                                               owl:oneOf (hpc:PowerSavingNode) ) ) ) ) ;
+    rdfs:subClassOf (owl:Class
+                      owl:equivalentClass (owl:Class
+                                             rdfs:subClassOf (owl:Class
+                                                                   owl:equivalentClass (owl:Class
+                                                                                             rdfs:subClassOf (owl:Class
+                                                                                                                   owl:intersectionOf (owl:Class

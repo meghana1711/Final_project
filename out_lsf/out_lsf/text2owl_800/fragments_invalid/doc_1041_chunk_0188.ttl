@@ -1,0 +1,63 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a job submitted to a high-performance computing system." .
+
+hpc:executionrusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The resource usage string with which the job ran." .
+
+hpc:alternativeresources a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resource ;
+    rdfs:comment "Indicates alternative resources that can be used for job execution." .
+
+hpc:orderresources a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resource ;
+    rdfs:comment "Indicates the order in which resources should be used for job execution." .
+
+hpc:sameresources a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resource ;
+    rdfs:comment "Indicates resources that should be used concurrently for job execution." .
+
+hpc:rusageresources a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resource ;
+    rdfs:comment "Indicates resources specified using the bsub -R option for the rusage section." .
+
+hpc:selectresources a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resource ;
+    rdfs:comment "Indicates resources specified using the bsub -R option for the select section." .
+
+hpc:latestesubs a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hdfs:Esub ;
+    rdfs:comment "Indicates the latest Esubs used for job execution." .
+
+hpc:defaultesubs a owl:ObjectProperty ;
+    rdfs:domain hpc:Esub ;
+    rdfs:range hpc:Esub ;
+    rdfs:comment "Indicates the default Esub script." .
+
+hpc:useresubs a owl:ObjectProperty ;
+    rdfs:domain hpc:Esub ;
+    rdfs:range hpc:Esub ;
+    rdfs:comment "Indicates user-specified Esub scripts." .
+
+hpc:duplicateesubs a owl:ObjectProperty ;
+    rdfs:domain hpc:Esub ;
+    rdfs:range hpc:Esub ;
+    rdfs:comment "Indicates duplicate Esubs when the user-specified Esub script is the same as the default Esub script." .
+
+hpc:esubparameters a owl:DatatypeProperty ;
+    rdfs:domain hpc:Esub ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates parameters specified in an Esub script." .
+
+hpc:jobexitcodes a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "

@@ -1,0 +1,65 @@
+hpc:lsfConfRetryInt a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range xsd:integer .
+
+hpc:egoConfRetryInt a owl:DatatypeProperty ;
+    rdfs:domain hpc:EgoConf ;
+    rdfs:range xsd:integer .
+
+hpc:lsfConfRetryMax a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range xsd:integer .
+
+hpc:egoConfRetryMax a owl:DatatypeProperty ;
+    rdfs:domain hpc:EgoConf ;
+    rdfs:range xsd:integer .
+
+hpc:lsfDebugLim a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range xsd:integer .
+
+hpc:egoDebugLim a owl:DatatypeProperty ;
+    rdfs:domain hpc:EgoConf ;
+    rdfs:range xsd:integer .
+
+hpc:lsfDhpcEnv a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range xsd:string .
+
+hpc:egoDhpcEnv a owl:DatatypeProperty ;
+    rdfs:domain hpc:EgoConf ;
+    rdfs:range xsd:string .
+
+hpc:lsfDynamicHostTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range xsd:integer .
+
+hpc:egoDynamicHostTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:EgoConf ;
+    rdfs:range xsd:integer .
+
+hpc:lsfDynamicHostWaitTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range xsd:integer .
+
+hpc:egoDynamicHostWaitTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:EgoConf ;
+    rdfs:range xsd:integer .
+
+hpc:lsfEnableDualcore a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range xsd:boolean .
+
+hpc:egoEnableDualcore a owl:DatatypeProperty ;
+    rdfs:domain hpc:EgoConf ;
+    rdfs:range xsd:boolean .
+
+hpc:lsfGetConf a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfBatchSystem ;
+    rdfs:range hpc:LsfConf .
+
+hpc:egoGetConf a owl:ObjectProperty ;
+    rdfs:domain hpc:EgoBatchSystem ;
+    rdfs:range hpc:EgoConf .
+
+hpc:LSF_

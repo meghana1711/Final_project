@@ -1,0 +1,23 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:lmStatPerFeature a owl:ObjectProperty ;
+    rdfs:domain hpc:Licensemanager ;
+    rdfs:range hpc:Boolean .
+
+hpc:lmType a owl:ObjectProperty ;
+    rdfs:domain hpc:Licensemanager ;
+    rdfs:range xsd:string .
+
+hpc:lmStatTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Licensemanager a owl:Class .
+hpc:Command a owl:Class .
+hpc:Boolean a owl:Class ;
+    rdfs:subClassOf xsd:boolean .
+hpc:NonNegativeInteger a owl:Datatype ;
+    rdfs:subClassOf xsd:nonNegativeInteger .

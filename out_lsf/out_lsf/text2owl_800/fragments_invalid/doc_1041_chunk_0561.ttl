@@ -1,0 +1,36 @@
+hpc:Folderpath a owl:Class .
+hpc:Hassrcpath hpc:Folderpath rdfs:domain hpc:Folderpath ;
+                                rdfs:range xsd:string .
+
+hpc:Stagingarea a owl:Class .
+hpc:Hasstgoutdirectory hpc:Stagingarea rdfs:domain hpc:Stagingarea ;
+                                rdfs:range hpc:Directory .
+
+hpc:Transferjob a owl:Class .
+hpc:Hassrc hpc:Transferjob rdfs:domain hpc:Transferjob ;
+                             rdfs:range hpc:Folderpath .
+hpc:Hasdst hpc:Transferjob rdfs:domain hpc:Transferjob ;
+                             rdfs:range xsd:string .
+
+hpc:Symboliclink a owl:Class .
+hpc:Haslinkedpath hpc:Symboliclink rdfs:domain hpc:Symboliclink ;
+                               rdfs:range xsd:string .
+hpc:Haslinkedtarget hpc:Symboliclink rdfs:domain hpc:Symboliclink ;
+                              rdfs:range hpc:Directory .
+
+hpc:Directory a owl:Class .
+hpc:Hasrelativepath hpc:Directory rdfs:domain hpc:Directory ;
+                             rdfs:range xsd:string .
+
+hpc:lsbOutdir a owl:DatatypeProperty .
+hpc:HaslsbOutdir hpc:Transferjob rdfs:domain hpc:Transferjob ;
+                               rdfs:range xsd:string .
+
+hpc:lsbSubHost a owl:DatatypeProperty .
+hpc:HaslsbSubHost hpc:Transferjob rdfs:domain hpc:Transferjob ;
+                             rdfs:range xsd:string .
+
+hpc:Stagingarea rdfs:subClassOf owl:Class .
+hpc:Directory rdfs:subClassOf owl:Class .
+hpc:Symboliclink rdfs:subClassOf hpc:Directory .
+hpc:Transferjob rdfs:subClassOf owl:Class .

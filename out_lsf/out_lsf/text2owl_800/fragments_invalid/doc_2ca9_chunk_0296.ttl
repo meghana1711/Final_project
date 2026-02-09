@@ -1,0 +1,16 @@
+hpc:Fixpack12 a owl:Class .
+hpc:Fixpack12 rdfs:subClassOf hpc:Fixpack .
+hpc:Hasreleasedate rdfs:domain hpc:Fixpack .
+hpc:Hasreleasedate rdfs:range xsd:date .
+
+hpc:FixPack7 rdf:type hpc:FixPack .
+hpc:FixPack3 rdf:type hpc:FixPack .
+hpc:FixPack15 rdf:type hpc:FixPack .
+
+hpc:Containsfixes rdfs:domain hpc:Fixpack .
+hpc:Containsfixes rdfs:range xsd:string .
+
+hpc:Fixpack15 hpc:containsfixes "Issues tracked between 11 June 2021 and 12 February 2025" .
+
+
+This ontology fragment represents the classes `FixPack12`, `FixPack7`, `FixPack3`, and `FixPack15`, and the object property `containsFixes` with its domain and range. The `hasReleaseDate` property is also defined for the `FixPack` class.

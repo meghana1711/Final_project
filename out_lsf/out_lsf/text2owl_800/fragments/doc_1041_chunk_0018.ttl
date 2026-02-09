@@ -1,0 +1,22 @@
+hpc:Hostmodel a owl:Class .
+hpc:cpufactor a owl:DatatypeProperty .
+hpc:Hascpufactor rdfs:domain hpc:Hostmodel ;
+                 rdfs:range xsd:decimal .
+
+hpc:Job a owl:Class .
+hpc:projectname a owl:ObjectProperty .
+hpc:Hasprojectname rdfs:domain hpc:Job ;
+                   rdfs:range rdf:String .
+
+hpc:Queue a owl:Class .
+hpc:queuename a owl:ObjectProperty .
+hpc:Hasqueuename rdfs:domain hpc:Job ;
+                rdfs:range rdf:String .
+
+hpc:rcaccountname a owl:DatatypeProperty .
+hpc:Associatedwithrcaccount rdfs:domain hpc:Job ;
+                     rdfs:range rdf:String .
+
+hpc:Rcconnectorhost a owl:Class .
+hpc:Ranonrcconnectorhost rdfs:subClassOf hpc:Job ;
+                       rdfs:comment "Jobs that actually ran on an LSF resource connector host." .

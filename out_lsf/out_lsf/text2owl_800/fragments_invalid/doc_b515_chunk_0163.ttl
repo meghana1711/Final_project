@@ -1,0 +1,26 @@
+hpc:User
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a user in the HPC system." .
+
+hpc:Group
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a group of users in the HPC system." .
+
+hpc:ShareAssignment
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:User ] ;
+    rdfs:range [ rdf:type xsd:nonNegativeInteger ] ;
+    rdfs:comment "The number of shares assigned to a user." .
+
+hpc:DynamicPriorityFormula
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:User ] ;
+    rdfs:range [ rdf:type xsd:nonNegativeFloat ] ;
+    rdfs:comment "The formula used to calculate a user's dynamic priority." .
+
+hpc:ResourcesConsumed
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:User ] ;
+    rdfs:

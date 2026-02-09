@@ -1,0 +1,73 @@
+hpc:Debugcommandlogging a owl:Class ;
+    rdfs:subClassOf hpc:Loggingmethod .
+
+hpc:lcTrace a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lcFair a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lcFile a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lc2File a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lcHang a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lc2Hang a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lcJarray a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lc2Jarray a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lcJlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lc2Jlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lcLicense a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lcLicence a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lcLoadindx a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lc2Loadindx a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lcMLog a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lc2MLog a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lcMpi a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;
+    rdfs:range xsd:string .
+
+hpc:lcPend a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugcommandlogging ;

@@ -1,0 +1,28 @@
+hpc:Jobgroup a owl:Class .
+hpc:bgdel a owl:ObjectProperty .
+
+hpc:Jobgroup rdfs:subClassOf owl:Class .
+hpc:Bgdel rdfs:domain hpc:Jobgroup ;
+                                rdfs:range xsd:string .
+
+hpc:Jobgroup rdfs:subClassOf hpc:Explicitjobgroup ;
+                                rdfs:subClassOf hpc:Implicitjobgroup .
+
+hpc:Explicitjobgroup rdfs:subClassOf hpc:Jobgroup ;
+                              rdfs:subClassOf hpc:Createdbycommand .
+hpc:ExplicitJobGroup rdfs:subPropertyOf hpc:bgadd .
+
+hpc:Implicitjobgroup rdfs:subClassOf hpc:Jobgroup ;
+                              rdfs:subClassOf hpc:Createdbycommand .
+hpc:ImplicitJobGroup rdfs:subPropertyOf (hpc:bsub rdfs:composedOf hpc:bmod) .
+
+hpc:Createdbycommand rdfs:subClassOf owl:Class .
+hpc:CreatedByCommand rdfs:subPropertyOf hpc:bgadd ;
+                                         hpc:bsub ;
+                                         hpc:bmod .
+
+hpc:Bgdel rdfs:range xsd:string .
+hpc:bgdel rdfs:subPropertyOf (hpc:bgdel [-u user_name | -u all] job_group_name | 0) .
+
+hpc:BgdelEmpty rdfs:subClassOf hpc:Bgdel .
+hpc:bgdel_empty rdfs:subPropertyOf -d idle_time .

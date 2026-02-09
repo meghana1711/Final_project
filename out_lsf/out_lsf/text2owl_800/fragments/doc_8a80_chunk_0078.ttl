@@ -1,0 +1,43 @@
+hpc:Loglevel a owl:Class.
+hpc:Logdebug3 rdfs:subClassOf hpc:Loglevel.
+hpc:Logdebug2 rdfs:subClassOf hpc:Loglevel.
+hpc:Logdebug1 rdfs:subClassOf hpc:Loglevel.
+hpc:Loglevel rdfs:subClassOf owl:Thing.
+
+hpc:lsflogmask a owl:ObjectProperty.
+hpc:Lsflogmask rdfs:domain hpc:Loglevel.
+hpc:Lsflogmask rdfs:range xsd:string.
+
+hpc:logfilename a owl:ObjectProperty.
+hpc:Logfilename rdfs:domain hpc:Loglevel.
+hpc:Logfilename rdfs:range xsd:string.
+
+hpc:LogFileFullPath rdf:datatype xsd:boolean.
+hpc:Logfilefullpath rdfs:range xsd:boolean.
+hpc:LogFileFullPath rdfs:default true.
+
+hpc:logfiledefaultpath a owl:ObjectProperty.
+hpc:Logfiledefaultpath rdfs:domain hpc:Loglevel.
+hpc:Logfiledefaultpath rdfs:range xsd:string.
+
+hpc:logfileformat a owl:DatatypeProperty.
+hpc:Logfileformat rdfs:domain hpc:Logfilename.
+hpc:Logfileformat rdfs:range xsd:string.
+
+hpc:logfilehostname a owl:DatatypeProperty.
+hpc:Logfilehostname rdfs:domain hpc:Logfilename.
+hpc:Logfilehostname rdfs:range xsd:string.
+
+hpc:logfiledaemonname a owl:DatatypeProperty.
+hpc:Logfiledaemonname rdfs:domain hpc:Logfilename.
+hpc:Logfiledaemonname rdfs:range xsd:string.
+
+hpc:logfileonunix a owl:ObjectProperty.
+hpc:Logfileonunix rdfs:domain hpc:Logfilename.
+hpc:Logfileonunix rdfs:range xsd:string.
+hpc:Logfileonunix rdfs:range xsd:string.
+
+hpc:logfileonwindows a owl:ObjectProperty.
+hpc:Logfileonwindows rdfs:domain hpc:Logfilename.
+hpc:Logfileonwindows rdfs:range xsd:boolean.
+hpc:LogFileOnWindows rdfs:default false.

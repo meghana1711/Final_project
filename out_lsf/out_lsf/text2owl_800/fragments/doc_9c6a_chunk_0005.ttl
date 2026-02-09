@@ -1,0 +1,43 @@
+hpc:Lsfinstallation a owl:Class .
+hpc:cshrclsf a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfinstallation ;
+    rdfs:range xsd:string .
+hpc:lsfclusterclustername a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfinstallation ;
+    rdfs:range xsd:string .
+hpc:lsfconf a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfinstallation ;
+    rdfs:range xsd:string .
+hpc:lsfshared a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfinstallation ;
+    rdfs:range xsd:string .
+hpc:profilelsf a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfinstallation ;
+    rdfs:range xsd:string .
+
+hpc:lsfhostsetup a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfinstallation ;
+    rdfs:range hpc:Lsfhost .
+
+hpc:Lsfhost a owl:Class .
+
+hpc:lsfserverhost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfhost ;
+    rdfs:range xsd:string .
+
+hpc:hostsetupscript a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfhost ;
+    rdfs:range xsd:string .
+
+hpc:Lsfenvironment a owl:Class .
+hpc:cshortcshlsf a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfenvironment ;
+    rdfs:range xsd:string .
+hpc:shkshorbashlsf a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfenvironment ;
+    rdfs:range xsd:string .
+
+hpc:Lsfdaemon a owl:Class .
+hpc:restartlsf a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfenvironment ;
+    rdfs:range hpc:Lsfdaemon .

@@ -1,0 +1,35 @@
+hpc:Subcommand a owl:Class .
+hpc:ShowStatus a rdf:Statement ;
+    rdfs:subject hpc:Subcommand ;
+    rdfs:predicate hpc:isSubcommandOf ;
+    rdfs:object hpc:ShowStatusCommand .
+
+hpc:Checkconfig a owl:Class ;
+    rdfs:subClassOf hpc:Subcommand .
+
+hpc:Checkconfigverbose a owl:Class ;
+    rdfs:subClassOf hpc:Checkconfig .
+
+hpc:Diagnose a owl:Class ;
+    rdfs:subClassOf hpc:Subcommand .
+
+hpc:Diagnosepending a owl:Class ;
+    rdfs:subClassOf hpc:Diagnose .
+
+hpc:diagnosejobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Diagnose .
+
+hpc:Savesnapshot a owl:Class ;
+    rdfs:subClassOf hpc:Subcommand .
+
+hpc:savesnapshotfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Savesnapshot .
+
+hpc:savesnapshotformat a owl:DatatypeProperty ;
+    rdfs:domain hpc:Savesnapshot .
+
+hpc:SaveSnapshotFormatXML a xsd:string ;
+    rdfs:range hpc:Savesnapshotformat .
+
+hpc:SaveSnapshotFormatJSON a xsd:string ;
+    rdfs:range hpc:Savesnapshotformat .

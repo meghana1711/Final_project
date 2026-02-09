@@ -1,0 +1,19 @@
+hpc:Idlejob a owl:Class .
+hpc:eadminTriggerDuration a owl:ObjectProperty .
+hpc:Rdfsdomain EADMIN_TRIGGER_DURATION rdfs:domain hpc:Idlejob .
+
+hpc:Hostexception a owl:Class .
+hpc:lsfChecksIdleJobs a owl:ObjectProperty .
+hpc:Rdfsdomain LSF_CHECKS_IDLE_JOBS rdfs:domain hpc:Hostexception .
+
+hpc:Host a owl:Class .
+hpc:exitRate a owl:DatatypeProperty .
+hpc:Rdfsdomain EXIT_RATE rdfs:domain hpc:Host .
+hpc:jobExitRateDuration a owl:ObjectProperty .
+hpc:Rdfsdomain JOB_EXIT_RATE_DURATION rdfs:domain hpc:Host .
+hpc:globalExitRate a owl:DatatypeProperty .
+hpc:Rdfsdomain GLOBAL_EXIT_RATE rdfs:domain hpc:Host .
+
+hpc:Jobexceptionaction a owl:Class .
+hpc:lsfServerdirEadmin a owl:ObjectProperty .
+hpc:Rdfsdomain LSF_SERVERDIR_EADMIN rdfs:domain hpc:Jobexceptionaction .

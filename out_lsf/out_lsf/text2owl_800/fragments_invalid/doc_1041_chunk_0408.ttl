@@ -1,0 +1,75 @@
+hpc:Bmod a owl:Class .
+
+hpc:hasBModOptions rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Bmod ;
+    rdfs:range rdf:Bag .
+
+hpc:jobID rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bmod .
+
+hpc:jobGroup rdf:Type owl:DatatypeProperty ;
+    rdfs:domain (hpc:Bmod | hpc:Job) ;
+    rdfs:range xsd:string .
+
+hpc:serviceClass rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bmod ;
+    rdfs:range xsd:string .
+
+hpc:filePath rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bmod ;
+    rdfs:range xsd:string .
+
+hpc:systemValue rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bmod ;
+    rdfs:range xsd:string .
+
+hpc:beginTime rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bmod ;
+    rdfs:range xsd:dateTime .
+
+hpc:coreLimit rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bmod ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hourMinute rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bmod ;
+    rdfs:range xsd:time .
+
+hpc:hostName rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Hourminute ;
+    rdfs:range xsd:string .
+
+hpc:hostModel rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Hourminute ;
+    rdfs:range xsd:string .
+
+hpc:application rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bmod ;
+    rdfs:range xsd:string .
+
+hpc:argument rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range xsd:string .
+
+hpc:applicationProfile rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bmod ;
+    rdfs:range xsd:string .
+
+hpc:aps rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bmod ;
+    rdfs:range xsd:string .
+
+hpc:ar rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Bmod .
+
+hpc:arn rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Bmod .
+
+hpc:B rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Bmod .
+
+hpc:hl rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Bmod .
+
+hpc:N rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:B

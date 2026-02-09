@@ -1,0 +1,62 @@
+hpc:Resource a owl:Class .
+hpc:Cpu a owl:Class .
+hpc:Memory a owl:Class .
+hpc:Gpu a owl:Class .
+hpc:Networkinterfacecard a owl:Class .
+
+# CPU properties
+hpc:numcpus a owl:DatatypeProperty .
+hpc:maxcpus a owl:DatatypeProperty .
+hpc:maxdiskspace a owl:DatatypeProperty .
+hpc:maxswapspace a owl:DatatypeProperty .
+hpc:maxtemporaryspace a owl:DatatypeProperty .
+hpc:maxmemory a owl:DatatypeProperty .
+hpc:maxsharedmemory a owl:DatatypeProperty .
+hpc:maxexclusivememoryt a owl:DatatypeProperty .
+hpc:maxexclusivememoryp a owl:DatatypeProperty .
+hpc:type a owl:ObjectProperty .
+hpc:model a owl:ObjectProperty .
+hpc:architecture a owl:ObjectProperty .
+hpc:server a owl:ObjectProperty .
+hpc:isopen a owl:ObjectProperty .
+
+# Memory properties
+hpc:totalmemory a owl:DatatypeProperty .
+hpc:reservedmemory a owl:DatatypeProperty .
+
+# GPU properties
+hpc:totalgpus a owl:DatatypeProperty .
+hpc:reservedgpus a owl:DatatypeProperty .
+hpc:sharedgpus a owl:DatatypeProperty .
+hpc:exclusivegpust a owl:DatatypeProperty .
+hpc:exclusivegpusp a owl:DatatypeProperty .
+
+# Network Interface Card properties
+hpc:numnics a owl:DatatypeProperty .
+
+# Load scheduling properties
+hpc:loadsched a owl:ObjectProperty .
+hpc:loadstop a owl:ObjectProperty .
+
+# LSF-specific properties
+hpc:rusage a owl:ObjectProperty .
+hpc:nprocs a owl:DatatypeProperty .
+hpc:ncores a owl:DatatypeProperty .
+hpc:nthreads a owl:DatatypeProperty .
+hpc:runwindows a owl:ObjectProperty .
+
+# Domain and range restrictions
+rdfs:domain hpc:Cpu hpc:Type .
+rdfs:domain hpc:Memory hpc:Totalmemory .
+rdfs:domain hpc:Memory hpc:Reservedmemory .
+rdfs:domain hpc:Gpu hpc:Totalgpus .
+rdfs:domain hpc:Gpu hpc:Reservedgpus .
+rdfs:domain hpc:Gpu hpc:Sharedgpus .
+rdfs:domain hpc:Gpu hpc:Exclusivegpust .
+rdfs:domain hpc:Gpu hpc:Exclusivegpusp .
+rdfs:domain hpc:Networkinterfacecard hpc:Numnics .
+rdfs:range hpc:Type xsd:string .
+rdfs:range hpc:Model xsd:string .
+rdfs:range hpc:Architecture xsd:string .
+rdfs:range hpc:Server xsd:string .
+rdfs:range hpc:Isopen xsd

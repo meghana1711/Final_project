@@ -1,0 +1,25 @@
+hpc:Host a owl:Class .
+hpc:numPendJobs a owl:ObjectProperty .
+hpc:duration a owl:DatatypeProperty .
+hpc:Duration rdfs:range xsd:duration .
+hpc:status a owl:ObjectProperty .
+hpc:RcStatus rdfs:domain hpc:Host .
+hpc:ProvStatus rdfs:domain hpc:Host .
+hpc:UpdatedAt rdfs:domain hpc:Host .
+hpc:HostName rdfs:range xsd:string .
+hpc:Status rdfs:range xsd:string .
+hpc:Cpuf rdfs:range xsd:decimal .
+hpc:JlU rdfs:range xsd:nonPositiveInteger .
+hpc:Max rdfs:range xsd:nonNegativeInteger .
+hpc:Njobs rdfs:range xsd:nonNegativeInteger .
+hpc:Run rdfs:range xsd:nonNegativeInteger .
+hpc:Ssusp rdfs:range xsd:nonNegativeInteger .
+hpc:Ususp rdfs:range xsd:nonNegativeInteger .
+hpc:Rsv rdfs:range xsd:nonNegativeInteger .
+hpc:DispatchWindow rdfs:domain hpc:Host .
+hpc:CurrentLoad rdfs:domain hpc:Host .
+hpc:CurrentLoad rdfs:range rdf:List .
+hpc:CurrentLoad rdfs:range rdf:first xsd:string .
+hpc:CurrentLoad rdfs:range rdf:rest rdf:List .
+hpc:CurrentLoad rdfs:range rdf:rest rdf:first rdf:List .
+hpc:CurrentLoad rdfs:range rdf:rest rdf:rest rdf:List .

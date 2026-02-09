@@ -1,0 +1,51 @@
+hpc:commandpath a owl:DatatypeProperty .
+hpc:preexecutioncommand a owl:ObjectProperty .
+hpc:postexecutioncommand a owl:ObjectProperty .
+hpc:Path a owl:Class .
+hpc:Shell a owl:Class .
+hpc:Shellfeatures a owl:Class .
+hpc:standardinput a owl:DatatypeProperty .
+hpc:standardoutput a owl:DatatypeProperty .
+hpc:standarderror a owl:DatatypeProperty .
+hpc:environmentvariable a owl:DatatypeProperty .
+hpc:Value a owl:Class .
+hpc:Unix a owl:Class .
+hpc:Windows a owl:Class .
+hpc:Preemptivescheduling a owl:Class .
+hpc:preemptive a owl:ObjectProperty .
+hpc:preemptable a owl:ObjectProperty .
+hpc:Lowqueue a owl:Class .
+hpc:Highqueue a owl:Class .
+hpc:Preemptivequeue rdfs:subClassOf hpc:Preemptivescheduling .
+hpc:Preemptablequeue rdfs:subClassOf hpc:Preemptivescheduling .
+hpc:Preemptive rdfs:domain hpc:Preemptivequeue ;
+    rdfs:range hpc:Preemptivequeue ;
+    rdfs:range hpc:Lowqueue .
+hpc:Preemptable rdfs:domain hpc:Preemptablequeue ;
+    rdfs:range hpc:Preemptablequeue ;
+    rdfs:range hpc:Highqueue .
+hpc:Unix rdfs:subClassOf hpc:Commandpath ;
+    rdfs:subPropertyChain rdfs:subClassOf (hpc:Preexecutioncommand rdfs:subPropertyOf rdf:Property ;
+                                               rdf:type owl:ObjectProperty ;
+                                               rdfs:domain hpc:Shell ;
+                                               rdfs:range hpc:Path ;
+                                               rdfs:subProperty rdf:type owl:ObjectProperty ;
+                                               rdfs:domain hpc:Shell ;
+                                               rdfs:range hpc:Path ;
+                                               rdfs:subProperty rdf:type owl:ObjectProperty ;
+                                               rdfs:domain hpc:Shellfeatures ;
+                                               rdfs:range hpc:Path ) ;
+                                 rdfs:subProperty rdf:type owl:ObjectProperty ;
+                                 rdfs:domain hpc:Shellfeatures ;
+                                 rdfs:range hpc:Path ) .
+hpc:Windows rdfs:subClassOf hpc:Commandpath ;
+    rdfs:subPropertyChain rdfs:subClassOf (hpc:Preexecutioncommand rdfs:subPropertyOf rdf:Property ;
+                                               rdf:type owl:ObjectProperty ;
+                                               rdfs:domain hpc:Shell ;
+                                               rdfs:range hpc:Path ) ;
+                                 rdfs:subProperty rdf:type owl:ObjectProperty ;
+                                 rdfs:domain hpc:Shell ;
+                                 rdfs:range hpc:Path ) .
+hpc:Path rdfs:domain hpc:Commandpath ;
+    rdfs:range xsd:string .
+hpc:Shell rdfs

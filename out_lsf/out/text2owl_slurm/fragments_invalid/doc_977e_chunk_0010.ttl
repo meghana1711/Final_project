@@ -1,0 +1,29 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf hpc:Jobcontainer .
+
+hpc:Jobcontainer a owl:Class ;
+    rdfs:subClassOf owl:ObjectPropertyDomain .
+
+hpc:hasreservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Reservation ;
+    rdfs:subPropertyOf hpc:hasContainer .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:ObjectPropertyDomain .
+
+hpc:hasnode a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:hasContainer .
+
+hpc:Flexflag a owl:Class ;
+    rdfs:subClassOf hpc:Reservationflag .
+
+hpc:Magneticflag a owl:Class ;
+    rdfs:subClassOf hpc:Reservationflag .
+
+hpc:Reservationflag a owl:Class .
+
+hpc:reservationflag a owl:ObjectProperty ;
+    r

@@ -1,0 +1,34 @@
+hpc:Jobretry a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:retrycount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobretry ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Errortype a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+# Object Properties
+hpc:haserrortype a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobretry ;
+    rdfs:range hpc:Errortype .
+
+hpc:hasretrycount a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobretry ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Error Types
+hpc:XDRError a hpc:ErrorType .
+hpc:MSG_SYS a hpc:ErrorType .
+hpc:InternalLibraryError a hpc:ErrorType .
+
+# Constraints
+hpc:JobRetry
+    owl:hasValue [ rdf:datatype xsd:nonNegativeInteger ; xsd:minInclusive "1" ] .
+hpc:JobRetry
+    owl:hasValue [ rdf:datatype xsd:nonNegativeInteger ; xsd:maxInclusive "50" ] .
+
+# Command Line Job Submission
+hpc:lsbBsubParseScript a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobretry ;
+    rdfs:range rdf:Boolean .

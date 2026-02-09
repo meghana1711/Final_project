@@ -1,0 +1,29 @@
+hpc:integerport a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:int32 .
+
+hpc:argv a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:List .
+
+hpc:Jobarray a owl:Class .
+
+hpc:jobarrayindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:string .
+
+hpc:batchfeatures a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:begintime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:flags a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:List .
+
+hpc:burstBuffer a owl:EnumMember ;
+    rdfs:subClassOf hpc:String ;
+    rdfs:label "

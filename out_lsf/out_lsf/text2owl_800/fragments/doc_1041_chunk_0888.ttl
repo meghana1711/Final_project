@@ -1,0 +1,46 @@
+hpc:Command a owl:Class .
+hpc:argument a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:commandline a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:Jobcommand a owl:Class ;
+    rdfs:subClassOf hpc:Command .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcommand ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcommand ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobcommand ;
+    rdfs:range xsd:boolean .
+
+hpc:jobversion a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobcommand ;
+    rdfs:range xsd:string .
+
+hpc:Ssview a owl:Class ;
+    rdfs:subClassOf hpc:Jobcommand .
+
+hpc:ssacct a owl:ObjectProperty ;
+    rdfs:domain hpc:Ssview ;
+    rdfs:range xsd:string .
+
+hpc:lsbparams a owl:ObjectProperty ;
+    rdfs:domain hpc:Ssview ;
+    rdfs:range xsd:string .
+
+hpc:ssviewtaskdetails a owl:ObjectProperty ;
+    rdfs:domain hpc:Ssview ;
+    rdfs:range xsd:boolean .
+
+hpc:lsbreportssjobfailure a owl:ObjectProperty ;
+    rdfs:domain hpc:Ssview ;
+    rdfs:range xsd:boolean .

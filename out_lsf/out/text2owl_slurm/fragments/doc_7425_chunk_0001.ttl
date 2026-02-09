@@ -1,0 +1,30 @@
+hpc:Accountflags a owl:Class .
+hpc:Accountflags rdfs:subClassOf xsd:string .
+
+hpc:Accounting a owl:Class .
+hpc:Accounting rdfs:subClassOf rdf:Resource .
+hpc:Accounting rdfs:comment "Represents accounting information." .
+hpc:Accounting rdfs:label "Accounting" .
+hpc:Accounting rdfs:subClassOf hpc:Resource .
+
+hpc:Acctgatherenergy a owl:Class .
+hpc:Acctgatherenergy rdfs:subClassOf rdf:Resource .
+hpc:AcctGatherEnergy rdfs:comment "Represents energy accounting information." .
+hpc:AcctGatherEnergy rdfs:label "AcctGatherEnergy" .
+hpc:Acctgatherenergy rdfs:subClassOf hpc:Resource .
+
+hpc:acctgatherenergycurrentwatts a owl:DatatypeProperty .
+hpc:Acctgatherenergycurrentwatts rdfs:domain hpc:Acctgatherenergy .
+hpc:Acctgatherenergycurrentwatts rdfs:range xsd:integer .
+hpc:AcctGatherEnergyCurrentWatts rdfs:comment "The instantaneous power consumption at the time of the last node energy accounting sample, in watts (32 bit integer number with flags)" .
+
+hpc:acctgatherenergylastcollected a owl:DatatypeProperty .
+hpc:Acctgatherenergylastcollected rdfs:domain hpc:Acctgatherenergy .
+hpc:Acctgatherenergylastcollected rdfs:range xsd:string .
+hpc:AcctGatherEnergyLastCollected rdfs:comment "Time when energy data was last retrieved (UNIX timestamp) (UNIX timestamp or time string recognized by Slurm (e.g., '[MM/DD[/YY]-]hpc:MM[:SS]'))" .
+
+hpc:Acctgatherprofile a owl:Class .
+hpc:Acctgatherprofile rdfs:subClassOf rdf:Resource .
+hpc:AcctGatherProfile rdfs:comment "Represents energy profile accounting information." .
+hpc:AcctGatherProfile rdfs:label "AcctGatherProfile" .
+hpc:Acctgatherprofile rdfs:subClassOf hpc:Resource .

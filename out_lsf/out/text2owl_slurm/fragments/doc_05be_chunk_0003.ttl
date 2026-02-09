@@ -1,0 +1,14 @@
+hpc:SlurmOptdata a owl:Class .
+hpc:cliFilterPSetupDefaults a owl:ObjectProperty .
+hpc:cliFilterPPreSubmit a owl:ObjectProperty .
+hpc:early a owl:DatatypeProperty .
+hpc:options a owl:DatatypeProperty .
+hpc:offset a owl:DatatypeProperty .
+
+hpc:SlurmOptdata rdfs:subClassOf xsd:anySimpleType .
+hpc:Early rdfs:domain hpc:CliFilterPSetupDefaults .
+hpc:Options rdfs:domain hpc:CliFilterPSetupDefaults .
+hpc:Offset rdfs:domain hpc:CliFilterPPreSubmit .
+
+hpc:CliFilterPSetupDefaults rdfs:range hpc:SlurmOptdata .
+hpc:CliFilterPPreSubmit rdfs:range hpc:SlurmOptdata .

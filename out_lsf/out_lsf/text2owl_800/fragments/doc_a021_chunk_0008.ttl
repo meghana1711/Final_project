@@ -1,0 +1,28 @@
+hpc:Queuedemandpolicy a owl:Class ;
+    rdfs:subClassOf hpc:Policy .
+
+hpc:numPendJobs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queuedemandpolicy ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:duration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queuedemandpolicy ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:threshold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queuedemandpolicy ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Maximum SBD Connections
+hpc:Sbdconnections a owl:Class ;
+    rdfs:subClassOf hpc:Resourceparameter .
+
+hpc:maxSbdConns a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sbdconnections ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Optimizations
+hpc:Optimizations a owl:Class ;
+    rdfs:subClassOf hpc:Policy .
+
+hpc:allocrules a owl:ObjectProperty .

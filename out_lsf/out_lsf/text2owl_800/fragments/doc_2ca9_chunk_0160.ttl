@@ -1,0 +1,30 @@
+hpc:Jobinformationevent a owl:Class ;
+    rdfs:subClassOf owl:Event .
+
+hpc:jobInfoEventDumpInterval a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobinformationevent ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Parameters
+hpc:Parameter a owl:Class .
+
+# Command
+hpc:Command a owl:Class .
+
+# Job Array Performance Improvements
+hpc:Jobarrayperformanceimprovements a owl:Class ;
+    rdfs:subClassOf owl:Event .
+
+hpc:jobArrayEventsCombine a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobarrayperformanceimprovements ;
+    rdfs:range xsd:boolean .
+
+hpc:JOB_ARRAY_EVENTS_COMBINE rdfs:subPropertyOf hpc:Parameter .
+
+# Pending Job Management
+hpc:Pendingjobmanagement a owl:Class ;
+    rdfs:subClassOf owl:Event .
+
+hpc:strictPendingJobManagement a owl:ObjectProperty ;
+    rdfs:domain hpc:Pendingjobmanagement ;
+    rdfs:range xsd:boolean .

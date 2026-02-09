@@ -1,0 +1,33 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:EgoBindir a owl:Class .
+hpc:EgoConfdir a owl:Class .
+hpc:EgoEsrvdir a owl:Class .
+hpc:EgoLibdir a owl:Class .
+hpc:EgoLocalConfdir a owl:Class .
+
+hpc:hasbindir a owl:ObjectProperty .
+hpc:hasconfdir a owl:ObjectProperty .
+hpc:hasesrvdir a owl:ObjectProperty .
+hpc:haslibdir a owl:ObjectProperty .
+hpc:haslocalconfdir a owl:ObjectProperty .
+
+hpc:Hasbindir rdfs:domain hpc:EgoBindir ;
+    rdfs:range xsd:string .
+hpc:Hasconfdir rdfs:domain hpc:EgoConfdir ;
+    rdfs:range xsd:string .
+hpc:Hasesrvdir rdfs:domain hpc:EgoEsrvdir ;
+    rdfs:range xsd:string .
+hpc:Haslibdir rdfs:domain hpc:EgoLibdir ;
+    rdfs:range xsd:string .
+hpc:Haslocalconfdir rdfs:domain hpc:EgoLocalConfdir ;
+    rdfs:range xsd:string .
+
+hpc:EgoBindir rdfs:subClassOf owl:Class .
+hpc:EgoConfdir rdfs:subClassOf owl:Class .
+hpc:EgoEsrvdir rdfs:subClassOf owl:Class .
+hpc:EgoLibdir rdfs:subClassOf owl:Class .
+hpc:EgoLocalConfdir rdfs:subClassOf owl:Class .

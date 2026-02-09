@@ -1,0 +1,31 @@
+hpc:Slurmd a owl:Class .
+hpc:slurmdport a owl:DatatypeProperty .
+hpc:Slurmdport rdfs:domain hpc:Slurmd .
+hpc:Slurmdport rdfs:range xsd:integer .
+
+hpc:slurmdportrange a owl:DatatypeProperty .
+hpc:Slurmdportrange rdfs:domain hpc:Slurmd .
+hpc:Slurmdportrange rdfs:range xsd:integer .
+
+hpc:Srun a owl:Class .
+hpc:srunportrange a owl:DatatypeProperty .
+hpc:Srunportrange rdfs:domain hpc:Srun .
+hpc:Srunportrange rdfs:range xsd:integer .
+
+hpc:Slurmctldcommunication a owl:Class .
+hpc:slurmctldport a owl:DatatypeProperty .
+hpc:Slurmctldport rdfs:domain hpc:Slurmctldcommunication .
+hpc:Slurmctldport rdfs:range xsd:integer .
+
+hpc:Slurmdbdcommunication a owl:Class .
+hpc:slurmdbdport a owl:DatatypeProperty .
+hpc:Slurmdbdport rdfs:domain hpc:Slurmdbdcommunication .
+hpc:Slurmdbdport rdfs:range xsd:integer .
+
+hpc:Clientcommand a owl:Class .
+hpc:communicateswith a owl:ObjectProperty .
+hpc:Communicateswith rdfs:domain hpc:Clientcommand .
+hpc:Communicateswith rdfs:range hpc:Slurmctldcommunication .
+
+hpc:Joballocationrequest a owl:Class .
+hpc:Stepcreaterequest a owl:Class .

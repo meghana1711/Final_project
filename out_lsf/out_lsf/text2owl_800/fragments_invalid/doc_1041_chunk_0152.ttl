@@ -1,0 +1,51 @@
+hpc:File a owl:Class .
+hpc:Cachelocation hpc:File rdfs:domain hpc:File ;
+                   rdfs:range xsd:string .
+hpc:Permission hpc:File rdfs:domain hpc:File ;
+                   rdfs:range xsd:string .
+hpc:Size hpc:File rdfs:domain hpc:File ;
+              rdfs:range xsd:decimal .
+hpc:Hash hpc:File rdfs:domain hpc:File ;
+              rdfs:range xsd:string .
+hpc:Status hpc:File rdfs:domain hpc:File ;
+              rdfs:range xsd:string .
+hpc:RefJob hpc:File rdfs:domain hpc:File ;
+              rdfs:range xsd:string .
+hpc:XferJob hpc:File rdfs:domain hpc:File ;
+              rdfs:range xsd:string .
+hpc:Grace hpc:File rdfs:domain hpc:File ;
+              rdfs:range xsd:string .
+hpc:Modified hpc:File rdfs:domain hpc:File ;
+              rdfs:range xsd:dateTime .
+hpc:cacheLocation a owl:ObjectProperty .
+hpc:permission a owl:ObjectProperty .
+hpc:size a owl:DatatypeProperty .
+hpc:hash a owl:DatatypeProperty .
+hpc:status a owl:DatatypeProperty .
+hpc:refJob a owl:DatatypeProperty .
+hpc:xferJob a owl:DatatypeProperty .
+hpc:grace a owl:DatatypeProperty .
+hpc:modified a owl:DatatypeProperty .
+
+hpc:Filewithsharedcopy a owl:Class ;
+                        rdfs:subClassOf hpc:File .
+hpc:Fileownedbygroup a owl:Class ;
+                      rdfs:subClassOf hpc:File .
+
+hpc:Filewithsharedcopy rdfs:domain hpc:File ;
+                       rdfs:range xsd:integer .
+hpc:Fileownedbygroup rdfs:domain hpc:File ;
+                     rdfs:range xsd:string .
+
+
+For the examples:
+
+hpc:BdataCache a owl:Class ;
+                rdfs:subClassOf hpc:File .
+hpc:transfer_tool_sh a hpc:File ;
+                hpc:Cache_Location "hostA:/home/user1/transfer_tool.sh" .
+hpc:transfer_tool_sh a hpc:FileWithSharedCopy .
+hpc:ab7dc9 a hpc:File ;
+             hpc:Status "STAGING" .
+hpc:bsub_data a hpc:FileOwnedByGroup ;
+             hpc:Cache_Location "/home" .

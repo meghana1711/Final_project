@@ -1,0 +1,48 @@
+hpc:MC_FORWARD_DELAY
+    a owl:DatatypeProperty ;
+    rdfs:domain lsb:Queue ;
+    rdfs:range xsd:integer ;
+    rdfs:label "MC_FORWARD_DELAY" .
+
+hpc:MC_RESOURCE_MATCHING_CRITERIA
+    a owl:ObjectProperty ;
+    rdfs:domain lsb:RemoteCluster ;
+    rdfs:range rls:ResourceList ;
+    rdfs:label "MC_RESOURCE_MATCHING_CRITERIA" .
+
+hpc:FWD_JOB_FACTOR
+    a owl:DatatypeProperty ;
+    rdfs:domain lsb:Params ;
+    rdfs:range xsd:float ;
+    rdfs:label "FWD_JOB_FACTOR" .
+
+hpc:SpecialResourceCluster
+    a owl:Class ;
+    rdfs:subClassOf lsb:Cluster ;
+    rdfs:label "SpecialResourceCluster" .
+
+hpc:JobWithSpecialResources
+    a owl:Class ;
+    rdfs:subClassOf lsb:Job ;
+    rdfs:label "JobWithSpecialResources" .
+
+hpc:RequiresSpecialResource
+    a owl:ObjectProperty ;
+    rdfs:domain JobWithSpecialResources ;
+    rdfs:range SpecialResource ;
+    rdfs:label "RequiresSpecialResource" .
+
+hpc:FairShareConsideredJob
+    a owl:Class ;
+    rdfs:subClassOf lsb:Job ;
+    rdfs:label "FairShareConsideredJob" .
+
+hpc:RemoteClusterWithFairShare
+    a owl:Class ;
+    rdfs:subClassOf lsb:RemoteCluster ;
+    rdfs:label "RemoteClusterWithFairShare" .
+
+hpc:SchedulingLimits
+    a owl:Class ;
+    rdfs:subClassOf lsb:RemoteCluster ;
+    rdfs:label "SchedulingLimits" .

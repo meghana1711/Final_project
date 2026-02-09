@@ -1,0 +1,25 @@
+hpc:Datatransferjob a owl:Class .
+hpc:hasexitcode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datatransferjob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datatransferjob ;
+    rdfs:range xsd:string .
+
+hpc:hasreason a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datatransferjob ;
+    rdfs:range xsd:string .
+
+hpc:hasexternalmessage a owl:ObjectProperty ;
+    rdfs:domain hpc:Datatransferjob ;
+    rdfs:range hpc:Externalmessage .
+
+hpc:Externalmessage a owl:Class .
+hpc:hasid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Externalmessage ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasfromposttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Externalmessage ;
+    rdfs

@@ -1,0 +1,41 @@
+hpc:Highavailabilityenvironment a owl:Class .
+hpc:Authenticationserver a owl:Class .
+hpc:Singlesignon a owl:Class .
+hpc:Oauth2protocol a owl:Class .
+hpc:Ldap a owl:Class .
+hpc:Activedirectory a owl:Class .
+hpc:Keycloak a owl:Class .
+hpc:Keycloakoidc a owl:Class .
+hpc:Oauth2singlesignon a owl:Class .
+hpc:Userfederation a owl:Class .
+hpc:Openldap a owl:Class .
+hpc:Activedirectoryservice a owl:Class .
+hpc:Oauth2configuration a owl:Class .
+
+hpc:hashighavailability a owl:ObjectProperty .
+hpc:Usesauthenticationserver rdfs:domain hpc:Highavailabilityenvironment ;
+                                   rdfs:range hpc:Authenticationserver .
+hpc:Hassinglesignon rdfs:domain hpc:Highavailabilityenvironment ;
+                         rdfs:range hpc:Singlesignon .
+hpc:Usesoauth2protocol rdfs:domain hpc:Singlesignon ;
+                          rdfs:range hpc:Oauth2protocol .
+hpc:Usesldap rdfs:domain hpc:Singlesignon ;
+                   rdfs:range hpc:Ldap .
+hpc:Usesactivedirectory rdfs:domain hpc:Singlesignon ;
+                        rdfs:range hpc:Activedirectory .
+hpc:installskeycloak a owl:ObjectProperty .
+hpc:configureskeycloakforsso a owl:ObjectProperty .
+hpc:configuresoauth2forsso a owl:ObjectProperty .
+hpc:integrateskeycloakwithldap a owl:ObjectProperty .
+hpc:integrateskeycloakwithactivedirectory a owl:ObjectProperty .
+hpc:authenticatesoauthssoconnection a owl:ObjectProperty .
+
+hpc:KeycloakOIDC subClassOf hpc:Keycloak .
+hpc:OAuth2SingleSignOn subClassOf hpc:SingleSignOn .
+hpc:UserFederation subClassOf hpc:OAuth2SingleSignOn .
+hpc:OpenLDAP subClassOf hpc:UserFederation .
+hpc:ActiveDirectoryService subClassOf hpc:UserFederation .
+
+hpc:Keycloakoidc hasOAuth2Configuration rdfs:range hpc:Oauth2configuration .
+hpc:Oauth2configuration rdfs:domain hpc:Keycloakoidc ;
+                          rdfs:range hpc:Oauth2protocol .

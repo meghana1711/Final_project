@@ -1,0 +1,36 @@
+hpc:Schedule a owl:Class .
+
+# Job Submission without Resume
+hpc:bsubwithoutresume a owl:ObjectProperty ;
+    rdfs:domain hpc:Schedule ;
+    rdfs:range hpc:Job .
+
+# Job Scheduling with Host-Based Memory and Swap Limit
+hpc:bsubwithhl a owl:ObjectProperty ;
+    rdfs:domain hpc:Schedule ;
+    rdfs:range hpc:Jobwithhl .
+
+# Job with Host-Based Memory and Swap Limit
+hpc:Jobwithhl a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+# Resource Submission with Host File
+hpc:bsubwithhostfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Schedule ;
+    rdfs:range hpc:Jobwithhostfile .
+
+# Job with Conflicting Options
+hpc:Jobwithconflictingoptions a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+# Job with Memory and Swap Limits
+hpc:Jobwithmemoryswaplimits a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+# Properties' domains and ranges
+hpc:Enforcesmemoryswaplimit rdfs:domain hpc:Lsbresourceenforcement ;
+hpc:Enforcesmemoryswaplimit rdfs:range hpc:Job .
+hpc:Hashostfile rdfs:domain hpc:Job ;
+hpc:Hashostfile rdfs:range hpc:Hostfile .
+hpc:Hasconflictingoptions rdfs:domain hpc:Job ;
+hpc:Hasconflictingoptions rdfs:range hpc:Conflictingoptions .

@@ -1,0 +1,47 @@
+hpc:LsfDaemon a owl:Class .
+hpc:hasdefaultvalue a owl:DatatypeProperty .
+hpc:hassyntax a owl:DatatypeProperty .
+hpc:hasdescription a owl:DatatypeProperty .
+
+hpc:Cpuintensivejob a owl:Class .
+hpc:affectsresponsetime a owl:ObjectProperty ;
+    rdfs:domain hpc:Cpuintensivejob ;
+    rdfs:range hpc:LsfDaemon .
+
+hpc:lsfDaemonNiceSbd a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfDaemon ;
+    rdfs:range xsd:integer ;
+    rdfs:rangeMinInclusive -20 ;
+    rdfs:rangeMaxInclusive 19 ;
+    rdfs:subPropertyOf hpc:hasDefaultValue .
+
+hpc:LSF_DAEMON_NICE_SBD_Default a hpc:LSF_DAEMON_NICE_SBD ;
+    rdfs:value -20 .
+
+hpc:LsfDaemon a owl:Class .
+hpc:hasdefaultvalueSbatchd a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfDaemon ;
+    rdfs:range xsd:integer ;
+    rdfs:rangeMinInclusive -20 ;
+    rdfs:rangeMaxInclusive 19 ;
+    rdfs:subPropertyOf hpc:hasDefaultValue .
+
+hpc:LSF_DAEMON_NICE_SBD_Default_sbatchd a hpc:LSF_DAEMON_NICE_SBD_hasDefaultValue_sbatchd ;
+    rdfs:value 0 .
+
+hpc:lsfDaemonWrap a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfDaemon ;
+    rdfs:range xsd:string ;
+    rdfs:rangeIncludes "y" ;
+    rdfs:rangeIncludes "Y" ;
+    rdfs:subPropertyOf rdf:type .
+
+hpc:lsfDaemonsCpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfDaemon ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf rdf:type .
+
+hpc:mbatchdCpuList a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfDaemonsCpus ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf rdf:type .

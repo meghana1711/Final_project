@@ -1,0 +1,53 @@
+hpc:Highqueuepriority a owl:Class ;
+    rdfs:subClassOf hpc:Queuepriority .
+
+hpc:Preemptablequeuepriority a owl:Class ;
+    rdfs:subClassOf hpc:Queuepriority ;
+    rdfs:subClassOf hpc:Preemptableresource .
+
+hpc:Pendingwhennoslots a owl:Class ;
+    rdfs:subClassOf hpc:Queuepriority .
+
+hpc:countpreemptable a owl:ObjectProperty ;
+    rdfs:domain hpc:Queuepriority ;
+    rdfs:range xsd:boolean .
+
+hpc:dynclusterweighting a owl:DatatypeProperty ;
+    rdfs:domain hpc:Multiclusterpluginscheduleenhance ;
+    rdfs:range xsd:string .
+
+hpc:Multiclusterjobforwardingmodel a owl:Class .
+
+hpc:Multiclusterpluginscheduleenhance a owl:Class ;
+    rdfs:subClassOf hpc:Multiclusterplugin .
+
+hpc:mcpluginupdateinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Multiclusterplugin ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:mcpluginremoteresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Multiclusterplugin ;
+    rdfs:range xsd:boolean .
+
+hpc:Enhancedmulticlusterscheduler a owl:Class ;
+    rdfs:subClassOf hpc:Scheduler .
+
+hpc:Multiclusterconnection a owl:Class .
+
+hpc:Scheduler a owl:Class .
+
+hpc:Queuepriority a owl:Class .
+
+hpc:Preemptableresource a owl:Class .
+
+hpc:Multiclusterplugin a owl:Class .
+
+hpc:Schedulingdecision a owl:Class .
+
+hpc:Remotequeueworkload a owl:Class .
+
+hpc:Multiclusterconfiguration a owl:Class .
+
+hpc:version a owl:DatatypeProperty ;
+    rdfs:domain hpc:Multiclusterconfiguration .
+    rdfs:range xsd:string .

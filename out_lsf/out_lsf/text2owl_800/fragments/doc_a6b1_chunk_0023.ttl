@@ -1,0 +1,60 @@
+hpc:Applicationres a owl:Class ;
+    rdfs:subClassOf hpc:Res .
+
+hpc:Rootres a owl:Class ;
+    rdfs:subClassOf hpc:Res .
+
+hpc:lsfLogdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Res ;
+    rdfs:range xsd:string .
+
+hpc:timingLevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Timingcommand .
+
+hpc:logfileName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Timingcommand .
+
+hpc:hostName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Limtimecommand .
+
+hpc:Timingcommand a owl:Class ;
+    rdfs:subClassOf hpc:Command .
+
+hpc:Limtimecommand a owl:Class ;
+    rdfs:subClassOf hpc:Timingcommand .
+
+hpc:resdebug a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsystem ;
+    rdfs:range hpc:Res .
+
+hpc:restime a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsystem ;
+    rdfs:range hpc:Timinglevel .
+
+hpc:Lsfsystem a owl:Class .
+
+hpc:Lim a owl:Class ;
+    rdfs:subClassOf hpc:Daemon .
+
+hpc:Res a owl:Class ;
+    rdfs:subClassOf hpc:Process .
+
+hpc:Mbatchd a owl:Class ;
+    rdfs:subClassOf hpc:Daemon .
+
+hpc:Sbatchd a owl:Class ;
+    rdfs:subClassOf hpc:Daemon .
+
+hpc:Mbschd a owl:Class ;
+    rdfs:subClassOf hpc:Daemon .
+
+hpc:Daemon a owl:Class .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Workload .
+
+hpc:Workload a owl:Class .
+
+hpc:timinglevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Timingcommand ;
+    rdfs:range xsd:nonNegativeInteger .

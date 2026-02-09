@@ -1,0 +1,25 @@
+hpc:keyidentifier a owl:DatatypeProperty.
+
+hpc:Key a owl:Class;
+    rdfs:subClassOf owl:NamedIndividual;
+    rdfs:subClassOf (hpc:Keywithalgorithm rdfs:and
+        rdfs:subClassOf (hpc:Keywithk rdfs:and
+            rdfs:subClassOf (hpc:Keywithuse rdfs:and
+                rdfs:subClassOf (hpc:Keywithexp rdf:Optional)
+            )
+        )
+    ).
+
+hpc:Keywithalgorithm a owl:Class;
+    rdfs:domain hpc:Key;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf hpc:hasAlgorithm.
+
+hpc:Keywithk a owl:Class;
+    rdfs:domain hpc:Key;
+    rdfs:range xsd:base64Binary;
+    rdfs:subPropertyOf hpc:hasKey.
+
+hpc:Keywithuse a owl:Class;
+    rdfs:domain hpc:Key;
+    rdfs:range xsd:

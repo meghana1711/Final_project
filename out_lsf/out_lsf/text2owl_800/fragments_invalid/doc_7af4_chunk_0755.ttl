@@ -1,0 +1,43 @@
+hpc:Jobwithaffinityrequirement a owl:Class .
+hpc:hasaffinityrequirement a owl:ObjectProperty .
+hpc:Hasaffinityrequirement rdfs:domain hpc:Jobwithaffinityrequirement ;
+                             rdfs:range xsd:string .
+
+hpc:Lsf a owl:Class .
+hpc:hascpuset a owl:ObjectProperty .
+hpc:Hascpuset rdfs:domain hpc:Lsf ;
+               rdfs:range xsd:integer .
+hpc:hasmemorynodes a owl:ObjectProperty .
+hpc:Hasmemorynodes rdfs:domain hpc:Lsf ;
+                    rdfs:range xsd:string .
+hpc:preferredmemorynodes a owl:ObjectProperty .
+hpc:Preferredmemorynodes rdfs:domain hpc:Lsf ;
+                           rdfs:range xsd:string .
+
+hpc:lsbRlaPort a owl:DatatypeProperty .
+hpc:LsbRlaPort rdfs:domain hpc:Lsf ;
+                 rdfs:range xsd:string .
+
+hpc:lsbRlaUpdate a owl:DatatypeProperty .
+hpc:LsbRlaUpdate rdfs:domain hpc:Lsf ;
+                   rdfs:range xsd:integer .
+
+hpc:lsbRlaWorkdir a owl:DatatypeProperty .
+hpc:LsbRlaWorkdir rdfs:domain hpc:Lsf ;
+                    rdfs:range xsd:string .
+
+hpc:LSB_RLA_PORT_DEFAULT a owl:NamedIndividual ;
+                           hpc:LSB_RLA_PORT rdf:datatype xsd:string ;
+                           rdf:value "unspecified" .
+
+hpc:LSB_RLA_UPDATE_DEFAULT a owl:NamedIndividual ;
+                             hpc:LSB_RLA_UPDATE rdf:datatype xsd:integer ;
+                             rdf:value 600 .
+
+hpc:LSB_RLA_WORKDIR_DEFAULT a owl:NamedIndividual ;
+                              hpc:LSB_RLA_WORKDIR rdf:datatype xsd:string ;
+                              rdf:value "LSB_SHAREDIR/cluster_name/rla_workdir" .
+
+hpc:lsbSacctOneUg a owl:DatatypeProperty .
+hpc:LsbSacctOneUg rdfs:domain hpc:Jobwithaffinityrequirement ;
+                      rdfs:range xsd:string .

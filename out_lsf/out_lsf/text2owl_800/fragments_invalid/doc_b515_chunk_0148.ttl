@@ -1,0 +1,18 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Reservation a owl:Class.
+hpc:Onetimereservation a owl:Class; rdfs:subClassOf hpc:Reservation.
+hpc:Recurringreservation a owl:Class; rdfs:subClassOf hpc:Reservation.
+hpc:User a owl:Class.
+hpc:Group a owl:Class.
+hpc:System a owl:Class.
+
+hpc:hasreservationid a owl:ObjectProperty.
+hpc:hasuser a owl:ObjectProperty.
+hpc:hasncpus a owl:ObjectProperty.
+hpc:hashosts a owl:ObjectProperty.
+h

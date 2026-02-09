@@ -1,0 +1,26 @@
+hpc:Jobindex a owl:Class ;
+    rdfs:subClassOf owl:Integer ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Contains the job array index. Valid values are any integer greater than zero but less than the maximum job array size.";
+    rdfs:seeAlso hpc:LSB_REMOTEJID, hpc:LSB_JOBINDEX_STEP, hpc:LSB_JOBINDEX_STEP_DEFAULT ;
+    hpc:Setduring hpc:jobexecution ;
+    hpc:Setbasedon hpc:bsuboptions ;
+    hpc:Issetfor hpc:alljobs ;
+    hpc:Fornonarrayjobs hpc:zero ;
+
+hpc:JobindexStep a owl:Class ;
+    rdfs:subClassOf owl:Integer ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Step at which single elements of the job array are defined. Valid values are any integer greater than zero but less than the maximum job array size.";
+    rdfs:seeAlso hpc:LSB_REMOTEJID, hpc:LSB_JOBINDEX, hpc:LSB_JOBINDEX_STEP_DEFAULT ;
+    hpc:Issetwhen hpc:jobarraydispatched ;
+    hpc:Correspondsto hpc:jobarrayindexstep ;
+    hpc:Issetonlyfor hpc:jobarrays ;
+
+hpc:lsbJobindexStepDefault a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Default value for LSB_JOBINDEX_STEP when not specified.";
+    rdfs:seeAlso hpc:LSB_REMOTEJID, hpc:LSB_JOBINDEX, hpc:LSB_JOBINDEX_STEP ;

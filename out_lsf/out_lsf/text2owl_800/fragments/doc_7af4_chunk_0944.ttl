@@ -1,0 +1,30 @@
+hpc:enableInteractive a owl:DatatypeProperty .
+hpc:EnableInteractive rdfs:domain hpc:Feature .
+hpc:EnableInteractive rdfs:range xsd:boolean .
+
+hpc:checkoutFromFirstHostOnly a owl:ObjectProperty .
+hpc:CheckoutFromFirstHostOnly rdfs:domain hpc:Feature .
+hpc:CheckoutFromFirstHostOnly rdfs:range xsd:boolean .
+
+hpc:Applicationz a owl:Class .
+hpc:Applicationz rdfs:subClassOf hpc:Feature .
+
+hpc:distribution a owl:ObjectProperty .
+hpc:Distribution rdfs:domain hpc:Applicationz .
+hpc:Distribution rdfs:range hpc:Distribution .
+
+hpc:allocation a owl:DatatypeProperty .
+hpc:Allocation rdfs:domain hpc:Applicationz .
+hpc:Allocation rdfs:range xsd:string .
+
+hpc:Lp1 a owl:Class .
+hpc:Lp1 rdfs:subClassOf hpc:Host .
+
+hpc:Cluster1 a owl:Class .
+hpc:Cluster1 rdfs:subClassOf hpc:Cluster .
+
+hpc:Cluster2 a owl:Class .
+hpc:Cluster2 rdfs:subClassOf hpc:Cluster .
+
+hpc:Interactive a owl:Class .
+hpc:Interactive rdfs:subClassOf hpc:Task .

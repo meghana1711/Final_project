@@ -1,0 +1,45 @@
+hpc:Customimage a owl:Class .
+hpc:createcustomimage a owl:ObjectProperty ;
+    rdfs:domain hpc:Customimage ;
+    rdfs:range rdf:Statement .
+
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Customimage .
+
+hpc:resourcegroup a owl:DatatypeProperty ;
+    rdfs:domain hpc:Customimage .
+
+hpc:tags a owl:DatatypeProperty ;
+    rdfs:domain hpc:Customimage .
+
+hpc:importcustomimage a owl:ObjectProperty ;
+    rdfs:domain hpc:Customimage .
+
+hpc:source a owl:ObjectProperty ;
+    rdfs:domain hpc:Createcustomimage .
+
+hpc:virtualserverinstancebootvolume a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:Stoppedinstance a owl:Class ;
+    rdfs:subClassOf hpc:Virtualserverinstance .
+
+hpc:haslsfinstalledandconfigured a owl:ObjectProperty ;
+    rdfs:domain hpc:Stoppedinstance .
+
+hpc:Gen2 a owl:Class .
+
+hpc:python36installed a owl:ObjectProperty ;
+    rdfs:domain hpc:Gen2 .
+
+hpc:vpcpythonsdkrequired a owl:ObjectProperty ;
+    rdfs:domain hpc:Gen2 .
+
+hpc:configurelsfresourceconnectorforibmcloudvpc a owl:ObjectProperty ;
+    rdfs:domain hpc:Gen2 .
+
+hpc:configurelsfandlsfresourceconnectorforibmcloudgen2 a owl:ObjectProperty ;
+    rdfs:domain hpc:Gen2 .
+
+hpc:beforeyoubegin a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurelsfandlsfresourceconnectorforibmcloudgen2 .

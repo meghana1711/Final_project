@@ -1,0 +1,46 @@
+hpc:Hostmodel a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                          rdfs:onProperty hpc:architecture ;
+                                          rdfs:domain hpc:Hostmodel ;
+                                          owl:hasValue xsd:string ;
+                                          owl:maxLength 64 ] ] ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                          rdfs:onProperty hpc:architecture ;
+                                          rdfs:domain hpc:Hostmodel ;
+                                          owl:onClass hpc:FuzzyMatch ] ] .
+
+hpc:Fuzzymatch a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                          rdfs:onProperty hpc:architecture ;
+                                          rdfs:domain hpc:Fuzzymatch ;
+                                          owl:onClass [ rdf:type owl:Class ;
+                                                         rdfs:label "ExactMatch" ] ] ] ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                          rdfs:onProperty hpc:architecture ;
+                                          rdfs:domain hpc:Fuzzymatch ;
+                                          owl:onClass [ rdf:type owl:Class ;
+                                                         rdfs:label "OneField" ] ] ] ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                          rdfs:onProperty hpc:architecture ;
+                                          rdfs:domain hpc:Fuzzymatch ;
+                                          owl:onClass [ rdf:type owl:Class ;
+                                                         rdfs:label "TwoFields" ] ] ] ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                          rdfs:onProperty hpc:architecture ;
+                                          rdfs:domain hpc:Fuzzymatch ;
+                                          owl:onClass [ rdf:type owl:Class ;
+                                                         rdfs:label "ThreeFields" ] ] ] .
+
+hpc:Illegalname a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                          rdfs:onProperty hpc:architecture ;
+                                          rdfs:domain hpc:Illegalname ;
+                                          owl:hasValue [ rdf:type xsd:string ;
+                                                         xsd:pattern "^[^A-Za-z]" ]

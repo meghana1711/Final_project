@@ -1,0 +1,26 @@
+hpc:Demandlimit a owl:Class .
+hpc:Demand a owl:Class .
+hpc:Project a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Job a owl:Class .
+
+hpc:hasdemandlimit a owl:ObjectProperty .
+hpc:belongstoproject a owl:ObjectProperty .
+hpc:ispendingoncluster a owl:ObjectProperty .
+hpc:hasrusage a owl:DatatypeProperty .
+hpc:haspendingreason a owl:DatatypeProperty .
+
+hpc:Demandlimit rdfs:domain hpc:Cluster .
+hpc:Demand rdfs:domain hpc:Project .
+hpc:Hasdemandlimit rdfs:range xsd:integer .
+hpc:Belongstoproject rdfs:domain hpc:Job .
+hpc:Ispendingoncluster rdfs:domain hpc:Job .
+hpc:Hasrusage rdfs:range xsd:decimal .
+hpc:Haspendingreason rdfs:range xsd:string .
+
+hpc:Totaldemand a owl:Class .
+hpc:Totaldemand rdfs:subClassOf hpc:Demand .
+hpc:Totaldemand rdfs:subClassOf rdf:List .
+hpc:Totaldemand rdfs:subClassOf rdf:first hpc:Demand .
+hpc:Totaldemand rdfs:subClassOf rdf:rest hpc:Totaldemand .
+hpc:Totaldemand rdfs:domain hpc:Project .

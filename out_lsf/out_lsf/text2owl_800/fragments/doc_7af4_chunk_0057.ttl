@@ -1,0 +1,33 @@
+hpc:Applicationprofile a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents an application profile with features for users to select the proper profile for each job." .
+
+hpc:djobCommfailAction a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Defines the action LSF should take if it detects a communication failure with one or more remote parallel or distributed tasks." .
+
+hpc:KILL_TASKS a xsd:string ;
+    rdfs:comment "If defined for DJOB_COMMFAIL_ACTION, LSF tries to kill all the current tasks of a parallel or distributed job associated with the communication failure." .
+
+hpc:IGNORE_COMMFAIL a xsd:string ;
+    rdfs:comment "If defined for DJOB_COMMFAIL_ACTION, failures will be ignored and the job continues." .
+
+hpc:djobDisabled a owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Disables the blaunch distributed application framework." .
+
+hpc:Y a xsd:string ;
+    rdfs:comment "If defined as DJOB_DISABLED, the distributed application framework is disabled." .
+
+hpc:N a xsd:string ;
+    rdfs:comment "If not defined as DJOB_DISABLED, the distributed application framework is enabled." .
+
+hpc:lsbDjobCommfailAction a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Set when running bsub -app for the specified application." .
+
+hpc:Default a xsd:string ;
+    rdfs:comment "Not defined. Terminate all tasks, and shut down the entire job." .

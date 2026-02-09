@@ -1,0 +1,56 @@
+hpc:Tssub a owl:Class ;
+    rdfs:subClassOf hpc:Hpcjob ;
+    rdfs:comment "Class for TSSub jobs." .
+
+hpc:supportsonlywindowsbsuboptions a owl:ObjectProperty ;
+    rdfs:domain hpc:Tssub ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether TSSub supports only Windows bsub options." .
+
+hpc:viewjoboutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Tssub ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Property to view the output of a Remote Desktop Services job." .
+
+hpc:tspeek a owl:ObjectProperty ;
+    rdfs:domain hpc:Tssub ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Property to use tspeek to view the output of a Remote Desktop Services job." .
+
+hpc:monitorjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Tssub ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Property to monitor the job." .
+
+hpc:externalmessage2 a owl:ObjectProperty ;
+    rdfs:domain hsd:TSJob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Property for the external message 2 posted from LSF\lsfadmin to message box 2." .
+
+hpc:terminalsessionid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Externalmessage2 ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Property containing the ID of the terminal session that was created." .
+
+hpc:msts a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionhost ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Property indicating whether an execution host has Remote Desktop Server installed or not." .
+
+hpc:numremotedesktopservers a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executionhost ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Property to limit the number of Remote Desktop Services jobs that run on a host." .
+
+hpc:Remotedesktopserverresource a owl:Class ;
+    rdfs:subClassOf hpc:Numericresource ;
+    rdfs:comment "Class for a numeric Remote Desktop Server resource." .
+
+hpc:terminalserveravailable a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Terminalserver ;
+    rdfs:comment "Property to report how many terminal servers are available for each host." .
+
+hpc:Terminalserver a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Class for a terminal server." .

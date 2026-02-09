@@ -1,0 +1,17 @@
+hpc:Cluster a owl:Class .
+hpc:Servicedomain a owl:Class .
+
+hpc:hasname a owl:ObjectProperty ;
+    rdfs:domain hpc:Servicedomain ;
+    rdfs:range xsd:string .
+
+hpc:haslicservers a owl:ObjectProperty ;
+    rdfs:domain hpc:Servicedomain ;
+    rdfs:range xsd:string .
+
+hpc:hascollector a owl:ObjectProperty ;
+    rdfs:domain hpc:Servicedomain ;
+    rdfs:range xsd:string .
+
+hpc:Cluster a rdfs:subClassOf hpc:Namedentity .
+hpc:Servicedomain a rdfs:subClassOf hpc:Namedentity .

@@ -1,0 +1,24 @@
+hpc:Guaranteedresourcepool a owl:Class .
+hpc:loanpolicies a owl:ObjectProperty .
+hpc:slaguarantiesignore a owl:DatatypeProperty .
+hpc:Queue a owl:Class .
+hpc:closeOnDemand a owl:ObjectProperty .
+
+hpc:Guaranteedresourcepool rdfs:subClassOf owl:Class .
+hpc:Loanpolicies rdfs:domain hpc:Guaranteedresourcepool ;
+                   rdfs:range rdf:List .
+hpc:Slaguarantiesignore rdfs:domain hpc:Queue ;
+                        rdfs:range xsd:string .
+hpc:Queue rdfs:subClassOf owl:Class .
+hpc:CloseOnDemand rdfs:domain hpc:Guaranteedresourcepool ;
+                     rdfs:range hpc:Queue .
+
+hpc:Queues rdf:type rdf:List .
+hpc:Queues[all] rdf:first hpc:Queue ;
+             rdf:rest hpc:Queues .
+hpc:queue1 rdf:first hpc:Queue ;
+           rdf:rest rdf:nil .
+
+hpc:duration a owl:DatatypeProperty .
+hpc:Duration rdfs:domain hpc:Loanpolicies ;
+             rdfs:range xsd:duration .

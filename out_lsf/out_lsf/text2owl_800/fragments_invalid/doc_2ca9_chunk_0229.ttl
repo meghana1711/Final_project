@@ -1,0 +1,54 @@
+hpc:Resourcereservationmethod a owl:Class .
+hpc:Consumableresource a owl:Class .
+hpc:Taskresourcereservation hpc:Resourcereservationmethod rdfs:subClassOf hpc:Resourcereservationmethod .
+hpc:Jobresourcereservation hpc:Resourcereservationmethod rdfs:subClassOf hpc:Resourcereservationmethod .
+hpc:Hostresourcereservation hpc:Resourcereservationmethod rdfs:subClassOf hpc:Resourcereservationmethod .
+
+hpc:Stripetask hpc:Resourcereservationmethod rdfs:subClassOf hpc:Resourcereservationmethod .
+hpc:spanstring a owl:DatatypeProperty .
+hpc:Spanstring rdfs:domain hpc:Resourcereservationmethod .
+hpc:Spanstring rdfs:range xsd:string .
+
+hpc:mpsdaemonsharing a owl:ObjectProperty .
+hpc:Mpsdaemonsharing rdfs:domain hpc:Resourcereservationmethod .
+hpc:Mpsdaemonsharing rdfs:range xsd:string .
+
+hpc:mpsdaemonhostsharing a owl:DatatypeProperty .
+hpc:Mpsdaemonhostsharing rdfs:domain hpc:Mpsdaemonsharing .
+hpc:Mpsdaemonhostsharing rdfs:range xsd:string .
+
+hpc:mpsdaemonsocketsharing a owl:DatatypeProperty .
+hpc:Mpsdaemonsocketsharing rdfs:domain hpc:Mpsdaemonsharing .
+hpc:Mpsdaemonsocketsharing rdfs:range xsd:string .
+
+hpc:mpsdaemongpusharing a owl:DatatypeProperty .
+hpc:Mpsdaemongpusharing rdfs:domain hpc:Mpsdaemonsharing .
+hpc:Mpsdaemongpusharing rdfs:range xsd:string .
+
+hpc:gpuspertask a owl:DatatypeProperty .
+hpc:Gpuspertask rdfs:domain hpc:Resourcereservationmethod .
+hpc:Gpuspertask rdfs:range xsd:string .
+
+hpc:gpusperhost a owl:DatatypeProperty .
+hpc:Gpusperhost rdfs:domain hpc:Resourcereservationmethod .
+hpc:Gpusperhost rdfs:range xsd:string .
+
+hpc:hardmemorylimit a owl:DatatypeProperty .
+hpc:Hardmemorylimit rdfs:domain hpc:Resourcereservationmethod .
+hpc:Hardmemorylimit rdfs:range xsd:string .
+
+hpc:Jobexitstatus a owl:Class .
+hpc:Joberror a owl:Class .
+hpc:Jobstatenotification a owl:Class .
+
+hpc:emailnotification a owl:ObjectProperty .
+hpc:Emailnotification rdfs:domain hpc:Jobstatenotification .
+hpc:Emailnotification rdfs:range xsd:string .
+
+hpc:jobstate a owl:DatatypeProperty .
+hpc:Jobstate rdfs:domain hpc:Jobstatenotification .
+hpc:Jobstate rdfs:range xsd:string .
+
+hpc:mailonjobexit a owl:ObjectProperty .
+hpc:Mailonjobexit rdfs:domain hpc:Resourcereservationmethod .
+h

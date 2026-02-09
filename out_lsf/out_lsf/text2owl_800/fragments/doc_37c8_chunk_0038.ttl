@@ -1,0 +1,18 @@
+hpc:Application a owl:Class ;
+    rdfs:subClassOf hpc:Entity ;
+    rdfs:domain hpc:Hasapplication ;
+    rdfs:range hpc:Application .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Entity ;
+    rdfs:domain hpc:Hasqueue ;
+    rdfs:range hpc:Queue .
+
+hpc:overrides a owl:ObjectProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range hpc:Application ;
+    rdfs:subPropertyOf rdf:type .
+
+hpc:hasparameter a owl:DatatypeProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range xsd:string .

@@ -1,0 +1,83 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Project a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Application a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:command a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:submittedtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .
+
+hpc:submittedfrom a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+
+hpc:toqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queue .
+
+hpc:cwd a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:dispatchedto a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+
+hpc:effectiveresReq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:runningwith a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Execution .
+
+hpc:executionhome a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:string .
+
+hpc:executioncwd a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:string .
+
+hpc:executionpid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:integer .
+
+hpc:pending a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:exitcode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:Successexitvalues a owl:Class ;
+    rdfs:subClassOf hpc:Integervalue .
+
+hpc:Jobexitstatus a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:preexeccommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexitstatus ;
+    rdfs:range xsd:string .
+
+hpc:postexeccommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexitstatus ;
+    rdfs:range

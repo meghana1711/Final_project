@@ -1,0 +1,61 @@
+hpc:Jobdispatchlimit a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Limit on the maximum number of jobs that are dispatched in a scheduling cycle for users, user groups, and queues." .
+
+hpc:jobsPerSchedCycle a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobdispatchlimit ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Parameter to set or update the job dispatch limit." .
+
+# Commands
+hpc:Bconf a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Command to set or update job dispatch limits." .
+
+hpc:Bjobs a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Command to display the APS and fair share user priority values for all pending jobs." .
+
+hpc:Busers a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Command to display the APS priority factor for the specified users." .
+
+hpc:Bugroup a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Command to display the APS priority factor for the specified user groups." .
+
+hpc:Blimits a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Command to display all resource allocation limits." .
+
+hpc:Bread a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Command to read messages and attached data files from a job in wide format." .
+
+# References
+hpc:APS rdf:type owl:Class ;
+    rdfs:comment "Absolute priority scheduling." .
+
+hpc:lsb_applications rdf:type owl:Class ;
+    rdfs:comment "File containing PRIORITY parameter for jobs." .
+
+hpc:lsb_users rdf:type owl:Class ;
+    rdfs:comment "File containing PRIORITY parameter for users." .
+
+hpc:UserOrUserGroup rdf:type owl:Class ;
+    rdfs:comment "Section of the lsb.users file containing PRIORITY parameter for users or user groups." .
+
+hpc:UserGroup rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Userorusergroup ;
+    rdfs:comment "User group in the context of job scheduling." .
+
+hpc:User rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Userorusergroup ;
+    rdfs:comment "User in the context of job scheduling." .
+
+hpc:queue rdf:type owl:Class ;
+    rdfs:comment "Queue in the context of job scheduling." .
+
+hpc:JobDispatchLimitType rdf:type owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Type of job dispatch limit (USERS, PER_USER, QUEUES, or PER_

@@ -1,0 +1,22 @@
+hpc:Group a owl:Class .
+hpc:hasMember rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Group ;
+    rdfs:range hpc:Project .
+
+hpc:shares rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Group ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ownership rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Group ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:limits rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Group ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:nonShared rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Group ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Project a owl:Class .

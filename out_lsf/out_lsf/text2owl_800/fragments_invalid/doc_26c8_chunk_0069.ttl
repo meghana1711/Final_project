@@ -1,0 +1,45 @@
+hpc:GPUNumber rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:VPC rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Network .
+
+hpc:vpc rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range hpc:Vpc .
+
+hpc:Region rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Network .
+
+hpc:region rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Customnetwork ;
+    rdfs:range xsd:string .
+
+hpc:CustomModeVPCNetwork rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Network ;
+    rdfs:subClassOf (hpc:Vpc and hpc:Region) .
+
+hpc:subnetId rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:string .
+
+hpc:PrivateNetworkOnlyFlag rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:boolean .
+
+hpc:HostProject rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:string .
+
+hpc:InstanceTags rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:string .
+
+hpc:UserData rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:string .
+
+hpc:Priority rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Templatehost ;
+    rdfs:range xsd:nonNegativeInteger .

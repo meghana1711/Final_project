@@ -1,0 +1,25 @@
+hpc:HostName a owl:Class .
+hpc:lsplace a owl:ObjectProperty .
+
+hpc:Lsplace rdfs:domain hpc:HostName ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Displays hosts available for the execution of tasks, and temporarily increases the load on these hosts." .
+
+hpc:minimumHosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsplace ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Displays at least the specified number of hosts. Specify 0 to display as many hosts as possible." .
+
+hpc:maximumHosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsplace ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Displays no more than the specified number of hosts. Specify 0 to display as many hosts as possible." .
+
+hpc:resourceRequirements a owl:DatatypeProperty ;
+    rdfs:domain hpc:HostName ;
+    rdfs:range rdf:PlainLiteral ;
+    rdfs:comment "Displays only hosts with the specified resource requirements." .
+
+hpc:LSF_Default_Resource_Requirements rdf:PlainLiteral "LSF default resource requirements" .
+hpc:Minimize_Communication_Costs rdf:PlainLiteral "Attempts to place tasks on as few hosts as possible. Use the -L option for distributed parallel applications to minimize communication costs between tasks." .
+hpc:Reject_Non_Consumable_Resources rdf:PlainLiteral "LSF rejects resource requirement strings where an rusage section contains a non-consumable resource." .

@@ -1,0 +1,36 @@
+hpc:Energytimeseries a owl:Class .
+hpc:date a owl:DatatypeProperty ;
+    rdfs:domain hpc:Energytimeseries ;
+    rdfs:range xsd:dateTime .
+hpc:time a owl:DatatypeProperty ;
+    rdfs:domain hpc:Energytimeseries ;
+    rdfs:range xsd:decimal .
+hpc:power a owl:DatatypeProperty ;
+    rdfs:domain hpc:Energytimeseries ;
+    rdfs:range xsd:decimal .
+hpc:cpufrequency a owl:DatatypeProperty ;
+    rdfs:domain hpc:Energytimeseries ;
+    rdfs:range xsd:decimal .
+
+hpc:Filesystemtimeseries a owl:Class .
+hpc:date a owl:DatatypeProperty ;
+    rdfs:domain hpc:Filesystemtimeseries ;
+    rdfs:range xsd:dateTime .
+
+hpc:Jobacctgatherfrequency a owl:Class .
+hpc:energy a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobacctgatherfrequency .
+hpc:freq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobacctgatherfrequency ;
+    rdfs:range xsd:decimal .
+
+hpc:Acctgatherfilesystemtype a owl:Class .
+hpc:acctGatherFilesystem a owl:ObjectProperty ;
+    rdfs:domain hpc:Acctgatherfilesystemtype .
+hpc:lustre a owl:ObjectProperty ;
+    rdfs:domain hpc:Acctgatherfilesystemtype .
+
+hpc:Energyipmifrequency a owl:Class .
+hpc:freq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Energyipmifrequency ;
+    rdfs:range xsd:decimal .

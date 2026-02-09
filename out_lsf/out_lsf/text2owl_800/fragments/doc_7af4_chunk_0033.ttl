@@ -1,0 +1,44 @@
+hpc:Resizenotificationcommand a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Invoke on the first execution host upon a resize request." ;
+    rdfs:label "ResizeNotificationCommand" ;
+    rdfs:domain hpc:Joballocation ;
+    rdfs:range rdf:Resource .
+
+hpc:lastresizetime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resizenotificationcommand ;
+    rdfs:range xsd:dateTime .
+
+hpc:rsvid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:string .
+
+hpc:jobdescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:maxLength 4094 .
+
+hpc:submitext a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:numelements a owl:DatatypeProperty ;
+    rdfs:domain hpc:Structure ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:key a owl:DatatypeProperty ;
+    rdfs:domain hpc:Structure ;
+    rdfs:range xsd:string .
+
+hpc:value a owl:DatatypeProperty ;
+    rdfs:domain hpc:Structure ;
+    rdfs:range xsd:string .
+
+hpc:numhostrusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Hostrusage a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Host-based resource usage information for the job." ;
+    rdfs:label "hostRusage" .

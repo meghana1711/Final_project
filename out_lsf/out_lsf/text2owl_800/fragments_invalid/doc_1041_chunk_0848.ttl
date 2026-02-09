@@ -1,0 +1,58 @@
+hpc:Lsfremotecopycmd a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A command used to copy a file if the RES cannot copy it." .
+
+hpc:Lsfconffile a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A configuration file where the LSF_REMOTE_COPY_CMD parameter is defined." .
+
+hpc:Lsfmulticlustercapability a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The capability to use lsrcp across multiple clusters." .
+
+hpc:Filecopyrequirement a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Requirements for copying a file using lsrcp." .
+    rdfs:subClassOf hpc:Filecopyrequirement [
+        rdfs:comment "Requirement for the source file to be readable."
+    ] ;
+    rdfs:subClassOf hpc:Filecopyrequirement [
+        rdfs:comment "Requirement for both the source and target files to be owned by the user who enters the command."
+    ] ;
+    rdfs:subClassOf hpc:Filecopyrequirement [
+        rdfs:comment "When using lsrcp with LSF multicluster capability, requirement for non-privileged ports to be open between all clusters."
+    ] .
+
+hpc:lsrcpcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Command ;
+    rdfs:comment "The command to use lsrcp." .
+
+hpc:haslsfremotecopycmd a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconffile ;
+    rdfs:range hpc:Lsfremotecopycmd ;
+    rdfs:comment "The LSF_REMOTE_COPY_CMD parameter in the lsf.conf file." .
+
+hpc:sourcefile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsrcpcommand ;
+    rdfs:range xsd:anyURI ;
+    rdfs:comment "The source file to be copied." .
+
+hpc:targetfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsrcpcommand ;
+    rdfs:range xsd:anyURI ;
+    rdfs:comment "The target file to which the source file will be copied." .
+
+hpc:appendtotargetfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Sourcefile ;
+    rdfs:range hpc:Targetfile ;
+    rdfs:comment "Option to append the source file to the target file." .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The user who enters the command or the login name to be used for accessing files on the remote host." .
+
+hpc:host a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sourcefile ;
+    rdfs:range xsd:anyURI ;
+    rdfs:

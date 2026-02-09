@@ -1,0 +1,46 @@
+hpc:LsbModAllJobs a owl:Class ;
+    rdfs:comment "Always run badmin mbdrestart after modifying." ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:label "LSB_MOD_ALL_JOBS" ;
+    rdfs:isDefinedBy <http://example.org/> .
+
+hpc:lsbJobCpulimit a owl:ObjectProperty ;
+    rdfs:comment "See also LSB_MOD_ALL_JOBS, LSB_JOB_MEMLIMIT" ;
+    rdfs:domain hpc:LsbModAllJobs ;
+    rdfs:range xsd:string ;
+    rdfs:label "LSB_JOB_CPULIMIT" ;
+    rdfs:isDefinedBy <http://example.org/> .
+
+hpc:lsbJobMemlimit a owl:ObjectProperty ;
+    rdfs:comment "See also LSB_MOD_ALL_JOBS, LSB_JOB_CPULIMIT" ;
+    rdfs:domain hpc:LsbModAllJobs ;
+    rdfs:range xsd:string ;
+    rdfs:label "LSB_JOB_MEMLIMIT" ;
+    rdfs:isDefinedBy <http://example.org/> .
+
+hpc:lsbNcpuEnforce a owl:ObjectProperty ;
+    rdfs:comment "When set to 1, enables parallel fair share and considers the number of CPUs when calculating dynamic priority for queue-level user-based fairshare." ;
+    rdfs:domain hpc:LsbModAllJobs ;
+    rdfs:range xsd:integer ;
+    rdfs:label "LSB_NCPU_ENFORCE" ;
+    rdfs:isDefinedBy <http://example.org/> .
+
+hpc:LSB_NCPU_ENFORCE_DEFAULT a xsd:integer ;
+    rdfs:comment "Set to 1 at the time of installation. Otherwise, not deﬁned." ;
+    rdfs:label "LSB_NCPU_ENFORCE_DEFAULT" ;
+    rdfs:isDefinedBy <http://example.org/> .
+
+hpc:lsbNqsPort a owl:ObjectProperty ;
+    rdfs:comment "Required for LSF to work with NQS. TCP service port to use for communication with NQS." ;
+    rdfs:domain hpc:LsbModAllJobs ;
+    rdfs:range xsd:string ;
+    rdfs:label "LSB_NQS_PORT" ;
+    rdfs:isDefinedBy <http://example.org/> .
+
+hpc:LSB_NQS_PORT_DEFAULT a xsd:string ;
+    rdfs:comment "Not deﬁned" ;
+    rdfs:label "LSB_NQS_PORT_DEFAULT" ;
+    rdfs:isDefinedBy <http://example.org/> .
+
+hpc:lsbNumNiosCallbackThreads a owl:ObjectProperty ;
+    rdfs:comment "Specifies the number of callback threads to use for batch queries."

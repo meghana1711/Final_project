@@ -1,0 +1,35 @@
+hpc:LsbSub3Run a owl:Class .
+
+hpc:timeEstimation a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSub3Run ;
+    rdfs:range xsd:decimal .
+
+hpc:timeEstimationAcc a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSub3Run ;
+    rdfs:range xsd:decimal .
+
+hpc:timeEstimationPerc a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSub3Run ;
+    rdfs:range xsd:decimal .
+
+hpc:LsbSub3Use a owl:Class .
+
+hpc:rShellLimit a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSub3Use .
+
+hpc:s-ul a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSub3Use .
+
+hpc:LsbSubInteractive a owl:Class .
+
+hpc:lsbSubXjobSsh a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSubInteractive .
+
+hpc:LsfSub4SubEnvVars a owl:Class .
+
+hpc:lsbSub4SubEnvVarsConflict a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfSub4SubEnvVars ;
+    rdfs:range hpc:LsbSubModifyEnvfile .
+
+hpc:lsbSubModifyFile a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSub3Run .

@@ -1,0 +1,52 @@
+hpc:Template a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Represents a template in LSF." .
+
+hpc:priority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The priority of the template." .
+
+hpc:type a owl:ObjectProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The type of the template." .
+
+hpc:ncpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of CPU cores for the template." .
+
+hpc:mem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The memory in MB for the template." .
+
+hpc:templatename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the template." .
+
+hpc:ostkhost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the template is an OS template host." .
+
+hpc:userdata a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Additional user data for the template." .
+
+hpc:placementgroupname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awsresource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the placement group for AWS resources." .
+
+hpc:tenancy a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awsresource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The tenancy type for AWS resources." .
+
+hpc:Awsresource a owl:Class ;
+    rdfs:subClassOf hpc:Template ;
+    rdfs:comment "Represents an AWS resource." .

@@ -1,0 +1,30 @@
+hpc:ClassName a owl:Class .
+hpc:debugLevel a owl:DatatypeProperty .
+hpc:logfileName a owl:DatatypeProperty .
+hpc:LogClasses a owl:Class .
+hpc:LcAuth a owl:Class .
+hpc:LcComm a owl:Class .
+hpc:LcFlex a owl:Class .
+hpc:LcLicense a owl:Class .
+hpc:LcPreempt a owl:Class .
+hpc:LcResreq a owl:Class .
+hpc:LcTrace a owl:Class .
+hpc:LcXdr a owl:Class .
+
+hpc:LogClasses rdfs:subClassOf hpc:Class .
+hpc:LcAuth rdfs:subClassOf hpc:LogClasses .
+hpc:LcComm rdfs:subClassOf hpc:LogClasses .
+hpc:LcFlex rdfs:subClassOf hpc:LogClasses .
+hpc:LcLicense rdfs:subClassOf hpc:LogClasses .
+hpc:LcPreempt rdfs:subClassOf hpc:LogClasses .
+hpc:LcResreq rdfs:subClassOf hpc:LogClasses .
+hpc:LcTrace rdfs:subClassOf hpc:LogClasses .
+hpc:LcXdr rdfs:subClassOf hpc:LogClasses .
+
+hpc:DebugLevel rdfs:domain hpc:Job .
+hpc:LogfileName rdfs:domain hpc:Job .
+
+hpc:Hasdebuglevel rdfs:domain hpc:Job .
+hpc:Hasdebuglevel rdfs:range xsd:nonNegativeInteger .
+hpc:Haslogfile rdfs:domain hpc:Job .
+hpc:Haslogfile rdfs:range hpc:LogfileName .

@@ -1,0 +1,51 @@
+hpc:Lsf a owl:Class .
+hpc:Thresholdfile a owl:Class ;
+    rdfs:comment "The threshold file for LSF." .
+
+hpc:performancethresholdfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The location of the performance threshold file." .
+
+hpc:Minimizeenergypolicy a owl:Class ;
+    rdfs:subClassOf hpc:Policy .
+hpc:Minimizetimepolicy a owl:Class ;
+    rdfs:subClassOf hpc:Policy .
+
+hpc:Policy a owl:Class ;
+    rdfs:subClassOf hpc:Lsf .
+
+hpc:haspolicy a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Policy ;
+    rdfs:comment "The policy applied by LSF." .
+
+hpc:energysavingthreshold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Minimizeenergypolicy ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The threshold value for energy saving policy." .
+
+hpc:performanceimprovementthreshold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Minimizetimepolicy ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The threshold value for performance improvement policy." .
+
+hpc:defaultfrequency a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The default CPU frequency." .
+
+hpc:nominalfrequency a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The nominal CPU frequency." .
+
+hpc:availablefrequencies a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The available frequency list." .
+
+hpc:frequencyvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Minimizetimepolicy ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The frequency value for MinimizeTimePolicy." .

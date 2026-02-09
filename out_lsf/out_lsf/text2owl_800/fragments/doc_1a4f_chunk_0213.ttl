@@ -1,0 +1,34 @@
+hpc:Job a owl:Class .
+hpc:Resource a owl:Class .
+hpc:ordering a owl:ObjectProperty .
+hpc:resourceusage a owl:DatatypeProperty .
+hpc:Host a owl:Class .
+hpc:reservable a owl:ObjectProperty .
+hpc:maxreservable a owl:DatatypeProperty .
+
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Resource rdfs:subClassOf owl:Class .
+hpc:Ordering rdfs:domain hpc:Job ;
+    rdfs:range rdf:List .
+hpc:Resourceusage rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Host rdfs:subClassOf owl:Class .
+hpc:Reservable rdfs:domain hpc:Resource ;
+    rdfs:range hpc:Job .
+hpc:Maxreservable rdfs:domain hpc:Resource ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Job1 a hpc:Job ;
+    hpc:ResourceUsage "100"^^xsd:nonNegativeInteger ;
+    hpc:Reservable hpc:rusage ;
+    hpc:Ordering [ hpc:order "!res" ] .
+hpc:Job2 a hpc:Job ;
+    hpc:ResourceUsage "10"^^xsd:nonNegativeInteger ;
+    hpc:Reservable hpc:rusage ;
+    hpc:Ordering [ hpc:order "!res" ] .
+hpc:rusage a hpc:Resource ;
+    hpc:MaxReservable "110"^^xsd:nonNegativeInteger .
+hpc:h1 a hpc:Host ;
+    hpc:Reservable hpc:rusage .
+hpc:h2 a hpc:Host ;
+    hpc:Reservable hpc:rusage .

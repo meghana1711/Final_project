@@ -1,0 +1,38 @@
+hpc:LsfBwaitInJobs hpc:parameter .
+hpc:LsfBwaitInJobs rdfs:subClassOf owl:Class .
+
+hpc:TunesLsf hpc:objectproperty .
+hpc:TunesLsf rdfs:domain hpc:Cluster .
+hpc:TunesLsf rdfs:range hpc:Parameter .
+
+hpc:Performance hpc:objectproperty .
+hpc:Performance rdfs:domain hpc:Cluster .
+hpc:Performance rdfs:range xsd:String .
+
+hpc:TuneUnix hpc:objectproperty .
+hpc:TuneUnix rdfs:domain hpc:Cluster .
+hpc:TuneUnix rdfs:range xsd:String .
+
+hpc:LargeCluster hpc:class .
+hpc:LargeCluster rdfs:subClassOf owl:Class .
+
+hpc:Supports hpc:objectproperty .
+hpc:Supports rdfs:domain hpc:Cluster .
+hpc:Supports rdfs:range xsd:Integer .
+
+hpc:Host hpc:class .
+hpc:Host rdfs:subClassOf owl:Class .
+
+hpc:processor owl:DatatypeProperty .
+hpc:Processor rdfs:domain hpc:Host .
+hpc:Processor rdfs:range xsd:integer .
+
+hpc:operating_system owl:DatatypeProperty .
+hpc:OperatingSystem rdfs:domain hpc:Host .
+hpc:OperatingSystem rdfs:range xsd:string .
+
+hpc:file_descriptor_limit owl:DatatypeProperty .
+hpc:FileDescriptorLimit rdfs:domain hpc:Operatingsystem .
+hpc:FileDescriptorLimit rdfs:range xsd:integer .
+
+hpc:Cluster a owl:Class .

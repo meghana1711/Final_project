@@ -1,0 +1,12 @@
+hpc:Parallelbatchjob a owl:Class .
+hpc:lsbHosts a owl:DatatypeProperty .
+hpc:lsbMcpuHosts a owl:DatatypeProperty .
+hpc:handleHost a owl:ObjectProperty .
+
+rdfs:domain hpc:Parallelbatchjob rdfs:subClassOf owl:Class .
+rdfs:domain hpc:LsbHosts rdfs:domain hpc:Parallelbatchjob ;
+    rdfs:range xsd:string .
+rdfs:domain hpc:LsbMcpuHosts rdfs:domain hpc:Parallelbatchjob ;
+    rdfs:range xsd:string .
+rdfs:domain hpc:HandleHost rdfs:domain hpc:Parallelbatchjob ;
+    rdfs:range xsd:string .

@@ -1,0 +1,17 @@
+hpc:Computeunit a owl:Class .
+hpc:Job a owl:Class .
+hpc:allocation a owl:ObjectProperty .
+hpc:Enclosure a owl:Class .
+hpc:slots a owl:DatatypeProperty .
+
+hpc:Computeunit rdfs:subClassOf owl:Class .
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Allocation rdfs:domain hpc:Computeunit ;
+                      rdfs:range rdf:List .
+hpc:Enclosure rdfs:subClassOf owl:Class .
+hpc:Slots rdfs:domain hpc:Computeunit ;
+              rdfs:range xsd:integer .
+
+hpc:haspreferredallocation a owl:ObjectProperty ;
+                         rdfs:domain hpc:Computeunit ;
+                         rdfs:range hpc:Allocation .

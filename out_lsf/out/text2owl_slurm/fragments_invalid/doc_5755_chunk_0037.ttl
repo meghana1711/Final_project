@@ -1,0 +1,23 @@
+hpc:Slurmdbd a owl:Class;
+    rdfs:subClassOf owl:Object;
+    rdfs:comment "Multi-threaded daemon for handling accounting in Slurm clusters." .
+
+hpc:slurmdbdconnection a owl:ObjectProperty;
+    rdfs:domain hpc:Slurmdbd;
+    rdfs:range hpc:Slurmdbdconnection;
+    rdfs:comment "An authenticated connection to the Slurmdbd." .
+
+hpc:offloadsprocessing a owl:ObjectProperty;
+    rdfs:domain hpc:Slurmdbd;
+    rdfs:range hpc:Controller;
+    rdfs:comment "Offloads processing from the controller." .
+
+hpc:noslowdowntocontroller a owl:ObjectProperty;
+    rdfs:domain hpc:Slurmdbd;
+    rdfs:range xsd:boolean;
+    rdfs:comment "Indicates whether there is no slowdown to the controller due to a slow or overloaded database." .
+
+hpc:enterprisewideaccounting a owl:ObjectProperty;
+    rdfs:domain hpc:Slurmdbd;
+    rdfs:range xsd:boolean;
+    r

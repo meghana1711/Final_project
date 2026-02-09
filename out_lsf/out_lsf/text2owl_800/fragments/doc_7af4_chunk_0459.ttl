@@ -1,0 +1,23 @@
+hpc:Jobstarter a owl:Class .
+hpc:usercommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobstarter ;
+    rdfs:range xsd:string .
+
+hpc:Jobstarterscript a owl:Class ;
+    rdfs:subClassOf hpc:Jobstarter .
+
+hpc:Windowsexecutionhost a owl:Class .
+
+hpc:jobStarter a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobstarter ;
+    rdfs:range xsd:string .
+
+hpc:jobStarterExtend a owl:DatatypeProperty ;
+    rdfs:domain hpc:Windowsexecutionhost ;
+    rdfs:range xsd:string .
+
+hpc:jobUnderrun a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobstarter ;
+    rdfs:range xsd:string .
+
+hpc:run_time a xsd:nonNegativeInteger .

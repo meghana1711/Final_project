@@ -1,0 +1,32 @@
+hpc:Lsfcluster a owl:Class .
+hpc:ManagementHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Host .
+
+hpc:ExecutionHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Host .
+
+hpc:Stagingarea a owl:Class .
+
+hpc:DataManagerHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Host .
+
+hpc:DataTransferNode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Host .
+
+hpc:Lsfdatamanageradmin a owl:Class .
+hpc:hasLSFAdmin rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfdatamanageradmin ;
+    rdfs:range hpc:Lsfadmin .
+
+hpc:LSFAdmin rdf:type owl:Class .
+
+hpc:Stagingarearequirements a owl:Class .
+hpc:requiresPasswordlessSSHAccess rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Stagingarearequirements ;
+    rdfs:range hpc:Fileserver .
+
+hpc:Fileserver a owl:Class .

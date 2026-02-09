@@ -1,0 +1,51 @@
+hpc:RESCHED_UPON_CSM_SETUP_ERROR
+    a owl:ObjectProperty ;
+    rdfs:domain lsb:LSBConfiguration ;
+    rdfs:range xsd:boolean ;
+    rdfs:subPropertyOf hpc:hasParameter .
+
+hpc:RESCHED_UPON_CSM_SETUP_FAILURE
+    a owl:ObjectProperty ;
+    rdfs:domain lsb:LSBConfiguration ;
+    rdfs:range xsd:boolean ;
+    rdfs:subPropertyOf hpc:hasParameter .
+
+# Docker Container Naming
+hpc:ENABLE_CONTAINER_NAME
+    a owl:ObjectProperty ;
+    rdfs:domain lsfdockerlib:Configuration ;
+    rdfs:range xsd:boolean .
+
+hpc:CONTAINER_NAME_FORMAT
+    a owl:ObjectProperty ;
+    rdfs:domain lsfdockerlib:Configuration ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:hasContainerNameFormat .
+
+hpc:NormalJobContainerNameFormat
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Containernameformat ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:hasNameFormat .
+
+hpc:ArrayJobContainerNameFormat
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Containernameformat ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:hasNameFormat .
+
+hpc:TaskContainerNameFormat
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Containernameformat ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:hasNameFormat .
+
+# Command Output Formatting
+hpc:bsub_K
+    a owl:ObjectProperty ;
+    rdfs:domain lsb:Command ;
+    rdfs:range lsb:CommandOutputFormat ;
+    rdfs:subPropertyOf hpc:hasCommandOutputFormat .
+
+hpc:STRICT_OUTPUT_RULES
+    a owl:Class .

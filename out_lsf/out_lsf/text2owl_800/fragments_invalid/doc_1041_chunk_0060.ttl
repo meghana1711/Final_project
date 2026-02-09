@@ -1,0 +1,57 @@
+hpc:Host a owl:Class .
+hpc:Hostgroup a owl:Class .
+hpc:Computeunit a owl:Class .
+
+hpc:hashost a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Host .
+
+hpc:belongsto a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Hostgroup .
+
+hpc:hasname a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:Isdynamichost a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:Isstatichost a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:iscontrolledbyego a owl:ObjectProperty ;
+    rdfs:domain hpc:Host .
+    rdfs:range xsd:boolean .
+
+hpc:addHost dynamically adds hpc:Host ;
+    rdfs:comment "Dynamically adds hosts to a host group or compute unit by triggering reconfiguration of the mbatchd daemon." .
+
+hpc:Addhost fails rdfs:domain hpc:Command ;
+    rdfs:range hpc:Hostgroup | hpc:Computeunit | xsd:string ;
+    rdfs:comment "This command fails if any of the specified host groups, compute units, or host names are not valid." .
+
+hpc:Addhost triggers rdfs:domain hpc:Command ;
+    rdfs:range hpc:Hostgroup | hpc:Computeunit | xsd:string ;
+    rdfs:comment "Triggers reconfiguration of the mbatchd daemon." .
+
+hpc:Addhost isConsideredPartOf rdfs:domain hpc:Command ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "After the host is added to the host group or compute unit, it is considered part of that group for scheduling decisions for newly submitted jobs and for existing pending jobs." .
+
+hpc:delHost dynamically deletes hpc:Host ;
+    rdfs:comment "Dynamically deletes hosts from a host group or compute unit by triggering reconfiguration of the mbatchd daemon." .
+
+hpc:Delhost fails rdfs:domain hpc:Command ;
+    rdfs:range hpc:Hostgroup | hpc:Computeunit | xsd:string ;
+    rdfs:comment "This command fails if any of the specified host groups, compute units, or host names are not valid." .
+
+hpc:Delhost triggers rdfs:domain hpc:Command ;
+    rdfs:range hpc:Hostgroup | hpc:Computeunit | xsd:string ;
+    rdfs:comment "Triggers reconfiguration of the mbatchd daemon." .
+
+hpc:Delhost disablesInteraction rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Disables interaction and does not ask for confirmation when reconfiguring mbatchd." .
+
+hpc:changeToStaticHost requires hpc:Command ;
+    rdfs:comment "To change a dynamic host to a static host, first use the command badmin hghostdel to remove the dynamic host from any host

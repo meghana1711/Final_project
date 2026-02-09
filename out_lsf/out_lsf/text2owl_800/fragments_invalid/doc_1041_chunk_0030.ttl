@@ -1,0 +1,75 @@
+hpc:Processingunit a owl:Class.
+hpc:Path a owl:Class.
+hpc:Core a owl:Class.
+hpc:Socket a owl:Class.
+hpc:Numanode a owl:Class.
+
+hpc:hasPath an owl:ObjectProperty.
+hpc:hasCore an owl:ObjectProperty.
+hpc:hasSocket an owl:ObjectProperty.
+hpc:isNUMANode an owl:ObjectProperty.
+
+hpc:Pathid rdfs:domain hpc:Path.
+hpc:Pathid rdfs:range xsd:integer.
+
+hpc:Coreid rdfs:domain hpc:Core.
+hpc:Coreid rdfs:range xsd:integer.
+
+hpc:Socketid rdfs:domain hpc:Socket.
+hpc:Socketid rdfs:range xsd:integer.
+
+hpc:Numanodeid rdfs:domain hpc:Numanode.
+hpc:Numanodeid rdfs:range xsd:integer.
+
+# Job
+hpc:Job a owl:Class.
+hpc:Accountinginformation a owl:Class.
+hpc:Task a owl:Class.
+
+hpc:hasAccountingInformation an owl:ObjectProperty.
+hpc:hasTask an owl:ObjectProperty.
+
+hpc:Jobid rdfs:domain hpc:Job.
+hpc:Jobid rdfs:range xsd:integer.
+
+hpc:Queue rdfs:domain hpc:Job.
+hpc:Queue rdfs:range hpc:Queue.
+
+hpc:Status rdfs:domain hpc:Job.
+hpc:Status rdfs:range hpc:Jobstatus.
+
+hpc:User rdfs:domain hpc:Job.
+hpc:User rdfs:range hpc:User.
+
+hpc:Project rdfs:domain hpc:Job.
+hpc:Project rdfs:range hpc:Project.
+
+# Memory Binding
+hpc:memorybindingpolicy a owl:DatatypeProperty.
+hpc:numaid a owl:DatatypeProperty.
+hpc:size a owl:DatatypeProperty.
+
+hpc:Memorybindingpolicy rdfs:domain hpc:Task.
+hpc:Memorybindingpolicy rdfs:range hpc:Memorybindingpolicy.
+
+hpc:Numaid rdfs:domain hpc:Task.
+hpc:Numaid rdfs:range xsd:integer.
+
+hpc:Size rdfs:domain hpc:Task.
+hpc:Size rdfs:range xsd:decimal.
+
+# Topology-Job Relation
+hpc:allocatedto a owl:ObjectProperty.
+hpc:Allocatedto rdfs:domain hpc:Task.
+hpc:Allocatedto rdfs:range hpc:Processingunit.
+
+# Accounting Information
+hpc:Host a owl:Class.
+hpc:type a owl:DatatypeProperty.
+hpc:level a owl:DatatypeProperty.
+hpc:exclusive a owl:DatatypeProperty.
+hpc:pol a owl:DatatypeProperty.
+hpc:numa a owl:DatatypeProperty.
+hpc:size a owl:DatatypeProperty.
+
+hpc:host rdfs:

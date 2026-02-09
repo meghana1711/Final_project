@@ -1,0 +1,68 @@
+hpc:Threadlimit a owl:Class .
+hpc:SolarisThreadLimit a hpc:ThreadLimit ;
+    rdfs:comment "2500 threads per process" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      rdfs:onProperty hpc:platform ;
+                      rdfs:hasValue "Solaris" ;
+                      owl:someValuesFrom xsd:integer ] .
+
+hpc:AIXThreadLimit a hpc:ThreadLimit ;
+    rdfs:comment "512 threads per process" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      rdfs:onProperty hpc:platform ;
+                      rdfs:hasValue "AIX" ;
+                      owl:someValuesFrom xsd:integer ] .
+
+hpc:HPUXThreadLimit a hpc:ThreadLimit ;
+    rdfs:comment "64 threads per process" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      rdfs:onProperty hpc:platform ;
+                      rdfs:hasValue "HP-UX" ;
+                      owl:someValuesFrom xsd:integer ] .
+
+hpc:Linuxthreadlimit a owl:Class ;
+    rdfs:comment "Limited by the total number of processes on the system" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      rdfs:onProperty hpc:platform ;
+                      rdfs:hasValue "Linux" ] .
+
+hpc:threadsperprocesslimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Threadlimit ;
+    rdfs:range xsd:integer .
+
+hpc:Platform a owl:Class .
+hpc:Platform rdfs:subClassOf xsd:string .
+
+hpc:command a owl:ObjectProperty ;
+    rdfs:domain hpc:Threadlimit ;
+    rdfs:range xsd:string .
+
+hpc:Lsbparams a owl:Class .
+hpc:Lsbparams rdfs:subClassOf xsd:string .
+
+hpc:lsbqueryport a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:string .
+
+hpc:newjobrefresh a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:string .
+
+hpc:mbdrefresh a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:integer .
+
+hpc:mbdsleeptime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:integer .
+
+hpc:mbduseegomxj a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:string .
+
+hpc:slotreserve a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:string .
+
+hpc:maxsbdfail a owl:ObjectProperty ;
+    rdfs:domain hpc:

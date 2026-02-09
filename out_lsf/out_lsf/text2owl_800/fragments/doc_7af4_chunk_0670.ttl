@@ -1,0 +1,52 @@
+hpc:Bqueuesformat a owl:Class .
+hpc:Bqueuesoption a owl:Class .
+hpc:Bqueuesfield a owl:Class .
+
+# Object Properties
+hpc:appliesto a owl:ObjectProperty .
+hpc:hasalias a owl:ObjectProperty .
+hpc:hasmaxwidth a owl:ObjectProperty .
+hpc:hasunitofmeasurement a owl:ObjectProperty .
+hpc:isaliasedas a owl:ObjectProperty .
+hpc:ismodifiedformat a owl:ObjectProperty .
+hpc:isoutputoption a owl:ObjectProperty .
+hpc:isrightaligned a owl:ObjectProperty .
+hpc:isleftaligned a owl:ObjectProperty .
+hpc:hasdefaultvalue a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:fieldname a owl:DatatypeProperty .
+hpc:fieldwidth a owl:DatatypeProperty .
+hpc:delimiter a owl:DatatypeProperty .
+
+# Class and Property Relations
+hpc:Bqueuesformat a owl:Class .
+hpc:Bqueuesoption a owl:Class .
+hpc:Bqueuesfield a owl:Class .
+
+hpc:Bqueuesformat rdfs:subClassOf hpc:Bqueuesoption .
+hpc:Bqueuesoption rdfs:subClassOf hpc:Bqueuesfield .
+
+hpc:Appliesto rdfs:domain hpc:Bqueuesoption ;
+                 rdfs:range hpc:Bqueuesformat .
+hpc:Hasalias rdfs:domain hpc:Bqueuesfield ;
+              rdfs:range xsd:string .
+hpc:Hasmaxwidth rdfs:domain hpc:Bqueuesfield ;
+                rdfs:range xsd:positiveInteger .
+hpc:Hasunitofmeasurement rdfs:domain hpc:Bqueuesfield ;
+                      rdfs:range xsd:string .
+hpc:Isaliasedas rdfs:domain hpc:Bqueuesfield ;
+                 rdfs:range hpc:Bqueuesfield .
+hpc:Ismodifiedformat rdfs:domain hpc:Bqueuesoption ;
+                     rdfs:range xsd:boolean .
+hpc:Isoutputoption rdfs:domain hpc:Bqueuesformat ;
+                    rdfs:range xsd:boolean .
+hpc:Isrightaligned rdfs:domain hpc:Bqueuesfield ;
+                   rdfs:range xsd:boolean .
+hpc:Isleftaligned rdfs:domain hpc:Bqueuesfield ;
+                  rdfs:range xsd:boolean .
+hpc:Hasdefaultvalue rdfs:domain hpc:Bqueuesoption ;
+                    rdfs:range xsd:string .
+hpc:Fieldname rdfs:domain hpc:Bqueuesfield .
+hpc:Fieldwidth rdfs:domain hpc:Bqueuesfield .
+hpc:Delimiter rdfs:domain hpc:Bqueuesformat .

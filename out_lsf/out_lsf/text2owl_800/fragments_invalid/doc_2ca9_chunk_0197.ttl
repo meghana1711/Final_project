@@ -1,0 +1,25 @@
+hpc:Fixpack4 a owl:Class .
+hpc:hasFixedBugs rdf:resource "https://ibm.biz/lsf10-1_fp4" .
+hpc:hasFixedBugsBefore rdfs:Datatype rdf:XMLLiteral "2017-11-20"^^xsd:date .
+
+hpc:Fixpack3 a owl:Class .
+hpc:hasFixedBugs rdf:resource "https://ibm.biz/lsf10-1_fp3" .
+hpc:hasFixedBugsBefore rdfs:Datatype rdf:XMLLiteral "2017-07-06"^^xsd:date .
+
+hpc:Fixpack2 a owl:Class .
+hpc:hasFixedBugs rdf:resource "https://ibm.biz/lsf10-1_fp2" .
+hpc:hasFixedBugsBefore rdfs:Datatype rdf:XMLLiteral "2017-02-15"^^xsd:date .
+
+hpc:Fixpack1 a owl:Class .
+hpc:hasFixedBugs rdf:resource "https://ibm.biz/lsf10-1_fp1" .
+hpc:hasFixedBugsBefore rdfs:Datatype rdf:XMLLiteral "2016-10-20"^^xsd:date .
+
+hpc:June2016release a owl:Class .
+hpc:hasFixedBugs rdf:resource "https://ibm.biz/lsf10-1" .
+hpc:hasFixedBugsBefore rdfs:Datatype rdf:XMLLiteral "2016-04-29"^^xsd:date .
+
+hpc:KnownIssue rdf:type owl:Class .
+hpc:requiresFor rdf:resource "http://example.org/hpc#RHELonX86" .
+hpc:requiresFor rdf:resource "http://example.org/hpc#linux4.18" .
+hpc:requiresForInstallation rdf:resource "https://ibm.biz/lsf10-1_lnx418-lib228-x86_64.tar.Z" .
+hpc:requiresForInstallation rdf:resource "https://ibm.biz/lsf10-1_data_mgr-lnx418-x64.tar" .

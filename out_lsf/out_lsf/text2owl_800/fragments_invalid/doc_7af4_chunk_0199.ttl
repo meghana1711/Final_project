@@ -1,0 +1,47 @@
+hpc:Project a owl:Class .
+hpc:projectname hpc:project a owl:DatatypeProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:string .
+
+hpc:Limit a owl:Class .
+hpc:limitname hpc:limit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Limit ;
+    rdfs:range xsd:string .
+
+hpc:perprojectlimit hpc:limit a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range hpc:Limit .
+
+hpc:Allprojects hpc:Limit a owl:Class ;
+    rdfs:subClassOf hpc:Limit .
+
+hpc:Excludedprojects hpc:Allprojects a owl:Class ;
+    rdfs:subClassOf hpc:Allprojects ;
+    rdfs:subClassOf hpc:Limit .
+
+hpc:exclusion hpc:excludedprojects a owl:ObjectProperty ;
+    rdfs:domain hpc:Allprojects ;
+    rdfs:range xsd:string .
+
+hpc:Horizontalformat hpc:Limit a owl:Class ;
+    rdfs:subClassOf hpc:Limit .
+
+hpc:Verticalformat hpc:Limit a owl:Class ;
+    rdfs:subClassOf hpc:Limit .
+
+hpc:projectnames hpc:verticalformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Limit ;
+    rdfs:range xsd:string .
+
+hpc:Emptyprojects hpc:Verticalformat a owl:Class ;
+    rdfs:subClassOf hpc:Verticalformat .
+
+hpc:emptyproject hpc:emptyprojects a owl:ObjectProperty ;
+    rdfs:domain hpc:Verticalformat ;
+    rdfs:range xsd:string .
+
+hpc:Dash hpc:Emptyprojects a owl:Class ;
+    rdfs:subClassOf hpc:Emptyprojects .
+
+hpc:Mem hpc:Limit a owl:Class ;
+    rdfs:subClassOf hpc:Limit .

@@ -1,0 +1,4 @@
+hpc:Sparkapplication a owl:Class .
+hpc:runsonlsf a owl:ObjectProperty .
+hpc:Runsonlsf rdfs:domain hpc:Sparkapplication ;
+                 rdfs:range hpc:Lsf .

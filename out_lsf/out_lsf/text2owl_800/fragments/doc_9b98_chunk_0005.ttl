@@ -1,0 +1,56 @@
+hpc:Dataspecificationfile a owl:Class .
+hpc:hasdataspecificationfile a owl:ObjectProperty .
+hpc:Dataspecificationfile rdfs:subClassOf owl:Resource .
+hpc:Dataspecificationfile rdfs:subClassOf hpc:File .
+
+hpc:Dataspecificationfile rdfs:domain hpc:Job .
+hpc:Dataspecificationfile rdfs:range rdf:List .
+
+hpc:Hasdataspecificationfile rdfs:domain hpc:Job .
+hpc:Hasdataspecificationfile rdfs:range hpc:Dataspecificationfile .
+
+hpc:Dataspecificationfileline a owl:Class .
+hpc:Dataspecificationfileline rdfs:subClassOf owl:Resource .
+
+hpc:Dataspecificationfileline rdfs:domain hpc:Dataspecificationfile .
+hpc:Dataspecificationfileline rdfs:range xsd:string .
+
+hpc:Datatag a owl:Class .
+hpc:Datatag rdfs:subClassOf owl:Resource .
+
+hpc:Datatag rdfs:domain hpc:Dataspecificationfileline .
+hpc:Datatag rdfs:range xsd:string .
+
+hpc:Sourcefile a owl:Class .
+hpc:Sourcefile rdfs:subClassOf owl:Resource .
+
+hpc:Sourcefile rdfs:domain hpc:Dataspecificationfileline .
+hpc:Sourcefile rdfs:range xsd:string .
+
+hpc:Directory a owl:Class .
+hpc:Directory rdfs:subClassOf owl:Resource .
+
+hpc:Directory rdfs:domain hpc:Dataspecificationfileline .
+hpc:Directory rdfs:range xsd:string .
+
+hpc:Dataspecificationfileformat a owl:Class .
+hpc:Dataspecificationfileformat rdfs:subClassOf owl:Resource .
+
+hpc:Dataspecificationfileformat rdfs:domain hpc:Dataspecificationfile .
+hpc:Dataspecificationfileformat rdfs:range xsd:string .
+
+hpc:hasfirstline a owl:ObjectProperty .
+hpc:Hasfirstline rdfs:domain hpc:Dataspecificationfile .
+hpc:Hasfirstline rdfs:range xsd:string .
+
+hpc:hasfirstlinerule a owl:ObjectProperty .
+hpc:Hasfirstlinerule rdfs:domain hpc:Dataspecificationfileformat .
+hpc:Hasfirstlinerule rdfs:range xsd:string .
+
+hpc:ignoredline a owl:ObjectProperty .
+hpc:Ignoredline rdfs:domain hpc:Dataspecificationfile .
+hpc:Ignoredline rdfs:range xsd:string .
+
+hpc:ignoredlinerule a owl:ObjectProperty .
+hpc:Ignoredlinerule rdfs:domain hpc:Dataspecificationfileformat .
+hpc:Ignoredlinerule rdfs:range xsd:string .

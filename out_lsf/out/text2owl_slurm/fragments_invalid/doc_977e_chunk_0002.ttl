@@ -1,0 +1,12 @@
+hpc:Reservation a owl:Class.
+hpc:starttime a owl:DatatypeProperty;
+    rdfs:domain hpc:Reservation;
+    rdfs:range xsd:dateTime.
+hpc:duration a owl:DatatypeProperty;
+    rdfs:domain hpc:Reservation;
+    rdfs:range xsd:nonNegativeInteger.
+hpc:user a owl:ObjectProperty;
+    rdfs:domain hpc:Reservation;
+    rdfs:range hpc:Account.
+hpc:nodes a owl:ObjectProperty;
+    rdfs:domain hpc:Reservation;

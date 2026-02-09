@@ -1,0 +1,24 @@
+hpc:Ostype a owl:Class .
+hpc:hasdistribution a owl:ObjectProperty .
+hpc:hasversion a owl:DatatypeProperty .
+hpc:hasupdate a owl:DatatypeProperty .
+hpc:Iscentos a owl:Class .
+hpc:Isrhel a owl:Class .
+hpc:Isredhatenterpriselinux a owl:Class .
+hpc:Isredhatlinux a owl:Class .
+
+hpc:Ostype rdfs:subClassOf rdf:Resource .
+hpc:Hasdistribution rdfs:domain hpc:Ostype ;
+                      rdfs:range hpc:Distribution .
+hpc:Hasversion rdfs:domain hpc:Ostype ;
+                 rdfs:range xsd:string .
+hpc:Hasupdate rdfs:domain hpc:Ostype ;
+               rdfs:range xsd:string .
+
+hpc:Cent a owl:Class ;
+        rdfs:subClassOf hpc:Ostype .
+hpc:Rhel a owl:Class ;
+        rdfs:subClassOf hpc:Ostype .
+hpc:Redhatenterpriselinux a owl:Class ;
+        rdfs:subClassOf hpc:Rhel .
+hpc:Redhatlinux a owl:Class .

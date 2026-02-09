@@ -1,0 +1,10 @@
+hpc:Transfertoolcommand a owl:Class .
+hpc:Destinationstage a owl:Class .
+
+hpc:hasdestinationstage a owl:ObjectProperty ;
+    rdfs:domain hpc:Transfertoolcommand ;
+    rdfs:range hpc:Destinationstage .
+
+hpc:dst a owl:DatatypeProperty ;
+    rdfs:domain hpc:Transfertoolcommand ;
+    rdfs:range xsd:string .

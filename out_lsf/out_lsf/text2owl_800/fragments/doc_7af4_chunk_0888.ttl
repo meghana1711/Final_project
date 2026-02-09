@@ -1,0 +1,46 @@
+hpc:LsbJobTmpdir a owl:Class ;
+    rdfs:comment "For more details on the job-specific temporary directory." .
+
+hpc:LsfJobTmpdirDefault a owl:Class ;
+    rdfs:comment "Default value when LSB_JOB_TMPDIR is not defined in lsf.conf." .
+
+hpc:LsfJobTmpdirUnix a owl:Class ;
+    rdfs:subClassOf hpc:LsfJobTmpdirDefault ;
+    rdfs:comment "On UNIX: $TMPDIR or /tmp." .
+
+hpc:LsfJobTmpdirWindows a owl:Class ;
+    rdfs:subClassOf hpc:LsfJobTmpdirDefault ;
+    rdfs:comment "On Windows: %TMP%, %TEMP, or %SystemRoot%." .
+
+hpc:LsfTmpdir a owl:Class ;
+    rdfs:comment "Directory specified by LSF_TMPDIR (or /tmp by default) on execution host." .
+
+hpc:LsfTmpdirUndefined a owl:Class ;
+    rdfs:subClassOf hpc:LsfTmpdir ;
+    rdfs:comment "If LSF_TMPDIR is not specified in lsf.conf." .
+
+hpc:LsfTmpdirDefaultUnix a owl:Class ;
+    rdfs:subClassOf hpc:LsfTmpdirUndefined ;
+    rdfs:comment "On UNIX: $TMPDIR or /tmp." .
+
+hpc:LsfTmpdirDefaultWindows a owl:Class ;
+    rdfs:subClassOf hpc:LsfTmpdirUndefined ;
+    rdfs:comment "On Windows: %TMP%, %TEMP, or %SystemRoot%." .
+
+hpc:LsfTmpdirNotEnabled a owl:Class ;
+    rdfs:comment "Default: LSF_TMPDIR is not enabled." .
+
+hpc:LsfUdpToTcpThreshold a owl:Class ;
+    rdfs:comment "Parameter for specifying the size in bytes for LSF to switch from UDP to TCP for LIM communication." .
+
+hpc:LsfUdpToTcpThresholdDefault a owl:Class ;
+    rdfs:comment "Undeﬁned. The server host LIM always uses UDP." .
+
+hpc:LsfUdpToTcpThresholdValidValues a owl:Class ;
+    rdfs:comment "Specify any integer equal to or greater than 1500 bytes." .
+
+hpc:LsfSendConfinfoTcpThreshold a owl:Class ;
+    rdfs:comment "Deprecated; use LSF_UDP_TO_TCP_THRESHOLD instead." .
+
+hpc:LsfUgroupTransfer a owl:Class ;
+    rdfs:comment "Default job execution model uses UNIX group information." .

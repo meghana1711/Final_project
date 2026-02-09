@@ -1,0 +1,16 @@
+hpc:Localpreferencepolicy a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A policy with membind=localprefer affinity resource requirement parameter." .
+
+hpc:rmMemAffinity a owl:DatatypeProperty ;
+    rdfs:domain hpc:Localpreferencepolicy ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates whether RM_MEM_AFFINITY is set to No." .
+
+hpc:haslocalpreferencepolicyaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Localpreferencepolicy ;
+    rdfs:range hpc:RmMemAffinity ;
+    rdfs:comment "The affinity resource requirement parameter of the local preference policy." .
+
+hpc:No_Preference a owl:NamedIndividual ;
+    hpc:hasLocalPreferencePolicyAffinity "No" .

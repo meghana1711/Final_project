@@ -1,0 +1,68 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a job in the HPC system." .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a user in the HPC system." .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a host in the HPC system." .
+
+hpc:jobsubmission a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Relates a user to a job they submitted." .
+
+hpc:jobexecution a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "Relates a job to the host it was executed on." .
+
+hpc:jobresourceusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Relates a job to its resource usage information." .
+
+hpc:Resourceusageitem a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents an item of resource usage information." .
+
+hpc:projectname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusageitem ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the project associated with the resource usage." .
+
+hpc:cpuused a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusageitem ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The amount of CPU used." .
+
+hpc:mem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusageitem ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The amount of memory used." .
+
+hpc:swap a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusageitem ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The amount of swap used." .
+
+hpc:pids a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusageitem ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of process IDs associated with the resource usage." .
+
+hpc:starttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusageitem ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The start time of the resource usage." .
+
+hpc:finishtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusageitem ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The finish time of the resource usage." .
+
+hpc:jobstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc

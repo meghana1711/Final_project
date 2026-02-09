@@ -1,0 +1,24 @@
+hpc:Lsfinstallationdirectory a owl:Class .
+hpc:lsfTop a owl:DatatypeProperty .
+hpc:LsfTop rdfs:domain hpc:Lsfinstallationdirectory ;
+    rdfs:range xsd:string .
+
+hpc:Silentinstallation a owl:Class .
+hpc:silentInstall a owl:DatatypeProperty .
+hpc:SilentInstall rdfs:domain hpc:Silentinstallation ;
+    rdfs:range xsd:string .
+
+hpc:Silentinstallationoption a owl:Class .
+hpc:Y a owl:NamedIndividual ;
+    hpc:SILENT_INSTALL "Y" .
+hpc:N a owl:NamedIndividual ;
+    hpc:SILENT_INSTALL "N" .
+
+hpc:Silentinstallationtarlist a owl:Class .
+hpc:lsfSilentInstallTarlist a owl:DatatypeProperty .
+hpc:LsfSilentInstallTarlist rdfs:domain hpc:Silentinstallationtarlist ;
+    rdfs:range xsd:string .
+
+hpc:Package a owl:Class .
+
+hpc:Installibmspectrumlsfonwindows a owl:Class .

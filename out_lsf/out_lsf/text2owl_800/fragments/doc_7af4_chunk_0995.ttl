@@ -1,0 +1,14 @@
+hpc:LsfHostUuid a owl:Class .
+hpc:lsfLoadPlugins a owl:ObjectProperty .
+hpc:lsfStartupPath a owl:DatatypeProperty .
+
+hpc:LsfHostUuid rdfs:subClassOf owl:String .
+hpc:LsfLoadPlugins rdfs:domain rdf:Resource .
+hpc:LsfStartupPath rdfs:domain rdf:Resource .
+hpc:LsfStartupPath rdfs:range xsd:string .
+
+hpc:LSF_HOST_UUID rdfs:comment "As of Fix Pack 15, generates a UUID from the value provided for this parameter. The same parameter value will always generate the same UUID. A UUID is automatically-generated for you on Linux machines based on the host boot time, host name, and the LSF_LOCAL_RESOURCES parameter in the lsf.conf file; however, you can manually override the UUID value using this LSF_HOST_UUID parameter. The UUID allows you identify a host by more than just its hostname. For example, a UUID is used to determine if the host is the same one that previously joined, or if the host is simply reusing the same hostname or IP address (which is common for cloud- provisioned machines). Default Undefined. LSF automatically-generates UUIDs for dynamic Linux hosts. Use this parameter to override a host's UUID."@en .
+
+hpc:LSF_LOAD_PLUGINS rdfs:comment "If defined, LSF loads plug-ins from LSB_LSBDIR. Used for Kerberos authentication and to enable the LSF CPU set plug-in for SGI."@en .
+
+hpc:LSF_STARTUP_PATH rdfs:comment "UNIX only. Enables the LSF daemon startup control feature when LSF_STARTUP_USERS is also defined. Define both parameters when you want to allow users other than root to start LSF daemons. Specifies the absolute path name of the directory in which the LSF daemon binary files (lim, res, sbatchd, and mbatchd) are installed."@en .

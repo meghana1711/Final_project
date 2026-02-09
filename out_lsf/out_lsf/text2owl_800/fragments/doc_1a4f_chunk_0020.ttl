@@ -1,0 +1,14 @@
+hpc:effectiverunqueuelength a owl:ObjectProperty .
+hpc:normalizedrunqueuelength a owl:ObjectProperty .
+hpc:cpuutilization a owl:DatatypeProperty .
+hpc:pagingrate a owl:DatatypeProperty .
+
+hpc:Host a owl:Class .
+
+hpc:Effectiverunqueuelength rdfs:domain hpc:Host .
+hpc:Normalizedrunqueuelength rdfs:domain hpc:Host .
+hpc:Cpuutilization rdfs:domain hpc:Host .
+hpc:Pagingrate rdfs:domain hpc:Host .
+
+hpc:Cpuutilization rdfs:range xsd:float .
+hpc:Pagingrate rdfs:range xsd:nonNegativeInteger .

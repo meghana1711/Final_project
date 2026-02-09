@@ -1,0 +1,66 @@
+hpc:LsbEvents a owl:Class .
+
+hpc:eventUpdateInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbEvents ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:LsfParams a owl:Class .
+
+hpc:LsfConf a owl:Class .
+
+hpc:LsfDaemon a owl:Class .
+
+hpc:lsfLogMask a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfDaemon .
+
+hpc:LOG_DEBUG rdf:first hpc:LSF_LOG_MASK ;
+    rdf:rest ( hpc:LOG_DEBUG1 rdf:first owl:union ;
+               hpc:LOG_DEBUG2 rdf:first owl:union ;
+               hpc:LOG_DEBUG3 rdf:first owl:union ) .
+
+hpc:lsbDebugCmd a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range hpc:LsfDaemon .
+
+hpc:lsbDebugMbd a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range hpc:LsfDaemon .
+
+hpc:lsbDebugSbd a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range hpc:LsfDaemon .
+
+hpc:lsbDebugSch a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range hpc:LsfDaemon .
+
+hpc:lsfDebugLim a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range hpc:LsfDaemon .
+
+hpc:lsfDebugRes a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range hpc:LsfDaemon .
+
+hpc:MBATCHD a hpc:LSF_DAEMON .
+hpc:SBATCHD a hpc:LSF_DAEMON .
+hpc:MBSCHD a hpc:LSF_DAEMON .
+hpc:LIM a hpc:LSF_DAEMON .
+hpc:RES a hpc:LSF_DAEMON .
+
+hpc:lsfLogdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfConf .
+
+hpc:lsadmin a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbEvents ;
+    rdfs:range xsd:string .
+
+hpc:badmin a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbEvents ;
+    rdfs:range xsd:string .
+
+hpc:mbatchdRestart a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbEvents ;
+    rdfs:range xsd:string .
+
+hpc:LSADMIN_MBD

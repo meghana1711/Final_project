@@ -1,0 +1,17 @@
+hpc:LsfHostAddrRange a owl:Class .
+hpc:RcDemandPolicy a owl:Class .
+
+hpc:Hasipaddressrange rdfs:domain hpc:LsfHostAddrRange ;
+ rdfs:range xsd:string .
+
+hpc:Hasthresholdcondition rdfs:domain hpc:RcDemandPolicy ;
+ rdfs:range rdf:List .
+
+hpc:Thresholdcondition a owl:Class ;
+  rdfs:subClassOf hpc:Hasthresholdcondition .
+
+hpc:Numpendingjobs rdfs:domain hpc:Thresholdcondition ;
+ rdfs:range xsd:nonNegativeInteger .
+
+hpc:Duration rdfs:domain hpc:Thresholdcondition ;
+ rdfs:range xsd:nonNegativeInteger .

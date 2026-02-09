@@ -1,0 +1,54 @@
+hpc:maxSbdConns a owl:DatatypeProperty .
+hpc:MaxSbdConns rdfs:domain hpc:Lsf .
+hpc:MaxSbdConns rdfs:range xsd:integer .
+
+hpc:dispatchByQueue a owl:ObjectProperty .
+hpc:DispatchByQueue rdfs:subClassOf hpc:Deprecatedproperty .
+hpc:DispatchByQueue rdfs:domain hpc:Lsf .
+
+hpc:Container a owl:Class .
+hpc:Podmanagercontainer a owl:Class .
+hpc:Enrootcontainer a owl:Class .
+hpc:Container rdfs:subClassOf hpc:Lsfjob .
+hpc:Podmanagercontainer rdfs:subClassOf hpc:Container .
+hpc:Enrootcontainer rdfs:subClassOf hpc:Container .
+
+hpc:jobDispatchPackSize a owl:DatatypeProperty .
+hpc:JobDispatchPackSize rdfs:domain hpc:Lsf .
+hpc:JobDispatchPackSize rdfs:range xsd:integer .
+
+hpc:execDriver a owl:ObjectProperty .
+hpc:ExecDriver rdfs:domain hpc:Lsf .
+hpc:ExecDriver rdfs:range hpc:Executiondriver .
+
+hpc:Podman a owl:Class .
+hpc:Podman rdfs:subClassOf hpc:ExecDriver .
+hpc:Podman rdfs:subClassOf hpc:Container .
+hpc:Podman rdfs:subClassOf hpc:Lsfjob .
+hpc:Podman rdfs:subClassOf hpc:Podmanagercontainer .
+hpc:Podman rdfs:subClassOf hpc:Enrootcontainer .
+hpc:Podman rdf:value "Podman" .
+
+hpc:Docker a owl:Class .
+hpc:Docker rdfs:subClassOf hpc:ExecDriver .
+hpc:Docker rdfs:subClassOf hpc:Container .
+hpc:Docker rdfs:subClassOf hpc:Lsfjob .
+hpc:Docker rdf:value "Docker" .
+
+hpc:Enroot a owl:Class .
+hpc:Enroot rdfs:subClassOf hpc:ExecDriver .
+hpc:Enroot rdfs:subClassOf hpc:Container .
+hpc:Enroot rdfs:subClassOf hpc:Lsfjob .
+hpc:Enroot rdfs:subClassOf hpc:Enrootcontainer .
+hpc:enroot rdf:value "enroot" .
+
+hpc:options a owl:DatatypeProperty .
+hpc:Options rdfs:domain hpc:Podmanagercontainer .
+hpc:Options rdfs:range xsd:string .
+
+hpc:starter a owl:DatatypeProperty .
+hpc:Starter rdfs:domain hpc:Podmanagercontainer .
+hpc:Starter rdfs:range xsd:string .
+
+hpc:controller a owl:DatatypeProperty .
+hpc:controller

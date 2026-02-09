@@ -1,0 +1,49 @@
+hpc:Cluster a owl:Class .
+hpc:Resource a owl:Class .
+hpc:Host a owl:Class .
+hpc:location a owl:ObjectProperty .
+hpc:resourcemap a owl:DatatypeProperty .
+
+hpc:Cluster rdfs:subClassOf owl:Class .
+hpc:Resource rdfs:subClassOf owl:Class .
+hpc:Host rdfs:subClassOf owl:Class .
+
+hpc:Location rdfs:domain hpc:Cluster .
+hpc:Resourcemap rdfs:domain hpc:Cluster .
+
+hpc:Location rdfs:range xsd:string .
+
+hpc:AllHosts rdf:type owl:Class .
+hpc:SpecifiedHosts rdf:type owl:Class .
+
+hpc:ManagementHost rdf:type owl:Class .
+hpc:DefaultHost rdf:type owl:Class .
+
+hpc:LocationAllhosts hpc:location rdfs:subPropertyOf hpc:AllHosts .
+hpc:LocationDefaulthost hpc:location rdfs:subPropertyOf hpc:DefaultHost .
+
+hpc:LocationAllhosts rdfs:range hpc:Managementhost .
+hpc:LocationDefaulthost rdfs:range hpc:Managementhost .
+
+hpc:LocationSpecifiedhosts hpc:location rdfs:subPropertyOf hpc:SpecifiedHosts .
+
+hpc:FirstHostInList rdf:type owl:ObjectProperty .
+hpc:NextAvailableHost rdf:type owl:ObjectProperty .
+
+hpc:Firsthostinlist rdfs:domain hpc:Specifiedhosts .
+hpc:Nextavailablehost rdfs:domain hpc:Specifiedhosts .
+
+hpc:Firsthostinlist rdfs:range hpc:Host .
+hpc:Nextavailablehost rdfs:range hpc:Host .
+
+hpc:LSF_MASTER rdf:type owl:ObjectProperty .
+hpc:LSF_RESOURCES rdf:type owl:ObjectProperty .
+hpc:ELIM_ABORT_VALUE rdf:type owl:ObjectProperty .
+
+hpc:LsfMaster rdfs:domain hpc:Cluster .
+hpc:LsfResources rdfs:domain hpc:Cluster .
+hpc:ElimAbortValue rdfs:domain hpc:Cluster .
+
+hpc:LsfMaster rdfs:range hpc:Host .
+hpc:LsfResources rdfs:range hpc:Resource .
+hpc:ElimAbortValue rdfs:range xsd:integer .

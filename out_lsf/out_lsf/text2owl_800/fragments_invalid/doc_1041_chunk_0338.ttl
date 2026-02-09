@@ -1,0 +1,62 @@
+hpc:Joboption a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Options for operating on jobs." .
+
+hpc:Statpendoption a owl:Class ;
+    rdfs:subClassOf hpc:Joboption ;
+    rdfs:comment "Option for operating with specific signals on jobs." ;
+    rdfs:domain hpc:Joboption ;
+    rdfs:range xsd:string ;
+    owl:hasValue ( "INT" , "KILL" , "TERM" ) .
+
+hpc:Statpendoptionnotboption a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Option cannot be used with the -b option." ;
+    rdfs:domain hpc:Joboption .
+
+hpc:Userspecifiedoption a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Option for operating on jobs submitted by a specific user or user group." ;
+    rdfs:domain hpc:Joboption .
+
+hpc:Allusersoption a owl:Class ;
+    rdfs:subClassOf hpc:Userspecifiedoption ;
+    rdfs:comment "Option for operating on jobs submitted by all users." .
+
+hpc:Windowsuseraccount a owl:Class ;
+    rdfs:subClassOf hpc:Userspecifiedoption ;
+    rdfs:comment "Represents a Windows user account." ;
+    rdfs:domain hpc:Userspecifiedoption ;
+    rdfs:range xsd:string ;
+    owl:hasValue ( "DOMAIN_NAME\\user_name" , "DOMAIN_NAME\\\\user_name" ) .
+
+hpc:Jobidoption a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Option for operating on jobs specified by job ID." ;
+    rdfs:domain hpc:Joboption .
+
+hpc:Jobidarrayoption a owl:Class ;
+    rdfs:subClassOf hpc:Jobidoption ;
+    rdfs:comment "Option for operating on job arrays." ;
+    rdfs:domain hpc:Joboption ;
+    rdfs:range xsd:string ;
+    owl:hasValue "job_ID[index]" .
+
+hpc:Bjobscommand a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Command for finding job IDs." .
+
+hpc:Killjobarray a owl:Class ;
+    rdfs:subClassOf hpc:Jobidarrayoption ;
+    rdfs:comment "Option for killing an entire job array." ;
+    rdfs:domain hpc:Joboption ;
+    rdfs:range xsd:string ;
+    owl:hasValue "job_array_ID" .
+
+hpc:Jobsubmittedbyanyuser a owl:Class ;
+    rdfs:subClassOf hpc:Jobidoption ;
+    rdfs:comment "Jobs submitted by any user." .
+
+hpc:Reservedjobid a owl:Class ;
+    rdfs:subClassOf hpc:Jobidoption ;
+    rdfs:comment "Reserved job ID 0."

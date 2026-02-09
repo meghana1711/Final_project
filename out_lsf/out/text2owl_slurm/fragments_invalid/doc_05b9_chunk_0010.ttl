@@ -1,0 +1,17 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:usagestart a owl:DatatypeProperty.
+hpc:usageend a owl:DatatypeProperty.
+hpc:user a owl:ObjectProperty.
+hpc:User hpc:rdflistmember rdf:first hpc:UserItem ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Useritem.
+hpc:Useritem a owl:Class.
+hpc:Returntype a owl:Class;
+    rdfs:subClassOf owl:Class.
+hpc:v0043OpenapiAssocsResp a hpc:ReturnType.
+hpc:Apiresponse a owl

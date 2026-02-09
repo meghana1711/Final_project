@@ -1,0 +1,27 @@
+@base <http://example.org/hpc/>
+
+hpc:Field a owl:Class ;
+    rdfs:comment "Represents a field in the lshosts output." .
+
+hpc:width a owl:DatatypeProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:justification a owl:ObjectProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the justification for the field output." .
+
+hpc:unit a owl:ObjectProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the unit for the field output." .
+
+hpc:Builtinconversion a owl:Class ;
+    rdfs:comment "Represents a built-in conversion for space or capacity, or duration or time." .
+
+hpc:Spaceorcapacityconversion a owl:Class ;
+    rdfs:subClassOf hpc:Builtinconversion ;
+    rdfs:comment "Represents a built-in conversion for space or capacity." .
+
+hpc:

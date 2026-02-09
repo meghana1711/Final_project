@@ -1,0 +1,45 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Applicationprofile a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:submitjob a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Job .
+
+hpc:modifyapplicationprofile a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Applicationprofile ;
+    rdfs:subPropertyOf hpc:modifyResource .
+
+hpc:dissociatejobfromprofile a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Job ;
+    rdfs:subPropertyOf hpc:modifyResource .
+
+hpc:operateonjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range rdfs:Resource ;
+    rdfs:subPropertyOf hpc:modifyResource .
+
+hpc:applicationprofilename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:string .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:Pendingjob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:subClassOf hpc:Jobstatus .
+
+hpc:Existingapplicationprofile a owl:Class ;
+    rdfs:subClassOf hpc:Applicationprofile ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Qualifyingjob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:subClassOf hpc:Resource .

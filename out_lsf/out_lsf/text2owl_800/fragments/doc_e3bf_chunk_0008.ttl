@@ -1,0 +1,44 @@
+hpc:Installation a owl:Class .
+hpc:msiexecinstallation a owl:ObjectProperty ;
+    rdfs:domain hpc:Installation ;
+    rdfs:range rdf:Seq .
+
+hpc:Msiexecinstallationseq a owl:Class ;
+    rdfs:subClassOf hpc:Seq .
+
+hpc:packagefile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Msiexecinstallationseq ;
+    rdfs:range xsd:string .
+
+hpc:parametervalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Msiexecinstallationseq ;
+    rdfs:range xsd:string .
+
+hpc:Serverhost a owl:Class .
+hpc:hosttype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Serverhost ;
+    rdfs:range xsd:string .
+hpc:installdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Serverhost .
+
+hpc:Configurationfile a owl:Class .
+hpc:lsfconf a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range rdf:Seq .
+
+hpc:Lsfconfseq a owl:Class ;
+    rdfs:subClassOf hpc:Seq .
+
+hpc:parametervalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfseq ;
+    rdfs:range xsd:string .
+
+hpc:edition a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconf .
+
+hpc:initialconfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile .
+
+hpc:Shareddirectory a owl:Class .
+hpc:sharedir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Shareddirectory .

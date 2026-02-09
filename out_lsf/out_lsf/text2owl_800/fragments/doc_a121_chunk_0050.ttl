@@ -1,0 +1,29 @@
+hpc:Dataprovenance a owl:Class .
+hpc:tagscript a owl:ObjectProperty ;
+    rdfs:domain hpc:Dataprovenance ;
+    rdfs:range hpc:Script .
+
+hpc:tagscriptscript a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tagscript ;
+    rdfs:range xsd:string .
+
+hpc:esubdprov a owl:ObjectProperty ;
+    rdfs:domain hpc:Dataprovenance ;
+    rdfs:range hpc:Esubdprov .
+
+hpc:esubdprovapplication a owl:DatatypeProperty ;
+    rdfs:domain hpc:Esubdprov ;
+    rdfs:range xsd:string .
+
+hpc:showhistscript a owl:ObjectProperty ;
+    rdfs:domain hpc:Dataprovenance ;
+    rdfs:range hpc:Script .
+
+hpc:Filesystem a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:filesystemrequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Filesystem ;
+    rdfs:range hpc:Application .
+
+hpc:Script a owl:Class .

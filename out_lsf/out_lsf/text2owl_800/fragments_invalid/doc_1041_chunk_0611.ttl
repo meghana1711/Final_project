@@ -1,0 +1,57 @@
+hpc:joberrorfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:Joberrorfilepath rdfs:subClassOf xsd:string .
+
+hpc:joberrorfilemaxlength a owl:DatatypeProperty ;
+    rdfs:domain hpc:Joberrorfilepath ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:joberrorfileunixlinuxmaxlength a owl:DatatypeProperty ;
+    rdfs:domain hpc:Joberrorfilepath ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:range rdf:first hpc:Maxlengthforunixlinux ;
+    rdfs:range rdf:rest xsd:nonNegativeInteger .
+
+hpc:joberrorfilewindowsmaxlength a owl:DatatypeProperty ;
+    rdfs:domain hpc:Joberrorfilepath ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:range rdf:first hpc:Maxlengthforwindows ;
+    rdfs:range rdf:rest xsd:nonNegativeInteger .
+
+hpc:MaxLengthForUnixLinux a xsd:positiveInteger ;
+    rdf:value "4094" .
+
+hpc:MaxLengthForWindows a xsd:positiveInteger ;
+    rdf:value "255" .
+
+hpc:jobeligiblependingtimelimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:jobeligiblependingtimelimitformat a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobeligiblependingtimelimit ;
+    rdfs:range xsd:string .
+
+hpc:JobEligiblePendingTimeLimitHours rdfs:subPropertyOf hpc:JobEligiblePendingTimeLimitFormat ;
+    rdfs:domain hpc:Jobeligiblependingtimelimit ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:JobEligiblePendingTimeLimitMinutes rdfs:subPropertyOf hpc:JobEligiblePendingTimeLimitFormat ;
+    rdfs:domain hpc:Jobeligiblependingtimelimit ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:JobEligiblePendingTimeLimitValue rdfs:subPropertyOf hpc:JobEligiblePendingTimeLimitFormat ;
+    rdfs:domain hpc:Jobeligiblependingtimelimit ;
+    rdfs:range xsd:decimal .
+
+hpc:JobEligiblePendingTimeLimitValueMax rdfs:subPropertyOf hpc:JobEligiblePendingTimeLimitValue ;
+    rdfs:domain hpc:Jobeligiblependingtimelimit ;
+    rdfs:range xsd:positiveInteger .
+
+hpc:JobEligiblePendingTimeLimitValueMin rdfs:subPropertyOf hpc:JobEligiblePendingTimeLimitValue ;
+    rdfs:domain hpc:Jobeligiblependingtimelimit ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:JobEligiblePendingTimeLimitValueHours rdfs:subPropertyOf hpc:JobElig

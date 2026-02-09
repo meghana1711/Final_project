@@ -1,0 +1,41 @@
+hpc:Slurmdaemon a owl:Class .
+hpc:SLURMD a hpc:SlurmDaemon ;
+  rdfs:subClassOf hpc:Slurmdaemon ;
+  rdfs:comment "Slurmd daemon in Slurm cluster." .
+hpc:SLURMSTEPD a hpc:SlurmDaemon ;
+  rdfs:subClassOf hpc:Slurmdaemon ;
+  rdfs:comment "Slurmstepd daemon in Slurm cluster." .
+
+hpc:slurmdOomAdj a owl:DatatypeProperty ;
+  rdfs:domain hpc:Slurmdaemon ;
+  rdfs:range xsd:integer ;
+  rdfs:comment "Environment variable for setting the OOM adjustment for slurmd." .
+
+hpc:slurmstepdOomAdj a owl:DatatypeProperty ;
+  rdfs:domain hpc:Slurmdaemon ;
+  rdfs:range xsd:integer ;
+  rdfs:comment "Environment variable for setting the OOM adjustment for slurmstepd." .
+
+hpc:Hostnamemismatch a owl:Class ;
+  rdfs:subClassOf rdf:Resource .
+
+hpc:IncorrectHostname a hpc:HostnameMismatch ;
+  rdfs:subClassOf hpc:Hostnamemismatch ;
+  rdfs:comment "Hostname in /etc/hosts file is incorrect." .
+
+hpc:Nodeaddition a owl:Class .
+
+hpc:nodeadditionprocedure a owl:ObjectProperty ;
+  rdfs:domain hpc:Nodeaddition ;
+  rdfs:range hpc:Procedure ;
+  rdfs:comment "Procedure for adding nodes to a Slurm cluster." .
+
+hpc:Procedure a owl:Class .
+
+hpc:StopSlurmctld a hpc:Procedure ;
+  rdfs:subClassOf hpc:Procedure ;
+  rdfs:comment "Procedure for stopping the slurmctld daemon." .
+
+hpc:SameSlurmConfFile a hpc:Procedure ;
+  rdfs:subClassOf hpc:Procedure ;
+  rdfs:comment "Procedure for maintaining the same slurm.conf file on all nodes." .

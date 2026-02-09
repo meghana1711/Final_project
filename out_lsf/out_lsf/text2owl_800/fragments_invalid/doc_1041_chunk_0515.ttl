@@ -1,0 +1,26 @@
+hpc:User a owl:Class .
+hpc:Reservation a owl:Class .
+hpc:Createdby hpc:User rdfs:domain hpc:Reservation ;
+                    rdfs:range hpc:User .
+hpc:Deletableby hpc:User rdfs:domain hpc:Reservation ;
+                    rdfs:range xsd:boolean .
+hpc:Job a owl:Class .
+hpc:Submittedby hpc:User rdfs:domain hpc:Job ;
+                    rdfs:range xsd:string .
+hpc:Status owl:DatatypeProperty ;
+                    rdfs:domain hpc:Job .
+hpc:Queue owl:DatatypeProperty ;
+                    rdfs:domain hpc:Job .
+hpc:Command rdf:Datatype rdfs:subClassOf xsd:string .
+hpc:Project owl:DatatypeProperty ;
+                    rdfs:domain hpc:Job .
+hpc:Jobdescription rdf:Datatype rdfs:subClassOf xsd:string .
+hpc:Started rdf:Datatype rdfs:subClassOf xsd:dateTime .
+hpc:Ended rdf:Datatype rdfs:subClassOf xsd:dateTime .
+hpc:Host rdf:Datatype rdfs:subClassOf xsd:string .
+hpc:Cwd rdf:Datatype rdfs:subClassOf xsd:string .
+hpc:Sharegroup rdf:Datatype rdfs:subClassOf xsd:string .
+hpc:Jobdescription rdf:Datatype rdfs:subClassOf xsd:string .
+hpc:Task rdf:Datatype rdfs:subClassOf xsd:nonNegativeInteger .
+hpc:Runlimit rdf:Datatype rdfs:subClassOf xsd:duration .
+hpc:Reservation a rdfs:subClassOf hpc:Job .

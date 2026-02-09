@@ -1,0 +1,28 @@
+hpc:imptTasklimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Set to 0 to forbid any job tasks from being forwarded to the receiving queue. Use the keyword inﬁnit to make the queue accept an unlimited number of starting multicluster job tasks. Default inﬁnit (The queue accepts an unlimited number of starting multicluster job tasks.)" .
+
+hpc:Infinit a owl:Class ;
+    rdfs:comment "The queue accepts an unlimited number of starting multicluster job tasks." .
+
+hpc:interactive a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Interactivetype ;
+    rdfs:comment "Specifies whether the queue accepts interactive or non-interactive jobs. Syntax INTERACTIVE=YES | NO | ONLY" .
+
+hpc:Interactivetype a owl:Class ;
+    rdfs:subClassOf owl:Enum ;
+    owl:enumValue "YES" ;
+    owl:enumValue "NO" ;
+    owl:enumValue "ONLY" ;
+    rdfs:comment "Interactive batch jobs are submitted via bsub -I." .
+
+hpc:INTERACTIVE_DEFAULT a xsd:string ;
+    rdfs:value "YES" ;
+    rdfs:comment "The queue accepts both interactive and non-interactive jobs by default." .
+
+hpc:interruptibleBackfill a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Configures interruptible backfill scheduling policy, which allows reserved job slots to be used by low priority small jobs that are terminated when the higher priority large jobs are about to start. Syntax INTERRUPTIBLE_BACKFILL=seconds" .

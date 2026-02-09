@@ -1,0 +1,47 @@
+hpc:lsfDockerMountTmpdir a owl:DatatypeProperty .
+hpc:lsbBqueuesFormat a owl:ObjectProperty .
+hpc:lsbQueuesFormat a owl:DatatypeProperty .
+hpc:cpuPeakSampleDuration a owl:DatatypeProperty .
+
+# LSF Command Options
+hpc:bqueuesO a owl:ObjectProperty .
+hpc:blimitsO a owl:ObjectProperty .
+
+# LSF Command Output Fields
+hpc:corelimit a owl:DatatypeProperty .
+hpc:cpuPeak a owl:DatatypeProperty .
+hpc:cpuEfficiency a owl:DatatypeProperty .
+hpc:memEfficiency a owl:DatatypeProperty .
+
+# LSF Command Examples
+hpc:bqueues_o_example a owl:NamedIndividual ;
+    rdf:type hpc:bqueues_o ;
+    hpc:bqueues_o_object "corelimit" .
+
+hpc:blimits_o_example a owl:NamedIndividual ;
+    rdf:type hpc:blimits_o ;
+    hpc:blimits_o_object "custom_field" .
+
+# LSF Command Output Formatting
+hpc:Customizedqueueinfooutput a owl:Class .
+hpc:Customizedresourcealloclimitsinfooutput a owl:Class .
+
+hpc:Customizedqueueinfooutput rdfs:subClassOf hpc:Customizedoutput .
+hpc:Customizedresourcealloclimitsinfooutput rdfs:subClassOf hpc:Customizedoutput .
+
+hpc:Customizedoutput rdfs:subClassOf rdf:Resource .
+
+hpc:hascustomizedqueueinfo a owl:ObjectProperty ;
+    rdfs:domain hpc:Customizedqueueinfooutput ;
+    rdfs:range hpc:Customizedqueueinfo .
+
+hpc:hascustomizedresourcealloclimitsinfo a owl:ObjectProperty ;
+    rdfs:domain hpc:Customizedresourcealloclimitsinfooutput ;
+    rdfs:range hpc:Customizedresourcealloclimitsinfo .
+
+# LSF Command Examples for Customized Output
+hpc:CustomizedQueueInfo_example a owl:NamedIndividual ;
+    rdf:type hpc:CustomizedQueueInfo .
+
+hpc:CustomizedResourceAllocLimitsInfo_example a owl:NamedIndividual ;
+    rdf:type hpc:CustomizedResourceAllocLimitsInfo .

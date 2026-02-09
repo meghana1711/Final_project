@@ -1,0 +1,58 @@
+hpc:Jobrequest a owl:Class;
+    rdfs:subClassOf hpc:Request .
+
+hpc:Inputfile a owl:Class;
+    rdfs:subClassOf hpc:File .
+
+hpc:Hasinputfile hpc:jobrequest owl:ObjectProperty;
+    rdfs:domain hpc:Jobrequest;
+    rdfs:range hpc:Inputfile .
+
+hpc:cachelocation hpc:inputfile a owl:DatatypeProperty;
+    rdfs:domain hpc:Inputfile;
+    rdfs:range xsd:string .
+
+hpc:permission hpc:inputfile a owl:DatatypeProperty;
+    rdfs:domain hpc:Inputfile;
+    rdfs:range xsd:string .
+
+hpc:hash hpc:inputfile a owl:DatatypeProperty;
+    rdfs:domain hpc:Inputfile;
+    rdfs:range xsd:string .
+
+hpc:size hpc:inputfile a owl:DatatypeProperty;
+    rdfs:domain hpc:Inputfile;
+    rdfs:range xsd:decimal .
+
+hpc:status hpc:inputfile a owl:DatatypeProperty;
+    rdfs:domain hpc:Inputfile;
+    rdfs:range xsd:string .
+
+hpc:refjob hpc:inputfile a owl:ObjectProperty;
+    rdfs:domain hpc:Inputfile;
+    rdfs:range hpc:Jobrequest .
+
+hpc:outputfile hpc:jobrequest a owl:ObjectProperty;
+    rdfs:domain hpc:Jobrequest;
+    rdfs:range hpc:Outputfile .
+
+hpc:stagedout hpc:jobrequest a owl:ObjectProperty;
+    rdfs:domain hpc:Jobrequest;
+    rdfs:range xsd:boolean .
+
+hpc:bdatacache hpc:jobrequest a owl:DatatypeProperty;
+    rdfs:domain hpc:Jobrequest;
+    rdfs:range xsd:string .
+
+hpc:asteriskinput hpc:inputfile a owl:DatatypeProperty;
+    rdfs:domain hpc:Inputfile;
+    rdfs:range xsd:boolean .
+
+hpc:InputFileWithAsterisk a hpc:InputFile;
+    hpc:asteriskInput true .
+
+hpc:InputPath a hpc:InputFile;
+    hpc:inputPath xsd:string .
+
+
+This ontology fragment represents the classes `JobRequest`, `InputFile`, and `OutputFile`, as well as properties related to them such as `cacheLocation`, `permission`, `hash`, `size`, `status`, `refJob`, `outputFile`, `stagedOut`, `bdataCache`, and `asteriskInput`. The `InputFileWithAsterisk` is a subclass of `InputFile` that indicates the input path ends with an asterisk. The `InputPath` property is used to store the input path of an `InputFile`.

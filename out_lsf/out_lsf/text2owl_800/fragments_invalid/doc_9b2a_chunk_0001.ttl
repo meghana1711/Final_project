@@ -1,0 +1,47 @@
+hpc:Userauthentication a owl:Class .
+hpc:Esubauthentication a owl:Class .
+hpc:Taskmanauthentication a owl:Class .
+
+hpc:hasproject a owl:ObjectProperty .
+hpc:isdefaultproject a owl:DatatypeProperty .
+
+hpc:Userauthentication rdfs:subClassOf hpc:Userauthentication .
+hpc:Esubauthentication rdfs:subClassOf hpc:Userauthentication .
+hpc:Taskmanauthentication rdfs:subClassOf hpc:Userauthentication .
+
+hpc:Hasproject rdfs:domain hpc:Userauthentication ;
+                 rdfs:range hpc:Project .
+
+hpc:Isdefaultproject rdfs:domain hpc:Esubauthentication ;
+                      rdfs:range xsd:boolean .
+
+hpc:Lsfconf a owl:Class .
+hpc:lsusersfile a owl:ObjectProperty .
+
+hpc:Project a owl:Class .
+hpc:User a owl:Class .
+
+hpc:Project rdfs:subClassOf hpc:Namedthing .
+hpc:User rdfs:subClassOf hpc:Namedthing .
+
+hpc:Lsfconf rdfs:subClassOf hpc:Configuration .
+hpc:Lsusersfile rdfs:domain hpc:Lsfconf ;
+                rdfs:range hpc:File .
+
+hpc:Project hasProjectProject .
+hpc:User hasProjectProject .
+
+hpc:Project hasProjectUser .
+hpc:User hasProjectProject .
+
+hpc:Project rdfs:subPropertyOf hpc:hasProject .
+hpc:User rdfs:subPropertyOf hpc:hasProject .
+
+hpc:Project hasProjectDefaultProject .
+hpc:ESubAuthentication rdfs:subPropertyOf hpc:hasProjectDefaultProject .
+
+hpc:Project rdfs:subPropertyOf hpc:hasProject .
+hpc:ESubAuthentication rdfs:subPropertyOf hpc:hasProject .
+
+hpc:Project rdfs:subPropertyOf hpc:hasProject .
+hpc:TaskmanAuthentication rdfs:subPropertyOf hds:hasProject .

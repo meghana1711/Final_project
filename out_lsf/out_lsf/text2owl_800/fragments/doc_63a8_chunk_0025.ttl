@@ -1,0 +1,29 @@
+hpc:File a owl:Class .
+hpc:Datatag a owl:Class .
+hpc:Job a owl:Class .
+hpc:Datajob a owl:Class .
+hpc:Datacache a owl:Class .
+
+# Object Properties
+hpc:hasfile a owl:ObjectProperty .
+hpc:hasdatatag a owl:ObjectProperty .
+hpc:isstagedin a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hash a owl:DatatypeProperty .
+hpc:status a owl:DatatypeProperty .
+hpc:refjob a owl:DatatypeProperty .
+
+# Domain and Range
+hpc:Hasfile rdfs:domain hpc:Datacache ;
+    rdfs:range hpc:File .
+hpc:Hasdatatag rdfs:domain hpc:Datacache ;
+    rdfs:range hpc:Datatag .
+hpc:Isstagedin rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+hpc:Hash rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+hpc:Status rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+hpc:Refjob rdfs:domain hpc:File ;
+    rdfs:range xsd:positiveInteger .

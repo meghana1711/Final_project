@@ -1,0 +1,47 @@
+hpc:Lsfconfiguration a owl:Class .
+hpc:lsfstartup hpc:prop a owl:ObjectProperty .
+hpc:Lsfstartupdomain rdfs:domain hpc:Lsfconfiguration .
+hpc:Lsfstartuprange rdfs:range xsd:string .
+
+hpc:lsfsudoers hpc:prop a owl:ObjectProperty .
+hpc:Lsfsudoersdomain rdfs:domain hpc:Lsfconfiguration .
+hpc:Lsfsudoersrange rdfs:range xsd:string .
+
+hpc:lsfadministrationcommands hpc:prop a owl:ObjectProperty .
+hpc:Lsfadministrationcommandsdomain rdfs:domain hpc:Lsfconfiguration .
+hpc:Lsfadministrationcommandsrange rdfs:range xsd:string .
+
+hpc:Lsfadministrator rdfs:subClassOf owl:Class .
+hpc:LSFAdministrator rdf:type owl:Restriction .
+hpc:LSFAdministrator owl:onProperty hpc:LSFAdministrationCommands .
+hpc:LSFAdministrator owl:hasValue xsd:string "root" .
+
+hpc:lsfstartupcommands hpc:prop a owl:ObjectProperty .
+hpc:Lsfstartupcommandsdomain rdfs:domain hpc:Lsfconfiguration .
+hpc:Lsfstartupcommandsrange rdfs:range xsd:string .
+
+hpc:lsfstartupcommandlsadmin a owl:ObjectProperty .
+hpc:Lsfstartupcommandlsadmin rdfs:domain hpc:Lsfconfiguration .
+hpc:Lsfstartupcommandlsadmin rdfs:range xsd:string "lsadmin" .
+
+hpc:lsfstartupcommandbadmin a owl:ObjectProperty .
+hpc:Lsfstartupcommandbadmin rdfs:domain hpc:Lsfconfiguration .
+hpc:Lsfstartupcommandbadmin rdfs:range xsd:string "badmin" .
+
+hpc:lsfmultiusercluster hpc:prop a owl:ObjectProperty .
+hpc:Lsfmultiuserclusterdomain rdfs:domain hpc:Lsfconfiguration .
+hpc:Lsfmultiuserclusterrange rdfs:range xsd:boolean .
+
+hpc:lsfsingleusercluster hpc:prop a owl:ObjectProperty .
+hpc:Lsfsingleuserclusterdomain rdfs:domain hpc:Lsfconfiguration .
+hpc:Lsfsingleuserclusterrange rdfs:range xsd:boolean .
+
+hpc:Lsfdaemonstartablebyroot rdfs:subClassOf owl:Class .
+hpc:LSFDAemonStartableByRoot rdf:type owl:Restriction .
+hpc:LSFDAemonStartableByRoot owl:onProperty hpc:LSFStartupCommands .
+hpc:LSFDAemonStartableByRoot owl:hasValue xsd:string "root" .
+
+hpc:Lsfdaemonstartablebyadmin rdfs:subClassOf owl:Class .
+hpc:LSFDAemonStartableByAdmin rdf:type owl:Restriction .
+hpc:LSFDAemonStartableByAdmin owl:onProperty hpc:LSFStartupCommands .
+hpc:LSFDAemonStartableByAdmin owl:hasValue

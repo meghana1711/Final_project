@@ -1,0 +1,38 @@
+hpc:Staticconfiguration a owl:Class .
+hpc:Dynamiclicensedistribution a owl:Class .
+hpc:Slafulfillment a owl:Class .
+hpc:Clusterownership a owl:Class .
+hpc:Predictablelicensedemand a owl:Class .
+hpc:Extralicenses a owl:Class .
+hpc:Dynamiclicenseallocation a owl:Class .
+
+hpc:Haspredictablelicensedemand rdfs:domain hpc:Staticconfiguration .
+hpc:Hasextralicenses rdfs:domain hpc:Staticconfiguration .
+hpc:Requirespredictablelicensedemand rdfs:range xsd:boolean .
+hpc:Hasextralicenses rdfs:range xsd:integer .
+
+hpc:Dynamiclicenseallocation rdfs:subClassOf hpc:Dynamicconfiguration .
+hpc:Changinglicensedemand rdfs:domain hpc:Dynamiclicenseallocation .
+
+hpc:Slafulfillment rdfs:subClassOf hpc:Dynamiclicenseallocation .
+hpc:Guaranteessla rdfs:domain hpc:Slafulfillment .
+
+hpc:Clusterownership rdfs:subClassOf hpc:Slafulfillment .
+hpc:Preferentialuse rdfs:domain hpc:Clusterownership .
+hpc:Exclusiveuse rdfs:domain hpc:Clusterownership .
+
+hpc:Projectmodedistributionpolicy a owl:Class .
+hpc:Fairshare rdfs:subClassOf hpc:Projectmodedistributionpolicy .
+hpc:Ownershipandpreemption rdfs:subClassOf hpc:Projectmodedistributionpolicy .
+
+hpc:Fairshare rdfs:subClassOf hpc:Distributionpolicy .
+hpc:Shareassignment rdfs:domain hpc:Fairshare .
+hpc:Preemptswhendemandexceeds rdfs:domain hpc:Fairshare .
+hpc:Doesnotpreemptjobs rdfs:range xsd:boolean .
+hpc:Redistributeslicensesonjobfinish rdfs:range xsd:boolean .
+
+hpc:Ownershipandpreemption rdfs:subClassOf hpc:Distributionpolicy .
+hpc:Preemptswhenownedlicensesnotinuse rdfs:domain hpc:Ownershipandpreemption .
+hpc:Waitsforlicensestobecomefree rdfs:domain hpc:Ownershipandpreemption .
+hpc:Resumespreemptedjobs rdfs:range xsd:boolean .
+hpc:Releasesjobslotonpreemption rdfs:range xsd:boolean .

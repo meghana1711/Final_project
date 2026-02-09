@@ -1,0 +1,40 @@
+hpc:Cluster a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The name of the cluster defined in the Cluster section of the lsf.shared file." .
+
+hpc:Lsfdatamanager a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The LSF data management daemon." .
+
+hpc:lsfdatamanagerHascluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range hpc:Cluster ;
+    rdfs:comment "The cluster managed by the LSF data manager." .
+
+hpc:lsfShared a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The path to the lsf.shared file." .
+
+hpc:lsfDatamanager a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The path to the lsf.datamanager file." .
+
+hpc:LsbQueues a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The file that defines batch queues." .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A batch queue." .
+
+hpc:queueIsdatatransfer a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the queue is a data transfer queue for LSF data manager." .
+
+hpc:dataTransfer a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Configures the queue as a data transfer queue for LSF data manager. Syntax: DATA_TRANSFER=Y | N." .

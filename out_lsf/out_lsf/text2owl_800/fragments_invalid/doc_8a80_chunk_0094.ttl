@@ -1,0 +1,67 @@
+hpc:Commandusage a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:Displayparameters a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:logginglevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Parameter ;
+    rdfs:range xsd:string .
+
+hpc:Logginglevelvalue a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Logginglevelvalue rdfs:subClassOf hpc:Logginglevel ;
+    rdfs:subClassOf xsd:string ;
+    owl:disjointWith hpc:LoggingLevelValue { xsd:integer } .
+
+hpc:LoggingLevelValue "LOG_WARNING" a hpc:LoggingLevelValue .
+hpc:LoggingLevelValue "LOG_DEBUG" a hpc:LoggingLevelValue .
+hpc:LoggingLevelValue "LOG_DEBUG1" a hpc:LoggingLevelValue .
+hpc:LoggingLevelValue "LOG_DEBUG2" a hpc:LoggingLevelValue .
+hpc:LoggingLevelValue "LOG_DEBUG3" a hpc:LoggingLevelValue .
+
+hpc:Licensescheduler a owl:Class .
+hpc:Licenseschedulerhost a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:Licenseschedulerparameter a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:Preemptaction a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:PreemptAction "REQUEUE" a hpc:PreemptAction .
+hpc:PreemptAction "SUSPEND" a hpc:PreemptAction .
+
+hpc:preempthost a owl:ObjectProperty ;
+    rdfs:domain hpc:Licensescheduler ;
+    rdfs:range hpc:Licenseschedulerhost .
+
+hpc:preempthosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Licensescheduler ;
+    rdfs:range rdf:Bag .
+
+hpc:preemptrequeue a owl:ObjectProperty ;
+    rdfs:domain hpc:Licensescheduler ;
+    rdfs:range hpc:Preemptaction .
+
+hpc:preemptslotrelease a owl:ObjectProperty ;
+    rdfs:domain hpc:Licensescheduler ;
+    rdfs:range hpc:Preemptaction .
+
+hpc:preemptstop a owl:ObjectProperty ;
+    rdfs:domain hpc:Licensescheduler ;
+    rdfs:range hpc:Preemptaction .
+
+hpc:Parameter a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:subClassOf rdf:List ;
+    rdfs:subClassOf rdf:Seq ;
+    rdfs:subClassOf rdf:Bag ;
+    rdfs:

@@ -1,0 +1,15 @@
+hpc:nopreemptinterval a owl:DatatypeProperty .
+hpc:Nopreemptinterval rdfs:domain hpc:Preemptablejob .
+hpc:Nopreemptinterval rdfs:range xsd:nonNegativeInteger .
+
+hpc:Preemptablejob a owl:Class .
+
+hpc:nopreemptruntime a owl:DatatypeProperty .
+hpc:Nopreemptruntime rdfs:domain hpc:Preemptablejob .
+hpc:Nopreemptruntime rdfs:range xsd:decimal .
+
+hpc:maxjobmsgnum a owl:DatatypeProperty .
+hpc:Maxjobmsgnum rdfs:domain hpc:Job .
+hpc:Maxjobmsgnum rdfs:range xsd:nonNegativeInteger .
+
+hpc:Job a owl:Class .

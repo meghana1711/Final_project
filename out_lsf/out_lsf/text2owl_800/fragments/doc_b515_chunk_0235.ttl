@@ -1,0 +1,20 @@
+hpc:Resizenotificationcommand a owl:Class .
+hpc:hasresizeeventtype a owl:ObjectProperty .
+hpc:hashosts a owl:ObjectProperty .
+hpc:hasjobid a owl:DatatypeProperty .
+
+hpc:Resizenotificationcommand rdfs:subClassOf owl:NamedIndividual .
+hpc:Hasresizeeventtype rdfs:domain hpc:Resizenotificationcommand ;
+                          rdfs:range xsd:string .
+hpc:Hashosts rdfs:domain hpc:Resizenotificationcommand ;
+                 rdfs:range xsd:string .
+hpc:Hasjobid rdfs:domain hpc:Resizenotificationcommand ;
+                 rdfs:range xsd:string .
+
+hpc:GrowResizeEvent a owl:NamedIndividual .
+hpc:ShrinkResizeEvent a owl:NamedIndividual .
+
+hpc:GrowResizeEvent rdf:type hpc:ResizeEventType ;
+                      hpc:hasResizeEventType "grow" .
+hpc:ShrinkResizeEvent rdf:type hpc:ResizeEventType ;
+                      hpc:hasResizeEventType "shrink" .

@@ -1,0 +1,39 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:hasname a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+
+hpc:hasuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+
+hpc:hasstarttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:dateTime .
+
+hpc:hasendtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:dateTime .
+
+hpc:hasdescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+
+hpc:hasjobreference a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Job .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:hasjobslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hashosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .

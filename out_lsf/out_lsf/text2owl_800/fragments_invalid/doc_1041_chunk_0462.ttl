@@ -1,0 +1,22 @@
+hpc:Usershares a owl:Class .
+hpc:Username rdfs:domain hpc:Usershares ;
+    rdfs:range xsd:string .
+hpc:Share rdfs:domain hpc:Usershares ;
+    rdfs:range xsd:decimal .
+
+hpc:hasusershare hpc:usershares a owl:ObjectProperty .
+hpc:Hasusername hpc:usershares rdfs:subPropertyOf hpc:hasUserShare ;
+    rdfs:domain hpc:Usershares ;
+    rdfs:range hpc:Username .
+hpc:Hasshare hpc:usershares rdfs:subPropertyOf hpc:hasUserShare ;
+    rdfs:domain hpc:Usershares ;
+    rdfs:range hpc:Share .
+
+hpc:Defaulthostspecification a owl:Class .
+hpc:defaultHostSpecification rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Defaulthostspecification ;
+    rdfs:range xsd:string .
+
+hpc:cpuFactor rdf:type owl:ObjectProperty .
+hpc:Cpufactordomain rdfs:domain hpc:Defaulthostspecification ;
+    rdfs:range xsd:decimal .

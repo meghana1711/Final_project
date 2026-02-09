@@ -1,0 +1,56 @@
+hpc:launchTemplate
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Launch template used by the AWS resource connector." .
+
+hpc:launchTemplateId
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awsresourceconnectortemplate ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The ID of the launch template." .
+
+hpc:launchTemplateVersion
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awsresourceconnectortemplate ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The version of the launch template to select when launching instances." .
+
+hpc:launchTemplateVersion_Latest
+    a xsd:string ;
+    rdfs:value "Latest" .
+
+hpc:launchTemplateVersion_Default
+    a xsd:string ;
+    rdfs:value "Default" .
+
+hpc:launchTemplate_onDemandOrSpotInstance
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Awsresourceconnectortemplate ;
+    rdfs:range hpc:Launchtemplate ;
+    rdfs:comment "Allows launching on-demand or spot instances with the specified launch template." .
+
+hpc:launchTemplate_spotInstance
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Awsresourceconnectortemplate ;
+    rdfs:range hpc:Launchtemplate ;
+    rdfs:comment "Creates a spot instance without creating a fleet request." .
+
+hpc:launchTemplate_spotFleetRequest
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Awsresourceconnectortemplate ;
+    rdfs:range hpc:Launchtemplate ;
+    rdfs:comment "Creates a spot fleet request by specifying the spot price and fleet role along with the launch template." .
+
+hpc:networkInterfaceDefinedInLaunchTemplate
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Launchtemplate ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the network interface is defined in the launch template." .
+
+hpc:subnetIDOverridable
+    a xsd:boolean ;
+    rdfs:value "false" .
+
+hpc:securityGroupOverridable
+    a xsd:boolean ;
+    rdfs:value "false" .

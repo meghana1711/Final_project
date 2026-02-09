@@ -1,0 +1,22 @@
+hpc:Ec2instance a owl:Class .
+hpc:Keypair a owl:Class .
+hpc:ssh a owl:ObjectProperty .
+hpc:Lsfpackage a owl:Class .
+hpc:Firewallcommunication a owl:Class .
+
+hpc:Ssh rdfs:domain hpc:Ec2instance ;
+    rdfs:range xsd:string ;
+    rdfs:range hpc:Keypair .
+
+hpc:Lsfpackage rdfs:subClassOf hpc:File .
+
+hpc:Firewallcommunication rdfs:subClassOf hpc:Systemconfiguration .
+
+hpc:haskeypair a owl:ObjectProperty ;
+    rdfs:domain hpc:Ec2instance .
+
+hpc:haslsfpackage a owl:ObjectProperty ;
+    rdfs:domain hpc:Ec2instance .
+
+hpc:hasfirewallcommunication a owl:ObjectProperty ;
+    rdfs:domain hpc:Ec2instance .

@@ -1,0 +1,49 @@
+hpc:User a owl:Class .
+hpc:Cachedfile a owl:Class .
+hpc:Group a owl:Class .
+hpc:cachepermissions a owl:ObjectProperty .
+
+hpc:User rdfs:subClassOf rdf:Resource .
+hpc:Cachedfile rdfs:subClassOf rdf:Resource .
+hpc:Group rdfs:subClassOf rdf:Resource .
+
+hpc:Cachepermissions rdfs:domain hpc:User .
+hpc:Cachepermissions rdfs:range xsd:string .
+
+hpc:samegroup a owl:ObjectProperty .
+hpc:Samegroup rdfs:domain hpc:User .
+hpc:Samegroup rdfs:range hpc:User .
+
+hpc:owns a owl:ObjectProperty .
+hpc:Owns rdfs:domain hpc:User .
+hpc:Owns rdfs:range hpc:Cachedfile .
+
+hpc:groupcache a owl:ObjectProperty .
+hpc:Groupcache rdfs:domain hpc:User .
+hpc:Groupcache rdfs:range hpc:Cachedfile .
+
+hpc:allcache a owl:ObjectProperty .
+hpc:Allcache rdfs:domain hpc:User .
+hpc:Allcache rdfs:range hpc:Cachedfile .
+
+hpc:stagingarea a owl:DatatypeProperty .
+hpc:Stagingarea rdfs:domain hpc:Cachedfile .
+hpc:Stagingarea rdfs:range xsd:string .
+
+hpc:filepermissions a owl:DatatypeProperty .
+hpc:Filepermissions rdfs:domain hpc:Cachedfile .
+hpc:Filepermissions rdfs:range xsd:integer .
+
+hpc:cachePermissions a owl:DatatypeProperty .
+hpc:CachePermissions rdfs:domain hpc:User .
+hpc:CachePermissions rdfs:range xsd:string .
+
+hpc:stgin a owl:ObjectProperty .
+hpc:Stgin rdfs:domain hpc:Cachedfile .
+hpc:Stgin rdfs:range xsd:string .
+
+hpc:recoverydependent a owl:ObjectProperty .
+hpc:Recoverydependent rdfs:domain hpc:Cachedfile .
+hpc:Recoverydependent rdfs:range hpc:Lsfdatamanager .
+
+hpc:Lsfdatamanager a owl:Class .

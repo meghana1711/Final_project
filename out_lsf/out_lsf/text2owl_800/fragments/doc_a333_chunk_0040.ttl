@@ -1,0 +1,53 @@
+hpc:LsbSimCpuf a owl:Class .
+hpc:Actor a owl:Class .
+hpc:sim a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSimCpuf ;
+    rdfs:range hpc:Actor ;
+    rdfs:subPropertyOf hpc:hasActor .
+
+hpc:LsbSimCputi a owl:Class .
+hpc:me a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbSimCputi ;
+    rdfs:range xsd:integer .
+
+hpc:LsbSimExitStatus a owl:Class .
+hpc:status a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSimExitStatus ;
+    rdfs:range xsd:integer .
+
+hpc:LsbSimJobid a owl:Class .
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSimJobid ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <http://example.org/jobID> .
+
+hpc:LsbSimJobidX a owl:Class .
+hpc:jobindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSimJobidX ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:isDefinedBy <http://example.org/jobIndex> .
+
+hpc:LsbSimMaxmem a owl:Class .
+hpc:maxmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSimMaxmem ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:LsbSimNslots a owl:Class .
+hpc:numslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSimNslots ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:LsbSimRuntime a owl:Class .
+hpc:runtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSimRuntime ;
+    rdfs:range xsd:float .
+
+hpc:LsbSimSubTime a owl:Class .
+hpc:submissiontime a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSimSubTime ;
+    rdfs:range xsd:dateTime .
+
+hpc:LsbSimRuntimeN a owl:Class .
+hpc:normalizedruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSimRuntimeN ;
+    rdfs:range xsd:nonNegativeFloat .

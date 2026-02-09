@@ -1,0 +1,59 @@
+hpc:Datarequirement a owl:Class .
+hpc:Datatag a owl:Class .
+hpc:Stagingarea a owl:Class .
+hpc:Currentworkingdirectory a owl:Class .
+hpc:jobdatarequirements a owl:ObjectProperty .
+hpc:associates a owl:ObjectProperty .
+hpc:hasname a owl:DatatypeProperty .
+hpc:transferfiles a owl:ObjectProperty .
+hpc:modifydatarequirements a owl:ObjectProperty .
+hpc:bmoddata a owl:ObjectProperty .
+hpc:datarequirementstring a owl:DatatypeProperty .
+hpc:Jobdatatransfer a owl:Class .
+hpc:Submissionhost a owl:Class .
+hpc:Executionhost a owl:Class .
+hpc:Lsfdatamanager a owl:Class .
+hpc:defaultlsrcp a owl:ObjectProperty .
+hpc:usergroup a owl:DatatypeProperty .
+hpc:bsubcommand a owl:ObjectProperty .
+hpc:cacheaccesscontrol a owl:DatatypeProperty .
+hpc:specifydatarequirements a owl:ObjectProperty .
+hpc:bsubdata a owl:ObjectProperty .
+hpc:sourcehost a owl:DatatypeProperty .
+hpc:absolutefilepath a owl:DatatypeProperty .
+hpc:folderpath a owl:DatatypeProperty .
+hpc:wildcard a owl:DatatypeProperty .
+hpc:Datafile a owl:Class .
+hpc:Datafolder a owl:Class .
+hpc:Lsfdatamanagercache a owl:Class .
+hpc:usergroupaccess a owl:ObjectProperty .
+hpc:changegroupownership a owl:ObjectProperty .
+hpc:changefileownershipandpermissions a owl:ObjectProperty .
+hpc:CACHE_ACCESS_CONTROL a xsd:string .
+
+hpc:Datarequirement a owl:Class .
+    rdfs:subClassOf [ a owl:Class;
+        rdfs:subClassOf [ a owl:Class;
+            rdfs:subClassOf owl:UnionOf;
+            owl:unionMembers [ a owl:Class; owl:sameAs hpc:Datafile ];
+            owl:unionMembers [ a owl:Class; owl:sameAs hpc:Datafolder ]
+        ]
+    ];
+
+hpc:Datatag rdfs:subClassOf owl:NamedIndividual .
+hpc:Stagingarea rdfs:subClassOf owl:Class .
+hpc:Currentworkingdirectory rdfs:subClassOf owl:Class .
+
+hpc:Jobdatarequirements rdfs:domain hpc:Job .
+hpc:Associates rdfs:domain hpc:Datatag ;
+    rdfs:range hpc:File .
+
+hpc:Transferfiles rdfs:domain hpc:Jobdatarequirements .
+hpc:Modifydatarequirements rdfs:domain hpc:Job .
+hpc:Bmoddata rdfs:domain hpc:Job .
+
+hpc:Datarequirementstring rdfs:domain hpc:Jobdatarequirements ;
+    rdfs:range xsd:string .
+
+hpc:Jobdatatransfer rdfs:subClassOf owl:Object .
+hpc:SubmissionHost rdfs:subClass

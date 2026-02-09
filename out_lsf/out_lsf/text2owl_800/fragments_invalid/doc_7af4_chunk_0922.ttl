@@ -1,0 +1,27 @@
+hpc:LsDebugBld a owl:Class .
+hpc:lsLogMask a owl:ObjectProperty .
+hpc:LsLogMask rdfs:domain hpc:LsDebugBld ;
+                 rdfs:range xsd:string .
+
+hpc:LogClass a owl:Class .
+hpc:LC_FLEX rdf:type hpc:log_class ;
+           rdfs:comment "Log everything related to FLEX_STAT or FLEX_EXEC Flexera AP" ;
+           rdfs:label "LC_FLEX" .
+hpc:LC_MEMORY rdf:type hpc:log_class ;
+           rdfs:comment "Log memory use messages" ;
+           rdfs:label "LC_MEMORY" .
+hpc:LC_PREEMPT rdf:type hpc:log_class ;
+           rdfs:comment "Log license preemption policy messages" ;
+           rdfs:label "LC_PREEMPT" .
+hpc:LC_RESREQ rdf:type hpc:log_class ;
+           rdfs:comment "Log everything transferred by XDR" ;
+           rdfs:label "LC_RESREQ" .
+hpc:LC2_RESREQ rdf:type hpc:log_class ;
+           rdfs:comment "Log everything transferred by XDR" ;
+           rdfs:label "LC2_RESREQ" .
+
+hpc:setLogClass a owl:ObjectProperty .
+hpc:SetLogClass rdfs:domain hpc:LsDebugBld ;
+                rdfs:range rdf:List ;
+                rdfs:range rdf:first hpc:LogClass ;
+                rdfs:range rdf:rest hpc:SetLogClass .

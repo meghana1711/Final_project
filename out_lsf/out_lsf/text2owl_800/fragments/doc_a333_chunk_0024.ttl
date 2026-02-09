@@ -1,0 +1,29 @@
+hpc:Lsfserver a owl:Class .
+hpc:Lsfproductioncluster a owl:Class .
+hpc:Lsflivecluster a owl:Class .
+hpc:Lsfconfigurationpackage a owl:Class .
+hpc:extractlsfsimulator a owl:ObjectProperty .
+hpc:copylsfsimulatortargz a owl:ObjectProperty .
+hpc:unpacklsfsimulatortargz a owl:ObjectProperty .
+hpc:sourcelsfenvironment a owl:ObjectProperty .
+
+hpc:Lsfserver rdfs:subClassOf rdf:Resource .
+hpc:Lsfproductioncluster rdfs:subClassOf rdf:Resource .
+hpc:Lsflivecluster rdfs:subClassOf rdf:Resource .
+hpc:Lsfconfigurationpackage rdfs:subClassOf rdf:Resource .
+
+hpc:Extractlsfsimulator rdfs:domain hpc:Lsfserver ;
+                          rdfs:range rdf:Resource .
+hpc:Copylsfsimulatortargz rdfs:domain hpc:Lsfserver ;
+                          rdfs:range rdf:Resource .
+hpc:Unpacklsfsimulatortargz rdfs:domain hpc:Lsfserver ;
+                           rdfs:range rdf:Resource .
+hpc:Sourcelsfenvironment rdfs:domain hpc:Lsfserver ;
+                          rdfs:range rdf:Resource .
+
+hpc:Lsfconfigurationpackage rdfs:subClassOf hpc:Lsfserver ;
+                             rdfs:subClassOf rdf:Resource ;
+                             rdfs:subClassOf owl:Class ;
+                             rdfs:subClassOf owl:Object .
+
+hpc:Lsfconfigurationpackage rdfs:range xsd:string .

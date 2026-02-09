@@ -1,0 +1,26 @@
+hpc:Useraccount a owl:Class .
+hpc:Passwordproblem a owl:Class .
+hpc:Lsfuserdomain a owl:Class .
+hpc:registerpassword a owl:ObjectProperty .
+hpc:changepassword a owl:ObjectProperty .
+hpc:currentpassword a owl:DatatypeProperty .
+hpc:userdomainmapping a owl:ObjectProperty .
+
+hpc:Useraccount rdfs:subClassOf owl:Class .
+hpc:Passwordproblem rdfs:subClassOf owl:Class .
+hpc:Lsfuserdomain rdfs:subClassOf owl:Class .
+
+hpc:registerpassword a owl:ObjectProperty ;
+    rdfs:domain hpc:Useraccount ;
+    rdfs:range hpc:Lsfuserdomain .
+
+hpc:changepassword a owl:ObjectProperty ;
+    rdfs:domain hpc:Useraccount ;
+    rdfs:range hpc:Lsfuserdomain .
+
+hpc:currentpassword a owl:DatatypeProperty ;
+    rdfs:domain hpc:Changepassword .
+
+hpc:userdomainmapping a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfuserdomain ;
+    rdfs:range xsd:string .

@@ -1,0 +1,34 @@
+hpc:Slurm a owl:Class .
+hpc:MySQL_InnoDB_Storage_Engine rdf:type owl:Class .
+hpc:SlurmConfigureScript a owl:Class .
+hpc:mysql_config rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmConfigureScript ;
+    rdfs:range xsd:string .
+
+hpc:MysqlInstallation a owl:Class ;
+    rdfs:subClassOf hpc:SystemComponent .
+
+hpc:Rollback rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:MysqlInstallation .
+
+hpc:innodbBufferPoolSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:MysqlInstallation ;
+    rdfs:range xsd:decimal .
+
+hpc:innodbLogFileSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:MysqlInstallation ;
+    rdfs:range xsd:decimal .
+
+hpc:innodbRedoLogCapacity a owl:DatatypeProperty ;
+    rdfs:domain hpc:MysqlInstallation ;
+    rdfs:range xsd:decimal .
+
+hpc:innodbLockWaitTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:MysqlInstallation ;
+    rdfs:range xsd:integer .
+
+hpc:SlurmConfigureOption a owl:Class .
+hpc:with_mysql_conf rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SlurmConfigureScript ;
+    rdfs:range xsd:string .

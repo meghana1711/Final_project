@@ -1,0 +1,39 @@
+hpc:Interactivejob a owl:Class .
+hpc:Pseudoterminal a owl:Class .
+
+# Object Properties
+hpc:haspseudoterminal a owl:ObjectProperty .
+hpc:supportsshellmode a owl:ObjectProperty .
+hpc:redirectsoutputtoterminal a owl:ObjectProperty .
+hpc:doesnotsendmailoncompletion a owl:ObjectProperty .
+hpc:cannotbecheckpointed a owl:ObjectProperty .
+hpc:isnotrerunnable a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hasstandardinputfile a owl:DatatypeProperty .
+hpc:hasstandardoutputfile a owl:DatatypeProperty .
+hpc:hasstandarderrorfile a owl:DatatypeProperty .
+
+# Domain and Range
+hpc:Haspseudoterminal rdfs:domain hpc:Interactivejob ;
+    rdfs:range hpc:Pseudoterminal .
+hpc:Supportsshellmode rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+hpc:Redirectsoutputtoterminal rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+hpc:Doesnotsendmailoncompletion rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+hpc:Cannotbecheckpointed rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+hpc:Isnotrerunnable rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+hpc:Hasstandardinputfile rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:string .
+hpc:Hasstandardoutputfile rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:string .
+hpc:Hasstandarderrorfile rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:string .
+
+# Conflicting options
+hpc:Interactivejob rdfs:subClassOf hpc:Job .
+hpc:Interactivejob rdfs:subClassOf (hpc:Job[rdfs:value ~ "Do not use with the following options: -I, -Ip, -IS, -ISp, -Is, -IX, -K."]) .

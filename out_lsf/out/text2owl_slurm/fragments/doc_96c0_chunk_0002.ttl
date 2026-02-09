@@ -1,0 +1,21 @@
+hpc:Slurm a owl:Class .
+hpc:Slurmconffile a owl:Class .
+hpc:Slurmjob a owl:Class .
+hpc:Slurmnode a owl:Class .
+hpc:launchparameters a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmconffile ;
+    rdfs:range xsd:string .
+hpc:memsort a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmconffile ;
+    rdfs:range xsd:boolean .
+hpc:srun a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmjob ;
+    rdfs:range hpc:Slurmcommand .
+hpc:Slurmcommand a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty hpc:Srun ;
+        owl:hasValue "mem_bind=sort" ] .
+hpc:Slurmcommand a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty hpc:Srun ;
+        owl:hasValue "mem_bind=nosort" ] .

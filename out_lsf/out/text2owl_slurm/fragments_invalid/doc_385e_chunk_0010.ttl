@@ -1,0 +1,7 @@
+hpc:Mpiprogram a owl:Class.
+hpc:Mpipernode a owl:Class.
+
+hpc:hasmpipernode a owl:ObjectProperty;
+    rdfs:domain hpc:Mpipernode;
+    rdfs:range rdf:Resource.
+.

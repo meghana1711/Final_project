@@ -1,0 +1,15 @@
+hpc:Job a owl:Class .
+hpc:Jobsubmissionrequest a owl:Class .
+hpc:jobdispatch a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range hpc:Job .
+
+hpc:jobcompletion a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range hpc:Job .
+
+hpc:jobrequeue a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range hpc:Job .
+
+hpc:jobreplay a owl:ObjectProperty ;

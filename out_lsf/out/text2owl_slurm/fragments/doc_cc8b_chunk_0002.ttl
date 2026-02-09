@@ -1,0 +1,27 @@
+hpc:Accountingstoragetres a owl:Class .
+hpc:hastres a owl:ObjectProperty .
+hpc:Hastres rdfs:domain hpc:Accountingstoragetres .
+hpc:Hastres rdfs:range xsd:string .
+
+hpc:Tres a owl:Class .
+hpc:Tres rdfs:subClassOf xsd:string .
+
+hpc:Bbtres a owl:Class .
+hpc:Bbtres rdfs:subClassOf hpc:Tres .
+hpc:Bbtres rdfs:subClassOf rdf:PlainLiteral .
+
+hpc:Grestres a owl:Class .
+hpc:Grestres rdfs:subClassOf hpc:Tres .
+
+hpc:Licensetres a owl:Class .
+hpc:Licensetres rdfs:subClassOf hpc:Tres .
+hpc:Licensetres rdfs:subClassOf rdf:PlainLiteral .
+
+hpc:Priorityweighttres a owl:Class .
+hpc:haspriorityweighttres a owl:ObjectProperty .
+hpc:Haspriorityweighttres rdfs:domain hpc:Priorityweighttres .
+hpc:Haspriorityweighttres rdfs:range hpc:Tresweight .
+
+hpc:tresweight a owl:DatatypeProperty .
+hpc:Tresweight rdfs:domain hpc:Tres .
+hpc:Tresweight rdfs:range xsd:integer .

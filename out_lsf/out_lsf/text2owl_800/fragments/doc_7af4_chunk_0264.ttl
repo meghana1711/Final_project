@@ -1,0 +1,27 @@
+hpc:attrmaxnum a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Specifies the maximum number of host attributes that can co-exist in the LSF cluster." .
+
+hpc:attrttl a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies the time-to-live for newly-created host attributes." ;
+    owl:hasQualifiedCardinality 1 ;
+    rdfs:subPropertyOf hpc:AttrTTLInHours .
+
+hpc:attrttlinhours a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Use the m or M keyword to indicate that the parameter value is in minutes." ;
+    owl:hasQualifiedCardinality 1 ;
+    rdfs:subPropertyOf hpc:AttrTTL .
+
+hpc:attrttlinminutes a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Use the m or M keyword to indicate that the parameter value is in minutes." ;
+    owl:hasQualifiedCardinality 1 ;
+    rdfs:subPropertyOf hpc:AttrTTL .
+
+hpc:Lsfcluster a owl:Class .

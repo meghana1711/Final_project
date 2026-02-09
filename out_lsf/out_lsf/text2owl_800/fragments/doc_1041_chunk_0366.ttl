@@ -1,0 +1,40 @@
+hpc:Users a owl:Class .
+hpc:hasuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Users ;
+    rdfs:range xsd:string .
+
+hpc:Queues a owl:Class .
+hpc:isqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Queues ;
+    rdfs:range xsd:string .
+
+hpc:Queuenametruncated a owl:Class ;
+    rdfs:subClassOf hpc:Queues .
+
+hpc:Remotequeue a owl:Class ;
+    rdfs:subClassOf hpc:Queues .
+
+hpc:Hosts a owl:Class .
+hpc:hashost a owl:ObjectProperty ;
+    rdfs:domain hpc:Hosts ;
+    rdfs:range xsd:string .
+
+hpc:Hostgroup a owl:Class .
+hpc:hashostgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Hosts ;
+    rdfs:range xsd:string .
+
+hpc:Hostgroupwithslash a owl:Class ;
+    rdfs:subClassOf hpc:Hostgroup .
+
+hpc:mxj a owl:DatatypeProperty .
+
+hpc:Projects a owl:Class .
+hpc:hasproject a owl:ObjectProperty ;
+    rdfs:domain hpc:Projects ;
+    rdfs:range xsd:string .
+
+hpc:Apps a owl:Class .
+hpc:hasapp a owl:ObjectProperty ;
+    rdfs:domain hpc:Apps ;
+    rdfs:range xsd:string .

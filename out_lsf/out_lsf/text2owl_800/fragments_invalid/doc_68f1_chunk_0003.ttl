@@ -1,0 +1,32 @@
+hpc:Clustermode a owl:Class .
+hpc:Projectmode a owl:Class .
+hpc:Job a owl:Class .
+hpc:License a owl:Class .
+hpc:maximizelicenseuse a owl:ObjectProperty .
+hpc:ensuregroupownership a owl:ObjectProperty .
+hpc:Shortjob a owl:Class .
+hpc:Longjob a owl:Class .
+hpc:blcollectcycle a owl:DatatypeProperty .
+hpc:Projectgroup a owl:Class .
+hpc:hasproject a owl:ObjectProperty .
+hpc:Hasprojectgroup rdfs:subClassOf hpc:Project .
+
+hpc:Clustermode rdfs:subClassOf hpc:Mode .
+hpc:Projectmode rdfs:subClassOf hpc:Mode .
+hpc:Mode rdfs:subClassOf owl:Class .
+hpc:Job rdfs:domain hpc:Mode .
+hpc:License rdfs:domain hpc:Mode .
+hpc:Shortjob rdfs:subClassOf hpc:Job .
+hpc:Longjob rdfs:subClassOf hpc:Job .
+hpc:Blcollectcycle rdfs:domain hpc:Clustermode .
+hpc:Blcollectcycle rdfs:range xsd:duration .
+hpc:Hasproject rdfs:domain hpc:Project .
+hpc:Hasproject rdfs:range hpc:Project .
+hpc:Hasprojectgroup rdfs:domain hpc:Projectgroup .
+hpc:Hasprojectgroup rdfs:range hpc:Projectgroup .
+
+hpc:Job maximizesLicenseUse some hpc:License .
+hpc:Job ensuresGroupOwnership some hpc:Group .
+hpc:ShortJob rdf:value "60 seconds"^^xsd:duration .
+hpc:ClusterMode implies hpc:MaximizeLicenseUse .
+hpc:ProjectMode implies hpc:EnsureGroupOwnership .

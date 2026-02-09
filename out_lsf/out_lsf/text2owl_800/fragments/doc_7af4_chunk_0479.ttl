@@ -1,0 +1,14 @@
+hpc:RcAccount a owl:Class .
+hpc:hasrcAccount a owl:ObjectProperty .
+hpc:RcDemandPolicy a owl:Class .
+hpc:hasrcDemandPolicy a owl:ObjectProperty .
+hpc:numPendJobs a owl:DatatypeProperty .
+hpc:duration a owl:DatatypeProperty .
+
+hpc:RcAccount rdfs:subClassOf owl:String .
+hpc:HasrcAccount rdfs:domain hpc:Queue .
+hpc:HasrcAccount rdfs:range hpc:RcAccount .
+hpc:RcDemandPolicy rdfs:subClassOf owl:NamedIndividual .
+hpc:HasrcDemandPolicy rdfs:domain hpc:Queue .
+hpc:NumPendJobs rdfs:domain hpc:RcDemandPolicy .
+hpc:Duration rdfs:range xsd:nonNegativeInteger .

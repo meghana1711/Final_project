@@ -1,0 +1,15 @@
+hpc:Remoteagenthost a owl:Class .
+hpc:Licenseserver a owl:Class .
+hpc:remotelmstatservers a owl:ObjectProperty .
+hpc:Hasremoteagenthost rdfs:domain hpc:Remotelmstatservers ;
+                          rdfs:range hpc:Remoteagenthost .
+hpc:Haslicenseserver rdfs:domain hpc:Remotelmstatservers ;
+                        rdfs:range hpc:Licenseserver .
+
+hpc:Remoteagenthost rdfs:subClassOf hpc:Licenseserver .
+
+hpc:RemoteAgentHost rdf:type owl:Class .
+hpc:LicenseServer rdf:type owl:Class .
+hpc:RemoteLMSTATServers rdf:type owl:ObjectProperty .
+hpc:hasRemoteAgentHost rdf:type owl:ObjectProperty .
+hpc:hasLicenseServer rdf:type owl:ObjectProperty .

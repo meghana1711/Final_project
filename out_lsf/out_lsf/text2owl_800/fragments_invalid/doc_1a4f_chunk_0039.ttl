@@ -1,0 +1,43 @@
+hpc:Elimexecutable a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Executable files for managing dynamic external resources." .
+
+hpc:hasoperatingsystem a owl:ObjectProperty ;
+    rdfs:domain hpc:Elimexecutable ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The operating system the executable is designed for." .
+
+hpc:location a owl:ObjectProperty ;
+    rdfs:domain hpc:Elimexecutable ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The location of the executable file." .
+
+hpc:namingconvention a owl:ObjectProperty ;
+    rdfs:domain hpc:Elimexecutable ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The naming convention for the executable file." .
+
+hpc:reservedname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Elimexecutable ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The reserved name 'elim.user'." .
+
+hpc:backupname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Elimexecutable ;
+    rdfs:range xsd:string ;
+    rdfs:comment "An alternative name for backup copies of the executable." .
+
+hpc:receivessigterm a owl:ObjectProperty ;
+    rdfs:domain hpc:Elimexecutable ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Whether the executable exits upon receipt of a SIGTERM signal." .
+
+hpc:outputloadupdate a owl:ObjectProperty ;
+    rdfs:domain hpc:Elimexecutable ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The format of the load update string output by the executable." .
+
+hpc:numberindices a owl:DatatypeProperty ;
+    rdfs:domain hdfs:ElimExecutable ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The number of external load indices collected by the elim." .

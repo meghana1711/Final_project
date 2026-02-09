@@ -1,0 +1,70 @@
+hpc:LogErr a owl:Class ;
+    rdfs:subClassOf hpc:Log .
+
+hpc:LogWarning a owl:Class ;
+    rdfs:subClassOf hpc:Log ;
+    rdfs:subClassOf hpc:LogErr .
+
+hpc:LogNotice a owl:Class ;
+    rdfs:subClassOf hpc:Log ;
+    rdfs:subClassOf hpc:LogWarning .
+
+hpc:LogInfo a owl:Class ;
+    rdfs:subClassOf hpc:Log ;
+    rdfs:subClassOf hpc:LogNotice .
+
+hpc:LogDebug a owl:Class ;
+    rdfs:subClassOf hpc:Log ;
+    rdfs:subClassOf hpc:LogInfo .
+
+hpc:LogTrace a owl:Class ;
+    rdfs:subClassOf hpc:Log ;
+    rdfs:subClassOf hpc:LogDebug .
+
+hpc:Log a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Log ;
+    rdfs:range hpc:LogErr ;
+    rdfs:subPropertyOf hpc:logMessage .
+
+hpc:logmessage a owl:ObjectProperty .
+
+hpc:haslevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Log ;
+    rdfs:range xsd:string .
+
+hpc:issignificant a owl:ObjectProperty ;
+    rdfs:domain hpc:Log ;
+    rdfs:range xsd:boolean .
+
+hpc:iserror a owl:ObjectProperty ;
+    rdfs:domain hpc:Log ;
+    rdfs:range xsd:boolean .
+
+hpc:isautomatic a owl:ObjectProperty ;
+    rdfs:domain hpc:Log ;
+    rdfs:range xsd:boolean .
+
+hpc:isrenamable a owl:ObjectProperty ;
+    rdfs:domain hpc:Log ;
+    rdfs:range xsd:boolean .
+
+hpc:isdaemon a owl:ObjectProperty ;
+    rdfs:domain hpc:Log ;
+    rdfs:range xsd:boolean .
+
+hpc:isproblematic a owl:ObjectProperty ;
+    rdfs:domain hpc:Log ;
+    rdfs:range xsd:boolean .
+
+hpc:isunusual a owl:ObjectProperty ;
+    rdfs:domain hpc:Log ;
+    rdfs:range xsd:boolean .
+
+hpc:shouldbecleared a owl:ObjectProperty ;
+    rdfs:domain hpc:Log ;
+    rdfs:range xsd:boolean .
+
+hpc:isreopened a owl:ObjectProperty ;
+    rdfs:domain hpc:Log ;
+    rdfs:range xsd:boolean .

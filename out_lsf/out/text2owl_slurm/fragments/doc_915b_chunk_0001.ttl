@@ -1,0 +1,60 @@
+hpc:Slurm a owl:Class .
+hpc:Rpc a owl:Class .
+hpc:TrustedSource rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:Rpc .
+
+hpc:Munge a owl:Class .
+hpc:MUNGECredential rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Munge .
+
+hpc:createCredential rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Munge ;
+    rdfs:range hpc:Mungecredential .
+
+hpc:validateCredential rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:Mungecredential .
+
+hpc:authenticateUID rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Mungecredential ;
+    rdfs:range xsd:integer .
+
+hpc:authenticateGID rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Mungecredential ;
+    rdfs:range xsd:integer .
+
+hpc:sharedKey rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Mungecredential ;
+    rdfs:range xsd:base64Binary .
+
+hpc:MUNGELibraries rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:boolean .
+
+hpc:setupMUNGE rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:Munge .
+
+hpc:sharedKeyFile rdf:type owl:Class .
+hpc:keyFileLocation rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Sharedkeyfile ;
+    rdfs:range xsd:string .
+
+hpc:keyFileOwner rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Sharedkeyfile ;
+    rdfs:range xsd:string .
+
+hpc:keyFilePermissions rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Sharedkeyfile ;
+    rdfs:range xsd:integer .
+
+hpc:distributedKeyFile rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:Sharedkeyfile .
+
+hpc:runningMUNGE rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .
+
+hpc:Host a owl:Class .

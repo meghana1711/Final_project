@@ -1,0 +1,37 @@
+hpc:Globalresource a owl:Class .
+
+hpc:resourcename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalresource ;
+    rdfs:range xsd:string .
+
+hpc:type a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalresource ;
+    rdfs:range xsd:string .
+
+hpc:description a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalresource ;
+    rdfs:range xsd:string .
+
+hpc:nameconstraint a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcename ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf rdf:PlainLiteral .
+
+hpc:specialcharconstraint a owl:ObjectProperty ;
+    rdfs:domain hpc:Nameconstraint ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf rdf:PlainLiteral .
+
+hpc:reservednameconstraint a owl:ObjectProperty ;
+    rdfs:domain hpc:Nameconstraint ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf rdf:PlainLiteral .
+
+hpc:infornanconstraint a owl:ObjectProperty ;
+    rdfs:domain hpc:Nameconstraint ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf rdf:PlainLiteral .
+
+hpc:solarisreservedkeyword a owl:ObjectProperty ;
+    rdfs:domain hpc:Nameconstraint ;
+    rdfs:range xsd:string .

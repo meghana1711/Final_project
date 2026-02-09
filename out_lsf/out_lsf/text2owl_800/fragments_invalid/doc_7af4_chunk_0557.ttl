@@ -1,0 +1,52 @@
+hpc:Resourcereservation a owl:Class;
+    rdfs:subClassOf [ a owl:Class;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:hasname a owl:DatatypeProperty;
+    rdfs:domain hpc:Resourcereservation;
+    rdfs:range xsd:string .
+
+hpc:allremote a owl:ObjectProperty .
+hpc:all a owl:ObjectProperty .
+hpc:~ a owl:ObjectProperty .
+hpc:Group a owl:Class .
+hpc:Host a owl:Class .
+
+hpc:Resourcereservation rdfs:subClass [ a owl:Class;
+                                          rdfs:subClassOf [ a owl:Class;
+                                                                 rdfs:subClassOf hpc:Resourcereservation;
+                                                                 rdfs:subClassOf [ a owl:Class;
+                                                                                      rdfs:subClassOf hpc:Resourcereservation;
+                                                                                      rdfs:subClassOf hpc:Allremote ] ] ] .
+
+hpc:Resourcereservation rdfs:subClass [ a owl:Class;
+                                          rdfs:subClassOf [ a owl:Class;
+                                                                 rdfs:subClassOf hpc:Resourcereservation;
+                                                                 rdfs:subClassOf [ a owl:Class;
+                                                                                      rdfs:subClassOf hpc:Resourcereservation;
+                                                                                      rdfs:subClassOf hpc:~ ] ] ] .
+
+hpc:Resourcereservation rdfs:subClass [ a owl:Class;
+                                          rdfs:subClassOf [ a owl:Class;
+                                                                 rdfs:subClassOf hpc:Resourcereservation;
+                                                                 rdfs:subClassOf [ a owl:Class;
+                                                                                      rdfs:subClassOf hpc:Resourcereservation;
+                                                                                      rdfs:subClassOf hpc:All ] ] ] .
+
+hpc:Resourcereservation rdfs:subClass [ a owl:Class;
+                                          rdfs:subClassOf [ a owl:Class;
+                                                                 rdfs:subClassOf hpc:Resourcereservation;
+                                                                 rdfs:subClassOf [ a owl:Class;
+                                                                                      rdfs:subClassOf hpc:Resourcereservation;
+                                                                                      rdfs:subClassOf hpc:~ ] ] ] .
+
+hpc:Resourcereservation rdfs:subClass [ a owl:Class;
+                                          rdfs:subClassOf [ a owl:Class;
+                                                                 rdfs:subClassOf hpc:Resourcereservation;
+                                                                 rdfs:subClassOf [ a owl:Class;
+                                                                                      rdfs:subClassOf hpc:Resourcereservation;
+                                                                                      rdfs:subClassOf [ a owl:Class;
+                                                                                                           rdfs:subClassOf hpc:Group ] ] ] ] .
+
+hpc:Resourcereservation rdfs:subClass [ a owl:Class;
+                                          r

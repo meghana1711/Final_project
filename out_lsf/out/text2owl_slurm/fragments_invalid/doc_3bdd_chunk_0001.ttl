@@ -1,0 +1,21 @@
+@base <http://example.org/hpc/>
+
+hpc:Slurm a owl:Class.
+hpc:Slurmcomponent a owl:Class.
+hpc:Machine_Status a hpc:Slurm_Component;
+    rdfs:subClassOf hpc:Slurmcomponent;
+    rdfs:comment "Component for managing machine status." .
+hpc:Partition_Management a hpc:Slurm_Component;
+    rdfs:subClassOf hpc:Slurmcomponent;
+    rdfs:comment "Component for managing partitions." .
+hpc:Job_Management a hpc:Slurm_Component;
+    rdfs:subClassOf hpc:Slurmcomponent;
+    rdfs:comment "Component for managing jobs." .
+hpc:Scheduling a hpc:Slurm_Component;
+    rdfs:subClassOf hpc:Slurmcomponent;
+    rdfs:comment "Component for scheduling jobs." .
+hpc:Stream_Copy a hpc:Slurm_Component;
+    rdfs:subClassOf hpc:Slurmcomponent;
+    rdfs:comment "Component for copying streams." .
+hpc:Slurmrequirement a owl:Class;
+    rdfs:subClassOf owl:

@@ -1,0 +1,22 @@
+hpc:User a owl:Class ;
+    rdfs:subClassOf hpc:Userorgroup .
+hpc:Group a owl:Class ;
+    rdfs:subClassOf hpc:Userorgroup .
+
+hpc:hasname a owl:ObjectProperty ;
+    rdfs:domain hpc:Userorgroup ;
+    rdfs:range xsd:string .
+hpc:hasjlp a owl:ObjectProperty ;
+    rdfs:domain hpc:Userorgroup ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasmax a owl:ObjectProperty ;
+    rdfs:domain hpc:Userorgroup ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasnstart a owl:ObjectProperty ;
+    rdfs:domain hpc:Userorgroup ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:haspend a owl:ObjectProperty ;
+    rdfs:domain hpc:Userorgroup ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasrun a owl:ObjectProperty ;
+    rdfs:domain

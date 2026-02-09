@@ -1,0 +1,22 @@
+hpc:Cluster a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:hasname a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string .
+
+hpc:share a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:allocbuffer a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+
+hpc:peak a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dynamiclicenseallocation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:peakInusePeriod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:duration .

@@ -1,0 +1,22 @@
+hpc:Jobcontrolaction a owl:Class.
+hpc:Jobtemporarydirectory a owl:Class.
+hpc:lsftmpdir a owl:DatatypeProperty;
+    rdfs:domain hpc:Jobtemporarydirectory;
+    rdfs:range xsd:string.
+hpc:Jobhostfile a owl:Class.
+hpc:allocatedhosts a owl:ObjectProperty;
+    rdfs:domain hpc:Jobhostfile.
+hpc:Jobcontrolsignals a owl:Class.
+hpc:suspend a owl:ObjectProperty;
+    rdfs:domain hpc:Jobcontrolsignals;
+    rdfs:range hpc:Jobcontrolaction.
+hpc:resume a owl:ObjectProperty;
+    rdfs:domain hpc:Jobcontrolsignals;
+    rdfs:range hpc:Jobcontrolaction.
+hpc:terminate a owl:ObjectProperty;
+    rdfs:domain hpc:Jobcontrolsignals;
+    rdfs:range hpc:Jobcontrolaction.
+hpc:jobcontrolsignalsdefault a owl:ObjectProperty;
+    rdfs:domain hpc:Jobcontrolaction;
+    rdfs:range hpc:Job.
+hpc:Job a

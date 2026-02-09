@@ -1,0 +1,25 @@
+hpc:Queryparameter a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a query parameter." .
+
+hpc:showJobEnvironment a owl:ObjectProperty ;
+    rdfs:domain hpc:Queryparameter ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Include job environment." .
+
+hpc:jobScript a owl:ObjectProperty ;
+    rdfs:domain hpc:Queryparameter ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Include job script default." .
+
+hpc:jobEnvironment a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queryparameter ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Include job environment default." .
+
+hpc:format a owl:ObjectProperty ;
+    rdfs:domain hpc:Queryparameter ;
+    rdfs:comment "Ignored; process JSON manually to control output format." .
+
+hpc:groups a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queryparameter ;

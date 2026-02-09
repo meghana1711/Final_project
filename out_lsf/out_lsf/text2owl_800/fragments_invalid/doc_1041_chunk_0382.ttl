@@ -1,0 +1,60 @@
+hpc:Featuregroup a owl:Class .
+hpc:Featurelist a owl:Class .
+hpc:Lsflicenseschedulerfile a owl:Class .
+
+hpc:isconfiguredfor a owl:ObjectProperty ;
+ rdfs:domain hpc:Featuregroup ;
+ rdfs:range hpc:Lsflicenseschedulerfile .
+
+hpc:hasfeaturelist a owl:ObjectProperty ;
+ rdfs:domain hpc:Featuregroup ;
+ rdfs:range hpc:Featurelist .
+
+hpc:definedin a owl:ObjectProperty ;
+ rdfs:domain hpc:Featurelist ;
+ rdfs:range hpc:Lsflicenseschedulerfile .
+
+hpc:Ignored a owl:Class ;
+ rdfs:subClassOf hpc:Featurelist .
+
+hpc:isignored a owl:DatatypeProperty ;
+ rdfs:domain hpc:Featurelist ;
+ rdfs:range xsd:boolean .
+
+hpc:hasslot a owl:ObjectProperty .
+
+hpc:currentjobslotsinuse a owl:DatatypeProperty ;
+ rdfs:domain hpc:Slot .
+
+hpc:peakjobslotsused a owl:DatatypeProperty ;
+ rdfs:domain hpc:Slot .
+
+hpc:sortby a owl:ObjectProperty .
+
+hpc:alphabetical a owl:DatatypeProperty ;
+ rdfs:domain hpc:Sortby .
+ rdfs:range xsd:string .
+
+hpc:bytotallicenses a owl:DatatypeProperty ;
+ rdfs:domain hpc:Sortby .
+ rdfs:range xsd:string .
+
+hpc:byavailablelicenses a owl:DatatypeProperty ;
+ rdfs:domain hpc:Sortby .
+ rdfs:range xsd:string .
+
+hpc:inuse a owl:DatatypeProperty ;
+ rdfs:domain hpc:License .
+
+hpc:reserve a owl:DatatypeProperty ;
+ rdfs:domain hpc:License .
+
+hpc:total a owl:DatatypeProperty ;
+ rdfs:domain hpc:License .
+
+hpc:available a owl:DatatypeProperty ;
+ rdfs:domain hpc:License .
+
+hpc:percentage a owl:DatatypeProperty ;
+ rdfs:domain hpc:License .
+ rdfs:range xsd:decimal .

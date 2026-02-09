@@ -1,0 +1,25 @@
+hpc:Template a owl:Class ;
+    rdfs:subClassOf hpc:Resourcetemplate .
+
+hpc:Templateid rdfs:domain hpc:Template ;
+    rdfs:range xsd:string .
+
+hpc:Name rdfs:domain hpc:Template ;
+    rdfs:range xsd:string .
+
+hpc:Attributes rdfs:domain hpc:Template ;
+    rdfs:range rdf:List .
+
+hpc:Attribute rdf:type hpc:AttributeDefinition ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf [ a owl:Class ;
+                                            rdfs:subClassOf owl:NamedIndividual ] ] .
+
+hpc:Attributename rdfs:domain hpc:Attributedefinition ;
+    rdfs:range xsd:string .
+
+hpc:Attributetype rdfs:domain hpc:Attributedefinition ;
+    rdfs:range xsd:string .
+
+hpc:Attributevalue rdfs:domain hpc:Attributedefinition ;
+    rdfs:range xsd:anyURI .

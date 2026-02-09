@@ -1,0 +1,28 @@
+hpc:MbdUseEgoMxj a owl:Class .
+hpc:mcPendingReasonPkgSize a owl:DatatypeProperty .
+hpc:McPendingReasonPkgSize rdfs:domain hpc:MbdUseEgoMxj .
+hpc:McPendingReasonPkgSize rdfs:range xsd:nonNegativeInteger .
+
+hpc:mcPendingReasonUpdateInterval a owl:DatatypeProperty .
+hpc:McPendingReasonUpdateInterval rdfs:domain hpc:MbdUseEgoMxj .
+hpc:McPendingReasonUpdateInterval rdfs:range xsd:nonNegativeInteger .
+
+hpc:mcPluginScheduleEnhance a owl:ObjectProperty .
+hpc:McPluginScheduleEnhance rdfs:domain hpc:MbdUseEgoMxj .
+hpc:McPluginScheduleEnhance rdfs:range (hpc:ResourceOnly
+                                             hpc:COUNT_PREEMPTABLE
+                                             hpc:DYN_CLUSTER_WEIGHTING) .
+
+hpc:CountPreemptable rdfs:subClassOf hpc:McPluginScheduleEnhance .
+hpc:CountPreemptable rdfs:subClassOf owl:Restriction .
+hpc:COUNT_PREEMPTABLE owl:onProperty hpc:MC_PLUGIN_SCHEDULE_ENHANCE .
+hpc:COUNT_PREEMPTABLE owl:allValuesFrom (hpc:RESOURCE_ONLY
+                                          hpc:HIGH_QUEUE_PRIORITY
+                                          hpc:PREEMPTABLE_QUEUE_PRIORITY
+                                          hpc:PENDING_WHEN_NOSLOTS) .
+
+hpc:HighQueuePriority rdfs:subClassOf hpc:CountPreemptable .
+
+hpc:PreemptableQueuePriority rdfs:subClassOf hpc:CountPreemptable .
+
+hpc:PendingWhenNoslots rdfs:subClassOf hpc:CountPreemptable .

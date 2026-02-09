@@ -1,0 +1,23 @@
+hpc:Reservationplaceholder a owl:Class .
+hpc:hasuser a owl:ObjectProperty .
+hpc:Hasuser rdfs:domain hpc:Reservationplaceholder ;
+    rdfs:range xsd:string .
+
+hpc:Reservation a owl:Class .
+hpc:hasname a owl:ObjectProperty .
+hpc:Hasname rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+hpc:hasduration a owl:DatatypeProperty .
+hpc:Hasduration rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:duration .
+hpc:hashosts a owl:DatatypeProperty .
+hpc:Hashosts rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:integer .
+hpc:hasjob a owl:ObjectProperty .
+hpc:Hasjob rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:integer .
+hpc:isscheduled a owl:ObjectProperty .
+hpc:Isscheduled rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:boolean .
+
+hpc:Reservationplaceholder rdfs:subClassOf hpc:Reservation .

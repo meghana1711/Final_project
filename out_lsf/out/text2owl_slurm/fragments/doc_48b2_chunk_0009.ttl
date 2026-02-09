@@ -1,0 +1,54 @@
+hpc:Jobarray a owl:Class .
+hpc:Managesbatchjobs rdfs:domain hpc:Jobarray ;
+                       rdfs:range hpc:Batchjob .
+
+hpc:Batchjob a owl:Class .
+hpc:Hasresourcerequirements rdfs:domain hpc:Batchjob ;
+                              rdfs:range xsd:string .
+
+hpc:Slurmcommand a owl:Class .
+hpc:Managesjobarray rdfs:domain hpc:Slurmcommand ;
+                      rdfs:range hpc:Jobarray .
+
+hpc:Mpi a owl:Class .
+hpc:Hasmpimode rdfs:domain hpc:Mpi ;
+                 rdfs:range xsd:string .
+
+hpc:Pmi2 a owl:Class ;
+        rdfs:subClassOf hpc:Mpi .
+
+hpc:Pmix a owl:Class ;
+        rdfs:subClassOf hpc:Mpi .
+
+hpc:Slurminfrastructure a owl:Class .
+hpc:Launchestasks rdfs:domain hpc:Slurminfrastructure ;
+                    rdfs:range hpc:Task .
+
+hpc:Olderopenmpi a owl:Class ;
+              rdfs:subClassOf hpc:Slurminfrastructure .
+
+hpc:Ssh a owl:Class ;
+       rdfs:subClassOf hpc:Slurminfrastructure .
+
+hpc:Rsh a owl:Class ;
+       rdfs:subClassOf hpc:Slurminfrastructure .
+
+hpc:Slurmepilog a owl:Class .
+hpc:Purgestasks rdfs:domain hpc:Slurmepilog ;
+                 rdfs:range hpc:Task .
+
+hpc:pamSlurmAdopt a owl:ObjectProperty .
+hpc:Recommendedfortaskpurging rdfs:domain hpc:Slurmepilog ;
+                               rdfs:range hpc:PamSlurmAdopt .
+
+hpc:Intelmpi a owl:Class ;
+            rdfs:subClassOf hpc:Mpi .
+
+hpc:Mpich2 a owl:Class ;
+          rdfs:subClassOf hpc:Mpi .
+
+hpc:Mvapich2 a owl:Class ;
+            rdfs:subClassOf hpc:Mpi .
+
+hpc:Openmpi a owl:Class ;
+           rdfs:subClassOf hpc:Mpi .

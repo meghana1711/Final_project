@@ -1,0 +1,40 @@
+hpc:ClusterMode
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range hpc:Clustermodevalue ;
+    rdfs:comment "Indicates the mode in which the cluster operates." .
+
+hpc:ClusterDistribution
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range hpc:Clusterdistributionvalue ;
+    rdfs:comment "Specifies the distribution of the cluster." .
+
+hpc:AllocBuffer
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Specifies the buffer for allocation." .
+
+hpc:RetentionFactor
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Specifies the percentage of tokens to be retained by the overfed cluster." .
+
+hpc:ServiceDomains
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range hpc:Servicedomain ;
+    rdfs:comment "Specifies the service domains that provide tokens for this feature." .
+
+hpc:ServiceDomainName
+    a owl:Class ;
+    rdfs:subClassOf rdf:PlainLiteral ;
+    rdfs:comment "The name of the service domain." .
+
+hpc:GroupDistributionDefined
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the group distribution is defined." .

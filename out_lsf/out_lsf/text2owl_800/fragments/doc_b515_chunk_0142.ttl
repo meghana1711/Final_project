@@ -1,0 +1,58 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A reservation of slots on hosts." .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A physical host in the system." .
+
+hpc:Hostgroup a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A group of hosts." .
+
+hpc:Usergroup a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A group of users." .
+
+hpc:hasreservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Reservation ;
+    rdfs:comment "The reservation that a host is part of." .
+
+hpc:hasuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Usergroup ;
+    rdfs:comment "The user group that the reservation is for." .
+
+hpc:hasslot a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The number of slots reserved by the reservation." .
+
+hpc:hashost a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "The hosts that the reservation is on." .
+
+hpc:hastype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The type of the host (e.g., Linux)." .
+
+hpc:hasgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Hostgroup ;
+    rdfs:comment "The group that the host belongs to." .
+
+hpc:hastimewindow a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The time window for the reservation." .
+
+hpc:addhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:comment "Adds slots to a reservation on a host." .
+
+hpc:removehost a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:comment "Removes slots from a reservation on a host." .

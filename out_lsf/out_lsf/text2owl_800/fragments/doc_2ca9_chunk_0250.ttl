@@ -1,0 +1,48 @@
+hpc:Lsfversion a owl:Class .
+hpc:Fixpack a owl:Class .
+hpc:JobGroupCleanOption a owl:Class .
+hpc:all a owl:NamedIndividual ;
+    rdfs:label "all"@en ;
+    rdfs:comment "Deletes empty implicit job groups automatically even if they have limits." .
+
+hpc:Edaadminscriptinvocation a owl:Class .
+hpc:interval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Edaadminscriptinvocation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Liveconfigurationupdate a owl:Class .
+hpc:persistliveconfig a owl:DatatypeProperty ;
+    rdfs:domain hpc:Liveconfigurationupdate ;
+    rdfs:range xsd:boolean .
+
+hpc:Allocationplanner a owl:Class .
+hpc:planbasedscheduling a owl:ObjectProperty ;
+    rdfs:domain hpc:Allocationplanner ;
+    rdfs:range hpc:Planbasedscheduling .
+
+hpc:Estimatedruntime a owl:Class .
+hpc:clusterwide a owl:ObjectProperty ;
+    rdfs:domain hpc:Estimatedruntime ;
+    rdfs:range hpc:Estimatedruntime .
+hpc:applicationlevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Estimatedruntime ;
+    rdfs:range hpc:Estimatedruntime .
+hpc:queuelevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Estimatedruntime ;
+    rdfs:range hpc:Estimatedruntime .
+
+hpc:Planbasedschedulingcandidate a owl:Class .
+hpc:planbasedscheduling a owl:ObjectProperty ;
+    rdfs:domain hpc:Planbasedschedulingcandidate ;
+    rdfs:range hpc:Planbasedscheduling .
+hpc:applicationlevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Planbasedschedulingcandidate ;
+    rdfs:range hpc:Planbasedschedulingcandidate .
+hpc:queuelevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Planbasedschedulingcandidate ;
+    rdfs:range hpc:Planbasedschedulingcandidate .
+
+hpc:Defaultproject a owl:Class .
+hpc:maxlength a owl:DatatypeProperty ;
+    rdfs:domain hpc:Defaultproject ;
+    rdfs:range xsd:nonNegativeInteger .

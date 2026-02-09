@@ -1,0 +1,38 @@
+hpc:Submissionhost a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:selectionstring a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Host .
+
+hpc:orderstring a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Host .
+
+hpc:hostcompatibility a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Boolean .
+
+hpc:outputtagging a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Boolean .
+
+hpc:datafile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:verbosemode a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Boolean .
+
+hpc:hostused a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:numretries a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:commandfailure a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Integer .

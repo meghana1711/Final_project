@@ -1,0 +1,35 @@
+hpc:Jobspooldir a owl:Class .
+hpc:haspermission a owl:ObjectProperty .
+hpc:path a owl:DatatypeProperty .
+hpc:isfirstdynamicpattern a owl:ObjectProperty .
+hpc:issubdirectory a owl:ObjectProperty .
+hpc:JobSpoolDirWithoutDynamicPatterns a hpc:JobSpoolDir .
+hpc:JobSpoolDirWithDynamicPatterns a hpc:JobSpoolDir .
+hpc:Lsfjobspooldir rdfs:subClassOf hpc:Jobspooldir .
+hpc:maxpathlength a owl:DatatypeProperty .
+hpc:Hasoutputdirectory rdfs:domain hpc:Jobspooldir .
+hpc:Hasoutputdirectory rdfs:range rdf:Resource .
+hpc:Jobspooldirwithoutdynamicpatterns rdfs:subClassOf hpc:Jobspooldir .
+hpc:Jobspooldirwithdynamicpatterns rdfs:subClassOf hpc:Jobspooldir .
+hpc:Haspermission rdfs:domain hpc:Jobspooldir .
+hpc:Haspermission rdfs:range xsd:integer .
+hpc:Isfirstdynamicpattern rdfs:domain hpc:Jobspooldir .
+hpc:Isfirstdynamicpattern rdfs:range xsd:boolean .
+hpc:Issubdirectory rdfs:domain hpc:Jobspooldir .
+hpc:Issubdirectory rdfs:range hpc:Jobspooldir .
+
+hpc:Lsfjobspooldir rdfs:subClassOf hpc:Jobspooldirwithdynamicpatterns .
+hpc:Lsfjobspooldir rdfs:subClassOf hpc:Jobspooldir .
+hpc:Lsfjobspooldirwithoutdynamicpatterns rdfs:subClassOf hpc:Jobspooldir .
+
+hpc:LSFJobSpoolDirWithDynamicPatterns
+  hpc:hasPermission "[0 777]" .
+hpc:LSFJobSpoolDirWithDynamicPatterns
+  hpc:hasPermission "[0 700]" [ hpc:isSubdirectory true ] .
+hpc:LSFJobSpoolDirWithoutDynamicPatterns
+  hpc:hasPermission "[0 777]" .
+
+hpc:JobSpoolDirWithoutDynamicPatterns
+  hpc:hasOutputDirectory "/full_path" .
+hpc:JobSpoolDirWithoutDynamicPatterns
+  hpc:isSubdirectory false .

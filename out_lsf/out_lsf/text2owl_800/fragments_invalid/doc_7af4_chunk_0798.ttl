@@ -1,0 +1,43 @@
+hpc:LcComm         a owl:Class ;
+                    rdfs:comment "Log communication messages" .
+hpc:Lc2Comm        a owl:Class ;
+                    rdfs:comment "Log communication messages" .
+hpc:LcDce          a owl:Class ;
+                    rdfs:comment "Log file transfer messages" .
+hpc:Lc2Dce         a owl:Class ;
+                    rdfs:comment "Log file transfer messages" .
+hpc:LcHang         a owl:Class ;
+                    rdfs:comment "Mark where a program might hang" .
+hpc:Lc2Hang        a owl:Class ;
+                    rdfs:comment "Mark where a program might hang" .
+hpc:LcJgrp         a owl:Class ;
+                    rdfs:comment "Log job group messages" .
+hpc:LcLicense      a owl:Class ;
+                    rdfs:comment "Log license management messages" .
+hpc:Lc2License     a owl:Class ;
+                    rdfs:comment "Log license management messages" .
+hpc:LcLicsched     a owl:Class ;
+                    rdfs:comment "Log messages pertaining to a multicluster environment" .
+hpc:LcPim          a owl:Class ;
+                    rdfs:comment "Log everything transferred by XDR" .
+hpc:Lc2Pim         a owl:Class ;
+                    rdfs:comment "Log everything transferred by XDR" .
+hpc:LcComm, hpc:Lc2Comm rdfs:subClassOf hpc:Logclass .
+hpc:LcDce, hpc:Lc2Dce rdfs:subClassOf hpc:Logclass .
+hpc:LcHang, hpc:Lc2Hang rdfs:subClassOf hpc:Logclass .
+hpc:LcJgrp rdfs:subClassOf hpc:Logclass .
+hpc:LcLicense, hpc:Lc2License rdfs:subClassOf hpc:Logclass .
+hpc:LcLicsched rdfs:subClassOf hpc:Logclass .
+hpc:LcPim, hpc:Lc2Pim rdfs:subClassOf hpc:Logclass .
+
+# EGO parameters
+
+hpc:EgoDebugLim   a owl:Class ;
+                    rdfs:comment "Parameter for controlling message logging for LIM in ego.conf" .
+
+# LSF_DEBUG_RES
+
+hpc:lsfDebugRes   a owl:ObjectProperty ;
+                    rdfs:domain hpc:LsfDebugLim ;
+                    rdfs:range hpc:Logclass ;
+                    rdfs:comment "Sets the log class for debugging RES" .

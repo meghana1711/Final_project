@@ -1,0 +1,40 @@
+hpc:Lanserver a owl:Class .
+hpc:Wanserver a owl:Class .
+
+hpc:Projectgroup a owl:Class ;
+    rdfs:subClassOf hpc:Projectgroupsharesownershiplimitsnonshared .
+    rdfs:domain hpc:Projectgroup .
+
+hpc:Groupsharesownershiplimitsnonshared a owl:Class .
+
+hpc:Projectgroupmember a owl:Class .
+
+hpc:projectgrouppriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Projectgroup .
+    rdfs:range xsd:integer .
+
+hpc:Project a owl:Class .
+
+hpc:projectgroupshares a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectgroup .
+    rdfs:range hpc:Projectgroupmember .
+
+hpc:projectgroupownership a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectgroup .
+    rdfs:range hpc:Projectgroupmember .
+
+hpc:projectgrouplimits a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectgroup .
+    rdfs:range xsd:integer .
+
+hpc:projectgroupnonshared a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectgroup .
+    rdfs:range xsd:integer .
+
+hpc:projectgroupprioritylist a owl:DatatypeProperty ;
+    rdfs:domain hpc:Projectgroup .
+    rdfs:range xsd:integer* .
+
+hpc:projectgroupproject a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectgroup .
+    rdfs:range hpc:Project .

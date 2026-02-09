@@ -1,0 +1,49 @@
+hpc:ncores
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Azureinstance ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:mem
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Azureinstance ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:cyclecloudhost
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Azureinstance ;
+    rdfs:range xsd:boolean .
+
+hpc:zone
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Azureinstance ;
+    rdfs:range xsd:string .
+
+hpc:imageId
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Azureinstance ;
+    rdfs:range xsd:string .
+
+hpc:subnetId
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Azureinstance ;
+    rdfs:range xsd:string .
+
+hpc:keyPairLocation
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Azureinstance ;
+    rdfs:range xsd:string .
+
+hpc:userData
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Azureinstance ;
+    rdfs:range xsd:string .
+
+hpc:LSF_TOP
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:UserDataScript ;
+    rdfs:range xsd:string .
+
+hpc:user_data_script
+    a owl:Class ;
+    rdfs:subClassOf hpc:Azureinstance ;
+    rdfs:comment "Represents a user data script for setting up LSF on an Azure instance." .

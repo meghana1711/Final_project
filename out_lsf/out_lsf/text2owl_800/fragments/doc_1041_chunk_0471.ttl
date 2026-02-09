@@ -1,0 +1,46 @@
+hpc:Lsf a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Calculates the cumulative CPU time using actual CPU time and a decay factor." .
+
+hpc:cputimedecayfactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:float ;
+    rdfs:comment "Decay factor for CPU time in LSF." .
+
+hpc:historicalhours a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Interval of time for CPU time decay in LSF." .
+
+hpc:Runtime a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Wall-clock run time plus historical run time of jobs." .
+
+hpc:wallclockruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Runtime ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Measured run time of running jobs." .
+
+hpc:historicalruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Runtime ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Historical run time calculated by using the actual run time of finished jobs." .
+
+hpc:Fairshareadjustment a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Dynamic priority calculation adjustment made by the user-defined fair share plug-in." .
+
+hpc:adjustmentfactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fairshareadjustment ;
+    rdfs:range xsd:float ;
+    rdfs:comment "Parameter for fair share adjustment." .
+
+hpc:fairshareadjustmentfactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:float ;
+    rdfs:comment "Parameter for fair share adjustment factor in the dynamic priority calculation." .
+
+hpc:runtimefactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:float ;
+    rdfs:comment "Weighting parameter for run_time within the dynamic priority calculation." .

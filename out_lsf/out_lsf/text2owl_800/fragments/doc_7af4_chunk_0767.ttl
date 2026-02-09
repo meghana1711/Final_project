@@ -1,0 +1,23 @@
+hpc:LsbTimeCmd a owl:Class .
+hpc:LsbTimeCmd rdfs:subClassOf owl:NamedIndividual .
+hpc:LSB_TIME_CMD rdfs:comment "Used in tssub jobs. Default not defined. LSB_TIME_CMD Syntax: LSB_TIME_CMD=timimg_level. Description: The timing level for checking how long batch commands run. Time usage is logged in milliseconds; specify a positive integer. Example: LSB_TIME_CMD=1. Default not defined. See also LSB_TIME_MBD, LSB_TIME_SBD, LSF_TIME_LIM, LSF_TIME_RES." .
+
+hpc:timimgLevel a owl:DatatypeProperty .
+hpc:TimimgLevel rdfs:domain hpc:LsbTimeCmd .
+hpc:TimimgLevel rdfs:range xsd:positiveInteger .
+
+hpc:LsbTimeDmd a owl:Class .
+hpc:LsbTimeDmd rdfs:subClassOf owl:NamedIndividual .
+hpc:LSB_TIME_DMD rdfs:comment "The timing level for checking how long the dmd daemon runs. Syntax: LSB_TIME_DMD=timing_level. Description: Specify a positive integer. Time usage is logged in milliseconds. LSB_TIME_DMD=1. You must run the bdata admin reconfig command to reconfigure the LSF data manager daemon (dmd) for the parameter to take effect. Default not defined. See also LSB_TIME_CMD, LSB_TIME_MBD, LSB_TIME_SBD, LSF_TIME_LIM, LSF_TIME_RES." .
+
+hpc:timingLevel a owl:DatatypeProperty .
+hpc:TimingLevel rdfs:domain hpc:LsbTimeDmd .
+hpc:TimingLevel rdfs:range xsd:positiveInteger .
+
+hpc:LsbTimeGpd a owl:Class .
+hpc:LsbTimeGpd rdfs:subClassOf owl:NamedIndividual .
+hpc:LSB_TIME_GPD rdfs:comment "Sets a timing level for checking how long gpolicyd routines run. Time usage is logged in milliseconds. Specify a positive integer." .
+
+hpc:timingLevel1 a owl:DatatypeProperty .
+hpc:TimingLevel1 rdfs:domain hpc:LsbTimeGpd .
+hpc:TimingLevel1 rdfs:range xsd:positiveInteger .

@@ -1,0 +1,29 @@
+hpc:Sbatchd a owl:Class .
+hpc:sbd a owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchd ;
+    rdfs:range hpc:Lsfmanagementhost .
+
+hpc:Pim a owl:Class .
+hpc:pim a owl:ObjectProperty ;
+    rdfs:domain hpc:Pim ;
+    rdfs:range hpc:Resourcemonitor .
+
+hpc:Res a owl:Class .
+hpc:res a owl:ObjectProperty ;
+    rdfs:domain hpc:Res ;
+    rdfs:range hpc:Remoteexecutionserver .
+
+hpc:bhosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Usercommand ;
+    rdfs:range hpc:Host .
+
+hpc:blimits a owl:ObjectProperty ;
+    rdfs:domain hpc:Usercommand ;
+    rdfs:range hpc:Resourceallocationlimit .
+
+hpc:bparams a owl:ObjectProperty ;
+    rdfs:domain hpc:Usercommand ;
+    rdfs:range hpc:Batchsystemparameter .
+
+hpc:bqueues a owl:ObjectProperty ;
+    rd

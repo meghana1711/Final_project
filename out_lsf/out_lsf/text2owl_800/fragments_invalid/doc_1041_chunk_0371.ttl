@@ -1,0 +1,30 @@
+hpc:Projectgroup a owl:Class .
+hpc:License a owl:Class .
+hpc:Feature a owl:Class .
+hpc:mode a owl:ObjectProperty .
+hpc:Servicedomain a owl:Class .
+hpc:total a owl:DatatypeProperty .
+hpc:distribution a owl:DatatypeProperty .
+
+hpc:Projectgroup rdfs:subClassOf owl:Class .
+hpc:License rdfs:subClassOf owl:Class .
+hpc:Feature rdfs:subClassOf owl:Class .
+
+hpc:Mode rdf:domain hpc:License ;
+    rdfs:range hpc:Mode .
+
+hpc:ServiceDomain rdf:domain hpc:License ;
+    rdfs:range rdf:Literal .
+
+hpc:Total rdf:domain hpc:ProjectGroup ;
+    rdfs:range xsd:integer .
+
+hpc:Distribution rdf:domain hpc:ProjectGroup ;
+    rdfs:range xsd:decimal .
+
+hpc:Distribution rdfs:range finds(?project ?percentage ?number_licenses_owned) .
+
+hpc:finds a owl:ObjectProperty .
+
+
+This ontology fragment defines classes for `ProjectGroup`, `License`, and `Feature`. It also defines object properties for `Mode` and `Distribution`, and datatype properties for `Total` and `Distribution`. The `Distribution` property is further defined to have a range of a custom function `finds(?project ?percentage ?number_licenses_owned)`.

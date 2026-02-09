@@ -1,0 +1,29 @@
+hpc:Inconsistenthostnames a owl:Class .
+hpc:lsfusehostequiv a owl:ObjectProperty .
+hpc:Lsfconffile rdfs:domain xsd:string .
+hpc:Clienthostname rdfs:range xsd:string .
+hpc:Destinationhost rdfs:domain xsd:string .
+hpc:Windowshost a owl:Class .
+hpc:registerwindowspassword a owl:ObjectProperty .
+hpc:Windowspassword rdfs:domain xsd:string .
+hpc:Windowspasswordlength rdfs:range xsd:integer .
+hpc:MaxWindowsPasswordLength rdfs:datatype xsd:integer .
+hpc:MinWindowsPasswordLength rdfs:datatype xsd:integer .
+hpc:MinWindowsPasswordLength 3 .
+hpc:MaxWindowsPasswordLength 31 .
+hpc:Nonuniformfilenamespace a owl:Class .
+hpc:chdirfailed a owl:ObjectProperty .
+hpc:Currentworkingdirectory rdfs:domain xsd:string .
+hpc:Remotehost rdfs:range xsd:string .
+hpc:CurrentWorkingDirectoryDoesNotExistOnRemoteHost a owl:SubClassOf hpc:NonUniformFileNameSpace .
+hpc:CurrentWorkingDirectoryMappedToDifferentNameOnRemoteHost a owl:SubClassOf hpc:NonUniformFileNameSpace .
+hpc:symboliclink a owl:ObjectProperty .
+hpc:consistentdirectories a owl:ObjectProperty .
+hpc:automount a owl:ObjectProperty .
+hpc:nis a owl:ObjectProperty .
+hpc:Nonsharedfilesystem a owl:Class .
+hpc:lsfmasterlist a owl:ObjectProperty .
+hpc:Sharedfilesystem a owl:Class .
+hpc:Remoteexecutionfailure a owl:Class .
+hpc:NonUniformFileNameSpaceProblem a owl:SubClassOf hpc:RemoteExecutionFailure .
+hpc:ChdirFailedProblem a owl:SubClassOf hpc:RemoteExecutionFailure .

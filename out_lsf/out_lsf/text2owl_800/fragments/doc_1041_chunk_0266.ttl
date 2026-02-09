@@ -1,0 +1,37 @@
+hpc:Host a owl:Class .
+hpc:Task a owl:Class .
+hpc:gpuId a owl:ObjectProperty .
+hpc:GpuId rdfs:domain hpc:Task .
+hpc:GpuId rdfs:range xsd:string .
+hpc:GPU_ID rdfs:subPropertyOf rdf:list .
+
+hpc:Gpu a owl:Class .
+hpc:Gpu rdfs:subClassOf xsd:string .
+
+hpc:giPlacementSize a owl:DatatypeProperty .
+hpc:GiPlacementSize rdfs:domain hpc:Gpu .
+hpc:GiPlacementSize rdfs:range xsd:string .
+
+hpc:ciPlacementSize a owl:DatatypeProperty .
+hpc:CiPlacementSize rdfs:domain hpc:Gpu .
+hpc:CiPlacementSize rdfs:range xsd:string .
+
+hpc:model a owl:DatatypeProperty .
+hpc:Model rdfs:domain hpc:Gpu .
+hpc:Model rdfs:range xsd:string .
+
+hpc:mtotal a owl:DatatypeProperty .
+hpc:Mtotal rdfs:domain hpc:Gpu .
+hpc:Mtotal rdfs:range xsd:decimal .
+
+hpc:factor a owl:DatatypeProperty .
+hpc:Factor rdfs:domain hpc:Job .
+hpc:Factor rdfs:range xsd:decimal .
+
+hpc:mrsv a owl:DatatypeProperty .
+hpc:Mrsv rdfs:domain hpc:Gpu .
+hpc:Mrsv rdfs:range xsd:decimal .
+
+hpc:socket a owl:DatatypeProperty .
+hpc:Socket rdfs:domain hpc:Gpu .
+hpc:Socket rdfs:range xsd:integer .

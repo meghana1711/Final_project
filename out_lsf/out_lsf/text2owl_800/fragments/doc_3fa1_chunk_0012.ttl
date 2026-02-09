@@ -1,0 +1,36 @@
+hpc:Inputfile a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:consistentname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Inputfile ;
+    rdfs:range xsd:string .
+
+hpc:arrayindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Inputfile ;
+    rdfs:range xsd:integer .
+
+hpc:Jobarray a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:jobarrayindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:integer .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:string .
+
+hpc:fileredirection a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range hpc:Inputfile .
+
+hpc:standardinputredirection a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range hpc:Inputfile ;
+    rdfs:range hpc:Inputfile .
+
+hpc:bsubcommand a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:string .

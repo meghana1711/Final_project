@@ -1,0 +1,23 @@
+hpc:IbmSpectrumLsfVideo a owl:Class .
+hpc:IbmSpectrumLsfUserGroupLibrary rdfs:subClassOf hpc:IbmSpectrumLsfVideo .
+hpc:IbmSpectrumLsfOverview a owl:Class .
+hpc:IbmSpectrumLsfUserFoundations a owl:Class .
+hpc:IbmSpectrumLsfAdminFoundations a owl:Class .
+hpc:InsideAnLsfCluster a owl:Class .
+hpc:InsideWorkloadManagement a owl:Class .
+hpc:LsfJobLifecycle a owl:Class .
+hpc:bsub a owl:ObjectProperty .
+hpc:LsfWithEgoEnabled a owl:Class .
+
+hpc:IBM_Spectrum_LSF_Overview rdfs:comment "Get an overview of IBM® Spectrum LSF workload management concepts and operations for both users and administrators." .
+hpc:IBM_Spectrum_LSF_User_Foundations rdfs:comment "Get an overview of IBM Spectrum LSF workload management concepts and operations for users." .
+hpc:IBM_Spectrum_LSF_Admin_Foundations rdfs:comment "Get an administrator overview of IBM Spectrum LSF how to manage various types of workload and cluster operations." .
+hpc:Inside_an_LSF_Cluster rdfs:comment "Learn about the various daemon processes that run on LSF hosts, LSF cluster communications paths, and how LSF tolerates host failure in the cluster." .
+hpc:Inside_Workload_Management rdfs:comment "Understand the LSF job lifecycle." .
+hpc:LSF_Job_Lifecycle rdfs:comment "Use the bsub to submit jobs to a queue and specify job submission options to modify the default job behavior. Submitted jobs wait in queues until they are scheduled and dispatched to a host for execution. At job dispatch, LSF checks to see which hosts are eligible to run the job." .
+hpc:LSF_with_EGO_enabled rdfs:comment "Enable the enterprise grid orchestrator (EGO) with LSF to provide a system infrastructure to control and manage cluster resources." .
+
+hpc:Bsub rdfs:domain hpc:IbmSpectrumLsfUserFoundations ;
+                                rdfs:domain hpc:IbmSpectrumLsfAdminFoundations ;
+                                rdfs:domain hpc:LsfJobLifecycle .
+hpc:Bsub rdfs:range xsd:string .

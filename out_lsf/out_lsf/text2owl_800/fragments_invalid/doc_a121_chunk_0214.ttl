@@ -1,0 +1,11 @@
+hpc:Sharedfile a owl:Class .
+hpc:Userid a owl:Class .
+
+hpc:hassharedfile hpc:sharedfile a owl:ObjectProperty .
+hpc:hasuserid hpc:userid a owl:ObjectProperty .
+
+rdfs:domain hpc:Hassharedfile hpc:Userid .
+rdfs:domain hpc:Hasuserid hpc:Sharedfile .
+
+rdfs:range hpc:Hassharedfile xsd:string .
+rdfs:range hpc:Hasuserid xsd:string .

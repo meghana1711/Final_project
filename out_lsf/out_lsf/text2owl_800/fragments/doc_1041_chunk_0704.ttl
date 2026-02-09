@@ -1,0 +1,64 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:reservationid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:reserves a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Reservation .
+
+hpc:maxreservationids a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:hasslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:integer .
+
+hpc:usedslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:integer .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Reservation .
+
+hpc:expires a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .
+
+hpc:terminationtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .
+
+hpc:Remotehost a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:advancereservationid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Remotehost ;
+    rdfs:range xsd:string .
+
+hpc:mailuser a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string .
+
+hpc:Notifycategory a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf rdf:PlainLiteral .
+
+hpc:emailaddress a owl:DatatypeProperty ;
+    rdfs:domain hpc:Notifycategory ;
+    rdfs:range xsd:string .
+
+hpc:windowsuser a owl:DatatypeProperty ;
+    rdfs:domain hpc:Notifycategory ;
+    rdfs:range xsd:string .

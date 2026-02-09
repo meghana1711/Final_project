@@ -1,0 +1,18 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Trustednetwork a owl:Class.
+hpc:Untrustednetwork a owl:Class.
+hpc:Securecommunication a owl:Class.
+hpc:Insecurecommunication a owl:Class.
+hpc:Tlsproxy a owl:Class.
+hpc:Ssoprovider a owl:Class.
+hpc:authenticationfailuremessage a owl:DatatypeProperty;
+    rdfs:domain hpc:Authenticationfailure;
+    rdfs:range xsd:string.
+hpc:Jwttoken a owl:Class.
+hpc:jwtgenerator a owl:ObjectProperty;
+    rdfs:domain hpc

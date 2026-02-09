@@ -1,0 +1,69 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:label Job_Name ;
+    rdfs:comment "A job submitted to a high-performance computing system." .
+
+hpc:submissiontime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:label User_Name ;
+    rdfs:comment "A user submitting jobs to a high-performance computing system." .
+
+hpc:JobStatus a owl:Enum ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The status of a job in a high-performance computing system." ;
+    rdfs:member rdfs:Literal "PEND" ;
+    rdfs:member rdfs:Literal "RUNNING" ;
+    rdfs:member rdfs:Literal "COMPLETED" ;
+    rdfs:member rdfs:Literal "FAILED" .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:label Host_Name ;
+    rdfs:comment "A high-performance computing host." .
+
+hpc:File a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:label File_Name ;
+    rdfs:comment "A file used in a job on a high-performance computing system." .
+
+hpc:filesize a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:decimal .
+
+hpc:filemodified a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:dateTime .
+
+hpc:datahost a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+
+hpc:datarequest a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Datarequest .
+
+hpc:datarequestsrc a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datarequest ;
+    rdfs:range xsd:string .
+
+hpc:datarequestdst a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datarequest ;
+    rdfs:range xsd:string .
+
+hpc:datarequirement a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:datarequirementquoted a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:DataRequirement ;
+    rdfs:comment "The data requirement string is in quotation marks." .
+
+hpc:datarequirementrecursive a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:

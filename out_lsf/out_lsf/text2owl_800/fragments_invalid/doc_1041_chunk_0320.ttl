@@ -1,0 +1,74 @@
+hpc:Rss a owl:Class ;
+    rdfs:subClassOf owl:Resource .
+
+hpc:vsz a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rss ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:swapusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rss ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:nthread a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:pgid a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:pid a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xdfs:nonNegativeInteger .
+
+hpc:Resourcelimits a owl:Class ;
+    rdfs:subClassOf owl:Resource .
+
+hpc:cpulimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcelimits ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:tasklimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcelimits ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:memlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcelimits ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:swaplimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcelimits ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:processlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcelimits ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:threadlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcelimits ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:openfilelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcelimits ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hostlimitperjob a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcelimits ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Unixprocesslimit a owl:Class ;
+    rdfs:subClassOf owl:Resource .
+
+hpc:runlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Unixprocesslimit ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:filelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Unixprocesslimit ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:datalimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Unixprocesslimit ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:stacklimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Unixprocess

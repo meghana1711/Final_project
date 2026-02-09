@@ -1,0 +1,21 @@
+hpc:Bconf a owl:Class .
+hpc:Action a owl:Class .
+hpc:addmember a owl:ObjectProperty .
+hpc:rmmember a owl:ObjectProperty .
+
+hpc:Bconf rdfs:subClassOf hpc:Action .
+hpc:Addmember rdfs:domain hpc:Usergroup ;
+                                rdfs:domain hpc:Hostgroup ;
+                                rdfs:domain hpc:Queue ;
+                                rdfs:domain hpc:Limit ;
+                                rdfs:domain hpc:Gpool ;
+                                rdfs:domain hpc:Serviceclass .
+hpc:Addmember rdfs:range rdf:Resource .
+
+hpc:Rmmember rdfs:domain hpc:Usergroup ;
+                                rdfs:domain hpc:Hostgroup ;
+                                rdfs:domain hpc:Queue ;
+                                rdfs:domain hpc:Limit ;
+                                rdfs:domain hpc:Gpool ;
+                                rdfs:domain hpc:Serviceclass .
+hpc:Rmmember rdfs:range rdf:Resource .

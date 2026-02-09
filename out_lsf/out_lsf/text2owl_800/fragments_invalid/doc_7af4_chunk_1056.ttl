@@ -1,0 +1,21 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:lsfEauthUid a owl:DatatypeProperty .
+hpc:lsfExecuteDomain a owl:ObjectProperty .
+hpc:lsfInteractiveStderr a owl:DatatypeProperty .
+hpc:lsfInvokeCmd a owl:ObjectProperty .
+hpc:lsfJobStarter a owl:ObjectProperty .
+
+rdfs:domain hpc:LsfEauthUid rdf:Property ;
+    rdfs:range xsd:string .
+rdfs:domain hpc:LsfExecuteDomain rdf:Property ;
+    rdfs:range xsd:string .
+rdfs:domain hpc:LsfInteractiveStderr rdf:Property ;
+    rdfs:range xsd:string .
+rdfs:domain hpc:LsfInvokeCmd rdf:Property ;
+    rdfs:range xsd:string .
+rdfs:domain hpc:LsfJobStarter rdf:Property ;
+    rdfs:range xsd:string .

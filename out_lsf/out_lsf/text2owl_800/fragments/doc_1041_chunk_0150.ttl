@@ -1,0 +1,34 @@
+hpc:File a owl:Class .
+
+hpc:Hash rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+
+hpc:Status rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:File .
+
+hpc:New a owl:Class ;
+    rdfs:subClassOf hpc:Status .
+
+hpc:Staging a owl:Class ;
+    rdfs:subClassOf hpc:Status .
+
+hpc:Transferred a owl:Class ;
+    rdfs:subClassOf hpc:Status .
+
+hpc:Error a owl:Class ;
+    rdfs:subClassOf hpc:Status .
+
+hpc:Unknown a owl:Class ;
+    rdfs:subClassOf hpc:Status .
+
+hpc:Linked a owl:Class ;
+    rdfs:subClassOf hpc:Status .
+
+hpc:LinkedJob rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:integer .
+
+hpc:RefJob rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:string .

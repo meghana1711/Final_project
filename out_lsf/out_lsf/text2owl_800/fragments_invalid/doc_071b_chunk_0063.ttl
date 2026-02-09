@@ -1,0 +1,57 @@
+hpc:bsubnotificationoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsubcommand ;
+    rdfs:range hpc:Bsubnotificationoptionvalue .
+
+hpc:EmailNotification a hpc:BsubNotificationOption ;
+    rdfs:comment "Sends email to the job submitter when the job is dispatched and begins running. The default destination for email is defined by the LSB_MAILTO parameter in the lsf.conf file.";
+    rdfs:subClassOf hpc:Bsubnotificationoption ;
+    rdfs:domain hpc:Bsubcommand ;
+    rdfs:range hpc:Emailnotificationvalue .
+
+hpc:UserName a hpc:EmailNotificationOptionValue ;
+    rdfs:comment "If you want mail sent to another user, use the -u user_name option to the bsub command. Mail associated with the job will be sent to the named user instead of to the submitting user account.";
+    rdfs:subClassOf xsd:string .
+
+hpc:Notify a hpc:BsubNotificationOption ;
+    rdfs:comment "If you want to be notified when the job reaches any of the specified states (exit, done, start, or suspend), use the -notify option. Use a space to separate multiple job states.";
+    rdfs:subClassOf xsd:string .
+
+hpc:JobState a owl:Enum ;
+    rdfs:comment "A state of a job.";
+    rdfs:subClassOf xsd:string ;
+    rdfs:subClassOf hpc:Jobstatevalue .
+
+hpc:jobstatevalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobstate ;
+    rdfs:range hpc:Jobstatevaluevalue .
+
+hpc:JobStateValueValue a owl:NamedIndividual ;
+    rdfs:comment "A specific value of a job state.";
+    rdfs:subClassOf xsd:string .
+
+hpc:Exit a hpc:JobStateValue ;
+    rdfs:comment "The job has exited." .
+
+hpc:Done a hpc:JobStateValue ;
+    rdfs:comment "The job has completed." .
+
+hpc:Start a hpc:JobStateValue ;
+    rdfs:comment "The job has started running." .
+
+hpc:Suspend a hpc:JobStateValue ;
+    rdfs:comment "The job has been suspended." .
+
+hpc:SeparateJobReportInformation a hpc:BsubNotificationOption ;
+    rdfs:comment "If you want the separate job report information to be sent by email." ;
+    rdfs:subClassOf xsd:boolean .
+
+hpc:SendOnError a hpc:BsubNotificationOption ;
+    rdfs:comment "If you want the separate job report information to be sent only on a job error." ;
+    rdfs:subClassOf xsd:boolean .
+
+hpc:LSB_JOB_REPORT_MAIL a hpc:EnvironmentVariable ;
+    rdfs:comment "Users can set the environment variable LSB_JOB_REPORT_MAIL=N at job submission to disable email notification." ;
+    rdfs:subClassOf xsd:string .
+
+hpc:LSB_JOB_REPORT_MAIL_ERROR a hpc:EnvironmentVariable ;
+    rdfs:comment "Users

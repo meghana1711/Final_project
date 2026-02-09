@@ -1,0 +1,61 @@
+hpc:Jobslot a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Suspendedjob a owl:Class ;
+    rdfs:subClassOf hpc:Jobslot .
+
+hpc:Licensescheduler a owl:Class .
+
+hpc:preempt a owl:ObjectProperty ;
+    rdfs:domain hpc:Licensescheduler ;
+    rdfs:range hpc:Jobslot .
+
+hpc:Activeownership a owl:Class .
+
+hpc:Project a owl:Class .
+
+hpc:Licensetoken a owl:Class .
+
+hpc:Application a owl:Class .
+
+hpc:releaselicense a owl:ObjectProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range hpc:Jobsuspension .
+
+hpc:Jobsuspension a owl:Class .
+
+hpc:Activeproject a owl:Class .
+
+hpc:totalownership a owl:DatatypeProperty ;
+    rdfs:domain hpc:Activeproject ;
+    rdfs:range xsd:decimal .
+
+hpc:Nonsharedlicenses a owl:Class .
+
+hpc:nonsharedlicense a owl:ObjectProperty ;
+    rdfs:domain hpc:Nonsharedlicenses ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ownedlicenses a owl:DatatypeProperty ;
+    rdfs:domain hpc:Nonsharedlicenses ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Fairshare a owl:Class .
+
+hpc:Projectmode a owl:Class .
+
+hpc:Licensefeature a owl:Class .
+
+hpc:projectownership a owl:DatatypeProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:decimal .
+
+hpc:preemption a owl:ObjectProperty .
+
+hpc:Loanedlicense a owl:Class .
+
+hpc:Jobborrowinglicense a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Preemptedjob a owl:Class ;
+    rdfs:subClassOf hpc:Jobborrowinglicense .

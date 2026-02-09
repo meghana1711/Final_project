@@ -1,0 +1,16 @@
+hpc:Managementhost a owl:Class .
+hpc:Powerfulmanagementhost rdfs:subClassOf hpc:Managementhost .
+hpc:PowerfulManagementHost rdfs:comment "A powerful management host for achieving the highest degree of performance and scalability." .
+
+hpc:Entitlementfile a owl:Class .
+hpc:EntitlementFile rdfs:comment "A file used by LSF to determine which feature set is enabled or disabled based on the edition of the product." .
+
+hpc:Lsfstandardeditionentitlement a owl:Class .
+hpc:LSFStandardEditionEntitlement rdfs:comment "Entitlement file for LSF Standard Edition." .
+hpc:Lsfexpresseditionentitlement a owl:Class .
+hpc:LSFExpressEditionEntitlement rdfs:comment "Entitlement file for LSF Express Edition." .
+
+hpc:minimumrequiredmemory a owl:DatatypeProperty .
+hpc:Minimumrequiredmemory rdfs:domain hpc:Managementhost ; rdfs:range xsd:decimal .
+
+hpc:recommendedservercpu a owl

@@ -1,0 +1,43 @@
+hpc:Memorylimit a owl:Class .
+hpc:Process a owl:Class .
+hpc:Job a owl:Class .
+hpc:Task a owl:Class .
+hpc:memlimitType a owl:ObjectProperty .
+
+hpc:Memorylimit rdfs:subClassOf owl:Class .
+hpc:Process rdfs:subClassOf owl:Class .
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Task rdfs:subClassOf owl:Class .
+
+hpc:MemlimitType rdfs:domain hpc:Memorylimit .
+hpc:MemlimitType rdfs:range rdfs:Literal .
+
+hpc:MEMLIMIT_TYPE_JOB rdf:type hpc:MEMLIMIT_TYPE .
+hpc:MEMLIMIT_TYPE_PROCESS rdf:type hpc:MEMLIMIT_TYPE .
+hpc:MEMLIMIT_TYPE_TASK rdf:type hpc:MEMLIMIT_TYPE .
+
+hpc:supports rdf:type owl:ObjectProperty .
+hpc:notSupported rdf:type owl:ObjectProperty .
+
+hpc:MemorylimitSunsolaris2x hpc:notsupported rdf:resource xsd:SunSolaris2x .
+hpc:MemorylimitWindows hpc:notsupported rdf:resource xsd:Windows .
+hpc:MemorylimitLsfMemoryLimitEnforcement hpc:notsupported .
+
+hpc:enables_LSF_memory_limit_enforcement rdf:type owl:ObjectProperty .
+hpc:enables_LSF_job_memory_limit rdf:type owl:ObjectProperty .
+
+hpc:EnablesLsfMemoryLimitEnforcement rdfs:domain hpc:Memorylimit .
+hpc:EnablesLsfJobMemoryLimit rdfs:domain hpc:Memorylimit .
+hpc:EnablesLsfMemoryLimitEnforcement rdfs:range rdfs:Literal .
+hpc:EnablesLsfJobMemoryLimit rdfs:range rdfs:Literal .
+
+hpc:enables_LSF_memory_limit_enforcement_LSF_conf rdf:type owl:ObjectProperty .
+hpc:enables_LSF_job_memory_limit_LSF_conf rdf:type owl:ObjectProperty .
+
+hpc:EnablesLsfMemoryLimitEnforcementLsfConf rdfs:domain hpc:Memorylimit .
+hpc:EnablesLsfJobMemoryLimitLsfConf rdfs:domain hpc:Memorylimit .
+hpc:EnablesLsfMemoryLimitEnforcementLsfConf rdfs:range rdf:resource "http://example.org/hpc#LSF_conf" .
+hpc:EnablesLsfJobMemoryLimitLsfConf rdfs:range rdf:resource "http://example.org/hpc#LSF_conf" .
+
+hpc:enables_both_OS_and_LSF_memory_limit rdf:type owl:ObjectProperty .
+hpc:EnablesBothOsAndLsfMemoryLimit rdfs:domain hpc:Memory

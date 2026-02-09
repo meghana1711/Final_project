@@ -1,0 +1,38 @@
+hpc:Lsfexecutionhost a owl:Class .
+hpc:DataTransferNode rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Lsfexecutionhost .
+
+hpc:hasLSFServerHost owl:DatatypeProperty ;
+    rdfs:domain hpc:Datatransfernode ;
+    rdfs:range xsd:string .
+
+hpc:stagingArea a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datatransferqueue .
+
+hpc:DataTransferValidMount a owl:Class .
+hpc:hasValidMountPoint rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:DataTransferValidMount ;
+    rdfs:range hpc:Mountpoint .
+
+hpc:Mountpoint a owl:Class ;
+    rdfs:range xsd:string .
+
+hpc:Invalidmountpoint a owl:Class .
+hpc:hasInvalidMountPoint rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Invalidmountpoint ;
+    rdfs:range xsf:string .
+
+hpc:Remotedatamanagers a owl:Class .
+hpc:configuresForJobForwarding owl:ObjectProperty ;
+    rdfs:domain hpc:Remotedatamanagers .
+
+hpc:Lsfdatamanager a owl:Class .
+hpc:maintainsConnection rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range hpc:Connection .
+
+hpc:Lsfmulticlustercapabilitysubmissioncluster a owl:Class .
+hpc:configuresRemoteDataManagers owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfmulticlustercapabilitysubmissioncluster .
+
+hpc:Connection a owl:Class .

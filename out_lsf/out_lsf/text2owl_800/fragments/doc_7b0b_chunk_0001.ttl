@@ -1,0 +1,48 @@
+hpc:Lsfcluster a owl:Class .
+hpc:Lsfconf a owl:Class .
+hpc:lsfdhcpenv a owl:DatatypeProperty .
+hpc:Lsfdhcpenv rdfs:domain hpc:Lsfconf ;
+                 rdfs:range xsd:boolean .
+
+hpc:lsfreconfig a owl:ObjectProperty .
+hpc:Lsfreconfig rdfs:domain hpc:Lsfcluster ;
+                rdfs:range xsd:string .
+
+hpc:lsfchecksforconfigerrors a owl:ObjectProperty .
+hpc:Lsfchecksforconfigerrors rdfs:domain hpc:Lsfreconfig ;
+                             rdfs:range xsd:boolean .
+
+hpc:Lsfconfigerror a owl:Class .
+hpc:lsfconfirmreconfig a owl:ObjectProperty .
+hpc:Lsfconfirmreconfig rdfs:domain hpc:Lsfreconfig ;
+                       rdfs:range xsd:string .
+
+hpc:lsfdisplaygui a owl:ObjectProperty .
+hpc:Lsfdisplaygui rdfs:domain hpc:Lsfcluster ;
+                  rdfs:range xsd:string .
+
+hpc:Microsoftterminalservices a owl:Class .
+hpc:runjobs a owl:ObjectProperty .
+hpc:Runjobs rdfs:domain hpc:Microsoftterminalservices ;
+             rdfs:range xsd:string .
+
+hpc:lsflogondesktop a owl:DatatypeProperty .
+hpc:Lsflogondesktop rdfs:domain hpc:Job ;
+                    rdfs:range xsd:integer .
+
+hpc:lsbtsjob a owl:DatatypeProperty .
+hpc:Lsbtsjob rdfs:domain hpc:Job ;
+             rdfs:range xsd:string .
+
+hpc:lsftslogontime a owl:DatatypeProperty .
+hpc:Lsftslogontime rdfs:domain hpc:Job ;
+                   rdfs:range xsd:integer .
+
+hpc:Terminalservicesjob a owl:Class .
+hpc:dispatchtowindowsclienthosts a owl:ObjectProperty .
+hpc:Dispatchtowindowsclienthosts rdfs:domain hpc:Terminalservicesjob ;
+                                 rdfs:range xsd:string .
+
+hpc:lsbtsjobshelperhosts a owl:DatatypeProperty .
+hpc:Lsbtsjobshelperhosts rdfs:domain hpc:Terminalservicesjob ;
+                         rdfs:range xsd:string .

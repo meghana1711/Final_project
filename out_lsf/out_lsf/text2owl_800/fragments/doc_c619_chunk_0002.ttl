@@ -1,0 +1,24 @@
+hpc:Interactiveuser a owl:Class .
+hpc:Batchjob a owl:Class .
+hpc:Jobstarter a owl:Class .
+hpc:Submissionhost a owl:Class .
+
+hpc:hasdrivemapping a owl:ObjectProperty .
+hpc:Drivemappingonmachine rdfs:domain hpc:Interactiveuser ;
+                            rdfs:range hpc:Drivemapping .
+hpc:Drivemappingonjob rdfs:domain hpc:Batchjob ;
+                        rdfs:range hpc:Drivemapping .
+hpc:Drivemappingonjobstarter rdfs:domain hpc:Jobstarter ;
+                              rdfs:range hpc:Drivemapping .
+hpc:Drivemappingonsubmissionhost rdfs:domain hpc:Submissionhost ;
+                                 rdfs:range hpc:Drivemapping .
+
+hpc:Drivemapping a owl:Class .
+hpc:Driveletter rdfs:domain hpc:Drivemapping ;
+                 rdfs:range xsd:string .
+hpc:Serveraddress rdfs:domain hpc:Drivemapping ;
+                   rdfs:range xsd:string .
+
+hpc:hasenvironmentvariable a owl:ObjectProperty .
+hpc:Environmentvariableonjobstarter rdfs:domain hpc:Jobstarter ;
+                                 rdfs:range hpc:Environmentvariable .

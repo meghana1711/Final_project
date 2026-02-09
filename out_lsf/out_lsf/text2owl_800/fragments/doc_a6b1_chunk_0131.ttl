@@ -1,0 +1,75 @@
+hpc:baseport a owl:DatatypeProperty ;
+    rdfs:domain hpc:Ego ;
+    rdfs:range xsd:integer .
+
+hpc:egobaseconnectionport a owl:ObjectProperty ;
+    rdfs:domain hpc:Ego ;
+    rdfs:range hpc:Baseport .
+
+hpc:custombaseport a owl:DatatypeProperty ;
+    rdfs:domain hpc:Ego ;
+    rdfs:range xsd:integer .
+
+hpc:egoports a owl:ObjectProperty ;
+    rdfs:domain hpc:Ego ;
+    rdfs:range hpc:Portrange .
+
+hpc:Portrange a owl:Class ;
+    rdfs:subClassOf owl:Restriction ;
+    owl:onProperty hpc:EgoPorts ;
+    owl:hasValue xsd:integer .
+
+hpc:Managementhost a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:lendpolicy a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcegroup ;
+    rdfs:range hpc:Policy .
+
+hpc:borrowpolicy a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcegroup ;
+    rdfs:range hpc:Policy .
+
+hpc:reclaimpolicy a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcegroup ;
+    rdfs:range hpc:Policy .
+
+hpc:exclusiveownership a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcegroup ;
+    rdfs:range hpc:Consumer .
+
+hpc:Managementhostgroup a owl:Class ;
+    rdfs:subClassOf hpc:Resourcegroup ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Executionhost a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:differentresourceplans a owl:ObjectProperty ;
+    rdfs:domain hpc:Ego ;
+    rdfs:range hpc:Resourcegroup .
+
+hpc:Egodaemon a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Vemkd a owl:Class ;
+    rdfs:subClassOf hpc:Egodaemon ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Pem a owl:Class ;
+    rdfs:subClassOf hpc:Egodaemon ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Egosc a owl:Class ;
+    rdfs:subClassOf hpc:Egodaemon ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Lim a owl:Class ;
+    rdfs:subClassOf hpc:Lsfdaemon ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Lsfmasterlist a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Lsfdaemon a owl:Class ;
+    rdfs:subClassOf owl:Class .

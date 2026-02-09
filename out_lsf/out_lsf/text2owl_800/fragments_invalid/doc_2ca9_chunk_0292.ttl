@@ -1,0 +1,41 @@
+hpc:IndexRangeEndN rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:JobArrayIndex rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Indexrange ;
+    rdfs:range xsd:integer .
+
+hpc:IndexRangeCnt rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:IndexRangeStart1 rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Indexrange ;
+    rdfs:range xsd:integer .
+
+hpc:IndexRangeEnd1 rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Indexrange ;
+    rdfs:range xsd:integer .
+
+hpc:IndexRangeStep1 rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Indexrange ;
+    rdfs:range xsd:integer .
+
+hpc:IndexRangeStartN rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:IndexRangeEndN rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:IndexRangeStepN rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:Job a owl:Class .
+hpc:Indexrange a owl:Class .
+
+
+Note that the text did not provide information about the relationships between the classes or properties, so I did not include any rdfs:subClassOf, rdfs:domain, or rdfs:range statements for those relationships. Also, the text did not mention any new classes for the ATTR_CREATE and ATTR_DELETE records, so I did not include those in the output.

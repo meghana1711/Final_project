@@ -1,0 +1,60 @@
+hpc:Cluster a owl:Class ;
+  rdfs:subClassOf owl:Class .
+
+hpc:Hostgroup a owl:Class ;
+  rdfs:subClassOf hpc:Cluster .
+
+hpc:Computeunit a owl:Class ;
+  rdfs:subClassOf hpc:Cluster .
+
+hpc:runJob an owl:ObjectProperty ;
+  rdfs:domain hpc:Computeunit ;
+  rdfs:range hpc:Hostgroup .
+
+hpc:preflevel a owl:DatatypeProperty ;
+  rdfs:domain hpc:Hostgroup ;
+  rdfs:range xsd:nonNegativeInteger .
+
+hpc:minproc a owl:DatatypeProperty ;
+  rdfs:domain hpc:Computeunit ;
+  rdfs:range xsd:nonNegativeInteger .
+
+hpc:maxproc a owl:DatatypeProperty ;
+  rdfs:domain hpc:Computeunit ;
+  rdfs:range xsd:nonNegativeInteger .
+
+hpc:outputFile an owl:ObjectProperty ;
+  rdfs:domain hpc:Computeunit ;
+  rdfs:range xsd:string .
+
+hpc:overwriteOutputFile an owl:ObjectProperty ;
+  rdfs:domain hpc:Computeunit ;
+  rdfs:range xsd:string .
+
+hpc:processLimit an owl:DatatypeProperty ;
+  rdfs:domain hpc:Computeunit ;
+  rdfs:range xsd:nonNegativeInteger .
+
+hpc:queueName an owl:ObjectProperty ;
+  rdfs:domain hpc:Computeunit ;
+  rdfs:range xsd:string .
+
+hpc:resReq an owl:ObjectProperty ;
+  rdfs:domain hpc:Computeunit ;
+  rdfs:range xsd:string .
+
+hpc:resReqs rdf:List ;
+  rdf:first hpc:resReq ;
+  rdf:rest rdf:nil .
+
+hpc:stackLimit an owl:DatatypeProperty ;
+  rdfs:domain hpc:Computeunit ;
+  rdfs:range xsd:nonNegativeInteger .
+
+hpc:serviceClass an owl:ObjectProperty ;
+  rdfs:domain hpc:Computeunit ;
+  rdfs:range xsd:string .
+
+hpc:threadLimit an owl:DatatypeProperty ;
+  rdfs:domain hpc:Computeunit ;
+  rdfs:range xsd:nonNegativeInteger .

@@ -1,0 +1,57 @@
+hpc:Job a owl:Class .
+hpc:User a owl:Class .
+hpc:Project a owl:Class .
+hpc:Queue a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Execution a owl:Class .
+hpc:Submissioncluster a owl:Class .
+hpc:ExecutionHome owl:DatatypeProperty .
+hpc:ExecutionCWD owl:DatatypeProperty .
+hpc:ExecutionPid owl:DatatypeProperty .
+hpc:JobName owl:DatatypeProperty .
+hpc:FromHost owl:ObjectProperty .
+hpc:JobState owl:ObjectProperty .
+hpc:QueueName owl:DatatypeProperty .
+hpc:SubmissionTime owl:DatatypeProperty .
+hpc:JobID owl:DatatypeProperty .
+hpc:jobforwarded a owl:ObjectProperty .
+hpc:forcedtorun a owl:ObjectProperty .
+hpc:submittedfrom a owl:ObjectProperty .
+hpc:toqueue a owl:ObjectProperty .
+hpc:Cwd rdfs:domain hpc:Execution .
+hpc:Executionpid rdfs:domain hpc:Execution .
+hpc:Executionhome rdfs:domain hpc:Execution .
+hpc:Jobname rdfs:domain hpc:Job .
+hpc:Jobid rdfs:domain hpc:Job .
+hpc:Fromhost rdfs:domain hpc:Job .
+hpc:Jobstate rdfs:domain hpc:Job .
+hpc:Queuename rdfs:domain hpc:Queue .
+hpc:Submissiontime rdfs:domain hpc:Job .
+hpc:Jobforwarded rdfs:domain hpc:Job .
+hpc:Forcedtorun rdfs:domain hpc:Job .
+hpc:Submittedfrom rdfs:domain hpc:Job .
+hpc:Toqueue rdfs:domain hpc:Job .
+hpc:Submissioncluster rdfs:subClassOf hpc:Cluster .
+hpc:Execution rdfs:subClassOf hpc:Cluster .
+hpc:Job a rdfs:subClassOf rdf:Resource .
+hpc:User a rdfs:subClassOf rdf:Resource .
+hpc:Project a rdfs:subClassOf rdf:Resource .
+hpc:Queue a rdfs:subClassOf rdf:Resource .
+hpc:Cluster a rdfs:subClassOf rdf:Resource .
+
+hpc:Job rdfs:range rdf:List ;
+    rdfs:range hpc:Jobid ;
+    rdfs:range hpc:Jobname ;
+    rdfs:range hpc:Fromhost ;
+    rdfs:range hpc:Jobstate ;
+    rdfs:range hpc:Submissiontime ;
+    rdfs:range hpc:Queuename ;
+    rdfs:range hpc:Toqueue ;
+    rdfs:range hpc:Jobforwarded ;
+    rdfs:range hpc:Forcedtorun ;
+    rdfs:range hpc:Submittedfrom .
+
+hpc:Execution rdfs:range rdf:List ;
+    rdfs:range hpc:Executionhome ;
+    rdfs:range hpc:Executioncwd ;
+    rdfs:range hpc:Executionp

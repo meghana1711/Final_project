@@ -1,0 +1,73 @@
+hpc:Fixpack       a owl:Class ;
+                  rdfs:subClassOf   rdf:Resource .
+
+hpc:Patch        a owl:Class ;
+                  rdfs:subClassOf   rdf:Resource .
+
+hpc:Issue        a owl:Class ;
+                  rdfs:subClassOf   rdf:Resource .
+
+hpc:Automatictimebasedconfiguration   a owl:Class ;
+                                       rdfs:subClassOf   rdf:Resource .
+
+hpc:Lsbapplicationsfile   a owl:Class ;
+                           rdfs:subClassOf   rdf:Resource .
+
+hpc:Lsbhostsfile   a owl:Class ;
+                    rdfs:subClassOf   rdf:Resource .
+
+hpc:Lsbqueuesfile   a owl:Class ;
+                     rdfs:subClassOf   rdf:Resource .
+
+hpc:Lsbusersfile   a owl:Class ;
+                    rdfs:subClassOf   rdf:Resource .
+
+hpc:Lsbresourcesfile   a owl:Class ;
+                        rdfs:subClassOf   rdf:Resource .
+
+hpc:Lsbparamsfile   a owl:Class ;
+                     rdfs:subClassOf   rdf:Resource .
+
+hpc:runwindow   a owl:ObjectProperty ;
+                rdfs:domain   hpc:Automatictimebasedconfiguration ;
+                rdfs:range   xsd:string .
+
+hpc:dispatchwindow   a owl:ObjectProperty ;
+                     rdfs:domain   hpc:Automatictimebasedconfiguration ;
+                rdfs:range   xsd:string .
+
+hpc:Applicationlimits   a owl:Class ;
+                         rdfs:subClassOf   rdf:Resource .
+
+hpc:app         a owl:DatatypeProperty ;
+                rdfs:domain   hpc:Applicationlimits ;
+                rdfs:range   xsd:string .
+
+hpc:perApp   a owl:DatatypeProperty ;
+              rdfs:domain   hpc:Applicationlimits ;
+              rdfs:range   xsd:string .
+
+hpc:Containersupport   a owl:Class ;
+                        rdfs:subClassOf   rdf:Resource .
+
+hpc:Queuelevelcontainerparameters   a owl:Class ;
+                                     rdfs:subClassOf   hpc:Containersupport .
+
+hpc:Docker       a owl:Class ;
+                 rdfs:subClassOf   rdf:Resource .
+
+hpc:Nvidiadocker   a owl:Class ;
+                    rdfs:subClassOf   rdf:Resource .
+
+hpc:Shifter      a owl:Class ;
+                 rdfs:subClassOf   rdf:Resource .
+
+hpc:Singularity  a owl:Class ;
+                 rdfs:subClassOf   rdf:Resource .
+
+hpc:containeratqueuelevel   a owl:ObjectProperty ;
+                             rdfs:domain   hpc:Queuelevelcontainerparameters ;
+                             rdfs:range   hpc:Docker .
+
+hpc:containeratqueuelevel   a owl:ObjectProperty ;
+                             rdfs:domain   hpc:Queuelevelcontainer

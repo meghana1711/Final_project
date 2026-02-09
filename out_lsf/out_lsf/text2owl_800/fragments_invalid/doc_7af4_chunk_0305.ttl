@@ -1,0 +1,26 @@
+hpc:GpuRequirement a owl:Class .
+hpc:mode a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuRequirement ;
+    rdfs:range xsd:string .
+hpc:ngpusPhysical a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuRequirement ;
+    rdfs:range xsd:string .
+hpc:gpuRunTimeFactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:GpuRequirement ;
+    rdfs:range xsd:decimal .
+hpc:GPU_RUN_TIME_FACTOR_Default a xsd:decimal .
+hpc:GPU_RUN_TIME_FACTOR_Default "1.0"^^xsd:decimal .
+hpc:gpuRunTimeFactorDescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:GpuRunTimeFactor ;
+    rdfs:range xsd:string .
+hpc:gpuRunTimeFactorSyntax a owl:DatatypeProperty ;
+    rdfs:domain hpc:GpuRunTimeFactor ;
+    rdfs:range xsd:string .
+hpc:histHours a owl:DatatypeProperty ;
+    rdfs:domain hpc:GpuRequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:HIST_HOURS_Default a xsd:nonNegativeInteger .
+hpc:HIST_HOURS_Default "0"^^xsd:nonNegativeInteger .
+hpc:histHoursDescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:HistHours ;
+    rdfs:range xsd:string .

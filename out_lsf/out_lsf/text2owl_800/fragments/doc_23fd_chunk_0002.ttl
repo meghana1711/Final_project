@@ -1,0 +1,30 @@
+hpc:Lwsconf a owl:Class .
+hpc:Parameter a owl:Class .
+hpc:Command a owl:Class .
+hpc:Configfile a owl:Class .
+hpc:Enhancedsecurityparameters a owl:Class .
+hpc:Commandsjson a owl:Class .
+
+hpc:hasparameter a owl:ObjectProperty .
+hpc:hascommand a owl:ObjectProperty .
+hpc:islocatedin a owl:ObjectProperty .
+hpc:hasenhancedsecurity a owl:ObjectProperty .
+hpc:definescommands a owl:ObjectProperty .
+
+hpc:Lwsconf rdfs:subClassOf owl:Class .
+hpc:Parameter rdfs:subClassOf hpc:Lwsconf .
+hpc:Command rdfs:subClassOf hpc:Lwsconf .
+hpc:Configfile rdfs:subClassOf owl:Class .
+hpc:Enhancedsecurityparameters rdfs:subClassOf hpc:Configfile .
+hpc:Commandsjson rdfs:subClassOf hpc:Configfile .
+
+hpc:Hasparameter rdfs:domain hpc:Lwsconf ;
+                   rdfs:range hpc:Parameter .
+hpc:Hascommand rdfs:domain hpc:Lwsconf ;
+                   rdfs:range hpc:Command .
+hpc:Islocatedin rdfs:domain hpc:Configfile ;
+                   rdfs:range xsd:string .
+hpc:Hasenhancedsecurity rdfs:domain hpc:Configfile ;
+                      rdfs:range xsd:string .
+hpc:Definescommands rdfs:domain hpc:Configfile ;
+                      rdfs:range hpc:Commandsjson .

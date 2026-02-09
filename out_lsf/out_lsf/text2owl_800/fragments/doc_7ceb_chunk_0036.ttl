@@ -1,0 +1,51 @@
+hpc:Daemon
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a running daemon." .
+
+hpc:LSF_CONFDIR
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents the directory for LSF configuration." .
+
+hpc:lsf_cluster_name
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents the name of an LSF cluster." .
+
+hpc:lsf_shared
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents the shared configuration file for LSF." .
+
+hpc:LSB_CONFDIR
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents the directory for LSB configuration." .
+
+hpc:lsb_hosts
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents the hosts configuration file for LSB." .
+
+hpc:lsb_queues
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents the queues configuration file for LSB." .
+
+hpc:lsb_resources
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents the resources configuration file for LSB." .
+
+hpc:reconfig
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Host ] ;
+    rdfs:range [ rdf:type rdf:Boolean ] ;
+    rdfs:comment "The action of reconfiguring LIM on a host." .
+
+hpc:restart_lim
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Host ] ;
+    rdfs:range [ rdf:type rdf:Literal ] ;
+    rdfs:comment "The action of restarting LIM on a host." .

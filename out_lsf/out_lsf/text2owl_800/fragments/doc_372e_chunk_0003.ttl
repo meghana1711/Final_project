@@ -1,0 +1,37 @@
+hpc:FlexNet#LMSTAT_PATH
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Flexnet ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The path to the lmstat command for FlexNet." .
+
+hpc:RepriseLicenseManager
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a Reprise License Manager." .
+
+hpc:RepriseLicenseManager#RLMSTAT_PATH
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Repriselicensemanager ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The path to the rlmstat command for Reprise License Manager." .
+
+hpc:Cluster
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a cluster that can use License Scheduler." .
+
+hpc:Clusters
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range rdf:List ;
+    rdfs:comment "The clusters that are permitted to use License Scheduler." .
+
+hpc:ServiceDomain
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A group of one or more license servers." .
+
+hpc:ClusterMode
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A mode where each cluster can access licenses from one WAN and one LAN service domain." .

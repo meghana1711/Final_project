@@ -1,0 +1,25 @@
+hpc:jobsubmit a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmctlddaemon ;
+    rdfs:range rdf:Seq ;
+    rdfs:subPropertyOf hpc:ModifiesJobParameters ;
+    rdfs:comment "This function is called by the slurmctld daemon with the job submission parameters supplied by the user regardless of the command used (e.g. salloc, sbatch, slurmrestd)." .
+
+hpc:Jobdescriptor a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:comment "The job allocation request specifications, before job defaults are set." .
+
+hpc:submituid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmctlddaemon ;
+    rdfs:range xsd:unsignedInt ;
+    rdfs:comment "User ID initiating the request." .
+
+hpc:errormsg a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmctlddaemon ;
+    rdfs:range rdf:XMLLiteral ;
+    rdfs:comment "If the argument is not null, then a plugin generated error message can be stored here." .
+
+hpc:Success a xsd:unsignedInt ;
+    rdfs:comment "SLURM_SUCCESS on success." .
+
+hpc:Error a xsd:unsignedInt ;
+    rdfs:comment "SLURM_ERROR on failure." .

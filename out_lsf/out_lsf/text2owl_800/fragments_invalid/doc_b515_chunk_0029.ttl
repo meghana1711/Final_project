@@ -1,0 +1,29 @@
+hpc:Jobplacementalgorithm a owl:Class .
+hpc:BestFitAlgorithm a subClassOf hpc:JobPlacementAlgorithm .
+hpc:MinimumSlotAllocation a subClassOf hpc:BestFitAlgorithm .
+hpc:HostPreference a subClassOf hpc:BestFitAlgorithm .
+hpc:SpecifiedMaxCUS a subClassOf hpc:BestFitAlgorithm .
+hpc:TypePreference a subClassOf hpc:BestFitAlgorithm .
+
+hpc:pref a owl:ObjectProperty .
+hpc:Pref rdfs:domain hpc:Jobplacementalgorithm .
+hpc:Pref rdfs:range xsd:string .
+hpc:usablecuslots a owl:DatatypeProperty .
+hpc:Usablecuslots rdfs:domain hpc:Minimumslotallocation .
+hpc:Usablecuslots rdfs:range xsd:integer .
+hpc:maxcus a owl:DatatypeProperty .
+hpc:Maxcus rdfs:domain hpc:Specifiedmaxcus .
+hpc:Maxcus rdfs:range xsd:integer .
+hpc:type a owl:DatatypeProperty .
+hpc:Type rdfs:domain hpc:Typepreference .
+hpc:Type rdfs:range xsd:string .
+hpc:excl a owl:ObjectProperty .
+hpc:Excl rdfs:domain hpc:Jobplacementalgorithm .
+hpc:Excl rdfs:range hpc:Computeunit .
+hpc:computeunitpreferencem a owl:ObjectProperty .
+hpc:Computeunitpreferencem rdfs:domain hpc:Jobplacementalgorithm .
+hpc:Computeunitpreferencem rdfs:range hpc:Computeunit .
+
+hpc:Computeunit a owl:Class .
+hpc:CU a subClassOf hpc:ComputeUnit .
+hpc:Switch a subClassOf hpc:ComputeUnit .

@@ -1,0 +1,35 @@
+hpc:Job a owl:Class .
+hpc:Memoryconsumableresource a owl:Class .
+hpc:Cpuconsumableresource a owl:Class .
+hpc:Socketconsumableresource a owl:Class .
+hpc:Coreconsumableresource a owl:Class .
+hpc:Task a owl:Class .
+hpc:Node a owl:Class .
+hpc:Sruncommand a owl:Class .
+
+hpc:Hasmemoryconsumableresource rdfs:domain hpc:Job .
+hpc:Hasmemoryconsumableresource rdfs:range hpc:Memoryconsumableresource .
+hpc:Hascpuconsumableresource rdfs:domain hpc:Job .
+hpc:Hascpuconsumableresource rdfs:range hpc:Cpuconsumableresource .
+hpc:Hassocketconsumableresource rdfs:domain hpc:Job .
+hpc:Hassocketconsumableresource rdfs:range hpc:Socketconsumableresource .
+hpc:Hascoreconsumableresource rdfs:domain hpc:Job .
+hpc:Hascoreconsumableresource rdfs:range hpc:Coreconsumableresource .
+hpc:Hastask rdfs:domain hpc:Job .
+hpc:Hastask rdfs:range hpc:Task .
+hpc:Hasnode rdfs:domain hpc:Job .
+hpc:Hasnode rdfs:range hpc:Node .
+hpc:Hassruncommand rdfs:domain hpc:Job .
+hpc:Hassruncommand rdfs:range hpc:Sruncommand .
+
+hpc:Blockcyclicmemorybinding rdfs:subClassOf hpc:Memoryconsumableresource .
+hpc:Planememorybinding rdfs:subClassOf hpc:Memoryconsumableresource .
+hpc:Selectlinearmemorybinding rdfs:subClassOf hpc:Memoryconsumableresource .
+hpc:CrMemory rdfs:subClassOf hpc:Selecttypeparameters .
+hpc:CrCpuMemory rdfs:subClassOf hpc:Selecttypeparameters .
+hpc:CrSocketMemory rdfs:subClassOf hpc:Selecttypeparameters .
+hpc:CrCoreMemory rdfs:subClassOf hpc:Selecttypeparameters .
+
+hpc:Ntaskspernode rdfs:domain hpc:Sruncommand .
+hpc:Ntaskspersocket rdfs:domain hpc:Sruncommand .
+hpc:Ntaskspercore rdfs:domain hpc:Sruncommand .

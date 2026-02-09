@@ -1,0 +1,4 @@
+hpc:Job a owl:Class.
+hpc:arrayjobid a owl:DatatypeProperty.
+hpc:jobid a owl:ObjectProperty.
+hpc:Jobid a rdfs:DatatypeProperty, rdfs:domain hpc:Job; rdfs:range xsd:string.

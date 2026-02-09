@@ -1,0 +1,47 @@
+hpc:Slurmcluster a owl:Class .
+hpc:Slurmclusterconfiguration a owl:Class .
+hpc:sacctmgrcommand a owl:ObjectProperty .
+hpc:Accountconfiguration a owl:Class .
+
+hpc:Slurmcluster rdfs:subClassOf hpc:Hpcresource .
+hpc:Slurmclusterconfiguration rdfs:subClassOf hpc:Configuration .
+
+hpc:hasSlurmClusterConfiguration rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmcluster ;
+    rdfs:range hpc:Slurmclusterconfiguration .
+
+hpc:sacctmgrCommand rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmclusterconfiguration ;
+    rdfs:range xsd:string .
+
+hpc:accountConfiguration rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Configuration .
+
+hpc:Lostjobsduetodaemoncrash a owl:Class .
+hpc:Lostjobsduetohardwarefailure a owl:Class .
+hpc:Lostjobsduetostatenotreachingdisk a owl:Class .
+hpc:Lostjobsduetocachedstateinmemory a owl:Class .
+hpc:Lostjobsduetointervalbetweenstatesaves a owl:Class .
+
+hpc:Slurmcluster rdfs:subClassOf hpc:Losesjobs .
+hpc:LosesJobs rdf:type owl:Class .
+
+hpc:savemaxwait a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmcluster .
+
+hpc:Homogeneouscluster a owl:Class .
+hpc:resourcelimitpropagation a owl:ObjectProperty .
+
+hpc:homogeneousCluster rdf:type owl:Class .
+hpc:resourceLimitPropagation rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmcluster ;
+    rdfs:range hpc:Resourcelimitpropagation .
+
+hpc:Propagateresourcelimits a owl:Class .
+hpc:Propagateresourcelimitsexcept a owl:Class .
+hpc:srunpropagateoption a owl:ObjectProperty .
+
+hpc:PropagateResourceLimits rdf:type owl:Class .
+hpc:PropagateResourceLimitsExcept rdf:type owl:Class .
+hpc:srunPropagateOption rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:User .

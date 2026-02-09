@@ -1,0 +1,55 @@
+hpc:Host a owl:Class .
+hpc:Executionhost rdfs:domain hpc:Host ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:Class .
+
+hpc:taskretrylimitreached a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:boolean ;
+    rdfs:subPropertyOf owl:ObjectProperty .
+
+hpc:Task a owl:Class .
+hpc:Tasksummary rdfs:domain hpc:Task ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf owl:DatatypeProperty .
+
+hpc:Summaryoferrors rdfs:domain hpc:Task ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf owl:DatatypeProperty .
+
+hpc:debuggingenabled a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Debugging .
+
+hpc:Debugging a owl:Class .
+hpc:SschedDebugLogMask rdfs:domain hpc:Debugging ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf owl:DatatypeProperty .
+
+hpc:SschedDebugClass rdfs:domain hpc:Debugging ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf owl:DatatypeProperty .
+
+hpc:SschedDebugModules rdfs:domain hpc:Debugging ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf owl:DatatypeProperty .
+
+hpc:SschedDebugRemoteHosts rdfs:domain hpc:Debugging ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf owl:DatatypeProperty .
+
+hpc:SschedDebugRemoteFile rdfs:domain hpc:Debugging ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf owl:DatatypeProperty .
+
+hpc:debuggingsignal a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf owl:DatatypeProperty .
+
+hpc:Knownissue a owl:Class .
+hpc:Generalissue rdfs:subClassOf hpc:Knownissue .
+
+hpc:Lsfsessionschedulercacheissue rdfs:subClassOf hpc:Generalissue .
+hpc:Lsfsessionschedulerdoesnotsupportpertaskmemoryswaptracking rdfs:subClassOf hpc:Generalissue .
+hpc:Multilinecommandlinerequiresquotes rdfs:subClassOf hpc:Generalissue .

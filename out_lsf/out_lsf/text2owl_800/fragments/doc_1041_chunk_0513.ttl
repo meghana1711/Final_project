@@ -1,0 +1,28 @@
+hpc:Usergroup a owl:Class .
+hpc:UserGroup rdfs:subClassOf owl:Class .
+
+hpc:haspermission a owl:ObjectProperty .
+hpc:Haspermission rdfs:domain hpc:Usergroup ;
+                    rdfs:range rdf:Resource .
+
+hpc:reservationunit a owl:DatatypeProperty .
+hpc:Reservationunit rdfs:domain hpc:Advancereservation ;
+                     rdfs:range xsd:string .
+
+hpc:numberofunits a owl:DatatypeProperty .
+hpc:Numberofunits rdfs:domain hpc:Advancereservation ;
+                   rdfs:range xsd:nonNegativeInteger .
+
+hpc:candidatehosts a owl:ObjectProperty .
+hpc:Candidatehosts rdfs:domain hpc:Advancereservation ;
+                    rdfs:range rdf:List .
+
+hpc:requiredusers a owl:ObjectProperty .
+hpc:Requiredusers rdfs:domain hpc:Advancereservation ;
+                   rdfs:range rdf:List .
+
+hpc:timeperiod a owl:DatatypeProperty .
+hpc:Timeperiod rdfs:domain hpc:Advancereservation ;
+                 rdfs:range xsd:time .
+
+hpc:Advancereservation a owl:Class .

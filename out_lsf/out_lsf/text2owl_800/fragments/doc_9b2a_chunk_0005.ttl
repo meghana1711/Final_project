@@ -1,0 +1,48 @@
+hpc:Servicedomain a owl:Class .
+
+# ServiceDomain has multiple projects
+hpc:Hasmultipleprojects rdfs:domain hpc:Servicedomain ;
+    rdfs:range hpc:Service .
+
+# Job class
+hpc:Job a owl:Class .
+
+# Job runs on the same execution host
+hpc:Runsonsamehost rdfs:domain hpc:Job ;
+    rdfs:range hpc:Executionhost .
+
+# LicenseServer class
+hpc:Licenseserver a owl:Class .
+
+# LicenseServer has multiple projects
+hpc:Hasmultipleprojects rdfs:domain hpc:Licenseserver ;
+    rdfs:range hpc:Project .
+
+# BlstatCommand class
+hpc:Blstatcommand a owl:Class .
+
+# BlstatCommand has custom output format
+hpc:Hascustomoutputformat rdfs:domain hpc:Blstatcommand ;
+    rdfs:range hpc:Outputformat .
+
+# OutputFormat class
+hpc:Outputformat a owl:Class .
+
+# OutputFormat has field names
+hpc:Hasfieldnames rdfs:domain hpc:Outputformat ;
+    rdfs:range rdf:List .
+
+# FieldName class
+hpc:Fieldname a owl:Class .
+
+# FieldName has output width
+hpc:Hasoutputwidth rdfs:domain hpc:Fieldname ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# FieldName has delimiter
+hpc:Hasdelimiter rdfs:domain hpc:Fieldname ;
+    rdfs:range xsd:string .
+
+# BlstatFieldName is a subclass of FieldName
+hpc:Blstatfieldname a owl:Class ;
+    rdfs:subClassOf hpc:Fieldname .

@@ -1,0 +1,69 @@
+hpc:Interactivejob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Pseudoterminalinteractivejob a owl:Class ;
+    rdfs:subClassOf hpc:Interactivejob .
+
+# Object Properties
+hpc:supportspseudoterminal a owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminalinteractivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:createspseudoterminalonwindows a owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminalinteractivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:sendsoutputtoterminal a owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminalinteractivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:sendsoutputtofile a owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminalinteractivejob ;
+    rdfs:range hpc:Outputfile .
+
+hpc:sendserrortofile a owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminalinteractivejob ;
+    rdfs:range hpc:Errorfile .
+
+hpc:displaysoutputorerroronscreen a owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminalinteractivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:ischeckpointable a owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminalinteractivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:isrerunnable a owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminalinteractivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:usesssh a owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminalinteractivejob ;
+    rdfs:range xsd:boolean .
+
+# Datatype Properties
+hpc:hasinputfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Inputfile .
+
+hpc:hasoutputfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Outputfile .
+
+hpc:haserrorfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Errorfile .
+
+# Conflicting Options
+hpc:issconflictswith a owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminalinteractivejob ;
+    rdfs:range hpc:Conflictingoption .
+
+hpc:Conflictingoption a owl:Class ;
+    rdfs:subClassOf hpc:Option .
+
+hpc:I a hpc:ConflictingOption .
+hpc:Ip a hpc:ConflictingOption .
+hpc:IS a hpc:ConflictingOption .
+hpc:ISp a hpc:ConflictingOption .
+hpc:Is a hpc:ConflictingOption .

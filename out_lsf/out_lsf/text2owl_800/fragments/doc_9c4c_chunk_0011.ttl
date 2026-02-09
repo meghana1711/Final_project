@@ -1,0 +1,36 @@
+hpc:Installation a owl:Class .
+hpc:LSF_TOP rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Installation ;
+    rdfs:range xsd:string .
+
+hpc:LSF_ADMINS rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Installation ;
+    rdfs:range xsd:string .
+
+hpc:LSF_CLUSTER_NAME rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Installation ;
+    rdfs:range xsd:string .
+
+hpc:LSF_MASTER_LIST rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Installation ;
+    rdfs:range xsd:string .
+
+hpc:LSF_ENTITLEMENT_FILE rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Installation ;
+    rdfs:range xsd:string .
+
+hpc:LSF_TARDIR rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Installation ;
+    rdfs:range xsd:string .
+
+hpc:CONFIGURATION_TEMPLATE rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Installation ;
+    rdfs:range hpc:Configurationtemplate .
+
+hpc:Configurationtemplate a owl:Class .
+
+hpc:server_config rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Installation ;
+    rdfs:range hpc:Serverconfig .
+
+hpc:Serverconfig a owl:Class .

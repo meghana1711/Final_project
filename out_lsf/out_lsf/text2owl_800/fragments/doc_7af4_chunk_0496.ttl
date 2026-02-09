@@ -1,0 +1,58 @@
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Always active." .
+
+hpc:runlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the maximum run limit and optionally the default run limit." .
+
+hpc:hasrunlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The run limit of a job." .
+
+hpc:isKilledByLSF rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Jobs that are in a running state for longer than the speciﬁed maximum run limit are killed by LSF." .
+
+hpc:hasTerminationJobAction rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Optional termination job action to override the default." .
+
+hpc:isRejectedByQueue rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Jobs submitted with a run limit greater than the maximum run limit are rejected by the queue." .
+
+hpc:hasDefaultRunLimit rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The default run limit for jobs submitted to the queue without a job-level run limit." .
+
+hpc:isUsedWithBackfillScheduling rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Paralleljob ;
+    rdfs:comment "The default run limit is used with backfill scheduling of parallel jobs." .
+
+hpc:hasRuntimeParameter rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range hpc:Runtimeparameter ;
+    rdfs:comment "Define the RUNTIME parameter in an application profile instead of a run limit." .
+
+hpc:hasSoftRunLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Runlimit ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The first one is the default, or soft, run limit." .
+
+hpc:hasHardRunLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Runlimit ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The second one is the maximum run limit." .
+
+hpc:runLimitFormat rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Runlimit ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The run limit is in the form of [hour:]minute." .

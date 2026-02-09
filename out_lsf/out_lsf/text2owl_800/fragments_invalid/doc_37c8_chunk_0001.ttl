@@ -1,0 +1,48 @@
+hpc:Amdgpu a owl:Class .
+hpc:Amdgpu rdfs:subClassOf [ a owl:Class ;
+                               rdfs:subClassOf hpc:Gpu ] .
+hpc:Amdgpu rdfs:domain gvendor .
+hpc:Amdgpu rdfs:range xsd:string .
+
+hpc:Vegagpu a owl:Class .
+hpc:Vegagpu rdfs:subClassOf [ a owl:Class ;
+                               rdfs:subClassOf hpc:Gpu ] .
+hpc:Vegagpu rdfs:domain gmodel .
+hpc:Vegagpu rdfs:range xsd:string .
+hpc:Vegagpu rdfs:domain glink .
+hpc:Vegagpu rdfs:range xsd:boolean .
+
+hpc:Nvidiagpu a owl:Class .
+hpc:Nvidiagpu rdfs:subClassOf [ a owl:Class ;
+                                  rdfs:subClassOf hpc:Gpu ] .
+hpc:Nvidiagpu rdfs:domain gvendor .
+hpc:Nvidiagpu rdfs:range xsd:string .
+
+hpc:C2050C2070gpu a owl:Class .
+hpc:C2050C2070gpu rdfs:subClassOf [ a owl:Class ;
+                                         rdfs:subClassOf hpc:Teslagpu ] .
+
+hpc:Teslagpu a owl:Class .
+hpc:Teslagpu rdfs:subClassOf [ a owl:Class ;
+                                  rdfs:subClassOf hpc:Gpu ] .
+
+hpc:Tesla12ggpu a owl:Class .
+hpc:Tesla12ggpu rdfs:subClassOf [ a owl:Class ;
+                                      rdfs:subClassOf hpc:Teslagpu ] .
+hpc:Tesla12ggpu rdfs:domain gmodel .
+hpc:Tesla12ggpu rdfs:range xsd:string .
+hpc:Tesla12ggpu rdfs:domain memory .
+hpc:Tesla12ggpu rdfs:range xsd:decimal .
+
+hpc:Tesla12ggpuaffno a owl:Class .
+hpc:Tesla12ggpuaffno rdfs:subClassOf [ a owl:Class ;
+                                           rdfs:subClassOf hpc:Tesla12ggpu ] .
+hpc:Tesla12GGPUAffNo rdf:type owl:ObjectProperty .
+hpc:Tesla12ggpuaffno rdfs:domain gmodel .
+hpc:Tesla12ggpuaffno rdfs:range xsd:boolean .
+
+hpc:Tesla12ggpureservemem a owl:Class .
+hpc:Tesla12ggpureservemem rdfs:subClassOf [ a owl:Class ;
+                                                 rdfs:subClassOf hpc:Tesla12ggpu ] .
+hpc:Tesla12GGPUReserveMem rdf:type owl:ObjectProperty .
+hpc:Tesla12GGPU

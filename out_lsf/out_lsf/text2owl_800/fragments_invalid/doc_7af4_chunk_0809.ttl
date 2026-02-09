@@ -1,0 +1,64 @@
+hpc:Lsfserverdir a owl:Class .
+hpc:Lsfenablebeatservice a owl:Class .
+hpc:Energyservice a owl:Class .
+hpc:Allservices a owl:Class .
+hpc:Bjob a owl:Class .
+hpc:Bhost a owl:Class .
+
+# Object Properties
+hpc:hasserverdir a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfserverdir ;
+    rdfs:range hpc:Bhost .
+
+hpc:enablesbeatservice a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfenablebeatservice ;
+    rdfs:range hpc:Bhost .
+
+hpc:hasenergyservice a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhost ;
+    rdfs:range hpc:Energyservice .
+
+hpc:hasallservices a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhost ;
+    rdfs:range hpc:Allservices .
+
+hpc:queriesesfunctions a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhost ;
+    rdfs:range xsd:string .
+
+hpc:hasesservers a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhost ;
+    rdfs:range xsd:string .
+
+# Datatype Properties
+hpc:syntax a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfenablebeatservice ;
+    rdfs:range xsd:string .
+
+hpc:description a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfenablebeatservice ;
+    rdfs:range xsd:string .
+
+hpc:validvalues a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfenablebeatservice ;
+    rdfs:range xsd:string .
+
+hpc:defaultvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfenablebeatservice ;
+    rdfs:range xsd:string .
+
+hpc:example a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfenablebeatservice ;
+    rdfs:range xsd:string .
+
+hpc:resourceusage a owl:DatatypeProperty ;
+    rdfs:domain hsd:Bjob ;
+    rdfs:range xsd:string .
+
+hpc:energyusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjob ;
+    rdfs:range xsd:decimal .
+
+# Subclass Relations
+hpc:Energyservice a rdfs:subClassOf hpc:Lsfenablebeatservice .
+hpc:Allservices a rdfs:subClassOf hpc:Lsfenablebeatservice .

@@ -1,0 +1,25 @@
+hpc:User a owl:Class .
+hpc:Usergroup a owl:Class .
+hpc:Resourceallocationlimit a owl:Class .
+hpc:Resourceconsumer a owl:Class .
+hpc:limitpolicyname a owl:ObjectProperty .
+hpc:appliedusers a owl:ObjectProperty .
+hpc:datatype a owl:DatatypeProperty .
+
+hpc:User rdfs:subClassOf xsd:string .
+hpc:Usergroup rdfs:subClassOf xsd:string .
+hpc:Resourceallocationlimit rdfs:subClassOf rdf:List .
+hpc:Resourceconsumer rdfs:subClassOf rdf:List .
+
+hpc:Limitpolicyname rdfs:domain hpc:Resourceallocationlimit ;
+    rdfs:range xsd:string ;
+    rdfs:range hpc:Limitpolicyname .
+
+hpc:Appliedusers rdfs:domain hpc:Resourceallocationlimit ;
+    rdfs:range rdf:List .
+
+hpc:ResourceAllocationLimit rdfs:subPropertyOf hpc:AppliedUsers ;
+    rdfs:subPropertyOf hpc:LimitPolicyName .
+
+hpc:Internalresourcelimit a owl:Class .
+hpc:Externalresourcelimit a owl:Class .

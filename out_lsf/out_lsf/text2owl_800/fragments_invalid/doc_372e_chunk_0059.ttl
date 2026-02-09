@@ -1,0 +1,74 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Project a owl:Class .
+hpc:Projectgroup a owl:Class .
+hpc:Feature a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Group a owl:Class .
+hpc:Servicedomain a owl:Class .
+hpc:groupdistribution a owl:ObjectProperty .
+hpc:projectgroupdistribution a owl:ObjectProperty .
+hpc:servicedomains a owl:ObjectProperty .
+hpc:clusterdistribution a owl:ObjectProperty .
+
+rdfs:domain hpc:Groupdistribution rdf:Type rdfs:Domain .
+rdfs:domain hpc:Projectgroupdistribution rdf:Type rdfs:Domain .
+rdfs:domain hpc:Servicedomains rdf:Type rdfs:Domain .
+rdfs:domain hpc:Clusterdistribution rdf:Type rdfs:Domain .
+
+rdfs:range hpc:Groupdistribution hpc:Projectgroup .
+rdfs:range hpc:Projectgroupdistribution hpc:Projectgroup .
+rdfs:range hpc:Servicedomains rdf:List .
+
+hpc:Project {
+  rdf:type hpc:Project ;
+  hpc:NAME xsd:string .
+}
+
+hpc:ProjectGroup {
+  rdf:type hpc:ProjectGroup ;
+  hpc:SHARES xsd:integer ;
+  hpc:OWNERSHIP rdf:List ;
+  hpc:NON_SHARED xsd:integer .
+}
+
+hpc:Group {
+  rdf:type hpc:Group ;
+  rdf:List .
+}
+
+hpc:Feature {
+  rdf:type hpc:Feature ;
+  hpc:NAME xsd:string ;
+  hpc:DISTRIBUTION rdf:List ;
+}
+
+hpc:Distribution a owl:Class .
+hpc:Lan a hpc:Distribution ;
+  rdfs:subClassOf hpc:Distribution .
+hpc:Wan a hpc:Distribution ;
+  rdfs:subClassOf hpc:Distribution .
+
+hpc:Lan {
+  rdf:type hpc:Distribution ;
+  rdfs:range rdf:List ;
+}
+
+hpc:Wan {
+  rdf:type hpc:Distribution ;
+  rdfs:range rdf:List ;
+}
+
+hpc:Cluster {
+  rdf:type hpc:Cluster ;
+  hpc:NAME xsd:string ;
+  hpc:DISTRIBUTION rdf:List ;
+}
+
+hpc:ProjectGroupDistribution {
+  rdf:type hpc:ProjectGroupDistribution ;
+  rdfs:domain hpc:Projectgroup ;
+  rdfs:range hpc:

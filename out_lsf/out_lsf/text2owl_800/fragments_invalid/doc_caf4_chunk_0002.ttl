@@ -1,0 +1,20 @@
+hpc:Schedpublishdecision a owl:Class;
+    rdfs:subClassOf owl:ObjectProperty;
+    rdfs:domain hpc:Mbatchd;
+    rdfs:range hpc:Mbatchd;
+    rdfs:comment "Publish the job scheduling decision from mbschd to mbatchd.";
+    rdfs:subPropertyOf hpc:sched_publish_decision. .
+
+hpc:jobdispatch a owl:ObjectProperty;
+    rdfs:domain hpc:Mbatchd;
+    rdfs:range hpc:Mbatchd;
+    rdfs:comment "Dispatch one job. Job dispatch can be slow if there is network issue.";
+    rdfs:subPropertyOf hpc:sched_publish_decision;
+    rdfs:subPropertyOf hpc:job_dispatch_read_jobfile. .
+
+hpc:jobdispatchreadjobfile a owl:ObjectProperty;
+    rdfs:domain hpc:Mbatchd;
+    rdfs:range hpc:Mbatchd;
+    rdfs:comment "mbatchd reads the job file when dispatching a job.";
+    rdfs:subPropertyOf hpc:job_dispatch;
+    rdfs:subPropertyOf

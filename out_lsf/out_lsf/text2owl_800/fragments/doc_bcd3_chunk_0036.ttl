@@ -1,0 +1,67 @@
+hpc:Applicationprofile a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents an application profile." .
+
+# Job Limit Properties
+hpc:joblimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of jobs that can run against the application profile." .
+
+hpc:joblimitreached a owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the job limit for the application profile has been reached." .
+
+# Job Statistics Properties
+hpc:totaljobs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The total number of jobs associated with the application profile." .
+
+hpc:runningjobs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of jobs running against the application profile." .
+
+hpc:suspendedjobs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of jobs suspended against the application profile." .
+
+# Application Properties
+hpc:applicationname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the application associated with the profile." .
+
+hpc:definition a owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The definition of the application associated with the profile." .
+
+hpc:statistics a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range hpc:Statistics ;
+    rdfs:comment "The statistics of the jobs associated with the application profile." .
+
+# Statistics Class
+hpc:Statistics a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the statistics of jobs associated with an application profile." .
+
+# Job Limit Properties in Statistics
+hpc:njobs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Statistics ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The total number of jobs in the profile." .
+
+hpc:pend a owl:DatatypeProperty ;
+    rdfs:domain hpc:Statistics ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of jobs pending in the queue." .
+
+hpc:run a owl:DatatypeProperty ;
+    rdfs:domain hpc:Statistics ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of jobs running." .

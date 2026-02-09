@@ -1,0 +1,21 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Consumableresource a owl:Class.
+hpc:Job a owl:Class.
+hpc:Partition a owl:Class.
+hpc:Node a owl:Class.
+
+hpc:hasjob a owl:ObjectProperty;
+    rdfs:domain hpc:Consumableresource;
+    rdfs:range hpc:Job.
+
+hpc:ispartitionedin a owl:ObjectProperty;
+    rdfs:domain hpc:Node;
+    rdfs:range hpc:Partition.
+
+hpc:haspartition a owl:ObjectProperty;
+    rdfs:domain hpc:Consumableresource

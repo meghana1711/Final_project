@@ -1,0 +1,29 @@
+hpc:Jobdescription a owl:Class .
+
+hpc:account a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobdescription ;
+    rdfs:range xsd:string .
+
+hpc:association a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobdescription ;
+    rdfs:range xsd:string .
+
+hpc:cluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobdescription ;
+    rdfs:range xsd:string .
+
+hpc:constraints a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobdescription ;
+    rdfs:range xsd:string .
+
+hpc:schedulerunset a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobdescription ;
+    rdfs:range xsd:string .
+
+hpc:scheduledonsubmit a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobdescription ;
+    rdfs:range xsd:string .
+
+hpc:scheduledbymain a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobdescription ;
+    rdfs:range

@@ -1,0 +1,36 @@
+hpc:Advancereservationrequest a owl:Class .
+hpc:hastimevalueforboption a owl:DatatypeProperty .
+hpc:hasTimeValueForBObject rdf:Resource .
+hpc:usesresourcerequirements a owl:ObjectProperty .
+hpc:usesResourceRequirementsDomain rdfs:Resource .
+hpc:usesResourceRequirementsRange rdf:Resource .
+hpc:prefersaravailablestatus a owl:ObjectProperty .
+hpc:prefersARAvailableStatusDomain rdfs:Resource .
+hpc:prefersARAvailableStatusRange rdf:Resource .
+hpc:specifiedhostsorgroups a owl:ObjectProperty .
+hpc:specifiedHostsOrGroupsDomain rdfs:Resource .
+hpc:specifiedHostsOrGroupsRange rdf:List .
+hpc:hostOrGroup rdf:type owl:Class .
+hpc:host rdf:type owl:Class .
+hpc:hostGroup rdf:type owl:Class .
+hpc:specifiedinorder a owl:ObjectProperty .
+hpc:specifiedInOrderDomain rdfs:Resource .
+hpc:specifiedInOrderRange rdf:Resource .
+hpc:islocaltocluster a owl:ObjectProperty .
+hpc:isleasedfromremotecluster a owl:ObjectProperty .
+hpc:numberofslotsspecifiedbynjobslots a owl:DatatypeProperty .
+hpc:numberOfSlotsSpecifiedByNJobSlotsDomain rdfs:Resource .
+hpc:numberOfSlotsSpecifiedByNJobSlotsRange xsd:nonNegativeInteger .
+hpc:numberofhostsspecifiedbynnumberhosts a owl:DatatypeProperty .
+hpc:numberOfHostsSpecifiedByNNumberHostsDomain rdfs:Resource .
+hpc:numberOfHostsSpecifiedByNNumberHostsRange xsd:nonNegativeInteger .
+hpc:Numberofhostsspecifiedbymmustbelessthanorequalto hpc:actualnumberofhostsspecifiedbymm a owl:Restriction .
+hpc:actualnumberofhostsspecifiedbymm a owl:DatatypeProperty .
+hpc:actualNumberOfHostsSpecifiedByMMDomain rdfs:Resource .
+hpc:actualNumberOfHostsSpecifiedByMMRange xsd:nonNegativeInteger .
+hpc:somehostsmaynotbeselectedforadvancereservation a owl:ObjectProperty .
+hpc:someHostsMayNotBeSelectedForAdvanceReservationDomain rdfs:Resource .
+hpc:someHostsMayNotBeSelectedForAdvanceReservationRange rdf:Resource .
+hpc:atleastonehostinthelistwassuccessfullyselectedforadvancereservation a owl:ObjectProperty .
+hpc:atLeastOneHostInTheListWasSuccessfullySelectedForAdvanceReservationDomain rdfs:Resource .
+hpc:atLeastOneHostInTheListWasSuccessfullySelectedForAdvanceReservationRange rdf:Resource .

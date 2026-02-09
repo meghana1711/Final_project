@@ -1,0 +1,50 @@
+hpc:Highthroughputconfiguration a owl:Class ;
+    rdfs:subClassOf hpc:Configuration .
+
+hpc:Defaultn a owl:Class ;
+    rdfs:subClassOf hpc:Highthroughputconfiguration ;
+    rdfs:subClassOf owl:Class .
+
+hpc:condensedpendingreasonfeature a owl:ObjectProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range hpc:Boolean .
+
+hpc:singlekeypendingreasonfeature a owl:ObjectProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range hpc:Boolean ;
+    rdfs:subPropertyOf hpc:CondensedPendingReasonFeature .
+
+hpc:categorizedpendingreasonfeature a owl:ObjectProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range hpc:Boolean ;
+    rdfs:subPropertyOf hpc:CondensedPendingReasonFeature .
+
+hpc:mainreason a owl:ObjectProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range hpc:Reason ;
+    rdfs:subPropertyOf hpc:CondensedPendingReasonFeature .
+
+hpc:mcsortbysubmittime a owl:ObjectProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range hpc:Boolean ;
+    rdfs:subClassOf hpc:Multiclustercapability .
+
+hpc:obsoleteinlsf101 a owl:ObjectProperty ;
+    rdfs:domain hpc:Objectproperty ;
+    rdfs:range xsd:boolean .
+
+hpc:trackeligiblepending a owl:ObjectProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:boolean ;
+    rdfs:subPropertyOf hpc:ConfigurationProperty .
+
+hpc:eligiblependingdumpinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Trackeligiblepending ;
+    rdfs:range xsd:duration .
+
+hpc:jobschedulinginterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:duration ;
+    rdfs:subPropertyOf hpc:ConfigurationProperty .
+
+hpc:Configurationproperty a owl:Class .

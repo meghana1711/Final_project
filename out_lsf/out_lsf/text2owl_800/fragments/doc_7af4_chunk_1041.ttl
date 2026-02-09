@@ -1,0 +1,10 @@
+hpc:lsbMaxNumProcessors a owl:DatatypeProperty .
+hpc:lsbMcpuHosts a owl:ObjectProperty .
+
+hpc:LsbMaxNumProcessors rdfs:domain hpc:Job .
+hpc:LsbMcpuHosts rdfs:domain hpc:Job .
+
+hpc:LsbMaxNumProcessors rdfs:range xsd:integer .
+hpc:LsbMcpuHosts rdfs:range xsd:string .
+
+hpc:Job a owl:Class .

@@ -1,0 +1,32 @@
+hpc:Clusteradmins a owl:Class .
+hpc:Admin a owl:Class .
+
+hpc:Admin hpc:hasusername rdf:PlainLiteral "user2" .
+hpc:Admin hpc:hasusername rdf:PlainLiteral "user7" .
+hpc:Clusteradmins rdfs:subClassOf hpc:Admin .
+
+# Host ontology
+hpc:Host a owl:Class .
+hpc:hostname a owl:DatatypeProperty .
+hpc:type a owl:ObjectProperty .
+hpc:model a owl:ObjectProperty .
+hpc:server a owl:ObjectProperty .
+hpc:resources a owl:DatatypeProperty .
+hpc:runwindow a owl:DatatypeProperty .
+hpc:rexpri a owl:DatatypeProperty .
+
+hpc:Host rdfs:subClassOf rdf:Resource .
+hpc:Hostname rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+hpc:Type rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+hpc:Model rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+hpc:Server rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .
+hpc:Resources rdfs:domain hpc:Host ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Runwindow rdfs:domain hpc:Host ;
+    rdfs:range xsd:time .
+hpc:Rexpri rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .

@@ -1,0 +1,55 @@
+hpc:Filepath a owl:Class .
+hpc:memlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:softmemlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Memlimit ;
+    rdfs:range xsd:boolean .
+
+hpc:hardmemlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Memlimit ;
+    rdfs:range xsd:boolean .
+
+hpc:unitforlimits a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfig ;
+    rdfs:range xsd:string .
+
+hpc:tasklevelmemorylimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsfcreatesstaskmemlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Environmentvariable ;
+    rdfs:range xsd:string .
+
+hpc:bsubcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:string .
+
+hpc:envoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsubcommand ;
+    rdfs:range xsd:string .
+
+hpc:lsbexitrequeue a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:boolean .
+
+hpc:Exitcode a owl:Class .
+hpc:AllExitCodes a owsl:AxiomSubset ;
+    owsl:imports (hpc:ExitCode) .
+
+hpc:Allexitcodes rdfs:subClassOf hpc:Exitcode ;
+    owl:onProperty hpc:LSBExitRequeue ;
+    owl:someValuesFrom (hpc:ExitCode ; rdf:value "all"^^xsd:string) .
+
+hpc:SpecificExitCodes a owsl:AxiomSubset ;
+    owsl:imports (hpc:ExitCode) .
+
+hpc:Specificexitcodes rdfs:subClassOf hpc:Exitcode ;
+    owl:onProperty hpc:LSBExitRequeue ;
+    owl:someValuesFrom (hpc:ExitCode ; rdf:value ?exitCode) .
+
+hpc:joblimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfig ;
+    rdfs:range xsd:nonNegativeInteger .

@@ -1,0 +1,58 @@
+hpc:Host a owl:Class .
+hpc:memory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:Numa a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+hpc:numaid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Numa ;
+    rdfs:range xsd:integer .
+hpc:numamemory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Numa ;
+    rdfs:range xsd:decimal .
+
+hpc:Socket a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:Core a owl:Class ;
+    rdfs:subClassOf hpc:Socket .
+hpc:coreid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Core ;
+    rdfs:range xsd:integer .
+
+hpc:Pu a owl:Class ;
+    rdfs:subClassOf hpc:Core .
+hpc:puid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Pu ;
+    rdfs:range xsd:integer .
+
+hpc:hasmemory a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Memory .
+
+hpc:hasnuma a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Numa .
+
+hpc:hassocket a owl:ObjectProperty ;
+    rdfs:domain hpc:Numa ;
+    rdfs:range hpc:Socket .
+
+hpc:hascore a owl:ObjectProperty ;
+    rdfs:domain hpc:Socket ;
+    rdfs:range hpc:Core .
+
+hpc:haspu a owl:ObjectProperty ;
+    rdfs:domain hpc:Core ;
+    rdfs:range hpc:Pu .
+
+hpc:Numatree a owl:Class .
+hpc:parentnode a owl:ObjectProperty ;
+    rdfs:domain hpc:Pu ;
+    rdfs:range hpc:Node .
+
+hpc:Node a owl:Class .
+
+
+This ontology fragment defines classes for Host, NUMA, Socket, and Core, as well as PUs. It also defines properties for relationships between these classes, such as having memory, NUMA, sockets, cores, and PUs. Additionally, it defines a property for the ID of each NUMA, socket, core, and PU. The `hpc:NumaTree` class and `hpc:parentNode` property are used to represent the tree structure of the nodes, with PUs as the leaves and host, NUMA, socket, or core as potential parent nodes.

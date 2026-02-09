@@ -1,0 +1,56 @@
+hpc:Windows a owl:Class ;
+    rdfs:comment "The platform where pre- and post-execution commands run under cmd.exe /c with NULL standard input, output, and error, and PATH determined by the LSF service." .
+
+hpc:path a owl:ObjectProperty ;
+    rdfs:domain hpc:Windows ;
+    rdfs:range xsd:string .
+
+hpc:standardio a owl:ObjectProperty ;
+    rdfs:domain hpc:Windows ;
+    rdfs:range xsd:string .
+
+hpc:PreExec a owl:Class ;
+    rdfs:subClassOf hpc:Queuelevelcommand .
+
+hpc:preExecCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:PreExec ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The command that runs on the execution host before the job starts." .
+
+hpc:maxcommandlength a owl:DatatypeProperty ;
+    rdfs:domain hpc:PreExecCommand ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum length of the command path." .
+
+hpc:DefaultPreExec a owl:Class ;
+    rdfs:subClassOf hpc:PreExec ;
+    rdfs:comment "Not defined. No pre-execution commands are associated with the queue." .
+
+hpc:requeueOnError a owl:ObjectProperty ;
+    rdfs:domain hpc:PreExec ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "If the PRE_EXEC command exits with a non-zero exit code, LSF requeues the job to the front of the queue." .
+
+hpc:executionhost a owl:ObjectProperty ;
+    rdfs:domain hpc:PreExec ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The host where the PRE_EXEC command runs." .
+
+hpc:useraccount a owl:ObjectProperty ;
+    rdfs:domain hpc:PreExec ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The user account under which the PRE_EXEC command runs." .
+
+hpc:lsbPrePostExecUser a owl:ObjectProperty ;
+    rdfs:domain hpc:PreExec ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The user account under which to run pre-execution commands if different from the user who submits the job." .
+
+hpc:PostexecutioncommandWindows a owl:Class ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "The post-execution command that executes on a Windows Server 2003, x64 Edition platform. Users must have read and execute privileges for cmd.exe." .
+
+hpc:readexecuteprivileges a owl:ObjectProperty ;
+    rdfs:domain hpc:PostexecutioncommandWindows ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the user has read and execute privileges for cmd.exe." .

@@ -1,0 +1,38 @@
+hpc:Ssacctcommand a owl:Class .
+hpc:displaysaccountingstatisticsaboutfinishedlsfsessionschedulerjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Ssacctcommand ;
+    rdfs:range hpc:Job .
+
+hpc:isenhancedinfixpack15 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Ssacctcommand ;
+    rdfs:range xsd:boolean .
+
+hpc:Ssschedcommand a owl:Class .
+hpc:allowssubmittingtasks a owl:ObjectProperty ;
+    rdfs:domain hpc:Ssschedcommand ;
+    rdfs:range hpc:Task .
+
+hpc:hasenhancedrequeueoptioninfixpack15 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Ssschedcommand ;
+    rdfs:range xsd:boolean .
+
+hpc:supportsbatchrequeueingallfailedtasksexceptspecifiedexits a owl:ObjectProperty ;
+    rdfs:domain hpc:Ssschedcommand ;
+    rdfs:range hpc:Task .
+
+hpc:Ssviewcommand a owl:Class .
+hpc:showstaskdetails a owl:ObjectProperty ;
+    rdfs:domain hpc:Ssviewcommand ;
+    rdfs:range hpc:Task .
+
+hpc:reportstaskfailuresforlsfsessionschedulerjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Ssviewcommand ;
+    rdfs:range hpc:Job .
+
+hpc:lsbReportSsjobFailure a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:lmStatPerFeature a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsflicensescheduler ;
+    rdfs:range xsd:boolean .

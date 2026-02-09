@@ -1,0 +1,59 @@
+hpc:Interactivejob a owl:Class .
+hpc:bsubcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:string .
+
+hpc:StopsOutput rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bsubcommand ;
+    rdfs:range xsd:boolean .
+
+hpc:NoMail rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bsubcommand ;
+    rdfs:range xsd:boolean .
+
+hpc:CtrlCTerminate rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bsubcommand ;
+    rdfs:range xsd:boolean .
+
+hpc:CheckPointable rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:ReRunnable rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:RerunnableQueue rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Interactivejob .
+
+hpc:RerunnableApplicationProfile rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Interactivejob .
+
+hpc:PseudoTerminal rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:string .
+
+hpc:ShellModeSupport rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:string .
+
+hpc:SubmitsInteractiveJob rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Bsubcommand ;
+    rdfs:range hpc:Interactivejob .
+
+hpc:CannotSubmitInteractiveJobOnWindows rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bsubcommand ;
+    rdfs:range xsd:boolean .
+
+hpc:RequiresPseudoTerminal rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range xsd:boolean .
+
+hpc:RedefinesCtrlCKey rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range xsd:boolean .
+
+hpc:SubmitsBatchInteractiveJob rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Bsubcommand ;
+    rdfs:range hpc:Interactivejob ;
+    rdfs:range hpc:Pseudoterminal .

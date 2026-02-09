@@ -1,0 +1,52 @@
+hpc:Host a owl:Class .
+hpc:Hostrange a owl:Class .
+
+# Host instances
+hpc:Host1 a hpc:Host ;
+    rdfs:label "host1.example.com" .
+hpc:Host2 a hpc:Host ;
+    rdfs:label "host2.example.com" .
+hpc:Host3 a hpc:Host ;
+    rdfs:label "host3.example.com" .
+hpc:Host10 a hpc:Host ;
+    rdfs:label "host10.example.com" .
+hpc:Host20 a hpc:Host ;
+    rdfs:label "host20.example.com" .
+hpc:Host25 a hpc:Host ;
+    rdfs:label "host25.example.com" .
+hpc:Host30 a hpc:Host ;
+    rdfs:label "host30.example.com" .
+hpc:Host39 a hpc:Host ;
+    rdfs:label "host39.example.com" .
+hpc:Host40 a hpc:Host ;
+    rdfs:label "host40.example.com" .
+hpc:Host50 a hpc:Host ;
+    rdfs:label "host50.example.com" .
+hpc:HostA1 a hpc:Host ;
+    rdfs:label "hostA1.example.com" .
+hpc:HostA2 a hpc:Host ;
+    rdfs:label "hostA2.example.com" .
+
+# HostRange instances
+hpc:HostRange1 a hpc:HostRange ;
+    rdfs:label "host[1:10,20,30:39].example.com" ;
+    rdfs:subClassOf hpc:Hostrange ;
+    rdfs:comment "Hosts from 1 to 10, 20, and 30 to 39" ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+hpc:HostRange2 a hpc:HostRange ;
+    rdfs:label "host[10-20,30,40:50].example.com" ;
+    rdfs:subClassOf hpc:Hostrange ;
+    rdfs:comment "Hosts from 10 to 20 and 30, 40 to 50" ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+hpc:HostRange3 a hpc:HostRange ;
+    rdfs:label "host[01-03,05,07:09].example.com" ;
+    rdfs:subClassOf hpc:Hostrange ;
+    rdfs:comment "Hosts from 1 to 3, 5, and 7 to 9" ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+hpc:HostRange4 a hpc:HostRange ;
+    rdfs:label "hostA[1-2]B[1-3,5].example.com" ;
+    rdfs:subClassOf hpc:Hostrange ;
+    rdfs:comment "Hosts

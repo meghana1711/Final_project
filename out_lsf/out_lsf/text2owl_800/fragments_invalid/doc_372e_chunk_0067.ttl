@@ -1,0 +1,35 @@
+hpc:Fod a owl:Class .
+hpc:fodClustername a owl:DatatypeProperty .
+hpc:fodAdmin a owl:DatatypeProperty .
+hpc:fodPort a owl:DatatypeProperty .
+hpc:fodWorkDir a owl:DatatypeProperty .
+hpc:fodLogDir a owl:DatatypeProperty .
+
+hpc:Host a owl:Class .
+hpc:hostName a owl:DatatypeProperty .
+
+hpc:Application a owl:Class .
+hpc:applicationName a owl:DatatypeProperty .
+hpc:applicationPath a owl:DatatypeProperty .
+hpc:applicationParams a owl:DatatypeProperty .
+hpc:applicationFatalExitValue a owl:DatatypeProperty .
+
+hpc:FodConf a owl:Class .
+hpc:fodConfHosts a owl:ObjectProperty .
+hpc:fodConfApplications a owl:ObjectProperty .
+
+hpc:HostDomain rdfs:domain hpc:Host .
+hpc:ApplicationName rdfs:domain hpc:Application .
+hpc:FodClustername rdfs:range xsd:string .
+hpc:FodAdmin rdfs:range xsd:string .
+hpc:FodPort rdfs:range xsd:integer .
+hpc:FodWorkDir rdfs:range xsd:string .
+hpc:FodLogDir rdfs:range xsd:string .
+hpc:HostName rdfs:range xsd:string .
+hpc:ApplicationPath rdfs:range xsd:string .
+hpc:ApplicationParams rdfs:range xsd:string .
+hpc:ApplicationFatalExitValue rdfs:range xsd:integer .
+
+hpc:Host subClassOf owl:Class .
+hpc:Application subClassOf owl:Class .
+hpc:fod_conf subClassOf owl:Class .

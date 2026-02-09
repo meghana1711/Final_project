@@ -1,0 +1,38 @@
+hpc:Preemptablejob a owl:Class .
+hpc:Nonpreemptablejob a owl:Class .
+hpc:Preemptionresource a owl:Class .
+hpc:Releasableresource a owl:Class .
+hpc:Queue a owl:Class .
+hpc:hasPreemptionResource an owl:ObjectProperty .
+hpc:hasqueue a owl:ObjectProperty .
+hpc:hasPreemptionAction an owl:ObjectProperty .
+hpc:Preemptable rdfs:domain hpc:Preemptablejob ;
+    rdfs:range xsd:boolean .
+hpc:Releasable rdfs:domain hpc:Preemptionresource ;
+    rdfs:range xsd:boolean .
+hpc:Haspriority rdfs:domain hpc:Queue ;
+    rdfs:range xsd:integer .
+hpc:Requirespreemptionresource hpc:Preemptablejob rdfs:subClassOf hpc:Job .
+hpc:Usespreemptionresource hpc:preemptablejob rdfs:subPropertyOf hpc:hasPreemptionResource .
+hpc:Requiresreleasableresource hpc:Preemptionresource rdfs:subClassOf hpc:Resource .
+hpc:Configuredforpreemption hpc:queue rdfs:subPropertyOf hpc:hasPreemptiveScheduling .
+hpc:Preemptivescheduling rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+hpc:Preemptionallowed hpc:queue rdfs:subPropertyOf hpc:configuredForPreemption ;
+    rdfs:range xsd:boolean .
+hpc:Preemptionaction hpc:queue rdfs:subPropertyOf hpc:hasPreemptionAction ;
+    rdfs:domain hpc:Queue .
+hpc:Defaultpreemptionaction hpc:queue rdfs:subPropertyOf hpc:preemptionAction ;
+    rdfs:range xsd:string .
+hpc:Custompreemptionaction hpc:queue rdfs:subPropertyOf hpc:preemptionAction ;
+    rdfs:range xsd:string .
+hpc:Requirescustompreemptionaction hpc:Queue rdfs:subClassOf hpc:Queue .
+hpc:Releasespreemptionresourceonsuspension hpc:queue rdfs:subPropertyOf hpc:hasPreemptionAction ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+hpc:defaultReleasesPreemptionResourceOnSuspension rdfs:subPropertyOf hpc:releasesPreemptionResourceOnSuspension ;
+    rdfs:range xsd:boolean .
+hpc:Applicationvendor hpc:Preemptablejob rdfs:domain hpc:Preemptablejob ;
+    rdfs:range xsd:string .
+hpc:Jobcontrolsignal hpc:Preemptablejob rdfs:domain hpc:Preemptablejob ;
+    rdfs:range xsd:string .

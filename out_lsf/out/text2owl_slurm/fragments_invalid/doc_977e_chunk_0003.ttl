@@ -1,0 +1,19 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Reservation a owl:Class.
+hpc:reservationname a owl:DatatypeProperty.
+hpc:starttime a owl:DatatypeProperty.
+hpc:endtime a owl:DatatypeProperty.
+hpc:duration a owl:DatatypeProperty.
+hpc:nodes a owl:ObjectProperty.
+hpc:nodecnt a owl:DatatypeProperty.
+hpc:features a owl:ObjectProperty.
+hpc:partitionname a owl:DatatypeProperty.
+hpc:flags a owl:ObjectProperty.
+hpc:licenses a owl:ObjectProperty.
+hpc:burstbuffers a owl:ObjectProperty.
+hpc:users a owl:ObjectProperty.
+hpc:accounts a

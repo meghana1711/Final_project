@@ -1,0 +1,13 @@
+hpc:Deleteclusterrequest a owl:Class.
+hpc:Deleteqos a owl:Class.
+hpc:Deleteuser a owl:Class.
+hpc:Deletewckey a owl:Class.
+hpc:Getaccountinfo a owl:Class.
+hpc:Getaccountlist a owl:Class.
+hpc:Getassociationinfo a owl:Class.
+
+hpc:qosname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Deleteqos ;
+    rdfs:range xsd:string.
+hpc:username a owl:DatatypeProperty ;
+    rdfs:domain hpc:

@@ -1,0 +1,12 @@
+hpc:Psncdrmaaforslurm a owl:Class .
+hpc:Opengridforumdrmaaspecification rdfs:subClassOf owl:Class .
+hpc:slurmsupport a owl:ObjectProperty .
+hpc:Perl6DRMAABindings rdf:type owl:DatatypeProperty .
+hpc:Perl6drmaabindings rdfs:domain hpc:Psncdrmaaforslurm ; rdfs:range xsd:string .
+hpc:slurmclustersupport a owl:ObjectProperty .
+hpc:Slurmclustersupport rdfs:domain hpc:Psncdrmaaforslurm ; rdfs:range xsd:string .
+hpc:Slurmdrmaavariant a owl:Class .
+hpc:LuaDRMAABindings rdf:type owl:DatatypeProperty .
+hpc:Luadrmaabindings rdfs:domain hpc:Psncdrmaaforslurm ; rdfs:range xsd:string .
+hpc:LuaHostlistFunctions rdf:type owl:DatatypeProperty .
+hpc:Luahostlistfunctions rd

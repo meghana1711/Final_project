@@ -1,0 +1,56 @@
+hpc:Clienthost a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:Thing ] .
+
+hpc:Dhcpclient a owl:Class ;
+    rdfs:subClassOf hpc:Clienthost ;
+    rdfs:comment "Includes client hosts with DHCP assigned IP addresses." .
+
+hpc:Floatingclient a owl:Class ;
+    rdfs:subClassOf hpc:Clienthost ;
+    rdfs:comment "Can be joined only when an LSF command is run from this host and LSF has verified it against FLOAT_CLIENTS and FLOAT_CLIENTS_ADDR_RANGE." .
+
+hpc:Staticserver a owl:Class ;
+    rdfs:subClassOf hpc:Host ;
+    rdfs:comment "When LSF is started, the static servers defined under the Host section in the lsf.cluster file are added to the cluster." .
+
+hpc:Lsf a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "IBM Spectrum LSF." .
+
+hpc:Performancetuning a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Tune the performance and scalability of your LSF cluster." .
+
+hpc:tuneperformance a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Performancetuning ;
+    rdfs:comment "Tune the performance of IBM Spectrum LSF." .
+
+hpc:improveresponsetime a owl:ObjectProperty ;
+    rdfs:domain hpc:Tuneperformance ;
+    rdfs:range hpc:Performancetuning ;
+    rdfs:comment "Improve mbatchd response time after mbatchd restart." .
+
+hpc:unixthreadprogramming a owl:ObjectProperty ;
+    rdfs:domain hpc:Tuneperformance ;
+    rdfs:range hpc:Performancetuning ;
+    rdfs:comment "On UNIX platforms that support thread programming, change default mbatchd behavior to use multithreading." .
+
+hpc:queryperformance a owl:ObjectProperty ;
+    rdfs:domain hpc:Tuneperformance ;
+    rdfs:range hpc:Performancetuning ;
+    rdfs:comment "Improve performance of mbatchd query requests." .
+
+hpc:hardcpuaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Tuneperformance ;
+    rdfs:range hpc:Performancetuning ;
+    rdfs:comment "Configure Hard CPU affinity to specify the management host CPUs on which mbatchd child query processes can run." .
+
+hpc:jobswitch2event a owl:ObjectProperty ;
+    rdfs:domain hpc:Tuneperformance ;
+    rdfs:range hpc:Performancetuning ;
+    rdfs:comment "Use the JOB_SWITCH2_EVENT parameter in lsb.params to log mbatchd performance metrics." .
+
+hpc:dispatchbyqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Tuneperformance

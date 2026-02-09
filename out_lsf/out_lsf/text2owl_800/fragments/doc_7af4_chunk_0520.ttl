@@ -1,0 +1,8 @@
+hpc:Applicationprofile a owl:Class .
+hpc:apps a owl:ObjectProperty .
+
+hpc:Applicationprofile rdfs:subClassOf xsd:string .
+hpc:Apps rdfs:domain hpc:Limit ;
+                        rdfs:range rdf:Bag .
+
+hpc:Limit a owl:Class .

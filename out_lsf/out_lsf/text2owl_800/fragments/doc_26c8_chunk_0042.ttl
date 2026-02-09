@@ -1,0 +1,46 @@
+hpc:booleanvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:boolean .
+
+hpc:ebsoptimizationsupport a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:boolean .
+
+hpc:Vmtype a owl:Class .
+
+hpc:defaultvalue a owl:ObjectProperty ;
+    rdfs:domain hpc:Vmtype ;
+    rdfs:range xsd:boolean .
+
+hpc:supports a owl:ObjectProperty ;
+    rdfs:domain hpc:Vmtype ;
+    rdfs:range hpc:Resource .
+
+hpc:Errormessage a owl:Class .
+
+hpc:suspendduration a owl:DatatypeProperty ;
+    rdfs:range xsd:integer .
+
+hpc:restartebrokerd a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceconnector ;
+    rdfs:range hpc:Action .
+
+hpc:priority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:integer .
+
+hpc:lessexpensivetemplatesfirst a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Sortingstrategy .
+
+hpc:templatename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Templatehost ;
+    rdfs:range xsd:string .
+
+hpc:placementgroupname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string .
+
+hpc:optional a owl:DatatypeProperty ;
+    rdfs:domain hpc:Attribute ;
+    rdfs:range xsd:boolean .

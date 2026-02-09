@@ -1,0 +1,57 @@
+hpc:CloudResource
+    a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "A cloud resource that is returned and terminated when the workload associated with the host is done." .
+
+hpc:BadminHopenCommand
+    a owl:Class ;
+    rdfs:comment "A command used to open a borrowed host in closed_RC status." .
+
+hpc:LSB_RC_EXTERNAL_HOST_MAX_TTL
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cloudresource ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum time in minutes that a cloud resource can remain in external host status before being terminated." .
+
+hpc:LSB_RC_MQTT_ERROR_LIMIT
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cloudresource ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of API error messages that are stored in Mosquitto per host provider." .
+
+hpc:LSF_RC_MQTT_ERROR_LIMIT_ChangeEffect
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbRcMqttErrorLimit ;
+    rdfs:range hpc:Command ;
+    rdfs:comment "The command to restart the LSB resource connector to take effect after changing the LSB_RC_MQTT_ERROR_LIMIT." .
+
+hpc:LSF_MQ_BROKER_HOSTS
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Cloudresource ;
+    rdfs:range rdf:List ;
+    rdfs:comment "A list of host names where the MQTT message broker daemon (mosquitto) is started." .
+
+hpc:MQTT_Broker_Host
+    a owl:Class ;
+    rdfs:subClassOf rdf:List ;
+    rdfs:comment "A host that runs the MQTT message broker daemon (mosquitto)." .
+
+hpc:MQTT_Broker_Host_Name
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:MqttBrokerHost ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the host that runs the MQTT message broker daemon (mosquitto)." .
+
+hpc:LSF_MQ_BROKER_HOSTS_StartCondition
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Cloudresource ;
+    rdfs:range hpc:MqttBrokerHost ;
+    rdfs:comment "The condition under which the MQTT message broker daemon (mosquitto) is started on a host." .
+
+hpc:LSF_MQ_BROKER_HOSTS_ManagementCandidateHost
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:MqttBrokerHost ;
+    rdfs:range hpc:Lsfclusterhost ;
+    rdfs:comment "A management candidate host for the MQTT message broker daemon (mosquitto)." .
+
+hpc

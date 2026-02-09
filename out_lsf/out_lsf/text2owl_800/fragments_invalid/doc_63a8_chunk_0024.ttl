@@ -1,0 +1,70 @@
+hpc:File a owl:Class .
+hpc:Group a owl:Class .
+hpc:User a owl:Class .
+hpc:Tag a owl:Class .
+hpc:Job a owl:Class .
+
+hpc:hasFile rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:File .
+
+hpc:hasGroup rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasUser rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Tag .
+
+hpc:hasPermission rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+
+hpc:isGroupMember rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Group .
+
+hpc:isTaggedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Tag ;
+    rdfs:range hpc:File .
+
+hpc:isInCache rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasState rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasCacheLocation rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasLastUpload rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Tag .
+
+hpc:hasLastDownload rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Tag .
+
+hpc:hasName rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Tag .
+
+hpc:hasSize rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasHASH rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasModificationTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasXferJob rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasGrace rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasStatus rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:File hasGroup pcl:group ;
+    pcl:hasPermission "rwxr-x---" ;
+    pcl:isInCache true ;
+    pcl:hasState "TRANSFERRED" ;
+    pcl:hasCacheLocation "/data/cluster1cache/stgin/user/user1/hostA/home/user1/testDATA/seqdata.1/b7202f200c0240a66493f81f0e2e8875" ;
+    pcl:hasHASH "b7202f200c0240a

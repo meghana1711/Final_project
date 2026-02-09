@@ -1,0 +1,59 @@
+hpc:LsbStageMaxStageIn a owl:Class ;
+    rdfs:comment "Maximum number of concurrent stage-in processes on a host." .
+
+hpc:LsbStageMaxStageIn rdfs:subClassOf owl:TopObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:LsbStageMaxStageInResource a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Resource that reports the total storage space." .
+
+hpc:LsbPlanKeepReserve a owl:Class ;
+    rdfs:comment "Enables LSF to keep resource reservations for jobs with plans." .
+
+hpc:nreqSlot a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Calculated number of requested slots for jobs." .
+
+hpc:gpuNum a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Number of physical GPUs that the job is using." .
+
+hpc:gpuMode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "GPU compute mode that the job is using." .
+
+hpc:gpuAlloc a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Job-based GPU allocation information." .
+
+hpc:jExclusive a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Whether the job requested exclusive allocated GPUs." .
+
+hpc:killReason a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "User-specified reason for killing the job." .
+
+hpc:LsbBjobsFormat a owl:Class ;
+    rdfs:subClassOf owl:TopObjectProperty ;
+    rdfs:comment "Job format for LSF Version 10.1 Fix Pack 7." .
+
+hpc:LsfImageInfoForkInterval a owl:Class ;
+    rdfs:subClassOf owl:TopObjectProperty ;
+    rdfs:domain hpc:Limprocess ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "Interval for the lim process to fork a new process." .
+
+hpc:LsfImageInfoExpireInterval a owl:Class ;
+    rdfs:subClassOf owl:TopObjectProperty ;
+    rdfs:domain hpc:Mosquitto ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "How long the host image information is available in mosquitto

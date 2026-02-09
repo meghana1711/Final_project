@@ -1,0 +1,33 @@
+hpc:Serviceclass a owl:Class .
+hpc:Jobgroup a owl:Class .
+hpc:Job a owl:Class .
+hpc:Sla a owl:Class .
+
+hpc:hasjobgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range hpc:Jobgroup .
+
+hpc:hassla a owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range hpc:Sla .
+
+hpc:Jobgroup rdfs:subClassOf hpc:Job .
+
+hpc:bjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Sla ;
+    rdfs:range rdf:List .
+
+hpc:bjobsSla a owl:ObjectProperty ;
+    rdfs:domain hpc:Sla ;
+    rdfs:range rdf:Literal .
+
+hpc:bjobsSs a owl:ObjectProperty ;
+    rdfs:domain hpc:Sla ;
+    rdfs:range rdf:List .
+
+hpc:bjobsSum a owl:ObjectProperty ;
+    rdfs:domain hpc:Sla ;
+    rdfs:range rdf:List .
+
+hpc:SSCHED_UPDATE_SUMMARY_INTERVAL a xsd:nonNegativeInteger .
+hpc:SSCHED_UPDATE_SUMMARY_BY_TASK a xsd:nonNegativeInteger .

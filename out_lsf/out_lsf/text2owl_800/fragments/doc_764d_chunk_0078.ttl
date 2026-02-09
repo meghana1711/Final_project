@@ -1,0 +1,50 @@
+hpc:Submissionqueue a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a queue for job submissions." .
+
+hpc:hosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Submissionqueue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether jobs can run in the submission cluster or only in remote clusters." .
+
+hpc:Schedulingsession a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a scheduling session in LSF." .
+
+hpc:Localcluster a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the local cluster in LSF." .
+
+hpc:Remotecluster a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a remote cluster in LSF." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a job to be scheduled." .
+
+hpc:importbackloglimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Limits the number of forwarded jobs that can be pending in the queue." .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a queue in LSF." .
+
+hpc:Receivingqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "Represents a receiving queue in LSF." .
+
+hpc:imptjobbklg a owl:DatatypeProperty ;
+    rdfs:domain hpc:Receivingqueue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Limits the number of forwarded jobs that can be pending in the queue." .
+
+hpc:impttaskbklg a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Limits the number of pending job tasks in the queue." .
+
+hpc:DefaultImpTJobBklg a xsd:integer ;
+    hpc:Imptjobbklg rdfs:range .

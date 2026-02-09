@@ -1,0 +1,27 @@
+@base <http://example.org/hpc/>
+
+hpc:SlurmJob
+    a owl:Class ;
+    rdfs:subClassOf hpc:Hpcjob ;
+    rdfs:comment "Represents a job managed by Slurm." .
+
+hpc:CanUpdateMultipleJobs
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmjob ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a single scontrol command can update multiple jobs." .
+
+hpc:PrintJobID
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates the property that represents the Slurm job ID printed to the job's standard output." .
+
+hpc:WriteToUserStdout
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmjob ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether user processes or srun are running even though the job is supposed to be completed." .
+
+hpc:RequeueJobWithExitCode
+    a owl:ObjectProperty ;

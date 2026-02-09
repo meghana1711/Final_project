@@ -1,0 +1,11 @@
+hpc:Jobscheduling a owl:Class.
+hpc:Origincluster a owl:Class .
+    rdfs:subClassOf hpc:Cluster.
+hpc:Mainscheduler a owl:Class .
+    rdfs:subClassOf hpc:Scheduler.
+hpc:Backfillscheduler a owl:Class .
+    rdfs:subClassOf hpc:Scheduler.
+
+hpc:Cluster a owl:Class.
+hpc:hasresources a owl:ObjectProperty;
+    rdfs:domain h

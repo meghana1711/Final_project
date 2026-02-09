@@ -1,0 +1,14 @@
+hpc:Jobwithnoovercommitmentandcpuoversubscription a owl:Class .
+hpc:Requirescpus rdfs:domain hpc:Jobwithnoovercommitmentandcpuoversubscription ;
+                  rdfs:range xsd:nonNegativeInteger .
+hpc:Runonnode rdfs:domain hpc:Jobwithnoovercommitmentandcpuoversubscription ;
+                 rdfs:range hpc:Node .
+hpc:Allocateonlyonethreadpercore rdfs:domain hpc:Jobwithnoovercommitmentandcpuoversubscription ;
+                                     rdfs:range xsd:boolean .
+
+hpc:Jobwithconsumableresourcesonmultithreadednode a owl:Class .
+hpc:Requirescpus rdfs:domain hpc:Jobwithconsumableresourcesonmultithreadednode ;
+                  rdfs:range xsd:nonNegativeInteger .
+hpc:Runonnode rdfs:domain hpc:Jobwithconsumableresourcesonmultithreadednode ;
+                 rdfs:range hpc:Node .
+hpc:Allocateonlyonethreadpercore rdfs:domain hpc:Jobwithconsum

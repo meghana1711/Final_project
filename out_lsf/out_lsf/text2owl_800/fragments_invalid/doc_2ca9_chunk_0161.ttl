@@ -1,0 +1,44 @@
+hpc:Pendingjobmanagement a owl:Class .
+
+hpc:Singlependingreason a owl:Class .
+hpc:Mainpendingreason a owl:Class .
+hpc:Hostbasedpendingreason a owl:Class .
+
+hpc:Candidatehostreason a owl:Class .
+hpc:Noncandidatehostreason a owl:Class .
+
+hpc:Reasoncategory a owl:Class .
+
+hpc:hasreason a owl:ObjectProperty .
+hpc:Hasreason rdfs:domain hpc:Job .
+hpc:Hasreason rdfs:range hpc:Singlependingreason .
+
+hpc:hascategory a owl:ObjectProperty .
+hpc:Hascategory rdfs:domain hpc:Singlependingreason .
+hpc:Hascategory rdfs:range hpc:Reasoncategory .
+
+hpc:hascandidatehostreason a owl:ObjectProperty .
+hpc:Hascandidatehostreason rdfs:domain hpc:Candidatehostreason .
+hpc:Hascandidatehostreason rdfs:range hpc:Job .
+
+hpc:hasnoncandidatehostreason a owl:ObjectProperty .
+hpc:Hasnoncandidatehostreason rdfs:domain hpc:Noncandidatehostreason .
+hpc:Hasnoncandidatehostreason rdfs:range hpc:Job .
+
+hpc:getsinglependingreason a owl:ObjectProperty .
+hpc:Getsinglependingreason rdfs:domain hpc:Job .
+hpc:Getsinglependingreason rdfs:range hdfs:String .
+
+hpc:Job a owl:Class .
+hpc:Job rdfs:subClassOf rdf:Resource .
+
+hpc:Reason a owl:Class .
+hpc:Reason rdfs:subClassOf rdf:Resource .
+
+hpc:resourcerequirementnotsatisfied a owl:DatatypeProperty .
+hpc:Resourcerequirementnotsatisfied rdfs:domain hpc:Candidatehostreason .
+hpc:Resourcerequirementnotsatisfied rdfs:range xsd:string .
+
+hpc:notspecifiedinjobsubmission a owl:DatatypeProperty .
+hpc:Notspecifiedinjobsubmission rdfs:domain hpc:Noncandidatehostreason .
+hpc:Notspecifiedinjobsubmission rdfs:range xsd:string .

@@ -1,0 +1,44 @@
+hpc:Longformatdisplay a owl:Class ;
+    rdfs:subClassOf hpc:Displayformat .
+
+hpc:NormalizedCPURunQueueLengthLoadIndex rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Longformatdisplay ;
+    rdfs:range xsd:decimal .
+
+hpc:EffectiveCPURunQueueLengthLoadIndex rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Longformatdisplay ;
+    rdfs:range xsd:decimal .
+
+hpc:IOField rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Longformatdisplay .
+
+hpc:ExternalLoadIndex rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Longformatdisplay ;
+    rdfs:range hpc:Loadindex ;
+    rdfs:subPropertyOf hpc:IOField ;
+    rdfs:rangeRestriction rdf:resource xsd:decimal ;
+    rdfs:domainRestriction rdf:resource hpc:Hostbasedresource .
+
+hpc:Hostbasedresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:MutuallyExclusiveOptions rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Longformatdisplay ;
+    rdfs:range hpc:Option .
+
+hpc:Wideformatdisplay a owl:Class ;
+    rdfs:subClassOf hpc:Displayformat .
+
+hpc:SpecifiedLoadIndices rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Longformatdisplay ;
+    rdfs:range rdf:List .
+
+hpc:Loadindex a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:BuiltInLoadIndex rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Loadindex .
+
+hpc:ExternalLoadIndexForHostBasedResources rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Loadindex ;
+    rdfs:range xsd:boolean .

@@ -1,0 +1,8 @@
+hpc:Serverhosts a owl:Class .
+
+hpc:serverhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Serverhosts ;
+    rdfs:range hpc:Serverhost .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf hpc:Serverhost .

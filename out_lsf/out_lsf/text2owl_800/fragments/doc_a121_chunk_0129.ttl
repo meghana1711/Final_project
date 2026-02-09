@@ -1,0 +1,61 @@
+hpc:Lsf a owl:Class .
+hpc:Hostbasedpreexecutionprocessing a owl:Class ;
+    rdfs:subClassOf hpc:Lsf .
+hpc:Hostbasedpostexecutionprocessing a owl:Class ;
+    rdfs:subClassOf hpc:Lsf .
+
+hpc:supportsUNIX rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:doesNotSupportEnvironmentVariables rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostbasedpreexecutionprocessing ;
+    rdfs:range xsd:boolean .
+
+hpc:doesNotSupportSettingEnvironmentVariables rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostbasedpreexecutionprocessing ;
+    rdfs:range xsd:boolean .
+
+hpc:ignoresSignalsDuringPreProcessing rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostbasedpreexecutionprocessing ;
+    rdfs:range xsd:boolean .
+
+hpc:ignoresSignalsDuringPostProcessing rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostbasedpostexecutionprocessing ;
+    rdfs:range xsd:boolean .
+
+hpc:cannotPerformCheckpointing rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostbasedpreexecutionprocessing ;
+    rdfs:range xsd:boolean .
+
+hpc:returnsRetryErrorDuringPreProcessing rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostbasedpreexecutionprocessing ;
+    rdfs:range xsd:boolean .
+
+hpc:notSupportedOnWindows rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostbasedpreexecutionprocessing ;
+    rdfs:range xsd:boolean .
+
+hpc:notSupportedOnAutoResizedHosts rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostbasedpreexecutionprocessing ;
+    rdfs:range xsd:boolean .
+
+hpc:treatsLeaseInHostAsLocalHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostbasedpreexecutionprocessing ;
+    rdfs:range xsd:boolean .
+
+hpc:cannotBeDefinedAtJobLevel rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostbasedpreexecutionprocessing ;
+    rdfs:range xsd:boolean .
+
+hpc:notSupportedByMultiCluster rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostbasedpreexecutionprocessing ;
+    rdfs:range xsd:boolean .
+
+hpc:supportedByVersion9_1_2 rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:cannotUseDefaultTimeout rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostbasedpreexecutionprocessing ;
+    rdfs:range xsd:boolean .

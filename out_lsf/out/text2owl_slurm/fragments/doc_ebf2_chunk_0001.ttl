@@ -1,0 +1,34 @@
+hpc:Controlgroup a owl:Class .
+hpc:Cgroup a owl:Class .
+hpc:Cgroupv1 a owl:Class ;
+    rdfs:subClassOf hpc:Cgroup .
+hpc:Cgroupv2 a owl:Class .
+
+hpc:Cgroupcontroller a owl:Class .
+hpc:MemoryController a hpc:CgroupController ;
+    rdfs:range xsd:string .
+hpc:CpuController a hpc:CgroupController ;
+    rdfs:range xsd:string .
+hpc:DevicesController a hpc:CgroupController ;
+    rdfs:range xsd:string .
+hpc:FreezerController a hpc:CgroupController ;
+    rdfs:range xsd:string .
+hpc:CpusetController a hpc:CgroupController ;
+    rdfs:range xsd:string .
+hpc:CpuacctController a hpc:CgroupController ;
+    rdfs:range xsd:string .
+
+hpc:usescontroller a owl:ObjectProperty .
+hpc:Cgroup rdfs:domain hpc:Controlgroup ;
+    rdfs:range hpc:Cgroupcontroller .
+
+hpc:supportsmode a owl:ObjectProperty .
+hpc:Controlgroup rdfs:domain hpc:Controlgroup ;
+    rdfs:range xsd:string .
+
+hpc:Deprecated a owl:Class ;
+    rdfs:subClassOf hpc:Cgroupv1 .
+
+hpc:Unsupportedmode a owl:Class .
+hpc:Hybridmode a owl:Class ;
+    rdfs:subClassOf hpc:Unsupportedmode .

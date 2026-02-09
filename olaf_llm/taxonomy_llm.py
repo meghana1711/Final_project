@@ -4,7 +4,6 @@ import argparse
 import ast
 import json
 import sqlite3
-import time
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -21,6 +20,20 @@ torch.backends.cudnn.allow_tf32 = True
 
 
 # -----------------------------
+# Taxonomy input policy (tune this!)
+# -----------------------------
+# Strongly recommended to keep this tight; broad categories create garbage "is-a".
+TAXONOMY_ELIGIBLE_CATEGORIES = {
+    "queue_or_partition",
+    "resource",
+    "scheduler",
+    "user_role",
+    "other_hpc",
+    "config_param",
+}
+
+
+# -----------------------------
 # YAML config
 # -----------------------------
 @dataclass
@@ -28,10 +41,10 @@ class PromptCfg:
     system_prompt: str
     prompt_mode: str = "few-shot"  # "few-shot" | "zero-shot"
     max_terms_per_chunk: int = 16
-    max_new_tokens: int = 256
+    max_new_tokens: int = 128
     temperature: float = 0.0
     top_p: float = 1.0
-    few_shots: Optional[List[Dict[str, Any]]] = None  # list of {chunk, candidate_terms, output}
+    few_shots: Optional[List[Dict[str, Any]]] = None  # list of {chunk, indexed_terms, output}
 
 
 def load_prompt_cfg(path: str) -> PromptCfg:
@@ -77,7 +90,7 @@ def init_tables(conn: sqlite3.Connection, edges_table: str, runs_table: str) -> 
         """
     )
 
-    # Runs table fixes the resume bug: mark a chunk processed even when zero edges.
+    # Runs table fixes resume: mark chunk processed even when zero edges.
     cur.execute(
         f"""
         CREATE TABLE IF NOT EXISTS {runs_table} (
@@ -132,11 +145,6 @@ def fetch_chunks(
     offset_rowid: int,
     max_chunks: int,
 ) -> List[Tuple[int, str, str, str]]:
-    """
-    Resume-safe:
-    - select chunks whose (doc_id, chunk_id) NOT IN runs_table
-    - so a chunk that produced 0 edges still gets marked "done" via runs_table
-    """
     cur = conn.cursor()
 
     sql = f"""
@@ -159,32 +167,33 @@ def fetch_chunks(
 
 
 # -----------------------------
-# Candidate terms per chunk
+# Candidate terms per chunk (UPDATED)
 # -----------------------------
 def fetch_candidate_terms(
     conn: sqlite3.Connection,
-    terms_table: str,          # llm_terms_final
-    enrich_table: str,         # llm_enrich_final
+    terms_table: str,
+    enrich_table: str,
     doc_id: str,
     chunk_id: str,
     min_freq: int,
     max_terms: int,
-) -> Tuple[List[Dict[str, Any]], List[str]]:
+) -> List[Dict[str, Any]]:
     """
-    Returns:
-      - candidates: list of dicts {term_id, term, canonical, ontology_role, is_hpc_domain, freq_total}
-      - surface_terms: list of strings to show to LLM
+    Candidate selection:
+    - is_hpc_domain = 1
+    - ontology_role != drop
+    - category in TAXONOMY_ELIGIBLE_CATEGORIES
+    - freq_total >= min_freq
     """
     cur = conn.cursor()
-
-    # Join by term_id (correct for your PK/FK design)
     cur.execute(
         f"""
         SELECT
             t.term_id,
             t.term,
             COALESCE(e.canonical, LOWER(TRIM(t.term))) AS canonical,
-            COALESCE(e.ontology_role, 'unknown') AS ontology_role,
+            LOWER(COALESCE(e.ontology_role, 'unknown')) AS ontology_role,
+            LOWER(COALESCE(e.category, 'unknown')) AS category,
             COALESCE(e.is_hpc_domain, 1) AS is_hpc_domain,
             t.freq_total
         FROM {terms_table} t
@@ -194,25 +203,22 @@ def fetch_candidate_terms(
           AND t.chunk_id = ?
           AND t.freq_total >= ?
           AND COALESCE(e.is_hpc_domain, 1) = 1
-          AND COALESCE(e.ontology_role, 'unknown') IN ('class', 'unknown')
+          AND LOWER(COALESCE(e.ontology_role, 'unknown')) != 'drop'
         ORDER BY t.freq_total DESC, t.term_id ASC
         """,
         (doc_id, chunk_id, max(1, min_freq)),
     )
 
     rows = cur.fetchall()
-    candidates: List[Dict[str, Any]] = []
-    surface: List[str] = []
+    out: List[Dict[str, Any]] = []
     seen = set()
 
-    for term_id, term, canonical, role, is_dom, freq_total in rows:
+    for term_id, term, canonical, role, category, is_dom, freq_total in rows:
         s = (term or "").strip()
         if not s:
             continue
 
-        # lightweight “junk guard”
-        letters = "".join(ch for ch in s if ch.isalpha())
-        if len(letters) < 3:
+        if category not in TAXONOMY_ELIGIBLE_CATEGORIES:
             continue
 
         k = s.lower()
@@ -220,40 +226,61 @@ def fetch_candidate_terms(
             continue
         seen.add(k)
 
-        candidates.append(
+        out.append(
             {
                 "term_id": int(term_id),
                 "term": s,
-                "canonical": str(canonical or "").strip(),
-                "ontology_role": str(role or "unknown").strip(),
+                "canonical": str(canonical or "").strip().lower(),
+                "ontology_role": str(role or "unknown").strip().lower(),
+                "category": str(category or "unknown").strip().lower(),
                 "is_hpc_domain": int(is_dom) if is_dom is not None else 1,
                 "freq_total": int(freq_total) if freq_total is not None else 1,
             }
         )
-        surface.append(s)
 
-        if max_terms and len(surface) >= max_terms:
+        if max_terms and len(out) >= max_terms:
             break
 
-    return candidates, surface
+    return out
+
+
+def build_idx_maps(candidates: List[Dict[str, Any]]) -> Tuple[Dict[int, str], Dict[int, int]]:
+    """
+    idx -> surface_term, idx -> term_id
+    """
+    idx_to_term: Dict[int, str] = {}
+    idx_to_term_id: Dict[int, int] = {}
+    for i, c in enumerate(candidates, start=1):
+        idx_to_term[i] = c["term"]
+        idx_to_term_id[i] = int(c["term_id"])
+    return idx_to_term, idx_to_term_id
 
 
 # -----------------------------
-# Prompt building
+# Prompt building (INDEXED)
 # -----------------------------
-def build_prompt(cfg: PromptCfg, chunk_text: str, candidate_terms: List[str]) -> str:
-    candidate_str = ", ".join(candidate_terms)
+def build_prompt(cfg: PromptCfg, chunk_text: str, candidates: List[Dict[str, Any]]) -> str:
+    # Build indexed term list
+    idx_lines: List[str] = []
+    for i, c in enumerate(candidates, start=1):
+        idx_lines.append(f"{i}. {c['term']} [category={c['category']}, role={c['ontology_role']}]")
+    indexed_terms_block = "\n".join(idx_lines)
 
+    # Few-shots in indexed style
     if cfg.prompt_mode == "few-shot" and cfg.few_shots:
         blocks: List[str] = []
         for i, ex in enumerate(cfg.few_shots, start=1):
             ex_chunk = ex.get("chunk", "")
-            ex_terms = ex.get("candidate_terms", [])
+            ex_terms = ex.get("indexed_terms", ex.get("candidate_terms", []))  # allow older key
+            if isinstance(ex_terms, list):
+                ex_terms_block = "\n".join(f"{j+1}. {t}" for j, t in enumerate(ex_terms))
+            else:
+                ex_terms_block = ""
             ex_out = ex.get("output", {"is_a_edges": []})
             blocks.append(
                 f"Example {i}:\n"
                 f"CHUNK:\n{ex_chunk}\n\n"
-                f"CANDIDATE_TERMS:\n{', '.join(ex_terms)}\n\n"
+                f"TERM_LIST:\n{ex_terms_block}\n\n"
                 f"JSON:\n{json.dumps(ex_out, ensure_ascii=False, indent=2)}\n"
             )
         examples_str = "\n\n".join(blocks)
@@ -264,15 +291,22 @@ def build_prompt(cfg: PromptCfg, chunk_text: str, candidate_terms: List[str]) ->
             f"{examples_str}\n\n"
             "NOW process ONLY this NEW CHUNK:\n\n"
             f"CHUNK:\n{chunk_text}\n\n"
-            f"CANDIDATE_TERMS:\n{candidate_str}\n\n"
+            f"TERM_LIST (use ONLY these indices for child_idx/parent_idx):\n{indexed_terms_block}\n\n"
             "Return ONLY one JSON object with key \"is_a_edges\".\n"
+            "Each edge item must have:\n"
+            "{\n"
+            '  "child_idx": 1,\n'
+            '  "parent_idx": 2,\n'
+            '  "justification": "short reason"\n'
+            "}\n"
         )
     else:
         user = (
             "Extract ONLY true is-a (subclass) relations.\n\n"
             f"CHUNK:\n{chunk_text}\n\n"
-            f"CANDIDATE_TERMS:\n{candidate_str}\n\n"
+            f"TERM_LIST (use ONLY these indices for child_idx/parent_idx):\n{indexed_terms_block}\n\n"
             "Return ONLY one JSON object with key \"is_a_edges\".\n"
+            "Each edge item must have: child_idx, parent_idx, justification.\n"
         )
 
     return (
@@ -301,17 +335,14 @@ def call_llm(tok, model, device: str, prompt: str, cfg: PromptCfg) -> str:
             pad_token_id=tok.pad_token_id,
         )
 
-    gen_only = out[0, input_ids.shape[-1]:]
+    gen_only = out[0, input_ids.shape[-1] :]
     return tok.decode(gen_only, skip_special_tokens=True)
 
 
 # -----------------------------
-# Robust JSON extraction (brace matching)
+# Robust JSON extraction (brace matching): last object
 # -----------------------------
-def extract_json_object(text: str) -> Optional[str]:
-    """
-    Finds the last balanced {...} object in the text (most likely the answer).
-    """
+def extract_json_object_last(text: str) -> Optional[str]:
     best = None
     stack = 0
     start = None
@@ -324,23 +355,26 @@ def extract_json_object(text: str) -> Optional[str]:
             if stack > 0:
                 stack -= 1
                 if stack == 0 and start is not None:
-                    best = text[start:i+1]
+                    best = text[start : i + 1]
                     start = None
     return best
 
 
 # -----------------------------
-# Parsing + validation
+# Parse + validate (INDEXED)
 # -----------------------------
-def parse_edges(raw_output: str, candidate_terms: List[str]) -> Tuple[List[Dict[str, str]], Dict[str, Any]]:
+def parse_edges_idx(
+    raw_output: str,
+    idx_to_term: Dict[int, str],
+) -> Tuple[List[Dict[str, str]], Dict[str, Any]]:
     """
     Validates:
     - JSON schema key is_a_edges
-    - child/parent are in candidate terms (case-insensitive match)
+    - child_idx/parent_idx are valid ints within idx_to_term
+    Post-filters:
+    - drop self edges
     """
-    candidate_lc = {t.lower(): t for t in candidate_terms}
-
-    blob = extract_json_object(raw_output)
+    blob = extract_json_object_last(raw_output)
     if not blob:
         return [], {"error": "no_json_object"}
 
@@ -366,39 +400,34 @@ def parse_edges(raw_output: str, candidate_terms: List[str]) -> Tuple[List[Dict[
     for e in edges:
         if not isinstance(e, dict):
             continue
-        child = str(e.get("child", "")).strip()
-        parent = str(e.get("parent", "")).strip()
+
+        ci = e.get("child_idx")
+        pi = e.get("parent_idx")
         just = str(e.get("justification", "")).strip()
 
-        if not child or not parent:
+        try:
+            ci = int(ci)
+            pi = int(pi)
+        except Exception:
             continue
+
+        if ci not in idx_to_term or pi not in idx_to_term:
+            continue
+
+        child = idx_to_term[ci]
+        parent = idx_to_term[pi]
+
         if child.lower() == parent.lower():
             continue
 
-        # Must map to candidate terms (case-insensitive)
-        c_key = child.lower()
-        p_key = parent.lower()
-        if c_key not in candidate_lc or p_key not in candidate_lc:
-            continue
-
-        # Normalize to candidate surface form (prevents minor variants)
-        child_norm = candidate_lc[c_key]
-        parent_norm = candidate_lc[p_key]
-
-        pair = (child_norm.lower(), parent_norm.lower())
+        pair = (child.lower(), parent.lower())
         if pair in seen:
             continue
         seen.add(pair)
 
-        kept.append({"child": child_norm, "parent": parent_norm, "justification": just})
+        kept.append({"child": child, "parent": parent, "justification": just})
 
-    meta = {"parsed_json": data}
-    return kept, meta
-
-
-def map_term_ids(candidates: List[Dict[str, Any]]) -> Dict[str, int]:
-    # surface term lower -> term_id
-    return {c["term"].lower(): int(c["term_id"]) for c in candidates}
+    return kept, {"parsed_json": data}
 
 
 # -----------------------------
@@ -448,7 +477,7 @@ def run(
         n_since_commit = 0
 
         for i, (rowid, doc_id, chunk_id, chunk_text) in enumerate(rows, start=1):
-            candidates, surface_terms = fetch_candidate_terms(
+            candidates = fetch_candidate_terms(
                 conn=conn,
                 terms_table=terms_table,
                 enrich_table=enrich_table,
@@ -459,12 +488,15 @@ def run(
             )
 
             if i == 1 or i % 10 == 0:
-                print(f"[INFO] chunk {i}/{len(rows)} rowid={rowid} doc_id={doc_id} chunk_id={chunk_id} candidates={len(surface_terms)}")
+                print(
+                    f"[INFO] chunk {i}/{len(rows)} rowid={rowid} doc_id={doc_id} "
+                    f"chunk_id={chunk_id} taxo_candidates={len(candidates)}"
+                )
 
-            if len(surface_terms) < 2:
-                # Still must mark processed to avoid infinite re-tries
+            if len(candidates) < 2:
+                # Mark processed even if no candidates
                 if debug_first:
-                    print("[DEBUG] <2 candidate terms; would mark run with 0 edges.")
+                    print("[DEBUG] <2 taxonomy candidate terms; would mark run with 0 edges.")
                     return
                 cur.execute(
                     f"""
@@ -472,7 +504,7 @@ def run(
                       (doc_id, chunk_id, rowid_src, candidate_n, kept_edges_n, raw_output, parsed_json, processed_at)
                     VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'))
                     """,
-                    (doc_id, chunk_id, rowid, len(surface_terms), 0, "", json.dumps({"is_a_edges": []})),
+                    (doc_id, chunk_id, rowid, len(candidates), 0, "", json.dumps({"is_a_edges": []})),
                 )
                 n_since_commit += 1
                 if n_since_commit >= max(1, commit_every):
@@ -480,27 +512,28 @@ def run(
                     n_since_commit = 0
                 continue
 
-            prompt = build_prompt(cfg, chunk_text, surface_terms)
+            idx_to_term, idx_to_term_id = build_idx_maps(candidates)
+            prompt = build_prompt(cfg, chunk_text, candidates)
             raw = call_llm(tok, model, device, prompt, cfg)
-            edges, meta = parse_edges(raw, surface_terms)
+
+            edges, meta = parse_edges_idx(raw, idx_to_term)
 
             if debug_first:
                 print(f"\nDEBUG rowid={rowid} doc_id={doc_id} chunk_id={chunk_id}")
-                print("\n=== RAW OUTPUT (first 900 chars) ===")
-                print(raw[:900])
-                print("\n=== KEPT EDGES ===")
+                print("\n=== RAW OUTPUT (first 1200 chars) ===")
+                print(raw[:1200])
+                print("\n=== KEPT EDGES (after idx validation) ===")
                 for e in edges:
                     print(f"- {e['child']} -> {e['parent']} :: {e['justification']}")
                 print("\n=== PARSE META ===")
                 print(meta)
                 return
 
-            term_id_map = map_term_ids(candidates)
-
-            # Insert edges (dedup safe via UNIQUE + OR IGNORE)
+            # Insert edges
             for e in edges:
-                child_id = term_id_map.get(e["child"].lower())
-                parent_id = term_id_map.get(e["parent"].lower())
+                child_id = idx_to_term_id.get(next(k for k, v in idx_to_term.items() if v == e["child"]))
+                parent_id = idx_to_term_id.get(next(k for k, v in idx_to_term.items() if v == e["parent"]))
+
                 cur.execute(
                     f"""
                     INSERT OR IGNORE INTO {edges_table}
@@ -508,15 +541,18 @@ def run(
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
-                        doc_id, chunk_id,
-                        child_id, parent_id,
-                        e["child"], e["parent"],
+                        doc_id,
+                        chunk_id,
+                        child_id,
+                        parent_id,
+                        e["child"],
+                        e["parent"],
                         e["justification"],
-                        extract_json_object(raw) or "",
+                        extract_json_object_last(raw) or "",
                     ),
                 )
 
-            # Mark chunk processed ALWAYS (even when 0 edges)
+            # Mark chunk processed ALWAYS
             cur.execute(
                 f"""
                 INSERT OR REPLACE INTO {runs_table}
@@ -524,8 +560,10 @@ def run(
                 VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'))
                 """,
                 (
-                    doc_id, chunk_id, rowid,
-                    len(surface_terms),
+                    doc_id,
+                    chunk_id,
+                    rowid,
+                    len(candidates),
                     len(edges),
                     raw,
                     json.dumps(meta.get("parsed_json", {}), ensure_ascii=False),
@@ -538,7 +576,7 @@ def run(
                 n_since_commit = 0
 
         conn.commit()
-        print("[DONE] is-a taxonomy extraction complete.")
+        print("[DONE] is-a taxonomy extraction complete (INDEXED).")
 
     finally:
         conn.close()
@@ -548,27 +586,23 @@ def run(
 # CLI
 # -----------------------------
 def main():
-    ap = argparse.ArgumentParser(description="OLAF_LLM: is-a taxonomy extraction (LLM)")
+    ap = argparse.ArgumentParser(description="OLAF_LLM: is-a taxonomy extraction (LLM, INDEXED child/parent).")
 
     ap.add_argument("--db", required=True)
     ap.add_argument("--model-id", default="mistralai/Mistral-7B-Instruct-v0.3")
-    ap.add_argument("--prompt-config", required=True, help="YAML prompt config")
+    ap.add_argument("--prompt-config", default="prompts/taxonomy_llm.yaml")
 
-    # Chunk source
     ap.add_argument("--chunks-table", default="contextual_chunk")
     ap.add_argument("--doc-id-col", default="doc_id")
     ap.add_argument("--chunk-id-col", default="chunk_id")
     ap.add_argument("--text-col", default="text")
 
-    # Terms/enrich source
     ap.add_argument("--terms-table", default="llm_terms_final")
     ap.add_argument("--enrich-table", default="llm_enrich_final")
 
-    # Outputs
     ap.add_argument("--edges-table", default="llm_is_a_edges_final")
     ap.add_argument("--runs-table", default="llm_is_a_runs")
 
-    # Controls
     ap.add_argument("--max-chunks", type=int, default=0)
     ap.add_argument("--offset-rowid", type=int, default=0)
     ap.add_argument("--min-freq", type=int, default=2)

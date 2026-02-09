@@ -1,0 +1,7 @@
+hpc:Licensescheduleradmin a owl:Class .
+hpc:hasadmin a owl:ObjectProperty .
+hpc:Hasadmin rdfs:domain hpc:Licensescheduleradmin ;
+                 rdfs:range xsd:string .
+
+hpc:LicenseSchedulerAdmin "lsadmin" rdf:type hpc:LicenseSchedulerAdmin ;
+                          hpc:hasAdmin "user_name" .

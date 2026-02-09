@@ -1,0 +1,33 @@
+hpc:Daemon a owl:Class .
+hpc:messageloglevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Daemon ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:temporarymessageloglevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Daemon ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Rootresaccount a owl:Class ;
+    rdfs:subClassOf hpc:Resaccount .
+
+hpc:Applicationresaccount a owl:Class ;
+    rdfs:subClassOf hpc:Resaccount .
+
+hpc:LSFLogMask a xsd:nonNegativeInteger .
+
+hpc:LSFLogDir a rdf:Property ;
+    rdfs:domain hpc:Daemon .
+
+hpc:resdebug a owl:ObjectProperty ;
+    rdfs:domain hpc:Resaccount ;
+    rdfs:range hpc:Debuglevel .
+
+hpc:Debuglevel a owl:Class .
+
+hpc:ClassName a xsd:string .
+hpc:DebugLevel hasClass hpc:ClassName .
+
+hpc:LogFile a xsd:string .
+hpc:limdebug a owl:ObjectProperty ;
+    rdfs:domain hpc:Daemon ;
+    rdfs:range [ hpc:Limdebug ; hpc:Logfile ] .

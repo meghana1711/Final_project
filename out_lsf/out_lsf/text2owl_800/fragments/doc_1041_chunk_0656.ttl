@@ -1,0 +1,42 @@
+hpc:Myusergroup a owl:Class .
+hpc:Myjob a owl:Class .
+
+hpc:jobSubmissionCommand rdf:type owl:ObjectProperty .
+hpc:inputFile rdf:type hpc:jobSubmissionCommand .
+hpc:outputDir rdf:type hpc:jobSubmissionCommand .
+hpc:limit rdf:type owl:ObjectProperty .
+hpc:coreLimit rdf:type hpc:limit .
+hpc:resource rdf:type owl:ObjectProperty .
+hpc:computeNodeMem rdf:type hpc:resource .
+hpc:hostFile rdf:type hpc:resource .
+hpc:properties rdf:type owl:ObjectProperty .
+hpc:queueName rdf:type hpc:properties .
+hpc:rerun rdf:type xsd:anyURI .
+hpc:schedule rdf:type owl:ObjectProperty .
+hpc:userGroup rdf:type hpc:schedule .
+hpc:notify rdf:type owl:ObjectProperty .
+hpc:notifyJobDone rdf:type hpc:notify .
+hpc:notifyJobExit rdf:type hpc:notify .
+hpc:mailUser rdf:type hpc:notify .
+hpc:command rdf:type hpc:notify .
+
+hpc:checkpoint_dir rdf:type owl:DatatypeProperty .
+hpc:init rdf:type xsd:nonNegativeInteger .
+hpc:checkpoint_period rdf:type xsd:nonNegativeInteger .
+hpc:method rdf:type xsd:string .
+
+hpc:myUserGroup rdf:type hpc:UserGroup ;
+    hpc:jobSubmissionCommand [
+        a hpc:jobSubmissionCommand ;
+        hpc:inputFile "/tmp/input/jobfile.sh" ;
+        hpc:outputDir "/tmp/output" ;
+        hpc:limit [
+            a hpc:limit ;
+            hpc:coreLimit 5 ;
+            hpc:resource [
+                a hpc:resource ;
+                hpc:computeNodeMem 256 ;
+                hpc:hostFile "/tmp/myHostFile.txt"
+            ]
+        ]
+    ] .

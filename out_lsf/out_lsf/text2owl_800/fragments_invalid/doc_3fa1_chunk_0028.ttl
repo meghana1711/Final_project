@@ -1,0 +1,19 @@
+hpc:Hostpartition a owl:Class .
+hpc:HpartName hpc:hasname rdf:PlainLiteral "GlobalPartition" .
+hpc:Hostpartition hpc:hashosts rdf:PlainLiteral "all" .
+hpc:UserShares rdf:type owl:ObjectProperty .
+hpc:HOSTS rdf:type owl:DatatypeProperty .
+hpc:USER_SHARES rdf:type owl:DatatypeProperty .
+hpc:Usershares rdfs:domain hpc:Hostpartition .
+hpc:Hosts rdfs:range rdf:PlainLiteral .
+hpc:UserShares rdfs:range rdf:List .
+hpc:Gpuruntimefairshare a owl:Class .
+hpc:GpuRunTimeFactor hpc:hasfactor rdf:PlainLiteral ?GPU_RUN_TIME_FACTOR .
+hpc:Gpuruntimefairshare hpc:hasgpuRunTimeFactor rdf:Property .
+hpc:enablegpuhistruntime a owl:ObjectProperty .
+hpc:EnableGpuHistRunTime hpc:hasvalue rdf:PlainLiteral "Y" .
+hpc:Enablegpuhistruntime rdfs:domain hpc:Gpuruntimefairshare .
+hpc:dynamicpriorityformula a owl:ObjectProperty .
+hpc:DynamicPriorityFormula rdfs:comment "dynamic priority calculation formula" .
+hpc:Dynamicpriorityformula rdfs:domain hpc:Gpuruntimefairshare .
+hpc:Dynamicpriorityformula rdfs:range xsd:decimal .

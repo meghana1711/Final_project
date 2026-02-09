@@ -1,0 +1,45 @@
+hpc:Hostgroup a owl:Class .
+hpc:Usergroup a owl:Class .
+hpc:Egroupexecutable a owl:Class .
+
+hpc:hasgroupmembership a owl:ObjectProperty .
+hpc:isegroupexecutable a owl:ObjectProperty .
+hpc:hasgroupmembers a owl:DatatypeProperty .
+
+hpc:Hostgroup rdfs:subClassOf hpc:Group .
+hpc:Usergroup rdfs:subClassOf hpc:Group .
+hpc:Egroupexecutable rdfs:subClassOf hpc:File .
+
+hpc:Hostgroup rdfs:domain hpc:Hostgroup .
+hpc:Usergroup rdfs:domain hpc:Usergroup .
+hpc:Egroupexecutable rdfs:domain hpc:Egroupexecutable .
+
+hpc:Hasgroupmembership rdfs:range hpc:Usergroup .
+hpc:Isegroupexecutable rdfs:range hpc:Egroupexecutable .
+hpc:Hasgroupmembers rdfs:range xsd:string .
+
+hpc:HostGroup_UNIX a hpc:HostGroup ;
+    hpc:Location rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:hasGroupMembership ;
+    rdfs:domain hpc:Hostgroup .
+
+hpc:HostGroup_Windows a hpc:HostGroup ;
+    hpc:Location rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:hasGroupMembership ;
+    rdfs:domain hpc:Hostgroup .
+
+hpc:EgroupExecutable_UNIX a hpc:EgroupExecutable ;
+    hpc:Location rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:isEgroupExecutable ;
+    rdfs:domain hpc:Egroupexecutable .
+
+hpc:EgroupExecutable_Windows a hpc:EgroupExecutable ;
+    hpc:Location rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:isEgroupExecutable ;
+    rdfs:domain hpc:Egroupexecutable .
+
+hpc:runsWhen a owl:ObjectProperty .
+hpc:RunsWhen rdfs:domain hpc:Egroupexecutable .
+hpc:RunsWhen rdfs:range hpc:Command .
+
+hpc:Command a owl:Class .

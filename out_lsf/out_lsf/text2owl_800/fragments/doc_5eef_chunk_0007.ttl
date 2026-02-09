@@ -1,0 +1,35 @@
+hpc:Directory a owl:Class ;
+    rdfs:subClassOf hpc:Path .
+
+hpc:File a owl:Class ;
+    rdfs:subClassOf hpc:Path .
+
+hpc:wildcarddirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Path ;
+    rdfs:range hpc:Directory ;
+    rdfs:comment "Paths ending in a slash followed by an asterisk are interpreted as directories." .
+
+hpc:recursivedirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Path ;
+    rdfs:range hpc:Directory ;
+    rdfs:comment "Paths ending in a slash mean that you want to transfer all of the files in the folder and all files in all of its sub folders, recursively." .
+
+hpc:fileindirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Path ;
+    rdfs:range hpc:File ;
+    rdfs:comment "Paths that end in a slash followed by an asterisk (/*) are interpreted as a directory. Transfers only the files in the directory without recursion into subdirectories." .
+
+hpc:quotedfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:string ;
+    rdfs:comment "When wildcard characters are expanded, data files must be in quotation marks." .
+
+hpc:symboliclinkexpansion a owl:ObjectProperty ;
+    rdfs:domain hpc:Path ;
+    rdfs:range hpc:Path ;
+    rdfs:comment "When wildcard characters are expanded, symbolic links in a path are expanded." .
+
+hpc:brokensymboliclinkfailure a owl:ObjectProperty ;
+    rdfs:domain hpc:Path ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "If a broken symbolic link is detected, the job submission fails." .

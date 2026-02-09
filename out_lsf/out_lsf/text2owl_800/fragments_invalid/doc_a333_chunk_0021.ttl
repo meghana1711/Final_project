@@ -1,0 +1,77 @@
+hpc:TimeCompressionFactor
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Workloadsnapshot ;
+    rdfs:range xsd:decimal .
+
+hpc:Experiment
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] ;
+    rdfs:label "Experiment" ;
+    rdfs:comment "A simulation of a cluster." .
+
+hpc:ClusterConfiguration
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Experiment ;
+    rdfs:range hpc:Experimentconfiguration .
+
+hpc:WorkloadSnapshotImport
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Experiment ;
+    rdfs:range hpc:Workloadsnapshot .
+
+hpc:ExperimentProgress
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Experiment ;
+    rdfs:range hpc:Experimentprogress .
+
+hpc:ExperimentResults
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Experiment ;
+    rdfs:range hpc:Experimentresults .
+
+hpc:ExperimentVersion
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Experiment ;
+    rdfs:range xsd:integer .
+
+hpc:Baseline
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Experiment ;
+    rdfs:range hpc:Cluster .
+
+hpc:Graphs
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Experiment ;
+    rdfs:range hpc:Graph .
+
+hpc:SimulationEnvironment
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Experiment ;
+    rdfs:range hpc:Simulation .
+
+hpc:ExperimentRunning
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Experiment ;
+    rdfs:range xsd:boolean .
+
+hpc:ExperimentDone
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Experiment ;
+    rdfs:range xsd:boolean .
+
+hpc:LSFCommand
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Simulation ;
+    rdfs:range xsd:string .
+
+hpc:ClusterConfigurationTab
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] ;
+    rdfs:label "Cluster Configuration Tab" ;
+    rdfs:comment "A tab showing the parameters of the experiment." .
+
+hpc:WorkloadSnapshotTab
+    a owl:Class ;
+    rdfs:subClassOf [ a

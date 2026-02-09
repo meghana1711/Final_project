@@ -1,0 +1,7 @@
+hpc:averageruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Performance ;
+    rdfs:range xsd:decimal .
+
+hpc:recommendedmaximumallocationsize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Performance ;
+    rdfs:range xsd:nonNegativeInteger .

@@ -1,0 +1,14 @@
+hpc:TmpLimit a owl:Class .
+hpc:hasresource a owl:ObjectProperty .
+hpc:Hasresource rdfs:domain hpc:TmpLimit ;
+                  rdfs:range (hpc:Apps hpc:PerApp | hpc:Queues hpc:PerQueue | hpc:Users hpc:PerUser | hpc:Hosts hpc:PerHost | hpc:LicProjects hpc:PerLicProject | hpc:Projects hpc:PerProject) .
+hpc:value a owl:DatatypeProperty .
+hpc:Value rdfs:domain hpc:TmpLimit ;
+               rdfs:range xsd:nonNegativeInteger .
+hpc:unit a owl:DatatypeProperty .
+hpc:Unit rdfs:domain hpc:TmpLimit ;
+               rdfs:range xsd:string .
+hpc:hasUnit rdfs:subPropertyOf hpc:value .
+hpc:hasValue rdfs:subPropertyOf hpc:value .
+hpc:Hasunit rdfs:range xsd:string ;
+               rdfs:subPropertyChain ((hpc:hasUnit rdfs:subPropertyOf hpc:value) rdfs:subPropertyChain* (hpc:value rdfs:subPropertyOf xsd:nonNegativeInteger)) .

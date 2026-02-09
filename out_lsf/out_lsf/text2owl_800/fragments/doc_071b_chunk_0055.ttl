@@ -1,0 +1,14 @@
+hpc:Hostname a owl:Class .
+hpc:hostrange a owl:ObjectProperty .
+hpc:Individualhost a owl:Class .
+
+hpc:Hostrange rdfs:domain hpc:Hostname .
+hpc:Hostrange rdfs:range xsd:string .
+
+hpc:Hostname rdfs:subClassOf [ a owl:Class ;
+                                 owl:unionOf (hpc:IndividualHost hpc:HostRange) ] .
+
+hpc:Submittedto rdfs:domain hpc:Job .
+hpc:Submittedto rdfs:range hpc:Hostname .
+
+hpc:Job a owl:Class .

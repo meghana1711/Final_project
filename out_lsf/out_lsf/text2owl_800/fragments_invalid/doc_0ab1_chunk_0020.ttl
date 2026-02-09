@@ -1,0 +1,24 @@
+hpc:Gpujob a owl:Class .
+hpc:Numberpertask hpc:Gpujob rdfs:domain xsd:nonNegativeInteger .
+hpc:Numberpertask rdfs:range xsd:nonNegativeInteger .
+hpc:Mode hpc:Gpujob rdfs:domain hpc:Gpumode .
+hpc:Mode rdfs:range xsd:string .
+hpc:Resourceconfiguration hpc:Gpujob rdfs:domain xsd:string .
+hpc:Resourceconfiguration rdfs:range xsd:string .
+hpc:Resourcereservepertask hpc:Gpujob rdfs:domain xsd:boolean .
+hpc:Resourcereservepertask rdfs:range xsd:boolean .
+hpc:Gpumode hpc:gpumode a owl:Enum .
+hpc:gpuMode rdfs:member "shared" .
+hpc:gpuMode rdfs:member "exclusive_process" .
+hpc:Mps hpc:Gpujob rdfs:domain xsd:boolean .
+hpc:Mps rdfs:range xsd:boolean .
+hpc:Mpsoptions hpc:Gpujob rdfs:domain xsd:string .
+hpc:Mpsoptions rdfs:range xsd:string .
+hpc:Nvidiamps hpc:Mpsoptions rdfs:subClassOf hpc:Mps .
+hpc:nvidiaMPS rdfs:comment "Options specific to Nvidia MPS." .
+hpc:nvidiaMPS rdfs:member "yes" .
+hpc:nvidiaMPS rdfs:member "nocvd" .
+hpc:nvidiaMPS rdfs:member "shared" .
+hpc:Amdmps a owl:Class .
+hpc:Amdmps rdfs:subClassOf hpc:Mps .
+hpc:amdMPS rdfs:comment "Not applicable for AMD GPUs." .

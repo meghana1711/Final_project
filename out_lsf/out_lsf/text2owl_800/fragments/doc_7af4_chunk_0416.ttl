@@ -1,0 +1,18 @@
+hpc:dispatchwindow a owl:ObjectProperty;
+    rdfs:domain hpc:Queue;
+    rdfs:range xsd:time .
+
+hpc:queuepriority a owl:DatatypeProperty;
+    rdfs:domain hpc:Queue .
+
+hpc:fairsharepriority a owl:DatatypeProperty;
+    rdfs:domain hpc:User .
+
+hpc:Crossqueuefairshareset a owl:Class;
+    rdfs:subClassOf hpc:Queueset .
+
+hpc:Queueset a owl:Class .
+
+hpc:Queue a owl:Class .
+
+hpc:User a owl:Class .

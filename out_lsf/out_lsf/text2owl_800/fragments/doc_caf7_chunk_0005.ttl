@@ -1,0 +1,12 @@
+hpc:Command a owl:Class.
+hpc:Options a owl:Class.
+hpc:Command rdfs:subClassOf owl:Class.
+hpc:Options rdfs:subClassOf owl:Class.
+hpc:Command rdfs:domain hpc:Command;
+    rdfs:range rdf:List; .
+hpc:hasoptions a owl:ObjectProperty;
+    rdfs:domain hpc:Command;
+    rdfs:range rdf:List.
+hpc:hasarguments a owl:ObjectProperty;
+    rdfs:domain hpc:Command;
+    rdfs:range rdf:List.

@@ -1,0 +1,55 @@
+hpc:Mcsparameters a owl:Class .
+hpc:Mcspluginparameters a owl:Class .
+
+hpc:hasmcsmode a owl:ObjectProperty ;
+    rdfs:domain hpc:Mcsparameters ;
+    rdfs:range xsd:string .
+
+hpc:selectnodes a owl:ObjectProperty ;
+    rdfs:domain hpc:Mcsparameters ;
+    rdfs:range xsd:string .
+
+hpc:privatedata a owl:ObjectProperty ;
+    rdfs:domain hpc:Mcsparameters ;
+    rdfs:range xsd:string .
+
+hpc:privateDataScope a owl:Enum ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdf:type rdfs:Class ;
+    rdfs:comment "Scope of private data: jobs or nodes" ;
+    owl:oneOf ( hpc:PrivateDataJobs
+                hpc:PrivateDataNodes ) .
+
+hpc:Privatedatajobs a owl:Class ;
+    rdfs:label "jobs" .
+
+hpc:Privatedatanodes a owl:Class ;
+    rdfs:label "nodes" .
+
+hpc:mcslabelfilter a owl:ObjectProperty ;
+    rdfs:domain hpc:Mcsparameters ;
+    rdfs:range xsd:string .
+
+hpc:exclusivemcs a owl:ObjectProperty ;
+    rdfs:domain hpc:Mcsparameters ;
+    rdfs:range xsd:string .
+
+hpc:Mcsgroup a owl:Class ;
+    rdfs:label "list of user groups allowed to be mapped to MCS labels" .
+
+hpc:mcsgroupplugin a owl:ObjectProperty ;
+    rdfs:domain hpc:Mcsparameters ;
+    rdfs:range hpc:Mcsgroup .
+
+hpc:enforceprivatedata a owl:ObjectProperty ;
+    rdfs:domain hpc:Mcsparameters ;
+    rdfs:range xsd:boolean .
+
+hpc:accountassociation a owl:ObjectProperty ;
+    rdfs:domain hpc:Mcsparameters ;
+    rdfs:range xsd:string .
+
+hpc:partitioninassociation a owl:ObjectProperty ;
+    rdfs:domain hpc:Accountassociation ;
+    rdfs:range xsd:boolean .

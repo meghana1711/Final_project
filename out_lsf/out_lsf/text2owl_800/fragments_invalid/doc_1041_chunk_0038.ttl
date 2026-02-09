@@ -1,0 +1,67 @@
+hpc:gpdrestart a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:Seq ;
+    rdfs:comment "Restarts the Grid Engine." .
+
+hpc:gpdtime a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:Seq ;
+    rdfs:comment "Sets the timing level." .
+    rdfs:subPropertyOf hpc:GPDRestart .
+
+hpc:Gpdtime rdfs:range rdf:Seq ;
+    rdfs:subPropertyOf hpc:GPDRestart ;
+    rdfs:range rdf:Seq ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The timing level." .
+
+hpc:Gpdtime rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:GPDRestart ;
+    rdfs:range xsd:string ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The log file name." .
+
+hpc:Gpdtime rdfs:range xsd:nonNegativeInteger ;
+    rdfs:subPropertyOf hpc:GPDRestart ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Whether to output verbose information." .
+
+hpc:Gpdtime rdfs:range xsd:boolean ;
+    rdfs:subPropertyOf hpc:GPDRestart ;
+    rdfs:range xsd:boolean ;
+    rdfs:range rdf:XMLLiteral ;
+    rdfs:comment "A comment." .
+
+hpc:hclose a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:Seq ;
+    rdfs:comment "Closes a host or a group of hosts." .
+
+hpc:Hclose rdfs:range rdf:Seq ;
+    rdfs:subPropertyOf hpc:Command ;
+    rdfs:range rdf:Seq ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A comment." .
+
+hpc:Hclose rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:Command ;
+    rdfs:range xsd:string ;
+    rdfs:range xsd:anyURI ;
+    rdfs:comment "The lock ID." .
+
+hpc:Hclose rdfs:range xsd:anyURI ;
+    rdfs:subPropertyOf hpc:Command ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:resource ;
+    rdfs:comment "Host names, host groups, compute units, or 'all'." .
+
+hpc:help a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:Seq ;
+    rdfs:comment "Displays help for a command." .
+
+hpc:Help rdfs:range rdf:Seq ;
+    rdfs:subPropertyOf hpc:Command ;
+    rdfs:range rdf:Seq ;
+    rdfs:range xsd:string ;
+    rdfs:comment "

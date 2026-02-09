@@ -1,0 +1,7 @@
+hpc:Lsfsessionscheduler a owl:Class .
+hpc:handlessignal a owl:ObjectProperty .
+hpc:Handlessignal rdfs:domain hpc:Lsfsessionscheduler ;
+    rdfs:range rdf:Resource .
+hpc:expandsinfuture a owl:ObjectProperty .
+hpc:Expandsinfuture rdfs:domain hpc:Lsfsessionscheduler ;
+    rdfs:range rdf:Literal .

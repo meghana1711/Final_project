@@ -1,0 +1,34 @@
+hpc:Lsfjob a owl:Class .
+hpc:Processorbindingoption a owl:Class .
+hpc:BALANCE a hpc:ProcessorBindingOption .
+hpc:PACK a hpc:ProcessorBindingOption .
+hpc:ANY a hpc:ProcessorBindingOption .
+hpc:USER a hpc:ProcessorBindingOption .
+hpc:USER_CPU_LIST a hpc:ProcessorBindingOption .
+hpc:NONE a hpc:ProcessorBindingOption .
+
+hpc:lsfBindJob a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range hpc:Processorbindingoption .
+
+hpc:bindJob a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range hpc:Processorbindingoption .
+
+hpc:lsfcpuaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range hpc:Processorbindingoption .
+
+hpc:Applicationprofile a owl:Class .
+hpc:lsbapplications a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range hpc:Applicationprofile .
+
+hpc:LSFStandardEdition deprecated hpc:LSFJob .
+hpc:Lsfexpressedition a owl:Class ;
+    rdfs:subClassOf hpc:Lsfjob ;
+    owl:differentFrom hpc:LSFStandardEdition .
+
+hpc:lsfcpuaffinityscheduling a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfhost ;
+    rdfs:range hpc:Processorbindingoption .

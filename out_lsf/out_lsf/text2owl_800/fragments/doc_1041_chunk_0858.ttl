@@ -1,0 +1,33 @@
+hpc:Lsf a owl:Class .
+hpc:Haserrormessage rdfs:domain hpc:Lsf ;
+                      rdfs:range xsd:string .
+hpc:Exitstatus rdfs:domain hpc:Lsf ;
+                   rdfs:range xsd:int .
+hpc:isdiagnostic a owl:ObjectProperty ;
+                   rdfs:domain hpc:Lsf ;
+                   rdfs:range hpc:Diagnostic .
+hpc:Diagnostic a owl:Class .
+
+hpc:Pam a owl:Class .
+hpc:Runson rdfs:domain hpc:Pam ;
+                  rdfs:range hpc:Os .
+hpc:Runsmpiapplication rdfs:domain hpc:Pam ;
+                      rdfs:range hpc:Mpiapplication .
+hpc:Runspjlframework rdfs:domain hpc:Pam ;
+                      rdfs:range hpc:Pjlframework .
+
+hpc:Mpiapplication a owl:Class .
+hpc:Hasmpirunoptions rdfs:domain hpc:Mpiapplication ;
+                      rdfs:range xsd:string .
+hpc:Hasmpiapp rdfs:domain hpc:Mpiapplication ;
+                 rdfs:range xsd:string .
+
+hpc:Pjlframework a owl:Class .
+hpc:Hasnumtasks rdfs:domain hpc:Pjlframework ;
+                 rdfs:range xsd:int .
+hpc:Hasnumargs rdfs:domain hpc:Pjlframework ;
+                 rdfs:range xsd:int .
+hpc:Haspjlwrapper rdfs:domain hpc:Pjlframework ;
+                 rdfs:range xsd:string .
+hpc:Hasmpiapp rdfs:domain hpc:Pjlframework ;
+                 rdfs:range xsd:string .

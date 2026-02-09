@@ -1,0 +1,69 @@
+hpc:Awsresource a owl:Class .
+hpc:Launchtemplate a owl:Class .
+hpc:Elasticfabricadapternetworkinterface a owl:Class .
+hpc:Awsinstance a owl:Class .
+hpc:Spotinstance a owl:Class .
+hpc:Ec2fleet a owl:Class .
+hpc:Lsfresourceconnector a owl:Class .
+hpc:Cloudprovider a owl:Class .
+hpc:Linux a owl:Class .
+
+hpc:uses a owl:ObjectProperty ;
+  rdfs:domain hpc:Awsresource ;
+  rdfs:range hpc:Awsfeature .
+
+hpc:reducessteps a owl:ObjectProperty ;
+  rdfs:domain hpc:Launchtemplate ;
+  rdfs:range hpc:Reduction .
+
+hpc:hasnetworkinterface a owl:ObjectProperty ;
+  rdfs:domain hpc:Awsinstance ;
+  rdfs:range hpc:Elasticfabricadapternetworkinterface .
+
+hpc:isspotinstance a owl:ObjectProperty ;
+  rdfs:domain hpc:Awsinstance ;
+  rdfs:range xsd:boolean .
+
+hpc:extends a owl:ObjectProperty ;
+  rdfs:domain hpc:Ec2fleet ;
+  rdfs:range hpc:Spotfleet .
+
+hpc:createsinstances a owl:ObjectProperty ;
+  rdfs:domain hpc:Lsfresourceconnector ;
+  rdfs:range hpc:Ec2instance .
+
+hpc:submitsjob a owl:ObjectProperty ;
+  rdfs:domain hpc:Lsfresourceconnector ;
+  rdfs:range hpc:Job .
+
+hpc:monitorsborrowedhosts a owl:ObjectProperty ;
+  rdfs:domain hpc:Lsfresourceconnector ;
+  rdfs:range hpc:Borrowedhost .
+
+hpc:releaseshosts a owl:ObjectProperty ;
+  rdfs:domain hpc:Lsfresourceconnector ;
+  rdfs:range hpc:Host .
+
+hpc:terminateshosts a owl:ObjectProperty ;
+  rdfs:domain hpc:Lsfresourceconnector ;
+  rdfs:range hpc:Host .
+
+hpc:supports a owl:ObjectProperty ;
+  rdfs:domain hpc:Resourceconnector ;
+  rdfs:range hpc:Cloudprovider .
+
+hpc:supportslinux a owl:ObjectProperty ;
+  rdfs:domain hpc:Resourceconnector ;
+  rdfs:range hpc:Linux .
+
+hpc:Cloudburst a owl:Class ;
+  rdfs:subClassOf hpc:Resourceconnector .
+
+hpc:Borrowedhost a owl:Class .
+hpc:Host a owl:Class .
+hpc:Job a owl:Class .
+hpc:Ec2instance a owl:Class .
+hpc:Ec2fleetapi a owl:Class .
+hpc:Spotfleet a owl:Class .
+hpc:Amazonec2 a owl:Class .
+hpc:Ibmspectrumlsf a owl:Class .

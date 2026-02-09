@@ -1,0 +1,31 @@
+hpc:Gpolicyddaemon a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the gpolicyd daemon." .
+
+hpc:timinglevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpolicyddaemon ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Sets the timing level for the gpolicyd daemon." .
+
+hpc:logfilename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpolicyddaemon ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the log file name for the gpolicyd daemon." .
+
+hpc:settiminglevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpolicyddaemon ;
+    rdfs:range hpc:Timinglevel ;
+    rdfs:comment "Sets the timing level for the gpolicyd daemon." .
+
+hpc:Timinglevelvalue a owl:Class ;
+    rdfs:subClassOf xsd:integer ;
+    rdfs:comment "Represents the value of the timing level." .
+
+hpc:Timinglevelvalues a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the supported values for the timing level." .
+    rdfs:subClassOf (hpc:Timinglevelvalue rdf:first 1^xsd:integer) ;
+    rdfs:subClassOf (hpc:Timinglevelvalue rdf:first 2^xsd:integer) ;
+    rdfs:subClassOf (hpc:Timinglevelvalue rdf:first 3^xsd:integer) ;
+    rdfs:subClassOf (hpc:Timinglevelvalue rdf:first 4^xsd:integer) ;
+    rdfs:subClassOf (hpc:Timinglevelvalue rdf:first 5^xsd:integer) .

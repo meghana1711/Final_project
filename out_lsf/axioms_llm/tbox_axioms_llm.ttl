@@ -1,0 +1,380 @@
+@prefix hpc: <http://example.org/hpc#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+### Classes
+hpc:account a owl:Class ;
+  rdfs:label "Accounting" .
+
+hpc:accountingstoragehost a owl:Class ;
+  rdfs:label "AccountingStorageHost" .
+
+hpc:adminlevel a owl:Class ;
+  rdfs:label "AdminLevel" .
+
+hpc:advanc_reservation a owl:Class ;
+  rdfs:label "advanced reservation" .
+
+hpc:allocation a owl:Class ;
+  rdfs:label "allocation" .
+
+hpc:api_function a owl:Class ;
+  rdfs:label "API Functions" .
+
+hpc:association a owl:Class ;
+  rdfs:label "Association" .
+
+hpc:backfill a owl:Class ;
+  rdfs:label "backfill" .
+
+hpc:backfill_scheduler a owl:Class ;
+  rdfs:label "backfill scheduler" .
+
+hpc:batchjob a owl:Class ;
+  rdfs:label "batch job" .
+
+hpc:batchstep a owl:Class ;
+  rdfs:label "batch step" .
+
+hpc:builtin a owl:Class ;
+  rdfs:label "builtin" .
+
+hpc:burst_buffer a owl:Class ;
+  rdfs:label "burst buffers" .
+
+hpc:cgroup_controller a owl:Class ;
+  rdfs:label "cgroup controllers" .
+
+hpc:chemistry a owl:Class ;
+  rdfs:label "chemistry" .
+
+hpc:clifilterplugin a owl:Class ;
+  rdfs:label "CliFilterPlugins" .
+
+hpc:cloud a owl:Class ;
+  rdfs:label "CLOUD" .
+
+hpc:cluster a owl:Class ;
+  rdfs:label "--clusters" .
+
+hpc:clustermanagement a owl:Class ;
+  rdfs:label "cluster management" .
+
+hpc:command a owl:Class ;
+  rdfs:label "commands" .
+
+hpc:commandlinejoboption a owl:Class ;
+  rdfs:label "Command-line Job Options" .
+
+hpc:communication a owl:Class ;
+  rdfs:label "communications" .
+
+hpc:compute_node a owl:Class ;
+  rdfs:label "compute nodes" .
+
+hpc:computenode a owl:Class ;
+  rdfs:label "Node" .
+
+hpc:configuration_fil a owl:Class ;
+  rdfs:label "configuration files" .
+
+hpc:connection a owl:Class ;
+  rdfs:label "connection" .
+
+hpc:consumableresource a owl:Class ;
+  rdfs:label "consumable resources" .
+
+hpc:container a owl:Class ;
+  rdfs:label "container" .
+
+hpc:core a owl:Class ;
+  rdfs:label "core" .
+
+hpc:cr_cpu a owl:Class ;
+  rdfs:label "CPU" .
+
+hpc:cr_socket a owl:Class ;
+  rdfs:label "CR_Socket" .
+
+hpc:docker a owl:Class ;
+  rdfs:label "Docker" .
+
+hpc:federation a owl:Class ;
+  rdfs:label "federation" .
+
+hpc:function a owl:Class ;
+  rdfs:label "functions" .
+
+hpc:gang_schedul a owl:Class ;
+  rdfs:label "gang scheduling" .
+
+hpc:generic_resourc a owl:Class ;
+  rdfs:label "generic resources" .
+
+hpc:globu a owl:Class ;
+  rdfs:label "Globus" .
+
+hpc:gpu a owl:Class ;
+  rdfs:label "gpu" .
+
+hpc:gres a owl:Class ;
+  rdfs:label "gres" .
+
+hpc:heterogeneou_environment a owl:Class ;
+  rdfs:label "heterogeneous environment" .
+
+hpc:heterogeneousjob a owl:Class ;
+  rdfs:label "heterogeneous job" .
+
+hpc:interactivejob a owl:Class ;
+  rdfs:label "interactive jobs" .
+
+hpc:job a owl:Class ;
+  rdfs:label "Job" .
+
+hpc:job_state a owl:Class ;
+  rdfs:label "job state" .
+
+hpc:joballocation a owl:Class ;
+  rdfs:label "job allocation" .
+
+hpc:jobarray a owl:Class ;
+  rdfs:label "job arrays" .
+
+hpc:jobcomponent a owl:Class ;
+  rdfs:label "job component" .
+
+hpc:jobs a owl:Class ;
+  rdfs:label "jobs" .
+
+hpc:jobscheduler a owl:Class ;
+  rdfs:label "JobScheduler" .
+
+hpc:jobstate a owl:Class ;
+  rdfs:label "JobState" .
+
+hpc:jobstep a owl:Class ;
+  rdfs:label "job steps" .
+
+hpc:jobsubmissioncommand a owl:Class ;
+  rdfs:label "Job Submission Commands" .
+
+hpc:kernel a owl:Class ;
+  rdfs:label "kernel" .
+
+hpc:linux a owl:Class ;
+  rdfs:label "Linux" .
+
+hpc:linux_cluster a owl:Class ;
+  rdfs:label "Linux clusters" .
+
+hpc:login_nod a owl:Class ;
+  rdfs:label "login nodes" .
+
+hpc:loginnode a owl:Class ;
+  rdfs:label "login node" .
+
+hpc:lustre a owl:Class ;
+  rdfs:label "Lustre" .
+
+hpc:mem a owl:Class ;
+  rdfs:label "Mem" .
+
+hpc:mpich a owl:Class ;
+  rdfs:label "MPICH" .
+
+hpc:multiinstancegpu a owl:Class ;
+  rdfs:label "Multi-Instance GPU" .
+
+hpc:multiplejob a owl:Class ;
+  rdfs:label "multiple jobs" .
+
+hpc:munge_daemon a owl:Class ;
+  rdfs:label "Munge daemon" .
+
+hpc:network a owl:Class ;
+  rdfs:label "NETWORK" .
+
+hpc:nod a owl:Class ;
+  rdfs:label "--nodes" .
+
+hpc:node a owl:Class ;
+  rdfs:label "Nodes" .
+
+hpc:openmpi a owl:Class ;
+  rdfs:label "OpenMPI" .
+
+hpc:origincluster a owl:Class ;
+  rdfs:label "origin cluster" .
+
+hpc:partition a owl:Class ;
+  rdfs:label "PARTITION" .
+
+hpc:pbs a owl:Class ;
+  rdfs:label "PBS" .
+
+hpc:pend_jobs a owl:Class ;
+  rdfs:label "pending jobs" .
+
+hpc:plugin a owl:Class ;
+  rdfs:label "plugins" .
+
+hpc:pmix a owl:Class ;
+  rdfs:label "PMIx" .
+
+hpc:pool a owl:Class ;
+  rdfs:label "pool" .
+
+hpc:primarycontroller a owl:Class ;
+  rdfs:label "primary controller" .
+
+hpc:processor a owl:Class ;
+  rdfs:label "processors" .
+
+hpc:queue a owl:Class ;
+  rdfs:label "queue" .
+
+hpc:resourc a owl:Class ;
+  rdfs:label "Resources" .
+
+hpc:resourceallocation a owl:Class ;
+  rdfs:label "resource allocation" .
+
+hpc:resourcemanagement a owl:Class ;
+  rdfs:label "resource management" .
+
+hpc:resourcepool a owl:Class ;
+  rdfs:label "resource pool" .
+
+hpc:rout_queue a owl:Class ;
+  rdfs:label "routing queue" .
+
+hpc:runn_jobs a owl:Class ;
+  rdfs:label "running jobs" .
+
+hpc:schedul a owl:Class ;
+  rdfs:label "scheduling" .
+
+hpc:schedulerparameter a owl:Class ;
+  rdfs:label "SchedulerParameters" .
+
+hpc:select_cons_tres_plugin a owl:Class ;
+  rdfs:label "select/cons_tres plugin" .
+
+hpc:server a owl:Class ;
+  rdfs:label "server" .
+
+hpc:session a owl:Class ;
+  rdfs:label "session" .
+
+hpc:slurm a owl:Class ;
+  rdfs:label "SLURM" .
+
+hpc:slurm_api a owl:Class ;
+  rdfs:label "Slurm API" .
+
+hpc:slurm_daemon a owl:Class ;
+  rdfs:label "Slurm daemons" .
+
+hpc:slurm_distribution a owl:Class ;
+  rdfs:label "Slurm distribution" .
+
+hpc:slurm_librari a owl:Class ;
+  rdfs:label "Slurm libraries" .
+
+hpc:slurm_plugin a owl:Class ;
+  rdfs:label "Slurm plugin" .
+
+hpc:slurm_plugin_api a owl:Class ;
+  rdfs:label "Slurm Plugin API" .
+
+hpc:slurmcluster a owl:Class ;
+  rdfs:label "Slurm cluster" .
+
+hpc:slurmcommand a owl:Class ;
+  rdfs:label "Slurm commands" .
+
+hpc:slurmcommunication a owl:Class ;
+  rdfs:label "Slurm communications" .
+
+hpc:slurmd a owl:Class ;
+  rdfs:label "slurmd daemons" .
+
+hpc:slurmd_daemon a owl:Class ;
+  rdfs:label "slurmd daemon" .
+
+hpc:slurmdbd a owl:Class ;
+  rdfs:label "snowflake" .
+
+hpc:slurmrestd a owl:Class ;
+  rdfs:label "Slurmrestd" .
+
+hpc:socket a owl:Class ;
+  rdfs:label "Sockets" .
+
+hpc:src a owl:Class ;
+  rdfs:label "src" .
+
+hpc:state a owl:Class ;
+  rdfs:label "State" .
+
+hpc:systemd a owl:Class ;
+  rdfs:label "systemd" .
+
+hpc:task a owl:Class ;
+  rdfs:label "TASK" .
+
+hpc:testsuite a owl:Class ;
+  rdfs:label "testsuite" .
+
+hpc:tres a owl:Class ;
+  rdfs:label "tres" .
+
+hpc:user a owl:Class ;
+  rdfs:label "Users" .
+
+hpc:wckey a owl:Class ;
+  rdfs:label "wckeys" .
+
+### Taxonomy (rdfs:subClassOf)
+hpc:node rdfs:subClassOf hpc:slurm .
+hpc:account rdfs:subClassOf hpc:wckey .
+hpc:task rdfs:subClassOf hpc:network .
+hpc:account rdfs:subClassOf hpc:adminlevel .
+hpc:compute_node rdfs:subClassOf hpc:kernel .
+hpc:pmix rdfs:subClassOf hpc:openmpi .
+hpc:plugin rdfs:subClassOf hpc:server .
+hpc:core rdfs:subClassOf hpc:processor .
+hpc:gres rdfs:subClassOf hpc:gpu .
+hpc:queue rdfs:subClassOf hpc:heterogeneousjob .
+hpc:schedul rdfs:subClassOf hpc:job .
+hpc:select_cons_tres_plugin rdfs:subClassOf hpc:generic_resourc .
+hpc:resourc rdfs:subClassOf hpc:consumableresource .
+hpc:slurm_daemon rdfs:subClassOf hpc:slurm_librari .
+hpc:src rdfs:subClassOf hpc:testsuite .
+hpc:user rdfs:subClassOf hpc:multiplejob .
+hpc:slurmd rdfs:subClassOf hpc:rout_queue .
+hpc:connection rdfs:subClassOf hpc:multiinstancegpu .
+hpc:backfill rdfs:subClassOf hpc:builtin .
+hpc:heterogeneousjob rdfs:subClassOf hpc:burst_buffer .
+
+### Properties (axioms)
+hpc:configures a owl:ObjectProperty ;
+  rdfs:label "configures"
+  ; rdfs:domain hpc:task
+  ; rdfs:range hpc:rout_queue
+ .
+
+hpc:part_of a owl:ObjectProperty ;
+  rdfs:label "part_of"
+  ; rdfs:domain hpc:runn_jobs
+  ; rdfs:range hpc:slurm_plugin_api
+ .
+
+hpc:uses_resource a owl:ObjectProperty ;
+  rdfs:label "uses_resource"
+  ; rdfs:domain hpc:docker
+  ; rdfs:range hpc:job
+ .

@@ -1,0 +1,38 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:LsfLdSecurity a owl:Class .
+hpc:LsfLibdir a owl:Class .
+hpc:LsfLicSchedClusterAlias a owl:Class .
+hpc:LsfLicSchedHosts a owl:Class .
+hpc:lsfLicSchedPreemptRequeue a owl:ObjectProperty .
+hpc:lsfLicSchedPreemptSlotRelease a owl:ObjectProperty .
+hpc:lsfLicSchedPreemptStop a owl:ObjectProperty .
+hpc:LsfLicSchedStrictProjectName a owl:Class .
+hpc:lsfLimApiNtries a owl:DatatypeProperty .
+hpc:LsfLimDebug a owl:Class .
+hpc:LsfLimIgnoreChecksum a owl:Class .
+hpc:LsfLimPort a owl:Class .
+hpc:LsfResPort a owl:Class .
+hpc:LsbMbdPort a owl:Class .
+hpc:LsbSbdPort a owl:Class .
+hpc:lsfLimStartupRetryInterval a owl:DatatypeProperty .
+hpc:lsfLimStartupRetryTimes a owl:DatatypeProperty .
+hpc:LsfLinuxCgroupAcct a owl:Class .
+hpc:LsfLiveConfdir a owl:Class .
+hpc:LsfLoadUserProfile a owl:Class .
+hpc:LsfLocalResources a owl:Class .
+hpc:LsfLogMask a owl:Class .
+hpc:LsfLogMaskLim a owl:Class .
+hpc:LsfLogMaskRes a owl:Class .
+hpc:LsfLogMaskWin a owl:Class .
+hpc:lsfLogQueueSize a owl:DatatypeProperty .
+hpc:LsfLogThread a owl:Class .
+hpc:LsfLogdir a owl:Class .
+hpc:LsfLogdirUseWinReg a owl:Class .
+hpc:lsfLogfileOwner a owl:DatatypeProperty .
+hpc:LsfLshostsFormat a owl:Class .
+hpc:LsfLsloadFormat a owl:Class .
+hpc:LsfLsloginSsh a owl:Class .

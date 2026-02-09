@@ -1,0 +1,44 @@
+hpc:Depthoblivious a owl:Class .
+hpc:Depthoblivious rdfs:subClassOf hpc:Priorityoption .
+
+hpc:Nofairtree a owl:Class .
+hpc:Nofairtree rdfs:subClassOf hpc:Priorityoption .
+
+hpc:Incronly a owl:Class .
+hpc:Incronly rdfs:subClassOf hpc:Priorityoption .
+
+hpc:Maxtres a owl:Class .
+hpc:Maxtres rdfs:subClassOf hpc:Priorityoption .
+
+hpc:Nonormalall a owl:Class .
+hpc:Nonormalall rdfs:subClassOf hpc:Priorityoption .
+
+hpc:Nonormalassoc a owl:Class .
+hpc:Nonormalassoc rdfs:subClassOf hpc:Priorityoption .
+
+hpc:Nonormalpart a owl:Class .
+hpc:Nonormalpart rdfs:subClassOf hpc:Priorityoption .
+
+hpc:Nonormalqos a owl:Class .
+hpc:Nonormalqos rdfs:subClassOf hpc:Priorityoption .
+
+hpc:Nonormaltres a owl:Class .
+hpc:Nonormaltres rdfs:subClassOf hpc:Priorityoption .
+
+hpc:Smallrelativetotime a owl:Class .
+hpc:Smallrelativetotime rdfs:subClassOf hpc:Priorityoption .
+
+hpc:priorityweight a owl:DatatypeProperty .
+hpc:Priorityweight rdfs:domain hpc:Priorityoption .
+hpc:Priorityweight rdfs:range xsd:decimal .
+
+hpc:hassizecomponent a owl:ObjectProperty .
+hpc:Hassizecomponent rdfs:domain hpc:Job .
+hpc:Hassizecomponent rdfs:range hpc:Sizecomponent .
+
+hpc:Sizecomponent a owl:Class .
+hpc:Sizecomponent rdfs:subClassOf hpc:Component .
+
+hpc:hastimelimit a owl:ObjectProperty .
+hpc:Hastimelimit rdfs:domain hpc:Job .
+hpc:Hastimelimit rdfs:range xsd:nonNegativeInteger .

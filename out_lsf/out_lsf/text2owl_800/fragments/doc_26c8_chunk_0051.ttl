@@ -1,0 +1,33 @@
+hpc:customscripturi a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:anyURI .
+
+hpc:rootusername a owl:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:hasRootUserName .
+
+hpc:securitygroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:hasSecurityGroup .
+
+hpc:withpublicip a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:boolean .
+
+hpc:instancetags a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:string .
+
+hpc:userdata a owl:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:string .
+
+hpc:key a owl:DatatypeProperty ;
+    rdfs:domain hpc:Userdata ;
+    rdfs:range xsd:string .
+
+hpc:value a owl:DatatypeProperty ;
+    rdfs:domain hpc:Userdata ;
+    rdfs:range xsd:string .

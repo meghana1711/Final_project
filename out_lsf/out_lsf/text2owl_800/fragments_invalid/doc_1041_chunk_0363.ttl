@@ -1,0 +1,60 @@
+hpc:Application a owl:Class .
+hpc:application_name an rdfs:Label ;
+    rdfs:domain hpc:Application .
+
+hpc:Applicationprofile a owl:Class .
+hpc:Hasapplicationprofile rdfs:domain hpc:Application ;
+    rdfs:range rdf:Resource .
+
+hpc:Lsflicenseschedulerproject a owl:Class .
+hpc:Haslsflicenseschedulerproject rdfs:domain hpc:Application ;
+    rdfs:range rdf:Resource .
+
+hpc:Host a owl:Class .
+hpc:Hashost rdfs:domain hpc:Application ;
+    rdfs:range rdf:Resource .
+
+hpc:host_name an rdfs:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:host_group an rdfs:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:showresourceallocationlimits a owl:ObjectProperty .
+hpc:Showresourceallocationlimits rdfs:domain hpc:Application ;
+    rdfs:range rdf:Resource .
+hpc:showResourceAllocationLimitsForApplication rdfs:subPropertyOf hpc:showResourceAllocationLimits ;
+    rdfs:domain hpc:Application ;
+    rdfs:range rdf:PlainLiteral .
+hpc:showResourceAllocationLimitsForApplicationProfile rdfs:subPropertyOf hpc:showResourceAllocationLimits ;
+    rdfs:domain hpc:Application ;
+    rdfs:range rdf:Resource .
+hpc:showResourceAllocationLimitsForLSFLicenseSchedulerProject rdfs:subPropertyOf hpc:showResourceAllocationLimits ;
+    rdfs:domain hpc:Application ;
+    rdfs:range rdf:Resource .
+hpc:showResourceAllocationLimitsForHost rdfs:subPropertyOf hpc:showResourceAllocationLimits ;
+    rdfs:domain hpc:Application ;
+    rdfs:range rdf:Resource .
+hpc:showResourceAllocationLimitsForHosts rdfs:subPropertyOf hpc:showResourceAllocationLimits ;
+    rdfs:domain hpc:Application ;
+    rdfs:range rdf:List .
+
+hpc:listOfApplications an rdfs:DatatypeProperty ;
+    rdfs:domain hpc:Showresourceallocationlimitsforapplication ;
+    rdfs:range xsd:string .
+
+hpc:project_name an rdfs:DatatypeProperty ;
+    rdfs:domain hpc:Showresourceallocationlimitsforlsflicenseschedulerproject ;
+    rdfs:range xsd:string .
+
+hpc:host_or_group_name an rdfs:DatatypeProperty ;
+    rdfs:domain hpc:Showresourceallocationlimitsforhost ;
+    rdfs:range xsd:string .
+
+hpc:hosts_or_group an rdfs:DatatypeProperty ;
+    rdfs:domain hpc:Showresourceallocationlimitsforhosts ;
+    rdfs:range xsd:string .
+
+hpc:bhostsCommand an rdfs:Label ;

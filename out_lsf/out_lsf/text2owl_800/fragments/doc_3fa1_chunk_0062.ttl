@@ -1,0 +1,32 @@
+hpc:hasName
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:string .
+
+hpc:hasGoal
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The guarantee goal of the service class." .
+
+hpc:hasDescription
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:string ;
+    rdfs:comment "An optional description for the service class." .
+
+hpc:GuaranteeResourcePool
+    a owl:Class ;
+    rdfs:subClassOf hpc:Resourcepool ;
+    rdfs:comment "A pool for guarantee policies." .
+
+hpc:hasName
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteeresourcepool ;
+    rdfs:range xsd:string .
+
+hpc:hasType
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteeresourcepool ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The type of the guarantee policy (slots, hosts, or package[slots=...])." .

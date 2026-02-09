@@ -1,0 +1,41 @@
+hpc:Resourcerequirement a owl:Class .
+
+hpc:maxReqProc a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:effectiveResreq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:combinedResreq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:networkReq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:string .
+
+hpc:filelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:corelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:stacklimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:processlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:runtimelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:plimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:duration .

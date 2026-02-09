@@ -1,0 +1,27 @@
+hpc:Host a owl:Class .
+hpc:hasMXJ rdf:Property ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:integer .
+hpc:DISPATCH_WINDOW rdf:Property ;
+    rdfs:domain hpc:Host .
+
+# Queue ontology
+hpc:Queue a owl:Class .
+hpc:hasQueueName rdf:Property ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+hpc:hasPriority rdf:Property ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:integer .
+hpc:hasNICE rdf:Property ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:integer .
+hpc:isPreemptable rdf:Property ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+hpc:hasJobControls rdf:Property ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+hpc:isRerunnable rdf:Property ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .

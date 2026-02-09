@@ -1,0 +1,41 @@
+hpc:LSF_USER_DOMAIN
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Windowscluster ;
+    rdfs:range hpc:Lsfuserdomain .
+
+hpc:WindowsCluster
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf rdf:List ;
+                        rdfs:comment "A cluster with both Windows management host and Linux compute nodes" ] .
+
+hpc:WindowsManagementHost
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf hpc:Windowsnode ] ;
+    rdfs:comment "A Windows node acting as the management host" .
+
+hpc:LinuxComputeNode
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf hpc:Linuxnode ] ;
+    rdfs:comment "A Linux node in the cluster" .
+
+hpc:EGO_DAEMON_CONTROL
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Windowsmanagementhost ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether EGO controls the LSF daemons on the management host" .
+
+hpc:Master_Name
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Windowsmanagementhost ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the management host" .
+
+hpc:LSF_USER_DOMAIN_Length
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfuserdomain ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum length of an LSF user domain" .
+    rdfs:range rdfs:maxLength 31 .

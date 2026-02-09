@@ -1,0 +1,48 @@
+hpc:runtimeweightingfactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceallocation ;
+    rdfs:range xsd:decimal .
+
+hpc:jobslotsweightingfactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceallocation ;
+    rdfs:range xsd:integer .
+
+hpc:fairshareadjustmentfactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceallocation ;
+    rdfs:range xsd:decimal .
+
+hpc:histhours a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceallocation ;
+    rdfs:range xsd:integer .
+
+hpc:gpuruntimefactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceallocation ;
+    rdfs:range xsd:decimal .
+
+hpc:Fairshareadjustmentplugin a owl:Class .
+
+hpc:Resourceallocation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:customizedynamicpriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Fairshareadjustmentplugin ;
+    rdfs:range hpc:Resourceallocation .
+
+hpc:memoryusecluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fairshareadjustmentplugin ;
+    rdfs:range xsd:decimal .
+
+hpc:averagememoryslotcluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fairshareadjustmentplugin ;
+    rdfs:range xsd:decimal .
+
+hpc:affectseveryfairsharepolicy a owl:ObjectProperty ;
+    rdfs:domain hpc:Fairshareadjustmentplugin ;
+    rdfs:range hpc:Fairshareadjustmentplugin .
+
+hpc:notqueuespecific a owl:ObjectProperty ;
+    rdfs:domain hpc:Fairshareadjustmentplugin ;
+    rdfs:range hpc:Fairshareadjustmentplugin .
+
+hpc:memoryunusableslots a owl:ObjectProperty ;
+    rdfs:domain hpc:Fairshareadjustmentplugin ;
+    rdfs:range hpc:Resourceallocation .

@@ -1,0 +1,15 @@
+hpc:djobTaskBind a owl:ObjectProperty .
+hpc:dockerImageAffinity a owl:ObjectProperty .
+
+hpc:DJOB_TASK_BIND
+  rdfs:domain hpc:Job ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf hpc:TaskBindingProperty .
+
+hpc:DOCKER_IMAGE_AFFINITY
+  rdfs:domain hpc:Job ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf hpc:ImageAffinityProperty .
+
+hpc:Taskbindingproperty a owl:Class .
+hpc:Imageaffinityproperty a owl:Class .

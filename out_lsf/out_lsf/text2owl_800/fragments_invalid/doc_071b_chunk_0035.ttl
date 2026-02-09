@@ -1,0 +1,31 @@
+hpc:Host a owl:Class .
+hpc:Statichost a owl:Class .
+hpc:Dynamichost a owl:Class .
+hpc:Server a owl:Class .
+hpc:Client a owl:Class .
+hpc:Hosttype a owl:Class .
+hpc:Hostmodel a owl:Class .
+hpc:cpuperformance a owl:DatatypeProperty .
+hpc:Cpu ncname xsd:string .
+hpc:Ncpus xsd:nonNegativeInteger .
+hpc:MaxMem xsd:string .
+hpc:MaxSwp xsd:string .
+hpc:serverstatus a owl:DatatypeProperty .
+hpc:resources a owl:DatatypeProperty .
+
+hpc:Host a rdfs:subClassOf owl:Class .
+hpc:Statichost rdfs:subClassOf hpc:Host .
+hpc:Dynamichost rdfs:subClassOf hpc:Host .
+hpc:Server rdfs:subClassOf hpc:Host .
+hpc:Client rdfs:subClassOf hpc:Host .
+hpc:Hosttype rdfs:subClassOf owl:Class .
+hpc:Hostmodel rdfs:subClassOf owl:Class .
+hpc:HostType rdfs:subPropertyOf hpc:Host .
+hpc:HostModel rdfs:subPropertyOf hpc:Host .
+hpc:Cpuperformance rdfs:domain hpc:Host .
+hpc:Cpu rdfs:range xsd:string .
+hpc:Ncpus rdfs:range xsd:nonNegativeInteger .
+hpc:Maxmem rdfs:range xsd:string .
+hpc:Maxswp rdfs:range xsd:string .
+hpc:Serverstatus rdfs:domain hpc:Host .
+hpc:Resources rdfs:domain hpc:Host .

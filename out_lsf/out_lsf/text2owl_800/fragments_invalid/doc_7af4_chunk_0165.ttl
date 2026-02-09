@@ -1,0 +1,56 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Event a owl:Class .
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+hpc:jstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+hpc:jobpid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+hpc:jobpgid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+hpc:hostfactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:float .
+hpc:numexhosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+hpc:exechosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range rdf:List .
+hpc:queueprecmd a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:string .
+hpc:queuepostcmd a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:string .
+hpc:jflags a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+hpc:usergroup a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:string .
+hpc:idx a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+hpc:additionalinfo a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:string .
+hpc:effectiveresreq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:string .
+hpc:JobForce a owl:Class ;
+    rdfs:subClassOf hpc:Event .
+hpc:versionnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobForce ;
+    rdfs:range xsd:integer .
+hpc:eventversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .

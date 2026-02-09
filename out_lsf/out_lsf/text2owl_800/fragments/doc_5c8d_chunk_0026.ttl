@@ -1,0 +1,48 @@
+hpc:Jobsubmission a owl:Class .
+
+# SMT Options
+hpc:smt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:string .
+
+hpc:csmReq a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range hpc:CsmParameter .
+
+# Stage Options
+hpc:Stage a owl:Class .
+
+hpc:storage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stage ;
+    rdfs:range xsd:decimal .
+
+hpc:minstorage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Storage ;
+    rdfs:range xsd:decimal .
+
+hpc:maxstorage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Storage ;
+    rdfs:range xsd:decimal .
+
+hpc:infile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stage ;
+    rdfs:range xsd:string .
+
+hpc:outfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stage ;
+    rdfs:range xsd:string .
+
+# CSM Parameters
+hpc:CsmParameter a owl:Class .
+
+hpc:CSM_VALID_SMT a hpc:CSM_Parameter .
+hpc:CSM_REQ a hpc:CSM_Parameter .
+
+# Step Cgroup
+hpc:stepcgroup a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:boolean .
+
+# LSB Queues Parameters for CSM
+hpc:LsbQueuesCsmParameters a owl:Class .
+hpc:CsmReq rdfs:subClassOf hpc:LsbQueuesCsmParameters .

@@ -1,0 +1,23 @@
+hpc:LsbUtmp hpc:class .
+hpc:Hasutmpfile hpc:objectproperty .
+hpc:Supportedon hpc:datatypeproperty .
+hpc:Supportedon rdfs:domain hpc:Platform .
+hpc:Supportedon rdfs:range xsd:string .
+hpc:Utmpfileregistration hpc:objectproperty .
+hpc:Utmpfileregistration rdfs:domain hpc:Job .
+hpc:Utmpfileregistration rdfs:range xsd:boolean .
+hpc:Multiclusterenvironment hpc:class .
+hpc:Interactivebatchjob hpc:class .
+hpc:Nonbatchutility hpc:class .
+hpc:Runson hpc:objectproperty .
+hpc:Runson rdfs:domain hpc:Task .
+hpc:Runson rdfs:range hpc:Host .
+hpc:Interactivetask hpc:class .
+hpc:Keyboardsignal hpc:objectproperty .
+hpc:Keyboardsignal rdfs:domain hpc:Interactivetask .
+hpc:Keyboardsignal rdfs:range xsd:string .
+hpc:Platform hpc:class .
+hpc:Job a owl:Class .
+hpc:Task a owl:Class .
+hpc:Host a owl:Class .
+hpc:Platform a owl:Class .

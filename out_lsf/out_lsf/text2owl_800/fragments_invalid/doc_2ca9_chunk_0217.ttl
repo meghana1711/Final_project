@@ -1,0 +1,60 @@
+hpc:Lsfversion a owl:Class .
+hpc:Fixpack a owl:Class .
+
+hpc:Bjobs a owl:Class .
+hpc:bjobsL a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Displays approximate accumulated job disk usage (I/O) data on IBM Spectrum Scale if IBM Spectrum Scale I/O accounting with IBM Spectrum LSF Explorer is enabled." .
+
+hpc:bjobsO a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Displays the PIDs of each host." .
+
+hpc:nreqSlot a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Shows the calculated number of requested slots for jobs." .
+
+hpc:gpuNum a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Shows the number of physical GPUs that the job is using." .
+
+hpc:gpuMode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Shows the GPU compute mode that the job is using (shared or exclusive_process)." .
+
+hpc:gpuAlloc a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Shows the job-based GPU allocation information." .
+
+hpc:jExclusive a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Shows whether the job requested exclusive allocated GPUs." .
+
+hpc:killReason a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Shows the user-specified reason for killing the job." .
+
+hpc:bjobsLPac a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Displays the exit reason for exited jobs." .
+
+hpc:exitReason a owl:DatatypeProperty ;
+    rdfs:domain hpc:BjobsLPac ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The exit reason is displayed in this field." .
+
+hpc:bjobsPlan a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Displays the planned start and end times for the job." .
+
+hpc:planStartTime a owl:DatatypeProperty ;

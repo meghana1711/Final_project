@@ -1,0 +1,26 @@
+hpc:Completedstatus a owl:Class .
+hpc:Taskstatus a owl:Class .
+hpc:Memorystatus a owl:Class .
+hpc:Task a owl:Class .
+
+hpc:Completedstatus rdfs:subClassOf hpc:Taskstatus .
+hpc:Memorystatus rdfs:subClassOf hpc:Taskstatus .
+
+hpc:Completedstatus rdfs:domain hpc:Task .
+hpc:Memorystatus rdfs:domain hpc:Task .
+
+hpc:Completedstatus rdfs:range xsd:integer .
+hpc:Memorystatus rdfs:range xsd:integer .
+
+hpc:outofmemory a owl:ObjectProperty .
+hpc:completed a owl:DatatypeProperty .
+hpc:timecompleted a owl:DatatypeProperty .
+
+hpc:Outofmemory rdfs:domain hpc:Task .
+hpc:Outofmemory rdfs:range xsd:boolean .
+
+hpc:Completed rdfs:domain hpc:Task .
+hpc:Completed rdfs:range xsd:nonNegativeInteger .
+
+hpc:Timecompleted rdfs:domain hpc:Task .
+hpc:Timecompleted rdfs:range xsd:time .

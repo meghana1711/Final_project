@@ -1,0 +1,27 @@
+hpc:Csmerrorcode a owl:Class .
+hpc:hasCSMAPIErrorCode an owl:DatatypeProperty ;
+    rdfs:domain hpc:Csmerrorcode ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Csmjob a owl:Class .
+hpc:hascsmsetuperror a owl:ObjectProperty ;
+    rdfs:domain hpc:Csmjob ;
+    rdfs:range hpc:Csmerrorcode .
+
+hpc:Rescheduledcsmjob a owl:Class ;
+    rdfs:subClassOf hpc:Csmjob .
+
+hpc:RescheduledCSMJob rdf:type owl:Class ;
+    hpc:Hascsmsetuperror rdfs:range hpc:Csmerrorcode ;
+    hpc:Hascsmsetuperror rdfs:range (hpc:Rescheduledcsmjob hpc:Hascsmsetuperror) .
+
+hpc:Excludedcsmerror a owl:Class ;
+    rdfs:subClassOf hpc:Csmerrorcode .
+
+hpc:ExcludedCSMError rdf:type owl:Class ;
+    hpc:Hascsmapierrorcode rdfs:range xsd:nonNegativeInteger ;
+    hpc:Hascsmapierrorcode rdfs:range (~hpc:Excludedcsmerror hpc:Hascsmapierrorcode) .
+
+hpc:Csmjobsubmissionoption a owl:Class .
+hpc:hasCSMJobSubmissionOptionValue an owl:DatatypeProperty ;
+    rdfs:domain hpc:Csmjobsubmissionoption .

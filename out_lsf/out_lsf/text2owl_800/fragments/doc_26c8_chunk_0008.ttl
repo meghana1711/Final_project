@@ -1,0 +1,20 @@
+hpc:LsfResourceConnector a owl:Class .
+
+hpc:lsbRcTemplateRequestDelay a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfResourceConnector ;
+    rdfs:range xsd:minute .
+
+hpc:lsbRcUpdateInterval a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfResourceConnector ;
+    rdfs:range xsd:minute .
+
+hpc:mqttBrokerHost a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfResourceConnector .
+
+hpc:mqttBrokerPort a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfResourceConnector ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ebrokerdHostCleanDelay a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfResourceConnector ;
+    rdfs:range xsd:minute .

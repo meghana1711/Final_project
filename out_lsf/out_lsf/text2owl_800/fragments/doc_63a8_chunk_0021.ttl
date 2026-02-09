@@ -1,0 +1,21 @@
+hpc:Lsrcpcommand a owl:Class .
+hpc:Bsubcommand a owl:Class .
+hpc:Datamanager a owl:Class .
+hpc:datagrpoption a owl:ObjectProperty .
+hpc:Job a owl:Class .
+hpc:Datafile a owl:Class .
+hpc:Usergroup a owl:Class .
+
+hpc:Lsrcpcommand rdfs:subClassOf owl:Class .
+hpc:Bsubcommand rdfs:subClassOf owl:Class .
+hpc:Datamanager rdfs:subClassOf owl:Class .
+hpc:Datagrpoption rdfs:domain hpc:Bsubcommand ;
+                          rdfs:range xsd:string .
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Datafile rdfs:subClassOf owl:Class .
+hpc:Usergroup rdfs:subClassOf owl:Class .
+
+hpc:Hasdatafile rdfs:domain hpc:Job ;
+                   rdfs:range hpc:Datafile .
+hpc:Hasdatagrp rdfs:domain hpc:Bsubcommand ;
+                   rdfs:range hpc:Usergroup .

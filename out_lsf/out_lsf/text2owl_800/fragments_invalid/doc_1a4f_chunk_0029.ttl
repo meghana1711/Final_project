@@ -1,0 +1,56 @@
+hpc:Host a owl:Class .
+
+# ResourceMap class
+hpc:Resourcemap a owl:Class .
+
+# Host has resource property
+hpc:hasresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Resource .
+
+# Resource property values are strings
+hpc:resource a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+# ResourceMap associates resources with hosts
+hpc:associatesresourcewithhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcemap ;
+    rdfs:range hpc:Host .
+
+# Example resources and hosts
+hpc:hostA a hpc:Host ;
+    hpc:hasResource hostA=1 ;
+    hpc:hasResource hostA=3.5 ;
+    hpc:hasResource hostA=() ;
+    hpc:hasResource hostA=() ;
+    hpc:hasResource hostA=mg ;
+    hpc:hasResource hostA=elimres ;
+    hpc:hasResource hostA=patchrev=3 ;
+    hpc:hasResource hostA=owner=user1 .
+
+hpc:hostB a hpc:Host ;
+    hpc:hasResource hostB=1 ;
+    hpc:hasResource hostB=3.5 ;
+    hpc:hasResource hostB=() ;
+    hpc:hasResource hostB=() ;
+    hpc:hasResource hostB=specman=5 ;
+    hpc:hasResource hostB=switch=1 ;
+    hpc:hasResource hostB=owner=test .
+
+hpc:hostC a hpc:Host ;
+    hpc:hasResource hostC=1 ;
+    hpc:hasResource hostC=3.5 ;
+    hpc:hasResource hostC=() ;
+    hpc:hasResource hostC=() ;
+    hpc:hasResource hostC=switch=2 ;
+    hpc:hasResource hostC=rack=rack2_2_3 ;
+    hpc:hasResource hostC=owner=test .
+
+hpc:hostD a hpc:Host ;
+    hpc:hasResource hostD=1 ;
+    hpc:hasResource hostD=3.5 ;
+    hpc:hasResource hostD=() ;
+    hpc:hasResource hostD=() ;
+    hpc:hasResource hostD=switch=1 ;
+    hpc:hasResource hostD=rack=rack2_2_3 ;
+    hpc:hasResource hostD=owner=test .

@@ -1,0 +1,27 @@
+hpc:Host a owl:Class .
+hpc:status a owl:DatatypeProperty .
+hpc:hostName a owl:ObjectProperty .
+hpc:JL_U a xsd:nonNegativeInteger .
+hpc:MAX_NJOBS a xsd:nonNegativeInteger .
+hpc:RUN a xsd:nonNegativeInteger .
+hpc:SSUSP a xsd:nonNegativeInteger .
+hpc:USUSP a xsd:nonNegativeInteger .
+hpc:RSV a xsd:nonNegativeInteger .
+
+hpc:Ok_Status a owl:NamedIndividual .
+hpc:Closed_RC_Status a owl:NamedIndividual .
+hpc:Unavail_Status a owl:NamedIndividual .
+
+hpc:bhosts a owl:ObjectProperty .
+hpc:HostName rdfs:domain hpc:Host .
+hpc:Status rdfs:range hpc:Status .
+
+hpc:LsfExternalHostIdleTime rdfs:domain hpc:Host .
+hpc:LsbRcExternalHostMaxTtl rdfs:domain hpc:Host .
+
+hpc:compute-kfxsz0 a hpc:Host .
+hpc:compute-kfxsz0 hpc:host_name "compute-kfxsz0" .
+hpc:compute-kfxsz0 hpc:status hpc:Ok_Status .
+hpc:lsfmanagement a hpc:Host .
+hpc:Lsfmanagement hpc:hostName "_" .
+hpc:Lsfmanagement hpc:status hpc:Ok_Status .

@@ -1,0 +1,31 @@
+hpc:LSB_SUB_INTERACTIVE
+    a owl:Class .
+hpc:LSB_SUB_PTY
+    a owl:Class .
+hpc:LSB_SUB_PTY_SHELL
+    a owl:Class .
+hpc:LSB_SUB3_INTERACTIVE_SSH
+    a owl:Class .
+hpc:LSB_SUB3_JOB_REQUEUE_Q
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSub3Int ;
+    rdfs:range xsd:string .
+hpc:LSB_SUB3_MIG-mig
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSub3Int ;
+    rdfs:range xsd:integer .
+hpc:LSB_SUB3_POS_EXEC_Ep
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSub3Int ;
+    rdfs:range xsd:string .
+hpc:LSB_SUB3_RESIZE_NOTIFY_CMD
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSub3Int ;
+    rdfs:range xsd:string .
+hpc:LSB_SUB3_RESIZE_NOTIFY_CMD_SUB_RESET
+    a owl:Class ;
+    rdfs:subClassOf hpc:LsbSub3ResizeNotifyCmd .
+hpc:LSB_SUB3_RUN_TIME_ESTIMATION
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSub3Int ;
+    rdfs:range xsd:integer .

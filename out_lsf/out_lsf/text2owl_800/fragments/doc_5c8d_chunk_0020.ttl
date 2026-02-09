@@ -1,0 +1,40 @@
+hpc:LsfStageInStatus a owl:Class .
+hpc:LsfStageJobStatus a owl:Class .
+hpc:LsfStageHostfile a owl:Class .
+hpc:CsmAllocationId a owl:Class .
+
+hpc:hasLSF_STAGE_IN_STATUS rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfStageInStatus ;
+    rdfs:range xsd:int .
+
+hpc:hasLSF_STAGE_JOB_STATUS rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfStageJobStatus ;
+    rdfs:range xsd:int .
+
+hpc:hasLSF_STAGE_HOSTFILE rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfStageHostfile ;
+    rdfs:range xsd:string .
+
+hpc:hasCSM_ALLOCATION_ID rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:CsmAllocationId ;
+    rdfs:range xsd:string .
+
+hpc:bhist_options_for_CSM rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsbQueues ;
+    rdfs:range xsd:string .
+
+hpc:csm_options_for_bsub rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsbQueues ;
+    rdfs:range xsd:string .
+
+hpc:csm_parameters_for_LSB_QUEUES rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsbQueues ;
+    rdfs:range xsd:string .
+
+hpc:csm_parameters_for_LSF_CONF rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range xsd:string .
+
+hpc:csm_parameters_for_LSB_PARAMS rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsbParams ;
+    rdfs:range xsd:string .

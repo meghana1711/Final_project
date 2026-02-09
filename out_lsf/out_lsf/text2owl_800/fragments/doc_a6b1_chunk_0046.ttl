@@ -1,0 +1,38 @@
+hpc:Configuration a owl:Class .
+hpc:includes a owl:ObjectProperty .
+hpc:Localconfiguration a owl:Class .
+hpc:File a owl:Class .
+hpc:filepath a owl:DatatypeProperty .
+hpc:writeaccess a owl:ObjectProperty .
+hpc:Owner a owl:Class .
+
+hpc:Configuration rdfs:subClassOf rdf:Resource .
+hpc:Localconfiguration rdfs:subClassOf hpc:Configuration .
+hpc:File rdfs:subClassOf rdf:Resource .
+hpc:Owner rdfs:subClassOf rdf:Resource .
+
+hpc:Includes rdfs:domain hpc:Configuration .
+hpc:Includes rdfs:range rdf:Resource .
+hpc:Filepath rdfs:domain hpc:File .
+hpc:File rdfs:range xsd:string .
+hpc:Writeaccess rdfs:domain hpc:Localconfiguration .
+hpc:Writeaccess rdfs:range hpc:Owner .
+
+hpc:Groupa a owl:Class .
+hpc:maxJobs a owl:DatatypeProperty .
+hpc:jlP a owl:DatatypeProperty .
+hpc:maxPendJobs a owl:DatatypeProperty .
+hpc:priority a owl:DatatypeProperty .
+hpc:time a owl:DatatypeProperty .
+
+hpc:Groupa rdfs:subClassOf hpc:File .
+hpc:MaxJobs rdfs:domain hpc:Groupa .
+hpc:MaxJobs rdfs:range xsd:nonNegativeInteger .
+hpc:JlP rdfs:domain hpc:Groupa .
+hpc:JlP rdfs:range xsd:nonNegativeInteger .
+hpc:MaxPendJobs rdfs:domain hpc:Groupa .
+hpc:MaxPendJobs rdfs:range xsd:nonNegativeInteger .
+hpc:Priority rdfs:domain hpc:Groupa .
+hpc:Priority rdfs:range xsd:nonNegativeInteger .
+hpc:Time rdfs:domain hpc:Groupa .
+hpc:Time rdfs:range xsd:dateTime .

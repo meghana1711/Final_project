@@ -1,0 +1,34 @@
+hpc:Limdaemon a owl:Class .
+hpc:restartlim a owl:ObjectProperty ;
+    rdfs:domain hpc:Limdaemon ;
+    rdfs:range rdf:Statement ;
+    rdfs:comment "Use the bctrld restart lim command instead to restart the LIM daemon." .
+
+hpc:shutdownlim a owl:ObjectProperty ;
+    rdfs:domain hpc:Limdaemon ;
+    rdfs:range rdf:Statement ;
+    rdfs:comment "This subcommand is obsolete as of Fix Pack 11." .
+
+hpc:startuplim a owl:ObjectProperty ;
+    rdfs:domain hpc:Limdaemon ;
+    rdfs:range rdf:Statement ;
+    rdfs:comment "This subcommand is obsolete as of Fix Pack 11." .
+
+hpc:lock a owl:ObjectProperty ;
+    rdfs:domain hpc:Limdaemon ;
+    rdfs:range rdf:Statement ;
+    rdfs:comment "Locks LIM on the local host until it is explicitly unlocked if no time is speciﬁed." .
+
+hpc:locktime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lock ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The host is locked for the speciﬁed time in seconds." .
+
+hpc:suspendjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Lock ;
+    rdfs:range rdf:Statement ;
+    rdfs:comment "LSF suspends all non-exclusive jobs that are running on the host." .
+
+hpc:Exclusivejob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "A job that requires all the available CPU time, memory, or both." .

@@ -1,0 +1,43 @@
+hpc:jobcompport a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobcomp ;
+    rdfs:range xsd:integer .
+
+hpc:jobcomptype a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobcomp ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:hasType .
+
+hpc:jobcompuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobcomp ;
+    rdfs:range xsd:string .
+
+hpc:jobcompparams a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcomp ;
+    rdfs:range xsd:string .
+
+hpc:Slurmaccountingconfiguration a owl:Class ;
+    rdfs:subClassOf hpc:Configuration .
+
+hpc:accountingstoragetype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmaccountingconfiguration ;
+    rdfs:range xsd:string .
+
+hpc:Association a owl:Class ;
+    rdfs:subClassOf hpc:Entity .
+
+hpc:Database a owl:Class ;
+    rdfs:subClassOf hpc:Entity .
+
+hpc:preferreddatabase a owl:DatatypeProperty ;
+    rdfs:domain hpc:Database ;
+    rdfs:range xsd:string .
+
+hpc:innodbstorageengine a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mysql ;
+    rdfs:range xsd:string .
+
+hpc:Mysql a owl:Class ;
+    rdfs:subClassOf hpc:Database .
+
+hpc:Mariadb a owl:Class ;
+    rdfs:subClassOf hpc:Database .

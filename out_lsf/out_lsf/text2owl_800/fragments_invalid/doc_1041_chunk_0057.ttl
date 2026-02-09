@@ -1,0 +1,37 @@
+hpc:Logfile a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A file name with or without a full path that is created for logging purposes." .
+
+hpc:hasformat a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The format of the log file." .
+
+hpc:iscreatedin a owl:ObjectProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range hpc:Directory ;
+    rdfs:comment "The directory where the log file is created." .
+
+hpc:ishostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The host name of the system where the log file is created." .
+
+hpc:istemporarytimingoff a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Boolean ;
+    rdfs:comment "Indicates whether temporary timing settings are turned off." .
+
+hpc:hascomment a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Optional comment for the command." .
+
+hpc:hastarget a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Host | hpc:Hostgroup | hpc:Computeunit | hpc:All ;
+    rdfs:comment "The target hosts, host groups, compute units, or all hosts for the command." .
+
+hpc:Closecommand a owl:Class ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "The command for closing batch server hosts." .

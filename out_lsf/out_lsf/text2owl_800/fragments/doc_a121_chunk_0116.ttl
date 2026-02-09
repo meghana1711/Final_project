@@ -1,0 +1,54 @@
+hpc:Simulation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a completed simulation." .
+
+hpc:simulationstarttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Simulation ;
+    rdfs:range xsd:dateTime .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a job to be estimated." .
+
+hpc:jobsubmissiontime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .
+
+hpc:estimatedjobstarttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .
+
+hpc:lowerboundestimate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .
+
+hpc:Jobaffinityscheduling a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents job affinity scheduling." .
+
+hpc:Hostattribute a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents an attribute for hosts." .
+
+hpc:hostpreference a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobaffinityscheduling ;
+    rdfs:range hpc:Hostattribute ;
+    rdfs:comment "Defines host preferences based on host attributes." .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a host." .
+
+hpc:Jobaffinityparameter a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents parameters for job affinity." .
+
+hpc:bjobscommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobaffinityscheduling ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the bjobs command for customized output." .
+
+hpc:estimatedSimStartTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobscommand ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Displays the estimated start time of the job." .

@@ -1,0 +1,40 @@
+hpc:Script a owl:Class .
+hpc:Transferjob a owl:Class .
+
+# Object Properties
+hpc:hassource a owl:ObjectProperty ;
+    rdfs:domain hpc:Transferjob ;
+    rdfs:range xsd:string .
+hpc:hasdestination a owl:ObjectProperty ;
+    rdfs:domain hpc:Transferjob ;
+    rdfs:range xsd:string .
+hpc:hashost a owl:ObjectProperty ;
+    rdfs:domain hpc:Transferjob ;
+    rdfs:range xsd:string .
+hpc:haserrorlog a owl:ObjectProperty ;
+    rdfs:domain hpc:Transferjob ;
+    rdfs:range xsd:string .
+
+# Datatype Properties
+hpc:hasretrycount a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasattemptcount a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasexecutioncode a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Class and Property Relations
+hpc:Script a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      owl:equivalentClass [ rdf:type owl:Restriction ;
+                                             owl:onProperty hpc:hasErrorLog ;
+                                             owl:hasValue '*' ] ] .
+
+hpc:Transferjob a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      owl:intersectionOf ( [ a owl:Restriction ;
+                                              owl:onProperty hpc:hasSource ]
+                                            [ a owl:Restriction ;
+                                              owl:onProperty hpc:hasDestination ]
+                                            [ a owl:Restriction ;
+                                              owl:onProperty hpc:hasHost ] ) ] .

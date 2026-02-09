@@ -1,0 +1,38 @@
+hpc:LsbConfdir a owl:Class .
+hpc:LsfConfdir a owl:Class ;
+    rdfs:subClassOf hpc:LsbConfdir .
+hpc:Lsbresourcesfile a owl:Class .
+hpc:Configurationsetting a owl:Class .
+hpc:Limitsection a owl:Class .
+hpc:Verticallimitsection a owl:Class ;
+    rdfs:subClassOf hpc:Limitsection .
+hpc:Horizontallimitsection a owl:Class ;
+    rdfs:subClassOf hpc:Limitsection .
+hpc:Resourceconsumer a owl:Class .
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .
+
+# Object Properties
+hpc:haslocation a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbConfdir ;
+    rdfs:range hpc:Lsbresourcesfile .
+hpc:includes a owl:ObjectProperty .
+hpc:haslimitsection a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbresourcesfile .
+hpc:hasresourcelimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Limitsection .
+    rdfs:range hpc:Resourcelimit .
+
+# Datatype Properties
+hpc:hasformat a owl:DatatypeProperty ;
+    rdfs:domain hpc:Limitsection .
+    rdfs:range xsd:string .
+
+# Classes and Properties for Resource Limits
+hpc:Resourcelimit a owl:Class .
+hpc:hasresource a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcelimit .
+    rdfs:range xsd:string .
+hpc:haslimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcelimit .
+    rdfs:range xsd:nonNegativeInteger .

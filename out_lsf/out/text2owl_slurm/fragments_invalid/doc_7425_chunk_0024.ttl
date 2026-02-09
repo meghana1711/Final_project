@@ -1,0 +1,16 @@
+hpc:Partitioninfo a owl:Class .
+hpc:Partitioninfomaximums a owl:Class .
+hpc:partitioninfomaximumscpuspernode hpc:partitioninfomaximumsproperty a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partitioninfo ;
+    rdfs:range xsd:integer .
+hpc:partitioninfomaximumscpuspersocket hpc:partitioninfomaximumsproperty a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partitioninfo ;
+    rdfs:range xsd:integer .
+hpc:partitioninfomaximumsmemorypercpu hpc:partitioninfomaximumsproperty a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partitioninfo ;
+    rdfs:range xsd:integer .
+hpc:partitioninfomaximumsmemorypernode hpc:partitioninfomaximumsproperty a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partitioninfo ;
+    rdfs:range xsd:integer .
+hpc:partitioninfomaximumsnodes hpc:partitioninfomaximumsproperty a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partitioninfo

@@ -1,0 +1,77 @@
+hpc:Templatea a owl:Class ;
+    rdfs:subClassOf hpc:Resourcetemplate .
+
+hpc:hashosttype a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range xsd:string .
+
+hpc:hasncores a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range xsd:integer .
+
+hpc:hasncpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range xsd:integer .
+
+hpc:hasmemory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range xsd:decimal .
+
+hpc:requestedinstances a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:usesimage a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range hpc:Image .
+
+hpc:usesflavor a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range hpc:Flavor .
+
+hpc:usescloudprovider a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range xsd:string .
+
+hpc:usescloudconfig a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range xsd:string .
+
+hpc:usesuserscript a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range xsd:string .
+
+hpc:usessubnet a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range xsd:string .
+
+hpc:useskeypair a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range xsd:string .
+
+hpc:useslogfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range xsd:string .
+
+hpc:usespackagelist a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range xsd:string .
+
+hpc:googleprovconfig a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcetemplate ;
+    rdfs:range xsd:string .
+
+hpc:googleprovconfigloglevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Googleprovconfig ;
+    rdfs:range xsd:string .
+
+hpc:googleprovconfigassignserviceaccountfromlaunchtemplate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Googleprovconfig ;
+    rdfs:range xsd:boolean .
+
+hpc:googleprovconfiggcloudcredentialfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Googleprovconfig ;
+    rdfs:range xsd:string .
+
+hpc:LogLevel a owl:Enum ;
+    rdfs:subClassOf

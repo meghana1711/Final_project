@@ -1,0 +1,35 @@
+hpc:Jobattributepreference a owl:Class .
+hpc:DefaultPreference a hpc:JobAttributePreference ;
+    rdfs:comment "It is preferred for the selected host to have this attribute." .
+hpc:NotPreferred a hpc:JobAttributePreference ;
+    rdfs:comment "It is preferred for the selected host to not have this attribute." .
+hpc:MandatoryPreference a hpc:JobAttributePreference ;
+    rdfs:comment "It is mandatory for the selected host to have this attribute." .
+hpc:MandatoryNotPreferred a hpc:JobAttributePreference ;
+    rdfs:comment "It is mandatory for the selected host to not have this attribute." .
+
+hpc:jobattribute a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobattributepreference ;
+    rdfs:range xsd:string .
+
+# Job affinity preferences
+hpc:Samehostpreference a owl:Class .
+hpc:DefaultSamehostPreference a hpc:SamehostPreference ;
+    rdfs:comment "" .
+hpc:NotPreferredSamehostPreference a hpc:SamehostPreference ;
+    rdfs:comment "It is preferred for the job to run on a different host." .
+hpc:MandatorySamehostPreference a hpc:SamehostPreference ;
+    rdfs:comment "It is mandatory for the job to run on the same host." .
+hpc:MandatoryNotPreferredSamehostPreference a hpc:SamehostPreference ;
+    rdfs:comment "It is mandatory for the job to run on a different host." .
+
+hpc:samehost a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobattributepreference ;
+    rdfs:range hpc:Samehostpreference .
+
+# SAME_JOB_AFFINITY parameter
+hpc:Samejobaffinityparameter a owl:Class ;
+    rdfs:comment "Indicates whether the SAME_HOST keyword can be used." .
+hpc:YValue a hpc:SameJobAffinityParameter ;
+    rdfs:subClassOf hpc:Samejobaffinityparameter ;
+    rdfs:comment "The SAME_JOB_AFFINITY parameter is set to Y or y." .

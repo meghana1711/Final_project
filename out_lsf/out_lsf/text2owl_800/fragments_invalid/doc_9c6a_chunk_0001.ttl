@@ -1,0 +1,46 @@
+hpc:Upgradeibmspectrumlsf a owl:Class .
+hpc:Managementhost rdfs:domain hpc:Upgradeibmspectrumlsf ;
+    rdfs:range rdf:Resource .
+
+hpc:Serverhost rdfs:domain hpc:Upgradeibmspectrumlsf ;
+    rdfs:range rdf:Resource .
+
+hpc:Lsfversion1010 rdfs:subClassOf xsd:decimal ;
+    rdfs:range xsd:decimal .
+
+hpc:Lsfcluster rdfs:subClassOf hpc:Upgradeibmspectrumlsf ;
+    rdfs:domain rdf:Resource .
+
+hpc:Unixlinux rdfs:subClassOf hpc:Lsfcluster ;
+    rdfs:range rdf:Resource .
+
+hpc:Windows rdfs:subClassOf hpc:Lsfcluster ;
+    rdfs:range rdf:Resource .
+
+hpc:Lsfinstallscript rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Unixlinux ;
+    rdfs:range rdf:Resource .
+
+hpc:Gettingfixesfromibmfixcentral rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Unixlinux ;
+    rdfs:range rdf:Resource .
+
+hpc:Backuporiginalcluster rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Windows ;
+    rdfs:range rdf:Resource .
+
+hpc:Installnewcluster rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Windows ;
+    rdfs:range rdf:Resource .
+
+hpc:Transferworkloadandconfiguration rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hdfs:Windows ;
+    rdfs:range rdf:Resource .
+
+hpc:Lsfdistributionfiles rdfs:subClassOf owl:DatatypeProperty ;
+    rdfs:domain hpc:Unixlinux ;
+    rdfs:range xsd:string .
+
+hpc:Prepareclusterforupgrading rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Unixlinux ;
+    rdfs:range rdf:Resource .

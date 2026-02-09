@@ -1,0 +1,52 @@
+hpc:Hosta a owl:Class .
+hpc:lsfadmin owl:ObjectProperty .
+
+hpc:Cluster a owl:Class .
+hpc:lscHostA_hasCluster rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hosta ;
+    rdfs:range hpc:Cluster .
+
+hpc:Configurationparameter a owl:Class .
+hpc:bparamsCommand owl:ObjectProperty .
+hpc:bparamsLongFormat owl:ObjectProperty .
+
+hpc:Defaultqueue a owl:Class ;
+    rdfs:subClassOf hpc:Configurationparameter .
+hpc:idle a owl:ObjectProperty ;
+    rdfs:domain hpc:Defaultqueue ;
+    rdfs:range xsd:string .
+hpc:normal a owl:ObjectProperty ;
+    rdfs:domain hpc:Defaultqueue ;
+    rdfs:range xsd:string .
+
+hpc:mbdsleeptime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationparameter ;
+    rdfs:range xsd:integer .
+
+hpc:jobcheckinginterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationparameter ;
+    rdfs:range xsd:integer .
+
+hpc:jobacceptinginterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationparameter ;
+    rdfs:range xsd:integer .
+
+hpc:sbdsleeptime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationparameter ;
+    rdfs:range xsd:integer .
+
+hpc:jobacceptinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationparameter ;
+    rdfs:range xsd:integer .
+
+hpc:pgsuspit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationparameter ;
+    rdfs:range xsd:integer .
+
+hpc:cleanperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationparameter ;
+    rdfs:range xsd:integer .
+
+hpc:maxjobnum a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationparameter ;
+    rdfs:range xsd:integer .

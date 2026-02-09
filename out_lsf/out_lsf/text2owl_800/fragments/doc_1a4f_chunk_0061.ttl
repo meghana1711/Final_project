@@ -1,0 +1,72 @@
+hpc:LSF_DYNAMIC_HOST_WAIT_TIME
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dynamichost ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ManagementHostCandidate
+    a owl:Class .
+
+hpc:LIM
+    a owl:Class ;
+    rdfs:subClassOf hpc:Managementhostcandidate .
+
+hpc:candidateLIM
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Managementhostcandidate ;
+    rdfs:range hpc:Lim .
+
+hpc:LSF_MASTER_LIST
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Managementhostcandidate ;
+    rdfs:range rdf:List .
+
+hpc:PrimaryManagementHost
+    a owl:Class ;
+    rdfs:subClassOf hpc:Managementhostcandidate .
+
+hpc:mbatchd
+    a owl:Class .
+
+hpc:receivesHostInfoFrom
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lim ;
+    rdfs:range hpc:Mbatchd .
+
+hpc:detectsHostAdditionOrRemoval
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range hpc:Dynamichost .
+
+hpc:reconfigures
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range hpc:Mbatchd .
+
+hpc:bctrldStartLim
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Dynamichost ;
+    rdfs:range rdf:Literal .
+
+hpc:DynamicHost
+    a owl:Class .
+
+hpc:cannotBePrimaryManagementHostCandidate
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Dynamichost .
+
+hpc:LSF_HOST_ADDR_RANGE
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster .
+
+hpc:IPAddressRange
+    a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:allowsDynamicJoin
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Ipaddressrange .
+
+hpc:LSF_ENABLE_SUPPORT_IPV6
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster .

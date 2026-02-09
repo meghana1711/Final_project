@@ -1,0 +1,58 @@
+hpc:Jobslot a owl:Class ;
+    rdfs:subClassOf hpc:Resourcelimit .
+
+hpc:slots a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobslot ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:slotsPerProcessor a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobslot ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:memory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcelimit ;
+    rdfs:range xsd:decimal .
+
+hpc:swapspace a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcelimit ;
+    rdfs:range xsd:decimal .
+
+hpc:tempspace a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcelimit ;
+    rdfs:range xsd:decimal .
+
+hpc:runningjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcelimit ;
+    rdfs:range hpc:Job .
+
+hpc:suspendedjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcelimit ;
+    rdfs:range hpc:Job .
+
+hpc:othersharedresources a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcelimit ;
+    rdfs:range hpc:Resource .
+
+hpc:Applications a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .
+
+hpc:Queues a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .
+
+hpc:Hosts a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .
+
+hpc:Hostgroups a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .
+
+hpc:Users a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .
+
+hpc:Usergroups a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .
+
+hpc:Projects a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .
+
+hpc:LicProjects a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .

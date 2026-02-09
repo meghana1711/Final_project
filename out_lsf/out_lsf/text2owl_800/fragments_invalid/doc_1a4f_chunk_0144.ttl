@@ -1,0 +1,27 @@
+hpc:Job a owl:Class .
+hpc:Command a owl:Class .
+
+hpc:lspasswd a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:comment "Registers a password for a Windows user account." .
+
+hpc:bugroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:comment "Displays information about user groups." .
+    rdfs:subPropertyOf hpc:bugroup .
+
+hpc:bugroupW a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:comment "Displays information about user groups. If UNIX/Windows user account mapping is enabled, the command bugroup displays user names without domains." .
+
+hpc:busers a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:comment "Displays information about specific users and user groups." .
+
+hpc:busersW a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:comment "Displays information about specific users and user groups. If UNIX/Windows user account mapping is enabled, the command busers displays user names without domains." .
+
+hpc:badminShowconf a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:comment "Displays all configured parameters and their values set in lsf.conf or ego.conf that affect mbatchd and sbatchd." .

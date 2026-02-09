@@ -1,0 +1,32 @@
+hpc:Lsfjob a owl:Class .
+hpc:Resource a owl:Class .
+hpc:Licenseserver a owl:Class .
+hpc:Sharedresource a owl:Class .
+hpc:Numericresource a owl:Class .
+hpc:ReserveLicense an owl:ObjectProperty .
+hpc:CheckoutLicense an owl:ObjectProperty .
+hpc:CheckinLicense an owl:ObjectProperty .
+hpc:ReportLicenseCount an owl:ObjectProperty .
+
+hpc:Lsfjob rdfs:subClassOf owl:Class .
+hpc:Resource rdfs:subClassOf owl:Class .
+hpc:Licenseserver rdfs:subClassOf owl:Class .
+hpc:Sharedresource rdfs:subClassOf hpc:Resource .
+hpc:Numericresource rdfs:subClassOf hpc:Sharedresource .
+
+hpc:Reservelicense rdfs:domain hpc:Lsfjob ;
+                      rdfs:range hpc:Licenseserver .
+hpc:Checkoutlicense rdfs:domain hpc:Lsfjob ;
+                      rdfs:range hpc:Licenseserver .
+hpc:Checkinlicense rdfs:domain hpc:Lsfjob ;
+                      rdfs:range hpc:Licenseserver .
+hpc:Reportlicensecount rdfs:domain hpc:Lsfjob ;
+                       rdfs:range xsd:integer .
+
+hpc:SharedResource rdfs:subPropertyOf hpc:ReserveLicense ;
+                    rdfs:subPropertyOf hpc:CheckoutLicense ;
+                    rdfs:subPropertyOf hpc:CheckinLicense .
+
+hpc:lic2 a hpc:NumericResource ;
+        rdfs:label "application licenses" ;
+        rdfs:comment "Numeric resource representing application licenses." .

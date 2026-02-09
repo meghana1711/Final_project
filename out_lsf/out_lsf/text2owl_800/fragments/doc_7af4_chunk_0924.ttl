@@ -1,0 +1,30 @@
+hpc:lsLogMask a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsScheduler ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:LOG_CRITICAL a owl:NamedIndividual ;
+    rdf:value "CRITICAL" .
+
+hpc:LOG_WARNING a owl:NamedIndividual ;
+    rdf:value "WARNING" .
+
+hpc:LOG_DEBUG a owl:NamedIndividual ;
+    rdf:value "DEBUG" .
+
+hpc:LOG_DEBUG2 a owl:NamedIndividual ;
+    rdf:value "DEBUG2" .
+
+hpc:LOG_DEBUG3 a owl:NamedIndividual ;
+    rdf:value "DEBUG3" .
+
+hpc:lsMaxStreamFileNumber a owl:ObjectProperty ;
+    rdfs:domain hpc:LsScheduler ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsMaxStreamSize a owl:ObjectProperty ;
+    rdfs:domain hpc:LsScheduler ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsMaxTaskmanPreempt a owl:ObjectProperty ;
+    rdfs:domain hpc:LsScheduler ;
+    rdfs:range xsd:nonNegativeInteger .

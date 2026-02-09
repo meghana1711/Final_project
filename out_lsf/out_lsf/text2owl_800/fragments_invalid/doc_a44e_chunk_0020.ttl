@@ -1,0 +1,30 @@
+hpc:Permissionmask a owl:Class .
+hpc:Octalmode hpc:Permissionmask rdfs:subClassOf owl:Class .
+hpc:Userpermissions hpc:Octalmode rdfs:domain hpc:Permissionmask ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The first digit selects permissions for the user who owns the file." .
+hpc:Grouppermissions hpc:Octalmode rdfs:domain hpc:Permissionmask ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The second digit selects the permissions for other users in the group that is associated with the file." .
+hpc:Otherpermissions hpc:Octalmode rdfs:domain hpc:Permissionmask ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The third digit selects the permissions for other users not in the group that is associated with the file." .
+hpc:Fileowners hpc:Permissionmask rdfs:range xsd:string ;
+    rdfs:comment "The users who own the file." .
+hpc:Groupassociated hpc:Permissionmask rdfs:range xsd:string ;
+    rdfs:comment "The group associated with the file." .
+hpc:Otherusers hpc:Permissionmask rdfs:range xsd:string ;
+    rdfs:comment "The users not in the group associated with the file." .
+hpc:Read hpc:Permissionmask rdfs:domain xsd:integer ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Read permission." .
+hpc:Write hpc:Permissionmask rdfs:domain xsd:integer ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Write permission." .
+hpc:Execute hpc:Permissionmask rdfs:domain xsd:integer ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Execute permission." .
+hpc:Querynthreads a owl:Class .
+hpc:Integer hpc:Querynthreads rdfs:domain hpc:Querynthreads ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Number of threads in the LSF data manager client query thread pool." .

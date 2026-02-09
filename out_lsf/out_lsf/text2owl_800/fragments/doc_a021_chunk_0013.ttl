@@ -1,0 +1,31 @@
+hpc:Resourceconnector a owl:Class .
+hpc:stepvalue a owl:ObjectProperty .
+hpc:maxnumber a owl:ObjectProperty .
+hpc:userdefinedscriptpath a owl:DatatypeProperty .
+hpc:demandtarget a owl:DatatypeProperty .
+hpc:currentallocation a owl:DatatypeProperty .
+hpc:outstandingrequests a owl:DatatypeProperty .
+hpc:reclaimedhosts a owl:DatatypeProperty .
+
+hpc:Stepvalue rdfs:domain hpc:Resourceconnector ;
+    rdfs:range xsd:string .
+
+hpc:Maxnumber rdfs:domain hpc:Resourceconnector ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Userdefinedscriptpath rdfs:domain hpc:Resourceconnector ;
+    rdfs:range xsd:string .
+
+hpc:Demandtarget rdfs:domain hpc:Resourcepolicyscript ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Currentallocation rdfs:domain hpc:Resourcepolicyscript ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Outstandingrequests rdfs:domain hpc:Resourcepolicyscript ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Reclaimedhosts rdfs:domain hpc:Resourcepolicyscript ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Resourcepolicyscript rdfs:subClassOf hpc:Resourceconnector .

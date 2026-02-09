@@ -1,0 +1,24 @@
+hpc:Numcores hpc:Numcoresclass a owl:Class .
+hpc:Hostname hpc:Hostnameclass a owl:Class .
+hpc:hasnumcores hpc:hasnumcoresproperty a owl:ObjectProperty ;
+    rdfs:domain hpc:Numcores ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:useshosts hpc:useshostsproperty a owl:ObjectProperty .
+hpc:satisfiesresourcerequirements hpc:satisfiesresourcerequirementsproperty a owl:ObjectProperty .
+hpc:onecoreononehost hpc:onecoreononehostproperty a owl:ObjectProperty .
+hpc:selectionstring hpc:selectionstringproperty a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+hpc:Numcoresignoredbybsub hpc:Numcoresignoredbybsubclass a owl:Class ;
+    rdfs:subClassOf hpc:Numcores .
+hpc:Hostsnotcompatiblewithresreq hpc:Hostsnotcompatiblewithresreqclass a owl:Class ;
+    rdfs:subClassOf hpc:Hostname .
+hpc:Hostsusedbybsub hpc:Hostsusedbybsubclass a owl:Class .
+hpc:Hostsusedbybsubonly hpc:Hostsusedbybsubonlyclass a owl:Class ;
+    rdfs:subClassOf hpc:Hostname .
+hpc:NumCoresIgnoredByBsub rdfs:subPropertyOf hpc:usesHosts .
+hpc:NotCompatibleWithResReq rdfs:subPropertyOf hpc:usesHosts .
+hpc:IgnoredByBsub rdfs:subPropertyOf hpc:usesHosts .
+hpc:UsesOnlyHostsThatSatisfy rdfs:subPropertyOf hpc:usesHosts .
+hpc:OneCoreOnOneHost rdfs:subPropertyOf hpc:usesHosts .
+hpc:WhenSpecifyRButNotJUsesOneCoreOnOneHost rdfs:subPropertyOf hpc:usesHosts .
+hpc:IfGroupOfHostsMatchesSelectionStringIncludesSubmissionHost rdfs:subPropertyOf hpc:selectionString .

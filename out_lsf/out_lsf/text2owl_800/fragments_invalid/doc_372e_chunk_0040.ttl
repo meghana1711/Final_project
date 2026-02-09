@@ -1,0 +1,63 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Licensetokenassignment a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Project a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Groupofprojects a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Licenseproject a owl:Class ;
+    rdfs:subClassOf hpc:Project ;
+    rdfs:subClassOf hpc:Groupofprojects .
+
+hpc:haslicensetokenassignment hpc:licensetokenassignment a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range hpc:Licensetokenassignment .
+
+hpc:belongsto hpc:groupofprojects a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range hpc:Groupofprojects .
+
+hpc:preemptionoccursbetween hpc:groupofprojects a owl:ObjectProperty ;
+    rdfs:domain hpc:Groupofprojects .
+
+hpc:haspreemption hpc:groupofprojects a owl:ObjectProperty ;
+    rdfs:domain hpc:Groupofprojects .
+
+hpc:hasinteractivejob hpc:job a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range hpc:Job .
+
+hpc:enableInteractive xsd:boolean a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasallocation hpc:job a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:allocation xsd:string a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:Featuregroup a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:hasfeaturegroup hpc:project a owl:ObjectProperty ;
+    rdfs:domain hpc:Project .
+
+hpc:hashierarchicalprojectgrouppath hpc:project a owl:DatatypeProperty ;
+    rdfs:domain hpc:Project .
+
+hpc:demandLimit xsd:integer a owl:DatatypeProperty ;
+    rdfs:domain hpc:Project .
+
+hpc:lmremovepreemption hpc:action a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource .
+
+hpc:rlmremovepreemption hpc:action a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource .
+
+hpc:activeOwnership xsd:boolean a owl:DatatypeProperty ;
+    rdfs:domain hpc:Project .

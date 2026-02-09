@@ -1,0 +1,22 @@
+hpc:Activatequeues a owl:Class .
+hpc:activateallqueues a owl:ObjectProperty ;
+    rdfs:domain hpc:Activatequeues ;
+    rdfs:range hpc:Boolean .
+
+hpc:Submitwork a owl:Class .
+hpc:submittonewcluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Submitwork ;
+    rdfs:range hpc:Cluster .
+
+hpc:Runmonitorcontrol a owl:Class .
+hpc:runwithibmspectrumlsf a owl:ObjectProperty ;
+    rdfs:domain hpc:Runmonitorcontrol ;
+    rdfs:range hpc:Cluster .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:Work a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:Cluster a owl:Class .

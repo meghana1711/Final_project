@@ -1,0 +1,66 @@
+hpc:Commandline a owl:Class .
+hpc:lsbQueue a owl:ObjectProperty .
+hpc:LsbQueue rdfs:domain hpc:Commandline ;
+    rdfs:range xsd:string .
+
+hpc:lsbDefaultproject a owl:ObjectProperty .
+hpc:LsbDefaultproject rdfs:domain hpc:Commandline ;
+    rdfs:range xsd:string .
+
+hpc:LsbDefaultProject a owl:Class .
+
+hpc:lsbQueueName a owl:DatatypeProperty .
+hpc:LsbQueueName rdfs:domain hpc:LsbQueue ;
+    rdfs:range xsd:string .
+
+hpc:setby a owl:ObjectProperty .
+hpc:Setby rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string .
+
+hpc:lsbRankHostfile a owl:ObjectProperty .
+hpc:LsbRankHostfile rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string .
+
+hpc:djobEnvScript a owl:DatatypeProperty .
+hpc:DjobEnvScript rdfs:domain hpc:LsbRankHostfile ;
+    rdfs:range xsd:string .
+
+hpc:OpenmpiRankfile a owl:Class .
+
+hpc:lsbRankFile a owl:DatatypeProperty .
+hpc:LsbRankFile rdfs:domain hpc:OpenmpiRankfile ;
+    rdfs:range xsd:string .
+
+hpc:Firstexecutionhost a owl:Class .
+
+hpc:lsbDjobHostfile a owl:DatatypeProperty .
+hpc:LsbDjobHostfile rdfs:domain hpc:Firstexecutionhost ;
+    rdfs:range xsd:string .
+
+hpc:Notdefined a owl:Class .
+
+hpc:lsbRemoteindex a owl:DatatypeProperty .
+hpc:LsbRemoteindex rdfs:domain rdf:Resource ;
+    rdfs:range xsd:integer .
+
+hpc:Jobarray a owl:Class .
+hpc:Jobarray rdfs:subClassOf hpc:Commandline .
+
+hpc:lsbRemotejid a owl:DatatypeProperty .
+hpc:LsbRemotejid rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string .
+
+hpc:Jobid a owl:Class .
+
+hpc:lsbJobid a owl:DatatypeProperty .
+hpc:LsbJobid rdfs:domain hpc:Jobid ;
+    rdfs:range xsd:string .
+
+hpc:jobreportmail a owl:ObjectProperty .
+hpc:Jobreportmail rdfs:domain hpc:Commandline ;
+    rdfs:range xsd:string .
+
+hpc:y a owl:DatatypeProperty .
+hpc:Y rdfs:subClassOf xsd:string .
+
+hpc:N

@@ -1,0 +1,53 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a job with a thread limit." .
+
+hpc:threadlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Limits the number of concurrent threads that can be part of a job." .
+
+hpc:defaultthreadlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:subPropertyOf hpc:ThreadLimit ;
+    rdfs:comment "The default thread limit for jobs without a job-level thread limit." .
+
+hpc:maximumthreadlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:subPropertyOf hpc:ThreadLimit ;
+    rdfs:comment "The maximum thread limit for jobs." .
+
+hpc:Jobtermination a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the termination of a job due to thread limit exceeded." .
+
+hpc:jobthreadlimitreached a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Jobtermination ;
+    rdfs:comment "Indicates that the thread limit for a job has been reached." .
+
+hpc:jobhasdefaultthreadlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:subPropertyOf hpc:ThreadLimit ;
+    rdfs:comment "The default thread limit for a specific job." .
+
+hpc:jobhasmaximumthreadlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:subPropertyOf hpc:ThreadLimit ;
+    rdfs:comment "The maximum thread limit for a specific job." .
+
+hpc:jobhasdefaultandmaximumthreadlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger xsd:nonNegativeInteger ;
+    rdfs:subPropertyOf hpc:ThreadLimit ;
+    rdfs:comment "The default and maximum thread limits for a specific job." .
+
+hpc:jobHasDefaultThreadLimitLessThanMaximumThreadLimit a owl:Restriction ;
+    rdfs:onProperty hpc:jobHasDefaultThreadLimit ;
+    rdfs:allValuesFrom xsd:nonNegativeInteger ;
+    rdfs:minQName "maximum" ;
+    rdfs:comment "Ensures that the default thread limit is less than the maximum thread limit." .

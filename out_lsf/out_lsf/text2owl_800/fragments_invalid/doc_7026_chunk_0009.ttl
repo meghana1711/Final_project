@@ -1,0 +1,14 @@
+hpc:Lsfconfiguration a owl:Class .
+hpc:LsfRsh hpc:Lsfconfiguration rdfs:domain xsd:string .
+hpc:LsfRsh rdfs:range xsd:string .
+
+hpc:LsfLsloginSsh hpc:Lsfconfiguration rdfs:domain xsd:boolean .
+hpc:LsfLsloginSsh rdfs:range xsd:boolean .
+
+hpc:Lsfcommand a owl:Class .
+hpc:Lsrun hpc:Lsfcommand rdfs:subClassOf hpc:Lsfcommand .
+hpc:Lsgrun hpc:Lsfcommand rdfs:subClassOf hpc:Lsfcommand .
+hpc:Lsmake hpc:Lsfcommand rdfs:subClassOf hpc:Lsfcommand .
+
+hpc:LsfDisableLsrun hpc:Lsfcommand rdfs:domain xsd:boolean .
+hpc:LsfDisableLsrun rdfs:range xsd:boolean .

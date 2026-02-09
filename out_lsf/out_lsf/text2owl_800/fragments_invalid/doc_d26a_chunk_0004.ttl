@@ -1,0 +1,11 @@
+hpc:Lsbdjobhbinterval a owl:Class ;
+    rdfs:comment "Cannot be disabled." .
+
+hpc:cannotbedisabled a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbdjobhbinterval ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the LSB_DJOB_HB_INTERVAL can be disabled." .
+
+hpc:badminreconfigure a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbdjobhbinterval ;
+    rdfs:range hpc:Mbatchd ;

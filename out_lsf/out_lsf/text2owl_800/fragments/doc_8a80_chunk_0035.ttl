@@ -1,0 +1,45 @@
+hpc:ClusterDistribution
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Clusterdistributionvalue ;
+    rdfs:comment "Defines the distribution of licenses across clusters." .
+
+hpc:ClusterDistributionValue
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents the value of the cluster distribution." .
+
+hpc:AllocationBuffer
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Specifies the number of tokens that the cluster can request as an allocation buffer." .
+
+hpc:Allocation
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range hpc:Allocationvalue ;
+    rdfs:comment "Defines the allocation of license features across clusters and interactive tasks." .
+
+hpc:AllocationValue
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents the value of the allocation." .
+
+hpc:ClusterName
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Allocationvalue ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the LSF cluster names or interactive tasks that licenses are to be allocated to." .
+
+hpc:ProjectName
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Allocationvalue ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies a License Scheduler project that is allowed to use the licenses." .
+
+hpc:NumberShares
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Allocationvalue ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Specifies a positive integer representing the number of shares assigned to the cluster." .

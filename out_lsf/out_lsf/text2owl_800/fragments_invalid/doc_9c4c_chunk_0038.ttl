@@ -1,0 +1,33 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Lsf a owl:Class .
+hpc:lsfEntitlementFile a owl:DatatypeProperty .
+hpc:lsfMasterList a owl:ObjectProperty .
+hpc:lsfQuietInst a owl:DatatypeProperty .
+hpc:lsfSilentInstallTarlist a owl:DatatypeProperty .
+hpc:lsfTardir a owl:DatatypeProperty .
+
+rdfs:domain hpc:LsfEntitlementFile rdf:Resource .
+rdfs:domain hpc:LsfMasterList rdf:Literal .
+rdfs:domain hpc:LsfQuietInst rdf:Literal .
+rdfs:domain hpc:LsfSilentInstallTarlist rdf:Literal .
+rdfs:domain hpc:LsfTardir rdf:Literal .
+
+rdfs:range hpc:LsfEntitlementFile xsd:string .
+rdfs:range hpc:LsfMasterList xsd:string .
+rdfs:range hpc:LsfQuietInst xsd:string .
+rdfs:range hpc:LsfSilentInstallTarlist xsd:string .
+rdfs:range hpc:LsfTardir xsd:string .
+
+hpc:LsfMasterList rdfs:subClassOf hpc:LsfServerHostNameList .
+
+hpc:LsfServerHostNameList a owl:Class .
+hpc:lsfServerHostName a owl:ObjectProperty .
+
+rdfs:domain hpc:LsfServerHostName rdf:Resource .
+rdfs:range hpc:LsfServerHostName xsd:string .
+
+hpc:LsfServerHostName rdfs:subClassOf rdf:Resource .

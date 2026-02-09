@@ -1,0 +1,62 @@
+hpc:Unix a owl:Class .
+hpc:Nfs a owl:Class ;
+    rdfs:subClassOf hpc:Unix ;
+    rdfs:comment "Network File System (NFS)" ;
+    rdfs:domain hpc:Filesystem ;
+    rdfs:range hpc:Sharedfilesystem .
+
+hpc:Afs a owl:Class ;
+    rdfs:subClassOf hpc:Unix ;
+    rdfs:comment "Andrew File System (AFS)" ;
+    rdfs:domain hpc:Filesystem ;
+    rdfs:range hpc:Ondemandfilesystem ;
+    rdfs:subClassOf hpc:Sequentialjobsupport ;
+    rdfs:subClassOf hpc:Paralleljobsupport .
+
+hpc:DceDfs a owl:Class ;
+    rdfs:subClassOf hpc:Ondemandfilesystem .
+
+hpc:Windows a owl:Class .
+
+hpc:Sharedfilesystem a owl:Class .
+
+hpc:Filesystem a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Ondemandfilesystem a owl:Class ;
+    rdfs:subClassOf hpc:Filesystem .
+
+hpc:Sequentialjobsupport a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Paralleljobsupport a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:copydatatoexecutionhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Job .
+
+hpc:copyresultsfromexecutionhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Job .
+
+hpc:Localdata a owl:Class ;
+    rdfs:subClassOf hpc:Data .
+
+hpc:Remotedata a owl:Class ;
+    rdfs:subClassOf hpc:Data ;
+    rdfs:subClassOf hpc:File .
+
+hpc:Data a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:File a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Lsf a owl:Class ;
+    rdfs:subClassOf owl:Class .

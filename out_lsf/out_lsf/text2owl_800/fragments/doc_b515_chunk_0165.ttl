@@ -1,0 +1,45 @@
+hpc:User a owl:Class .
+hpc:Group a owl:Class .
+hpc:Shareassignment a owl:Class .
+hpc:Usergroupassignment a owl:Class .
+hpc:Individualassignment a owl:Class .
+hpc:Defaultassignment a owl:Class .
+hpc:Otherassignment a owl:Class .
+
+hpc:hasUser rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Shareassignment ;
+    rdfs:range hpc:User .
+
+hpc:hasGroup rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Shareassignment ;
+    rdfs:range hpc:Group .
+
+hpc:hasDefaultUser rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Defaultassignment ;
+    rdfs:range hpc:User .
+
+hpc:hasOtherUser rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Otherassignment ;
+    rdfs:range hpc:User .
+
+hpc:hasNumberShares rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Shareassignment ;
+    rdfs:range xsd:integer .
+
+hpc:groupsubgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Group ;
+    rdfs:range hpc:Group .
+
+hpc:hierarchicalfairshare a owl:ObjectProperty ;
+    rdfs:domain hpc:Group .
+
+hpc:fcfsscheduling a owl:ObjectProperty ;
+    rdfs:domain hpc:Shareassignment .
+
+hpc:recursiveassignment a owl:ObjectProperty ;
+    rdfs:domain hpc:Individualassignment .
+
+hpc:Usergroupassignment rdfs:subClassOf hpc:Shareassignment .
+hpc:Individualassignment rdfs:subClassOf hpc:Shareassignment .
+hpc:Defaultassignment rdfs:subClassOf hpc:Usergroupassignment .
+hpc:Otherassignment rdfs:subClassOf hpc:Usergroupassignment .

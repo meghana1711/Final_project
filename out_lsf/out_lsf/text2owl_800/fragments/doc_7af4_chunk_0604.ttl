@@ -1,0 +1,27 @@
+hpc:Melim a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Maximum number of times the parent external load information manager (MELIM) can restart elim executables on a host." .
+
+hpc:hasmaxelimrestarts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Melim ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of times the MELIM can restart elim executables." .
+
+hpc:lsfElimBlocktime a owl:ObjectProperty ;
+    rdfs:domain hpc:Melim ;
+    rdfs:range hpc:Time ;
+    rdfs:comment "The time the MELIM waits to receive a complete load update string before restarting the elim." .
+
+hpc:ELIM_ABORT_VALUE a xsd:nonNegativeInteger ;
+    rdfs:comment "The value an elim executable exits with when it should not be restarted." .
+
+hpc:lsfHostAddrRange a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The range of IP addresses that are allowed to be LSF hosts that can be dynamically added to or removed from the cluster." .
+
+hpc:Cluster a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:IP_address rdf:type xsd:string ;
+    rdfs:comment "An IP address or range of addresses, using either a dotted quad notation (IPv4) or IP Next Generation (IPv6) format." .

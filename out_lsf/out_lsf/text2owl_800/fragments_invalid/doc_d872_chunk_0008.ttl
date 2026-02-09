@@ -1,0 +1,22 @@
+hpc:Sbatchd a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "Forks a child sbatchd for every job and exits when the job is complete." .
+
+hpc:Sbatchdinstance a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "An instance of sbatchd to create the execution environment for a job." .
+
+hpc:startsbatchd a owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchd ;
+    rdfs:range hpc:Sbatchdinstance ;
+    rdfs:comment "Start sbatchd." .
+
+hpc:stopsbatchd a owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchd ;
+    rdfs:range hpc:Sbatchdinstance ;
+    rdfs:comment "Shut down sbatchd." .
+
+hpc:restartsbatchd a owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchd ;
+    rdfs:range hpc:Sbatchdinstance ;
+    rdfs:comment "Rest

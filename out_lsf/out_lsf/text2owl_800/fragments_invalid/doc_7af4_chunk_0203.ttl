@@ -1,0 +1,10 @@
+hpc:Project a owl:Class ;
+    rdfs:maxLength xsd:nonNegativeInteger "511" .
+
+hpc:PER_LIC_PROJECT, hpc:PER_PROJECT
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range rdf:Bag ;
+    rdfs:subPropertyOf hpc:hasLimit .
+
+hpc:haslimit a owl:ObjectProperty .

@@ -1,0 +1,45 @@
+hpc:MbschdEstimator a owl:Class .
+hpc:LsfInteractiveStderr a owl:Class .
+
+# Object Properties
+hpc:hasdaemonthread a owl:ObjectProperty .
+hpc:runson a owl:ObjectProperty .
+hpc:requirescpus a owl:ObjectProperty .
+hpc:ignoresparameters a owl:ObjectProperty .
+hpc:affectsjobs a owl:ObjectProperty .
+hpc:writestostdout a owl:ObjectProperty .
+hpc:writestostderr a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:isenabled a owl:DatatypeProperty .
+hpc:hasdefaultvalue a owl:DatatypeProperty .
+hpc:hasminimumcpus a owl:DatatypeProperty .
+hpc:takesprecedence a owl:DatatypeProperty .
+
+# Class and Property Relations
+hpc:MbschdEstimator rdfs:subClassOf owl:Class .
+hpc:LsfInteractiveStderr rdfs:subClassOf owl:Class .
+
+hpc:Hasdaemonthread rdfs:domain hpc:MbschdEstimator ;
+                     rdfs:range rdf:Resource .
+hpc:Runson rdfs:domain hpc:MbschdEstimator ;
+                 rdfs:range rdf:Resource .
+hpc:Requirescpus rdfs:domain hpc:MbschdEstimator ;
+                  rdfs:range xsd:nonNegativeInteger .
+hpc:Ignoresparameters rdfs:domain hpc:MbschdEstimator ;
+                      rdfs:range rdf:List .
+hpc:Affectsjobs rdfs:domain hpc:MbschdEstimator ;
+                 rdfs:range rdf:Resource .
+hpc:Writestostdout rdfs:domain hpc:LsfInteractiveStderr ;
+                    rdfs:range rdf:Resource .
+hpc:Writestostderr rdfs:domain hpc:LsfInteractiveStderr ;
+                    rdfs:range rdf:Resource .
+
+hpc:Isenabled rdfs:domain hpc:LsfInteractiveStderr ;
+             rdfs:range xsd:string .
+hpc:Hasdefaultvalue rdfs:domain hpc:LsfInteractiveStderr ;
+                   rdfs:range xsd:string .
+hpc:Hasminimumcpus rdfs:domain hpc:MbschdEstimator ;
+                   rdfs:range xsd:nonNegativeInteger .
+hpc:Takesprecedence rdfs:domain hpc:LsfIntelligentCpuBind ;
+                     rdfs:range xsd:string .

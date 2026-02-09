@@ -1,0 +1,33 @@
+hpc:LsfTop a owl:Class .
+hpc:LsfTopTopDirectory a owl:Class .
+hpc:VersionDirectory a owl:Class .
+hpc:ResourceConnectorDirectory a owl:Class .
+hpc:ProviderDirectory a owl:Class .
+hpc:ConfigurationFile a owl:Class .
+hpc:ownership a owl:ObjectProperty .
+hpc:ownershipBy a owl:ObjectProperty .
+
+hpc:LSF_Top rdf:type owl:Class .
+hpc:LSF_Top_Top_Directory rdf:type owl:Class .
+hpc:Version_Directory rdf:type owl:Class .
+hpc:Resource_Connector_Directory rdf:type owl:Class .
+hpc:Provider_Directory rdf:type owl:Class .
+hpc:Configuration_File rdf:type owl:Class .
+hpc:Ownership rdf:type owl:ObjectProperty .
+hpc:Ownership_By rdf:type owl:ObjectProperty .
+
+hpc:LsfTop rdfs:subClassOf owl:Class .
+hpc:LsfTopTopDirectory rdfs:subClassOf hpc:LsfTop .
+hpc:VersionDirectory rdfs:subClassOf hpc:LsfTop .
+hpc:ResourceConnectorDirectory rdfs:subClassOf hpc:LsfTop .
+hpc:ProviderDirectory rdfs:subClassOf hpc:ResourceConnectorDirectory .
+hpc:ConfigurationFile rdfs:subClassOf hpc:ResourceConnectorDirectory .
+
+hpc:LsfTopTopDirectory rdfs:range xsd:string .
+hpc:VersionDirectory rdfs:domain hpc:LsfTop .
+hpc:ResourceConnectorDirectory rdfs:domain hpc:LsfTop .
+hpc:ProviderDirectory rdfs:domain hpc:ResourceConnectorDirectory .
+hpc:ConfigurationFile rdfs:domain hpc:ProviderDirectory .
+
+hpc:Ownership rdfs:domain hpc:ResourceConnectorDirectory .
+hpc:OwnershipBy rdfs:range xsd:string .

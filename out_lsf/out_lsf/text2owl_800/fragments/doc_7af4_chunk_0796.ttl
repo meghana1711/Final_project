@@ -1,0 +1,39 @@
+hpc:Dcgm a owl:Class ;
+    rdfs:comment "Represents the DCGM feature." .
+
+hpc:lsfDebugCmd a owl:ObjectProperty ;
+    rdfs:domain hpc:System ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Sets the debugging log class for LSF commands and APIs." .
+
+hpc:Syslogfacility a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents the syslog facility." .
+
+hpc:commandlinelogging a owl:ObjectProperty ;
+    rdfs:domain hpc:System ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the daemons log to the syslog facility or a specified log directory." .
+
+hpc:logclassfilter a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfDebugCmd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The log class filtering to be applied to LSF commands or the API." .
+
+hpc:loglevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfCmdLogMask ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Sets the log level for LSF commands or the API." .
+
+hpc:Dcgmintegration a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents the DCGM integration." .
+
+hpc:Missinglibdcgmfile a owl:Class ;
+    rdfs:subClassOf hpc:Dcgmintegration ;
+    rdfs:comment "Represents a missing libdcgm.so file." .
+
+hpc:softlinkcreation a owl:ObjectProperty ;
+    rdfs:domain hpc:Missinglibdcgmfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The action of creating a softlink to ensure that the libdcgm.so file exists and is accessible." .

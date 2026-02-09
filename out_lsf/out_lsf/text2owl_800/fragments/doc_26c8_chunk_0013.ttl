@@ -1,0 +1,28 @@
+hpc:Lsfresourceconnector a owl:Class .
+
+hpc:lsbRcRequeueBuffer a owl:DatatypeProperty .
+hpc:LsbRcRequeueBuffer rdfs:domain hpc:Lsfresourceconnector ;
+                               rdfs:range xsd:integer .
+
+hpc:lsbRcTemplateRequestDelay a owl:DatatypeProperty .
+hpc:LsbRcTemplateRequestDelay rdfs:domain hpc:Lsfresourceconnector ;
+                                        rdfs:range xsd:integer .
+
+hpc:Insufficientaddresscapacity a owl:Class .
+hpc:Insufficientcapacity a owl:Class .
+hpc:Insufficientinstancecapacity a owl:Class .
+hpc:Insufficienthostcapacity a owl:Class .
+hpc:Insufficientreservedinstancecapacity a owl:Class .
+hpc:CannotStartCapacity a owl:Class .
+hpc:CannotStartCompute a owl:Class .
+hpc:CannotStartNetwork a owl:Class .
+hpc:CannotStartPlacementGroup a owl:Class .
+hpc:CannotStartStorage a owl:Class .
+
+hpc:lsbRcUpdateInterval a owl:DatatypeProperty .
+hpc:LsbRcUpdateInterval rdfs:domain hpc:Lsfresourceconnector ;
+                                    rdfs:range xsd:integer .
+
+hpc:mqttBrokerHost a owl:DatatypeProperty .
+hpc:MqttBrokerHost rdfs:domain hpc:Lsfresourceconnector ;
+                           rdfs:range xsd:string .

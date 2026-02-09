@@ -1,0 +1,15 @@
+hpc:Pendingresizeallocationrequest a owl:Class.
+hpc:Regularjob rdfs:subClassOf hpc:Pendingresizeallocationrequest.
+hpc:fairshareuserprioritypolicy a owl:ObjectProperty.
+hpc:Parallelfairshare a rdfs:subClassOf hpc:Fairshareuserprioritypolicy.
+hpc:Usershareassignment a owl:Class.
+hpc:Queuelevel rdfs:subClassOf hpc:Usershareassignment.
+hpc:Hostpartition rdfs:subClassOf hpc:Usershareassignment.
+hpc:dynamicuserpriority a owl:ObjectProperty.
+hpc:Defaultdynamicpriority rdfs:subClassOf hpc:Dynamicuserpriority.
+hpc:Jobcountbasedfairshare rdfs:subClassOf hpc:Fairshareuserprioritypolicy.
+hpc:Firstcomefirstserved rdfs:subClassOf hpc:Fairshareuserprioritypolicy.
+hpc:Crossqueueuserbasedfairshare rdfs:subClassOf hpc:Fairshareuserprioritypolicy.
+hpc:slotallocationperqueue a xsd:nonNegativeInteger.
+hpc:Typicalslotallocationscenario a owl:Class.
+hpc:Jobcountbasedf

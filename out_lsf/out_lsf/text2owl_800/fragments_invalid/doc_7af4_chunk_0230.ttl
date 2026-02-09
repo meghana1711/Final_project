@@ -1,0 +1,33 @@
+hpc:Hostgroup a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "An alphanumeric string representing the name of the host group." ;
+    rdfs:label "HostGroup" .
+
+hpc:GroupName rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range xsd:string ;
+    rdfs:comment "An alphanumeric string representing the name of the host group." ;
+    rdfs:label "GROUP_NAME" .
+
+hpc:iscondensed hpc:hostgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Optional. Defines condensed host groups." ;
+    rdfs:label "CONDENSE" .
+
+hpc:hasmember hpc:hostgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A space-delimited list of hostnames or previously defined host group names, enclosed in one pair of parentheses." ;
+    rdfs:label "GROUP_MEMBER" .
+
+hpc:isCondensedValue "N" ;
+    rdfs:comment "The specified host group is not condensed" .
+
+hpc:isCondensedValue "Y" ;
+    rdfs:comment "The specified host group is condensed" .
+
+hpc:hostgroupcount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The number of host groups a host belongs to" .

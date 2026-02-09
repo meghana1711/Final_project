@@ -1,0 +1,27 @@
+hpc:Lsfversion a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Version of IBM Spectrum LSF Session Scheduler." .
+
+hpc:LSFVersion_10_1 a hpc:LSFVersion ;
+    rdfs:label "IBM Spectrum LSF Session Scheduler Version 10.1" .
+
+# Fix Pack
+hpc:Fixpack a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Fix Pack for a specific LSF Version." .
+
+hpc:FixPack_15 a hpc:FixPack ;
+    rdfs:label "Fix Pack 15" ;
+    rdfs:seeAlso <http://ibm.com/fixcentral/123456> ;
+    rdfs:comment "Fixes to address issues tracked between 8 May 2021 and 12 February 2025." .
+
+# LSF Daemon Error Log Files
+hpc:Lsferrorlogfile a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Error log files for LSF daemons." .
+
+hpc:LSF_LOGDIR a hpc:LSFErrorLogFile ;
+    rdfs:label "LSF_LOGDIR" ;
+    rdfs:domain hpc:Lsfversion ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Directory where daemon error log files are stored." .

@@ -1,0 +1,48 @@
+hpc:Jobdispatchlimit a owl:Class .
+hpc:hasjobdispatchlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobdispatchlimit ;
+    rdfs:range xsd:integer .
+
+hpc:jobsPerSchedCycle a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobdispatchlimit .
+
+# Limit Consumer Types
+hpc:Limitconsumertype a owl:Class .
+hpc:islimitconsumertype a owl:ObjectProperty ;
+    rdfs:domain hpc:Limitconsumertype ;
+    rdfs:range xsd:string .
+
+hpc:USERS a hpc:LimitConsumerType .
+hpc:PER_USER a hpc:LimitConsumerType .
+hpc:QUEUES a hpc:LimitConsumerType .
+hpc:PER_QUEUE a hpc:LimitConsumerType .
+
+# Configuration Files
+hpc:Configurationfile a owl:Class .
+hpc:hasconfigurationfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobdispatchlimit ;
+    rdfs:range xsd:string .
+
+# LSF_UGROUP_TRANSFER
+hpc:lsfUgroupTransfer a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationfile .
+
+# Command Output Formatting
+hpc:Commandoutputformatting a owl:Class .
+hpc:hascommandoutputformatting a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range xsd:string .
+
+# blimits -a
+hpc:blimitsA a owl:DatatypeProperty ;
+    rdfs:domain hpc:Commandoutputformatting .
+
+# bread -w
+hpc:breadW a owl:DatatypeProperty ;
+    rdfs:domain hpc:Commandoutputformatting .
+
+# Other Changes to IBM Spectrum LSF
+hpc:Otherchanges a owl:Class .
+hpc:affectsplatform a owl:ObjectProperty ;
+    rdfs:domain hpc:Otherchanges ;
+    rdfs:range xsd:string .

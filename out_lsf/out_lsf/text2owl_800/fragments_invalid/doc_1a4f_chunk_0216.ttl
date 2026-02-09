@@ -1,0 +1,26 @@
+hpc:Resourceusage a owl:Class .
+hpc:multiusagestring a owl:ObjectProperty .
+hpc:duration a owl:DatatypeProperty .
+hpc:decay a owl:DatatypeProperty .
+hpc:loadindex a owl:DatatypeProperty .
+hpc:Memory a owl:Class .
+hpc:Resourcerequirement a owl:Class .
+hpc:resourcereservepertask a owl:ObjectProperty .
+hpc:Multiphasememorysyntax rdfs:subClassOf hpc:Resourceusage .
+hpc:Singlephasememoryresourcerequirement rdfs:subClassOf hpc:Resourcerequirement .
+hpc:Multiphaseslotbasedresourcereservation rdfs:subClassOf hpc:Resourcereservepertask .
+hpc:Multiphaseresourcereservation rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:Multiusagestring rdfs:domain hpc:Multiphasememorysyntax .
+hpc:Duration rdfs:domain hpc:Multiusagestring .
+hpc:Decay rdfs:domain hpc:Multiusagestring .
+hpc:Loadindex rdfs:domain hpc:Resourceusage .
+hpc:Memory rdfs:domain hpc:Resourceusage .
+hpc:Resourcerequirement rdfs:domain lsb.applications .
+hpc:Resourcereservepertask rdfs:domain lsb.params .
+
+hpc:Multiusagestring rdfs:range xsd:string .
+hpc:Duration rdfs:range xsd:nonNegativeInteger .
+hpc:Decay xsd:nonNegativeInteger .
+hpc:LoadIndex xsd:nonNegativeInteger .
+hpc:Memory xsd:nonNegativeInteger .

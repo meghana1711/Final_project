@@ -1,0 +1,49 @@
+hpc:Resourcereservation a owl:Class .
+
+hpc:timewindow a owl:ObjectProperty .
+
+hpc:beginTime a xsd:time .
+hpc:endTime a xsd:time .
+hpc:day a xsd:nonNegativeInteger .
+hpc:hour a xsd:nonNegativeInteger .
+hpc:minute a xsd:nonNegativeInteger .
+hpc:timeZone a xsd:string .
+
+hpc:Timewindow rdfs:domain hpc:Resourcereservation .
+hpc:Timewindow rdfs:range (hpc:Begintime hpc:Endtime) .
+
+hpc:Begintime rdfs:range xsd:time .
+hpc:Endtime rdfs:range xsd:time .
+hpc:Day rdfs:range hpc:Day .
+hpc:Hour rdfs:range hpc:Hour .
+hpc:Minute rdfs:range hpc:Minute .
+hpc:Timezone rdfs:range hpc:Timezone .
+
+hpc:TimeWindow_constraint a owl:Restriction .
+hpc:TimewindowConstraint rdfs:subClassOf hpc:Timewindow .
+hpc:TimewindowConstraint rdfs:domain hpc:Timewindow .
+
+hpc:TimeWindow_day_constraint a owl:Restriction .
+hpc:TimewindowDayConstraint rdfs:subClassOf hpc:TimewindowConstraint .
+hpc:TimeWindow_day_constraint rdfs:onProperty hpc:day .
+hpc:TimeWindow_day_constraint owl:allValuesFrom xsd:nonNegativeInteger .
+
+hpc:TimeWindow_hour_constraint a owl:Restriction .
+hpc:TimewindowHourConstraint rdfs:subClassOf hpc:TimewindowConstraint .
+hpc:TimeWindow_hour_constraint rdfs:onProperty hpc:hour .
+hpc:TimeWindow_hour_constraint owl:allValuesFrom xsd:nonNegativeInteger .
+
+hpc:TimeWindow_minute_constraint a owl:Restriction .
+hpc:TimewindowMinuteConstraint rdfs:subClassOf hpc:TimewindowConstraint .
+hpc:TimeWindow_minute_constraint rdfs:onProperty hpc:minute .
+hpc:TimeWindow_minute_constraint owl:allValuesFrom xsd:nonNegativeInteger .
+
+hpc:TimeWindow_timeZone_constraint a owl:Restriction .
+hpc:TimewindowTimezoneConstraint rdfs:subClassOf hpc:TimewindowConstraint .
+hpc:TimeWindow_timeZone_constraint rdfs:onProperty hpc:timeZone .
+hpc:TimeWindow_timeZone_constraint owl:allValuesFrom xsd:string .
+
+hpc:TimeWindow_time_constraint a owl:Restriction .
+hpc:TimewindowTimeConstraint rdfs:subClassOf hpc:Timewindow .
+hpc:TimeWindow_time_constraint rdfs:onProperty hpc:TimeWindow .
+hpc:TimeWindow_time_constraint owl:onClass hpc:TimeWindow_constraint .

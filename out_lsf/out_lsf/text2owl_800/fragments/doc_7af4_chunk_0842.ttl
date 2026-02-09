@@ -1,0 +1,22 @@
+hpc:LsfLogdirUseWinReg a owl:Class .
+hpc:LsfLogfileOwner a owl:Class .
+hpc:LsfLshostsFormat a owl:Class .
+
+# Object Properties
+hpc:hasLogDirUseWinReg rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfLogdirUseWinReg ;
+    rdfs:range xsd:string .
+hpc:hasLogFileOwner rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfLogfileOwner ;
+    rdfs:range xsd:string .
+hpc:hasLSHostsFormat rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfLshostsFormat ;
+    rdfs:range xsd:string .
+
+# Datatype Properties
+hpc:logDirUseWinRegFormat rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+hpc:logFileOwner rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+hpc:lshostsFormat rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string .

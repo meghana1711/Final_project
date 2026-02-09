@@ -1,0 +1,49 @@
+hpc:Jobslotlimit a owl:Class .
+hpc:hasjobslotlimit a owl:ObjectProperty .
+hpc:Jobslotlimit rdfs:domain hpc:Resourceconsumer .
+hpc:Jobslotlimit rdfs:range xsd:integer .
+hpc:Jobslotlimit rdfs:subClassOf owl:Restriction .
+hpc:JobSlotLimit rdfs:subPropertyOf hpc:hasJobSlotLimit .
+hpc:JobSlotLimit rdfs:hasValue rdf:nil .
+hpc:JobSlotLimit rdfs:minInclusive 0 .
+hpc:JobSlotLimit rdfs:maxInclusive xsd:integer .
+hpc:JobSlotLimit rdfs:typedef hpc:PositiveInteger .
+
+hpc:PositiveInteger a owl:Restriction .
+hpc:Positiveinteger rdfs:domain xsd:integer .
+hpc:Positiveinteger rdfs:range xsd:integer .
+hpc:PositiveInteger rdfs:minInclusive 1 .
+
+hpc:Localhostjobslotlimit a owl:Class .
+hpc:Localhostjobslotlimit rdfs:subClassOf hpc:Jobslotlimit .
+hpc:LocalHostJobSlotLimit rdfs:subPropertyOf hpc:hasJobSlotLimit .
+hpc:LocalHostJobSlotLimit rdfs:hasValue rdf:nil .
+
+hpc:Remoteclusterjobslotlimit a owl:Class .
+hpc:Remoteclusterjobslotlimit rdfs:subClassOf hpc:Jobslotlimit .
+hpc:RemoteClusterJobSlotLimit rdfs:subPropertyOf hpc:hasJobSlotLimit .
+
+hpc:Borrowedhostjobslotlimit a owl:Class .
+hpc:Borrowedhostjobslotlimit rdfs:subClassOf hpc:Jobslotlimit .
+hpc:BorrowedHostJobSlotLimit rdfs:subPropertyOf hpc:hasJobSlotLimit .
+
+hpc:Runningsuspendedjobslotlimit a owl:Class .
+hpc:Runningsuspendedjobslotlimit rdfs:subClassOf hpc:Jobslotlimit .
+hpc:RunningSuspendedJobSlotLimit rdfs:subPropertyOf hpc:hasJobSlotLimit .
+
+hpc:Multiprocessorhostjobslotlimit a owl:Class .
+hpc:Multiprocessorhostjobslotlimit rdfs:subClassOf hpc:Jobslotlimit .
+hpc:MultiprocessorHostJobSlotLimit rdfs:subPropertyOf hpc:hasJobSlotLimit .
+hpc:MultiprocessorHostJobSlotLimit rdfs:hasValue rdf:nil .
+
+hpc:preventhostoverload a owl:ObjectProperty .
+hpc:Preventhostoverload rdfs:domain hpc:Jobslotlimit .
+hpc:Preventhostoverload rdfs:range hpc:Resourceconsumer .
+
+hpc:maximizemachinethroughput a owl:ObjectProperty .
+hpc:Maximizemachinethroughput rdfs:domain hpc:Jobslotlimit .
+hpc:Maximizemachinethroughput rdfs:range hpc:Resourceconsumer .
+
+hpc:numberofcpusonhost a owl:DatatypeProperty .
+hpc:Numberofcpusonhost rdfs:domain hpc:Host .
+hpc:NumberOfCP

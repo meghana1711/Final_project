@@ -1,0 +1,32 @@
+hpc:Computeunit a owl:Class .
+hpc:computeunitpreference a owl:DatatypeProperty .
+hpc:Computeunitpreference rdfs:domain hpc:Computeunit .
+hpc:Computeunitpreference rdfs:range xsd:decimal .
+
+hpc:Configpreference a owl:Class .
+hpc:Maxavailpreference a owl:Class .
+hpc:Minavailpreference a owl:Class .
+
+hpc:haspreference a owl:ObjectProperty .
+hpc:Haspreference rdfs:domain hpc:Computeunit .
+hpc:Haspreference rdfs:range rdfs:Resource .
+
+hpc:Configpreference rdfs:subClassOf hpc:Computeunitpreference .
+hpc:Maxavailpreference rdfs:subClassOf hpc:Computeunitpreference .
+hpc:Minavailpreference rdfs:subClassOf hpc:Computeunitpreference .
+
+hpc:computeunitordering a owl:ObjectProperty .
+hpc:Computeunitordering rdfs:domain hpc:Computeunit .
+hpc:Computeunitordering rdfs:range hpc:Computeunit .
+
+hpc:higherpreferencefirstrule a owl:ObjectProperty .
+hpc:Higherpreferencefirstrule rdfs:domain hpc:Computeunitordering .
+hpc:Higherpreferencefirstrule rdfs:range hpc:Computeunit .
+
+hpc:samepreferencelogicrule a owl:ObjectProperty .
+hpc:Samepreferencelogicrule rdfs:domain hpc:Computeunitordering .
+hpc:Samepreferencelogicrule rdfs:range hpc:Computeunit .
+
+hpc:minavailpolicy a owl:ObjectProperty .
+hpc:Minavailpolicy rdfs:domain hpc:Computeunitordering .
+hpc:Minavailpolicy rdfs:range hpc:Computeunit .

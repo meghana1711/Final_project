@@ -1,0 +1,30 @@
+hpc:Maintenancestep a owl:Class .
+hpc:PreMaintenance a hpc:MaintenanceStep .
+hpc:PostMaintenance a hpc:MaintenanceStep .
+
+hpc:closehost a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .
+
+hpc:checkpointjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range rdf:List .
+
+hpc:Lsfdaemon a owl:Class .
+hpc:startlsfdaemon a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Lsfdaemon .
+hpc:shutdownlsfdaemon a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Lsfdaemon .
+
+hpc:Abspriorityscheduling a owl:Class .
+hpc:apsvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Submissioncluster ;
+    rdfs:range xsd:decimal .
+
+hpc:Submissioncluster a owl:Class .
+hpc:receivejobsqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Submissioncluster ;
+    rdfs:range hpc:Queue .
+hpc:Executioncluster a owl:Class .

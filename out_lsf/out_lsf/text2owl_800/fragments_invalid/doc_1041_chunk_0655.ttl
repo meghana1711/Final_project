@@ -1,0 +1,53 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Stacklimit a owl:Class .
+hpc:signal a owl:ObjectProperty .
+hpc:Serviceclassna a owl:Class .
+hpc:meproperties a owl:DatatypeProperty .
+hpc:smt a owl:ObjectProperty .
+hpc:sp a owl:DatatypeProperty .
+hpc:stage a owl:DatatypeProperty .
+hpc:stepCgroup a owl:DatatypeProperty .
+hpc:T a owl:Class .
+hpc:Specifiedtermin a owl:Class .
+hpc:atetimeschedule a owl:DatatypeProperty .
+hpc:ti a owl:DatatypeProperty .
+hpc:tty a owl:DatatypeProperty .
+hpc:resourcestring a owl:DatatypeProperty .
+hpc:u a owl:DatatypeProperty .
+hpc:v a owl:DatatypeProperty .
+hpc:w a owl:DatatypeProperty .
+hpc:w a owl:DatatypeProperty .
+hpc:wa a owl:DatatypeProperty .
+hpc:wt a owl:DatatypeProperty .
+hpc:xf a owl:DatatypeProperty .
+hpc:x a owl:DatatypeProperty .
+hpc:zs a owl:DatatypeProperty .
+hpc:h a owl:DatatypeProperty .
+hpc:v a owl:DatatypeProperty .
+hpc:command a owl:DatatypeProperty .
+
+hpc:Stacklimit rdfs:subClassOf owl:Class .
+hpc:Signal rdfs:domain hpc:Stacklimit ;
+    rdfs:range xsd:numeric .
+hpc:Serviceclassna rdfs:subClassOf owl:Class .
+hpc:Meproperties rdfs:domain hpc:Stacklimit ;
+    rdfs:range xsd:string .
+hpc:Smt rdfs:domain hpc:Stacklimit ;
+    rdfs:range xsd:numeric .
+hpc:Sp rdfs:domain hpc:Stacklimit ;
+    rdfs:range xsd:numeric .
+hpc:Stage rdfs:domain hpc:Stacklimit ;
+    rdfs:range xsd:string .
+hpc:StepCgroup rdfs:domain hpc:Stacklimit ;
+    rdfs:range xsd:string .
+hpc:T rdfs:subClassOf owl:Class .
+hpc:Specifiedtermin rdfs:subClassOf owl:Class .
+hpc:Atetimeschedule rdfs:domain hpc:T ;
+    rdfs:range xsd:string .
+hpc:Ti rdfs:domain hpc:T ;
+    rdfs:range xsd:string .
+hpc:tty r

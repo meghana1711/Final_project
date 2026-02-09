@@ -1,0 +1,15 @@
+hpc:Job a owl:Class.
+hpc:PendingJob a hpc:Job ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Jobs with dependencies." .
+
+hpc:estimate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string.
+
+hpc:Colorcodedoutput a owl:Class.
+hpc:Colorwrapper a owl:Class ;
+    rdfs:subClassOf hpc:Colorcodedoutput .
+
+hpc:configurationfile a owl:DatatypeProperty ;
+    rdfs:domain

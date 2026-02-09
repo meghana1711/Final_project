@@ -1,0 +1,61 @@
+hpc:Submissioncluster a owl:Class .
+hpc:Receivingqueue a owl:Class .
+hpc:Jobslot a owl:Class .
+hpc:Importedpendingslot a owl:Class .
+hpc:imptSlotbklg a owl:ObjectProperty .
+hpc:totalrequestedslots a owl:DatatypeProperty .
+hpc:numberofimportedpendingslots a owl:DatatypeProperty .
+
+hpc:Submissioncluster rdfs:subClassOf owl:Class .
+hpc:Receivingqueue rdfs:subClassOf owl:Class .
+hpc:Jobslot rdfs:subClassOf owl:Class .
+hpc:Importedpendingslot rdfs:subClassOf owl:Class .
+
+hpc:IMPT_SLOTBKLG rdf:type owl:ObjectProperty .
+hpc:TotalRequestedSlots rdf:type owl:DatatypeProperty .
+hpc:NumberOfImportedPendingSlots rdf:type owl:DatatypeProperty .
+
+hpc:ImptSlotbklg rdfs:domain hpc:Submissioncluster ;
+    rdfs:range xsd:integer .
+
+hpc:Totalrequestedslots rdfs:domain hpc:Submissioncluster ;
+    rdfs:range xsd:integer .
+
+hpc:Numberofimportedpendingslots rdfs:domain hpc:Receivingqueue ;
+    rdfs:range xsd:integer .
+
+hpc:IMPT_SLOTBKLG rdfs:subPropertyOf hpc:hasPropertyLimit .
+
+hpc:haspropertylimit a owl:ObjectProperty .
+
+hpc:haspreexecutioncommand a owl:ObjectProperty .
+
+hpc:localMaxPreexecRetry a owl:DatatypeProperty .
+hpc:maxPreexecRetry a owl:DatatypeProperty .
+hpc:remoteMaxPreexecRetry a owl:DatatypeProperty .
+
+hpc:LocalMaxPreexecRetry rdfs:domain hpc:Localcluster ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:MaxPreexecRetry rdfs:domain hpc:Remotecluster ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:RemoteMaxPreexecRetry rdfs:domain hpc:Remotecluster ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Preexecutioncommandretrylimit a owl:Class .
+
+hpc:Preexecutioncommandretrylimit rdfs:subClassOf owl:Class .
+
+hpc:jobforwardedtoremotecluster a owl:ObjectProperty .
+hpc:jobfailedtostart a owl:ObjectProperty .
+hpc:jobreturnedtosubmissionqueue a owl:ObjectProperty .
+hpc:lsfretriesjob a owl:ObjectProperty .
+
+hpc:Jobforwardedtoremotecluster rdfs:domain hpc:Job ;
+    rdfs:range hpc:Remotecluster .
+
+hpc:Jobfailedtostart rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:Jobreturnedtosubmissionqueue rdfs:domain hpc:Job ;

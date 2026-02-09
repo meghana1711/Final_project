@@ -1,0 +1,61 @@
+hpc:Job a owl:Class .
+hpc:CommandAction rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Commandaction .
+
+hpc:LSB_JOBPGIDS rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:LSB_JOBPIDS rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:SUSPEND_ACTION rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Commandaction ;
+    rdfs:range hpc:SuspendActionCommand .
+
+hpc:SuspendActionCommand a owl:Class .
+hpc:hasSuspensionReason rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SuspendActionCommand ;
+    rdfs:range xsd:integer .
+
+hpc:SUSP_REASONS rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:SUSP_SUBREASONS rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:LSB_SUSP_REASONS rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:SuspendActionCommand .
+
+hpc:LSB_SUSP_SUBREASONS rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:SuspendActionCommand .
+
+hpc:SUSPEND_ACTION_Custom_Control rdf:type owl:Class .
+hpc:hasAdditionalAction rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:SuspendActionCustomControl ;
+    rdfs:range xsd:string .
+
+hpc:Job_Control rdf:type owl:Class .
+hpc:hasJobControlCommand rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobControl ;
+    rdfs:range xsd:string .
+
+hpc:LSF_Retains_Original_Status rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobControl ;
+    rdfs:range xsd:boolean .
+
+hpc:Preemption rdf:type owl:Class .
+hpc:usesSignal rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Preemption ;
+    rdfs:range xsd:string .
+
+hpc:License_Scheduler_Preemption rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Preemption .
+
+hpc:Lic_Sched_Preempt_Stop rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:LicenseSchedulerPreemption ;
+    rdfs:range xsd:boolean .
+
+hpc:Blauunch_Parallel_Jobs rdf:type owl:Class .
+hpc:affectsExecutionHosts rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Blauunch

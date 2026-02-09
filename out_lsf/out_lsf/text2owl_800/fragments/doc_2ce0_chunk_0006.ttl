@@ -1,0 +1,14 @@
+hpc:Lsfprimaryadministrator a owl:Class .
+hpc:hassetuidbitsonexecutablefile a owl:ObjectProperty .
+
+hpc:Lsfprimaryadministrator rdfs:subClassOf rdf:Resource .
+hpc:Hassetuidbitsonexecutablefile rdfs:domain hpc:Lsfprimaryadministrator ;
+                                    rdfs:range rdf:Resource .
+
+hpc:Bhistfile a owl:Class ;
+             rdf:type rdf:Resource ;
+             hpc:Hassetuidbitsonexecutablefile hpc:bhist .
+
+hpc:Bacctfile a owl:Class ;
+              rdf:type rdf:Resource ;
+              hpc:Hassetuidbitsonexecutablefile hpc:bacct .

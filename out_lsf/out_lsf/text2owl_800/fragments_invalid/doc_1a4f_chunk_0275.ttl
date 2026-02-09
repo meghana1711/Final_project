@@ -1,0 +1,40 @@
+hpc:Normalizedcputime a owl:Class .
+hpc:CPUFactor an owl:DatatypeProperty ;
+    rdfs:domain hpc:Normalizedcputime ;
+    rdfs:range xsd:decimal .
+
+hpc:scaledcputime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Normalizedcputime ;
+    rdfs:range xsd:decimal .
+
+hpc:Datasegmentsizelimit a owl:Class .
+hpc:DataLimit an owl:DatatypeProperty ;
+    rdfs:domain hpc:Datasegmentsizelimit ;
+    rdfs:range xsd:integer .
+
+hpc:Datalimitdefault a owl:Class ;
+    rdfs:subClassOf hpc:Datasegmentsizelimit .
+
+hpc:Datalimitoptionalhost a owl:Class ;
+    rdfs:subClassOf hpc:Datasegmentsizelimit .
+
+hpc:Datalimithostmodel a owl:Class ;
+    rdfs:subClassOf hpc:Datasegmentsizelimit .
+
+hpc:datasegmentsizelimitunit a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:datasegmentsizelimitdefault a owl:ObjectProperty ;
+    rdfs:domain hpc:Datalimitdefault ;
+    rdfs:range hpc:Datasegmentsizelimit ;
+    rdfs:range xsd:string .
+
+hpc:datasegmentsizelimitoptionalhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Datalimitoptionalhost ;
+    rdfs:range hpc:Datasegmentsizelimit ;
+    rdfs:range xsd:string .
+
+hpc:datasegmentsizelimithostmodel a owl:ObjectProperty ;
+    rdfs:domain hpc:Datalimithostmodel ;
+    rdfs:range hpc:Datasegmentsizelimit ;
+    rdfs:range xsd:string .

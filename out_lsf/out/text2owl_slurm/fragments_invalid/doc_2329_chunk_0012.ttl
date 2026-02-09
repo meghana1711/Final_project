@@ -1,0 +1,16 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Plugin a owl:Class ;
+  rdfs:subClassOf [ a owl:Restriction ;
+                     rdfs:onProperty hpc:supports ;
+                     owl:hasValue hpc:MPMD ;
+                     owl:someValuesFrom xsd:boolean ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+                     rdfs:onProperty hpc:supportsHeterogeneous ;
+                     owl:hasValue xsd:boolean ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+                     rdfs:onProperty hpc:requiresLibpals ;
+                     owl:hasValue xsd:decimal "0.2.8

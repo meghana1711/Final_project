@@ -1,0 +1,35 @@
+hpc:Jobwithcraylinux a owl:Class .
+hpc:hasallocationwithoutfrontendandvnode a owl:ObjectProperty .
+hpc:cannotcreateconfirmreservationbyapbasilorcatnip a owl:DatatypeProperty .
+hpc:Advancereservation a owl:Class .
+hpc:hascomputenoderesource a owl:ObjectProperty .
+hpc:hasfrontendnodeslot a owl:ObjectProperty .
+hpc:hasreservationid a owl:DatatypeProperty .
+hpc:LsfCollectEnergyUsageY a owl:Class .
+hpc:hasenergyconsumption a owl:ObjectProperty .
+hpc:AlpsNodeexclusivereservation a owl:Class .
+hpc:Resourcereservation a owl:Class .
+hpc:Onecraylinuxmachinepercluster a owl:Class .
+
+hpc:Jobwithcraylinux rdfs:subClassOf [ a owl:Class ;
+                                        rdfs:subClassOf hpc:Job ] .
+hpc:Hasallocationwithoutfrontendandvnode rdfs:domain hpc:Jobwithcraylinux ;
+                                                rdfs:range rdf:Resource .
+hpc:Cannotcreateconfirmreservationbyapbasilorcatnip rdfs:domain hpc:Jobwithcraylinux ;
+                                                        rdfs:range xsd:string .
+hpc:Advancereservation rdfs:subClassOf [ a owl:Class ;
+                                            rdfs:subClassOf hpc:Reservation ] .
+hpc:Hascomputenoderesource rdfs:domain hpc:Advancereservation ;
+                                          rdfs:range hpc:Computenoderesource .
+hpc:Hasfrontendnodeslot rdfs:domain hpc:Advancereservation ;
+                               rdfs:range hpc:Frontendnodeslot .
+hpc:Hasreservationid rdfs:domain hpc:Advancereservation ;
+                          rdfs:range xsd:string .
+hpc:LsfCollectEnergyUsageY rdfs:subClassOf [ a owl:Class ;
+                                                      rdfs:subClassOf hpc:Configuration ] .
+hpc:Hasenergyconsumption rdfs:domain hpc:LsfCollectEnergyUsageY ;
+                            rdfs:range xsd:double .
+hpc:AlpsNodeexclusivereservation rdfs:subClassOf hpc:Reservation .
+hpc:Resourcereservation rdfs:subClassOf hpc:Reservation .
+hpc:Onecraylinuxmachinepercluster rdfs:subClassOf [ a owl:Class ;
+                                                        rdfs:subClassOf hpc:Cluster ] .

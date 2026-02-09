@@ -1,0 +1,37 @@
+hpc:Lsf a owl:Class .
+hpc:Globalpolicydaemon a owl:Class .
+
+hpc:Item a owl:Class .
+hpc:ApplicationProfile a hpc:Item .
+hpc:Queue a hpc:Item .
+hpc:User a hpc:Item .
+hpc:Project a hpc:Item .
+hpc:LsfLicenseSchedulerProject a hpc:Item .
+
+hpc:Cluster a owl:Class .
+
+hpc:checkname a owl:ObjectProperty .
+hpc:checkNameDomain rdf:resource(hpc:GlobalPolicyDaemon) .
+hpc:checkNameRange rdf:resource(hpc:Item) .
+
+hpc:defineresourcetype a owl:ObjectProperty .
+hpc:defineResourceTypeDomain rdf:resource(hpc:GlobalPolicyDaemon) .
+hpc:defineResourceTypeRange rdf:resource(hpc:Resource) .
+
+hpc:Limit a owl:Class .
+hpc:Resource a owl:Class .
+
+hpc:resourcetype a owl:DatatypeProperty .
+hpc:resourceTypeDomain rdf:resource(hpc:Resource) .
+hpc:resourceTypeRange xsd:string .
+
+hpc:allocationlimit a owl:DatatypeProperty .
+hpc:allocationLimitDomain rdf:resource(hpc:Limit) .
+hpc:allocationLimitRange xsd:nonNegativeInteger .
+
+hpc:Job a owl:Class .
+hpc:jobresourcerequirement a owl:ObjectProperty .
+hpc:jobResourceRequirementDomain rdf:resource(hpc:Job) .
+hpc:jobResourceRequirementRange rdf:resource(hpc:ResourceUsage) .
+
+hpc:Resourceusage a owl:Class .

@@ -1,0 +1,11 @@
+hpc:Slurmjob a owl:Class.
+hpc:numnodesobject a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmjob ;
+    rdfs:range xsd:nonNegativeInteger.
+hpc:cpuspernodeobject a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmjob ;
+    rdfs:range xsd:nonNegativeInteger.
+hpc:cpuspertaskobject a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmjob ;
+    rdfs:range xsd:nonNegativeInteger.
+hpc:Cpu

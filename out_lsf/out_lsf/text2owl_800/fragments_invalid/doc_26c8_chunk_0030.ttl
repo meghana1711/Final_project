@@ -1,0 +1,52 @@
+hpc:AwsTemplate1 a owl:Class ;
+    rdfs:subClassOf hpc:Template .
+
+hpc:AwsTemplate3 a owl:Class ;
+    rdfs:subClassOf hpc:Template ;
+    rdfs:subClassOf hpc:Replacementtemplate ;
+    rdfs:subClassOf hpc:Lowerprioritytemplate .
+
+hpc:AwsTemplate2 a owl:Class ;
+    rdfs:subClassOf hpc:Template ;
+    rdfs:subClassOf hpc:Replacementtemplate ;
+    rdfs:subClassOf hpc:Lowerprioritytemplate ;
+    rdfs:subClassOf hpc:Higherprioritytemplate .
+
+# Provider
+hpc:Provider a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:ibmcloudhpc a hpc:Provider .
+
+# Optimization
+hpc:Optimization a owl:Class .
+
+hpc:optimizationrule a owl:ObjectProperty ;
+    rdfs:domain hpc:Optimization ;
+    rdfs:range hpc:Replacementrule .
+
+# Replacement Rule
+hpc:Replacementrule a owl:Class .
+
+hpc:hostcount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Replacementrule ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Template a owl:Class .
+
+hpc:templatepriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Parameters
+hpc:loglevel a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource .
+    rdfs:range xsd:string .
+
+hpc:awsCredentialFile a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource .
+    rdfs:range xsd:string .
+
+# JSON File
+hpc:AwsprovConfigJson a owl:Class ;
+    rdfs:subClassOf rdf:Resource .

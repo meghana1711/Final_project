@@ -1,0 +1,46 @@
+hpc:Validvalues a owl:Class .
+hpc:Validvalues rdfs:subClassOf owl:Restriction .
+hpc:ValidValues rdfs:subPropertyOf hpc:Value .
+hpc:Validvalues rdfs:domain hpc:Parameter .
+hpc:ValidValues owl:onProperty hpc:Value .
+hpc:ValidValues owl:hasValue xsd:integer .
+hpc:ValidValues owl:minValue xsd:1 .
+hpc:ValidValues owl:maxValue xsd:719 .
+
+hpc:Parameter a owl:Class .
+hpc:Parameter rdfs:subClassOf owl:Class .
+
+hpc:Enforcegpu MigJob a owl:Class .
+hpc:Enforcegpu MigJob rdfs:subClassOf hpc:Parameter .
+hpc:Enforcegpu MigJob rdfs:domain hpc:Systemsetting .
+hpc:EnforceGPU MigJob rdfs:label "LSB_ENFORCE_GPU_MIG_JOB" .
+hpc:EnforceGPU MigJob rdfs:comment "Applicable as of Fix Pack 15 to control MIG GPU usage." .
+hpc:EnforceGPU MigJob rdfs:seeAlso hpc:CleanPeriodDone .
+hpc:EnforceGPU MigJob rdfs:hasValue "Y" .
+hpc:EnforceGPU MigJob rdfs:hasValue "y" .
+hpc:EnforceGPU MigJob rdfs:hasValue "N" .
+hpc:EnforceGPU MigJob rdfs:hasValue "n" .
+
+hpc:Synchoststatlim a owl:Class .
+hpc:Synchoststatlim rdfs:subClassOf hpc:Parameter .
+hpc:Synchoststatlim rdfs:domain hpc:Systemsetting .
+hpc:SyncHostStatLim rdfs:label "LSB_SYNC_HOST_STAT_LIM" .
+hpc:SyncHostStatLim rdfs:comment "Improves the speed with which mbatchd obtains host status, and therefore the speed with which LSF reschedules re-runnable jobs." .
+hpc:SyncHostStatLim rdfs:seeAlso hpc:MBDSleepTime, hpc:LSBMaxProbeSBD .
+
+hpc:Synchoststatlimsetting a owl:Class .
+hpc:Synchoststatlimsetting rdfs:subClassOf hpc:Synchoststatlim .
+hpc:SyncHostStatLimSetting rdfs:hasValue "Y" .
+hpc:SyncHostStatLimSetting rdfs:hasValue "y" .
+
+hpc:Synchoststatlimpolling a owl:Class .
+hpc:Synchoststatlimpolling rdfs:subClassOf hpc:Synchoststatlim .
+hpc:SyncHostStatLimPolling rdfs:hasValue "N" .
+hpc:SyncHostStatLimPolling rdfs:hasValue "n" .
+
+hpc:synchoststatlimimprovement a owl:ObjectProperty .
+hpc:synchoststatlimimprovement a owl:ObjectProperty .
+hpc:Synchoststatlimimprovement rdfs:domain hpc:Synchoststatlim .
+hpc:Synchoststatlimimprovement rdfs:range hpc:Improvement .
+
+hpc:Impro

@@ -1,0 +1,54 @@
+hpc:Commandusage a owl:Class ;
+    rdfs:comment "Prints command usage to stderr and exits." .
+
+hpc:Lsfreleaseversion a owl:Class ;
+    rdfs:comment "Prints LSF release version to stderr and exits." .
+
+hpc:usage a owl:ObjectProperty ;
+    rdfs:domain hpc:Commandusage ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Usage ckconfig [-v]" .
+
+hpc:checksconfigurationfiles a owl:ObjectProperty ;
+    rdfs:domain hpc:Commandusage ;
+    rdfs:range hpc:Configurationfilechecking ;
+    rdfs:comment "Displays detailed messages about configuration file checking." .
+
+hpc:Configurationfilechecking a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:Reconfig a owl:Class ;
+    rdfs:comment "Restarts LIM on all hosts in the cluster. Use the reconﬁg subcommand after you change configuration files." .
+
+hpc:reconfigsubcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Reconfig ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The conﬁguration ﬁles are checked before all LIM daemons in the cluster are restarted." .
+
+hpc:ifconfigurationfilesnotcorrect a owl:ObjectProperty ;
+    rdfs:domain hpc:Reconfigsubcommand ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "If the conﬁguration ﬁles are not correct, reconﬁguration is not started." .
+
+hpc:lsfMasterList a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconf ;
+    rdfs:range xsd:string ;
+    rdfs:comment "If the LSF_MASTER_LIST parameter is speciﬁed in the lsf.conf ﬁle." .
+
+hpc:youarepromptedtoconfirmreconfigforonlythemanagementcandidatehosts a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfMasterList ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "You are prompted to conﬁrm the reconﬁguration for only the management candidate hosts." .
+
+hpc:forceslimtorestartonallhostsinthecluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Reconfig ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Disables user interaction and forces LIM to restart on all hosts in the cluster if no unrecoverable errors are found. This option is useful in batch mode." .
+
+hpc:displaysdetailedmessagesaboutconfigurationfilechecking a owl:ObjectProperty ;
+    rdfs:domain hpc:Reconfig ;
+    rdfs:range hpc:Configurationfilechecking ;
+    rdfs:comment "Displays detailed messages about conﬁguration ﬁle checking." .
+
+hpc:Lsfconf a owl:Class ;
+    rdfs:subClassOf owl:Thing .

@@ -1,0 +1,58 @@
+hpc:versionnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+
+hpc:eventtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+
+hpc:userid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+
+hpc:position a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+
+hpc:base a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+
+hpc:index a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+
+hpc:username a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:string .
+
+hpc:rmtjobctrlstage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+
+hpc:numrmtctrlresult a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+
+hpc:rmtjobctrlrecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range hpc:Remotejobmoveresult .
+
+hpc:Queuectrl a owl:Class ;
+    rdfs:subClassOf owl:Event .
+
+hpc:jobarrayindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobarrayindex ;
+    rdfs:range xsd:integer .
+
+hpc:numrmtctrlresult2 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range xsd:integer .
+
+hpc:rmtjobctrlrecord2 a owl:ObjectProperty ;
+    rdfs:domain hpc:Event ;
+    rdfs:range hpc:Remotejobmoveresult .

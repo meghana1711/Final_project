@@ -1,0 +1,28 @@
+hpc:Host a owl:Class .
+hpc:limrestart a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Lim .
+hpc:Configurationerror a owl:Class .
+hpc:reconfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Configuration .
+hpc:Configurationfile a owl:Class .
+hpc:ReconﬁgCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:string .
+hpc:unrecoverableerror a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationerror ;
+    rdfs:range xsd:boolean .
+
+hpc:Hosta a hpc:Host .
+hpc:Hosta hpc:limrestart hpc:Lim1 .
+
+hpc:hostc a hpc:Host .
+hpc:Hostc hpc:limrestart hpc:Lim2 .
+
+hpc:hostd a hpc:Host .
+hpc:Hostd hpc:limrestart hpc:Lim3 .
+
+hpc:Lim1 a hpc:Lim .
+hpc:Lim2 a hpc:Lim .
+hpc:Lim3 a hpc:Lim .

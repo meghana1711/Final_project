@@ -1,0 +1,33 @@
+hpc:Job a owl:Class .
+hpc:Sendqueue a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Remotecluster a owl:Class .
+hpc:Localcluster a owl:Class .
+
+hpc:hassendqueue hpc:job a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Sendqueue .
+
+hpc:belongsto hpc:cluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Sendqueue ;
+    rdfs:range hpc:Cluster .
+
+hpc:ismember hpc:cluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:boolean .
+
+hpc:preference hpc:cluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:specifiedclusters hpc:job a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:localcluster hpc:job a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Localcluster .
+
+hpc:remoteclusters hpc:job a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .

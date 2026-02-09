@@ -1,0 +1,7 @@
+hpc:Host a owl:Class .
+hpc:hasncpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:integer .
+hpc:isopenstackhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .

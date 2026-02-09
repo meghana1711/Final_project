@@ -1,0 +1,11 @@
+hpc:Eslurmjobsubmissionrejected a owl:Class. .
+hpc:Jobdescmsg a owl:Class. .
+hpc:Jobrecord a owl:Class. .
+hpc:Partlist a owl:Class. .
+hpc:modifyuid a owl:DatatypeProperty;
+    rdfs:domain hpc:Slurmctlddaemonrequest;
+    rdfs:range xsd:integer. .
+hpc:joballocationrequestspecifications a owl:ObjectProperty;
+    rdfs:domain hpc:Jobdescmsg;
+    rdfs:range rdf:List. .
+hpc:slurm

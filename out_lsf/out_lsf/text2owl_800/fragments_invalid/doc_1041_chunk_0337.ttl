@@ -1,0 +1,66 @@
+hpc:Serviceclass a owl:Class .
+hpc:JobGroup rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Serviceclass ;
+    rdfs:comment "A group of jobs attached to a service class." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Serviceclass ;
+    rdfs:comment "A unit of work to be executed by a system." .
+
+hpc:killjobingroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Adminuser ;
+    rdfs:range hpc:Jobgroup ;
+    rdfs:comment "Kills jobs in job groups that are attached to a service class." .
+
+hpc:slaoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Killjobingroup ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Specifies whether to kill jobs in job groups based on SLA." .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Killjobingroup ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The job ID to kill, ignored if 0." .
+
+hpc:bsla a owl:ObjectProperty ;
+    rdfs:domain hpc:Adminuser ;
+    rdfs:range hpc:Serviceclass ;
+    rdfs:comment "Displays the configuration properties of service classes." .
+
+hpc:defaultsla a owl:DatatypeProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "The default SLA configured with the ENABLE_DEFAULT_EGO_SLA parameter." .
+
+hpc:state a owl:DatatypeProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Dynamic information about the state of each service class." .
+
+hpc:stateValue rdf:type owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "A value representing the state of a service class." .
+
+hpc:stat a owl:ObjectProperty ;
+    rdfs:domain hpc:Adminuser ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Kills large number of jobs in the specified status as soon as possible." .
+
+hpc:statValue rdf:type owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "A value representing the status of a job." .
+
+hpc:run a owl:ObjectProperty ;
+    rdfs:domain hpc:Statvalue ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Represents a running job." .
+
+hpc:pend a owl:ObjectProperty ;
+    rdfs:domain hpc:Statvalue ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Represents a pending job." .
+
+hpc:susp a owl:ObjectProperty ;
+    rdfs:domain hpc:Statvalue ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "

@@ -1,0 +1,34 @@
+hpc:Pjl a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Prints LSF release version to stderr and exit. Options for generic PJL jobs." .
+
+hpc:numargs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Pjl ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:pjlwrapper a owl:ObjectProperty ;
+    rdfs:domain hpc:Pjl ;
+    rdfs:range hpc:Pjl .
+
+hpc:pjloptions a owl:ObjectProperty ;
+    rdfs:domain hpc:Pjl ;
+    rdfs:range rdf:List .
+
+hpc:Pjloption a owl:Class ;
+    rdfs:subClassOf hpc:Option .
+
+hpc:requiresgoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Pjl ;
+    rdfs:range hpc:Boolean .
+
+hpc:hasnumargs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Pjl ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:haspjlwrapper a owl:DatatypeProperty ;
+    rdfs:domain hpc:Pjl ;
+    rdfs:range hpc:Pjl .
+
+hpc:haspjloptions a owl:DatatypeProperty ;
+    rdfs:domain hpc:Pjl ;
+    rdfs:range rdf:List .

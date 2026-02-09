@@ -1,0 +1,31 @@
+hpc:Job a owl:Class .
+hpc:Trustmodel a owl:Class .
+hpc:Jwtauthentication a owl:Class .
+hpc:Externaljwtgeneration a owl:Class .
+hpc:Authenticatingproxy a owl:Class .
+hpc:Cloudauthentication a owl:Class .
+hpc:Amazoncognito a owl:Class .
+hpc:Keycloak a owl:Class .
+
+hpc:hasTrustModel rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Trustmodel .
+
+hpc:usesJWTAuthentication rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:isExternalJWTGeneration rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:usesAuthenticatingProxy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:usesCloudAuthentication rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasCloudAuthenticationType rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Amazoncognito rdfs:subClassOf hpc:Cloudauthentication .
+hpc:Keycloak rdfs:subClassOf hpc:Cloudauthentication .

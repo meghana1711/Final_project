@@ -1,0 +1,34 @@
+hpc:Versionedcode a owl:Class .
+hpc:Basecode a owl:Class .
+hpc:Materialchange a owl:Class .
+hpc:Clientcode a owl:Class .
+hpc:Slurmversion a owl:Class .
+hpc:Openapischema a owl:Class .
+hpc:Plugin a owl:Class .
+hpc:Versionedpath a owl:Class .
+hpc:communication a owl:ObjectProperty .
+hpc:compile a owl:ObjectProperty .
+hpc:upgrade a owl:ObjectProperty .
+hpc:documentedcadence a owl:ObjectProperty .
+hpc:Versionedplugin a owl:Class .
+
+hpc:Basecode rdfs:subClassOf hpc:Versionedcode .
+hpc:Versionedcode rdfs:subClassOf owl:Class .
+hpc:ClientCode rdfs:subDomain hpc:SlurmVersion ;
+    rdfs:range hpc:Versionedcode .
+hpc:Slurmversion rdfs:range xsd:string .
+hpc:Openapischema rdfs:subClassOf owl:Class .
+hpc:Plugin rdfs:subClassOf owl:Class .
+hpc:Versionedpath rdfs:subClassOf hpc:Path ;
+    rdfs:domain hpc:Openapischema ;
+    rdfs:range xsd:string .
+hpc:Versionedplugin rdfs:subClassOf hpc:Plugin ;
+    rdfs:subClassOf hpc:Pluginwithversion .
+hpc:Communication rdfs:domain hpc:Clientcode, hpc:Slurmversion ;
+    rdfs:range hpc:Boolean .
+hpc:Compile rdfs:domain hpc:Clientcode ;
+    rdfs:range hpc:Boolean .
+hpc:Upgrade rdfs:domain hpc:Clientcode, hpc:Versionedplugin ;
+    rdfs:range hpc:Boolean .
+hpc:Documentedcadence rdfs:domain hpc:Versionedplugin ;
+    rdfs:range xsd:string .

@@ -1,0 +1,72 @@
+hpc:Reservedjobslot a owl:Class ;
+    rdfs:subClassOf hpc:Jobslot .
+
+hpc:cumulativecputime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:runtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:adjust a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:Cluster a owl:Class ;
+    rdfs:subClassOf hpc:Location .
+
+hpc:Policy a owl:Class ;
+    rdfs:subClassOf hpc:Resourceallocationpolicy .
+
+hpc:shareinfofor a owl:ObjectProperty ;
+    rdfs:domain hpc:Policy ;
+    rdfs:range hpc:Resource .
+
+hpc:Usergroup a owl:Class ;
+    rdfs:subClassOf hpc:User .
+
+hpc:User a owl:Class .
+
+# Object property
+hpc:hasreservedjobslot a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Reservedjobslot .
+
+hpc:hascumulativecputime a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Cumulativecputime .
+
+hpc:hasruntime a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Runtime .
+
+hpc:hasadjust a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Adjust .
+
+hpc:belongstocluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range hpc:Cluster .
+
+hpc:hasstartedjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range hpc:Job .
+
+# Datatype property
+hpc:hashistoricalruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+# Individuals
+hpc:ReservedJobSlot "reserved_slot" a hpc:ReservedJobSlot .
+hpc:CumulativeCPUTime "cumulative_cpu_time" a hpc:CumulativeCPUTime .
+hpc:RunTime "run_time" a hpc:RunTime .
+hpc:Adjust "adjust" a hpc:Adjust .
+hpc:Cluster "cluster_name" a hpc:Cluster .
+hpc:Policy "admin" a hpc:Policy ;
+    hpc:ShareInfoFor hpc: "/" .
+hpc:UserGroup "ugroup1" a hpc:UserGroup ;
+    hpc:Belongstocluster hpc:clusterName ;
+    hpc:Hasstartedjob hpc:reservedSlot ;
+    hpc:hasReservedJobSlot

@@ -1,0 +1,72 @@
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "QUEUE with a maximum width of 10 characters (which is the recommended width) and right-aligned." .
+
+hpc:maxwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Maximum width of the Queue." .
+
+hpc:alignment a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Alignment of the Queue." .
+
+# Project ontology fragment
+
+hpc:Project a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "PROJECT with a maximum width of 10 characters and left-aligned." .
+
+hpc:maxwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Maximum width of the Project." .
+
+hpc:alignment a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Alignment of the Project." .
+
+# Application ontology fragment
+
+hpc:Application a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "APPLICATION with a maximum width of 6 characters and right-aligned." .
+
+hpc:maxwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Maximum width of the Application." .
+
+hpc:alignment a owl:ObjectProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Alignment of the Application." .
+
+# MEM ontology fragment
+
+hpc:Mem a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "MEM with a maximum width of 12 characters, a unit prefix of G (for gigabytes), and left-aligned." .
+
+hpc:unitprefix a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mem ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Unit prefix of the MEM." .
+
+hpc:maxwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mem ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Maximum width of the MEM." .
+
+hpc:alignment a owl:ObjectProperty ;
+    rdfs:domain hpc:Mem ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Alignment of the MEM." .
+
+# Other ontology fragments
+
+hpc:Category a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Categories for filtering and grouping

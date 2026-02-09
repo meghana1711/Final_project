@@ -1,0 +1,58 @@
+hpc:Job a owl:Class .
+hpc:Jobslot a owl:Class .
+hpc:Host a owl:Class .
+hpc:User a owl:Class .
+hpc:preemptjobtype a owl:ObjectProperty .
+hpc:Exclusive a owl:Class .
+hpc:Backfill a owl:Class .
+hpc:affinity a owl:ObjectProperty .
+hpc:preempttableresources a owl:ObjectProperty .
+hpc:Resource a owl:Class .
+hpc:Preemptableresource a owl:Class .
+hpc:Sharedresource a owl:Class .
+hpc:Staticresource a owl:Class .
+hpc:Dynamicresource a owl:Class .
+hpc:Numericresource a owl:Class .
+hpc:Decreasingresource a owl:Class .
+hpc:Releasableresource a owl:Class .
+
+hpc:Job rdfs:subClassOf hpc:Resource .
+hpc:Jobslot rdfs:subClassOf hpc:Resource .
+hpc:Host rdfs:subClassOf hpc:Resource .
+hpc:User rdfs:subClassOf hpc:Resource .
+
+hpc:Preemptjobtype rdfs:domain hpc:Job .
+hpc:Exclusive rdfs:subClassOf hpc:Preemptjobtype .
+hpc:Backfill rdfs:subClassOf hpc:Preemptjobtype .
+hpc:Affinity rdfs:domain hpc:Job .
+hpc:Preemptableresources rdfs:domain hpc:Job .
+
+hpc:Exclusive rdfs:subClassOf owl:Restriction .
+hpc:Exclusive rdfs:subPropertyOf hpc:PreemptJobType .
+hpc:Exclusive rdfs:hasValue "EXCLUSIVE" .
+
+hpc:Backfill rdfs:subClassOf owl:Restriction .
+hpc:Backfill rdfs:subPropertyOf hpc:PreemptJobType .
+hpc:Backfill rdfs:hasValue "BACKFILL" .
+
+hpc:Affinity rdfs:range hpc:Job .
+
+hpc:Preemptableresources rdfs:range rdf:List .
+hpc:Preemptableresources rdfs:range hpc:Resource .
+
+hpc:Resource rdfs:subClassOf owl:Class .
+hpc:Resource rdfs:subClassOf owl:UnionOf .
+hpc:Resource rdfs:member hpc:JobSlot .
+hpc:Resource rdfs:member hpc:Host .
+hpc:Resource rdfs:member hpc:User .
+
+hpc:Preemptableresource rdfs:subClassOf owl:Class .
+hpc:Preemptableresource rdfs:subClassOf owl:UnionOf .
+hpc:PreemptableResource rdfs:member hpc:JobSlot .
+hpc:PreemptableResource rdfs:member hpc:Host .
+hpc:PreemptableResource rdfs:member hpc:User .
+
+hpc:Sharedresource rdfs:subClassOf hpc:Preemptableresource .
+hpc:Staticresource rdfs:subClassOf hpc:Sharedresource .
+hpc:Dynamicresource rdfs:subClassOf hpc:Sharedresource .
+hpc:Numeric

@@ -1,0 +1,20 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Resourcemap a owl:Class .
+hpc:lsfLocalResources a owl:ObjectProperty .
+
+hpc:Resourcemap rdfs:subClassOf owl:Class .
+hpc:LsfLocalResources rdfs:domain hpc:Resourcemap .
+hpc:LsfLocalResources rdfs:range xsd:string .
+
+hpc:lsfTop a owl:DatatypeProperty .
+hpc:LsfTop rdfs:domain hpc:Server .
+hpc:LsfTop rdfs:range xsd:string .
+
+hpc:Server a owl:Class .
+
+
+This ontology fragment defines classes for `ResourceMap` and `Server`, and properties for `LSF_LOCAL_RESOURCES` and `LSF_TOP`. The `ResourceMap` class is a subclass of `owl:Class`, and `LSF_LOCAL_RESOURCES` is an object property that has a domain of `ResourceMap` and a range of `xsd:string`. The `LSF_TOP` property is a datatype property that has a domain of `Server` and a range of `xsd:string`.

@@ -1,0 +1,6 @@
+hpc:Winsserver a owl:Class .
+hpc:cachetimeoutvalue a owl:DatatypeProperty .
+hpc:Winsserver rdfs:subClassOf owl:Class .
+hpc:Cachetimeoutvalue rdfs:domain hpc:Winsserver ;
+                          rdfs:range xsd:nonNegativeInteger .
+hpc:cacheTimeoutValue rdfs:comment "The Cache Timeout Value for the WINS Lookup of the DNS should be as short as possible (the 10-minute default may be acceptable, but this should not be increased)." .

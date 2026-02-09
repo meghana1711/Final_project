@@ -1,0 +1,55 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A job in the LSF system." .
+
+hpc:Task a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A task in the LSF system." .
+
+hpc:Pendingtask a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf owl:Restriction ;
+                       rdfs:onProperty hpc:taskCount ;
+                       rdfs:hasValue xsd:4 ;
+                       owl:allValuesFrom hpc:Task ] ;
+    rdfs:comment "A task that is pending because LSF cannot add at least 4 tasks to the job." .
+
+hpc:Maxtaskrequest a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The maximum number of tasks that can be requested for a job." .
+
+hpc:taskcount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of tasks currently in the job." .
+
+hpc:Pendingrequest a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf owl:Restriction ;
+                       rdfs:onProperty hpc:taskCount ;
+                       rdfs:hasValue xsd:10 ;
+                       owl:allValuesFrom hpc:Task ] ;
+    rdfs:comment "A resource allocation request that is pending because the job's maximum task request has not been allocated and the job is still running." .
+
+hpc:Jobowner a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The owner of a job." .
+
+hpc:cancelpendingrequest a owl:ObjectProperty ;
+    rdfs:domain hpc:Pendingrequest ;
+    rdfs:range hpc:Action ;
+    rdfs:comment "The action of canceling a pending resource allocation request." .
+
+hpc:Action a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "An action that can be performed on a resource allocation request." .
+
+hpc:resizenotificationcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:PlainLiteral ;
+    rdfs:comment "The resize notification command for a job." .
+
+hpc:specifyresizenotificationcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Action ;
+    rdfs:comment "The action of specifying a resize notification command for a job." .

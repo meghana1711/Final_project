@@ -1,0 +1,16 @@
+hpc:Wckey a owl:Class.
+hpc:associations a owl:ObjectProperty.
+hpc:trackwckey a owl:ObjectProperty.
+hpc:Cluster a owl:Class.
+hpc:Account a owl:Class.
+hpc:User a owl:Class.
+hpc:Partition a rdfs:Class;
+    rdfs:subClassOf xsd:string.
+hpc:Accountingstorageenforce optional rdfs:subClassOf xsd:boolean.
+hpc:Accountingstorageexternalhost rdfs:domain hpc:Cluster;
+    rdfs:range xsd:string.
+hpc:Accountingstorageport rdfs:range xsd:unsignedInt.
+hpc:Accountingstoragehost rdfs:domain hpc:Cluster;
+    rdfs:range xsd:string.
+hpc:Accountingstoragepass rdfs:domain hpc:Cluster;
+    rdfs:range xsd:string.

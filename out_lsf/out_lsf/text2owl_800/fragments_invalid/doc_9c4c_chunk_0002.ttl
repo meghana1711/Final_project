@@ -1,0 +1,77 @@
+hpc:Lsfcluster a owl:Class .
+hpc:installscript a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .
+
+hpc:Fixes a owl:Class ;
+    rdfs:subClassOf hpc:Ibmproduct .
+
+hpc:fixcentral a owl:ObjectProperty ;
+    rdfs:domain hpc:Ibmproduct ;
+    rdfs:range xsd:string .
+
+hpc:environment a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .
+
+hpc:userenablement a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:boolean .
+
+hpc:startcluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:boolean .
+
+hpc:testcommands a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .
+
+hpc:hostsetupscript a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .
+
+hpc:nonrootinstall a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:boolean .
+
+hpc:singleusercluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Nonrootinstall ;
+    rdfs:range hpc:Clustertype .
+
+hpc:multiusercluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Nonrootinstall ;
+    rdfs:range hpc:Clustertype .
+
+hpc:fileownership a owl:ObjectProperty ;
+    rdfs:domain hpc:Nonrootinstall ;
+    rdfs:range xsd:string .
+
+hpc:permissions a owl:ObjectProperty ;
+    rdfs:domain hpc:Nonrootinstall ;
+    rdfs:range xsd:string .
+
+hpc:daemonstart a owl:ObjectProperty ;
+    rdfs:domain hpc:Nonrootinstall ;
+    rdfs:range xsd:boolean .
+
+hpc:hostsetup a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .
+
+hpc:Hpcfeatures a owl:Class ;
+    rdfs:subClassOf hpc:Parallel .
+
+hpc:serviceports a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Serviceport .
+
+hpc:lsfconf a owl:DatatypeProperty ;
+    rdfs:domain hpc:Serviceports ;
+    rdfs:range xsd:string .
+
+hpc:etcservices a owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceports ;
+    rdfs:range xsd:string .
+
+hpc:nisornisplus a owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceports ;

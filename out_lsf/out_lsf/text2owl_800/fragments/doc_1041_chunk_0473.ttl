@@ -1,0 +1,44 @@
+hpc:Fairshareadjustmentfactor a owl:Class .
+hpc:Runjobfactor a owl:Class .
+hpc:Committedruntimefactor a owl:Class .
+hpc:Jobsizelist a owl:Class .
+hpc:Pendingtimelimit a owl:Class .
+hpc:Eligiblependingtimelimit a owl:Class .
+hpc:Relaxjobdispatchorder a owl:Class .
+hpc:Normfs a owl:Class .
+
+hpc:Fairshareadjustmentfactor rdfs:subClassOf owl:Real .
+hpc:Runjobfactor rdfs:subClassOf owl:Real .
+hpc:Committedruntimefactor rdfs:subClassOf owl:Real .
+hpc:Jobsizelist rdfs:subClassOf xsd:nonNegativeInteger .
+hpc:Pendingtimelimit rdfs:subClassOf xsd:nonNegativeDuration .
+hpc:Eligiblependingtimelimit rdfs:subClassOf xsd:nonNegativeDuration .
+hpc:Relaxjobdispatchorder rdfs:subClassOf xsd:nonNegativeInteger .
+hpc:Normfs rdfs:subClassOf xsd:real .
+
+hpc:hasfairshareadjustmentfactor a owl:ObjectProperty .
+hpc:hasrunjobfactor a owl:ObjectProperty .
+hpc:hascommittedruntimefactor a owl:ObjectProperty .
+hpc:hasjobsizelist a owl:ObjectProperty .
+hpc:haspendingtimelimit a owl:ObjectProperty .
+hpc:haseligiblependingtimelimit a owl:ObjectProperty .
+hpc:hasrelaxjobdispatchorder a owl:ObjectProperty .
+hpc:hasnormfs a owl:ObjectProperty .
+
+hpc:Hasfairshareadjustmentfactor rdfs:domain hpc:Queue .
+hpc:Hasrunjobfactor rdfs:domain hpc:Queue .
+hpc:Hascommittedruntimefactor rdfs:domain hpc:Queue .
+hpc:Hasjobsizelist rdfs:domain hpc:Queue .
+hpc:Haspendingtimelimit rdfs:domain hpc:Queue .
+hpc:Haseligiblependingtimelimit rdfs:domain hpc:Queue .
+hpc:Hasrelaxjobdispatchorder rdfs:domain hpc:Queue .
+hpc:Hasnormfs rdfs:domain hpc:Queue .
+
+hpc:Hasfairshareadjustmentfactor rdfs:range hpc:Fairshareadjustmentfactor .
+hpc:Hasrunjobfactor rdfs:range hpc:Runjobfactor .
+hpc:Hascommittedruntimefactor rdfs:range hpc:Committedruntimefactor .
+hpc:Hasjobsizelist rdfs:range hpc:Jobsizelist .
+hpc:Haspendingtimelimit rdfs:range hpc:Pendingtimelimit .
+hpc:Haseligiblependingtimelimit rdfs:range hpc:Eligiblependingtimelimit .
+hpc:Hasrelaxjobdispatchorder rdfs:range hpc:Relaxjobdispatchorder .
+hpc:Hasnormfs rdfs:range hpc:Normfs .

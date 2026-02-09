@@ -1,0 +1,15 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Slurmprolog a owl:Class.
+hpc:Slurmepilog a owl:Class.
+hpc:Srunprolog a owl:Class.
+hpc:Taskprolog a owl:Class.
+hpc:Taskepilog a owl:Class.
+hpc:Srunepilog a owl:Class.
+
+hpc:isinvokedby a owl:ObjectProperty ;
+  rdfs:domain hpc:Slurmprolog, hpc:Slurmepilog, hpc:Srunprolog, hpc:Taskprolog, hpc:Taskepilog, hpc:Srunepilog ;

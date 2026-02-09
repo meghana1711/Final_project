@@ -1,0 +1,38 @@
+hpc:Host a owl:Class .
+hpc:Group a owl:Class .
+hpc:Limit a owl:Class .
+hpc:Ineligiblejob a owl:Class .
+hpc:Job a owl:Class .
+
+hpc:hasHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Host .
+
+hpc:belongsToGroup rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Group .
+
+hpc:isIneligible rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Ineligiblejob .
+
+hpc:hasLimit rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasLimitType rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Limit ;
+    rdfs:range xsd:string .
+
+hpc:hasValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Limit ;
+    rdfs:range xsd:integer .
+
+hpc:excludedFrom rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Limit ;
+    rdfs:range hpc:Host .
+
+hpc:Ineligible a owl:Class ;
+    rdfs:subClassOf hpc:Limit .
+
+hpc:Jobs a owl:Class ;
+    rdfs:subClassOf hpc:Limit .

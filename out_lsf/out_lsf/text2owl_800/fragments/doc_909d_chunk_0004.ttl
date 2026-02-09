@@ -1,0 +1,6 @@
+hpc:X11enabledclientapplication a owl:Class .
+hpc:Host a owl:Class .
+hpc:Gui a owl:Class .
+hpc:xdisplay a owl:ObjectProperty .
+hpc:Xdisplay rdfs:domain hpc:X11enabledclientapplication ;
+                 rdfs:range hpc:Host .

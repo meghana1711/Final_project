@@ -1,0 +1,50 @@
+hpc:Cachefile a owl:Class .
+hpc:Dnshostcachefile a owl:Class .
+hpc:ipaddress a owl:DatatypeProperty .
+hpc:officialname a owl:DatatypeProperty .
+hpc:aliasname a owl:DatatypeProperty .
+hpc:Localhostcache a owl:Class .
+hpc:Dnshost a owl:Class .
+hpc:Managementhost a owl:Class .
+hpc:Sharedinstallation a owl:Class .
+hpc:Nonsharedinstallation a owl:Class .
+hpc:Lim a owl:Class .
+hpc:Mbatchd a owl:Class .
+hpc:lsfEnvdir a owl:DatatypeProperty .
+hpc:lsfTmpdir a owl:DatatypeProperty .
+hpc:lsfHostCacheDisable a owl:DatatypeProperty .
+hpc:lsfConf a owl:DatatypeProperty .
+hpc:Parallelrestart a owl:Class .
+hpc:Rootmbatchd a owl:Class .
+hpc:Childmbatchd a owl:Class .
+hpc:Oldmbatchd a owl:Class .
+hpc:Clientcommand a owl:Class .
+hpc:Bsub a owl:Class .
+hpc:Bjobs a owl:Class .
+hpc:Jobscheduling a owl:Class .
+hpc:Statusupdates a owl:Class .
+hpc:Dispatching a owl:Class .
+hpc:Updatingevents a owl:Class .
+hpc:Eventfile a owl:Class .
+hpc:Hasipaddress rdfs:domain hpc:Localhostcache;
+    rdfs:range xsd:string .
+hpc:Hasofficialname rdfs:domain hpc:Dnshost;
+    rdfs:range xsd:string .
+hpc:Hasaliasname rdfs:domain hpc:Dnshost;
+    rdfs:range xsd:string .
+hpc:Ismanagementhost rdfs:subClassOf hpc:Dnshost .
+hpc:Issharedinstallation rdfs:subClassOf hpc:Installation .
+hpc:Isnonsharedinstallation rdfs:subClassOf hpc:Installation .
+hpc:Createsdnshostcache rdfs:domain hpc:Lim;
+    rdfs:range hpc:Dnshostcachefile .
+hpc:Flusheslocalhostcacheintodns rdfs:domain hpc:Mbatchd;
+    rdfs:range hpc:Dnshostcachefile .
+hpc:Disablesdnshostcache rdfs:domain hpc:Mbatchd;
+    rdfs:range xsd:boolean .
+hpc:Improvesresponsetimeafterrestart rdfs:subClassOf hpc:Parallelrestart .
+hpc:Forks rdfs:domain hpc:Rootmbatchd;
+    rdfs:range hpc:Childmbatchd .
+hpc:Handlesclientcommands rdfs:domain hpc:Oldmbatchd;
+    rdfs:range hpc:Clientcommand .
+hpc:Handlesjobscheduling rdfs:domain hpc:Oldmbatchd .
+hpc:handlesStatusUp

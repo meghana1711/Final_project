@@ -1,0 +1,57 @@
+hpc:WindowsCluster
+    a owl:Class ;
+    rdfs:subClassOf hpc:Cluster .
+
+hpc:UnixHost
+    a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:LSFHost
+    a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:EGOBase
+    a owl:Class .
+
+hpc:LIM
+    a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:SLABatchd
+    a owl:Class ;
+    rdfs:subClassOf hpc:Daemon .
+
+hpc:scheduleJob
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Job .
+
+hpc:egoEnabledSLAScheduling
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Boolean .
+
+hpc:compatibility
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hdfs:String .
+
+hpc:multiclusterCapability
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Egobase ;
+    rdfs:range hpc:Egobase .
+
+hpc:elim
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .
+
+hpc:melim
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .
+
+hpc:esub
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .

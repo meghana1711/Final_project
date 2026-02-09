@@ -1,0 +1,69 @@
+hpc:loadsched a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:loadstop a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:cpuspeed a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:decimal .
+
+hpc:bandwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:decimal .
+
+hpc:bresources a owl:ObjectProperty ;
+    rdfs:domain hpc:System ;
+    rdfs:range hpc:Resourceallocation .
+
+hpc:blimits a owl:ObjectProperty ;
+    rdfs:domain hpc:System ;
+    rdfs:range hpc:Resourceallocation .
+
+hpc:Resourceallocation a owl:Class ;
+    rdfs:subClassOf hpc:Allocation .
+
+hpc:policyname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceallocation ;
+    rdfs:range xsd:string .
+
+hpc:user a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceallocation ;
+    rdfs:range xsd:string .
+
+hpc:queue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceallocation ;
+    rdfs:range xsd:string .
+
+hpc:host a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceallocation ;
+    rdfs:range xsd:string .
+
+hpc:projectname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceallocation ;
+    rdfs:range xsd:string .
+
+hpc:Resource a owl:Class ;
+    rdfs:subClassOf hpc:Allocation .
+
+hpc:slot a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:mem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:decimal .
+
+hpc:tmp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:decimal .
+
+hpc:swp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:decimal .
+
+hpc:jobs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:nonNegativeInteger .

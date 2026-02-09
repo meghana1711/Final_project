@@ -1,0 +1,29 @@
+hpc:Dockerjob a owl:Class .
+hpc:Applicationprofile a owl:Class .
+hpc:Queue a owl:Class .
+hpc:container a owl:ObjectProperty .
+hpc:execDriver a owl:ObjectProperty .
+hpc:dockerImageAffinity a owl:ObjectProperty .
+hpc:lsbContainerImage a owl:DatatypeProperty .
+
+hpc:Dockerjob rdfs:subClassOf owl:Thing .
+hpc:Applicationprofile rdfs:subClassOf owl:Class .
+hpc:Queue rdfs:subClassOf owl:Class .
+
+hpc:CONTAINER rdf:type owl:ObjectProperty .
+hpc:EXEC_DRIVER rdf:type owl:ObjectProperty .
+hpc:DOCKER_IMAGE_AFFINITY rdf:type owl:ObjectProperty .
+hpc:LSB_CONTAINER_IMAGE rdf:type owl:DatatypeProperty .
+
+hpc:Applicationprofile rdfs:domain hpc:Dockerjob ;
+    rdfs:range rdf:Resource .
+hpc:Queue rdfs:domain hpc:Dockerjob ;
+    rdfs:range rdf:Resource .
+hpc:Container rdfs:domain hpc:Dockerjob ;
+    rdfs:range rdf:Resource .
+hpc:ExecDriver rdfs:domain hpc:Dockerjob ;
+    rdfs:range rdf:Resource .
+hpc:DockerImageAffinity rdfs:domain hpc:Dockerjob ;
+    rdfs:range xsd:string .
+hpc:LsbContainerImage rdfs:domain hpc:Dockerjob ;
+    rdfs:range xsd:string .

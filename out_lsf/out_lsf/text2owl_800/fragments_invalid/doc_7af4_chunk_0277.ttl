@@ -1,0 +1,16 @@
+hpc:Jobgroupname a owl:Class .
+hpc:Jobgroupname rdfs:subClassOf xsd:string .
+hpc:Jobgroupname rdfs:domain hpc:Job .
+
+hpc:Jobgroupname rdfs:range [ xsd:string ; rdf:value "^[a-zA-Z]+[\\/][a-zA-Z]+((\\.[a-zA-Z]+)+)$" ] .
+
+hpc:Jobgroup a owl:Class .
+hpc:Job rdfs:subClassOf hpc:Jobgroup .
+
+hpc:defaultjobgroup a owl:ObjectProperty .
+hpc:Defaultjobgroup rdfs:domain hpc:Lsf .
+hpc:Defaultjobgroup rdfs:range hpc:Jobgroupname .
+
+hpc:Defaultproject a owl:Class .
+hpc:Defaultproject rdfs:subClassOf xsd:string .
+hpc:Defaultproject rdfs:domain hpc:Lsf .

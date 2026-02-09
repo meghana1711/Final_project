@@ -1,0 +1,19 @@
+@base <http://example.org/hpc/>
+
+hpc:Prolog a owl:Class ;
+    rdfs:subClassOf hpc:Jobstep ;
+    rdfs:comment "Path that will be executed as root on every node of a user's job before the job's tasks will be initiated there and after that job has terminated. These parameters are optional." .
+
+hpc:Epilog a owl:Class ;
+    rdfs:subClassOf hpc:Jobstep ;
+    rdfs:comment "Path that will be executed as root on every node of a user's job after the job's tasks have been initiated there and before the job terminates. These parameters are optional." .
+
+hpc:srunprolog a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:anyURI ;
+    rdfs:comment "Fully qualified path to be executed by srun at job step initiation." .
+
+hpc:srunepilog a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:anyURI ;
+    rdfs:comment "Fully qualified path to be executed by srun at job step termination. These

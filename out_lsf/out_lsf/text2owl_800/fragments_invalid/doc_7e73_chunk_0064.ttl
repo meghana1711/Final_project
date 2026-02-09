@@ -1,0 +1,40 @@
+hpc:Awsplugin a owl:Class .
+hpc:awsSpotTerminateOnReclaim a owl:DatatypeProperty .
+hpc:AwsprovConfigJson a owl:Class .
+hpc:Lsf a owl:Class .
+hpc:ReclaimedSpotInstance a owl:Class .
+hpc:requeue a owl:ObjectProperty .
+hpc:TerminationRequest a owl:Class .
+
+hpc:AwsSpotTerminateOnReclaim rdfs:domain awsprov_config_json ;
+                                   rdfs:range xsd:boolean .
+hpc:AwsprovConfigJson rdfs:subClassOf rdf:Resource .
+hpc:Lsf rdfs:subClassOf rdf:Resource .
+hpc:ReclaimedSpotInstance rdfs:subClassOf rdf:Resource .
+hpc:Requeue rdfs:domain LSF, AWS_PlugIn ;
+                               rdfs:range AWS_PlugIn .
+hpc:TerminationRequest rdfs:subClassOf rdf:Resource .
+
+hpc:AWS_PlugIn
+    a owl:Class ;
+    rdf:type owl:ObjectProperty ;
+    rdfs:subClassOf [ a owl:Class ;
+                      owl:unionOf (hpc:AWS_PlugIn_Terminates_Instance rdf:+ (hpc:AWS_PlugIn_Does_Not_Terminate_Instance) ) ] .
+
+hpc:AwsPluginTerminatesInstance a owl:Class ;
+                                     rdfs:subClassOf [ a owl:Class ;
+                                                       owl:intersectionOf (hpc:AWS_PlugIn [ hpc:AWS_SPOT_TERMINATE_ON_RECLAIM true ]
+                                                                                      hpc:requeues_Jobs ) ] .
+
+hpc:AwsPluginDoesNotTerminateInstance a owl:Class ;
+                                             rdfs:subClassOf [ a owl:Class ;
+                                                               owl:intersectionOf (hpc:AWS_PlugIn [ hpc:AWS_SPOT_TERMINATE_ON_RECLAIM false ]
+                                                                                        hpc:does_Not_Terminate_Instance ) ] .
+
+hpc:AwsPluginDoesNotTerminateInstance hpc:doesNotTerminateInstance rdf:type owl:ObjectProperty .
+hpc:AwsPluginTerminatesInstance hpc:requeuesJobs rdf:type owl:ObjectProperty .
+
+hpc:RequeuesJobs rdfs:domain AWS_PlugIn ;
+                   rdfs:range reclaimed_Spot_instance .
+
+hpc:DoesNotTerminateInstance rdfs:domain AWS_PlugIn .

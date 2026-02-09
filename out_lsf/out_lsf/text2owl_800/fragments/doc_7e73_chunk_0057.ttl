@@ -1,0 +1,66 @@
+hpc:templateId
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string .
+
+hpc:spotPrice
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:decimal .
+
+hpc:marketSpotPrice
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:decimal .
+
+hpc:securityGroupId
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The security group ID for the AWS instance." .
+
+hpc:ebsOptimized
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:boolean .
+
+hpc:priority
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:integer .
+
+hpc:mem
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The memory for the AWS instance." .
+
+hpc:ncpus
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The number of CPU cores for the AWS instance." .
+
+hpc:awshost
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Whether the instance is an AWS host." .
+
+hpc:ncores
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The number of cores for the AWS instance." .
+
+hpc:type
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The type of the AWS instance." .
+
+hpc:pricing
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The pricing model for the AWS instance." .

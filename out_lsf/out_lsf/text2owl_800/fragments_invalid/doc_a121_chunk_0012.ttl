@@ -1,0 +1,75 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a job in the HPC system." .
+
+# User class
+hpc:User a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a user in the HPC system." .
+
+# Project class
+hpc:Project a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a project in the HPC system." .
+
+# Status class
+hpc:Status a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents the status of a job in the HPC system." .
+
+# Queue class
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a queue in the HPC system." .
+
+# Command property
+hpc:hascommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The command executed for the job." .
+
+# SubmittedFrom property
+hpc:submittedfrom a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The time the job was submitted." .
+
+# StartedOn property
+hpc:startedon a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The time the job started executing." .
+
+# ExecutionHome property
+hpc:executionhome a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The home directory for the job's execution." .
+
+# ExecutionCWD property
+hpc:executioncwd a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The current working directory for the job's execution." .
+
+# OutputFile property
+hpc:outputfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The output file for the job." .
+
+# SpecifiedHosts property
+hpc:specifiedhosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The hosts specified for the job." .
+
+# ResourceUsage property
+hpc:resourceusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resourceusage .
+
+# ResourceUsage class
+hpc:Resourceusage a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents the resource usage of a

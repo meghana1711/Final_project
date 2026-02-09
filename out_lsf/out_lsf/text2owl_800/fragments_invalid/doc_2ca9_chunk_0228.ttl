@@ -1,0 +1,48 @@
+hpc:Lsfversion a owl:Class .
+hpc:Lsfversion101Fixpack8 rdfs:subClassOf hpc:Lsfversion .
+
+hpc:Gpuaffinitybinding a owl:Class .
+hpc:Strictgpucpuaffinitybinding rdfs:subClassOf hpc:Gpuaffinitybinding .
+hpc:mpspersocket a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101Fixpack8 ;
+    rdfs:range hpc:Gpuaffinitybinding .
+hpc:mpspergpu a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101Fixpack8 ;
+    rdfs:range hpc:Gpuaffinitybinding .
+
+hpc:Dockerjobsubmission a owl:Class .
+hpc:LsbDockerPlaceHolderKeyword rdfs:subClassOf hpc:Dockerjobsubmission .
+hpc:Resourcelimit a owl:Class .
+hpc:Memorylimit rdfs:subClassOf hpc:Resourcelimit ;
+    rdfs:subClassOf hpc:Lsfversion101Fixpack8 ;
+    rdfs:domain hpc:Resourcelimit ;
+    rdfs:range xsd:integer .
+hpc:Swaplimit rdfs:subClassOf hpc:Resourcelimit ;
+    rdfs:subClassOf hpc:Lsfversion101Fixpack8 ;
+    rdfs:domain hpc:Resourcelimit ;
+    rdfs:range xsd:integer .
+hpc:Corefilesizelimit rdfs:subClassOf hpc:Resourcelimit ;
+    rdfs:subClassOf hpc:Lsfversion101Fixpack8 ;
+    rdfs:domain hpc:Resourcelimit ;
+    rdfs:range xsd:integer .
+hpc:Stacklimit rdfs:subClassOf hpc:Resourcelimit ;
+    rdfs:subClassOf hpc:Lsfversion101Fixpack8 ;
+    rdfs:domain hpc:Resourcelimit ;
+    rdfs:range xsd:integer .
+hpc:Datasegmentsizelimit rdfs:subClassOf hpc:Resourcelimit ;
+    rdfs:subClassOf hpc:Lsfversion101Fixpack8 ;
+    rdfs:domain hpc:Resourcelimit ;
+    rdfs:range xsd:integer .
+hpc:Filesizelimit rdfs:subClassOf hpc:Resourcelimit ;
+    rdfs:subClassOf hpc:Lsfversion101Fixpack8 ;
+    rdfs:domain hpc:Resourcelimit ;
+    rdfs:range xsd:integer .
+
+hpc:Smtmode a owl:Class .
+hpc:Csmjob rdfs:subClassOf hpc:Lsfversion101Fixpack8 ;
+    rdfs:domain hpc:Smtmode ;
+    rdfs:range hpc:Csmjob .
+
+hpc:Fairsharegroupexclusion a owl:Class .
+hpc:Excludefairsharegroup rdfs:subClassOf hpc:Fairsharegroupexclusion ;
+    rdfs:domain hpc:Lsfversion101Fixpack

@@ -1,0 +1,21 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Command a owl:Class.
+hpc:Cluster a owl:Class.
+hpc:Component a owl:Class.
+
+hpc:hascommand a owl:ObjectProperty.
+hpc:oncluster a owl:ObjectProperty.
+hpc:haspartition a owl:DatatypeProperty.
+
+hpc:Command rdfs:subClassOf owl:Class.
+hpc:Cluster rdfs:subClassOf owl:Class.
+hpc:Component rdfs:subClassOf owl:Class.
+
+hpc:Hascommand rdfs:domain hpc:Job.
+hpc:Oncluster rdfs:domain hpc:Job.
+h

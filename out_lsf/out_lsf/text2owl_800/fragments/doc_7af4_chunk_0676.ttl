@@ -1,0 +1,50 @@
+hpc:LsbCmdLogMask a owl:Class .
+hpc:lsbDebugCmd a owl:ObjectProperty .
+
+hpc:LsbCmdLogMask rdfs:subClassOf owl:Enum .
+hpc:LsbCmdLogMask rdfs:subClassOf owl:Class .
+
+hpc:LOG_EMERG rdf:type hpc:LogLevel ;
+    rdfs:label "LOG_EMERG" ;
+    rdfs:comment "Highest log level." .
+hpc:LOG_ALERT rdf:type hpc:LogLevel ;
+    rdfs:label "LOG_ALERT" ;
+    rdfs:comment "Second highest log level." .
+hpc:LOG_CRIT rdf:type hpc:LogLevel ;
+    rdfs:label "LOG_CRIT" ;
+    rdfs:comment "Third highest log level." .
+hpc:LOG_ERR rdf:type hpc:LogLevel ;
+    rdfs:label "LOG_ERR" ;
+    rdfs:comment "Fourth highest log level." .
+hpc:LOG_WARNING rdf:type hpc:LogLevel ;
+    rdfs:label "LOG_WARNING" ;
+    rdfs:comment "Fifth highest log level. Default." .
+hpc:LOG_NOTICE rdf:type hpc:LogLevel ;
+    rdfs:label "LOG_NOTICE" ;
+    rdfs:comment "Sixth highest log level." .
+hpc:LOG_INFO rdf:type hpc:LogLevel ;
+    rdfs:label "LOG_INFO" ;
+    rdfs:comment "Seventh highest log level." .
+hpc:LOG_DEBUG rdf:type hpc:LogLevel ;
+    rdfs:label "LOG_DEBUG" ;
+    rdfs:comment "Eighth highest log level." .
+hpc:LOG_DEBUG1 rdf:type hpc:LogLevel ;
+    rdfs:label "LOG_DEBUG1" ;
+    rdfs:comment "Ninth highest log level." .
+hpc:LOG_DEBUG2 rdf:type hpc:LogLevel ;
+    rdfs:label "LOG_DEBUG2" ;
+    rdfs:comment "Tenth highest log level. Most debugging is done at this level." .
+hpc:LOG_DEBUG3 rdf:type hpc:LogLevel ;
+    rdfs:label "LOG_DEBUG3" ;
+    rdfs:comment "Eleventh highest log level. Records all debugging messages and can cause log files to grow very large." .
+
+hpc:LsbCmdLogdir a owl:Class .
+hpc:LsbConfdir a owl:Class .
+
+hpc:LsbCmdLogdir rdfs:domain hpc:LsbCmdLogMask ;
+    rdfs:range xsd:string .
+hpc:LsbConfdir rdfs:domain hpc:LsbConfdir ;
+    rdfs:range xsd:string .
+
+hpc:LsbDebugCmd rdfs:domain hpc:LsbCmdLogMask ;
+    rdfs:range xsd:string .

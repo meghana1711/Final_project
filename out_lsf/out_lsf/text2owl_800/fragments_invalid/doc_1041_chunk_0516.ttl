@@ -1,0 +1,25 @@
+hpc:Hosta a owl:Class ;
+    rdfs:comment "Allocated 2 Slot(s) on Host(s) <hostA>." ;
+    hpc:executionHome rdf:datatype xsd:string , rdf:value "home/user1" ;
+    hpc:executionCWD rdf:datatype xsd:string , rdf:value "scratch/dev/user1/lsf" ;
+    hpc:hasResourceRequirementDetails rdf:type owl:ObjectProperty ;
+    hpc:hasCPUTimeUsed rdf:datatype xsd:string .
+
+hpc:Resourcerequirementdetails a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirementdetailstype .
+
+hpc:Combinedresourcerequirementdetails a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirementdetails ;
+    rdfs:comment "Combined: select[type == local] order[r15s:pg]" ;
+    hpc:hasOrder rdf:datatype xsd:string , rdf:value "r15s:pg" .
+
+hpc:Effectiveresourcerequirementdetails a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirementdetails ;
+    rdfs:comment "Effective: select[type == local] order[r15s:pg]" ;
+    hpc:hasOrder rdf:datatype xsd:string , rdf:value "r15s:pg" .
+
+hpc:brsvmod a owl:ObjectProperty ;
+    rdfs:domain hpc:Hosta ;
+    rdfs:range hpc:Resourcerequirementdetails ;
+    rdfs:comment "Modifies an advance reservation." ;
+    rdfs:comment "Synopsis brsvmod [-o | -on] [-d "description"] [-u "user_name ..." | "user_group ..." ] [-nosusp | -nonsuspn] [-q "queue_name ..." | -qn] [-E pre_ar_script | -En]" .

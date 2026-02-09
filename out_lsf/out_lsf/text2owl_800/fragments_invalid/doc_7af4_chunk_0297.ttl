@@ -1,0 +1,37 @@
+hpc:Jobdependencyevaluation a owl:Class ;
+    rdfs:subClassOf owl:Process ;
+    rdfs:comment "Process used to check whether each job's dependency condition is satisfied.";
+
+hpc:Schedulingsession a owl:Class ;
+    rdfs:subClassOf owl:Event ;
+    rdfs:comment "Session in which jobs are dispatched.";
+
+hpc:jobdependency a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobdependencyevaluation ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Relationship between a job and its dependency.";
+
+hpc:jobdispatch a owl:ObjectProperty ;
+    rdfs:domain hpc:Schedulingsession ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Relationship between a scheduling session and the job dispatched in that session.";
+
+hpc:jobreadystatus a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a job is ready or not.";
+
+hpc:jobdependencyevaluationendlocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobdependencyevaluation ;
+    rdfs:range xsd:anyURI ;
+    rdfs:comment "Location where the job dependency evaluation ended.";
+
+hpc:evaluatejobdependency a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobdependencyevaluation ;
+    rdfs:range hpc:Schedulingsession ;
+    rdfs:comment "Session in which the job dependency is evaluated.";
+
+hpc:evaluatejobdependencytimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobdependencyevaluation ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "Maximum amount of time that the mbatchd daemon takes to evaluate job dependencies in one scheduling cycle.";

@@ -1,0 +1,23 @@
+hpc:Lsfsimulator a owl:Class .
+hpc:Experiment a owl:Class .
+hpc:Clusterconfiguration a owl:Class .
+hpc:Workloadsnapshot a owl:Class .
+hpc:Workloadpolicy a owl:Class .
+hpc:Hasclusterconfiguration hpc:objectproperty .
+hpc:Hasworkloadsnapshot hpc:objectproperty .
+hpc:Hasworkloadpolicy hpc:objectproperty .
+hpc:Lsfclustermode a owl:Class .
+hpc:Clustermode rdfs:subClassOf hpc:Lsfclustermode .
+hpc:Traditionalprojectmode a owl:Class .
+hpc:Fastdispatchmode a owl:Class .
+hpc:Projectmode a owl:Class .
+hpc:Cluster rdfs:domain hpc:Clusterconfiguration .
+hpc:Workloadsnapshot rdfs:domain hpc:Experiment .
+hpc:Lsfclusterconfiguration rdfs:range hpc:Cluster .
+hpc:Workloadsnapshot rdfs:range hpc:Workloadsnapshot .
+hpc:Lsfsimulatorexperimentdata rdfs:range hpc:Experiment .
+hpc:Pendingtime rdfs:domain hpc:Lsfsimulatorexperimentdata .
+hpc:Licensetokendistribution rdfs:domain hpc:Lsfsimulatorexperimentdata .
+hpc:Schedulingmechanism rdfs:domain hpc:Lsfclustermode .
+xsd:string rdfs:range hpc:Workloadsnapshot .
+xsd:integer rdfs:range hpc:Pendingtime .

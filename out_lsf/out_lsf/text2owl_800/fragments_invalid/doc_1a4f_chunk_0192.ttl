@@ -1,0 +1,49 @@
+hpc:Compoundjob a owl:Class .
+hpc:Simplequeuerequirement a owl:Class .
+hpc:Compoundqueuerequirement a owl:Class .
+hpc:Joblevelrequirement a owl:Class .
+hpc:Queuelevelrequirement a owl:Class .
+hpc:Applicationlevelrequirement a owl:Class .
+hpc:Mergedrequirement a owl:Class .
+hpc:rusage a owl:ObjectProperty .
+hpc:num a owl:DatatypeProperty .
+hpc:span a owl:ObjectProperty .
+hpc:hosts a owl:DatatypeProperty .
+hpc:lica a owl:DatatypeProperty .
+hpc:type a owl:DatatypeProperty .
+
+hpc:Compoundjob rdfs:subClassOf hpc:Joblevelrequirement .
+hpc:Simplequeuerequirement rdfs:subClassOf hpc:Queuelevelrequirement .
+hpc:Compoundqueuerequirement rdfs:subClassOf hpc:Queuelevelrequirement .
+hpc:Joblevelrequirement rdfs:subClassOf hpc:Requirement .
+hpc:Queuelevelrequirement rdfs:subClassOf hpc:Requirement .
+hpc:Applicationlevelrequirement rdfs:subClassOf hpc:Requirement .
+hpc:Mergedrequirement rdfs:subClassOf hpc:Requirement .
+
+hpc:Rusage rdfs:domain hpc:Requirement ;
+          rdfs:range hpc:Rusage .
+hpc:Num rdfs:domain hpc:Mergedrequirement ;
+          rdfs:range xsd:integer .
+hpc:Span rdfs:domain hpc:Compoundjobrequirement ;
+          rdfs:range hpc:Span .
+hpc:Hosts rdfs:domain hpc:Span ;
+          rdfs:range xsd:nonNegativeInteger .
+hpc:Lica rdfs:domain hpc:Rusage ;
+          rdfs:range xsd:nonNegativeInteger .
+hpc:Type rdfs:domain hpc:Select ;
+          rdfs:range xsd:string .
+
+hpc:CompoundJobRequirement a hpc:CompoundJob ;
+                             hpc:Rusage hpc:r1 ;
+                             hpc:num "2" ;
+                             hpc:Span hpc:hosts "1" .
+hpc:CompoundJobRequirement a hpc:CompoundJob ;
+                             hpc:Rusage hpc:r2 ;
+                             hpc:num "8" .
+hpc:SimpleQueueRequirement a hpc:QueueLevelRequirement ;
+                             hpc:Rusage hpc:rq ;
+                             hpc:rq a owl:ObjectProperty ;
+                             rdfs:domain hpc:Jobresource ;
+                             rdfs:range hpc:Rusage .
+hpc:MergedRequirement a hpc:Requirement ;
+                       hpc:Rusage merge(hpc:R1, hpc:RQ) .

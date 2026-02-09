@@ -1,0 +1,14 @@
+hpc:Qos a owl:Class.
+hpc:haspriority a owl:ObjectProperty;
+    rdfs:domain hpc:Qos;
+    rdfs:range xsd:integer.
+hpc:grptres a owl:DatatypeProperty;
+    rdfs:domain hpc:Qos.
+
+hpc:Job a owl:Class;
+    rdfs:subClassOf hpc:Qos.
+
+hpc:User a owl:Class;
+    hpc:belongstoqos a owl:ObjectProperty;
+        rdfs:domain hpc:User;
+        rdfs:range hpc:

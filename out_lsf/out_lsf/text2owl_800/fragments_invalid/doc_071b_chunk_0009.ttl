@@ -1,0 +1,25 @@
+hpc:Mbatchddaemon a owl:Class .
+hpc:lsbDebugMbd a owl:DatatypeProperty .
+hpc:LsbDebugMbd rdfs:domain hpc:Mbatchddaemon ;
+                   rdfs:range xsd:string .
+
+hpc:badmin a owl:ObjectProperty .
+hpc:badminReconﬁg rdfs:subClassOf hpc:Badmin ;
+                   rdfs:domain hpc:Mbatchddaemon .
+
+hpc:badminmbdrestart a owl:ObjectProperty .
+hpc:Badminmbdrestart -C rdfs:subClassOf hpc:Badminmbdrestart ;
+                      rdfs:domain hpc:Mbatchddaemon .
+
+hpc:bctrldstopsbd a owl:ObjectProperty .
+hpc:Bctrldstopsbd rdfs:domain hpc:Mbatchddaemon .
+
+hpc:LsfDaemonstartupcontrol a owl:Class .
+hpc:LsfSudoers rdfs:subClassOf hpc:LsfDaemonstartupcontrol .
+
+hpc:ReconﬁgureMBatchd a owl:ObjectProperty .
+hpc:ReconﬁgureMBatchd rdfs:domain hpc:Mbatchddaemon .
+
+hpc:restartmbatchd a owl:ObjectProperty .
+hpc:Restartmbatchd rdfs:subClassOf hpc:ReconﬁgureMBatchd ;
+                    rdfs:domain hpc:Mbatchddaemon .

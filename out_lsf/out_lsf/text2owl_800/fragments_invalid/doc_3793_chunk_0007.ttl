@@ -1,0 +1,40 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Craylinuxvnode a owl:Class .
+hpc:Craylinuxvnodegpu a owl:Class .
+                                                     rdfs:subClassOf hpc:Craylinuxvnode ] .
+
+hpc:hasipaddress a owl:ObjectProperty .
+hpc:hasname a owl:ObjectProperty .
+hpc:hasrole a owl:ObjectProperty .
+hpc:hasstorage a owl:ObjectProperty .
+hpc:hasadditionalrole a owl:ObjectProperty .
+
+hpc:Ipaddress rdfs:domain hpc:Craylinuxvnode ;
+             rdfs:range xsd:string .
+hpc:Name rdfs:domain hpc:Craylinuxvnode ;
+         rdfs:range xsd:string .
+hpc:Role rdfs:domain hpc:Craylinuxvnode ;
+       rdfs:range xsd:string .
+hpc:Storage rdfs:domain hpc:Craylinuxvnode ;
+          rdfs:range xsd:string .
+hpc:Additionalrole rdfs:domain hpc:Craylinuxvnodegpu ;
+              rdfs:range xsd:string .
+
+hpc:nid00033 a hpc:CraylinuxVnode ;
+             hpc:hasIPAddress "10.128.0.34" ;
+             hpc:hasName "nid00033" ;
+             hpc:hasRole "c0-0c1s0n3" .
+hpc:nid00060 a hpc:CraylinuxVnode ;
+             hpc:hasIPAddress "10.128.0.61" ;
+             hpc:hasName "nid00060" ;
+             hpc:hasRole "c0-0c1s1n0" ;
+             hpc:hasAdditionalRole "login1" .
+hpc:sdb a hpc:CraylinuxVnode ;
+      hpc:hasIPAddress "10.131.255.251" ;
+      hpc:hasName "sdb" ;
+      hpc:hasRole "syslog" ;
+      hpc:hasAdditionalRole "ufs" .

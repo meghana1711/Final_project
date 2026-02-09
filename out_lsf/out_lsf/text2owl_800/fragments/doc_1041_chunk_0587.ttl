@@ -1,0 +1,25 @@
+hpc:LsbDockerPlaceHolder a owl:Class ;
+    rdfs:comment "Submits a Docker job with a Docker entry point image, but no command." .
+
+hpc:Schedule a owl:Class ;
+    rdfs:subClassOf hpc:LsbDockerPlaceHolder ;
+    rdfs:comment "Category for LSB_DOCKER_PLACE_HOLDER." .
+
+hpc:bsub a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbDockerPlaceHolder ;
+    rdfs:range rdf:Seq ;
+    rdfs:comment "The command to submit a Docker job." .
+
+hpc:applicationName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bsub ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The application name of an actual esub or epsub file." .
+
+hpc:Esub a owl:Class ;
+    rdfs:subClassOf hpc:LsbDockerPlaceHolder ;
+    rdfs:comment "Application-specific esub or epsub executable files." .
+
+hpc:methodname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Esub ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the method used to invoke the esub or epsub program." .

@@ -1,0 +1,39 @@
+hpc:Summary a owl:Class .
+
+hpc:totaltasks hpc:averagetaskcount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Summary ;
+    rdfs:range xsd:double .
+
+hpc:totalcompletedtasks hpc:averagecompletedtaskcount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Summary ;
+    rdfs:range xsd:double .
+
+hpc:starttimerange hpc:starttime hpc:endtime a owl:ObjectProperty ;
+    rdfs:domain hpc:Summary .
+
+hpc:endtimerange hpc:starttime hpc:endtime a owl:ObjectProperty ;
+    rdfs:domain hpc:Summary .
+
+hpc:cputime hpc:totalcputime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusage ;
+    rdfs:range xsd:double .
+
+hpc:pagefaults a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusage ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:swaps a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusage ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:blocksin a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusage ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:blocksout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusage ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:messagessent a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusage ;
+    rdfs:range xsd:nonNegativeInteger .

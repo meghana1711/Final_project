@@ -1,0 +1,47 @@
+hpc:Querydiagnosis a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents the state of query diagnosis." .
+
+hpc:enablediagnose a owl:ObjectProperty ;
+    rdfs:domain hpc:Querydiagnosis ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether query diagnosis is enabled." .
+
+hpc:diagnoselogdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Querydiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The directory where the diagnosis log is stored." .
+
+hpc:Query a owl:Class ;
+    rdfs:subClassOf hpc:Querydiagnosis ;
+    rdfs:comment "Represents a query request." .
+
+hpc:timestamp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Query ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The time that LSF handled the query request." .
+
+hpc:command a owl:DatatypeProperty ;
+    rdfs:domain hpc:Query ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The LSF command associated with the query." .
+
+hpc:user a owl:DatatypeProperty ;
+    rdfs:domain hpc:Query ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The user who issued the query request." .
+
+hpc:host a owl:DatatypeProperty ;
+    rdfs:domain hpc:Query ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The host where the query request was issued." .
+
+hpc:datasize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Query ;
+    rdfs:range xsd:long ;
+    rdfs:comment "The amount of data returned to the client." .
+
+hpc:commandoptions a owl:DatatypeProperty ;
+    rdfs:domain hpc:Query ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The options used in the query command." .

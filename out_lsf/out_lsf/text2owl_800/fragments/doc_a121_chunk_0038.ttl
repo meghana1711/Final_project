@@ -1,0 +1,79 @@
+hpc:Job a owl:Class .
+hpc:Signal a owl:Class .
+hpc:Commandoption a owl:Class .
+hpc:Procedure a owl:Class .
+hpc:State a owl:Class .
+hpc:Runlimit a owl:Class .
+hpc:Hoststate a owl:Class .
+
+hpc:hassignal a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Signal .
+
+hpc:usescommandoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasstate a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasrunlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:ishostinstate a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:INT a hpc:Signal ;
+    rdfs:comment "INT signal" .
+
+hpc:KILL a hpc:Signal ;
+    rdfs:comment "KILL signal" .
+
+hpc:TERM a hpc:Signal ;
+    rdfs:comment "TERM signal" .
+
+hpc:dOption a hpc:CommandOption ;
+    rdfs:comment "Kill jobs and record as DONE status" .
+
+hpc:rOption a hpc:CommandOption ;
+    rdfs:comment "Remove a job from LSF system" .
+
+hpc:statOption a hpc:CommandOption ;
+    rdfs:subClassOf hpc:Commandoption ;
+    rdfs:comment "Statistics option" .
+
+hpc:bOption a hpc:CommandOption ;
+    rdfs:subClassOf hpc:Commandoption ;
+    rdfs:comment "Batch option" .
+
+hpc:bkillProcedure a hpc:Procedure ;
+    rdfs:comment "Kill jobs and record as DONE after the jobs exit" .
+
+hpc:killAndRecordProcedure a hpc:Procedure ;
+    rdfs:subClassOf hpc:Bkillprocedure .
+
+hpc:forceRemoveProcedure a hpc:Procedure ;
+    rdfs:comment "Forcefully remove a job from LSF" .
+
+hpc:removeHungProcedure a hpc:Procedure ;
+    rdfs:comment "Remove hung jobs from LSF" .
+
+hpc:runLimitState a hpc:RunLimit ;
+    rdfs:comment "State of a job with a specified runlimit" .
+
+hpc:hungJob a hpc:Job ;
+    rdfs:comment "A job that is hung" .
+
+hpc:unreachState a hpc:HostState ;
+    rdfs:comment "Host state: unreach" .
+
+hpc:unavailState a hpc:HostState ;
+    rdfs:comment "Host state: unavail" .
+
+hpc:zombiState a hpc:HostState ;
+    rdfs:comment "ZOMBI state" .
+
+hpc:exitState a hpc:HostState ;
+    rdfs:comment "EXIT state" .
+
+hpc:unknownState a hpc:HostState ;
+    rdfs:comment "UNKNOWN state" .

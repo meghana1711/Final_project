@@ -1,0 +1,30 @@
+hpc:Jobcontrol a owl:Class .
+hpc:jobcontrols a owl:DatatypeProperty .
+hpc:Jobcontrols rdfs:domain hpc:Jobcontrol ;
+                  rdfs:range xsd:string .
+
+hpc:Suspend a owl:Class .
+hpc:sigstop a owl:DatatypeProperty .
+hpc:Sigstop rdfs:domain hpc:Suspend ;
+              rdfs:range xsd:string .
+
+hpc:jobControls a owl:DatatypeProperty .
+hpc:JobControls rdfs:domain hpc:Jobcontrol ;
+                rdfs:range xsd:string .
+
+hpc:LsfLicSchedStrictProjectName a owl:Class .
+hpc:lsfLicSchedStrictProjectNameValue a owl:DatatypeProperty .
+hpc:LsfLicSchedStrictProjectNameValue rdfs:domain hpc:LsfLicSchedStrictProjectName ;
+                                             rdfs:range xsd:boolean .
+
+hpc:lsfLimApiNtries a owl:DatatypeProperty .
+hpc:LsfLimApiNtries rdfs:domain hpc:Jobcontrol ;
+                       rdfs:range xsd:integer .
+
+hpc:LSF_LIM_API_NTRIES_DEFAULT a owl:NamedIndividual ;
+                                 rdf:value "1" .
+
+hpc:LsfLimDebug a owl:Class .
+hpc:lsfLimDebugValue a owl:DatatypeProperty .
+hpc:LsfLimDebugValue rdfs:domain hpc:LsfLimDebug ;
+                         rdfs:range xsd:nonNegativeInteger .

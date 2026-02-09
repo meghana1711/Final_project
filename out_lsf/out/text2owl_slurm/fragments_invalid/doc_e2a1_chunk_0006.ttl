@@ -1,0 +1,12 @@
+hpc:Loopbackinterface a owl:Class.
+hpc:hasipaddress a owl:ObjectProperty.
+hpc:Ipv4 a owl:Class.
+hpc:Ipv6 a owl:Class.
+hpc:Loopbackinterface rdfs:subClassOf a owl:Class;
+                          rdfs:subClassOf a hpc:Networkinterface.
+hpc:Loopbackinterface hpc:Hasipaddress rdfs:domain hpc:Loopbackinterface;
+                                        rdfs:range xsd:string.
+hpc:Ipv4 rdfs:subClassOf xsd:string.
+hpc:Ipv6 rdfs:subClassOf xsd:string.
+hpc:Loopbackinterface hpc:Hasipaddress rdfs:range a owl:Class;
+                                      owl:unionOf (hpc:IPv4 hpc:IPv6).

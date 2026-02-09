@@ -1,0 +1,49 @@
+hpc:threadcount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:hrusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:minreqproc a owl:DatatypeProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maxreqproc a owl:DatatypeProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:effectiveresreq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:Eresreq a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:combinedresreq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:Cresreq a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:networkreq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:Ibmpenetworkreq a owl:Class ;
+    rdfs:subClassOf hpc:Networkreq .
+
+hpc:filelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Resourcerequirement a owl:Class .
+
+hpc:Resourcelimits a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:corelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcelimits ;
+    rdfs:range xsd:nonNegativeInteger .

@@ -1,0 +1,24 @@
+hpc:Admin a owl:Class .
+hpc:hasadminfactor a owl:ObjectProperty .
+hpc:Hasadminfactor rdfs:domain hpc:Admin .
+hpc:Hasadminfactor rdfs:range xsd:decimal .
+
+hpc:Adminfactor a owl:Class .
+hpc:Adminfactor rdfs:subClassOf hpc:Factor .
+hpc:Adminfactor rdfs:domain hpc:Job .
+hpc:Adminfactor rdfs:range xsd:decimal .
+
+hpc:Increaseaps rdfs:subClassOf hpc:Adminfactor .
+hpc:Decreaseaps rdfs:subClassOf hpc:Adminfactor .
+
+hpc:Factor a owl:Class .
+hpc:Factor rdfs:subClassOf owl:NamedIndividual .
+
+hpc:cannotBeZero rdfs:Class .
+hpc:Cannotbezero rdfs:subClassOf hpc:Factor .
+hpc:Cannotbezero rdfs:subClassOf xsd:nonNegativeInteger .
+
+hpc:Apsqueue a owl:Class .
+hpc:Apsqueue rdfs:subClassOf owl:NamedIndividual .
+hpc:Apsqueue rdfs:subClassOf hpc:Queue .
+hpc:Apsqueue rdfs:subClassOf hpc:Cannotconfigurecrossqueuefairshare .

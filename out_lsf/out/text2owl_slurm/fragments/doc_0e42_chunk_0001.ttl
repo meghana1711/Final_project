@@ -1,0 +1,47 @@
+hpc:Slurmrestd a owl:Class .
+hpc:Prerequisitelibrary a owl:Class .
+
+# Object Properties
+hpc:requires a owl:ObjectProperty ;
+  rdfs:domain hpc:Prerequisitelibrary ;
+  rdfs:range hpc:Software .
+
+hpc:isrequiredfor a owl:ObjectProperty ;
+  rdfs:domain hpc:Slurmrestd ;
+  rdfs:range hpc:Prerequisitelibrary .
+
+hpc:runson a owl:ObjectProperty ;
+  rdfs:domain hpc:Slurmrestd ;
+  rdfs:range xsd:string .
+
+hpc:usesport a owl:ObjectProperty ;
+  rdfs:domain hpc:Slurmrestd ;
+  rdfs:range xsd:integer .
+
+hpc:authenticateswith a owl:ObjectProperty ;
+  rdfs:domain hpc:Slurmrestd ;
+  rdfs:range hpc:Authenticationmethod .
+
+# Datatype Properties
+hpc:debuglevel a owl:DatatypeProperty ;
+  rdfs:domain hpc:Slurmrestd .
+
+hpc:jwttoken a owl:DatatypeProperty ;
+  rdfs:domain hpc:Slurmrestd .
+
+# Class and Property Relations
+hpc:Slurmrestd a owl:Class .
+hpc:Prerequisitelibrary a owl:Class .
+
+hpc:requires rdfs:subPropertyOf hpc:isRequiredFor .
+hpc:runsOn rdfs:subPropertyOf rdf:type .
+hpc:usesPort rdfs:subPropertyOf rdf:type .
+hpc:authenticatesWith rdfs:subPropertyOf rdf:type .
+hpc:debugLevel rdfs:subPropertyOf rdf:type .
+hpc:jwtToken rdfs:subPropertyOf rdf:type .
+
+hpc:Software a owl:Class .
+hpc:Authenticationmethod a owl:Class .
+
+hpc:Software rdfs:subClassOf xsd:string .
+hpc:Authenticationmethod rdfs:subClassOf xsd:string .

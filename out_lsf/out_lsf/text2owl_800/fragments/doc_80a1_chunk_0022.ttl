@@ -1,0 +1,50 @@
+hpc:TuneableJobFeature
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:subClassOf hpc:Jobfeature ;
+    rdfs:comment "Job feature that can be tuned to improve prediction accuracy." .
+
+hpc:FeatureImportance
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tuneablejobfeature ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Importance number of a job feature as determined from the last training run." .
+
+hpc:TuningRule
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Tuneablejob ;
+    rdfs:range hpc:Tuningaction ;
+    rdfs:comment "Action taken to tune a job." .
+
+hpc:TuningAction
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:subClassOf hpc:Tuningrule ;
+    rdfs:comment "Action taken to tune a job." .
+
+hpc:TagBasedSelection
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:TuningAction ;
+    rdfs:domain hpc:Tuneablejob ;
+    rdfs:range hpc:Tag ;
+    rdfs:comment "Select the relevant information using a tag from the long string instead of the whole string." .
+
+hpc:FeatureRemoval
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:TuningAction ;
+    rdfs:domain hpc:Tuneablejob ;
+    rdfs:range hpc:Jobfeature ;
+    rdfs:comment "Remove the irrelevant job features." .
+
+hpc:DataSizeReduction
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:TuningAction ;
+    rdfs:domain hpc:Tuneablejob ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Use a smaller job data set to reduce the tuning-process time." .
+
+hpc:MaxDataSizeForTuning
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tuneablejob ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Maximum number of jobs to be used for tuning." .

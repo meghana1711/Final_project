@@ -1,0 +1,28 @@
+hpc:Linuxsystem a owl:Class .
+hpc:Cgroupsystem a owl:Class ;
+    rdfs:subClassOf hpc:Linuxsystem .
+
+hpc:Cgroupsubsystem a owl:Class ;
+    rdfs:subClassOf hpc:Cgroupsystem .
+
+hpc:Eventfdbasednotification a owl:Class ;
+    rdfs:subClassOf hpc:Cgroupsubsystem .
+
+hpc:Memoryenforcement a owl:Class ;
+    rdfs:subClassOf hpc:Cgroupsubsystem .
+
+hpc:hasCgroupSubsystem rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Linuxsystem ;
+    rdfs:range hpc:Cgroupsubsystem .
+
+hpc:isSupportedByKernel rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Cgroupsubsystem ;
+    rdfs:range xsd:string .
+
+hpc:isMounted rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Cgroupsubsystem ;
+    rdfs:range xsd:boolean .
+
+hpc:hasMountPoint rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Cgroupsubsystem ;
+    rdfs:range xsd:string .

@@ -1,0 +1,14 @@
+hpc:Schedulinglogic a owl:Class.
+hpc:SchedInterval a rdfs:DatatypeProperty;
+    rdfs:domain hpc:Schedulinglogic;
+    rdfs:range xsd:unsignedLong .
+
+hpc:DefaultQueueDepth a rdfs:DatatypeProperty;
+    rdfs:domain hpc:Schedulinglogic;
+    rdfs:range xsd:unsignedInt .
+
+hpc:BatchSchedDelay a rdfs:DatatypeProperty;
+    rdfs:domain hpc:Schedulinglogic;
+    rdfs:range xsd:unsignedInt .
+
+h

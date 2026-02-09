@@ -1,0 +1,35 @@
+hpc:fairshareadjustmentfactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceallocationpolicy ;
+    rdfs:range xsd:float .
+
+hpc:histhours a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceallocationpolicy ;
+    rdfs:range xsd:integer .
+
+hpc:gpuruntimefactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceallocationpolicy ;
+    rdfs:range xsd:float .
+
+hpc:fairshareadjustment a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceallocationpolicy ;
+    rdfs:range hpc:Resourceallocationpolicy ;
+    rdfs:subPropertyOf hpc:DynamicPriorityAdjustment .
+
+hpc:usedmemory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:float .
+
+hpc:usedslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:integer .
+
+hpc:slotmemory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:float .
+
+hpc:threshold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fairshareadjustment ;
+    rdfs:range xsd:float .
+
+hpc:Resourceallocationpolicy a owl:Class .
+hpc:Cluster a owl:Class .

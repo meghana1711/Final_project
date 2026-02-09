@@ -1,0 +1,16 @@
+hpc:Guaranteedresourcepool a owl:Class .
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range xsd:string .
+hpc:type a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range owl:Class .
+hpc:distribution a owl:ObjectProperty .
+hpc:Strict a owl:Class .
+hpc:IDLE_BUFFER a xsd:nonNegativeInteger .
+hpc:DURATION a xsd:nonNegativeInteger .
+hpc:CloseOnDemand a owl:Class .
+
+hpc:Guaranteepackage a owl:Class .
+hpc:slots a xsd:nonNegativeInteger .
+hpc:mem a xsd:nonNegativeInteger .

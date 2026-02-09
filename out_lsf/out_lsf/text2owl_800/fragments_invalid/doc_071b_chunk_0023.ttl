@@ -1,0 +1,21 @@
+hpc:Queue a owl:Class .
+hpc:Usergroup a owl:Class .
+hpc:Share a owl:Class .
+hpc:hasqueue a owl:ObjectProperty .
+hpc:Hasusergroup rdfs:domain hpc:Queue .
+hpc:Hasusergroup rdfs:range hpc:Usergroup .
+hpc:Hasshare rdfs:domain hpc:Queue .
+hpc:Hasshare rdfs:range hpc:Share .
+hpc:Sharevalue rdfs:domain hpc:Share .
+hpc:Sharevalue rdfs:range xsd:decimal .
+
+hpc:Queuesubclass a owl:Class .
+hpc:Queuesubclass rdfs:subClassOf hpc:Queue .
+hpc:Hasdefaultshare rdfs:domain hpc:Queuesubclass .
+hpc:Hasdefaultshare rdfs:range xsd:decimal .
+
+hpc:Usergroupsubclass a owl:Class .
+hpc:Usergroupsubclass rdfs:subClassOf hpc:Usergroup .
+
+
+This ontology fragment defines classes for Queue, UserGroup, and Share, as well as object properties for having a queue, user group, and share, and a datatype property for the share value. It also defines subclasses for Queue and UserGroup that have a default share.

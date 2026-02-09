@@ -1,0 +1,71 @@
+hpc:Useraccount a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf rdf:Resource ] .
+
+hpc:Executable a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf rdf:Resource ] .
+
+hpc:Checkpointdirectory a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf rdf:Resource ] .
+
+hpc:Checkpointfile a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf rdf:Resource ] .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf rdf:Resource ] .
+
+hpc:binarycompatibility a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Host .
+
+hpc:networkconnectivity a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .
+
+hpc:readexecutepermissions a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .
+
+hpc:readwritepermissions a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .
+
+hpc:accesstofiles a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .
+
+hpc:Checkpointablejob a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf hpc:Job ] .
+
+hpc:Checkpointablequeue a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf rdf:Resource ] .
+
+hpc:checkpointdirectoryproperty a owl:DatatypeProperty ;
+    rdfs:domain hpc:Checkpointablequeue ;
+    rdfs:range hpc:Checkpointdirectory .
+
+hpc:checkpointperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Checkpointablequeue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Jobcheckpointrestartfeature a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf rdf:Resource ] .
+
+hpc:checkpointableatjoblevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobcheckpointrestartfeature ;
+    rdfs:range hpc:Job .
+
+hpc:checkpointableatqueuelevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobcheckpointrestartfeature ;
+    rdfs:range hpc:Checkpointablequeue .
+
+hpc:checkpointfileproperty a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Checkpointfile .

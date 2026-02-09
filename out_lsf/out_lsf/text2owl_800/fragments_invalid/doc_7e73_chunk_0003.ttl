@@ -1,0 +1,36 @@
+hpc:Queue a owl:Class .
+hpc:Awsresource hpc:Queue rdfs:subClassOf hpc:Queue .
+hpc:RcAccount hpc:Queue rdfs:domain hpc:Queue .
+hpc:Bqueues hpc:objectproperty .
+hpc:Bqueues rdfs:range rdf:Resource .
+hpc:Bqueues rdfs:domain hpc:Queue .
+hpc:Bhosts hpc:objectproperty .
+hpc:Bhosts rdfs:range rdf:Resource .
+hpc:Bhosts rdfs:domain hpc:Queue .
+hpc:BhostsRconly hpc:objectproperty .
+hpc:BhostsRconly rdfs:range rdf:PlainLiteral .
+hpc:BhostsRconly rdfs:domain hpc:Queue .
+hpc:LsfMqBrokerHosts hpc:objectproperty .
+hpc:LsfMqBrokerHosts rdfs:range rdf:PlainLiteral .
+hpc:LsfMqBrokerHosts rdfs:domain hpc:Queue .
+hpc:LsfMqBrokerHostsRc hpc:objectproperty .
+hpc:LsfMqBrokerHostsRc rdfs:range rdf:PlainLiteral .
+hpc:LsfMqBrokerHostsRc rdfs:domain hpc:Queue .
+hpc:LsfMqBrokerHostsRconly hpc:objectproperty .
+hpc:LsfMqBrokerHostsRconly rdfs:range rdf:PlainLiteral .
+hpc:LsfMqBrokerHostsRconly rdfs:domain hpc:Queue .
+hpc:Resourceprovider hpc:class .
+hpc:Multipleresourceproviders hpc:Resourceprovider rdfs:subClassOf hpc:Resourceprovider .
+hpc:Template hpc:class .
+hpc:Differenttemplates hpc:Template rdfs:subClassOf hpc:Template .
+hpc:Exclusiveresources hpc:datatypeproperty .
+hpc:Instance hpc:class .
+hpc:Ibmcloudvirtualservers hpc:objectproperty .
+hpc:Ibmcloudvirtualservers rdfs:range rdf:Resource .
+hpc:Ibmcloudvirtualservers rdfs:domain hpc:Resourceprovider .
+hpc:Amazonwebservices hpc:objectproperty .
+hpc:Amazonwebservices rdfs:range rdf:Resource .
+hpc:Amazonwebservices rdfs:domain hpc:Resourceprovider .
+hpc:Microsoftazure hpc:objectproperty .
+hpc:Microsoftazure rdfs:range rdf:Resource .
+hpc:Microsoftazure rdfs:domain hpc:Resourceprovider .

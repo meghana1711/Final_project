@@ -1,0 +1,22 @@
+hpc:lsfEauthKey a owl:DatatypeProperty .
+hpc:lsfEauthOldkey a owl:DatatypeProperty .
+hpc:lsfEauthOldkeyExpiry a owl:DatatypeProperty .
+hpc:lsfAddonHosts a owl:ObjectProperty .
+hpc:LsfSudoersFile a owl:Class .
+hpc:LsfConfFile a owl:Class .
+hpc:GoogleprovTemplatesJson a owl:Class .
+hpc:launchinstancetemplates a owl:ObjectProperty .
+
+hpc:LsfSudoersFile rdfs:subClassOf owl:Class .
+hpc:LsfConfFile rdfs:subClassOf owl:Class .
+hpc:GoogleprovTemplatesJson rdfs:subClassOf owl:Class .
+
+hpc:LsfEauthKey rdfs:domain hpc:LsfSudoersFile ;
+  rdfs:range xsd:string .
+hpc:LsfEauthOldkey rdfs:domain hpc:LsfSudoersFile ;
+  rdfs:range xsd:string .
+hpc:LsfEauthOldkeyExpiry rdfs:domain hpc:LsfSudoersFile ;
+  rdfs:range xsd:date .
+hpc:LsfAddonHosts rdfs:domain hpc:LsfConfFile ;
+  rdfs:range xsd:string .
+hpc:Launchinstancetemplates rdfs:domain hpc:GoogleprovTemplatesJson .

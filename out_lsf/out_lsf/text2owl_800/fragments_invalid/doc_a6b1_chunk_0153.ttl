@@ -1,0 +1,43 @@
+hpc:Tvpoe a owl:Class .
+hpc:Bsub a owl:Class .
+hpc:Program a owl:Class .
+hpc:Poe a owl:Class .
+hpc:Totalview a owl:Class .
+
+hpc:uses a owl:ObjectProperty ;
+    rdfs:domain hpc:Tvpoe ;
+    rdfs:range hpc:Esub .
+
+hpc:hasoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsub ;
+    rdfs:range xsd:string .
+
+hpc:runson a owl:ObjectProperty ;
+    rdfs:domain hpc:Program ;
+    rdfs:range hpc:Network .
+
+hpc:integrateswith a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsub ;
+    rdfs:range hpc:Poe .
+
+hpc:hasoptiontv a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsub ;
+    rdfs:range xsd:string .
+
+hpc:noaskondlopen a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hasoptiontv .
+
+hpc:Sourcecode a owl:Class .
+hpc:lookupfunction a owl:ObjectProperty ;
+    rdfs:domain hpc:Totalview ;
+    rdfs:range hdfs:SourceCode .
+
+hpc:name a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:Controllingjob a owl:Class .
+hpc:notsupported a owl:ObjectProperty ;
+    rdfs:domain hpc:Controllingjob ;
+    rdfs:range xsd:string .
+
+hpc:Sourcepane a owl:Class .

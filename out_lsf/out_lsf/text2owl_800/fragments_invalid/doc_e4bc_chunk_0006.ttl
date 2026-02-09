@@ -1,0 +1,7 @@
+hpc:Resourcemap a owl:Class.
+hpc:resourcename a owl:DatatypeProperty.
+hpc:location a owl:ObjectProperty.
+
+rdfs:domain hpc:Resourcemap hpc:Resourcename;
+    rdfs:domain hpc:Resourcemap hpc:Location.
+rdfs:range hpc:Resourcename xsd:string.

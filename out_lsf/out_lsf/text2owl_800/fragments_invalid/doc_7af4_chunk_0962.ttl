@@ -1,0 +1,56 @@
+hpc:Projectgroup a owl:Class .
+hpc:Project a owl:Class .
+hpc:ownership a owl:ObjectProperty .
+hpc:ownershipLimits a owl:DatatypeProperty .
+hpc:nonShared a owl:DatatypeProperty .
+
+hpc:Projectgroup rdfs:subClassOf hpc:Project .
+
+hpc:Projectgroup rdfs:domain hpc:Projectgroup .
+hpc:Project rdfs:domain hpc:Project .
+hpc:Ownership rdfs:domain hpc:Projectgroup .
+hpc:OwnershipLimits rdfs:domain hpc:Projectgroup .
+hpc:NonShared rdfs:domain hpc:Projectgroup .
+
+hpc:Ownership rdfs:range xsd:decimal .
+hpc:OwnershipLimits rdfs:range xsd:decimal .
+hpc:NonShared rdfs:range xsd:nonNegativeInteger .
+
+hpc:ProjectGroup shares hpc:Ownership .
+hpc:ProjectGroup ownership_limits hpc:Ownership_Limits .
+hpc:ProjectGroup non_shared hpc:Non_Shared .
+
+hpc:ProjectgroupShare a owl:Class .
+hpc:ProjectgroupLimit a owl:Class .
+hpc:ProjectgroupNonshared a owl:Class .
+
+hpc:ProjectgroupShare rdfs:subClassOf hpc:Projectgroup .
+hpc:ProjectgroupLimit rdfs:subClassOf hpc:Projectgroup .
+hpc:ProjectgroupNonshared rdfs:subClassOf hpc:Projectgroup .
+
+hpc:ProjectGroup_Share rdf:type hpc:ProjectGroup .
+hpc:ProjectGroup_Limit rdf:type hpc:ProjectGroup .
+hpc:ProjectGroup_NonShared rdf:type hpc:ProjectGroup .
+
+hpc:ProjectgroupShare rdfs:subClassOf hpc:Project .
+hpc:ProjectgroupLimit rdfs:subClassOf hpc:Project .
+hpc:ProjectgroupNonshared rdfs:subClassOf hpc:Project .
+
+hpc:ProjectGroup_Share owl:hasOwner hpc:Project .
+hpc:ProjectGroup_Limit owl:hasOwnershipLimit hpc:Ownership_Limits .
+hpc:ProjectGroup_NonShared owl:hasNonShared hpc:Non_Shared .
+
+hpc:projectgroupShareOwner a owl:ObjectProperty .
+hpc:projectgroupLimitOwnershiplimit a owl:DatatypeProperty .
+hpc:projectgroupNonsharedNonshared a owl:DatatypeProperty .
+
+hpc:ProjectgroupShareOwner rdfs:domain hpc:ProjectgroupShare .
+hpc:ProjectgroupLimitOwnershiplimit rdfs:domain hpc:ProjectgroupLimit .
+hpc:ProjectgroupNonsharedNonshared rdfs:domain hpc:ProjectgroupNonshared .
+
+hpc:ProjectgroupShareOwner rdfs:range hpc:Project .
+hpc:ProjectgroupLimitOwnershiplimit rdfs:range xsd:decimal .
+hpc:ProjectgroupNonsharedNonshared rdfs:range xsd:nonNegativeInteger .
+
+hpc:ProjectGroup
+(hpc:ProjectGroup_Share (hpc:ProjectGroup_Share

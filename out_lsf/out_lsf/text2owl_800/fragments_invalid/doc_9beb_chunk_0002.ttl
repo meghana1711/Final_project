@@ -1,0 +1,39 @@
+hpc:Lsfsessionschedulerjob a owl:Class .
+hpc:hasDefaultQueue rdf:Property ;
+    rdfs:domain hpc:Lsfsessionschedulerjob ;
+    rdfs:range xsd:string .
+hpc:isSubmitted rdf:Property ;
+    rdfs:domain hpc:Lsfsessionschedulerjob ;
+    rdfs:range xsd:integer .
+hpc:hasApp rdf:Property ;
+    rdfs:domain hpc:Lsfsessionschedulerjob ;
+    rdfs:range xsd:string .
+hpc:hasResources rdf:Property ;
+    rdfs:domain hpc:Lsfsessionschedulerjob ;
+    rdfs:range xsd:string .
+hpc:isResizableJob rdf:Property ;
+    rdfs:domain hpc:Lsfsessionschedulerjob ;
+    rdfs:range xsd:boolean .
+hpc:LSFResizableJob rdf:Type owl:Class ;
+    rdfs:subClassOf hpc:Lsfsessionschedulerjob .
+hpc:hasLSB_RESIZABLE rdf:Property ;
+    rdfs:domain hpc:Lsfresizablejob ;
+    rdfs:range xsd:string .
+hpc:SSCHED_DEBUG_LOG_MASK rdf:Property ;
+    rdfs:domain hpc:Lsfsessionschedulerjob ;
+    rdfs:range xsd:string .
+hpc:SSCHED_DEBUG_CLASS rdf:Property ;
+    rdfs:domain hpc:Lsfsessionschedulerjob ;
+    rdfs:range xsd:string .
+hpc:SSCHED_DEBUG_MODULES rdf:Property ;
+    rdfs:domain hpc:Lsfsessionschedulerjob ;
+    rdfs:range xsd:string .
+hpc:SSCHED_DEBUG_REMOTE_HOSTS rdf:Property ;
+    rdfs:domain hpc:Lsfsessionschedulerjob ;
+    rdfs:range xsd:string .
+hpc:SSCHED_DEBUG_REMOTE_FILE rdf:Property ;
+    rdfs:domain hpc:Lsfsessionschedulerjob ;
+    rdfs:range xsd:boolean .
+hpc:sschedDebugOptions rdf:Property ;
+    rdfs:domain hpc:Lsfsessionschedulerjob ;
+    rdfs:range xsd:string .

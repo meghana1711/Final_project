@@ -1,0 +1,59 @@
+hpc:Job a owl:Class .
+hpc:LocalPendingJob a hpc:Job ;
+    rdfs:subClassOf hpc:Job .
+hpc:OtherJob a hpc:Job ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:kills a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:cleanedup a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:immediatecleanup a owl:ObjectProperty ;
+    rdfs:domain hpc:Localpendingjob ;
+    rdfs:range xsd:boolean .
+
+hpc:normalcleanup a owl:ObjectProperty ;
+    rdfs:domain hpc:Otherjob ;
+    rdfs:range xsd:boolean .
+
+hpc:silentskip a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:bkill a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:CLEAN_PERIOD rdfs:DatatypeProperty ;
+    rdfs:domain hpc:Lsb.params .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:status a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:string .
+
+hpc:INT xsd:string "INT" .
+hpc:KILL xsd:string "KILL" .
+hpc:TERM xsd:string "TERM" .
+
+hpc:bkill0 a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:bkill .
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:integer ;
+    rdfs:comment "kills all applicable jobs and silently skips the jobs that cannot be killed" .
+
+hpc:bkillStat a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:bkill .
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:string ;
+    rdfs:comment "kills large numbers of jobs in the specified status as soon as possible" .
+
+hpc:bkillStatPend a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:bkill_stat .
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:string ;
+    rdfs:comment "only works with three signals that are specified by the -s option: INT, KILL, or TERM" .

@@ -1,0 +1,59 @@
+hpc:Ego a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Default EGO uses ports that can be customized by customizing the base port." .
+
+hpc:baseport a owl:DatatypeProperty ;
+    rdfs:domain hpc:Ego ;
+    rdfs:range xsd:integer .
+
+hpc:Lsf a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "LSF daemon." .
+
+hpc:Lim a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "LSF Load Module." .
+
+hpc:Mbatchd a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "LSF Management Batch Daemon." .
+
+hpc:Managementhost a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Host where LIM and mbatchd are running on the management host." .
+
+hpc:Submissionhost a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Host from which you run the command." .
+
+hpc:bhosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Host .
+
+hpc:bqueues a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Queue .
+
+hpc:bparams a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Queue .
+
+hpc:bsub a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Job .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "LSF Job." .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Host in LSF." .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Queue in LSF." .
+
+hpc:Normal a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "Default queue." .

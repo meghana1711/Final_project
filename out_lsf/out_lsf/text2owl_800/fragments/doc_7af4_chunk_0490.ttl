@@ -1,0 +1,67 @@
+hpc:Joblevelresourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:Applicationlevelresourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:Queuelevelresourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:Resourcerequirement a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf owl:ObjectPropertyDomain ;
+    rdfs:domain hpc:Queuelevelresourcerequirement ;
+    rdfs:domain hpc:Joblevelresourcerequirement ;
+    rdfs:domain hpc:Applicationlevelresourcerequirement ;
+    rdfs:range rdf:Resource .
+
+hpc:hasresourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Resourcerequirement .
+
+hpc:rusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:string .
+
+hpc:mem a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lic a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:bwidth a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:threshold a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:duration a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:decay a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:resourcereservationmethod a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:host a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:task a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:overrides a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range hpc:Resourcerequirement .
+
+hpc:mergedrequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range hpc:Resourcerequirement .
+
+hpc:satisfieslimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range hpc:Resourcerequirement .
+
+hpc:defaultvalue a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range hpc:Resourcerequirement .

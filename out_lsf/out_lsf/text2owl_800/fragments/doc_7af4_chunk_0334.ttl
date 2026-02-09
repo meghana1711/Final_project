@@ -1,0 +1,17 @@
+hpc:maxJobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:maxCardinality 1 .
+
+hpc:maxJobinfoQueryPeriod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Systemconfiguration ;
+    rdfs:range xsd:integer ;
+    rdfs:minInclusive 1 ;
+    rdfs:subClassOf owl:Restriction ;
+    owl:onProperty hpc:MAX_JOBINFO_QUERY_PERIOD ;
+    owl:allValuesFrom xsd:positiveInteger .
+
+hpc:maxNumJobsKillOverRunlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Systemconfiguration ;
+    rdfs:range xsd:integer ;
+    rdfs:minInclusive 1 .

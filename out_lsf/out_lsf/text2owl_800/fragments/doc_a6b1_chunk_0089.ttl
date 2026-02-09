@@ -1,0 +1,36 @@
+hpc:cpufactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Machine ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Machine a owl:Class .
+
+hpc:jobplacement a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Machine .
+
+hpc:cpuloadthreshold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Machine ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Lsf a owl:Class .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Task .
+
+hpc:Task a owl:Class .
+
+hpc:responsetime a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeDuration .
+
+hpc:Slowerhost a owl:Class ;
+    rdfs:subClassOf hpc:Machine .
+
+hpc:Fasterhost a owl:Class ;
+    rdfs:subClassOf hpc:Machine .
+
+hpc:Underusedhost a owl:Class ;
+    rdfs:subClassOf hpc:Machine .
+
+hpc:Overusedhost a owl:Class ;
+    rdfs:subClassOf hpc:Machine .

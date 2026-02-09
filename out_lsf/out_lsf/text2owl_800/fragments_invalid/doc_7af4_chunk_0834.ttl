@@ -1,0 +1,39 @@
+hpc:lsfLoadUserProfile a owl:ObjectProperty .
+hpc:lsfLocalResources a owl:ObjectProperty .
+
+hpc:LSF_LOAD_USER_PROFILE_Local a owl:NamedIndividual ;
+    rdfs:label "Local" ;
+    rdfs:comment "LSF loads the Windows user profile from the local execution machine." .
+
+hpc:LSF_LOAD_USER_PROFILE_Roaming a owl:NamedIndividual ;
+    rdfs:label "Roaming" ;
+    rdfs:comment "LSF loads a roaming user profile if it has been set up. If not, the local user profile is loaded instead." .
+
+hpc:LSF_LOAD_USER_PROFILE_Default a owl:NamedIndividual ;
+    rdfs:label "Default" ;
+    rdfs:comment "No user profiles are loaded when jobs run on Windows hosts." .
+
+hpc:Resourcemap a owl:Class .
+hpc:Resource a owl:Class .
+hpc:Type a owl:Class .
+
+hpc:Hasresourcemap rdfs:domain hpc:LsfLocalResources ;
+    rdfs:range hpc:Resourcemap .
+
+hpc:Hasresource rdfs:domain hpc:LsfLocalResources ;
+    rdfs:range hpc:Resource .
+
+hpc:Hastype rdfs:domain hpc:LsfLocalResources ;
+    rdfs:range hpc:Type .
+
+hpc:resourcemap a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcemap ;
+    rdfs:range xsd:string .
+
+hpc:resource a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource .
+    rdfs:range xsd:string .
+
+hpc:type a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource .
+    rdfs:range xsd:string .

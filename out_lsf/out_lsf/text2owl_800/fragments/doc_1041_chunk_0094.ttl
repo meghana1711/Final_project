@@ -1,0 +1,26 @@
+hpc:Applicationprofile a owl:Class .
+hpc:ApplicationName rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:string .
+
+hpc:Njobs rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:integer .
+
+hpc:Njobspending rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:integer .
+
+hpc:Run rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:integer .
+
+hpc:RunRunning rdfs:subClassOf hpc:Run ;
+    rdfs:comment "The number of tasks for all running jobs in the application profile." .
+
+hpc:RunAllocated rdfs:subClassOf hpc:Run ;
+    rdfs:comment "If the -alloc option is used, the total is allocated slots for the jobs in the application profile." .
+
+hpc:printusageerror a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range rdf:PlainLiteral .
+
+hpc:printversionerror a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range rdf:PlainLiteral .

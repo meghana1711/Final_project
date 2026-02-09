@@ -1,0 +1,9 @@
+hpc:estimatorsimstartinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Estimator ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Any integer from 1 to ESTIMATOR_SIM_START_INTERVAL. If set to a larger value, LSF defaults to the value of ESTIMATOR_SIM_START_INTERVAL. Default 30." .
+
+hpc:estimatormaxtimeprediction a owl:ObjectProperty ;
+    rdfs:domain hpc:Estimator ;
+    rdfs:range xsd:minute ;
+    rdfs:comment "Specifies the maximum amount of time into the future, in minutes, for which the job start time estimator predicts the start time of jobs." .

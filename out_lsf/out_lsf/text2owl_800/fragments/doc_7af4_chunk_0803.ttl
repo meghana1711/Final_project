@@ -1,0 +1,38 @@
+hpc:lsfDockerMountTmpdir a owl:ObjectProperty .
+hpc:lsfDualstackPreferIpv6 a owl:ObjectProperty .
+
+hpc:LsfDockerMountTmpdir rdfs:domain hpc:Dockerjob .
+hpc:LsfDualstackPreferIpv6 rdfs:domain hpc:Cluster .
+
+hpc:LsfDockerMountTmpdir rdfs:range xsd:string .
+hpc:LsfDualstackPreferIpv6 rdfs:range xsd:string .
+
+hpc:Dualstackhost a owl:Class .
+hpc:Ipv6onlyhost a owl:Class .
+hpc:Ipv4onlyhost a owl:Class .
+
+hpc:Cluster rdfs:subClassOf hpc:System .
+hpc:Dualstackcluster a owl:Class .
+hpc:Ipv6onlycluster a owl:Class .
+hpc:Ipv4onlycluster a owl:Class .
+
+hpc:Dualstackcluster rdfs:subClassOf hpc:Cluster .
+hpc:Dualstackcluster rdfs:subClassOf hpc:Hasdualstackhost .
+hpc:Hasdualstackhost rdfs:subClassOf hpc:Cluster .
+
+hpc:Ipv6onlycluster rdfs:subClassOf hpc:Cluster .
+hpc:Ipv6onlycluster rdfs:subClassOf hpc:Hasipv6onlyhost .
+hpc:Hasipv6onlyhost rdfs:subClassOf hpc:Cluster .
+
+hpc:Ipv4onlycluster rdfs:subClassOf hpc:Cluster .
+hpc:Ipv4onlycluster rdfs:subClassOf hpc:Hasipv4onlyhost .
+hpc:Hasipv4onlyhost rdfs:subClassOf hpc:Cluster .
+
+hpc:Dualstackhost rdfs:subClassOf hpc:Host .
+hpc:Ipv6onlyhost rdfs:subClassOf hpc:Host .
+hpc:Ipv4onlyhost rdfs:subClassOf hpc:Host .
+
+hpc:Host rdfs:subClassOf rdf:Resource .
+hpc:System rdfs:subClassOf rdf:Resource .
+hpc:Cluster rdfs:subClassOf hpc:System .
+hpc:Dockerjob rdfs:subClassOf hpc:Job .

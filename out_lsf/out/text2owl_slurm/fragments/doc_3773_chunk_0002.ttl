@@ -1,0 +1,52 @@
+hpc:Plugin
+    a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:InitFunction
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:string .
+
+hpc:FiniFunction
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:string .
+
+hpc:Description
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Plugin ;
+    rdfs:range xsd:string .
+
+hpc:Returns
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Function ;
+    rdfs:range xsd:string .
+
+hpc:Parameters
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Function ;
+    rdfs:range xsd:string .
+
+hpc:JobRecord
+    a owl:Class ;
+    rdfs:subClassOf xsd:anyURI .
+
+hpc:SiteFactorPlugin
+    a owl:Class ;
+    rdfs:subClassOf hpc:Plugin .
+
+hpc:SiteFactorParameters
+    a owl:Class .
+
+hpc:site_factor_p_reconfig
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Sitefactorplugin .
+
+hpc:site_factor_p_set
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Sitefactorplugin ;
+    rdfs:range hpc:Jobrecord .
+
+hpc:site_factor_p_update
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Sitefactorplugin .

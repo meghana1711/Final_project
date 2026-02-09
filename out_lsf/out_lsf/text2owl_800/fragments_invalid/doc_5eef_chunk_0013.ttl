@@ -1,0 +1,48 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Cluster a owl:Class .
+hpc:Datamanager a owl:Class .
+hpc:Datamanagementcache a owl:Class .
+hpc:query a owl:ObjectProperty .
+hpc:User a owl:Class .
+hpc:Group a owl:Class .
+hpc:changegroup a owl:ObjectProperty .
+hpc:changemode a owl:ObjectProperty .
+hpc:tagquery a owl:ObjectProperty .
+hpc:tagcleanup a owl:ObjectProperty .
+hpc:showconf a owl:ObjectProperty .
+hpc:connections a owl:ObjectProperty .
+hpc:admin a owl:ObjectProperty .
+hpc:Filebasedcache a owl:Class .
+hpc:Bdatacache a owl:Class .
+hpc:u a owl:ObjectProperty .
+hpc:g a owl:ObjectProperty .
+
+hpc:Datamanager rdfs:subClassOf hpc:Cluster .
+hpc:Datamanagementcache rdfs:subClassOf hpc:Datamanager .
+
+hpc:Query rdfs:domain hpc:Datamanager ;
+    rdfs:range hpc:Query .
+hpc:U rdfs:domain hpc:Datamanager ;
+    rdfs:range hpc:User .
+hpc:G rdfs:domain hpc:Datamanager ;
+    rdfs:range hpc:Group .
+hpc:Changegroup rdfs:domain hpc:Datamanager ;
+    rdfs:range hpc:Group .
+hpc:Changemode rdfs:domain hpc:Datamanagementcache ;
+    rdfs:range xsd:string .
+hpc:Tagquery rdfs:domain hpc:Datamanagementcache ;
+    rdfs:range hpc:Tagquery .
+hpc:Tagcleanup rdfs:domain hpc:Datamanagementcache ;
+    rdfs:range hpc:U .
+hpc:Showconf rdfs:domain hpc:Datamanager ;
+    rdfs:range hpc:Showconf .
+hpc:Connections rdfs:domain hpc:Datamanager ;
+    rdfs:range hpc:Connections .
+hpc:Admin rdfs:domain hpc:Datamanager ;
+    rdfs:range hpc:Admin .
+hpc:Filebasedcache rdfs:subClassOf hpc:Datamanagementcache .
+hpc:Bdatacache rdfs:subClassOf hpc:Filebasedcache .

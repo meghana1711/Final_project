@@ -1,0 +1,61 @@
+hpc:Gpuextend a owl:Class;
+    rdfs:subClassOf owl:NamedIndividual.
+
+hpc:nnumas a owl:DatatypeProperty;
+    rdfs:domain hpc:Gpuextend;
+    rdfs:range xsd:nonNegativeInteger.
+
+hpc:gbrand a owl:ObjectProperty;
+    rdfs:domain hpc:Gpuextend;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf rdf:type.
+
+hpc:gbrand rdfs:comment "The GPU brand. This value is case sensitive, and supports NVIDIA GPUs.";
+
+hpc:gbrand rdfs:label "GPU brand";
+
+hpc:gmodel a owl:ObjectProperty;
+    rdfs:domain hpc:Gpuextend;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf rdf:type.
+
+hpc:gmodel rdfs:comment "The GPU model. This value is case sensitive, and supports NVIDIA GPUs.";
+
+hpc:gmodel rdfs:label "GPU model";
+
+hpc:gmem a owl:DatatypeProperty;
+    rdfs:domain hpc:Gpuextend;
+    rdfs:range xsd:decimal.
+
+hpc:nvlink a owl:DatatypeProperty;
+    rdfs:domain hpc:Gpuextend;
+    rdfs:range xsd:string.
+
+hpc:nvlink rdfs:comment "Specifies whether the GPU supports NVLink. Valid values (case insensitive) are y, n, yes, no.";
+
+hpc:computeunit a owl:ObjectProperty;
+    rdfs:domain hpc:Gpuextend;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf rdf:type.
+
+hpc:computeUnit rdfs:comment "Any compute unit requirements for the LSF resource connector to provision.";
+
+hpc:computeUnit rdfs:label "Compute unit";
+
+hpc:Computeunit rdfs:domain hpc:Gpuextend;
+hpc:Computeunit rdfs:range rdf:PlainLiteral;
+hpc:computeUnit rdfs:subPropertyOf rdf:type;
+
+hpc:computeUnit rdf:subPropertyOf hpc:hasComputeUnit.
+
+hpc:hascomputeunit a owl:ObjectProperty;
+    rdfs:domain hpc:Lsbhost;
+    rdfs:range hpc:Computeunit;
+    rdfs:subPropertyOf rdf:type.
+
+hpc:Computeunit a owl:Class;
+    rdfs:subClassOf owl:NamedIndividual.
+
+hpc:ComputeUnit rdfs:comment "The specified compute unit value must match the compute unit configured in the lsb.hosts file; otherwise, this computeUnit value in the template is ignore.";
+
+hpc:ComputeUnit rdfs:label "Compute unit";

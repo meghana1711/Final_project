@@ -1,0 +1,43 @@
+hpc:Assignedresourceassignment a owl:Class .
+hpc:resourcename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Assignedresourceassignment ;
+    rdfs:range xsd:string .
+hpc:hostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Assignedresourceassignment ;
+    rdfs:range xsd:string .
+
+# bhosts Command Output Fields
+hpc:Bhostscommandoutput a owl:Class .
+hpc:availablemem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhostscommandoutput ;
+    rdfs:range xsd:string .
+hpc:reservedmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhostscommandoutput ;
+    rdfs:range xsd:string .
+hpc:totalmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhostscommandoutput ;
+    rdfs:range xsd:string .
+
+# Job Submission Output Control
+hpc:Bsubcommandjoboutputcontrol a owl:Class .
+hpc:bsubquiet a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bsubcommandjoboutputcontrol ;
+    rdfs:range xsd:string .
+
+# CPU and Memory Usage Details
+hpc:Jobcpumemoryusagedetails a owl:Class .
+hpc:averagecpuefficiency a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcpumemoryusagedetails ;
+    rdfs:range xsd:string .
+hpc:cpupeakusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcpumemoryusagedetails ;
+    rdfs:range xsd:string .
+hpc:cpupeakreachedduration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcpumemoryusagedetails ;
+    rdfs:range xsd:string .
+
+# LSF Job Cleanup
+hpc:Lsfjobcleanup a owl:Class .
+hpc:lsbcleanpdonetimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjobcleanup ;
+    rdfs:range xsd:string .

@@ -1,0 +1,9 @@
+hpc:lsfResTimeout a owl:DatatypeProperty .
+hpc:LsfResTimeout rdfs:domain hpc:Resourcemanager ;
+                     rdfs:range xsd:integer .
+
+hpc:lsfRootRex a owl:DatatypeProperty .
+hpc:LsfRootRex rdfs:domain hpc:Resourcemanager ;
+                 rdfs:range xsd:string .
+
+hpc:Resourcemanager a owl:Class .

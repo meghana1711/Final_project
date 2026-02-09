@@ -1,0 +1,49 @@
+hpc:Reservation a owl:Class .
+hpc:reservationname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+hpc:Host a owl:Class .
+hpc:swapspace a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+hpc:time a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:time .
+hpc:Jobslot a owl:Class ;
+    rdfs:subClassOf hpc:Reservation .
+hpc:Systemreservation a owl:Class ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:subClassOf hpc:Jobslot .
+hpc:Advancereservation a owl:Class ;
+    rdfs:subClassOf hpc:Jobslot .
+hpc:Openreservation a owl:Class ;
+    rdfs:subClassOf hpc:Advancereservation .
+hpc:userdefinedreservationname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range xsd:string .
+hpc:hosttype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Openreservation ;
+    rdfs:range xsd:string .
+
+hpc:Reservation_user2_0 a hpc:Reservation ;
+    hpc:Time "5:18:0-5:20:0" .
+hpc:Reservation_system_0 a hpc:SystemReservation ;
+    hpc:Time "5:18:0-5:20:0" .
+hpc:Reservation_user2_1 a hpc:AdvanceReservation ;
+    hpc:Time "12:0-14:0" ;
+    hpc:Host "hostA hostB" .
+hpc:Reservation_user1_1 a hpc:OpenReservation ;
+    hpc:Time "6:0-8:0" ;
+    hpc:HostType "any" ;
+    hpc:User "user1" .
+hpc:Reservation_user3 a hpc:AdvanceReservation ;
+    hpc:Time "12:0-14:0" ;
+    hpc:Host "hostB" ;
+    hpc:User "user3" .
+hpc:Reservation_user2_0 a hpc:JobSlot ;
+    hpc:UserDefinedReservationName "Production AR test" .
+hpc:Reservation_user2_2 a hpc:AdvanceReservation ;
+    hpc:SwapSpace "> 50" ;
+    hpc:Time "12:0-14:0" ;
+    hpc:Host "hostA hostB" ;
+    hpc:User "user2" .

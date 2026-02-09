@@ -1,0 +1,55 @@
+hpc:Commandtransferjobdestination a owl:Class .
+
+hpc:hasdestinationtype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Commandtransferjobdestination ;
+    rdfs:range xsd:string .
+
+hpc:noDestinationSpecified a hpc:DestinationType ;
+    rdfs:value "not specified" .
+
+hpc:relativePath a hpc:DestinationType ;
+    rdfs:subClassOf hpc:Absolutepath ;
+    rdfs:subClassOf hpc:Hostnameabsolutepath .
+
+hpc:absolutePath a hpc:DestinationType ;
+    rdfs:subClassOf hpc:Hostnameabsolutepath .
+
+hpc:hostNameAbsolutePath a hpc:DestinationType ;
+    rdfs:domain xsd:string ;
+    rdfs:range xsd:string .
+
+hpc:Prohibitedpathdescriptor a owl:Class ;
+    rdfs:subClassOf hpc:Destinationtype ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:subClassOf rdf:PlainLiteral ;
+    rdfs:comment "Path descriptors that contain special names ~/, ./, and ../." .
+
+hpc:createsymboliclinks a owl:ObjectProperty ;
+    rdfs:domain hpc:Commandtransferjobdestination ;
+    rdfs:range hpc:Boolean .
+
+hpc:stagingAreaMounted a rdfs:Property ;
+    rdfs:domain hpc:Commandtransferjobdestination ;
+    rdfs:range hpc:Boolean .
+
+hpc:sourceFilePreservation a rdfs:Property ;
+    rdfs:domain hpc:Commandtransferjobdestination ;
+    rdfs:range hpc:Boolean .
+
+hpc:tagname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Commandtransferjobdestination ;
+    rdfs:range xsd:string .
+
+hpc:Tagnameconstraints a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:subClassOf rdf:PlainLiteral ;
+    rdfs:comment "Valid tag names can contain only alphanumeric characters ([A-z|a-z|0-9]), and a period (.), underscore (_), and dash (-). The tag name cannot contain the special operating system names for parent directory (../), current directory (./), or user home directory (~/). Tag names cannot contain spaces." .
+
+hpc:Tagdirectory a owl:Class ;
+    rdfs:subClassOf hpc:Commandtransferjobdestination .
+
+hpc:Taggedfile a owl:Class ;
+    rdfs:subClassOf hpc:Commandtransferjobdestination .
+
+hpc:Taggeddirectory a owl:Class ;
+    rdfs:subClassOf hpc:Commandtransferjobdestination .

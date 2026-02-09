@@ -1,0 +1,26 @@
+hpc:Host a owl:Class .
+hpc:hastiminglevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+hpc:Timinglevel a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty hpc:hasTimingLevel ;
+        owl:hasValue "no"^^xsd:string ;
+        owl:allValuesFrom rdf:nil ] .
+hpc:TimingLevel1 a hpc:TimingLevel ;
+    rdfs:label "1"@en .
+hpc:TimingLevel2 a hpc:TimingLevel ;
+    rdfs:label "2"@en .
+hpc:TimingLevel3 a hpc:TimingLevel ;
+    rdfs:label "3"@en .
+hpc:TimingLevel4 a hpc:TimingLevel ;
+    rdfs:label "4"@en .
+hpc:TimingLevel5 a hpc:TimingLevel ;
+    rdfs:label "5"@en .
+hpc:settiminglevel a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range hpc:Timinglevel ;
+    rdfs:subPropertyOf hpc:hasTimingLevel .
+hpc:logfilename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host .
+hpc:hostname a owl:DatatypeProperty .

@@ -1,0 +1,41 @@
+hpc:Lsf a owl:Class .
+hpc:killsjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Job .
+
+hpc:immediatekill a owl:ObjectProperty ;
+    rdfs:domain hpc:Killsjob ;
+    rdfs:range hpc:Job ;
+    rdfs:subPropertyOf hpc:killsJob .
+
+hpc:normalcleanup a owl:ObjectProperty ;
+    rdfs:domain hpc:Killsjob ;
+    rdfs:range hpc:Job ;
+    rdfs:subPropertyOf hpc:killsJob .
+
+hpc:notlogged a owl:DatatypeProperty ;
+    rdfs:domain hpc:Immediatekill ;
+    rdfs:range xsd:boolean .
+
+hpc:Bkillcommand a owl:Class .
+hpc:bkillstat a owl:ObjectProperty ;
+    rdfs:domain hpc:Bkillcommand ;
+    rdfs:range hpc:Bkillstatoption .
+
+hpc:run a owl:ObjectProperty ;
+    rdfs:domain hpc:Bkillstat ;
+    rdfs:range hpc:Runningjob .
+
+hpc:pend a owl:ObjectProperty ;
+    rdfs:domain hpc:Bkillstat ;
+    rdfs:range hp:JobStatus .
+
+hpc:Jobstatus a owl:Class .
+hpc:INT a hpc:JobStatus ;
+hpc:KILL a hpc:JobStatus ;
+hpc:TERM a hpc:JobStatus .
+
+hpc:Jobcountbasedfairsharescheduling a owl:Class .
+hpc:fairshareJobCount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:boolean .

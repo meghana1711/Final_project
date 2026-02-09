@@ -1,0 +1,56 @@
+hpc:DataRequirement
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the data requirements for a job." .
+
+hpc:FileRequirement
+    a owl:Class ;
+    rdfs:subClassOf hpc:Datarequirement ;
+    rdfs:comment "Represents a requirement for a specific file." .
+
+hpc:FolderRequirement
+    a owl:Class ;
+    rdfs:subClassOf hpc:Datarequirement ;
+    rdfs:comment "Represents a requirement for a specific folder." .
+
+hpc:TagRequirement
+    a owl:Class ;
+    rdfs:subClassOf hpc:Datarequirement ;
+    rdfs:comment "Represents a requirement for a specific tag." .
+
+hpc:hasDataRequirement
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Datarequirement ;
+    rdfs:comment "Relates a job to its data requirements." .
+
+hpc:fileRequirement
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Filerequirement ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the absolute path to a required file." .
+
+hpc:folderRequirement
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Folderrequirement ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the absolute path to a required folder." .
+
+hpc:tagRequirement
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tagrequirement ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the name of a required tag." .
+
+hpc:tagNamePattern
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Tagrequirement ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the pattern for a valid tag name." .
+    rdfs:domain hpc:Tagrequirement ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents a string that contains only alphanumeric characters, period (.), underscore (_), and dash (-), and does not contain special operating system names for parent directory (../), current directory (./), or user home directory (~/)." .
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents a string that does not contain spaces." .
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents a string that does not begin with a dash character." .

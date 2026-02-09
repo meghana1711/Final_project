@@ -1,0 +1,34 @@
+hpc:Job a owl:Class .
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:samehostaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:JobID .
+
+hpc:SameHostPreference a owl:Enum ;
+    rdfs:subClassOf owl:Datatype .
+hpc:DefaultSameHostPreference a hpc:SameHostPreference ;
+    rdfs:label "Default" .
+hpc:PreferNotSameHost a hpc:SameHostPreference ;
+    rdfs:label "!" .
+hpc:MandatorySameHost a hpc:SameHostPreference ;
+    rdfs:label "#" .
+hpc:MandatoryNotSameHost a hpc:SameHostPreference ;
+    rdfs:label "~" .
+
+hpc:samecuaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:JobID .
+
+hpc:SameCUPreference a owl:Enum ;
+    rdfs:subClassOf owl:Datatype .
+hpc:DefaultSameCUPreference a hpc:SameCUPreference ;
+    rdfs:label "Default" .
+hpc:PreferNotSameCU a hpc:SameCUPreference ;
+    rdfs:label "!" .
+hpc:MandatorySameCU a hpc:SameCUPreference ;
+    rdfs:label "#" .

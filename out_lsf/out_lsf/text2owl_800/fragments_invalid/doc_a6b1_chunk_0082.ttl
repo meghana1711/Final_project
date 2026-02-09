@@ -1,0 +1,37 @@
+hpc:Paralleljob a owl:Class .
+hpc:Jobexitratetype a owl:Class .
+hpc:Jobinitializationfailure a owl:Class .
+hpc:Firstexecutionhost a owl:Class .
+hpc:Otherexecutionhosts a owl:Class .
+
+hpc:hasexitratetype a owl:ObjectProperty .
+hpc:isdefault a owl:ObjectProperty .
+hpc:includesjobinitializationfailure a owl:ObjectProperty .
+hpc:iscountedinexitratecalculation a owl:ObjectProperty .
+
+hpc:JobExitRateType JOBEXIT_NONLSF rdf:type hpc:JobExitRateType ;
+    hpc:isDefault true ;
+    hpc:Includesjobinitializationfailure hpc:firstexecutionhost .
+hpc:JobExitRateType JOBINIT rdf:type hpc:JobExitRateType ;
+    hpc:Includesjobinitializationfailure hpc:firstexecutionhost ;
+    hpc:Iscountedinexitratecalculation hpc:otherexecutionhosts .
+hpc:JobExitRateType HPCINIT rdf:type hpc:JobExitRateType ;
+    hpc:isCountedInExitRateCalculation all hpc:ExecutionHost .
+hpc:JobExitRateType JOBEXIT_NONLSF JOBINIT rdf:type hpc:JobExitRateType ;
+    hpc:isCountedInExitRateCalculation all hpc:ExecutionHost .
+
+hpc:Remotejob a owl:Class ;
+    rdfs:subClassOf hpc:Paralleljob .
+hpc:hasexitratetype a owl:ObjectProperty ;
+    rdfs:domain hpc:Remotejob ;
+    rdfs:range hpc:Jobexitratetype .
+
+hpc:Executionhost a owl:Class .
+hpc:Firstexecutionhost rdfs:subClassOf hpc:Executionhost .
+hpc:Otherexecutionhosts rdfs:subClassOf hpc:Executionhost .
+
+hpc:globalexitrate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Multislothost .
+hpc:hasValue xsd:float .
+
+hpc:Handlehostleveljobexceptions a owl:Class .

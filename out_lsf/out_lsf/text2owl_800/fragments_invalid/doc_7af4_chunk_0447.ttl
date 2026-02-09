@@ -1,0 +1,51 @@
+hpc:Job a owl:Class .
+hpc:firstexecutionhost a owl:ObjectProperty .
+hpc:regularhost a owl:ObjectProperty .
+hpc:cpurequirement a owl:DatatypeProperty .
+hpc:Hostgroup a owl:Class .
+hpc:Computeunit a owl:Class .
+hpc:ego a owl:ObjectProperty .
+hpc:queuebasedfairshare a owl:ObjectProperty .
+hpc:Hostpartition a owl:Class .
+hpc:hostpreference a owl:ObjectProperty .
+hpc:queuespecification a owl:ObjectProperty .
+hpc:advancereservation a owl:ObjectProperty .
+
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Firstexecutionhost rdfs:domain hpc:Job .
+hpc:Regularhost rdfs:domain hpc:Job .
+hpc:Cpurequirement rdfs:domain hpc:Job .
+hpc:Hostgroup rdfs:subClassOf owl:Class .
+hpc:Computeunit rdfs:subClassOf owl:Class .
+hpc:Ego rdfs:domain hpc:Host .
+hpc:Queuebasedfairshare rdfs:domain hpc:Host .
+hpc:Hostpartition rdfs:subClassOf owl:Class .
+hpc:Hostpreference rdfs:domain hpc:Job .
+hpc:Queuespecification rdfs:domain hpc:Job .
+hpc:Advancereservation rdfs:domain hpc:Job .
+
+hpc:Firstexecutionhost rdfs:range rdf:Resource .
+hpc:Regularhost rdfs:range rdf:Resource .
+hpc:Cpurequirement rdfs:range xsd:decimal .
+hpc:Hostgroup rdfs:range rdf:Resource .
+hpc:Computeunit rdfs:range rdf:Resource .
+hpc:Ego rdfs:range rdf:Boolean .
+hpc:Queuebasedfairshare rdfs:range rdf:Boolean .
+hpc:Hostpartition rdfs:range rdf:Resource .
+hpc:Hostpreference rdfs:range rdf:Resource .
+hpc:Queuespecification rdfs:range rdf:Resource .
+hpc:Advancereservation rdfs:range rdf:Resource .
+
+hpc:cannotspecifyfirstexecutionhostwithbrun a owl:ObjectProperty .
+hpc:Cannotspecifyfirstexecutionhostwithbrun rdfs:domain hpc:Command .
+hpc:Cannotspecifyfirstexecutionhostwithbrun rdfs:range rdf:Boolean .
+
+hpc:hoststhatparticipateinqueuebasedfairsharenotinhostpartition a owl:ObjectProperty .
+hpc:Hoststhatparticipateinqueuebasedfairsharenotinhostpartition rdfs:domain hpc:Host .
+hpc:Hoststhatparticipateinqueuebasedfairsharenotinhostpartition rdfs:range rdf:Resource .
+
+hpc:hostpreferencescombineintelligentlywithqueuespecification a owl:ObjectProperty .
+hpc:Hostpreferencescombineintelligentlywithqueuespecification rdfs:domain hpc:Job .
+hpc:Hostpreferencescombineintelligentlywithqueuespecification rdfs:range rdf:Boolean .
+
+hpc:jobRuns

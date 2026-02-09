@@ -1,0 +1,64 @@
+hpc:Tmp a owl:Class ;
+    rdfs:comment "The amount of free space in /tmp, in MB." .
+
+hpc:Swap a owl:Class ;
+    rdfs:comment "The amount of currently available swap space." ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:comment "Quantity of system resources" ] .
+
+hpc:SwapSpaceUnit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Swap ;
+    rdfs:range xsd:string .
+
+hpc:swapspace a owl:ObjectProperty ;
+    rdfs:domain hpc:Swap ;
+    rdfs:range hpc:Swapspace .
+
+hpc:Mem a owl:Class ;
+    rdfs:comment "The amount of currently available memory." ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:comment "Quantity of system resources" ] .
+
+hpc:MemSpaceUnit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Mem ;
+    rdfs:range xsd:string .
+
+hpc:memspace a owl:ObjectProperty ;
+    rdfs:domain hpc:Mem ;
+    rdfs:range hpc:Memspace .
+
+hpc:Cpuspeed a owl:Class ;
+    rdfs:comment "The speed of each individual CPU, in megahertz (MHz)." ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:comment "Quantity of system resources" ] .
+
+hpc:CpuSpeedUnit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Cpuspeed ;
+    rdfs:range xsd:decimal .
+
+hpc:Bandwidth a owl:Class ;
+    rdfs:comment "The maximum bandwidth requirement, in megabits per second (Mbps)." ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:comment "Quantity of system resources" ] .
+
+hpc:BandwidthUnit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bandwidth ;
+    rdfs:range xsd:decimal .
+
+hpc:Loadindex a owl:Class ;
+    rdfs:comment "A system load index." ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:comment "Quantity of system resources" ] .
+
+hpc:Loadschedthreshold a owl:Class ;
+    rdfs:comment "The job dispatch threshold for a load index." ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:comment "Threshold for job dispatch and suspension" ] .
+
+hpc:Loadstopthreshold a owl:Class ;
+    rdfs:comment "The threshold for job suspension." ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:comment "Threshold for job suspension" ] .
+
+hpc:Jobexceptionparameter a owl:Class ;
+    rdfs:comment "Configured job exception thresholds and number of jobs in each exception state for the queue." .

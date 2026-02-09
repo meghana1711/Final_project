@@ -1,0 +1,50 @@
+hpc:Filecopying a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                        rdfs:subClassOf rdfs:Resource ] .
+
+hpc:Localfile a owl:Class ;
+    rdfs:subClassOf hpc:Filecopying ;
+    rdfs:domain hpc:Filecopying ;
+    rdfs:range rdf:XMLLiteral ;
+    rdfs:comment "The file on the submission host." .
+
+hpc:Remotefile a owl:Class ;
+    rdfs:subClassOf hpc:Filecopying ;
+    rdfs:domain hpc:Filecopying ;
+    rdfs:range rdf:XMLLiteral ;
+    rdfs:comment "The file on the execution host." .
+
+hpc:fileoperator a owl:ObjectProperty ;
+    rdfs:domain hpc:Filecopying ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The operator used for copying files." .
+
+hpc:copybeforeexecution a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:FileOperator ;
+    rdfs:domain hpc:Filecopying ;
+    rdfs:range rdf:XMLLiteral ;
+    rdfs:comment "The local file is copied to the remote file before job execution." .
+
+hpc:overwrite a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:FileOperator ;
+    rdfs:domain hpc:Filecopying ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the remote file is overwritten if it exists." .
+
+hpc:copyaftercompletion a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:FileOperator ;
+    rdfs:domain hpc:Filecopying ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the local file is overwritten if it exists." .
+
+hpc:append a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:FileOperator ;
+    rdfs:domain hpc:Filecopying ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the remote file is appended to the local file after the job completes." .
+
+hpc:createifnotexists a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:FileOperator ;
+    rdfs:domain hpc:Filecopying ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the local file is created if it does not exist." .

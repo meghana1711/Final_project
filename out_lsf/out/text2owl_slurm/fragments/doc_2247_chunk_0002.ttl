@@ -1,0 +1,7 @@
+hpc:Slurmusersarchive a owl:Class .
+hpc:hasslurmusersarchive a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmusersarchive ;
+    rdfs:range hpc:Url .
+
+hpc:url a owl:DatatypeProperty ;
+    rdfs:range xsd:URL .

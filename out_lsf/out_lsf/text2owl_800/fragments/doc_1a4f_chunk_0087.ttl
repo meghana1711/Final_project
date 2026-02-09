@@ -1,0 +1,51 @@
+hpc:Job a owl:Class .
+hpc:User a owl:Class .
+hpc:Queue a owl:Class .
+hpc:Priority a owl:Class .
+hpc:Status a owl:Class .
+
+hpc:hasjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:issubmittedby a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:User .
+
+hpc:haspriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:isrunning a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:isinqueue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:isadmin a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:boolean .
+
+hpc:bbot a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Job .
+
+hpc:btop a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Job .
+
+hpc:movetotop a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queue .
+
+hpc:jobqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Job .
+
+hpc:Jobsubmittedbyuser a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Jobsubmittedbyadmin a owl:Class ;
+    rdfs:subClassOf hpc:Job .

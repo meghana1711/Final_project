@@ -1,0 +1,39 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A job in the LSF system." .
+
+hpc:condensedpendingreason a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Reason ;
+    rdfs:comment "The main reason for a job, if the condensed pending reason feature is enabled." .
+
+hpc:fullpendingreasonlist a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadministrator ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "The command to request a full pending reason list for a job." .
+
+hpc:Lsfadministrator a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "An LSF administrator." .
+
+hpc:Queueadministrator a owl:Class ;
+    rdfs:subClassOf hpc:Lsfadministrator ;
+    rdfs:comment "A queue administrator." .
+
+hpc:Reason a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A reason for a job's pending state." .
+
+hpc:individualhostbasedreason a owl:ObjectProperty ;
+    rdfs:domain hpc:Reason ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "A reason specific to a host for a job." .
+
+hpc:cpuPeakSampleDuration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The duration of the sample CPU time for running jobs." .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "An execution host in the LSF system." .

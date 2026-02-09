@@ -1,0 +1,15 @@
+hpc:Wanservicedomain a owl:Class .
+hpc:Lanservicedomain a owl:Class .
+hpc:clusterMode a owl:ObjectProperty .
+hpc:demandLimit a owl:DatatypeProperty .
+
+hpc:Wanservicedomain rdfs:subClassOf hpc:Servicedomain .
+hpc:Lanservicedomain rdfs:subClassOf hpc:Servicedomain .
+
+hpc:Servicedomain rdfs:subClassOf owl:Class .
+
+hpc:ClusterMode rdfs:domain hpc:Servicedomain ;
+    rdfs:range xsd:boolean .
+
+hpc:DemandLimit rdfs:domain hpc:Servicedomain ;
+    rdfs:range xsd:integer .

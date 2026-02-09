@@ -1,0 +1,43 @@
+hpc:Blcollect a owl:Class ;
+    rdfs:subClassOf owl:Agent ;
+    rdfs:comment "The License Scheduler daemon that queries the licensing software for license usage." .
+
+hpc:Bld a owl:Class ;
+    rdfs:subClassOf owl:Agent ;
+    rdfs:comment "The License Scheduler batch daemon." .
+
+hpc:Clustermode a owl:Class ;
+    rdfs:subClassOf owl:Event ;
+    rdfs:comment "License tokens are allocated to clusters by License Scheduler, and job scheduling within each cluster is managed by the local mbatchd. Cluster mode is only available for License Scheduler version 8.0 and later." .
+
+hpc:Lmgrd a owl:Class ;
+    rdfs:subClassOf owl:Agent ;
+    rdfs:comment "The main FlexNet licensing daemon." .
+
+hpc:Projectmode a owl:Class ;
+    rdfs:subClassOf owl:Event ;
+    rdfs:comment "License tokens are allocated to projects by License Scheduler, and job scheduling for license projects takes place across clusters that follow the license distribution policy that is conﬁgured for each project." .
+
+hpc:Servicedomain a owl:Class ;
+    rdfs:subClassOf owl:Agent ;
+    rdfs:comment "A group of one or more FlexNet license servers." .
+
+hpc:blcollect rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Blcollect ;
+    rdfs:range hpc:Blcollect ;
+    rdfs:comment "The action of the License Scheduler daemon querying the licensing software for license usage." .
+
+hpc:hasServiceDomain rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lmgrd ;
+    rdfs:range hpc:Servicedomain ;
+    rdfs:comment "The service domain that the main FlexNet licensing daemon belongs to." .
+
+hpc:isInClusterMode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Licensefeature ;
+    rdfs:range hpc:Clustermode ;
+    rdfs:comment "Whether a license feature uses cluster mode for license token allocation." .
+
+hpc:isInProjectMode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Licensefeature ;
+    rdfs:range hpc:Projectmode ;
+    rdfs:comment "Whether a license feature uses project mode for license token allocation." .

@@ -1,0 +1,42 @@
+hpc:cpuused a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeDuration .
+
+hpc:lsbhmstimeformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:absrunlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:hostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:lsbhugetlb a owl:ObjectProperty ;
+    rdfs:domain hpc:System ;
+    rdfs:range xsd:boolean .
+
+hpc:Pagetable a owl:Class .
+hpc:Translationlookasidebuffer a owl:Class .
+hpc:Architecture a owl:Class ;
+    rdfs:subClassOf hpc:System .
+hpc:X86 a hpc:Architecture .
+hpc:IA64 a hpc:Architecture .
+
+hpc:Tlbmiss a owl:Class .
+hpc:Hugepagesize a owl:Class .
+hpc:Memorypage a owl:Class .
+hpc:Physicalmemorypage a owl:Class ;
+    rdfs:subClassOf hpc:Memorypage .
+hpc:Virtualmemorypage a owl:Class ;
+    rdfs:subClassOf hpc:Memorypage .
+
+hpc:tlbmissreduction a owl:ObjectProperty ;
+    rdfs:domain hpc:Hugepagesize ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hugepagememory a owl:ObjectProperty ;
+    rdfs:domain hpc:System ;
+    rdfs:range hpc:Hugepagesize .

@@ -1,0 +1,35 @@
+hpc:Defaultqueueindication a owl:Class .
+hpc:nice a owl:DatatypeProperty .
+hpc:Nice rdfs:domain hpc:Defaultqueueindication ;
+    rdfs:range xsd:integer .
+
+hpc:status a owl:ObjectProperty .
+hpc:Inactive rdfs:subClassOf hpc:Status ;
+    rdfs:comment "The long format for the -l option gives the possible reasons for a queue to be inactive:" .
+
+hpc:InactWin a owl:Class .
+hpc:InactWin rdfs:subClassOf hpc:Status ;
+    rdfs:comment "The queue is out of its dispatch window or its run window." .
+
+hpc:InactWin rdfs:subClassOf hpc:Inactive ;
+    rdfs:comment "The queue is inactivated by the LSF administrator." .
+
+hpc:InactWin rdfs:subClassOf hpc:Inactive ;
+    rdfs:comment "The number of tasks for all jobs in the queue that are suspended by LSF because of load levels or run windows." .
+
+hpc:InactWin rdfs:subClassOf hpc:Inactive ;
+    rdfs:comment "If -alloc is used, the total is the allocated slots for the jobs in the queue." .
+
+hpc:InactWin rdfs:subClassOf hpc:Inactive ;
+    rdfs:comment "The number of tasks for all jobs in the queue that are suspended by the job submitter or by the LSF administrator." .
+
+hpc:InactWin rdfs:subClassOf hpc:Inactive ;
+    rdfs:comment "If -alloc is used, the total is the allocated slots for the jobs in the queue." .
+
+hpc:rsv a owl:DatatypeProperty .
+hpc:Rsv rdfs:domain hpc:Defaultqueueindication ;
+    rdfs:range xsd:integer .
+
+hpc:cgroupCpuSharesFactor a owl:DatatypeProperty .
+hpc:CgroupCpuSharesFactor rdfs:domain hpc:Defaultqueueindication ;
+    rdfs:range xsd:decimal .

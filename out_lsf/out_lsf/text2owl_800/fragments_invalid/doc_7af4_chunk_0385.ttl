@@ -1,0 +1,77 @@
+hpc:Job
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] .
+
+hpc:JobGroup
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] .
+
+hpc:JobInfoLevel
+    a owl:Enum ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:subClassOf owl:EnumeratedClass ;
+    rdfs:subClassOf owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:nonNegativeInteger ;
+    owl:hasValue hpc:level0 ;
+    owl:hasValue hpc:level1 ;
+    owl:hasValue hpc:level2 ;
+    owl:hasValue hpc:level3 ;
+    owl:hasValue hpc:level4 ;
+    owl:hasValue hpc:level5 .
+
+hpc:level0
+    a owl:NamedIndividual ;
+    rdf:value "0"^^xsd:nonNegativeInteger .
+
+hpc:level1
+    a owl:NamedIndividual ;
+    rdf:value "1"^^xsd:nonNegativeInteger .
+
+hpc:level2
+    a owl:NamedIndividual ;
+    rdf:value "2"^^xsd:nonNegativeInteger .
+
+hpc:level3
+    a owl:NamedIndividual ;
+    rdf:value "3"^^xsd:nonNegativeInteger .
+
+hpc:level4
+    a owl:NamedIndividual ;
+    rdf:value "4"^^xsd:nonNegativeInteger .
+
+hpc:level5
+    a owl:NamedIndividual ;
+    rdf:value "5"^^xsd:nonNegativeInteger .
+
+hpc:hasJobGroup
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Jobgroup .
+
+hpc:hasUser
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:User .
+
+hpc:hasInfoLevel
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Jobinfolevel .
+
+hpc:SECURE_JOB_INFO_LEVEL
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Jobinfolevel .
+
+hpc:SECURE_INFODIR_USER_ACCESS
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string ;
+    rdfs:range [ rdf:type xsd:string ; owl:hasValue "G" ] .
+
+hpc:bjobs
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Job ;
+    rd

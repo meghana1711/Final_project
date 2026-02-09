@@ -1,0 +1,75 @@
+hpc:Folder a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Toplevelfolder a owl:Class ;
+    rdfs:subClassOf hpc:Folder ;
+    rdfs:subClassOf hpc:Stagedresource .
+
+hpc:Recursivefolder a owl:Class ;
+    rdfs:subClassOf hpc:Folder ;
+    rdfs:subClassOf hpc:Toplevelfolder ;
+    rdfs:domain hpc:Transferoperation ;
+    rdfs:range hpc:Path .
+
+hpc:Nonrecursivefolder a owl:Class ;
+    rdfs:subClassOf hpc:Folder ;
+    rdfs:subClassOf hpc:Toplevelfolder ;
+    rdfs:domain hpc:Transferoperation ;
+    rdfs:range hpc:Path .
+
+hpc:transferoperation a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Transfer .
+
+hpc:Transfer a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:subClassOf hpc:Operation ;
+    rdfs:subClassOf hpc:Stagedresource ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Transferstate .
+
+hpc:Transferstate a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:TransferstateTransferred a owl:Class ;
+    rdfs:subClassOf hpc:Transferstate .
+
+hpc:TransferstateIdle a owl:Class ;
+    rdfs:subClassOf hpc:Transferstate .
+
+hpc:transferFolder a owl:DatatypeProperty ;
+    rdfs:domain hpc:Transfer ;
+    rdfs:range hpc:Path .
+
+hpc:transferDatarequirements a owl:DatatypeProperty ;
+    rdfs:domain hpc:Nonrecursivefolder ;
+    rdfs:range xsd:string .
+
+hpc:transferHostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Transfer ;
+    rdfs:range xsd:string .
+
+hpc:stagein a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Stagedresource .
+
+hpc:Stagedresource a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:chgrp a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Chgrpcommand .
+
+hpc:Chgrpcommand a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:subClassOf hpc:Operation ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Group .
+
+hpc:chgrpGroupname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Chgrpcommand ;
+    rdfs:range xsd:string .
+
+hpc:chgrpTagname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Chgrpcommand ;
+    rdfs

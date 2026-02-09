@@ -1,0 +1,16 @@
+hpc:maxsbdconns a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hpcsystem ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum number of sbatchd connections." .
+
+hpc:maxsbdfail a owl:ObjectProperty ;
+    rdfs:domain hpc:Hpcsystem ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum number of retries for reaching a non-responding server batch daemon, sbatchd." .
+
+hpc:maxtotaltimepreempt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hpcsystem ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The accumulated preemption time in minutes after which a job cannot be preempted again." .
+
+hpc:Hpcsystem a owl:Class .

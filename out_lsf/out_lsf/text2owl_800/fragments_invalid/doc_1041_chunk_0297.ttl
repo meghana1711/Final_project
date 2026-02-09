@@ -1,0 +1,32 @@
+hpc:Eligiblependingjob a owl:Class .
+hpc:Ineligiblependingjob a owl:Class .
+hpc:Hasstarttimeconstraint hpc:Job rdfs:domain hpc:Job ;
+                                rdfs:range xsd:boolean .
+hpc:Issuspended hpc:Job rdfs:domain hpc:Job ;
+                      rdfs:range xsd:boolean .
+hpc:Hasinactivequeue hpc:Job rdfs:domain hpc:Job ;
+                        rdfs:range xsd:boolean .
+hpc:Hasinactivetimewindow hpc:Job rdfs:domain hpc:Job ;
+                             rdfs:range xsd:boolean .
+hpc:Hasunsatisfieddependencyconditions hpc:Job rdfs:domain hpc:Job ;
+                                     rdfs:range xsd:boolean .
+hpc:Cannotfitintoruntimewindow hpc:Job rdfs:domain hpc:Job ;
+                               rdfs:range xsd:boolean .
+hpc:Hasenableddelayedscheduling hpc:Job rdfs:domain hpc:Job ;
+                                rdfs:range xsd:boolean .
+hpc:Doesnotexistqueueorapplicationprofile hpc:Job rdfs:domain hpc:Job ;
+                                      rdfs:range xsd:boolean .
+hpc:Iseligiblependingjob hpc:Job rdfs:subClassOf hpc:Job .
+hpc:Isineligiblependingjob hpc:Job rdfs:subClassOf hpc:Job .
+hpc:notinineligiblependingstate hpc:job a owl:ObjectProperty ;
+                                 rdfs:domain hpc:Job ;
+                           rdfs:range xsd:boolean .
+hpc:eligiblependingtime hpc:job a owl:DatatypeProperty ;
+                          rdfs:domain hpc:Chunkjob ;
+                      rdfs:range xsd:duration .
+hpc:trackeligiblependinginfoenabled hpc:job a owl:ObjectProperty ;
+                                  rdfs:domain hpc:Job ;
+                      rdfs:range xsd:boolean .
+hpc:displayineligiblependingjobs a owl:ObjectProperty ;
+                               rdfs:domain hpc:User ;
+                       rdfs:range rdf:Resource .

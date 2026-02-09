@@ -1,0 +1,38 @@
+hpc:Resource a owl:Class .
+hpc:BooleanResource rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:submitjob a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range rdf:Resource .
+
+hpc:hostList rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Submitjob ;
+    rdfs:range xsd:string .
+
+hpc:configureresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadministrator ;
+    rdfs:range hpc:Resource .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:subClassOf hpc:Object .
+
+hpc:hostPreference rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:integer .
+
+hpc:hosts rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+
+hpc:excludeHosts rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+
+hpc:hostPreferenceLevel rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostpreference ;
+    rdfs:range xsd:integer .
+
+hpc:others rdf:type xsd:QName ;
+    xsd:value "others" .

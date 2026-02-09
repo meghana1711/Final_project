@@ -1,0 +1,55 @@
+hpc:Timinglevel a owl:Class .
+hpc:logfileName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Timinglevel ;
+    rdfs:range xsd:string .
+
+hpc:Perflog a owl:Class .
+hpc:samplePeriod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Perflog .
+hpc:duration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Perflog .
+hpc:logfileName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Perflog .
+
+hpc:Perfmon a owl:Class .
+hpc:samplePeriod a owl:ObjectProperty ;
+    rdfs:domain hpc:Perfmon ;
+    rdfs:range xsd:string .
+hpc:stop a owl:ObjectProperty ;
+    rdfs:domain hpc:Perfmon .
+hpc:start a owl:ObjectProperty ;
+    rdfs:domain hpc:Perfmon .
+hpc:view a owl:ObjectProperty ;
+    rdfs:domain hpc:Perfmon .
+hpc:setperiod a owl:ObjectProperty ;
+    rdfs:domain hpc:Perfmon .
+
+hpc:Qact a owl:Class .
+hpc:comment a owl:DatatypeProperty ;
+    rdfs:domain hpc:Qact .
+hpc:queueName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Qact .
+
+hpc:Qclose a owl:Class .
+hpc:comment a owl:DatatypeProperty ;
+    rdfs:domain hpc:Qclose .
+hpc:queueName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Qclose .
+
+hpc:Qhist a owl:Class .
+hpc:time0 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Qhist .
+hpc:time1 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Qhist .
+hpc:logfileName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Qhist .
+hpc:queueName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Qhist .
+
+hpc:Qinact a owl:Class .
+hpc:comment a owl:DatatypeProperty ;
+    rdfs:domain hpc:Qinact .
+hpc:queueName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Qinact .
+
+hpc:Qopen a owl:Class .

@@ -1,0 +1,28 @@
+hpc:GlobalFairshare
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A global fair share policy." .
+
+hpc:Description
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalfairshare ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Description of the global fair share policy." .
+
+hpc:Name
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Globalfairshare ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Mandatory. Provide a unique name for the global fair share policy." .
+
+hpc:SyncInterval
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalfairshare ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The interval at which the global fair share policy is synchronized." .
+
+hpc:SyncMode
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalfairshare ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The mode of synchronization for the global fair share policy." .

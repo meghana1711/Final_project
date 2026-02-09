@@ -1,0 +1,24 @@
+hpc:Gpuenhancements a owl:Class .
+hpc:relaxgpuaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpuenhancements ;
+    rdfs:range hpc:Gpujob .
+
+hpc:Gpujob a owl:Class .
+hpc:gpuresourcerequirementsstring a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpujob .
+
+hpc:gtilevalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpujob .
+
+hpc:aff a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpujob .
+
+hpc:Resourceconnectorenhancements a owl:Class .
+hpc:Resourcemanagement a owl:Class .
+hpc:Jobschedulingandexecution a owl:Class .
+hpc:Containersupport a owl:Class .
+hpc:Datacollection a owl:Class .
+hpc:Otherchangestoibmspectrumlsf a owl:Class .
+
+hpc:Affvalue xsd:string rdfs:range .
+hpc:Gtilevalue xsd:string rdfs:range .

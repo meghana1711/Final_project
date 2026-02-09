@@ -1,0 +1,56 @@
+hpc:Hostpreference a owl:Class .
+hpc:computeunitpreference a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostpreference ;
+    rdfs:range hpc:Computeunit .
+
+hpc:cupreferencestring a owl:DatatypeProperty ;
+    rdfs:domain hpc:Computeunit .
+
+hpc:jobschedulinginterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:nonNegativeDuration .
+
+hpc:jobSchedulingIntervalUnit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobschedulinginterval ;
+    rdfs:range xsd:string .
+
+hpc:JOB_SCHEDULING_INTERVAL_Zero a xsd:string ;
+    rdf:value "0" .
+
+hpc:JOB_SCHEDULING_INTERVAL_Milliseconds a xsd:string ;
+    rdf:value "ms" .
+
+hpc:jobInfoMemoryCacheSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:JOB_INFO_MEMORY_CACHE_SIZE_Default a xsd:decimal ;
+    rdf:value "1024" .
+
+hpc:JOB_INFO_MEMORY_CACHE_SIZE_Unit a xsd:string ;
+    rdf:value "MB" .
+
+hpc:Newjobinformationfile a owl:Class ;
+    rdfs:subClassOf hpc:Eventfile .
+
+hpc:jobInfoEventsFile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Newjobinformationfile ;
+    rdfs:range xsd:string .
+
+hpc:jobSwitch2Event a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Obsoleteevent .
+
+hpc:jobArrayEventsCombine a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:LsfTmpdir a owl:Class .
+
+hpc:Eventfile a owl:Class .
+
+hpc:Obsoleteevent a owl:Class .
+
+hpc:eventfileLocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eventfile ;
+    rdfs:range xsd:string .
+
+hpc:Lsf a owl:Class .

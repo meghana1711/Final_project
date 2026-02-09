@@ -1,0 +1,72 @@
+hpc:Hostgroup a owl:Class .
+hpc:ComputeUnit owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range rdf:Resource .
+
+hpc:QueueName owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostgroup .
+
+hpc:Username a owl:Class .
+hpc:Usergroup a owl:Class .
+hpc:All a owl:Class .
+hpc:userName owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup .
+
+hpc:Destinationqueue a owl:Class .
+hpc:jobID owl:DatatypeProperty ;
+    rdfs:domain hpc:Destinationqueue .
+
+hpc:Jobidlist a owl:Class .
+hpc:indexList owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobidlist .
+
+hpc:bswitch a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Destinationqueue .
+
+hpc:Switchoperation a owl:Class .
+hpc:successfulapplicationexitvalues a owl:DatatypeProperty ;
+    rdfs:domain hpc:Switchoperation .
+
+hpc:Defaultusergroup a owl:Class .
+hpc:lsbparamsfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Defaultusergroup .
+
+hpc:Job a owl:Class .
+hpc:acceptabletonewqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+hpc:canbeusedbynewqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:Newqueue a owl:Class .
+hpc:Fairsharequeue a owl:Class ;
+    rdfs:subClassOf hpc:Newqueue .
+
+hpc:switchjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Newqueue .
+
+hpc:Successfulswitch a owl:Class .
+hpc:stayswhereitis a owl:ObjectProperty ;
+    rdfs:domain hpc:Successfulswitch .
+
+hpc:Switchedjob a owl:Class .
+hpc:usessuccessfulapplicationexitvalues a owl:ObjectProperty ;
+    rdfs:domain hpc:Switchedjob .
+
+hpc:Unsuccessfulswitch a owl:Class .
+hpc:jobstayswhereitis a owl:ObjectProperty ;
+    rdfs:domain hpc:Unsuccessfulswitch .
+
+hpc:Options a owl:Class .
+hpc:m a owl:ObjectProperty ;
+    rdfs:domain hpc:Options .
+hpc:q a owl:ObjectProperty ;
+    rdfs:domain hpc:Options .
+hpc:u a owl:ObjectProperty ;
+    rdfs:domain hpc:Options .
+hpc:j a owl:ObjectProperty ;
+    rdfs:domain hpc:Options .
+hpc:Zero a xsd:integer .
+hpc:JobIDList a xsd:string .
+hpc:IndexList a xsd:nonNegativeInteger .

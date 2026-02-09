@@ -1,0 +1,46 @@
+hpc:Jobexclusionlist a owl:Class .
+hpc:ExcludedHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexclusionlist ;
+    rdfs:range hpc:Host .
+
+hpc:hostexclusionperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobexclusionlist ;
+    rdfs:range xsd:duration .
+
+hpc:lsbexcludehostperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:duration .
+
+hpc:Job a owl:Class .
+hpc:preexecutionscript a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Script .
+
+hpc:postexecutionscript a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Script .
+
+hpc:jobdependency a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:Script a owl:Class .
+
+hpc:bsubcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Script ;
+    rdfs:range xsd:string .
+
+hpc:bjobscommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:commanddescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:Postdonestate a owl:Class .
+hpc:Posterrstate a owl:Class .
+
+hpc:bhistcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .

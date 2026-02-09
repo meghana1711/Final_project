@@ -1,0 +1,44 @@
+hpc:Host a owl:Class .
+hpc:Lockedhost rdfs:subClassOf hpc:Host .
+hpc:Unavailablehost rdfs:subClassOf hpc:Host .
+hpc:Availablehost rdfs:subClassOf hpc:Host .
+
+hpc:islockedby a owl:ObjectProperty .
+hpc:Islockedby rdfs:domain hpc:Host .
+hpc:Islockedby rdfs:range xsd:string .
+
+hpc:isdown a owl:ObjectProperty .
+hpc:Isdown rdfs:domain hpc:Host .
+hpc:Isdown rdfs:range xsd:boolean .
+
+hpc:islimrunning a owl:ObjectProperty .
+hpc:Islimrunning rdfs:domain hpc:Host .
+hpc:Islimrunning rdfs:range xsd:boolean .
+
+hpc:islimresponding a owl:ObjectProperty .
+hpc:Islimresponding rdfs:domain hpc:Host .
+hpc:Islimresponding rdfs:range xsd:boolean .
+
+hpc:Runqueuelengths a owl:Class .
+hpc:r15s rdfs:subPropertyOf hpc:runQueueLengths .
+hpc:r1m rdfs:subPropertyOf hpc:runQueueLengths .
+hpc:r15m rdfs:subPropertyOf hpc:runQueueLengths .
+
+hpc:Runqueuelength rdfs:domain hpc:Host .
+hpc:Runqueuelength rdfs:range xsd:nonNegativeInteger .
+
+hpc:effectiverunqueuelength a owl:DatatypeProperty .
+hpc:Effectiverunqueuelength rdfs:domain hpc:Host .
+hpc:Effectiverunqueuelength rdfs:range xsd:nonNegativeInteger .
+
+hpc:ismultiprocessorsystem a owl:ObjectProperty .
+hpc:Ismultiprocessorsystem rdfs:domain hpc:Host .
+hpc:Ismultiprocessorsystem rdfs:range xsd:boolean .
+
+hpc:scalesrunqueuevalue a owl:ObjectProperty .
+hpc:Scalesrunqueuevalue rdfs:domain hpc:Host .
+hpc:Scalesrunqueuevalue rdfs:range xsd:nonNegativeInteger .
+
+hpc:vieweffectiverunqueuelength a owl:ObjectProperty .
+hpc:Vieweffectiverunqueuelength rdfs:domain hpc:Host .
+hpc:Vieweffectiverunqueuelength rdfs:range xsd:string .

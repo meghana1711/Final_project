@@ -1,0 +1,17 @@
+hpc:Onetimereservation a owl:Class.
+hpc:begintime a owl:DatatypeProperty;
+    rdfs:domain hpc:Onetimereservation;
+    rdfs:range xsd:dateTime.
+hpc:endtime a owl:DatatypeProperty;
+    rdfs:domain hpc:Onetimereservation;
+    rdfs:range xsd:dateTime.
+hpc:Year rdfs:range xsd:gYear;
+    rdfs:subPropertyOf hpc:begintime, hpc:endtime.
+hpc:Month rdfs:range xsd:gMonth;
+    rdfs:subPropertyOf hpc:begintime, hpc:endtime.
+hpc:Day rdfs:range xsd:gDay;
+    rdfs:subPropertyOf hpc:begintime, hpc:endtime.
+hpc:Hour rdfs:range xsd:gYearMonthDay.
+hpc:Minute rdfs:range xsd:gYearMonthDay.
+hpc:begintime, hpc:endtime a owl:ObjectProperty;
+    rdfs:minCardinality 2.

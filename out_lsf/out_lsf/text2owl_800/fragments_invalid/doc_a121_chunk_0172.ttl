@@ -1,0 +1,62 @@
+hpc:Jobprocess a owl:Class ;
+    rdfs:subClassOf hpc:Process ;
+    rdfs:comment "The job process that starts eexec waits for eexec to finish before the job continues with job execution." .
+
+hpc:Eeexec a owl:Class ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "Runs at job start, finish, or checkpoint; Allows the job to run without pending if eexec fails; eexec has no effect on the job state; Runs for all jobs, regardless of queue or application profile." .
+
+hpc:runsat a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobprocess ;
+    rdfs:range hpc:Timepoint ;
+    rdfs:comment "Runs at job start, finish, or checkpoint." .
+
+hpc:allowsjobtorunwithoutpendingifeeexecfails a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobprocess ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Allows the job to run without pending if eexec fails." .
+
+hpc:hasnoeffectonjobstate a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobprocess ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "EEexec has no effect on the job state." .
+
+hpc:runsforalljobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobprocess ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Runs for all jobs, regardless of queue or application profile." .
+
+hpc:Operatingsystem a owl:Class ;
+    rdfs:subClassOf hpc:System ;
+    rdfs:comment "Operating system" .
+
+hpc:Unix a owl:Class ;
+    rdfs:subClassOf hpc:Operatingsystem ;
+    rdfs:comment "UNIX operating system" .
+
+hpc:Linux a owl:Class ;
+    rdfs:subClassOf hpc:Operatingsystem ;
+    rdfs:comment "Linux operating system" .
+
+hpc:Windows a owl:Class ;
+    rdfs:subClassOf hpc:Operatingsystem ;
+    rdfs:comment "Windows operating system" .
+
+hpc:datapassingbetweenesubandeeexecnotencrypted a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eeexec ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Data passing between esub on the submission host and eexec on the execution host is not encrypted." .
+
+hpc:Jobtype a owl:Class ;
+    rdfs:subClassOf hpc:Batchjob ;
+    rdfs:comment "Job types" .
+
+hpc:Batchjob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Batch jobs that are submitted with the bsub command or modified by the bmod command." .
+
+hpc:Restartedbatchjob a owl:Class ;
+    rdfs:subClassOf hpc:Batchjob ;
+    rdfs:comment "Batch jobs that are restarted with the brestart command." .
+
+h

@@ -1,0 +1,28 @@
+hpc:Resourcehealth a owl:Class .
+hpc:availabilityStatuses rdf:type owl:DatatypeProperty .
+hpc:read rdf:type owl:ObjectProperty .
+hpc:NotActions rdf:type owl:Class .
+hpc:AssignableScopes rdf:type owl:Class .
+
+hpc:Customrole a owl:Class .
+hpc:Azureapplication a owl:Class .
+hpc:Subscription a owl:Class .
+
+hpc:Hasavailabilitystatus rdfs:domain hpc:Resourcehealth .
+hpc:Hasavailabilitystatus rdfs:range xsd:string .
+hpc:Hasreadstatus rdfs:domain hpc:Resourcehealth .
+hpc:Hasreadstatus rdfs:range xsd:boolean .
+
+hpc:Hascustomrole rdfs:domain hpc:Azureapplication .
+hpc:Hascustomrole rdfs:range hpc:Customrole .
+hpc:Hassubscription rdfs:domain hpc:Azureapplication .
+hpc:Hassubscription rdfs:range hpc:Subscription .
+hpc:Hasmultiplesubscriptions rdfs:domain hpc:Customrole .
+hpc:Hasmultiplesubscriptions rdfs:range rdf:List .
+
+hpc:createroledefinition a owl:ObjectProperty .
+hpc:registerlsfresourceconnector a owl:ObjectProperty .
+hpc:generateauthenticationkeyfile a owl:ObjectProperty .
+hpc:createkeypair a owl:ObjectProperty .
+hpc:launchinstance a owl:ObjectProperty .
+hpc:createresourcegroup a owl:ObjectProperty .

@@ -1,0 +1,37 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:lsfCollectEnergyUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:lsfConfRetryInt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:egoConfRetryInt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Ego ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsfConfRetryMax a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:egoConfRetryMax a owl:DatatypeProperty ;
+    rdfs:domain hpc:Ego ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsfConfdir a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range rdf:Resource .
+
+hpc:LsfIndep a owl:Class ;
+    rdfs:subClassOf hpc:Lsf .
+
+hpc:Lsb a owl:Class .
+
+hpc:lsfConnectionChange a owl:DatatypeProperty ;
+    rdfs:domain hpc:Windows ;
+    rdfs:range xsd:boolean .

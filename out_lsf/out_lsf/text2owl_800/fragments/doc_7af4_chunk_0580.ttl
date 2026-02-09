@@ -1,0 +1,27 @@
+hpc:Usergroup a owl:Class .
+
+# Object Properties
+hpc:Hasgroupname rdfs:domain hpc:Usergroup ;
+                  rdfs:range xsd:string .
+hpc:Hasgroupmembers rdfs:domain hpc:Usergroup ;
+                    rdfs:range xsd:string .
+
+# Datatype Properties
+hpc:groupname a owl:DatatypeProperty ;
+              rdfs:domain hpc:Usergroup ;
+              rdfs:range xsd:string .
+hpc:groupmembers a owl:DatatypeProperty ;
+                 rdfs:domain hpc:Usergroup ;
+                 rdfs:range xsd:string .
+
+# Restrictions
+hpc:Usergroup rdfs:subClassOf owl:Class .
+hpc:hasgroupname a owl:ObjectProperty .
+hpc:hasgroupmembers a owl:ObjectProperty .
+hpc:groupName rdf:type hpc:DatatypeProperty .
+hpc:groupMembers rdf:type hpc:DatatypeProperty .
+
+# Including configuration from another file is modeled as an Object Property
+hpc:includesconfiguration a owl:ObjectProperty .
+hpc:Includesconfiguration rdfs:domain hpc:Usergroup ;
+                           rdfs:range xsd:string .

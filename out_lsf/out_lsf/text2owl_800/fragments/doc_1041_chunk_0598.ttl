@@ -1,0 +1,56 @@
+hpc:Jobcwd a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "Directory created for a job's CWD." .
+
+hpc:Submissiondir a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "Directory created for job submission." .
+
+hpc:Jobid a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Identifier for a job." .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Identifier for a user." .
+
+hpc:Jobid0 a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Specific instance of JobID for a job." .
+
+hpc:jobcdwAssignment a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobcwd ;
+    rdfs:range hpc:JobcdwAssignmentValue ;
+    rdfs:comment "Relates a JobCWD to the command that creates it." .
+
+hpc:JobcdwAssignmentValue a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Value representing the command that creates a JobCWD." .
+
+hpc:submissiondirAssignment a owl:ObjectProperty ;
+    rdfs:domain hpc:Submissiondir ;
+    rdfs:range hpc:SubmissiondirAssignmentValue ;
+    rdfs:comment "Relates a SubmissionDir to the command that creates it." .
+
+hpc:SubmissiondirAssignmentValue a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Value representing the command that creates a SubmissionDir." .
+
+hpc:defaultjobcwd a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcwd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates the default job CWD if no application profile CWD is defined." .
+
+hpc:datalimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Specifies the data limit for a job in KB." .
+
+hpc:datarequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:DatarequirementValue ;
+    rdfs:comment "Relates a job to its data requirements." .
+
+hpc:DatarequirementValue a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Value representing the data requirements for a job." .

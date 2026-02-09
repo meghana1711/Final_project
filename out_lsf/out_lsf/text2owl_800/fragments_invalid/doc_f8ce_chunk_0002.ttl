@@ -1,0 +1,25 @@
+hpc:Dataspecificationfile a owl:Class.
+hpc:Dataspecificationfile rdfs:subClassOf owl:Resource.
+
+hpc:Datatag a owl:Class.
+hpc:Datatag rdfs:subClassOf owl:Resource.
+
+hpc:Sourcefile a owl:Class.
+hpc:Sourcefile rdfs:subClassOf owl:Resource.
+
+hpc:Sourcedirectory a owl:Class.
+hpc:Sourcedirectory rdfs:subClassOf owl:Resource.
+
+hpc:Lsfdatamanager a owl:Class.
+hpc:Lsfdatamanager rdfs:subClassOf owl:Resource.
+
+hpc:Lsfserverhost a owl:Class.
+hpc:Lsfserverhost rdfs:subClassOf owl:Resource.
+
+hpc:Lsfdatamanagerhost a owl:Class.
+hpc:Lsfdatamanagerhost rdfs:subClassOf hpc:Lsfserverhost.
+
+hpc:Lsfdatamanagerdaemon a owl:Class.
+hpc:Lsfdatamanagerdaemon rdfs:subClassOf owl:Resource.
+
+hpc:Dmdlogfile

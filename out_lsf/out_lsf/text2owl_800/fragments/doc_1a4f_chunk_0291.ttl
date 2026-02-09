@@ -1,0 +1,39 @@
+hpc:Pamfile a owl:Class .
+
+hpc:usespamcreds a owl:ObjectProperty ;
+    rdfs:domain hpc:Pamfile ;
+    rdfs:range xsd:string .
+
+hpc:uselimits a owl:ObjectProperty ;
+    rdfs:domain hpc:Pamfile ;
+    rdfs:range xsd:boolean .
+
+hpc:usesession a owl:ObjectProperty ;
+    rdfs:domain hpc:Pamfile ;
+    rdfs:range xsd:string .
+
+hpc:Lsfservice a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:lsf a hpc:LSFService ;
+    rdfs:comment "The LSF service for the default cluster." .
+
+hpc:lsf_ClusterName a hpc:LSFService ;
+    rdfs:comment "The LSF service for a specific cluster." .
+
+hpc:haspamservice a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfservice ;
+    rdfs:range xsd:string .
+
+hpc:checksservice a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Lsfservice .
+
+hpc:Job a owl:Class .
+
+hpc:Executionhost a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:haspamconfigured a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionhost ;
+    rdfs:range xsd:boolean .

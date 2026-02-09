@@ -1,0 +1,37 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                          rdfs:onProperty hpc:beginTime ;
+                                          rdfs:allValuesFrom [ rdf:type xsd:time ] ] ;
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                          rdfs:onProperty hpc:endTime ;
+                                          rdfs:allValuesFrom [ rdf:type xsd:time ] ] ] ;
+    rdfs:domain hpc:Advancereservation .
+
+hpc:Advancereservation a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                          rdfs:onProperty hpc:host ;
+                                          rdfs:domain hpc:Advancereservation ;
+                                          rdfs:range [ rdf:type rdf:Resource ] ] ;
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                          rdfs:onProperty hpc:user ;
+                                          rdfs:domain hpc:Advancereservation ;
+                                          rdfs:range [ rdf:type rdf:Resource ] ] ] ;
+    rdfs:domain hpc:Reservation .
+
+hpc:host a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range rdf:Resource .
+
+hpc:user a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range rdf:Resource .
+
+hpc:begintime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:time .
+
+hpc:endtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:time .

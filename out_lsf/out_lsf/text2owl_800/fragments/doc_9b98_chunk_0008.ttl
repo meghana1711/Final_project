@@ -1,0 +1,54 @@
+hpc:Lsfdatamanager a owl:Class .
+hpc:IBM_Spectrum_LSF_Data_Manager a hpc:LSFDataManager .
+
+hpc:hasmanagementhost a owl:ObjectProperty .
+hpc:hasstatus a owl:DatatypeProperty .
+hpc:hasoutgoingconnections a owl:ObjectProperty .
+hpc:hasincomingconnections a owl:ObjectProperty .
+
+hpc:RemoteLSFDataManager a hpc:LSFDataManager .
+
+hpc:Clusterselection a owl:Class .
+hpc:Clusterselection rdfs:subClassOf hpc:Lsfdatamanager .
+
+hpc:Jobinputdatarequirement a owl:Class .
+hpc:Joboutputdatarequirement a owl:Class .
+
+hpc:Jobforwarding a owl:Class .
+hpc:Jobforwarding rdfs:subClassOf hpc:Clusterselection .
+
+hpc:Intermediatedatatag a owl:Class .
+hpc:Intermediatedatatag rdfs:subClassOf hpc:Jobinputdatarequirement .
+
+hpc:Remoteexecutioncluster a owl:Class .
+
+hpc:bdatacachecommand a owl:ObjectProperty .
+hpc:Bdatacachecommand rdfs:domain hpc:Remoteexecutioncluster .
+hpc:Bdatacachecommand rdfs:range xsd:string .
+
+hpc:Optimizedlocalstaging a owl:Class .
+hpc:Optimizedlocalstaging rdfs:subClassOf hpc:Clusterselection .
+
+hpc:Symboliclink a owl:Class .
+
+hpc:jobdispatch a owl:ObjectProperty .
+hpc:Jobdispatch rdfs:domain hpc:Lsfdatamanager .
+hpc:Jobdispatch rdfs:range hpc:Cluster .
+
+hpc:Singledatamanager a owl:Class .
+hpc:Singledatamanager rdfs:subClassOf hpc:Lsfdatamanager .
+
+hpc:Crossclusteruseraccountmapping a owl:Class .
+hpc:Crossclusteruseraccountmapping rdfs:subClassOf hpc:Lsfdatamanager .
+
+hpc:lsbusersconfigurationfile a owl:DatatypeProperty .
+hpc:Lsbusersconfigurationfile rdfs:domain hpc:Crossclusteruseraccountmapping .
+hpc:Lsbusersconfigurationfile rdfs:range xsd:string .
+
+hpc:Multiclusterenvironment a owl:Class .
+
+hpc:IbmSpectrumLsfMulticlusterCapability a owl:Class .
+hpc:IbmSpectrumLsfMulticlusterCapability rdfs:subClassOf hpc:Multiclusterenvironment .
+
+hpc:Stagingarea a owl:Class .
+hpc:Datamanager a owl:Class .

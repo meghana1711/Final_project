@@ -1,0 +1,43 @@
+hpc:Battrcommand a owl:Class .
+hpc:hasSubcommand an owl:ObjectProperty .
+hpc:Usageerror a owl:Class .
+hpc:Productreleaseversion a owl:Class .
+
+hpc:Battr a owl:Class .
+hpc:createattribute a owl:ObjectProperty .
+hpc:deleteattribute a owl:ObjectProperty .
+hpc:showattribute a owl:ObjectProperty .
+hpc:hashostname a owl:DatatypeProperty .
+hpc:hashostgroup a owl:DatatypeProperty .
+
+hpc:Battrcommand rdfs:subClassOf hpc:Command .
+hpc:Usageerror rdfs:subClassOf hpc:Error .
+hpc:Productreleaseversion rdfs:subClassOf hpc:Error .
+
+hpc:Hassubcommand rdfs:domain hpc:Battrcommand .
+hpc:Hassubcommand rdfs:range hpc:Battrsubcommand .
+
+hpc:Createattribute rdfs:domain hpc:Battr .
+hpc:Createattribute rdfs:range rdf:List .
+hpc:Createattribute rdfs:range hpc:String .
+hpc:Createattribute rdfs:range hpc:Hostnameorgroup .
+
+hpc:Deleteattribute rdfs:domain hpc:Battr .
+hpc:Deleteattribute rdfs:range rdf:List .
+hpc:Deleteattribute rdfs:range hpc:String .
+hpc:Deleteattribute rdfs:range hpc:Hostnameorgroup .
+
+hpc:Showattribute rdfs:domain hpc:Battr .
+hpc:Showattribute rdfs:range rdf:List .
+hpc:Showattribute rdfs:range hpc:Attribute .
+
+hpc:HostNameOrGroup rdf:type owl:Class .
+hpc:Hostnameorgroup rdfs:subClassOf xsd:string .
+
+hpc:hostname a owl:DatatypeProperty .
+hpc:Hostname rdfs:domain hpc:Hostnameorgroup .
+hpc:Hostname rdfs:range xsd:string .
+
+hpc:hostgroup a owl:DatatypeProperty .
+hpc:Hostgroup rdfs:domain hpc:Hostnameorgroup .
+hpc:Hostgroup rdfs:range xsd:string .

@@ -1,0 +1,61 @@
+hpc:Job a owl:Class .
+hpc:processgroupid a owl:DatatypeProperty .
+hpc:Processgroupid rdfs:domain hpc:Job ;
+                    rdfs:range xsd:string .
+
+hpc:activeprocesses a owl:ObjectProperty .
+hpc:Activeprocesses rdfs:domain hpc:Job ;
+                     rdfs:range rdf:Resource .
+
+hpc:resourceallocationlimits a owl:ObjectProperty .
+hpc:Resourceallocationlimits rdfs:domain hpc:Job ;
+                              rdfs:range rdf:List .
+
+hpc:Configuredpolicy a owl:Class .
+hpc:policyname a owl:DatatypeProperty ;
+                rdfs:range xsd:string .
+hpc:Policyinformation a owl:Class .
+
+hpc:appliedtorunningjobs a owl:ObjectProperty ;
+                          rdfs:domain hpc:Configuredpolicy ;
+                          rdfs:range rdf:Boolean .
+
+hpc:notappliedtorunningjobs a owl:ObjectProperty ;
+                             rdfs:domain hpc:Configuredpolicy ;
+                             rdfs:range rdf:Boolean .
+
+hpc:Users a owl:Class ;
+         rdfs:subClassOf hpc:Resource .
+
+hpc:Queues a owl:Class ;
+         rdfs:subClassOf hpc:Resource .
+
+hpc:Hosts a owl:Class ;
+         rdfs:subClassOf hpc:Resource .
+
+hpc:Projectnames a owl:Class ;
+         rdfs:subClassOf hpc:Resource .
+
+hpc:Allresourceconfigurations a owl:Class ;
+hpc:Allresourceconfigurations rdfs:subClassOf hpc:Resource .
+
+hpc:Resourceconfiguration a owl:Class .
+hpc:resourcename a owl:DatatypeProperty ;
+                rdfs:range xsd:string .
+hpc:configuredlimit a owl:DatatypeProperty ;
+hpc:Configuredlimit rdfs:range xsd:string .
+hpc:usedlimit a owl:DatatypeProperty ;
+hpc:Usedlimit rdfs:range xsd:string .
+
+hpc:Slots a owl:Class ;
+hpc:Slots rdfs:subClassOf hpc:Resource .
+hpc:Memory a owl:Class ;
+hpc:Memory rdfs:subClassOf hpc:Resource .
+hpc:Swp a owl:Class ;
+hpc:Swp rdfs:subClassOf hpc:Resource .
+hpc:Tmp a owl:Class ;
+hpc:Tmp rdfs:subClassOf hpc:Resource .
+
+hpc:limitusage a owl:ObjectProperty ;
+hpc:Limitusage rdfs:domain hpc:Resourceconfiguration ;
+                              rdfs:range rdf:Boolean .

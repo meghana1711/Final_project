@@ -1,0 +1,32 @@
+hpc:EnableDiagnose a owl:Class ;
+    rdfs:comment "Enable this parameter for the mbatchd daemon, or starting in Fix Pack 14, also the lsfproxyd daemon, to write request source information to a log" ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain rdf:nil ;
+    rdfs:range rdf:String ;
+
+hpc:hasdiagnoselogfile a owl:ObjectProperty ;
+    rdfs:domain hpc:EnableDiagnose ;
+    rdfs:range rdf:Resource ;
+
+hpc:DiagnoseLogdir a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain rdf:nil ;
+    rdfs:range rdf:String ;
+
+hpc:EnableEventStream a owl:Class ;
+    rdfs:comment "Used only with event streaming for system performance analysis tools. Default N (event streaming is not enabled)" ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain rdf:nil ;
+    rdfs:range rdf:Boolean ;
+
+hpc:EnableExitRatePerSlot a owl:Class ;
+    rdfs:comment "Scales the actual exit rate thresholds on a host according to the number of slots on the host" ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain rdf:nil ;
+    rdfs:range rdf:Boolean ;
+
+hpc:EnableGpuHistRunTime a owl:Class ;
+    rdfs:comment "Enables the use of historical GPU run time in the calculation of fair share scheduling priority. Used with fair share scheduling" ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain rdf:nil ;
+    rdfs:range rdf:Boolean ;

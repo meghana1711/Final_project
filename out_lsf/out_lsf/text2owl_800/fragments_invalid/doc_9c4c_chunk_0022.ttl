@@ -1,0 +1,68 @@
+hpc:Lsf a owl:Class .
+hpc:Host a owl:Class .
+hpc:Hpcfeature a owl:Class .
+hpc:Resource a owl:Class .
+hpc:Queue a owl:Class .
+
+# Object Properties
+hpc:haslsfcommand a owl:ObjectProperty .
+hpc:hashosts a owl:ObjectProperty .
+hpc:hastopdir a owl:ObjectProperty .
+hpc:hasboot a owl:ObjectProperty .
+hpc:hasquiet a owl:ObjectProperty .
+hpc:hashpcfeatures a owl:ObjectProperty .
+hpc:hasresources a owl:ObjectProperty .
+hpc:hasqueue a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:topdir a owl:DatatypeProperty .
+hpc:boot a owl:DatatypeProperty .
+hpc:quiet a owl:DatatypeProperty .
+
+# Class and Property Restrictions
+hpc:Host rdfs:subClassOf hpc:Resource .
+hpc:Lsf rdfs:subClassOf hpc:Resource .
+
+hpc:Hastopdir rdfs:domain hpc:Resource .
+hpc:Topdir rdfs:range xsd:string .
+
+hpc:Hasboot rdfs:domain hpc:Lsf .
+hpc:Boot rdfs:range xsd:boolean .
+
+hpc:Hasquiet rdfs:domain hpc:Lsf .
+hpc:Quiet rdfs:range xsd:boolean .
+
+# HPC Feature Installation
+hpc:Hpcfeatureinstallation a owl:Class .
+hpc:configures a owl:ObjectProperty .
+hpc:Configures rdfs:domain hpc:Hpcfeatureinstallation .
+hpc:Configures rdfs:range hpc:File .
+
+# Files Configured by HPC Feature Installation
+hpc:Lsbmodules a owl:Class .
+hpc:Lsbresources a owl:Class .
+hpc:Lsbqueues a owl:Class .
+hpc:Lsfcluster a owl:Class .
+hpc:Lsfconf a owl:Class .
+hpc:Lsfshared a owl:Class .
+
+# PluginModule in lsb.modules
+hpc:Pluginmodule a owl:Class .
+hpc:haspluginmodulenames a owl:ObjectProperty .
+hpc:Haspluginmodulenames rdfs:domain hpc:Pluginmodule .
+hpc:Haspluginmodulenames rdfs:range xsd:string .
+
+# ReservationUsage in lsb.resources
+hpc:Reservationusage a owl:Class .
+hpc:hasresourcemethod a owl:ObjectProperty .
+hpc:Hasresourcemethod rdfs:domain hpc:Reservationusage .
+hpc:Hasresourcemethod rdfs:range xsd:string .
+hpc:Hasresourcemethod rdfs:range xsd:string .
+
+# Queue
+hpc:Queue a owl:Class .
+hpc:hasqueuename a owl:ObjectProperty .
+hpc:Hasqueuename rdfs:domain hpc:Queue .
+hpc:Hasqueuename rdfs:range xsd:string .
+hpc:haspriority a owl:ObjectProperty .
+hpc:hasPriority rd

@@ -1,0 +1,12 @@
+hpc:Job a owl:Class .
+hpc:Step a owl:Class .
+hpc:Joballocation a owl:Class .
+hpc:nodeindex a owl:DatatypeProperty .
+hpc:Gres a owl:Class .
+hpc:Jobgres a owl:Class .
+hpc:Stepgres a owl:Class .
+hpc:allocatedgres a owl:DatatypeProperty .
+hpc:jobstepcompatibility a owl:ObjectProperty .
+hpc:grescount a owl:DatatypeProperty .
+hpc:Jobcredential a owl:Class .
+hpc:gresassociation a owl:ObjectProperty

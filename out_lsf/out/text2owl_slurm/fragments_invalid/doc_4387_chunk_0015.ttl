@@ -1,0 +1,13 @@
+hpc:Accountingstoragemechanism a owl:Class .
+hpc:acceptablevalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Accountingstoragemechanism ;
+    rdfs:range xsd:string .
+hpc:acceptableValue "accounting_storage/mysql" .
+
+hpc:storageloc a owl:DatatypeProperty ;
+    rdfs:domain hpc:Accountingstoragemechanism ;
+    rdfs:range xsd:string .
+
+hpc:Storageuser a owl:Class .
+
+hpc:haspermissions a owl:ObjectProperty

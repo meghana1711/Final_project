@@ -1,0 +1,33 @@
+hpc:Lsfjob a owl:Class .
+hpc:Lsfadministrator a owl:Class .
+hpc:User a owl:Class .
+
+hpc:hasjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range hpc:Lsfjob .
+
+hpc:issubmittedby a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range hpc:User .
+
+hpc:haspriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:integer .
+
+hpc:isadmin a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:boolean .
+
+hpc:bbot a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range hpc:Lsfjob .
+
+hpc:btop a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range hpc:Lsfjob .
+
+hpc:Lsfjobsubmittedbylsfadministrator a owl:Class ;
+    rdfs:subClassOf hpc:Lsfjob .
+
+hpc:Lsfjobsubmittedbyuser a owl:Class ;
+    rdfs:subClassOf hpc:Lsfjob .

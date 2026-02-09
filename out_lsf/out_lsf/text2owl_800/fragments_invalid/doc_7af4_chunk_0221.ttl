@@ -1,0 +1,10 @@
+hpc:hasInitialValue
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Staticresource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "For a static resource, you must define an initial value (resource_value) here as well." ;
+    rdfs:label "hasInitialValue"@en ;
+
+hpc:isShared
+    a owl:ObjectProperty ;
+    rdfs:domain hpc

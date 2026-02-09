@@ -1,0 +1,63 @@
+hpc:Paralleljob a owl:Class .
+hpc:LSB_HOSTS rdf:type owl:ObjectProperty .
+hpc:HaslsbHosts rdfs:domain hpc:Paralleljob ;
+                   rdfs:range rdf:Resource .
+
+hpc:Preparingenvironment a owl:Class .
+hpc:Submittingparalleljob a owl:Class .
+hpc:Startingparalleltasks a owl:Class .
+hpc:lsfutilities a owl:ObjectProperty .
+
+hpc:Jobslot a owl:Class .
+hpc:ProcessorAllocationUnit rdf:type owl:ObjectProperty .
+hpc:Hasprocessorallocationunit rdfs:domain hpc:Jobslot ;
+                               rdfs:range xsd:nonNegativeInteger .
+
+hpc:Sequentialjob a owl:Class ;
+                   rdfs:subClassOf hpc:Jobslot .
+hpc:Paralleljob a owl:Class ;
+                 rdfs:subClassOf hpc:Jobslot .
+
+hpc:Component a owl:Class .
+hpc:Task a owl:Class ;
+             rdfs:subClassOf hpc:Component .
+
+hpc:Jobslotlimit a owl:Class .
+hpc:MinimumNumberOfTasks rdf:type owl:DatatypeProperty .
+hpc:MaximumNumberOfTasks rdf:type owl:DatatypeProperty .
+hpc:Hasminimumnumberoftasks rdfs:domain hpc:Paralleljob ;
+                             rdfs:range xsd:nonNegativeInteger .
+hpc:Hasmaximumnumberoftasks rdfs:domain hpc:Paralleljob ;
+                             rdfs:range xsd:nonNegativeInteger .
+
+hpc:Jobsize a owl:Class .
+hpc:NumberOfTasks rdf:type owl:DatatypeProperty .
+hpc:Hasnumberoftasks rdfs:domain hpc:Jobsize ;
+                      rdfs:range xsd:nonNegativeInteger .
+
+hpc:Allowedjobsize a owl:Class .
+hpc:Jobqueue a owl:Class ;
+             rdfs:subClassOf hpc:Allowedjobsize .
+hpc:Applicationprofile a owl:Class ;
+             rdfs:subClassOf hpc:Allowedjobsize .
+
+hpc:Firstexecutionhost a owl:Class .
+hpc:Resourcerequirement a owl:Class .
+hpc:Computeunit a owl:Class ;
+             rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:computeunits a owl:ObjectProperty .
+hpc:Hascomputeunits rdfs:domain hpc:Firstexecutionhost ;
+                     rdfs:range rdf:Resource .
+
+hpc:computeunitresourcerequirement a owl:ObjectProperty .
+hpc:Hascomputeunitresourcerequirement rdfs:domain hpc:Firstexecutionhost ;
+                                       rdfs:range hpc:Computeunit .
+
+hpc:Clusterwidestructure a owl:Class .
+hpc:Networkarchitecture a owl:Class .
+hpc:Jobscheduling a owl:Class .
+hpc:Jobplacement a owl:Class .
+hpc:Communicationbottleneck a owl:Class .
+hpc:Communicationintensiveparalleljob a owl:Class .
+hpc:NetworkTop

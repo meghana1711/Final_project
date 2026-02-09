@@ -1,0 +1,52 @@
+hpc:Sshx11forwarding a owl:Class ;
+    rdfs:subClassOf owl:TopObjectProperty ;
+    rdfs:comment "A job submitted with SSH X11 forwarding ..." ;
+    rdfs:label "SSH X11 Forwarding" ;
+    rdfs:domain hpc:Job .
+
+hpc:conflictingoptions a owl:ObjectProperty ;
+    rdfs:domain hpc:Sshx11forwarding ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Do not use with the following options: -IX, -K, -r." ;
+    rdfs:label "conflictingOptions" .
+
+hpc:cannotbeusedwithjobarray a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sshx11forwarding ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "A job submitted with SSH X11 forwarding cannot be used with job arrays." ;
+    rdfs:label "cannotBeUsedWithJobArray" .
+
+hpc:cannotbecheckedormodifiedbyesub a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sshx11forwarding ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Jobs with SSH X11 forwarding cannot be checked or modified by an esub." ;
+    rdfs:label "cannotBeCheckedOrModifiedByESub" .
+
+hpc:usewithi a owl:ObjectProperty ;
+    rdfs:domain hpc:Sshx11forwarding ;
+    rdfs:range hpc:Interactivejob ;
+    rdfs:comment "Use -XF with -I to submit an interactive job using SSH X11 forwarding." ;
+    rdfs:label "useWithI" .
+
+hpc:displayedthroughoutjoblifecycle a owl:DatatypeProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "The session is displayed throughout the job lifecycle." ;
+    rdfs:label "displayedThroughoutJobLifecycle" .
+
+hpc:notsupportedwithlsfmulticluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sshx11forwarding ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "LSF does not support SSH X11 forwarding with the LSF multicluster capability." ;
+    rdfs:label "notSupportedWithLSFMulticluster" .
+
+hpc:bjobsdisplaysjobinformation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sshx11forwarding ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "bjobs -l displays job information, including any jobs submitted with SSH X11 forwarding." ;
+    rdfs:label "bjobsDisplaysJobInformation" .
+
+hpc:bhistdisplayshistoricaljobinformation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sshx11forwarding ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "

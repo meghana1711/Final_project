@@ -1,0 +1,64 @@
+hpc:Project a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The project name." ;
+    rdfs:label Project .
+
+hpc:haspriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The priority of the project if it is different from the default behavior. A larger number indicates a higher priority." .
+
+hpc:hasdescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The description of the project." .
+
+hpc:Projectgroup a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The description of the project group." .
+
+hpc:Listofactivelsflicenseschedulerprojects a owl:Class ;
+    rdfs:subClassOf owl:Collection ;
+    rdfs:comment "List of active LSF License Scheduler projects." .
+
+hpc:projectmode a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range hpc:Projectgroup ;
+    rdfs:comment "Project Output with the -LP option, project mode." .
+
+hpc:Nonshareddistribution a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "NON_SHARED_DISTRIBUTION" .
+
+hpc:Workloaddistribution a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "WORKLOAD_DISTRIBUTION" .
+
+hpc:Files a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Files" .
+
+hpc:blinfo a owl:ObjectProperty ;
+    rdfs:domain hpc:Files ;
+    rdfs:range hpc:Project ;
+    rdfs:comment "The blinfo -a command (project mode) displays both NON_SHARED_DISTRIBUTION and WORKLOAD_DISTRIBUTION information when they are defined:" .
+
+hpc:blstat a owl:ObjectProperty ;
+    rdfs:domain hpc:Files ;
+    rdfs:range hpc:Files ;
+    rdfs:comment "See also blstat" .
+
+hpc:blusers a owl:ObjectProperty ;
+    rdfs:domain hpc:Files ;
+    rdfs:range hpc:Files ;
+    rdfs:comment "See also blusers" .
+
+hpc:lsfdotdotdotconf a owl:ObjectProperty ;
+    rdfs:domain hpc:Files ;
+    rdfs:range hpc:Files ;
+    rdfs:comment "See also lsf.conf" .
+
+hpc:blkill a owl:ObjectProperty ;
+    rdfs:domain hpc:Files ;
+    rdfs:range hpc:Files ;
+    rdfs:comment "Terminates an interactive (taskman) LSF License Scheduler task." .

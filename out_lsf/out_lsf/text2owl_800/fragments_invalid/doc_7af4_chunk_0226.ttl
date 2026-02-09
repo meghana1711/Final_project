@@ -1,0 +1,61 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A job in the LSF system." .
+
+hpc:Ssuspstate a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate ;
+    rdfs:comment "A state of a job in the LSF system that is suspended." .
+
+hpc:migrationthreshold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of minutes a job in the SSUSP state should remain before being migrated." .
+
+hpc:immediatemigration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a job should be migrated immediately upon suspension." .
+
+hpc:hostmigrationthreshold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The migration threshold for all jobs running on a host." .
+
+hpc:joblevelmigrationthreshold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The job-level migration threshold overrides the threshold configuration in application profile and queue." .
+
+hpc:applicationprofileconfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range hpc:Queue ;
+    rdfs:comment "The configuration of a queue in an application profile." .
+
+hpc:queuelevelconfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "The configuration of a host in a queue." .
+
+hpc:hostvalueprecedence a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Value ;
+    rdfs:comment "The precedence of a host value when it is lower than the value for the job, the queue, or the application." .
+
+hpc:Multiclusterjob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "A job that is forwarded to a remote cluster and is not affected by the migration threshold." .
+
+hpc:numberofjobslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of job slots on a host." .
+
+hpc:Reservedhostname a owl:Class ;
+    rdfs:subClassOf hpc:Host ;
+    rdfs:comment "A host with a special name that is used in the section for resource leasing." .
+
+hpc:Resourceleasingmodel a owl:Class ;
+    rdfs:subClassOf hpc:Multiclusterresource ;
+    rdfs:comment "The multicluster resource leasing model." .
+
+hpc:runningandsuspendedjobslimit a owl:DatatypeProperty ;

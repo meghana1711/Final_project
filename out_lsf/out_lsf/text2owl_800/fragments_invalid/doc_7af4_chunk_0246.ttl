@@ -1,0 +1,51 @@
+hpc:Computeunit a owl:Class .
+hpc:Enclosure a owl:Class .
+hpc:Rack a owl:Class .
+hpc:Cabinet a owl:Class .
+hpc:admin a owl:ObjectProperty .
+hpc:contains a owl:ObjectProperty .
+hpc:member a owl:ObjectProperty .
+hpc:type a owl:DatatypeProperty .
+hpc:Name rdfs:domain hpc:Computeunit ;
+    rdfs:range xsd:string .
+hpc:Admin rdfs:domain hpc:Computeunit ;
+    rdfs:range xsd:string .
+hpc:Member rdfs:domain hpc:Enclosure ;
+    rdfs:range xsd:string .
+hpc:Type rdfs:domain hpc:Enclosure ;
+    rdfs:range xsd:string .
+
+hpc:encl1 a hpc:Enclosure ;
+    hpc:contains (hpc:host1 hpc:host2 hpc:host3) ;
+    hpc:member "hg123" ;
+    hpc:type "enclosure" ;
+    hpc:admin "user11" "user14" .
+hpc:encl2 a hpc:Enclosure ;
+    hpc:contains (hpc:host4) ;
+    hpc:type "enclosure" .
+hpc:encl3 a hpc:Enclosure ;
+    hpc:contains (hpc:hostA hpc:hostB) ;
+    hpc:type "enclosure" ;
+    hpc:admin "usergroupB" .
+hpc:encl4 a hpc:Enclosure ;
+    hpc:contains (hpc:hostC* ^hostC[101-150]) ;
+    hpc:type "enclosure" ;
+    hpc:admin "usergroupJ" .
+hpc:encl5 a hpc:Enclosure ;
+    hpc:contains (hpc:hostC* ^hostC[101-150]) ;
+    hpc:type "enclosure" ;
+    hpc:admin "usergroupJ" .
+hpc:encl6 a hpc:Enclosure ;
+    hpc:contains (hpc:hostC[101-150]) ;
+    hpc:type "enclosure" .
+hpc:rack1 a hpc:Rack ;
+    hpc:contains (hpc:encl1 hpc:encl2 hpc:encl3) .
+hpc:rack2 a hpc:Rack ;
+    hpc:contains (hpc:encl4 hpc:encl5) .
+hpc:rack3 a hpc:Rack ;
+    hpc:contains (hpc:encl6) .
+hpc:cbnt1 a hpc:Cabinet ;
+    hpc:contains (hpc:rack1 hpc:rack2) .
+hpc:cbnt2 a hpc:Cabinet ;
+    hpc:contains (hpc:rack3) ;
+    hpc:admin "user14" .

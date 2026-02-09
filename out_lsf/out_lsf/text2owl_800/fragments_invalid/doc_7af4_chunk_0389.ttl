@@ -1,0 +1,42 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Maximumruntime a owl:Class .
+hpc:hasmaximumruntime a owl:DatatypeProperty .
+hpc:Hasmaximumruntime rdfs:domain hpc:Maximumruntime .
+hpc:Hasmaximumruntime rdfs:range xsd:integer .
+hpc:Maximumruntime rdfs:subClassOf owl:Restriction .
+hpc:MaximumRunTime rdfs:subPropertyOf hpc:hasMaximumRunTime .
+hpc:MaximumRunTime owl:hasValueMinInclusive xsd:0 .
+hpc:MaximumRunTime owl:hasValueMaxInclusive 2147483645 .
+
+hpc:Maximumtasks a owl:Class .
+hpc:hasmaximumtasks a owl:DatatypeProperty .
+hpc:Hasmaximumtasks rdfs:domain hpc:Maximumtasks .
+hpc:Hasmaximumtasks rdfs:range xsd:integer .
+hpc:Maximumtasks rdfs:subClassOf owl:Restriction .
+hpc:MaximumTasks rdfs:subPropertyOf hpc:hasMaximumTasks .
+hpc:MaximumTasks owl:hasValueMinInclusive xsd:0 .
+hpc:MaximumTasks owl:hasValueMaxInclusive 2147483645 .
+
+hpc:Requeuelimit a owl:Class .
+hpc:hasrequeuelimit a owl:DatatypeProperty .
+hpc:Hasrequeuelimit rdfs:domain hpc:Requeuelimit .
+hpc:Hasrequeuelimit rdfs:range xsd:integer .
+hpc:Requeuelimit rdfs:subClassOf owl:Restriction .
+hpc:RequeueLimit rdfs:subPropertyOf hpc:hasRequeueLimit .
+hpc:RequeueLimit owl:hasValueMinInclusive xsd:0 .
+hpc:RequeueLimit owl:hasValueMaxInclusive 2147483645 .
+
+hpc:Retrylimit a owl:Class .
+hpc:hasretrylimit a owl:DatatypeProperty .
+hpc:Hasretrylimit rdfs:domain hpc:Retrylimit .
+hpc:Hasretrylimit rdfs:range xsd:integer .
+hpc:Retrylimit rdfs:subClassOf owl:Restriction .
+hpc:RetryLimit rdfs:subPropertyOf hpc:hasRetryLimit .
+hpc:RetryLimit owl:hasValueMinInclusive xsd:0 .
+hpc:RetryLimit owl:hasValueMaxInclusive 2147483645 .
+
+hpc:Updatesummarybytask a owl:Class .

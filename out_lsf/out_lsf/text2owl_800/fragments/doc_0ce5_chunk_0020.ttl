@@ -1,0 +1,51 @@
+hpc:Lsfdaemon a owl:Class .
+hpc:Mbatchddaemon a owl:Class .
+
+# LSF Proxy Daemon Classes
+hpc:Lsfproxyddaemon a owl:Class .
+
+# LSF Rate Limiter Classes
+hpc:Ratelimiter a owl:Class .
+
+# Configuration Properties
+
+# Configuration for LSF Proxy Daemon
+hpc:Lsfproxydpolicyconfiguration a owl:Class .
+hpc:hasmax a owl:ObjectProperty .
+hpc:hasnominal a owl:ObjectProperty .
+hpc:hasthrottle a owl:ObjectProperty .
+
+# Diagnostic Properties
+hpc:enablediagnostics a owl:ObjectProperty .
+hpc:diagnoselogdir a owl:DatatypeProperty .
+
+# Administrative Control Properties
+hpc:temporarilyblockuser a owl:ObjectProperty .
+hpc:temporarilyblockhost a owl:ObjectProperty .
+hpc:blocklsfproxyd a owl:ObjectProperty .
+
+# Domain and Range Restrictions
+
+hpc:Hasmax rdfs:domain hpc:Lsfproxydpolicyconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Hasnominal rdfs:domain hpc:Lsfproxydpolicyconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Hasthrottle rdfs:domain hpc:Lsfproxydpolicyconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Enablediagnostics rdfs:domain hpc:Lsfproxyddaemon ;
+    rdfs:range xsd:boolean .
+
+hpc:Diagnoselogdir rdfs:domain hpc:Lsfproxyddaemon ;
+    rdfs:range xsd:string .
+
+hpc:Temporarilyblockuser rdfs:domain hpc:Administrator ;
+    rdfs:range hpc:User .
+
+hpc:Temporarilyblockhost rdfs:domain hpc:Administrator ;
+    rdfs:range hpc:Host .
+
+hpc:Blocklsfproxyd rdfs:domain hpc:Administrator ;
+    rdfs:range hpc:Lsfproxyddaemon .

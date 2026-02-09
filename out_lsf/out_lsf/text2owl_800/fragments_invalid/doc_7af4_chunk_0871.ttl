@@ -1,0 +1,72 @@
+hpc:Command a owl:Class .
+hpc:Acctcommand hpc:command ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "Commands that use LSF Explorer to retrieve accounting log records." .
+
+hpc:Jobcommand hpc:command ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "Commands that use LSF Explorer to retrieve event log records." .
+
+hpc:Energycommand hpc:command ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "Commands that use LSF Explorer to retrieve energy data." .
+
+hpc:Gpfsiocommand hpc:command ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "Commands that use LSF Explorer to retrieve IBM Spectrum Scale job accounting I/O data." .
+
+hpc:Allcommand hpc:command ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "Commands that use all supported functions to retrieve data." .
+
+hpc:Defaultcommand hpc:command ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "Commands that do not use LSF Explorer to retrieve data." .
+
+# Define object properties
+hpc:usesfunction a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Function .
+
+hpc:requireslsfexplorer a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean .
+
+hpc:useslsfexplorerelasticsearch a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean .
+
+# Define datatype properties
+hpc:hasfunction a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Function .
+
+hpc:requireslsfconf a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:useslsfqueryesservers a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+# Define functions
+hpc:Acct a hpc:Function ;
+    rdfs:comment "Retrieves accounting log records." .
+
+hpc:Jobs a hpc:Function ;
+    rdfs:comment "Retrieves event log records." .
+
+hpc:Energy a hpc:Function ;
+    rdfs:comment "Retrieves energy data." .
+
+hpc:Gpfsio a hpc:Function ;
+    rdfs:comment "Retrieves IBM Spectrum Scale job accounting I/O data." .
+
+hpc:All a hpc:Function ;
+    rdfs:comment "Retrieves data using all supported functions." .
+
+hpc:Default a hpc:Function ;
+    rdfs:comment "Not defined." .
+
+# Define LSF_QUERY_ES_SERVERS
+hpc:lsfqueryesservers a owl:DatatypeProperty

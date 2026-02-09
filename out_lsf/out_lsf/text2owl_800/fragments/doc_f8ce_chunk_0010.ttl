@@ -1,0 +1,50 @@
+hpc:Userdirectory a owl:Class .
+hpc:Groupdirectory a owl:Class .
+hpc:Stagingdirectory a owl:Class .
+hpc:Workdirectory a owl:Class .
+
+hpc:hashostname a owl:ObjectProperty .
+hpc:hasjobid a owl:DatatypeProperty .
+hpc:hasindex a owl:DatatypeProperty .
+hpc:haspath a owl:DatatypeProperty .
+hpc:hashash a owl:DatatypeProperty .
+hpc:hastagname a owl:DatatypeProperty .
+hpc:hasexecutionuser a owl:DatatypeProperty .
+
+hpc:Userdirectory rdfs:subClassOf [ a owl:Class ;
+                                     rdfs:subClassOf owl:Class ;
+                                     rdfs:subClassOf (hpc:Hashostname rdf:type owl:ObjectProperty) ] .
+hpc:Groupdirectory rdfs:subClassOf [ a owl:Class ;
+                                       rdfs:subClassOf owl:Class ;
+                                       rdfs:subClassOf (hpc:Hashostname rdf:type owl:ObjectProperty) ] .
+hpc:Stagingdirectory rdfs:subClassOf [ a owl:Class ;
+                                          rdfs:subClassOf owl:Class ;
+                                          rdfs:subClassOf (hpc:Hashostname rdf:type owl:ObjectProperty) ] .
+hpc:Workdirectory rdfs:subClassOf [ a owl:Class ;
+                                       rdfs:subClassOf owl:Class ] .
+
+hpc:Hashostname rdfs:domain hpc:Userdirectory .
+hpc:Hashostname rdfs:domain hpc:Groupdirectory .
+hpc:Hashostname rdfs:domain hpc:Stagingdirectory .
+hpc:Hashostname rdfs:domain hpc:Workdirectory .
+
+hpc:Hasjobid rdfs:domain hpc:Stagingdirectory .
+hpc:Hasindex rdfs:domain hpc:Stagingdirectory .
+hpc:Haspath rdfs:domain hpc:Userdirectory .
+hpc:Haspath rdfs:domain hpc:Groupdirectory .
+hpc:Haspath rdfs:domain hpc:Stagingdirectory .
+hpc:Haspath rdfs:domain hpc:Workdirectory .
+hpc:Hashash rdfs:domain hpc:Userdirectory .
+hpc:Hashash rdfs:domain hpc:Groupdirectory .
+hpc:Hashash rdfs:domain hpc:Stagingdirectory .
+hpc:Hashash rdfs:domain hpc:Workdirectory .
+hpc:Hastagname rdfs:domain hpc:Stagingdirectory .
+hpc:Hasexecutionuser rdfs:domain hpc:Stagingdirectory .
+
+hpc:Hashostname rdfs:range xsd:string .
+hpc:Hasjobid rdfs:range xsd:nonNegativeInteger .
+hpc:Hasindex rdfs:range xsd:nonNegativeInteger .
+hpc:Haspath rdfs:range xsd:string .
+hpc:Hashash rdfs:range xsd:string .
+hpc:Hastagname rdfs:range xsd:string .
+hpc:Hasexecutionuser rdfs:range xsd:string .

@@ -1,0 +1,22 @@
+hpc:Remotequeue a owl:Class .
+hpc:Localqueue a owl:Class .
+hpc:Sendjobsqueue a owl:Class .
+hpc:Receivejobsqueue a owl:Class .
+
+hpc:queueconnectionconfiguration a owl:ObjectProperty .
+
+hpc:Jobrejected a owl:Class .
+hpc:resourceleaseinformation a owl:ObjectProperty .
+
+hpc:Remotecluster a owl:Class .
+hpc:ResourceFlow a owl:EnumClass ; rdfs:label "IMPORT"^^xsd:string .
+hpc:ResourceFlow "EXPORT"^^xsd:string .
+hpc:ConnectionStatus a owl:EnumClass ; rdfs:label "ok"^^xsd:string .
+hpc:ConnectionStatus "disc"^^xsd:string .
+
+hpc:Resourceleaseinformation rdfs:domain hpc:Remotecluster .
+hpc:Resourceflow rdfs:domain hpc:Resourceleaseinformation .
+hpc:Connectionstatus rdfs:domain hpc:Resourceleaseinformation .
+
+hpc:Resourceprovider rdfs:range hpc:Remotecluster .
+hpc:Resourceconsumer rdfs:range hpc:Remotecluster .

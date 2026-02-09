@@ -1,0 +1,49 @@
+hpc:User a owl:Class .
+hpc:Job a owl:Class .
+hpc:Host a owl:Class .
+hpc:Processor a owl:Class .
+hpc:Submission a owl:Class .
+hpc:Resizerequest a owl:Class .
+hpc:Accountinginformation a owl:Class .
+hpc:User_Name owl:DatatypeProperty .
+hpc:Job_ID owl:DatatypeProperty .
+hpc:Project owl:DatatypeProperty .
+hpc:Status owl:DatatypeProperty .
+hpc:Queue owl:DatatypeProperty .
+hpc:Command owl:DatatypeProperty .
+hpc:Job_Description owl:DatatypeProperty .
+hpc:Submission_Time owl:DatatypeProperty .
+hpc:Dispatch_Time owl:DatatypeProperty .
+hpc:Task_Allocation owl:DatatypeProperty .
+hpc:Slot_Allocation owl:DatatypeProperty .
+hpc:Effective_Resource_Requirement owl:DatatypeProperty .
+hpc:Resize_Time owl:DatatypeProperty .
+hpc:Completion_Time owl:DatatypeProperty .
+hpc:Host_Name owl:DatatypeProperty .
+hpc:CWD owl:DatatypeProperty .
+hpc:Resubmission_Time owl:DatatypeProperty .
+hpc:Resubmission_Hosts owl:ObjectProperty .
+hpc:Allocation owl:ObjectProperty .
+hpc:Additional_Allocation owl:ObjectProperty .
+hpc:Job hasUser hpc:User .
+hpc:Job hasProject hpc:Project .
+hpc:Job hasStatus hpc:Status .
+hpc:Job hasQueue hpc:Queue .
+hpc:Job hasCommand hpc:Command .
+hpc:Job hasJobDescription hpc:Job_Description .
+hpc:Job wasSubmittedAt hpc:Submission_Time .
+hpc:Job wasDispatchedAt hpc:Dispatch_Time .
+hpc:Job hasTaskAllocation hpc:Task_Allocation .
+hpc:Job hasSlotAllocation hpc:Slot_Allocation .
+hpc:Job hasEffectiveResourceRequirement hpc:Effective_Resource_Requirement .
+hpc:Job wasCompletedAt hpc:Completion_Time .
+hpc:Job wasResubmittedAt hpc:Resubmission_Time .
+hpc:Job wasResubmittedOn hpc:Resubmission_Hosts .
+hpc:Job wasAllocatedOn hpc:Allocation .
+hpc:Job receivedAdditionalAllocation hpc:Additional_Allocation .
+hpc:Host hasName xsd:string .
+hpc:Processor rdfs:subClassOf hpc:Host .
+hpc:Submission a hpc:Job .
+hpc:ResizeRequest a hpc:Job .
+hpc:AccountingInformation a hpc:Job .
+hpc:AccountingInformation hasJob hpc:Job .

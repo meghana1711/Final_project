@@ -1,0 +1,14 @@
+hpc:lsMaxTaskmanPreempt a owl:DatatypeProperty .
+hpc:LsMaxTaskmanPreempt rdfs:domain hpc:Taskmanjob .
+hpc:LsMaxTaskmanPreempt rdfs:range xsd:integer .
+hpc:LS_MAX_TASKMAN_PREEMPT rdfs:comment "Defines the maximum number of times taskman jobs can be preempted. Maximum preemption time checking for all jobs is enabled by LS_ENABLE_MAX_PREEMPT. Used for project mode only. Default unlimited." .
+
+hpc:lsMaxTaskmanSessions a owl:DatatypeProperty .
+hpc:LsMaxTaskmanSessions rdfs:domain hpc:Taskmanjob .
+hpc:LsMaxTaskmanSessions rdfs:range xsd:integer .
+hpc:LS_MAX_TASKMAN_SESSIONS rdfs:comment "Defines the maximum number of taskman jobs that run simultaneously. This prevents system-wide performance issues that occur if there are a large number of taskman jobs running in License Scheduler. The number of taskman sessions must be a positive integer. The actual maximum number of taskman jobs is affected by the operating system file descriptor limit. Make sure the operating system file descriptor limit and the maximum concurrent connections are large enough to support all taskman tasks, License Scheduler (bl* commands), and connections between LSF License Scheduler and LSF. Used for both project mode and cluster mode." .
+
+hpc:lsPreemptPeer a owl:ObjectProperty .
+hpc:LsPreemptPeer rdfs:domain hpc:Project .
+hpc:LsPreemptPeer rdfs:range xsd:string .
+hpc:LS_PREEMPT_PEER rdfs:comment "Enables bottom-up license token preemption in hierarchical project group configuration. LSF License Scheduler attempts to preempt tokens from the closest projects in the hierarchy first. This balances token ownership from the bottom up. Used for project mode only." .

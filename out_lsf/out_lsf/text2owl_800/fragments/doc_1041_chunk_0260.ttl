@@ -1,0 +1,24 @@
+hpc:Jobaffinity a owl:Class .
+hpc:Jobappprofile a owl:Class .
+hpc:Absolutepriorityscheduling a owl:Class .
+
+hpc:hasaffinityresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobaffinity ;
+    rdfs:range xsd:string .
+
+hpc:hasapplicationprofile a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobappprofile .
+
+hpc:hasabsolutepriorityscheduling a owl:ObjectProperty ;
+    rdfs:domain hpc:Absolutepriorityscheduling .
+
+hpc:Jobfilter a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Jobformat a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Jobaffinity ;
+    rdfs:subClassOf hpc:Jobappprofile ;
+    rdfs:subClassOf hpc:Absolutepriorityscheduling .

@@ -1,0 +1,64 @@
+hpc:LcAlloc        a owl:Class ;
+    rdfs:comment "Logs messages related to the resource allocation engine" .
+
+hpc:LcAuth         a owl:Class ;
+    rdfs:comment "Logs messages related to users and authentication" .
+
+hpc:LcClient       a owl:Class ;
+    rdfs:comment "Logs messages related to clients" .
+
+hpc:LcComm         a owl:Class ;
+    rdfs:comment "Logs messages related to communications" .
+
+hpc:LcConf         a owl:Class ;
+    rdfs:comment "Logs messages related to configuration" .
+
+hpc:LcContainer    a owl:Class ;
+    rdfs:comment "Logs messages related to activities" .
+
+hpc:LcEvent        a owl:Class ;
+    rdfs:comment "Logs messages related to the event notification service" .
+
+hpc:LcMem          a owl:Class ;
+    rdfs:comment "Logs messages related to memory allocation" .
+
+hpc:LcPem          a owl:Class ;
+    rdfs:comment "Logs messages related to the process execution manager (pem)" .
+
+hpc:LcPerf         a owl:Class ;
+    rdfs:comment "Logs messages related to performance" .
+
+hpc:LcQuery        a owl:Class ;
+    rdfs:comment "Logs messages related to client queries" .
+
+hpc:LcRecover      a owl:Class ;
+    rdfs:comment "Logs messages related to recovery and data persistence" .
+
+hpc:LcRsrc         a owl:Class ;
+    rdfs:comment "Logs messages related to resources, including host status changes" .
+
+hpc:LcSys          a owl:Class ;
+    rdfs:comment "Logs messages related to system calls" .
+
+hpc:LcTrace        a owl:Class ;
+    rdfs:comment "Logs the steps of the program" .
+
+hpc:logEmerg       a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logclass ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Log only those messages in which the system is unusable." .
+
+hpc:logAlert       a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logclass ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Log only those messages for which action must be taken immediately." .
+
+hpc:logCrit        a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logclass ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Log only those messages that are critical." .
+
+hpc:logErr         a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logclass ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Log only those messages that indicate error conditions." .

@@ -1,0 +1,45 @@
+hpc:User a owl:Class .
+hpc:Host a owl:Class .
+hpc:Port a owl:Class .
+hpc:Lsfhostfile a owl:Class .
+hpc:Systemhostfile a owl:Class .
+
+hpc:hasUID rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:isOnHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Host .
+
+hpc:hasPort rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Port .
+
+hpc:LSFHostFileLocation rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfhostfile ;
+    rdfs:range xsd:string .
+
+hpc:SystemHostFileLocation rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Systemhostfile ;
+    rdfs:range xsd:string .
+
+hpc:doacceptconnFailure rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Error .
+
+hpc:authRequestFailure rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Error .
+
+hpc:resControlPermissionDenied rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Error .
+
+hpc:mbatchdCommunicationError rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Error .
+
+hpc:lsfRootExecPermissionDenied rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Error .
+
+hpc:Error a owl:Class .
+
+hpc:LSFHostFile a hpc:SystemHostFile, hpc:HostFile .
+hpc:Systemhostfile a owl:Class .

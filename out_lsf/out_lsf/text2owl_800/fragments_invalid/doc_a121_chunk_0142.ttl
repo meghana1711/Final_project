@@ -1,0 +1,52 @@
+hpc:timeoutminutes a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies the length of time, in minutes, that post-execution processing can run." .
+
+hpc:Postexecutionprocessingfailure a owl:Class ;
+    rdfs:subClassOf hpc:Jobstatus .
+
+hpc:Posterr a owl:Class ;
+    rdfs:subClassOf hpc:Postexecutionprocessingfailure ;
+    rdfs:comment "Status of POST_ERR." .
+
+hpc:Preexecutionprocessgroup a owl:Class ;
+    rdfs:subClassOf hpc:Processgroup .
+
+hpc:Postexecutionprocessgroup a owl:Class ;
+    rdfs:subClassOf hpc:Processgroup .
+
+hpc:preexecutionprocessgroupkill a owl:ObjectProperty ;
+    rdfs:domain hpc:Unixhost ;
+    rdfs:range hpc:Preexecutionprocessgroup ;
+    rdfs:comment "On UNIX and Linux, it kills the entire process group of the job’s pre-execution processes." .
+
+hpc:postexecutionprocessgroupkill a owl:ObjectProperty ;
+    rdfs:domain hpc:Unixhost ;
+    rdfs:range hpc:Postexecutionprocessgroup ;
+    rdfs:comment "If post-execution processing takes longer than the speciﬁed value, sbatchd reports post-execution failure—a status of POST_ERR. On UNIX and Linux, it kills the entire process group of the job’s pre-execution processes." .
+
+hpc:Preexecutioncommanduseraccount a owl:Class ;
+    rdfs:subClassOf hpc:Useraccount .
+
+hpc:Preexecutioncommanduseraccountatqueuelevel a owl:Class ;
+    rdfs:subClassOf hpc:Preexecutioncommanduseraccount ;
+    rdfs:comment "This parameter applies only to pre- and post-execution commands conﬁgured at the queue level; pre-execution commands deﬁned at the application or job level run under the account of the user who submits the job." .
+
+hpc:Preexecutioncommanduseraccountatapplicationorjoblevel a owl:Class ;
+    rdfs:subClassOf hpc:Preexecutioncommanduseraccount ;
+    rdfs:comment "By default, both the pre- and post-execution commands run under the account of the user who submits the job." .
+
+hpc:Preexecutioncommanduseraccountatsystemlevel a owl:Class ;
+    rdfs:subClassOf hpc:Preexecutioncommanduseraccount ;
+    rdfs:comment "Specifying a user account under which the pre- and post-execution commands run is conﬁgured at the system level." .
+
+hpc:Preexecutioncommandrequiresroot a owl:Class ;
+    rdfs:subClassOf hpc:Preexecutioncommanduseraccount ;
+    rdfs:comment "If the pre-execution or post-execution commands perform privileged operations that require root permissions on UNIX hosts, specify a value of root." .
+
+hpc:Lsfsudoersfile a owl:Class ;
+    rdfs:subClassOf hpc:File .
+
+hpc:lsbprepostexecuser a owl:DatatypeProperty ;
+    r

@@ -1,0 +1,21 @@
+hpc:Timewindow a owl:Class .
+hpc:Starttime hpc:Timewindow rdfs:domain xsd:time .
+hpc:Endtime hpc:Timewindow rdfs:domain xsd:time .
+hpc:Overlaps hpc:Timewindow rdfs:domain hpc:Timewindow .
+hpc:Timewindow rdfs:subClassOf owl:Class .
+
+hpc:Hasstarttime hpc:Timewindow rdfs:domain hpc:Timewindow ;
+                                 rdfs:range xsd:time .
+hpc:Hasendtime hpc:Timewindow rdfs:domain hpc:Timewindow ;
+                                rdfs:range xsd:time .
+
+hpc:minidletime a owl:DatatypeProperty .
+hpc:Minidletime rdfs:domain hpc:Timewindow ;
+                 rdfs:range xsd:nonNegativeInteger .
+
+hpc:cycletime a owl:DatatypeProperty .
+hpc:Cycletime rdfs:domain hpc:Timewindow ;
+              rdfs:range xsd:nonNegativeInteger .
+
+hpc:Serviceclasses a owl:Class .
+hpc:Serviceclass a owl:Class .

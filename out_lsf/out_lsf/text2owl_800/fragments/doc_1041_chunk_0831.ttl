@@ -1,0 +1,26 @@
+hpc:Loadadjustment a owl:Class .
+hpc:resourcerequirement a owl:DatatypeProperty .
+hpc:Host a owl:Class .
+hpc:tasknumber a owl:DatatypeProperty .
+
+hpc:Loadadjustment rdfs:subClassOf owl:Class .
+hpc:Resourcerequirement rdfs:domain hpc:Loadadjustment ;
+                               rdfs:range xsd:string .
+hpc:Host rdfs:subClassOf owl:Class .
+hpc:Tasknumber rdfs:domain hpc:Loadadjustment ;
+                      rdfs:range xsd:nonNegativeInteger .
+
+hpc:tmp a owl:NamedIndividual ;
+       hpc:ResourceRequirement "rusage[swp=-0.5]" .
+hpc:swp a owl:NamedIndividual ;
+      hpc:ResourceRequirement "rusage[swp=-1.5]" .
+hpc:mem a owl:NamedIndividual ;
+     hpc:ResourceRequirement "rusage[mem=-1.0]" .
+hpc:r1m a owl:NamedIndividual ;
+     hpc:ResourceRequirement "rusage[mem=0.4]" .
+hpc:ut a owl:NamedIndividual ;
+     hpc:ResourceRequirement "rusage[mem=15%]" .
+hpc:r15s a owl:NamedIndividual ;
+     hpc:ResourceRequirement "rusage[mem=0.1]" .
+hpc:pg a owl:NamedIndividual ;
+     hpc:ResourceRequirement "rusage[mem=0.3]" .

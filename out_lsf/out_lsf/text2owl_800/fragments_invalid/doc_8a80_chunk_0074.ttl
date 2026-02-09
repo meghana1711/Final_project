@@ -1,0 +1,19 @@
+hpc:Classname a owl:Class .
+hpc:debuglevel a owl:DatatypeProperty .
+hpc:classname a owl:ObjectProperty .
+hpc:logfile a owl:ObjectProperty .
+hpc:debugLevelRange xsd:nonNegativeInteger .
+hpc:classNameRange rdf:List .
+hpc:classNameMember rdf:Datatype .
+hpc:Lsfsystemlogfile a owl:Class .
+hpc:Lsfsystemlogfile rdfs:subClassOf hpc:Class .
+hpc:LSFSystemLogFile rdfs:comment "Current LSF system log file in the LSF system log file directory." .
+hpc:Logfiledomain hpc:daemon .
+hpc:logFileRange rdf:XMLLiteral .
+hpc:Daemon a owl:Class .
+hpc:propname a owl:ObjectProperty .
+hpc:Lsflogclass a owl:Class .
+hpc:Lsflogclass rdfs:subClassOf hpc:Class .
+hpc:LSFLogClass rdfs:comment "Software classes for which debug messages are to be logged." .
+hpc:LC_AUTH a hpc:LSFLogClass .
+hpc:LC_AUTH rdfs:comment "Log authentication messages." .

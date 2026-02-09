@@ -1,0 +1,18 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:subClassOf hpc:Schedulableresource ;
+    rdfs:comment "Represents a job initiated by a user." .
+
+hpc:Priorityjob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "A job that is initiated strictly in its priority order." .
+
+hpc:Backfilljob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "A

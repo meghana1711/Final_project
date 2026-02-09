@@ -1,0 +1,57 @@
+hpc:Steptime a owl:Class ;
+    rdfs:subClassOf owl:QuantitativeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "Controls how fast the cluster grows." .
+
+hpc:Stepvalue a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies the number of instances to launch at each step." .
+
+hpc:Optimizations a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Optimization ;
+    rdfs:comment "Rules set after the calculation of demand to try to get better results." .
+
+hpc:Allocationrule a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Allocationruleentry ;
+    rdfs:comment "A list of allocation rule entries that specify how many hosts from a certain template are worth considering over another." .
+
+hpc:Allocationruleentry a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Allocationruleentryinstance ;
+    rdfs:comment "For every allocation rule entry, each of the following allocation rule attributes are mandatory." .
+
+hpc:fromtemplate a owl:ObjectProperty ;
+    rdfs:domain hpc:Allocationruleentry ;
+    rdfs:range hpc:Allocationruleentryinstance ;
+    rdfs:comment "Specifies a resource provider name or a template name." .
+
+hpc:provider a owl:DatatypeProperty ;
+    rdfs:domain hpc:Allocationruleentryinstance ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies a resource provider name." .
+
+hpc:templatename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Allocationruleentryinstance ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies a template name." .
+
+hpc:factor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Allocationruleentryinstance ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Number of hosts that are being replaced." .
+
+hpc:totemplate a owl:ObjectProperty ;
+    rdfs:domain hpc:Allocationruleentryinstance ;
+    rdfs:range hpc:Allocationruleentryinstance ;
+    rdfs:comment "Specifies a resource provider name or a template name." .
+
+hpc:defaultStepTime a xsd:duration ;
+    rdfs:comment "Default value for step time is 10 minutes." .

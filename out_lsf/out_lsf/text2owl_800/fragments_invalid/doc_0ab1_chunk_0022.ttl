@@ -1,0 +1,29 @@
+hpc:Lsf a owl:Class .
+hpc:cudaVisibleDevices a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Mpi a owl:Class ;
+    rdfs:subClassOf hpc:Lsf .
+
+hpc:mps a owl:ObjectProperty ;
+    rdfs:domain hpc:Mpi ;
+    rdfs:range ( hpc:PerSocket rdf:|| hpc:PerGpu ) .
+
+hpc:shared a owl:ObjectProperty ;
+    rdfs:domain hpc:Mps ;
+    rdfs:range hpc:Mps .
+
+hpc:exclusiveThread a owl:ObjectProperty ;
+    rdfs:domain hpc:Mps ;
+    rdfs:range xsd:boolean .
+
+hpc:jExclusive a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:aff a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:Mps a owl:Class .

@@ -1,0 +1,31 @@
+hpc:Jobresumptioncondition a owl:Class .
+hpc:selectresourcerequirement a owl:ObjectProperty .
+hpc:Selectresourcerequirement rdfs:domain hpc:Jobresumptioncondition ;
+                                      rdfs:range hpc:Resourcerequirement .
+
+hpc:Timewindow a owl:Class .
+hpc:Timewindow rdfs:subClassOf hpc:Timeexpression .
+hpc:Timewindow rdfs:range xsd:string .
+
+hpc:dispatchwindow a owl:ObjectProperty .
+hpc:Dispatchwindow rdfs:domain hpc:Timewindow ;
+                          rdfs:range hpc:Timeexpression .
+
+hpc:runwindow a owl:ObjectProperty .
+hpc:Runwindow rdfs:domain hpc:Timewindow ;
+                        rdfs:range hpc:Timeexpression .
+
+hpc:deadlineconstraint a owl:ObjectProperty .
+hpc:Deadlineconstraint rdfs:domain hpc:Timewindow ;
+                          rdfs:range hpc:Timeexpression .
+
+hpc:Timeexpression a owl:Class .
+hpc:Timeexpression rdfs:subClassOf xsd:string .
+
+hpc:Timeconfiguration a owl:Class .
+
+hpc:automatictimebasedconfiguration a owl:ObjectProperty .
+hpc:Automatictimebasedconfiguration rdfs:domain hpc:Timeconfiguration .
+
+hpc:variableconfiguration a owl:ObjectProperty .
+hpc:Variableconfiguration rdfs:domain hpc:Timeconfiguration .

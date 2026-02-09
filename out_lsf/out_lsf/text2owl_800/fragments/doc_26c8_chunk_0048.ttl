@@ -1,0 +1,42 @@
+hpc:Attributetype a owl:Class;
+    rdfs:subClassOf owl:Class.
+
+hpc:Attributevalue a owl:Class;
+    rdfs:subClassOf owl:Class.
+
+hpc:gpuextend a owl:ObjectProperty;
+    rdfs:domain hpc:Attributevalue;
+    rdfs:range xsd:string.
+
+hpc:ngpus a owl:DatatypeProperty;
+    rdfs:domain hpc:Gpuextend;
+    rdfs:range xsd:nonNegativeInteger.
+
+hpc:nnumas a owl:DatatypeProperty;
+    rdfs:domain hpc:Attributevalue;
+    rdfs:range xsd:nonNegativeInteger;
+    rdfs:default (1).
+
+hpc:gbrand a owl:DatatypeProperty;
+    rdfs:domain hpc:Gpuextend;
+    rdfs:range xsd:string;
+    rdfs:comment "Case sensitive, supports NVIDIA GPUs.".
+
+hpc:Booleanattributevalue a owl:Class;
+    rdfs:subClassOf hpc:Attributevalue;
+    owl:equivalentClass [ a owl:Restriction;
+                            rdfs:domain hpc:Booleanattributevalue;
+                            rdfs:range xsd:integer;
+                            owl:allValuesFrom (xsd:integer [ xsd:minInclusive "0" ] xsd:integer [ xsd:maxInclusive "1" ])
+                         ].
+
+hpc:Numericattributevalue a owl:Class;
+    rdfs:subClassOf hpc:Attributevalue;
+    owl:equivalentClass [ a owl:Restriction;
+                            rdfs:domain hpc:Numericattributevalue;
+                            rdfs:range xsd:string;
+                            owl:hasValue xsd:string;
+                            owl:onClass xsd:string;
+                            owl:cardinality 2;
+                            owl:allValuesFrom (xsd:string [ xsd:pattern "^[\\[\\d+:\\d+\\]]$" ] xsd:string [ xsd:pattern "^\\d+$" ])
+                         ].

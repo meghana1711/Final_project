@@ -1,0 +1,48 @@
+hpc:License a owl:Class .
+hpc:distribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range hpc:Distributionfeature .
+hpc:nonshareddistribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range hpc:Distributionfeature .
+hpc:Distributionfeature a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:unionOf (hpc:DistributionFeatureWithNonSharedLicenses hpc:DistributionFeatureWithoutNonSharedLicenses) ] .
+hpc:Distributionfeaturewithnonsharedlicenses a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:intersectionOf (hpc:DistributionFeatureWithNonSharedLicenses_1 hpc:DistributionFeatureWithNonSharedLicenses_2) ] .
+hpc:Distributionfeaturewithnonsharedlicenses1 a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:onProperty hpc:NonSharedDistribution ;
+        owl:hasValue (hpc:DistributionFeatureWithNonSharedLicenses_1_Value) ] .
+hpc:Distributionfeaturewithnonsharedlicenses1Value a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:cardinalityMin 1 ;
+        owl:onProperty hpc:NonSharedDistribution ] .
+hpc:Distributionfeaturewithnonsharedlicenses2 a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:onProperty hpc:Distribution ;
+        owl:hasValue (hpc:DistributionFeatureWithNonSharedLicenses_2_Value) ] .
+hpc:Distributionfeaturewithnonsharedlicenses2Value a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:cardinalityMin 1 ;
+        owl:onProperty hpc:Distribution ] .
+hpc:Distributionfeaturewithoutnonsharedlicenses a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:onProperty hpc:Distribution ] .
+hpc:Lanserver a owl:Class .
+hpc:lmLicenseName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Distributionfeature .
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Distributionfeature .
+
+hpc:Lp1 a hpc:Project ;
+    hpc:NAME "Lp1" ;
+    hpc:Distribution (hpc:LanServer (hpc:Lp1 1/10 hpc:Lp2 4)) ;
+    hpc:NonSharedDistribution (hpc:LanServer (hpc:Lp1 10)) .
+hpc:Lp2 a hpc:Project ;
+    hpc:NAME "Lp2" .
+hpc:Lp3 a hpc:Project ;
+    hpc:NAME "Lp3" .
+
+hpc:VCS-RUNTIME a

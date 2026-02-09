@@ -1,0 +1,40 @@
+hpc:Token a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:InUseCount rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Token ;
+    rdfs:range xsd:integer .
+
+hpc:Max rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Token ;
+    rdfs:range xsd:integer ;
+    owl:hasMinCardinality 1 ;
+    owl:hasMaxCardinality (INFIT_INT-1) .
+
+hpc:Nominal rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Token ;
+    rdfs:range xsd:integer ;
+    owl:hasMinCardinality 0 ;
+    owl:hasMaxCardinality (maxValue) ;
+    owl:default (if(?max > 100, ?max, 100) as xsd:integer) .
+
+hpc:Throttle rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Token ;
+    rdfs:range xsd:integer ;
+    owl:hasMinCardinality 1 ;
+    owl:hasMaxCardinality (INFIT_INT-1) .
+
+hpc:QueryConnection rdf:type hpc:Token ;
+    owl:hasMax ?max .
+
+hpc:SubmissionConnection rdf:type hpc:Token ;
+hpc:OtherConnection rdf:type hpc:Token ;
+
+hpc:Distributed rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Token ;
+    rdfs:range hpc:Daemon ;
+
+hpc:Daemon a owl:Class .
+
+
+In this output, `INFIT_INT` and `maxValue` are placeholders for the actual maximum integer value in the `lsb.params` file.

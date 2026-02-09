@@ -1,0 +1,40 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Jobslot a owl:Class .
+hpc:jobslotlimitperhost a owl:DatatypeProperty .
+hpc:njobs a owl:DatatypeProperty .
+hpc:Totaljobs a owl:Class .
+hpc:totaltasks a owl:DatatypeProperty .
+hpc:Run a owl:Class .
+hpc:Susp a owl:Class .
+hpc:Pend a owl:Class .
+hpc:Psusp a owl:Class .
+hpc:Pjobs a owl:Class .
+hpc:Longoutput a owl:Class .
+
+hpc:Description a rdfs:DatatypeProperty .
+hpc:DefaultQueueIndication a rdfs:DatatypeProperty .
+
+hpc:Jobslotlimitperhost rdfs:domain hpc:Host .
+hpc:Jobslotlimitperhost rdfs:range xsd:integer .
+hpc:Njobs rdfs:domain hpc:Queue .
+hpc:Njobs rdfs:range xsd:integer .
+hpc:Totaljobs rdfs:subClassOf hpc:Queue .
+hpc:Totaljobs rdfs:domain hpc:Queue .
+hpc:Totaljobs rdfs:range xsd:integer .
+hpc:Totaltasks rdfs:domain hpc:Queue .
+hpc:Totaltasks rdfs:range xsd:integer .
+hpc:Run rdfs:subClassOf hpc:Job .
+hpc:Susp rdfs:subClassOf hpc:Job .
+hpc:Pend rdfs:subClassOf hpc:Pendingjob .
+hpc:Psusp rdfs:subClassOf hpc:Pendingjob .
+hpc:Pjobs rdfs:subClassOf hpc:Queue .
+hpc:Pjobs rdfs:domain hpc:Queue .
+hpc:Pjobs rdfs:range xsd:integer .
+hpc:Longoutput rdfs:subClassOf hpc:Queue .
+
+hpc:Description rdfs:domain hpc:Longoutput .
+hpc:Defaultqueueindication rdfs:domain hpc:Longoutput .

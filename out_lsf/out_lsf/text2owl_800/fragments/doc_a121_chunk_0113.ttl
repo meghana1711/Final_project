@@ -1,0 +1,39 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a job in the HPC system." .
+
+hpc:Jobrerun a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Represents a job that can be re-run." .
+
+hpc:Jobrerundisabled a owl:Class ;
+    rdfs:subClassOf hpc:Jobrerun ;
+    rdfs:comment "Represents a job that is disabled from re-running." .
+
+hpc:hasrerundisabled a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobrerun ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a job is disabled from re-running." .
+
+hpc:lsbDisableRerunPostExec a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobrerun ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Configuration setting in lsf.conf to prevent post-exec from running when a job is rerun." .
+
+hpc:Jobprediction a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a prediction of a job's start time." .
+
+hpc:Jobsimulationbasedestimator a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a simulation-based job start time estimator." .
+
+hpc:hasestimationenabled a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsimulationbasedestimator ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the simulation-based estimator is enabled." .
+
+hpc:estimationpredictionlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsimulationbasedestimator ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The limit for the number of predictions or the time limit for predictions." .

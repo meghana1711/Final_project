@@ -1,0 +1,40 @@
+hpc:Applicationprofile a owl:Class .
+hpc:Host a owl:Class .
+hpc:Hostgroup a owl:Class .
+hpc:Limit a owl:Class .
+
+hpc:Hasapplicationprofile rdfs:domain hpc:Limit .
+hpc:Hashost rdfs:domain hpc:Limit .
+hpc:Hashostgroup rdfs:domain hpc:Limit .
+
+hpc:Hasapplicationprofile rdfs:range rdf:Resource .
+hpc:Hashost rdfs:range rdf:Resource .
+hpc:Hashostgroup rdfs:range rdf:Resource .
+
+hpc:Allapplicationprofile a owl:Class .
+hpc:Allhost a owl:Class .
+hpc:Notapplicationprofile a owl:Class .
+
+hpc:Hasnotapplicationprofile rdfs:domain hpc:Limit .
+hpc:Hasnotapplicationprofile rdfs:range rdf:Resource .
+
+hpc:perapp a owl:ObjectProperty .
+hpc:perhost a owl:ObjectProperty .
+
+hpc:Perapp rdfs:domain hpc:Limit .
+hpc:Perapp rdfs:range xsd:string .
+
+hpc:Perhost rdfs:domain hpc:Limit .
+hpc:Perhost rdfs:range rdf:List .
+hpc:Perhost rdfs:range rdf:first owl:Thing .
+hpc:Perhost rdfs:range rdf:rest rdf:List .
+hpc:Perhost rdfs:range rdf:rest rdf:first hpc:Hostname .
+hpc:Perhost rdfs:range rdf:rest rdf:rest rdf:first hpc:Hostgroup .
+
+hpc:hostname a owl:DatatypeProperty .
+hpc:Hostgroup a owl:Class .
+
+hpc:Hostname rdfs:domain hpc:Perhost .
+hpc:Hostname rdfs:range xsd:string .
+
+hpc:Hostgroup rdfs:subClassOf hpc:Host .

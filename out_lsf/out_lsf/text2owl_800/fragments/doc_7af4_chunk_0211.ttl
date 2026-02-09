@@ -1,0 +1,49 @@
+hpc:Swapspacelimit a owl:Class .
+hpc:Swapspacelimit rdfs:subClassOf owl:Class .
+
+hpc:usersswaplimit a owl:ObjectProperty .
+hpc:Usersswaplimit rdfs:domain hpc:Swapspacelimit ;
+                     rdfs:range rdfs:Resource .
+
+hpc:hostsswaplimit a owl:ObjectProperty .
+hpc:Hostsswaplimit rdfs:domain hpc:Swapspacelimit ;
+                     rdfs:range rdfs:Resource .
+
+hpc:projectsswaplimit a owl:ObjectProperty .
+hpc:Projectsswaplimit rdfs:domain hpc:Swapspacelimit ;
+                       rdfs:range rdfs:Resource .
+
+hpc:licprojectsswaplimit a owl:ObjectProperty .
+hpc:Licprojectsswaplimit rdfs:domain hpc:Swapspacelimit ;
+                           rdfs:range rdfs:Resource .
+
+hpc:appsswaplimit a owl:ObjectProperty .
+hpc:Appsswaplimit rdfs:domain hpc:Swapspacelimit ;
+                    rdfs:range rdfs:Resource .
+
+hpc:perappswaplimit a owl:ObjectProperty .
+hpc:Perappswaplimit rdfs:domain hpc:Swapspacelimit ;
+                      rdfs:range rdfs:Resource .
+
+hpc:queuesswaplimit a owl:ObjectProperty .
+hpc:Queuesswaplimit rdfs:domain hpc:Swapspacelimit ;
+                     rdfs:range rdfs:Resource .
+
+hpc:perqueueswaplimit a owl:ObjectProperty .
+hpc:Perqueueswaplimit rdfs:domain hpc:Swapspacelimit ;
+                       rdfs:range rdfs:Resource .
+
+hpc:usersswaplimitperapp a owl:ObjectProperty .
+hpc:Usersswaplimitperapp rdfs:domain hpc:Appsswaplimit ;
+                            rdfs:range rdfs:Resource .
+
+hpc:usersswaplimitperqueue a owl:ObjectProperty .
+hpc:Usersswaplimitperqueue rdfs:domain hpc:Queuesswaplimit ;
+                                 rdfs:range rdfs:Resource .
+
+hpc:Tmpspacelimit a owl:Class .
+hpc:Tmpspacelimit rdfs:subClassOf owl:Class .
+
+hpc:tmpspacelimitpercent a owl:DatatypeProperty .
+hpc:Tmpspacelimitpercent rdfs:domain hpc:Tmpspacelimit ;
+                            rdfs:range xsd:nonNegativeInteger .

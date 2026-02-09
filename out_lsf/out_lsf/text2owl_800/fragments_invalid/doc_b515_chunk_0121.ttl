@@ -1,0 +1,21 @@
+@base <http://example.org/hpc/>
+
+hpc:Advancereservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf (hpc:Activereservation rdfs:or hpc:Closedreservation rdfs:or hpc:Openreservation) ;
+    rdfs:subClassOf (hpc:Hasjobslotcount rdfs:and
+                      hpc:HasCandidateHosts rdfs:and
+                      hpc:HasStartTime rdfs:and
+                      hpc:HasEndTime rdfs:and
+                      hpc:HasOwner) ;
+    rdfs:subClassOf (hpc:Hasresourcerequirementstring optional hpc:Hasjobslotcount) ;
+
+hpc:hasjobslotcount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hascandidatehosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range rdf:List .
+
+hpc:hasstarttime a owl:Datatype

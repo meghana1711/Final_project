@@ -1,0 +1,25 @@
+hpc:Job a owl:Class;
+    rdfs:subClassOf hpc:Resource;
+    rdfs:comment "A job in the context of LSF License Scheduler." .
+
+hpc:reservedamount a owl:DatatypeProperty;
+    rdfs:domain hpc:Job;
+    rdfs:range xsd:nonNegativeInteger;
+    rdfs:comment "The amount reserved for a job." .
+
+hpc:licensescheckedout a owl:ObjectProperty;
+    rdfs:domain hpc:Job;
+    rdfs:range xsd:nonNegativeInteger;
+    rdfs:comment "The number of licenses checked out for a job." .
+
+hpc:Clustermode a owl:Class;
+    rdfs:subClassOf hpc:Jobmode;
+    rdfs:comment "Cluster mode in LSF." .
+
+hpc:Fastdispatch a owl:Class;
+    rdfs:subClassOf hpc:Jobmode;
+    rdfs:comment "FAST_DISPATCH project mode in LSF." .
+
+hpc:Jobmode a owl:Class;
+    rdfs:subClassOf hpc:Job;
+    rdfs:comment "A mode for submitting L

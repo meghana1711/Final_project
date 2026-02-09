@@ -1,0 +1,63 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Workflowelement ;
+    rdfs:comment "A job to be executed on an HPC system." .
+
+hpc:Firstexecutionhostcandidate a owl:Class ;
+    rdfs:subClassOf hpc:Host ;
+    rdfs:comment "A host, host group, or compute unit that can be specified as a candidate for the first execution host." .
+
+hpc:specifyfirstexecutionhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:List ;
+    rdfs:comment "The action of specifying one or more hosts, host groups, or compute units as first execution host candidates." .
+
+hpc:hasfirstexecutionhostcandidate a owl:ObjectProperty ;
+    rdfs:domain hpc:Firstexecutionhostcandidate ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "The relationship between a job and a first execution host candidate." .
+
+hpc:jobsubmission a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "The action of submitting a job." .
+
+hpc:jobqueuedefinition a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queuedefinition ;
+    rdfs:comment "The relationship between a job and its queue definition." .
+
+hpc:jobresourcerequirements a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The resource requirements of a job." .
+
+hpc:jobhostavailability a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The host availability for a job." .
+
+hpc:jobhostselection a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "The host selected by the scheduler for a job." .
+
+hpc:jobresizeallocationrequest a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Whether a job resize allocation request includes the first execution host or host group." .
+
+hpc:jobfirstexecutionhostspecified a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Whether a first execution host is specified for a job." .
+
+hpc:jobFirstExecutionHostCandidateList a rdfs:Class ;
+    rdfs:subClassOf rdf:List ;
+    rdfs:comment "A list of first execution host candidates." .
+
+hpc:jobfirstexecutionhostcandidatemember a owl:ObjectProperty ;
+    rdfs:domain hpc:Firstexecutionhostcandidatelist ;
+    rdfs:range hpc:Firstexecutionhostcandidate ;
+    rdfs:comment "The relationship between a first execution host candidate list and its members." .
+
+hpc:jobFirstExecution

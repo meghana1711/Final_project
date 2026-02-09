@@ -1,0 +1,61 @@
+hpc:Lsfversion a owl:Class .
+hpc:Fixpack10 hpc:lsfversion ;
+    rdfs:subClassOf hpc:Lsfversion .
+hpc:Fixpack11 hpc:lsfversion ;
+    rdfs:subClassOf hpc:Lsfversion .
+hpc:Fixpack12 hpc:lsfversion ;
+    rdfs:subClassOf hpc:Lsfversion .
+
+# Commands
+hpc:Lsload a owl:Class .
+hpc:Lsload_loc an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsload ;
+    rdfs:range hpc:Host .
+hpc:Lsload_gpuload an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsload ;
+    rdfs:range hpc:Gpu .
+hpc:Lsload_cname an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsload ;
+    rdfs:range hds:Command ;
+    rdfs:subPropertyOf hpc:Lsload_loc .
+
+hpc:Lsreghost a owl:Class .
+hpc:Lsrtasks an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion ;
+    rdfs:range hpc:Command ;
+    rdfs:subPropertyOf rdf:type .
+
+hpc:Lsrun an owl:Class .
+hpc:Lstcsh an owl:Class .
+hpc:Lsltasks an owl:Class .
+
+# Configuration Parameters and Environment Variables
+hpc:lsfUgroupTransfer a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean .
+
+hpc:lsfClusterClustername a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:NewCommand (
+    hpc:Lsreghost rdfs:subClassOf hpc:Command
+) .
+
+hpc:DeprecatedCommand (
+    hpc:Lsrun rdfs:subClassOf hpc:Command ;
+        rdfs:subClassOf hpc:Deprecated .
+    hpc:Lstcsh rdfs:subClassOf hpc:Command ;
+        rdfs:subClassOf hpc:Deprecated .
+    hpc:Lsrtasks rdfs:subClassOf hpc:Command ;
+        rdfs:subClassOf hpc:Deprecated .
+    hpc:Lsreghost rdfs:subClassOf hpc:Newcommand .
+) .
+
+hpc:Deprecated (
+    rdf:type owl:Class .
+) .
+
+hpc:New (
+    rdf:type owl:Class .
+) .

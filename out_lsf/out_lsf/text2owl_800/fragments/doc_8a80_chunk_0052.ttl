@@ -1,0 +1,18 @@
+hpc:lmLicenseName a owl:ObjectProperty .
+hpc:name a owl:DatatypeProperty .
+hpc:distribution a owl:ObjectProperty .
+hpc:lmRemoveInterval a owl:DatatypeProperty .
+
+hpc:Feature a owl:Class .
+
+hpc:LmLicenseName rdfs:domain hpc:Feature .
+hpc:Name rdfs:domain hpc:Feature .
+hpc:Distribution rdfs:domain hpc:Feature .
+hpc:LmRemoveInterval rdfs:domain hpc:Feature .
+
+hpc:LmLicenseName rdfs:range xsd:string .
+hpc:Name rdfs:range xsd:string .
+hpc:Distribution rdfs:range hpc:Distribution .
+hpc:LmRemoveInterval rdfs:range xsd:integer .
+
+hpc:Distribution a owl:Class .

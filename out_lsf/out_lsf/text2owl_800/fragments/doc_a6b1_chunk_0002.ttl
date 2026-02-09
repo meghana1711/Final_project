@@ -1,0 +1,37 @@
+hpc:LsfExtServerdir a owl:Class .
+hpc:eauthfile a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfExtServerdir ;
+    rdfs:range xsd:file .
+
+hpc:temporarilyenablerootprivileges a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource .
+
+hpc:lsfRootUser a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfExtServerdir ;
+    rdfs:range xsd:boolean .
+
+hpc:lsfAddonHosts a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfExtServerdir ;
+    rdfs:range xsd:string .
+
+hpc:lsfDisableLsrun a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfExtServerdir ;
+    rdfs:range xsd:boolean .
+
+hpc:badminsecurityview a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource .
+
+hpc:lsRootUser a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:boolean .
+
+hpc:lsfRootUserForLicensescheduler a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:boolean .
+
+hpc:LsfApplicationcenter a owl:Class .
+hpc:LsfRtm a owl:Class .
+hpc:LsfExplorer a owl:Class .
+hpc:rootuserremoteexecution a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfApplicationcenter, hpc:LsfRtm, hpc:LsfExplorer ;
+    rdfs:range rdf:Resource .

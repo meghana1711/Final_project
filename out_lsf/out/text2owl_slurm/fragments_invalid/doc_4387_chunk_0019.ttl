@@ -1,0 +1,12 @@
+hpc:Slurmdbd a owl:Class.
+hpc:mysqldump a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmdbd ;
+    rdfs:range hpc:Databaseexport .
+
+hpc:Databaseexport a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain hpc:Slurmdbd ;
+    rdfs:range [ a owl:Class ;
+        owl:unionOf ( hpc:AssocTable hpc:QOS hpc:TRES ) ] .
+
+hpc:Assoctable a owl:Class ;

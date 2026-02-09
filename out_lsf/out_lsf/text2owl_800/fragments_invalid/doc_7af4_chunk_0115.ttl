@@ -1,0 +1,43 @@
+hpc:Limit a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Specifies the limit unit in LSF." ;
+    rdfs:label "Limit" ;
+    rdfs:isDefinedBy <http://example.org> .
+
+hpc:lsfUnitForLimits a owl:ObjectProperty ;
+    rdfs:domain Limit ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies a larger unit for the limit." ;
+    rdfs:label "LSF_UNIT_FOR_LIMITS" .
+
+hpc:SuccessExitValues a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Specifies exit values used by LSF to determine if job was done successfully." ;
+    rdfs:label "SUCCESS_EXIT_VALUES" ;
+    rdfs:isDefinedBy <http://example.org> .
+
+hpc:exitCode a owl:DatatypeProperty ;
+    rdfs:domain SUCCESS_EXIT_VALUES ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The value between 0 and 255." ;
+    rdfs:label "exit_code" .
+
+hpc:suspendControl a owl:ObjectProperty ;
+    rdfs:domain Limit ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the method to suspend a job." ;
+    rdfs:label "SUSPEND_CONTROL" .
+
+hpc:signal a owl:DatatypeProperty ;
+    rdfs:domain SUSPEND_CONTROL ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A UNIX signal name." ;
+    rdfs:label "signal" .
+
+hpc:command a owl:DatatypeProperty ;
+    rdfs:domain SUSPEND_CONTROL ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A /bin/sh command line to be invoked." ;
+    rdfs:label "command" .
+
+hpc:CHKPNT a xsd:string .

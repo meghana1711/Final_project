@@ -1,0 +1,57 @@
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A queue in a high-performance computing system." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A job submitted for execution in a queue." .
+
+hpc:jobsize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of job slots requested by a job." .
+
+hpc:queuesizelist a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range rdf:List ;
+    rdfs:comment "The list of allowed job sizes for a queue." .
+
+hpc:defaultjobsize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The default job size for jobs in a queue that do not explicitly request a job size." .
+
+hpc:Compoundresourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement ;
+    rdfs:comment "A compound resource requirement that specifies a fixed number of job slots." .
+
+hpc:Jobsizemismatch a owl:Class ;
+    rdfs:subClassOf hpc:Jobrejectionreason ;
+    rdfs:comment "A job rejection reason due to a mismatch between the requested job size and the allowed job sizes in the queue." .
+
+hpc:Multiplejobslotsizes a owl:Class ;
+    rdfs:subClassOf hpc:Jobrejectionreason ;
+    rdfs:comment "A job rejection reason due to the request for multiple job slot sizes." .
+
+hpc:Reconfigurationrequired a owl:Class ;
+    rdfs:subClassOf hpc:Queueaction ;
+    rdfs:comment "An action required to make a new host recognized in a queue." .
+
+hpc:mbdrestart a owl:ObjectProperty ;
+    rdfs:domain hpc:Administrator ;
+    rdfs:range hpc:Reconfigurationrequired ;
+    rdfs:comment "The action of restarting the mbatchd daemon to make a new host recognized in a queue." .
+
+hpc:badminreconfigure a owl:ObjectProperty ;
+    rdfs:domain hpc:Administrator ;
+    rdfs:range hpc:Queueaction ;
+    rdfs:comment "The action of reconfiguring the mbatchd daemon." .
+
+hpc:badmincheck a owl:ObjectProperty ;
+    rdfs:domain hpc:Administrator ;
+    rdfs:range hpc:Queue ;
+    rdfs:comment "The action of checking the configuration of a queue." .
+
+hpc:Resourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Requirement ;
+    rdfs:comment "A resource requirement that specifies the job slot size or resource requirements for a job." .

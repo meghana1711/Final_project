@@ -1,0 +1,46 @@
+hpc:Putype a owl:Class .
+hpc:hasnuma a owl:DatatypeProperty ;
+    rdfs:domain hpc:Putype ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasoptions a owl:ObjectProperty ;
+    rdfs:domain hpc:Putype .
+hpc:hassocket a owl:DatatypeProperty ;
+    rdfs:domain hpc:Putype ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hascore a owl:DatatypeProperty ;
+    rdfs:domain hpc:Putype ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasthread a owl:DatatypeProperty ;
+    rdfs:domain hpc:Putype ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:same a owl:ObjectProperty ;
+    rdfs:domain hpc:Puoptions ;
+    rdfs:range hpc:Level .
+hpc:samerange a owl:DatatypeProperty ;
+    rdfs:domain hpc:Level ;
+    rdfs:range xsd:string .
+hpc:exclusive a owl:ObjectProperty ;
+    rdfs:domain hpc:Puoptions ;
+hpc:exclusiverange a owl:DatatypeProperty ;
+    rdfs:domain hpc:Level ;
+    rdfs:range xsd:string .
+hpc:Level a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:sameRange ;
+                        owl:hasValue 'numa' ] .
+hpc:Level a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:sameRange ;
+                        owl:hasValue 'socket' ] .
+hpc:Level a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:sameRange ;
+                        owl:hasValue 'core' ] .
+hpc:Level a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:sameRange ;
+                        owl:hasValue 'thread' ] .

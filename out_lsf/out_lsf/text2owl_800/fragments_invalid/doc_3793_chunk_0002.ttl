@@ -1,0 +1,70 @@
+hpc:Installationpackage a owl:Class ;
+  rdfs:subClassOf hpc:Softwarepackage .
+
+hpc:Linuxcluster a owl:Class ;
+  rdfs:subClassOf hpc:Computingcluster .
+
+hpc:X8664cluster a owl:Class ;
+  rdfs:subClassOf hpc:Linuxcluster ;
+  rdfs:subClassOf hpc:X8664system .
+
+hpc:Nonx8664cluster a owl:Class ;
+  rdfs:subClassOf hpc:Linuxcluster .
+
+hpc:Jreinstalledsystem a owl:Class ;
+  rdfs:subClassOf hpc:System .
+
+hpc:JREVersion1_4 a xsd:decimal ;
+  rdfs:range hpc:Jreversion .
+
+hpc:Craylinuxsystem a owl:Class ;
+  rdfs:subClassOf hpc:System .
+
+hpc:Craylinux40 a owl:Class ;
+  rdfs:subClassOf hpc:Craylinuxsystem .
+
+hpc:Craylinuxsystemrequirements a owl:Class ;
+  rdfs:subClassOf hpc:Systemrequirements .
+
+hpc:Freespacerequirement a owl:Class ;
+  rdfs:subClassOf hpc:Craylinuxsystemrequirements ;
+  rdfs:subClassOf hpc:Requirement .
+
+hpc:Installationpackagefile a owl:Class ;
+  rdfs:subClassOf hpc:File .
+
+hpc:Installerpackage a owl:Class ;
+  rdfs:subClassOf hpc:Installationpackage ;
+  rdfs:subClassOf hpc:Installerpackagefile .
+
+hpc:Smallinstallerpackage a owl:Class ;
+  rdfs:subClassOf hpc:Installerpackage ;
+  rdfs:subClassOf hpc:Installationpackage ;
+  rdfs:subClassOf hpc:Smallfile .
+
+hpc:Standardinstallerpackage a owl:Class ;
+  rdfs:subClassOf hpc:Installerpackage ;
+  rdfs:subClassOf hpc:Installationpackage .
+
+hpc:requiresfreespace a owl:ObjectProperty ;
+  rdfs:domain hpc:Installationpackage ;
+  rdfs:range hpc:Freespacerequirement .
+
+hpc:hasfile a owl:ObjectProperty ;
+  rdfs:domain hpc:Installationpackage ;
+  rdfs:range hpc:Installationpackagefile .
+
+hpc:hasinstaller a owl:ObjectProperty ;
+  rdfs:domain hpc:Installationpackage ;
+  rdfs:range hpc:Installerpackage .
+
+hpc:hasjreversion a owl:DatatypeProperty ;
+  rdfs:domain hpc:Jreinstalledsystem ;
+  rdfs:range xsd:decimal .
+
+hpc:hascraylinuxsystemrequirements a owl:ObjectProperty ;
+  rdfs:domain hpc:Craylinuxsystem ;
+  rdfs:range hpc:Craylinuxsystemrequirements .
+
+hpc:hasfreespacerequirement a owl:ObjectProperty ;
+  rdfs:

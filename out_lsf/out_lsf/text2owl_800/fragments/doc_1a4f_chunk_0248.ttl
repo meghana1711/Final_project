@@ -1,0 +1,31 @@
+hpc:Queuelevelresourcereservation a owl:Class .
+hpc:Joblevelresourcereservation a owl:Class .
+hpc:Perresourcereservation a owl:Class .
+
+hpc:hasresourcereservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Queuelevelresourcereservation ;
+    rdfs:range hpc:Resourcereservation .
+
+hpc:reservationusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Joblevelresourcereservation ;
+    rdfs:range xsd:string .
+
+hpc:Reservationusage a owl:Class ;
+    rdfs:subClassOf hpc:Perresourcereservation .
+
+hpc:ReservationUsageType a owl:Enum ;
+    rdfs:subClassOf hpc:Reservationusage ;
+    rdfs:member hpc:PER_JOB ;
+    rdfs:member hpc:PER_TASK ;
+    rdfs:member hpc:PER_HOST .
+
+hpc:Resourcereservationlimit a owl:Class ;
+    rdfs:subClassOf hpc:Queuelevelresourcereservation .
+
+hpc:resourcereservationlimitmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcereservationlimit ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:resourcerequirementstring a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queuelevelresourcereservation ;
+    rdfs:range xsd:string .

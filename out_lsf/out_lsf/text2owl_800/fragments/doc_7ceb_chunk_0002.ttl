@@ -1,0 +1,43 @@
+hpc:Jobstate a owl:Class .
+hpc:Pending a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate ;
+    rdfs:comment "Waiting in a queue for scheduling and dispatch." .
+hpc:Run a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate ;
+    rdfs:comment "Dispatched to a host and running." .
+hpc:Done a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate ;
+    rdfs:comment "Finished normally with zero exit value." .
+hpc:Exit a owl:Class ;
+    rdfs:subClassOf hpc:Done ;
+    rdfs:comment "Finished with nonzero exit value." .
+hpc:Psuspend a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate ;
+    rdfs:comment "Suspended while the job is pending." .
+hpc:Ususpend a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate ;
+    rdfs:comment "Suspended by user." .
+hpc:Ssuspend a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate ;
+    rdfs:comment "Suspended by the LSF system." .
+hpc:Postdone a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate ;
+    rdfs:comment "Post-processing completed without errors." .
+hpc:Posterr a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate ;
+    rdfs:comment "Post-processing completed with errors." .
+hpc:Unkwn a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate ;
+    rdfs:comment "The mbatchd daemon lost contact with the sbatchd daemon on the host where the job runs." .
+hpc:Chunkjobwait a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate ;
+    rdfs:comment "For jobs submitted to a chunk job queue , members of a chunk job that are waiting to run." .
+hpc:Zombi a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate ;
+    rdfs:comment "A job is in ZOMBI state if the job is killed when its state is UNKWN since the execution host is unreachable, or if a re-runnable job is requeued since the execution host is unavailable." .
+hpc:haskillsignal a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobstate ;
+    rdfs:range xsd:boolean .
+hpc:haspostprocessingstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobstate ;
+    rdfs:range xsd:string .

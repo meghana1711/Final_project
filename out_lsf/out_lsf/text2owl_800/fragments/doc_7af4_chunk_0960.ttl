@@ -1,0 +1,21 @@
+hpc:Featuredefinition a owl:Class;
+    rdfs:subClassOf hpc:Configurableelement .
+
+hpc:lmreservation a owl:ObjectProperty;
+    rdfs:domain hpc:Featuredefinition;
+    rdfs:range xsd:boolean .
+
+hpc:Lmreservationvalue a owl:Class;
+    rdfs:subClassOf xsd:string .
+
+hpc:lmremovesuspjobs a owl:ObjectProperty;
+    rdfs:domain hpc:Featuredefinition;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lmremovesuspjobsvalue a owl:DatatypeProperty;
+    rdfs:domain hpc:Lmremovesuspjobs;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Ignoredintimebasedconfiguration a owl:Class .
+hpc:Ignoredinworkloaddistribution a owl:Class .
+hpc:Overridesglobalvalue a owl:Class .

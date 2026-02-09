@@ -1,0 +1,53 @@
+hpc:Lsfdatascpcommand a owl:Class .
+hpc:Lsfdatasshcommand a owl:Class .
+hpc:Lsfdataoption a owl:Class .
+hpc:Lsfdataskipgroupcheck a owl:Class .
+
+# Object Properties
+hpc:hasvalidvalue a owl:ObjectProperty .
+hpc:iscommand a owl:ObjectProperty .
+hpc:hasoption a owl:ObjectProperty .
+hpc:appliesto a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:value a owl:DatatypeProperty .
+hpc:datatype a owl:DatatypeProperty .
+
+# Domain and Range
+hpc:Hasvalidvalue rdfs:domain hpc:Lsfdataoption ;
+    rdfs:range xsd:string .
+hpc:Iscommand rdfs:domain hpc:Lsfdatascpcommand ;
+    rdfs:range xsd:string .
+hpc:Hasoption rdfs:domain hpc:Lsfdatascpcommand ;
+    rdfs:range hpc:Lsfdataoption .
+hpc:Appliesto rdfs:domain hpc:Lsfdataoption ;
+    rdfs:range hpc:Lsfdatascpcommand .
+hpc:Value rdfs:domain hpc:Lsfdataoption ;
+    rdfs:range xsd:string .
+hpc:Datatype rdfs:domain hpc:Lsfdataoption ;
+    rdfs:range xsd:string .
+
+# Subclass
+hpc:Lsfdatasshcommand rdfs:subClassOf hpc:Lsfdatacommand .
+
+# Instances
+hpc:scp a hpc:LSFDataSCPCommand .
+hpc:ssh a hpc:LSFDataSSHCommand .
+hpc:quietMode a hpc:LSFDataOption ;
+    hpc:value "q" ;
+    hpc:dataType xsd:string .
+hpc:noPasswordAuthentication a hpc:LSFDataOption ;
+    hpc:value "no" ;
+    hpc:dataType xsd:string .
+hpc:batchMode a hpc:LSFDataOption ;
+    hpc:value "yes" ;
+    hpc:dataType xsd:string .
+hpc:UserKnownHostsFile a hpc:LSFDataOption ;
+    hpc:value "/dev/null" ;
+    hpc:dataType xsd:string .
+hpc:StrictHostKeyChecking a hpc:LSFDataOption ;
+    hpc:value "no" ;
+    hpc:dataType xsd:string .
+hpc:SkipGroupCheck a hpc:LSFDataSkipGroupCheck ;
+    hpc:value "Y" ;
+    hpc:dataType xsd:string .

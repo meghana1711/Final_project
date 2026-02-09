@@ -1,0 +1,53 @@
+hpc:User a owl:Class .
+hpc:File a owl:Class .
+hpc:Cache a owl:Class .
+hpc:Stagingarea a owl:Class .
+hpc:Group a owl:Class ;
+    rdfs:subClassOf hpc:User .
+
+hpc:hascache a owl:ObjectProperty ;
+    rdfs:domain hpc:Cache ;
+    rdfs:range hpc:Group .
+
+hpc:hasfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Cache ;
+    rdfs:range hpc:File .
+
+hpc:isinstagingarea a owl:ObjectProperty ;
+    rdfs:domain hpc:Group ;
+    rdfs:range hpc:Stagingarea .
+
+hpc:sameprimarygroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Group ;
+    rdfs:range hpc:Group .
+
+hpc:specifiedusergroup a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:hostname a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:absfilepath a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:absfolderpath a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:clustername a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:cachepermissions a owl:ObjectProperty ;
+    rdfs:domain hpc:Group ;
+    rdfs:range xsd:string .
+
+hpc:cacheinputgraceperiod a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:bdatacachecommand a owl:ObjectProperty .
+hpc:jobbasedquery a owl:ObjectProperty .
+hpc:filebasedquery a owl:ObjectProperty .
+hpc:jobbasedqueryinputfilerecords a owl:ObjectProperty .
+hpc:filebasedqueryinputfilerecords a owl:ObjectProperty .

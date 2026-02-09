@@ -1,0 +1,47 @@
+hpc:Jobspooldirectory a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Directory where input files are spooled for LSF jobs." ;
+    rdfs:label "JobSpoolDirectory" ;
+    rdfs:domain hpc:Job .
+
+hpc:jobSpoolDir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The directory where input files are spooled for the job." ;
+    rdfs:label "JOB_SPOOL_DIR" .
+
+# Input File
+hpc:Inputfile a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The file that serves as input for the job." ;
+    rdfs:label "InputFile" .
+
+hpc:inputFile a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Inputfile ;
+    rdfs:comment "The input file for the job." ;
+    rdfs:label "input_file" .
+
+# -is Option
+hpc:-is a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Gets the standard input for the job from the specified file path, allowing modification or removal before the job completes." ;
+    rdfs:label "-is" .
+
+# Conflicting Options
+hpc:Conflictingoptions a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Options that cannot be used together." ;
+    rdfs:label "conflictingOptions" .
+
+hpc:donotusewith a owl:ObjectProperty ;
+    rdfs:domain hpc:Conflictingoptions ;
+    rdfs:range hpc:Joboption ;
+    rdfs:comment "Options that should not be used together." ;
+    rdfs:label "doNotUseWith" .
+
+hpc:Joboption a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A job option." ;
+    rdfs:label "JobOption" .

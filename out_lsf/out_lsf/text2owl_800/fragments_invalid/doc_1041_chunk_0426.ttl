@@ -1,0 +1,71 @@
+hpc:JobGroup
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a group of jobs." .
+
+hpc:hasJobArray
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range hpc:Jobarray ;
+    rdfs:comment "Relates a job group to the job array it belongs to." .
+
+hpc:Job
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a job." .
+
+hpc:isAttachedToServiceClass
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Serviceclass ;
+    rdfs:comment "Indicates if a job is attached to a service class." .
+
+hpc:ServiceClass
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a service class." .
+
+hpc:JOB_DEP_LAST_SUB
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates the array dependency by array name." .
+
+hpc:hasPreviousArrayWithSameNameButDifferentIndex
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Relates a job to a previous job with the same name but a different index." .
+
+hpc:SLA_WITH_GUARANTEE_GOALS_PROHIBITED
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents an SLA that cannot be used with resource-based SLAs that have guarantee goals." .
+
+hpc:hasArrayDependencyByArrayName
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Arraydependency ;
+    rdfs:comment "Indicates array dependency by array name." .
+
+hpc:ArrayDependency
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents array dependency." .
+
+hpc:bmod
+    a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Represents the bmod command for modifying jobs in service classes." .
+
+hpc:sla
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Bmod ;
+    rdfs:range hpc:Serviceclass ;
+    rdfs:comment "Attaches a job to the specified service class." .
+
+hpc:slan
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Bmod ;
+    rdfs:range hpc

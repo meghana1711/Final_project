@@ -1,0 +1,22 @@
+hpc:preexecdelay a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Delay before executing a job." .
+
+hpc:preemptdelay a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Time preemptive jobs wait before preempting low priority jobs." .
+
+hpc:Pendingjob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "A job that is waiting to be executed." .
+
+hpc:preemptreason a owl:ObjectProperty ;
+    rdfs:domain hpc:Pendingjob ;
+    rdfs:range hpc:Preemptreason ;
+    rdfs:comment "The reason a preemptive job is waiting." .
+
+hpc:PreemptreasonPreemptjoballowinggraceperiod a owl:Class ;
+    rdfs:subClassOf hpc:Preemptreason ;
+    rdfs:comment "The preemptive job is allowing a grace period before preemption." .

@@ -1,0 +1,55 @@
+hpc:Feature a owl:Class .
+hpc:Haslicensename hpc:objectproperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+hpc:Licensetokenname hpc:objectproperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+hpc:Combinedfeature hpc:objectproperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+hpc:Distribution hpc:datatypeproperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+hpc:LmRemoveInterval hpc:datatypeproperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:integer .
+
+hpc:Feature a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      owl:equivalentClass [ a owl:Restriction ;
+                                             rdf:property hpc:hasLicenseName ;
+                                             owl:onClass xsd:string ;
+                                             owl:allValuesFrom ( [ a owl:Class ;
+                                                                   rdf:type owl:Class ;
+                                                                   owl:unionOf ( ( [ a owl:NamedIndividual ;
+                                                                                         hpc:hasLicenseName ?licenseName . ] ) ) ) ] ] ] .
+
+hpc:Feature a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      owl:equivalentClass [ a owl:Restriction ;
+                                             rdf:property hpc:licenseTokenName ;
+                                             owl:onClass xsd:string ;
+                                             owl:allValuesFrom ( [ a owl:Class ;
+                                                                   rdf:type owl:Class ;
+                                                                   owl:unionOf ( ( [ a owl:NamedIndividual ;
+                                                                                         hpc:licenseTokenName ?tokenName . ] ) ) ) ] ] ] .
+
+hpc:Feature a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      owl:equivalentClass [ a owl:Restriction ;
+                                             rdf:property hpc:combinedFeature ;
+                                             owl:onClass xsd:string ;
+                                             owl:allValuesFrom ( [ a owl:Class ;
+                                                                   rdf:type owl:Class ;
+                                                                   owl:unionOf ( ( [ a owl:NamedIndividual ;
+                                                                                         hpc:combinedFeature ?combinedFeature . ] ) ) ) ] ] ] .
+
+hpc:Feature a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      owl:equivalentClass [ a owl:Restriction ;
+                                             rdf:property hpc:distribution ;
+                                             owl:onClass xsd:string ;
+                                             owl:allValuesFrom ( [ a owl:Class ;
+                                                                   rdf:type owl:Class ;
+                                                                   owl:unionOf ( ( [ a owl:NamedIndividual

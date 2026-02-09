@@ -1,0 +1,42 @@
+hpc:Lsfadmin a owl:Class .
+hpc:User a owl:Class .
+
+hpc:Operateonjob hpc:Lsfadmin rdfs:domain hpc:Job .
+hpc:Changerelativeposition hpc:User rdfs:domain hpc:Job ;
+                                 rdfs:range hpc:Job .
+
+hpc:Btopcommand hpc:Lsfadmin rdfs:subClassOf hpc:Operateonjob ;
+                                rdfs:subClassOf hpc:Changequeueposition .
+hpc:Btopcommand rdfs:domain hpc:Job ;
+                  rdfs:range hpc:Job ;
+                  rdfs:comment "Moves the selected job before the first job with the same priority that is submitted to the queue." .
+
+hpc:Adminbtopcommand hpc:Lsfadmin rdfs:subClassOf hpc:Btopcommand ;
+                                rdfs:subClassOf hpc:Changequeuepositionforfairsharepolicy .
+hpc:Adminbtopcommand rdfs:domain hpc:Job ;
+                  rdfs:range hpc:Job ;
+                  rdfs:comment "If the LSF administrator uses the btop command to move a job that was scheduled through a fair share policy, the job is not subject to further fair share scheduling unless the same job is later moved by the LSF administrator with the bbot command." .
+
+hpp:bbotCommand hpc:Lsfadmin rdfs:subClassOf hpc:Operateonjob ;
+                                rdfs:subClassOf hpc:Schedulejobagainwithfairsharepolicy .
+hpc:Bbotcommand rdfs:domain hpc:Job ;
+                  rdfs:range hpc:Job ;
+                  rdfs:comment "The job is scheduled again by using the same fair share policy." .
+
+hpc:JobPositionControlByAdmin hpc:Lsfadmin rdfs:subClassOf hpc:Configurableparameter .
+hpc:JobPositionControlByAdmin rdfs:domain hpc:Lsf .
+                                   rdfs:range xsd:boolean ;
+                                   rdfs:comment "To prevent users from changing the queue position of a pending job with the btop command." .
+
+hpc:Pendingjobsdisplayedbybjobs hpc:Job rdfs:subClassOf hpc:Jobinqueue ;
+                                      rdfs:subClassOf hpc:Jobwithstatus .
+hpc:pendingJobsDisplayedByBjobs rdfs:comment "Pending jobs are displayed by the bjobs command in the order in which they are considered for dispatch." .
+
+hpc:Changedispatchorder hpc:Job rdfs:subClassOf hpc:Changequeueposition .
+hpc:Changedispatchorder rdfs:domain hpc:Job ;
+                      rdfs:range hpc:Job ;
+                      rdfs:comment "You can use the btop command to change the dispatch order of your jobs that was scheduled through a fair share policy." .
+
+hpc:Cannotrunbtopcommandonapsqueue hpc:Job rdfs:subClassOf hpc:Jobinqueue ;
+                                           rdfs:subClassOf hpc:Jobwithstatus .
+hpc:cannotRunBtopCommandOnAPSQueue rdfs

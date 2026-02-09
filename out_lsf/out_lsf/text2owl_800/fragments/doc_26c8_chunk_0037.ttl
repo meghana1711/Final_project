@@ -1,0 +1,33 @@
+hpc:Computeunit a owl:Class .
+hpc:Computeunit rdfs:subClassOf owl:String .
+
+hpc:hascomputeunit a owl:ObjectProperty .
+hpc:Hascomputeunit rdfs:domain hpc:Computeresource .
+hpc:Hascomputeunit rdfs:range xsd:string .
+
+hpc:Ami a owl:Class .
+hpc:Ami rdfs:subClassOf owl:Resource .
+
+hpc:subnetid a owl:DatatypeProperty .
+hpc:Subnetid rdfs:domain hpc:Computeresource .
+hpc:Subnetid rdfs:range xsd:string .
+
+hpc:subnetidmulti a owl:DatatypeProperty .
+hpc:Subnetidmulti rdfs:domain hpc:Computeresource .
+hpc:Subnetidmulti rdfs:range xsd:string .
+hpc:Subnetidmulti rdfs:range rdf:List .
+
+hpc:Subnetidmultiitem a owl:Class .
+hpc:Subnetidmultiitem rdfs:subClassOf xsd:string .
+
+hpc:vmtype a owl:DatatypeProperty .
+hpc:Vmtype rdfs:domain hpc:Computeresource .
+hpc:Vmtype rdfs:range xsd:string .
+
+hpc:vmtypemulti a owl:DatatypeProperty .
+hpc:Vmtypemulti rdfs:domain hpc:Computeresource .
+hpc:Vmtypemulti rdfs:range xsd:string .
+hpc:Vmtypemulti rdfs:range rdf:List .
+
+hpc:Vmtypemultiitem a owl:Class .
+hpc:Vmtypemultiitem rdfs:subClassOf xsd:string .

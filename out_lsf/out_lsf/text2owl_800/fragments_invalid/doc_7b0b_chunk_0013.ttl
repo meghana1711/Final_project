@@ -1,0 +1,18 @@
+hpc:Host a owl:Class .
+hpc:Job a owl:Class .
+hpc:Remotedesktopservices a owl:Class .
+hpc:hasRemoteDesktopServices rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Remotedesktopservices .
+hpc:submitjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+hpc:jobname a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:Host a rdfs:subClassOf [ a owl:Class ;
+    rdfs:subClassOf owl:Thing ] .
+hpc:Remotedesktopservices a rdfs:subClassOf [ a owl:Class ;
+    rdfs:subClassOf owl:Thing ] .
+hpc:Job a rdfs:subClassOf [ a owl:Class ;
+    rdfs:subClassOf owl:Thing ] .

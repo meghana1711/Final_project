@@ -1,0 +1,13 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Singularityv380 a owl:Class.
+hpc:hasruntimecommandsingularityv380 a owl:ObjectProperty.
+hpc:hasruntimecreatesingularityv380 a owl:ObjectProperty.
+hpc:hasruntimedeletesingularityv380 a owl:ObjectProperty.
+hpc:hasruntimeenvexcludesingularityv380 a owl:DatatypeProperty.
+hpc:hasruntimekillsingularityv380 a owl:ObjectProperty.
+hpc:hasruntimequerysingularityv380 a owl:DatatypeProperty.
+hpc:hasruntimestatesingularityv380 a owl:DatatypeProperty.

@@ -1,0 +1,20 @@
+hpc:Rtaskgoneaction a owl:Class.
+hpc:Killjobtaskdone rdfs:subClassOf hpc:Rtaskgoneaction.
+hpc:Killjobtaskexit rdfs:subClassOf hpc:Rtaskgoneaction.
+hpc:Ignoretaskcrash rdfs:subClassOf hpc:Rtaskgoneaction.
+
+hpc:hasaction a owl:ObjectProperty.
+hpc:Hasapplicationprofile rdfs:domain hpc:Job; rdfs:range hpc:Applicationprofile.
+hpc:Hasenvironmentvariable rdfs:domain hpc:Job; rdfs:range hpc:Environmentvariable.
+
+hpc:Job a owl:Class.
+hpc:Applicationprofile a owl:Class.
+hpc:Environmentvariable a owl:Class.
+
+hpc:Job rdfs:subClassOf rdf:Resource.
+hpc:Applicationprofile rdfs:subClassOf rdf:Resource.
+hpc:Environmentvariable rdfs:subClassOf rdf:Resource.
+
+hpc:Hasaction rdfs:range hpc:Rtaskgoneaction.
+hpc:Hasapplicationprofile rdfs:range hpc:Applicationprofile.
+hpc:Hasenvironmentvariable rd

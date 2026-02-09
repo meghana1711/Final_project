@@ -1,0 +1,20 @@
+hpc:Computenode a owl:Class.
+hpc:Job a owl:Class.
+hpc:Corespecification a owl:Class.
+hpc:Corespeccount a xsd:nonNegativeInteger; rdfs:range hpc:Corespecification.
+hpc:corespecificationcount a owl:DatatypeProperty.
+hpc:Allocatedcore a owl:Class.
+hpc:Systemoverheadcore a owl:Class.
+hpc:Joballocation a owl:Class.
+hpc:implicitexclusiveoption a owl:ObjectProperty.
+hpc:CoreSpecializationCount rdf:type rdfs:Property;
+    rdfs:domain hpc:Job;
+    rdfs:range hpc:Corespecificationcount.
+hpc:NumCPUs rdf:type rdfs:Property;
+    rdfs:domain hpc:Job.
+hpc:SpecializedCoreValue rdf:type rdfs:Property;
+    rdfs:domain hpc:Step;
+    rdfs:range hpc:Allocatedcore.
+hpc:CoreSpecOption rdf:type owl:ObjectProperty;
+    rdfs:domain hpc:Joballocationcommand.
+hpc:Allow

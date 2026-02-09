@@ -1,0 +1,35 @@
+hpc:Jobgroup a owl:Class .
+hpc:jobassociation a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range hpc:Job .
+
+hpc:excludedjobassociation a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range hps:Job .
+
+hpc:Job a owl:Class .
+hpc:jobgroupname a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:enforceoneuglimits a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup .
+    rdfs:range xsd:boolean .
+
+hpc:groupassociation a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range hpc:Group .
+
+hpc:Group a owl:Class .
+hpc:groupexclusion a owl:ObjectProperty ;
+    rdfs:domain hpc:Group .
+    rdfs:range hpc:Group .
+
+hpc:groupinclusion a owl:ObjectProperty ;
+    rdfs:domain hpc:Group .
+    rdfs:range hpc:Group .
+
+hpc:Portfolio a owl:Class ;
+    rdfs:subClassOf hpc:Group .
+
+hpc:Riskgroup a owl:Class ;
+    rdfs:subClassOf hpc:Group .

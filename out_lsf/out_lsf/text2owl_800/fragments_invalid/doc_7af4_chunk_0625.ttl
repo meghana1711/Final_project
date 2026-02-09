@@ -1,0 +1,36 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:lsfGpuAutoconfig a owl:ObjectProperty .
+hpc:lsbGpuNewSyntax a owl:ObjectProperty .
+hpc:lsfGpuResourceIgnore a owl:ObjectProperty .
+hpc:ebrokerdHostCleanDelay a owl:DatatypeProperty .
+hpc:EbrokerdHostCleanDelay rdfs:domain hpc:Lsf .
+hpc:EbrokerdHostCleanDelay rdfs:range xsd:decimal .
+
+hpc:egoDaemonsCpus a owl:DatatypeProperty .
+hpc:egoDefineNcpus a owl:DatatypeProperty .
+hpc:egoElimDir a owl:DatatypeProperty .
+hpc:egoEnableAutoDaemonShutdown a owl:DatatypeProperty .
+hpc:egoEslimTimeout a owl:DatatypeProperty .
+hpc:egoLimPgSmoothFactor a owl:DatatypeProperty .
+hpc:egoPimSwapReport a owl:ObjectProperty .
+hpc:jobStarterExtend a owl:DatatypeProperty .
+hpc:lsDuplicateResourceChecking a owl:DatatypeProperty .
+hpc:lsbAfsBinDir a owl:DatatypeProperty .
+hpc:lsbAfsJobSupport a owl:DatatypeProperty .
+hpc:lsbAfsLibDir a owl:DatatypeProperty .
+hpc:lsbApiConntimeout a owl:DatatypeProperty .
+hpc:LsbApiConntimeout rdfs:range xsd:decimal .
+hpc:lsbApiRecvtimeout a owl:DatatypeProperty .
+hpc:LsbApiRecvtimeout rdfs:range xsd:decimal .
+hpc:lsbApiVerbose a owl:DatatypeProperty .
+hpc:lsbBconfProjectLimits a owl:DatatypeProperty .
+hpc:lsbBhostsFormat a owl:DatatypeProperty .
+hpc:lsbBjobsConsistentExitCode a owl:DatatypeProperty .
+hpc:lsbBjobsDisplayEnh a owl:DatatypeProperty .
+hpc:lsbBjobsFormat a owl:DatatypeProperty .
+hpc:lsbBjobsPendreasonLevel a owl:DatatypeProperty .
+h

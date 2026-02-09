@@ -1,0 +1,31 @@
+hpc:smt a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:stage a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:stepcgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:allocflags a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Curesource a owl:Class .
+hpc:Curesource rdfs:subClassOf hpc:Resource .
+
+hpc:custring a owl:DatatypeProperty ;
+    rdfs:domain hpc:Curesource ;
+    rdfs:range xsd:string .
+
+hpc:Memresource a owl:Class .
+hpc:Memresource rdfs:subClassOf hpc:Resource .
+
+hpc:memsize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Memresource ;
+    rdfs:range xsd:string .
+
+hpc:Job a owl:Class .

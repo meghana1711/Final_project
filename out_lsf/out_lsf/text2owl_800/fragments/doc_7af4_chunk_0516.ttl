@@ -1,0 +1,49 @@
+hpc:Resourcelimit a owl:Class .
+hpc:Consumertype a owl:Class .
+hpc:Resourcetype a owl:Class .
+
+hpc:Hasresourcetype rdfs:domain hpc:Resourcelimit ;
+    rdfs:range hpc:Resourcetype .
+
+hpc:Hasconsumertype rdfs:domain hpc:Resourcelimit ;
+    rdfs:range hpc:Consumertype .
+
+hpc:Jobslots rdfs:subClassOf hpc:Resourcetype ;
+    rdfs:label "Job slots" ;
+    rdfs:comment "Number of job slots." .
+
+hpc:Slotsperprocessor rdfs:subClassOf hpc:Resourcetype ;
+    rdfs:label "Per-processor job slots" ;
+    rdfs:comment "Number of job slots per processor." .
+
+hpc:Memory rdfs:subClassOf hpc:Resourcetype ;
+    rdfs:label "Memory" ;
+    rdfs:comment "Memory limit in MB." .
+
+hpc:Swapspace rdfs:subClassOf hpc:Resourcetype ;
+    rdfs:label "Swap space" ;
+    rdfs:comment "Swap space limit in MB." .
+
+hpc:Tempspace rdfs:subClassOf hpc:Resourcetype ;
+    rdfs:label "Temp space" ;
+    rdfs:comment "Temp space limit in MB." .
+
+hpc:Runningsuspendedjobs rdfs:subClassOf hpc:Resourcetype ;
+    rdfs:label "Running and suspended jobs" ;
+    rdfs:comment "Number of running and suspended jobs." .
+
+hpc:Othersharedresources rdfs:subClassOf hpc:Resourcetype ;
+    rdfs:label "Other shared resources" ;
+    rdfs:comment "Other shared resources." .
+
+hpc:Application a hpc:ConsumerType ;
+    rdfs:label "Applications" .
+
+hpc:Queue a hpc:ConsumerType ;
+    rdfs:label "Queues" .
+
+hpc:Host a hpc:ConsumerType ;
+    rdfs:label "Hosts" .
+
+hpc:HostGroup a hpc:ConsumerType ;
+    rdfs:label "Host groups" .

@@ -1,0 +1,44 @@
+hpc:Stagingarea a owl:Class .
+hpc:Transferjob a owl:Class .
+hpc:cachepermissions a owl:DatatypeProperty .
+hpc:Lsfdatamanager a owl:Class .
+hpc:Subdirectory a owl:Class .
+hpc:Userdirectory a owl:Class .
+hpc:Groupdirectory a owl:Class .
+hpc:Alldirectory a owl:Class .
+hpc:permissions a owl:DatatypeProperty .
+hpc:owner a owl:ObjectProperty .
+hpc:cacheaccesscontrol a owl:DatatypeProperty .
+hpc:datagrpoption a owl:ObjectProperty .
+hpc:datagroupchange a owl:ObjectProperty .
+hpc:workingdirectory a owl:ObjectProperty .
+hpc:Datatransferjobscript a owl:Class .
+
+hpc:Stagingarea rdfs:subClassOf owl:Class .
+hpc:Transferjob rdfs:subClassOf owl:Class .
+hpc:Subdirectory rdfs:subClassOf owl:Class .
+hpc:Userdirectory rdfs:subClassOf hpc:Subdirectory .
+hpc:Groupdirectory rdfs:subClassOf hpc:Subdirectory .
+hpc:Alldirectory rdfs:subClassOf hpc:Subdirectory .
+hpc:Datatransferjobscript rdfs:subClassOf owl:Class .
+
+hpc:Cachepermissions rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range xsd:string .
+
+hpc:Permissions rdfs:domain hpc:Subdirectory ;
+    rdfs:range xsd:integer .
+
+hpc:Owner rdfs:domain hpc:Subdirectory ;
+    rdfs:range xsd:string .
+
+hpc:Cacheaccesscontrol rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range xsd:boolean .
+
+hpc:Datagrpoption rdfs:domain hpc:Transferjob ;
+    rdfs:range xsd:boolean .
+
+hpc:Datagroupchange rdfs:domain hpc:Subdirectory ;
+    rdfs:range xsd:string .
+
+hpc:Workingdirectory rdfs:domain hpc:Transferjob ;
+    rdfs:range hpc:Subdirectory .

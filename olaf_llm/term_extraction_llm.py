@@ -47,7 +47,6 @@ class PromptConfig:
         if not isinstance(few_shot_examples, list):
             raise ValueError("few_shot_examples must be a list (or omitted).")
 
-        # Validate examples structure lightly
         cleaned_examples: List[Dict[str, Any]] = []
         for ex in few_shot_examples:
             if not isinstance(ex, dict):
@@ -133,9 +132,192 @@ def is_punctuation_heavy(term: str, threshold: float = 0.50) -> bool:
     return (punct / max(total, 1)) >= threshold
 
 
-def clean_term(term: str, stopwords: set[str], seen: set[str]) -> Optional[str]:
+# =============================================================================
+# Artifact suppression (paths, APIs, binaries, build outputs)
+# =============================================================================
+
+# Common “implementation artifact” file extensions (keep this conservative)
+_ARTIFACT_EXTS = {
+    ".so", ".a", ".o", ".lo", ".la", ".lai", ".dll", ".exe", ".dylib",
+    ".jar", ".class", ".pyc", ".pyo", ".whl",
+}
+
+# Common path-ish prefixes found in docs/logs
+_PATH_PREFIXES = (
+    "/", "./", "../", "~", r"\\",  # unix, relative, home, windows UNC
+)
+
+# Windows drive letter path
+_WIN_DRIVE_RE = re.compile(r"^[A-Za-z]:\\")
+# URL
+_URL_RE = re.compile(r"^(https?://|ftp://)", re.I)
+
+# Version-like prefix (v0.0.43 etc.)
+_VERSION_PREFIX_RE = re.compile(r"^v\d+(\.\d+){1,4}", re.I)
+
+# OpenAPI-ish tokens and suffixes you mentioned
+_OPENAPI_RE = re.compile(r"\bopenapi\b", re.I)
+_OPENAPI_SUFFIX_RE = re.compile(r"_(resp|request|response|msg|desc|body|params?)\b", re.I)
+
+# Slurm OpenAPI style you showed: v0.0.43_openapi_kill_job_resp, slurm/v0.0.43, etc.
+_OPENAPI_VERSIONED_ID_RE = re.compile(
+    r"^v\d+(\.\d+){1,4}[_/].*(openapi|swagger).*$", re.I
+)
+
+# CamelCase+digits API method names like slurmV0043DeleteJobs
+_SLURM_VERB_API_RE = re.compile(r"^[A-Za-z]+V\d{3,}[A-Za-z].+$")
+
+# Assignment-like config strings: TaskPlugin=task/cgroup, etc.
+_ASSIGNMENT_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*\s*=\s*.+$")
+
+# “Identifier-y” tokens with lots of separators, typical of generated symbols
+_SYMBOLY_RE = re.compile(r"^[A-Za-z0-9]+([_/.-][A-Za-z0-9]+){2,}$")
+
+# GPU / accelerators that are *domain concepts* (exceptions)
+_GPU_ALLOW = {"A100", "H100", "V100", "L4", "P100", "K80", "T4"}
+_GPU_ALLOW_RE = re.compile(r"^(A|H|V|P)\d{3}$")
+
+
+def _has_artifact_extension(t: str) -> bool:
+    # only consider last path segment
+    seg = t.split("/")[-1].split("\\")[-1]
+    seg_lower = seg.lower()
+    return any(seg_lower.endswith(ext) for ext in _ARTIFACT_EXTS)
+
+
+def _looks_like_path(t: str) -> bool:
+    s = t.strip()
+    if not s:
+        return False
+    if s.startswith(_PATH_PREFIXES):
+        return True
+    if _WIN_DRIVE_RE.match(s):
+        return True
+    if "\\" in s or "/" in s:
+        # avoid killing normal “task/cgroup” single slash concepts by checking path-ish density
+        parts = [p for p in re.split(r"[\\/]+", s) if p]
+        if len(parts) >= 3:
+            return True
+        # if it has an artifact extension, treat as path/file even with 1-2 separators
+        if _has_artifact_extension(s):
+            return True
+    return False
+
+
+def _looks_like_url(t: str) -> bool:
+    return bool(_URL_RE.match(t.strip()))
+
+
+def _looks_like_openapi_generated(t: str) -> bool:
+    s = t.strip()
+    if not s:
+        return False
+
+    # v0.0.43_openapi_... or v0.0.43/...openapi...
+    if _OPENAPI_VERSIONED_ID_RE.match(s):
+        return True
+
+    # contains openapi + typical generated suffixes
+    if _OPENAPI_RE.search(s) and (_OPENAPI_SUFFIX_RE.search(s) or _VERSION_PREFIX_RE.match(s)):
+        return True
+
+    return False
+
+
+def _looks_like_api_method_name(t: str) -> bool:
+    s = t.strip()
+    if not s:
+        return False
+    # slurmV0043DeleteJobs style
+    if _SLURM_VERB_API_RE.match(s):
+        return True
+    return False
+
+
+def _looks_like_build_or_binary_artifact(t: str) -> bool:
+    s = t.strip()
+    if not s:
+        return False
+    if _has_artifact_extension(s):
+        return True
+    # common build outputs: *.o, *.so already handled; also "libsomething.so" etc.
+    return False
+
+
+def _looks_like_assignment_string(t: str) -> bool:
+    # config assignments are often too specific; we usually want the RHS token(s), not key=value blob
+    s = t.strip()
+    if not s:
+        return False
+    return bool(_ASSIGNMENT_RE.match(s))
+
+
+def _looks_like_symbolic_generated_identifier(t: str) -> bool:
+    s = t.strip()
+    if not s:
+        return False
+    # many separators -> likely symbol / generated name
+    if _SYMBOLY_RE.match(s) and (len(re.findall(r"[_/.-]", s)) >= 2):
+        # exception: keep short domain-ish like "task/cgroup" (one slash), "gres/gpu" etc.
+        parts = re.split(r"[_/.-]+", s)
+        if len(parts) <= 2:
+            return False
+        return True
+    return False
+
+
+def is_artifact_term(term: str) -> bool:
+    """
+    Returns True if term is likely an implementation artifact:
+    - file paths and URLs
+    - binaries/build outputs (.so, .o, etc.)
+    - generated OpenAPI response/request identifiers
+    - versioned API method names (slurmV0043DeleteJobs)
+    - key=value assignment blobs
+    - highly symbolic generated identifiers
+    """
+    s = (term or "").strip()
+    if not s:
+        return True
+
+    # Allow-list: keep GPU model tokens as legitimate domain terms
+    if s in _GPU_ALLOW or _GPU_ALLOW_RE.match(s):
+        return False
+
+    # URLs / paths / binaries
+    if _looks_like_url(s):
+        return True
+    if _looks_like_path(s):
+        return True
+    if _looks_like_build_or_binary_artifact(s):
+        return True
+
+    # OpenAPI / swagger generated identifiers
+    if _looks_like_openapi_generated(s):
+        return True
+
+    # API method names like slurmV0043DeleteJobs
+    if _looks_like_api_method_name(s):
+        return True
+
+    # key=value config blobs (often too specific + noisy)
+    if _looks_like_assignment_string(s):
+        return True
+
+    # very “symbolic” long identifiers
+    if _looks_like_symbolic_generated_identifier(s):
+        return True
+
+    return False
+
+
+def clean_term(term: str, stopwords: set[str], seen: set[str], suppress_artifacts: bool = True) -> Optional[str]:
     term = (term or "").strip()
     if not term:
+        return None
+
+    # Drop if it is clearly an implementation artifact (paths, openapi ids, binaries, etc.)
+    if suppress_artifacts and is_artifact_term(term):
         return None
 
     if not any(ch.isalpha() for ch in term):
@@ -166,7 +348,7 @@ def clean_term(term: str, stopwords: set[str], seen: set[str]) -> Optional[str]:
 # Parse model output
 # =============================================================================
 
-def parse_terms(raw_output: str, stopwords: set[str]) -> List[str]:
+def parse_terms(raw_output: str, stopwords: set[str], suppress_artifacts: bool = True) -> List[str]:
     candidates: List[str] = []
     search_pos = 0
     key = '"terms"'
@@ -224,7 +406,7 @@ def parse_terms(raw_output: str, stopwords: set[str]) -> List[str]:
                 else:
                     continue
 
-                cleaned = clean_term(cand, stopwords, seen)
+                cleaned = clean_term(cand, stopwords, seen, suppress_artifacts=suppress_artifacts)
                 if cleaned is not None:
                     out.append(cleaned)
 
@@ -243,7 +425,7 @@ def parse_terms(raw_output: str, stopwords: set[str]) -> List[str]:
 
     out: List[str] = []
     for cand in values:
-        cleaned = clean_term(cand, stopwords, seen)
+        cleaned = clean_term(cand, stopwords, seen, suppress_artifacts=suppress_artifacts)
         if cleaned is not None:
             out.append(cleaned)
     return out
@@ -475,6 +657,7 @@ def process_chunks(
     max_chunks: Optional[int],
     offset_rowid: int,
     debug_first_chunk: bool,
+    suppress_artifacts: bool,
 ) -> None:
     init_terms_table(conn, terms_table)
     if runs_table:
@@ -504,7 +687,7 @@ def process_chunks(
         prompt = build_prompt(prefix, cfg, chunk_text)
         raw = call_llm(tokenizer, model, device, prompt, max_new_tokens=cfg.max_new_tokens)
 
-        terms = parse_terms(raw, stopwords=stopwords)
+        terms = parse_terms(raw, stopwords=stopwords, suppress_artifacts=suppress_artifacts)
 
         if debug_first_chunk:
             print("\n=== RAW OUTPUT (first 900 chars) ===")
@@ -552,6 +735,13 @@ def main():
     ap.add_argument("--min-freq", type=int, default=None,
                     help="After extraction, delete terms with freq_total < min-freq (e.g., 2).")
 
+    # NEW: artifact suppression toggle
+    ap.add_argument(
+        "--no-artifact-suppression",
+        action="store_true",
+        help="Disable artifact suppression (paths/OpenAPI/binaries/config blobs).",
+    )
+
     args = ap.parse_args()
 
     cfg = PromptConfig.from_yaml(args.prompt_config)
@@ -559,6 +749,8 @@ def main():
     print(f"[INFO] stopwords loaded: {len(stopwords)}")
 
     runs_table = None if args.no_runs_table else args.runs_table
+    suppress_artifacts = not args.no_artifact_suppression
+    print(f"[INFO] artifact suppression: {'ON' if suppress_artifacts else 'OFF'}")
 
     conn = sqlite3.connect(args.db)
     try:
@@ -581,6 +773,7 @@ def main():
             max_chunks=args.max_chunks,
             offset_rowid=args.offset_rowid,
             debug_first_chunk=args.debug_first_chunk,
+            suppress_artifacts=suppress_artifacts,
         )
 
         if args.min_freq is not None:

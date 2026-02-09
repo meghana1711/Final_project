@@ -1,0 +1,1287 @@
+term_id,term,doc_id,chunk_id,freq_total
+1,Slurm,doc_4387,doc_4387_chunk_0001,7
+2,accounting,doc_4387,doc_4387_chunk_0001,1
+3,sacct,doc_4387,doc_4387_chunk_0001,4
+4,sstat,doc_4387,doc_4387_chunk_0001,2
+5,sreport,doc_4387,doc_4387_chunk_0001,4
+6,SlurmDBD,doc_4387,doc_4387_chunk_0001,11
+7,text file,doc_4387,doc_4387_chunk_0001,2
+8,database,doc_4387,doc_4387_chunk_0001,5
+9,job step,doc_4387,doc_4387_chunk_0001,1
+10,resource usage,doc_4387,doc_4387_chunk_0001,1
+11,load imbalance,doc_4387,doc_4387_chunk_0001,1
+12,Slurm configuration parameters,doc_4387,doc_4387_chunk_0001,1
+13,slurm.conf,doc_4387,doc_4387_chunk_0001,14
+14,AccountingStorageType,doc_4387,doc_4387_chunk_0001,4
+15,JobAcctGatherType,doc_4387,doc_4387_chunk_0001,2
+16,JobCompType,doc_4387,doc_4387_chunk_0001,3
+17,jobacct_gather/linux,doc_4387,doc_4387_chunk_0001,1
+18,jobacct_gather/cgroup,doc_4387,doc_4387_chunk_0001,1
+19,jobacct_gather/none,doc_4387,doc_4387_chunk_0001,1
+21,job_completions,doc_4387,doc_4387_chunk_0002,1
+23,MySQL,doc_4387,doc_4387_chunk_0002,5
+24,MariaDB database,doc_4387,doc_4387_chunk_0002,1
+27,sacctmgr,doc_4387,doc_4387_chunk_0002,10
+30,JobCompLoc,doc_4387,doc_4387_chunk_0002,2
+31,logrotate,doc_4387,doc_4387_chunk_0002,1
+32,slurmctld,doc_4387,doc_4387_chunk_0002,10
+33,SIGUSR2,doc_4387,doc_4387_chunk_0002,1
+35,Slurm Database Daemon,doc_4387,doc_4387_chunk_0002,2
+38,SlurmDBD (Slurm Database Daemon),doc_4387,doc_4387_chunk_0003,1
+39,multi-threaded,doc_4387,doc_4387_chunk_0003,1
+40,secure,doc_4387,doc_4387_chunk_0003,1
+41,fast,doc_4387,doc_4387_chunk_0003,1
+42,SlurmDBD configuration,doc_4387,doc_4387_chunk_0003,1
+43,Slurm plugins,doc_4387,doc_4387_chunk_0003,2
+44,authentication,doc_4387,doc_4387_chunk_0003,2
+45,Slurm SQL,doc_4387,doc_4387_chunk_0003,1
+47,RPMs,doc_4387,doc_4387_chunk_0003,1
+48,MySQL plugin,doc_4387,doc_4387_chunk_0003,1
+50,sacctmgr list cluster,doc_4387,doc_4387_chunk_0003,1
+51,sacctmgr add cluster,doc_4387,doc_4387_chunk_0003,2
+52,snowflake,doc_4387,doc_4387_chunk_0003,4
+53,slurmctld failure,doc_4387,doc_4387_chunk_0003,1
+54,slurmctld talking to slurmdbd,doc_4387,doc_4387_chunk_0003,1
+55,slurmctld internal cache,doc_4387,doc_4387_chunk_0003,1
+56,slurmctld shutdown,doc_4387,doc_4387_chunk_0003,1
+57,slurmctld startup,doc_4387,doc_4387_chunk_0003,1
+58,SlurmDBD cache,doc_4387,doc_4387_chunk_0003,1
+60,multiple clusters,doc_4387,doc_4387_chunk_0004,1
+61,user naming,doc_4387,doc_4387_chunk_0004,1
+62,user IDs,doc_4387,doc_4387_chunk_0004,1
+63,Accounting,doc_4387,doc_4387_chunk_0004,2
+64,user name,doc_4387,doc_4387_chunk_0004,1
+65,user ID numbers,doc_4387,doc_4387_chunk_0004,1
+66,SlurmUser,doc_4387,doc_4387_chunk_0004,2
+67,administrators,doc_4387,doc_4387_chunk_0004,1
+68,limits,doc_4387,doc_4387_chunk_0004,3
+70,MUNGE,doc_4387,doc_4387_chunk_0004,4
+71,Slurm managed clusters,doc_4387,doc_4387_chunk_0004,1
+72,local domain socket,doc_4387,doc_4387_chunk_0004,1
+73,slurmdbd.conf,doc_4387,doc_4387_chunk_0004,5
+75,passwd file,doc_4387,doc_4387_chunk_0004,2
+76,authentication module,doc_4387,doc_4387_chunk_0004,1
+80,accounting tools,doc_4387,doc_4387_chunk_0005,1
+81,LDAP server,doc_4387,doc_4387_chunk_0005,1
+82,Storage Backup Host,doc_4387,doc_4387_chunk_0005,1
+83,AccountingStorageBackupHost,doc_4387,doc_4387_chunk_0005,1
+85,DbdBackupHost,doc_4387,doc_4387_chunk_0005,1
+87,slurmdbd,doc_4387,doc_4387_chunk_0005,4
+88,primary instance,doc_4387,doc_4387_chunk_0005,1
+89,backup host,doc_4387,doc_4387_chunk_0005,1
+90,same database,doc_4387,doc_4387_chunk_0005,1
+91,same munge key(s),doc_4387,doc_4387_chunk_0005,1
+92,same users,doc_4387,doc_4387_chunk_0005,1
+93,UID/GIDs,doc_4387,doc_4387_chunk_0005,1
+94,network page,doc_4387,doc_4387_chunk_0005,1
+95,Slurm JobComp Configuration,doc_4387,doc_4387_chunk_0005,1
+96,JobCompHost,doc_4387,doc_4387_chunk_0005,1
+98,JobCompPass,doc_4387,doc_4387_chunk_0005,1
+99,JobCompPort,doc_4387,doc_4387_chunk_0006,1
+102,jobcomp/mysql,doc_4387,doc_4387_chunk_0006,1
+103,jobcomp/filetxt,doc_4387,doc_4387_chunk_0006,1
+104,JobCompUser,doc_4387,doc_4387_chunk_0006,1
+105,JobCompParams,doc_4387,doc_4387_chunk_0006,1
+107,accounting_storage/slurmdbd,doc_4387,doc_4387_chunk_0006,2
+108,associations,doc_4387,doc_4387_chunk_0006,4
+109,cluster,doc_4387,doc_4387_chunk_0006,16
+110,user,doc_4387,doc_4387_chunk_0006,5
+111,account,doc_4387,doc_4387_chunk_0006,4
+112,partition,doc_4387,doc_4387_chunk_0006,7
+114,MariaDB,doc_4387,doc_4387_chunk_0006,3
+115,InnoDB,doc_4387,doc_4387_chunk_0006,4
+117,Upgrade Guide,doc_4387,doc_4387_chunk_0006,1
+118,development package,doc_4387,doc_4387_chunk_0006,1
+123,MySQL installation,doc_4387,doc_4387_chunk_0007,1
+124,rollback,doc_4387,doc_4387_chunk_0007,1
+125,slurm_configure,doc_4387,doc_4387_chunk_0007,1
+126,mysql_config,doc_4387,doc_4387_chunk_0007,1
+127,--with-mysql_conf,doc_4387,doc_4387_chunk_0007,1
+128,innodb_buffer_pool_size,doc_4387,doc_4387_chunk_0007,2
+129,available memory,doc_4387,doc_4387_chunk_0007,2
+130,SQL server,doc_4387,doc_4387_chunk_0007,1
+131,innodb_log_file_size,doc_4387,doc_4387_chunk_0007,2
+132,innodb_log_files_in_group,doc_4387,doc_4387_chunk_0007,1
+133,unnecessary small writes,doc_4387,doc_4387_chunk_0007,1
+134,innodb_redo_log_capacity,doc_4387,doc_4387_chunk_0007,1
+135,MySQL 8.0.30+,doc_4387,doc_4387_chunk_0007,1
+136,innodb_lock_wait_timeout,doc_4387,doc_4387_chunk_0007,2
+137,AccountingStoreFlags,doc_4387,doc_4387_chunk_0007,2
+138,job_env,doc_4387,doc_4387_chunk_0007,1
+139,job_script,doc_4387,doc_4387_chunk_0007,1
+140,max_script_size,doc_4387,doc_4387_chunk_0007,2
+144,mysql,doc_4387,doc_4387_chunk_0008,1
+147,max_allowed_packet,doc_4387,doc_4387_chunk_0008,1
+148,mysqld,doc_4387,doc_4387_chunk_0008,1
+149,innodb_default_row_format,doc_4387,doc_4387_chunk_0008,2
+150,COMPACT,doc_4387,doc_4387_chunk_0008,1
+151,DYNAMIC,doc_4387,doc_4387_chunk_0008,1
+152,row format,doc_4387,doc_4387_chunk_0008,1
+153,table,doc_4387,doc_4387_chunk_0008,1
+155,InnoDB error,doc_4387,doc_4387_chunk_0008,1
+156,upgrade,doc_4387,doc_4387_chunk_0008,1
+157,alter,doc_4387,doc_4387_chunk_0008,1
+158,record,doc_4387,doc_4387_chunk_0008,1
+159,index leaf page,doc_4387,doc_4387_chunk_0008,1
+163,dynamic,doc_4387,doc_4387_chunk_0009,2
+164,SHOW TABLE STATUS,doc_4387,doc_4387_chunk_0009,1
+165,db_name,doc_4387,doc_4387_chunk_0009,2
+166,collation,doc_4387,doc_4387_chunk_0009,1
+167,case-insensitive,doc_4387,doc_4387_chunk_0009,1
+168,case-sensitive,doc_4387,doc_4387_chunk_0009,1
+169,information_schema,doc_4387,doc_4387_chunk_0009,1
+170,schemata,doc_4387,doc_4387_chunk_0009,1
+171,SELECT,doc_4387,doc_4387_chunk_0009,1
+172,default_collation_name,doc_4387,doc_4387_chunk_0009,1
+173,AccountingStorageEnforce,doc_4387,doc_4387_chunk_0009,4
+176,qos,doc_4387,doc_4387_chunk_0009,2
+177,nojobs,doc_4387,doc_4387_chunk_0009,2
+178,AccountingStorage,doc_4387,doc_4387_chunk_0009,1
+180,Quality of Service,doc_4387,doc_4387_chunk_0010,1
+182,nosteps,doc_4387,doc_4387_chunk_0010,1
+184,TRES-minutes,doc_4387,doc_4387_chunk_0010,1
+185,safe,doc_4387,doc_4387_chunk_0010,1
+187,wckeys,doc_4387,doc_4387_chunk_0010,2
+188,wckey,doc_4387,doc_4387_chunk_0010,2
+191,TrackWCKey,doc_4387,doc_4387_chunk_0011,2
+198,AccountingStorageExternalHost,doc_4387,doc_4387_chunk_0011,1
+199,host/ip,doc_4387,doc_4387_chunk_0011,1
+200,port,doc_4387,doc_4387_chunk_0011,3
+201,AccountingStoragePort,doc_4387,doc_4387_chunk_0011,3
+202,AccountingStorageHost,doc_4387,doc_4387_chunk_0011,1
+203,AccountingStoragePass,doc_4387,doc_4387_chunk_0011,1
+205,MUNGE authentication,doc_4387,doc_4387_chunk_0011,1
+206,munge daemon,doc_4387,doc_4387_chunk_0011,1
+207,communications,doc_4387,doc_4387_chunk_0011,1
+208,alternate MUNGE daemon,doc_4387,doc_4387_chunk_0011,1
+213,ClusterName,doc_4387,doc_4387_chunk_0012,1
+216,Workload Characterization Key,doc_4387,doc_4387_chunk_0012,1
+218,slurmdbd.conf(5),doc_4387,doc_4387_chunk_0012,1
+219,AuthInfo,doc_4387,doc_4387_chunk_0012,2
+221,named socket,doc_4387,doc_4387_chunk_0012,1
+222,SlurmDBD Configuration,doc_4387,doc_4387_chunk_0012,1
+223,configuration parameters,doc_4387,doc_4387_chunk_0012,1
+226,AuthType,doc_4387,doc_4387_chunk_0013,1
+228,SlurmDatabaseDaemon,doc_4387,doc_4387_chunk_0013,1
+229,slurmdbd_port,doc_4387,doc_4387_chunk_0013,1
+232,LogFile,doc_4387,doc_4387_chunk_0013,1
+233,syslog,doc_4387,doc_4387_chunk_0013,1
+235,Slurm plugin paths,doc_4387,doc_4387_chunk_0013,1
+236,Slurm plugin directories,doc_4387,doc_4387_chunk_0013,1
+237,default value,doc_4387,doc_4387_chunk_0013,2
+238,configure time,doc_4387,doc_4387_chunk_0013,2
+239,prefix,doc_4387,doc_4387_chunk_0013,1
+243,slurmDatabase,doc_4387,doc_4387_chunk_0014,1
+244,StorageHost,doc_4387,doc_4387_chunk_0014,2
+245,StorageLoc,doc_4387,doc_4387_chunk_0014,2
+246,StoragePass,doc_4387,doc_4387_chunk_0014,1
+247,StoragePort,doc_4387,doc_4387_chunk_0014,1
+248,accounting storage mechanism,doc_4387,doc_4387_chunk_0014,1
+249,slurm_acct_db,doc_4387,doc_4387_chunk_0014,3
+252,UID,doc_4387,doc_4387_chunk_0014,1
+253,root,doc_4387,doc_4387_chunk_0014,6
+254,AdminLevel,doc_4387,doc_4387_chunk_0014,3
+255,Admin,doc_4387,doc_4387_chunk_0014,2
+256,accounting_storage,doc_4387,doc_4387_chunk_0015,1
+260,StorageUser,doc_4387,doc_4387_chunk_0015,1
+262,GRANT,doc_4387,doc_4387_chunk_0015,1
+265,privileges,doc_4387,doc_4387_chunk_0015,1
+266,mysql user,doc_4387,doc_4387_chunk_0015,1
+267,Slurm database tables,doc_4387,doc_4387_chunk_0015,1
+268,mysql command,doc_4387,doc_4387_chunk_0015,1
+270,password usage,doc_4387,doc_4387_chunk_0015,1
+271,continuation prompt,doc_4387,doc_4387_chunk_0015,1
+272,future databases,doc_4387,doc_4387_chunk_0015,1
+277,password,doc_4387,doc_4387_chunk_0016,1
+278,localhost,doc_4387,doc_4387_chunk_0016,3
+279,system0,doc_4387,doc_4387_chunk_0016,2
+280,grant,doc_4387,doc_4387_chunk_0016,2
+282,storage host,doc_4387,doc_4387_chunk_0016,1
+285,slurm,doc_4387,doc_4387_chunk_0017,2
+287,some_pass,doc_4387,doc_4387_chunk_0017,1
+289,database storage host,doc_4387,doc_4387_chunk_0017,1
+291,SHOW ENGINES,doc_4387,doc_4387_chunk_0017,1
+292,create database,doc_4387,doc_4387_chunk_0017,1
+293,"slurm_acct_db.*,",doc_4387,doc_4387_chunk_0017,1
+295,/usr/sbin/slurmdbd,doc_4387,doc_4387_chunk_0017,1
+296,/etc/init.d/slurmdbd,doc_4387,doc_4387_chunk_0017,1
+297,slurmdbd start,doc_4387,doc_4387_chunk_0017,1
+298,ps aux,doc_4387,doc_4387_chunk_0017,1
+299,grep slurmdbd,doc_4387,doc_4387_chunk_0017,1
+301,SlurmDBD Archive,doc_4387,doc_4387_chunk_0018,1
+302,Purge,doc_4387,doc_4387_chunk_0018,1
+303,Archive,doc_4387,doc_4387_chunk_0018,1
+306,ArchiveServer,doc_4387,doc_4387_chunk_0018,1
+307,MySQL/MariaDB,doc_4387,doc_4387_chunk_0018,1
+309,Archive instance,doc_4387,doc_4387_chunk_0018,1
+310,database entries,doc_4387,doc_4387_chunk_0018,1
+311,production server,doc_4387,doc_4387_chunk_0018,1
+312,Association,doc_4387,doc_4387_chunk_0019,2
+313,QOS,doc_4387,doc_4387_chunk_0019,1
+314,TRES,doc_4387,doc_4387_chunk_0019,2
+315,mysqldump,doc_4387,doc_4387_chunk_0019,1
+316,slurm_user,doc_4387,doc_4387_chunk_0019,1
+319,slurm.sql,doc_4387,doc_4387_chunk_0019,1
+324,clusters,doc_4387,doc_4387_chunk_0019,1
+325,accounts,doc_4387,doc_4387_chunk_0019,2
+326,user associations,doc_4387,doc_4387_chunk_0019,2
+327,QOSs,doc_4387,doc_4387_chunk_0019,1
+328,man pages,doc_4387,doc_4387_chunk_0019,1
+329,time period,doc_4387,doc_4387_chunk_0019,1
+330,report generation,doc_4387,doc_4387_chunk_0019,1
+331,additional control,doc_4387,doc_4387_chunk_0019,1
+333,Grafana,doc_4387,doc_4387_chunk_0020,1
+334,Prometheus,doc_4387,doc_4387_chunk_0020,1
+335,InfluxDB,doc_4387,doc_4387_chunk_0020,3
+342,user names,doc_4387,doc_4387_chunk_0020,1
+343,partition name,doc_4387,doc_4387_chunk_0020,1
+346,sacctmgr add account,doc_4387,doc_4387_chunk_0020,1
+347,Description,doc_4387,doc_4387_chunk_0020,2
+348,Organization,doc_4387,doc_4387_chunk_0020,2
+349,hierarchical fashion,doc_4387,doc_4387_chunk_0020,1
+350,chemistry,doc_4387,doc_4387_chunk_0020,2
+351,physics,doc_4387,doc_4387_chunk_0020,3
+352,science,doc_4387,doc_4387_chunk_0020,2
+354,add account,doc_4387,doc_4387_chunk_0021,1
+355,parent,doc_4387,doc_4387_chunk_0021,2
+364,brian,doc_4387,doc_4387_chunk_0021,2
+365,DefaultAccount,doc_4387,doc_4387_chunk_0021,2
+368,Account,doc_4387,doc_4387_chunk_0021,2
+369,AccountOptions,doc_4387,doc_4387_chunk_0021,1
+370,ClusterOptions,doc_4387,doc_4387_chunk_0021,1
+375,Operator,doc_4387,doc_4387_chunk_0022,1
+378,PrivateData,doc_4387,doc_4387_chunk_0022,1
+379,Reservations,doc_4387,doc_4387_chunk_0022,1
+381,Cluster,doc_4387,doc_4387_chunk_0022,1
+383,DefaultWCKey,doc_4387,doc_4387_chunk_0022,1
+384,NewName,doc_4387,doc_4387_chunk_0022,1
+385,Partition,doc_4387,doc_4387_chunk_0022,2
+386,Resource Limits,doc_4387,doc_4387_chunk_0022,1
+389,modify,doc_4387,doc_4387_chunk_0022,2
+390,entity,doc_4387,doc_4387_chunk_0022,2
+391,options,doc_4387,doc_4387_chunk_0022,3
+396,default,doc_4387,doc_4387_chunk_0023,1
+397,set,doc_4387,doc_4387_chunk_0023,1
+398,Slurm daemons,doc_4387,doc_4387_chunk_0023,1
+399,remove,doc_4387,doc_4387_chunk_0023,1
+400,entities,doc_4387,doc_4387_chunk_0023,1
+405,slurm database,doc_4387,doc_4387_chunk_0023,1
+406,deleted,doc_4387,doc_4387_chunk_0023,1
+407,typoographical errors,doc_4387,doc_4387_chunk_0023,1
+411,usage data,doc_4387,doc_4387_chunk_0023,1
+412,task level,doc_4387,doc_4387_chunk_0023,1
+413,parallel computing,doc_4387,doc_4387_chunk_0023,1
+414,Slurm accounting,doc_4387,doc_4387_chunk_0023,1
+415,task,doc_4387,doc_4387_chunk_0024,4
+416,user processes,doc_4387,doc_4387_chunk_0024,2
+417,step,doc_4387,doc_4387_chunk_0024,1
+418,job,doc_4387,doc_4387_chunk_0024,6
+419,srun,doc_4387,doc_4387_chunk_0024,12
+420,JobAcctGather,doc_4387,doc_4387_chunk_0024,1
+421,Trackable Resources,doc_4387,doc_4387_chunk_0024,1
+423,cpu,doc_4387,doc_4387_chunk_0024,1
+424,memory,doc_4387,doc_4387_chunk_0024,1
+425,energy,doc_4387,doc_4387_chunk_0024,1
+426,JobAcctGatherFrequency,doc_4387,doc_4387_chunk_0024,1
+428,--acct-freq,doc_4387,doc_4387_chunk_0024,1
+429,TresUsageInTot,doc_4387,doc_4387_chunk_0024,2
+430,TresUsageInMax,doc_4387,doc_4387_chunk_0024,2
+432,TresUsageInMaxNode,doc_4387,doc_4387_chunk_0024,1
+433,TresUsageInMaxTask,doc_4387,doc_4387_chunk_0024,1
+434,MaxRSS,doc_4387,doc_4387_chunk_0024,2
+435,MaxRSSNode,doc_4387,doc_4387_chunk_0024,1
+436,MaxRSSTask,doc_4387,doc_4387_chunk_0024,1
+437,energy consumption,doc_4387,doc_4387_chunk_0024,1
+438,node,doc_4387,doc_4387_chunk_0024,6
+439,TresUsage*,doc_4387,doc_4387_chunk_0025,1
+442,TresUsageInAve,doc_4387,doc_4387_chunk_0025,1
+445,single task processes,doc_4387,doc_4387_chunk_0025,1
+446,profiling,doc_4387,doc_4387_chunk_0025,1
+447,HDF5,doc_4387,doc_4387_chunk_0025,2
+449,accounting data,doc_4387,doc_4387_chunk_0025,2
+450,visualize accounting data,doc_4387,doc_4387_chunk_0025,1
+451,Profiling,doc_4387,doc_4387_chunk_0026,1
+455,visualize,doc_4387,doc_4387_chunk_0026,1
+456,plugins,doc_4387,doc_4387_chunk_0026,1
+457,IBM Spectrum LSF,doc_7ceb,doc_7ceb_chunk_0001,8
+458,administrator,doc_7ceb,doc_7ceb_chunk_0001,2
+459,workload,doc_7ceb,doc_7ceb_chunk_0001,1
+460,cluster operations,doc_7ceb,doc_7ceb_chunk_0001,1
+461,LSF cluster overview,doc_7ceb,doc_7ceb_chunk_0001,1
+462,LSF directories,doc_7ceb,doc_7ceb_chunk_0001,1
+463,configuration files,doc_7ceb,doc_7ceb_chunk_0001,9
+464,LSF daemons,doc_7ceb,doc_7ceb_chunk_0001,7
+465,cluster properties,doc_7ceb,doc_7ceb_chunk_0001,1
+466,LSF status,doc_7ceb,doc_7ceb_chunk_0001,1
+467,LSF jobs,doc_7ceb,doc_7ceb_chunk_0001,1
+468,troubleshooting,doc_7ceb,doc_7ceb_chunk_0001,2
+469,LSF error messages,doc_7ceb,doc_7ceb_chunk_0001,1
+470,IBM Support,doc_7ceb,doc_7ceb_chunk_0001,3
+471,cluster characteristics,doc_7ceb,doc_7ceb_chunk_0001,2
+472,cluster name,doc_7ceb,doc_7ceb_chunk_0001,4
+473,cluster administrators,doc_7ceb,doc_7ceb_chunk_0001,2
+474,hosts definition,doc_7ceb,doc_7ceb_chunk_0001,1
+475,file systems,doc_7ceb,doc_7ceb_chunk_0001,2
+476,directories,doc_7ceb,doc_7ceb_chunk_0001,2
+477,files,doc_7ceb,doc_7ceb_chunk_0001,3
+478,LSF configuration files,doc_7ceb,doc_7ceb_chunk_0001,1
+479,job states,doc_7ceb,doc_7ceb_chunk_0001,2
+482,PEND,doc_7ceb,doc_7ceb_chunk_0002,3
+483,RUN,doc_7ceb,doc_7ceb_chunk_0002,3
+484,EXIT,doc_7ceb,doc_7ceb_chunk_0002,1
+485,PSUSP,doc_7ceb,doc_7ceb_chunk_0002,1
+486,USUSP,doc_7ceb,doc_7ceb_chunk_0002,3
+487,SSUSP,doc_7ceb,doc_7ceb_chunk_0002,2
+488,POST_DONE,doc_7ceb,doc_7ceb_chunk_0002,1
+489,POST_ERR,doc_7ceb,doc_7ceb_chunk_0002,1
+490,UNKWN,doc_7ceb,doc_7ceb_chunk_0002,1
+491,mbatchd,doc_7ceb,doc_7ceb_chunk_0002,9
+492,sbatchd,doc_7ceb,doc_7ceb_chunk_0002,6
+493,chunk job queue,doc_7ceb,doc_7ceb_chunk_0002,1
+494,ZOMBI,doc_7ceb,doc_7ceb_chunk_0002,1
+495,re-runnable job,doc_7ceb,doc_7ceb_chunk_0002,2
+496,unkreachable,doc_7ceb,doc_7ceb_chunk_0002,1
+497,kill signal,doc_7ceb,doc_7ceb_chunk_0002,1
+498,ZOMBI state,doc_7ceb,doc_7ceb_chunk_0003,1
+499,UNKWN status,doc_7ceb,doc_7ceb_chunk_0003,1
+500,bkill,doc_7ceb,doc_7ceb_chunk_0003,3
+501,requeued job,doc_7ceb,doc_7ceb_chunk_0003,1
+502,execution host,doc_7ceb,doc_7ceb_chunk_0003,2
+503,mbatchd daemon,doc_7ceb,doc_7ceb_chunk_0003,5
+504,REMOVE_HUNG_JOBS_FOR,doc_7ceb,doc_7ceb_chunk_0003,1
+505,lsb.params,doc_7ceb,doc_7ceb_chunk_0003,1
+506,bkill -r,doc_7ceb,doc_7ceb_chunk_0003,1
+507,sbatchd daemon,doc_7ceb,doc_7ceb_chunk_0003,2
+508,LSF host,doc_7ceb,doc_7ceb_chunk_0003,1
+509,individual computer,doc_7ceb,doc_7ceb_chunk_0003,1
+511,processor,doc_7ceb,doc_7ceb_chunk_0003,1
+512,parallel jobs,doc_7ceb,doc_7ceb_chunk_0003,1
+513,multiprocessor host,doc_7ceb,doc_7ceb_chunk_0003,1
+514,process queue,doc_7ceb,doc_7ceb_chunk_0003,1
+515,unique host names,doc_7ceb,doc_7ceb_chunk_0003,1
+517,queue name,doc_7ceb,doc_7ceb_chunk_0003,1
+518,LSF job,doc_7ceb,doc_7ceb_chunk_0003,1
+519,unit of work,doc_7ceb,doc_7ceb_chunk_0003,1
+520,LSF,doc_7ceb,doc_7ceb_chunk_0004,28
+522,bsub,doc_7ceb,doc_7ceb_chunk_0004,10
+523,bash,doc_7ceb,doc_7ceb_chunk_0004,2
+524,Bourne shell script,doc_7ceb,doc_7ceb_chunk_0004,1
+525,Windows,doc_7ceb,doc_7ceb_chunk_0004,2
+526,batch file,doc_7ceb,doc_7ceb_chunk_0004,1
+527,interactive batch job,doc_7ceb,doc_7ceb_chunk_0004,1
+528,terminal,doc_7ceb,doc_7ceb_chunk_0004,1
+529,job submission command,doc_7ceb,doc_7ceb_chunk_0004,1
+530,scheduling policies,doc_7ceb,doc_7ceb_chunk_0004,2
+531,fault tolerance,doc_7ceb,doc_7ceb_chunk_0004,2
+532,job file,doc_7ceb,doc_7ceb_chunk_0004,1
+533,queue,doc_7ceb,doc_7ceb_chunk_0004,7
+534,UNIX,doc_7ceb,doc_7ceb_chunk_0004,7
+535,complex problems,doc_7ceb,doc_7ceb_chunk_0004,1
+536,simulation scenarios,doc_7ceb,doc_7ceb_chunk_0004,1
+537,extensive calculations,doc_7ceb,doc_7ceb_chunk_0004,1
+538,compute power,doc_7ceb,doc_7ceb_chunk_0004,1
+539,interactive job,doc_7ceb,doc_7ceb_chunk_0005,1
+542,batch queue,doc_7ceb,doc_7ceb_chunk_0005,1
+543,interactive task,doc_7ceb,doc_7ceb_chunk_0005,1
+544,command,doc_7ceb,doc_7ceb_chunk_0005,1
+545,single process,doc_7ceb,doc_7ceb_chunk_0005,1
+546,group of cooperating processes,doc_7ceb,doc_7ceb_chunk_0005,1
+547,local task,doc_7ceb,doc_7ceb_chunk_0005,1
+548,application,doc_7ceb,doc_7ceb_chunk_0005,2
+550,remote task,doc_7ceb,doc_7ceb_chunk_0005,1
+551,host types,doc_7ceb,doc_7ceb_chunk_0005,2
+552,host models,doc_7ceb,doc_7ceb_chunk_0005,1
+553,Opteron240,doc_7ceb,doc_7ceb_chunk_0005,1
+554,Opteron840,doc_7ceb,doc_7ceb_chunk_0005,1
+555,Intel_EM64T,doc_7ceb,doc_7ceb_chunk_0005,2
+556,host type,doc_7ceb,doc_7ceb_chunk_0005,5
+557,operating system,doc_7ceb,doc_7ceb_chunk_0005,2
+558,host CPU architecture,doc_7ceb,doc_7ceb_chunk_0005,1
+561,computer architecture,doc_7ceb,doc_7ceb_chunk_0006,1
+563,binary-compatible,doc_7ceb,doc_7ceb_chunk_0006,1
+564,LSF binary files,doc_7ceb,doc_7ceb_chunk_0006,1
+565,Host model,doc_7ceb,doc_7ceb_chunk_0006,1
+566,CPU speed scaling factor,doc_7ceb,doc_7ceb_chunk_0006,1
+567,load and placement calculations,doc_7ceb,doc_7ceb_chunk_0006,1
+568,CPU factor,doc_7ceb,doc_7ceb_chunk_0006,1
+569,resources,doc_7ceb,doc_7ceb_chunk_0006,1
+570,LSF system resources,doc_7ceb,doc_7ceb_chunk_0006,1
+571,job requirements,doc_7ceb,doc_7ceb_chunk_0006,1
+572,resource availability,doc_7ceb,doc_7ceb_chunk_0006,1
+573,job scheduling,doc_7ceb,doc_7ceb_chunk_0006,1
+574,Total CPU time,doc_7ceb,doc_7ceb_chunk_0006,1
+575,resident memory usage,doc_7ceb,doc_7ceb_chunk_0006,1
+576,virtual memory usage,doc_7ceb,doc_7ceb_chunk_0006,1
+577,process group ID,doc_7ceb,doc_7ceb_chunk_0006,1
+578,active processes,doc_7ceb,doc_7ceb_chunk_0006,1
+580,Linux,doc_7ceb,doc_7ceb_chunk_0006,4
+581,PIM,doc_7ceb,doc_7ceb_chunk_0006,2
+582,load indices,doc_7ceb,doc_7ceb_chunk_0006,1
+583,load thresholds,doc_7ceb,doc_7ceb_chunk_0006,2
+584,fair share scheduling,doc_7ceb,doc_7ceb_chunk_0006,1
+586,Load indices,doc_7ceb,doc_7ceb_chunk_0007,1
+587,fixed time intervals,doc_7ceb,doc_7ceb_chunk_0007,1
+588,External Load Information Manager (ELIM),doc_7ceb,doc_7ceb_chunk_0007,1
+589,LIM,doc_7ceb,doc_7ceb_chunk_0007,9
+591,non-shared resources,doc_7ceb,doc_7ceb_chunk_0007,1
+592,hosts,doc_7ceb,doc_7ceb_chunk_0007,4
+594,static resources,doc_7ceb,doc_7ceb_chunk_0007,1
+595,built-in resources,doc_7ceb,doc_7ceb_chunk_0007,1
+596,maximum RAM,doc_7ceb,doc_7ceb_chunk_0007,1
+598,number of processors,doc_7ceb,doc_7ceb_chunk_0007,1
+599,binary architecture,doc_7ceb,doc_7ceb_chunk_0007,1
+600,relative CPU speed,doc_7ceb,doc_7ceb_chunk_0007,1
+601,system configuration,doc_7ceb,doc_7ceb_chunk_0007,1
+603,loadSched,doc_7ceb,doc_7ceb_chunk_0007,1
+604,load condition,doc_7ceb,doc_7ceb_chunk_0007,1
+605,pending jobs,doc_7ceb,doc_7ceb_chunk_0007,3
+606,suspended jobs,doc_7ceb,doc_7ceb_chunk_0007,1
+607,loadStop,doc_7ceb,doc_7ceb_chunk_0007,2
+609,thresholds,doc_7ceb,doc_7ceb_chunk_0008,1
+610,host,doc_7ceb,doc_7ceb_chunk_0008,7
+612,load index,doc_7ceb,doc_7ceb_chunk_0008,2
+613,greater than,doc_7ceb,doc_7ceb_chunk_0008,1
+614,runtime resource usage limits,doc_7ceb,doc_7ceb_chunk_0008,1
+615,hard limits,doc_7ceb,doc_7ceb_chunk_0008,1
+616,soft limits,doc_7ceb,doc_7ceb_chunk_0008,1
+617,resource allocation limits,doc_7ceb,doc_7ceb_chunk_0008,1
+618,resource classes,doc_7ceb,doc_7ceb_chunk_0008,1
+619,resource consumers,doc_7ceb,doc_7ceb_chunk_0008,1
+620,resource release,doc_7ceb,doc_7ceb_chunk_0008,1
+622,bsub -R,doc_7ceb,doc_7ceb_chunk_0008,1
+623,resource requirements,doc_7ceb,doc_7ceb_chunk_0008,1
+624,candidate hosts,doc_7ceb,doc_7ceb_chunk_0008,2
+625,host matching,doc_7ceb,doc_7ceb_chunk_0008,1
+626,scheduling conditions,doc_7ceb,doc_7ceb_chunk_0008,2
+631,load index values,doc_7ceb,doc_7ceb_chunk_0009,1
+632,scheduling thresholds,doc_7ceb,doc_7ceb_chunk_0009,1
+636,lsfinstall,doc_7ceb,doc_7ceb_chunk_0009,6
+637,install.config,doc_7ceb,doc_7ceb_chunk_0009,4
+638,LSF_CONFDIR,doc_7ceb,doc_7ceb_chunk_0009,8
+639,lsf.cluster.cluster_name,doc_7ceb,doc_7ceb_chunk_0009,11
+640,Hosts,doc_7ceb,doc_7ceb_chunk_0009,2
+641,cluster management host,doc_7ceb,doc_7ceb_chunk_0009,1
+642,server hosts,doc_7ceb,doc_7ceb_chunk_0009,1
+643,client-only hosts,doc_7ceb,doc_7ceb_chunk_0009,1
+647,batch job,doc_7ceb,doc_7ceb_chunk_0009,2
+648,user data,doc_7ceb,doc_7ceb_chunk_0009,1
+650,copying user data,doc_7ceb,doc_7ceb_chunk_0010,1
+654,Network File System (NFS),doc_7ceb,doc_7ceb_chunk_0010,1
+655,NFS file systems,doc_7ceb,doc_7ceb_chunk_0010,1
+656,automount command,doc_7ceb,doc_7ceb_chunk_0010,1
+657,Andrew File System (AFS),doc_7ceb,doc_7ceb_chunk_0010,1
+658,Distributed File System (DCE/DFS),doc_7ceb,doc_7ceb_chunk_0010,1
+660,Windows server machine,doc_7ceb,doc_7ceb_chunk_0010,1
+661,shared directories,doc_7ceb,doc_7ceb_chunk_0010,1
+662,non-shared directories,doc_7ceb,doc_7ceb_chunk_0010,1
+663,job output and error files,doc_7ceb,doc_7ceb_chunk_0010,1
+664,shared file space,doc_7ceb,doc_7ceb_chunk_0010,1
+669,Microsoft Windows,doc_7ceb,doc_7ceb_chunk_0011,1
+671,directory structures,doc_7ceb,doc_7ceb_chunk_0011,1
+673,lsf.conf,doc_7ceb,doc_7ceb_chunk_0011,18
+675,lsf.shared,doc_7ceb,doc_7ceb_chunk_0011,15
+676,LSB_CONFDIR,doc_7ceb,doc_7ceb_chunk_0011,5
+677,cluster_name,doc_7ceb,doc_7ceb_chunk_0011,6
+678,lsb.queues,doc_7ceb,doc_7ceb_chunk_0011,12
+682,primary LSF administrator,doc_7ceb,doc_7ceb_chunk_0011,6
+683,cluster users,doc_7ceb,doc_7ceb_chunk_0011,2
+684,lsf.conf (most important file),doc_7ceb,doc_7ceb_chunk_0011,1
+686,LSF_ENVDIR,doc_7ceb,doc_7ceb_chunk_0012,5
+687,log directories,doc_7ceb,doc_7ceb_chunk_0012,1
+688,libraries,doc_7ceb,doc_7ceb_chunk_0012,1
+689,global configuration,doc_7ceb,doc_7ceb_chunk_0012,1
+691,host names,doc_7ceb,doc_7ceb_chunk_0012,1
+692,models,doc_7ceb,doc_7ceb_chunk_0012,1
+693,types,doc_7ceb,doc_7ceb_chunk_0012,1
+694,LSF administrators,doc_7ceb,doc_7ceb_chunk_0012,3
+695,shared resources,doc_7ceb,doc_7ceb_chunk_0012,2
+697,keywords,doc_7ceb,doc_7ceb_chunk_0012,1
+699,workload queues,doc_7ceb,doc_7ceb_chunk_0012,1
+700,queue parameters,doc_7ceb,doc_7ceb_chunk_0012,1
+701,LSF cluster configuration files,doc_7ceb,doc_7ceb_chunk_0012,1
+705,cluster1,doc_7ceb,doc_7ceb_chunk_0013,2
+706,ego.conf,doc_7ceb,doc_7ceb_chunk_0013,3
+709,lsf.cluster.cluster1,doc_7ceb,doc_7ceb_chunk_0013,1
+710,lsbatch,doc_7ceb,doc_7ceb_chunk_0013,2
+711,lsb.users,doc_7ceb,doc_7ceb_chunk_0013,1
+712,lsb.applicatons,doc_7ceb,doc_7ceb_chunk_0013,1
+713,lsb.events,doc_7ceb,doc_7ceb_chunk_0013,2
+714,lsb.acct,doc_7ceb,doc_7ceb_chunk_0013,1
+715,LSF_LOGDIR,doc_7ceb,doc_7ceb_chunk_0013,3
+716,lim.log.hosta,doc_7ceb,doc_7ceb_chunk_0013,1
+717,res.log.hosta,doc_7ceb,doc_7ceb_chunk_0013,1
+718,mbatchd.log.hosta,doc_7ceb,doc_7ceb_chunk_0013,1
+719,mbschd.log.hosta,doc_7ceb,doc_7ceb_chunk_0013,1
+720,sbatchd.log.hosta,doc_7ceb,doc_7ceb_chunk_0013,1
+721,pim.log.hosta,doc_7ceb,doc_7ceb_chunk_0013,1
+722,lsadmin,doc_7ceb,doc_7ceb_chunk_0013,15
+723,badmin,doc_7ceb,doc_7ceb_chunk_0013,20
+725,lsrun,doc_7ceb,doc_7ceb_chunk_0013,4
+726,bjobs,doc_7ceb,doc_7ceb_chunk_0013,7
+727,bstop,doc_7ceb,doc_7ceb_chunk_0013,3
+728,bresume,doc_7ceb,doc_7ceb_chunk_0013,3
+729,lsf.sudoers,doc_7ceb,doc_7ceb_chunk_0014,5
+734,lsadmin command,doc_7ceb,doc_7ceb_chunk_0014,3
+735,badmin command,doc_7ceb,doc_7ceb_chunk_0014,2
+736,lim daemons,doc_7ceb,doc_7ceb_chunk_0014,1
+737,res daemons,doc_7ceb,doc_7ceb_chunk_0014,1
+738,mbatchd daemons,doc_7ceb,doc_7ceb_chunk_0014,1
+739,sbatchd daemons,doc_7ceb,doc_7ceb_chunk_0014,1
+740,lsadmin command (controls lim and res daemons),doc_7ceb,doc_7ceb_chunk_0014,1
+741,badmin command (controls mbatchd and sbatchd daemons),doc_7ceb,doc_7ceb_chunk_0014,1
+742,multi-user cluster,doc_7ceb,doc_7ceb_chunk_0014,1
+743,single-user cluster,doc_7ceb,doc_7ceb_chunk_0014,1
+744,lsfinstall command,doc_7ceb,doc_7ceb_chunk_0014,1
+745,lsadmin and badmin commands,doc_7ceb,doc_7ceb_chunk_0014,1
+746,Troubleshooting LSF problems,doc_7ceb,doc_7ceb_chunk_0014,7
+747,ownership,doc_7ceb,doc_7ceb_chunk_0014,1
+748,permissions,doc_7ceb,doc_7ceb_chunk_0014,1
+753,Configure LSF Startup,doc_7ceb,doc_7ceb_chunk_0015,1
+754,cshrc.lsf,doc_7ceb,doc_7ceb_chunk_0015,6
+755,profile.lsf,doc_7ceb,doc_7ceb_chunk_0015,4
+756,LSF_TOP,doc_7ceb,doc_7ceb_chunk_0015,3
+757,ksh,doc_7ceb,doc_7ceb_chunk_0015,1
+759,lsf host,doc_7ceb,doc_7ceb_chunk_0015,1
+761,lsf cluster,doc_7ceb,doc_7ceb_chunk_0015,1
+762,lsf environment,doc_7ceb,doc_7ceb_chunk_0015,1
+763,LSF Cluster Management and Operations,doc_7ceb,doc_7ceb_chunk_0015,1
+766,bctrld,doc_7ceb,doc_7ceb_chunk_0016,5
+767,start,doc_7ceb,doc_7ceb_chunk_0016,2
+768,stop,doc_7ceb,doc_7ceb_chunk_0016,1
+769,lim,doc_7ceb,doc_7ceb_chunk_0016,13
+770,res,doc_7ceb,doc_7ceb_chunk_0016,6
+771,sbd,doc_7ceb,doc_7ceb_chunk_0016,3
+773,daemons,doc_7ceb,doc_7ceb_chunk_0016,3
+774,LSF server host,doc_7ceb,doc_7ceb_chunk_0016,3
+777,reconﬁgure,doc_7ceb,doc_7ceb_chunk_0016,1
+778,LSF cluster,doc_7ceb,doc_7ceb_chunk_0016,2
+783,reconfig,doc_7ceb,doc_7ceb_chunk_0017,4
+785,mbdrestart,doc_7ceb,doc_7ceb_chunk_0017,2
+788,LSF administration commands,doc_7ceb,doc_7ceb_chunk_0017,1
+789,cluster configuration,doc_7ceb,doc_7ceb_chunk_0017,1
+790,cluster status,doc_7ceb,doc_7ceb_chunk_0017,1
+791,LSF batch workload system configuration,doc_7ceb,doc_7ceb_chunk_0017,1
+793,lsid command,doc_7ceb,doc_7ceb_chunk_0017,2
+794,lsload command,doc_7ceb,doc_7ceb_chunk_0017,2
+796,LSF batch system configuration,doc_7ceb,doc_7ceb_chunk_0017,1
+798,bhosts,doc_7ceb,doc_7ceb_chunk_0018,3
+799,bqueues,doc_7ceb,doc_7ceb_chunk_0018,4
+801,LSF Cluster Management,doc_7ceb,doc_7ceb_chunk_0018,1
+802,LSF batch workload system,doc_7ceb,doc_7ceb_chunk_0018,1
+804,lsadmin ckconfig,doc_7ceb,doc_7ceb_chunk_0018,2
+806,lsadmin ckconfig -v,doc_7ceb,doc_7ceb_chunk_0018,1
+810,advanced workload execution mode,doc_7ceb,doc_7ceb_chunk_0018,1
+811,EGO_DISABLE_UNRESOLVABLE_HOST mode,doc_7ceb,doc_7ceb_chunk_0018,1
+812,product entitlement version array,doc_7ceb,doc_7ceb_chunk_0018,1
+813,EGO_AUDIT_MAX_SIZE,doc_7ceb,doc_7ceb_chunk_0018,2
+815,Standard Edition,doc_7ceb,doc_7ceb_chunk_0019,1
+817,EGO_AUDIT_MAX_ROTATE,doc_7ceb,doc_7ceb_chunk_0019,1
+818,reCheckClass,doc_7ceb,doc_7ceb_chunk_0019,1
+819,numhosts,doc_7ceb,doc_7ceb_chunk_0019,1
+820,exchIntvl,doc_7ceb,doc_7ceb_chunk_0019,1
+821,lsid,doc_7ceb,doc_7ceb_chunk_0019,3
+822,lsload,doc_7ceb,doc_7ceb_chunk_0019,4
+832,hosta,doc_7ceb,doc_7ceb_chunk_0020,5
+835,proﬁle.lsf,doc_7ceb,doc_7ceb_chunk_0020,3
+838,HOST_NAME,doc_7ceb,doc_7ceb_chunk_0020,5
+839,status,doc_7ceb,doc_7ceb_chunk_0020,1
+840,tmp,doc_7ceb,doc_7ceb_chunk_0020,2
+841,swp,doc_7ceb,doc_7ceb_chunk_0020,2
+842,mem,doc_7ceb,doc_7ceb_chunk_0020,3
+843,busy,doc_7ceb,doc_7ceb_chunk_0020,1
+844,asterisk (*),doc_7ceb,doc_7ceb_chunk_0020,1
+845,minus sign (-),doc_7ceb,doc_7ceb_chunk_0020,1
+846,unavail,doc_7ceb,doc_7ceb_chunk_0020,1
+847,bparams,doc_7ceb,doc_7ceb_chunk_0020,1
+848,bhist,doc_7ceb,doc_7ceb_chunk_0020,2
+850,badmin ckconﬁg,doc_7ceb,doc_7ceb_chunk_0020,2
+855,ckconfig,doc_7ceb,doc_7ceb_chunk_0021,2
+857,minit,doc_7ceb,doc_7ceb_chunk_0021,1
+860,Batch,doc_7ceb,doc_7ceb_chunk_0021,1
+863,LSF Command Reference,doc_7ceb,doc_7ceb_chunk_0021,1
+864,batch system status,doc_7ceb,doc_7ceb_chunk_0021,1
+867,starting LSF daemons,doc_7ceb,doc_7ceb_chunk_0021,1
+868,batch system daemon,doc_7ceb,doc_7ceb_chunk_0022,1
+869,LSF problems,doc_7ceb,doc_7ceb_chunk_0022,1
+870,bqueues command,doc_7ceb,doc_7ceb_chunk_0022,1
+871,LSF queues,doc_7ceb,doc_7ceb_chunk_0022,1
+873,PRIO,doc_7ceb,doc_7ceb_chunk_0022,1
+874,STATUS,doc_7ceb,doc_7ceb_chunk_0022,2
+875,MAX,doc_7ceb,doc_7ceb_chunk_0022,1
+876,JL/U,doc_7ceb,doc_7ceb_chunk_0022,1
+877,JL/P,doc_7ceb,doc_7ceb_chunk_0022,1
+878,JL/H,doc_7ceb,doc_7ceb_chunk_0022,1
+879,NJOBS,doc_7ceb,doc_7ceb_chunk_0022,1
+882,SUSP,doc_7ceb,doc_7ceb_chunk_0022,1
+883,QUEUE_NAME,doc_7ceb,doc_7ceb_chunk_0022,3
+884,bqueues -l,doc_7ceb,doc_7ceb_chunk_0022,1
+885,normal,doc_7ceb,doc_7ceb_chunk_0022,3
+886,PRIO NICE,doc_7ceb,doc_7ceb_chunk_0022,1
+889,RSVP,doc_7ceb,doc_7ceb_chunk_0022,1
+890,Interval,doc_7ceb,doc_7ceb_chunk_0022,1
+898,lsgrun,doc_7ceb,doc_7ceb_chunk_0023,3
+900,batch scheduler,doc_7ceb,doc_7ceb_chunk_0023,1
+902,lsf.queues,doc_7ceb,doc_7ceb_chunk_0023,1
+903,lim daemon,doc_7ceb,doc_7ceb_chunk_0023,3
+904,execution scripts,doc_7ceb,doc_7ceb_chunk_0023,1
+905,job commands,doc_7ceb,doc_7ceb_chunk_0023,1
+906,executable applications,doc_7ceb,doc_7ceb_chunk_0023,1
+907,job ID,doc_7ceb,doc_7ceb_chunk_0023,3
+908,interactive tasks,doc_7ceb,doc_7ceb_chunk_0023,1
+909,job submission options,doc_7ceb,doc_7ceb_chunk_0023,2
+910,LSF commands,doc_7ceb,doc_7ceb_chunk_0023,1
+911,application integration,doc_7ceb,doc_7ceb_chunk_0023,1
+915,default queue,doc_7ceb,doc_7ceb_chunk_0024,1
+917,unique job ID,doc_7ceb,doc_7ceb_chunk_0024,1
+919,short,doc_7ceb,doc_7ceb_chunk_0024,1
+920,job command,doc_7ceb,doc_7ceb_chunk_0024,1
+921,job output,doc_7ceb,doc_7ceb_chunk_0024,1
+922,email,doc_7ceb,doc_7ceb_chunk_0024,2
+923,user account,doc_7ceb,doc_7ceb_chunk_0024,1
+924,standard output,doc_7ceb,doc_7ceb_chunk_0024,1
+925,standard error,doc_7ceb,doc_7ceb_chunk_0024,1
+927,output.%J,doc_7ceb,doc_7ceb_chunk_0024,1
+928,errors.%J,doc_7ceb,doc_7ceb_chunk_0024,1
+929,jobs subdirectory,doc_7ceb,doc_7ceb_chunk_0024,1
+930,home directory,doc_7ceb,doc_7ceb_chunk_0024,1
+931,user1,doc_7ceb,doc_7ceb_chunk_0024,2
+932,%J variable,doc_7ceb,doc_7ceb_chunk_0024,1
+935,pseudo-terminal,doc_7ceb,doc_7ceb_chunk_0025,1
+936,shell mode,doc_7ceb,doc_7ceb_chunk_0025,1
+938,JOBID,doc_7ceb,doc_7ceb_chunk_0025,2
+939,USER,doc_7ceb,doc_7ceb_chunk_0025,2
+941,QUEUE,doc_7ceb,doc_7ceb_chunk_0025,1
+942,FROM_HOST,doc_7ceb,doc_7ceb_chunk_0025,2
+943,JOB_NAME,doc_7ceb,doc_7ceb_chunk_0025,2
+944,SUBMIT_TIME,doc_7ceb,doc_7ceb_chunk_0025,2
+946,job completion,doc_7ceb,doc_7ceb_chunk_0025,1
+954,lsf commands,doc_7ceb,doc_7ceb_chunk_0026,1
+956,Job,doc_7ceb,doc_7ceb_chunk_0026,2
+960,hostb,doc_7ceb,doc_7ceb_chunk_0026,3
+961,sleep,doc_7ceb,doc_7ceb_chunk_0026,2
+962,submit_time,doc_7ceb,doc_7ceb_chunk_0026,1
+974,lsrun -v -m,doc_7ceb,doc_7ceb_chunk_0027,1
+975,hostname,doc_7ceb,doc_7ceb_chunk_0027,1
+978,hostc,doc_7ceb,doc_7ceb_chunk_0027,3
+979,lsgrun -v -m,doc_7ceb,doc_7ceb_chunk_0027,1
+980,Wrapper shell scripts,doc_7ceb,doc_7ceb_chunk_0027,1
+981,Wrapper binary executables,doc_7ceb,doc_7ceb_chunk_0027,1
+982,Modifying existing application source code and interfaces,doc_7ceb,doc_7ceb_chunk_0027,1
+984,rusage,doc_7ceb,doc_7ceb_chunk_0027,3
+985,abc_real,doc_7ceb,doc_7ceb_chunk_0027,1
+987,resource requirement,doc_7ceb,doc_7ceb_chunk_0028,1
+989,Manage software licenses,doc_7ceb,doc_7ceb_chunk_0028,1
+990,LSF API,doc_7ceb,doc_7ceb_chunk_0028,1
+991,LSLIB,doc_7ceb,doc_7ceb_chunk_0028,1
+992,LSBLIB,doc_7ceb,doc_7ceb_chunk_0028,1
+993,wrapper binary,doc_7ceb,doc_7ceb_chunk_0028,1
+994,wrapper shell script,doc_7ceb,doc_7ceb_chunk_0028,1
+997,users,doc_7ceb,doc_7ceb_chunk_0028,1
+999,queues,doc_7ceb,doc_7ceb_chunk_0028,2
+1007,.cshrc,doc_7ceb,doc_7ceb_chunk_0029,1
+1008,.proﬁle,doc_7ceb,doc_7ceb_chunk_0029,1
+1010,lsﬁnstall,doc_7ceb,doc_7ceb_chunk_0029,1
+1015,Linux system,doc_7ceb,doc_7ceb_chunk_0029,1
+1016,Kernel 2.6,doc_7ceb,doc_7ceb_chunk_0029,1
+1017,lsf10.1.0_linux2.6-glibc2.3-x86_64.tar.Z,doc_7ceb,doc_7ceb_chunk_0029,1
+1018,IBM Passport Advantage,doc_7ceb,doc_7ceb_chunk_0029,2
+1019,LSF System Requirements,doc_7ceb,doc_7ceb_chunk_0029,1
+1020,YouTube,doc_7ceb,doc_7ceb_chunk_0029,2
+1021,IBM Education Assistant,doc_7ceb,doc_7ceb_chunk_0029,2
+1028,install,doc_7ceb,doc_7ceb_chunk_0030,1
+1031,binary files,doc_7ceb,doc_7ceb_chunk_0030,1
+1032,installation script directory,doc_7ceb,doc_7ceb_chunk_0030,1
+1035,install.config file,doc_7ceb,doc_7ceb_chunk_0030,1
+1040,Host,doc_7ceb,doc_7ceb_chunk_0031,5
+1041,lsf_getting_started.html,doc_7ceb,doc_7ceb_chunk_0031,1
+1042,lsf_CONFDIR,doc_7ceb,doc_7ceb_chunk_0031,1
+1044,model,doc_7ceb,doc_7ceb_chunk_0031,4
+1045,type,doc_7ceb,doc_7ceb_chunk_0031,4
+1047,auto-detection,doc_7ceb,doc_7ceb_chunk_0031,1
+1048,default values,doc_7ceb,doc_7ceb_chunk_0031,1
+1049,experience,doc_7ceb,doc_7ceb_chunk_0031,1
+1050,information,doc_7ceb,doc_7ceb_chunk_0031,1
+1052,LSF server,doc_7ceb,doc_7ceb_chunk_0032,1
+1053,LSF client,doc_7ceb,doc_7ceb_chunk_0032,1
+1054,server,doc_7ceb,doc_7ceb_chunk_0032,3
+1055,client,doc_7ceb,doc_7ceb_chunk_0032,1
+1056,HOSTNAME,doc_7ceb,doc_7ceb_chunk_0032,1
+1057,model type,doc_7ceb,doc_7ceb_chunk_0032,1
+1059,REXPRI,doc_7ceb,doc_7ceb_chunk_0032,1
+1061,SUNSOL,doc_7ceb,doc_7ceb_chunk_0032,1
+1063,LINUX,doc_7ceb,doc_7ceb_chunk_0032,1
+1065,HPPA,doc_7ceb,doc_7ceb_chunk_0032,1
+1070,restart LIM,doc_7ceb,doc_7ceb_chunk_0032,2
+1071,LIMs,doc_7ceb,doc_7ceb_chunk_0033,1
+1074,hostd,doc_7ceb,doc_7ceb_chunk_0033,1
+1076,reconﬁg,doc_7ceb,doc_7ceb_chunk_0033,5
+1077,restart,doc_7ceb,doc_7ceb_chunk_0033,1
+1078,unrecoverable errors,doc_7ceb,doc_7ceb_chunk_0033,3
+1082,reconﬁguration,doc_7ceb,doc_7ceb_chunk_0033,2
+1083,reconﬁg command,doc_7ceb,doc_7ceb_chunk_0033,1
+1086,hostsetup,doc_7ceb,doc_7ceb_chunk_0034,3
+1088,/usr/share/lsf/cluster1/10.1.0/install,doc_7ceb,doc_7ceb_chunk_0034,1
+1089,./hostsetup,doc_7ceb,doc_7ceb_chunk_0034,1
+1090,--top,doc_7ceb,doc_7ceb_chunk_0034,2
+1091,--boot,doc_7ceb,doc_7ceb_chunk_0034,1
+1097,lshosts,doc_7ceb,doc_7ceb_chunk_0034,5
+1099,Cluster Management and Operations,doc_7ceb,doc_7ceb_chunk_0034,2
+1101,host model,doc_7ceb,doc_7ceb_chunk_0034,2
+1104,Unknown host,doc_7ceb,doc_7ceb_chunk_0035,1
+1105,DEFAULT,doc_7ceb,doc_7ceb_chunk_0035,2
+1106,dynamic host configuration,doc_7ceb,doc_7ceb_chunk_0035,1
+1110,hclose,doc_7ceb,doc_7ceb_chunk_0035,1
+1112,management host,doc_7ceb,doc_7ceb_chunk_0035,2
+1113,badmin hclose,doc_7ceb,doc_7ceb_chunk_0035,1
+1116,configuration errors,doc_7ceb,doc_7ceb_chunk_0035,2
+1117,removing host,doc_7ceb,doc_7ceb_chunk_0035,1
+1118,closing host,doc_7ceb,doc_7ceb_chunk_0035,1
+1119,running jobs,doc_7ceb,doc_7ceb_chunk_0035,3
+1120,lsf.cluster,doc_7ceb,doc_7ceb_chunk_0035,5
+1127,lsb.hosts,doc_7ceb,doc_7ceb_chunk_0036,3
+1129,lsb.resources,doc_7ceb,doc_7ceb_chunk_0036,1
+1132,lsadmin reconfig,doc_7ceb,doc_7ceb_chunk_0036,1
+1133,checking configuration files,doc_7ceb,doc_7ceb_chunk_0036,3
+1134,No errors found,doc_7ceb,doc_7ceb_chunk_0036,1
+1143,system startup,doc_7ceb,doc_7ceb_chunk_0037,1
+1144,LSF section,doc_7ceb,doc_7ceb_chunk_0037,1
+1145,host’s system startup files,doc_7ceb,doc_7ceb_chunk_0037,1
+1146,dynamic host conﬁguration,doc_7ceb,doc_7ceb_chunk_0037,1
+1148,IBM Platform LSF Cluster Management and Operations,doc_7ceb,doc_7ceb_chunk_0037,1
+1149,removing hosts dynamically,doc_7ceb,doc_7ceb_chunk_0037,1
+1151,lsf_admin,doc_7ceb,doc_7ceb_chunk_0037,2
+1154,chap_troubleshooting_lsf,doc_7ceb,doc_7ceb_chunk_0038,1
+1155,html,doc_7ceb,doc_7ceb_chunk_0038,1
+1156,errors,doc_7ceb,doc_7ceb_chunk_0038,1
+1163,conﬁgdir,doc_7ceb,doc_7ceb_chunk_0038,2
+1164,lsb.queues file,doc_7ceb,doc_7ceb_chunk_0038,2
+1165,new queue deﬁnition,doc_7ceb,doc_7ceb_chunk_0038,1
+1169,badmin reconﬁg,doc_7ceb,doc_7ceb_chunk_0038,1
+1174,reconfiguration,doc_7ceb,doc_7ceb_chunk_0039,1
+1177,Command Reference,doc_7ceb,doc_7ceb_chunk_0039,2
+1178,Conﬁguration Reference,doc_7ceb,doc_7ceb_chunk_0039,1
+1180,PRIORITY,doc_7ceb,doc_7ceb_chunk_0039,1
+1181,STACKLIMIT,doc_7ceb,doc_7ceb_chunk_0039,1
+1182,DESCRIPTION,doc_7ceb,doc_7ceb_chunk_0039,1
+1183,QJOB_LIMIT,doc_7ceb,doc_7ceb_chunk_0039,1
+1184,PJOB_LIMIT,doc_7ceb,doc_7ceb_chunk_0039,1
+1185,USERS,doc_7ceb,doc_7ceb_chunk_0039,1
+1186,HOSTS,doc_7ceb,doc_7ceb_chunk_0039,1
+1187,NICE,doc_7ceb,doc_7ceb_chunk_0039,1
+1188,End Queue,doc_7ceb,doc_7ceb_chunk_0039,1
+1189,removing a queue,doc_7ceb,doc_7ceb_chunk_0039,1
+1192,bswitch,doc_7ceb,doc_7ceb_chunk_0040,2
+1197,lost_and_found queue,doc_7ceb,doc_7ceb_chunk_0040,1
+1198,close queue,doc_7ceb,doc_7ceb_chunk_0040,1
+1199,primary administrator,doc_7ceb,doc_7ceb_chunk_0040,1
+1202,night,doc_7ceb,doc_7ceb_chunk_0040,2
+1204,qclose,doc_7ceb,doc_7ceb_chunk_0041,1
+1206,Queue,doc_7ceb,doc_7ceb_chunk_0041,2
+1208,idle,doc_7ceb,doc_7ceb_chunk_0041,1
+1212,STAT,doc_7ceb,doc_7ceb_chunk_0041,1
+1225,Configuration Reference,doc_7ceb,doc_7ceb_chunk_0042,1
+1228,lsf.sudoers file,doc_7ceb,doc_7ceb_chunk_0042,2
+1233,lsf.sudoers file (permissions),doc_7ceb,doc_7ceb_chunk_0042,1
+1236,LSF daemon startup control,doc_7ceb,doc_7ceb_chunk_0042,1
+1241,LSF daemon,doc_7ceb,doc_7ceb_chunk_0043,1
+1243,lsf_startup_users,doc_7ceb,doc_7ceb_chunk_0043,1
+1244,lsf_startup_path,doc_7ceb,doc_7ceb_chunk_0043,1
+1245,setuid bit,doc_7ceb,doc_7ceb_chunk_0043,2
+1246,root privileges,doc_7ceb,doc_7ceb_chunk_0043,1
+1247,lsf server daemons,doc_7ceb,doc_7ceb_chunk_0043,1
+1252,mbschd,doc_7ceb,doc_7ceb_chunk_0043,1
+1253,lsf_confdir,doc_7ceb,doc_7ceb_chunk_0043,1
+1254,lsf_conf file,doc_7ceb,doc_7ceb_chunk_0043,1
+1256,path,doc_7ceb,doc_7ceb_chunk_0043,1
+1257,lsf top-level installation directory,doc_7ceb,doc_7ceb_chunk_0043,1
+1258,file permission mode,doc_7ceb,doc_7ceb_chunk_0043,1
+1262,--setuid,doc_7ceb,doc_7ceb_chunk_0044,1
+1265,egosh,doc_7ceb,doc_7ceb_chunk_0044,3
+1266,utmpreg,doc_7ceb,doc_7ceb_chunk_0044,1
+1267,swtbl_api,doc_7ceb,doc_7ceb_chunk_0044,1
+1268,ntbl_api,doc_7ceb,doc_7ceb_chunk_0044,1
+1269,lstbl_nid,doc_7ceb,doc_7ceb_chunk_0044,1
+1270,swtbl_poe,doc_7ceb,doc_7ceb_chunk_0044,1
+1271,lsfrestart,doc_7ceb,doc_7ceb_chunk_0044,1
+1272,boot,doc_7ceb,doc_7ceb_chunk_0044,1
+1273,hostsetup command,doc_7ceb,doc_7ceb_chunk_0044,1
+1275,boot=y,doc_7ceb,doc_7ceb_chunk_0044,1
+1276,external LIM (ELIM),doc_7ceb,doc_7ceb_chunk_0044,1
+1277,software licenses,doc_7ceb,doc_7ceb_chunk_0044,2
+1278,dynamic shared resources,doc_7ceb,doc_7ceb_chunk_0044,2
+1279,Host-based resources,doc_7ceb,doc_7ceb_chunk_0044,1
+1281,nodelocked software licenses,doc_7ceb,doc_7ceb_chunk_0044,1
+1282,networked floating software licenses,doc_7ceb,doc_7ceb_chunk_0044,1
+1283,shared file systems,doc_7ceb,doc_7ceb_chunk_0044,1
+1284,Shared resources,doc_7ceb,doc_7ceb_chunk_0045,1
+1285,LSF hosts,doc_7ceb,doc_7ceb_chunk_0045,1
+1287,batch,doc_7ceb,doc_7ceb_chunk_0045,1
+1288,interactive job execution,doc_7ceb,doc_7ceb_chunk_0045,1
+1289,dynamic resources,doc_7ceb,doc_7ceb_chunk_0045,1
+1295,Resource,doc_7ceb,doc_7ceb_chunk_0045,3
+1297,ELIM,doc_7ceb,doc_7ceb_chunk_0045,6
+1298,External Load Information Manager,doc_7ceb,doc_7ceb_chunk_0045,1
+1299,shell script,doc_7ceb,doc_7ceb_chunk_0045,1
+1300,compiled binary program,doc_7ceb,doc_7ceb_chunk_0045,1
+1301,LSF_SERVERDIR,doc_7ceb,doc_7ceb_chunk_0045,3
+1302,misc/examples,doc_7ceb,doc_7ceb_chunk_0045,2
+1305,/usr/share/lsf/lsf/cluser1/10.1.0/sparc-sol2/etc/elim,doc_7ceb,doc_7ceb_chunk_0046,1
+1308,license1,doc_7ceb,doc_7ceb_chunk_0046,2
+1309,license2,doc_7ceb,doc_7ceb_chunk_0046,2
+1310,Begin Resource,doc_7ceb,doc_7ceb_chunk_0046,1
+1311,RESOURCENAME,doc_7ceb,doc_7ceb_chunk_0046,2
+1312,TYPE,doc_7ceb,doc_7ceb_chunk_0046,1
+1313,INTERVAL,doc_7ceb,doc_7ceb_chunk_0046,1
+1314,INCREASING,doc_7ceb,doc_7ceb_chunk_0046,1
+1315,RELEASE,doc_7ceb,doc_7ceb_chunk_0046,1
+1316,End Resource,doc_7ceb,doc_7ceb_chunk_0046,1
+1317,Numeric,doc_7ceb,doc_7ceb_chunk_0046,1
+1318,Boolean,doc_7ceb,doc_7ceb_chunk_0046,1
+1319,String,doc_7ceb,doc_7ceb_chunk_0046,1
+1322,ResourceMap,doc_7ceb,doc_7ceb_chunk_0046,1
+1323,LOCATION,doc_7ceb,doc_7ceb_chunk_0046,2
+1324,[all],doc_7ceb,doc_7ceb_chunk_0046,1
+1325,ELIM management host,doc_7ceb,doc_7ceb_chunk_0046,1
+1331,external load indexes,doc_7ceb,doc_7ceb_chunk_0047,1
+1332,number_indexes,doc_7ceb,doc_7ceb_chunk_0047,1
+1333,index_name,doc_7ceb,doc_7ceb_chunk_0047,1
+1334,index_value,doc_7ceb,doc_7ceb_chunk_0047,1
+1339,NUMLIC,doc_7ceb,doc_7ceb_chunk_0047,2
+1340,FLEXlm,doc_7ceb,doc_7ceb_chunk_0047,2
+1341,license server,doc_7ceb,doc_7ceb_chunk_0047,1
+1342,sed,doc_7ceb,doc_7ceb_chunk_0047,2
+1344,resource names,doc_7ceb,doc_7ceb_chunk_0047,1
+1345,minus sign,doc_7ceb,doc_7ceb_chunk_0047,1
+1346,underscore,doc_7ceb,doc_7ceb_chunk_0047,1
+1362,duration,doc_7ceb,doc_7ceb_chunk_0048,1
+1364,RES_REQ,doc_7ceb,doc_7ceb_chunk_0048,1
+1368,External load indices,doc_7ceb,doc_7ceb_chunk_0048,1
+1369,Administering IBM® Spectrum LSF,doc_7ceb,doc_7ceb_chunk_0048,1
+1372,incorrect installation,doc_7ceb,doc_7ceb_chunk_0049,1
+1373,configuration,doc_7ceb,doc_7ceb_chunk_0049,1
+1374,error log files,doc_7ceb,doc_7ceb_chunk_0049,1
+1375,log messages,doc_7ceb,doc_7ceb_chunk_0049,1
+1380,/tmp,doc_7ceb,doc_7ceb_chunk_0049,1
+1381,lim.log.host_name,doc_7ceb,doc_7ceb_chunk_0049,1
+1382,res.log.host_name,doc_7ceb,doc_7ceb_chunk_0049,1
+1383,pim.log.host_name,doc_7ceb,doc_7ceb_chunk_0049,1
+1384,mbatchd.log.management_host,doc_7ceb,doc_7ceb_chunk_0049,1
+1385,mbschd.log.management_host,doc_7ceb,doc_7ceb_chunk_0049,1
+1386,sbatchd.log.management_host,doc_7ceb,doc_7ceb_chunk_0049,1
+1387,vemkd.log.management_host,doc_7ceb,doc_7ceb_chunk_0049,1
+1388,troubleshoot LSF problems,doc_7ceb,doc_7ceb_chunk_0049,1
+1389,general troubleshooting steps,doc_7ceb,doc_7ceb_chunk_0049,1
+1396,lsf daemons,doc_7ceb,doc_7ceb_chunk_0050,1
+1397,lsf error logs,doc_7ceb,doc_7ceb_chunk_0050,1
+1401,LSF_MASTER_LIST,doc_7ceb,doc_7ceb_chunk_0050,3
+1408,/etc,doc_7ceb,doc_7ceb_chunk_0051,1
+1409,csrhc.lsf,doc_7ceb,doc_7ceb_chunk_0051,1
+1411,Setting up the LSF environment,doc_7ceb,doc_7ceb_chunk_0051,1
+1412,symbolic link,doc_7ceb,doc_7ceb_chunk_0051,2
+1413,/etc/lsf.conf,doc_7ceb,doc_7ceb_chunk_0051,1
+1414,LSF LIM daemon,doc_7ceb,doc_7ceb_chunk_0051,1
+1415,LIM dies quietly,doc_7ceb,doc_7ceb_chunk_0051,2
+1416,LIM configuration files,doc_7ceb,doc_7ceb_chunk_0051,1
+1417,lsadmin ckconﬁg -v,doc_7ceb,doc_7ceb_chunk_0051,1
+1419,Communication time out,doc_7ceb,doc_7ceb_chunk_0051,1
+1420,LIM initialization,doc_7ceb,doc_7ceb_chunk_0051,1
+1421,LIM communication,doc_7ceb,doc_7ceb_chunk_0051,1
+1424,LSF_SERVER_HOSTS,doc_7ceb,doc_7ceb_chunk_0052,1
+1430,management host LIM,doc_7ceb,doc_7ceb_chunk_0052,3
+1431,/etc/hosts,doc_7ceb,doc_7ceb_chunk_0052,3
+1432,loopback IP address,doc_7ceb,doc_7ceb_chunk_0052,1
+1435,IPv6,doc_7ceb,doc_7ceb_chunk_0053,1
+1437,ipv6-localhost,doc_7ceb,doc_7ceb_chunk_0053,1
+1438,ipv6-loopback,doc_7ceb,doc_7ceb_chunk_0053,1
+1439,ipv6-localnet,doc_7ceb,doc_7ceb_chunk_0053,1
+1440,ipv6-mcastprefix,doc_7ceb,doc_7ceb_chunk_0053,1
+1441,ipv6-allnodes,doc_7ceb,doc_7ceb_chunk_0053,1
+1442,ipv6-allrouters,doc_7ceb,doc_7ceb_chunk_0053,1
+1443,ipv6-allhosts,doc_7ceb,doc_7ceb_chunk_0053,1
+1444,User permission denied,doc_7ceb,doc_7ceb_chunk_0053,2
+1445,RES error log,doc_7ceb,doc_7ceb_chunk_0053,1
+1446,LSF_AUTH,doc_7ceb,doc_7ceb_chunk_0053,2
+1448,inetd daemon,doc_7ceb,doc_7ceb_chunk_0053,1
+1450,chmod 4755,doc_7ceb,doc_7ceb_chunk_0053,1
+1451,NFS-mounted file system,doc_7ceb,doc_7ceb_chunk_0053,1
+1452,Inconsistent host names,doc_7ceb,doc_7ceb_chunk_0054,1
+1454,/etc/hosts.equiv,doc_7ceb,doc_7ceb_chunk_0054,1
+1455,LSF_USE_HOSTEQUIV,doc_7ceb,doc_7ceb_chunk_0054,2
+1457,client host,doc_7ceb,doc_7ceb_chunk_0054,1
+1458,Windows hosts,doc_7ceb,doc_7ceb_chunk_0054,1
+1459,lspasswd,doc_7ceb,doc_7ceb_chunk_0054,1
+1460,passwords,doc_7ceb,doc_7ceb_chunk_0054,1
+1462,shared file system environment,doc_7ceb,doc_7ceb_chunk_0054,1
+1463,non-uniform file name space,doc_7ceb,doc_7ceb_chunk_0054,1
+1464,remote host,doc_7ceb,doc_7ceb_chunk_0054,1
+1465,symbolic links,doc_7ceb,doc_7ceb_chunk_0054,1
+1466,automount,doc_7ceb,doc_7ceb_chunk_0054,1
+1467,NIS,doc_7ceb,doc_7ceb_chunk_0054,2
+1473,conﬁguration,doc_7ceb,doc_7ceb_chunk_0055,1
+1474,LSF batch daemons,doc_7ceb,doc_7ceb_chunk_0055,1
+1477,error logs,doc_7ceb,doc_7ceb_chunk_0055,1
+1478,badmin ckconﬁg command,doc_7ceb,doc_7ceb_chunk_0055,1
+1479,LSF administrator mailbox,doc_7ceb,doc_7ceb_chunk_0055,1
+1480,sbatchd starts,doc_7ceb,doc_7ceb_chunk_0055,1
+1481,mbatchd does not,doc_7ceb,doc_7ceb_chunk_0055,1
+1484,lim dies quietly,doc_7ceb,doc_7ceb_chunk_0055,1
+1485,lim communication times out,doc_7ceb,doc_7ceb_chunk_0055,1
+1486,Management host LIM is down,doc_7ceb,doc_7ceb_chunk_0055,2
+1488,LIM problems,doc_7ceb,doc_7ceb_chunk_0055,1
+1491,LIM communication times out,doc_7ceb,doc_7ceb_chunk_0056,1
+1493,services,doc_7ceb,doc_7ceb_chunk_0056,1
+1494,registered properly,doc_7ceb,doc_7ceb_chunk_0056,1
+1495,orphaned job processes,doc_7ceb,doc_7ceb_chunk_0056,1
+1497,process groups,doc_7ceb,doc_7ceb_chunk_0056,1
+1499,fork,doc_7ceb,doc_7ceb_chunk_0056,1
+1500,child,doc_7ceb,doc_7ceb_chunk_0056,1
+1502,process ID (PPID),doc_7ceb,doc_7ceb_chunk_0056,1
+1504,job RES,doc_7ceb,doc_7ceb_chunk_0056,1
+1505,root process group,doc_7ceb,doc_7ceb_chunk_0056,1
+1506,new process group,doc_7ceb,doc_7ceb_chunk_0056,1
+1507,prevention,doc_7ceb,doc_7ceb_chunk_0056,1
+1508,daemonizes,doc_7ceb,doc_7ceb_chunk_0056,1
+1515,HostGroup,doc_7ceb,doc_7ceb_chunk_0057,1
+1516,HostPartition,doc_7ceb,doc_7ceb_chunk_0057,1
+1517,lsb.hosts file,doc_7ceb,doc_7ceb_chunk_0057,1
+1518,HostSection,doc_7ceb,doc_7ceb_chunk_0057,1
+1519,HOSTS definition,doc_7ceb,doc_7ceb_chunk_0057,1
+1525,UNKNOWN host,doc_7ceb,doc_7ceb_chunk_0057,1
+1531,cpuf,doc_7ceb,doc_7ceb_chunk_0057,3
+1532,ncpus,doc_7ceb,doc_7ceb_chunk_0057,3
+1533,maxmem,doc_7ceb,doc_7ceb_chunk_0057,3
+1534,maxswp,doc_7ceb,doc_7ceb_chunk_0057,3
+1544,RESOURCES,doc_7ceb,doc_7ceb_chunk_0058,2
+1545,hostA,doc_7ceb,doc_7ceb_chunk_0058,1
+1546,UNKNOWN,doc_7ceb,doc_7ceb_chunk_0058,1
+1547,Ultra2,doc_7ceb,doc_7ceb_chunk_0058,1
+1551,lsf,doc_7ceb,doc_7ceb_chunk_0058,1
+1554,ego,doc_7ceb,doc_7ceb_chunk_0058,1
+1555,ego start,doc_7ceb,doc_7ceb_chunk_0058,1
+1557,rsh,doc_7ceb,doc_7ceb_chunk_0058,1
+1560,binary incompatibility,doc_7ceb,doc_7ceb_chunk_0058,2
+1561,job migration,doc_7ceb,doc_7ceb_chunk_0058,1
+1574,CPU factors,doc_7ceb,doc_7ceb_chunk_0059,1
+1575,efﬁcient,doc_7ceb,doc_7ceb_chunk_0059,1
+1577,lshosts command,doc_7ceb,doc_7ceb_chunk_0059,1
+1578,Host Type,doc_7ceb,doc_7ceb_chunk_0059,2
+1579,Host Architecture,doc_7ceb,doc_7ceb_chunk_0059,2
+1580,Total NUMA Nodes,doc_7ceb,doc_7ceb_chunk_0059,2
+1581,Total Processors,doc_7ceb,doc_7ceb_chunk_0059,2
+1582,Total Cores,doc_7ceb,doc_7ceb_chunk_0059,2
+1583,Total Threads,doc_7ceb,doc_7ceb_chunk_0059,2
+1584,Matched Type,doc_7ceb,doc_7ceb_chunk_0059,2
+1585,Matched Architecture,doc_7ceb,doc_7ceb_chunk_0059,2
+1586,Matched Model,doc_7ceb,doc_7ceb_chunk_0059,2
+1587,CPU Factor,doc_7ceb,doc_7ceb_chunk_0059,2
+1589,lim -t,doc_7ceb,doc_7ceb_chunk_0060,1
+1591,NTX64,doc_7ceb,doc_7ceb_chunk_0060,1
+1603,HostType,doc_7ceb,doc_7ceb_chunk_0060,3
+1604,TYPENAME,doc_7ceb,doc_7ceb_chunk_0060,1
+1605,CRAYJ,doc_7ceb,doc_7ceb_chunk_0060,1
+1606,HostModel,doc_7ceb,doc_7ceb_chunk_0060,3
+1607,MODELNAME,doc_7ceb,doc_7ceb_chunk_0060,1
+1608,CPUFACTOR,doc_7ceb,doc_7ceb_chunk_0060,1
+1609,ARCHITECTURE,doc_7ceb,doc_7ceb_chunk_0060,1
+1615,NTP,doc_7ceb,doc_7ceb_chunk_0061,1
+1616,Network Time Protocol,doc_7ceb,doc_7ceb_chunk_0061,1
+1617,b* commands,doc_7ceb,doc_7ceb_chunk_0061,1
+1618,eauth,doc_7ceb,doc_7ceb_chunk_0061,1
+1619,token,doc_7ceb,doc_7ceb_chunk_0061,1
+1620,timestamp,doc_7ceb,doc_7ceb_chunk_0061,1
+1623,badmin ckconfig,doc_7ceb,doc_7ceb_chunk_0061,1
+1624,general errors,doc_7ceb,doc_7ceb_chunk_0061,1
+1625,can't open file,doc_7ceb,doc_7ceb_chunk_0061,1
+1626,error,doc_7ceb,doc_7ceb_chunk_0061,2
+1627,file permissions,doc_7ceb,doc_7ceb_chunk_0061,1
+1628,missing files,doc_7ceb,doc_7ceb_chunk_0061,1
+1629,lsf.conf file,doc_7ceb,doc_7ceb_chunk_0061,1
+1630,path names,doc_7ceb,doc_7ceb_chunk_0061,1
+1633,file(line),doc_7ceb,doc_7ceb_chunk_0061,1
+1634,malloc failed,doc_7ceb,doc_7ceb_chunk_0061,1
+1635,memory allocation,doc_7ceb,doc_7ceb_chunk_0061,1
+1637,swap space,doc_7ceb,doc_7ceb_chunk_0061,1
+1638,auth_user,doc_7ceb,doc_7ceb_chunk_0061,2
+1639,getservbyname,doc_7ceb,doc_7ceb_chunk_0061,1
+1640,ident/tcp,doc_7ceb,doc_7ceb_chunk_0061,1
+1641,services database,doc_7ceb,doc_7ceb_chunk_0061,1
+1643,ident,doc_7ceb,doc_7ceb_chunk_0062,1
+1645,inetd.conf,doc_7ceb,doc_7ceb_chunk_0062,1
+1646,identd,doc_7ceb,doc_7ceb_chunk_0062,1
+1648,port_number,doc_7ceb,doc_7ceb_chunk_0062,1
+1649,setuid,doc_7ceb,doc_7ceb_chunk_0062,1
+1651,/etc/host.equiv,doc_7ceb,doc_7ceb_chunk_0062,1
+1652,.rhosts,doc_7ceb,doc_7ceb_chunk_0062,1
+1653,init_AcceptSock,doc_7ceb,doc_7ceb_chunk_0062,1
+1655,res/tcp,doc_7ceb,doc_7ceb_chunk_0062,1
+1657,lim/udp,doc_7ceb,doc_7ceb_chunk_0062,1
+1658,LSF Guide,doc_7ceb,doc_7ceb_chunk_0062,2
+1659,get_ports,doc_7ceb,doc_7ceb_chunk_0062,1
+1662,serv,doc_7ceb,doc_7ceb_chunk_0063,1
+1663,daemon,doc_7ceb,doc_7ceb_chunk_0063,2
+1664,RES,doc_7ceb,doc_7ceb_chunk_0063,2
+1667,section name,doc_7ceb,doc_7ceb_chunk_0063,1
+1668,section,doc_7ceb,doc_7ceb_chunk_0063,1
+1669,keyword,doc_7ceb,doc_7ceb_chunk_0063,1
+1670,Premature EOF,doc_7ceb,doc_7ceb_chunk_0063,1
+1671,values,doc_7ceb,doc_7ceb_chunk_0063,1
+1672,keys,doc_7ceb,doc_7ceb_chunk_0063,1
+1681,file,doc_7ceb,doc_7ceb_chunk_0064,1
+1682,index,doc_7ceb,doc_7ceb_chunk_0064,1
+1684,cpuFactor,doc_7ceb,doc_7ceb_chunk_0064,1
+1685,maximum,doc_7ceb,doc_7ceb_chunk_0064,1
+1686,length,doc_7ceb,doc_7ceb_chunk_0064,1
+1687,character,doc_7ceb,doc_7ceb_chunk_0064,1
+1688,reserved,doc_7ceb,doc_7ceb_chunk_0064,1
+1689,previously defined,doc_7ceb,doc_7ceb_chunk_0064,1
+1690,illegal character,doc_7ceb,doc_7ceb_chunk_0064,2
+1691,resource,doc_7ceb,doc_7ceb_chunk_0065,1
+1696,myhostname,doc_7ceb,doc_7ceb_chunk_0065,1
+1697,Gethostbyaddr_,doc_7ceb,doc_7ceb_chunk_0065,1
+1698,request,doc_7ceb,doc_7ceb_chunk_0065,2
+1699,unknown host,doc_7ceb,doc_7ceb_chunk_0065,1
+1703,reconfigure,doc_7ceb,doc_7ceb_chunk_0065,1
+1711,saveIndx,doc_7ceb,doc_7ceb_chunk_0065,2
+1716,num,doc_7ceb,doc_7ceb_chunk_0066,1
+1718,REX,doc_7ceb,doc_7ceb_chunk_0066,1
+1720,uid,doc_7ceb,doc_7ceb_chunk_0066,1
+1721,doacceptconn,doc_7ceb,doc_7ceb_chunk_0066,1
+1722,username,doc_7ceb,doc_7ceb_chunk_0066,1
+1725,authRequest,doc_7ceb,doc_7ceb_chunk_0066,1
+1726,clname,doc_7ceb,doc_7ceb_chunk_0066,1
+1727,clhost,doc_7ceb,doc_7ceb_chunk_0066,1
+1728,lname,doc_7ceb,doc_7ceb_chunk_0066,1
+1729,resControl,doc_7ceb,doc_7ceb_chunk_0066,1
+1730,respath,doc_7ceb,doc_7ceb_chunk_0066,1
+1731,X_OK,doc_7ceb,doc_7ceb_chunk_0066,1
+1734,jobId,doc_7ceb,doc_7ceb_chunk_0066,2
+1735,renewJob,doc_7ceb,doc_7ceb_chunk_0066,2
+1742,logJobInfo_,doc_7ceb,doc_7ceb_chunk_0067,1
+1743,logdir,doc_7ceb,doc_7ceb_chunk_0067,1
+1744,info,doc_7ceb,doc_7ceb_chunk_0067,1
+1745,jobfile,doc_7ceb,doc_7ceb_chunk_0067,1
+1746,data,doc_7ceb,doc_7ceb_chunk_0067,1
+1747,pos,doc_7ceb,doc_7ceb_chunk_0067,1
+1748,rmLogJobInfo,doc_7ceb,doc_7ceb_chunk_0067,1
+1750,lost_and_found,doc_7ceb,doc_7ceb_chunk_0067,1
+1751,replay_startjob,doc_7ceb,doc_7ceb_chunk_0067,1
+1753,host_name,doc_7ceb,doc_7ceb_chunk_0067,1
+1754,host_addr,doc_7ceb,doc_7ceb_chunk_0067,1
+1755,do_restartReq,doc_7ceb,doc_7ceb_chunk_0067,1
+1758,LSF command messages,doc_7ceb,doc_7ceb_chunk_0067,1
+1759,LSF_LIM_API_NTRIES,doc_7ceb,doc_7ceb_chunk_0067,2
+1763,EGO,doc_7ceb,doc_7ceb_chunk_0068,3
+1764,LSF_LIM_API_NTRIES parameter,doc_7ceb,doc_7ceb_chunk_0068,1
+1765,LSB_API_VERBOSE,doc_7ceb,doc_7ceb_chunk_0068,1
+1768,connect() system call,doc_7ceb,doc_7ceb_chunk_0068,1
+1769,LSB_MBD_PORT,doc_7ceb,doc_7ceb_chunk_0068,1
+1770,LSB_QUERY_PORT,doc_7ceb,doc_7ceb_chunk_0068,1
+1771,LSF is down,doc_7ceb,doc_7ceb_chunk_0068,1
+1772,LSF batch commands,doc_7ceb,doc_7ceb_chunk_0068,1
+1773,batch command client messages,doc_7ceb,doc_7ceb_chunk_0068,1
+1774,point of failure,doc_7ceb,doc_7ceb_chunk_0068,1
+1775,possible reason,doc_7ceb,doc_7ceb_chunk_0068,1
+1776,Error message output,doc_7ceb,doc_7ceb_chunk_0068,1
+1777,Establishing a connection with the mbatchd daemon,doc_7ceb,doc_7ceb_chunk_0068,1
+1778,mbatchd daemon is too busy,doc_7ceb,doc_7ceb_chunk_0068,1
+1779,mbatchd daemon is down,doc_7ceb,doc_7ceb_chunk_0068,1
+1780,no process is listening,doc_7ceb,doc_7ceb_chunk_0068,1
+1781,cannot communicate with the mbatchd daemon,doc_7ceb,doc_7ceb_chunk_0068,1
+1784,connect,doc_7ceb,doc_7ceb_chunk_0069,1
+1785,socket,doc_7ceb,doc_7ceb_chunk_0069,6
+1786,system call,doc_7ceb,doc_7ceb_chunk_0069,1
+1787,client side,doc_7ceb,doc_7ceb_chunk_0069,1
+1789,send/receive handshake message,doc_7ceb,doc_7ceb_chunk_0069,1
+1790,mbatchd busy,doc_7ceb,doc_7ceb_chunk_0069,1
+1791,client times out,doc_7ceb,doc_7ceb_chunk_0069,1
+1793,read()/write(),doc_7ceb,doc_7ceb_chunk_0069,1
+1794,internal library error,doc_7ceb,doc_7ceb_chunk_0069,1
+1795,EGO command messages,doc_7ceb,doc_7ceb_chunk_0069,1
+1796,egosh command,doc_7ceb,doc_7ceb_chunk_0069,1
+1797,LSF_ENABLE_EGO,doc_7ceb,doc_7ceb_chunk_0069,2
+1800,vemkd daemon,doc_7ceb,doc_7ceb_chunk_0069,2
+1802,command messages,doc_7ceb,doc_7ceb_chunk_0070,1
+1808,vemkd,doc_7ceb,doc_7ceb_chunk_0070,1
+1810,fix pack level,doc_84a2,doc_84a2_chunk_0001,1
+1811,LSF_ENVDIR_old,doc_84a2,doc_84a2_chunk_0001,1
+1812,LSF_ENVDIR_new,doc_84a2,doc_84a2_chunk_0001,1
+1813,ego.cluster,doc_84a2,doc_84a2_chunk_0001,1
+1814,ego.shared,doc_84a2,doc_84a2_chunk_0001,1
+1816,passwd.lsfuser,doc_84a2,doc_84a2_chunk_0001,1
+1817,LSB_CONFDIR_old,doc_84a2,doc_84a2_chunk_0001,1
+1818,LSB_CONFDIR_new,doc_84a2,doc_84a2_chunk_0001,1
+1819,configdir,doc_84a2,doc_84a2_chunk_0001,2
+1820,batch configuration files,doc_84a2,doc_84a2_chunk_0001,1
+1822,directory structure changes,doc_84a2,doc_84a2_chunk_0001,1
+1826,LSB_SHAREDIR,doc_84a2,doc_84a2_chunk_0002,1
+1828,EGO consumer tree,doc_84a2,doc_84a2_chunk_0002,1
+1829,EGO resource group,doc_84a2,doc_84a2_chunk_0002,1
+1830,EGO users,doc_84a2,doc_84a2_chunk_0002,1
+1831,EGO XML configuration files,doc_84a2,doc_84a2_chunk_0002,1
+1832,EGO_CONFDIR,doc_84a2,doc_84a2_chunk_0002,1
+1833,EGO password file,doc_84a2,doc_84a2_chunk_0002,1
+1834,EGO_WORKDIR,doc_84a2,doc_84a2_chunk_0002,1
+1835,lsfstartup,doc_84a2,doc_84a2_chunk_0002,1
+1837,activate,doc_84a2,doc_84a2_chunk_0002,1
+1838,original cluster,doc_84a2,doc_84a2_chunk_0002,1
+1840,qact,doc_84a2,doc_84a2_chunk_0003,1
+1843,Run,doc_84a2,doc_84a2_chunk_0003,1
+1844,monitor,doc_84a2,doc_84a2_chunk_0003,1
+1845,control,doc_84a2,doc_84a2_chunk_0003,1
+1846,jobs,doc_84a2,doc_84a2_chunk_0003,2
+1847,submitted,doc_84a2,doc_84a2_chunk_0003,1
+1848,LSF.Run,doc_84a2,doc_84a2_chunk_0003,1
+1849,Working with jobs,doc_84a2,doc_84a2_chunk_0003,1
+1850,Monitoring jobs,doc_84a2,doc_84a2_chunk_0003,1
+1853,working,doc_84a2,doc_84a2_chunk_0004,1
+1854,monitoring,doc_84a2,doc_84a2_chunk_0004,1
+1856,CPU Management,doc_d9be,doc_d9be_chunk_0001,1
+1857,User,doc_d9be,doc_d9be_chunk_0001,1
+1858,Administrator,doc_d9be,doc_d9be_chunk_0001,1
+1859,Step 1,doc_d9be,doc_d9be_chunk_0001,1
+1860,Selection of Nodes,doc_d9be,doc_d9be_chunk_0001,1
+1862,select plugin,doc_d9be,doc_d9be_chunk_0001,2
+1863,SelectType,doc_d9be,doc_d9be_chunk_0001,10
+1864,select/linear,doc_d9be,doc_d9be_chunk_0001,2
+1865,select/cons_tres,doc_d9be,doc_d9be_chunk_0001,1
+1866,SelectTypeParameters,doc_d9be,doc_d9be_chunk_0001,7
+1868,NodeName,doc_d9be,doc_d9be_chunk_0001,2
+1869,PartitionName,doc_d9be,doc_d9be_chunk_0001,3
+1872,Nodes,doc_d9be,doc_d9be_chunk_0002,3
+1873,OverSubscribe,doc_d9be,doc_d9be_chunk_0002,5
+1874,MaxNodes,doc_d9be,doc_d9be_chunk_0002,2
+1875,SlurmdParameters,doc_d9be,doc_d9be_chunk_0002,3
+1876,config_overrides,doc_d9be,doc_d9be_chunk_0002,3
+1879,CR_CPU,doc_d9be,doc_d9be_chunk_0002,3
+1880,CR_CPU_Memory,doc_d9be,doc_d9be_chunk_0002,2
+1881,CR_Core,doc_d9be,doc_d9be_chunk_0002,5
+1882,CR_Core_Memory,doc_d9be,doc_d9be_chunk_0002,2
+1883,CR_Socket,doc_d9be,doc_d9be_chunk_0002,2
+1884,CR_Socket_Memory,doc_d9be,doc_d9be_chunk_0002,2
+1886,salloc,doc_d9be,doc_d9be_chunk_0002,2
+1887,sbatch,doc_d9be,doc_d9be_chunk_0002,2
+1888,--extra-node-info,doc_d9be,doc_d9be_chunk_0002,2
+1889,--constraint,doc_d9be,doc_d9be_chunk_0002,2
+1890,--contiguous,doc_d9be,doc_d9be_chunk_0002,2
+1891,--cores-per-socket,doc_d9be,doc_d9be_chunk_0002,2
+1892,--cpus-per-task,doc_d9be,doc_d9be_chunk_0002,7
+1893,--exclusive,doc_d9be,doc_d9be_chunk_0002,2
+1894,--nodefile,doc_d9be,doc_d9be_chunk_0002,2
+1895,--hint,doc_d9be,doc_d9be_chunk_0002,3
+1896,--mincpus,doc_d9be,doc_d9be_chunk_0002,2
+1897,--nodes,doc_d9be,doc_d9be_chunk_0002,8
+1899,cons_tres,doc_d9be,doc_d9be_chunk_0003,2
+1900,block allocation,doc_d9be,doc_d9be_chunk_0003,1
+1901,cyclic allocation,doc_d9be,doc_d9be_chunk_0003,1
+1907,boards,doc_d9be,doc_d9be_chunk_0003,1
+1908,sockets,doc_d9be,doc_d9be_chunk_0003,1
+1909,cores,doc_d9be,doc_d9be_chunk_0003,3
+1910,threads,doc_d9be,doc_d9be_chunk_0003,1
+1911,processors,doc_d9be,doc_d9be_chunk_0003,1
+1912,logical CPUs,doc_d9be,doc_d9be_chunk_0003,2
+1934,--distribution,doc_d9be,doc_d9be_chunk_0004,6
+1940,--ntasks,doc_d9be,doc_d9be_chunk_0004,8
+1941,--ntasks-per-core,doc_d9be,doc_d9be_chunk_0004,2
+1942,Step 2,doc_d9be,doc_d9be_chunk_0004,1
+1943,Step 3,doc_d9be,doc_d9be_chunk_0004,2
+1949,Command line option,doc_d9be,doc_d9be_chunk_0005,1
+1951,-mblock,doc_d9be,doc_d9be_chunk_0005,1
+1952,cyclic,doc_d9be,doc_d9be_chunk_0005,4
+1953,arbitrary,doc_d9be,doc_d9be_chunk_0005,1
+1954,plane,doc_d9be,doc_d9be_chunk_0005,1
+1956,--ntasks-per-socket,doc_d9be,doc_d9be_chunk_0005,1
+1957,--ntasks-per-node,doc_d9be,doc_d9be_chunk_0005,3
+1958,--relative,doc_d9be,doc_d9be_chunk_0005,1
+1959,Step 4,doc_d9be,doc_d9be_chunk_0005,1
+1960,TaskPlugins,doc_d9be,doc_d9be_chunk_0005,1
+1961,cgroup.conf,doc_d9be,doc_d9be_chunk_0005,2
+1962,ConstrainCores,doc_d9be,doc_d9be_chunk_0005,2
+1963,--cpu-bind,doc_d9be,doc_d9be_chunk_0005,4
+1964,task affinity,doc_d9be,doc_d9be_chunk_0005,3
+1965,task/CPU binding,doc_d9be,doc_d9be_chunk_0005,1
+1966,cpu allocation,doc_d9be,doc_d9be_chunk_0005,1
+1967,cpu allocation (Step 2),doc_d9be,doc_d9be_chunk_0005,1
+1968,task affinity/binding (Step 4),doc_d9be,doc_d9be_chunk_0005,1
+1969,scontrol,doc_d9be,doc_d9be_chunk_0006,1
+1971,option,doc_d9be,doc_d9be_chunk_0006,1
+1972,--details,doc_d9be,doc_d9be_chunk_0006,1
+1973,nodes,doc_d9be,doc_d9be_chunk_0006,1
+1974,CPU ids,doc_d9be,doc_d9be_chunk_0006,1
+1976,abstract CPU ids,doc_d9be,doc_d9be_chunk_0006,1
+1977,Linux/hardware CPU ids,doc_d9be,doc_d9be_chunk_0006,1
+1978,/proc/cpuinfo,doc_d9be,doc_d9be_chunk_0006,1
+1979,pid,doc_d9be,doc_d9be_chunk_0006,1
+1980,cat,doc_d9be,doc_d9be_chunk_0006,1
+1981,grep,doc_d9be,doc_d9be_chunk_0006,1
+1982,Cpus_allowed_list,doc_d9be,doc_d9be_chunk_0006,1
+1984,cpu-bind,doc_d9be,doc_d9be_chunk_0006,2
+1985,verbose,doc_d9be,doc_d9be_chunk_0006,1
+1987,node definitions,doc_d9be,doc_d9be_chunk_0006,1
+1989,physical CPUs,doc_d9be,doc_d9be_chunk_0006,1
+1990,abstract CPU numbers,doc_d9be,doc_d9be_chunk_0006,1
+1991,machine CPU numbers,doc_d9be,doc_d9be_chunk_0006,1
+1992,Slurm Accounting,doc_d9be,doc_d9be_chunk_0007,1
+1993,CPU management,doc_d9be,doc_d9be_chunk_0007,1
+1994,CPU usage,doc_d9be,doc_d9be_chunk_0007,1
+1997,ThreadsPerCore,doc_d9be,doc_d9be_chunk_0007,1
+1998,Procs,doc_d9be,doc_d9be_chunk_0007,1
+1999,State,doc_d9be,doc_d9be_chunk_0007,1
+2003,Default,doc_d9be,doc_d9be_chunk_0007,1
+2004,cons_tres plugin,doc_d9be,doc_d9be_chunk_0007,1
+2008,tasks,doc_d9be,doc_d9be_chunk_0007,4
+2010,consumable resources,doc_d9be,doc_d9be_chunk_0008,3
+2012,CPUs,doc_d9be,doc_d9be_chunk_0008,4
+2014,overcommitment,doc_d9be,doc_d9be_chunk_0008,1
+2016,default partition,doc_d9be,doc_d9be_chunk_0008,5
+2021,allocation,doc_d9be,doc_d9be_chunk_0008,4
+2022,fragmentation,doc_d9be,doc_d9be_chunk_0008,1
+2023,minimization,doc_d9be,doc_d9be_chunk_0008,1
+2026,CR_CORE_DEFAULT_DIST_BLOCK,doc_d9be,doc_d9be_chunk_0008,4
+2028,block,doc_d9be,doc_d9be_chunk_0008,3
+2038,distribution,doc_d9be,doc_d9be_chunk_0009,5
+2041,SelectType=select/cons_tres,doc_d9be,doc_d9be_chunk_0009,1
+2042,SelectTypeParameters=CR_Core,doc_d9be,doc_d9be_chunk_0009,1
+2049,plane distribution,doc_d9be,doc_d9be_chunk_0009,1
+2050,plane=2,doc_d9be,doc_d9be_chunk_0009,1
+2054,--nodelist,doc_d9be,doc_d9be_chunk_0010,1
+2056,--oversubscribe,doc_d9be,doc_d9be_chunk_0010,2
+2060,allocated CPUs,doc_d9be,doc_d9be_chunk_0010,3
+2062,Node,doc_d9be,doc_d9be_chunk_0010,1
+2063,nodenamen0,doc_d9be,doc_d9be_chunk_0010,1
+2064,partition definition,doc_d9be,doc_d9be_chunk_0010,1
+2070,CPU,doc_d9be,doc_d9be_chunk_0011,1
+2076,nomultithread,doc_d9be,doc_d9be_chunk_0011,1
+2078,Core,doc_d9be,doc_d9be_chunk_0011,1
+2079,CPU id,doc_d9be,doc_d9be_chunk_0011,2
+2082,default allocation method,doc_d9be,doc_d9be_chunk_0011,1
+2085,core binding,doc_d9be,doc_d9be_chunk_0011,1
+2086,srun --nodes,doc_d9be,doc_d9be_chunk_0011,1
+2088,socket binding,doc_d9be,doc_d9be_chunk_0011,2
+2089,socket id,doc_d9be,doc_d9be_chunk_0011,2
+2090,task distribution,doc_d9be,doc_d9be_chunk_0011,1
+2091,binding of tasks to CPUs,doc_d9be,doc_d9be_chunk_0011,1
+2092,Nodenamen,doc_d9be,doc_d9be_chunk_0012,1
+2093,Socket id,doc_d9be,doc_d9be_chunk_0012,2
+2094,Allocated CPUs,doc_d9be,doc_d9be_chunk_0012,1
+2095,Allocated CPU ids,doc_d9be,doc_d9be_chunk_0012,2
+2096,Binding of Tasks to CPUs,doc_d9be,doc_d9be_chunk_0012,2
+2098,Task ids,doc_d9be,doc_d9be_chunk_0012,1
+2107,block:block,doc_d9be,doc_d9be_chunk_0012,1
+2108,block:cyclic,doc_d9be,doc_d9be_chunk_0012,1
+2111,binding,doc_d9be,doc_d9be_chunk_0012,3
+2129,CR_CORE_BIND_TYPE,doc_d9be,doc_d9be_chunk_0013,1
+2130,CR_CORE_BIND_CORES,doc_d9be,doc_d9be_chunk_0013,1
+2136,cyclic:block,doc_d9be,doc_d9be_chunk_0014,1
+2144,TaskPlugin,doc_d9be,doc_d9be_chunk_0014,2
+2146,performance,doc_d9be,doc_d9be_chunk_0014,1
+2157,Nodenames,doc_d9be,doc_d9be_chunk_0014,1
+2162,cgroup,doc_d9be,doc_d9be_chunk_0015,1
+2171,task/cgroup plugin,doc_d9be,doc_d9be_chunk_0015,1
+2172,block method,doc_d9be,doc_d9be_chunk_0015,1
+2175,Number of Allocated CPUs,doc_d9be,doc_d9be_chunk_0015,1
+2178,Task id,doc_d9be,doc_d9be_chunk_0015,1
+2179,task/affinity,doc_d9be,doc_d9be_chunk_0015,2
+2180,task distribution options,doc_d9be,doc_d9be_chunk_0015,1
+2182,affinity,doc_d9be,doc_d9be_chunk_0016,1
+2183,modified,doc_d9be,doc_d9be_chunk_0016,1
+2184,January,doc_d9be,doc_d9be_chunk_0016,1

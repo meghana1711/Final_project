@@ -1,0 +1,58 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "Represents a job in the HPC system." .
+
+hpc:jobId a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The unique identifier for a job." .
+
+hpc:scriptJobId a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The job ID or job array element when using the -script command option." .
+
+hpc:supportsJobArray a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Boolean ;
+    rdfs:comment "Indicates whether the job supports job arrays." .
+
+hpc:Update_Interval a xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum frequency in seconds at which job-level resource usage information is updated." .
+
+hpc:SBD_Sleep_Time a xsd:nonNegativeInteger ;
+    rdfs:comment "The sleep time in seconds between updates." .
+
+hpc:updateCondition a owl:ObjectProperty ;
+    rdfs:domain hpc:UpdateInterval ;
+    rdfs:range rdf:PlainLiteral ;
+    rdfs:comment "The condition under which an update is triggered." .
+
+hpc:updateCondition1 a owl:ObjectProperty ;
+    rdfs:domain hpc:UpdateCondition ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The percentage change in CPU time, resident memory usage, or virtual memory usage from the previous update." .
+
+hpc:updateCondition2 a owl:ObjectProperty ;
+    rdfs:domain hpc:UpdateCondition ;
+    rdfs:range rdf:PlainLiteral ;
+    rdfs:comment "Indicates whether a new process or process group has been created." .
+
+hpc:JobLevelInfo a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "Represents job-level information." .
+
+hpc:totalCpuTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobLevelInfo ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The total CPU time consumed by all processes of a job." .
+
+hpc:totalResidentMemoryUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobLevelInfo ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The total resident memory usage in KB of all currently running processes of a job." .
+
+hpc:totalVirtualMemoryUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobLevelInfo ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The total virtual memory usage in KB of all currently running processes of a job." .

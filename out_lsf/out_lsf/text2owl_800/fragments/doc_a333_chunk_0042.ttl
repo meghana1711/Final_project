@@ -1,0 +1,9 @@
+hpc:Bsimfunction a owl:Class .
+hpc:pluginWconvertFree a owl:ObjectProperty .
+hpc:pluginWconvertPostExec a owl:ObjectProperty .
+
+hpc:Bsimfunction rdfs:subClassOf owl:Class .
+hpc:PluginWconvertFree rdfs:domain hpc:Bsimfunction ;
+                                rdfs:range rdf:Resource .
+hpc:PluginWconvertPostExec rdfs:domain hpc:Bsimfunction ;
+                                rdfs:range rdf:Resource .

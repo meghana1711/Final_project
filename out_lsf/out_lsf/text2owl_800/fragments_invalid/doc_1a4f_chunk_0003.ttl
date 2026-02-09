@@ -1,0 +1,79 @@
+hpc:Planbasedscheduling a owl:Class ;
+    rdfs:subClassOf hpc:Schedulingmethod .
+
+hpc:Allocationplanner a owl:Class ;
+    rdfs:subClassOf hpc:Schedulingmethod .
+
+hpc:Legacyreservationpolicy a owl:Class ;
+    rdfs:subClassOf hpc:Schedulingmethod .
+
+hpc:Globalresource a owl:Class .
+
+hpc:Lsfresource a owl:Class .
+
+hpc:Builtinresource a owl:Class ;
+    rdfs:subClassOf hpc:Lsfresource .
+
+hpc:Configuredresource a owl:Class ;
+    rdfs:subClassOf hpc:Lsfresource .
+
+hpc:Jobresource a owl:Class ;
+    rdfs:subClassOf hpc:Lsfresource .
+
+hpc:Jobplacement a owl:Class .
+
+hpc:Reservation a owl:Class .
+
+hpc:Resourcecategory a owl:Class .
+
+hpc:Byvalueresource a owl:Class ;
+    rdfs:subClassOf hpc:Resourcecategory .
+
+hpc:Booleanresource a owl:Class ;
+    rdfs:subClassOf hpc:Byvalueresource .
+
+hpc:Numericalresource a owl:Class ;
+    rdfs:subClassOf hpc:Byvalueresource .
+
+hpc:Stringresource a owl:Class ;
+    rdfs:subClassOf hpc:Byvalueresource .
+
+hpc:Dynamicresource a owl:Class ;
+    rdfs:subClassOf hpc:Resourcecategory .
+
+hpc:Staticresource a owl:Class ;
+    rdfs:subClassOf hpc:Resourcecategory .
+
+hpc:Externalresource a owl:Class ;
+    rdfs:subClassOf hpc:Resourcecategory .
+
+hpc:hasResourceCategory rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range hpc:Resourcecategory .
+
+hpc:hasGlobalResource rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfresource ;
+    rdfs:range hpc:Globalresource .
+
+hpc:hasBuiltInResource rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfresource ;
+    rdfs:range hpc:Builtinresource .
+
+hpc:hasConfiguredResource rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfresource ;
+    rdfs:range hpc:Configuredresource .
+
+hpc:hasJobResource rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfresource ;
+    rdfs:range hpc:Jobresource .
+
+hpc:hasJobPlacement rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Schedulingmethod ;
+    rdfs:range hpc:Jobplacement .
+
+hpc:hasReservation rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Schedulingmethod ;
+    rdfs:range hpc:Reservation .
+
+hpc:isDynamicResource rdf:type owl:DatatypeProperty ;
+    rd

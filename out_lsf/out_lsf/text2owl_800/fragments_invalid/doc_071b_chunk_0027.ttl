@@ -1,0 +1,69 @@
+hpc:Host a owl:Class .
+hpc:Status a owl:EnumeredClass ;
+    rdfs:subClassOf hpc:Host .
+hpc:ok a rdf:PlainLiteral ;
+    rdfs:label "ok" ;
+    rdfs:comment "Host is available to accept and run new batch jobs." .
+hpc:unavail a rdf:PlainLiteral ;
+    rdfs:label "unavail" ;
+    rdfs:comment "Host is down, or LIM and sbatchd are unreachable." .
+hpc:unreach a rdf:PlainLiteral ;
+    rdfs:label "unreach" ;
+    rdfs:comment "LIM is running but sbatchd is unreachable." .
+hpc:closed a rdf:PlainLiteral ;
+    rdfs:label "closed" ;
+    rdfs:comment "Host does not accept new jobs." .
+
+hpc:bhosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range rdf:Resource .
+
+hpc:hostName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhosts ;
+    rdfs:range xsd:string .
+
+hpc:status a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhosts ;
+    rdfs:range hpc:Status .
+
+hpc:jlU a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhosts ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:max a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhosts ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:njobs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhosts ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:run a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhosts ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ssusp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhosts ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ususp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhosts ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:rsv a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhosts ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:dispatchWindow a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhosts ;
+    rdfs:range xsd:string .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:closed_Adm a rdf:PlainLiteral ;
+    rdfs:label "closed_Adm" .
+
+hpc:statusCpuf a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal

@@ -1,0 +1,33 @@
+hpc:Globallimit a owl:Class .
+hpc:Jobforwardmode a owl:Class .
+hpc:Lsfmulticlustercapability a owl:Class .
+hpc:Lsbparamsfile a owl:Class .
+hpc:Lsbglobalpoliciesfile a owl:Class .
+hpc:lsbgpdport a owl:ObjectProperty .
+hpc:lsbgpdcluster a owl:ObjectProperty .
+hpc:globalresourceallocationlimit a owl:DatatypeProperty .
+hpc:relaxjobdispatchorder a owl:ObjectProperty .
+
+hpc:Globallimit rdfs:subClassOf owl:Class .
+hpc:Jobforwardmode rdfs:subClassOf owl:Class .
+hpc:Lsfmulticlustercapability rdfs:subClassOf owl:Class .
+hpc:Lsbparamsfile rdfs:subClassOf owl:Class .
+hpc:Lsbglobalpoliciesfile rdfs:subClassOf owl:Class .
+
+hpc:Globallimit rdfs:domain hpc:Globallimit .
+hpc:Jobforwardmode rdfs:domain hpc:Jobforwardmode .
+hpc:Lsfmulticlustercapability rdfs:domain hpc:Lsfmulticlustercapability .
+hpc:Lsbparamsfile rdfs:domain hpc:Lsbparamsfile .
+hpc:Lsbglobalpoliciesfile rdfs:domain hpc:Lsbglobalpoliciesfile .
+
+hpc:Lsbgpdport rdfs:domain hpc:Globallimit ;
+              rdfs:range xsd:integer .
+
+hpc:Lsbgpdcluster rdfs:domain hpc:Globallimit ;
+              rdfs:range xsd:string .
+
+hpc:Globalresourceallocationlimit rdfs:domain hpc:Globallimit ;
+              rdfs:range xsd:decimal .
+
+hpc:Relaxjobdispatchorder rdfs:domain hpc:Globallimit ;
+              rdfs:range xsd:boolean .

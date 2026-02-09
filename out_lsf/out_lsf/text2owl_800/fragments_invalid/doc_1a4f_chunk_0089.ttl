@@ -1,0 +1,59 @@
+hpc:Jobswitch a owl:Class .
+hpc:switchsinglejob a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobswitch ;
+    rdfs:range hpc:Job .
+hpc:switchalljobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobswitch ;
+    rdfs:range hpc:Job .
+hpc:useexternalcontrols a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobswitch ;
+    rdfs:range xsd:string .
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf owl:NamedIndividual ] .
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf rdf:List ] .
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf [ a owl:Class ;
+            rdfs:subClassOf rdf:Seq ;
+            rdf:type owl:Restriction ;
+            owl:onProperty hpc:jobID ;
+            owl:hasValue xsd:anyURI ] ] .
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf [ a owl:Class ;
+            rdfs:subClassOf rdf:Seq ;
+            rdf:type owl:Restriction ;
+            owl:onProperty hpc:user ;
+            owl:hasValue xsd:string ] ] .
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf [ a owl:Class ;
+            rdfs:subClassOf rdf:Seq ;
+            rdf:type owl:Restriction ;
+            owl:onProperty hpc:status ;
+            owl:hasValue xsd:string ] ] .
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf [ a owl:Class ;
+            rdfs:subClassOf rdf:Seq ;
+            rdf:type owl:Restriction ;
+            owl:onProperty hpc:queue ;
+            owl:hasValue xsd:string ] ] .
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf [ a owl:Class ;
+            rdfs:subClassOf rdf:Seq ;
+            rdf:type owl:Restriction ;
+            owl:onProperty hpc:fromHost ;
+            owl:hasValue xsd:string ] ] .
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf [ a owl:Class ;
+            rdfs:subClassOf rdf:Seq ;
+            rdf:type owl:Restriction ;
+            owl:onProperty hpc:jobName ;
+            owl:hasValue xsd:string ] ] .
+h

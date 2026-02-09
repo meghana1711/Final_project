@@ -1,0 +1,18 @@
+hpc:Oversubscribe a owl:Class.
+hpc:Selecttype a owl:Class.
+hpc:Selecttypeparameters a owl:Class.
+hpc:crCpu a owl:DatatypeProperty.
+hpc:crcpumemoryoversubscribe a owl:DatatypeProperty.
+hpc:crSocket a owl:DatatypeProperty.
+hpc:crsocketmemoryoversubscribe a owl:DatatypeProperty.
+
+hpc:Oversubscribe rdfs:subClassOf owl:Class.
+hpc:Selecttype rdfs:subClassOf owl:Class.
+hpc:Selecttypeparameters rdfs:subClassOf hpc:Selecttype.
+hpc:Crcpumemoryoversubscribe rdfs:subClassOf hpc:Selecttypeparameters.
+hpc:Crsocketmemoryoversubscribe rdfs:subClassOf hpc:Selecttypeparameters.
+
+hpc:Oversubscribe rdfs:domain hpc:Core.
+hpc:Selecttype rdfs:domain hpc:Job.
+hpc:Selecttype rdfs:range hpc:Selecttypeparameters.
+hpc:Crcpu rdfs:range h

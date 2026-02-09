@@ -1,0 +1,49 @@
+hpc:Sschedtask a owl:Class ;
+    rdfs:subClassOf hpc:Task ;
+    rdfs:comment "A task definition file for the LSF Session Scheduler.";
+
+hpc:checkpointdirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sschedtask ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A writable directory on a shared file system for recoverable LSF Session Scheduler sessions.";
+
+hpc:checkpointmethod a owl:ObjectProperty ;
+    rdfs:domain hpc:Sschedtask ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The LSF Session Scheduler checkpoint method.";
+
+hpc:errorexitcode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sschedtask ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The exit code of ssched after sanity-checking all parameters and the task definition file.";
+
+hpc:taskcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Sschedtask ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The command to be executed by ssched.";
+
+hpc:taskfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sschedtask ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The task definition file for ssched.";
+
+hpc:taskoption a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sschedtask ;
+    rdfs:range xsd:string ;
+    rdfs:comment "An option for the task definition file.";
+
+hpc:Unrecoverablesession a owl:Class ;
+    rdfs:subClassOf hpc:Session ;
+    rdfs:comment "An LSF Session Scheduler session that is not recoverable.";
+
+hpc:Recoverablesession a owl:Class ;
+    rdfs:subClassOf hpc:Session ;
+    rdfs:comment "An LSF Session Scheduler session that is recoverable.";
+
+hpc:Session a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "An LSF Session Scheduler job.";
+
+hpc:Ssched a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "The LSF Session Scheduler command.";

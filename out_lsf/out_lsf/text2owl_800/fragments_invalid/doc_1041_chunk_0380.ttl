@@ -1,0 +1,77 @@
+hpc:Licenseserver a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Associatedlicenseserver a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Licensefeature a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Clustermode a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Projectmode a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Workload a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Lsfworkload a owl:Class ;
+    rdfs:subClassOf hpc:Workload ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Nonlsfworkload a owl:Class ;
+    rdfs:subClassOf hpc:Workload ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Workloaddistribution a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Servicedomain a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+# Object Properties
+hpc:hasassociatedlicenseserver a owl:ObjectProperty ;
+    rdfs:domain hpc:Licenseserver ;
+    rdfs:range hpc:Associatedlicenseserver .
+
+hpc:haslicensefeature a owl:ObjectProperty ;
+    rdfs:domain hpc:Associatedlicenseserver ;
+    rdfs:range hpc:Licensefeature .
+
+hpc:isclustermode a owl:ObjectProperty ;
+    rdfs:domain hpc:Clustermode ;
+    rdfs:range xsd:boolean .
+
+hpc:isprojectmode a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectmode ;
+    rdfs:range xsd:boolean .
+
+hpc:hasworkload a owl:ObjectProperty ;
+    rdfs:domain hpc:Servicedomain ;
+    rdfs:range hpc:Workload .
+
+hpc:islsfworkload a owl:ObjectProperty ;
+    rdfs:domain hpc:Workload ;
+    rdfs:range xsd:boolean .
+
+hpc:isnonlsfworkload a owl:ObjectProperty ;
+    rdfs:domain hpc:Workload ;
+    rdfs:range xsd:boolean .
+
+hpc:hasworkloaddistribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Workload ;
+    rdfs:range hpc:Workloaddistribution .
+
+# Datatype Properties
+hpc:hasservicedomainname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Servicedomain ;
+    rdfs:range xsd:string .
+
+hpc:hasoutputformatstring a owl:DatatypeProperty ;
+    rdfs:domain hpc:Servicedomain ;
+    rdfs:range xsd:string .
+
+hpc:violatesdistributionpolicy a owl:DatatypeProperty ;
+    rdfs:domain hpc:Workloaddistribution ;
+    rdfs:range xsd:

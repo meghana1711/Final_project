@@ -1,0 +1,39 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf hpc:Allocatedresource ;
+    rdfs:comment "Represents a reservation of computing resources." .
+
+hpc:modifies a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Reservation ;
+    rdfs:comment "Indicates that a reservation has been modified." .
+
+hpc:removeshosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "Indicates the hosts that are being removed from a reservation." .
+
+hpc:numberofslotsremoved a owl:DatatypeProperty ;
+    rdfs:domain hpc:Modifies ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Indicates the number of slots being removed from a host." .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf hpc:Computingresource ;
+    rdfs:comment "Represents a physical host in the system." .
+
+hpc:Slot a owl:Class ;
+    rdfs:subClassOf hpc:Computingresource ;
+    rdfs:comment "Represents a slot on a host that can be reserved." .
+
+hpc:freeslot a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Slot ;
+    rdfs:comment "Indicates a free slot on a host." .
+
+hpc:Systemreservation a owl:Class ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:comment "Represents a system reservation that cannot have slots removed." .
+
+hpc:Closedreservation a owl:Class ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:comment "Represents a closed reservation that cannot be modified." .

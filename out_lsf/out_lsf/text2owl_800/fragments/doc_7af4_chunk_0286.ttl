@@ -1,0 +1,12 @@
+hpc:egroupupdateinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specify a time interval for which dynamic user group information in the lsb.users file and dynamic host group information in the lsb.hosts file is updated automatically. Specify the time interval in hours or use the m sufﬁx to specify the time interval in minutes." .
+
+hpc:eligiblependinginfosnapshotinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "If TRACK_ELIGIBLE_PENDINFO is enabled, this parameter allows the eligible and ineligible pending job data to be saved to disk so that it is not lost when mbatchd restarts. Specify the time interval, in minutes, for mbschd to save eligible and ineligible pending data to disk." .
+
+hpc:Lsf a owl:Class ;
+    rdfs:subClassOf owl:Class .

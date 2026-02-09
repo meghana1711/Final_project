@@ -1,0 +1,33 @@
+hpc:Jobscheduling a owl:Class .
+hpc:Containersupport a owl:Class .
+hpc:Lsfcontainersupport a owl:Class .
+
+hpc:Commandoutputformatting a owl:Class .
+
+hpc:Performanceenhancements a owl:Class .
+
+hpc:Resourcemanagement a owl:Class .
+hpc:Resourceallocation a owl:Class .
+
+hpc:Datacollection a owl:Class .
+hpc:Ibmspectrumlsfdatacollection a owl:Class .
+
+hpc:Otherlsfchanges a owl:Class .
+
+hpc:Gpuenhancements a owl:Class .
+
+hpc:Mpsdaemonsharing a owl:Class .
+hpc:Mpsdaemonsharing rdfs:subClassOf hpc:Gpuenhancements .
+hpc:Mpsdaemonsharing rdfs:domain hpc:Gpujob .
+hpc:Mpsdaemonsharing rdfs:range hpc:Boolean .
+
+hpc:Mps a owl:Class .
+hpc:Mps rdfs:subClassOf xsd:string .
+
+hpc:share an owl:ObjectProperty .
+hpc:Share rdfs:domain hpc:Mps .
+hpc:Share rdfs:range hpc:Boolean .
+
+hpc:mpsvalue a owl:DatatypeProperty .
+hpc:Mpsvalue rdfs:domain hpc:Gpuresourcerequirements .
+hpc:Mpsvalue rdfs:range hpc:Mps .

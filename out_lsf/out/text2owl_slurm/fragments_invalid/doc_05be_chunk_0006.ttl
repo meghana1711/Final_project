@@ -1,0 +1,14 @@
+hpc:Cluster1 a owl:Class.
+hpc:Cluster2 a owl:Class.
+hpc:Sbatch a owl:Class.
+hpc:Srun a owl:Class.
+
+hpc:partition a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster1, hpc:Cluster2, hpc:Sbatch, hpc:Srun ;
+    rdfs:range xsd:string .
+
+hpc:cluster1partition a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster1 ;
+    rdfs:range xsd:string .
+
+hpc:cluster2partition a owl

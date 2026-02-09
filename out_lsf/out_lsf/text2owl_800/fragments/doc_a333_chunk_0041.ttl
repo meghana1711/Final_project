@@ -1,0 +1,25 @@
+hpc:jobsubmissiontime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:time .
+
+hpc:jobsubmissiontype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The type of snapshot (trace) record. This is JOB_NEW and cannot be modified." .
+
+hpc:jobsubmissionuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Workloadsnapshotmodificationplugin a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:pluginWconvertPreExec a owl:ObjectProperty ;
+    rdfs:domain hpc:Workloadsnapshotmodificationplugin ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Performs preparatory tasks before modifying the workload snapshot file, for example, by loading an external file." .
+
+hpc:pluginWconvertExec a owl:ObjectProperty ;
+    rdfs:domain hpc:Workloadsnapshotmodificationplugin ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Implements the workload snapshot modification logic. The bsim command calls this function to modify job parameters for each record in the snapshot file." .

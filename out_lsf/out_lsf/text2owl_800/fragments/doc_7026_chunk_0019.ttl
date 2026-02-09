@@ -1,0 +1,15 @@
+hpc:Hostsetup a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Hostsetup ;
+    rdfs:range rdf:Resource .
+
+hpc:extserverdir a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostsetup ;
+    rdfs:range xsd:string .
+
+hpc:eauth a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostsetup ;
+    rdfs:range rdf:Resource .
+
+hpc:Rootprivileges a owl:Class ;
+    rdfs:subClassOf owl:Class .

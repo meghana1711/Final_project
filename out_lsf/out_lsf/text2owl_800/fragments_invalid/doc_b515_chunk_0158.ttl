@@ -1,0 +1,27 @@
+hpc:Advancereservation a owl:Class.
+hpc:Resizablejob a owl:Class.
+hpc:Allocationrequest a owl:Class.
+
+hpc:Allocationrequest rdfs:domain hpc:Allocationrequest;
+    rdfs:range hpc:Allocationrequest.
+
+hpc:Statuschangeofresizablejob rdfs:domain hpc:Resizablejob;
+    rdfs:range xsd:string.
+
+hpc:Reservationtype rdfs:domain hpc:Advancereservation;
+    rdfs:range xsd:string.
+
+hpc:Jobtype rdfs:domain hpc:Resizablejob;
+    rdfs:range xsd:string.
+
+hpc:Preemptiontype rdfs:domain hpc:Resizablejob;
+    rdfs:range xsd:string.
+
+hpc:Limithonor rdfs:domain hpc:Allocationrequest;
+    rdfs:range xsd:boolean.
+
+hpc:Computeunitrequirement rdfs:domain hpc:Job;
+    rdfs:range xsd:string.
+
+hpc:Hostinsideadvancereservation rdfs:domain hpc:Computeunit;
+    rdfs:

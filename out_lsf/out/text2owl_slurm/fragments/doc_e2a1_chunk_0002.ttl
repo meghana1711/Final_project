@@ -1,0 +1,36 @@
+hpc:Slurmcommunication a owl:Class .
+hpc:Slurmdbd a hpc:SlurmCommunication .
+hpc:Slurmd a hpc:SlurmCommunication .
+
+hpc:communicationparameters a owl:ObjectProperty .
+hpc:dbdport a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmdbd ;
+    rdfs:range xsd:integer .
+hpc:storageport a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmdbd ;
+    rdfs:range xsd:integer .
+hpc:enableipv6 a owl:ObjectProperty ;
+    rdfs:domain hpc:Communicationparameters ;
+    rdfs:range xsd:boolean .
+hpc:disableipv4 a owl:ObjectProperty ;
+    rdfs:domain hpc:Communicationparameters ;
+    rdfs:range xsd:boolean .
+
+hpc:slurmdbdport a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmdbd ;
+    rdfs:range xsd:integer .
+
+hpc:slurmdbdmysqlconnection a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmdbd ;
+    rdfs:range hpc:Mysqlserver .
+
+hpc:slurmdbdslurmctldconnection a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmdbd ;
+    rdfs:range hpc:Slurmctld .
+
+hpc:slurmctldport a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmctld ;
+    rdfs:range xsd:integer .
+
+hpc:Mysqlserver a owl:Class .
+hpc:Slurmctld a owl:Class .

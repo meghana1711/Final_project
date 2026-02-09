@@ -1,0 +1,22 @@
+hpc:Job a owl:Class .
+hpc:newjobscheddelay a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:nice a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+hpc:nopreemptinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:strictnice a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Windowsprocesspriority .
+
+hpc:Windowsprocesspriority a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+hpc:WindowsProcessPriorityIDLE a hpc:WindowsProcessPriority ;
+    rdfs:label "IDLE" .
+hpc:WindowsProcessPriorityNORMAL a hpc:WindowsProcessPriority ;
+    rdfs:label "NORMAL" .
+
+hpc:Strictnice rdfs:range hpc:Windowsprocesspriority rdf:parseType rdf:PlainLiteral .

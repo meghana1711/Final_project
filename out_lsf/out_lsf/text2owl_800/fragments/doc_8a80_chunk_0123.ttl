@@ -1,0 +1,57 @@
+hpc:Application a owl:Class ;
+    rdfs:subClassOf hpc:Managedentity ;
+    rdfs:comment "An application managed by FOD." .
+
+hpc:applicationpath a owl:ObjectProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The full path of the application." .
+
+hpc:applicationparameters a owl:ObjectProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The application parameters." .
+
+hpc:Fodhost a owl:Class ;
+    rdfs:subClassOf hpc:Managedentity ;
+    rdfs:comment "A FOD host." .
+
+hpc:fodmanagementhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Fodhost ;
+    rdfs:range hpc:Fodhost ;
+    rdfs:comment "The FOD management host." .
+
+hpc:fodhoststatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fodhost ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The status of the FOD host." .
+
+hpc:fodhosts a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range rdf:Seq ;
+    rdfs:comment "Displays the status of FOD hosts." .
+
+hpc:fodhostsoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Fodhosts ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The output of the FOD hosts command." .
+
+hpc:fodhostssynopsis a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fodhosts ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The synopsis of the FOD hosts command." .
+
+hpc:fodhostsdescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fodhosts ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The description of the FOD hosts command." .
+
+hpc:fodhostsoptions a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fodhosts ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The options for the FOD hosts command." .
+
+hpc:fodhostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fodhost ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Name of FOD host." .

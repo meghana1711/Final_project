@@ -1,0 +1,10 @@
+hpc:Spellingcorrection a owl:Class .
+hpc:Documentationimprovement a owl:Class .
+hpc:location a owl:ObjectProperty .
+
+hpc:Spellingcorrection rdfs:subClassOf owl:Thing .
+hpc:Documentationimprovement rdfs:subClassOf owl:Thing .
+
+hpc:Location rdf:domain hpc:SpellingCorrection ;
+          rdf:domain hpc:DocumentationImprovement .
+hpc:Location rdfs:range xsd:string .

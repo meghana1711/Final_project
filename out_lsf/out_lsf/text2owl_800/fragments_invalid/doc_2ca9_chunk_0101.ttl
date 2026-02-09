@@ -1,0 +1,57 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Limit a owl:Class .
+hpc:hasresource a owl:ObjectProperty .
+hpc:Hasresource rdfs:domain hpc:Limit .
+hpc:Hasresource rdfs:range rdf:Resource .
+
+hpc:Resource a owl:Class .
+hpc:hastype a owl:DatatypeProperty .
+hpc:Hastype rdfs:domain hpc:Resource .
+hpc:Hastype rdfs:range xsd:string .
+
+hpc:gpuextend a owl:DatatypeProperty .
+hpc:Gpuextend rdfs:domain hpc:Resource .
+hpc:Gpuextend rdfs:range xsd:string .
+
+hpc:gputype a owl:DatatypeProperty .
+hpc:Gputype rdfs:domain hpc:Resource .
+hpc:Gputype rdfs:range xsd:string .
+
+hpc:gpunumber a owl:DatatypeProperty .
+hpc:Gpunumber rdfs:domain hpc:Resource .
+hpc:Gpunumber rdfs:range xsd:nonNegativeInteger .
+
+hpc:Googlecomputecloudinstance a owl:Class .
+hpc:Googlecomputecloudinstance rdfs:subClassOf hpc:Resource .
+
+hpc:Nvidiateslak80 a owl:Class .
+hpc:Nvidiateslap100 a owl:Class .
+hpc:Nvidiateslap4 a owl:Class .
+hpc:Nvidiateslap100vws a owl:Class .
+hpc:Nvidiateslap4vws a owl:Class .
+
+hpc:lsbgpunewsyntax a owl:ObjectProperty .
+hpc:Lsbgpunewsyntax rdfs:domain hpc:LsbConfiguration .
+hpc:Lsbgpunewsyntax rdfs:range hpc:LsbConfiguration .
+
+hpc:Lsbresourceconnector a owl:Class .
+hpc:Lsbresourceconnector rdfs:subClassOf hpc:Resourceconnector .
+
+hpc:Resourceconnector a owl:Class .
+hpc:Resourceconnector rdfs:subClassOf hpc:Connector .
+
+hpc:Affinityjob a owl:Class .
+hpc:Affinityjob rdfs:subClassOf hpc:Job .
+
+hpc:affinitystring a owl:DatatypeProperty .
+hpc:Affinitystring rdfs:domain hpc:Affinityjob .
+hpc:Affinitystring rdfs:range xsd:string .
+
+hpc:Resourcemanagement a owl:Class .
+hpc:Resourcemanagement rdfs:subClassOf hpc:Systemmanagement .
+
+hpc:googleprovtemplates a owl:ObjectProperty .

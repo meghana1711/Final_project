@@ -1,0 +1,52 @@
+hpc:Gpujobresourceusage a owl:Class .
+hpc:hasgpuresourceusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpujobresourceusage ;
+    rdfs:range xsd:string .
+
+hpc:Jobwithenergyaccounting a owl:Class .
+hpc:hasenergyaccounting a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobwithenergyaccounting ;
+    rdfs:range xsd:boolean .
+
+hpc:Jobwithesub a owl:Class .
+hpc:hasesub a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobwithesub ;
+    rdfs:range xsd:string .
+
+# LSF Version 10.1 Fix Pack 5 and Fix Pack 6
+hpc:Apsfactorvalues a owl:Class .
+hpc:hasapsfactorvalue a owl:ObjectProperty ;
+    rdfs:domain hpc:Apsfactorvalues ;
+    rdfs:range xsd:float .
+
+hpc:Jobwithallocationplan a owl:Class .
+hpc:hasallocationplan a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobwithallocationplan ;
+    rdfs:range xsd:string .
+
+hpc:plannedjobstarttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobwithallocationplan ;
+    rdfs:range xsd:dateTime .
+
+# LSF Version 10.1 Fix Pack 6
+hpc:Gpfsjobio a owl:Class .
+hpc:hasgpfsjobio a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpfsjobio ;
+    rdfs:range xsd:string .
+
+hpc:Accumulatedjobdiskusage a owl:Class .
+hpc:hasaccumulatedjobdiskusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Accumulatedjobdiskusage ;
+    rdfs:range xsd:string .
+
+# LSF Version 10.1 Fix Pack 5 and Fix Pack 6
+hpc:Messageindextable a owl:Class .
+hpc:hasmessageindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Messageindextable ;
+    rdfs:range xsd:integer .
+
+hpc:Jobwithgpfsjobio a owl:Class ;
+    rdfs:subClassOf hpc:Gpfsjobio .
+
+hpc:Jobwithaccumulatedjobdiskusage a owl:Class ;
+    rdfs:subClassOf hpc:Accumulatedjobdiskusage .

@@ -1,0 +1,25 @@
+hpc:Host a owl:Class .
+hpc:Jobevent a owl:Class .
+hpc:cpulist a owl:DatatypeProperty .
+hpc:memorynodelist a owl:DatatypeProperty .
+hpc:memorybindpolicy a owl:DatatypeProperty .
+
+hpc:hasHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:integer .
+
+hpc:hasJobEvent rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Jobevent .
+
+hpc:hasCPUList rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:hasMemoryNodeList rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:hasMemoryBindPolicy rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .

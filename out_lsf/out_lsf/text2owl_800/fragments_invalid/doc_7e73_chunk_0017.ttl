@@ -1,0 +1,79 @@
+hpc:SCH_PLUGIN
+    a owl:NamedIndividual ;
+    rdf:type hpc:PluginModule ;
+    rdfs:label "SCH_PLUGIN" .
+
+hpc:RB_PLUGIN
+    a owl:NamedIndividual ;
+    rdf:type hpc:PluginModule ;
+    rdfs:label "RB_PLUGIN" .
+
+hpc:SCH_DISABLE_PHASES
+    a owl:NamedIndividual ;
+    rdf:type hpc:PluginModuleParameter ;
+    rdfs:label "SCH_DISABLE_PHASES" .
+
+hpc:schmod_demand
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Pluginmodule ;
+    rdfs:range xsd:void .
+
+hpc:Resource
+    a owl:Class ;
+    rdfs:subClassOf hpc:Namedthing ;
+    rdfs:comment "Represents a resource in the LSF system." .
+
+hpc:RESOURCENAME
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string .
+
+hpc:TYPE
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string .
+
+hpc:INTERVAL
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:INCREASING
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:boolean .
+
+hpc:DESCRIPTION
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string .
+
+hpc:RESOURCENAME_icgen2host
+    a owl:NamedIndividual ;
+    rdf:type hpc:Resource ;
+    rdfs:label "icgen2host" .
+
+hpc:LSB_RC_EXTERNAL_HOST_FLAG
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:string .
+
+hpc:LSF_CONF
+    a owl:Class ;
+    rdfs:subClassOf hpc:Configuration ;
+    rdfs:comment "Represents the LSF configuration." .
+
+hpc:LSB_RC_EXTERNAL_HOST_FLAG_icgen2host
+    a owl:NamedIndividual ;
+    rdf:type hpc:LSB_RC_EXTERNAL_HOST_FLAG ;
+    rdf:value icgen2host .
+
+hpc:RC_HOSTS
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+
+hpc:Queue
+    a owl:Class ;
+    rdfs:subClassOf hpc:Namedthing ;
+    rdfs:comment "Rep

@@ -1,0 +1,28 @@
+hpc:Job a owl:Class .
+hpc:Jobname rdfs:domain hpc:Job .
+hpc:Jobname rdfs:range xsd:string .
+hpc:Jobname rdfs:subClassOf owl:DatatypeProperty .
+
+hpc:Jobstate rdfs:domain hpc:Job .
+hpc:Jobstate rdfs:range xsd:string .
+hpc:Jobstate rdfs:subClassOf owl:DatatypeProperty .
+
+hpc:Array rdfs:domain hpc:Job .
+hpc:Array rdfs:range xsd:string .
+hpc:Array rdfs:subClassOf owl:ObjectProperty .
+
+hpc:Dependencycondition rdfs:domain hpc:Job .
+hpc:Dependencycondition rdfs:range xsd:string .
+hpc:Dependencycondition rdfs:subClassOf owl:ObjectProperty .
+
+hpc:Relationaloperator rdfs:domain hpc:Dependencycondition .
+hpc:Relationaloperator rdfs:range xsd:string .
+hpc:Relationaloperator rdfs:subClassOf owl:DatatypeProperty .
+
+hpc:done a owl:ObjectProperty .
+hpc:ended a owl:ObjectProperty .
+
+hpc:Lsf a owl:Class .
+hpc:Lsf rdfs:subClassOf hpc:Job .
+
+hpc:jobDepLastSub a owl:ObjectProperty .

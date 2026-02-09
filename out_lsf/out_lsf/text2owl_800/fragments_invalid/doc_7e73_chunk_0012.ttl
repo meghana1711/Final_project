@@ -1,0 +1,35 @@
+hpc:createVirtualServerInstance
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Virtualserverinstance ;
+    rdfs:range hpc:Virtualserverinstance ;
+    rdfs:comment "The action of creating a new virtual server instance." .
+
+hpc:profile
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Virtualserverinstance ;
+    rdfs:range hpc:Profile ;
+    rdfs:comment "The profile selected for the virtual server instance." .
+
+hpc:statusRunning
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Virtualserverinstance ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the virtual server instance is running." .
+
+hpc:loginToInstance
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Virtualserverinstance ;
+    rdfs:range hpc:Loginaction ;
+    rdfs:comment "The action of logging in to the virtual server instance." .
+
+hpc:switchToRoot
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Loginaction ;
+    rdfs:range hcp:CommandAction ;
+    rdfs:comment "The action of switching to the root user in the virtual server instance." .
+
+hpc:copyLSFPackage
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Commandaction ;
+    rdfs:range hpc:Filetransferaction ;
+    rdfs:comment "The action of copying the LSF package to the IBM Cloud Gen 2 host." .

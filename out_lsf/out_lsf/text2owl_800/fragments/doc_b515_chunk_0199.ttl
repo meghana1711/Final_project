@@ -1,0 +1,45 @@
+hpc:User rdf:type owl:Class .
+hpc:Resource rdf:type owl:Class .
+
+hpc:equalshare a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Resource .
+
+hpc:priorityuserfairshare a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Resource .
+
+hpc:staticpriorityfairshare a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Resource .
+
+hpc:hostpartitionfairshare a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Fairsharepolicy .
+
+hpc:gpuruntimefairshare a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Resource .
+
+hpc:Globalpartition a owl:Class ;
+    rdfs:subClassOf hpc:Hostpartitionfairshare .
+
+hpc:chargebackfairshare a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Resource .
+
+hpc:FairSharePolicy rdf:type owl:Class .
+hpc:UserShare rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Fairsharepolicy ;
+    rdfs:range xsd:decimal .
+
+hpc:Cluster rdf:type owl:Class .
+hpc:hpartName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalpartition ;
+    rdfs:range xsd:string .
+hpc:hosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalpartition ;
+    rdfs:range xsd:string .
+hpc:userShares a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalpartition ;
+    rdfs:range xsd:string .

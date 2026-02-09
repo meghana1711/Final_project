@@ -1,0 +1,33 @@
+hpc:Configurationfile a owl:Class .
+hpc:CshrcLsf a hpc:ConfigurationFile .
+hpc:ProfileLsf a hpc:ConfigurationFile .
+hpc:Hostsfile a owl:Class .
+hpc:InstallConfig a hpc:ConfigurationFile .
+hpc:LimAcct a hpc:ConfigurationFile .
+hpc:LsbAcct a hpc:ConfigurationFile .
+hpc:Lsbapplications a owl:Class .
+hpc:LsbEvents a hpc:ConfigurationFile .
+
+hpc:hasmultipleipaddressesanddifferentofficialhostnames a owl:ObjectProperty .
+hpc:Associateshostnamesandipaddressesinlsf rdfs:domain hpc:Hostsfile ;
+    rdfs:range hpc:Host .
+
+hpc:containsoptionsforinstallationandconfiguration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Installconfig ;
+    rdfs:range xsd:string .
+
+hpc:logfileforlsfloadinformationmanager a owl:DatatypeProperty ;
+    rdfs:domain hpc:Limacct ;
+    rdfs:range xsd:string .
+
+hpc:batchjoblogfileoflsf a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsbacct ;
+    rdfs:range xsd:string .
+
+hpc:definesapplicationprofiles a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbapplications ;
+    rdfs:range hpc:Applicationprofile .
+
+hpc:LSBEventsFile a hpc:ConfigurationFile .
+
+hpc:isuppercaseinallconfigurationfiles a owl:ObjectProperty .

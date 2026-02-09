@@ -1,0 +1,66 @@
+hpc:Resource a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The total amount free of a resource that is used for scheduling. The amount that is reserved by jobs." .
+
+hpc:reservedresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "The hosts that are associated with the resource." .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A computing system that can execute programs." .
+
+hpc:hostmemory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The maximum available memory on the host." .
+
+hpc:affinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates whether the host supports affinity scheduling." .
+
+hpc:AffinityEnabled a owl:NamedIndividual ;
+    rdfs:comment "Indicates that the host supports affinity scheduling." .
+
+hpc:AffinityDisabled a owl:NamedIndividual ;
+    rdfs:comment "Indicates that the host does not support affinity scheduling." .
+
+hpc:AffinityUnknown a owl:NamedIndividual ;
+    rdfs:comment "Indicates that the host status is unknown." .
+
+hpc:hosttopology a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Hosttopology .
+
+hpc:Hosttopology a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The topology nodes that contain CPUs in the list in the lsb.hosts file." .
+
+hpc:cpuaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Hosttopology ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the host is configured to accept jobs for CPU and memory affinity scheduling." .
+
+hpc:Numa a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Requested and total NUMA node memory." .
+
+hpc:Numanode a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A NUMA node." .
+
+hpc:requestedmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Numanode ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Requested memory for the NUMA node." .
+
+hpc:maxmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Numanode ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Maximum available memory for the NUMA node." .
+
+hpc:Socket a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A socket

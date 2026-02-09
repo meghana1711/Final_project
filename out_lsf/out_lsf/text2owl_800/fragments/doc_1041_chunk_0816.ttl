@@ -1,0 +1,43 @@
+hpc:Resource a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:builtin a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:boolean .
+
+hpc:dynamic a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource .
+
+hpc:Static a owl:Class ;
+    rdfs:subClass [ a owl:Class ;
+                      rdfs:subClassOf hpc:Resource ;
+                      rdfs:subClassOf (hpc:Dynamic rdf:nil) ] .
+
+hpc:Boolean a owl:Class ;
+    rdfs:subClass [ a owl:Class ;
+                      rdfs:subClassOf hpc:Resource ] .
+
+hpc:release a owl:ObjectProperty ;
+    rdfs:domain hpc:Numericsharedresource ;
+    rdfs:range xsd:boolean .
+
+hpc:consumable a owl:ObjectProperty ;
+    rdfs:domain hpc:Numericsharedresource .
+
+hpc:Lsfshared a owl:Class .
+
+hpc:lshosts a owl:ObjectProperty .
+hpc:lsload a owl:ObjectProperty .
+hpc:lsinfo a owl:ObjectProperty .
+hpc:lsPolicy a owl:ObjectProperty .
+
+hpc:lsload a owl:ObjectProperty ;
+    rdfs:domain xsd:Resource ;
+    rdfs:range rdf:Resource .
+
+hpc:Numericsharedresource a owl:Class ;
+    rdfs:subClass [ a owl:Class ;
+                      rdfs:subClassOf hpc:Resource ] .
+
+hpc:Suspendedjob a owl:Class .

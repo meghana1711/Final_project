@@ -1,0 +1,49 @@
+hpc:Advancereservationdescription a owl:Class ;
+    rdfs:subClassOf hpc:Description .
+
+hpc:hastimevalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservationdescription ;
+    rdfs:range xsd:time .
+
+hpc:isearlierthan a owl:ObjectProperty ;
+    rdfs:domain hpc:Hastimevalue ;
+    rdfs:range hpc:Hastimevalue ;
+    rdfs:subPropertyOf <http://www.w3.org/2000/01/rdf-calendar#before> .
+
+hpc:scriptfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservationdescription ;
+    rdfs:range xsd:string ;
+    rdfs:range hpc:Filepath .
+
+hpc:Filepath a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:requireslsbstartebrokerd a owl:ObjectProperty ;
+    rdfs:domain hpc:Scriptfile ;
+    rdfs:range xsd:boolean .
+
+hpc:maxdescriptionlength a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservationdescription ;
+    rdfs:range xsd:integer .
+
+hpc:isrootoradmin a owl:ObjectProperty ;
+    rdfs:domain hpc:Scriptfile ;
+    rdfs:range xsd:boolean .
+
+hpc:scriptusergrouprequiresadmin a owl:ObjectProperty ;
+    rdfs:domain hpc:Scriptfile ;
+    rdfs:range xsd:boolean .
+
+hpc:scriptusergrouprequireslsfadmin a owl:ObjectProperty ;
+    rdfs:domain hpc:Scriptfile ;
+    rdfs:range xsd:boolean .
+
+hpc:Scriptavailableenvironmentvariables a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:AR_NAME a hpc:ScriptAvailableEnvironmentVariable .
+hpc:AR_QUEUE_LIST a hpc:ScriptAvailableEnvironmentVariable .
+hpc:AR_HOST_LIST a hpc:ScriptAvailableEnvironmentVariable .
+
+hpc:Filepath a rdfs:subClassOf (xsd:string and (xsd:minInclusive "1"^xsd:positiveInteger) (xsd:maxInclusive "4094"^xsd:positiveInteger) ) .
+hpc:Filepath@Windows a rdfs:subClassOf (xsd:string and (xsd:minInclusive "1"^xsd:positiveInteger) (xsd:maxInclusive "255"^xsd:positiveInteger) ) .

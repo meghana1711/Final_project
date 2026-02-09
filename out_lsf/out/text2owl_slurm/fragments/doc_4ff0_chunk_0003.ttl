@@ -1,0 +1,7 @@
+hpc:Gitrepositoryfile a owl:Class .
+hpc:MakefileAM a hpc:GitRepositoryFile .
+hpc:MakefileIN a hpc:GitRepositoryFile .
+
+hpc:hasRepository rdf:type owl:ObjectProperty ;
+ rdfs:domain hpc:Gitrepositoryfile ;
+ rdfs:range rdf:Resource .

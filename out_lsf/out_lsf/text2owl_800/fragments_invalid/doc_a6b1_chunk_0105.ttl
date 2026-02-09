@@ -1,0 +1,23 @@
+hpc:Highioorgs a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Tree a owl:Class .
+hpc:Globalfairshare a owl:Class .
+hpc:Queueleveluserbasedglobalfairshare a owl:Class .
+hpc:Crossqueueuserbasedglobalfairshare a owl:Class .
+hpc:Allmodesynchronization a owl:Class .
+hpc:Participant a owl:Class .
+hpc:hasChildQueue rdf:Property ;
+    rdfs:domain hpc:Queueleveluserbasedglobalfairshare ;
+    rdfs:range hpc:Queue .
+hpc:hasParentQueue rdf:Property ;
+    rdfs:domain hpc:Crossqueueuserbasedglobalfairshare ;
+    rdfs:range hpc:Queueleveluserbasedglobalfairshare .
+hpc:synchronizesWith rdf:Property ;
+    rdfs:domain hpc:Globalfairshare ;
+    rdfs:range hpc:Queueleveluserbasedglobalfairshare .
+hpc:isParticipantOf rdf:Property ;
+    rdfs:domain hpc:Globalfairshare ;
+    rdfs:range hpc:Queueleveluserbasedglobalfairshare .
+hpc:hasResourceCompetitor rdf:Property ;
+    rdfs:domain hpc:Highioorgs ;
+    rdfs:range hpc:Highioorgs .

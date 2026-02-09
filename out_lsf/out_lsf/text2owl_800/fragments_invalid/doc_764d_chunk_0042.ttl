@@ -1,0 +1,73 @@
+hpc:CheckpointableJob
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A job that can be checkpointed." .
+
+hpc:CheckpointDirectory
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "The directory where checkpoint files are saved." .
+
+hpc:CheckpointProcedure
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "The procedure to checkpoint and stop a job." .
+
+hpc:ForceCheckpointJob
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A job that can be forced to checkpoint." .
+
+hpc:Host
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A computing host in a cluster." .
+
+hpc:JobID
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Checkpointablejob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The unique identifier of a checkpointable job." .
+
+hpc:Maintenance
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "The action of shutting down a host for maintenance." .
+
+hpc:MulticlusterJob
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A job that spans multiple clusters." .
+
+hpc:SubmitCluster
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "The cluster where jobs are submitted." .
+
+hpc:ExecutionCluster
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "The cluster where jobs are executed." .
+
+hpc:Bmig
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Checkpointablejob ;
+    rdfs:range hpc:Executioncluster ;
+    rdfs:comment "The action of checkpointing a job using bmig." .
+
+hpc:Brun
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Forcecheckpointjob ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "The action of forcing a job to be dispatched to a specific host using brun." .
+
+hpc:BadminHclose
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Executioncluster ;
+    rdfs:comment "The action of closing a host using badmin hclose." .
+
+hpc:ReceiveJobsQueue
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A queue that receives jobs from a

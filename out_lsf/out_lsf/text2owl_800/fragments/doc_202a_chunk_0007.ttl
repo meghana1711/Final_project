@@ -1,0 +1,44 @@
+hpc:Restartprocedure a owl:Class .
+hpc:lsfstartup a owl:ObjectProperty .
+
+hpc:Installwindowscomputenodeprocedure a owl:Class .
+hpc:Installwindowscomputenodeprocedure rdfs:subClassOf hpc:Procedure .
+
+hpc:installwindowscomputenodeprocedurestep a owl:ObjectProperty .
+
+hpc:Installationoption a owl:Class .
+hpc:masterName a owl:DatatypeProperty .
+hpc:MasterName rdfs:domain hpc:Installationoption ;
+    rdfs:range xsd:string .
+
+hpc:egoDaemonControl a owl:DatatypeProperty .
+hpc:EgoDaemonControl rdfs:domain hpc:Installationoption ;
+    rdfs:range xsd:boolean .
+
+hpc:portNumber a owl:DatatypeProperty .
+hpc:PortNumber rdfs:domain hpc:Installationoption ;
+    rdfs:range xsd:integer .
+
+hpc:lsfAdmin a owl:DatatypeProperty .
+hpc:LsfAdmin rdfs:domain hpc:Installationoption ;
+    rdfs:range xsd:string .
+
+hpc:installationdirectory a owl:DatatypeProperty .
+hpc:Installationdirectory rdfs:domain hpc:Installationoption ;
+    rdfs:range xsd:string .
+
+hpc:Installprocedurestep a owl:Class .
+hpc:Installprocedurestep rdfs:subClassOf hpc:Installwindowscomputenodeprocedurestep .
+
+hpc:installprocedurestepSpecifyoption a owl:ObjectProperty .
+
+hpc:Specifyoption a owl:Class .
+hpc:Specifyoption rdfs:subClassOf hpc:Installprocedurestep .
+
+hpc:specifyoptionOption a owl:DatatypeProperty .
+hpc:SpecifyoptionOption rdfs:domain hpc:Specifyoption ;
+    rdfs:range xsd:string .
+
+hpc:specifyoptionValue a owl:DatatypeProperty .
+hpc:SpecifyoptionValue rdfs:domain hpc:Specifyoption ;
+    rdfs:range xsd:string .

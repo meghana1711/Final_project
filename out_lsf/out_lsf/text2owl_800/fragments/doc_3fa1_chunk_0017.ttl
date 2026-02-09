@@ -1,0 +1,33 @@
+hpc:Jobarray a owl:Class .
+hpc:Job a owl:Class .
+hpc:Jobstate a owl:Class .
+hpc:requeueprocedure a owl:ObjectProperty .
+hpc:jobarrayjobslotlimit a owl:DatatypeProperty .
+
+hpc:Jobstate rdfs:subClassOf owl:Class .
+hpc:Jobstate rdfs:subClassOf hpc:Runjob .
+hpc:Jobstate rdfs:subClassOf hpc:Psuspjob .
+
+hpc:Requeueprocedure rdfs:domain hpc:Jobarray .
+hpc:Requeueprocedure rdfs:range hpc:Requeueaction .
+
+hpc:ReQueueAction rdf:type owl:ObjectProperty .
+hpc:ReQueueAction rdfs:subPropertyOf hpc:ReQueueProcedure .
+
+hpc:ReQueueAllJobs a hpc:ReQueueAction .
+hpc:ReQueueAllJobs rdfs:label "re-queue all jobs in an array regardless of job state"@en .
+hpc:ReQueueAllJobs rdfs:comment "Use the -a option of brequeue." .
+
+hpc:ReQueueToPsusp a hpc:ReQueueAction .
+hpc:ReQueueToPsusp rdfs:label "re-queue RUN jobs to PSUSP state"@en .
+hpc:ReQueueToPsusp rdfs:comment "Use the -H option of brequeue." .
+
+hpc:ReQueueRunJobs a hpc:ReQueueAction .
+hpc:ReQueueRunJobs rdfs:label "re-queue RUN jobs"@en .
+hpc:ReQueueRunJobs rdfs:comment "Use the -r option of brequeue." .
+
+hpc:JobArrayJobSlotLimit rdf:type owl:DatatypeProperty .
+hpc:Jobarrayjobslotlimit rdfs:domain hpc:Jobarray .
+hpc:Jobarrayjobslotlimit rdfs:range xsd:integer .
+hpc:JobArrayJobSlotLimit rdfs:label "job array job slot limit"@en .
+hpc:JobArrayJobSlotLimit rdfs:comment "Specifies the maximum number of jobs submitted from a job array that is allowed to run at any one time." .

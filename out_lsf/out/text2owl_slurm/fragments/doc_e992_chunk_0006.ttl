@@ -1,0 +1,49 @@
+hpc:Reason
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a reason for a specific action." .
+
+hpc:reason
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reason ;
+    rdfs:range xsd:string .
+
+hpc:reasonTime
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reason ;
+    rdfs:range xsd:dateTime .
+
+hpc:reasonUid
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reason ;
+    rdfs:range xsd:integer .
+
+hpc:ReserveInfo
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Data structure for reservation information." .
+
+hpc:nodeInx
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Reserveinfo ;
+    rdfs:range xsd:integer .
+
+hpc:nodeCnt
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reserveinfo ;
+    rdfs:range xsd:integer .
+
+hpc:PartitionInfo
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "No special advice." .
+
+hpc:slurmStepLayoutReq
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "No special advice." .
+
+hpc:slurmStepCtxParams
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "No special advice." .

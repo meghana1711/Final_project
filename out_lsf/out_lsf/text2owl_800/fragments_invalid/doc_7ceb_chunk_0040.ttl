@@ -1,0 +1,40 @@
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:hasio hpc:queue a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:decimal .
+
+hpc:users hpc:queue a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:User .
+
+hpc:hosts hpc:queue a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Host .
+
+hpc:nice hpc:queue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:isclosed hpc:queue a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:isinlostandfound hpc:job a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:hasio hpc:host a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:nice a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ioData datatype xsd:decimal .
+hpc:NICEData datatype xsd:nonNegativeInteger .

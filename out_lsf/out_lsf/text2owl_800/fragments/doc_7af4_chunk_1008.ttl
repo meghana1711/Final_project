@@ -1,0 +1,23 @@
+hpc:lsfTop a owl:DatatypeProperty .
+hpc:LsfTop rdfs:domain rdf:Resource .
+hpc:LsfTop rdfs:range xsd:string .
+
+hpc:silentInstall a owl:DatatypeProperty .
+hpc:SilentInstall rdfs:domain rdf:Literal .
+hpc:SilentInstall rdfs:range xsd:string .
+hpc:SilentInstall rdfs:range xsd:string .
+
+hpc:silentInstallTarlist a owl:ObjectProperty .
+hpc:SilentInstallTarlist rdfs:domain rdf:Resource .
+hpc:SilentInstallTarlist rdfs:range xsd:string .
+
+hpc:LsfSilentInstallTarlist a owl:Class .
+hpc:LsfSilentInstallTarlist rdfs:subClassOf hpc:Stringlist .
+
+hpc:Stringlist a owl:Class .
+hpc:Stringlist rdfs:subClassOf rdf:List .
+hpc:Stringlist rdfs:subClassOf rdf:Seq .
+hpc:Stringlist rdfs:subClassOf rdf:PlainLiteral .
+hpc:Stringlist rdfs:subClassOf xsd:string .
+
+hpc:Environmentvariable a owl:Class .

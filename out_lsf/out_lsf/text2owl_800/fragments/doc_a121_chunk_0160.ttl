@@ -1,0 +1,38 @@
+hpc:Queue a owl:Class .
+hpc:jobControls a owl:ObjectProperty .
+
+hpc:SUSPEND rdf:type hpc:JobControlAction ;
+    rdfs:domain hpc:JobControls ;
+    rdfs:range xsd:string .
+hpc:SUSPEND_signal rdf:type hpc:JobControlActionSignal ;
+    rdfs:subClassOf hpc:Suspend .
+hpc:SUSPEND_chkpt rdf:type hpc:JobControlAction ;
+    rdfs:subClassOf hpc:Suspend ;
+    rdfs:range xsd:string .
+hpc:SUSPEND_command rdf:type hpc:JobControlAction ;
+    rdfs:subClassOf hpc:Suspend ;
+    rdfs:range xsd:string .
+
+hpc:RESUME rdf:type hpc:JobControlAction ;
+    rdfs:domain hpc:JobControls ;
+    rdfs:range xsd:string .
+hpc:RESUME_signal rdf:type hpc:JobControlActionSignal ;
+    rdfs:subClassOf hpc:Resume .
+hpc:RESUME_command rdf:type hpc:JobControlAction ;
+    rdfs:subClassOf hpc:Resume ;
+    rdfs:range xsd:string .
+
+hpc:TERMINATE rdf:type hpc:JobControlAction ;
+    rdfs:domain hpc:JobControls ;
+    rdfs:range xsd:string .
+hpc:TERMINATE_signal rdf:type hpc:JobControlActionSignal ;
+    rdfs:subClassOf hpc:Terminate .
+hpc:TERMINATE_chkpt rdf:type hpc:JobControlAction ;
+    rdfs:subClassOf hpc:Terminate ;
+    rdfs:range xsd:string .
+hpc:TERMINATE_command rdf:type hpc:JobControlAction ;
+    rdfs:subClassOf hpc:Terminate ;
+    rdfs:range xsd:string .
+
+hpc:Jobcontrolaction a owl:Class .
+hpc:Jobcontrolactionsignal a owl:Class .

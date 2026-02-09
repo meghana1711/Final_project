@@ -1,0 +1,46 @@
+hpc:Policyconfiguration a owl:Class .
+hpc:Policyconfiguration rdfs:subClassOf owl:Class .
+
+# Policy
+hpc:Policy a owl:Class .
+hpc:Policy rdfs:subClassOf owl:Class .
+hpc:Policy rdfs:domain hpc:Policyconfiguration .
+
+hpc:hasname a owl:ObjectProperty .
+hpc:Hasname rdfs:domain hpc:Policy ;
+    rdfs:range xsd:string .
+
+hpc:hasconsumer a owl:ObjectProperty .
+hpc:Hasconsumer rdfs:domain hpc:Policy ;
+    rdfs:range xsd:string .
+
+hpc:maxinstances a owl:DatatypeProperty .
+hpc:Maxinstances rdfs:domain hpc:Policy ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maxinstancesinperiod a owl:DatatypeProperty .
+hpc:Maxinstancesinperiod rdfs:domain hpc:Policy ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# User Defined Script Path
+hpc:userdefinedscriptpath a owl:DatatypeProperty .
+hpc:Userdefinedscriptpath rdfs:domain hpc:Policyconfiguration ;
+    rdfs:range xsd:string .
+
+# Optimization
+hpc:Optimization a owl:Class .
+hpc:Optimization rdfs:subClassOf owl:Class .
+hpc:Optimization rdfs:domain hpc:Policyconfiguration .
+
+# Location
+hpc:location a owl:DatatypeProperty .
+hpc:Location rdfs:domain hpc:Policyconfiguration ;
+    rdfs:range xsd:string .
+
+# Example:
+hpc:Policy_1 a hpc:Policy ;
+    hpc:hasName "Policy_1" ;
+    hpc:hasConsumer "Consumer_1" ;
+    hpc:maxInstances "5" ;
+    hpc:maxInstancesInPeriod "1h" ;
+    hpc:UserDefinedScriptPath "/usr/share/lsf/10.1/scripts/userscript.py" .

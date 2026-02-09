@@ -1,0 +1,33 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a job submitted to the HPC queue." .
+
+hpc:cpuLimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The CPU limit for a job, in minutes." .
+
+hpc:defaultCpuLimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The default CPU limit for jobs without a job-level limit." .
+
+hpc:FairShareScheduling a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Jobs that are subject to fair share scheduling." .
+
+hpc:cpuTimeFactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fairsharescheduling ;
+    rdfs:range xsd:nonNegativeFloat ;
+    rdfs:comment "The CPU time weighting factor for fair share scheduling." .
+
+hpc:ChunkJobQueue a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Jobs submitted to a chunk job queue." .
+
+hpc:CPULIMIT_THRESHOLD a xsd:nonNegativeInteger ;
+    rdfs:comment "The threshold for chunking jobs in a chunk job queue." .
+
+hpc:UNLIMITED rdf:Datatype ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Represents an unlimited CPU time." .

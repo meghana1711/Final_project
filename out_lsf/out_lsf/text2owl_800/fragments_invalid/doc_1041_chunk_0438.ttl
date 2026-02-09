@@ -1,0 +1,40 @@
+hpc:Jobstatusdescription a owl:Class .
+hpc:hasjobstatusdescription a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobstatusdescription ;
+    rdfs:range xsd:string .
+
+hpc:Lsfjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:haslsfversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:string .
+
+hpc:canattachfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Datafile .
+
+hpc:Jobattachmentdirectory a owl:Class ;
+    rdfs:subClassOf hpc:Directory .
+
+hpc:hasjobattachmentdirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:maxjobattachmentsize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsbparamsfile .
+    rdfs:range xsd:decimal .
+
+hpc:Lsbparamsfile a owl:Class .
+
+hpc:Multiclustercapability a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+    rdfs:subClassOf hpc:Lsfjob .
+
+hpc:canloseconnection a owl:ObjectProperty ;
+    rdfs:domain hpc:Multiclustercapability .
+
+hpc:cansaveandresendmessages a owl:ObjectProperty ;
+    rdfs:domain hpc:Multiclustercapability .
+
+hpc:Datafile a owl:Class .

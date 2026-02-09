@@ -1,0 +1,38 @@
+hpc:Jobstarter a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A command used to run jobs on a local cluster." .
+
+hpc:hasUserCommands rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Jobstarter ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The user commands that run after the job starter, by default the user commands run after the job starter." .
+
+hpc:specialUserCommand rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Jobstarter ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A special string, %USRCMD, that represents the position of the user’s job in the job starter command line." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A job that can be submitted to a local cluster." .
+
+hpc:preExecutionCommand rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The command that runs before the job on the local cluster." .
+
+hpc:localMaxPreexecRetry a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum number of times to attempt the pre-execution command of a job on the local cluster." .
+
+hpc:localMaxPreexecRetryAction a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The default behavior of a job when it reaches the maximum number of times to attempt its pre-execution command on the local cluster." .
+
+hpc:LOCAL_MAX_PREEXEC_RETRY_ACTION_SUSPEND a owl:NamedIndividual ;
+    hpc:LOCAL_MAX_PREEXEC_RETRY_ACTION "SUSPEND" .
+
+hpc:LOCAL_MAX_PREEXEC_RETRY_ACTION_EXIT a owl:NamedIndividual ;
+    hpc:LOCAL_MAX_PREEXEC_RETRY_ACTION "EXIT" .

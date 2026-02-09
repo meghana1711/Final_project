@@ -1,0 +1,41 @@
+hpc:Job a owl:Class .
+hpc:Queue a owl:Class .
+
+hpc:hasDefaultThreadLimit rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:hasThreadLimit rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasSoftThreadLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:hasHardThreadLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:hasStackSegmentSizeLimit rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasApplicationLevelStackSegmentSizeLimit rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasJobLevelStackSegmentSizeLimit rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasStackSegmentSizeLimitUnit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:hasSwapUsageLimit rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:hasSwapUsageLimitValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:hasSwapUsageLimitUnit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .

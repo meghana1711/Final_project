@@ -1,0 +1,42 @@
+hpc:Script a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A script to be run on an HPC system." .
+
+hpc:Defaultshell hpc:Shell a owl:Class ;
+    rdfs:comment "The default shell used when no shell is specified in the script." .
+
+hpc:Customshell hpc:Shell a owl:Class ;
+    rdfs:comment "An alternate shell specified by the user." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A job submitted to an HPC system." .
+
+hpc:jobid rdf:Property a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:queue rdf:Property a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queue .
+
+hpc:commandline rdf:Property a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:commentline rdf:Property a owl:ObjectProperty ;
+    rdfs:domain hpc:Commandline ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:CommandLine .
+
+hpc:Shell hpc:Shell a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A shell used to run jobs on an HPC system." .
+
+hpc:shelldirective rdf:Property a owl:ObjectProperty ;
+    rdfs:domain hpc:Shell ;
+    rdfs:range xsd:string .
+
+hpc:date rdf:Property a owl:DatatypeProperty ;
+    rdfs:domain hpc:Shelldirective ;
+    rdfs:range xsd:date .

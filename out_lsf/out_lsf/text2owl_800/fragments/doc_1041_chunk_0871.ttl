@@ -1,0 +1,41 @@
+hpc:Product a owl:Class .
+hpc:Product rdfs:subClassOf owl:Class .
+
+hpc:productName a owl:ObjectProperty .
+hpc:ProductName rdfs:domain hpc:Product ;
+                  rdfs:range xsd:string .
+
+hpc:q a owl:ObjectProperty .
+hpc:Q rdfs:domain hpc:Product ;
+     rdfs:range xsd:string .
+
+hpc:fileName a owl:DatatypeProperty .
+hpc:FileName rdfs:domain hpc:Installedfile ;
+              rdfs:range xsd:string .
+
+hpc:Binarytype a owl:Class .
+hpc:Binarytype rdfs:subClassOf owl:Class .
+
+hpc:binarytypebuildnumber a owl:DatatypeProperty .
+hpc:Binarytypebuildnumber rdfs:domain hpc:Binary ;
+                           rdfs:range xsd:string .
+
+hpc:binarytypebuilddate a owl:DatatypeProperty .
+hpc:Binarytypebuilddate rdfs:domain hpc:Binary ;
+                          rdfs:range xsd:date .
+
+hpc:Fullinstallation a owl:Class .
+hpc:Fullinstallation rdfs:subClassOf owl:Class .
+
+hpc:Productversioninformation a owl:Class .
+hpc:Productversioninformation rdfs:subClassOf owl:Class .
+
+hpc:Installedfile a owl:Class .
+hpc:Installedfile rdfs:subClassOf owl:Class .
+
+hpc:Patch a owl:Class .
+hpc:Patch rdfs:subClassOf owl:Class .
+
+hpc:commandusage a owl:ObjectProperty .
+hpc:Commandusage rdfs:domain hpc:Product ;
+                 rdfs:range xsd:string .

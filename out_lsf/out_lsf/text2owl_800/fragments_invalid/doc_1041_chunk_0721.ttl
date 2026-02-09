@@ -1,0 +1,55 @@
+hpc:Command a owl:Class .
+hpc:hasargument a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+hpc:jobname a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The job name if not specified with -J." .
+hpc:jobcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The command to be executed as a job." .
+hpc:maxlength a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum length of the job command." .
+hpc:submittedfromstandardinput a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the command is submitted from standard input." .
+hpc:spooledfromfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the command is spooled from a file." .
+hpc:shell a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The shell to run the commands." .
+hpc:commandlineinput a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the command is provided on the command line." .
+hpc:standardinputfacility a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the standard input facility is used." .
+hpc:promptedinput a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the user is prompted with bsub> for the commands of the job." .
+hpc:terminatedbyctrld a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the input is terminated by entering CTRL-D on a new line." .
+hpc:multiplecommands a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether multiple commands can be submitted through standard input." .
+hpc:commandsexecutedinorder a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the commands are executed in the order they are given." .
+hpc:optionsspecifiedinstandardinput a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:

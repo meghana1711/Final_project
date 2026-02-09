@@ -1,0 +1,45 @@
+hpc:Field a owl:Class;
+    rdfs:subClassOf owl:Class;
+    rdfs:comment "Represents a field in the lshosts output." .
+
+hpc:width a owl:DatatypeProperty;
+    rdfs:domain hpc:Field;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:justification a owl:ObjectProperty;
+    rdfs:domain hpc:Field;
+    rdfs:range xsd:string;
+    rdfs:comment "Specifies the justification for the field output." .
+
+hpc:unit a owl:ObjectProperty;
+    rdfs:domain hpc:Field;
+    rdfs:range xsd:string;
+    rdfs:comment "Specifies the unit for the field output." .
+
+hpc:Builtinconversion a owl:Class;
+    rdfs:subClassOf owl:Class;
+    rdfs:comment "Represents a built-in conversion for space or capacity, or duration or time." .
+
+hpc:Spaceorcapacityconversion a owl:Class;
+    rdfs:subClassOf hpc:Builtinconversion;
+    rdfs:comment "Represents a built-in conversion for space or capacity." .
+    rdfs:subClassOf owl:Class .
+
+hpc:Durationortimeconversion a owl:Class;
+    rdfs:subClassOf hpc:Builtinconversion;
+    rdfs:comment "Represents a built-in conversion for duration or time." .
+
+hpc:scaling a owl:ObjectProperty;
+    rdfs:domain hpc:Builtinconversion;
+    rdfs:range xsd:string;
+    rdfs:comment "Specifies the scaling units for the built-in conversion." .
+
+hpc:SpaceOrCapacityField a hpc:Field;
+    rdfs:subClassOf hpc:Field;
+    rdfs:comment "Represents a field for space or capacity." .
+    rdfs:subClassOf owl:Class .
+
+hpc:DurationOrTimeField a hpc:Field;
+    rdfs:subClassOf hpc:Field;
+    rdfs:comment "Represents a field for duration or time." .
+    rdfs:subClassOf owl:Class .

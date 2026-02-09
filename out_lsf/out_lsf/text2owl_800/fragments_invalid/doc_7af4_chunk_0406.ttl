@@ -1,0 +1,29 @@
+hpc:Lsfjob a owl:Class .
+hpc:hasulimitoption rdf:datatype xsd:boolean a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:boolean .
+hpc:haswoption rdf:datatype xsd:boolean a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:boolean .
+hpc:hasvoption rdf:datatype xsd:boolean a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:boolean .
+hpc:hasrmoption rdf:datatype xsd:boolean a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:boolean .
+hpc:hasdoption rdf:datatype xsd:boolean a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:boolean .
+hpc:hasenrootoptions rdf:datatype xsd:string a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range rdf:Resource .
+hpc:hascontainerio rdf:datatype xsd:boolean a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:boolean .
+hpc:hasjobprepost rdf:datatype xsd:boolean a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:boolean .
+hpc:Dockerjob a owl:Class ;
+    rdfs:subClassOf hpc:Lsfjob .
+hpc:Podmanjob a owl:Class ;
+    rdfs:subClassOf hpc:Lsfjob .

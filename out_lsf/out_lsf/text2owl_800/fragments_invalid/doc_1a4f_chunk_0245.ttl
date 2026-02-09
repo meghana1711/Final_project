@@ -1,0 +1,63 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Represents a job bound to a single NUMA node." .
+
+hpc:numanodeaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the NUMA node affinity for a job." .
+
+hpc:Numanodeaffinityvalue a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Represents a value for NUMA node affinity." .
+
+hpc:socketaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the socket affinity for a task." .
+
+hpc:Socketaffinityvalue a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Represents a value for socket affinity." .
+
+hpc:Task a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Represents a task that needs 2 cores from the same socket and binds each task at the socket level." .
+
+hpc:exclusivesocketaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Specifies whether the allocated socket is exclusive - no other tasks can use it." .
+
+hpc:joblevelaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Affinity ;
+    rdfs:comment "Overwrites an application-level affinity if present." .
+
+hpc:applicationlevelaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Affinity ;
+    rdfs:comment "Overwrites a queue-level affinity if present." .
+
+hpc:queuelevelaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Affinity ;
+    rdfs:comment "Specifies the affinity string in application profiles and queues." .
+
+hpc:Resourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Represents the resource requirements for a job." .
+
+hpc:Gpuresourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement ;
+    rdfs:comment "Represents the GPU resource requirements for a job." .
+
+hpc:gpunum a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpuresourcerequirement ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies the number of GPUs required." .
+
+hpc:gpumode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpuresourcerequirement ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the GPU mode (

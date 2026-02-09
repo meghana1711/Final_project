@@ -1,0 +1,26 @@
+hpc:Applicationprofile a owl:Class .
+hpc:envVars a owl:ObjectProperty .
+
+hpc:Application a owl:Class .
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range xsd:string .
+hpc:Statistics a owl:Class .
+hpc:Parameters a owl:Class .
+
+hpc:EnvVars rdfs:subClassOf hpc:Parameters .
+hpc:EnvVars rdfs:domain hpc:Applicationprofile .
+
+hpc:EnvVarsAssignment a owl:Class .
+hpc:hasvariable a owl:ObjectProperty ;
+    rdfs:domain hpc:EnvVars ;
+    rdfs:range hpc:EnvVarsAssignment .
+hpc:EnvVarsAssignment rdfs:subClassOf hpc:Parameters .
+hpc:EnvVarsAssignment rdfs:domain hpc:EnvVars .
+hpc:EnvVarsAssignment rdfs:range xsd:string .
+hpc:EnvVarsAssignment rdfs:range hpc:Variable .
+
+hpc:Variable a owl:Class .
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:EnvVarsAssignment .
+hpc:Name rdfs:range xsd:string .

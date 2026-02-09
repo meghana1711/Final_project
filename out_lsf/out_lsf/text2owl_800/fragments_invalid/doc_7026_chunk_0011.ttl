@@ -1,0 +1,43 @@
+hpc:Lsfmanagementhost a owl:Class .
+hpc:hasIPAddressRange an owl:ObjectProperty .
+hpc:LsfHostAddrRange rdfs:domain hpc:Lsfmanagementhost ;
+                          rdfs:range xsd:string .
+
+hpc:Dynamichost a owl:Class .
+hpc:allowsDynamicHosts an owl:ObjectProperty .
+hpc:Dynamichost rdfs:subClassOf hpc:Lsfmanagementhost .
+hpc:Allowsdynamichosts rdfs:domain hpc:Lsfmanagementhost ;
+                         rdfs:range xsd:boolean .
+
+hpc:Statichost a owl:Class .
+hpc:hasNoIPAddressRange an owl:ObjectProperty .
+hpc:Statichost rdfs:subClassOf hpc:Lsfmanagementhost .
+hpc:Hasnoipaddressrange rdfs:domain hpc:Lsfmanagementhost .
+
+hpc:Mbatchd a owl:Class .
+hpc:requiresReconfiguration an owl:ObjectProperty .
+hpc:Mbatchd rdfs:subClassOf hpc:Lsfmanagementhost .
+hpc:Requiresreconfiguration rdfs:domain hpc:Lsfmanagementhost .
+
+hpc:Externalauthentication a owl:Class .
+hpc:usesCustomKey an owl:ObjectProperty .
+hpc:requiresSetuidBit an owl:ObjectProperty .
+hpc:Externalauthentication rdfs:subClassOf hpc:Lsfmanagementhost .
+hpc:Usescustomkey rdfs:domain hpc:Externalauthentication ;
+                    rdfs:range hpc:LsfEauthKey .
+hpc:Requiressetuidbit rdfs:domain hpc:Externalauthentication .
+
+hpc:lsfEauthKey a owl:DatatypeProperty .
+hpc:LsfEauthKey rdfs:domain hpc:Externalauthentication ;
+                   rdfs:range xsd:string .
+
+hpc:setuidbit a owl:ObjectProperty .
+hpc:appliesToLSFExecutable an owl:ObjectProperty .
+hpc:Setuidbit rdfs:domain hpc:Externalauthentication ;
+               rdfs:range xsd:boolean .
+hpc:Appliestolsfexecutable rdfs:domain hpc:Setuidbit ;
+                             rdfs:range xsd:string .
+
+hpc:lsfSudoersfile a owl:DatatypeProperty .
+hpc:LsfSudoersfile rdfs:domain hpc:Externalauthentication ;
+                     rdfs:range xsd:string .

@@ -1,0 +1,78 @@
+hpc:preexeccommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Command .
+
+hpc:postexeccommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Command .
+
+hpc:errorfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:filelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:localfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Filetransferoperation .
+
+hpc:remotefile a owl:ObjectProperty ;
+    rdfs:domain hpc:Filetransferoperation ;
+    rdfs:range hpc:File .
+
+hpc:filetransferoperation a owl:ObjectProperty ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:File .
+
+hpc:inputfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:jobname a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Jobnamerange a owl:Class ;
+    rdfs:subClassOf hpc:Jobname ;
+    rdfs:comment "Represents a list of job names with indexes and job slot limit" .
+
+hpc:jobslotlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobnamerange ;
+    rdfs:range xsd:integer .
+
+hpc:indexlist a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobnamerange ;
+    rdfs:range xsd:string .
+
+hpc:checkpointdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Checkpointablejob ;
+    rdfs:range xsd:string .
+
+hpc:checkpointperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Checkpointablejob ;
+    rdfs:range xsd:integer .
+
+hpc:checkpointmethod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Checkpointablejob ;
+    rdfs:range xsd:string .
+
+hpc:Checkpointablejob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:memlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:hostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostassignment ;
+    rdfs:range xsd:string .
+
+hpc:clustername a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostassignment ;
+    rdfs:range xsd:string .
+
+hpc:preflevel a owl:DatatypeProperty ;
+    rdfs

@@ -1,0 +1,21 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Node a owl:Class.
+
+hpc:State a owl:Class.
+hpc:PowerDown a hpc:State.
+hpc:PowerDownAsap a hpc:State.
+hpc:PowerDownForce a hpc:State.
+hpc:PowerUp a hpc:State.
+hpc:Resume a hpc:State.
+
+hpc:suspendprogram a owl:ObjectProperty.
+hpc:Suspendprogram rdfs:domain hpc:Node ;
+                   rdfs:range xsd:string.
+
+hpc:resumeprogram a owl:ObjectProperty.
+hpc:Resumeprogram rdfs:domain h

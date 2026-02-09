@@ -1,0 +1,18 @@
+hpc:Taskexit a owl:Class.
+hpc:TASK_EXIT_INIT rdf:type hpc:TaskExit;
+    rdfs:comment "generic task initialization failure";
+    rdfs:label "TASK_EXIT_INIT".
+hpc:TASK_EXIT_PATH rdf:type hpc:TaskExit;
+    rdfs:comment "failed to initialize path";
+    rdfs:label "TASK_EXIT_PATH".
+hpc:TASK_EXIT_NO_FILE rdf:type hpc:TaskExit;
+    rdfs:comment "failed to create task file";
+    rdfs:label "TASK_EXIT_NO_FILE".
+hpc:TASK_EXIT_PRE_EXEC rdf:type hpc:TaskExit;
+    rdfs:comment "task pre-execution failed";
+    rdfs:label "TASK_EXIT_PRE_EXEC".
+hpc:TASK_EXIT_NO_PROCESS rdf:type hpc:TaskExit;
+    rdfs:comment "fork failed";
+    rdfs:label "TASK_EXIT_NO_PROCESS".
+hpc:TASK_EXIT_XDR rdf:type hpc:TaskExit;
+    rdfs:comment "XDR

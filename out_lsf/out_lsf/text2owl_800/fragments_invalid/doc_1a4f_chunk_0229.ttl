@@ -1,0 +1,21 @@
+hpc:Job a owl:Class .
+hpc:Resourcerequest a owl:Class .
+hpc:span a owl:ObjectProperty .
+hpc:ptile a owl:ObjectProperty .
+hpc:Autoresizablejob a owl:Class .
+hpc:Exclusivejob a owl:Class .
+
+hpc:Job rdfs:subClassOf hpc:Resourcerequest .
+hpc:Autoresizablejob rdfs:subClassOf hpc:Job .
+hpc:Exclusivejob rdfs:subClassOf hpc:Job .
+
+hpc:Span rdfs:domain hpc:Job ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:first hpc:Ptile ;
+    rdfs:range rdf:rest hpc:Spanslot .
+
+hpc:Ptile rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:spanslot a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .

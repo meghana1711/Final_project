@@ -1,0 +1,8 @@
+hpc:Compiledhadoopapplication a owl:Class .
+hpc:Compiledhadoopapplication rdfs:subClassOf owl:Thing .
+hpc:CompiledHadoopApplication rdfs:label "Compiled Hadoop Application"@en ;
+                                     rdfs:comment "A compiled Hadoop application ready to run as a JAR file."@en .
+
+hpc:readytorunjar a owl:ObjectProperty .
+hpc:Readytorunjar rdfs:domain hpc:Compiledhadoopapplication ;
+                   rdfs:range xsd:boolean .

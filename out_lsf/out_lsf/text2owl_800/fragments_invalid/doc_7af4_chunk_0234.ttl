@@ -1,0 +1,48 @@
+hpc:groupadmin a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range rdf:Resource .
+hpc:groupmember a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range rdf:Resource .
+hpc:preferredhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range xsd:integer .
+hpc:Host a owl:Class .
+hpc:User a owl:Class .
+hpc:Usergroup a owl:Class .
+hpc:usergroupname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:string .
+
+hpc:Hostgroup rdfs:subClassOf [ a owl:Class ;
+    owl:intersectionOf (hpc:HostGroup rdf:first hpc:HostGroup ;
+        owl:intersectionOf (hpc:HostGroup rdf:first hpc:GroupAdminOptional ;
+            owl:intersectionOf (hpc:HostGroup rdf:first hpc:GroupMemberOptional ;
+                owl:intersectionOf (hpc:HostGroup rdf:first hpc:PreferredHostOptional ;
+                    owl:intersectionOf (hpc:HostGroup rdf:first rdf:nil)
+                )
+            )
+        )
+    )
+] .
+hpc:GroupAdminOptional a owl:Restriction ;
+    rdfs:onClass hpc:HostGroup ;
+    owl:allValuesFrom rdf:nil .
+hpc:GroupMemberOptional a owl:Restriction ;
+    rdfs:onClass hpc:HostGroup ;
+    owl:someValuesFrom rdf:Resource .
+hpc:PreferredHostOptional a owl:Restriction ;
+    rdfs:onClass hpc:HostGroup ;
+    owl:hasValue xsd:integer .
+hpc:UserGroupNamed a owl:Restriction ;
+    rdfs:onClass hpc:UserGroup ;
+    owl:hasValue (str* "-" "[A-Za-z][A-Za-z0-9]*") .
+hpc:WildcardOrSpecialChars a owl:Restriction ;
+    rdfs:onClass rdf:Resource ;
+    owl:hasValue (str* ".*[*!$#&~].*") .
+hpc:ExternalGroup a owl:Restriction ;
+    rdfs:onClass rdf:Resource ;
+    owl:hasValue (str* "egroup") .
+hpc:AllMembers a owl:Restriction ;
+    rdfs:onClass hpc:Group ;
+    owl:hasValue rdf:nil .

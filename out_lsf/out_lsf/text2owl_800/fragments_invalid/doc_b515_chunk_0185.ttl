@@ -1,0 +1,19 @@
+@base <http://example.org/hpc/>
+
+hpc:Queue a owl:Class .
+hpc:Queue rdfs:subClassOf owl:Class .
+hpc:queuename a owl:ObjectProperty .
+hpc:priority a owl:DatatypeProperty .
+hpc:nice a owl:DatatypeProperty .
+hpc:ujoblimit a owl:DatatypeProperty .
+hpc:pjoblimit a owl:DatatypeProperty .
+hpc:PJOB_LIMIT_QUEUE3 xsd:integer 1 .
+hpc:PJOB_LIMIT_QUEUE2 xsd:integer 2 .
+hpc:PJOB_LIMIT_QUEUE1 xsd:integer 1 .
+hpc:UJOB_LIMIT_QUEUE3 xsd:integer 1 .
+hpc:UJOB_LIMIT_QUEUE2 xsd:integer 4 .
+hpc:UJOB_LIMIT_QUEUE1 xsd:integer 0 .
+hpc:NICE_QUEUE3 xsd:integer 10 .
+hpc:NICE_QUEUE2 xsd:integer 20 .
+hpc:PRIORITY_QUEUE3 xsd:integer 50 .
+hpc:PRIORITY_QUEUE2 xsd

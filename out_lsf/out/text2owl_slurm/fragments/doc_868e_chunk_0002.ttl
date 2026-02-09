@@ -1,0 +1,23 @@
+hpc:Srun a owl:Class .
+hpc:Sshare a owl:Class .
+hpc:Sstat a owl:Class .
+hpc:Strigger a owl:Class .
+hpc:Sview a owl:Class .
+
+hpc:Acct_gather_conf rdf:type hpc:ConfigurationFile ;
+  rdfs:subClassOf hpc:Slurmconfigurationfile .
+
+hpc:Burst_buffer_conf rdf:type hpc:SlurmConfigurationFile .
+
+hpc:Cgroup_conf rdf:type hpc:SlurmConfigurationFile ;
+  rdfs:subClassOf hpc:Slurmconfigurationfile .
+
+hpc:Gres_conf rdf:type hpc:SlurmConfigurationFile .
+
+hpc:Helpers_conf rdf:type hpc:SlurmConfigurationFile ;
+  rdfs:subClassOf hpc:Slurmconfigurationfile .
+
+hpc:Job_container_conf rdf:type hpc:SlurmConfigurationFile ;
+  rdfs:subClassOf hpc:Slurmconfigurationfile .
+
+hpc:Knl_conf rdf:type hpc:SlurmConfigurationFile .

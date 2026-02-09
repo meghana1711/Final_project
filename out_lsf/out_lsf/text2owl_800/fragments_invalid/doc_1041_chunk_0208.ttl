@@ -1,0 +1,77 @@
+hpc:Bhostcommand a owl:Class .
+hpc:displaysoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhostcommand ;
+    rdfs:range rdfs:Literal .
+
+hpc:Condensedhostgroup a owl:Class ;
+    rdfs:subClassOf hpc:Hostgroup .
+
+hpc:Condensedcomputeunit a owl:Class ;
+    rdfs:subClassOf hpc:Computeunit .
+
+hpc:GroupName rdfs:domain hpc:Condensedhostgroup ;
+    rdfs:range xsd:string .
+
+hpc:Name rdfs:domain hpc:Condensedcomputeunit ;
+    rdfs:range xsd:string .
+
+hpc:addedresources a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhostcommand ;
+    rdfs:range hpc:Resource .
+
+hpc:updatedresources a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhostcommand ;
+    rdfs:range hpc:Resource .
+
+hpc:noncondensedoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhostcommand ;
+    rdfs:range hpc:Host .
+
+hpc:hosttopology a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhostcommand ;
+    rdfs:range hpc:Hosttopology .
+
+hpc:hostcounters a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhostcommand ;
+    rdfs:range hpc:Counter .
+
+hpc:slotallocation a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhostcommand ;
+    rdfs:range hpc:Slotallocation .
+
+hpc:Exclusivejob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Standardlsfhost rdfs:subClassOf hpc:Host .
+
+hpc:Relinquishedhost a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:Resourceprovider rdfs:domain hpc:Relinquishedhost ;
+    rdfs:range xsd:string .
+
+hpc:Hosttopologyinfo a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:Exportedhost a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:Sharedresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Associatedhost rdfs:domain hpc:Sharedresource ;
+    rdfs:range hpc:Host .
+
+hpc:Numericsharedresource a owl:Class ;
+    rdfs:subClassOf hpc:Sharedresource .
+
+hpc:Multiclustercapability rdfs:domain hpc:Bhostcommand ;
+    rdfs:range hpc:Multicluster .
+
+hpc:Localcluster rdfs:domain hpc:Multicluster ;
+    rdfs:range hpc:Cluster .
+
+hpc:Counterforslots rdfs:domain hpc:Counter ;
+    rdfs:range xsd:integer .
+
+hpc:Slotinrun rdfs:domain hpc:Counter

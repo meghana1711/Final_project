@@ -1,0 +1,56 @@
+hpc:JobID
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The unique identifier for a job." .
+
+hpc:JobOwner
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:User ;
+    rdfs:comment "The user who submitted the job." .
+
+hpc:JobPriority
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The priority of the job." .
+
+hpc:JobState
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The current state of the job." .
+
+hpc:User
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a user in the LSF system." .
+
+hpc:requeue
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadmin ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Allows an LSF administrator to re-queue a job." .
+
+hpc:automaticJobRequeue
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Represents the automatic re-queuing of a job due to a specified exit code." .
+
+hpc:automaticJobRerun
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Represents the automatic rerunning of a job due to the execution host becoming unavailable." .
+
+hpc:LSFAdmin
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents an LSF administrator who can re-queue jobs." .
+
+hpc:interactiveBatchJob
+    a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Represents an interactive batch job that cannot be re-queued." .

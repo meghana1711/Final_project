@@ -1,0 +1,9 @@
+hpc:LsfMasterlist a owl:Class .
+hpc:lsfDynamichostwaittime a owl:DatatypeProperty .
+hpc:lsfHostaddrrange a owl:ObjectProperty .
+
+hpc:LsfMasterlist rdfs:subClassOf owl:Class .
+hpc:LsfDynamichostwaittime rdfs:domain hpc:LsfMasterlist ;
+                             rdfs:range xsd:nonNegativeInteger .
+hpc:LsfHostaddrrange rdfs:domain hpc:LsfMasterlist ;
+                      rdfs:range xsd:string .

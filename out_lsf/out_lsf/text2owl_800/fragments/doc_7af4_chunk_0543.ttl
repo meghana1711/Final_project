@@ -1,0 +1,42 @@
+hpc:Swaplimit a owl:Class .
+hpc:Usersswaplimit a owl:Class .
+hpc:Hostsswaplimit a owl:Class .
+hpc:Projectsswaplimit a owl:Class .
+hpc:Licprojectsswaplimit a owl:Class .
+
+hpc:hasswaplimit a owl:ObjectProperty .
+hpc:Hasswaplimit rdfs:domain hpc:Swaplimit ;
+                  rdfs:range hpc:Resource .
+
+hpc:Usersswaplimit rdfs:subClassOf hpc:Hasswaplimit ;
+                    rdfs:subClassOf hpc:Swaplimit ;
+                    rdfs:domain hpc:User .
+
+hpc:Hostsswaplimit rdfs:subClassOf hpc:Hasswaplimit ;
+                    rdfs:subClassOf hpc:Swaplimit ;
+                    rdfs:domain hpc:Host .
+
+hpc:Projectsswaplimit rdfs:subClassOf hpc:Hasswaplimit ;
+                       rdfs:subClassOf hpc:Swaplimit ;
+                       rdfs:domain hpc:Project .
+
+hpc:Licprojectsswaplimit rdfs:subClassOf hpc:Hasswaplimit ;
+                          rdfs:subClassOf hpc:Swaplimit ;
+                          rdfs:domain hpc:Licproject .
+
+hpc:Appsswaplimit a owl:Class .
+hpc:Perappswaplimit a owl:Class .
+hpc:Queuesswaplimit a owl:Class .
+hpc:Perqueueswaplimit a owl:Class .
+hpc:UsersSwapLimit rdfs:subPropertyOf hpc:hasSwapLimit ;
+                    rdfs:subPropertyOf hpc:PerUserSwapLimit .
+hpc:HostsSwapLimit rdfs:subPropertyOf hpc:hasSwapLimit ;
+                    rdfs:subPropertyOf hpc:PerHostSwapLimit .
+hpc:ProjectsSwapLimit rdfs:subPropertyOf hpc:hasSwapLimit ;
+                      rdfs:subPropertyOf hpc:PerProjectSwapLimit .
+hpc:LicProjectsSwapLimit rdfs:subPropertyOf hpc:hasSwapLimit ;
+                         rdfs:subPropertyOf hpc:PerLicProjectSwapLimit .
+hpc:AppsSwapLimit rdfs:subPropertyOf hpc:hasSwapLimit ;
+                    rdfs:subPropertyOf hpc:PerAppSwapLimit .
+hpc:QueuesSwapLimit rdfs:subPropertyOf hpc:hasSwapLimit ;
+                    rdfs:subPropertyOf hpc:PerQueueSwapLimit .

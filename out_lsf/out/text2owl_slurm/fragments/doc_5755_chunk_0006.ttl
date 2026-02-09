@@ -1,0 +1,60 @@
+hpc:Preventslurmdkill a owl:Class ;
+    rdfs:comment "Preventing slurmd and slurmstepd daemons from being killed when a node's memory is exhausted." .
+
+hpc:Incorrecthostip a owl:Class ;
+    rdfs:comment "Reason for seeing the host of a calling node as 127.0.1.1 instead of the correct IP address." .
+
+hpc:addnodeslurm a owl:ObjectProperty ;
+    rdfs:domain hpc:Computeresource ;
+    rdfs:range hpc:Node .
+
+hpc:removenodeslurm a owl:ObjectProperty ;
+    rdfs:domain hpc:Computeresource ;
+    rdfs:range hpc:Node .
+
+hpc:Nodedownreason a owl:Class ;
+    rdfs:comment "Reason for a compute node being down with the reason set to 'Node unexpectedly rebooted'." .
+
+hpc:converttocgroupv2 a owl:ObjectProperty ;
+    rdfs:domain hpc:Computeresource ;
+    rdfs:range hpc:Node .
+
+hpc:Slurmonec2 a owl:Class ;
+    rdfs:comment "Using Slurm to run jobs on Amazon's EC2." .
+
+hpc:Pamusercontrol a owl:Class ;
+    rdfs:comment "Using PAM to control a user's limits on or access to compute nodes." .
+
+hpc:excludeuserfrompam a owl:ObjectProperty ;
+    rdfs:domain hpc:Pam ;
+    rdfs:range hpc:User .
+
+hpc:changeuseraccount a owl:ObjectProperty ;
+    rdfs:domain hpc:Database ;
+    rdfs:range hpc:User .
+
+hpc:Sssdwithslurm a owl:Class ;
+    rdfs:comment "Getting SSSD to work with Slurm." .
+
+hpc:Jobsuspendresume a owl:Class ;
+    rdfs:comment "Job suspend/resume functionality." .
+
+hpc:suspendresumejob a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:holdreleasejob a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:changejobpriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:returnjobpriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:updatemultiplejobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:Job .

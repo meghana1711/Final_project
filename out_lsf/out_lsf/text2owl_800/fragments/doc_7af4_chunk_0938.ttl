@@ -1,0 +1,31 @@
+hpc:Licensecollector a owl:Class .
+hpc:Licenseserver a owl:Class .
+hpc:Remotelicenseserver a owl:Class .
+hpc:Remoteagenthost a owl:Class .
+hpc:Subnet a owl:Class .
+
+hpc:licservers a owl:ObjectProperty .
+hpc:remotelmstatservers a owl:ObjectProperty .
+
+hpc:LicServers rdfs:domain hpc:Licensecollector .
+hpc:RemoteLmstatServers rdfs:domain hpc:Licensecollector .
+
+hpc:LicServers rdfs:range rdf:List .
+hpc:RemoteLmstatServers rdfs:range rdf:List .
+
+hpc:Licservers rdfs:range hpc:Licenseserver .
+hpc:RemoteLmstatServers rdfs:range hpc:Remotelicenseserver .
+
+hpc:licserver a owl:DatatypeProperty .
+hpc:remotelmstatserver a owl:DatatypeProperty .
+
+hpc:Licserver rdfs:domain hpc:LicServers .
+hpc:Remotelmstatserver rdfs:domain hpc:RemoteLmstatServers .
+
+hpc:Licserver rdfs:range xsd:string .
+hpc:Remotelmstatserver rdfs:range xsd:string .
+
+hpc:samesubnet a owl:ObjectProperty .
+
+hpc:Samesubnet rdfs:domain (hpc:Remotelicenseserver hpc:Remoteagenthost) .
+hpc:Samesubnet rdfs:range (hpc:Remotelicenseserver hpc:Remoteagenthost) .

@@ -1,0 +1,61 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a job in the HPC system." .
+
+hpc:tspeekcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Allows viewing the job with the tspeek command." .
+
+hpc:tssubcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Used to submit Terminal Services jobs." .
+
+hpc:tssubcommandonunix a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tssubcommand ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the tssub command can be used on UNIX." .
+
+hpc:tsubonwindowslinux a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tssubcommand ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the tssub command is supported on Windows and Linux." .
+
+hpc:tsubtopendingstate a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Jobstate ;
+    rdfs:comment "Indicates that the job is set to the PEND state when dispatched to a host without Terminal Services." .
+
+hpc:pendingreason a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:PlainLiteral ;
+    rdfs:comment "Contains the reason for the job being in the PEND state, written to the sbatchd.log.host_name file." .
+
+hpc:tsubcommandinteractive a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tssubcommand ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a terminal display is visible on the submission host after the job starts." .
+
+hpc:Commandwindow a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Represents a command window for non-GUI jobs." .
+
+hpc:outputdisplay a owl:ObjectProperty ;
+    rdfs:domain hpc:Commandwindow ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Indicates the output display for non-GUI jobs." .
+
+hpc:preexecutioncommands a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Represents the pre-execution commands for a job." .
+
+hpc:postexecutioncommands a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Represents the post-execution commands for a job." .
+
+hpc:Jobstate a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents the state of a job." .

@@ -1,0 +1,63 @@
+hpc:Resourceconnector a owl:Class .
+
+# Microsoft Azure CycleCloud Resource Connector Subclass
+hpc:Azurecyclecloudresourceconnector a owl:Class ;
+  rdfs:subClassOf hpc:Resourceconnector .
+
+# Configuration File Class
+hpc:Configurationfile a owl:Class .
+
+# Mandatory Fields for Azure CycleCloud Provider Configuration
+hpc:azureCcServer a owl:ObjectProperty ;
+  rdfs:domain hpc:Azurecyclecloudresourceconnector ;
+  rdfs:range xsd:string .
+
+hpc:azureCcCluster a owl:ObjectProperty ;
+  rdfs:domain hpc:Azurecyclecloudresourceconnector ;
+  rdfs:range xsd:string .
+
+hpc:azureCcUser a owl:ObjectProperty ;
+  rdfs:domain hpc:Azurecyclecloudresourceconnector ;
+  rdfs:range xsd:string .
+
+hpc:azureCcPassword a owl:ObjectProperty ;
+  rdfs:domain hpc:Azurecyclecloudresourceconnector ;
+  rdfs:range xsd:string .
+
+hpc:azureCcRegion a owl:ObjectProperty ;
+  rdfs:domain hpc:Azurecyclecloudresourceconnector ;
+  rdfs:range xsd:string .
+
+# Template File Class
+hpc:Templatefile a owl:Class .
+
+# Template File with ImageId and VmType
+hpc:Templatewithimageandvmtype a owl:Class ;
+  rdfs:subClassOf hpc:Templatefile .
+
+# Template File with Cluster Configuration
+hpc:Templatewithclusterconfig a owl:Class ;
+  rdfs:subClassOf hpc:Templatefile .
+
+# Job Submission Class
+hpc:Jobsubmission a owl:Class .
+
+# Monitoring Hosts Class
+hpc:Hostmonitoring a owl:Class .
+
+# Job Submission Object Property
+hpc:submitjob a owl:ObjectProperty ;
+  rdfs:domain hpc:User ;
+  rdfs:range hpc:Jobsubmission .
+
+# Monitor Hosts Object Property
+hpc:monitorhosts a owl:ObjectProperty ;
+  rdfs:domain hpc:User ;
+  rdfs:range hpc:Hostmonitoring .
+
+# Reference File Class
+hpc:Referencefile a owl:Class .
+
+# cyclecloudprov_templates.json Reference File
+hpc:Cyclecloudprovtemplates a owl:Class ;
+  rdfs:subClassOf hpc:Referencefile .

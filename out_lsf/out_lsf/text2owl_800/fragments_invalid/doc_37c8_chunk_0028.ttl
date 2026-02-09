@@ -1,0 +1,23 @@
+hpc:Podmancontainerjob a owl:Class .
+hpc:Podman a owl:Class .
+hpc:Podmandocker a owl:Class .
+hpc:Lsfserverhost a owl:Class .
+hpc:cgroups v1 or v2 a owl:ObjectProperty .
+hpc:haspodmancontainerengine a owl:ObjectProperty .
+hpc:haslsfserverhost a owl:ObjectProperty .
+hpc:haspodmanpackages a owl:ObjectProperty .
+hpc:hassubuidfiles a owl:ObjectProperty .
+hpc:hassubgidfiles a owl:ObjectProperty .
+hpc:Podmancontainerjob rdfs:subClassOf hpc:Job .
+hpc:Lsfserverhost rdfs:subClassOf owl:Thing .
+hpc:Haspodmancontainerengine rdfs:domain hpc:Podmancontainerjob ;
+                                     rdfs:range hpc:Podman .
+hpc:Haslsfserverhost rdfs:domain hpc:Podmancontainerjob ;
+                               rdfs:range hpc:Lsfserverhost .
+hpc:Haspodmanpackages rdfs:domain hpc:Lsfserverhost ;
+                          rdfs:range rdf:List .
+hpc:Hassubuidfiles rdfs:domain hpc:Lsfserverhost ;
+                        rdfs:range rdf:List .
+hpc:Hassubgidfiles rdfs:domain hpc:Lsfserverhost ;
+                     rdfs:range rdf:List .
+hpc:Cgroups v1 or v2 rdfs:domain hpc:Lsfserverhost .

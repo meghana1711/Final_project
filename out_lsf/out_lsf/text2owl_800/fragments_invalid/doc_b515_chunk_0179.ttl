@@ -1,0 +1,19 @@
+hpc:Queue a owl:Class. .
+hpc:queuepriority a owl:ObjectProperty. .
+hpc:jobpriority a owl:DatatypeProperty. .
+hpc:queueorder a owl:ObjectProperty. .
+hpc:QueueType a owl:Enum. .
+hpc:FCFS rdf:type hpc:QueueType;
+   rdfs:comment "First Come First Served". .
+hpc:FairShare rdf:type hpc:QueueType;
+   rdfs:comment "Fair Share". .
+hpc:CrossQueueFairShare rdf:type hpc:QueueType;
+   rdfs:comment "Cross-Queue Fair Share". .
+hpc:HostPartitionFairShare rdf:type hpc:QueueType;
+   rdfs:comment "Host Partition User-Based Fair Share". .
+hpc:UserBasedFairShare rdf:type hpc:QueueType;
+   rdfs:comment "User-Based Fair Share". .
+hpc:Queue a rdfs:subClassOf [ a owl:Class ;
+   rdfs:subClassOf hpc:Resource ] . .
+hpc:Queuepriority rdfs:domain hpc:Queue;
+   rdfs:range xsd:integer. .

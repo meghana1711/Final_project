@@ -1,0 +1,27 @@
+hpc:Licenseproject a owl:Class .
+hpc:righttolicenses a owl:ObjectProperty .
+hpc:defaultproject a owl:ObjectProperty .
+hpc:Distributionpolicy a owl:Class .
+hpc:Servicedomain a owl:Class .
+hpc:Project a owl:Class .
+hpc:ShareRatio a xsd:decimal .
+hpc:NumberOwned a xsd:decimal .
+hpc:TotalLicenses a xsd:nonNegativeInteger .
+
+hpc:Licenseproject rdfs:subClassOf hpc:Project .
+hpc:Distributionpolicy rdfs:subClassOf hpc:Project .
+
+hpc:Righttolicenses rdfs:domain hpc:Licenseproject ;
+                      rdfs:range hpc:Licenseproject .
+hpc:Defaultproject rdfs:domain hpc:Licenseproject ;
+                    rdfs:range hpc:Project .
+
+hpc:Distributionpolicy rdfs:domain hpc:Servicedomain ;
+                       rdfs:range hpc:Distributionpolicy .
+hpc:Servicedomain rdfs:domain hpc:Lanserver ;
+                   rdfs:range hpc:Servicedomain .
+
+hpc:Hasproject rdfs:range hpc:Project ;
+               rdfs:domain hpc:Licenseproject .
+hpc:Hasservicedomain rdfs:range hpc:Servicedomain ;
+                     rdfs:domain hpc:Distributionpolicy .

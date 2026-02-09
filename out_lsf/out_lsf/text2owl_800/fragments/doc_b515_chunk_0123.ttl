@@ -1,0 +1,55 @@
+hpc:Systemreservation a owl:Class ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:comment "A system reservation that prevents other jobs from using the reserved slots or hosts while active." .
+
+hpc:Dynamicallyscheduledreservation a owl:Class ;
+    rdfs:subClassOf hpc:Systemreservation ;
+    rdfs:comment "A dynamically scheduled reservation accepts jobs based on currently available resources." .
+
+hpc:brsvsub a owl:ObjectProperty ;
+    rdfs:domain hpc:Dynamicallyscheduledreservation ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "The command used to create a dynamically scheduled reservation." .
+
+hpc:jobscheduledforreservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Reservation ;
+    rdfs:comment "The reservation that a job is scheduled for." .
+
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A reservation of computing resources." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A job to be executed on a computing system." .
+
+hpc:schmodAdvrsv a owl:ObjectProperty ;
+    rdfs:domain hpc:Pluginmodule ;
+    rdfs:range () ;
+    rdfs:comment "The function that enables advance reservation in a cluster." .
+
+hpc:Pluginmodule a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A module that provides functionality for a computing system." .
+
+hpc:resourcereservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbresources ;
+    rdfs:range hpc:Resourcereservationpolicy ;
+    rdfs:comment "The property that defines advance reservation user policies." .
+
+hpc:Lsbresources a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The resources managed by LSF." .
+
+hpc:Resourcereservationpolicy a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A policy that determines who can create and delete advance reservations." .
+
+hpc:lsbModules a owl:DatatypeProperty ;
+    rdfs:domain hpc:Pluginmodule ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The list of modules configured in the lsb.modules file." .
+
+hpc:USER_ADVANCE_RESERVATION a xsd:string ;
+    rdfs:comment "An obsolete parameter for enabling advance reservation in LSF Version 9 and later." .

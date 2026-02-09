@@ -1,0 +1,15 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Dockeruserservice a owl:Class .
+hpc:containerimage a owl:ObjectProperty .
+hpc:LsbContainerImage rdfs:domain hpc:Dockeruserservice ;
+    rdfs:range xsd:string .
+hpc:corelimit a owl:DatatypeProperty .
+hpc:cpuFrequency a owl:DatatypeProperty .
+hpc:Corelimit rdfs:range xsd:integer ;
+    rdfs:domain hpc:Dockeruserservice .
+hpc:CpuFrequency rdfs:range xsd:float .
+hpc:CpuFrequency rdfs:domain hpc:Dockeruserservice .

@@ -1,0 +1,20 @@
+hpc:Hostgroup a owl:Class .
+hpc:Hostgroupname rdfs:domain hpc:Hostgroup .
+hpc:Hostgroupname rdfs:range xsd:string .
+
+hpc:hostmember a owl:ObjectProperty .
+hpc:Hostmember rdfs:domain hpc:Hostgroup .
+hpc:Hostmember rdfs:range xsd:string .
+
+hpc:Externallydefinedhostgroup rdfs:subClassOf hpc:Hostgroup .
+hpc:ExternallyDefinedHostGroup rdf:value "!" .
+
+hpc:Excludedhostgroup rdfs:subClassOf hpc:Hostgroup .
+hpc:ExcludedHostGroup rdf:value "~" .
+
+hpc:Wildcard rdfs:subClassOf hpc:Hostmember .
+hpc:Wildcard rdf:value "*" .
+
+hpc:Hostrange rdfs:subClassOf hpc:Hostmember .
+hpc:HostRange rdf:value "[integer1-integer2]" .
+hpc:HostRange rdf:value "[integer1:integer2]" .

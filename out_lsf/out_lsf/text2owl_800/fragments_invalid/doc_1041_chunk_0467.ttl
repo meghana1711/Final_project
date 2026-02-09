@@ -1,0 +1,52 @@
+hpc:Slotreserve a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The maximum time in seconds a slot is reserved for a pending job in the queue." ;
+    rdfs:label "SlotReserve" ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:isDefinedBy <https://example.com/lsb.queues> .
+
+hpc:Resumecond a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The conditions that must be satisfied to resume a suspended job on a host." ;
+    rdfs:label "ResumeCond" ;
+    rdfs:domain hpc:Host ;
+    rdfs:isDefinedBy <https://example.com/lsb.queues> .
+
+hpc:Stopcond a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The conditions that determine whether a job that is running on a host needs to be suspended." ;
+    rdfs:label "StopCond" ;
+    rdfs:domain hpc:Host ;
+    rdfs:isDefinedBy <https://example.com/lsb.queues> .
+
+hpc:Jobstarter a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "An executable file that runs immediately before the batch job, taking the batch job file as an input argument." ;
+    rdfs:label "JobStarter" ;
+    rdfs:domain hpc:Queue ;
+    rdfs:isDefinedBy <https://example.com/lsb.queues> .
+
+hpc:sendjobsto a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range rdf:List ;
+    rdfs:comment "LSF multicluster capability. List of remote queue names to which the queue forwards jobs." ;
+    rdfs:label "SendJobsTo" ;
+    rdfs:isDefinedBy <https://example.com/lsb.queues> .
+
+hpc:receivejobsfrom a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range rdf:List ;
+    rdfs:comment "LSF multicluster capability. List of remote cluster names from which the queue receives jobs." ;
+    rdfs:label "ReceiveJobsFrom" ;
+    rdfs:isDefinedBy <https://example.com/lsb.queues> .
+
+hpc:Imptjobbklg a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "LSF multicluster capability. Specifies the pending job limit for a receive-jobs queue." ;
+    rdfs:label "ImptJobbklg" ;
+    rdfs:domain hpc:Queue ;
+    rdfs:isDefinedBy <https://example.com/lsb.queues> .
+
+hpc:Impttaskbklg a owl:Class ;
+    rdfs:subClassOf owl

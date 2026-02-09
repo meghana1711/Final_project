@@ -1,0 +1,62 @@
+hpc:indexrangestartn a owl:DatatypeProperty ;
+    rdfs:domain hpc:Indexrange ;
+    rdfs:range xsd:integer .
+
+hpc:indexrangeendn a owl:DatatypeProperty ;
+    rdfs:domain hpc:Indexrange ;
+    rdfs:range xsd:integer .
+
+hpc:indexrangestepn a owl:DatatypeProperty ;
+    rdfs:domain hpc:Indexrange ;
+    rdfs:range xsd:integer .
+
+hpc:Jobexception a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:versionnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobexception ;
+    rdfs:range xsd:string .
+
+hpc:eventtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobexception ;
+    rdfs:range xsd:integer .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobexception ;
+    rdfs:range xsd:integer .
+
+hpc:exceptmask a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobexception ;
+    rdfs:range xsd:integer .
+
+hpc:exceptMask_missched rdf:value 0x01 ;
+    hpc:exceptMask rdf:type hpc:ExceptionId .
+
+hpc:exceptMask_overrun rdf:value 0x02 ;
+    hpc:exceptMask rdf:type hpc:ExceptionId .
+
+hpc:exceptMask_underrun rdf:value 0x04 ;
+    hpc:exceptMask rdf:type hpc:ExceptionId .
+
+hpc:exceptMask_cantrun rdf:value 0x10 ;
+    hpc:exceptMask rdf:type hpc:ExceptionId .
+
+hpc:exceptMask_hostfail rdf:value 0x20 ;
+    hpc:exceptMask rdf:type hpc:ExceptionId .
+
+hpc:exceptMask_startfail rdf:value 0x40 ;
+    hpc:exceptMask rdf:type hpc:ExceptionId .
+
+hpc:exceptMask_runtime_est_exceeded rdf:value 0x100 ;
+    hpc:exceptMask rdf:type hpc:ExceptionId .
+
+hpc:actmask a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobexception ;
+    rdfs:range xsd:integer .
+
+hpc:actMask_setexcept rdf:value 0x08 ;
+    hpc:actMask rdf:type hpc:ActionId .
+
+hpc:timeevent a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobexception ;
+    rdfs:range xsd:integer .

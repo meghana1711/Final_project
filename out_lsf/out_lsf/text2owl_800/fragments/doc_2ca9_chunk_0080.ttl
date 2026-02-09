@@ -1,0 +1,41 @@
+hpc:LsfDesktopClient a owl:Class .
+hpc:enables_job_submission rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfDesktopClient ;
+    rdfs:range hpc:JobSubmission .
+hpc:requires_environment_variable rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfDesktopClient ;
+    rdfs:range xsd:string .
+hpc:LSF_DESKTOP_CLIENT rdf:type hpc:Environment_Variable ;
+    rdfs:label "LSF_DESKTOP_CLIENT" ;
+    rdfs:comment "Environment variable to enable LSF desktop client for job submission." .
+hpc:LSF_TOP rdf:type hpc:Environment_Variable ;
+    rdfs:label "LSF_TOP" ;
+    rdfs:comment "Environment variable for Windows machines to set the LSF desktop client path." .
+hpc:paclogon rdf:type hpc:Command ;
+    rdfs:label "paclogon" ;
+    rdfs:comment "Command to log in to the LSF Application Center desktop client." .
+hpc:bsub rdf:type hpc:Command ;
+    rdfs:label "bsub" ;
+    rdfs:comment "Command to submit jobs from the LSF Application Center desktop client." .
+
+# LSF Job Submission Environment
+hpc:JobSubmissionEnvironment a owl:Class .
+hpc:is_submitted_from rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:JobSubmissionEnvironment ;
+    rdfs:range hpc:LsfDesktopClient .
+
+# LSF Platform Support
+hpc:Platform a owl:Class .
+hpc:has_kernel rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Platform ;
+    rdfs:range xsd:string .
+hpc:has_glibc rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Platform ;
+    rdfs:range xsd:string .
+
+hpc:RHEL_7_8 a hpc:Platform ;
+    hpc:has_kernel "3.10" ;
+    hpc:has_glibc "2.17" .
+hpc:RHEL_8_1 a hpc:Platform ;
+    hpc:has_kernel "4.18.0" ;
+    hpc:has_glibc "2.28" .

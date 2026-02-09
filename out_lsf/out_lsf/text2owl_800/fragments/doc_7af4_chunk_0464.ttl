@@ -1,0 +1,14 @@
+hpc:infinitInt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The number of requeue times is unlimited." .
+
+hpc:maxPreexecRetry a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum number of times to attempt the pre-execution command of a job from a remote cluster." .
+
+hpc:maxRschedTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Determines how long a multicluster job stays pending in the execution cluster before returning to the submission cluster." .

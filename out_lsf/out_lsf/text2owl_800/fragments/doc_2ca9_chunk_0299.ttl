@@ -1,0 +1,29 @@
+hpc:Reservedflexnetmanagerlicenses a owl:Class .
+hpc:lmReservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservedflexnetmanagerlicenses ;
+    rdfs:range xsd:string .
+
+hpc:Customizeddynamiclicenseinformationoutput a owl:Class .
+hpc:blstat a owl:ObjectProperty ;
+    rdfs:domain hpc:Customizeddynamiclicenseinformationoutput .
+
+hpc:blstatF a owl:ObjectProperty ;
+    rdfs:domain hpc:Customizeddynamiclicenseinformationoutput .
+
+hpc:Knownissue a owl:Class .
+hpc:cannotgetlicenseinfofromlicenseserver a owl:ObjectProperty ;
+    rdfs:domain hpc:Knownissue .
+
+hpc:workaroundcannotgetlicenseinfofromlicenseserver a owl:ObjectProperty ;
+    rdfs:domain hpc:Knownissue ;
+    rdfs:range xsd:string .
+
+hpc:incorrectlicensecountifjobsuspended a owl:ObjectProperty ;
+    rdfs:domain hpc:Knownissue .
+
+hpc:workaroundincorrectlicensecountifjobsuspended a owl:ObjectProperty ;
+    rdfs:domain hpc:Knownissue ;
+    rdfs:range xsd:string .
+
+hpc:licenseusagecountlargerthanactualtotal a owl:ObjectProperty ;
+    rdfs:domain hpc:Knownissue .

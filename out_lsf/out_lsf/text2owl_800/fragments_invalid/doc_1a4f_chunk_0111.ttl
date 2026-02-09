@@ -1,0 +1,64 @@
+hpc:Allocationplan a owl:Class .
+hpc:hastimestamp a owl:DatatypeProperty .
+hpc:hasplans a owl:ObjectProperty .
+hpc:Plan a owl:Class .
+hpc:hasstarttimeh a owl:DatatypeProperty .
+hpc:hasfinishtimeh a owl:DatatypeProperty .
+hpc:allocation a owl:ObjectProperty .
+hpc:Resource a owl:Class .
+hpc:hasname a owl:DatatypeProperty .
+hpc:hasstarttimehalloc a owl:DatatypeProperty .
+hpc:hasfinishtimehalloc a owl:DatatypeProperty .
+
+# Job
+hpc:Job a owl:Class .
+hpc:hasuser a owl:ObjectProperty .
+hpc:hasproject a owl:ObjectProperty .
+hpc:hasstatus a owl:DatatypeProperty .
+hpc:hasqueue a owl:DatatypeProperty .
+hpc:hassubmittime a owl:DatatypeProperty .
+hpc:hascommand a owl:DatatypeProperty .
+hpc:haspriority a owl:DatatypeProperty .
+hpc:hasestimatedruntime a owl:DatatypeProperty .
+hpc:haspendingreasons a owl:DatatypeProperty .
+hpc:hasschedulingparameters a owl:ObjectProperty .
+hpc:hasresourcerequirementdetails a owl:ObjectProperty .
+
+# Scheduling Parameters
+hpc:Schedulingparameters a owl:Class .
+hpc:hasr15s a owl:DatatypeProperty .
+hpc:hasr1m a owl:DatatypeProperty .
+hpc:hasr15m a owl:DatatypeProperty .
+hpc:hasut a owl:DatatypeProperty .
+hpc:haspg a owl:DatatypeProperty .
+hpc:hasio a owl:DatatypeProperty .
+hpc:hasls a owl:DatatypeProperty .
+hpc:hasit a owl:DatatypeProperty .
+hpc:hastmp a owl:DatatypeProperty .
+hpc:hasswp a owl:DatatypeProperty .
+hpc:hasmem a owl:DatatypeProperty .
+hpc:hasloadsched a owl:DatatypeProperty .
+hpc:hasloadstop a owl:DatatypeProperty .
+
+# Resource Requirement Details
+hpc:Resourcerequirementdetails a owl:Class .
+hpc:hascombined a owl:ObjectProperty .
+hpc:hasorder a owl:ObjectProperty .
+
+# Combined and Order
+hpc:Combined a owl:Class .
+hpc:hastype a owl:DatatypeProperty .
+hpc:hasordertime a owl:DatatypeProperty .
+
+# Order
+hpc:Order a owl:Class .
+hpc:hastype a owl:DatatypeProperty .
+hpc:hasordertime a owl:DatatypeProperty .
+
+# Declare domain and range for properties
+rdfs:domain hpc:Allocationplan hpc:Hastimestamp .
+rdfs:domain hpc:Plan hpc:Hasstarttimeh .
+rdfs:domain hpc:Plan hpc:Hasfinishtimeh .
+rdfs:domain hpc:Plan hpc:Allocation .
+rdfs:domain hpc:Resource hpc:Hasname .
+rdfs:domain hpc:Allocation

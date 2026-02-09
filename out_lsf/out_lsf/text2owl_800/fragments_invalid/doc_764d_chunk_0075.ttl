@@ -1,0 +1,24 @@
+hpc:Submissioncluster a owl:Class .
+hpc:Executioncluster a owl:Class .
+hpc:jobpriority a owl:ObjectProperty .
+hpc:submissionjobpriority a owl:DatatypeProperty .
+hpc:maxUserPriority a owl:DatatypeProperty .
+
+hpc:Submissioncluster rdfs:subClassOf owl:Class .
+hpc:Executioncluster rdfs:subClassOf owl:Class .
+hpc:Jobpriority rdfs:domain hpc:Submissioncluster ;
+                  rdfs:range xsd:decimal .
+hpc:Submissionjobpriority rdfs:domain hpc:Submissioncluster ;
+                         rdfs:range xsd:decimal .
+hpc:MaxUserPriority rdfs:domain hpc:Submissioncluster ;
+                      rdfs:range xsd:decimal .
+hpc:MaxUserPriorityExecCluster rdfs:range xsd:decimal .
+hpc:MaxUserPrioritySubCluster rdfs:range xsd:decimal .
+
+hpc:jobPriority a owl:ObjectProperty ;
+                 rdfs:subPropertyOf hpc:JobPriority ;
+                 rdfs:domain hpc:Submissioncluster ;
+                 rdfs:range xsd:decimal .
+hpc:job_priority [ a owl:Restriction ;
+                    rdfs:onProperty hpc:job_priority ;
+                    rdfs:allValuesFrom (xsd:decimalMinInclusive "1"^^xsd:decimal) ] .

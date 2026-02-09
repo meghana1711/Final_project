@@ -1,0 +1,37 @@
+hpc:Memorythreshold a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:usedMemorySizeToMaxMemorySizeRatio ;
+                        rdfs:domain hpc:Memorythreshold ;
+                        owl:hasValue xsd:integer ;
+                        owl:minValue 1 ;
+                        owl:maxValue 100 ] .
+
+hpc:Swapthreshold a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:usedSwapSizeToMaxSwapSizeRatio ;
+                        rdfs:domain hpc:Swapthreshold ;
+                        owl:hasValue xsd:integer ;
+                        owl:minValue 0 ;
+                        owl:maxValue 100 ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:swapThresholdExcluded ;
+                        rdfs:domain hpc:Swapthreshold ;
+                        owl:hasValue xsd:integer ;
+                        owl:datatype xsd:boolean ] .
+
+hpc:usedmemorysizetomaxmemorysizeratio a owl:DatatypeProperty ;
+    rdfs:domain hpc:Memorythreshold ;
+    rdfs:range xsd:decimal .
+
+hpc:usedswapsizetomaxswapsizeratio a owl:DatatypeProperty ;
+    rdfs:domain hpc:Swapthreshold ;
+    rdfs:range xsd:decimal .
+
+hpc:swapthresholdexcluded a owl:ObjectProperty ;
+    rdfs:domain hpc:Swapthreshold ;
+    rdfs:range xsd:boolean .
+
+hpc:memorylimitenforcementtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Memorythreshold ;
+    rdfs:range xsd:integer ;
+    rdfs:rangeMinimum SBD_SLEEP_TIME .

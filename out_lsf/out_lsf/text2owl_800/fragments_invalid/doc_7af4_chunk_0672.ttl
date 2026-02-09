@@ -1,0 +1,60 @@
+hpc:LsbBsubParseScript a owl:Class .
+hpc:hasLSB_BSUB_PARSE_SCRIPTValue an owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbBsubParseScript ;
+    rdfs:range xsd:string .
+hpc:LSB_BSUB_PARSE_SCRIPT_Y a owl:NamedIndividual ;
+    hpc:hasLSB_BSUB_PARSE_SCRIPTValue "Y" .
+hpc:LSB_BSUB_PARSE_SCRIPT_N a owl:NamedIndividual ;
+    hpc:hasLSB_BSUB_PARSE_SCRIPTValue "N" .
+
+# Job Script Syntax and Execution
+hpc:Jobscript a owl:Class .
+hpc:isjobscript a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobscript ;
+    rdfs:range xsd:boolean .
+hpc:JobScript_ASCII a owl:NamedIndividual ;
+    hpc:isJobScript true .
+hpc:JobScript_Binary a owl:NamedIndividual ;
+    hpc:isJobScript false .
+
+# Job Script Execution Modes
+hpc:Commandlinejobscript a owl:Class ;
+    rdfs:subClassOf hpc:Jobscript .
+hpc:Filebasedjobscript a owl:Class ;
+    rdfs:subClassOf hpc:Jobscript .
+
+# Job Script Options
+hpc:Jobscriptoption a owl:Class .
+hpc:hasjobscriptoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobscript ;
+    rdfs:range hpc:Jobscriptoption .
+
+# Busers Command Output Format
+hpc:LsbBusersFormat a owl:Class .
+hpc:hasLSB_BUSERS_FORMATValue an owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbBusersFormat ;
+    rdfs:range xsd:string .
+
+# Busers Command Fields
+hpc:User a owl:Class .
+hpc:Job a owl:Class .
+hpc:Max a owl:Class .
+hpc:nstart a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+hpc:pend a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+hpc:run a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+hpc:ssusp a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+hpc:ususp a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+hpc:rsv a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+hpc:njobs a owl:

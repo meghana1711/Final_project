@@ -1,0 +1,19 @@
+hpc:lsfDispatcherLogdir a owl:DatatypeProperty ;
+  rdfs:domain hpc:Lsf ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Specifies the path to the log files for slot allocation decisions for queue-based fair share." .
+
+hpc:lsfLogQueueSize a owl:DatatypeProperty ;
+  rdfs:domain hpc:Lsf ;
+  rdfs:range xsd:nonNegativeInteger ;
+  rdfs:comment "Configures the maximum number of entries in the logging queue that the logging thread uses before the logging queue is full." .
+
+hpc:lsfLogThread a owl:ObjectProperty ;
+  rdfs:domain hpc:Lsf ;
+  rdfs:range hpc:Boolean ;
+  rdfs:comment "Enables logging threads." .
+
+hpc:lsfDjobTaskRegWaitTime a owl:DatatypeProperty ;
+  rdfs:domain hpc:Lsf ;
+  rdfs:range xsd:nonNegativeInteger ;
+  rdfs:comment "Allows users/admin to define a fixed timeout value to override the internal timeout set by LSF in order to avoid task registration timeout for a large parallel job." .

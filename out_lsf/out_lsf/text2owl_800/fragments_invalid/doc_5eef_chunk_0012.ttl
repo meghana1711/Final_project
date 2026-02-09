@@ -1,0 +1,64 @@
+hpc:Command a owl:Class .
+hpc:File a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Usergroup a owl:Class .
+hpc:Tag a owl:Class .
+hpc:Configuration a owl:Class .
+hpc:Connection a owl:Class .
+
+# Object Properties
+hpc:hascommand a owl:ObjectProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range hpc:Command .
+hpc:hascluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Cluster .
+hpc:hasusergroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Usergroup .
+hpc:hastag a owl:ObjectProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range hpc:Tag .
+
+# Datatype Properties
+hpc:hasoctalmode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+hpc:hasabsfilepath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+hpc:hastagname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tag ;
+    rdfs:range xsd:string .
+hpc:hasusername a owl:DatatypeProperty ;
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Tag ;
+    rdfs:range xsd:string .
+hpc:hasclustername a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+# Subclass Relations
+hpc:Tag a rdfs:subClassOf hpc:Command .
+
+# Range Restrictions
+hpc:Hasoctalmode rdfs:range xsd:nonNegativeInteger .
+
+# Object Property Domain and Range Restrictions
+hpc:Hascluster rdfs:domain hpc:Command ;
+    owl:hasValue hpc:cluster_name ;
+    owl:minCardinality 1 ;
+    owl:maxCardinality 1 .
+hpc:Hasusergroup rdfs:domain hpc:Command ;
+    owl:hasValue hpc:user_group_name ;
+    owl:minCardinality 1 ;
+    owl:maxCardinality 1 .
+hpc:Hastag rdfs:domain hpc:File ;
+    owl:hasValue hpc:tag_name ;
+    owl:minCardinality 1 ;
+    owl:maxCardinality * .
+
+# Data Manager Context
+hpc:hasdmd a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Cluster .

@@ -1,0 +1,29 @@
+hpc:maxjobslot a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of job slots available." .
+
+hpc:hasmaxjobslot a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "The host that has the maximum number of job slots." .
+
+hpc:njob a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of tasks for all jobs that are dispatched to the host." .
+
+hpc:hasnjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "The host that has the total number of tasks for jobs dispatched." .
+
+hpc:run a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of tasks for all running jobs on the host." .
+
+hpc:hasrun a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "The host that has the total number of tasks for running jobs." .

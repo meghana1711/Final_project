@@ -1,0 +1,42 @@
+hpc:Textbasedterminalinterface a owl:Class .
+hpc:Graphicuserinterface a owl:Class .
+
+# Interactive Task classes
+hpc:Interactivetask a owl:Class .
+hpc:Nonbatchutility a owl:Class .
+hpc:runsinteractivetask a owl:ObjectProperty ;
+    rdfs:domain hpc:Nonbatchutility ;
+    rdfs:range hpc:Interactivetask .
+
+# Running Interactive Tasks options
+hpc:runinteractivetaskwithoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Nonbatchutility ;
+    rdfs:range hpc:Runinteractivetaskwithoptioninstance .
+hpc:withioption a owl:DatatypeProperty ;
+    rdfs:domain hpc:Runinteractivetaskwithoption ;
+    rdfs:range xsd:string .
+
+# Remote Interactive Task classes
+hpc:Remoteinteractivetask a owl:Class ;
+    rdfs:subClassOf hpc:Interactivetask .
+
+# Job Control classes
+hpc:Jobcontrol a owl:Class .
+hpc:performableonremotetask a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobcontrol ;
+    rdfs:range hpc:Remoteinteractivetask .
+
+# Hiding Remote Execution classes
+hpc:Onelineshellscript a owl:Class .
+hpc:Aliases a owl:Class .
+hpc:hidesremoteexecution a owl:ObjectProperty ;
+    rdfs:domain hpc:Onelineshellscript, hpc:Aliases ;
+    rdfs:range hpc:Remoteinteractivetask .
+
+# Interactive Processing and Scheduling classes
+hpc:Interactiveprocessing a owl:Class .
+hpc:Interactiveschedulingpolicy a owl:Class .
+
+# Shared Files and User IDs classes
+hpc:Sharedfiles a owl:Class .
+hpc:Shareduserids a owl:Class .

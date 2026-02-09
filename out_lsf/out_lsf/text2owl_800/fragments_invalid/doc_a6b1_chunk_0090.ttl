@@ -1,0 +1,18 @@
+hpc:Host a owl:Class .
+hpc:Cpufactor rdfs:domain hpc:Host .
+hpc:Cpufactor rdfs:range xsd:decimal .
+hpc:Benchmarkresult a owl:Class .
+hpc:Normalizedrating rdfs:domain hpc:Benchmarkresult .
+hpc:Normalizedrating rdfs:range xsd:decimal .
+hpc:RunsBenchmark procedure rdf:ID "runBenchmark" .
+hpc:Runsbenchmark hpc:Cpufactor rdfs:domain hpc:Host .
+hpc:Runsbenchmark hpc:Benchmarkresult rdfs:range hpc:Benchmarkresult .
+hpc:SetCPUFactor procedure rdf:ID "setCPUFactor" .
+hpc:Setcpufactor hpc:Cpufactor rdfs:domain hpc:Host .
+hpc:Setcpufactor hpc:Cpufactor rdfs:range xsd:decimal .
+hpc:SlowestHosts subClassOf hpc:Host .
+hpc:FasterHost subClassOf hpc:Host .
+hpc:Cpufactorofslowesthosts hpc:cpufactor rdfs:subPropertyOf hpc:CPUFactor .
+hpc:Cpufactorofslowesthosts rdfs:domain hpc:Slowesthosts .
+hpc:Cpufactoroffasterhosts hpc:cpufactor rdfs:subPropertyOf hpc:CPUFactor .
+hpc:Cpufactoroffasterhosts rdfs:domain hpc:Fasterhost .

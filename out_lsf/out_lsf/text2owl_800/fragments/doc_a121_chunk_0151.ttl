@@ -1,0 +1,41 @@
+hpc:Jobstarter a owl:Class .
+hpc:Environment a owl:Class .
+hpc:Job a owl:Class .
+
+hpc:Hasenvironment rdfs:domain hpc:Job .
+hpc:Hasenvironment rdfs:range hpc:Environment .
+
+hpc:runsatlevel a owl:ObjectProperty .
+hpc:Runsatlevel rdfs:domain hpc:Jobstarter .
+hpc:Runsatlevel rdfs:range xsd:string .
+
+hpc:Isinteractivejob rdfs:domain hpc:Jobstarter .
+hpc:Isinteractivejob rdfs:range xsd:boolean .
+
+hpc:Usescommandlevel rdfs:subClassOf hpc:Jobstarter .
+hpc:Usesapplicationlevel rdfs:subClassOf hpc:Jobstarter .
+hpc:Usesqueuelevel rdfs:subClassOf hpc:Jobstarter .
+
+hpc:Usescommandleveljob rdfs:subClassOf hpc:Jobstarter .
+hpc:Usesbatchjob rdfs:subClassOf hpc:Jobstarter .
+hpc:Usesinteractivejobwithbi rdfs:subClassOf hpc:Jobstarter .
+
+hpc:usesapplicationleveljobstarter a owl:ObjectProperty .
+hpc:usesqueueleveljobstarter a owl:ObjectProperty .
+
+hpc:Usescommandleveljobstarter rdfs:domain hpc:Jobstarter .
+hpc:Usescommandleveljobstarter rdfs:range xsd:string .
+
+hpc:Usesapplicationleveljobstarter rdfs:domain hpc:Lsf .
+hpc:Usesapplicationleveljobstarter rdfs:range hpc:Jobstarter .
+
+hpc:Usesqueueleveljobstarter rdfs:domain hpc:Lsf .
+hpc:Usesqueueleveljobstarter rdfs:range hpc:Jobstarter .
+
+hpc:useslsf a owl:ObjectProperty .
+hpc:usesaliasrenderer a owl:ObjectProperty .
+hpc:usesibmrationalclearcase a owl:ObjectProperty .
+
+hpc:Useslsf rdfs:domain hpc:Jobstarter .
+hpc:Usesaliasrenderer rdfs:domain hpc:Jobstarter .
+hpc:Usesibmrationalclearcase rdfs:domain hpc:Jobstarter .

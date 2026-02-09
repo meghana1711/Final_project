@@ -1,0 +1,33 @@
+hpc:Lsfhost a owl:Class .
+hpc:hasValidValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfhost ;
+    rdfs:range xsd:string .
+
+hpc:Lsfadmin a owl:Class .
+hpc:hasAdminName rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfadmin ;
+    rdfs:range xsd:string .
+
+hpc:isPrimary rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadmin ;
+    rdfs:range hpc:Lsfadmin .
+
+hpc:Lsfadminlist a owl:Class .
+hpc:hasAdminList rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfadminlist ;
+    rdfs:range xsd:string .
+
+hpc:Lsfhostlist a owl:Class .
+hpc:hasHostList rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfhostlist ;
+    rdfs:range xsd:string .
+
+hpc:LSF_ADD_CLIENTS rdf:type owl:ObjectProperty .
+hpc:LsfAddClients rdfs:domain hpc:Lsfhostlist ;
+hpc:LsfAddClients rdfs:range hpc:Lsfhost .
+
+hpc:LSF_ADMINS rdf:type owl:ObjectProperty .
+hpc:LsfAdmins rdfs:domain hpc:Lsfadminlist ;
+hpc:LsfAdmins rdfs:range hpc:Lsfadmin .
+
+hpc:Noclienthostsinstalled a owl:Class .

@@ -1,0 +1,71 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "A job in the LSF system." .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "A host in the LSF system." .
+
+hpc:busy a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a host is busy or not." .
+
+hpc:jobstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The status of a job." .
+
+hpc:jobsleeptime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "The time a job takes to run." .
+
+hpc:mailreport a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Mail ;
+    rdfs:comment "The mail sent when the job completes." .
+
+hpc:defaultusermapping a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Usermapping ;
+    rdfs:comment "The default user mapping in LSF." .
+
+hpc:Unixonlycluster a owl:Class ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:comment "A UNIX-only cluster." .
+
+hpc:Mixedcluster a owl:Class ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:comment "A mixed UNIX-Windows cluster." .
+
+hpc:crossplatformoperation a owl:ObjectProperty ;
+    rdfs:domain hpc:Mixedcluster ;
+    rdfs:range hsd:Boolean ;
+    rdfs:comment "Indicates whether cross-platform operation is possible in a mixed cluster." .
+
+hpc:username a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of a user." .
+
+hpc:lsfuserdomain a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Domain ;
+    rdfs:comment "The LSF user domain." .
+
+hpc:Domain a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "A domain in the LSF system." .
+
+hpc:jobsubmission a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Jobsubmission ;
+    rdfs:comment "The act of submitting a job." .
+
+hpc:jobexecution a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Jobexecution ;
+    rdfs:comment "The act of executing a job." .
+
+hpc:AccountMapping

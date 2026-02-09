@@ -1,0 +1,27 @@
+hpc:VmType a owl:Class .
+hpc:resourcemap a owl:ObjectProperty .
+hpc:templateid a owl:DatatypeProperty .
+hpc:BoolResource a owl:Class .
+
+hpc:VmType rdfs:subClassOf rdf:Resource .
+hpc:Resourcemap rdfs:domain hpc:VmType ;
+                               rdfs:range rdf:Bag .
+hpc:Templateid rdfs:domain hpc:VmType ;
+                               rdfs:range xsd:string .
+hpc:BoolResource rdfs:subClassOf rdf:Resource .
+
+hpc:CloudProvider a owl:Class .
+hpc:userDataScript a owl:DatatypeProperty .
+
+hpc:CloudProvider rdfs:subClassOf rdf:Resource .
+hpc:UserDataScript rdfs:domain hpc:CloudProvider ;
+                               rdfs:range xsd:string .
+
+hpc:ExclusiveResource a owl:Class .
+hpc:AssignableHost a owl:Class .
+hpc:jobRequest a owl:ObjectProperty .
+
+hpc:ExclusiveResource rdfs:subClassOf rdf:Resource .
+hpc:AssignableHost rdfs:subClassOf rdf:Resource .
+hpc:JobRequest rdfs:domain hpc:ExclusiveResource ;
+                               rdfs:range hpc:Job .

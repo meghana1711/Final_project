@@ -1,0 +1,46 @@
+hpc:Command a owl:Class .
+hpc:Job a owl:Class .
+hpc:Executable a owl:Class .
+hpc:Esubexecutable a owl:Class .
+hpc:Epsubexecutable a owl:Class .
+
+# Object Properties
+hpc:hascommand a owl:ObjectProperty .
+hpc:isassociatedwith a owl:ObjectProperty .
+hpc:isdissociatedfrom a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hasdescription a owl:DatatypeProperty .
+hpc:hasname a owl:DatatypeProperty .
+
+# Domain and Range
+hpc:Isassociatedwith rdfs:domain hpc:Job ;
+    rdfs:range hpc:Esubexecutable .
+hpc:Isdissociatedfrom rdfs:domain hpc:Job ;
+    rdfs:range hpc:Esubexecutable .
+hpc:Hasname rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+hpc:Hasdescription rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+# Specific Commands
+hpc:Bmod a owl:Class ;
+    hpc:hasDescription "Resubmits a job and changes the esubs/epsubs previously associated with the job" ;
+    hpc:Isassociatedwith hpc:job ;
+    hpc:hasName "bmod -a" .
+hpc:Bmoddissociate a owl:Class ;
+    hpc:hasDescription "Dissociates from a job all esub/epsub executable files that were previously associated with the job" ;
+    hpc:Isdissociatedfrom hpc:job ;
+    hpc:hasName "bmod -an" .
+hpc:Badminshowconf a owl:Class ;
+    hpc:hasDescription "Displays all configured parameters and their values set in lsf.conf or ego.conf that affect mbatchd and sbatchd. Use a text editor to view other parameters in the lsf.conf or ego.conf configuration files." ;
+    hpc:hasName "badmin showconf" .
+
+# Executables
+hpc:esub a hpc:ESubExecutable ;
+    hpc:hasDescription "LSF runs the executable file named 'esub' if it exists in the LSF_SERVERDIR directory, followed by any esub executable files that are defined by LSB_ESUB_METHOD, followed by the esub executable files that are specified by the -a option" ;
+    hpc:hasName "esub" .
+hpc:eexec a hpc:Executable .
+hpc:epsub a hpc:EpSubExecutable ;
+    hpc:hasDescription "LSF runs the executable file named 'epsub' if it exists in the LSF_SERVERDIR directory, followed by any epsub executable files that are defined by LSB_ESUB_METHOD, followed by the epsub executable files that are specified by the -a option" ;
+    hpc:hasName "epsub" .

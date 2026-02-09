@@ -1,0 +1,30 @@
+hpc:Lsfjobsubmission a owl:Class .
+hpc:Easymodelsfjobsubmission a owl:Class .
+
+hpc:lnslots a owl:ObjectProperty .
+hpc:Lnslots rdfs:domain hpc:Lsfjobsubmission ;
+                 rdfs:range xsd:nonNegativeInteger .
+
+hpc:conflictingoptions a owl:ObjectProperty .
+hpc:Conflictingoptions rdfs:domain hpc:Easymodelsfjobsubmission ;
+                 rdfs:range hpc:Lsfjobsubmissionoption .
+
+hpc:Csmyoption a owl:Class .
+hpc:memorylimit a owl:ObjectProperty .
+hpc:Memorylimit rdfs:domain hpc:Lsfjobsubmission ;
+                 rdfs:range xsd:nonNegativeInteger .
+hpc:hardmemorylimit a owl:ObjectProperty .
+hpc:Hardmemorylimit rdfs:domain hpc:Memorylimit ;
+                 rdfs:range xsd:nonNegativeInteger .
+hpc:memorylimitunit a owl:DatatypeProperty .
+hpc:Memorylimitunit rdfs:domain hpc:Memorylimit ;
+                 rdfs:range xsd:string .
+hpc:lsfUnitForLimits a owl:ObjectProperty .
+hpc:LsfUnitForLimits rdfs:domain hpc:Lsfjobsubmission ;
+                 rdfs:range xsd:string .
+hpc:lsbMemlimitEnforce a owl:ObjectProperty .
+hpc:LsbMemlimitEnforce rdfs:domain hpc:Lsfjobsubmission ;
+                 rdfs:range xsd:string .
+hpc:lsbJobMemlimit a owl:ObjectProperty .
+hpc:LsbJobMemlimit rdfs:domain hpc:Lsfjobsubmission ;
+                 rdfs:range xsd:string .

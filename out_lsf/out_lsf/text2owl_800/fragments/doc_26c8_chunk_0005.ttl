@@ -1,0 +1,19 @@
+hpc:RcDemandPolicy a owl:Class .
+hpc:hasthreshold a owl:ObjectProperty ;
+    rdfs:domain hpc:RcDemandPolicy ;
+    rdfs:range rdf:List .
+
+hpc:Threshold a owl:Class ;
+    rdfs:subClassOf hpc:Condition .
+
+hpc:hasnumpendingjobs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Threshold ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasduration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Threshold ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Condition a owl:Class .
+
+hpc:RcHosts a owl:Class .

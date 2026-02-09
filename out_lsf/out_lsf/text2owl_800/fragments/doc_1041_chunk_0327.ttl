@@ -1,0 +1,34 @@
+hpc:Cpubindinginformation a owl:Class .
+
+hpc:requestedprocessorunittype a owl:DatatypeProperty .
+hpc:Requestedprocessorunittype rdfs:domain hpc:Cpubindinginformation ;
+                                 rdfs:range xsd:string .
+
+hpc:requestedprocessorunitlevel a owl:DatatypeProperty .
+hpc:Requestedprocessorunitlevel rdfs:domain hpc:Cpubindinginformation ;
+                                  rdfs:range xsd:string .
+
+hpc:exclusivebindinglevel a owl:DatatypeProperty .
+hpc:Exclusivebindinglevel rdfs:domain hpc:Cpubindinginformation ;
+                            rdfs:range xsd:string .
+
+hpc:ids a owl:DatatypeProperty .
+hpc:Ids rdfs:domain hpc:Cpubindinginformation ;
+      rdfs:range xsd:string .
+
+hpc:Topologypath a owl:Class .
+hpc:Topologypath rdfs:subClassOf hpc:Ids .
+
+hpc:nodeid a owl:DatatypeProperty .
+hpc:Nodeid rdfs:domain hpc:Topologypath ;
+          rdfs:range xsd:nonNegativeInteger .
+
+hpc:memorybindingpolicy a owl:DatatypeProperty .
+hpc:Memorybindingpolicy rdfs:domain hpc:Cpubindinginformation ;
+                         rdfs:range xsd:string .
+
+hpc:LocalMemoryBinding a owl:EnumValue .
+hpc:LocalMemoryBinding rdf:value "local" .
+
+hpc:PreferredMemoryBinding a owl:EnumValue .
+hpc:PreferredMemoryBinding rdf:value "pref" .

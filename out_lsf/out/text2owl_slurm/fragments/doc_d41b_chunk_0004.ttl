@@ -1,0 +1,36 @@
+hpc:Sacctmgr a owl:Class .
+hpc:hasmanual a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr ;
+    rdfs:range rdf:Resource .
+
+hpc:createrecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr ;
+    rdfs:range rdf:Resource .
+
+hpc:deleterecord a owl:ObjectProperty ;
+    rdfs:domain hpc:Sacctmgr ;
+    rdfs:range rdf:Resource .
+
+hpc:hasassociationlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:decimal .
+
+hpc:hasclusterlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:decimal .
+
+hpc:hasaccountlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:decimal .
+
+hpc:hasuserassociationlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Userassociation ;
+    rdfs:range xsd:decimal .
+
+hpc:appliesinorder a owl:ObjectProperty ;
+    rdfs:domain hpc:Limit ;
+    rdfs:range rdf:List .
+
+hpc:Userassociation a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Account a owl:Class .

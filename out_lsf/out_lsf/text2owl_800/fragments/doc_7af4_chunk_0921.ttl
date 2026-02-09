@@ -1,0 +1,22 @@
+hpc:loginterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datadirectory ;
+    rdfs:range xsd:decimal .
+
+hpc:lsDebugBlc a owl:ObjectProperty ;
+    rdfs:domain hpc:Blcollectdaemon ;
+    rdfs:range xsd:string .
+
+hpc:Logclass a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:LC_FLEX a hpc:LogClass ;
+    rdfs:comment "Log everything related to FLEX_STAT or FLEX_EXEC Flexera AP" .
+
+hpc:LC_PERFM a hpc:LogClass ;
+    rdfs:comment "Log performance messages" .
+
+hpc:LC_PREEMPT a hpc:LogClass ;
+    rdfs:comment "Log license preemption policy messages" .
+
+hpc:LC_RESREQ a hpc:LogClass ;
+    rdfs:comment "Log everything transferred by XDR" .

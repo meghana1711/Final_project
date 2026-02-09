@@ -1,0 +1,42 @@
+hpc:Batchjob a owl:Class .
+hpc:fileoperator a owl:ObjectProperty ;
+    rdfs:domain hpc:Batchjob ;
+    rdfs:range hpc:Fileoperator .
+
+hpc:localfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Batchjob ;
+    rdfs:range xsd:string .
+
+hpc:remotefile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Batchjob ;
+    rdfs:range xsd:string .
+
+hpc:operation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fileoperator ;
+    rdfs:range xsd:string .
+
+hpc:Filetransfermethod a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Lsrcp a hpc:FileTransferMethod .
+hpc:Rcp a hpc:FileTransferMethod .
+
+hpc:lsfremotecopycommand a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .
+
+hpc:bsub a owl:ObjectProperty ;
+    rdfs:domain hpc:Batchjob ;
+    rdfs:range hpc:Bsubcommand .
+
+hpc:Bsubcommand a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:FileTransfer a hpc:BsubCommand ;
+    rdfs:subClassOf hpc:Bsubcommand ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf hpc:Filetransfermethod .
+
+hpc:filetransferoperation a owl:ObjectProperty ;
+    rdfs:domain hpc:Filetransfer ;
+    rdfs:range hpc:Operation .

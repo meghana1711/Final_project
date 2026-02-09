@@ -1,0 +1,65 @@
+hpc:Estimatorparameter a owl:Class;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:estimatorsleeptime a owl:DatatypeProperty;
+    rdfs:domain hpc:Estimatorparameter;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:pendingjobs a owl:DatatypeProperty;
+    rdfs:domain hpc:Estimatorparameter;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:predictedstarttime a owl:DatatypeProperty;
+    rdfs:domain hpc:Estimatorparameter;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:estimationruntime a owl:DatatypeProperty;
+    rdfs:domain hpc:Estimatorparameter;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:estimatorSimStartInterval a owl:DatatypeProperty;
+    rdfs:domain hpc:Estimatorparameter;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:evaluatejobdependency a owl:ObjectProperty;
+    rdfs:domain hpc:Estimatorparameter;
+    rdfs:range hpc:Evaluationtime .
+
+hpc:evaluationtime a owl:DatatypeProperty;
+    rdfs:domain hpc:Evaluatejobdependency;
+    rdfs:range xsd:duration .
+
+hpc:evaluatejobdependencytimeout a owl:DatatypeProperty;
+    rdfs:domain hpc:Estimatorparameter;
+    rdfs:range xsd:duration .
+
+hpc:bwaitwaitconditionevaluationtimeout a owl:DatatypeProperty;
+    rdfs:domain hpc:Estimatorparameter;
+    rdfs:range xsd:duration .
+
+hpc:defaultbwaittimeout a owl:DatatypeProperty;
+    rdfs:domain hpc:Estimatorparameter;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maxpendingslots a owl:DatatypeProperty;
+    rdfs:domain hpc:Estimatorparameter;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Jobslot a owl:Class .
+
+hpc:maxpendingjobs a owl:DatatypeProperty;
+    rdfs:domain hpc:Jobslot;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobslotsfactor a owl:DatatypeProperty;
+    rdfs:domain hpc:Jobslot;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobgroupclean a owl:ObjectProperty;
+    rdfs:domain hpc:Jobslot;
+    rdfs:range hpc:Cleanoption .
+
+hpc:Cleanoption a owl:Class;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:All a owl:NamedIndividual .

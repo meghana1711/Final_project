@@ -1,0 +1,42 @@
+hpc:Gpumemoryallocation a owl:Class .
+hpc:hasGPUMemoryAllocation gmem as owl:ObjectProperty ;
+ rdfs:domain hpc:Gpumemoryallocation ;
+ rdfs:range xsd:boolean .
+
+hpc:Gtilerequirements a owl:Class .
+hpc:hasGTileRequirements gtile as owl:ObjectProperty ;
+ rdfs:domain hpc:Gtilerequirements ;
+ rdfs:range xsd:boolean .
+
+hpc:Gpulink a owl:Class .
+hpc:hasGpuLink glink as owl:ObjectProperty ;
+ rdfs:domain hpc:Gpulink ;
+ rdfs:range xsd:boolean .
+
+hpc:Autoresizingjob a owl:Class .
+
+hpc:Ibmspectrumlsfsecurity a owl:Class .
+
+hpc:Lsfclustersecurityoptimization a owl:Class .
+
+hpc:Lsfclustersecurityconsideration a owl:Class .
+
+hpc:Communicationsbetweendaemonsandcommands a owl:Class .
+
+hpc:Ibmspectrumlsfcommandtransmission a owl:Class .
+
+hpc:Accesstojobsbelongingtootherusers a owl:Class .
+
+hpc:Accessingremotehosts a owl:Class .
+
+hpc:Falserequests a owl:Class .
+
+hpc:Authentication a owl:Class .
+
+hpc:communicationsbetweendaemonsandcommandsproperty a owl:DatatypeProperty .
+
+hpc:Transmissionofibmspectrumlsfcommandsforremoteexecution a owl:Class .
+
+hpc:Useofremoteshell a owl:Class .
+
+hpc:Useofsecureshell a owl:Class .

@@ -1,0 +1,23 @@
+hpc:Cluster a owl:Class .
+hpc:License a owl:Class .
+hpc:Server a owl:Class .
+hpc:licenseserver a owl:ObjectProperty .
+hpc:clusterhaslicense a owl:ObjectProperty .
+hpc:licenseonserver a owl:ObjectProperty .
+hpc:total a xsd:decimal .
+hpc:used a xsd:decimal .
+hpc:free a xsd:decimal .
+hpc:reserved a xsd:decimal .
+hpc:remote a xsd:string .
+hpc:lastconsumed a xsd:dateTime .
+hpc:lastdeficit a xsd:decimal .
+hpc:lastupdate a xsd:dateTime .
+
+hpc:Cluster rdfs:subClassOf owl:Class .
+hpc:License rdfs:subClassOf owl:Class .
+hpc:Server rdfs:subClassOf owl:Class .
+
+hpc:Clusterhaslicense rdfs:domain hpc:Cluster .
+hpc:Clusterhaslicense rdfs:range hpc:License .
+hpc:Licenseonserver rdfs:domain hpc:License .
+hpc:

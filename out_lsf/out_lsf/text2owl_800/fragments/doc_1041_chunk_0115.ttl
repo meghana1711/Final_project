@@ -1,0 +1,17 @@
+hpc:position a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The position argument can be specified to indicate where in the queue the job is to be placed." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:bchkpnt a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcommand ;
+    rdfs:range rdf:List ;
+    rdfs:comment "The bchkpnt command for LSF." .
+
+hpc:Lsfcommand a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      rdfs:subClassOf owl:NamedIndividual ] .

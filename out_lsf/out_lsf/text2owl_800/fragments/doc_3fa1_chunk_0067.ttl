@@ -1,0 +1,27 @@
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resourcepoolentity ;
+    rdfs:comment "Specifies which queues are allowed to loan from the pool." .
+
+hpc:loanallowedqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcepool ;
+    rdfs:range hpc:Queue ;
+    rdfs:comment "Relates a resource pool to the queues that are allowed to loan from it." .
+
+hpc:ignoreidlebuffer a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a queue should ignore IDLE_BUFFER and DURATION policies." .
+
+hpc:idlebuffer a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Specifies the amount of idle resources that should be kept for a queue." .
+
+hpc:Strictschedulingperformance a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "Represents a queue that may degrade scheduling performance if more queues are permitted to loan." .
+
+hpc:idlebufferpolicy a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcepool ;
+    rdfs:range hpc:Idlebuffer ;
+    rdfs:comment "Relates a resource pool to the IDLE_BUFFER policy." .

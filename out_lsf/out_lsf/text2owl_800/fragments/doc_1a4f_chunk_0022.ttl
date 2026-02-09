@@ -1,0 +1,22 @@
+hpc:Unix a owl:Class .
+hpc:Windows a owl:Class .
+hpc:Swapspace a owl:Class .
+hpc:Memory a owl:Class .
+hpc:Lim a owl:Class .
+hpc:Iorate a owl:Class .
+
+hpc:Hasoperatingsystem rdfs:domain hpc:Host .
+hpc:Hasoperatingsystem rdfs:range hpc:Operatingsystem .
+hpc:Operatingsystem rdfs:subClassOf owl:Class .
+
+hpc:Hasswapspace rdfs:domain hpc:Host .
+hpc:Hasswapspace rdfs:range xsd:decimal .
+
+hpc:Hasmemory rdfs:domain hpc:Host .
+hpc:Hasmemory rdfs:range xsd:decimal .
+
+hpc:Haslim rdfs:domain hpc:Host .
+hpc:Haslim rdfs:range xsd:decimal .
+
+hpc:Hasiorate rdfs:domain hpc:Host .
+hpc:Hasiorate rdfs:range xsd:decimal .

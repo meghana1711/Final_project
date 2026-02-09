@@ -1,0 +1,41 @@
+hpc:LsbTimeMbd a owl:Class .
+hpc:LsbTimeMbd rdfs:subClassOf owl:Integer .
+hpc:LsbTimeMbd rdfs:domain hpc:Timinglevel .
+hpc:LSB_TIME_MBD rdfs:comment "The timing level for checking how long mbatchd routines run. Time usage is logged in milliseconds; specify a positive integer." .
+
+hpc:timingLevel a owl:DatatypeProperty .
+hpc:TimingLevel rdfs:domain hpc:LsbTimeMbd .
+hpc:TimingLevel rdfs:range xsd:integer .
+
+hpc:LsbTimeSch a owl:Class .
+hpc:LsbTimeSch rdfs:subClassOf owl:Integer .
+hpc:LsbTimeSch rdfs:domain hpc:Timinglevel .
+hpc:LSB_TIME_SCH rdfs:comment "The timing level for checking how long mbschd routines run. Time usage is logged in milliseconds; specify a positive integer." .
+
+hpc:LsbTimeSbd a owl:Class .
+hpc:LsbTimeSbd rdfs:subClassOf owl:Integer .
+hpc:LsbTimeSbd rdfs:domain hpc:Timinglevel .
+hpc:LSB_TIME_SBD rdfs:comment "The timing level for checking how long sbatchd routines run. Time usage is logged in milliseconds." .
+
+hpc:LsbTimeCmd a owl:Class .
+hpc:LsbTimeSbd rdfs:subClassOf owl:Integer .
+hpc:LsbTimeCmd rdfs:subClassOf hpc:LsbTimeSbd .
+hpc:LSB_TIME_CMD rdfs:comment "The timing level for checking how long cmd routines run. Time usage is logged in milliseconds." .
+
+hpc:LsbTimeDmd a owl:Class .
+hpc:LsbTimeDmd rdfs:subClassOf owl:Integer .
+hpc:LsbTimeDmd rdfs:subClassOf hpc:LsbTimeSbd .
+hpc:LSB_TIME_DMD rdfs:comment "The timing level for checking how long dmd routines run. Time usage is logged in milliseconds." .
+
+hpc:LsfTimeLim a owl:Class .
+hpc:LsfTimeLim rdfs:subClassOf owl:Integer .
+hpc:LsfTimeLim rdfs:domain hpc:Timelimit .
+hpc:LSF_TIME_LIM rdfs:comment "The time limit for LSF jobs." .
+
+hpc:LsfTimeRes a owl:Class .
+hpc:LsfTimeRes rdfs:subClassOf owl:Integer .
+hpc:LsfTimeRes rdfs:domain hpc:Resource .
+hpc:LSF_TIME_RES rdfs:comment "The time reservation for LSF resources." .
+
+hpc:LsbTsjobsHelperHosts a owl:Class .
+hpc:LS

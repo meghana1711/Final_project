@@ -1,0 +1,73 @@
+hpc:LSFTopOutsideContainer
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The real LSF cluster top level file path." .
+
+hpc:LSFTopInsideContainer
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The mapping point from inside the Docker container." .
+
+hpc:BCognStartCommand
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The command to start the LSF Predictor service." .
+
+hpc:LSFPredictorConsole
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The web interface for the LSF Predictor service." .
+
+hpc:LsfPredictorCertificate
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The certificate for the LSF Predictor service." .
+
+hpc:LsfPredictorHost
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The host for the LSF Predictor Console." .
+
+hpc:TShirtSize
+    a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "The size of the LSF Predictor service." .
+
+hpc:ConfigFile
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A configuration file for the LSF Predictor service." .
+
+hpc:Predictor
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The predictive component of the LSF Predictor service." .
+
+hpc:RegressionAlgorithms
+    a owl:ObjectProperty ;
+    rdfs:domain Predictor ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "The regression algorithms used by the Predictor." .
+
+hpc:ClassificationAlgorithms
+    a owl:ObjectProperty ;
+    rdfs:domain Predictor ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "The classification algorithms used by the Predictor." .
+
+hpc:ranking_metric_regression
+    a owl:DatatypeProperty ;
+    rdfs:domain Predictor ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The ranking metric for regression tasks." .
+
+hpc:ranking_metric_classification
+    a owl:DatatypeProperty ;
+    rdfs:domain Predictor ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The ranking metric for classification tasks." .
+
+hpc:transformers
+    a owl:DatatypeProperty ;
+    rdfs:domain Predictor ;
+    rdfs:range xsd:string ;

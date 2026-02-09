@@ -1,0 +1,53 @@
+hpc:AwsRegion a owl:Class .
+hpc:hasawsregion a owl:ObjectProperty .
+hpc:Hasawsregion rdfs:domain hpc:AwsRegion ;
+                  rdfs:range xsd:string .
+
+hpc:awsIamCredentialId a owl:DatatypeProperty .
+hpc:AwsIamCredentialId rdfs:domain hpc:AwsRegion ;
+                            rdfs:range xsd:string .
+
+hpc:awsIamCredentialKey a owl:DatatypeProperty .
+hpc:AwsIamCredentialKey rdfs:domain hpc:AwsRegion ;
+                              rdfs:range xsd:string .
+
+hpc:awsAccessKeyId a owl:DatatypeProperty .
+hpc:AwsAccessKeyId rdfs:domain hpc:Credentials ;
+                          rdfs:range xsd:string .
+
+hpc:awsSecretAccessKey a owl:DatatypeProperty .
+hpc:AwsSecretAccessKey rdfs:domain hpc:Credentials ;
+                              rdfs:range xsd:string .
+
+hpc:awsFedCredentialScript a owl:DatatypeProperty .
+hpc:AwsFedCredentialScript rdfs:domain hpc:AwsRegion ;
+                                   rdfs:range xsd:string .
+
+hpc:Credentials a owl:Class .
+
+hpc:chooseaccountauthenticationmethod a owl:ObjectProperty .
+hpc:Chooseaccountauthenticationmethod rdfs:domain hpc:AwsRegion ;
+                                           rdfs:range hpc:Authenticationmethod .
+
+hpc:Authenticationmethod a owl:Class .
+
+hpc:useiamuser a owl:ObjectProperty .
+hpc:Useiamuser rdfs:domain hpc:Authenticationmethod ;
+                   rdfs:range hpc:Iamuser .
+
+hpc:usefederatedaccount a owl:ObjectProperty .
+hpc:Usefederatedaccount rdfs:domain hpc:Authenticationmethod ;
+                            rdfs:range hpc:Federatedaccount .
+
+hpc:Iamuser a owl:Class .
+hpc:Federatedaccount a owl:Class .
+
+hpc:Minimalcloudburstingpermissions a owl:Class .
+hpc:Ec2describeinstances rdfs:subClassOf hpc:Minimalcloudburstingpermissions .
+hpc:Ec2describeimages rdfs:subClassOf hpc:Minimalcloudburstingpermissions .
+hpc:Ec2describekeypairs rdfs:subClassOf hpc:Minimalcloudburstingpermissions .
+hpc:Ec2describesecuritygroups rdfs:subClassOf hpc:Minimalcloudburstingpermissions .
+hpc:Ec2describeavailabilityzones rdfs:subClassOf hpc:Minimalcloudburstingpermissions .
+hpc:Ec2runinstances rdfs:subClassOf hpc:Minimalcloudburstingpermissions .
+hpc:Ec2terminateinstances rdfs:subClassOf hpc:Minimalcloudburstingpermissions .
+hpc:ec2StopInst

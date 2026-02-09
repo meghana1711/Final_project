@@ -1,0 +1,27 @@
+hpc:Mbatchdreconfiguredisabler a owl:Class ;
+    rdfs:comment "Disables interaction and does not ask for confirmation when reconfiguring mbatchd. Logs the text as an administrator comment record to the lsb.events file. The maximum length of the comment string is 512 characters. [-t time0,time1] [-f logfile_name] [host_name ...]" ;
+    rdfs:subClassOf hpc:Command .
+
+hpc:timerange a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbatchdreconfiguredisabler ;
+    rdfs:range xsd:string .
+
+hpc:logfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbatchdreconfiguredisabler ;
+    rdfs:range xsd:string .
+
+hpc:hostname a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchdreconfiguredisabler ;
+    rdfs:range xsd:string .
+
+hpc:Historicaleventsdisplay a owl:Class ;
+    rdfs:comment "Displays historical events for specified hosts, or for all hosts if no host is specified. Host events are host opening and closing. Also, both badmin command and policy- or job triggered power-related events (suspend, resume, reset) are displayed. Displays only those events that occurred during the period from time0 to time1. See the bhist command for the time format. The default is to display all host events in the event log file. Specify the file name of the event log file. Either an absolute or a relative path name can be specified." ;
+    rdfs:subClassOf hpc:Command .
+
+hpc:time0time1 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Historicaleventsdisplay ;
+    rdfs:range xsd:string .
+
+hpc:eventlogfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Historicaleventsdisplay ;
+    rdfs:range xsd:string .

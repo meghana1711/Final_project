@@ -1,0 +1,50 @@
+hpc:Rcaccount a owl:Class .
+hpc:Project a owl:Class .
+hpc:Queue a owl:Class .
+hpc:Template a owl:Class .
+hpc:Provider a owl:Class .
+
+hpc:hasRCAccount rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Rcaccount .
+
+hpc:hasProject rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Project .
+
+hpc:hasQueue rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queue .
+
+hpc:hasTemplate rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Template .
+
+hpc:hasProvider rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Provider .
+
+hpc:Globalpolicy a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:Projectpolicy a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:hasConsumer rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Policy ;
+    rdfs:range [ a owl:Class ;
+        owl:unionOf (hpc:RCAccount hpc:Template hpc:Provider) ] .
+
+hpc:GlobalPolicyA1 a hpc:GlobalPolicy ;
+    hpc:Hasconsumer hpc:hasconsumer .
+
+hpc:ProjectPolicyA2 a hpc:ProjectPolicy ;
+    hpc:hasConsumer [ a hpc:Consumer ;
+        hpc:Rcaccount hpc:projectb ;
+        hpc:templateName xsd:anyURI ;
+        hpc:provider xsd:anyURI ] .
+
+hpc:LSB_RC_EXTERNAL_HOST_IDLE_TIME a xsd:nonNegativeInteger .
+hpc:LSB_RC_EXTERNAL_HOST_MAX_TTL a xsd:nonNegativeInteger .

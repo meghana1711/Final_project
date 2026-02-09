@@ -1,0 +1,22 @@
+hpc:Compoundresourcerequirement a owl:Class ;
+    rdfs:subClassOf owl:Restriction ;
+    rdfs:comment "Compound resource requirements cannot contain the || operator, cannot be defined in multiple -R options, cannot contain the compute unit (cu) keywords balance or excl, but works normally with other cu keywords (including pref, type, maxcus, and usablecuslots). Resizable jobs can have compound resource requirements, but only the portion of the job represented by the last term of the compound resource requirement is eligible for automatic resizing. When using bresize release to release slots, you can only release slots represented by the last term of the compound resource requirement. To release slots in earlier terms, run bresize release repeatedly to release slots in subsequent last terms. Compound resource requirements cannot be specified in the definition of a guaranteed resource pool. Resource allocation for parallel jobs using compound resources is done for each compound resource term in the order listed instead of considering all possible combinations. A host rejected for not satisfying one resource requirement term will not be reconsidered for subsequent resource requirement terms. Compound resource requirements were introduced in LSF Version 7 Update 5, and are not compatible with earlier versions of LSF.";
+
+hpc:Alternativeresourcerequirement a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "In some circumstances more than one set of resource requirements may be acceptable for a job to be able to run. LSF provides the ability to specify alternative resource requirements. An alternative resource requirement consists of two or more individual simple or compound resource requirements. Each separate resource requirement describes an alternative.";
+
+hpc:hasAlternativeResource rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Alternativeresourcerequirement ;
+    rdfs:comment "The job has an alternative resource requirement.";
+
+hpc:mandatoryFirstExecutionHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Alternativeresourcerequirement ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the mandatory first execution host must be satisfied.";
+
+hpc:satisfiesFirstExecutionHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the job satisfies the mandatory first execution host.";

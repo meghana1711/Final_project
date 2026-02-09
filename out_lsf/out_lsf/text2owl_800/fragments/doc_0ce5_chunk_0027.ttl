@@ -1,0 +1,45 @@
+hpc:RtAvg a owl:Class ;
+    rdfs:subClassOf owl:Real ;
+    rdfs:comment "The average runtime of the calls to the function in this sampling interval." .
+
+hpc:RtTotal a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeReal ;
+    rdfs:comment "The total runtime of all the calls to the function in this sampling interval." .
+
+hpc:UtMax a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeReal ;
+    rdfs:comment "The minimum user mode CPU time of one call to the function in this sampling interval." .
+
+hpc:UtAvg a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeReal ;
+    rdfs:comment "The average user mode CPU time of the calls to the function in this sampling interval." .
+
+hpc:UtTotal a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeReal ;
+    rdfs:comment "The total user mode CPU time of all the calls to the function in this sampling interval." .
+
+hpc:StMin a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeReal ;
+    rdfs:comment "The minimum system mode CPU time of one call to the function in this sampling interval." .
+
+hpc:StMax a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeReal ;
+    rdfs:comment "The maximum system mode CPU time of one call to the function in this sampling interval." .
+
+hpc:StAvg a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeReal ;
+    rdfs:comment "The average system mode CPU time of the calls to the function in this sampling interval." .
+
+hpc:StTotal a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeReal ;
+    rdfs:comment "The total system mode CPU time of all the calls to the function in this sampling interval." .
+
+hpc:starttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Samplinginterval ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The start time of this sampling interval in UTC time." .
+
+hpc:endtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Samplinginterval ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The end time of this sampling interval in UTC time." .

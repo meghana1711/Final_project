@@ -1,0 +1,58 @@
+hpc:Task a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Represents a task in the HPC system." .
+
+hpc:Preemptedtask a owl:Class ;
+    rdfs:subClassOf hpc:Task ;
+    rdfs:comment "Represents a preempted task in the HPC system." .
+
+hpc:licensetoken a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:Licensetoken ;
+    rdfs:comment "The LSF License Scheduler token associated with the task." .
+
+hpc:connecttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The submission time of the task." .
+
+hpc:effectiveproject a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:Project ;
+    rdfs:comment "The actual project that the job used." .
+
+hpc:outputforloption a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Output ;
+    rdfs:comment "Displays detailed information for each task in multi-line format." .
+
+hpc:terminal a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The terminal the task is using." .
+
+hpc:pgid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "UNIX process group ID." .
+
+hpc:cpu a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The total accumulated CPU time of all processes in a task, in seconds." .
+
+hpc:Project a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a project in the HPC system." .
+
+hpc:Licensetoken a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a license token in the HPC system." .
+
+hpc:Command a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a command in the HPC system." .
+
+hpc:Output a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the output of a command in the HPC system." .

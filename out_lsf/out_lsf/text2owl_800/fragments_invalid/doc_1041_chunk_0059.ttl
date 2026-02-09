@@ -1,0 +1,55 @@
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A closed host can have multiple lock IDs, and the host remains closed until there are no more lock IDs attached to the host." .
+
+hpc:Lockid a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A unique identifier for a lock on a host." .
+
+hpc:hasLockID an owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Lockid ;
+    rdfs:comment "The host that the lock ID is associated with." .
+
+hpc:hasAdminMessage an owl:DatatypeProperty ;
+    rdfs:domain hpc:Lockid ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The administrator message attached to the lock ID." .
+
+hpc:isClosed rdf:Property ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the host is closed or not." .
+
+hpc:hasMultipleLockIDs rdf:Property ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the host has multiple lock IDs." .
+
+hpc:canAttachLockID an owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Lockid ;
+    rdfs:comment "Attaches a new lock ID to the host." .
+
+hpc:alreadyAttachedLockID an owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Lockid ;
+    rdfs:comment "Indicates a lock ID that is already attached to the host." .
+
+hpc:removeLockID an owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Lockid ;
+    rdfs:comment "Removes a lock ID from the host." .
+
+hpc:help an owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Command ;
+    rdfs:comment "Displays the syntax and functions of the specified commands." .
+
+hpc:Command a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:dynamicHostConfig an owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Hostgroup ;
+    rdfs:comment "Dynamically adds hosts to a host group or compute unit." .

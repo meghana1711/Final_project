@@ -1,0 +1,77 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Datagroup a owl:Class ;
+    rdfs:subClassOf hpc:Group .
+
+hpc:hasdatarequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Datarequirement .
+
+hpc:belongstodatagroup a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Datagroup .
+
+hpc:isrejectedbymbatchd a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:haslsfdataskipgroupcheck a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:boolean .
+
+hpc:usergroupcheckingnotaffectedby a owl:ObjectProperty ;
+    rdfs:domain hpc:Usergroupchecking ;
+    rdfs:range hpc:Configuration .
+
+hpc:jobbasedpreexecutioncommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Command .
+
+hpc:preexecexitcode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobbasedpreexecutioncommand ;
+    rdfs:range xsd:integer .
+
+hpc:Jobsubmission a owl:Class ;
+    rdfs:subClassOf hpc:Event .
+
+hpc:Datafile a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:hasdatagroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Datafile ;
+    rdfs:range hpc:Datagroup .
+
+hpc:Datajob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:subClassOf hpc:Datarequirement .
+
+hpc:datagroupspecified a owl:ObjectProperty ;
+    rdfs:domain hpc:Datajob ;
+    rdfs:range hpc:Datagroup .
+
+hpc:Lsfconfiguration a owl:Class ;
+    rdfs:subClassOf hpc:Configuration .
+
+hpc:Lsfdatamanagerconfiguration a owl:Class ;
+    rdfs:subClassOf hpc:Lsfconfiguration .
+
+hpc:Lsfqueueconfiguration a owl:Class ;
+    rdfs:subClassOf hpc:Lsfconfiguration .
+
+hpc:Lsfapplicationconfiguration a owl:Class ;
+    rdfs:subClassOf hpc:Lsfconfiguration .
+
+hpc:applicationlevelpreexec a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfapplicationconfiguration ;
+    rdfs:range hpc:Preexec .
+
+hpc:queuelevelpreexec a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfqueueconfiguration ;
+    rdfs:range hpc:Preexec .
+
+hpc:joblevelpreexec a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Preexec .
+
+hpc:PreExec

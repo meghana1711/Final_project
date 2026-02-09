@@ -1,0 +1,42 @@
+hpc:Jobs a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Maximum number of jobs that are considered for dispatch in a single scheduling cycle." .
+
+hpc:jobsPerSchedCycle a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobs ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Use ELIGIBLE_PEND_JOBS instead. This parameter is only maintained for backwards compatibility." .
+
+hpc:EligiblePendJobs a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The maximum number of jobs that are eligible and pending for dispatch." .
+
+hpc:ConsumerTypes a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The types of consumers that can use the JOBS_PER_SCHED_CYCLE parameter." .
+
+hpc:Uses_jobs_per_sched_cycle owl:ObjectProperty ;
+    rdfs:domain hpc:ConsumerTypes ;
+    rdfs:range hpc:Jobs ;
+    rdfs:comment "Indicates whether a consumer type can use the JOBS_PER_SCHED_CYCLE parameter." .
+
+hpc:AllowedConsumerTypes a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The consumer types that are allowed to use the JOBS_PER_SCHED_CYCLE parameter." .
+
+hpc:AllGroup a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The all group, or any group containing all, is not supported." .
+
+hpc:LicProjects a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A space-separated list of LSF License Scheduler project names on which limits are enforced." .
+
+hpc:Project a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A project in the LSF License Scheduler." .
+
+hpc:licProjectName a owl:DatatypeProperty ;
+    rdfs:domain hpc:LicProjects ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of a project in the LSF License Scheduler." .

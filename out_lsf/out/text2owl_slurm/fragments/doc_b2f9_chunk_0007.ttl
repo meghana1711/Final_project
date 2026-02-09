@@ -1,0 +1,26 @@
+hpc:Jobstep a owl:Class .
+hpc:cudavisibledevices a owl:DatatypeProperty .
+hpc:Gresconf a owl:Class .
+hpc:Tresusage a owl:Class .
+hpc:TresUsageInAve a hpc:TresUsage .
+hpc:TresUsageInTot a hpc:TresUsage .
+hpc:gresgpumem a owl:DatatypeProperty .
+hpc:gresgpuutil a owl:DatatypeProperty .
+hpc:mem a owl:DatatypeProperty .
+hpc:pages a owl:DatatypeProperty .
+hpc:vmem a owl:DatatypeProperty .
+hpc:fsdisk a owl:DatatypeProperty .
+hpc:cpu a owl:DatatypeProperty .
+hpc:energy a owl:DatatypeProperty .
+
+hpc:Jobstep rdfs:subClassOf hpc:Tresusageintot .
+hpc:Jobstep rdfs:subClassOf hpc:Tresusageinave .
+
+hpc:Tresusage rdfs:subClassOf rdf:List .
+hpc:Tresusage rdfs:subClassOf rdf:Seq .
+
+hpc:Cudavisibledevices rdfs:domain hpc:Jobstep .
+hpc:Cudavisibledevices rdfs:range xsd:nonNegativeInteger .
+
+hpc:Gresconf rdfs:subClassOf rdf:List .
+hpc:Gresconf rdfs:subClassOf rdf:Seq .

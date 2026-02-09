@@ -1,0 +1,13 @@
+hpc:Patchfilegeneration a owl:Class ;
+    rdfs:comment "The process of generating a patch file from a Slurm commit in GitHub." .
+
+hpc:Applypatch a owl:Class ;
+    rdfs:comment "The process of applying a patch to the Slurm source." .
+
+hpc:Automaticupdate a owl:Class ;
+    rdfs:comment "The offer of an automatic update for Slurm." .
+
+hpc:Controllerrelocation a owl:Class ;
+    rdfs:comment "The process of relocating the primary or backup controller." .
+
+hpc:Clocksynchronization a owl:Class ;

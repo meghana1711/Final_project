@@ -1,0 +1,62 @@
+hpc:Taskstarter a owl:Class .
+hpc:Pam a owl:Class .
+hpc:Pjl a owl:Class .
+
+hpc:starts a owl:ObjectProperty ;
+    rdfs:domain hpc:Pjl ;
+    rdfs:range hpc:Taskstarter .
+
+hpc:startstaskonhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Taskstarter ;
+    rdfs:range xsd:integer .
+
+hpc:reportsprocessid a owl:ObjectProperty ;
+    rdfs:domain hpc:Taskstarter ;
+    rdfs:range xsd:integer .
+
+hpc:waitsfortaskfinish a owl:ObjectProperty ;
+    rdfs:domain hpc:Taskstarter ;
+    rdfs:range xsd:boolean .
+
+hpc:runsbeforepam a owl:DatatypeProperty ;
+    rdfs:domain hpc:Pam ;
+    rdfs:range xsd:string .
+
+hpc:runsafterpam a owl:DatatypeProperty ;
+    rdfs:domain hpc:Pam ;
+    rdfs:range xsd:string .
+
+hpc:autoPlace a owl:ObjectProperty ;
+    rdfs:domain hpc:Pam ;
+    rdfs:range xsd:boolean .
+
+hpc:mpi a owl:ObjectProperty ;
+    rdfs:domain hpc:Pam ;
+    rdfs:range xsd:string .
+
+hpc:np a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mpirun ;
+    rdfs:range xsd:integer .
+
+hpc:aout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mpirun ;
+    rdfs:range xsd:string .
+
+hpc:submittedwith bsub a owl:ObjectProperty .
+
+hpc:Executionhost a owl:Class .
+hpc:processid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executionhost ;
+    rdfs:range xsd:integer .
+
+hpc:PAM_starts_TaskStarter subClassOf owl:FunctionalProperty .
+hpc:TaskStarter_starts_ExecutionHost subClassOf owl:FunctionalProperty .
+hpc:TaskStarter_startsTaskOnHost subClassOf owl:FunctionalProperty .
+hpc:TaskStarter_reportsProcessID subClassOf owl:FunctionalProperty .
+hpc:TaskStarter_waitsForTaskFinish subClassOf owl:FunctionalProperty .
+hpc:PAM_runsBeforePAM subClassOf owl:FunctionalProperty .
+hpc:PAM_runsAfterPAM subClassOf owl:FunctionalProperty .
+hpc:PAM_auto_place subClassOf owl:FunctionalProperty .
+hpc:PAM_mpi subClassOf owl:FunctionalProperty .
+hpc:mpirun_np subClassOf owl:FunctionalProperty .
+hpc:mpirun_aout subClassOf owl:FunctionalProperty .

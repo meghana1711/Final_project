@@ -1,0 +1,44 @@
+hpc:Awsprovisioning a owl:Class .
+hpc:AwsprovConfig a owl:Class .
+hpc:AwsprovConfig rdfs:subClassOf hpc:Configuration .
+hpc:awsprov_config rdfs:comment "AWS provisioning configuration." .
+hpc:awsprov_config rdfs:isDefinedBy <https://example.com/hpc/awsprov_config.json> .
+
+hpc:AwsprovTemplates a owl:Class .
+hpc:AwsprovTemplates rdfs:subClassOf hpc:Configuration .
+hpc:awsprov_templates rdfs:comment "AWS provisioning templates." .
+hpc:awsprov_templates rdfs:isDefinedBy <https://example.com/hpc/awsprov_templates.json> .
+
+hpc:PolicyConfig a owl:Class .
+hpc:PolicyConfig rdfs:subClassOf hpc:Configuration .
+hpc:policy_config rdfs:comment "AWS policy configuration." .
+hpc:policy_config rdfs:isDefinedBy <https://example.com/hpc/policy_config.json> .
+
+hpc:LsfConfig a owl:Class .
+hpc:LsfConfig rdfs:subClassOf hpc:Lsfconfiguration .
+hpc:lsf_config rdfs:comment "LSF configuration." .
+hpc:lsf_config rdfs:isDefinedBy <https://example.com/hpc/lsf_config.json> .
+
+hpc:RcDemandPolicy a owl:Class .
+hpc:RcDemandPolicy rdfs:subClassOf hpc:Policy .
+hpc:RC_DEMAND_POLICY rdfs:comment "Resource Connector demand policy." .
+
+# Container Support
+hpc:Containersupport a owl:Class .
+hpc:Containersupport rdfs:subClassOf hpc:Lsffeature .
+hpc:ContainerSupport rdfs:comment "LSF support for containers." .
+
+hpc:preexecutionscript a owl:ObjectProperty .
+hpc:Preexecutionscript rdfs:domain hpc:Containerjob .
+hpc:Preexecutionscript rdfs:range rdf:Resource .
+hpc:preExecutionScript rdfs:comment "Pre-execution script for defining container options." .
+
+# Command Output Formatting
+hpc:Customizedloadinfooutput a owl:Class .
+hpc:Customizedloadinfooutput rdfs:subClassOf hpc:Commandoutputformatting .
+hpc:CustomizedLoadInfoOutput rdfs:comment "Customized host load information output." .
+
+hpc:lsloadO a owl:ObjectProperty .
+hpc:LsloadO rdfs:domain hpc:Command .
+hpc:LsloadO rdfs:range xsd:string .
+hpc:lsload_o rdfs:comment "The -o command option for the lsload command." .

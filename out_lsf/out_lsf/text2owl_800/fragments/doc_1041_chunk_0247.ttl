@@ -1,0 +1,37 @@
+hpc:childname a owl:DatatypeProperty .
+hpc:degreesofseparation a owl:DatatypeProperty .
+
+hpc:Bjgroup a owl:Class .
+hpc:DisplaysInformationAboutJobGroups rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Bjgroup ;
+    rdfs:range rdf:Resource .
+hpc:Synopsis rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjgroup .
+hpc:Description rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjgroup .
+hpc:Options rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjgroup .
+hpc:SortsJobGroupsByGroupHierarchy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Bjgroup .
+
+hpc:njobs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjgroup .
+hpc:pend a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjgroup .
+hpc:run a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjgroup .
+hpc:ssusp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjgroup .
+hpc:ususp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjgroup .
+hpc:finish a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjgroup .
+hpc:sla a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjgroup .
+hpc:jlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjgroup .
+hpc:owner a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjgroup .
+
+hpc:Group_NAME rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string .

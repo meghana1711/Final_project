@@ -1,0 +1,49 @@
+hpc:Lsfcluster a owl:Class .
+hpc:Primaryadminuser a owl:Class .
+hpc:Regularuser a owl:Class .
+hpc:Administrator a owl:Class .
+
+hpc:Job a owl:Class .
+hpc:Jobinformation a owl:Class .
+hpc:Securejobaccess a owl:Class .
+hpc:Securejobinfolevel a owl:Class .
+
+hpc:SECURE_INFODIR_USER_ACCESS rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .
+
+hpc:SECURE_JOB_INFO_LEVEL rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .
+
+hpc:hasprimaryadminuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Primaryadminuser .
+
+hpc:hasregularuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Regularuser .
+
+hpc:hasadministrator a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Administrator .
+
+hpc:canviewownjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Regularuser, hpc:Administrator ;
+    rdfs:range hpc:Job .
+
+hpc:canviewalljobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Primaryadminuser ;
+    rdfs:range hpc:Job .
+
+hpc:issecure a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:boolean .
+
+hpc:isgranular a owl:ObjectProperty ;
+    rdfs:domain hpc:Securejobaccess ;
+    rdfs:range xsd:boolean .
+
+hpc:lsbSharedirClusterLogdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .

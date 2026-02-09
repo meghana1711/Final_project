@@ -1,0 +1,54 @@
+hpc:Checkpointdirectory a owl:Class ;
+  rdfs:subClassOf owl:Class ;
+  rdfs:comment "The file path of the checkpoint directory can contain up to 4000 characters for UNIX and Linux, or up to 255 characters for Windows, including the directory and file name." .
+
+hpc:Default a owl:Class ;
+  rdfs:subClassOf owl:Class ;
+  rdfs:comment "Not defined." .
+
+hpc:committedruntimefactor a owl:DatatypeProperty ;
+  rdfs:domain hpc:Job ;
+  rdfs:range xsd:decimal ;
+  rdfs:comment "Specifies the committed runtime weighting factor. Used only with fair share scheduling." .
+
+hpc:committedruntimefactorsyntax a owl:ObjectProperty ;
+  rdfs:domain hpc:Committedruntimefactor ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Syntax COMMITTED_RUN_TIME_FACTOR=number" .
+
+hpc:description a owl:DatatypeProperty ;
+  rdfs:domain hpc:Job ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Description of the job." .
+
+hpc:Image a owl:Class ;
+  rdfs:subClassOf owl:Class ;
+  rdfs:comment "Required. This keyword specifies the image name that is used in running jobs." .
+
+hpc:imagename a owl:DatatypeProperty ;
+  rdfs:domain hpc:Image ;
+  rdfs:range xsd:string ;
+  rdfs:comment "The name of the image for the container jobs." .
+
+hpc:Options a owl:Class ;
+  rdfs:subClassOf owl:Class ;
+  rdfs:comment "Optional. This keyword specifies the job run options for the container." .
+
+hpc:preexecutionscript a owl:ObjectProperty ;
+  rdfs:domain hpc:Options ;
+  rdfs:range xsd:string ;
+  rdfs:comment "To enable a pre-execution script to run, specify an at sign (@) and a full file path to the script." .
+
+hpc:validvalues a owl:DatatypeProperty ;
+  rdfs:domain hpc:Committedruntimefactor ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Valid values: Any positive number between 0.0 and 1.0" .
+
+hpc:required a owl:ObjectProperty ;
+  rdfs:domain hpc:Job ;
+  rdfs:range hpc:Keyword ;
+  rdfs:comment "This keyword specifies that the property is required." .
+
+hpc:Keyword a owl:Class ;
+  rdfs:subClassOf owl:Class ;
+  rdfs:comment "A keyword that specifies a property or a requirement." .

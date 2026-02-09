@@ -1,0 +1,24 @@
+hpc:attrcreateusers a owl:ObjectProperty .
+hpc:Attrcreateusers rdfs:domain hpc:Hostattributeaffinity .
+hpc:Attrcreateusers rdfs:range xsd:string .
+hpc:Attrcreateusers rdfs:subClassOf owl:FunctionalProperty .
+
+hpc:AttrCreateUsers_none a owl:NamedIndividual .
+hpc:AttrCreateUsers_none rdf:value "none" .
+
+hpc:AttrCreateUsers_all a owl:NamedIndividual .
+hpc:AttrCreateUsers_all rdf:value "all" .
+
+hpc:AttrCreateUsers_user_name a owl:Restriction .
+hpc:AttrCreateUsers_user_name rdf:type hpc:AttrCreateUsers .
+hpc:AttrCreateUsers_user_name rdfs:subPropertyOf hpc:AttrCreateUsers .
+hpc:AttrCreateUsers_user_name owl:onProperty hpc:AttrCreateUsers .
+hpc:AttrCreateUsers_user_name owl:hasValue rdf:type xsd:string .
+
+hpc:attrmaxnum a owl:DatatypeProperty .
+hpc:Attrmaxnum rdfs:domain hpc:Hostattributeaffinity .
+hpc:Attrmaxnum rdfs:range xsd:integer .
+
+hpc:attrttl a owl:DatatypeProperty .
+hpc:Attrttl rdfs:domain hpc:Hostattributeaffinity .
+hpc:Attrttl rdfs:range xsd:duration .

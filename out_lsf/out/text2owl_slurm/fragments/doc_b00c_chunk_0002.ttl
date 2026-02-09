@@ -1,0 +1,54 @@
+hpc:Switch a owl:Class .
+hpc:Node a owl:Class .
+hpc:Topology a owl:Class .
+hpc:Topologyplugin rdfs:domain hpc:Topology .
+hpc:Topologyplugin rdfs:range xsd:string .
+hpc:Tree rdfs:subClassOf hpc:Topology .
+hpc:Switchname rdfs:domain hpc:Switch .
+hpc:Nodes rdfs:domain hpc:Leafswitch .
+hpc:Switches rdfs:domain hpc:Higherswitch .
+hpc:Linkspeed rdfs:domain hpc:Switch .
+hpc:Linkspeed rdfs:range xsd:string .
+
+hpc:Switch
+  a owl:Class ;
+  rdfs:subClassOf [ a owl:Class ;
+                     owl:unionOf (hpc:LeafSwitch hpc:HigherSwitch) ] .
+
+hpc:LeafSwitch
+  a owl:Class ;
+  rdfs:subClassOf hpc:Switch ;
+  rdfs:subClassOf [ a owl:Class ;
+                     rdfs:subPropertyOf hpc:Switches ] ;
+  rdfs:subClassOf [ a owl:Class ;
+                     rdfs:subPropertyOf hpc:Nodes ] .
+
+hpc:HigherSwitch
+  a owl:Class ;
+  rdfs:subClassOf hpc:Switch ;
+  rdfs:subClassOf [ a owl:Class ;
+                     rdfs:subPropertyOf hpc:Switches ] .
+
+hpc:Node
+  a owl:Class .
+
+hpc:Topology
+  a owl:Class .
+
+hpc:TopologyPlugin
+  a owl:ObjectProperty .
+
+hpc:Tree
+  a owl:Class .
+
+hpc:SwitchName
+  a owl:DatatypeProperty .
+
+hpc:Nodes
+  a owl:ObjectProperty .
+
+hpc:Switches
+  a owl:ObjectProperty .
+
+hpc:LinkSpeed
+  a owl:DatatypeProperty .

@@ -1,0 +1,45 @@
+hpc:Jobsubmission a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a job submission in a high-performance computing environment." .
+
+hpc:Localfile a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a file in the staging area." .
+
+hpc:Remotefile a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a file on the execution host." .
+
+hpc:Filespecification a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a file specification for a job submission." .
+
+hpc:operator a owl:ObjectProperty ;
+    rdfs:domain hpc:Filespecification ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the operator for the file transfer." .
+
+hpc:jobsubmissionmethod a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the method used for job submission." .
+
+hpc:stagingarea a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the staging area for the job submission." .
+
+hpc:executionhost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the execution host for the job submission." .
+
+hpc:localfiletransfer a owl:ObjectProperty ;
+    rdfs:domain hpc:Filespecification ;
+    rdfs:range hpc:Jobsubmission ;
+    rdfs:comment "Represents the transfer of a local file to the execution host." .
+
+hpc:remotefiletransferviasymboliclink a owl:ObjectProperty ;
+    rdfs:domain hpc:Filespecification ;
+    rdfs:range hpc:Jobsubmission ;
+    rdfs:comment "Represents the creation of a symbolic link from a local file to a remote file on the execution host." .

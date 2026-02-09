@@ -1,0 +1,59 @@
+hpc:Frontendmode a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty hpc:mode ;
+                        owl:hasValue 'FrontEnd'^^xsd:string ;
+                        owl:allValuesFrom [ rdf:type owl:Class ]
+    ] .
+
+hpc:FrontEndMode rdfs:comment "Mode of operation that is no longer supported." .
+
+hpc:Frontendmodedeprecation a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty hpc:deprecationReason ;
+                        owl:hasValue hpc:FrontEndMode ;
+                        owl:allValuesFrom [ rdf:type owl:Class ]
+    ] .
+
+hpc:FrontEndModeDeprecation rdfs:comment "Deprecation of FrontEndMode." .
+
+hpc:Compilation a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty hpc:requires ;
+                        owl:hasValue '–enable-front-end'^^xsd:string ;
+                        owl:allValuesFrom [ rdf:type owl:Class ]
+    ] .
+
+hpc:Compilation rdfs:comment "Compilation process." .
+
+hpc:Cgroupv1support a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty hpc:supportLevel ;
+                        owl:hasValue 'v1'^^xsd:string ;
+                        owl:allValuesFrom [ rdf:type owl:Class ]
+    ] .
+
+hpc:CgroupV1Support rdfs:comment "Support for cgroup/v1." .
+
+hpc:Cgroupv1supportdeprecation a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty hpc:deprecationReason ;
+                        owl:hasValue hpc:CgroupV1Support ;
+                        owl:allValuesFrom [ rdf:type owl:Class ]
+    ] .
+
+hpc:CgroupV1SupportDeprecation rdfs:comment "Deprecation of cgroup/v1 support." .
+
+hpc:mode a owl:ObjectProperty ;
+    rdfs:domain hpc:Compilation ;
+    rdfs:range hpc:Frontendmode .
+
+hpc:requires a owl:ObjectProperty ;
+    rdfs:domain hpc:Compilation ;
+    rdfs:range hpc:Compilation .
+
+hpc:supportlevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cgroupv1support ;
+    rdfs:range xsd:string .
+
+hpc:deprecationreason a owl:ObjectProperty ;
+    rdfs:domain hpc:Deprecation .

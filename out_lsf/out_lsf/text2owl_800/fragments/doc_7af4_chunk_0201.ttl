@@ -1,0 +1,31 @@
+hpc:Limit a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:mem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Limit ;
+    rdfs:range xsd:integer .
+
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Limit ;
+    rdfs:range xsd:string ;
+    rdfs:maxLength 40 .
+
+hpc:hasname a owl:ObjectProperty ;
+    rdfs:domain hpc:Limit ;
+    rdfs:range hpc:Name .
+
+hpc:Apps a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .
+hpc:Queues a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .
+hpc:Users a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .
+hpc:Hosts a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .
+hpc:LicProjects a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .
+hpc:Projects a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer .
+
+hpc:Resourceconsumer a owl:Class .

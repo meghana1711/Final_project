@@ -1,0 +1,42 @@
+hpc:Resizablejob a owl:Class .
+hpc:User a owl:Class .
+hpc:Usergroup a owl:Class .
+hpc:Resource a owl:Class .
+
+# Object Properties
+hpc:hasResizeAllocationRequest an owl:ObjectProperty .
+hpc:displaysPendingRequests an owl:ObjectProperty .
+hpc:addsResources an owl:ObjectProperty .
+hpc:removesResources an owl:ObjectProperty .
+hpc:printsPendingJobThresholds an owl:ObjectProperty .
+hpc:displaysInformation an owl:ObjectProperty .
+hpc:specifiesUser or owl:ObjectProperty .
+hpc:specifiesUserGroup an owl:ObjectProperty .
+hpc:setsCustomizedOutputFormat an owl:ObjectProperty .
+
+# Datatype Properties
+hpc:pendingrequests a owl:DatatypeProperty .
+hpc:addedresources a owl:DatatypeProperty .
+hpc:updatedresources a owl:DatatypeProperty .
+hpc:pendingjobthresholds a owl:DatatypeProperty .
+hpc:counters a owl:DatatypeProperty .
+hpc:slotallocation a owl:DatatypeProperty .
+hpc:isexclusivejob a owl:DatatypeProperty .
+
+# Domain and Range
+rdfs:domain(hpc:Displayspendingrequests, hpc:Resizablejob) .
+rdfs:domain(hpc:Addsresources, hpc:Resizablejob) .
+rdfs:domain(hpc:Removesresources, hpc:Resizablejob) .
+rdfs:domain(hpc:Printspendingjobthresholds, hpc:Resizablejob) .
+rdfs:domain(hpc:Displaysinformation, hpc:User) .
+rdfs:domain(hpc:Specifiesuser, hpc:User) .
+rdfs:domain(hpc:Specifiesusergroup, hpc:Usergroup) .
+rdfs:domain(hpc:Setscustomizedoutputformat, hpc:User) .
+
+rdfs:range(hpc:Pendingrequests, xsd:integer) .
+rdfs:range(hpc:Addedresources, xsd:string) .
+rdfs:range(hpc:Updatedresources, xsd:string) .
+rdfs:range(hpc:Pendingjobthresholds, xsd:string) .
+rdfs:range(hpc:Counters, xsd:integer) .
+rdfs:range(hpc:Slotallocation, xsd:string) .
+rdfs:range(hpc:Isexclusivejob, xsd:boolean) .

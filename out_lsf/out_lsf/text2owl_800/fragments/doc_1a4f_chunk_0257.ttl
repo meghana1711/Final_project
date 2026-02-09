@@ -1,0 +1,51 @@
+hpc:User a owl:Class .
+hpc:Usergroup a owl:Class .
+hpc:Subgroup a owl:Class .
+
+hpc:Hasuser rdfs:domain hpc:Usergroup ;
+    rdfs:range hpc:User .
+
+hpc:Hassubgroup rdfs:domain hpc:Usergroup ;
+    rdfs:range hpc:Subgroup .
+
+hpc:Haslimit rdfs:domain hpc:User, hpc:Usergroup .
+hpc:Haslimit rdfs:range xsd:nonNegativeInteger .
+
+hpc:Enforcedlimit rdfs:subClassOf hpc:Haslimit ;
+    rdfs:comment "Limits that are enforced." .
+
+hpc:Recursivelimit rdfs:subClassOf hpc:Haslimit ;
+    rdfs:comment "Limits that apply recursively to subgroups." .
+
+hpc:Firstcomefirstserved rdfs:subClassOf hpc:Job .
+
+hpc:Abusesystem rdfs:subClassOf hpc:User .
+
+hpc:Monopolizeresources rdfs:subClassOf hpc:User .
+
+hpc:Pendingjobs rdfs:domain hpc:User .
+hpc:Pendingjobs rdfs:range hpc:Job .
+
+hpc:Totalresourceused rdfs:domain hpc:Usergroup .
+hpc:Totalresourceused rdfs:range xsd:nonNegativeInteger .
+
+hpc:Memberof rdfs:domain hpc:User .
+hpc:Memberof rdfs:range hpc:Usergroup .
+
+hpc:Overlappingmembers rdfs:domain hpc:Usergroup .
+hpc:Overlappingmembers rdfs:range hpc:Usergroup .
+
+hpc:Alllimit rdfs:subClassOf hpc:Haslimit ;
+    rdfs:comment "Limits that apply to each user or user group in a cluster." .
+
+hpc:Clusterlimit rdfs:subClassOf hpc:Alllimit ;
+    rdfs:comment "Limits that apply to each user in a cluster." .
+
+hpc:Grouplimit rdfs:subClassOf hpc:Alllimit ;
+    rdfs:comment "Limits that apply to each member of a user group." .
+
+hpc:Enforceoneuglimits rdfs:domain hpc:Usergroup .
+hpc:Enforceoneuglimits rdfs:range xsd:boolean .
+
+hpc:Mostrestrictivelimit rdfs:subClassOf hpc:Haslimit ;
+    rdfs:comment "The most restrictive job limits of any overlapping user/user group." .

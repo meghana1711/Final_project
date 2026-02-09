@@ -1,0 +1,36 @@
+hpc:Usergroup a owl:Class .
+hpc:Usergroup rdfs:subClassOf rdf:Resource .
+
+hpc:Bstageoutcommand a owl:Class .
+hpc:Bstageoutcommand rdfs:subClassOf rdf:Resource .
+
+hpc:hasUserGroup rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range hpc:Bstageoutcommand .
+
+hpc:hasSource rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Bstageoutcommand ;
+    rdfs:range hpc:Fileorfolder .
+
+hpc:Fileorfolder a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:hasFile rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Fileorfolder ;
+    rdfs:range xsd:string .
+
+hpc:hasFolder rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Fileorfolder ;
+    rdfs:range xsd:string .
+
+hpc:hasTag rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bstageoutcommand ;
+    rdfs:range xsd:boolean .
+
+hpc:hasDestination rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bstageoutcommand ;
+    rdfs:range xsd:string .
+
+hpc:stagesAsynchronously rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Bstageoutcommand ;
+    rdfs:range xsd:boolean .

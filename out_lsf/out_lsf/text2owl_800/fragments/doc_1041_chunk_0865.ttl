@@ -1,0 +1,33 @@
+hpc:Packageinstallation a owl:Class .
+hpc:checksaninstallation a owl:ObjectProperty ;
+    rdfs:domain hpc:Packageinstallation ;
+    rdfs:range hpc:Checkresult .
+
+hpc:Checkresult a owl:Class .
+
+hpc:install a owl:ObjectProperty ;
+    rdfs:domain hpc:Packageinstallation ;
+    rdfs:range hpc:Binaryfile .
+
+hpc:Backup a owl:Class ;
+    rdfs:subClassOf hpc:Binaryfile .
+
+hpc:Configurationfile a owl:Class ;
+    rdfs:subClassOf hpc:Binaryfile .
+
+hpc:patchbackupdirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster .
+
+hpc:patchhistorydirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster .
+
+hpc:rollback a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Rollback .
+
+hpc:Rollback a owl:Class .
+
+hpc:checkoption a owl:DatatypeProperty ;
+    rdfs:domain hpc:Check .
+
+hpc:Cluster a owl:Class .

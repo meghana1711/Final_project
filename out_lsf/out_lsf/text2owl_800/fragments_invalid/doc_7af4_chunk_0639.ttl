@@ -1,0 +1,30 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:EgoDefineNcpus a owl:Class .
+hpc:EgoElimDir a owl:Class .
+hpc:LsfServerdir a owl:Class .
+hpc:EgoEnableAutoDaemonShutdown a owl:Class .
+hpc:EgoEslimTimeout a owl:Class .
+
+hpc:hasdefaultvalue a owl:ObjectProperty .
+
+hpc:EgoDefineNcpus rdfs:subClassOf owl:Class .
+hpc:EgoElimDir rdfs:subClassOf owl:Class .
+hpc:LsfServerdir rdfs:subClassOf owl:Class .
+hpc:EgoEnableAutoDaemonShutdown rdfs:subClassOf owl:Class .
+hpc:EgoEslimTimeout rdfs:subClassOf owl:Class .
+
+hpc:EgoDefineNcpus rdfs:domain hpc:EgoDefineNcpus .
+hpc:EgoElimDir rdfs:domain hpc:EgoElimDir .
+hpc:LsfServerdir rdfs:domain hpc:LsfServerdir .
+hpc:EgoEnableAutoDaemonShutdown rdfs:domain hpc:EgoEnableAutoDaemonShutdown .
+hpc:EgoEslimTimeout rdfs:domain hpc:EgoEslimTimeout .
+
+hpc:Hasdefaultvalue rdfs:range xsd:string .
+
+hpc:EgoDefineNcpus hpc:hasdefaultvalue "cores" .
+hpc:LsfServerdir hpc:hasdefaultvalue "LSF_SERVERDIR" .
+hpc:EgoEnableAutoDaemonShutdown hpc:hasdefaultvalue "Y" .

@@ -1,0 +1,50 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resourceallocation ;
+    rdfs:comment "A job that is being executed or waiting to be executed." .
+
+hpc:Qos a owl:Class ;
+    rdfs:subClassOf hpc:Resourceallocation ;
+    rdfs:comment "Quality of Service that can be assigned to a job or a partition." .
+
+hpc:preempts a owl:ObjectProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range hpc:Qos ;
+    rdfs:comment "A QOS that a QOS can preempt." .
+
+hpc:preemptableby a owl:ObjectProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range hpc:Qos ;
+    rdfs:comment "A QOS that can be preempted by another QOS." .
+
+hpc:preemptexempttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "The minimum run time before the job is considered for preemption." .
+
+hpc:overpartqos a owl:ObjectProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range hpc:Qos ;
+    rdfs:comment "A flag that reverses the order of precedence for PreemptExemptTime between a job QOS and a Partition QOS." .
+
+hpc:Resourcelimits a owl:Class ;
+    rdfs:subClassOf hpc:Qos ;
+    rdfs:comment "A set of limits assigned to a QOS." .
+
+hpc:Partitionqos a owl:Class ;
+    rdfs:subClassOf hpc:Qos ;
+    rdfs:comment "A QOS that is attached to a partition." .
+
+hpc:partitionsqos a owl:ObjectProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range hpc:Qos ;
+    rdfs:comment "The QOS associated with a partition." .
+
+hpc:limitsqos a owl:ObjectProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range hpc:Qos ;
+    rdfs:comment "The QOS that a job requests to gain limits, preemption characteristics, or priority." .
+
+hpc:overridesqos a owl:ObjectProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range hpc:Qos ;
+    rdfs:comment "The QOS that overrides the limits of the job's QOS." .

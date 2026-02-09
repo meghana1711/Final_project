@@ -1,0 +1,23 @@
+hpc:lsfDaemonWrap a owl:DatatypeProperty .
+hpc:lsbBsubiOld a owl:DatatypeProperty .
+
+hpc:restartsbatchd a owl:ObjectProperty .
+
+hpc:Serverhost a owl:Class .
+
+hpc:setclearcaseenvironment a owl:ObjectProperty .
+
+hpc:Windows a owl:Class .
+hpc:clearcaseroot a owl:DatatypeProperty .
+hpc:clearcasedrive a owl:DatatypeProperty .
+hpc:clearcasemountdir a owl:DatatypeProperty .
+hpc:optional a owl:ObjectProperty .
+
+hpc:Unixhost a owl:Class .
+hpc:rationalclearcasemountdir a owl:DatatypeProperty .
+
+hpc:submitinteractivelsftask a owl:ObjectProperty .
+hpc:lsrun a owl:ObjectProperty .
+hpc:lsgrun a owl:ObjectProperty .
+
+hpc:Clearcase a owl:Class .

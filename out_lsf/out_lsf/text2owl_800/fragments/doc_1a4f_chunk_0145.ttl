@@ -1,0 +1,15 @@
+hpc:Usergroup a owl:Class .
+hpc:groupmember a owl:ObjectProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range rdf:List .
+
+hpc:usershare a owl:DatatypeProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:integer .
+
+hpc:groupadmin a owl:ObjectProperty ;
+    rdfs:domain hpc:Usergroup .
+
+hpc:removeuser a owl:ObjectProperty ;
+    rdfs:domain xsd:string ;
+    rdfs:range hpc:Usergroup .

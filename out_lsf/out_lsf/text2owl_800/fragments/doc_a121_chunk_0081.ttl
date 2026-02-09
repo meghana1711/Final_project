@@ -1,0 +1,47 @@
+hpc:jobpriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:Jobqueue a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Jobowner a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Lsf a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Queueadmin a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:jobpriorityescalation a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobqueue ;
+    rdfs:range hpc:Jobpriorityescalationpolicy .
+
+hpc:Jobpriorityescalationpolicy a owl:Class .
+
+hpc:jobpriorityconfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobqueue ;
+    rdfs:range hpc:MaxUserPriority .
+
+hpc:MAX_USER_PRIORITY a xsd:integer .
+
+hpc:jobprioritychange a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpriorityconfiguration ;
+    rdfs:range hpc:Jobqueue .
+
+hpc:bbot a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobqueue ;
+    rdfs:range hpc:Job .
+
+hpc:bbotcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Bbot ;
+    rdfs:range hpc:Job .
+
+hpc:btop a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobqueue ;
+    rdfs:range hpc:Job .
+
+hpc:btopcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Btop ;
+    rdfs:range hpc:Job .

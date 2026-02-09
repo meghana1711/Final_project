@@ -1,0 +1,22 @@
+hpc:Lsfresourceconnector a owl:Class .
+hpc:Lsbapplications hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Lsbqueues hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Lsfconf hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Hostprovidersjson hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Osprovconfig hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Osprovtemplates hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Policyconfig hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Awsprovconfig hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Awsprovtemplates hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Azureprovconfig hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Azureprovtemplates hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Cyclecloudprovconfig hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Cyclecloudprovtemplates hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Googleprovconfig hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Googleprovtemplates hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Ibmcloudgen2config hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+hpc:Ibmcloudgen2templates hpc:Lsfresourceconnector rdfs:subClassOf owl:Class .
+
+hpc:rcAccount a owl:ObjectProperty .
+hpc:RcAccount rdfs:domain hpc:Lsfresourceconnector ;
+                 rdfs:range xsd:string .

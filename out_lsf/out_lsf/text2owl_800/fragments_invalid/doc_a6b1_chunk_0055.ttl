@@ -1,0 +1,58 @@
+hpc:Configurationfile a owl:Class .
+hpc:changed a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range xsd:boolean .
+
+hpc:ReconﬁgureCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range xsd:string .
+
+hpc:Hostname a owl:Class .
+hpc:Clienthost rdfs:subClassOf hpc:Hostname .
+
+hpc:Sbatchd a owl:Class .
+hpc:Runningon rdfs:domain hpc:Hostname ;
+    rdfs:range hpc:Sbatchd .
+
+hpc:BadminReconﬁg a owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchd .
+
+hpc:bctrldstop a owl:ObjectProperty ;
+    rdfs:domain xsd:string ;
+    rdfs:range xsd:string .
+
+hpc:hostnamearg a owl:ObjectProperty ;
+    rdfs:domain hpc:Bctrldstop .
+
+hpc:Externalauthentication a owl:Class .
+hpc:Thirdpartyauthenticationproduct rdfs:domain hpc:Externalauthentication ;
+    rdfs:range xsd:string .
+
+hpc:securedatatransfer a owl:ObjectProperty ;
+    rdfs:domain hpc:Externalauthentication .
+
+hpc:customizelsf a owl:ObjectProperty ;
+    rdfs:domain hpc:Externalauthentication .
+
+hpc:lsfauth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range xsd:string .
+
+hpc:Eauthexecutable a owl:Class .
+hpc:Sitespecificauthenticationmethod rdfs:domain hpc:Eauthexecutable ;
+    rdfs:range xsd:string .
+
+hpc:externalencryptionkey a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eauthexecutable ;
+    rdfs:range xsd:string .
+
+hpc:useraccount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eauthexecutable ;
+    rdfs:range xsd:string .
+
+hpc:Eauthbehavior a owl:Class .
+hpc:modifyexternalauthentication a owl:ObjectProperty ;
+    rdfs:domain hps:EauthBehavior .
+
+hpc:writeowneauth a owl:ObjectProperty ;
+    rdfs:domain hpc:Eauthbehavior .

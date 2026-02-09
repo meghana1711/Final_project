@@ -1,0 +1,58 @@
+hpc:Job a owl:Class .
+hpc:Firstexecutionhost hpc:objectproperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+hpc:Additionalhosts hpc:objectproperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+hpc:Restofjobhost hpc:objectproperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+hpc:Computeunit hpc:class .
+hpc:Hostgroup hpc:class .
+hpc:Cluster hpc:class .
+hpc:IgnoreDeadline hpc:datatypeproperty ;
+    rdfs:domain hpc:Job .
+hpc:ImptJobbklg hpc:datatypeproperty ;
+    rdfs:domain hpc:Queue .
+hpc:ImptJoblimit hpc:datatypeproperty ;
+    rdfs:domain hpc:Queue .
+hpc:Computeunit rdfs:subClassOf hpc:Cluster .
+hpc:Hostgroup rdfs:subClassOf hpc:Cluster .
+hpc:Computeunit rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:subClass

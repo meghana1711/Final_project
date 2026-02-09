@@ -1,0 +1,43 @@
+hpc:Jobevent a owl:Class .
+hpc:User a owl:Class .
+hpc:Timeinterval a owl:Class .
+hpc:Job a owl:Class .
+hpc:Jobarray a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Submissioncluster a owl:Class .
+hpc:Executioncluster a owl:Class .
+
+# Object Properties
+hpc:hastimeinterval a owl:ObjectProperty .
+hpc:submittedby a owl:ObjectProperty .
+hpc:hasid a owl:ObjectProperty .
+hpc:ispartofarray a owl:ObjectProperty .
+hpc:incluster a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:Timeinterval rdfs:domain hpc:Jobevent .
+hpc:Timeinterval rdfs:range xsd:string .
+hpc:User rdfs:domain hpc:User .
+hpc:User rdfs:range xsd:string .
+hpc:Time rdfs:domain hpc:Timeinterval .
+hpc:Time rdfs:range xsd:string .
+hpc:Id rdfs:domain hpc:Job .
+hpc:Id rdfs:range xsd:string .
+hpc:Idarray rdfs:domain hpc:Jobarray .
+hpc:Idarray rdfs:range xsd:string .
+hpc:Cluster rdfs:domain hpc:Cluster .
+hpc:Cluster rdfs:range xsd:string .
+hpc:Submissioncluster rdfs:domain hpc:Submissioncluster .
+hpc:Submissioncluster rdfs:range xsd:string .
+hpc:Executioncluster rdfs:domain hpc:Executioncluster .
+hpc:Executioncluster rdfs:range xsd:string .
+
+# Subclass Relations
+hpc:Jobevent a rdfs:subClassOf rdf:Resource .
+hpc:User a rdfs:subClassOf rdf:Resource .
+hpc:Timeinterval a rdfs:subClassOf rdf:Resource .
+hpc:Job a rdfs:subClassOf hpc:Jobevent .
+hpc:Jobarray a rdfs:subClassOf hpc:Job .
+hpc:Cluster a rdfs:subClassOf rdf:Resource .
+hpc:Submissioncluster a rdfs:subClassOf hpc:Cluster .
+hpc:Executioncluster a rdfs:subClassOf hpc:Cluster .

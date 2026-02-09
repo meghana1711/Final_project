@@ -1,0 +1,36 @@
+hpc:Policy a owl:Class .
+hpc:Haspolicytype hpc:policy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Policy ;
+    rdfs:range xsd:string .
+
+hpc:Evenlydistribution a owl:Class ;
+    rdfs:subClassOf hpc:Policy .
+
+hpc:Competedistribution a owl:Class ;
+    rdfs:subClassOf hpc:Policy .
+
+hpc:Globalfairsharepolicy a owl:Class ;
+    rdfs:subClassOf hpc:Policy .
+
+hpc:Policyname hpc:globalfairsharepolicy rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalfairsharepolicy ;
+    rdfs:range xsd:string .
+
+hpc:Participants hpc:globalfairsharepolicy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Globalfairsharepolicy ;
+    rdfs:range xsd:string .
+
+hpc:Syncmode hpc:globalfairsharepolicy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Globalfairsharepolicy ;
+    rdfs:range xsd:string .
+
+hpc:Syncinterval hpc:globalfairsharepolicy rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalfairsharepolicy ;
+    rdfs:range xsd:integer .
+
+hpc:Description hpc:globalfairsharepolicy rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalfairsharepolicy ;
+    rdfs:range xsd:string .
+
+hpc:BeginGlobalFairshare a owl:NamedIndividual .
+hpc:EndGlobalFairshare a owl:NamedIndividual .

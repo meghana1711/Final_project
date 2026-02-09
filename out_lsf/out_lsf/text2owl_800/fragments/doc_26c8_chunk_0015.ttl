@@ -1,0 +1,40 @@
+hpc:Mqttbroker a owl:Class .
+hpc:hasPortNumber rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Mqttbroker ;
+    rdfs:range xsd:integer .
+
+hpc:Hostprovider a owl:Class .
+hpc:hasAdministrator rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostprovider .
+
+hpc:Resourceprovider a owl:Class ;
+    rdfs:subClassOf hpc:Hostprovider .
+
+hpc:confPath rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostprovider .
+
+hpc:scriptPath rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostprovider .
+
+hpc:Hostprovidersjson a owl:Class ;
+    rdfs:subClassOf hpc:Hostprovider .
+
+hpc:hostsJsonFile rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostprovidersjson .
+
+hpc:hostsJsonLocation rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostprovidersjson .
+
+hpc:providerType rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceprovider .
+
+hpc:configurationFile rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceprovider ;
+    rdfs:range xsd:string .
+
+hpc:scriptFile rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceprovider ;
+    rdfs:range xsd:string .
+
+hpc:pathRelativeToLSFTop rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceprovider .

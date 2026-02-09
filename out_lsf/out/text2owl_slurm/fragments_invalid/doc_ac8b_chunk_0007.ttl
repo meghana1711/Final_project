@@ -1,0 +1,20 @@
+hpc:Jobpriorityplugin a owl:Class.
+hpc:Multifactorjobpriorityplugin a owl:Class .
+hpc:prioritytype a owl:DatatypeProperty;
+    rdfs:domain hpc:Jobpriorityplugin;
+    rdfs:range xsd:string.
+hpc:PriorityType "priority/multifactor" a xsd:string.
+hpc:Fairtreefairshare a owl:Class;
+    rdfs:subClassOf hpc:Jobpriorityplugin.
+hpc:Classicfairshare a owl:Class;
+    rdfs:subClassOf hpc:Jobpriorityplugin.
+hpc:maxtres a owl:ObjectProperty;
+    rdfs:domain hpc:Jobpriorityplugin;
+    rdfs:range xsd:double.
+hpc:maxtresgres a owl:ObjectProperty;
+    rdfs:domain hpc:Jobpriorityplugin;
+    rdfs:range xsd:double.
+hpc:sprio a owl:ObjectProperty;
+    rdfs:domain hpc:Jobpriorityplugin;
+    rdfs:range xsd:string.
+hpc:Slurmconf a owl:Class.

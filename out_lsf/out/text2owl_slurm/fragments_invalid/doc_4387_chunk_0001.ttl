@@ -1,0 +1,22 @@
+hpc:Accountingstoragetype a owl:Class.
+hpc:Accountingstoragetype rdfs:subClassOf owl:Class.
+
+hpc:Jobacctgathertype a owl:Class.
+hpc:Jobacctgathertype rdfs:subClassOf owl:Class.
+
+hpc:Jobcomptype a owl:Class.
+hpc:Jobcomptype rdfs:subClassOf owl:Class.
+
+hpc:Accountingtype a owl:Class.
+hpc:Accountingtype rdfs:subClassOf owl:Class.
+
+hpc:hasaccountingstoragetype a owl:ObjectProperty;
+  rdfs:domain hpc:Accountingtype;
+  rdfs:range hpc:Accountingstoragetype.
+
+hpc:hasjobacctgathertype a owl:ObjectProperty;
+  rdfs:domain hpc:Accountingtype;
+  rdfs:range hpc:Jobacctgathertype.
+
+hpc:hasjobcomptype a owl:ObjectProperty;
+  rdfs:domain hpc:Accountingtype;

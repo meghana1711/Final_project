@@ -1,0 +1,61 @@
+hpc:Lsf a owl:Class .
+hpc:Job a owl:Class .
+hpc:Host a owl:Class .
+hpc:Resourcerequirement a owl:Class .
+hpc:Selectstring a owl:Class .
+hpc:Resourcestring a owl:Class .
+hpc:Sharedresource a owl:Class .
+
+# Object Properties
+hpc:hasjob a owl:ObjectProperty .
+hpc:meetsrequirement a owl:ObjectProperty .
+hpc:hasselectstring a owl:ObjectProperty .
+hpc:hasresourcestring a owl:ObjectProperty .
+hpc:hassharedresource a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:Resourcerequirementstring rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:string .
+hpc:Selectstring rdfs:domain hpc:Selectstring ;
+    rdfs:range xsd:string .
+hpc:Resourcestring rdfs:domain hpc:Resourcestring ;
+    rdfs:range xsd:string .
+hpc:Sharedresource rdfs:domain hpc:Sharedresource ;
+    rdfs:range xsd:string .
+
+# Subclass Relations
+hpc:Job a hpc:LSF ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hpc:hasJob ;
+            owl:hasValue rdf:nil ] ] .
+
+hpc:ResourceRequirement a hpc:SelectString ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hpc:hasSelectString ;
+            owl:hasValue rdf:nil ] ] .
+
+hpc:ResourceRequirement a hpc:ResourceString ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hpc:hasResourceString ;
+            owl:hasValue rdf:nil ] ] .
+
+hpc:SharedResource a hpc:ResourceString ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hpc:hasSharedResource ;
+            owl:hasValue rdf:nil ] ] .
+
+# Domain and Range
+hpc:Meetsrequirement rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resourcerequirement .
+hpc:Hasjob rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Job .
+hpc:Hasselectstring rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range hpc:Selectstring .
+hpc:Hasresourcestring rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range hpc:Resourcestring .
+hpc:Hassharedresource rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range hpc:Sharedresource .

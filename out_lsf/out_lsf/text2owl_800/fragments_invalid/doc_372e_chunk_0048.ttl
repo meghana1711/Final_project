@@ -1,0 +1,24 @@
+hpc:Featuregroup a owl:Class .
+hpc:Feature a owl:Class .
+hpc:Hasfeature hpc:objectproperty .
+hpc:Hasfeature rdfs:domain hpc:Featuregroup .
+hpc:Hasfeature rdfs:range hpc:Feature .
+
+hpc:Projectgroup a owl:Class .
+hpc:Project a owl:Class .
+hpc:Haschildprojectgroup hpc:objectproperty .
+hpc:Haschildproject hpc:objectproperty .
+hpc:Hasparentprojectgroup hpc:objectproperty .
+hpc:Hasparentproject hpc:objectproperty .
+hpc:Hasresourceallocation hpc:datatypeproperty .
+
+hpc:Hierarchicalprojectgroup a owl:Class .
+hpc:Hierarchicalprojectgroup rdfs:subClassOf hpc:Projectgroup .
+hpc:Hashierarchicalgroup hpc:objectproperty .
+hpc:Hashierarchicalproject hpc:objectproperty .
+hpc:Hasdefaultproject hpc:datatypeproperty .
+hpc:defaultShare xsd:decimal .
+hpc:Hasotherproject hpc:objectproperty .
+
+hpc:Licenseproject a owl:Class .
+hpc:Haslicenseprojectpath hpc:objectproperty .

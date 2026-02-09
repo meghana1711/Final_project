@@ -1,0 +1,47 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Smt a owl:Class .
+hpc:smtp a owl:ObjectProperty .
+hpc:Priority a owl:Class .
+hpc:Stage a owl:Class .
+hpc:Storage a owl:Class .
+hpc:MinSize a xsd:nonNegativeInteger .
+hpc:MaxSize a xsd:nonNegativeInteger .
+hpc:Path a xsd:string .
+hpc:threadlimit a owl:DatatypeProperty .
+hpc:TermTime a xsd:duration .
+hpc:ReservationID a xsd:string .
+hpc:MailUser a xsd:string .
+hpc:swaplimit a owl:DatatypeProperty .
+hpc:HostName a xsd:string .
+hpc:HostModel a xsd:string .
+hpc:Time a xsd:duration .
+hpc:ReservationTime a xsd:duration .
+hpc:Workload a owl:Class .
+hpc:Hour a xsd:nonNegativeInteger .
+hpc:Minute a xsd:nonNegativeInteger .
+hpc:Value a xsd:decimal .
+hpc:WorkloadEnergy a xsd:decimal .
+hpc:workloadhost a owl:ObjectProperty .
+hpc:Workloadhost rdfs:domain hpc:Workload .
+hpc:Workloadhost rdfs:range hpc:Hostname .
+hpc:workloadmodel a owl:ObjectProperty .
+hpc:Workloadmodel rdfs:domain hpc:Workload .
+hpc:Workloadmodel rdfs:range hpc:Hostmodel .
+hpc:workloadtime a owl:DatatypeProperty .
+hpc:Workloadtime rdfs:domain hpc:Workload .
+hpc:Workloadtime rdfs:range hpc:Time .
+hpc:workloadvalue a owl:DatatypeProperty .
+hpc:Workloadvalue rdfs:domain hpc:Workload .
+hpc:Workloadvalue rdfs:range hpc:Value .
+hpc:swaplimit a owl:DatatypeProperty .
+hpc:Swaplimit rdfs:domain hpc:Smt .
+hpc:priority a owl:DatatypeProperty .
+hpc:Priority rdfs:domain hpc:Stage .
+hpc:Priority rdfs:range xsd:nonNegativeInteger .
+hpc:Smt rdfs:subClassOf owl:Class .
+hpc:Stage rdfs:subClassOf owl:Class .
+hpc:Storage rdfs:subClassOf hpc:Stage .

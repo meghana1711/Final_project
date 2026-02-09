@@ -1,0 +1,13 @@
+hpc:Tgtforwarding a owl:Class.
+hpc:Lsf a owl:Class.
+hpc:Jobprocess a owl:Class.
+hpc:Kerberosprotection a owl:Class.
+hpc:Nfsv4 a owl:Class.
+
+hpc:hastgtforwarding a owl:ObjectProperty;
+    rdfs:domain hpc:Lsf;
+    rdfs:range hpc:Tgtforwarding.
+
+hpc:usestgt a owl:ObjectProperty;
+    rdfs:domain hpc:Jobprocess;
+    rdfs:range hpc:Tgt.

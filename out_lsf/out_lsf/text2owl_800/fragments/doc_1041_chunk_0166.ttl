@@ -1,0 +1,16 @@
+hpc:User a owl:Class .
+hpc:Energytag a owl:Class .
+hpc:Energypolicytag a owl:Class .
+hpc:hasenergypolicytag a owl:ObjectProperty .
+hpc:belongstouser a owl:ObjectProperty .
+
+hpc:Energypolicytag rdfs:domain hpc:Energytag ;
+                     rdfs:range xsd:string .
+hpc:Hasenergypolicytag rdfs:domain hpc:Energytag ;
+                      rdfs:range hpc:User .
+hpc:Belongstouser rdfs:domain hpc:User ;
+                  rdfs:range hpc:Energytag .
+
+hpc:User rdfs:subClassOf rdf:Resource .
+hpc:Energytag rdfs:subClassOf rdf:Resource .
+hpc:Energypolicytag rdfs:subClassOf rdf:PlainLiteral .

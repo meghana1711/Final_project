@@ -1,0 +1,58 @@
+hpc:Command a owl:Class .
+
+hpc:hasfieldname a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:outputwidthopt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hasfieldname ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:delimiteropt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hasfieldname ;
+    rdfs:range xsd:string .
+
+hpc:hashostname a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:Resource .
+
+hpc:hashostgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:Resource .
+
+hpc:hascomputeunit a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:Resource .
+
+hpc:hasresourcereq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:hasprojectname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blstat ;
+    rdfs:range xsd:string .
+
+hpc:blstat a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Blstat .
+
+hpc:allocopt a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean .
+
+hpc:noheaderopt a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean .
+
+hpc:xopt a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean .
+
+hpc:xopt a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean .
+
+hpc:Resreq a owl:Class ;
+    rdfs:subClassOf owl:Restriction ;
+    rdfs:subPropertyOf hpc:hasResourceReq ;
+    owl:onClass xsd:string .

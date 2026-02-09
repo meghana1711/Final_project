@@ -1,0 +1,24 @@
+hpc:Reservation a owl:Class.
+hpc:Closedreservation a owl:Class.
+hpc:Openadvancereservation a owl:Class.
+hpc:Onetimeopenreservation a owl:Class.
+hpc:Recurringreservation a owl:Class.
+hpc:Closedrecurringreservation a owl:Class.
+hpc:Openresurrectionreservation a owl:Class.
+hpc:Systemreservation a owl:Class.
+
+hpc:hasreservationtype a owl:ObjectProperty.
+hpc:Hasreservationtype rdfs:domain hpc:Reservation ;
+                          rdfs:range xsd:string.
+
+hpc:isclosed a owl:ObjectProperty ;
+             rdfs:domain hpc:Reservation ;
+             rdfs:range xsd:boolean.
+
+hpc:expires a owl:DatatypeProperty ;
+            rdfs:domain hpc:Reservation ;
+            rdfs:range xsd:dateTime.
+
+hpc:isactive a owl:DatatypeProperty ;
+             rdfs:domain hpc:Reservation ;
+             rdfs:range xsd:

@@ -1,0 +1,21 @@
+hpc:Slurm a owl:Class.
+hpc:Slurmconffile a owl:Class.
+hpc:prioritytype a owl:DatatypeProperty; rdfs:domain hpc:slurm.
+hpc:Prioritytype rdfs:range xsd:string.
+
+hpc:Job a owl:Class.
+hpc:jobpriority a owl:ObjectProperty; rdfs:domain hpc:job.
+hpc:Jobpriority rdfs:range xsd:decimal.
+
+hpc:canpreempt a owl:ObjectProperty; rdfs:domain hpc:job.
+hpc:Canpreempt rdfs:range xsd:boolean.
+
+hpc:advancedreservation a owl:ObjectProperty; rdfs:domain hpc:job.
+hpc:Advancedreservation rdfs:range xsd:boolean.
+
+hpc:partitionprioritytier a owl:ObjectProperty; rdfs:domain hpc:job.
+hpc:Partitionprioritytier rdfs:range xsd:string.
+
+hpc:Jobprioritytier a owl:Class.
+hpc:jobsubmittime a owl:DatatypeProperty; rdfs:domain hpc:job.
+hpc:Jobsubmittime rd

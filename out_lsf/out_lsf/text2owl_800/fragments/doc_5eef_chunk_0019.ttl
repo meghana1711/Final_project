@@ -1,0 +1,62 @@
+hpc:File a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:haspermission a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string .
+
+hpc:hashash a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hassize a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:decimal .
+
+hpc:hasstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasrefjob a owl:ObjectProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasxferjob a owl:ObjectProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasgrace a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasmodified a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hascachelocation a owl:ObjectProperty ;
+    rdfs:domain hpc:File .
+
+hpc:isincache a owl:ObjectProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range hpc:File .
+
+hpc:belongstogroup a owl:ObjectProperty ;
+    rdfs:domain hpc:File .
+
+hpc:haslinkstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:haslinkedjob a owl:ObjectProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasstagingjob a owl:ObjectProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasfinishedxferjob a owl:ObjectProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hastransfertime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Xferjob .
+
+hpc:Xferjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Jobreference a owl:Class ;
+    rdfs:subClassOf hpc:Job .

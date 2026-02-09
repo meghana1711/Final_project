@@ -1,0 +1,34 @@
+hpc:Awslaunchtemplate a owl:Class .
+hpc:Templateid hpc:datatypeproperty ;
+    rdfs:domain hpc:Awslaunchtemplate ;
+    rdfs:range xsd:string .
+hpc:Maxnumber hpc:datatypeproperty ;
+    rdfs:domain hpc:Awslaunchtemplate ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Zone hpc:datatypeproperty ;
+    rdfs:domain hpc:Awslaunchtemplate ;
+    rdfs:range xsd:string .
+hpc:Pricing hpc:datatypeproperty ;
+    rdfs:domain hpc:Awslaunchtemplate ;
+    rdfs:range xsd:string .
+hpc:Interfacetype hpc:datatypeproperty ;
+    rdfs:domain hpc:Awslaunchtemplate ;
+    rdfs:range xsd:string .
+hpc:Placementgroupname hpc:datatypeproperty ;
+    rdfs:domain hpc:Awslaunchtemplate ;
+    rdfs:range xsd:string .
+hpc:Tenancy hpc:datatypeproperty ;
+    rdfs:domain hpc:Awslaunchtemplate ;
+    rdfs:range xsd:string .
+hpc:Securitygroupids hpc:datatypeproperty ;
+    rdfs:domain hpc:Awslaunchtemplate ;
+    rdfs:range xsd:string .
+hpc:Fleetrole hpc:datatypeproperty ;
+    rdfs:domain hpc:Awslaunchtemplate ;
+    rdfs:range xsd:string .
+hpc:Allocationstrategy hpc:datatypeproperty ;
+    rdfs:domain hpc:Awslaunchtemplate ;
+    rdfs:range xsd:string .
+hpc:Userdata hpc:datatypeproperty ;
+    rdfs:domain hpc:Awslaunchtemplate ;
+    rdfs:range xsd:string .

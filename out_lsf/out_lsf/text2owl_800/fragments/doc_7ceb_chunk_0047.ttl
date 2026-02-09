@@ -1,0 +1,23 @@
+hpc:Elim a owl:Class .
+hpc:hasexecutable a owl:ObjectProperty ;
+    rdfs:domain hpc:Elim ;
+    rdfs:range xsd:string .
+
+hpc:runson a owl:ObjectProperty ;
+    rdfs:domain hpc:Elim ;
+    rdfs:range hpc:Host .
+
+hpc:reportsresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Elim ;
+    rdfs:range hpc:Resource .
+
+hpc:Resource a owl:Class .
+hpc:hasname a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+hpc:hasvalue a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Host a owl:Class .
+hpc:haselim a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Elim .

@@ -1,0 +1,11 @@
+hpc:Operatingmode a owl:Class.
+hpc:isprimarycontroller a owl:DatatypeProperty.
+hpc:Isprimarycontroller rdfs:domain hpc:Operatingmode ;
+                          rdfs:range xsd:boolean.
+hpc:name a owl:DatatypeProperty.
+hpc:Name rdfs:domain hpc:Operatingmode ;
+                  rdfs:range xsd:string.
+hpc:direct a owl:DatatypeProperty.
+hpc:Direct rdfs:domain hpc:Operatingmode ;
+             rdfs:range xsd:boolean.
+hpc:V0043Cron

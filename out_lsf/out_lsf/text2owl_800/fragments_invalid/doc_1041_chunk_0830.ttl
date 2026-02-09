@@ -1,0 +1,50 @@
+hpc:Loadadjustment a owl:Class .
+hpc:adjustsload a owl:ObjectProperty ;
+    rdfs:domain hpc:Loadadjustment ;
+    rdfs:range rdf:Resource .
+hpc:Host a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+hpc:res_req rdf:DatatypeProperty ;
+    rdfs:domain hpc:Loadadjustment ;
+    rdfs:range xsd:string .
+hpc:num_task rdf:DatatypeProperty ;
+    rdfs:domain hpc:Loadadjustment ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:host_name rdf:DatatypeProperty ;
+    rdfs:domain hpc:Loadadjustment ;
+    rdfs:range hpc:Host .
+hpc:submitter_host rdf:DatatypeProperty ;
+    rdfs:domain hpc:Loadadjustment ;
+    rdfs:range hpc:Host .
+hpc:task_type rdf:DatatypeProperty ;
+    rdfs:domain hpc:Loadadjustment ;
+    rdfs:range xsd:string .
+hpc:cpu_intensive rdf:DatatypeProperty ;
+    rdfs:domain hpc:Loadadjustment ;
+    rdfs:range xsd:boolean .
+hpc:memory_intensive rdf:DatatypeProperty ;
+    rdfs:domain hpc:Loadadjustment ;
+    rdfs:range xsd:boolean .
+hpc:local_host rdf:DatatypeProperty ;
+    rdfs:domain hpc:Loadadjustment ;
+    rdfs:range xsd:boolean .
+hpc:num_tasks rdf:DatatypeProperty ;
+    rdfs:domain hpc:Loadadjustment ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:adjusted_load rdf:DatatypeProperty ;
+    rdfs:domain hpc:Loadadjustment ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:decay_time rdf:DatatypeProperty ;
+    rdfs:domain hpc:Loadadjustment ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:excluded_indices rdf:List ;
+    rdfs:member hpc:ls .
+hpc:excluded_indices rdf:List ;
+    rdfs:member hpc:it .
+hpc:excluded_indices rdf:List ;
+    rdfs:member hpc:r15m .
+hpc:excluded_indices rdf:List ;
+    rdfs:member hpc:external_load .
+hpc:max_adjustment rdf:DatatypeProperty ;
+    rdfs:domain hpc:Loadindex .
+hpc:Loadindex a owl:Class .

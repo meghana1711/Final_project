@@ -1,0 +1,42 @@
+hpc:Job a owl:Class .
+hpc:Switchedjob a owl:Class .
+hpc:Loadsched hpc:controls hpc:SwitchedJob .
+hpc:Loadstop hpc:controls hpc:SwitchedJob .
+hpc:Configurationparameters hpc:controls hpc:SwitchedJob .
+hpc:Nicevalue rdfs:range xsd:decimal .
+hpc:Resourcelimits rdfs:range xsd:decimal .
+hpc:Prioritization hpc:controls hpc:SwitchedJob .
+hpc:Runwindow hpc:controls hpc:SwitchedJob .
+hpc:Chunkjob a owl:Class .
+hpc:Queue hpc:controls hpc:ChunkJob .
+hpc:Jobstate rdfs:domain hpc:Chunkjob ;
+    rdfs:range xsd:string .
+hpc:Requeuestate rdfs:domain hpc:Chunkjob ;
+    rdfs:range xsd:string .
+hpc:Runningchunkjobmember hpc:atype hpc:ChunkJobMember .
+hpc:Running hpc:Jobstate rdfs:subClassOf xsd:string .
+hpc:Wait hpc:Jobstate rdfs:subClassOf xsd:string .
+hpc:Pending hpc:Jobstate rdfs:subClassOf xsd:string .
+hpc:Waitjob hpc:atype hpc:Job .
+hpc:Requeue hpc:Requeuestate rdfs:subClassOf xsd:string .
+hpc:Pendingstate rdfs:subClassOf hpc:Requeuestate .
+hpc:bswitchcommand a owl:ObjectProperty .
+hpc:Resizablejob hpc:domain hpc:Job ;
+    rdfs:range hpc:Job .
+hpc:Jobstate rdfs:domain hpc:Resizablejob .
+hpc:Thresholdconfiguration rdfs:range hpc:Configuration .
+hpc:Runlimit rdfs:range xsd:decimal .
+hpc:Cpulimit rdfs:range xsd:decimal .
+hpc:Queuelevelresourcerequirements rdfs:range hpc:Configuration .
+hpc:multiphaserusagestringresourcerequirement a owl:DatatypeProperty .
+hpc:Decayedruntime rdfs:range xsd:decimal .
+hair:NonDecayedRunTime rdfs:range xsd:decimal .
+hair:UndecayedRunTime rdfs:range xsd:decimal .
+hair:ReservableResourceLimit rdfs:range xsd:decimal .
+hair:MaximumRusageValues rdfs:range xsd:decimal .
+hair:MinimumRusageValues rdfs:range xsd:decimal .
+hair:EffectiveResourceRequirements rdfs:range hpc:Resourcerequirement .
+hair:BSWITCH_MODIFY_RUSAGE rdfs:range xsd:boolean .
+hair:ScheduledJob rdfs:subClassOf hpc:Job .
+hair:ScheduledJob hpc:effectiveResourceRequirements hair:EffectiveResourceRequirements .
+hair:ModifiedResourceRequirements rdfs:range hpc:Resourcerequirement .

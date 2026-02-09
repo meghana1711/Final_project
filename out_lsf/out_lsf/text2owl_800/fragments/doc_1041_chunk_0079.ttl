@@ -1,0 +1,54 @@
+hpc:Commandsession a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Exits the badmin command session." .
+
+hpc:exitcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Commandsession ;
+    rdfs:range xsd:string ;
+    rdfs:comment "quit" .
+
+hpc:Timespec a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Specifies the earliest time from which to retrieve the error messages." .
+
+hpc:timeunit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Timespec ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the time unit (days, hours, minutes)" .
+
+hpc:Hostprovider a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Specifies the host providers from which to retrieve the error messages." .
+
+hpc:providers a owl:ObjectProperty ;
+    rdfs:domain hpc:Timespec ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Use a space to separate multiple host providers." .
+
+hpc:Resourceconnectorerror a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Shows LSF resource connector error messages from the host providers." .
+
+hpc:mosquittoapp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceconnectorerror ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The third-party mosquitto message queue application, which must be running on the host." .
+
+hpc:Infoview a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Shows LSF resource connector information from the host providers." .
+
+hpc:jsonformat a owl:DatatypeProperty ;
+    rdfs:domain hpc:Infoview ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "When used with the [-json] option, displays the output in JSON format." .
+
+hpc:infotype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Infoview ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies whether to view information on instances, policies, or templates. Use a space to separate multiple types of information." .
+
+hpc:comment a owl:DatatypeProperty ;
+    rdfs:domain hpc:Commandsession ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The maximum length of the comment string is 512 characters." .

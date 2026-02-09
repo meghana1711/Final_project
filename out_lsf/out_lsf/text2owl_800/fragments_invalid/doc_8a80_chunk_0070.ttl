@@ -1,0 +1,26 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Project a owl:Class .
+hpc:projects a owl:ObjectProperty .
+hpc:priority a owl:DatatypeProperty .
+hpc:description a owl:DatatypeProperty .
+
+rdfs:domain hpc:Projects rdf:Property .
+rdfs:domain hpc:Priority rdf:Property .
+rdfs:domain hpc:Description rdf:Property .
+rdfs:range hpc:Priority xsd:nonNegativeInteger .
+
+hpc:Projects rdfs:subClassOf owl:FunctionalProperty .
+
+hpc:Projects hpc:Project rdfs:range .
+hpc:Priority hpc:Project rdfs:range xsd:nonNegativeInteger .
+hpc:Description hpc:Project rdfs:range xsd:string .
+
+hpc:Projects hpc:defaultproject rdfs:subPropertyOf .
+hpc:Projects hpc:sharegroup rdfs:subPropertyOf .
+
+
+This ontology fragment defines the classes `hpc:Project` and properties `hpc:Projects`, `hpc:Priority`, and `hpc:Description`. It also specifies the domain and range for each property and indicates that `hpc:Projects` is functional. Additionally, it defines a subproperty relationship for `hpc:Projects` with `hpc:defaultProject` and `hpc:shareGroup`.

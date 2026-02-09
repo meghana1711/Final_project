@@ -1,0 +1,31 @@
+hpc:hostPostExec a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range hpc:Command ;
+    rdfs:comment "The host-based post-execution command for the application proﬁle." .
+
+hpc:HOST_POST_EXEC_WINDOWS a xsd:boolean ;
+    rdfs:comment "Indicates whether the HOST_POST_EXEC command can run on Windows systems." .
+
+hpc:localMaxPreexecRetryAction a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range hpc:Action ;
+    rdfs:comment "The action to take on a job when the number of times to attempt its pre-execution command on the local cluster is reached." .
+
+hpc:JOB_INCLUDE_POSTPROC a xsd:boolean ;
+    rdfs:comment "Indicates whether post-execution processing of the job is included as part of the job." .
+
+hpc:jobPostprocTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Timeout in minutes for job post-execution processing." .
+
+hpc:POST_ERR a xsd:string ;
+    rdfs:comment "Status indicating that post-execution failed." .
+
+hpc:REQUEUE_EXIT_VALUES a rdfs:List ;
+    rdfs:comment "Jobs that exit with these values are automatically re-queued." .
+
+hpc:resReq a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range hpc:Resourcerequirement ;
+    rdfs:comment "Resource requirements of the application proﬁle." .

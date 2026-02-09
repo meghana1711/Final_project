@@ -1,0 +1,74 @@
+hpc:Candidatehost a owl:Class .
+hpc:Candidategpu a owl:Class .
+
+hpc:sortBySharedGPUsWithRunningJobs an owl:ObjectProperty ;
+    rdfs:domain hpc:Candidatehost ;
+    rdfs:range xsd:integer .
+
+hpc:sortByNonExclusiveGPUs an owl:ObjectProperty ;
+    rdfs:domain hpc:Candidatehost ;
+    rdfs:range xsd:integer .
+
+hpc:sortByOrder an owl:ObjectProperty ;
+    rdfs:domain hpc:Candidatehost ;
+    rdfs:range hpc:Job .
+
+hpc:sortByGPackPolicy an owl:ObjectProperty ;
+    rdfs:domain hpc:Candidatehost ;
+    rdfs:range xsd:integer .
+
+hpc:hasRunningJobs an owl:DatatypeProperty ;
+    rdfs:domain hpc:Candidategpu ;
+    rdfs:range xsd:integer .
+
+hpc:hasSharedGPUsWithRunningJobs an owl:DatatypeProperty ;
+    rdfs:domain hpc:Candidategpu ;
+    rdfs:range xsd:integer .
+
+hpc:hasNonExclusiveGPUs an owl:DatatypeProperty ;
+    rdfs:domain hpc:Candidategpu ;
+    rdfs:range xsd:integer .
+
+hpc:hasDockerAffinity an owl:DatatypeProperty ;
+    rdfs:domain hpc:Candidatehost ;
+    rdfs:range xsd:integer .
+
+hpc:ispackschedulingenabled a owl:ObjectProperty ;
+    rdfs:domain hpc:Candidatehost ;
+    rdfs:range xsd:boolean .
+
+hpc:isgpureqmergeenabled a owl:ObjectProperty ;
+    rdfs:domain hpc:Candidatehost ;
+    rdfs:range xsd:boolean .
+
+hpc:mergedGpuRequirementString an owl:DatatypeProperty ;
+    rdfs:domain hpc:Candidatehost ;
+    rdfs:range xsd:string .
+
+hpc:topologyRequirement an owl:ObjectProperty ;
+    rdfs:domain hpc:Candidategpu ;
+    rdfs:range xsd:string .
+
+hpc:Joblevelgpurequirement a owl:Class ;
+    rdfs:subClassOf hpc:Gpurequirement .
+
+hpc:Applicationprofilegpurequirement a owl:Class ;
+    rdfs:subClassOf hpc:Gpurequirement .
+
+hpc:Queuegpurequirement a owl:Class ;
+    rdfs:subClassOf hpc:Gpurequirement .
+
+hpc:Defaultclustergpurequirement a owl:Class ;
+    rdfs:subClassOf hpc:Gpurequirement .
+
+hpc:Gpurequirement a owl:Class .
+
+hpc:mode an owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:string .
+
+hpc:mps an owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:string .
+
+hpc:esubParameterLSB_SUB4

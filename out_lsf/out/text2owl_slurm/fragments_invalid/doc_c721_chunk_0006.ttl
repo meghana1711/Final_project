@@ -1,0 +1,23 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:User a owl:Class.
+hpc:Account a owl:Class.
+
+hpc:normalizedshare a owl:DatatypeProperty;
+    rdfs:domain hpc:User;
+    rdfs:range xsd:decimal.
+
+hpc:actualusage a owl:DatatypeProperty;
+    rdfs:domain hpc:Account;
+    rdfs:range xsd:decimal.
+
+hpc:effectiveusage a owl:DatatypeProperty;
+    rdfs:domain hpc:Account;
+    rdfs:range xsd:decimal.
+
+hpc:haschild a owl:ObjectProperty;
+    rd

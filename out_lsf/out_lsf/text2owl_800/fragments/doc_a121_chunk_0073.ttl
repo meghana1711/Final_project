@@ -1,0 +1,34 @@
+hpc:Exclusivequeue a owl:Class .
+hpc:configureexclusivequeue a owl:ObjectProperty .
+hpc:Exclusivequeuedefinition a owl:Class .
+hpc:Exclusive rdfs:domain hpc:Exclusivequeuedefinition ;
+                 rdfs:range xsd:boolean .
+
+hpc:Singleprocessorhost a owl:Class .
+hpc:runonejobatatime a owl:ObjectProperty .
+hpc:Singleprocessorhostconfiguration a owl:Class .
+hpc:Slots rdfs:domain hpc:Singleprocessorhostconfiguration ;
+          rdfs:range xsd:integer .
+hpc:Hosts rdfs:domain hpc:Singleprocessorhostconfiguration ;
+          rdfs:range xsd:string .
+
+hpc:Exclusivejob a owl:Class .
+hpc:submitexclusivejob a owl:ObjectProperty .
+
+hpc:Computeunitexclusivequeue a owl:Class ;
+                               rdfs:subClassOf hpc:Exclusivequeue .
+hpc:Computeunitexclusivejob a owl:Class ;
+                               rdfs:subClassOf hpc:Exclusivejob .
+
+hpc:Resizablejob a owl:Class .
+hpc:Resizableexclusivejob a owl:Class ;
+                             rdfs:subClassOf hpc:Resizablejob .
+hpc:Autoresizablejob a owl:Class ;
+                        rdfs:subClassOf hpc:Resizablejob .
+hpc:Canincreaseallocation rdfs:domain hpc:Resizableexclusivejob ;
+                            rdfs:range xsd:boolean .
+hpc:Canreleaseresources rdfs:domain hpc:Resizableexclusivejob ;
+                            rdfs:range xsd:boolean .
+hpc:lsbDisableLimlockExcl a owl:DatatypeProperty .
+hpc:LsbDisableLimlockExclInlsfconf rdfs:domain hpc:Exclusivequeuedefinition ;
+                                         rdfs:range xsd:boolean .

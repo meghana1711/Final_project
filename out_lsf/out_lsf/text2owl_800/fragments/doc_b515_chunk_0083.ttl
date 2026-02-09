@@ -1,0 +1,39 @@
+hpc:Job a owl:Class .
+hpc:Host a owl:Class .
+hpc:Cpu a owl:Class .
+hpc:Memory a owl:Class .
+hpc:Processorunit a owl:Class .
+
+# Object Properties
+hpc:hasjob a owl:ObjectProperty .
+hpc:ison a owl:ObjectProperty .
+hpc:hascpu a owl:ObjectProperty .
+hpc:hasmemory a owl:ObjectProperty .
+hpc:hasprocessorunit a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hosttype a owl:DatatypeProperty .
+hpc:level a owl:DatatypeProperty .
+hpc:exclids a owl:DatatypeProperty .
+hpc:pol a owl:DatatypeProperty .
+hpc:numasize a owl:DatatypeProperty .
+hpc:Numasize xsd:string rdfs:range .
+
+# Class and Property Relations
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Host rdfs:subClassOf owl:Class .
+hpc:Cpu rdfs:subClassOf owl:Class .
+hpc:Memory rdfs:subClassOf owl:Class .
+hpc:Processorunit rdfs:subClassOf owl:Class .
+
+hpc:Hasjob rdfs:domain hpc:Job .
+hpc:Ison rdfs:domain hpc:Job .
+hpc:Hascpu rdfs:domain hpc:Job .
+hpc:Hasmemory rdfs:domain hpc:Job .
+hpc:Hasprocessorunit rdfs:domain hpc:Job .
+
+hpc:Hosttype rdfs:domain hpc:Host .
+hpc:Level rdfs:domain hpc:Processorunit .
+hpc:Exclids rdfs:domain hpc:Processorunit .
+hpc:Pol rdfs:domain hpc:Processorunit .
+hpc:Numasize rdfs:domain hpc:Processorunit .

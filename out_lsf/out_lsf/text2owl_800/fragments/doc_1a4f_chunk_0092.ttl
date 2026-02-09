@@ -1,0 +1,25 @@
+hpc:Eswitchenvironment a owl:Class .
+
+hpc:LSB_SWITCH_PARM_FILE rdf:type hpc:ObjectProperty ;
+    rdfs:domain hpc:Eswitchenvironment ;
+    rdfs:range xsd:string .
+
+hpc:lsbSwitchAdditional a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSwitchParmFile ;
+    rdfs:range xsd:string .
+
+hpc:lsbSwitchJob a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSwitchParmFile ;
+    rdfs:range xsd:string .
+
+hpc:lsbSwitchQueue a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbSwitchParmFile ;
+    rdfs:range xsd:string .
+
+hpc:LSB_SWITCH_MODIFY_FILE rdf:type hpc:ObjectProperty ;
+    rdfs:domain hpc:Eswitchenvironment ;
+    rdfs:range xsd:string .
+
+hpc:LSB_SWITCH_ABORT_VALUE rdf:type hpc:ObjectProperty .
+
+hpc:LSB_ESWITCH_METHOD rdf:type hpc:ObjectProperty .

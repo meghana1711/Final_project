@@ -1,0 +1,23 @@
+hpc:lmRemoveInterval a owl:DatatypeProperty .
+hpc:haslmremoveinterval a owl:ObjectProperty .
+hpc:LmRemoveInterval rdfs:domain hpc:Job .
+hpc:LmRemoveInterval rdfs:range xsd:integer .
+
+hpc:lmReservation a owl:DatatypeProperty .
+hpc:haslmreservation a owl:ObjectProperty .
+hpc:LmReservation rdfs:domain hpc:Feature .
+hpc:LmReservation rdfs:range xsd:boolean .
+
+hpc:Preemptionaction a owl:Class .
+hpc:Preemptionaction rdfs:subClassOf owl:Class .
+
+hpc:Immediatepreemption a owl:Class .
+hpc:Immediatepreemption rdfs:subClassOf hpc:Preemptionaction .
+hpc:ImmediatePreemption rdf:type owl:Class .
+
+hpc:Defaultpreemption a owl:Class .
+hpc:Defaultpreemption rdfs:subClassOf hpc:Preemptionaction .
+hpc:DefaultPreemption rdf:type owl:Class .
+
+hpc:Job a owl:Class .
+hpc:Feature a owl:Class .

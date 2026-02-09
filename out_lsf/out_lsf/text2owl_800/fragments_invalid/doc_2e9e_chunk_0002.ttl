@@ -1,0 +1,54 @@
+hpc:Application a owl:Class ;
+    rdfs:subClassOf hpc:Namedentity ;
+    rdfs:label "Application" ;
+    rdfs:comment "Represents an application in the LSB.applications file." .
+
+hpc:resreq a owl:ObjectProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range hpc:Order ;
+    rdfs:label "RES_REQ" ;
+    rdfs:comment "The resource requirements for an application." .
+
+hpc:Order a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:label "Order" ;
+    rdfs:comment "A string representing the resource requirements for a queue or an application." .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Namedentity ;
+    rdfs:label "Queue" ;
+    rdfs:comment "Represents a queue in the LSB." .
+
+hpc:hasResReq an rdf:Property ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Order ;
+    rdfs:label "hasRES_REQ" ;
+    rdfs:comment "The resource requirements for a queue." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Namedentity ;
+    rdfs:label "Job" ;
+    rdfs:comment "Represents a job submission." .
+
+hpc:usesQueue an rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queue ;
+    rdfs:label "usesQueue" ;
+    rdfs:comment "The queue a job is submitted to." .
+
+hpc:usesAppProfile an rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Applicationprofile ;
+    rdfs:label "usesAppProfile" ;
+    rdfs:comment "The application profile a job is restricted by." .
+
+hpc:Appprofile a owl:Class ;
+    rdfs:subClassOf hpc:Application ;
+    rdfs:label "ApplicationProfile" ;
+    rdfs:comment "Represents an application profile in the lsb.applications file." .
+
+hpc:hasSlot an rdf:Property ;
+    rdfs:domain hpc:Order ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "hasSlot" ;
+    rdfs:comment "Indicates whether a slot is required or not." .

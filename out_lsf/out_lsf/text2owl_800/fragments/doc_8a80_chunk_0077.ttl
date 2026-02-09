@@ -1,0 +1,49 @@
+hpc:Blcdebug a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents the blcdebug command for setting the message log level for the blcollect command." .
+
+hpc:debuglevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blcdebug ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The level of detail in debug messages. The higher the number, the more detail that is logged." .
+
+hpc:logfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Blcdebug ;
+    rdfs:range hpc:Logfile ;
+    rdfs:comment "The log file for the blcdebug command." .
+
+hpc:Logfile a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a log file." .
+
+hpc:logfilename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the log file." .
+
+hpc:defaultLogFile a owl:NamedIndividual ;
+    hpc:logFileName "daemon_name.log.host_name" ;
+    rdfs:comment "The current LSF system log file in the LSF system log file directory." .
+
+hpc:collectorname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blcdebug ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The collector name for the blcdebug command." .
+
+hpc:defaultCollector a owl:NamedIndividual ;
+    hpc:collectorName "default" ;
+    rdfs:comment "The default collector name." .
+
+hpc:options a owl:ObjectProperty ;
+    rdfs:domain hpc:Blcdebug ;
+    rdfs:range hpc:Option ;
+    rdfs:comment "The options for the blcdebug command." .
+
+hpc:Option a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents an option for a command." .
+
+hpc:requiresroot a owl:ObjectProperty ;
+    rdfs:domain hpc:Option ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the option requires root or LSF administrator privileges." .

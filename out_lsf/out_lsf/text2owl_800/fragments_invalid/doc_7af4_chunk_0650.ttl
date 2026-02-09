@@ -1,0 +1,35 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Jobdisplayvalue a owl:Class .
+hpc:unitprefix a owl:ObjectProperty .
+hpc:delimiter a owl:DatatypeProperty .
+hpc:Field a owl:Class .
+hpc:fieldname a owl:DatatypeProperty .
+hpc:width a owl:DatatypeProperty .
+hpc:alias a owl:DatatypeProperty .
+hpc:unit a owl:DatatypeProperty .
+hpc:category a owl:DatatypeProperty .
+
+rdfs:domain hpc:unitprefix [ a owl:ObjectProperty ;
+                              rdfs:range xsd:string ] .
+rdfs:domain hpc:delimiter [ a owl:DatatypeProperty ;
+                              rdfs:range xsd:string ] .
+
+hpc:Jobdisplayvalue rdfs:subClassOf owl:Class .
+hpc:Unitprefix rdfs:subClassOf hpc:Jobdisplayvalue .
+hpc:Delimiter rdfs:subClassOf hpc:Jobdisplayvalue .
+
+hpc:Field rdfs:subClassOf owl:Class .
+hpc:Fieldname rdfs:domain hpc:Field ;
+                     rdfs:range xsd:string .
+hpc:Width rdfs:domain hpc:Field ;
+                     rdfs:range xsd:integer .
+hpc:Alias rdfs:domain hpc:Field ;
+                     rdfs:range xsd:string .
+hpc:Unit rdfs:domain hpc:Field ;
+                     rdfs:range xsd:string .
+hpc:Category rdfs:domain hpc:Field ;
+                     rdfs:range xsd:string .

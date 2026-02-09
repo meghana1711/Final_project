@@ -1,0 +1,62 @@
+hpc:Jobfile a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The value of this variable is extracted from the job file of the checkpointed job." .
+
+hpc:lsbErestartUsrcmd a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Set by erestart as an environment variable before a job is restarted." .
+
+hpc:lsbExecRusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates which rusage string is satisfied to permit the job to run." .
+
+hpc:Resourcename a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:resourcevalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcename ;
+    rdfs:range xsd:string .
+
+hpc:lsbEchkpntMethod a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobfile ;
+    rdfs:range hpc:LsbEchkpntMethod .
+
+hpc:erestart a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobfile ;
+    rdfs:range hpc:Erestart .
+
+hpc:echkpnt a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobfile ;
+    rdfs:range hpc:Echkpnt .
+
+hpc:lsbExecRusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates which rusage string is satisfied to permit the job to run. This environment variable is necessary because the OR (||) operator specifies alternative rusage strings for running jobs." .
+
+hpc:Resourcename1 a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:resourcevalue1 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcename1 ;
+    rdfs:range xsd:string .
+
+hpc:Resourcename2 a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:resourcevalue2 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcename2 ;
+    rdfs:range xsd:string .
+
+hpc:Resourcehosts a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:lsbExechosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobfile ;
+    rdfs:range hpc:Resourcehosts ;
+    rdfs:comment "A list of hosts on which a batch job will run, for a cluster with LSF multicluster capability. Where deﬁned Set by sbatchd" .
+
+hpc:lsbExitIfCwdNotexist a owl:ObjectProperty ;
+    rdfs:

@@ -1,0 +1,21 @@
+hpc:Slurmdbv0043deleteassociation a owl:Class .
+
+hpc:Account rdfs:domain hpc:Slurmdbv0043deleteassociation ;
+    rdfs:range xsd:string .
+
+hpc:Cluster rdfs:domain hpc:Slurmdbv0043deleteassociation ;
+    rdfs:range xsd:string .
+
+hpc:Defaultqos rdfs:domain hpc:Slurmdbv0043deleteassociation ;
+    rdfs:range xsd:string .
+
+hpc:Includedeletedassociations rdfs:domain hpc:Slurmdbv0043deleteassociation ;
+    rdfs:range xsd:boolean .
+
+hpc:Includeusage rdfs:domain hpc:Slurmdbv0043deleteassociation ;
+    rdfs:range xsd:boolean .
+
+hpc:Filtertoonlydefaults rdfs:domain hpc:Slurmdbv0043deleteassociation ;
+    rdfs:range xsd:boolean .
+
+hpc:Includerawqosordeltaqos rdfs:domain hpc:Slurmdbv00

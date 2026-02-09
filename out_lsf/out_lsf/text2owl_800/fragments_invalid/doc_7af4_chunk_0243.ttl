@@ -1,0 +1,55 @@
+hpc:Host a owl:Class .
+hpc:Computeunit a owl:Class .
+hpc:hasComputeUnitMember an owl:ObjectProperty .
+
+hpc:Hostname rdfs:domain hpc:Host .
+hpc:Computeunitname rdfs:domain hpc:Computeunit .
+
+hpc:Wildcard xsd:string rdfs:range xsd:string .
+hpc:Range xsd:nonNegativeInteger rdfs:range xsd:nonNegativeInteger .
+hpc:Individualrange xsd:nonNegativeInteger rdfs:range xsd:nonNegativeInteger .
+hpc:Multipleranges xsd:nonNegativeInteger rdfs:range xsd:nonNegativeInteger .
+
+hpc:Exclude rdf:type owl:ObjectProperty .
+hpc:Exclude rdfs:domain hpc:Host .
+hpc:Exclude rdfs:range rdf:List .
+hpc:Exclude uses the tilde (~) .
+
+hpc:Include rdf:type owl:ObjectProperty .
+hpc:Include rdfs:domain hpc:Host .
+hpc:Include rdfs:range rdf:List .
+hpc:Include uses the asterisk (*) .
+
+hpc:RangeWithHyphen rdf:type owl:DatatypeProperty .
+hpc:Rangewithhyphen rdfs:domain hpc:Host .
+hpc:Rangewithhyphen rdfs:range rdf:List .
+hpc:RangeWithHyphen uses square brackets with a hyphen ([integer1-integer2]) .
+
+hpc:RangeWithColon rdf:type owl:DatatypeProperty .
+hpc:Rangewithcolon rdfs:domain hpc:Host .
+hpc:Rangewithcolon rdfs:range rdf:List .
+hpc:RangeWithColon uses square brackets with a colon ([integer1:integer2]) .
+
+hpc:IndividualRangeList rdf:type owl:DatatypeProperty .
+hpc:Individualrangelist rdfs:domain hpc:Host .
+hpc:Individualrangelist rdfs:range rdf:List .
+hpc:IndividualRangeList uses square brackets with commas ([integer1, integer2...]) .
+
+hpc:MultipleRangesList rdf:type owl:DatatypeProperty .
+hpc:Multiplerangeslist rdfs:domain hpc:Host .
+hpc:Multiplerangeslist rdfs:range rdf:List .
+hpc:MultipleRangesList uses square brackets with commas and hyphens or colons .
+
+hpc:MultipleSets rdf:type owl:ObjectProperty .
+hpc:Multiplesets rdfs:domain hpc:Host .
+hpc:Multiplesets rdfs:range rdf:List .
+hpc:MultipleSets uses multiple sets of square brackets .
+
+hpc:Computeunitnames rdfs:subClassOf hpc:Computeunit .
+hpc:Computeunitmembers rdfs:subClassOf hpc:Computeunit .
+
+hpc:ComputeUnitGranularity rdf:type owl:ObjectProperty .
+hpc:Computeunitgranularity rdfs:domain hpc:Computeunit .
+hpc:Computeunitgranularity rdfs:range hpc:Computeunit .
+
+h

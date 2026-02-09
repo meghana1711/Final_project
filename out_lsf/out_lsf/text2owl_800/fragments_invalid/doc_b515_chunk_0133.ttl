@@ -1,0 +1,29 @@
+@base <http://example.org/hpc/>
+
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:hasuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+
+hpc:hashost a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+
+hpc:hasgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+
+hpc:hasjobslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:integer .
+
+hpc:hasprocedure a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+
+hpc:hastimewindow a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range x

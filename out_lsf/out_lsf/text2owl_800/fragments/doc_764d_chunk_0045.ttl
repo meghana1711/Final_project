@@ -1,0 +1,27 @@
+hpc:Sendjobsqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "A send-jobs queue can forward jobs to a specified remote queue.";
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Sendjobsqueue ;
+    rdfs:subPropertyOf hpc:jobForwardingMethod .
+
+hpc:Receivejobsqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "A receive-jobs queue accepts jobs from queues in a specified remote cluster.";
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Receivejobsqueue ;
+    rdfs:subPropertyOf hpc:resourceLeasingMethod .
+
+hpc:Lsfmulticlustercapability a owl:Class ;
+    rdfs:subClassOf hpc:Clustercapability ;
+    rdfs:comment "Enables job forwarding between clusters." .
+
+hpc:jobforwardingmethod a owl:ObjectProperty ;
+    rdfs:domain hpc:Sendjobsqueue ;
+    rdfs:range hpc:Queue ;
+    rdfs:subPropertyOf hpc:jobPlacementMethod .
+
+hpc:resourceleasingmethod a owl:ObjectProperty ;
+    rdfs:domain hpc:Receivejobsqueue ;
+    rdfs:range hpc:Queue ;
+    rdfs:subPropertyOf hpc:resourceSharingMethod .

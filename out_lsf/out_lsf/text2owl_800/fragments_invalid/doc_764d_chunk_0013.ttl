@@ -1,0 +1,52 @@
+hpc:Cluster a owl:Class .
+hpc:User a owl:Class .
+
+# User-level account mapping class
+hpc:Usermapping a owl:Class .
+hpc:Usermapping rdfs:subClassOf hpc:Mapping .
+
+# Mapping properties
+hpc:haslocaluser a owl:ObjectProperty .
+hpc:hasremoteuser a owl:ObjectProperty .
+hpc:hasdirection a owl:ObjectProperty .
+
+# Mapping direction
+hpc:Export a owl:NamedIndividual ;
+    rdfs:label "Export" ;
+    hpc:hasDirection "export" .
+hpc:Import a owl:NamedIndividual ;
+    rdfs:label "Import" ;
+    hpc:hasDirection "import" .
+
+# Mapping domain and range
+hpc:Haslocaluser rdfs:domain hpc:Usermapping ;
+    rdfs:range hpc:User .
+hpc:Hasremoteuser rdfs:domain hpc:Usermapping ;
+    rdfs:range hpc:User .
+hpc:Hasdirection rdfs:domain hpc:Usermapping .
+
+# Example mappings
+hpc:user1_user2_mapping a hpc:UserMapping ;
+    hpc:Haslocaluser hpc:user1 ;
+    hpc:Hasremoteuser hpc:user2@cluster2 ;
+    hpc:Hasdirection hpc:export .
+hpc:user3_user4_user6_mapping a hpc:UserMapping ;
+    hpc:Haslocaluser hpc:user3 ;
+    hpc:hasRemoteUser (hpc:user4@cluster2 hpc:user6@cluster2) ;
+    hpc:Hasdirection hpc:export .
+hpc:user2_user1_mapping a hpc:UserMapping ;
+    hpc:Haslocaluser hpc:user2 ;
+    hpc:Hasremoteuser hpc:user1@cluster1 ;
+    hpc:Hasdirection hpc:import .
+hpc:user6_user3_user8_mapping a hpc:UserMapping ;
+    hpc:hasLocalUser (hpc:user6 hpc:user8) ;
+    hpc:Hasremoteuser hpc:user3@cluster1 ;
+    hpc:Hasdirection hpc:import .
+
+# Common account mappings
+hpc:common_user1_user2_mapping a hpc:UserMapping ;
+    hpc:Haslocaluser hpc:user1 ;
+    hpc:Hasremoteuser hpc:user2 .
+hpc:common_user3_user6_mapping a hpc:UserMapping ;
+    hpc:Haslocaluser hpc:user3 ;
+    hpc:Hasremoteuser hpc:user6 .

@@ -1,0 +1,33 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Projectgroup a owl:Class .
+hpc:Project a owl:Class .
+hpc:ownershiplimits a owl:ObjectProperty .
+hpc:nonshared a owl:ObjectProperty .
+hpc:shares a owl:ObjectProperty .
+hpc:description a owl:DatatypeProperty .
+
+rdfs:domain hpc:Projectgroup rdfs:subClassOf owl:Class .
+rdfs:domain hpc:Ownershiplimits rdfs:domain hpc:Projectgroup .
+rdfs:domain hpc:Nonshared rdfs:domain hpc:Projectgroup .
+rdfs:domain hpc:Shares rdfs:domain hpc:Projectgroup .
+rdfs:range hpc:Ownershiplimits xsd:decimal .
+rdfs:range hpc:Nonshared xsd:decimal .
+rdfs:range hpc:Shares xsd:decimal .
+rdfs:range hpc:Description xsd:string .
+
+hpc:ProjectGroup1 a hpc:ProjectGroup .
+hpc:digital_sim a hpc:Project .
+hpc:analog_sim a hpc:Project .
+
+hpc:digital_sim rdf:type hpc:Project ;
+    hpc:shares (40 60) ;
+    hpc:nonShared (100 0) .
+
+hpc:analog_sim rdf:type hpc:Project ;
+    hpc:shares (50 10 40) ;
+    hpc:nonShared (65 25 0) ;
+    hpc:description "- 50 -" .

@@ -1,0 +1,71 @@
+hpc:JobexitNonlsf a owl:Class ;
+    rdfs:subClassOf hpc:Jobexit .
+
+hpc:Jobexit a owl:Class ;
+    rdfs:subClassOf hpc:Jobexit .
+
+hpc:Jobexit a owl:Class .
+
+hpc:Lsfpolicyrelatedjobexit a owl:Class ;
+    rdfs:subClassOf hpc:Jobexit .
+
+hpc:Useractionrelatedjobexit a owl:Class ;
+    rdfs:subClassOf hpc:Jobexit .
+
+hpc:Hostrelatedjobexit a owl:Class ;
+    rdfs:subClassOf hpc:Jobexit .
+
+hpc:Jobinitfailure a owl:Class ;
+    rdfs:subClassOf hpc:Jobexit .
+
+hpc:Localjobexit a owl:Class ;
+    rdfs:subClassOf hpc:Jobexit .
+
+hpc:Remotejobinitfailure a owl:Class ;
+    rdfs:subClassOf hpc:Jobinitfailure .
+
+hpc:Paralleljobinitfailure a owl:Class ;
+    rdfs:subClassOf hpc:Jobinitfailure .
+
+hpc:Hpcinitfailure a owl:Class ;
+    rdfs:subClassOf hpc:Jobinitfailure .
+
+hpc:Jobexitratecalculationexcluded a owl:Class .
+
+hpc:bkill a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexitratecalculationexcluded ;
+    rdfs:range xsd:string .
+
+hpc:brequeue a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexitratecalculationexcluded ;
+    rdfs:range xsd:string .
+
+hpc:rerunnablejobkilled a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexitratecalculationexcluded ;
+    rdfs:range xsd:string .
+
+hpc:resourceusagelimitexceeded a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexitratecalculationexcluded ;
+    rdfs:range xsd:string .
+
+hpc:queueleveljobcontrolactionterminate a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexitratecalculationexcluded ;
+    rdfs:range xsd:string .
+
+hpc:queueleveljobcontrolactionterminateWhen a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexitratecalculationexcluded ;
+    rdfs:range xsd:string .
+
+hpc:checkpointjobwithkilloption a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexitratecalculationexcluded ;
+    rdfs:range xsd:string .
+
+hpc:rerunnablejobmigration a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexitratecalculationexcluded ;
+    rdfs:range xsd:string .
+
+hpc:jobkilledwhenadvancereservationexpired a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexitratecalculationexcluded ;
+    rdfs:range xsd:string .
+
+hpc:RemoteLeaseJobStartFail a o

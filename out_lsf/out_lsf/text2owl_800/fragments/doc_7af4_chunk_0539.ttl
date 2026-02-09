@@ -1,0 +1,15 @@
+hpc:Resource a owl:Class .
+hpc:hasfield a owl:ObjectProperty .
+hpc:Hasfield rdfs:domain hpc:Resource ;
+                 rdfs:range xsd:string .
+
+hpc:Statshared a owl:Class ;
+             rdfs:subClassOf hpc:Resource .
+hpc:DynRsrc a owl:Class ;
+             rdfs:subClassOf hpc:Resource .
+hpc:StatRsrc a owl:Class ;
+             rdfs:subClassOf hpc:Resource .
+
+hpc:slots a owl:DatatypeProperty .
+hpc:Slots rdfs:domain hpc:Resource ;
+           rdfs:range xsd:nonNegativeInteger .

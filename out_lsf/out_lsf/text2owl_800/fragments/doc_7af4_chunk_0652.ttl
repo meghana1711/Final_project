@@ -1,0 +1,44 @@
+hpc:Jobgroup a owl:Class .
+hpc:jobpriority a owl:ObjectProperty .
+hpc:Jobpriority rdfs:domain hpc:Jobgroup ;
+                 rdfs:range xsd:integer .
+
+hpc:jobPriority rdfs:subPropertyOf owl:hasValue .
+
+hpc:jobPriority rdfs:comment "The job's priority." .
+
+hpc:advancereservationid a owl:DatatypeProperty .
+hpc:Advancereservationid rdfs:domain hpc:Jobgroup ;
+                          rdfs:range xsd:string .
+
+hpc:esub a owl:DatatypeProperty .
+hpc:Esub rdfs:domain hpc:Jobgroup ;
+          rdfs:range xsd:string .
+
+hpc:killreason a owl:DatatypeProperty .
+hpc:Killreason rdfs:domain hpc:Jobgroup ;
+               rdfs:range xsd:integer .
+
+hpc:suspendreason a owl:DatatypeProperty .
+hpc:Suspendreason rdfs:domain hpc:Jobgroup ;
+                 rdfs:range xsd:string .
+
+hpc:suspendReason rdfs:comment "The user reason why the job suspended. LSF provides the user reason, not the scheduling policy reason." .
+
+hpc:resumereason a owl:DatatypeProperty .
+hpc:Resumereason rdfs:domain hpc:Jobgroup ;
+                rdfs:range xsd:string .
+
+hpc:resumeReason rdfs:comment "The reason why the job resumed." .
+
+hpc:killissuehost a owl:DatatypeProperty .
+hpc:Killissuehost rdfs:domain hpc:Jobgroup ;
+                 rdfs:range xsd:string .
+
+hpc:killIssueHost rdfs:comment "The host where the job was killed." .
+
+hpc:resumereason a owl:DatatypeProperty .
+hpc:Resumereason rdfs:domain hpc:Jobgroup ;
+                rdfs:range xsd:string .
+
+hpc:resumeReason rdfs:comment "The reason why the job resumed." .

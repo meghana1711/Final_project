@@ -1,0 +1,56 @@
+hpc:Registration a owl:Class ;
+    rdfs:subClassOf hpc:Event .
+
+hpc:Validconfiguration a owl:Class ;
+    rdfs:subClassOf hpc:Configuration .
+
+hpc:Nonresponsive a owl:Class ;
+    rdfs:subClassOf hpc:Status .
+
+hpc:Down a owl:Class ;
+    rdfs:subClassOf hpc:Status ;
+    rdfs:subClassOf hpc:Nonresponsive .
+
+hpc:Settleddown a owl:Class ;
+    rdfs:subClassOf hpc:Event ;
+    rdfs:subClassOf hpc:Registration ;
+    rdfs:subClassOf hpc:Eventwithstatus ;
+    rdfs:subClassOf hpc:Eventwithoutcome ;
+    rdfs:subClassOf hpc:Eventwithobject ;
+    rdfs:domain hpc:Registration ;
+    rdfs:range hpc:Settleddownevent .
+
+hpc:Settleddownevent a owl:Class ;
+    rdfs:subClassOf hpc:Eventoutcome .
+
+hpc:settleddowneventtype a owl:ObjectProperty ;
+    rdfs:domain hpc:Settleddown ;
+    rdfs:range xsd:string .
+
+hpc:Scheduling a owl:Class ;
+    rdfs:subClassOf hpc:Event ;
+    rdfs:subClassOf hpc:Registration ;
+    rdfs:subClassOf hpc:Eventwithobject ;
+    rdfs:domain hpc:Registration .
+
+hpc:schedulertype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Scheduling ;
+    rdfs:range xsd:string .
+
+hpc:Interconnect a owl:Class ;
+    rdfs:subClassOf hpc:Component .
+
+hpc:switchtype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Interconnect ;
+    rdfs:range xsd:string .
+
+hpc:defaultmpitype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:string .
+
+hpc:Processtracking a owl:Class ;
+    rdfs:subClassOf hpc:Component .
+
+hpc:algorithm a owl:DatatypeProperty ;
+    rdfs:domain hpc:Processtracking ;
+    rdfs:range xsd:string .

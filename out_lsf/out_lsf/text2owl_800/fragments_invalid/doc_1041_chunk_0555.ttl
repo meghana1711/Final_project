@@ -1,0 +1,51 @@
+hpc:Jobstaging a owl:Class .
+hpc:Bsstagecommand a owl:Class .
+hpc:Bsstageoption a owl:Class .
+hpc:Bsstageaction a owl:Class .
+hpc:Bsstageall a owl:Class .
+hpc:Bsstagesrc a owl:Class .
+hpc:Bsstagetag a owl:Class .
+
+hpc:hasjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsstagecommand ;
+    rdfs:range hpc:Jobstaging .
+
+hpc:hasoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsstagecommand ;
+    rdfs:range hpc:Bsstageoption .
+
+hpc:hasaction a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsstageoption ;
+    rdfs:range hpc:Bsstageaction .
+
+hpc:allOption a hpc:BSstageOption ;
+    rdfs:label "all" ;
+    rdfs:subClassOf hpc:Bsstageoption .
+
+hpc:srcOption a hpc:BSstageOption ;
+    rdfs:label "src" ;
+    rdfs:subClassOf hpc:Bsstageoption .
+
+hpc:tagOption a hpc:BSstageOption ;
+    rdfs:label ? ;
+    rdfs:subClassOf hpc:Bsstageoption .
+
+hpc:copyAction a hpc:BSstageAction ;
+    rdfs:label "copy" .
+
+hpc:linkAction a hpc:BSstageAction ;
+    rdfs:label "link" .
+
+hpc:flatDirectoryStructure a hpc:BSstageAction ;
+    rdfs:label "flatDirectoryStructure" .
+
+hpc:preserveDirectoryStructure a hpc:BSstageAction ;
+    rdfs:label "preserveDirectoryStructure" .
+
+hpc:source a hpc:DatatypeProperty ;
+    rdfs:domain hpc:Bsstageoption ;
+    rdfs:range xsd:string .
+
+hpc:destination a hpc:DatatypeProperty ;
+    rdfs:domain hpc:Bsstageoption ;
+    rdfs:range xsd:string .

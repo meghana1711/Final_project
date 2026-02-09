@@ -1,0 +1,71 @@
+hpc:Taskdefinition a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a task definition." .
+
+hpc:Executionagent a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Runs on each remote host in the allocation." .
+
+hpc:sched a owl:ObjectProperty ;
+    rdfs:domain hpc:Taskdefinition ;
+    rdfs:range hpc:Executionagent ;
+    rdfs:comment "Sends tasks to the execution agents." .
+
+hpc:logerrors a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionagent ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Logs errors." .
+
+hpc:taskaccounting a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionagent ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Performs task accounting." .
+
+hpc:requeuetasks a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionagent ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Requeues tasks as necessary." .
+
+hpc:service a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionagent ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "One of the execution agents." .
+
+hpc:schild a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionagent ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Another execution agent." .
+
+hpc:setuptaskexecutionenvironment a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionagent ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Sets up the task execution environment." .
+
+hpc:runtasks a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionagent ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Runs the tasks." .
+
+hpc:taskmonitoring a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionagent ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Enables task monitoring." .
+
+hpc:resourceusagecollection a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionagent ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Collects resource usage." .
+
+hpc:Lsfsessionscheduler a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The session scheduler used for task management." .
+
+hpc:supports a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfsessionscheduler ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum number of tasks the scheduler can support." .
+
+hpc:averageruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Taskdefinition ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The average runtime of the task in seconds

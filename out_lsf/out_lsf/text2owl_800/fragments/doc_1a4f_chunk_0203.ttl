@@ -1,0 +1,36 @@
+hpc:Resourcerequirement a owl:Class .
+hpc:Resourcerequirement rdfs:subClassOf owl:Class .
+
+hpc:Correctresourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement ;
+    rdfs:domain hpc:Resourcerequirement .
+
+hpc:Incorrectresourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement ;
+    rdfs:domain hpc:Resourcerequirement .
+
+hpc:correctsyntax a owl:ObjectProperty ;
+    rdfs:domain hpc:Correctresourcerequirement ;
+    rdfs:range xsd:string ;
+    rdfs:range hpc:Incorrectsyntax .
+
+hpc:incorrectsyntax a owl:ObjectProperty ;
+    rdfs:domain hpc:Incorrectresourcerequirement ;
+    rdfs:range xsd:string .
+
+hpc:explicitselect a owl:ObjectProperty ;
+    rdfs:domain hpc:Correctresourcerequirement ;
+    rdfs:range hpc:Selectsection .
+
+hpc:implicitselect a owl:ObjectProperty ;
+    rdfs:domain hpc:Correctresourcerequirement ;
+    rdfs:range hpc:Selectsection .
+
+hpc:Selectsection a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:string ;
+    rdfs:range hpc:Selectionstring .
+
+hpc:selectionstring a owl:DatatypeProperty ;
+    rdfs:domain hpc:Selectsection .

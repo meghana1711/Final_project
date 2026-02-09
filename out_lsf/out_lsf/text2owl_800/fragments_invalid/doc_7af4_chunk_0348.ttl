@@ -1,0 +1,61 @@
+hpc:Mbatchd a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents the mbatchd process." .
+
+hpc:Childmbatchd a owl:Class ;
+    rdfs:subClassOf hpc:Mbatchd ;
+    rdfs:comment "Represents a child process of mbatchd." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a job in the context of mbatchd." .
+
+hpc:Newjob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Represents a newly submitted, restarted, or remote job." .
+
+# Object Properties
+hpc:handleseventswitching a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range hpc:Boolean ;
+    rdfs:comment "Indicates whether mbatchd forks a child process to handle event switching." .
+
+hpc:haschildmbatchd a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range hpc:Childmbatchd ;
+    rdfs:comment "Relates a parent mbatchd to its child mbatchd." .
+
+hpc:pushesnewjobevent a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range hpc:Childmbatchd ;
+    rdfs:comment "Indicates that the parent mbatchd pushes new job events to a child mbatchd." .
+
+hpc:isnewjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Newjob ;
+    rdfs:comment "Indicates whether a job is a new job." .
+
+hpc:isrestartedjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Newjob ;
+    rdfs:comment "Indicates whether a job is a restarted job." .
+
+hpc:isremoteleasemodeljob a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Newjob ;
+    rdfs:comment "Indicates whether a job is a remote lease model job." .
+
+hpc:isremoteforwardedjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Newjob ;
+    rdfs:comment "Indicates whether a job is a remote forwarded job." .
+
+# Datatype Properties
+hpc:newjobrefresh a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a child mbatchd gets up-to-date information about new jobs from the parent mbatchd." .
+
+hpc:mbdrefreshtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Childmbatchd ;
+    rdfs:range xsd:nonNegativeInteger ;

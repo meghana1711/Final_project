@@ -1,0 +1,80 @@
+hpc:Group
+    a owl:Class ;
+        rdfs:subClassOf rdf:Resource .
+
+hpc:shares
+    a owl:ObjectProperty ;
+        rdfs:domain hpc:Projectgroup ;
+        rdfs:range hpc:Project .
+
+hpc:ownership
+    a owl:ObjectProperty ;
+        rdfs:domain hpc:Project ;
+        rdfs:range xsd:integer .
+
+hpc:limits
+    a owl:ObjectProperty ;
+        rdfs:domain hpc:Project ;
+        rdfs:range xsd:integer .
+
+hpc:non_shared
+    a owl:ObjectProperty ;
+        rdfs:domain hpc:Project ;
+        rdfs:range xsd:integer .
+
+hpc:priority
+    a owl:ObjectProperty ;
+        rdfs:domain hpc:Project ;
+        rdfs:range xsd:integer .
+
+hpc:description
+    a owl:DatatypeProperty ;
+        rdfs:domain hpc:Project ;
+        rdfs:range xsd:string .
+
+hpc:Project
+    a owl:Class ;
+        rdfs:subClassOf rdf:Resource ;
+        rdfs:comment "A project within a project group." .
+
+hpc:Projectgroup rdfs:subClassOf rdf:List .
+
+hpc:Project rdf:type rdf:List .
+
+(root(A B C)) hpc:root a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range hpc:Project .
+
+(1 1 1) hpc:ownership a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:integer .
+
+() hpc:priority a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:integer .
+
+(3 2 -) hpc:limits a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:integer .
+
+(3 5) hpc:limits a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:integer .
+
+(2 1) hpc:limits a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:integer .
+
+(40 60) hpc:limits a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:integer .
+
+(100 0) hpc:nonShared a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:integer .
+
+(50 10 40) hpc:ownership a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:integer .
+
+(65 25 0) hpc:limits a owl:ObjectProperty ;

@@ -1,0 +1,30 @@
+hpc:Exclusiveprocessgpu a owl:Class .
+hpc:Sharedgpu a owl:Class .
+hpc:Defaultgpu a owl:Class .
+
+hpc:num a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:mode a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+hpc:mps a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:jExclusive a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:Gpu a owl:Class .
+hpc:Job a owl:Class .
+
+hpc:Exclusiveprocessgpu rdfs:subClassOf hpc:Gpu .
+hpc:Sharedgpu rdfs:subClassOf hpc:Gpu .
+
+hpc:Num rdfs:range xsd:integer .
+hpc:Mode rdfs:range hpc:Exclusiveprocessgpu, hpc:Sharedgpu .
+hpc:Mps rdfs:range xsd:string .
+hpc:JExclusive rdfs:range xsd:boolean .
+
+hpc:Job hpc:num someValue, hpc:mode someValue, hpc:mps someValue, hpc:j_exclusive someValue .
+hpc:Exclusiveprocessgpu hpc:mps "per_gpu" .
+hpc:SharedGPU rdfs:subPropertyOf hpc:mps ;
+    rdfs:range "share" .
+hpc:Defaultgpu rdfs:subClassOf hpc:Gpu ;
+    hpc:mps undefined .

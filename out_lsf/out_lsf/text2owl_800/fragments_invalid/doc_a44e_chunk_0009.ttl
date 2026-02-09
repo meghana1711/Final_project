@@ -1,0 +1,36 @@
+hpc:Lsfdatamanager a owl:Class .
+hpc:hasdataport a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range xsd:integer .
+
+hpc:Lsfdataportchangeprocess a owl:Class ;
+    rdfs:subClassOf hpc:Process .
+
+hpc:lsfdataportchangeprocess a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range hpc:Lsfdataportchangestep .
+
+hpc:Lsfdataportchangestep a owl:Class ;
+    rdfs:subClassOf hpc:Step .
+
+hpc:LSFDataPortChangeStep rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfdataportchangeprocess ;
+    rdfs:range hdfs:LSFDataPortChangeStepType .
+
+hpc:LSFDataPortChangeStepType a owl:Enum ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:member "shutdown" ;
+    rdfs:member "change" ;
+    rdfs:member "startup" ;
+    rdfs:member "restart" .
+
+hpc:lsfdataskipgroupcheck a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range xsd:string .
+
+hpc:Lsfdataskipgroupcheckvalue a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:member "Y" ;
+    rdfs:member "y" ;
+    rdfs:member "N" ;
+    rdfs:member "n" .

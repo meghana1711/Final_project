@@ -1,0 +1,4 @@
+hpc:Fixedresource a owl:Class .
+hpc:allowedlocations a owl:ObjectProperty .
+hpc:Allowedlocations rdfs:domain hpc:Fixedresource ;
+                      rdfs:range xsd:string .

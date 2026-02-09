@@ -1,0 +1,22 @@
+hpc:Feature a owl:Class .
+hpc:Group a owl:Class .
+hpc:Servicedomain a owl:Class .
+
+hpc:hasgroupdistribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range hpc:Group .
+
+hpc:hasservicedomain a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range hpc:Servicedomain .
+
+hpc:inusefromrusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:boolean .
+
+hpc:lmlicensename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+
+hpc:Group subClassOf rdf:Resource .
+hpc:ServiceDomain subClassOf rdf:Resource .

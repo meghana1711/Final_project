@@ -1,0 +1,80 @@
+hpc:FirstExecutionHostCandidate
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A host that can be selected as the first execution host for a job." .
+
+hpc:HostGroup
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A group of hosts defined in the file lsb.hosts." .
+
+hpc:DynamicHostGroup
+    a owl:Class ;
+    rdfs:subClassOf hpc:Hostgroup ;
+    rdfs:comment "A host group that cannot be a first execution host." .
+
+hpc:AllHosts
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "All available hosts." .
+
+hpc:AllRemote
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "All remote hosts." .
+
+hpc:Others
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Other hosts not specified." .
+
+hpc:HostPartition
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A partition of hosts." .
+
+hpc:FirstExecutionHost
+    a owl:Class ;
+    rdfs:subClassOf hpc:Host ;
+    rdfs:comment "A host that is selected as the first execution host for a job." .
+
+hpc:RegularHost
+    a owl:Class ;
+    rdfs:subClassOf hpc:Host ;
+    rdfs:comment "A host that is not a first execution host." .
+
+hpc:PreferredHost
+    a owl:Class ;
+    rdfs:subClassOf hpc:Host ;
+    rdfs:comment "A host that is given preference when a mandatory first execution host is specified." .
+
+hpc:Cluster
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A group of interconnected computers that can be used to run jobs." .
+
+hpc:Multicluster
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A cluster that can run jobs across multiple clusters." .
+
+hpc:hasFirstExecutionHostCandidate
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Firstexecutionhostcandidate ;
+    rdfs:comment "Relates a host group to the first execution host candidates it includes." .
+
+hpc:isFirstExecutionHostCandidate
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Firstexecutionhostcandidate ;
+    rdfs:comment "Indicates whether a host is a first execution host candidate." .
+
+hpc:hasPreference
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Indicates the preference level of a host." .
+
+hpc:hasCluster
+    a owl:Object

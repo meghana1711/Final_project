@@ -1,0 +1,37 @@
+hpc:hashosttype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Computenode ;
+    rdfs:range xsd:string .
+
+hpc:executionuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Activityspecification ;
+    rdfs:range xsd:string .
+
+hpc:environmentvariable a owl:ObjectProperty ;
+    rdfs:domain hpc:Activityspecification ;
+    rdfs:range hpc:Environmentvariable .
+
+hpc:Clusteradmin a owl:Class .
+hpc:isadministrator a owl:ObjectProperty ;
+    rdfs:domain hpc:Clusteradmin ;
+    rdfs:range xsd:string .
+
+hpc:lsfuserdomain a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration .
+    rdfs:range xsd:string .
+
+hpc:ComputeNodeType_NTX86 a hpc:ComputeNode ;
+    hpc:hasHostType "NTX86" .
+
+hpc:ActivitySpecification_example a hpc:ActivitySpecification ;
+    hpc:ExecutionUser "LSF\\lsfadmin" ;
+    hpc:EnvironmentVariable a hpc:EnvironmentVariable_example ;
+        rdf:value "C:\\LSF_10.1.0\\conf" .
+
+hpc:Cluster_example a hpc:ClusterAdmin ;
+    hpc:isAdministrator "lsfadmin" ;
+    hpc:isAdministrator "LSF\\lsfadmin" .
+
+hpc:Lsfconfiguration a owl:Class .
+hpc:haslsfuserdomain a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:string .

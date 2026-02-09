@@ -1,0 +1,50 @@
+hpc:Loggingmbatchdperformancemetrics a owl:Class .
+
+hpc:sampleperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:metricscategoryname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .
+
+hpc:functionname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .
+
+hpc:count a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .
+
+hpc:rtmin a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .
+
+hpc:rtmax a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .
+
+hpc:rtavg a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .
+
+hpc:rttotal a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .
+
+hpc:utmin a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .
+
+hpc:utmax a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .
+
+hpc:utavg a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .
+
+hpc:uttotal a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .
+
+hpc:stmin a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .
+
+hpc:stmax a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .
+
+hpc:stavg a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .
+
+hpc:sttotal a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingmbatchdperformancemetrics .

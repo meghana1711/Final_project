@@ -1,0 +1,38 @@
+hpc:IndexRangeEndN rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:JobStart rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:IneligiblePendTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain (hpc:Jobstart hpc:JobStart) ;
+    rdfs:range xsd:decimal .
+
+hpc:JobStatus rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:JOB_ARRAY_EVENTS_COMBINE rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Jobstatus ;
+    rdfs:range xsd:boolean .
+
+hpc:IndexRangeStart1 rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobstatus ;
+    rdfs:range xsd:decimal .
+
+hpc:IndexRangeEnd1 rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobstatus ;
+    rdfs:range xsd:decimal .
+
+hpc:IndexRangeStep1 rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobstatus ;
+    rdfs:range xsd:decimal .
+
+hpc:IndexRangeStartN rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobstatus ;
+    rdfs:range xsd:decimal .
+
+hpc:IndexRangeEndN rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobstatus ;
+    rdfs:range xsd:decimal .

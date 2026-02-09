@@ -1,0 +1,12 @@
+hpc:Lsflicensescheduler a owl:Class .
+hpc:lmRemoveSuspJobs a owl:DatatypeProperty .
+hpc:lmRemoveInterval a owl:DatatypeProperty .
+hpc:lmRemoveSuspJobsInterval a owl:DatatypeProperty .
+
+hpc:Lsflicensescheduler rdfs:subClassOf owl:Class .
+hpc:LmRemoveSuspJobs rdfs:domain hpc:Lsflicensescheduler ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:LmRemoveInterval rdfs:domain hpc:Lsflicensescheduler ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:LmRemoveSuspJobsInterval rdfs:domain hpc:Lsflicensescheduler ;
+    rdfs:range xsd:nonNegativeInteger .

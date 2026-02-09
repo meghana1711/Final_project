@@ -1,0 +1,32 @@
+hpc:Slurm a owl:Class .
+hpc:SlurmDownloadSource rdf:value "https://www.schedmd.com/download-slurm/" .
+
+hpc:Relatedsoftware a owl:Class .
+hpc:RequiredSoftware rdf:value "MySQL" ;
+             rdfs:subClassOf hpc:Relatedsoftware .
+hpc:AdditionalFunctionalitySoftware rdf:value "MariaDB" ;
+             rdfs:subClassOf hpc:Relatedsoftware .
+
+hpc:Authenticationplugin a owl:Class .
+hpc:RecommendedAuthenticationPlugin rdf:value "MUNGE" .
+hpc:Authenticationtool a owl:Class .
+hpc:kerberosvsupport a owl:ObjectProperty ;
+             rdfs:domain hpc:Authenticationtool ;
+             rdfs:range hpc:Authenticationplugin .
+hpc:slurmplugin a owl:ObjectProperty ;
+             rdfs:domain hpc:Authenticationplugin ;
+             rdfs:range hpc:Slurm .
+
+hpc:Accountingdatabase a owl:Class .
+hpc:MySQL rdf:value "MySQL" ;
+             rdfs:subClassOf hpc:Accountingdatabase .
+hpc:MariaDB rdf:value "MariaDB" ;
+             rdfs:subClassOf hpc:Accountingdatabase .
+
+hpc:Drmaa a owl:Class .
+hpc:DRMAAforSlurm rdf:value "PSNC DRMAA for Slurm" .
+hpc:DRMAA1_0 rdf:value "Open Grid Forum DRMAA 1.0 (Distributed Resource Management Application API)" .
+hpc:DRMAAforSlurmSpecification rdf:value "http://www.opengroup.org/grid/drmaa/spec/1.0/" ;
+             rdfs:range hpc:Drmaa10 .
+hpc:DRMAAforSlurmImplementation rdf:value "PSNC DRMAA for Slurm" ;
+             rdfs:range hpc:Drmaa .

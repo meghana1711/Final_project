@@ -1,0 +1,42 @@
+hpc:LsfTcpKeepaliveTime a owl:Class ;
+    rdfs:subClassOf <http://example.org/hpc#PositiveInteger> .
+
+hpc:LsfTcpKeepaliveTime rdfs:domain hpc:LsfMcTcpKeepalive ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Requires the LSF_MC_TCP_KEEPALIVE parameter to be enabled." ;
+    rdfs:comment "Specify a positive integer for the LSF_TCP_KEEPALIVE_TIME value in seconds. Default." .
+
+hpc:LsfMcTcpKeepalive a owl:Class ;
+    rdfs:subClassOf <http://example.org/hpc#Boolean> .
+
+hpc:LsfTimeCmd a owl:Class ;
+    rdfs:subClassOf <http://example.org/hpc#PositiveInteger> .
+
+hpc:LsfTimeCmd rdfs:domain hpc:Commandtiminglevel ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The timing level for checking how long LSF commands run. Time usage is logged in milliseconds." ;
+    rdfs:comment "Any positive integer. Default. Not deﬁned." ;
+    rdfs:seeAlso hpc:LSB_TIME_CMD, hpc:LSB_TIME_MBD, hpc:LSB_TIME_SBD, hpc:LSF_TIME_LIM, hpc:LSF_TIME_RES .
+
+hpc:Commandtiminglevel a owl:Class .
+
+hpc:LsfTimeLim a owl:Class ;
+    rdfs:subClassOf <http://example.org/hpc#PositiveInteger> .
+
+hpc:LsfTimeLim rdfs:domain hpc:Commandtiminglevel ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The timing level for checking how long LIM routines run." ;
+    rdfs:comment "Time usage is logged in milliseconds. Any positive integer. Default. Not deﬁned." ;
+    rdfs:seeAlso hpc:LSB_TIME_CMD, hpc:LSB_TIME_MBD, hpc:LSB_TIME_SBD, hpc:LSF_TIME_RES .
+
+hpc:LsfTimePim a owl:Class ;
+    rdfs:subClassOf <http://example.org/hpc#PositiveInteger> .
+
+hpc:LsfTimePim rdfs:domain hpc:Commandtiminglevel ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The timing level for checking how long PIM routines run." ;
+    rdfs:comment "Time usage is logged in milliseconds. Specify a positive integer." ;
+    rdfs:seeAlso hpc:EGO_TIME_PIM, hpc:LSB_TIME_CMD, hpc:LSB_TIME_LIM, hpc:LSB_TIME_MBD, hpc:LSB_TIME_SBD, hpc:LSF_TIME_RES .
+
+hpc:EgoTimePim a owl:Class ;
+    r

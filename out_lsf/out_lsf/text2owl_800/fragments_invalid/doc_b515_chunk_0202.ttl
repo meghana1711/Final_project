@@ -1,0 +1,19 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+@prefix hpc: <http://example.org/hpc#>
+
+hpc:Usergroup a owl:Class.
+hpc:Keyuser a owl:Class.
+
+hpc:Hasusergroup rdfs:domain hpc:User; rdfs:range hpc:Usergroup.
+
+hpc:Queue a owl:Class.
+hpc:Queuename rdfs:domain hpc:Queue; rdfs:range xsd:string.
+
+hpc:Fairshare rdfs:domain hpc:Queue; rdfs:range rdf:List.
+hpc:fairShare rdfs:subPropertyOf hpc:hasUserGroup.
+
+hpc:Usershare a owl:Class.
+hpc:Usersh

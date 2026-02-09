@@ -1,0 +1,63 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a job in the HPC system." .
+
+hpc:joboutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Joboutputtype ;
+    rdfs:comment "The output of a job." .
+
+hpc:jobcheckinginterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The interval at which jobs are checked." .
+
+hpc:jobacceptinginterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The interval at which jobs are accepted." .
+
+hpc:mbdsleeptime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The default sleep time used for calculations." .
+
+# System Parameters Class and Properties
+hpc:Systemparameter a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a system parameter in the lsb.params file." .
+
+hpc:systemparametervalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Systemparameter ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The value of a system parameter." .
+
+hpc:defaultqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Systemparameter ;
+    rdfs:range hpc:Queue ;
+    rdfs:comment "The default queue for a system parameter." .
+
+# Commands Class and Properties
+hpc:Command a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a command used in the HPC system." .
+
+hpc:commandusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The usage of a command." .
+
+hpc:commandversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The version of a command." .
+
+# Job Peek Class and Properties
+hpc:Jobpeek a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the command to display the output of an unfinished job." .
+
+hpc:jobpeekoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpeek ;
+    rdfs:range hpc:Joboutput ;
+    rdfs:comment "The output of a job peek command." .

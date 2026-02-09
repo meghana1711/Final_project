@@ -1,0 +1,66 @@
+hpc:Rerunnablejob a owl:Class;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Rerunnablejob rdfs:subClassOf hpc:Controllablejob .
+hpc:rerunnablejobbyrerunswitch a owl:ObjectProperty;
+    rdfs:domain hpc:Rerunnablejob;
+    rdfs:range xsd:boolean .
+
+hpc:Standarderrorfile a owl:Class;
+    rdfs:subClassOf hpc:Filespecification .
+hpc:standarderrorfilebyswitch a owl:ObjectProperty;
+    rdfs:domain hpc:Standarderrorfile;
+    rdfs:range xsd:string .
+
+hpc:Standardoutputfile a owl:Class;
+    rdfs:subClassOf hpc:Filespecification .
+hpc:standardoutputfilebyswitch a owl:ObjectProperty;
+    rdfs:domain hpc:Standardoutputfile;
+    rdfs:range xsd:string .
+
+hpc:Runlimit a owl:Class;
+    rdfs:subClassOf hpc:Joblimit .
+hpc:runlimitbyswitch a owl:ObjectProperty;
+    rdfs:domain hpc:Runlimit;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:runlimithostscope a owl:ObjectProperty;
+    rdfs:domain hpc:Runlimit;
+    rdfs:range xsd:string .
+
+hpc:Swaplimit a owl:Class;
+    rdfs:subClassOf hpc:Joblimit .
+hpc:swaplimit a owl:DatatypeProperty;
+    rdfs:domain hpc:Swaplimit;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:swaplimitjobid a owl:ObjectProperty;
+    rdfs:domain hpc:Swaplimit;
+    rdfs:range xsd:string .
+
+hpc:Controllablejob a owl:Class .
+hpc:controllablejobbysignal a owl:ObjectProperty;
+    rdfs:domain hpc:Controllablejob;
+    rdfs:range xsd:string .
+
+hpc:suspendjob a owl:ObjectProperty;
+    rdfs:domain hpc:Controllablejob;
+    rdfs:range xsd:string .
+hpc:resumejob a owl:ObjectProperty;
+    rdfs:domain hpc:Controllablejob;
+    rdfs:range xsd:string .
+hpc:terminatejob a owl:ObjectProperty;
+    rdfs:domain hpc:Controllablejob;
+    rdfs:range xsd:string .
+
+hpc:Killjob a owl:Class;
+    rdfs:subClassOf hpc:Controllablejob .
+
+hpc:Canceljob a owl:Class;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Suspendresumejob a owl:Class;
+    rdfs:subClassOf hpc:Controllablejob .
+hpc:suspendresumejobbycommand a owl:ObjectProperty;
+    rdfs:domain hpc:Suspendresumejob;
+    rdfs:range xsd:string .
+
+hpc:MoveJob a owl:

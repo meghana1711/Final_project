@@ -1,0 +1,4 @@
+hpc:Reservinglicenseresources a owl:Class .
+hpc:useslsf a owl:ObjectProperty .
+hpc:Useslsf rdfs:domain hpc:Reservinglicenseresources ;
+    rdfs:range rdf:Resource .

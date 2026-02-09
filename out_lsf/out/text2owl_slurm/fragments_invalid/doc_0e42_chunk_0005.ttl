@@ -1,0 +1,25 @@
+hpc:Slurmrestd a owl:Class.
+hpc:hasSocketPath rdf:type owl:DatatypeProperty;
+    rdfs:domain hpc:Slurmrestd;
+    rdfs:range xsd:string.
+
+hpc:hasParentDirectoryPermissionsIssue rdf:type owl:ObjectProperty;
+    rdfs:domain hpc:Slurmrestd.
+
+hpc:Permissionissue a owl:Class.
+
+hpc:Addressalreadyinuse a owl:Class.
+hpc:checkCommand rdf:type owl:ObjectProperty;
+    rdfs:domain hpc:Addressalreadyinuse;
+    rdfs:range xsd:string.
+hpc:checkSLURMRESTD_LISTEN rdf:type owl:ObjectProperty;
+    rdfs:domain hpc:Addressalreadyinuse;
+    rdfs:range xsd:string.
+
+hpc:Running a owl:Class.
+hpc:listeningOnPort rdf:type owl:ObjectProperty;
+    rdfs:domain hpc:Running.
+
+hpc:Protocolauthenticationerror a owl:Class.
+hpc:expiredToken rdf:type owl:ObjectProperty;
+    rdfs:domain

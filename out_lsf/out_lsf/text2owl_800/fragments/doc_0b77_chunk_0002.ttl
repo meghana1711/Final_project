@@ -1,0 +1,48 @@
+hpc:Bjobsoutputformat a owl:Class .
+hpc:Outputparsingbyscripts rdfs:domain hpc:Bjobsoutputformat ;
+    rdfs:range xsd:boolean .
+hpc:Reducenetworktraffic rdfs:domain hpc:Bjobsoutputformat ;
+    rdfs:range xsd:boolean .
+
+hpc:Hostbasedresources a owl:Class .
+
+hpc:Cgroupmemoryswapenforcement a owl:Class .
+
+hpc:Accesscontrollevel a owl:Class .
+
+hpc:Jobdirectories a owl:Class .
+
+hpc:Afsintegration a owl:Class .
+
+hpc:Performancemetrics a owl:Class .
+
+hpc:Queryloadperformanceoptimization a owl:Class .
+
+hpc:Longrunningjobsoptimization a owl:Class .
+
+hpc:Floatingsoftwarelicenses a owl:Class .
+
+hpc:Licensepool a owl:Class ;
+    rdfs:subClassOf hpc:Floatingsoftwarelicenses .
+
+hpc:jobquery a owl:ObjectProperty .
+hpc:Jobquery rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Queryoperation .
+
+hpc:Queryoperation a owl:Class ;
+    rdfs:subClassOf hpc:Performancemetrics .
+
+hpc:Queryoperation rdfs:subClassOf hpc:Queryoperation ;
+    rdf:value "bjobs" .
+
+hpc:Queryoperation rdfs:subClassOf hpc:Queryoperation ;
+    rdf:value "bhosts" .
+
+hpc:Queryoperation rdfs:subClassOf hpc:Queryoperation ;
+    rdf:value "bqueues" .
+
+hpc:querysourcestroubleshooting a owl:ObjectProperty .
+hpc:Querysourcestroubleshooting rdfs:domain hpc:Performancemetrics ;
+    rdfs:range hpc:Querysource .
+
+hpc:Querysource a owl:Class .

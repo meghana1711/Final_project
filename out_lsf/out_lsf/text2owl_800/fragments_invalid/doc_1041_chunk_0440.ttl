@@ -1,0 +1,72 @@
+hpc:Job a owl:Class .
+
+# Job name property
+hpc:jobname a owl:ObjectProperty .
+rdf:domain hpc:Job .
+rdfs:range xsd:string .
+
+# Job name length constraint
+hpc:jobNameLengthConstraint a owl:Restriction .
+hpc:Jobnamelengthconstraint rdfs:subClassOf hpc:Jobname .
+hpc:Jobnamelengthconstraint rdfs:domain hpc:Job .
+hpc:jobNameLengthConstraint owl:onProperty hpc:jobName .
+hpc:jobNameLengthConstraint xsd:maxLength 4094 .
+
+# Wildcard character usage in job name
+hpc:wildcardcharacterusage a owl:ObjectProperty .
+hpc:Wildcardcharacterusage rdfs:domain hpc:Job .
+
+# Job name pattern matching
+hpc:jobnamepatternmatching a owl:ObjectProperty .
+hpc:Jobnamepatternmatching rdfs:domain hpc:Job .
+
+# Array index wildcard character usage
+hpc:arrayindexwildcardcharacterusage a owl:ObjectProperty .
+hpc:Arrayindexwildcardcharacterusage rdfs:domain hpc:Job .
+
+# Prints command usage
+hpc:printscommandusage a owl:ObjectProperty .
+hpc:Printscommandusage rdfs:domain hpc:Job .
+
+# LSF release version
+hpc:lsfreleaseversion a owl:DatatypeProperty .
+hpc:Lsfreleaseversion rdfs:domain hpc:Job .
+rdfs:range xsd:string .
+
+# Message index property
+hpc:messageindex a owl:DatatypeProperty .
+hpc:Messageindex rdfs:domain hpc:Job .
+rdfs:range xsd:integer .
+
+# Message level property
+hpc:messagelevel a owl:DatatypeProperty .
+hpc:Messagelevel rdfs:domain hpc:Job .
+rdfs:range xsd:string .
+
+# Attached file property
+hpc:attachedfile a owl:ObjectProperty .
+hpc:Attachedfile rdfs:domain hpc:Job .
+rdfs:range xsd:string .
+
+# bqueues command
+hpc:bqueues a owl:ObjectProperty .
+hpc:Bqueues rdfs:domain hpc:Job .
+
+# bqueues options
+hpc:bqueuesoptions a owl:ObjectProperty .
+hpc:Bqueuesoptions rdfs:domain hpc:Bqueues .
+
+# bqueues output field
+hpc:bqueuesoutputfield a owl:DatatypeProperty .
+hpc:Bqueuesoutputfield rdfs:domain hpc:Bqueuesoptions .
+rdfs:range xsd:string .
+
+# bqueues output width
+hpc:bqueuesoutputwidth a owl:DatatypeProperty .
+hpc:Bqueuesoutputwidth rdfs:domain hpc:Bqueuesoptions .
+rdfs:range xsd:integer .
+
+# bqueues delimiter
+hpc:bqueuesdelimiter a owl:DatatypeProperty .
+hpc:Bqueuesdelimiter rdfs:domain hpc:Bqueuesoptions .
+rdfs:range xsd:string .

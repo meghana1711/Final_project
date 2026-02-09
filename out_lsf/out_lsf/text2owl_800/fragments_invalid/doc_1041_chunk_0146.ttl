@@ -1,0 +1,57 @@
+hpc:HostName a owl:Class .
+hpc:AbsFilePath rdfs:domain hpc:HostName ;
+    rdfs:range xsd:string .
+
+hpc:TagQuery a owl:Class .
+hpc:bdata a owl:ObjectProperty ;
+    rdfs:domain hpc:TagQuery ;
+    rdfs:range hpc:BdataCommand .
+hpc:WideFormat rdfs:domain hpc:TagQuery ;
+    rdfs:range xsd:boolean .
+hpc:LongFormat rdfs:domain hpc:TagQuery ;
+    rdfs:range xsd:boolean .
+hpc:Dmd rdfs:domain hpc:TagQuery ;
+    rdfs:range hpc:ClusterName .
+hpc:User rdfs:domain hpc:TagQuery ;
+    rdfs:range (hpc:All | hpc:UserName) .
+
+hpc:TagCleanup a owl:Class .
+hpc:bdata a owl:ObjectProperty ;
+    rdfs:domain hpc:TagCleanup ;
+    rdfs:range hpc:BdataCommand .
+hpc:User rdfs:domain hpc:TagCleanup ;
+    rdfs:range hpc:UserName .
+hpc:Dmd rdfs:domain hpc:TagCleanup ;
+    rdfs:range hpc:ClusterName .
+hpc:TagName rdfs:domain hpc:TagCleanup ;
+    rdfs:range xsd:string .
+
+hpc:EffectiveConfigurationQuery a owl:Class .
+hpc:bdata a owl:ObjectProperty ;
+    rdfs:domain hpc:EffectiveConfigurationQuery .
+
+hpc:ConnectionsQuery a owl:Class .
+hpc:bdata a owl:ObjectProperty ;
+    rdfs:domain hpc:ConnectionsQuery ;
+    rdfs:range hpc:BdataCommand .
+hpc:WideFormat rdfs:domain hpc:ConnectionsQuery ;
+    rdfs:range xsd:boolean .
+
+hpc:Administration a owl:Class .
+hpc:Reconfigure rdfs:domain hpc:Administration ;
+    rdfs:range hpc:BdataAdminCommand .
+hpc:Shutdown rdfs:domain hpc:Administration ;
+    rdfs:range (hpc:HostName | xsd:string) .
+
+hpc:BdataAdminCommand a owl:Class .
+hpc:Reconfigure rdfs:subClassOf hpc:BdataAdminCommand .
+hpc:Shutdown rdfs:subClassOf hpc:BdataAdminCommand .
+
+hpc:BdataCommand a owl:Class .
+hpc:Cache rdfs:subClassOf hpc:BdataCommand .
+hpc:Chgrp rdfs:subClassOf hpc:BdataCommand .
+hpc:Chmod rdfs:subClassOf hpc:BdataCommand .
+
+hpc:Cache a owl:Class .
+hpc:Query rdfs:domain hpc:Cache ;
+    rdfs:range hpc:BdataCommand .

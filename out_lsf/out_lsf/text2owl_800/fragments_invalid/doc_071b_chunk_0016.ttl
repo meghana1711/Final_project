@@ -1,0 +1,28 @@
+hpc:LsfStartupUsers a owl:Class .
+hpc:lsfStartupPath a owl:DatatypeProperty .
+hpc:lsfEgoAdminUser a owl:DatatypeProperty .
+hpc:lsfEgoAdminPasswd a owl:DatatypeProperty .
+
+hpc:LsfStartupUsers rdfs:domain hpc:LsfTop .
+hpc:LsfStartupUsers rdfs:range xsd:string .
+
+hpc:Admin a owl:Class .
+hpc:Admin rdfs:subClassOf hpc:LsfEgoAdminUser .
+
+hpc:bhosts a owl:ObjectProperty .
+hpc:lsload a owl:ObjectProperty .
+hpc:bctrld a owl:ObjectProperty .
+hpc:badmin a owl:ObjectProperty .
+
+hpc:Bctrld rdfs:domain xsd:string .
+hpc:Bctrld rdfs:range hpc:LsfTop .
+
+hpc:bctrld rdfs:subPropertyOf hpc:bctrldStart .
+hpc:Bctrldstart rdfs:domain xsd:string .
+hpc:Bctrldstart rdfs:range hpc:LsfTop .
+
+hpc:bctrldstart sbd a owl:ObjectProperty .
+hpc:bctrldstart lim a owl:ObjectProperty .
+hpc:bctrldstart res a owl:ObjectProperty .
+
+hpc:badmin showconf a owl:ObjectProperty .

@@ -1,0 +1,44 @@
+hpc:hasImageId
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Efaenabledami ;
+    rdfs:range xsd:string .
+
+hpc:hasSecurityGroupId
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Efaenabledami ;
+    rdfs:range xsd:string .
+
+hpc:allowsAllTraffic
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Securitygroup ;
+    rdfs:range hpc:Securitygroup .
+
+hpc:hasEFAInterfaceType
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Efaenabledami ;
+    rdfs:range xsd:string .
+
+hpc:getSupportedInstanceTypes
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Efaenabledami ;
+    rdfs:range hpc:Instancetype .
+
+hpc:hasMaxNumber
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Efaenabledami ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasVmType
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Efaenabledami ;
+    rdfs:range xsd:string .
+
+hpc:hasSubnetId
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Efaenabledami ;
+    rdfs:range xsd:string .
+
+hpc:hasPlacementGroupName
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Efaenabledami ;
+    rdfs:range xsd:string .

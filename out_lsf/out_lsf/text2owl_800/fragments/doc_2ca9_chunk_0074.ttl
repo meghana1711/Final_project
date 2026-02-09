@@ -1,0 +1,56 @@
+hpc:Lockid a owl:Class .
+hpc:Lockid rdfs:subClassOf xsd:string .
+hpc:LockID rdfs:maxLength 128 .
+hpc:LockID rdfs:comment "Can contain up to 128 alphanumeric and underscore characters. The keyword all is reserved and cannot be used as the lock ID." .
+
+# Reserved Lock ID
+hpc:Reservedlockid a owl:Class .
+hpc:Reservedlockid rdfs:subClassOf hpc:Lockid .
+hpc:ReservedLockID rdfs:comment "The keyword all is reserved and cannot be used as the lock ID." .
+
+# Administrator Message
+hpc:administratormessage a owl:DatatypeProperty .
+hpc:Administratormessage rdfs:domain hpc:Lockid .
+hpc:Administratormessage rdfs:range xsd:string .
+
+# Closed Host
+hpc:Closedhost a owl:Class .
+
+# Lock on Closed Host
+hpc:lockonclosedhost a owl:ObjectProperty .
+hpc:Lockonclosedhost rdfs:domain hpc:Closedhost .
+hpc:Lockonclosedhost rdfs:range hpc:Lockid .
+
+# Multiple Locks on Closed Host
+hpc:multiplelocksonclosedhost a owl:ObjectProperty .
+hpc:Multiplelocksonclosedhost rdfs:domain hpc:Closedhost .
+hpc:Multiplelocksonclosedhost rdfs:range rdf:List .
+
+# Removing Lock ID from Closed Host
+hpc:removelockid a owl:ObjectProperty .
+hpc:Removelockid rdfs:domain hpc:Closedhost .
+hpc:Removelockid rdfs:range hpc:Lockid .
+
+# All Locks on Closed Host
+hpc:alllocksonclosedhost a owl:ObjectProperty .
+hpc:Alllocksonclosedhost rdfs:domain hpc:Closedhost .
+hpc:Alllocksonclosedhost rdfs:range rdf:List .
+
+# Opening Host after Removing All Locks
+hpc:openhostafterremovingalllocks a owl:ObjectProperty .
+hpc:Openhostafterremovingalllocks rdfs:domain hpc:Closedhost .
+hpc:Openhostafterremovingalllocks rdfs:range hpc:Closedhost .
+
+# Administrator Message on Removing Lock ID
+hpc:administratormessageonremovinglockid a owl:DatatypeProperty .
+hpc:Administratormessageonremovinglockid rdfs:domain hpc:Removelockid .
+hpc:Administratormessageonremovinglockid rdfs:range xsd:string .
+
+# List of Locks on Closed Host
+hpc:listoflocksonclosedhost a owl:DatatypeProperty .
+hpc:Listoflocksonclosedhost rdfs:domain hpc:Closedhost .
+hpc:Listoflocksonclosedhost rdfs:range rdf:List .
+
+# Connecting to Job Execution Host or Container
+hpc:connecttojobexecutionhost a owl:ObjectProperty .
+hpc:Connecttojobexecutionhost rdfs:domain rdf:Resource .

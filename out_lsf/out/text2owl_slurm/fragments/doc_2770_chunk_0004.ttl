@@ -1,0 +1,21 @@
+hpc:Schedulerparameters a owl:Class .
+
+hpc:bfContinue a owl:ObjectProperty ;
+    rdfs:domain hpc:Schedulerparameters ;
+    rdfs:range xsd:boolean .
+
+hpc:bfInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Schedulerparameters ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:bfMaxJobPart a owl:DatatypeProperty ;
+    rdfs:domain hpc:Schedulerparameters ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:bfMaxJobStart a owl:DatatypeProperty ;
+    rdfs:domain hpc:Schedulerparameters ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:bfMaxJobTest a owl:DatatypeProperty ;
+    rdfs:domain hpc:Schedulerparameters ;
+    rdfs:range xsd:nonNegativeInteger .

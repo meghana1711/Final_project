@@ -1,0 +1,37 @@
+hpc:Kubernetes a owl:Class .
+hpc:Slurm a owl:Class .
+hpc:Integration a owl:Class .
+hpc:orchestration a owl:ObjectProperty .
+hpc:resourceutilization a owl:ObjectProperty .
+hpc:Workload a owl:Class .
+hpc:Aimlinference a owl:Class .
+hpc:Presentation a owl:Class .
+hpc:year a owl:DatatypeProperty .
+hpc:speaker a owl:ObjectProperty .
+hpc:organization a owl:ObjectProperty .
+hpc:event a owl:ObjectProperty .
+
+hpc:Kubernetes rdfs:subClassOf hpc:Infrastructure .
+hpc:Slurm rdfs:subClassOf hpc:Schedulingsystem .
+hpc:Integration rdfs:subClassOf hpc:Systemintegration .
+
+hpc:Orchestration rdfs:domain hpc:Kubernetes ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:Deployment .
+
+hpc:Resourceutilization rdfs:domain hpc:Integration ;
+    rdfs:range hpc:Optimization .
+
+hpc:Workload rdfs:subClassOf hpc:Task .
+hpc:Aimlinference rdfs:subClassOf hpc:Workload .
+
+hpc:Presentation rdfs:domain hpc:Integration ;
+    rdfs:range hpc:Presentations .
+
+hpc:Year rdfs:range xsd:gYear .
+hpc:Speaker rdfs:domain hpc:Presentation ;
+    rdfs:range hpc:Person .
+hpc:Organization rdfs:domain hpc:Presentation ;
+    rdfs:range hpc:Organization .
+hpc:Event rdfs:domain hpc:Presentation ;
+    rdfs:range hpc:Event .

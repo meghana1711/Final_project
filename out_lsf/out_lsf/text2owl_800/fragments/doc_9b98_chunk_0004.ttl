@@ -1,0 +1,39 @@
+hpc:Esubscript a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "External submission script for LSF." .
+
+hpc:Lsrcpwrapperdatamanager a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Wrapper script for lsrcp or bstage command." .
+
+# Object Properties
+hpc:hasDataManagerScript rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Esubscript ;
+    rdfs:range hpc:Esubscript ;
+    rdfs:comment "The script used along with the lsrcp.wrapper.datamanager." .
+
+hpc:runsCommand rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsrcpwrapperdatamanager ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "The command (either lsrcp or bstage) run by the wrapper script." .
+
+# Datatype Properties
+hpc:allowsAppend rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Esubscript ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Controls whether users can specify append operation." .
+
+hpc:allowsLinkingInput rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Esubscript ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Allows users to specify linking for input files." .
+
+hpc:allowsLinkingOutput rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Esubscript ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Allows users to specify linking for output files." .
+
+hpc:forcesLinking rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Esubscript ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Controls whether the script forces -f operation to create symbolic links." .

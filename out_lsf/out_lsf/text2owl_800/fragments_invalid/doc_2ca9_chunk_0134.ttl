@@ -1,0 +1,53 @@
+hpc:Lsfexplorer a owl:Class .
+hpc:Lsfconfig a owl:Class .
+hpc:Dataprovenancetool a owl:Class .
+hpc:Environmentvariable a owl:Class .
+hpc:Commandoutputformatting a owl:Class .
+hpc:Esubapplication a owl:Class .
+hpc:Energyusage a owl:Class .
+hpc:Ibmspectrumscale a owl:Class .
+hpc:Graphviz a owl:Class .
+
+# Object Properties
+hpc:hasrelatedconcept a owl:ObjectProperty .
+hpc:hasrelatedreference a owl:ObjectProperty .
+hpc:usesenvironmentvariable a owl:ObjectProperty .
+hpc:enablescommandoutputformatting a owl:ObjectProperty .
+hpc:selectsesubapplication a owl:ObjectProperty .
+hpc:showsenergyusage a owl:ObjectProperty .
+hpc:requiresfilesystem a owl:ObjectProperty .
+hpc:generatespicture a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hasdataprovenancetool a owl:DatatypeProperty .
+hpc:hasenvironmentvariablevalue a owl:DatatypeProperty .
+hpc:hascommandoutputformattingenhancement a owl:DatatypeProperty .
+hpc:hasesubapplicationdetails a owl:DatatypeProperty .
+hpc:hasenergyusagevalue a owl:DatatypeProperty .
+
+# Subclass Relations
+hpc:Lsfexplorer rdfs:subClassOf hpc:Dataprovenancetool .
+hpc:Lsfconfig rdfs:subClassOf hpc:Dataprovenancetool .
+
+# Domain and Range
+hpc:Hasrelatedconcept rdfs:domain hpc:Dataprovenancetool ;
+  rdfs:range rdf:Resource .
+hpc:Hasrelatedreference rdfs:domain hpc:Dataprovenancetool ;
+  rdfs:range rdf:Literal .
+hpc:Usesenvironmentvariable rdfs:domain hpc:Commandoutputformatting ;
+  rdfs:range hpc:Environmentvariable .
+hpc:Enablescommandoutputformatting rdfs:domain hpc:Commandoutputformatting ;
+  rdfs:range xsd:boolean .
+hpc:Selectsesubapplication rdfs:domain hpc:Commandoutputformatting ;
+  rdfs:range hpc:Esubapplication .
+hpc:Showsenergyusage rdfs:domain hpc:Energyusage ;
+  rdfs:range xsd:real .
+hpc:Requiresfilesystem rdfs:domain hpc:Dataprovenancetool ;
+  rdfs:range hpc:Ibmspectrumscale .
+hpc:Generatespicture rdfs:domain hpc:Dataprovenancetool ;
+  rdfs:range hpc:Graphviz .
+hpc:Hasdataprovenancetool rdfs:domain hpc:Dataprovenancetool ;
+  rdfs:range hpc:Dataprovenancetool .
+hpc:Hasenvironmentvariablevalue rdfs:domain hpc:Environmentvariable ;
+  rdfs:range xsd:string .
+hpc:Hascommandoutputformattingenhancement rdfs:domain hpc:Commandoutputformatting ;

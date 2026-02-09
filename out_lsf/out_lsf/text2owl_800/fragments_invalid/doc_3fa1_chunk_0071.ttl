@@ -1,0 +1,38 @@
+hpc:Myserviceclass a owl:Class .
+
+hpc:Guaranteepool a owl:Class .
+hpc:hostState a owl:Enum ;
+  rdfs:member hpc:ok .
+  rdfs:member hpc:closed_Busy .
+  rdfs:member hpc:closed_Excl .
+  rdfs:member hpc:closed_cu_Excl .
+  rdfs:member hpc:closed_Full .
+
+hpc:Advancereservation a owl:Class .
+
+hpc:Computeunit a owl:Class .
+
+hpc:Configuringguaranteedresources a owl:Class .
+
+hpc:Queuebasedfairshare a owl:Class .
+
+hpc:Exclusivejob a owl:Class .
+
+hpc:Multicluster a owl:Class .
+
+hpc:Leasedhost a owl:Class .
+
+hpc:preemption a owl:ObjectProperty ;
+  rdfs:domain hpc:Guaranteeslajob .
+  rdfs:range hpc:Job .
+
+hpc:slaGuaranteesIgnore a owl:DatatypeProperty ;
+  rdfs:domain hpc:Queue .
+  rdfs:range xsd:boolean .
+
+hpc:Guaranteeslajob a owl:Class ;
+  rdfs:subClassOf hpc:Job .
+
+hpc:Job a owl:Class .
+
+hpc:Hostgroup a owl:Class .

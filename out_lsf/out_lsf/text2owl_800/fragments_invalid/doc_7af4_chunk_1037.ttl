@@ -1,0 +1,25 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:lsbJobexitInfo a owl:ObjectProperty .
+hpc:lsbJobexitStat a owl:DatatypeProperty .
+hpc:ExitStatus rdfs:domain hpc:LsbJobexitInfo ;
+                  rdfs:range xsd:positiveInteger .
+
+hpc:lsbJobexitStat a owl:DatatypeProperty .
+hpc:JobId rdfs:domain hpc:LsbJobexitInfo ;
+             rdfs:range xsd:string .
+
+hpc:lsbJobfilename a owl:DatatypeProperty .
+hpc:FileName rdfs:domain hpc:LsbJobfilename ;
+               rdfs:range xsd:string .
+
+hpc:lsbJobgroup a owl:DatatypeProperty .
+hpc:JobGroupName rdfs:domain hpc:LsbJobgroup ;
+                  rdfs:range xsd:string .
+
+hpc:lsbJobid a owl:DatatypeProperty .
+hpc:JobId rdfs:domain hpc:LsbJobid ;
+            rdfs:range xsd:string .

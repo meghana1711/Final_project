@@ -1,0 +1,81 @@
+hpc:Cluster a owl:Class .
+hpc:hasname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string .
+
+hpc:master a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string .
+
+hpc:Cannotopenlsfconffile a owl:Class .
+
+hpc:lsfenvdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cannotopenlsfconffile ;
+    rdfs:range xsd:string .
+
+hpc:Troubleshootinglsfproblems a owl:Class .
+
+hpc:Lsload a owl:Class .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf hpc:Node .
+
+hpc:status a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:r15s a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:r1m a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:r15m a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:ut a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:pg a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:ls a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:it a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:tmp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:swp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:mem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:Busystatus a owl:Class .
+
+hpc:hasasterisk a owl:DatatypeProperty ;
+    rdfs:domain hpc:Busystatus ;
+    rdfs:range xsd:boolean .
+
+hpc:hasminussign a owl:DatatypeProperty ;
+    rdfs:domain hpc:Busystatus ;
+    rdfs:range xsd:boolean .
+
+hpc:Unavailstatus a owl:Class .
+
+hpc:Lsid a owl:Class .
+
+hpc:Getentitlementinfofailed a owl:Class

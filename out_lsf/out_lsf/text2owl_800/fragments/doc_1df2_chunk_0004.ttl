@@ -1,0 +1,39 @@
+hpc:Directory a owl:Class .
+hpc:Datastaging a owl:Class .
+
+# FileName datatype property
+hpc:filename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datastaging ;
+    rdfs:range xsd:string .
+
+# CreationFlag class
+hpc:Creationflag a owl:Class .
+hpc:overwrite a owl:ObjectProperty ;
+    rdfs:domain hpc:Creationflag .
+
+# Source and Target classes
+hpc:Source a owl:Class .
+hpc:Target a owl:Class .
+
+# URI datatype property for Source and Target
+hpc:uri a owl:DatatypeProperty ;
+    rdfs:domain (hpc:Source hpc:Target) ;
+    rdfs:range xsd:string .
+
+# Posix extension classes and properties
+hpc:Executable a owl:Class .
+hpc:argument a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executable ;
+    rdfs:range xsd:string .
+hpc:input a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executable ;
+    rdfs:range xsd:string .
+hpc:output a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executable ;
+    rdfs:range xsd:string .
+hpc:error a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executable ;
+    rdfs:range xsd:string .
+hpc:workingdirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executable ;
+    rdfs:range xsd:string .

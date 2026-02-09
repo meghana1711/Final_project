@@ -1,0 +1,39 @@
+hpc:Hostpreference a owl:Class .
+hpc:Hostgroup a owl:Class .
+hpc:Resourcerequirement a owl:Class .
+hpc:Resourcetype a owl:Class .
+hpc:x11forwarding a owl:ObjectProperty .
+
+hpc:Hostpreference rdfs:subClassOf owl:Class .
+hpc:Hostgroup rdfs:subClassOf owl:Class .
+hpc:Resourcerequirement rdfs:subClassOf owl:Class .
+hpc:Resourcetype rdfs:subClassOf owl:Class .
+
+hpc:X11Forwarding rdf:type owl:ObjectProperty .
+
+hpc:hasPreference rdf:type owl:ObjectProperty .
+hpc:Haspreference rdfs:domain hpc:Hostpreference .
+hpc:Haspreference rdfs:range rdf:List .
+hpc:hasGroup rdf:type owl:ObjectProperty .
+hpc:Hasgroup rdfs:domain hpc:Hostpreference .
+hpc:Hasgroup rdfs:range hpc:Hostgroup .
+hpc:requires rdf:type owl:ObjectProperty .
+hpc:Requires rdfs:domain hpc:Resourcerequirement .
+hpc:Requires rdfs:range rdf:List .
+hpc:hasResourceType rdf:type owl:ObjectProperty .
+hpc:Hasresourcetype rdfs:domain hpc:Resourcerequirement .
+hpc:Hasresourcetype rdfs:range hpc:Resourcetype .
+hpc:exclude rdf:type owl:ObjectProperty .
+hpc:Exclude rdfs:domain hpc:Resourcerequirement .
+hpc:Exclude rdfs:range rdf:List .
+hpc:excludeCondition rdf:type owl:DatatypeProperty .
+hpc:Excludecondition rdfs:domain hpc:Resourcerequirement .
+hpc:Excludecondition rdfs:range xsd:string .
+hpc:usesX11Forwarding rdf:type owl:ObjectProperty .
+hpc:Usesx11forwarding rdfs:domain hpc:Job .
+hpc:Usesx11forwarding rdfs:range xsd:boolean .
+
+hpc:Solaris a hpc:ResourceType .
+hpc:Solaris7 a hpc:ResourceType .
+hpc:Solaris8 a hpc:ResourceType .
+hpc:UNIX a hpc:ResourceType .

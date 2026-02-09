@@ -1,0 +1,25 @@
+hpc:Suspendingcondition a owl:Class .
+hpc:cpurunqueuelength a owl:ObjectProperty .
+hpc:pagingrate a owl:ObjectProperty .
+hpc:idletime a owl:ObjectProperty .
+hpc:swp a owl:ObjectProperty .
+hpc:tmp a owl:ObjectProperty .
+
+hpc:Schedulingcondition a owl:Class .
+hpc:suspendingthreshold a owl:DatatypeProperty .
+hpc:Pagingratesuspendingthreshold rdfs:domain hpc:Suspendingcondition ;
+                                   rdfs:range xsd:nonNegativeInteger .
+hpc:Idletimesuspendingthreshold rdfs:domain hpc:Schedulingcondition ;
+                                 rdfs:range xsd:nonNegativeTime .
+
+hpc:Cpuintensivejob a owl:Class .
+hpc:Sequentialjob a owl:Class .
+hpc:Resizablejob a owl:Class .
+
+hpc:effectivecpurunqueuelengthcondition a owl:ObjectProperty .
+hpc:Effectivecpurunqueuelengthsuspendingthreshold rdfs:domain hpc:Suspendingcondition ;
+                                                    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Resizablehost a owl:Class .
+
+hpc:Resumablejob a owl:Class .

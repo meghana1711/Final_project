@@ -1,0 +1,65 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Hname a owl:Class .
+hpc:type a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hname ;
+    rdfs:range xsd:string ;
+    rdfs:maxLength 10 .
+
+hpc:model a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hname ;
+    rdfs:range xsd:string ;
+    rdfs:maxLength 10 .
+
+hpc:cpuf a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hname ;
+    rdfs:range xsd:string ;
+    rdfs:maxLength 10 .
+
+hpc:ncpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hname ;
+    rdfs:range xsd:integer .
+
+hpc:maxmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hname ;
+    rdfs:range xsd:decimal ;
+    rdfs:range rdfs:datatype xsd:decimal ;
+    rdfs:subPropertyOf hpc:MaxResource .
+
+hpc:maxswp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hname ;
+    rdfs:range xsd:decimal ;
+    rdfs:range rdfs:datatype xsd:decimal ;
+    rdfs:subPropertyOf hpc:MaxResource .
+
+hpc:server a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hname ;
+    rdfs:range xsd:string ;
+    rdfs:maxLength 10 .
+
+hpc:Resources a owl:Class .
+hpc:ndisks a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resources ;
+    rdfs:range xsd:integer .
+
+hpc:maxtmp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resources ;
+    rdfs:range xsd:decimal ;
+    rdfs:range rdfs:datatype xsd:decimal ;
+    rdfs:subPropertyOf hpc:MaxResource .
+
+hpc:rexpri a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resources ;
+    rdfs:range xsd:string ;
+    rdfs:maxLength 10 .
+
+hpc:nprocs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resources ;
+    rdfs:range xsd:integer .
+
+hpc:ncores a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resources ;
+    rdfs:

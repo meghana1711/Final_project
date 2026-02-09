@@ -1,0 +1,19 @@
+hpc:Slurm a owl:Class.
+hpc:slurmdoptions a owl:ObjectProperty.
+
+hpc:Testenvironment a owl:Class.
+hpc:Multipleslurmsystems a owl:Class.
+hpc:Conflictingapirequests a owl:Class.
+hpc:avoidconflictingapirequests a owl:ObjectProperty;
+    rdfs:domain hpc:Conflictingapirequests;
+    rdfs:range xsd:string.
+hpc:burstbuffernone a owl:ObjectProperty;
+    rdfs:domain hpc:Multipleslurmsystems.
+
+hpc:Emulation a owl:Class.
+hpc:emulatelargercluster a owl:ObjectProperty;
+    rdfs:domain hpc:Emulation.
+hpc:partitionfatnodes a owl:ObjectProperty;
+    rdfs:domain hpc:Emulation.
+hpc:slurmdperemulatednode a owl:ObjectProperty;
+    rdfs:domain hpc:Partitionfatnodes.

@@ -1,0 +1,23 @@
+hpc:Dynamicsharepriority a owl:Class .
+hpc:totalruntimefactor a owl:ObjectProperty .
+hpc:Totalruntimefactor rdfs:domain hpc:Dynamicsharepriority .
+hpc:Totalruntimefactor rdfs:range xsd:float .
+
+hpc:Samejobaffinity a owl:Class .
+hpc:Samejobaffinity rdfs:subClassOf hpc:Booleanproperty .
+hpc:Samejobaffinity rdfs:range xsd:boolean .
+hpc:samejobaffinityhasvalue a owl:ObjectProperty .
+hpc:Samejobaffinityhasvalue rdfs:domain hpc:Samejobaffinity .
+hpc:Samejobaffinityhasvalue rdfs:range xsd:string .
+
+hpc:samehost a owl:ObjectProperty .
+hpc:Samehost rdfs:domain hpc:Samejobaffinity .
+hpc:Samehost rdfs:range hpc:Host .
+
+hpc:samecu a owl:ObjectProperty .
+hpc:Samecu rdfs:domain hpc:Samejobaffinity .
+hpc:Samecu rdfs:range hpc:Computeunit .
+
+hpc:sbdsleeptime a owl:DatatypeProperty .
+hpc:Sbdsleeptime rdfs:domain hpc:Lsbqueue .
+hpc:Sbdsleeptime rdfs:range xsd:nonNegativeInteger .

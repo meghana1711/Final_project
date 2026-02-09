@@ -1,0 +1,11 @@
+hpc:Slurm a owl:Class.
+hpc:Slurmmanager a owl:Class.
+hpc:SlurmCTLD a hpc:SlurmManager.
+hpc:Backupmanager a owl:Class; rdfs:subClassOf hpc:Slurmmanager.
+hpc:Computeserver a owl:Class.
+hpc:slurmd a owl:ObjectProperty.
+hpc:slurmdbd a owl:ObjectProperty.
+hpc:slurmrestapidaemon a owl:ObjectProperty.
+hpc:Usertool a owl:Class.
+hpc:Srun a hpc:UserTool.
+hpc:

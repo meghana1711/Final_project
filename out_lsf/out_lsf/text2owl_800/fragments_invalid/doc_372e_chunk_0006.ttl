@@ -1,0 +1,34 @@
+hpc:Agenthost a owl:Class .
+hpc:Serverhost a owl:Class .
+hpc:connectionmethod a owl:ObjectProperty .
+hpc:remotelmstatprotocol a owl:DatatypeProperty .
+hpc:command a owl:DatatypeProperty .
+hpc:remotelmstatservers a owl:ObjectProperty .
+
+hpc:Agenthost rdfs:subClassOf hpc:Resource .
+hpc:Serverhost rdfs:subClassOf hpc:Agenthost .
+
+hpc:Connectionmethod rdfs:domain hpc:Agenthost ;
+    rdfs:range rdf:List .
+
+hpc:Remotelmstatprotocol rdfs:domain hpc:Agenthost ;
+    rdfs:range xsd:string .
+
+hpc:Command rdfs:domain hpc:Connectionmethod ;
+    rdfs:range xsd:string .
+
+hpc:Remotelmstatservers rdfs:domain hpc:Agenthost ;
+    rdfs:range rdf:List .
+
+hpc:RemoteLMSTATServers rdf:first hpc:ServerHost ;
+    rdf:rest hpc:RemoteLMSTATServers .
+
+hpc:ConnectionMethod "lsrun" owl:sameAs hpc:LsrunConnection .
+hpc:ConnectionMethod "ssh" owl:sameAs hpc:SshConnection .
+hpc:ConnectionMethod "rsh" owl:sameAs hpc:RshConnection .
+
+hpc:Sshconnection rdfs:subClassOf hpc:Connectionmethod ;
+    rdfs:comment "No password required for connection." .
+
+hpc:lsruncommandoptions a owl:DatatypeProperty .
+hpc:rshcommandoptions a owl:DatatypeProperty .

@@ -1,0 +1,43 @@
+hpc:Jobarrayjobid a owl:Class .
+hpc:Jobstate a owl:Class .
+hpc:jobstateproperty a owl:ObjectProperty .
+hpc:numdone a owl:DatatypeProperty .
+hpc:Numdonedomain rdfs:domain hpc:Jobarrayjobid .
+hpc:NumDoneRange xsd:nonNegativeInteger .
+hpc:Numdonerange rdfs:range xsd:nonNegativeInteger .
+hpc:NumDoneProperty rdfs:subPropertyOf hpc:JobStateProperty .
+hpc:Numdoneproperty rdfs:domain hpc:Jobarrayjobid .
+hpc:Numdoneproperty rdfs:range xsd:string .
+hpc:NumDoneProperty rdfs:label "Evaluate the number of jobs in DONE state" .
+hpc:numexit a owl:DatatypeProperty .
+hpc:Numexitdomain rdfs:domain hpc:Jobarrayjobid .
+hpc:NumExitRange xsd:nonNegativeInteger .
+hpc:Numexitrange rdfs:range xsd:nonNegativeInteger .
+hpc:NumExitProperty rdfs:subPropertyOf hpc:JobStateProperty .
+hpc:Numexitproperty rdfs:domain hpc:Jobarrayjobid .
+hpc:Numexitproperty rdfs:range xsd:string .
+hpc:NumExitProperty rdfs:label "Evaluate the number of jobs in EXIT state" .
+hpc:numended a owl:DatatypeProperty .
+hpc:Numendeddomain rdfs:domain hpc:Jobarrayjobid .
+hpc:NumEndedRange xsd:nonNegativeInteger .
+hpc:Numendedrange rdfs:range xsd:nonNegativeInteger .
+hpc:NumEndedProperty rdfs:subPropertyOf hpc:JobStateProperty .
+hpc:Numendedproperty rdfs:domain hpc:Jobarrayjobid .
+hpc:Numendedproperty rdfs:range xsd:string .
+hpc:NumEndedProperty rdfs:label "Evaluate the number of jobs in DONE and EXIT state" .
+hpc:numhold a owl:DatatypeProperty .
+hpc:Numholddomain rdfs:domain hpc:Jobarrayjobid .
+hpc:NumHoldRange xsd:nonNegativeInteger .
+hpc:Numholdrange rdfs:range xsd:nonNegativeInteger .
+hpc:NumHoldProperty rdfs:subPropertyOf hpc:JobStateProperty .
+hpc:Numholdproperty rdfs:domain hpc:Jobarrayjobid .
+hpc:Numholdproperty rdfs:range xsd:string .
+hpc:NumHoldProperty rdfs:label "Evaluate the number of jobs in PSUSP state" .
+hpc:numstart a owl:DatatypeProperty .
+hpc:Numstartdomain rdfs:domain hpc:Jobarrayjobid .
+hpc:NumStartRange xsd:nonNegativeInteger .
+hpc:Numstartrange rdfs:range xsd:nonNegativeInteger .
+hpc:NumStartProperty rdfs:subPropertyOf hpc:JobStateProperty .
+hpc:Numstartproperty rdfs:domain hpc:Jobarrayjobid .
+hpc:Numstartproperty rdfs:range xsd:string .
+hpc:

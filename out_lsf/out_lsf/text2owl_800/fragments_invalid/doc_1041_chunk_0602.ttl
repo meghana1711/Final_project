@@ -1,0 +1,31 @@
+hpc:Job a owl:Class .
+hpc:Dataspecificationfile a owl:Class .
+hpc:Datarequirementfile a owl:Class .
+
+hpc:Hasdataspecificationfile rdfs:domain hpc:Job .
+hpc:Hasdatarequirementfile rdfs:domain hpc:Dataspecificationfile .
+
+hpc:isJobArray owl:DatatypeProperty .
+hpc:Isjobarray rdfs:range xsd:boolean .
+
+hpc:Dataspecificationfilepath rdfs:domain hpc:Dataspecificationfile .
+hpc:Dataspecificationfilepath rdfs:range xsd:string .
+
+hpc:Datarequirementfilepath rdfs:domain hpc:Datarequirementfile .
+hpc:Datarequirementfilepath rdfs:range xsd:string .
+
+hpc:Wildcardpath rdfs:domain hpc:Datarequirementfilepath .
+hpc:Wildcardpath rdfs:range xsd:string .
+
+hpc:Directorypath rdfs:subClassOf hpc:Wildcardpath .
+hpc:Directorypath rdfs:range xsd:string .
+hpc:directoryPath rdf:value "/" .
+
+hpc:Recursivedirectorypath rdfs:subClassOf hpc:Directorypath .
+hpc:recursiveDirectoryPath rdf:value "/" .
+
+hpc:Filepath rdfs:subClassOf hpc:Wildcardpath .
+hpc:filePath rdf:value "/*" .
+
+hpc:Wildcardpathwithslash rdfs:subClassOf hpc:Wildcardpath .
+hpc:wildcardPathWithSlash rdf:value "/" .

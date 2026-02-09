@@ -1,0 +1,14 @@
+hpc:Ebrokerddaemon a owl:Class.
+hpc:grepcommand a owl:ObjectProperty;
+    rdfs:domain hpc:Ebrokerddaemon;
+    rdfs:range rdf:String.
+
+hpc:badmincommand a owl:ObjectProperty;
+    rdfs:domain hpc:Ebrokerddaemon;
+    rdfs:range rdf:String.
+
+hpc:badminrcviewcommand a owl:ObjectProperty;
+    rdfs:domain hpc:Lsfresourceconnector;
+    rdfs:range rdf:String.
+
+hpc:badminrcerror

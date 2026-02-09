@@ -1,0 +1,23 @@
+hpc:V0043OpenapiWckeyResp a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Response .
+
+hpc:error a owl:DatatypeProperty ;
+    rdfs:domain hpc:V0043openapiwckeyresp ;
+    rdfs:range xsd:string .
+
+hpc:slurmdbv0043getwckeys a owl:ObjectProperty ;
+    rdfs:domain hpc:Get ;
+    rdfs:range hpc:V0043openapiwckeyresp .
+
+hpc:cluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmdbv0043getwckeys ;
+    rdfs:range xsd:string .
+
+hpc:format a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmdbv0043getwckeys ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:ignored .
+
+hpc:id a owl:ObjectProperty ;
+    rdfs:domain hpc:Slur

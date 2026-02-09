@@ -1,0 +1,36 @@
+hpc:Lsfversion a owl:Class .
+hpc:Fixpack a owl:Class .
+hpc:LSFVersion10_1 a hpc:LSFVersion .
+hpc:FixPack4 rdf:type hpc:FixPack ;
+                 rdfs:label "Fix Pack 4" ;
+                 rdfs:comment "In LSF Version 10.1 Fix Pack 4, the lim -t option shows the number of NUMA nodes as a hyphen (-) instead of 0 if the host has no NUMA nodes." .
+hpc:FixPack13 rdf:type hpc:FixPack ;
+                 rdfs:label "Fix Pack 13" ;
+                 rdfs:comment "In LSF 10.1 Fix Pack 13, this option now display the physical index for the socket and core, similar to the existing output for the bhosts -aff command." .
+
+# lsadmin command
+hpc:Lsadmincommand a owl:Class .
+hpc:LsadminCommand_no_setuid_bit_set_at_installation rdf:type hpc:LsadminCommand ;
+                    rdfs:label "no setuid bit set at installation" ;
+                    rdfs:comment "In LSF Version 10.1 Fix Pack 11, the lsadmin command no longer has the setuid bit set at installation. This means that this command no longer runs with root privileges." .
+hpc:LsadminCommand_obsolete_commands rdf:type hpc:LsadminCommand ;
+                    rdfs:label "obsolete commands" ;
+                    rdfs:comment "In LSF Version 10.1 Fix Pack 11, the following LIM and RES daemon control commands are obsolete and will be deprecated in a future release: lsadmin limrestart, lsadmin limstartup, lsadmin limshutdown, lsadmin resrestart, lsadmin resstartup, lsadmin resshutdown" .
+hpc:LsadminCommand_alternative_control_commands rdf:type hpc:LsadminCommand ;
+                    rdfs:label "alternative control commands" ;
+                    rdfs:comment "Instead of these obsolete commands, use the bctrld action lim or bctrld action res (where action is restart, start, or stop) to control the LIM or RES daemons." .
+
+# lseligible, lsgrun, and lshosts commands
+hpc:Lseligiblecommand a owl:Class .
+hpc:Lsgruncommand a owl:Class .
+hpc:Lshostscommand a owl:Class .
+
+# lseligible deprecated
+hpc:LsEligibleCommand_deprecated rdf:type hpc:LsEligibleCommand ;
+                                rdfs:label "deprecated" ;
+                                rdfs:comment "In LSF Version 10.1 Fix Pack 12, this command is deprecated and will be removed in a future version." .
+
+# lsgrun deprecated
+hpc:LsgrunCommand_deprecated rdf:type hpc:LsgrunCommand ;
+                             rdfs:label "deprecated" ;
+                             rdfs:comment "In LSF Version 10.1 Fix

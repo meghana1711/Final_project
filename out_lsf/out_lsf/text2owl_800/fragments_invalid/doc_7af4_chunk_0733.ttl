@@ -1,0 +1,35 @@
+hpc:LSB_MC_INITFAIL_MAIL
+    a owl:Class ;
+    rdfs:subClassOf owl:Enum ;
+    rdfs:comment "Multicluster job forwarding model only. Specify Y to make LSF email the job owner when a job is suspended after reaching the retry threshold. Specify Administrator to make LSF email the primary administrator when a job is suspended after reaching the retry threshold. Specify All to make LSF email both the job owner and the primary administrator when a job is suspended after reaching the retry threshold. Default not defined." .
+
+hpc:LSB_MC_INITFAIL_MAIL Y
+    a owl:EnumerationMember ;
+    rdfs:label "Y" ;
+    rdfs:comment "Make LSF email the job owner when a job is suspended after reaching the retry threshold." .
+
+hpc:LSB_MC_INITFAIL_MAIL Administrator
+    a owl:EnumerationMember ;
+    rdfs:label "Administrator" ;
+    rdfs:comment "Make LSF email the primary administrator when a job is suspended after reaching the retry threshold." .
+
+hpc:LSB_MC_INITFAIL_MAIL All
+    a owl:EnumerationMember ;
+    rdfs:label "All" ;
+    rdfs:comment "Make LSF email both the job owner and the primary administrator when a job is suspended after reaching the retry threshold." .
+
+hpc:LSB_MC_INITFAIL_RETRY
+    a owl:Class ;
+    rdfs:subClassOf owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbMcInitfailRetry ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Multicluster job forwarding model only. Defines the retry threshold and causes LSF to suspend a job that repeatedly fails to start, unless a forwarded job could not start in remote cluster due to insufficient resources. For example, specify 2 retry attempts to make LSF attempt to start a job 3 times before suspending it. Default undefined." .
+
+hpc:LSB_MC_RECALL_EXIT_INFO
+    a owl:Class ;
+    rdfs:subClassOf owl:Enum ;
+    rdfs:comment "For LSF multicluster capability, enables TERM_MC_RECALL to be a job termination reason (exitInfo) to distinguish recalled jobs from other exited jobs in the execution cluster.. While balancing workload between multiple clusters when using the LSF multicluster capability, jobs are recalled to the submission cluster because either the MAX_RSCHED_TIME is reached or brequeue is run on the submission cluster. If this parameter is defined as Y, these recalled jobs show the job termination reason (exitInfo) as TERM_MC_RECALL for these recalled jobs, otherwise these jobs show as exited jobs from the execution cluster. Jobs that are rescheduled after running brequeue -a or -p are not considered as recalled jobs because these jobs are not returned back to the submission cluster for rescheduling. To hide these recalled jobs from the list of exited jobs when running bjobs, bhist, or bacct on the execution cluster, define LSB_MC_RECALLED_JOBS_HIDE=Y in the lsf.conf file for the execution cluster. Default" .
+
+hpc:LSB_MC_RECALL_EXIT_INFO Y
+    a owl:EnumerationMember ;
+    rdfs

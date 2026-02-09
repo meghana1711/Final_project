@@ -1,0 +1,26 @@
+hpc:Lsfpredictorlogfile a owl:Class .
+hpc:Lsfpredictoreventfile a owl:Class .
+hpc:Personaldata a owl:Class .
+hpc:UNIXUsername rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Personaldata ;
+    rdfs:range xsd:string .
+hpc:EmailAddress rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Personaldata ;
+    rdfs:range xsd:string .
+hpc:OSLevelAccessControl rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfpredictorlogfile ;
+    rdfs:range hpc:Securitymeasure .
+hpc:EncryptionSoftware rdf:type owl:Class .
+hpc:EncryptDiskPartition rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Encryptionsoftware ;
+    rdfs:range hpc:Lsfpredictorlogfile .
+hpc:BestPracticesAndTips rdf:type owl:Class .
+hpc:Location rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfpredictorlogfile ;
+    rdfs:range xsd:string .
+hpc:Location1 a owl:Class ;
+    rdfs:subClassOf hpc:Location ;
+    rdfs:comment "Location of logs" .
+hpc:Location2 a owl:Class ;
+    rdfs:subClassOf hpc:Location ;
+    rdfs:comment "Location of work" .

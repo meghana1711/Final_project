@@ -1,0 +1,44 @@
+hpc:lsbUpdateContainerImage a owl:ObjectProperty .
+hpc:LsbUpdateContainerImage rdfs:domain hpc:Lsf .
+hpc:LsbUpdateContainerImage rdfs:range xsd:string .
+
+# Error handling for LSF jobs with IBM Cluster Systems Manager
+hpc:csmErrorHandling a owl:ObjectProperty .
+hpc:CsmErrorHandling rdfs:domain hpc:Lsf .
+hpc:CsmErrorHandling rdfs:range xsd:boolean .
+
+# lsb.resources file
+hpc:killJobsOverRunlimit a owl:ObjectProperty .
+hpc:KillJobsOverRunlimit rdfs:domain hpc:Lsf .
+hpc:KillJobsOverRunlimit rdfs:range xsd:string .
+
+# Display the exit reason in the bjobs -l -pac command
+hpc:exitReason a owl:DatatypeProperty .
+hpc:ExitReason rdfs:domain hpc:Job .
+hpc:ExitReason rdfs:range xsd:string .
+
+# New platform support
+hpc:Sles15 a owl:Class .
+hpc:Sles15 rdfs:subClassOf hpc:Platform .
+hpc:SLES_15 rdfs:comment "SLES 15" .
+hpc:SLES_15 rdfs:label "SLES 15" .
+
+hpc:Kernel41214 a owl:Class .
+hpc:Kernel41214 rdfs:subClassOf hpc:Software .
+hpc:Kernel_4_12_14 rdfs:comment "kernel 4.12.14" .
+hpc:Kernel_4_12_14 rdfs:label "Kernel 4.12.14" .
+
+hpc:Glibc226 a owl:Class .
+hpc:Glibc226 rdfs:subClassOf hpc:Software .
+hpc:Glibc_2_26 rdfs:comment "glibc 2.26" .
+hpc:Glibc_2_26 rdfs:label "Glibc 2.26" .
+
+# What's new in IBM Spectrum LSF Version 10.1 Fix Pack 6
+hpc:Lsf101Fp6 a owl:Class .
+hpc:Lsf101Fp6 rdfs:subClassOf hpc:Version .
+hpc:LSF_10_1_FP6 rdfs:comment "IBM Spectrum LSF Version 10.1 Fix Pack 6" .
+hpc:LSF_10_1_FP6 rdfs:label "LSF 10.1 Fix Pack 6" .
+
+# GPU enhancements
+hpc:GpuEnhancements a owl:Class .
+hpc:GpuEnhancements rdfs:subClassOf

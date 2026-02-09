@@ -1,0 +1,61 @@
+hpc:terminationtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:time ;
+    rdfs:comment "The absolute time when a job is terminated by the mbatchd daemon, checked by the sbatchd daemon." .
+
+hpc:Managementhost a owl:Class ;
+    rdfs:comment "The host that sets the time for all hosts in the cluster." .
+
+hpc:synchronization a owl:ObjectProperty ;
+    rdfs:domain hpc:Daemon ;
+    rdfs:range hpc:Managementhost ;
+    rdfs:comment "The relationship between a daemon and the management host, ensuring correct time synchronization." .
+
+hpc:begintime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:time ;
+    rdfs:comment "The start time of a reservation." .
+
+hpc:modifybegintime a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Reservation ;
+    rdfs:comment "Allows modification of the begin time for a one-time reservation or giving an offset in minutes to the current begin time." .
+
+hpc:year a owl:DatatypeProperty ;
+    rdfs:range xsd:gYear ;
+    rdfs:comment "Any year after 1900." .
+
+hpc:month a owl:DatatypeProperty ;
+    rdfs:range xsd:gMonth ;
+    rdfs:comment "A month of the year." .
+
+hpc:day a owl:DatatypeProperty ;
+    rdfs:range xsd:gDay ;
+    rdfs:comment "A day of the month." .
+
+hpc:hour a owl:DatatypeProperty ;
+    rdfs:range xsd:gHour ;
+    rdfs:comment "An hour of the day." .
+
+hpc:minute a owl:DatatypeProperty ;
+    rdfs:range xsd:gMinute ;
+    rdfs:comment "A minute of the hour." .
+
+hpc:offset a owl:DatatypeProperty ;
+    rdfs:range xsd:int ;
+    rdfs:comment "An integer representing the offset in minutes to the current begin time." .
+
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A reservation of resources in a cluster." .
+
+hpc:Daemon a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A daemon managing resources in a cluster." .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A user requesting resources in a cluster." .
+
+hpc:Activereservation rdfs:subClassOf hpc:Reservation ;
+    rdfs:comment "An active reservation that cannot be modified." .

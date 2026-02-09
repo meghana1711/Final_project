@@ -1,0 +1,25 @@
+hpc:Apachehttpserver a owl:Class .
+hpc:Lsfwebservice a owl:Class .
+hpc:Httpproxysetting an rdfs:subClassOf hpc:Apachehttpserver .
+hpc:Httpspproxysetting an rdfs:subClassOf hpc:Apachehttpserver .
+hpc:Httpproxysetting rdfs:subClassOf hpc:Objectproperty .
+hpc:Httpspproxysetting rdfs:subClassOf hpc:Objectproperty .
+hpc:Hashttphost rdfs:domain hpc:Httpproxysetting ;
+    rdfs:range xsd:string .
+hpc:Hashttpport rdfs:domain hpc:Httpproxysetting ;
+    rdfs:range xsd:integer .
+hpc:Usesapachehttpserver rdfs:domain hpc:Httpproxysetting ;
+    rdfs:range hpc:Apachehttpserver .
+hpc:Apachehttpserver rdfs:subClassOf rdf:Resource .
+hpc:Lsfwebservice rdfs:subClassOf rdf:Resource .
+hpc:Http rdfs:subClassOf xsd:string .
+hpc:Port rdfs:subClassOf xsd:integer .
+
+hpc:Apachehttpserverconfig a owl:Class .
+hpc:Haslistenport rdfs:domain hpc:Apachehttpserverconfig ;
+    rdfs:range hpc:Port .
+hpc:Haslistenprotocol rdfs:domain hpc:Apachehttpserverconfig ;
+    rdfs:range hpc:Http .
+hpc:Hasssl rdfs:domain hpc:Apachehttpserverconfig ;
+    rdfs:range xsd:boolean .
+hpc:Apachehttpserverconfig rdfs:subClassOf rdf:Resource .

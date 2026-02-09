@@ -1,0 +1,60 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:LsfBindJob a owl:Class .
+hpc:BindJob a owl:Class .
+
+hpc:hasAffinityOption rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfBindJob ;
+    rdfs:range hpc:BindJob .
+
+hpc:Linux a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      rdfs:subClassOf rdf:Property ;
+                      rdfs:subClassOf rdf:Resource ] .
+
+hpc:LinuxExecutionHost a hpc:Linux ;
+    rdfs:subClassOf [ a owl:Class ;
+                      rdfs:subClassOf rdf:Resource ] .
+
+hpc:supportsProcessorBinding rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Linuxexecutionhost ;
+    rdfs:range xsd:boolean .
+
+hpc:Linuxkernelversion a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      rdfs:subClassOf rdf:Resource ] .
+
+hpc:hasKernelVersion rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Linuxexecutionhost ;
+    rdfs:range hpc:Linuxkernelversion .
+
+hpc:LsfBindir a owl:Class .
+hpc:LsfBmplugin a owl:Class .
+hpc:Libbitmask a owl:Class .
+
+hpc:hasBinDir rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfBindir ;
+    rdfs:range xsd:string .
+
+hpc:hasBMPlugin rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfBmplugin ;
+    rdfs:range xsd:string .
+
+hpc:hasBitmaskLibrary rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Libbitmask ;
+    rdfs:range xsd:string .
+
+hpc:LsfCgroupCoreAutoCreate a owl:Class .
+
+hpc:autoCreatesCgroup rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfCgroupCoreAutoCreate ;
+    rdfs:range xsd:boolean .
+
+hpc:requiresSettings rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfCgroupCoreAutoCreate ;
+    rdfs:range xsd:string .
+
+hpc:LSB

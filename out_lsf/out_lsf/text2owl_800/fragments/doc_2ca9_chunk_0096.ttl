@@ -1,0 +1,39 @@
+hpc:Serviceclass a owl:Class ;
+    rdfs:subClassOf hpc:Resourcemanagementfeature .
+
+hpc:Bconfcommand a owl:Class ;
+    rdfs:subClassOf hpc:Command .
+
+hpc:configureserviceclass a owl:ObjectProperty ;
+    rdfs:domain hpc:Systemadmin ;
+    rdfs:range hpc:Serviceclass .
+
+# SMT mode for IBM CSM jobs
+hpc:Smtmode a owl:Class ;
+    rdfs:subClassOf hpc:Jobmanagementfeature .
+
+hpc:bsubsmt a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range hpc:Smtmode .
+
+hpc:csmreq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queuedefinition ;
+    rdfs:range xsd:integer .
+
+hpc:csmvalidsmt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Systemparameters ;
+    rdfs:range xsd:integer .
+
+# Job scheduling and execution
+hpc:Excludefairsharegroups a owl:Class ;
+    rdfs:subClassOf hpc:Jobschedulingfeature .
+
+hpc:bsubg a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:string .
+
+hpc:Preexecutionstarttime a owl:Class ;
+    rdfs:subClassOf hpc:Jobexecutionfeature .
+
+hpc:Containersupport a owl:Class ;
+    rdfs:subClassOf hpc:Jobmanagementfeature .

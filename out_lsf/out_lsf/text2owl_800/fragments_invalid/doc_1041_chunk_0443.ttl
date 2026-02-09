@@ -1,0 +1,61 @@
+hpc:Queue a owl:Class .
+hpc:Queuedescription hpc:datatypeproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+hpc:CgroupCpuSharesFactor hpc:datatypeproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:float .
+hpc:Schedulingparameters hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Schedulingparameters .
+hpc:Resourceusagelimits hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Resourceusagelimits .
+hpc:Schedulingpolicies hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Schedulingpolicies .
+hpc:Users hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:User .
+hpc:Hosts hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Host .
+hpc:Associatedcommands hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Command .
+hpc:Dispatchandrunwindows hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Dispatchandrunwindows .
+hpc:Successexitvalues hpc:datatypeproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:integer .
+hpc:Hostlimitsperparalleljob hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Hostlimitsperparalleljob .
+hpc:Pendingtimelimits hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:duration .
+hpc:Eligiblependingtimelimits hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:duration .
+hpc:Jobcontrols hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Jobcontrols .
+hpc:Usershares hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Usershares .
+hpc:Normalizedfairsharefactors hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:float .
+hpc:Containers hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Containers .
+hpc:Administratorcomment hpc:datatypeproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+hpc:Absolutepriorityschedulinginformation hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Absolutepriorityschedulinginformation .
+hpc:Longoutput hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range

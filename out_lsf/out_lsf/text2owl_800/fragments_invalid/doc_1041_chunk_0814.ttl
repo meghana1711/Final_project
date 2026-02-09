@@ -1,0 +1,78 @@
+hpc:Resource a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:label resource .
+
+hpc:resourcename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:label resourceName .
+
+hpc:resourcetype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:label resourceType .
+
+hpc:description a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:label description .
+
+hpc:defaultsortorder a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:integer ;
+    rdfs:label defaultSortOrder .
+
+hpc:builtinresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range hpc:Boolean ;
+    rdfs:label builtInResource .
+
+hpc:dynamicresourcevalue a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range hpc:Boolean ;
+    rdfs:label dynamicResourceValue .
+
+hpc:evaluationinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dynamicresourcevalue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label evaluationInterval .
+
+hpc:Configuredresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:label configuredResource .
+
+hpc:Hosttype a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:label hostType .
+
+hpc:Hostmodel a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:label hostModel .
+
+hpc:longformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:label longFormat .
+
+hpc:wideformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:label wideFormat .
+
+hpc:showallhostmodels a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range hpc:Hostmodel ;
+    rdfs:label showAllHostModels .
+
+hpc:showhostmodelsincluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range hpc:Hostmodel ;
+    rdfs:label showHostModelsInCluster .
+
+hpc:showconfiguredresources a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range hpc:Resource ;
+    rdfs:label showConfiguredResources .
+
+hpc:showconfiguredhosttypes a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range hpc:Hosttype ;
+    rdfs:label showConfiguredHostTypes .

@@ -1,0 +1,28 @@
+hpc:Androidbuild a owl:Class .
+hpc:installedfilelist hpc:installedfilelistobject a owl:ObjectProperty ;
+    rdfs:domain hpc:Androidbuild ;
+    rdfs:range xsd:string .
+hpc:targetsystemfsimage hpc:targetsystemfsimageobject a owl:ObjectProperty ;
+    rdfs:domain hpc:Androidbuild ;
+    rdfs:range xsd:string .
+hpc:running hpc:runningobject a owl:ObjectProperty ;
+    rdfs:domain hpc:Androidbuild ;
+    rdfs:range xsd:string .
+hpc:systemfsimage hpc:systemfsimageobject a owl:ObjectProperty ;
+    rdfs:domain hpc:Androidbuild ;
+    rdfs:range xsd:string .
+hpc:buildsystemfsimage hpc:buildsystemfsimageobject a owl:ObjectProperty ;
+    rdfs:domain hpc:Androidbuild ;
+    rdfs:range xsd:string .
+hpc:buildingsourcecodeonmultiplehosts hpc:buildingsourcecodeonmultiplehostsobject a owl:ObjectProperty ;
+    rdfs:domain hpc:Androidbuild ;
+    rdfs:range xsd:string .
+hpc:submitlsmakeaslsfjob hpc:submitlsmakeaslsfjobobject a owl:ObjectProperty ;
+    rdfs:domain hpc:Androidbuild ;
+    rdfs:range xsd:string .
+hpc:comparisonoflsmakeandgmake hpc:comparisonoflsmakeandgmakeobject a owl:ObjectProperty ;
+    rdfs:domain hpc:Androidbuild ;
+    rdfs:range xsd:string .
+hpc:buildtime hpc:buildtimeobject a owl:DatatypeProperty ;
+    rdfs:domain hpc:Comparisonoflsmakeandgmake ;
+    rdfs:range xsd:string .

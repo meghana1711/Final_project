@@ -1,0 +1,68 @@
+hpc:LeastRunTime a owl:Class .
+hpc:MiniJob a owl:Class .
+hpc:OptimalMiniJob a owl:Class .
+hpc:UserJlp a owl:Class .
+
+hpc:preempts rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LeastRunTime ;
+    rdfs:range hpc:Job .
+
+hpc:optimizes rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:MiniJob, hpc:OptimalMiniJob ;
+    rdfs:range hpc:Job .
+
+hpc:interferes rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:OptimalMiniJob ;
+    rdfs:range hpc:Configuration .
+
+hpc:shouldConfigure rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:OptimalMiniJob ;
+    rdfs:range hpc:Configuration .
+
+hpc:shouldNotConfigure rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:OptimalMiniJob ;
+    rdfs:range hpc:Configuration .
+
+hpc:requires rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:OptimalMiniJob ;
+    rdfs:range hpc:Configuration .
+
+hpc:ignores rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:UserJlp ;
+    rdfs:range hpc:Job .
+
+hpc:counts rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:UserJlp ;
+    rdfs:range hpc:Job .
+
+hpc:suspended rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:running rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:slotsPerProcessor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:users a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:perHost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:string .
+
+hpc:lsbresourcesfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:string .
+
+hpc:preemptiveSchedulingEnabled rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:boolean .
+
+hpc:parallelSchedBySlot a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    r

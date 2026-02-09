@@ -1,0 +1,50 @@
+hpc:Memoryusage a owl:Class .
+hpc:maxmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Memoryusage ;
+    rdfs:range xsd:decimal .
+hpc:avgmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Memoryusage .
+hpc:memefficiency a owl:DatatypeProperty ;
+    rdfs:domain hpc:Memoryusage ;
+    rdfs:range xsd:decimal .
+
+hpc:memoryusageefficiencycalculation a owl:ObjectProperty ;
+    rdfs:domain hpc:Memoryusage ;
+    rdfs:range hpc:Memoryusageefficiencycalculationrule .
+
+hpc:Memoryusageefficiencycalculationrule a owl:Class .
+hpc:maxMemDividedByRequestedMinusR minus rdf:datatype xsd:decimal ;
+    rdfs:range xsd:decimal .
+hpc:resultTimesOneHundredPercent rdf:datatype xsd:decimal .
+
+hpc:Cpuusage a owl:Class .
+hpc:cpupeak a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cpuusage ;
+    rdfs:range xsd:decimal .
+hpc:cpupeakduration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cpuusage ;
+    rdfs:range xsd:duration .
+hpc:cpuaverageefficiency a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cpuusage ;
+    rdfs:range xsd:decimal .
+hpc:cpupeakefficiency a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cpuusage ;
+    rdfs:range xsd:decimal .
+
+hpc:cpuusageefficiencycalculation a owl:ObjectProperty ;
+    rdfs:domain hpc:Cpuusage ;
+    rdfs:range hpc:Cpuusageefficiencycalculationrule .
+
+hpc:Cpuusageefficiencycalculationrule a owl:Class .
+hpc:cpuTimeDividedByProductOfJobRunTimeAndRequestedMinusR minus rdf:datatype xsd:decimal ;
+    rdfs:range xsd:decimal .
+hpc:resultTimesOneHundredPercent rdf:datatype xsd:decimal .
+
+hpc:Resourcerequirementdetails a owl:Class .
+hpc:bjobsresreqdisplay a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirementdetails ;
+    rdfs:range xsd:string .
+
+hpc:ResourceRequirementDetailsLevel a owl:Enum ;
+    rdfs:member hpc:none ;
+    rdfs:member hpc:strict .

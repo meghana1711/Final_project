@@ -1,0 +1,59 @@
+hpc:Queue a owl:Class .
+hpc:BQueue a hpc:Queue .
+hpc:BHPart a hpc:Queue .
+
+hpc:runtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:decimal .
+
+hpc:actualruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Runtime ;
+    rdfs:range xsd:decimal .
+
+hpc:accumulatedruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Runtime ;
+    rdfs:range xsd:decimal .
+
+hpc:historicalruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Runtime ;
+    rdfs:range xsd:decimal .
+
+hpc:committedruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:decimal .
+
+hpc:CPU_TIME_FACTOR rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:decimal .
+
+hpc:RUN_TIME_FACTOR rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:decimal .
+
+hpc:COMMITTED_RUN_TIME_FACTOR rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:decimal .
+
+hpc:RUNLIMIT rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Runtime .
+
+hpc:fairshareadjustment a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Shareadjustpair .
+
+hpc:FAIRSHARE_ADJUSTMENT_FACTOR rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Fairshareadjustment ;
+    rdfs:range xsd:decimal .
+
+hpc:ngpus_physical rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:GPU_RUN_TIME_FACTOR rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:decimal .
+
+hpc:jobslot a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .

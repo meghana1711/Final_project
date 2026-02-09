@@ -1,0 +1,29 @@
+hpc:Slurm a owl:Class .
+hpc:Slurmversion a owl:Class .
+hpc:Majorrelease a owl:Class .
+hpc:Maintenancerelease a owl:Class .
+hpc:Slurmdaemon a owl:Class .
+hpc:Slurmctld a owl:Class .
+hpc:Slurmd a owl:Class .
+hpc:Slurmdbd a owl:Class .
+
+hpc:hasversion a owl:ObjectProperty .
+hpc:supportsrpc a owl:ObjectProperty .
+
+hpc:Slurmversion rdfs:subClassOf owl:Class .
+hpc:Majorrelease rdfs:subClassOf hpc:Slurmversion .
+hpc:Maintenancerelease rdfs:subClassOf hpc:Slurmversion .
+hpc:Slurmdaemon rdfs:subClassOf owl:Class .
+hpc:Slurmctld rdfs:subClassOf hpc:Slurmdaemon .
+hpc:Slurmd rdfs:subClassOf hpc:Slurmdaemon .
+hpc:Slurmdbd rdfs:subClassOf hpc:Slurmdaemon .
+
+hpc:Hasversion rdfs:domain hpc:Slurm .
+hpc:Supportsrpc rdfs:domain hpc:Slurmdaemon .
+
+hpc:Hasversion rdfs:range xsd:string .
+hpc:Supportsrpc rdfs:range hpc:Slurmdaemon .
+
+hpc:Slurmversion rdfs:range xsd:decimal .
+hpc:Majorrelease rdfs:range xsd:decimal .
+hpc:Maintenancerelease rdfs:range xsd:nonNegativeInteger .

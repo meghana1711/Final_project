@@ -1,0 +1,17 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:LsfLimDebug a owl:Class .
+hpc:LsfLogdir a owl:Class .
+hpc:LsfLsloadFormat a owl:Class .
+hpc:LsfLshostsFormat a owl:Class .
+
+hpc:LsfMaster a owl:Class ;
+    rdfs:comment "Set by the LIM to identify the management host." ;
+    rdfs:subClassOf hpc:Hostparameter .
+
+hpc:LsfResources a owl:Class .
+
+hpc:LsfNiosDebug a owl:Class .

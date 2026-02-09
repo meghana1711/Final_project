@@ -1,0 +1,39 @@
+hpc:lsfExtServerdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range xsd:string .
+
+hpc:lsfEauthKey a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfSudoers ;
+    rdfs:range xsd:string .
+
+hpc:lsfEnvOverride a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range xsd:string .
+
+hpc:lsfServerdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range xsd:string .
+
+hpc:egroupUpdateInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbParams ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:egroupUpdateIntervalUnit a owl:DatatypeProperty ;
+    rdfs:domain hpc:EgroupUpdateInterval ;
+    rdfs:range xsd:string .
+
+hpc:egroupUpdateIntervalUnitM a owl:DatatypeProperty ;
+    rdfs:domain hpc:EgroupUpdateIntervalUnit ;
+    rdfs:range xsd:string .
+
+hpc:jobsPerSchedCycleOld a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbResources ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:eligiblePendJobs a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbResources ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsbUpdateContainerImage a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range xsd:string .

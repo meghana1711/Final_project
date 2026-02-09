@@ -1,0 +1,31 @@
+hpc:Dockerapplicationprofile      a owl:Class .
+hpc:Dockerqueue                   a owl:Class .
+hpc:Containerjob                  a owl:Class .
+
+# Object Properties
+hpc:hascontainer                  a owl:ObjectProperty .
+hpc:hasimagename                  a owl:ObjectProperty .
+hpc:hasdockerrunoptions           a owl:ObjectProperty .
+hpc:hascontainerio                a owl:ObjectProperty .
+hpc:hasjobprepost                a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:options                       a owl:DatatypeProperty .
+
+# Domain and Range
+hpc:Hascontainer                  rdfs:domain hpc:Containerjob ;
+                                   rdfs:range hpc:Dockerapplicationprofile .
+hpc:Hasimagename                  rdfs:domain hpc:Containerjob ;
+                                   rdfs:range xsd:string .
+hpc:Hasdockerrunoptions           rdfs:domain hpc:Containerjob ;
+                                   rdfs:range xsd:string .
+hpc:Options                       rdfs:domain hpc:Dockerapplicationprofile ;
+                                   rdfs:range xsd:string .
+hpc:Hascontainerio                rdfs:domain hpc:Dockerapplicationprofile ;
+                                   rdfs:range rdf:List .
+hpc:Hasjobprepost                rdfs:domain hpc:Dockerapplicationprofile ;
+                                   rdfs:range rdf:List .
+
+# Subclass Relations
+hpc:Dockerqueue                   rdfs:subClassOf hpc:Queue .
+hpc:Dockerapplicationprofile     rdfs:subClassOf hpc:Applicationprofile .

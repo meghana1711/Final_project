@@ -1,0 +1,18 @@
+hpc:Computingunit a owl:Class .
+hpc:pref a owl:ObjectProperty .
+hpc:maxcus a owl:DatatypeProperty .
+
+hpc:Computingunit rdfs:subClassOf owl:Class .
+hpc:Pref rdfs:domain hpc:Computingunit ;
+                               rdfs:range xsd:string .
+hpc:Maxcus rdfs:domain hpc:Computingunit ;
+                               rdfs:range xsd:integer .
+
+hpc:MinAvail a rdf:PlainLiteral .
+hpc:MaxAvail a rdf:PlainLiteral .
+
+hpc:ComputingUnit[pref=minavail] rdf:type hpc:ComputingUnit ;
+                                 hpc:Pref "minavail" .
+
+hpc:ComputingUnit[pref=maxavail] rdf:type hpc:ComputingUnit ;
+                                 hpc:Pref "maxavail" .

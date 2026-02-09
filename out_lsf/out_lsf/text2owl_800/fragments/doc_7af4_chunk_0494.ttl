@@ -1,0 +1,21 @@
+hpc:Loadschedthresholds a owl:Class .
+hpc:runjobfactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resumecond ;
+    rdfs:range xsd:decimal .
+hpc:RunJobFactorUndefined a owl:NamedIndividual ;
+    rdf:value "Not defined" .
+hpc:RunJobFactorDefined a owl:NamedIndividual ;
+    rdf:value "Not deﬁned" .
+hpc:runjobfactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Resumecond ;
+    rdfs:range hpc:Runjobfactor .
+hpc:runtimedecay a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resumecond ;
+    rdfs:range xsd:string .
+hpc:RunTimeDecayY a owl:NamedIndividual ;
+    rdf:value "Y" .
+hpc:RunTimeDecayN a owl:NamedIndividual ;
+    rdf:value "N" .
+hpc:runtimedecay a owl:ObjectProperty ;
+    rdfs:domain hpc:Resumecond ;
+    rdfs:range hpc:Runtimedecay .

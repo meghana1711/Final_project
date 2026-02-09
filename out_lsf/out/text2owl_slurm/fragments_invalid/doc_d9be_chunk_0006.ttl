@@ -1,0 +1,26 @@
+hpc:Job a owl:Class. .
+hpc:Step a owl:Class. .
+hpc:Task a owl:Class. .
+
+hpc:Cpumanagement a owl:Class. .
+hpc:allocation a owl:ObjectProperty. .
+hpc:distribution a owl:ObjectProperty. .
+hpc:binding a owl:ObjectProperty. .
+
+hpc:Cpuusageinformation a owl:Class. .
+hpc:command a owl:ObjectProperty. .
+hpc:option a owl:ObjectProperty. .
+hpc:information a owl:DatatypeProperty. .
+
+hpc:Node a owl:Class. .
+hpc:Cpu a owl:Class. .
+
+hpc:AbstractCPUId a xsd:string. .
+hpc:LinuxCPUId a xsd:string. .
+
+hpc:Jobcpuallocation a rdfs:subClassOf hpc:Allocation. .
+hpc:Nodecpuallocation a rdfs:subClassOf hpc:Allocation. .
+
+hpc:Taskcpubinding a rdfs:subClassOf hpc:Binding. .
+
+hpc:Jobcpuusage a rdfs:subClassOf hpc:Cpuusageinformation.

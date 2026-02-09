@@ -1,0 +1,35 @@
+hpc:LsfUserDomain a owl:Class .
+hpc:LsfUserDomain rdfs:subClassOf xsd:string .
+
+hpc:Username a owl:Class .
+hpc:Username rdfs:subClassOf xsd:string .
+hpc:Username rdfs:subClassOf hpc:LsfUserDomain .
+
+hpc:Windowsusername a owl:Class .
+hpc:Windowsusername rdfs:subClassOf hpc:Username .
+hpc:Windowsusername rdfs:subClassOf xsd:string .
+hpc:Windowsusername rdfs:range xsd:string .
+hpc:Windowsusername rdfs:range rdf:first hpc:\ .
+hpc:Windowsusername rdfs:range rdf:rest hpc:UserName .
+
+hpc:bchkpnt a owl:ObjectProperty .
+hpc:bdel a owl:ObjectProperty .
+hpc:bhist a owl:ObjectProperty .
+hpc:bjobs a owl:ObjectProperty .
+hpc:bkill a owl:ObjectProperty .
+hpc:bmig a owl:ObjectProperty .
+hpc:bmod a owl:ObjectProperty .
+hpc:brequeue a owl:ObjectProperty .
+hpc:bresume a owl:ObjectProperty .
+hpc:bstop a owl:ObjectProperty .
+hpc:bsub a owl:ObjectProperty .
+hpc:bswitch a owl:ObjectProperty .
+hpc:busers a owl:ObjectProperty .
+hpc:lsacct a owl:ObjectProperty .
+hpc:lspasswd a owl:ObjectProperty .
+
+hpc:lsbHosts a owl:DatatypeProperty .
+hpc:userShares a owl:DatatypeProperty .
+
+hpc:LsfFiles a owl:Class .
+hpc:LsfFiles rdfs:subClassOf rdf:Resource .

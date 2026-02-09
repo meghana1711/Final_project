@@ -1,0 +1,34 @@
+hpc:User a owl:Class .
+hpc:maxnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:minnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:subPropertyOf hpc:MaxNumber .
+
+hpc:Policies a owl:Class .
+hpc:perrcaccount a owl:ObjectProperty ;
+    rdfs:domain hpc:Policies ;
+    rdfs:range hpc:Account .
+
+hpc:pertemplatename a owl:ObjectProperty ;
+    rdfs:domain hpc:Policies ;
+    rdfs:range xsd:string .
+
+hpc:perprovider a owl:ObjectProperty ;
+    rdfs:domain hpc:Policies ;
+    rdfs:range xsd:string .
+
+hpc:stepvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+
+hpc:stepindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stepvalue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:steptime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stepvalue ;
+    rdfs:range xsd:duration .

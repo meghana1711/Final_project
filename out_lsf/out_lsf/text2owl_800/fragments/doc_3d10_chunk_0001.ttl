@@ -1,0 +1,30 @@
+hpc:Lsfwebservices a owl:Class .
+hpc:Ssorealmaccount a owl:Class .
+hpc:Oauthssoconnection a owl:Class .
+hpc:Oauth2protocol a owl:Class .
+hpc:Ldapadintegration a owl:Class .
+
+hpc:logon a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfwebservices ;
+    rdfs:range hpc:Ssorealmaccount .
+
+hpc:list a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfwebservices ;
+    rdfs:range hpc:Default .
+
+hpc:submitjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfwebservices ;
+    rdfs:range hpc:Job .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:job a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Highavailabilityenvironment a owl:Class .
+hpc:oauthforha a owl:ObjectProperty ;
+    rdfs:domain hpc:Highavailabilityenvironment ;
+    rdfs:range hpc:Lsfwebservices .

@@ -1,0 +1,33 @@
+hpc:Queue a owl:Class .
+hpc:Queue rdfs:subClassOf owl:Class .
+hpc:QueueName rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+hpc:Priority rdfs:domain hpc:Queue ;
+    rdfs:range xsd:integer .
+hpc:Nice rdfs:domain hpc:Queue ;
+    rdfs:range xsd:integer .
+hpc:ApsPriority rdfs:domain hpc:Queue ;
+    rdfs:range xsd:decimal .
+hpc:QueueGroup rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+hpc:Description rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+
+hpc:apsPriorityValue a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:decimal .
+hpc:apsPriorityWeights a owl:DatatypeProperty ;
+    rdfs:domain hpc:ApsPriorityValue .
+
+hpc:ApsPriorityWeights rdfs:range xsd:decimal .
+hpc:WORK rdf:datatype xsd:decimal .
+hpc:JOB_PRIORITY rdf:datatype xsd:decimal .
+hpc:QUEUE_PRIORITY rdf:datatype xsd:decimal .
+
+hpc:fairshare a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Usershares .
+hpc:UserShares a owl:Class .
+
+
+This ontology fragment defines the `hpc:Queue` class and its properties, including `hpc:QUEUE_NAME`, `hpc:PRIORITY`, `hpc:NICE`, `hpc:APS_PRIORITY`, `hpc:QUEUE_GROUP`, and `hpc:DESCRIPTION`. It also defines the `hpc:APS_PRIORITY_VALUE` object property, which has a datatype property `hpc:APS_PRIORITY_WEIGHTS`. The datatype properties `hpc:WORK`, `hpc:JOB_PRIORITY`, and `hpc:QUEUE_PRIORITY` are defined as decimal types. The `hpc:FAIRSHARE` object property is defined to have the domain `hpc:Queue` and range `hpc:UserShares`. The `hpc:UserShares` class is also defined.

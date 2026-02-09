@@ -1,0 +1,67 @@
+hpc:AdvancedReservation
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Reservation made on AWS instances with advanced options." .
+
+hpc:AWSInstance
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Instance running on AWS cloud." .
+
+hpc:IdleTimePolicy
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Policy that returns hosts due to inactivity." .
+
+hpc:TimeToLivePolicy
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Policy that returns hosts after a certain time period." .
+
+hpc:EGOReclaim
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Policy that returns hosts managed by EGO." .
+
+hpc:AWSReclaim
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Policy that returns AWS instances." .
+
+hpc:Unavailability
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "State when hosts are closed or unavailable." .
+
+hpc:OverDemand
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Situation when resource connector over-demands for its workload." .
+
+hpc:HostNameResolutionIssue
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Issue when borrowed hosts cannot resolve host names." .
+
+hpc:JobUnavailability
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "State when jobs are not able to run on an instance due to LSF daemons shutdown." .
+
+hpc:RC_HOSTS
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Queue ] ;
+    rdfs:range [ rdf:type rdf:Resource ] ;
+    rdfs:comment "Parameter in the queue to specify the external resources that resource connector can borrow resources from." .
+
+hpc:RC_HOSTS_defines
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Resource ] ;
+    rdfs:range [ rdf:type hpc:Queue ] ;
+    rdfs:comment "Relation between a queue and the resource it can borrow hosts from." .
+
+hpc:RC_HOSTS_borrowable
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Queue ] ;
+    rdfs:range [ rdf:type hpc:Resource ] ;
+    rdfs:comment "Relation between a queue and

@@ -1,0 +1,21 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Default a owl:Class .
+hpc:inuseFromRusage a owl:ObjectProperty .
+hpc:Hosts a owl:Class .
+hpc:libConntimeout a owl:DatatypeProperty .
+hpc:libRecvtimeout a owl:DatatypeProperty .
+
+rdfs:domain hpc:InuseFromRusage rdf:Resource .
+rdfs:domain hpc:Hosts rdf:Resource .
+rdfs:range hpc:LibConntimeout xsd:nonNegativeInteger .
+rdfs:range hpc:LibRecvtimeout xsd:nonNegativeInteger .
+
+hpc:Default rdfs:subClassOf owl:Class .
+hpc:INUSE_FROM_RUSAGE rdfs:subPropertyOf owl:ObjectProperty .
+hpc:Hosts rdfs:subClassOf owl:Class .
+hpc:LIB_CONNTIMEOUT rdfs:subPropertyOf owl:DatatypeProperty .
+hpc:LIB_RECVTIMEOUT rdfs:subPropertyOf owl:DatatypeProperty .

@@ -3,15 +3,15 @@ from __future__ import annotations
 import argparse
 import ast
 import json
+import re
 import sqlite3
 from dataclasses import dataclass
-from datetime import datetime
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Tuple
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-import yaml  # PyYAML
+import yaml  
 
 
 # =============================================================================
@@ -45,7 +45,6 @@ class PromptConfig:
         if not isinstance(few_shot_examples, list):
             raise ValueError("few_shot_examples must be a list (or omitted).")
 
-        # Light validation
         cleaned: List[Dict[str, Any]] = []
         for ex in few_shot_examples:
             if not isinstance(ex, dict):
@@ -111,15 +110,63 @@ def to_bool_int(val: Any, default: int = 1) -> int:
     return default
 
 
-def canonicalize(term: str) -> str:
-    # Conservative canonical form: lowercase + trim + collapse spaces
-    t = (term or "").strip().lower()
-    t = " ".join(t.split())
+# =============================================================================
+# Canonicalization (now includes: underscores/spaces + plural/ing/ed collapse)
+# =============================================================================
+
+def _normalize_token(tok: str) -> str:
+    """
+    Normalize token:
+    - conservative suffix stripping: s/es/ing/ed
+    - guards: don't touch short tokens, flags, paths, tokens with digits, tokens with dots/slashes
+    """
+    t = tok
+
+    if len(t) <= 3:
+        return t
+    if t.startswith("--") or t.startswith("-"):
+        return t
+    if any(ch.isdigit() for ch in t):
+        return t
+    if "/" in t or "\\" in t or "." in t:
+        return t
+
+    # ordered: longer first
+    if t.endswith("ing") and len(t) > 5:
+        t = t[:-3]
+    elif t.endswith("ed") and len(t) > 4:
+        t = t[:-2]
+    elif t.endswith("es") and len(t) > 4:
+        t = t[:-2]
+    elif t.endswith("s") and len(t) > 4:
+        t = t[:-1]
+
     return t
 
 
+def canonicalize(term: str) -> str:
+    """
+    Canonical form:
+    - lowercase
+    - normalize separators (_ - | , : ; -> space)
+    - collapse whitespace
+    - token-level morphology normalization (s/es/ing/ed)
+    """
+    t = (term or "").strip().lower()
+    if not t:
+        return ""
+
+    t = re.sub(r"[_\-\|,:;]+", " ", t)
+    t = " ".join(t.split())
+
+    toks = t.split(" ")
+    toks = [_normalize_token(tok) for tok in toks if tok]
+    t = " ".join(toks)
+
+    return " ".join(t.split())
+
+
 def clean_aliases(x: Any) -> str:
-    # store JSON list string
     if not isinstance(x, list):
         x = []
     out: List[str] = []
@@ -184,10 +231,12 @@ def build_prefix(cfg: PromptConfig) -> str:
     )
 
 
-def build_prompt(prefix: str, term: str, context: str) -> str:
+def build_prompt(prefix: str, canonical_term: str, context: str, original_term: str) -> str:
     user = (
-        "TERM:\n"
-        f"{term}\n\n"
+        "TERM (canonical):\n"
+        f"{canonical_term}\n\n"
+        "ORIGINAL_TERM (surface form):\n"
+        f"{original_term}\n\n"
         "CONTEXT:\n"
         f"{context}\n\n"
         "Respond ONLY with a single JSON object and nothing else."
@@ -210,7 +259,7 @@ def call_llm(tokenizer, model, device: str, prompt: str, max_new_tokens: int) ->
             eos_token_id=tokenizer.eos_token_id,
         )
 
-    gen_only_ids = generated[0, input_ids.shape[-1]:]
+    gen_only_ids = generated[0, input_ids.shape[-1] :]
     return tokenizer.decode(gen_only_ids, skip_special_tokens=True)
 
 
@@ -244,9 +293,6 @@ def extract_json_objects(text: str) -> List[str]:
 
 
 def parse_enrich_output(raw: str, fallback_term: str) -> Dict[str, Any]:
-    """
-    Returns normalized dict ready for DB insert.
-    """
     data: Dict[str, Any] = {}
 
     candidates = extract_json_objects(raw)
@@ -264,7 +310,6 @@ def parse_enrich_output(raw: str, fallback_term: str) -> Dict[str, Any]:
             data = parsed
             break
 
-    # Pull fields (with fallbacks)
     term = str(data.get("term", fallback_term)).strip() or fallback_term
     canonical = str(data.get("canonical", "")).strip()
     canonical = canonicalize(canonical) if canonical else canonicalize(term)
@@ -276,13 +321,9 @@ def parse_enrich_output(raw: str, fallback_term: str) -> Dict[str, Any]:
     ontology_role = clamp_enum(data.get("ontology_role", "unknown"), ONTOLOGY_ROLE_ALLOWED, "unknown")
     dul_bucket = clamp_enum(data.get("dul_bucket", "unknown"), DUL_BUCKET_ALLOWED, "unknown")
 
-    definition = str(
-        data.get("definition", data.get("short_definition", ""))
-    ).strip()
-
+    definition = str(data.get("definition", data.get("short_definition", ""))).strip()
     aliases_json = clean_aliases(data.get("aliases", []))
 
-    # If clearly non-domain, force conservative outputs
     if is_hpc_domain == 0 or category == "non_domain":
         is_hpc_domain = 0
         category = "non_domain"
@@ -332,34 +373,81 @@ def init_enrich_table(conn: sqlite3.Connection, table: str) -> None:
     conn.commit()
 
 
-def fetch_terms_to_enrich(
-    conn: sqlite3.Connection,
-    terms_table: str,
-    enrich_table: str,
-    min_freq: int,
-    max_rows: int,
-    offset_term_id: int,
-) -> List[Tuple[int, str, str, str, int]]:
-    """
-    Returns list of (term_id, term, doc_id, chunk_id, freq_total) for terms that are not yet enriched.
-    """
+def init_canonical_table(conn: sqlite3.Connection, table: str) -> None:
+    cur = conn.cursor()
+    cur.execute(
+        f"""
+        CREATE TABLE IF NOT EXISTS {table} (
+            term_id    INTEGER PRIMARY KEY,
+            term       TEXT NOT NULL,
+            canonical  TEXT NOT NULL,
+            doc_id     TEXT,
+            chunk_id   TEXT,
+            freq_total INTEGER NOT NULL,
+            FOREIGN KEY(term_id) REFERENCES llm_terms_final(term_id)
+        )
+        """
+    )
+    conn.commit()
+
+
+def populate_canonical_terms(conn: sqlite3.Connection, terms_table: str, canonical_table: str) -> int:
     cur = conn.cursor()
 
     sql = f"""
         SELECT t.term_id, t.term, t.doc_id, t.chunk_id, t.freq_total
         FROM {terms_table} t
+        LEFT JOIN {canonical_table} c
+          ON c.term_id = t.term_id
+        WHERE c.term_id IS NULL
+        ORDER BY t.term_id
+    """
+    cur.execute(sql)
+    rows = cur.fetchall()
+    if not rows:
+        return 0
+
+    ins = f"""
+        INSERT INTO {canonical_table} (term_id, term, canonical, doc_id, chunk_id, freq_total)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """
+    for term_id, term, doc_id, chunk_id, freq_total in rows:
+        can = canonicalize(term)
+        cur.execute(ins, (term_id, term, can, doc_id, chunk_id, freq_total))
+
+    conn.commit()
+    return len(rows)
+
+
+def fetch_terms_to_enrich(
+    conn: sqlite3.Connection,
+    canonical_table: str,
+    enrich_table: str,
+    min_freq: int,
+    max_rows: int,
+    offset_term_id: int,
+) -> List[Tuple[int, str, str, str, str, int]]:
+    """
+    Returns:
+      (term_id, original_term, canonical_term, doc_id, chunk_id, freq_total)
+    """
+    cur = conn.cursor()
+
+    sql = f"""
+        SELECT c.term_id, c.term, c.canonical, c.doc_id, c.chunk_id, c.freq_total
+        FROM {canonical_table} c
         LEFT JOIN {enrich_table} e
-          ON e.term_id = t.term_id
+          ON e.term_id = c.term_id
         WHERE e.term_id IS NULL
-          AND t.term_id > ?
+          AND c.term_id > ?
     """
     params: List[Any] = [offset_term_id]
 
     if min_freq and min_freq > 1:
-        sql += " AND t.freq_total >= ?"
+        sql += " AND c.freq_total >= ?"
         params.append(min_freq)
 
-    sql += " ORDER BY t.term_id"
+    sql += " ORDER BY c.term_id"
 
     if max_rows and max_rows > 0:
         sql += " LIMIT ?"
@@ -409,8 +497,18 @@ def insert_enrichment(
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
-            term_id, term, canonical, scheduler, ontology_role, category, dul_bucket,
-            is_hpc_domain, definition, aliases_json, raw_json, freq_total
+            term_id,
+            term,
+            canonical,
+            scheduler,
+            ontology_role,
+            category,
+            dul_bucket,
+            is_hpc_domain,
+            definition,
+            aliases_json,
+            raw_json,
+            freq_total,
         ),
     )
 
@@ -425,8 +523,8 @@ def enrich_terms(
     model,
     device: str,
     cfg: PromptConfig,
-    model_id: str,
     terms_table: str,
+    canonical_table: str,
     enrich_table: str,
     chunks_table: str,
     chunks_text_col: str,
@@ -436,13 +534,21 @@ def enrich_terms(
     debug_first: bool,
     commit_every: int,
 ) -> None:
-    init_enrich_table(conn, enrich_table)
+    # 1) canonicalize first
+    init_canonical_table(conn, canonical_table)
+    newly_added = populate_canonical_terms(conn, terms_table, canonical_table)
+    if newly_added:
+        print(f"[canonicalize] Added {newly_added} new rows into {canonical_table}")
+    else:
+        print(f"[canonicalize] {canonical_table} already up-to-date")
 
+    # 2) enrich next
+    init_enrich_table(conn, enrich_table)
     prefix = build_prefix(cfg)
 
     rows = fetch_terms_to_enrich(
         conn=conn,
-        terms_table=terms_table,
+        canonical_table=canonical_table,
         enrich_table=enrich_table,
         min_freq=min_freq,
         max_rows=(1 if debug_first else max_rows),
@@ -450,19 +556,22 @@ def enrich_terms(
     )
 
     total = len(rows)
-    print(f"Enriching {total} terms from {terms_table} -> {enrich_table} (min_freq={min_freq})")
+    print(f"Enriching {total} terms from {canonical_table} -> {enrich_table} (min_freq={min_freq})")
     if total == 0:
         return
 
-    for i, (term_id, term, doc_id, chunk_id, freq_total) in enumerate(rows, start=1):
+    for i, (term_id, original_term, canonical_term, doc_id, chunk_id, freq_total) in enumerate(rows, start=1):
         if i == 1 or i % 10 == 0:
-            print(f"  -> {i}/{total}: term_id={term_id}, term='{term}', freq_total={freq_total}")
+            print(
+                f"  -> {i}/{total}: term_id={term_id}, canonical='{canonical_term}', orig='{original_term}', freq_total={freq_total}"
+            )
 
         context = fetch_context(conn, chunks_table, doc_id, chunk_id, chunks_text_col)
 
-        prompt = build_prompt(prefix, term=term, context=context)
+        prompt = build_prompt(prefix, canonical_term=canonical_term, context=context, original_term=original_term)
         raw = call_llm(tokenizer, model, device, prompt, max_new_tokens=cfg.max_new_tokens)
-        parsed = parse_enrich_output(raw, fallback_term=term)
+
+        parsed = parse_enrich_output(raw, fallback_term=canonical_term)
 
         if debug_first:
             print("\n=== RAW OUTPUT (first 900 chars) ===")
@@ -475,7 +584,7 @@ def enrich_terms(
             conn=conn,
             enrich_table=enrich_table,
             term_id=term_id,
-            term=term,
+            term=original_term,  # keep original surface form in term column
             canonical=parsed["canonical"],
             scheduler=parsed["scheduler"],
             ontology_role=parsed["ontology_role"],
@@ -500,13 +609,16 @@ def enrich_terms(
 # =============================================================================
 
 def main():
-    ap = argparse.ArgumentParser(description="OLAF-LLM: term enrichment from llm_terms_final into llm_enrich_final (YAML prompt).")
+    ap = argparse.ArgumentParser(
+        description="OLAF-LLM: canonicalize terms first, then term enrichment (YAML prompt) with LLM."
+    )
 
     ap.add_argument("--db", required=True, help="Path to SQLite DB.")
     ap.add_argument("--prompt-config", default="prompts/term_enrich_llm.yaml")
     ap.add_argument("--model-id", default="mistralai/Mistral-7B-Instruct-v0.3", help="HF model id.")
 
     ap.add_argument("--terms-table", default="llm_terms_final", help="Input terms table")
+    ap.add_argument("--canonical-table", default="llm_terms_canonical", help="Canonicalized terms table (created/filled before enrichment).")
     ap.add_argument("--enrich-table", default="llm_enrich_final", help="Output enrichment table.")
     ap.add_argument("--chunks-table", default="contextual_chunk", help="Chunks table for context lookups.")
     ap.add_argument("--chunks-text-col", default="text", help="Text column in chunks table.")
@@ -532,8 +644,8 @@ def main():
             model=model,
             device=device,
             cfg=cfg,
-            model_id=args.model_id,
             terms_table=args.terms_table,
+            canonical_table=args.canonical_table,
             enrich_table=args.enrich_table,
             chunks_table=args.chunks_table,
             chunks_text_col=args.chunks_text_col,

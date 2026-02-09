@@ -1,0 +1,61 @@
+hpc:Resprocess a owl:Class .
+hpc:Pamsession a owl:Class .
+hpc:Task a owl:Class ;
+    rdfs:subClassOf hpc:Resprocess .
+
+hpc:launchCommand owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range rdf:Resource .
+
+hpc:Openssession hpc:task rdf:Property ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:Pamsession .
+
+hpc:Executesinsession hpc:resprocess hpc:PAMSession rdf:Property .
+
+hpc:limitsKeyword owl:DatatypeProperty ;
+    rdfs:domain hpc:Pamsession .
+
+hpc:sessionKeyword owl:DatatypeProperty ;
+    rdfs:domain hpc:Pamsession .
+
+hpc:USE_PAM_CREDS owl:DatatypeProperty ;
+    rdfs:domain hpc:Pamsession .
+
+hpc:LSF_limits owl:Class ;
+    rdfs:subClassOf hpc:Pamsession .
+
+hpc:PAM_limits owl:Class ;
+    rdfs:subClassOf hpc:Pamsession .
+
+hpc:parallelJob owl:Class ;
+    rdfs:subClassOf hpc:Task .
+
+hpc:executionHost owl:DatatypeProperty ;
+    rdfs:domain hpc:Paralleljob .
+
+hpc:USE_PAM_CREDS_y owl:NamedIndividual ;
+    hpc:UsePamCreds hpc:y .
+
+hpc:USE_PAM_CREDS_limits owl:NamedIndividual ;
+    hpc:UsePamCreds hpc:limits .
+
+hpc:USE_PAM_CREDS_session owl:NamedIndividual ;
+    hpc:UsePamCreds hpc:session .
+
+hpc:USE_PAM_CREDS_limits_session owl:NamedIndividual ;
+    hpc:UsePamCreds hpc:limitsSession .
+
+hpc:lsf_service owl:Class ;
+    rdfs:subClassOf hpc:Linuxpamservice .
+
+hpc:lsf_<clustername>_service owl:Class ;
+    rdfs:subClassOf hpc:Linuxpamservice .
+
+hpc:Linuxpamservice a owl:Class .
+
+hpc:requiresNoUserPassword owl:ObjectProperty ;
+    rdfs:domain hpc:Linuxpamservice .
+
+hpc:etc_security_limits_conf_file owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfService .

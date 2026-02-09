@@ -1,0 +1,56 @@
+hpc:committedruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:runtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeDuration .
+
+hpc:historicalruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeDuration .
+
+hpc:dynamicpriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeFloat .
+
+hpc:cputime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeFloat .
+
+hpc:cputimefactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue, hpc:Cluster ;
+    rdfs:range xsd:nonNegativeFloat .
+
+hpc:committedruntimefactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue, hpc:Cluster ;
+    rdfs:range xsd:nonNegativeFloat .
+
+hpc:runtimefactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeFloat .
+
+hpc:numbershares a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Cluster a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Fairsharequeue a owl:Class ;
+    rdfs:subClassOf hpc:Queue .
+
+hpc:jobswitch a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queue .
+
+hpc:bqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queue .
+
+hpc:bhpart a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queue .

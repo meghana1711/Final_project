@@ -3,11 +3,12 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import random
 import re
 import sqlite3
 import time
 from dataclasses import dataclass
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
 
 
 # -----------------------------
@@ -30,18 +31,17 @@ def ensure_dir(p: str) -> None:
 
 
 def snake_ok(s: str) -> bool:
-    # allow a-z0-9_ with at least one letter
     return bool(re.fullmatch(r"[a-z0-9_]{2,80}", s)) and any(c.isalpha() for c in s)
 
 
 def to_safe_localname(s: str) -> str:
     """
     Convert a label/canonical into an IRI-safe localname.
-    We keep it predictable and stable (no hashes) for prototype work.
+    Predictable + stable. Collision handled separately.
     """
     t = (s or "").strip()
     if not t:
-        return "Thing"
+        return "thing"
     t = t.lower()
     t = re.sub(r"[^a-z0-9]+", "_", t)
     t = re.sub(r"_+", "_", t).strip("_")
@@ -52,11 +52,11 @@ def to_safe_localname(s: str) -> str:
     return t[:80]
 
 
+def ttl_escape(s: str) -> str:
+    return (s or "").replace("\\", "\\\\").replace('"', '\\"')
+
+
 def brace_match_first_json_object(text: str) -> Optional[Dict[str, Any]]:
-    """
-    Find first {...} JSON object in a string using brace matching.
-    Returns dict or None.
-    """
     if not text:
         return None
     start = text.find("{")
@@ -94,10 +94,6 @@ def brace_match_first_json_object(text: str) -> Optional[Dict[str, Any]]:
 
 
 def load_yaml(path: str) -> Dict[str, Any]:
-    """
-    Option B: YAML prompt config (external).
-    Requires PyYAML.
-    """
     import yaml  # type: ignore
     with open(path, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
@@ -121,42 +117,25 @@ class EvidenceRow:
     justification: Optional[str]
 
 
+@dataclass
+class TermInfo:
+    term_id: int
+    term: str
+    canonical: str
+    scheduler: str
+    ontology_role: str
+    category: str
+    dul_bucket: str
+    is_hpc_domain: int
+    definition: str
+    freq_total: int
+
+
 # -----------------------------
-# LLM clients
+# LLM (transformers only)
 # -----------------------------
 
-class LLMClient:
-    def complete(self, system: str, user: str) -> str:
-        raise NotImplementedError
-
-
-class OpenAICompatibleClient(LLMClient):
-    """
-    Works with OpenAI API and OpenAI-compatible servers (vLLM, LM Studio OpenAI mode, etc.)
-    pip install openai
-    """
-    def __init__(self, model: str, api_key: str, api_base: Optional[str] = None):
-        try:
-            from openai import OpenAI
-        except Exception as e:
-            raise RuntimeError("Missing dependency 'openai'. Install with: pip install openai") from e
-
-        self.model = model
-        self.client = OpenAI(api_key=api_key, base_url=api_base) if api_base else OpenAI(api_key=api_key)
-
-    def complete(self, system: str, user: str) -> str:
-        resp = self.client.chat.completions.create(
-            model=self.model,
-            temperature=0.0,
-            messages=[
-                {"role": "system", "content": system},
-                {"role": "user", "content": user},
-            ],
-        )
-        return (resp.choices[0].message.content or "").strip()
-
-
-class TransformersClient(LLMClient):
+class TransformersClient:
     """
     Local HF transformers backend.
     pip install transformers accelerate torch
@@ -166,7 +145,9 @@ class TransformersClient(LLMClient):
             import torch
             from transformers import AutoTokenizer, AutoModelForCausalLM
         except Exception as e:
-            raise RuntimeError("Missing transformers/torch. Install with: pip install transformers accelerate torch") from e
+            raise RuntimeError(
+                "Missing transformers/torch. Install with: pip install transformers accelerate torch"
+            ) from e
 
         self.torch = torch
         self.tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=True)
@@ -192,7 +173,7 @@ class TransformersClient(LLMClient):
 
 
 # -----------------------------
-# DB helpers: schema + indexes + resume
+# DB helpers
 # -----------------------------
 
 def table_exists(conn: sqlite3.Connection, name: str) -> bool:
@@ -205,8 +186,6 @@ def table_exists(conn: sqlite3.Connection, name: str) -> bool:
 
 def init_axiom_tables(conn: sqlite3.Connection, runs_table: str, out_table: str) -> None:
     cur = conn.cursor()
-
-    # Resume table: one row per predicate
     cur.execute(
         f"""
         CREATE TABLE IF NOT EXISTS {runs_table} (
@@ -217,8 +196,6 @@ def init_axiom_tables(conn: sqlite3.Connection, runs_table: str, out_table: str)
         );
         """
     )
-
-    # Store parsed JSON per predicate (for audit/repro)
     cur.execute(
         f"""
         CREATE TABLE IF NOT EXISTS {out_table} (
@@ -228,8 +205,6 @@ def init_axiom_tables(conn: sqlite3.Connection, runs_table: str, out_table: str)
         );
         """
     )
-
-    # Useful indexes
     cur.execute(f"CREATE INDEX IF NOT EXISTS idx_{runs_table}_status ON {runs_table}(status);")
     conn.commit()
 
@@ -267,20 +242,6 @@ def store_axiom_json(conn: sqlite3.Connection, out_table: str, pred: str, obj: D
 # Load term enrichment -> vocab + role maps
 # -----------------------------
 
-@dataclass
-class TermInfo:
-    term_id: int
-    term: str
-    canonical: str
-    scheduler: str
-    ontology_role: str
-    category: str
-    dul_bucket: str
-    is_hpc_domain: int
-    definition: str
-    freq_total: int
-
-
 def load_term_info(
     conn: sqlite3.Connection,
     enrich_table: str,
@@ -296,12 +257,6 @@ def load_term_info(
     freq_col: str = "freq_total",
     id_col: str = "term_id",
 ) -> Tuple[Dict[str, TermInfo], Dict[str, str], Set[str]]:
-    """
-    Returns:
-      - canonical_map: canonical_lower -> TermInfo
-      - surface_to_canonical: lower(term) -> canonical_lower
-      - class_set: set of canonical_lower that are safe classes
-    """
     q = f"""
     SELECT
       {id_col}, {term_col}, {canonical_col},
@@ -340,7 +295,6 @@ def load_term_info(
         if t:
             surface_to_canonical[t.strip().lower()] = c
 
-        # safe class criterion
         if info.is_hpc_domain == 1 and info.ontology_role == "class":
             class_set.add(c)
 
@@ -360,12 +314,11 @@ def resolve_to_canonical(
         return key
     if key in surface_to_canonical:
         return surface_to_canonical[key]
-    # fallback: lowercase original
     return key
 
 
 # -----------------------------
-# Taxonomy parents (for ancestor lookup)
+# Taxonomy parents + export
 # -----------------------------
 
 def load_parents(
@@ -376,9 +329,6 @@ def load_parents(
     canonical_map: Dict[str, TermInfo],
     surface_to_canonical: Dict[str, str],
 ) -> Dict[str, List[str]]:
-    """
-    parents[child_canonical] = [parent_canonical,...]
-    """
     q = f"SELECT {child_col}, {parent_col} FROM {taxonomy_table};"
     parents: Dict[str, List[str]] = {}
     for c, p in conn.execute(q).fetchall():
@@ -388,7 +338,6 @@ def load_parents(
             continue
         parents.setdefault(c2, []).append(p2)
 
-    # dedupe preserve order
     for k, vals in list(parents.items()):
         seen = set()
         out = []
@@ -398,6 +347,25 @@ def load_parents(
                 out.append(v)
         parents[k] = out
     return parents
+
+
+def load_taxonomy_edges_terms(
+    conn: sqlite3.Connection,
+    taxonomy_table: str,
+    child_col: str,
+    parent_col: str,
+    canonical_map: Dict[str, TermInfo],
+    surface_to_canonical: Dict[str, str],
+) -> List[Tuple[str, str]]:
+    q = f"SELECT {child_col}, {parent_col} FROM {taxonomy_table};"
+    out: List[Tuple[str, str]] = []
+    for c, p in conn.execute(q).fetchall():
+        c2 = resolve_to_canonical(norm(c) or "", canonical_map, surface_to_canonical).strip().lower()
+        p2 = resolve_to_canonical(norm(p) or "", canonical_map, surface_to_canonical).strip().lower()
+        if not c2 or not p2 or c2 == p2:
+            continue
+        out.append((c2, p2))
+    return out
 
 
 def ancestors_bfs(term: str, parents: Dict[str, List[str]], max_hops: int = 4, max_out: int = 12) -> List[str]:
@@ -419,42 +387,54 @@ def ancestors_bfs(term: str, parents: Dict[str, List[str]], max_hops: int = 4, m
     return out
 
 
-def clamp_to_class(
-    term_canonical: str,
-    canonical_map: Dict[str, TermInfo],
-    class_set: Set[str],
-    parents: Dict[str, List[str]],
-) -> Optional[str]:
-    """
-    Return a canonical that is a class:
-    - if term itself is a class, return it
-    - else return nearest class ancestor
-    - else None
-    """
-    if not term_canonical:
-        return None
-    info = canonical_map.get(term_canonical)
-    if info and info.ontology_role == "class" and info.is_hpc_domain == 1:
-        return term_canonical
-    # search ancestors
-    for a in ancestors_bfs(term_canonical, parents, max_hops=4, max_out=20):
-        ai = canonical_map.get(a)
-        if ai and ai.ontology_role == "class" and ai.is_hpc_domain == 1:
-            return a
-        if a in class_set:
-            return a
-    return None
+# -----------------------------
+# Class/predicate filtering
+# -----------------------------
+
+BANNED_CLASS_KEYS = {
+    "owl:thing", "owl:nothing",
+    "thing", "nothing",
+    "class",
+    "entity", "unknown", "informationobject", "information_object",
+    "action", "ability", "resource", "literal",
+    # common noise tokens that appear as "classes" in docs
+    "--nodes", "--clusters",
+}
+
+VERB_STOP = {
+    "add", "get", "set", "run", "use", "make", "create", "apply", "allocate", "bind",
+    "submit", "request", "show", "list", "print", "see", "do", "does", "did",
+    "start", "stop", "enable", "disable", "configure", "register", "save", "load",
+    "read", "write", "execute", "launch", "kill", "cancel", "take", "have",
+}
+
+PREP_SUFFIXES = {"to", "from", "in", "on", "with", "for", "into", "via", "as", "by"}
+
+BANNED_PREDICATES = {
+    "related_to", "associated_with",
+    "has", "have", "do", "does", "did",
+    "make", "made", "create", "created",
+    "add", "add_to", "use", "uses",
+    "set", "sets", "enable", "enabled", "disable", "disabled",
+}
+
+
+def base_verb_of_pred(pred: str) -> str:
+    p = (pred or "").strip().lower()
+    return p.split("_", 1)[0] if p else ""
+
+
+def has_prep_suffix(pred: str) -> bool:
+    p = (pred or "").strip().lower()
+    parts = p.split("_")
+    return bool(len(parts) >= 2 and parts[-1] in PREP_SUFFIXES)
 
 
 # -----------------------------
-# Non-tax evidence + predicate inventory (deterministic)
+# Evidence + predicate inventory
 # -----------------------------
 
-def predicate_counts(
-    conn: sqlite3.Connection,
-    non_tax_table: str,
-    pred_col: str,
-) -> Dict[str, int]:
+def predicate_counts(conn: sqlite3.Connection, non_tax_table: str, pred_col: str) -> Dict[str, int]:
     q = f"SELECT {pred_col}, COUNT(*) FROM {non_tax_table} GROUP BY {pred_col};"
     out: Dict[str, int] = {}
     for pred, cnt in conn.execute(q).fetchall():
@@ -464,11 +444,7 @@ def predicate_counts(
     return out
 
 
-def load_predicates(
-    conn: sqlite3.Connection,
-    non_tax_table: str,
-    pred_col: str,
-) -> List[str]:
+def load_predicates(conn: sqlite3.Connection, non_tax_table: str, pred_col: str) -> List[str]:
     q = f"SELECT DISTINCT {pred_col} FROM {non_tax_table} ORDER BY {pred_col};"
     preds = []
     for (p,) in conn.execute(q).fetchall():
@@ -490,35 +466,48 @@ def load_evidence_for_predicate(
     just_col: str,
     predicate: str,
     k: int,
+    *,
+    random_seed: int = 13,
 ) -> List[EvidenceRow]:
-    """
-    Deterministic evidence: stable ordering and LIMIT.
-    """
+    rng = random.Random(random_seed)
+    pool = max(k * 6, 80)
+
     q = f"""
     SELECT {subj_col}, {pred_col}, {obj_col}, {doc_col}, {chunk_col}, {reltype_col}, {just_col}
     FROM {non_tax_table}
     WHERE {pred_col} = ?
-    ORDER BY COALESCE({doc_col}, ''), COALESCE({chunk_col}, ''), COALESCE({subj_col}, ''), COALESCE({obj_col}, '')
     LIMIT ?;
     """
-    rows = conn.execute(q, (predicate, k)).fetchall()
+    rows = conn.execute(q, (predicate, pool)).fetchall()
+    if not rows:
+        return []
+
+    rows_list = list(rows)
+    rng.shuffle(rows_list)
+
     out: List[EvidenceRow] = []
-    for s, p, o, doc, chunk, rt, just in rows:
+    seen_pairs: Set[Tuple[str, str]] = set()
+    for s, p, o, doc, chunk, rt, just in rows_list:
+        s0 = norm(s) or ""
+        o0 = norm(o) or ""
+        pair = (s0.strip().lower(), o0.strip().lower())
+        if pair in seen_pairs:
+            continue
+        seen_pairs.add(pair)
         out.append(EvidenceRow(
-            subj=norm(s) or "",
+            subj=s0,
             pred=norm(p) or "",
-            obj=norm(o) or "",
+            obj=o0,
             doc_id=norm(doc),
             chunk_id=norm(chunk),
             relation_type=norm(rt),
             justification=norm(just),
         ))
+        if len(out) >= k:
+            break
+
     return out
 
-
-# -----------------------------
-# Prompting + strict output validation
-# -----------------------------
 
 def build_evidence_block(evs: List[EvidenceRow], max_chars: int = 4500) -> str:
     lines = []
@@ -534,22 +523,13 @@ def build_evidence_block(evs: List[EvidenceRow], max_chars: int = 4500) -> str:
     return block
 
 
+# -----------------------------
+# Output validation
+# -----------------------------
+
 def validate_axiom_json(obj: Dict[str, Any]) -> Tuple[bool, str]:
-    """
-    Strict-ish schema:
-    {
-      "predicate": "...",
-      "property": {"name": "...", "label": "...", "kind": "ObjectProperty"},
-      "domain_class": "...",
-      "range_class": "...",
-      "subPropertyOf": [...],
-      "inverseOf": [...],
-      "confidence": 0.0,
-      "rationale": "...",
-      "evidence": [{"subj":..,"obj":..,"doc_id":..,"chunk_id":..,"justification":..}, ...]
-    }
-    """
-    need = ["predicate", "property", "domain_class", "range_class", "subPropertyOf", "inverseOf", "confidence", "rationale", "evidence"]
+    need = ["predicate", "property", "domain_class", "range_class",
+            "subPropertyOf", "inverseOf", "confidence", "rationale", "evidence"]
     for k in need:
         if k not in obj:
             return False, f"Missing key: {k}"
@@ -576,6 +556,76 @@ def validate_axiom_json(obj: Dict[str, Any]) -> Tuple[bool, str]:
     return True, "ok"
 
 
+# -----------------------------
+# Datatype inference
+# -----------------------------
+
+_LITERAL_NUM_RE = re.compile(r'^[+-]?\d+(\.\d+)?$')
+_LITERAL_BOOL_RE = re.compile(r'^(true|false|yes|no|on|off)$', re.I)
+
+DATATYPE_HINTS = {
+    "id", "uid", "gid", "pid", "port",
+    "path", "dir", "file", "filename", "location", "address", "ip",
+    "time", "timeout", "duration", "interval", "date",
+    "count", "num", "number", "size", "limit", "max", "min",
+    "memory", "mem", "cpu", "cpus", "gpu", "gpus",
+    "version", "format", "mode", "state", "status",
+    "priority", "ratio", "factor", "usage", "shares",
+}
+
+XSD_IRI = {
+    "string": "http://www.w3.org/2001/XMLSchema#string",
+    "integer": "http://www.w3.org/2001/XMLSchema#integer",
+    "decimal": "http://www.w3.org/2001/XMLSchema#decimal",
+    "boolean": "http://www.w3.org/2001/XMLSchema#boolean",
+}
+
+
+def _guess_literal_type(s: str) -> Optional[str]:
+    if s is None:
+        return None
+    t = str(s).strip().strip('"').strip("'")
+    if not t:
+        return None
+    if _LITERAL_BOOL_RE.match(t):
+        return "boolean"
+    if _LITERAL_NUM_RE.match(t):
+        is_int = t.isdigit() or (t.startswith(("+", "-")) and t[1:].isdigit())
+        return "integer" if is_int else "decimal"
+    if "/" in t or "\\" in t:
+        return "string"
+    return None
+
+
+def decide_property_kind_from_evidence(predicate: str, evidence: List[EvidenceRow]) -> Tuple[str, Optional[str]]:
+    pred_low = (predicate or "").lower()
+    hint = any(h in pred_low for h in DATATYPE_HINTS)
+
+    guesses: List[str] = []
+    for e in evidence:
+        g = _guess_literal_type(e.obj)
+        if g:
+            guesses.append(g)
+
+    if guesses:
+        hist: Dict[str, int] = {}
+        for g in guesses:
+            hist[g] = hist.get(g, 0) + 1
+        best = max(hist.items(), key=lambda kv: kv[1])[0]
+        ratio = hist[best] / max(1, len(evidence))
+        if ratio >= 0.55 or hint:
+            return "DatatypeProperty", XSD_IRI.get(best, XSD_IRI["string"])
+
+    if hint:
+        return "DatatypeProperty", XSD_IRI["string"]
+
+    return "ObjectProperty", None
+
+
+# -----------------------------
+# Prompting
+# -----------------------------
+
 def build_prompts_from_yaml(
     yaml_cfg: Dict[str, Any],
     *,
@@ -584,11 +634,6 @@ def build_prompts_from_yaml(
     subj_ancestors: Dict[str, List[str]],
     obj_ancestors: Dict[str, List[str]],
 ) -> Tuple[str, str]:
-    """
-    YAML expected keys:
-      - system_prompt: str
-      - user_template: str  (uses {predicate}, {evidence_block}, {subj_ancestors_json}, {obj_ancestors_json})
-    """
     system = yaml_cfg.get("system_prompt")
     user_template = yaml_cfg.get("user_template")
     if not isinstance(system, str) or not system.strip():
@@ -606,7 +651,7 @@ def build_prompts_from_yaml(
 
 
 def llm_axioms_for_predicate(
-    client: LLMClient,
+    client: TransformersClient,
     yaml_cfg: Dict[str, Any],
     predicate: str,
     evidence: List[EvidenceRow],
@@ -642,22 +687,21 @@ def llm_axioms_for_predicate(
             user += f"\n\nYour JSON did not match schema: {msg}. Return corrected JSON ONLY."
             continue
 
-        # force predicate match
         obj["predicate"] = predicate
         obj.setdefault("created_at", now_iso())
         obj.setdefault("raw_output", last)
         return obj
 
-    # hard fallback
     return {
         "predicate": predicate,
         "property": {"name": predicate, "label": predicate, "kind": "ObjectProperty"},
         "domain_class": "owl:Thing",
         "range_class": "owl:Thing",
+        "datatype_iri": None,
         "subPropertyOf": [],
         "inverseOf": [],
         "confidence": 0.0,
-        "rationale": "LLM failed to produce valid JSON after retries; using owl:Thing/Thing fallback.",
+        "rationale": "LLM failed to produce valid JSON after retries; using owl:Thing fallback.",
         "evidence": [
             {
                 "subj": e.subj,
@@ -673,12 +717,58 @@ def llm_axioms_for_predicate(
     }
 
 
+def clamp_to_class(
+    term_canonical: str,
+    canonical_map: Dict[str, TermInfo],
+    class_set: Set[str],
+    parents: Dict[str, List[str]],
+) -> Optional[str]:
+    if not term_canonical:
+        return None
+    key = term_canonical.strip().lower()
+    if key in BANNED_CLASS_KEYS:
+        return None
+
+    info = canonical_map.get(key)
+    if info and info.ontology_role == "class" and info.is_hpc_domain == 1:
+        return key
+
+    for a in ancestors_bfs(key, parents, max_hops=4, max_out=20):
+        akey = a.strip().lower()
+        if akey in BANNED_CLASS_KEYS:
+            continue
+        ai = canonical_map.get(akey)
+        if ai and ai.ontology_role == "class" and ai.is_hpc_domain == 1:
+            return akey
+        if akey in class_set:
+            return akey
+    return None
+
+
 # -----------------------------
-# TTL export (DEFAULT GRAPH)
+# TTL export (DEFAULT GRAPH) — FIXED + TAXONOMY
+#   - Omits domain/range when unknown (no owl:Thing hubs)
+#   - Supports DatatypeProperty with xsd ranges
+#   - Writes rdfs:subClassOf edges (so classes actually connect!)
+#   - Collision-safe localnames
 # -----------------------------
 
-def ttl_escape(s: str) -> str:
-    return (s or "").replace("\\", "\\\\").replace('"', '\\"')
+def _allocate_localname(label: str, used: Dict[str, str]) -> str:
+    base = to_safe_localname(label)
+    if base not in used:
+        used[base] = label
+        return base
+    if used[base] == label:
+        return base
+    i = 2
+    while True:
+        cand = f"{base}_{i}"
+        if cand not in used:
+            used[cand] = label
+            return cand
+        if used[cand] == label:
+            return cand
+        i += 1
 
 
 def write_ttl(
@@ -687,79 +777,112 @@ def write_ttl(
     base_iri: str,
     class_terms: Sequence[str],
     canonical_map: Dict[str, TermInfo],
+    taxonomy_edges: Sequence[Tuple[str, str]],
     predicate_axioms: Sequence[Dict[str, Any]],
     known_predicates: Set[str],
 ) -> None:
-    """
-    Writes a single TTL file for default graph load:
-      - declares classes
-      - declares properties + domain/range + optional subPropertyOf/inverseOf
-    """
-    # prefix IRI must end with # or /
     if not (base_iri.endswith("#") or base_iri.endswith("/")):
         base_iri = base_iri + "#"
+
+    used_locals: Dict[str, str] = {}
+
+    def iri_class(term: str) -> str:
+        return _allocate_localname(term, used_locals)
+
+    def iri_prop(term: str) -> str:
+        return _allocate_localname(term, used_locals)
 
     lines: List[str] = []
     lines.append(f"@prefix hpc: <{base_iri}> .")
     lines.append("@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .")
     lines.append("@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .")
     lines.append("@prefix owl: <http://www.w3.org/2002/07/owl#> .")
+    lines.append("@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .")
     lines.append("")
-    lines.append("### Classes (from llm_enrich_final)")
+    lines.append("### Classes")
     for c in sorted(set(class_terms)):
-        info = canonical_map.get(c)
-        label = info.term if info and info.term else c
-        local = to_safe_localname(c)
+        ck = (c or "").strip().lower()
+        if not ck or ck in BANNED_CLASS_KEYS:
+            continue
+        info = canonical_map.get(ck)
+        label = info.term if info and info.term else ck
+        local = iri_class(ck)
         lines.append(f"hpc:{local} a owl:Class ;")
         lines.append(f'  rdfs:label "{ttl_escape(label)}" .')
         lines.append("")
 
-    lines.append("### Properties (from non-tax predicates + LLM axiom suggestions clamped to classes)")
-    for ax in predicate_axioms:
-        pred = ax.get("predicate", "")
-        prop = ax.get("property", {}) if isinstance(ax.get("property"), dict) else {}
-        pname = prop.get("name") or pred
-        plabel = prop.get("label") or pred
-        kind = prop.get("kind") or "ObjectProperty"
+    lines.append("### Taxonomy (rdfs:subClassOf)")
+    # only write edges if both endpoints are in our class set and not banned
+    class_set_norm = {c.strip().lower() for c in class_terms if c and c.strip().lower() not in BANNED_CLASS_KEYS}
+    seen_sc: Set[Tuple[str, str]] = set()
+    for child, parent in taxonomy_edges:
+        c = (child or "").strip().lower()
+        p = (parent or "").strip().lower()
+        if not c or not p or c == p:
+            continue
+        if c in BANNED_CLASS_KEYS or p in BANNED_CLASS_KEYS:
+            continue
+        if c not in class_set_norm or p not in class_set_norm:
+            continue
+        key = (c, p)
+        if key in seen_sc:
+            continue
+        seen_sc.add(key)
+        lines.append(f"hpc:{iri_class(c)} rdfs:subClassOf hpc:{iri_class(p)} .")
+    lines.append("")
 
-        local_p = to_safe_localname(pname)
+    lines.append("### Properties (axioms)")
+    for ax in predicate_axioms:
+        pred = str(ax.get("predicate") or "").strip().lower()
+        if not pred:
+            continue
+
+        prop = ax.get("property", {}) if isinstance(ax.get("property"), dict) else {}
+        pname = str(prop.get("name") or pred).strip().lower()
+        plabel = str(prop.get("label") or pred).strip()
+        kind = str(prop.get("kind") or "ObjectProperty").strip()
+        dt_iri = ax.get("datatype_iri")
+
+        local_p = iri_prop(pname)
         rdf_kind = "owl:ObjectProperty" if kind == "ObjectProperty" else "owl:DatatypeProperty"
         lines.append(f"hpc:{local_p} a {rdf_kind} ;")
-        lines.append(f'  rdfs:label "{ttl_escape(str(plabel))}" ;')
+        lines.append(f'  rdfs:label "{ttl_escape(plabel)}"')
 
-        dom = str(ax.get("domain_class") or "owl:Thing")
-        rng = str(ax.get("range_class") or "owl:Thing")
+        dom = str(ax.get("domain_class") or "").strip()
+        rng = str(ax.get("range_class") or "").strip()
+        dom_k = dom.strip().lower()
+        rng_k = rng.strip().lower()
 
-        # allow owl:Thing explicitly
-        if dom == "owl:Thing":
-            lines.append("  rdfs:domain owl:Thing ;")
+        # domain: omit if owl:Thing or banned
+        if dom and dom != "owl:Thing" and dom_k not in BANNED_CLASS_KEYS:
+            if dom_k in class_set_norm:
+                lines.append(f"  ; rdfs:domain hpc:{iri_class(dom_k)}")
+
+        # range
+        if kind == "DatatypeProperty":
+            if isinstance(dt_iri, str) and dt_iri.startswith("http://www.w3.org/2001/XMLSchema#"):
+                dt_local = dt_iri.rsplit("#", 1)[-1]
+                lines.append(f"  ; rdfs:range xsd:{dt_local}")
+            else:
+                lines.append("  ; rdfs:range xsd:string")
         else:
-            lines.append(f"  rdfs:domain hpc:{to_safe_localname(dom)} ;")
-        if rng == "owl:Thing":
-            lines.append("  rdfs:range owl:Thing")
-        else:
-            lines.append(f"  rdfs:range hpc:{to_safe_localname(rng)}")
+            if rng and rng != "owl:Thing" and rng_k not in BANNED_CLASS_KEYS:
+                if rng_k in class_set_norm:
+                    lines.append(f"  ; rdfs:range hpc:{iri_class(rng_k)}")
 
-        # optional: subPropertyOf / inverseOf (only if they point to known predicates)
+        lines.append(" .")
+
         subs = ax.get("subPropertyOf", [])
         invs = ax.get("inverseOf", [])
-        if isinstance(subs, list) and subs:
-            good = [s for s in subs if isinstance(s, str) and s in known_predicates]
-            if good:
-                # append as extra triples after main statement
-                lines.append(" .")
-                for s in good:
-                    lines.append(f"hpc:{local_p} rdfs:subPropertyOf hpc:{to_safe_localname(s)} .")
-                # inverseOf handled similarly below
-            else:
-                lines.append(" .")
-        else:
-            lines.append(" .")
-
-        if isinstance(invs, list) and invs:
-            good = [s for s in invs if isinstance(s, str) and s in known_predicates]
+        if isinstance(subs, list):
+            good = [s for s in subs if isinstance(s, str) and s.strip().lower() in known_predicates]
+            for s in good:
+                lines.append(f"hpc:{local_p} rdfs:subPropertyOf hpc:{iri_prop(s.strip().lower())} .")
+        if isinstance(invs, list):
+            good = [s for s in invs if isinstance(s, str) and s.strip().lower() in known_predicates]
             for inv in good:
-                lines.append(f"hpc:{local_p} owl:inverseOf hpc:{to_safe_localname(inv)} .")
+                lines.append(f"hpc:{local_p} owl:inverseOf hpc:{iri_prop(inv.strip().lower())} .")
+
         lines.append("")
 
     with open(out_path, "w", encoding="utf-8") as f:
@@ -767,67 +890,54 @@ def write_ttl(
 
 
 # -----------------------------
-# Main pipeline: predicate -> LLM -> clamp -> DB -> TTL
+# Main
 # -----------------------------
 
-BANNED_PREDICATES = {
-    "related_to", "associated_with", "has", "have", "do", "does", "did",
-    "make", "made", "create", "created", "add", "add_to", "use", "uses",
-    "set", "sets", "enable", "enabled", "disable", "disabled",
-}
-
 def main() -> None:
-    ap = argparse.ArgumentParser(description="Generate TBox axioms (TTL) from LLM tables with strong guards.")
+    ap = argparse.ArgumentParser(description="Generate TBox axioms (TTL) using LOCAL transformers only (fixed).")
 
     ap.add_argument("--db", required=True)
     ap.add_argument("--out_dir", required=True)
     ap.add_argument("--base_iri", default="http://example.org/hpc#")
 
-    # Input tables
     ap.add_argument("--enrich_table", default="llm_enrich_final")
     ap.add_argument("--taxonomy_table", default="llm_is_a_edges")
     ap.add_argument("--non_tax_table", default="llm_non_taxonomy_edges")
 
-    # Column overrides (taxonomy)
     ap.add_argument("--tax_child_col", default="child_term")
     ap.add_argument("--tax_parent_col", default="parent_term")
 
-    # Column overrides (non-tax)
-    ap.add_argument("--subj_col", default="subject_term")
+    ap.add_argument("--subj_col", default="subject")
     ap.add_argument("--pred_col", default="predicate")
-    ap.add_argument("--obj_col", default="object_term")
+    ap.add_argument("--obj_col", default="object")
     ap.add_argument("--doc_col", default="doc_id")
     ap.add_argument("--chunk_col", default="chunk_id")
     ap.add_argument("--reltype_col", default="relation_type")
     ap.add_argument("--just_col", default="justification")
 
-    # Output/Resume tables
     ap.add_argument("--runs_table", default="axioms_llm_runs")
     ap.add_argument("--axioms_table", default="axioms_llm_predicates")
 
-    # Controls
-    ap.add_argument("--min_predicate_count", type=int, default=5, help="Skip predicates that appear < N times.")
+    ap.add_argument("--min_predicate_count", type=int, default=5)
     ap.add_argument("--examples_per_predicate", type=int, default=12)
-    ap.add_argument("--max_predicates", type=int, default=0, help="0 = all")
+    ap.add_argument("--max_predicates", type=int, default=0)
     ap.add_argument("--resume", action="store_true", default=True)
     ap.add_argument("--no_resume", dest="resume", action="store_false")
+    ap.add_argument("--prompt_config", default="prompts/axioms_llm.yaml")
 
-    # Prompt config (Option B)
-    ap.add_argument("--prompt_config", default="prompts/non_tax_llm.yaml")
+    # Optional allowlist: YAML with allowed_predicates: [..]
+    ap.add_argument("--schema_config", default="", help="Optional YAML with allowed_predicates list/map.")
+    ap.add_argument("--seed", type=int, default=13)
 
-    # Backend
-    ap.add_argument("--backend", choices=["openai_compatible", "transformers"], required=True)
-    ap.add_argument("--model", default=None, help="Model name for openai_compatible backend")
-    ap.add_argument("--api_key", default=os.environ.get("OPENAI_API_KEY", ""), help="API key (or OPENAI_API_KEY)")
-    ap.add_argument("--api_base", default=None, help="e.g., http://localhost:8000/v1 for vLLM")
-    ap.add_argument("--model_path", default=None, help="Local HF model path for transformers backend")
+    ap.add_argument("--model_path", default="mistralai/Mistral-7B-Instruct-v0.3")
+    ap.add_argument("--max_new_tokens", type=int, default=700)
 
     ap.add_argument("--debug_one", default="", help="Only run for this predicate (exact match).")
-    args = ap.parse_args()
 
+    args = ap.parse_args()
     ensure_dir(args.out_dir)
 
-    # Load YAML prompt config
+    # YAML prompt config
     try:
         yaml_cfg = load_yaml(args.prompt_config)
     except ModuleNotFoundError:
@@ -835,11 +945,22 @@ def main() -> None:
     except Exception as e:
         raise RuntimeError(f"Failed to load YAML prompt_config: {e}") from e
 
+    # Optional schema allowlist
+    allow_predicates: Optional[Set[str]] = None
+    if args.schema_config:
+        cfg = load_yaml(args.schema_config)
+        apreds = cfg.get("allowed_predicates")
+        if isinstance(apreds, list):
+            allow_predicates = {str(x).strip().lower() for x in apreds if str(x).strip()}
+        elif isinstance(apreds, dict):
+            allow_predicates = {str(k).strip().lower() for k in apreds.keys() if str(k).strip()}
+        else:
+            raise RuntimeError("--schema_config must contain allowed_predicates as list or map.")
+
     conn = sqlite3.connect(args.db)
     conn.execute("PRAGMA journal_mode=WAL;")
     conn.execute("PRAGMA synchronous=NORMAL;")
 
-    # Validate required tables
     for t in (args.enrich_table, args.taxonomy_table, args.non_tax_table):
         if not table_exists(conn, t):
             raise RuntimeError(f"Missing required table: {t}")
@@ -848,34 +969,23 @@ def main() -> None:
 
     canonical_map, surface_to_canonical, class_set = load_term_info(conn, args.enrich_table)
     parents = load_parents(conn, args.taxonomy_table, args.tax_child_col, args.tax_parent_col, canonical_map, surface_to_canonical)
+    taxonomy_edges = load_taxonomy_edges_terms(conn, args.taxonomy_table, args.tax_child_col, args.tax_parent_col, canonical_map, surface_to_canonical)
 
-    # Backend client
-    if args.backend == "openai_compatible":
-        if not args.model:
-            raise RuntimeError("--model is required for openai_compatible backend")
-        api_key = args.api_key or "EMPTY"
-        client: LLMClient = OpenAICompatibleClient(model=args.model, api_key=api_key, api_base=args.api_base)
-    else:
-        if not args.model_path:
-            raise RuntimeError("--model_path is required for transformers backend")
-        client = TransformersClient(model_path=args.model_path)
+    client = TransformersClient(model_path=args.model_path, max_new_tokens=args.max_new_tokens)
 
-    # Predicate inventory + counts
     counts = predicate_counts(conn, args.non_tax_table, args.pred_col)
     preds = load_predicates(conn, args.non_tax_table, args.pred_col)
 
     if args.debug_one:
-        preds = [p for p in preds if p == args.debug_one]
+        preds = [p for p in preds if p.strip().lower() == args.debug_one.strip().lower()]
         if not preds:
             raise RuntimeError(f"--debug_one predicate not found: {args.debug_one}")
 
-    # Filter + order
     filtered: List[str] = []
     for p in preds:
         p_norm = p.strip().lower()
         cnt = counts.get(p, 0)
 
-        # validate predicate form (prefer snake_case)
         if not snake_ok(p_norm):
             continue
         if p_norm in BANNED_PREDICATES:
@@ -883,17 +993,26 @@ def main() -> None:
         if cnt < args.min_predicate_count:
             continue
 
+        if allow_predicates is not None:
+            if p_norm not in allow_predicates:
+                continue
+        else:
+            base = base_verb_of_pred(p_norm)
+            if base in VERB_STOP:
+                continue
+            if has_prep_suffix(p_norm):
+                continue
+
         filtered.append(p_norm)
 
-    # deterministic order
     filtered = sorted(set(filtered))
-
     if args.max_predicates and args.max_predicates > 0:
         filtered = filtered[: args.max_predicates]
 
     print(f"[INFO] Predicates after filtering: {len(filtered)} (min_count={args.min_predicate_count})")
+    if allow_predicates is not None:
+        print(f"[INFO] Using schema allowlist: {len(allow_predicates)} allowed predicates")
 
-    # If resume: skip predicates already done/skipped
     if args.resume:
         done = set(r[0] for r in conn.execute(
             f"SELECT predicate FROM {args.runs_table} WHERE status IN ('done','skipped');"
@@ -901,9 +1020,7 @@ def main() -> None:
         filtered = [p for p in filtered if p not in done]
         print(f"[INFO] After resume-skip: {len(filtered)} remaining")
 
-    # Run LLM for each predicate, then clamp domain/range to classes
-    axiom_objs: List[Dict[str, Any]] = []
-    known_predicates: Set[str] = set(filtered) | set(counts.keys())
+    known_predicates: Set[str] = set(k.strip().lower() for k in counts.keys()) | set(filtered)
 
     for i, pred in enumerate(filtered, 1):
         try:
@@ -919,12 +1036,14 @@ def main() -> None:
                 just_col=args.just_col,
                 predicate=pred,
                 k=args.examples_per_predicate,
+                random_seed=args.seed + i,
             )
             if len(ev) < 2:
                 mark_run(conn, args.runs_table, pred, "skipped", "too_few_evidence")
                 continue
 
-            # Ask LLM for suggestions (property name/label + domain/range)
+            inferred_kind, inferred_dt = decide_property_kind_from_evidence(pred, ev)
+
             obj = llm_axioms_for_predicate(
                 client=client,
                 yaml_cfg=yaml_cfg,
@@ -936,8 +1055,18 @@ def main() -> None:
                 max_retries=2,
             )
 
-            # ---- Clamp domain/range to CLASSES only (super important) ----
-            # Resolve suggested domain/range to canonical, then clamp to class/ancestor class
+            # normalize property
+            prop = obj.get("property", {}) if isinstance(obj.get("property"), dict) else {}
+            pname = str(prop.get("name") or pred).strip().lower()
+            if not snake_ok(pname):
+                pname = pred
+            prop["name"] = pname
+            prop["label"] = str(prop.get("label") or pred).strip()
+            prop["kind"] = inferred_kind  # override noisy LLM
+            obj["property"] = prop
+            obj["datatype_iri"] = inferred_dt if inferred_kind == "DatatypeProperty" else None
+
+            # clamp domain/range to real classes (not Unknown/Thing)
             suggested_dom = str(obj.get("domain_class") or "").strip()
             suggested_rng = str(obj.get("range_class") or "").strip()
 
@@ -945,53 +1074,36 @@ def main() -> None:
             rng_can = resolve_to_canonical(suggested_rng, canonical_map, surface_to_canonical)
 
             dom_class = clamp_to_class(dom_can, canonical_map, class_set, parents)
-            rng_class = clamp_to_class(rng_can, canonical_map, class_set, parents)
 
-            # If LLM suggestion fails, fall back to evidence-driven clamping
+            rng_class: Optional[str] = None
+            if inferred_kind == "ObjectProperty":
+                rng_class = clamp_to_class(rng_can, canonical_map, class_set, parents)
+
+            # backoff from evidence endpoints
             if dom_class is None:
-                # try from subjects
-                subj_cans = [resolve_to_canonical(e.subj, canonical_map, surface_to_canonical) for e in ev]
-                for sc in subj_cans:
+                for sc in [resolve_to_canonical(e.subj, canonical_map, surface_to_canonical) for e in ev]:
                     dom_class = clamp_to_class(sc, canonical_map, class_set, parents)
                     if dom_class:
                         break
-            if rng_class is None:
-                # try from objects
-                obj_cans = [resolve_to_canonical(e.obj, canonical_map, surface_to_canonical) for e in ev]
-                for oc in obj_cans:
+
+            if inferred_kind == "ObjectProperty" and rng_class is None:
+                for oc in [resolve_to_canonical(e.obj, canonical_map, surface_to_canonical) for e in ev]:
                     rng_class = clamp_to_class(oc, canonical_map, class_set, parents)
                     if rng_class:
                         break
 
+            # store for audit (TTL writer will OMIT owl:Thing)
             obj["domain_class"] = dom_class if dom_class else "owl:Thing"
-            obj["range_class"] = rng_class if rng_class else "owl:Thing"
+            obj["range_class"] = (rng_class if rng_class else "owl:Thing") if inferred_kind == "ObjectProperty" else "owl:Thing"
 
-            # normalize property.name to snake_case if missing/invalid
-            prop = obj.get("property", {}) if isinstance(obj.get("property"), dict) else {}
-            pname = (prop.get("name") or pred).strip().lower()
-            if not snake_ok(pname):
-                pname = pred
-            prop["name"] = pname
-            prop["kind"] = "ObjectProperty"  # safe default (edges are term-term)
-            obj["property"] = prop
-
-            # keep only known predicates for subPropertyOf/inverseOf
+            # subPropertyOf / inverseOf (keep only known)
             subs = obj.get("subPropertyOf", [])
             invs = obj.get("inverseOf", [])
-            if isinstance(subs, list):
-                obj["subPropertyOf"] = [s for s in subs if isinstance(s, str) and s in known_predicates]
-            else:
-                obj["subPropertyOf"] = []
-            if isinstance(invs, list):
-                obj["inverseOf"] = [s for s in invs if isinstance(s, str) and s in known_predicates]
-            else:
-                obj["inverseOf"] = []
+            obj["subPropertyOf"] = [str(s).strip().lower() for s in subs if isinstance(s, str) and s.strip().lower() in known_predicates] if isinstance(subs, list) else []
+            obj["inverseOf"] = [str(s).strip().lower() for s in invs if isinstance(s, str) and s.strip().lower() in known_predicates] if isinstance(invs, list) else []
 
-            # Store in DB + mark run
             store_axiom_json(conn, args.axioms_table, pred, obj)
             mark_run(conn, args.runs_table, pred, "done", "")
-
-            axiom_objs.append(obj)
 
             if i % 10 == 0:
                 print(f"[INFO] {i}/{len(filtered)} predicates processed")
@@ -1000,9 +1112,9 @@ def main() -> None:
             mark_run(conn, args.runs_table, pred, "error", str(e))
             print(f"[WARN] predicate={pred} failed: {e}")
 
-    # If resume mode and we want TTL for ALL processed ever, load from DB table
+    # Load all stored axioms
     all_axioms: List[Dict[str, Any]] = []
-    for (pred, ax_json) in conn.execute(f"SELECT predicate, axiom_json FROM {args.axioms_table} ORDER BY predicate;").fetchall():
+    for (_pred, ax_json) in conn.execute(f"SELECT predicate, axiom_json FROM {args.axioms_table} ORDER BY predicate;").fetchall():
         try:
             obj = json.loads(ax_json)
             if isinstance(obj, dict):
@@ -1010,7 +1122,6 @@ def main() -> None:
         except Exception:
             continue
 
-    # Declare classes from llm_enrich_final (safe classes only)
     class_terms = sorted(class_set)
 
     ttl_path = os.path.join(args.out_dir, "tbox_axioms_llm.ttl")
@@ -1019,11 +1130,11 @@ def main() -> None:
         base_iri=args.base_iri,
         class_terms=class_terms,
         canonical_map=canonical_map,
+        taxonomy_edges=taxonomy_edges,
         predicate_axioms=all_axioms,
-        known_predicates=set(counts.keys()),
+        known_predicates=known_predicates,
     )
 
-    # Also dump merged JSON for audit
     merged_path = os.path.join(args.out_dir, "tbox_axioms_llm_merged.json")
     merged = {
         "created_at": now_iso(),
@@ -1033,8 +1144,8 @@ def main() -> None:
         "taxonomy_table": args.taxonomy_table,
         "non_tax_table": args.non_tax_table,
         "prompt_config": os.path.abspath(args.prompt_config),
-        "backend": args.backend,
-        "model": args.model if args.backend == "openai_compatible" else args.model_path,
+        "schema_config": os.path.abspath(args.schema_config) if args.schema_config else "",
+        "model_path": args.model_path,
         "min_predicate_count": args.min_predicate_count,
         "examples_per_predicate": args.examples_per_predicate,
         "axiom_count": len(all_axioms),

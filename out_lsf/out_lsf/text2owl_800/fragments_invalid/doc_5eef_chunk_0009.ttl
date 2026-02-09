@@ -1,0 +1,30 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Datagroup a owl:Class .
+hpc:hasdatagroup a owl:ObjectProperty .
+hpc:Datagroup rdfs:domain hpc:Job .
+hpc:Datagroup rdfs:range xsd:string .
+
+hpc:Job a owl:Class .
+hpc:hasdatarequirement a owl:ObjectProperty .
+hpc:Hasdatarequirement rdfs:domain hpc:Job .
+hpc:Hasdatarequirement rdfs:range hpc:Datarequirement .
+
+hpc:Datarequirement a owl:Class .
+hpc:belongstousergroup a owl:DatatypeProperty .
+hpc:Belongstousergroup rdfs:domain hpc:Datarequirement .
+hpc:Belongstousergroup rdfs:range xsd:string .
+
+hpc:Stage a owl:Class .
+hpc:hasstorage a owl:ObjectProperty .
+hpc:Hasstorage rdfs:domain hpc:Stage .
+hpc:Hasstorage rdfs:range xsd:string .
+hpc:hasminsize a owl:DatatypeProperty .
+hpc:Hasminsize rdfs:domain hpc:Stage .
+hpc:Hasminsize rdfs:range xsd:decimal .
+hpc:hasmaxsize a owl:DatatypeProperty .
+hpc:Hasmaxsize rdfs:domain hpc:Stage .
+hpc:Hasmaxsize rdfs:range xsd:decimal .

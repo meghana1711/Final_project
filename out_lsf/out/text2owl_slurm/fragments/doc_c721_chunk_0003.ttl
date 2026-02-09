@@ -1,0 +1,34 @@
+hpc:fairsharefactor a owl:DatatypeProperty .
+hpc:Fairsharefactor rdfs:domain hpc:User .
+hpc:Fairsharefactor rdfs:range xsd:decimal .
+
+hpc:Account a owl:Class .
+hpc:User a owl:Class .
+
+hpc:allocatedshares a owl:DatatypeProperty .
+hpc:Allocatedshares rdfs:domain hpc:Account .
+hpc:Allocatedshares rdfs:range xsd:decimal .
+
+hpc:effectiveusage a owl:ObjectProperty .
+hpc:Effectiveusage rdfs:domain hpc:Account .
+hpc:Effectiveusage rdfs:range hpc:Effectiveusage .
+
+hpc:Childaccount a owl:Class .
+hpc:Parentaccount a owl:Class .
+
+hpc:sharesallocatedtochild a owl:DatatypeProperty .
+hpc:Sharesallocatedtochild rdfs:domain hpc:Parentaccount .
+hpc:Sharesallocatedtochild rdfs:range xsd:decimal .
+
+hpc:Siblingaccount a owl:Class .
+hpc:allsiblingaccounts a owl:ObjectProperty .
+hpc:Allsiblingaccounts rdfs:domain hpc:Parentaccount .
+hpc:Allsiblingaccounts rdfs:range hpc:Siblingaccount .
+
+hpc:actualusage a owl:DatatypeProperty .
+hpc:Actualusage rdfs:domain hpc:User .
+hpc:Actualusage rdfs:range xsd:decimal .
+
+hpc:slurmfairshareformula a owl:ObjectProperty .
+hpc:Slurmfairshareformula rdfs:domain hpc:Account .
+hpc:Slurmfairshareformula rdfs:range xsd:decimal .

@@ -1,0 +1,23 @@
+hpc:Enterprisegridorchestrator a owl:Class .
+hpc:egocontrol a owl:ObjectProperty .
+hpc:Shareddirectory a owl:Class .
+hpc:Egocontrolledservice a owl:Class .
+hpc:Sbatchd a owl:Class .
+hpc:Resdaemon a owl:Class .
+
+hpc:Egocontrol rdfs:domain hpc:Enterprisegridorchestrator ;
+                 rdfs:range hpc:Egocontrolledservice .
+
+hpc:Egocontrolledservice rdfs:subClassOf hpc:Service .
+hpc:Sbatchd rdfs:subClassOf hpc:Egocontrolledservice .
+hpc:Resdaemon rdfs:subClassOf hpc:Egocontrolledservice .
+
+hpc:Shareddirectory rdfs:subClassOf hpc:Directory .
+
+hpc:egoconfig a owl:ObjectProperty ;
+             rdfs:domain hpc:Host .
+
+hpc:Installation a owl:Class .
+hpc:installationchoice a owl:ObjectProperty .
+
+hpc:planandprepare a owl:ObjectProperty .

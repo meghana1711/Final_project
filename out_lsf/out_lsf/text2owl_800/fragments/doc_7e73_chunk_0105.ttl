@@ -1,0 +1,59 @@
+hpc:Template a owl:Class ;
+    rdfs:subClassOf hpc:Instancetemplate .
+
+hpc:Instancetemplate rdfs:subClassOf owl:Class ;
+    rdfs:domain hpc:Googlecloudplatform .
+
+hpc:Googlecloudplatform rdfs:subClassOf owl:Class .
+
+hpc:imageid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:string .
+
+hpc:vmtype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:string .
+
+hpc:zone a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:string .
+
+hpc:maxnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:nthreads a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:mem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:instancetags a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:string .
+
+hpc:userdata a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:string .
+
+hpc:templateid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string .
+
+hpc:ngpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ngpusPhysical a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:gpuextend a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string .
+
+hpc:gputype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string .
