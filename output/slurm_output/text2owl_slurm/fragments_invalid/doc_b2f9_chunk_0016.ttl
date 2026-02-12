@@ -1,0 +1,21 @@
+hpc:Job a owl:Class. .
+
+hpc:hasCUDA_VISIBLE_DEVICES rdf:type owl:ObjectProperty;
+  rdfs:domain hpc:Job;
+  rdfs:range xsd:string. .
+
+hpc:hasROCR_VISIBLE_DEVICES rdf:type owl:ObjectProperty;
+  rdfs:domain hpc:Job;
+  rdfs:range xsd:string. .
+
+hpc:hasGPU_DEVICE_ORDINAL rdf:type owl:ObjectProperty;
+  rdfs:domain hpc:Job;
+  rdfs:range xsd:nonNegativeInteger. .
+
+hpc:hasSLURM_SHARDS_ON_NODE rdf:type owl:ObjectProperty;
+  rdfs:domain hpc:Job;
+  rdfs:range xsd:nonNegativeInteger. .
+
+hpc:Jobwithshards a owl:Class;
+  rdfs:subClassOf hpc:Job;
+  hpc:Hasslurmshardsonnode rdfs:range xsd:nonNegativeInteger. .

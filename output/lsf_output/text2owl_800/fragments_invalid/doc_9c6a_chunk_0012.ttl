@@ -1,0 +1,21 @@
+hpc:Sharedir a owl:Class .
+hpc:hasConfigurationFiles owl:DatatypeProperty .
+hpc:hasWorkDirectories owl:DatatypeProperty .
+hpc:LsfEnvdir rdfs:domain hpc:Sharedir .
+hpc:LsfEnvdir rdfs:range xsd:string .
+hpc:LsbConfdir rdfs:domain hpc:Sharedir .
+hpc:LsbConfdir rdfs:range xsd:string .
+hpc:LsbSharedir rdfs:domain hpc:Sharedir .
+hpc:LsbSharedir rdfs:range xsd:string .
+hpc:EgoConfdir rdfs:domain hpc:Sharedir .
+hpc:EgoConfdir rdfs:range xsd:string .
+hpc:EgoWorkdir rdfs:domain hpc:Sharedir .
+hpc:EgoWorkdir rdfs:range xsd:string .
+hpc:Uninstallsexistingcluster a owl:Class .
+hpc:hasConfigurationFilesToBackup owl:ObjectProperty .
+hpc:hasWorkDirectoriesToBackup owl:ObjectProperty .
+hpc:Uninstallsexistingcluster rdfs:subClassOf hpc:Task .
+hpc:Hasconfigurationfilestobackup rdfs:domain hpc:Uninstallsexistingcluster .
+hpc:Hasconfigurationfilestobackup rdfs:range hpc:Directory .
+hpc:Hasworkdirectoriestobackup rdfs:domain hpc:Uninstallsexistingcluster .
+hpc:Hasworkdirectoriestobackup rdfs:range hpc:Directory .

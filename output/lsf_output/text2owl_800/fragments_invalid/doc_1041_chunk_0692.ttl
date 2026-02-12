@@ -1,0 +1,27 @@
+hpc:Compoundresourcerequirement a owl:Class .
+
+# C Option - Compound Resource Requirement
+hpc:Compoundresourcerequirementc a owl:Class .
+hpc:hasnorusageornocomputeunitrequirement a owl:ObjectProperty .
+
+# R Option - Resource Requirement
+hpc:Resourcerequirement a owl:Class .
+hpc:hasnorusageornocomputeunitrequirementc a owl:ObjectProperty .
+
+# D Option - Delayed Alternative Resource Requirement
+hpc:Delayedalternativeresourcerequirement a owl:Class .
+hpc:hasdelayminutes a owl:DatatypeProperty, rdfs:range xsd:nonNegativeInteger .
+hpc:hasresourcerequirement a owl:ObjectProperty .
+
+# Sequential Job with Delayed Alternatives
+hpc:Sequentialjobwithdelayedalternatives a owl:Class .
+hpc:hasalternativeresourcerequirements a owl:ObjectProperty .
+
+# Parallel Job with Delayed Alternatives
+hpc:Paralleljobwithdelayedalternatives a owl:Class .
+hpc:hasparallelresourcerequirements a owl:ObjectProperty .
+
+# Alternative Resource Requirement for Parallel Jobs
+hpc:Alternativeparallelresourcerequirement a owl:Class .
+hpc:hastaskcount a owl:DatatypeProperty, rdfs:range xsd:nonNegativeInteger .
+hpc:hasparallelresourcerequirement a owl:ObjectProperty .

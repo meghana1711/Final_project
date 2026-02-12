@@ -1,0 +1,66 @@
+hpc:FeatureService
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A service that provides a specific feature." .
+
+hpc:TotalDistribution
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Featureservice ;
+    rdfs:range hpc:Distribution ;
+    rdfs:comment "The total distribution of a feature service." .
+
+hpc:NonSharedDistribution
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Featureservice ;
+    rdfs:range hpc:Distribution ;
+    rdfs:comment "The non-shared distribution of a feature service." .
+
+hpc:WorkloadDistribution
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Featureservice ;
+    rdfs:range hpc:Distribution ;
+    rdfs:comment "The workload distribution of a feature service." .
+
+hpc:Distribution
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A distribution of resources or tasks." .
+
+hpc:Participant
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A participant in a distribution, such as a processor or user." .
+
+hpc:ResourceAllocation
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Distribution ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The amount of resources allocated to a participant." .
+
+hpc:LSF
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A license scheduler system." .
+
+hpc:TaskID
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The unique identifier of a task." .
+
+hpc:Task
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "An LSF task." .
+
+hpc:Blkill
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:Task ;
+    rdfs:comment "Terminates an LSF task." .
+
+hpc:Seconds
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blkill ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of seconds to delay before terminating the task." .

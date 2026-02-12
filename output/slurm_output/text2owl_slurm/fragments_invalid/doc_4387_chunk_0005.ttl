@@ -1,0 +1,13 @@
+hpc:Administrator a owl:Class.
+hpc:Operator a owl:Class.
+hpc:Passwdfile hpc:Administrator rdfs:subClassOf owl:Class.
+hpc:Passwdfile hpc:Operator rdfs:subClassOf owl:Class.
+hpc:Uid hpc:Passwdfile rdfs:domain xsd:integer.
+hpc:Sameuid hpc:Administrator rdfs:domain hpc:Passwdfile; hpc:Sameuid hpc:Operator rdfs:domain hpc:Passwdfile.
+hpc:Authenticatecorrectly hpc:administrator rdfs:subPropertyOf rdf:Property.
+hpc:Authenticatecorrectly hpc:operator rdfs:subPropertyOf rdf:Property.
+hpc:Accountingstoragebackuphost a owl:Class.
+hpc:Dbdbackuphost hpc:Slurmdbd a owl:Class.
+hpc:Differentmachine hpc:Accountingstoragebackuphost rdfs:domain hpc:Slurmdbd.
+hpc:Samedatabase hpc:Accountingstoragebackuphost rdfs:domain hpc:Slurmdbd.
+hpc:Samemungekey hpc:accountingstoragebackuphost

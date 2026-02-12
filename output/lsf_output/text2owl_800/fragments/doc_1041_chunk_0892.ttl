@@ -1,0 +1,16 @@
+hpc:tspeek a owl:ObjectProperty ;
+    rdfs:domain hpc:Linuxhost ;
+    rdfs:range hpc:Terminalservicesjob .
+
+hpc:Terminalservicesjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Terminalservicesjob .
+
+hpc:tssub a owl:ObjectProperty ;
+    rdfs:domain hpc:Linuxhost ;
+    rdfs:range hpc:Terminalservicesjob .
+
+hpc:Terminalservices a owl:Class ;
+    rdfs:subClassOf hpc:Job .

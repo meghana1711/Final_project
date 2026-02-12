@@ -1,0 +1,48 @@
+hpc:Lsbjob a owl:Class .
+hpc:lsbdataprovenance a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbjob ;
+    rdfs:range hpc:Gpfsfile .
+
+hpc:Gpfsfile a owl:Class .
+
+hpc:Ibmspectrumscale a owl:Class .
+hpc:Ibmspectrumscale rdfs:subClassOf owl:Class .
+
+hpc:Graphviz a owl:Class .
+
+hpc:esubdprov a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbjob ;
+    rdfs:range hpc:Gpfsfile .
+
+hpc:lsbEsubMethod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsbjob ;
+    rdfs:range xsd:string .
+
+hpc:lsbDataProvenance a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsbjob ;
+    rdfs:range xsd:boolean .
+
+hpc:postExec a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbjob ;
+    rdfs:range xsd:string .
+
+hpc:tagsh a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbjob ;
+    rdfs:range xsd:string .
+
+hpc:bsub a owl:ObjectProperty .
+
+hpc:bsubE a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bsub ;
+    rdfs:range xsd:string .
+
+hpc:bsubA a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bsub ;
+    rdfs:range xsd:string .
+
+hpc:bsubEp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bsub ;
+    rdfs:range xsd:string .
+
+hpc:Lsbapplications a owl:Class .
+hpc:Lsbqueues a owl:Class .

@@ -1,0 +1,27 @@
+hpc:maxTotalTimePreempt a owl:DatatypeProperty .
+hpc:MaxTotalTimePreempt rdfs:domain hpc:Job .
+hpc:MaxTotalTimePreempt rdfs:range xsd:integer .
+hpc:MAX_TOTAL_TIME_PREEMPT rdfs:subPropertyOf hpc:TimeLimit .
+
+hpc:maxUserPriority a owl:DatatypeProperty .
+hpc:MaxUserPriority rdfs:domain hpc:Job .
+hpc:MaxUserPriority rdfs:range xsd:integer .
+
+hpc:mbdEgoConnectTimeout a owl:DatatypeProperty .
+hpc:MbdEgoConnectTimeout rdfs:domain hpc:Slascheduling .
+hpc:MbdEgoConnectTimeout rdfs:range xsd:integer .
+
+hpc:mbdEgoReadTimeout a owl:DatatypeProperty .
+hpc:MbdEgoReadTimeout rdfs:domain hpc:Slascheduling .
+hpc:MbdEgoReadTimeout rdfs:range xsd:integer .
+
+hpc:mbdEgoTime2live a owl:DatatypeProperty .
+hpc:MbdEgoTime2live rdfs:domain hpc:Slascheduling .
+hpc:MbdEgoTime2live rdfs:range xsd:integer .
+
+hpc:mbdQueryCpus a owl:ObjectProperty .
+hpc:MbdQueryCpus rdfs:domain hpc:Managementhost .
+hpc:MbdQueryCpus rdfs:range hpc:Cpulist .
+
+hpc:Cpulist a owl:Class .
+hpc:Cpulist rdfs:subClassOf xsd:string .

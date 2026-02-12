@@ -1,0 +1,22 @@
+hpc:Globalfairshareschedulingpolicy a owl:Class .
+hpc:Queueleveluserbasedfairshare a owl:Class ;
+    rdfs:subClassOf hpc:Globalfairshareschedulingpolicy .
+hpc:Crossqueueuserbasedfairshare a owl:Class ;
+    rdfs:subClassOf hpc:Globalfairshareschedulingpolicy .
+hpc:Parallelfairshare a owl:Class ;
+    rdfs:subClassOf hpc:Globalfairshareschedulingpolicy .
+
+hpc:participatesinglobalfairshare a owl:ObjectProperty .
+hpc:hasmasterqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Queueleveluserbasedfairshare ;
+    rdfs:range hpc:Queue .
+hpc:hasparticipant a owl:ObjectProperty ;
+    rdfs:domain hpc:Crossqueueuserbasedfairshare ;
+    rdfs:range rdf:List .
+hpc:considersnumberofcpus a owl:ObjectProperty ;
+    rdfs:domain hpc:Parallelfairshare .
+
+hpc:Resourceconnector a owl:Class .
+hpc:hostfactory a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceconnector .
+hpc:Supportedresourceprovider rdfs:range xsd:string .

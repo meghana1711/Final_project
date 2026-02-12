@@ -1,0 +1,36 @@
+hpc:Schedule a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Represents a schedule for a job." .
+
+hpc:timeinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Schedule ;
+    rdfs:range xsd:time ;
+    rdfs:comment "Represents the time interval for a job." .
+
+hpc:dependencyexpression a owl:ObjectProperty ;
+    rdfs:domain hpc:Schedule ;
+    rdfs:range hpc:Dependencyexpression ;
+    rdfs:comment "Represents the dependency expression for a job." .
+
+hpc:Orphanjobtermination a owl:Class ;
+    rdfs:subClassOf hpc:Schedule ;
+    rdfs:comment "Represents a job with automatic orphan termination." .
+
+hpc:ignoreorphanjobterminationgraceperiod a owl:ObjectProperty ;
+    rdfs:domain hpc:Orphanjobtermination ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the cluster-level orphan job termination grace period is ignored." .
+
+hpc:Interactivejob a owl:Class ;
+    rdfs:subClassOf hpc:Schedule ;
+    rdfs:comment "Represents an interactive job." .
+
+hpc:displayoutputerrormessages a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether output/error messages are displayed on the screen." .
+
+hpc:tty a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the -tty option is used for the interactive job." .

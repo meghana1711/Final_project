@@ -1,0 +1,70 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Checkpointablejob ;
+    rdfs:subClassOf hpc:Rerunnablejob ;
+    rdfs:subClassOf hpc:Runningjob ;
+    rdfs:subClassOf hpc:Suspendedjob ;
+    rdfs:subClassOf hpc:Pendingjob ;
+    rdfs:subClassOf hpc:Waitingjob .
+
+hpc:Checkpointablejob rdfs:subClassOf hpc:Job ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Host ;
+    rdfs:range hpc:Checkpointfile ;
+    rdfs:range hpc:Checkpointexecutablefile ;
+    rdfs:range hpc:Checkpointdirectory ;
+    rdfs:range hpc:Openfile ;
+    rdfs:range xsd:boolean .
+
+hpc:Rerunnablejob rdfs:subClassOf hpc:Job ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:Runningjob rdfs:subClassOf hpc:Job ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:Suspendedjob rdfs:subClassOf hpc:Job ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:Pendingjob rdfs:subClassOf hpc:Job ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:Waitingjob rdfs:subClassOf hpc:Job ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string ;
+    rdfs:range hpc:Operatingsystemversion ;
+    rdfs:range hpc:Checkpointexecutablefile ;
+    rdfs:range hpc:Checkpointdirectory ;
+    rdfs:range hpc:Checkpointfile ;
+    rdfs:range hpc:Openfile ;
+    rdfs:range hpc:Networkconnectivity ;
+    rdfs:range hpc:Binarycompatibility .
+
+hpc:operatingsystemversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host .
+
+hpc:binarycompatibility a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Host .
+
+hpc:networkconnectivity a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .
+
+hpc:checkpointexecutablefile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host .
+
+hpc:checkpointdirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host .
+
+hpc:checkpointfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host .
+
+hpc

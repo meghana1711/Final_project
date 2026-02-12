@@ -1,0 +1,19 @@
+hpc:Lsfdatamanagertransferqueue a owl:Class.
+hpc:hasdatamanager a owl:ObjectProperty;
+    rdfs:domain hpc:Lsfdatamanagertransferqueue;
+    rdfs:range hpc:Lsfdatamanager.
+hpc:haslsfdatamanagerconfig a owl:DatatypeProperty;
+    rdfs:domain hpc:Lsfdatamanagertransferqueue;
+    rdfs:range xsd:string.
+hpc:isdatatransferqueue a owl:ObjectProperty;
+    rdfs:domain hpc:Cluster;
+    rdfs:range hpc:Lsfdatamanagertransferqueue;
+    rdfs:subPropertyOf hpc:hasQueue.
+hpc:isDefaultQueue a xsd:boolean.
+hpc:isInteractiveOnly a xsd:boolean.
+hpc:hasRCVJOBS_FROM rdf:nil.
+hpc:hasMAX_RSCHED_TIME rdf:nil.
+hpc:hasSUCCESS_EXIT_VALUES rdf:nil.
+hpc:isRerunnable a xsd:boolean.
+hpc:canSubmitRegularJobs a xsd:boolean.
+hpc:canUseBswitch a xsd:boolean.

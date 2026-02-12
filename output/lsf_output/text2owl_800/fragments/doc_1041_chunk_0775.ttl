@@ -1,0 +1,23 @@
+hpc:LcSignal a owl:Class .
+hpc:Lc2Signal a owl:Class .
+hpc:LcTrace a owl:Class .
+hpc:Lc2Trace a owl:Class .
+hpc:LcXdr a owl:Class .
+hpc:Lc2Xdr a owl:Class .
+
+hpc:LcXdr rdfs:subClassOf hpc:LcSignal .
+hpc:Lc2Xdr rdfs:subClassOf hpc:Lc2Signal .
+
+hpc:haslevelofdetail a owl:ObjectProperty .
+hpc:Haslevelofdetail rdfs:domain hpc:LcXdr ;
+                        rdfs:range xsd:nonNegativeInteger .
+
+hpc:logDebug a owl:DatatypeProperty .
+hpc:LogDebug1 rdfs:subClassOf hpc:LogDebug .
+hpc:LogDebug2 rdfs:subClassOf hpc:LogDebug1 .
+hpc:LogDebug3 rdfs:subClassOf hpc:LogDebug2 .
+
+hpc:LOG_DEBUG rdfs:subPropertyOf hpc:hasLevelOfDetail .
+hpc:LOG_DEBUG1 rdfs:subPropertyOf hpc:LOG_DEBUG .
+hpc:LOG_DEBUG2 rdfs:subPropertyOf hpc:LOG_DEBUG1 .
+hpc:LOG_DEBUG3 rdfs:subPropertyOf hpc:LOG_DEBUG2 .

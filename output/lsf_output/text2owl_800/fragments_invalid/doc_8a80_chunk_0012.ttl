@@ -1,0 +1,12 @@
+hpc:lmRemoveSuspJobsInterval a owl:DatatypeProperty .
+hpc:LmRemoveSuspJobsInterval rdfs:domain hpc:LsfLicenseScheduler .
+hpc:LmRemoveSuspJobsInterval rdfs:range xsd:decimal .
+
+hpc:lmReservation a owl:ObjectProperty .
+hpc:LmReservation rdfs:domain hpc:LsfLicenseScheduler .
+hpc:LmReservation rdfs:range xsd:boolean .
+
+hpc:LsfLicenseScheduler a owl:Class .
+
+
+This ontology fragment defines two properties (`LM_REMOVE_SUSP_Jobs_Interval` and `LM_RESERVATION`) for the class `LSF_License_Scheduler`. The `LM_REMOVE_SUSP_Jobs_Interval` property is a datatype property with domain `LSF_License_Scheduler` and range `xsd:decimal`. The `LM_RESERVATION` property is an object property with domain `LSF_License_Scheduler` and range `xsd:boolean`. The class `LSF_License_Scheduler` is defined as an owl:Class.

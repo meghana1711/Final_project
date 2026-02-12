@@ -1,0 +1,60 @@
+hpc:Installationoption a owl:Class .
+hpc:Optionfile a owl:Class .
+hpc:Serverconfigfile a owl:Class .
+hpc:Dynamicserverconfigfile a owl:Class .
+hpc:Installationoptionparameter a owl:Class .
+hpc:Requiredparameter a owl:Class .
+hpc:Optionalparameter a owl:Class .
+hpc:Numericresource a owl:Class .
+hpc:Booleanresource a owl:Class .
+
+# Object Properties
+hpc:hasinstallationoptionfile a owl:ObjectProperty .
+hpc:hasserverconfigfile a owl:ObjectProperty .
+hpc:hasdynamicserverconfigfile a owl:ObjectProperty .
+hpc:requires a owl:ObjectProperty .
+hpc:hasnumericresource a owl:ObjectProperty .
+hpc:hasbooleanresource a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hasname a owl:DatatypeProperty .
+hpc:haspath a owl:DatatypeProperty .
+hpc:hasport a owl:DatatypeProperty .
+hpc:haslocalresources a owl:DatatypeProperty .
+
+# Data Types
+hpc:Name rdfs:domain hpc:Installationoption ;
+    rdfs:range xsd:string .
+hpc:Path rdfs:domain hpc:Installationoptionparameter ;
+    rdfs:range xsd:string .
+hpc:Port rdfs:domain hpc:Optionalparameter ;
+    rdfs:range xsd:integer .
+hpc:Localresources rdfs:domain hpc:Dynamicserverconfigfile ;
+    rdfs:range xsd:string .
+
+# Subclass Relations
+hpc:OptionFile a owl:UnionOf [ hpc:ServerConfigFile hpc:DynamicServerConfigFile ] .
+hpc:Serverconfigfile a owl:Class ;
+    rdfs:subClassOf hpc:Optionfile .
+hpc:Dynamicserverconfigfile a owl:Class ;
+    rdfs:subClassOf hpc:Optionfile .
+hpc:Requiredparameter a owl:Class ;
+    rdfs:subClassOf hpc:Installationoptionparameter .
+hpc:Optionalparameter a owl:Class ;
+    rdfs:subClassOf hpc:Installationoptionparameter .
+hpc:Numericresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+hpc:Booleanresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+# Domain and Range Restrictions
+hpc:Hasinstallationoptionfile rdfs:domain hpc:Dynamicserverconfigfile ;
+    rdfs:range hpc:Optionfile .
+hpc:Hasserverconfigfile rdfs:domain hpc:Dynamicserverconfigfile ;
+    rdfs:range hpc:Serverconfigfile .
+hpc:Requires rdfs:domain hpc:Dynamicserverconfigfile ;
+    rdfs:range hpc:Requiredparameter .
+hpc:Hasnumericresource rdfs:domain hpc:Numericresource ;
+    rdfs:range hpc:Resource .
+hpc:Hasbooleanresource rdfs:domain hpc:Booleanresource ;
+    rdfs:range hpc:Resource .

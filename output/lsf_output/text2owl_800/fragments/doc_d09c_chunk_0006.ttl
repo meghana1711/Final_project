@@ -1,0 +1,28 @@
+hpc:Logicalpartition a owl:Class .
+hpc:Dynamiclogicalpartition a owl:Class .
+hpc:Micropartition a owl:Class .
+hpc:Dedicatedprocessorpartition a owl:Class .
+hpc:Sharedprocessorpartition a owl:Class .
+hpc:Workloadpartition a owl:Class .
+
+hpc:Hasoperatingsystem rdfs:domain hpc:Logicalpartition ;
+  rdfs:range rdf:List ;
+  rdfs:subPropertyOf hpc:hasResource .
+
+hpc:Hasresource rdfs:domain hpc:Logicalpartition ;
+  rdfs:range rdf:Resource .
+
+hpc:Hascpus rdfs:domain hpc:Dynamiclogicalpartition ;
+  rdfs:range xsd:nonNegativeInteger .
+
+hpc:Hasioadapters rdfs:domain hpc:Dynamiclogicalpartition ;
+  rdfs:range xsd:nonNegativeInteger .
+
+hpc:Hasmemory rdfs:domain hpc:Dynamiclogicalpartition ;
+  rdfs:range xsd:nonNegativeDecimal .
+
+hpc:Hasvirtualprocessors rdfs:domain hpc:Micropartition ;
+  rdfs:range xsd:nonNegativeInteger .
+
+hpc:Hascapping rdfs:domain hpc:Sharedprocessorpartition ;
+  rdfs:range xsd:boolean .

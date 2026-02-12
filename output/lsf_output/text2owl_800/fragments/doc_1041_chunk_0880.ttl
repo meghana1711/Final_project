@@ -1,0 +1,17 @@
+hpc:Taskdefinitionfile a owl:Class .
+hpc:Taskdefinitionfile rdfs:subClassOf owl:NamedIndividual .
+
+hpc:hastaskoptions a owl:ObjectProperty .
+hpc:Hastaskoptions rdfs:domain hpc:Taskdefinitionfile .
+
+hpc:Debugoption a owl:Class .
+hpc:Debugoption rdfs:subClassOf hpc:Taskoption .
+hpc:Debugoption rdfs:range xsd:integer .
+
+hpc:preExecCommand a owl:DatatypeProperty .
+hpc:PreExecCommand rdfs:domain hpc:Taskdefinitionfile .
+hpc:PreExecCommand rdfs:range xsd:string .
+
+hpc:temporaryworkingdirectory a owl:ObjectProperty .
+hpc:Temporaryworkingdirectory rdfs:domain hpc:Taskdefinitionfile .
+hpc:Temporaryworkingdirectory rdfs:range xsd:boolean .

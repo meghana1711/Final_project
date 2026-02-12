@@ -1,0 +1,19 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:User a owl:Class .
+hpc:Reservation a owl:Class .
+hpc:Policy a owl:Class .
+hpc:Creator rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:User .
+hpc:UserGroup rdf:type owl:Class .
+hpc:Host rdf:type owl:Class .
+hpc:TimeWindow rdf:type owl:Class .
+
+hpc:hasUser rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Policy ;
+    rdfs:range hpc:Usergroup .

@@ -1,0 +1,31 @@
+hpc:LsfRootUser a owl:Class .
+hpc:LsfRsh a owl:Class .
+hpc:EgoRsh a owl:Class .
+
+hpc:lsfRootUserValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfRootUser ;
+    rdfs:range xsd:string .
+
+hpc:lsfRshValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfRsh ;
+    rdfs:range xsd:string .
+
+hpc:egoRshValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:EgoRsh ;
+    rdfs:range xsd:string .
+
+hpc:lsfRshCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfRsh ;
+    rdfs:range hpc:Command .
+
+hpc:Command a owl:Class .
+
+hpc:lsfSecuredir a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfSecuredir ;
+    rdfs:range xsd:string .
+
+hpc:LsfSendConfinfoTcpThreshold rdfs:subClassOf owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfSendConfinfoTcpThreshold .
+
+hpc:LsfUdpToTcpThreshold rdfs:subClassOf owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfUdpToTcpThreshold .

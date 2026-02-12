@@ -1,0 +1,17 @@
+hpc:mcPluginRemoteResource a owl:ObjectProperty .
+hpc:mcPluginScheduleEnhance a owl:ObjectProperty .
+hpc:LsfDatamanager a owl:Class .
+hpc:LsfDatamanagerConfiguration a owl:Class .
+hpc:clusterName a owl:DatatypeProperty .
+hpc:Lsbparams a owl:Class .
+
+hpc:McPluginRemoteResource rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:boolean .
+hpc:McPluginScheduleEnhance rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:boolean .
+hpc:LsfDatamanager rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf hpc:Resourcemanager .
+hpc:LsfDatamanagerConfiguration rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf hpc:Configuration .
+hpc:ClusterName rdfs:domain hpc:LsfDatamanagerConfiguration ;
+    rdfs:range xsd:string .

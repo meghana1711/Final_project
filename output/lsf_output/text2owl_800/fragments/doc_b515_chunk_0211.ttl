@@ -1,0 +1,52 @@
+hpc:Checkpointableapplication a owl:Class .
+hpc:echkpnt a owl:ObjectProperty ;
+    rdfs:domain hpc:Checkpointableapplication ;
+    rdfs:range hpc:Echkpntexecutable .
+hpc:erestart a owl:ObjectProperty ;
+    rdfs:domain hpc:Checkpointableapplication ;
+    rdfs:range hpc:Erestartexecutable .
+hpc:Echkpntexecutable a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty hpc:Echkpnt ;
+        owl:hasValue 'echkpnt' ;
+        rdfs:range xsd:string ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty rdf:type ;
+        owl:allValuesFrom [ a hpc:Executable ] ] .
+hpc:Erestartexecutable a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty hpc:Erestart ;
+        owl:hasValue 'erestart' ;
+        rdfs:range xsd:string ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty rdf:type ;
+        owl:allValuesFrom [ a hpc:Executable ] ] .
+hpc:Executable a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty rdf:type ;
+        owl:hasValue 'C' ;
+        rdfs:range xsd:string ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty rdf:type ;
+        owl:hasValue 'Fortran' ;
+        rdfs:range xsd:string ] .
+hpc:Executable a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty rdf:type ;
+        owl:hasValue 'UnixExecutable' ;
+        rdfs:range xsd:string ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty rdf:type ;
+        owl:hasValue 'WindowsExecutable' ;
+        rdfs:range xsd:string ] .
+hpc:Executable a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty rdf:type ;
+        owl:hasValue 'BatchFile' ;
+        rdfs:range xsd:string ] .
+hpc:Checkpointablejob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+hpc:Checkpointablejob a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty hpc:hasCheckpointExecutable ;
+        rdfs:range hpc:Checkpointableapplication ] .

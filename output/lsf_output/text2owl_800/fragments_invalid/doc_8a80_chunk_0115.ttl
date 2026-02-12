@@ -1,0 +1,77 @@
+hpc:Cluster a owl:Class .
+hpc:Job a owl:Class .
+hpc:User a owl:Class .
+hpc:Host a owl:Class .
+hpc:License a owl:Class .
+hpc:Token a owl:Class .
+hpc:Feature a owl:Class .
+
+hpc:hasCluster rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Cluster .
+
+hpc:hasUser rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:User .
+
+hpc:hasHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+
+hpc:hasLicense rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:License .
+
+hpc:hasToken rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:License ;
+    rdfs:range hpc:Token .
+
+hpc:hasFeature rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Token ;
+    rdfs:range hpc:Feature .
+
+hpc:isInUse rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Token ;
+    rdfs:range xsd:boolean .
+
+hpc:hasRusage rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:ClusterMode a owl:Class ;
+    rdfs:subClassOf hpc:Cluster .
+
+hpc:DetailedInformation a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:SummarizedInformation a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:SingleUser a owl:Class ;
+    rdfs:subClassOf hpc:DetailedInformation .
+
+hpc:TokenExcess a owl:Class ;
+    rdfs:subClassOf hpc:Token .
+
+hpc:LongFormat a owl:Class ;
+    rdfs:subClassOf hpc:DetailedInformation .
+
+hpc:jobId a owl:DatatypeProperty ;
+    rdfs:domain hpc:DetailedInformation ;
+    rdfs:range xsd:string .
+
+hpc:userName a owl:DatatypeProperty ;
+    rdfs:domain hpc:SingleUser ;
+    rdfs:range xsd:string .
+
+hpc:tokenNames a owl:DatatypeProperty ;
+    rdfs:domain hpc:LongFormat ;
+    rdfs:range xsd:string .
+
+hpc:clusterName a owl:DatatypeProperty ;
+    rdfs:domain hpc:ClusterMode ;
+    rdfs:range xsd:string .
+
+hpc:jobIdAndUserName a owl:DatatypeProperty ;
+    rdfs:domain hpc:DetailedInformation ;
+    rdfs:

@@ -1,0 +1,21 @@
+hpc:Processaffinitybindingoption a owl:Class.
+hpc:Controloption a owl:Class.
+hpc:Highlevelaffinitybindingoption a owl:Class.
+hpc:Taskdistributionoption a owl:Class.
+hpc:Memoryresource a owl:Class.
+hpc:Nodeselectionoption a owl:Class.
+hpc:Socket a owl:Class.
+hpc:Core a owl:Class.
+hpc:Thread a owl:Class.
+hpc:SNumber a xsd:nonNegativeInteger.
+hpc:CNumber a xsd:nonNegativeInteger.
+hpc:TNumber a xsd:nonNegativeInteger.
+hpc:MemAmount a xsd:nonNegativeInteger.
+hpc:distribution a owl:ObjectProperty.
+hpc:hassocket a owl:ObjectProperty.
+hpc:hascore a owl:ObjectProperty.
+hpc:hasthread a owl:ObjectProperty.
+hpc:hasmemoryamount a owl:DatatypeProperty.
+hpc:Hasnodeselectionoption rdfs:domain hpc:Nodeselectionoption;
+    rdfs:range hpc:Nodeselectionoption.
+hpc:Hashighlevel

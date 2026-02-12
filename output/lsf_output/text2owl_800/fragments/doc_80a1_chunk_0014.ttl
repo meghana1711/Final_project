@@ -1,0 +1,64 @@
+hpc:Load
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Project ] ;
+    rdfs:range [ rdf:type hpc:Datafile ] ;
+    rdfs:comment "The action of loading a data file." .
+
+hpc:Assets
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A list of assets in a project." .
+
+hpc:DeploymentSpace
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A space for deploying projects." .
+
+hpc:CreateDeploymentSpace
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Mainwatsonstudioconsole ] ;
+    rdfs:range [ rdf:type hpc:Deploymentspace ] ;
+    rdfs:comment "The action of creating a deployment space." .
+
+hpc:SpaceDetailsPage
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "The page displaying details of a deployment space." .
+
+hpc:SpaceGUID
+    a owl:DatatypeProperty ;
+    rdfs:domain [ rdf:type hpc:Spacedetailspage ] ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The unique identifier of a deployment space." .
+
+hpc:IBMCloudAPIKey
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "An API key from the IBM Cloud dashboard." .
+
+hpc:GenerateAPIKey
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Ibmclouddashboard ] ;
+    rdfs:range [ rdf:type hpc:Ibmcloudapikey ] ;
+    rdfs:comment "The action of generating an API key." .
+
+hpc:Access
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "The IBM Cloud access management system." .
+
+hpc:IAM
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type hpc:Access ] ;
+    rdfs:comment "The Identity and Access Management system in IBM Cloud." .
+
+hpc:APIKeys
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type hpc:Iam ] ;
+    rdfs:comment "The API keys management system in IBM Cloud." .
+
+hpc:CreateAPIKey
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Apikeys ] ;
+    rdfs:range [ rdf:type hpc:Ibmcloudapikey ] ;
+    rdfs:comment "The action of creating an API key." .

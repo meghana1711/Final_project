@@ -1,0 +1,24 @@
+hpc:LSFEvent
+    a owl:Class ;
+    rdfs:subClassOf hpc:Eventgeneration .
+
+hpc:CustomEventProgram
+    a owl:Class ;
+    rdfs:subClassOf hpc:Lsfevent .
+
+hpc:SNMPTrapProgram
+    a owl:Class ;
+    rdfs:subClassOf hpc:Lsfevent .
+
+hpc:LSF_EVENT_RECEIVER
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfevent ;
+    rdfs:range xsd:string .
+
+hpc:eventArguments
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Customeventprogram .
+
+hpc:LSF_EVENT_RECEIVER_VALUE
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string .

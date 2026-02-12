@@ -1,0 +1,56 @@
+hpc:Daemon a owl:Class .
+hpc:Logfile a owl:Class .
+hpc:hostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string .
+hpc:loglevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logentry ;
+    rdfs:range xsd:string .
+hpc:processid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logentry ;
+    rdfs:range xsd:positiveInteger .
+hpc:threadid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logentry ;
+    rdfs:range xsd:positiveInteger .
+hpc:action a owl:ObjectProperty ;
+    rdfs:domain hpc:Logentry ;
+    rdfs:range hpc:Action .
+hpc:description a owl:ObjectProperty ;
+    rdfs:domain hpc:Logentry ;
+    rdfs:range xsd:string .
+hpc:Esc a hpc:Daemon ;
+    hpc:Logfile hpc:esclog .
+hpc:Named a hpc:Daemon .
+hpc:Pem a hpc:Daemon .
+hpc:VemKd a hpc:Daemon .
+hpc:Wsg a hpc:Daemon .
+hpc:EscLog a hpc:LogFile ;
+    rdfs:subClassOf hpc:Logfile ;
+    hpc:Logfilelocation hpc:escloglocation .
+hpc:NamedLog a hpc:LogFile .
+hpc:PemLog a hpc:LogFile .
+hpc:VemKdLog a hpc:LogFile .
+hpc:WsgLog a hpc:LogFile ;
+    rdfs:subClassOf hpc:Logfile ;
+    hpc:Logfilelocation hpc:wsgloglocation .
+hpc:EsdLog a hpc:LogFile ;
+    rdfs:subClassOf hpc:Logfile ;
+    hpc:Logfilelocation hpc:esdloglocation .
+hpc:Escloglocation a owl:Class ;
+    rdfs:subClassOf hpc:Logfilelocation ;
+    hpc:Os rdfs:range xsd:string ;
+    hpc:Clustername rdfs:range xsd:string ;
+    hpc:Eservice rdfs:range xsd:string ;
+    hpc:Esc rdfs:range xsd:string ;
+    hpc:Log rdfs:range xsd:string .
+hpc:Wsgloglocation a owl:Class ;
+    rdfs:subClassOf hpc:Logfilelocation ;
+    hpc:Os rdfs:range xsd:string ;
+    hpc:Clustername rdfs:range xsd:string ;
+    hpc:Eservice rdfs:range xsd:string ;
+    hpc:Wsg rdfs:range xsd:string .
+hpc:Esdloglocation a owl:Class ;
+    rdfs:subClassOf hpc:Logfilelocation ;
+    hpc:Os rdfs:range xsd:string ;
+    hpc:Clustername rdfs:range xsd:string ;
+    hpc:Eservice rdfs:range x

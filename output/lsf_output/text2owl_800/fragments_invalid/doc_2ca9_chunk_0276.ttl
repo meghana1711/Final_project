@@ -1,0 +1,57 @@
+hpc:Lsfversion101Fp9 a owl:Class .
+
+hpc:gpurequirements a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101Fp9 ;
+    rdfs:range rdf:List ;
+        rdf:first hpc:MPSValue ;
+        rdf:rest hpc:GPURequirement .
+
+hpc:mpsvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirements ;
+    rdfs:range xsd:string .
+
+hpc:Mpsvalueshare a owl:Class ;
+    rdfs:subClassOf hpc:Mpsvalue ;
+    rdfs:comment "Indicates MPS daemon sharing for the host, socket, or GPU." .
+
+hpc:Gpurequirement a owl:Class ;
+    rdfs:subClassOf hpc:Mpsvalue ;
+    rdfs:comment "Specifies the number of GPUs per task or per host." .
+
+hpc:gpuspertask a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies the number of GPUs per task." .
+
+hpc:gpusperhost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies the number of GPUs per host." .
+
+hpc:lsfDataBsubChksum a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101Fp9 ;
+    rdfs:range rdf:Boolean ;
+    rdfs:comment "Enables the bsub and bmod commands to perform a full sanity check on the files and folders for jobs with a data requirement." .
+
+hpc:jobexitstatus a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101Fp9 ;
+    rdfs:range rdf:Boolean ;
+    rdfs:comment "Specifies that the sbatchd daemon sends mail only when the job exits." .
+
+hpc:lsbBjobsFormat a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101Fp9 ;
+    rdfs:range rdf:List ;
+        rdf:first hpc:AskHosts ;
+        rdf:rest rdf:PlainLiteral .
+
+hpc:Askhosts a owl:Class ;
+    rdfs:subClassOf rdf:PlainLiteral ;
+    rdfs:comment "Shows the list of requested hosts as specified by the bsub -m command option." .
+
+hpc:swapthreshold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfversion101Fp9 ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Allows excluding the swap threshold from memory limit enforcement." .
+
+hpc:datahosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101Fp9 ;

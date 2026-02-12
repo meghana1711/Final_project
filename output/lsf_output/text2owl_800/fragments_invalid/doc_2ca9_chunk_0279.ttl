@@ -1,0 +1,64 @@
+hpc:Lsfversion101Fp11 a owl:Class .
+hpc:displayunitprefix a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101Fp11 ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf rdf:Property .
+
+hpc:Resourcefield a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+hpc:memResourceField a hpc:resourceField ;
+    rdfs:subClassOf hpc:Resourcefield ;
+    rdfs:subClassOf hpc:Field .
+hpc:memLimitResourceField a hpc:memResourceField ;
+    rdfs:subClassOf hpc:Resourcefield ;
+    rdfs:subClassOf hpc:Field .
+hpc:swapResourceField a hpc:resourceField ;
+    rdfs:subClassOf hpc:Resourcefield ;
+    rdfs:subClassOf hpc:Field .
+hpc:hrusageResourceField a hpc:resourceField ;
+    rdfs:subClassOf hpc:Resourcefield ;
+    rdfs:subClassOf hpc:Field ;
+    rdfs:subPropertyOf hpc:displayUnitPrefix .
+
+hpc:defaultwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcefield ;
+    rdfs:range xsd:integer .
+
+hpc:remoteconnectionrefusal a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101Fp11 ;
+    rdfs:range hpc:Command .
+
+hpc:lsfGpuResourceIgnore a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101Fp11 ;
+    rdfs:range hpc:Boolean .
+
+hpc:lsfGpuResourceRemoval a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101Fp11 ;
+    rdfs:range hpc:Managementhostlim .
+
+hpc:gpuPreemption a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101Fp11 ;
+    rdfs:range hpc:Resource .
+
+hpc:nongpujobpreemption a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuPreemption ;
+    rdfs:range hpc:Job .
+
+hpc:gpujobpreemption a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuPreemption ;
+    rdfs:range hpc:Job .
+
+hpc:jobmigrationconfig a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpujob ;
+    rdfs:range hpc:Jobconfiguration .
+
+hpc:jobrerunconfig a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpujob ;
+    rdfs:range hpc:Jobconfiguration .
+
+hpc:jobrequeueconfig a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpujob ;
+    rdfs:range hpc:Jobconfiguration .
+
+hpc:gpujobmode a owl:DatatypeProperty ;
+    rdfs:

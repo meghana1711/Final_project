@@ -1,0 +1,16 @@
+hpc:Slurmcontroller a owl:Class .
+hpc:Partition a owl:Class .
+hpc:Topology a owl:Class .
+hpc:clusterDefaultTopology rdf:type hpc:Topology ;
+    rdfs:comment "Default topology used by Slurm when no topology is explicitly specified for a partition." .
+
+hpc:usestopology a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmcontroller ;
+    rdfs:range hpc:Partition .
+
+hpc:haspartitiontopology a owl:ObjectProperty ;
+    rdfs:domain hpc:Partition .
+
+hpc:Topology rdfs:subClassOf rdf:Resource .
+hpc:Partition rdfs:subClassOf rdf:Resource .
+hpc:Slurmcontroller rdfs:subClassOf rdf:Resource .

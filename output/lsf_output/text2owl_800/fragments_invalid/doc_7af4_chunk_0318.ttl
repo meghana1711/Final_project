@@ -1,0 +1,29 @@
+hpc:Jobpostproctimeout a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "JOB_POSTPROC_TIMEOUT value in the receiving cluster applies to the job in the MultiCluster job forwarding model.";
+    rdfs:comment "In the MultiCluster job lease model, the JOB_POSTPROC_TIMEOUT value applies to jobs running on remote leased hosts as if they were running on local hosts.";
+    rdfs:comment "When running host-based post execution processing, set JOB_POSTPROC_TIMEOUT to a value that gives the process enough time to run.";
+    rdfs:comment "Default 2147483647 (Unlimited; post-execution processing does not time out.)";
+    rdfs:domain lsb:ApplicationProfile ;
+    rdfs:domain lsb:Params ;
+    rdfs:range xsd:integer ;
+    rdfs:range xsd:nonNegativeInteger ;
+
+hpc:Jobpreproctimeout a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Specify a timeout in minutes for job pre-execution processing.";
+    rdfs:domain lsb:ApplicationProfile ;
+    rdfs:domain lsb:Params ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:range xsd:integer ;
+    rdfs:subPropertyOf hpc:Timeout ;
+
+hpc:timeout a owl:ObjectProperty ;
+    rdfs:domain lsb:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "A timeout value for a job.";
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A job in the LSF environment.";

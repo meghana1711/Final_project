@@ -1,0 +1,21 @@
+hpc:Denyaction a owl:Class .
+hpc:actionUnknown a owl:DatatypeProperty .
+hpc:Denyaction rdfs:subClassOf owl:Thing .
+hpc:ActionUnknown rdfs:domain hpc:Denyaction ;
+                    rdfs:range xsd:string .
+
+hpc:Newestjob a owl:Class .
+hpc:System rdfs:domain hpc:Newestjob ;
+             rdfs:range xsd:string .
+hpc:Cgroup rdfs:domain hpc:Newestjob ;
+           rdfs:range xsd:string .
+hpc:Mtime rdfs:domain hpc:Newestjob ;
+           rdfs:range xsd:dateTime .
+hpc:Newestjob rdfs:subClassOf owl:Thing .
+
+hpc:Pickjobaction a owl:Class .
+hpc:System rdfs:domain hpc:Pickjobaction ;
+             rdfs:range xsd:string .
+hpc:Pickjob rdfs:domain hpc:Pickjobaction ;
+            rdfs:range hpc:Newestjob .
+hpc:Pickjobaction rdfs:subClassOf owl:Thing .

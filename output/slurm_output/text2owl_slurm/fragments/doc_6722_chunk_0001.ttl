@@ -1,0 +1,37 @@
+hpc:Persistentburstbufferdirective a owl:Class .
+hpc:Heterogeneousjobsupport a owl:Class .
+hpc:Commandlinejoboptions a owl:Class .
+hpc:Datawarp a owl:Class .
+hpc:Lua a owl:Class .
+hpc:Symbolreplacement a owl:Class .
+hpc:Statuscommands a owl:Class .
+hpc:Advancedreservations a owl:Class .
+hpc:Jobdependencies a owl:Class .
+hpc:Burstbufferstate a owl:Class .
+hpc:Jobstate a owl:Class .
+
+hpc:haspersistentburstbufferdirective a owl:ObjectProperty .
+hpc:supportsheterogeneousjobs a owl:ObjectProperty .
+hpc:hascommandlinejoboptions a owl:ObjectProperty .
+hpc:usesdatawarp a owl:ObjectProperty .
+hpc:useslua a owl:ObjectProperty .
+hpc:performssymbolreplacement a owl:ObjectProperty .
+hpc:issuesstatuscommands a owl:ObjectProperty .
+hpc:hasadvancedreservations a owl:ObjectProperty .
+hpc:hasjobdependencies a owl:ObjectProperty .
+
+hpc:Burstbufferstate rdfs:subClassOf hpc:Jobstate .
+
+hpc:Datawarp rdfs:subClassOf hpc:Persistentburstbufferdirective .
+hpc:Lua rdfs:subClassOf hpc:Persistentburstbufferdirective .
+
+hpc:Hasburstbufferstate rdfs:domain hpc:Job .
+hpc:Hasburstbufferstate rdfs:range hpc:Burstbufferstate .
+hpc:Supportsheterogeneousjobs rdfs:domain hpc:Persistentburstbufferdirective .
+hpc:Hascommandlinejoboptions rdfs:domain hpc:Persistentburstbufferdirective .
+hpc:Usesdatawarp rdfs:domain hpc:Datawarp .
+hpc:Useslua rdfs:domain hpc:Lua .
+hpc:Performssymbolreplacement rdfs:domain hpc:Symbolreplacement .
+hpc:Issuesstatuscommands rdfs:domain hpc:Statuscommands .
+hpc:Hasadvancedreservations rdfs:domain hpc:Persistentburstbufferdirective .
+hpc:Hasjobdependencies rdfs:domain hpc:Persistentburstbufferdirective .

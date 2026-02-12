@@ -1,0 +1,79 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a job in a high-performance computing system." .
+
+hpc:submittedfrom a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+
+hpc:submittedto a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queue .
+
+hpc:cwd a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:user a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:project a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:command a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:requestedresources a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:dispatchedto a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Node .
+
+hpc:starting a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:pid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:runningwith a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Execution .
+
+hpc:Execution a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents the execution of a job on a specific node." .
+
+hpc:executionhome a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:string .
+
+hpc:executioncwd a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:string .
+
+hpc:executionpid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:integer .
+
+hpc:donesuccessfully a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:exited a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:historylogfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:numlogfiles a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhistcommand ;
+    rdfs:

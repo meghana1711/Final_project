@@ -1,0 +1,35 @@
+hpc:Sbatchdaemon a owl:Class .
+hpc:starts a owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchdaemon ;
+    rdfs:range rdf:Resource .
+hpc:HostName rdfs:domain hpc:Sbatchdaemon ;
+    rdfs:range xsd:string .
+hpc:all rdf:type owl:NamedIndividual ;
+    hpc:Ishost hpc:allhosts .
+hpc:Allhosts a owl:Class .
+hpc:isHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Namedindividual ;
+    rdfs:range hpc:Host .
+hpc:Host a owl:Class .
+
+hpc:limshutdown a owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchdaemon ;
+    rdfs:range rdf:Resource .
+hpc:Localhost rdfs:domain hpc:Limshutdown ;
+    rdfs:range xsd:boolean .
+hpc:all rdf:type owl:NamedIndividual ;
+    hpc:Ishost hpc:allhosts .
+
+hpc:resshutdown a owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchdaemon ;
+    rdfs:range rdf:Resource .
+hpc:Localhost rdfs:domain hpc:Resshutdown ;
+    rdfs:range xsd:boolean .
+hpc:all rdf:type owl:NamedIndividual ;
+    hpc:Ishost hpc:allhosts .
+
+hpc:fOption rdf:type owl:NamedIndividual .
+hpc:requiresSudoer rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Foption ;
+    rdfs:range hpc:User .
+hpc:User a owl:Class .

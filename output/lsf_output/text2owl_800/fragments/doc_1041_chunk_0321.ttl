@@ -1,0 +1,42 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a job in the HPC system." .
+
+hpc:ExceptionStatus a owl:Enum ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Possible values for the exception status of a job." ;
+    rdfs:member hpc:idle ;
+    rdfs:member hpc:overrun ;
+    rdfs:member hpc:underrun .
+
+hpc:Idle a owl:Class ;
+    rdfs:comment "The job is consuming less CPU time than expected." .
+
+hpc:Overrun a owl:Class ;
+    rdfs:comment "The job is running longer than the number of minutes specified by the JOB_OVERRUN threshold for the queue." .
+
+hpc:Underrun a owl:Class ;
+    rdfs:comment "The job finished sooner than the number of minutes specified by the JOB_UNDERRUN threshold for the queue." .
+
+hpc:Requestedresources a owl:Class ;
+    rdfs:comment "Shows all the resource requirement strings you specified in the bsub command." .
+
+hpc:executionrusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Executionrusagevalue ;
+    rdfs:comment "This is shown if the combined RES_REQ has an rusage or || construct. The chosen alternative will be denoted here." .
+
+hpc:synchronousexecution a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Job was submitted with the -K option. LSF submits the job and waits for the job to complete." .
+
+hpc:jobdescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The job description assigned by the user. This field is omitted if no job description has been assigned." .
+
+hpc:memoryusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Memoryusagevalue ;
+    rdfs:comment "Displays peak memory usage and average memory usage." .

@@ -1,0 +1,63 @@
+hpc:projectnamemaxlength a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Maximum length of the project name in LSF." .
+
+hpc:defaultprojectparameter a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Projectname ;
+    rdfs:comment "Parameter for the default project in LSF." .
+
+hpc:projectnameinlsbparams a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Projectname ;
+    rdfs:comment "Project name specified in the lsb.params file." .
+
+hpc:environmentvariableprojectname a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Projectname ;
+    rdfs:comment "Project name specified as an environment variable." .
+
+hpc:Bsubcommand a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "Command for submitting jobs in LSF." .
+
+hpc:Projectnamesizeincrease a owl:Class ;
+    rdfs:subClassOf owl:Change ;
+    rdfs:comment "Increase in the maximum length of project names in LSF." .
+
+# Cluster-wide DNS host cache
+hpc:lsfdnshostcache a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Configuration for enabling the cluster-wide DNS host cache in LSF." .
+
+hpc:lsfconffile a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Configuration file for LSF." .
+
+hpc:Sharedconfigurationfilecontent a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "Content of a shared configuration file in LSF." .
+
+hpc:includedirective a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Directive for including content from another file in a configuration file." .
+
+hpc:Timebasedconfiguration a owl:Class ;
+    rdfs:subClassOf hpc:Sharedconfigurationfilecontent ;
+    rdfs:comment "Configuration that uses different configurations for different times." .
+
+# Showing the pending reason for interactive jobs
+hpc:Interactivejobpendingreason a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "Pending reason for interactive jobs in LSF." .
+
+hpc:bsubicommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsubcommand ;
+    rdfs:range hpc:Interactivejobpendingreason ;
+    rdfs:comment "Command for displaying the pending reason for interactive jobs." .
+
+hpc:lsbbjobspendreasonlevel a owl:DatatypeProperty ;

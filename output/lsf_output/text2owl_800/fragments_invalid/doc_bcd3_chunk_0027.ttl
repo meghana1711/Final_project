@@ -1,0 +1,20 @@
+hpc:Numericinc a owl:Class .
+hpc:pagingrate a owl:DatatypeProperty;
+    rdfs:domain hpc:Numericinc;
+    rdfs:range xsd:decimal .
+hpc:diskiorate a owl:DatatypeProperty;
+    rdfs:domain hpc:Numericinc;
+    rdfs:range xsd:decimal .
+hpc:numberofloginsessions a owl:DatatypeProperty;
+    rdfs:domain hpc:Numericinc;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:idletime a owl:DatatypeProperty;
+    rdfs:domain hpc:Numericinc;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:diskspaceintmp a owl:DatatypeProperty;
+    rdfs:domain hpc:Numericinc;
+    rdfs:range xsd:decimal .
+hpc:availableswap a owl:DatatypeProperty;
+    rdfs:domain hpc:Numericinc;
+    rdfs:range xsd:decimal .
+hpc:availablememory a owl:

@@ -1,0 +1,62 @@
+hpc:Distributionpolicyviolation a owl:Class ;
+    rdfs:subClassOf hpc:Violation .
+
+hpc:distributionpolicyviolationaction a owl:ObjectProperty ;
+    rdfs:domain hpc:Distributionpolicyviolation ;
+    rdfs:range rdf:Seq ;
+        rdf:first hpc:Period ;
+        rdf:rest rdf:List ;
+            rdf:first hpc:Cmd .
+
+hpc:period a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:cmd a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:Licensescheduler a owl:Class .
+
+hpc:Workload a owl:Class ;
+    rdfs:subClassOf hpc:Task ;
+    rdfs:subClassOf hpc:Resourceconsumer ;
+    rdfs:subClassOf hpc:Namedthing ;
+    rdfs:subClassOf hpc:Entity ;
+
+hpc:Lsfworkload a owl:Class ;
+    rdfs:subClassOf hpc:Workload .
+
+hpc:Servicedomain a owl:Class ;
+    rdfs:subClassOf hpc:Resourceprovider ;
+    rdfs:subClassOf hpc:Namedthing ;
+    rdfs:subClassOf hpc:Entity ;
+
+hpc:Licenseserver a owl:Class ;
+    rdfs:subClassOf hpc:Servicedomain .
+
+hpc:LicenseServer1 a hpc:LicenseServer ;
+    hpc:hasLicenseCount xsd:80 .
+
+hpc:workloadDistribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfworkload ;
+    rdfs:range rdf:Seq ;
+        rdf:first hpc:LSF ;
+        rdf:rest rdf:List ;
+            rdf:first xsd:8 ;
+            rdf:rest rdf:List ;
+                rdf:first hpc:NON_LSF ;
+                rdf:rest rdf:List ;
+                    rdf:first xsd:2 .
+
+hpc:distributionPolicyViolationAction a owl:ObjectProperty ;
+    rdfs:domain hpc:Servicedomain ;
+    rdfs:range rdf:Seq ;
+        rdf:first hpc:Period ;
+        rdf:rest rdf:List ;
+            rdf:first hpc:Cmd .
+
+hpc:ApplicationX a hpc:Application ;
+    hpc:Hasworkload hpc:lsfworkload .
+
+hpc:enableInteractive a owl:ObjectProperty ;
+    rdfs:domain hpc:Servicedomain ;
+    rdfs:range xsd:string .

@@ -1,0 +1,37 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf hpc:Maintenancereservation .
+
+hpc:Overlappingreservation a owl:Class ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:subClassOf hpc:Maintenancereservation ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Reservation ;
+    rdfs:comment "A reservation that does not get logged in the accounting system." .
+
+hpc:Overlap rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Reservation ;
+    rdfs:comment "The flag used to create an overlapping reservation." .
+
+hpc:Reservationnode a owl:Class ;
+    rdfs:subClassOf hpc:Node ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Node ;
+    rdfs:comment "A node reserved for a reservation." .
+
+hpc:Reservationtime a owl:Class ;
+    rdfs:subClassOf xsd:duration ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "The time period a reservation lasts." .
+
+hpc:Advancedreservation a owl:Class ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:subClassOf hpc:Maintenancereservation ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Reservation ;
+    rdfs:comment "An advanced reservation with a start time that remains a fixed period of time in the future." .
+
+hpc:floatingstarttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancedreservation ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "The start time of an advanced reservation that remains a fixed period of time in the future." .

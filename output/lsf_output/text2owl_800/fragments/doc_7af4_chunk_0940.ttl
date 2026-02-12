@@ -1,0 +1,31 @@
+hpc:Feature a owl:Class .
+hpc:clusterdistribution a owl:ObjectProperty .
+hpc:allocbuffer a owl:DatatypeProperty .
+
+hpc:Cluster rdfs:subClassOf rdf:Resource .
+hpc:Feature rdfs:subClassOf rdf:Resource .
+
+hpc:Clusterdistribution rdfs:domain hpc:Feature ;
+                          rdfs:range rdf:List .
+hpc:Allocbuffer rdfs:domain hpc:Feature ;
+                 rdfs:range xsd:nonNegativeInteger .
+
+hpc:Wanservers a owl:Class ;
+              rdfs:subClassOf hpc:Cluster .
+hpc:Default a owl:Class ;
+            rdfs:subClassOf hpc:Cluster .
+hpc:Cl1 a owl:Class ;
+       rdfs:subClassOf hpc:Cluster .
+hpc:Cl2 a owl:Class ;
+       rdfs:subClassOf hpc:Cluster .
+
+hpc:Wan a owl:Class ;
+      rdfs:subClassOf hpc:Cluster .
+hpc:Banff a owl:Class ;
+         rdfs:subClassOf hpc:Cluster .
+hpc:Berlin a owl:Class ;
+         rdfs:subClassOf hpc:Cluster .
+hpc:Boston a owl:Class ;
+         rdfs:subClassOf hpc:Cluster .
+
+hpc:default rdfs:subPropertyOf hpc:AllocBuffer .

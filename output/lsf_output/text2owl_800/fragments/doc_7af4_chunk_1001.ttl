@@ -1,0 +1,49 @@
+hpc:lsTop a owl:DatatypeProperty ;
+    rdfs:domain hpc:Serverhost ;
+    rdfs:range xsd:string .
+
+hpc:Validvalue a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:LS_TOP ;
+                        owl:hasValue "/" ;
+                        owl:allValuesFrom xsd:string ] .
+
+hpc:Recommendedvalue a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:LS_TOP ;
+                        owl:hasValue "/usr/share/ls" ;
+                        owl:allValuesFrom xsd:string ] .
+
+hpc:Defaultvalue a owl:Class .
+
+hpc:Serverconfig a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:hasServerConfig ;
+                        owl:hasValue xsd:string ] .
+
+hpc:hasserverconfig a owl:ObjectProperty ;
+    rdfs:domain hpc:Serverhost .
+
+hpc:Templatelocation a owl:Class .
+
+hpc:Installationscriptdirectory a owl:Class .
+
+hpc:Diskspacerequirement a owl:Class .
+
+hpc:Managementcandidatehost a owl:Class .
+
+hpc:Dynamicserverhost a owl:Class ;
+    rdfs:subClassOf hpc:Serverhost .
+
+hpc:Lsfhost a owl:Class ;
+    rdfs:subClassOf [ a owl:UnionOf ;
+                        owl:members (hpc:ManagementCandidateHost hpc:DynamicServerHost) ] .
+
+hpc:Lsfbinaryfiles a owl:Class ;
+    rdfs:subClassOf hpc:Lsfhost .
+
+hpc:Locallsfconffile a owl:Class ;
+    rdfs:subClassOf hpc:Lsfhost .
+
+hpc:Shellenvironmentscriptfiles a owl:Class ;
+    rdfs:subClassOf hpc:Lsfhost .

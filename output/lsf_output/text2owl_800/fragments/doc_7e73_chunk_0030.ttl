@@ -1,0 +1,30 @@
+hpc:LsfAdmin a owl:Class .
+hpc:lsfTop a owl:DatatypeProperty .
+hpc:lsfAdmins a owl:ObjectProperty .
+hpc:lsfTardir a owl:DatatypeProperty .
+hpc:lsfLicense a owl:DatatypeProperty .
+hpc:lsfServerHosts a owl:ObjectProperty .
+hpc:lsfLocalResources a owl:DatatypeProperty .
+hpc:lsfLimPort a owl:DatatypeProperty .
+
+hpc:LsfAdmin rdfs:domain hpc:Serverconfig .
+hpc:LsfTop rdfs:range xsd:string .
+hpc:LsfAdmins rdfs:range xsd:string .
+hpc:LsfTardir rdfs:range xsd:string .
+hpc:LsfLicense rdfs:range xsd:string .
+hpc:LsfServerHosts rdfs:range xsd:string .
+hpc:LsfLocalResources rdfs:range xsd:string .
+hpc:LsfLimPort rdfs:range xsd:integer .
+
+hpc:LSF_LOCAL_RESOURCES rdfs:subPropertyOf hpc:hasResource .
+hpc:LSF_SERVER_HOSTS rdfs:subPropertyOf hpc:hasServerHost .
+hpc:LSF_LIM_PORT rdfs:subPropertyOf hpc:hasPort .
+
+hpc:Awshost a owl:Class .
+hpc:Definencpusthreads a owl:Class .
+
+hpc:Awshost rdfs:subClassOf hpc:Resource .
+hpc:Definencpusthreads rdfs:subClassOf hpc:Resource .
+
+hpc:AWSHost rdfs:comment "LSF uses the Boolean resource name awshost to identify AWS instances." .
+hpc:DefineNCPUSThreads rdfs:comment "The define_ncpus_threads resource maps the number of LSF ncpus to threads instead of cores for AWS server hosts." .

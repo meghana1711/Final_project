@@ -1,0 +1,30 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       owl:equivalentClass [ rdf:type owl:Restriction ;
+                                             owl:onProperty hpc:hasReservation ;
+                                             owl:allValuesFrom [ rdf:type owl:Class ] ] ] .
+
+hpc:hasreservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Reservation .
+
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                               owl:onProperty hpc:hasStartTime ;
+                                               owl:hasValue [ rdf:type xsd:dateTime ] ]
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty hpc:hasEndTime ;
+                                             owl:hasValue [ rdf:type xsd:dateTime ] ]
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty hpc:hasAssignedJobs ;
+                                             owl:cardinalityMinimum 1 ] ) ] .
+
+hpc:hasstarttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation .
+
+hpc:hasendtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation .
+
+hpc:hasassignedjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation .

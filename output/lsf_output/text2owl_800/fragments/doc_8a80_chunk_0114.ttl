@@ -1,0 +1,47 @@
+hpc:cputime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Total accumulated CPU time of all processes in a task, in seconds." .
+
+hpc:memory a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:Memoryusage ;
+    rdfs:comment "Total resident memory usage of all processes in a task, in KB." .
+
+hpc:virtualmemory a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Total virtual memory usage of all processes in a task, in KB." .
+
+hpc:idletime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "Time at which the task became idle." .
+
+hpc:resourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The resource requirement of the task." .
+
+hpc:commandline a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The command the LSF License Scheduler task manager is running." .
+
+hpc:Blusers a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Displays license usage information for LSF License Scheduler." .
+
+hpc:bluserssynopsis a owl:ObjectProperty ;
+    rdfs:domain hpc:Blusers ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Synopsis of blusers command." .
+
+hpc:Blusersoption a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "An option for the blusers command." .
+
+hpc:blusersoptionvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blusersoption ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The value of a blusers command option." .

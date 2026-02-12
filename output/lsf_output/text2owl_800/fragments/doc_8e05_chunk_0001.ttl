@@ -1,0 +1,48 @@
+hpc:Dlmgrpro a owl:Class .
+hpc:hasfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Dlmgrpro ;
+    rdfs:range hpc:File .
+
+hpc:File a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:unionOf (hpc:TarFile hpc:ZipFile) ] .
+
+hpc:Tarfile a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf hpc:File ;
+        rdfs:subPropertyOf hpc:hasFile ;
+        rdfs:range hpc:Tarfiledata ] .
+
+hpc:Zipfile a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf hpc:File ;
+        rdfs:subPropertyOf hpc:hasFile ;
+        rdfs:range hpc:Zipfiledata ] .
+
+hpc:tarfiledata a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tarfile .
+
+hpc:zipfiledata a owl:DatatypeProperty ;
+    rdfs:domain hpc:Zipfile .
+
+hpc:size a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:integer .
+
+hpc:sha a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+
+hpc:path a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+
+hpc:runsha1check a owl:ObjectProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range hpc:Sha1check .
+
+hpc:Sha1check a owl:Class .

@@ -1,0 +1,70 @@
+hpc:Gpucluster a owl:Class .
+hpc:Host a owl:Class .
+hpc:Gpu a owl:Class .
+hpc:Gpumodel a owl:Class .
+hpc:Gpustatus a owl:Class .
+hpc:Gpuerror a owl:Class .
+hpc:Gpuecc a owl:Class .
+hpc:Gpumode a owl:Class .
+hpc:Gpumemory a owl:Class .
+hpc:Gpumemoryusage a owl:Class .
+hpc:Gpupower a owl:Class .
+hpc:Gpumemorytotal a owl:Class .
+hpc:Gpumemoryused a owl:Class .
+hpc:Gpupstate a owl:Class .
+hpc:Gpunumid a owl:Class .
+hpc:Gpunumaid a owl:Class .
+hpc:Gpuvendor a owl:Class .
+
+# Object Properties
+hpc:hasGPUCluster rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Gpucluster .
+
+hpc:hasGPU rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Gpu .
+
+hpc:hasGPUModel rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range hpc:Gpumodel .
+
+hpc:hasStatus rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range hpc:Gpustatus .
+
+hpc:hasError rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range hpc:Gpuerror .
+
+hpc:hasECC rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range hpc:Gpuecc .
+
+hpc:hasMode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range hpc:Gpumode .
+
+hpc:hasTemp rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range xsd:float .
+
+hpc:hasUT rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range xsd:float .
+
+hpc:hasMTotal rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Gpumemory ;
+    rdfs:range xsd:float .
+
+hpc:hasMUsed rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Gpumemory ;
+    rdfs:range xsd:float .
+
+hpc:hasPState rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range hpc:Gpupstate .
+
+hpc:hasNumID rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range hpc:Gpunumid .

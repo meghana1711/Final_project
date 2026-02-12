@@ -1,0 +1,63 @@
+hpc:ApplicationProfile
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents an application profile that overrides queue-level job rerun and allows submission of re-runnable jobs." .
+
+hpc:Job
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a job that can be re-run." .
+
+hpc:Queue
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a queue where jobs can be submitted." .
+
+hpc:Rerunnable
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a job or queue that is re-runnable." .
+
+hpc:ResourceRequirement
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the resource requirements for a job." .
+
+hpc:SimpleResourceRequirement
+    a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement ;
+    rdfs:comment "Represents a simple resource requirement for all slots." .
+
+hpc:CompoundResourceRequirement
+    a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement ;
+    rdfs:comment "Represents a compound resource requirement for specified numbers of slots." .
+
+hpc:hasResourceRequirement
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resourcerequirement ;
+    rdfs:comment "Indicates the resource requirement of a job." .
+
+hpc:estimatedRunTime
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "Represents the estimated run time for a job." .
+
+hpc:runtimeLimit
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "Represents the runtime limit for a job." .
+
+hpc:hasEnvironmentVariable
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range hpc:Environmentvariable ;
+    rdfs:comment "Indicates the environment variable of an application profile." .
+
+hpc:EnvironmentVariable
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents an environment variable that can be used to pass application-specific tuning and runtime parameters to the application." .

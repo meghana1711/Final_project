@@ -1,0 +1,26 @@
+hpc:Usertool a owl:Class .
+hpc:srun a hpc:UserTool ;
+    rdfs:comment "Initiate jobs" ;
+    rdfs:domain hpc:Usertool .
+
+hpc:scancel a hpc:UserTool ;
+    rdfs:comment "Terminate queued or running jobs" ;
+    rdfs:domain hpc:Usertool .
+
+hpc:sinfo a hpc:UserTool ;
+    rdfs:comment "Report system status" ;
+    rdfs:domain hpc:Usertool .
+
+hpc:squeue a hpc:UserTool ;
+    rdfs:comment "Report the status of jobs" ;
+    rdfs:domain hpc:Usertool .
+
+hpc:sacct a hpc:UserTool ;
+    rdfs:comment "Get information about jobs and job steps that are running or have completed" ;
+    rdfs:domain hpc:Usertool .
+
+hpc:sview a hpc:UserTool ;
+    rdfs:comment "Graphically reports system and job status including network topology" ;
+    rdfs:domain hpc:Usertool .
+
+hpc:Scontrol a

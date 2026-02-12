@@ -1,0 +1,4 @@
+hpc:Hostname a owl:Class .
+hpc:hasHostnameStripppedSuffix a rdfs:Property ;
+    rdfs:domain hpc:Hostname ;
+    rdfs:range xsd:string .

@@ -1,0 +1,50 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Job a owl:Class .
+hpc:Group a owl:Class .
+hpc:Jobgroup a owl:Class .
+hpc:Jobgroup hpc:hasjob hpc:Job .
+hpc:Job hpc:hasnjobs xsd:integer .
+hpc:Job hpc:haspend xsd:integer .
+hpc:Job hpc:hasrun xsd:integer .
+hpc:Job hpc:hasssusp xsd:integer .
+hpc:Job hpc:hasususp xsd:integer .
+hpc:Job hpc:hasfinish xsd:integer .
+hpc:Job hpc:hassla xsd:integer .
+hpc:Job hpc:hasjlimit xsd:integer .
+hpc:Job hpc:hasowner rdf:PlainLiteral .
+hpc:Group hpc:hasnslots xsd:integer .
+hpc:Group hpc:haspend xsd:integer .
+hpc:Group hpc:hasrun xsd:integer .
+hpc:Group hpc:hasssusp xsd:integer .
+hpc:Group hpc:hasususp xsd:integer .
+hpc:Group hpc:hasrsv xsd:integer .
+hpc:Group hpc:hassla xsd:integer .
+hpc:Group hpc:hasowner rdf:PlainLiteral .
+
+hpc:Jobgroup rdfs:subClassOf hpc:Group .
+hpc:Jobgroup hpc:hasjobslot hpc:Job .
+hpc:JobSlot rdf:type rdf:List .
+hpc:Jobslot hpc:hasjob hpc:Job .
+
+hpc:Jobgroup rdfs:subClassOf hpc:Group .
+hpc:Jobgroup hpc:hasjobslot hpc:Job .
+hpc:JobSlot rdf:type rdf:List .
+hpc:Jobslot hpc:hasjob hpc:Job .
+
+hpc:Jobgroup rdfs:subClassOf hpc:Group .
+hpc:Jobgroup hpc:hasjob hpc:Job .
+hpc:Job hpc:hasnjobs xsd:integer .
+hpc:Job hpc:haspend xsd:integer .
+hpc:Job hpc:hasrun xsd:integer .
+hpc:Job hpc:hasssusp xsd:integer .
+hpc:Job hpc:hasususp xsd:integer .
+hpc:Job hpc:hasfinish xsd:integer .
+hpc:Job hpc:hassla xsd:integer .
+hpc:Job hpc:hasjlimit xsd:integer .
+hpc:Job hpc:hasowner rdf:PlainLiteral .
+
+hpc:Jobgroup rdfs:subClassOf hpc:Group .

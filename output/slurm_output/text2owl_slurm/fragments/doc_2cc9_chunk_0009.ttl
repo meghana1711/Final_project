@@ -1,0 +1,10 @@
+hpc:waittime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Device ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "A value of zero indicates unlimited wait." .
+
+hpc:Unlimitedwait a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:WaitTime ;
+                        owl:hasValue 0 ;
+                        owl:allValuesFrom xsd:nonNegativeInteger ] .

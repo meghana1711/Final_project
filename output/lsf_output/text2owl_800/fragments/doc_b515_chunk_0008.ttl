@@ -1,0 +1,48 @@
+hpc:Blaunch a owl:Class .
+hpc:SubmitsJobs rdfs:domain hpc:Blaunch ;
+    rdfs:range hpc:Job .
+
+hpc:UsesBsub rdfs:domain hpc:Blaunch ;
+    rdfs:range xsd:Boolean .
+
+hpc:AssumesOneTaskPerSlot rdfs:domain hpc:Blaunch ;
+    rdfs:range xsd:Boolean .
+
+hpc:HasOptions rdfs:domain hpc:Blaunch ;
+    rdfs:range hpc:Option .
+
+hpc:Option a owl:Class .
+hpc:HasName rdfs:domain hpc:Option ;
+    rdfs:range xsd:string .
+
+hpc:SupportsOnlySpecificSignals rdfs:domain hpc:Blaunch ;
+    rdfs:range xsd:Boolean .
+
+hpc:SupportedSignals rdfs:domain hpc:Blaunch ;
+    rdfs:range hpc:Signal .
+
+hpc:Signal a owl:Class .
+hpc:HasName rdfs:domain hpc:Signal ;
+    rdfs:range xsd:string .
+
+hpc:RunsOnRemoteHosts rdfs:domain hpc:Blaunch ;
+    rdfs:range hpc:Remotehost .
+
+hpc:Remotehost a owl:Class .
+
+hpc:UsesJobAllocation rdfs:domain hpc:Blaunch ;
+    rdfs:range xsd:Boolean .
+
+hpc:CannotBeUsedStandalone rdfs:domain hpc:Blaunch ;
+    rdfs:range xsd:Boolean .
+
+hpc:UsesCmdExeCForWindows rdfs:domain hpc:Blaunch ;
+    rdfs:range xsd:Boolean .
+
+hpc:RequiresCorrectUserAccountControl rdfs:domain hpc:Blaunch ;
+    rdfs:range xsd:Boolean .
+
+hpc:LaunchesTasksOnRemoteHosts rdfs:subClassOf hpc:Blaunch .
+
+hpc:LaunchesTasksOnRemoteHostsWithJobAllocation rdfs:subClassOf hpc:Launchestasksonremotehosts .
+hpc:LaunchesTasksOnRemoteHostsWithJobAllocation rdfs:subClassOf hpc:Blaunch .

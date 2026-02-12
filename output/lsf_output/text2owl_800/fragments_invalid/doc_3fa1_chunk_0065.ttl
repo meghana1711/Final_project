@@ -1,0 +1,60 @@
+hpc:Serviceclass a owl:Class .
+hpc:hasname a owl:ObjectProperty .
+hpc:goals a owl:DatatypeProperty .
+hpc:accesscontrol a owl:ObjectProperty .
+hpc:autoattach a owl:DatatypeProperty .
+hpc:description a owl:DatatypeProperty .
+
+hpc:Hasname rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:string .
+
+hpc:Goals rdfs:domain hpc:Serviceclass ;
+    rdfs:range rdf:List .
+
+hpc:Accesscontrol rdfs:domain hpc:Serviceclass ;
+    rdfs:range rdf:List .
+
+hpc:Autoattach rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:boolean .
+
+hpc:Description rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:string .
+
+hpc:Guaranteedresourcepool a owl:Class .
+hpc:hasname a owl:ObjectProperty .
+hpc:type a owl:DatatypeProperty .
+hpc:resselect a owl:DatatypeProperty .
+hpc:hosts a owl:ObjectProperty .
+hpc:distribution a owl:DatatypeProperty .
+
+hpc:Hasname rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range xsd:string .
+
+hpc:Type rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range xsd:string .
+
+hpc:Resselect rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range xsd:string .
+
+hpc:Hosts rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range rdf:List .
+
+hpc:Distribution rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range xsd:string .
+
+hpc:PoolType a owl:Enum .
+hpc:PoolType "slots" .
+hpc:PoolType "hosts" .
+hpc:PoolType "package" .
+
+hpc:Resourcepool a owl:Class .
+hpc:hasName rdfs:subPropertyOf hpc:hasName ;
+    rdfs:domain hpc:Resourcepool ;
+    rdfs:range xsd:string .
+
+hpc:hasType rdfs:subPropertyOf hpc:type ;
+    rdfs:domain hpc:Resourcepool ;
+    rdfs:range hpc:Pooltype .
+
+hpc:hasResSelect rdfs:subPropertyOf hpc:resSelect ;
+    rdfs:domain hpc:Resource

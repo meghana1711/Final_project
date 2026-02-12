@@ -1,0 +1,67 @@
+hpc:Clusteradministrator a owl:Class .
+hpc:lsbDockerPassEnvSetting a owl:ObjectProperty .
+hpc:LsbDockerPassEnvSetting rdfs:domain hpc:Clusteradministrator ;
+    rdfs:range xsd:string .
+
+hpc:LsfConfFile a owl:Class .
+
+hpc:Executiondriver a owl:Class ;
+    rdfs:subClassOf hpc:Script .
+
+hpc:Script a owl:Class .
+
+hpc:Jobsubmissionuser a owl:Class .
+
+hpc:LsbConfFile a owl:Class .
+
+hpc:Multiclusterenvironment a owl:Class .
+
+hpc:Forwardedjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Jobarray a owl:Class .
+hpc:jobarrayslotlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Jobarrayjobslotlimit a owl:Class .
+
+hpc:jobarraylimit a owl:ObjectProperty .
+hpc:Jobarraylimit rdfs:domain hpc:Multiclusterenvironment ;
+    rdfs:range hpc:Jobarrayjobslotlimit .
+
+hpc:mcStrictJobidCheckingParameter a owl:ObjectProperty .
+hpc:McStrictJobidCheckingParameter rdfs:domain hpc:LsbParamsFile ;
+    rdfs:range xsd:boolean .
+
+hpc:LsbParamsFile a owl:Class .
+
+hpc:Globaljobidchecking a owl:Class .
+
+hpc:mcStrictJobidCheckingSetting a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globaljobidchecking ;
+    rdfs:range xsd:boolean .
+
+hpc:newMcStrictJobidCheckingParameter a owl:ObjectProperty .
+hpc:NewMcStrictJobidCheckingParameter rdfs:domain hpc:LsbParamsFile ;
+    rdfs:range hpc:Globaljobidchecking .
+
+hpc:lsbEnforceGpuMigJobParameter a owl:ObjectProperty .
+hpc:LsbEnforceGpuMigJobParameter rdfs:domain hpc:LsbParamsFile ;
+    rdfs:range xsd:boolean .
+
+hpc:Dynamichostframework a owl:Class .
+
+hpc:Fixpack15 a owl:Class ;
+    rdfs:subClassOf hpc:Dynamichostframework .
+
+hpc:Efficiency a owl:Class .
+hpc:Performance a owl:Class .
+hpc:Reliability a owl:Class .
+hpc:Supportability a owl:Class .
+
+hpc:Cloudenvironment a owl:Class .
+hpc:LsfResourceConnector a owl:Class .
+
+hpc:Dynamichost a owl:Class .
+hpc:Dynamichost rdfs:subClassOf hpc:Host .

@@ -1,0 +1,44 @@
+hpc:Weight
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:ApsPriority ;
+    rdfs:range xsd:float .
+
+hpc:SubWeight
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Weight ;
+    rdfs:range xsd:float .
+
+hpc:Limit
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:ApsPriority ;
+    rdfs:range xsd:float .
+
+hpc:SubLimit
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Limit ;
+    rdfs:range xsd:float .
+
+hpc:GracePeriod
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:ApsPriority ;
+    rdfs:range xsd:duration .
+
+hpc:Factor
+    a owl:Class ;
+    rdfs:subClassOf hpc:Schedulingfactor .
+
+hpc:SubFactor
+    a owl:Class .
+
+hpc:FS
+    a owl:Class ;
+    rdfs:subClassOf hpc:Factor ;
+    rdfs:subClassOf hpc:Userbasedfactor .
+
+hpc:UserBasedFairShareFactor
+    a owl:Class ;
+    rdfs:subClassOf hpc:Fs .
+
+hpc:DynamicUserPriority
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Userbasedfairsharefactor .

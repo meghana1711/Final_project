@@ -1,0 +1,45 @@
+hpc:Daemon a owl:Class;
+    rdfs:subClassOf owl:Class .
+
+hpc:DaemonConfDir an owl:ObjectProperty;
+    rdfs:domain hpc:Daemon;
+    rdfs:range xsd:string .
+
+hpc:DebugLevel an owl:ObjectProperty;
+    rdfs:domain hpc:Daemon;
+    rdfs:range xsd:string .
+
+hpc:Background an owl:DatatypeProperty;
+    rdfs:domain hpc:Debuglevel;
+    rdfs:range xsd:boolean .
+
+hpc:Foreground an owl:DatatypeProperty;
+    rdfs:domain hpc:Debuglevel;
+    rdfs:range xsd:boolean .
+
+hpc:HostInfo an owl:ObjectProperty;
+    rdfs:domain hpc:Daemon;
+    rdfs:range hpc:Host .
+
+hpc:LinuxKernelVersion2_4 an owl:Class;
+    rdfs:subClassOf hpc:Host .
+
+hpc:RunAsRoot an owl:DatatypeProperty;
+    rdfs:domain hpc:Linuxkernelversion24;
+    rdfs:range xsd:boolean .
+
+hpc:Topology an owl:ObjectProperty;
+    rdfs:domain hpc:Daemon;
+    rdfs:range hpc:Topology .
+
+hpc:NumaNode an owl:Class;
+    rdfs:subClassOf hpc:Topology .
+
+hpc:Socket an owl:Class;
+    rdfs:subClassOf hpc:Topology .
+
+hpc:Core an owl:Class;
+    rdfs:subClassOf hpc:Socket .
+
+hpc:Thread an owl:Class;
+    rdfs:subClassOf hpc:Core .

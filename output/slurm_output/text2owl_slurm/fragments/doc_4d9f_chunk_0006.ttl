@@ -1,0 +1,40 @@
+hpc:Afterok
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:Boolean ;
+    rdfs:subPropertyOf hpc:JobStatus .
+
+hpc:Afternotok
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:Boolean ;
+    rdfs:subPropertyOf hpc:JobStatus .
+
+hpc:ArrayJobId
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:ArrayTaskId
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:string .
+
+hpc:MaxArraySize
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hpcconfiguration ;
+    rdfs:range xsd:integer ;
+    rdfs:minValue "0"^^xsd:integer ;
+    rdfs:maxValue "4000001"^^xsd:integer .
+
+hpc:SviewCommand
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Systemcommand .
+
+hpc:JobArray
+    a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Task
+    a owl:Class ;
+    rdfs:subClassOf hpc:Job .

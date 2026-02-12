@@ -1,0 +1,44 @@
+hpc:commandusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcommand ;
+    rdfs:range rdf:PlainLiteral .
+
+hpc:lsfreleaseversion a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcommand ;
+    rdfs:range xsd:string .
+
+hpc:suspendjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcommand ;
+    rdfs:range xsd:integer .
+
+hpc:Host a owl:Class .
+
+hpc:User a owl:Class .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Lsfresource .
+
+hpc:Lsfresource a owl:Class .
+
+hpc:Jobgroup a owl:Class .
+
+hpc:Applicationprofile a owl:Class .
+
+hpc:Lsfsystem a owl:Class .
+
+hpc:submitjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcommand ;
+    rdfs:range hpc:Job .
+
+hpc:resourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Submitjob ;
+    rdfs:range xsd:string .
+
+hpc:jobgroupmembership a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Jobgroup .
+
+hpc:applicationprofileassociation a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Applicationprofile .
+
+hpc:Lsfcommand a owl:Class .

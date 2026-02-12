@@ -1,0 +1,28 @@
+hpc:CheckpointJobRestart rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "A Checkpoint job that can be restarted with or without email notifications." .
+
+hpc:LSB_JOB_REPORT_MAIL rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Checkpointjobrestart ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether an email will be sent by sbatchd when the job is done." .
+
+# Pre-execution Specified during Job Submission or CLI
+hpc:PreExecutionSubmission rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Checkpointjobrestart ;
+    rdfs:comment "A Checkpoint job that has pre-execution specified during job submission or CLI." .
+
+# Pre-execution or Job-starter at the queue level
+hpc:QueueLevelJob rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Checkpointjobrestart ;
+    rdfs:comment "A Checkpoint job that is submitted using bsub –q queueName." .
+
+# Size of Job Email
+hpc:JobEmailSize rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Checkpointjobrestart ;
+    rdfs:comment "A Checkpoint job that has a limit on the size of the email containing the job output information." .
+
+hpc:LSB_MAILSIZE_LIMIT rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobemailsize ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Indicates the maximum size of the email containing the job output information." .

@@ -1,0 +1,40 @@
+hpc:Jobinformationeventfile a owl:Class .
+hpc:jobInfoEventDumpInterval a owl:DatatypeProperty .
+hpc:LsbParams rdfs:domain hpc:Jobinformationeventfile ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Jobstatus2 a owl:Class ;
+    rdfs:subClassOf hpc:Jobinformationevent .
+hpc:indexrangecnt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobstatus2 ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:indexrangestart a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobstatus2 ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:indexrangeend a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobstatus2 ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:indexrangestep a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobstatus2 ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Jobfinish2 a owl:Class ;
+    rdfs:subClassOf hpc:Jobinformationevent .
+hpc:indexrangecnt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobfinish2 ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:indexrangestart a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobfinish2 ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:indexrangeend a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobfinish2 ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:indexrangestep a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobfinish2 ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:EventHostCtrl a owl:Class .
+hpc:HostCtrl rdfs:domain hpc:EventHostCtrl ;
+    rdfs:range xsd:boolean .
+
+hpc:allowEventType a owl:DatatypeProperty .

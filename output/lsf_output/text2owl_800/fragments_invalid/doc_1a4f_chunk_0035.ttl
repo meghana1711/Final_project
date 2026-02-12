@@ -1,0 +1,32 @@
+hpc:Dynamicexternalresource a owl:Class .
+hpc:haselimexecutable hpc:dynamicexternalresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Dynamicexternalresource ;
+    rdfs:range rdf:Resource .
+
+hpc:isdefinedinlsfshared hpc:dynamicexternalresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Dynamicexternalresource ;
+    rdfs:range rdf:Resource .
+
+hpc:ismappedinresourcemap hpc:dynamicexternalresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Dynamicexternalresource ;
+    rdfs:range rdf:Resource .
+
+hpc:requiresresourcemapmapping hpc:dynamicexternalresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Dynamicexternalresource ;
+    rdfs:range rdf:Resource .
+
+hpc:iselimexecutable hpc:dynamicexternalresource a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dynamicexternalresource ;
+    rdfs:range rdf:Resource .
+
+hpc:requireslsfserverdir xsd:string a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string .
+
+hpc:requireslsfadminreconfig rdf:Resource a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range rdf:Resource .
+
+hpc:requiresbadminmbdrestart rdf:Resource a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range rdf:Resource .

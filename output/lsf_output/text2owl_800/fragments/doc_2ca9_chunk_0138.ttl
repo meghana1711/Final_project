@@ -1,0 +1,22 @@
+hpc:Jobgpurequirement a owl:Class .
+hpc:LSB_GPU_NEW_SYNTAX rdf:type owl:ObjectProperty .
+hpc:LSB_GPU_REQ rdf:type owl:ObjectProperty .
+hpc:bsub_GPU rdf:type owl:ObjectProperty .
+hpc:GPU_REQ rdf:type owl:DatatypeProperty .
+hpc:AzureProvisioning rdf:type owl:Class .
+hpc:azureprov_config rdf:type owl:ObjectProperty .
+hpc:SpotInstance rdf:type owl:Class .
+hpc:federatedAccount rdf:type owl:Class .
+hpc:temporaryAccessToken rdf:type owl:DatatypeProperty .
+
+hpc:Jobgpurequirement rdfs:subClassOf hpc:Resourcerequirement .
+hpc:Azureprovisioning rdfs:subClassOf hpc:Resourceprovider .
+hpc:Spotinstance rdfs:subClassOf hpc:Computeresource .
+hpc:Federatedaccount rdfs:subClassOf hpc:Account .
+
+hpc:LsbGpuNewSyntax rdfs:domain hpc:Lsfconfiguration .
+hpc:LsbGpuReq rdfs:domain hpc:Lsfconfiguration .
+hpc:BsubGpu rdfs:domain hpc:Job .
+hpc:GpuReq rdfs:domain hpc:Jobgpurequirement .
+hpc:AzureprovConfig rdfs:domain hpc:Azureprovisioning .
+hpc:Temporaryaccesstoken rdfs:range xsd:string .

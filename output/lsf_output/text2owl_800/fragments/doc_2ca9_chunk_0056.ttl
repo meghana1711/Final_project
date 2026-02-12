@@ -1,0 +1,46 @@
+hpc:Kerberosimpersonation a owl:Class .
+
+# LSF commands affected by Kerberos user impersonation
+hpc:Lsfcommand a owl:Class .
+hpc:OSFilePermissionsCommand rdf:type hpc:LSFCommand ;
+  rdfs:subClassOf hpc:Lsfcommand ;
+  rdfs:comment "Commands that depend on OS file permissions." .
+hpc:BpeekCommand rdf:type hpc:OSFilePermissionsCommand ;
+  rdfs:comment "bpeek command." .
+hpc:BrestartCommand rdf:type hpc:OSFilePermissionsCommand ;
+  rdfs:comment "brestart command." .
+
+# ACL feature for bacct and bhist commands
+hpc:Aclfeature a owl:Class .
+hpc:BacctCommand rdf:type hpc:LSFCommand ;
+  rdfs:subClassOf hpc:Lsfcommand ;
+  rdfs:domain hpc:Aclfeature ;
+  rdfs:range hpc:Command ;
+  rdfs:comment "bacct command." .
+hpc:BhistCommand rdf:type hpc:LSFCommand ;
+  rdfs:subClassOf hpc:Lsfcommand ;
+  rdfs:domain hpc:Aclfeature ;
+  rdfs:range hpc:Command ;
+  rdfs:comment "bhist command." .
+
+# Secure authorization requests
+hpc:Secureauthorizationrequest a owl:Class .
+hpc:ChecksumSecuredAuthorizationRequest rdf:type hpc:SecureAuthorizationRequest ;
+  rdfs:subClassOf hpc:Secureauthorizationrequest ;
+  rdfs:comment "Authorization request with checksum." .
+
+# LSF_STRICT_CHECKING parameter
+hpc:lsfstrictcheckingparameter a owl:DatatypeProperty ;
+  rdfs:domain hpc:Lsfconfiguration ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Parameter to enable checksum-secured authorization requests." .
+
+# Query command authentication
+hpc:Querycommandauthentication a owl:Class .
+hpc:QueryCommandAuthenticationEnabled rdf:type hpc:QueryCommandAuthentication ;
+  rdfs:subClassOf hpc:Querycommandauthentication ;
+  rdfs:comment "Query command authentication is enabled." .
+hpc:LSFAuthQueryCommandsParameter rdf:type hpc:LSFConfiguration ;
+  rdfs:domain hpc:Querycommandauthentication ;
+  rdfs:range xsd:boolean ;
+  rdfs:comment "Parameter to enable query command authentication." .

@@ -1,0 +1,19 @@
+hpc:Computeunittype a owl:Class .
+hpc:Computeunit a owl:Class .
+hpc:Enclosure a owl:Class .
+hpc:Rack a owl:Class .
+hpc:Cabinet a owl:Class .
+hpc:hastype a owl:ObjectProperty .
+hpc:hasmembers a owl:ObjectProperty .
+hpc:name a owl:DatatypeProperty .
+hpc:Computeunittype rdfs:subClassOf owl:Class .
+hpc:Computeunit rdfs:subClassOf hpc:Enclosure .
+hpc:Enclosure rdfs:subClassOf owl:Class .
+hpc:Rack rdfs:subClassOf hpc:Enclosure .
+hpc:Cabinet rdfs:subClassOf hpc:Enclosure .
+hpc:Hastype rdfs:domain hpc:Enclosure .
+hpc:Hastype rdfs:range rdf:List .
+hpc:Hastype rdfs:range rdf:first hpc:Computeunittype .
+hpc:Hasmembers rdfs:domain hpc:Enclosure .
+hpc:Hasmembers rdfs:range rdf:List .
+hpc:Hasmembers rdfs:range rdf:first hpc:Computeunit .

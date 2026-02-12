@@ -1,0 +1,27 @@
+hpc:Job a owl:Class .
+hpc:Qos a owl:Class .
+hpc:schedulingpriority a owl:ObjectProperty .
+hpc:preemption a owl:ObjectProperty .
+hpc:resourcelimits a owl:ObjectProperty .
+hpc:Partitionqos a owl:Class .
+hpc:Relativeqos a owl:Class .
+hpc:Otherqosoptions a owl:Class .
+hpc:Configuration a owl:Class .
+hpc:Examples a owl:Class .
+
+hpc:Qos rdfs:subClassOf hpc:Job .
+hpc:Schedulingpriority rdfs:domain hpc:Job ;
+    rdfs:range xsd:float .
+hpc:Preemption rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+hpc:Resourcelimits rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:Partitionqos rdfs:subClassOf hpc:Qos .
+hpc:Relativeqos rdfs:subClassOf hpc:Qos .
+hpc:Otherqosoptions rdfs:subClassOf hpc:Qos .
+hpc:Configuration rdfs:subClassOf hpc:Qos .
+hpc:Examples rdfs:subClassOf hpc:Qos .
+
+hpc:priorityweightqos a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:integer .

@@ -1,0 +1,13 @@
+hpc:Slurmglobalfile a owl:Class .
+hpc:SLURMLocalGlobalsFile rdfs:label "Globals file used to set up the environment for the testsuite."@en ;
+                          rdfs:comment "Available in SrunProlog, TaskProlog, SrunEpilog and TaskEpilog." .
+
+hpc:slurmlocalid a owl:ObjectProperty ;
+                rdfs:domain hpc:Slurmjob ;
+                rdfs:range xsd:integer .
+
+hpc:slurmnodes a owl:ObjectProperty ;
+              rdfs:domain hpc:Slurmjob ;
+              rdfs:range xsd:integer .
+
+hpc:

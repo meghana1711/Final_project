@@ -1,0 +1,37 @@
+hpc:mcPendingReasonPkgSize a owl:DatatypeProperty .
+hpc:mcPendingReasonUpdateInterval a owl:DatatypeProperty .
+hpc:maxRschedTime a owl:ObjectProperty .
+hpc:mbdSleepTime a owl:DatatypeProperty .
+
+hpc:McPendingReasonPkgSize rdfs:domain hpc:Job .
+hpc:McPendingReasonUpdateInterval rdfs:domain hpc:Job .
+hpc:MaxRschedTime rdfs:domain hpc:Queue .
+hpc:MbdSleepTime rdfs:domain hpc:Param .
+
+hpc:McPendingReasonPkgSize rdfs:range xsd:nonNegativeInteger .
+hpc:McPendingReasonUpdateInterval rdfs:range xsd:nonNegativeInteger .
+hpc:MaxRschedTime rdfs:range xsd:nonNegativeInteger .
+hpc:MbdSleepTime rdfs:range xsd:nonNegativeInteger .
+
+hpc:Job a owl:Class .
+hpc:Queue a owl:Class .
+hpc:Param a owl:Class .
+
+hpc:hasremotetimeoutlimit a owl:ObjectProperty .
+hpc:haspackagesizelimit a owl:DatatypeProperty .
+hpc:hasupdateinterval a owl:DatatypeProperty .
+hpc:hassleeptime a owl:DatatypeProperty .
+
+hpc:Queue rdfs:subClassOf hpc:Job .
+
+hpc:Hasremotetimeoutlimit rdfs:domain hpc:Queue .
+hpc:Haspackagesizelimit rdfs:domain hpc:Job .
+hpc:Hasupdateinterval rdfs:domain hpc:Job .
+hpc:Hassleeptime rdfs:domain hpc:Param .
+
+hpc:Hasremotetimeoutlimit rdfs:range hpc:Time .
+hpc:Haspackagesizelimit rdfs:range xsd:nonNegativeInteger .
+hpc:Hasupdateinterval rdfs:range xsd:nonNegativeInteger .
+hpc:Hassleeptime rdfs:range xsd:nonNegativeInteger .
+
+hpc:Time a owl:Class .

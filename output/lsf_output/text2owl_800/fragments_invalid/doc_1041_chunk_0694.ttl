@@ -1,0 +1,36 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Chunkedjob ;
+    rdfs:subClassOf hpc:Interactivejob ;
+    rdfs:subClassOf hpc:Rerunnablejob ;
+    rdfs:subClassOf hpc:Nonrerunnablejob .
+
+hpc:Chunkedjob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:domain hpc:Requeueonsystemrestart ;
+    rdfs:range hpc:Requeueonsystemrestart .
+
+hpc:requeueonsystemrestart a owl:ObjectProperty .
+
+hpc:Rerunnablejob a owl:Class ;
+    rdfs:subClassOf hpc:Chunkedjob ;
+    rdfs:domain hpc:Removefromqueueonexecutionhostunavailability ;
+    rdfs:range hpc:Removefromqueueonexecutionhostunavailability .
+
+hpc:removefromqueueonexecutionhostunavailability a owl:ObjectProperty .
+
+hpc:Interactivejob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:subClassOf hpc:Nonrerunnablejob .
+
+hpc:Nonrerunnablejob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:rcacct a owl:ObjectProperty .
+hpc:Rcacct rdfs:domain hpc:Job ;
+hpc:Rcacct rdfs:range xsd:string .
+
+hpc:rn a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:NotReRunnable ;
+    rdfs:domain hpc:Job .
+
+hpc:notrerunnable a owl:ObjectProperty .

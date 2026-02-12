@@ -1,0 +1,43 @@
+hpc:Slurmctld a owl:Class .
+hpc:slurmctldhost a owl:ObjectProperty .
+hpc:statesavelocation a owl:DatatypeProperty .
+hpc:Primaryslurmctld a owl:Class .
+hpc:Backupslurmctld a owl:Class .
+hpc:Commonfilesystem a owl:Class .
+
+hpc:Slurmctld rdfs:subClassOf hpc:Slurmctld .
+hpc:Primaryslurmctld rdfs:subClassOf hpc:Slurmctld .
+hpc:Backupslurmctld rdfs:subClassOf hpc:Slurmctld .
+
+hpc:Slurmctldhost rdfs:domain hpc:Slurmctld .
+hpc:Statesavelocation rdfs:domain hpc:Slurmctld .
+
+hpc:Hasbackuphost rdfs:domain hpc:Primaryslurmctld ;
+    rdfs:range rdf:List .
+
+hpc:Hascommonfilesystem rdfs:domain hpc:Commonfilesystem ;
+    rdfs:range rdf:Resource .
+
+hpc:Isactivewheninuse rdfs:domain hpc:Slurmctld ;
+    rdfs:range xsd:boolean .
+
+hpc:Isprimary rdfs:domain hpc:Slurmctld ;
+    rdfs:range xsd:boolean .
+
+hpc:Isbackup rdfs:domain hpc:Slurmctld ;
+    rdfs:range xsd:boolean .
+
+hpc:Isondifferentnode rdfs:domain hpc:Slurmctld ;
+    rdfs:range xsd:boolean .
+
+hpc:Takesover rdfs:domain hpc:Slurmctld ;
+    rdfs:range hpc:Slurmctld .
+
+hpc:Notifies rdfs:domain hpc:Slurmctld ;
+    rdfs:range hpc:Slurmctld .
+
+hpc:Savesstate rdfs:domain hpc:Slurmctld ;
+    rdfs:range xsd:boolean .
+
+hpc:Resumesnormaloperation rdfs:domain hpc:Slurmctld ;
+    rdfs:range xsd:boolean .

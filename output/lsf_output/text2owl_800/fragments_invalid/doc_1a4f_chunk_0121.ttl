@@ -1,0 +1,28 @@
+hpc:Usergroup a owl:Class .
+hpc:Usergroupadmin a owl:Class .
+hpc:configureusergroup a owl:ObjectProperty .
+hpc:configureusergroupadmin a owl:ObjectProperty .
+hpc:hasusergroupmember a owl:ObjectProperty .
+hpc:hasusergroupadmin a owl:ObjectProperty .
+hpc:isusergroupconfiguredinlsf a owl:ObjectProperty .
+hpc:isexternalusergroup a owl:ObjectProperty .
+hpc:Egroupexecutable a owl:Class .
+hpc:Usergroupconfiguration a owl:Class .
+
+hpc:Usergroup a rdfs:subClassOf owl:Class .
+hpc:Usergroupadmin rdfs:subClassOf owl:Class .
+hpc:Egroupexecutable rdfs:subClassOf owl:Class .
+hpc:Usergroupconfiguration rdfs:subClassOf owl:Class .
+
+hpc:Configureusergroup rdfs:domain hpc:Administrator ;
+                          rdfs:range hpc:Usergroup .
+hpc:Configureusergroupadmin rdfs:domain hpc:Administrator ;
+                               rdfs:range hpc:Usergroupadmin .
+hpc:Hasusergroupmember rdfs:domain hpc:Usergroup ;
+                         rdfs:range hpc:User .
+hpc:Hasusergroupadmin rdfs:domain hpc:Usergroup ;
+                      rdfs:range hpc:Usergroupadmin .
+hpc:Isusergroupconfiguredinlsf rdfs:domain hpc:Usergroup ;
+                               rdfs:range xsd:boolean .
+hpc:Isexternalusergroup rdfs:domain hpc:Usergroup ;
+                        rdfs:range xsd:boolean .

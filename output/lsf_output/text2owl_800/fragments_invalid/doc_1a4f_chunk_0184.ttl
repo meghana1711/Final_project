@@ -1,0 +1,17 @@
+hpc:Jobspanningsection a owl:Class .
+hpc:Sameresourcesection a owl:Class .
+hpc:Computeunitresourcesection a owl:Class .
+hpc:Affinityresourcesection a owl:Class .
+
+hpc:appliesto a owl:ObjectProperty .
+
+hpc:Jobspanningsection rdfs:subClassOf owl:Class .
+hpc:Sameresourcesection rdfs:subClassOf owl:Class .
+hpc:Computeunitresourcesection rdfs:subClassOf owl:Class .
+hpc:Affinityresourcesection rdfs:subClassOf owl:Class .
+
+hpc:Appliesto rdfs:domain hpc:Resourcerequirementstringsection ;
+                 rdfs:range hpc:Job .
+
+
+This ontology fragment defines four classes: `hpc:JobSpanningSection`, `hpc:SameResourceSection`, `hpc:ComputeUnitResourceSection`, and `hpc:AffinityResourceSection`. It also defines an object property `hpc:appliesTo` that links a `hpc:ResourceRequirementStringSection` to a `hpc:Job`.

@@ -1,0 +1,23 @@
+hpc:Jobs a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf (hpc:Users hpc:Peruser) ;
+    rdfs:subClassOf (hpc:Queues hpc:Perqueue) .
+
+hpc:jobsPerSchedCycle a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobs ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Maximum number of jobs that are considered for dispatch in a single scheduling cycle. Specify a positive integer or 0." .
+
+hpc:EligiblePendJobs a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf (hpc:Users hpc:Peruser) ;
+    rdfs:subClassOf (hpc:Queues hpc:Perqueue) .
+
+hpc:LicProjects a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Project .
+
+hpc:licProjects a owl:ObjectProperty ;
+    rdfs:domain hpc:LicProjects ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Limits projects." .

@@ -1,0 +1,39 @@
+hpc:hostname a owl:DatatypeProperty .
+hpc:server a owl:ObjectProperty .
+hpc:runwindow a owl:ObjectProperty .
+hpc:rexpri a owl:ObjectProperty .
+hpc:Hostname a owl:Class .
+hpc:description a owl:DatatypeProperty .
+hpc:Officialname a owl:Class .
+hpc:Patterndefinition a owl:Class .
+hpc:Hostmodel a owl:Class .
+
+hpc:Officialname rdfs:subClassOf hpc:Hostname .
+hpc:Patterndefinition rdfs:subClassOf hpc:Hostname .
+
+hpc:Server rdfs:domain hpc:Officialname ;
+    rdfs:range xsd:string .
+hpc:Runwindow rdfs:domain hpc:Officialname ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Rexpri rdfs:domain hpc:Officialname ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Hostname rdfs:range xsd:string .
+hpc:Description rdfs:domain hpc:Officialname ;
+    rdfs:range xsd:string .
+
+hpc:PatternDefinition rdfs:subPropertyChain aowl:transitiveProperty [
+    hpc:Server .
+    hpc:RunWindow .
+    hpc:REXPRI .
+    hpc:HOSTNAME .
+] .
+
+hpc:Hostmodel a owl:Class .
+hpc:modelname a owl:DatatypeProperty .
+hpc:modeldefinition a owl:ObjectProperty .
+
+hpc:Modelname rdfs:domain hpc:Hostmodel ;
+    rdfs:range xsd:string .
+hpc:Modeldefinition rdfs:domain hpc:Hostmodel ;
+    rdfs:range xsd:string .
+hpc:Hostmodel rdfs:subClassOf owl:Class .

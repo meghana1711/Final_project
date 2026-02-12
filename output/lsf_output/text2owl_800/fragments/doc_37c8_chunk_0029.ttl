@@ -1,0 +1,66 @@
+hpc:RPMPackage
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "RPM package on a system." .
+
+hpc:NoarchPackage
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Noarch RPM package on a system." .
+
+hpc:X86_64Package
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "X86_64 RPM package on a system." .
+
+hpc:SubUIDFile
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "File containing subordinate UIDs for LSF users." .
+
+hpc:SubGIDFile
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "File containing subordinate GIDs for LSF users." .
+
+hpc:LSFUser
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "User account for LSF." .
+
+hpc:LingerState
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "State that allows LSF to run jobs even if the user is not logged in." .
+
+hpc:SystemdLogindService
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Systemd service for managing user sessions." .
+
+hpc:Capability
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Linux capability." .
+
+hpc:Newuidmap
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Capability ] ;
+    rdfs:range [ rdf:type xsd:string ] ;
+    rdfs:comment "Capability to set new UID." .
+
+hpc:Newgidmap
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Capability ] ;
+    rdfs:range [ rdf:type xsd:string ] ;
+    rdfs:comment "Capability to set new GID." .
+
+hpc:PythonExecutable
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Executable Python file." .
+
+hpc:SymbolicLink
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Symbolic link on a file system." .

@@ -1,0 +1,39 @@
+hpc:LsbRestartPid a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The process ID of the checkpointed job when the job is restarted." ;
+    rdfs:label "LSB_RESTART_PID" ;
+    rdfs:domain hpc:Checkpointedjobrestart .
+
+hpc:Checkpointedjobrestart a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Defined during restart of a checkpointed job." ;
+    rdfs:label "CheckpointedJobRestart" .
+
+hpc:LsbRtaskGoneAction a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Defines the actions LSF should take if it detects that a remote task of a parallel job is gone." ;
+    rdfs:label "LSB_RTASK_GONE_ACTION" .
+
+hpc:ignoreTaskcrash a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbRtaskGoneAction ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A remote task crashes. The job RES does nothing." ;
+    rdfs:label "IGNORE_TASKCRASH" .
+
+hpc:killjobTaskdone a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbRtaskGoneAction ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A remote task exits with zero value. The job RES notifies the task RES to terminate all tasks in the job." ;
+    rdfs:label "KILLJOB_TASKDONE" .
+
+hpc:killjobTaskexit a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbRtaskGoneAction ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A remote task exits with non-zero value. The job RES notifies the task RES to terminate all tasks in the job." ;
+    rdfs:label "KILLJOB_TASKEXIT" .
+
+hpc:lsbSubAdditional a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "String that contains the application name or names of the esub executables requested by the user. This is the only option that an esub cannot change or add at job submission." ;
+    rdfs:label "LSB_SUB_ADDITIONAL" .

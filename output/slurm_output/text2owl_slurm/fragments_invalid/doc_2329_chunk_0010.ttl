@@ -1,0 +1,19 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+@prefix hpc: <http://example.org/hpc#>
+
+hpc:Slurm a owl:Class.
+hpc:Mvapich2 a owl:Class.
+
+hpc:usesslurm a owl:ObjectProperty.
+hpc:usespmi a owl:ObjectProperty.
+hpc:bootstrap a owl:ObjectProperty.
+
+hpc:SlurmBootstrap a owl:Enum.
+hpc:SlurmBootstrap a hpc:PMI; rdfs:member "srun".
+hpc:SlurmBootstrap a hpc:PMI; rdfs:member "ssh".
+
+hpc:PMI a owl:Enum.
+hpc:PMI a hpc:SlurmBootstrap; r

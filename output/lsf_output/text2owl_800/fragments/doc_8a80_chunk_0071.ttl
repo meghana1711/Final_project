@@ -1,0 +1,24 @@
+hpc:Projectpriority a owl:Class .
+hpc:hasprojectpriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectpriority ;
+    rdfs:range xsd:integer .
+
+hpc:Project a owl:Class .
+hpc:hasname a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+hpc:haspriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:integer .
+
+hpc:DefaultProject a hpc:Project ;
+    hpc:hasPriority 0 .
+
+hpc:Automatictimebasedconfiguration a owl:Class .
+hpc:usesifelseconstructs a owl:ObjectProperty ;
+    rdfs:domain hpc:Automatictimebasedconfiguration .
+hpc:usestimeexpressions a owl:ObjectProperty ;
+    rdfs:domain hpc:Automatictimebasedconfiguration .
+
+hpc:Projects a owl:Class .
+hpc:hasproject a owl:ObjectProperty ;
+    rdfs:domain hpc:Projects .

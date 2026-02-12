@@ -1,0 +1,51 @@
+hpc:GpuReq a owl:Class .
+
+hpc:num a owl:DatatypeProperty ;
+    rdfs:domain hpc:GpuReq ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:mode a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuReq .
+
+hpc:mps a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuReq .
+
+hpc:aff a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuReq .
+
+hpc:jExclusive a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuReq .
+
+hpc:block a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuReq .
+
+hpc:gpack a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuReq .
+
+hpc:gvendor a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuReq .
+
+hpc:gmodel a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuReq ;
+    rdfs:range hpc:Modelname .
+
+hpc:gtile a owl:DatatypeProperty ;
+    rdfs:domain hpc:GpuReq ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:gmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:GpuReq ;
+    rdfs:range xsd:nonNegativeDecimal .
+
+hpc:glink a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuReq .
+
+hpc:mig a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuReq ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Modelname a owl:Class .
+hpc:Modelname rdfs:subClassOf xsd:string .
+
+
+This ontology fragment defines classes and properties for the GPU_REQ parameter as described in the documentation. It does not include the details about the behavior of the GPU_REQ parameter in the context of the system, as those details are not ontology-worthy facts.

@@ -1,0 +1,36 @@
+hpc:maxnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Restricts the number of instances that can be provisioned in the template." .
+
+hpc:ncpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Number of CPU units for the EC2 instances." .
+
+hpc:awshost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the instance is an AWS host." .
+
+hpc:ec2fleetconfig a owl:ObjectProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range hpc:Configurationfile ;
+    rdfs:comment "The customized EC2 Fleet configuration file." .
+
+hpc:ondemandtargetcapacityratio a owl:DatatypeProperty ;
+    rdfs:domain hpc:Ec2fleetconfig ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The target capacity ratio for on-demand instances." .
+
+hpc:instancetags a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The tags for the instances." .
+
+hpc:Ec2fleetmaintaintype a owl:Class ;
+    rdfs:subClassOf hpc:Stringvalue ;
+    rdfs:comment "The maintain type for EC2 Fleet, which must be explicitly set to instant or request." .
+
+hpc:Template a owl:Class ;
+    rdfs:subClassOf rdf:Resource .

@@ -1,0 +1,33 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:lsfQuietInst a owl:ObjectProperty ;
+    rdfs:domain rdf:Property ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Set the value to Y if you want to hide the LSF installation messages." .
+
+hpc:lsfSilentInstallTarlist a owl:ObjectProperty ;
+    rdfs:domain rdf:Property ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A string that contains all LSF package names to be installed. This name list applies only to the silent installation mode." .
+
+hpc:LSF_SILENT_INSTALL_TARLIST_ALL rdf:PlainLiteral "ALL" .
+hpc:LSF_SILENT_INSTALL_TARLIST_ALL rdf:PlainLiteral "all" .
+hpc:LSF_SILENT_INSTALL_TARLIST_All rdf:PlainLiteral "All" .
+
+hpc:lsfTardir a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Full path to the directory that contains the LSF distribution TAR files." .
+
+hpc:lsfTop a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Required. Full path to the top level LSF installation directory." .
+
+hpc:patchBackupDir a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Full path to the patch backup directory." .

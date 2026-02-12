@@ -1,0 +1,43 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:hasSLAGuaranteesIgnore rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:isInteractiveJob rdf:Property ;
+    rdfs:domain hpc:Job .
+
+hpc:isNonInteractiveJob rdf:Property ;
+    rdfs:domain hpc:Job .
+
+hpc:parentQueueObject rdf:Property ;
+    rdfs:domain hpc:Fairsharequeue ;
+    rdfs:range hpc:Queue .
+
+hpc:fairShareQueue rdf:Property ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range rdf:List .
+
+hpc:queueGroup rdf:Property ;
+    rdfs:domain hpc:Queue .
+
+hpc:dispatchOrder rdf:Property ;
+    rdfs:domain hpc:Queue .
+
+hpc:queuePriority rdf:Property ;
+    rdfs:domain hpc:Queue .
+
+hpc:userFairSharePriority rdf:Property ;
+    rdfs:domain hpc:Queue .
+
+hpc:queueInheritsFairShare rdf:Property ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+
+hpc:apsPriority rdf:Property ;
+    rdfs:domain hpc:Queue .
+
+hpc:fairShareTree rdf:Property ;
+    rdfs:domain hpc:Queue .

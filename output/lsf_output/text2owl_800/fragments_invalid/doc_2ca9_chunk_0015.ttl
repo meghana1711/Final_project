@@ -1,0 +1,19 @@
+hpc:Template a owl:Class .
+hpc:priorityvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:integer .
+
+hpc:rcTemplateByResreqOrder a owl:ObjectProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range hpc:Template .
+
+hpc:Resourcerequirement a owl:Class .
+hpc:lsbRcExternalHostAbnormalTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Provisionstate a owl:Class .
+hpc:Bjobscommand a owl:Class .
+hpc:assignServiceAccountFromLaunchTemplate a owl:ObjectProperty ;
+    rdfs:domain hpc:GoogleprovConfig .
+    rdfs:range xsd:boolean .

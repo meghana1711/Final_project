@@ -1,0 +1,50 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Windowsuseraccount a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      rdfs:onProperty hpc:account ;
+                      rdfs:hasValue (?domain "\""^^xsd:string)^ ;
+                      owl:allValueFrom (?user_name "\""^^xsd:string)^ ] .
+
+hpc:Windowsusergroup a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      rdfs:onProperty hpc:account ;
+                      rdfs:hasValue (?domain "\""^^xsd:string)^ ;
+                      owl:allValueFrom (?user_group "\""^^xsd:string)^ ] .
+
+hpc:Fairsharegroup a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      rdfs:onProperty hpc:accessControl ;
+                      rdfs:hasValue hpc:FAIRSHARE_GROUPS ] .
+
+hpc:Appprofile a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      rdfs:onProperty hpc:accessControl ;
+                      rdfs:hasValue hpc:APPS ] .
+
+hpc:Project a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      rdfs:onProperty hpc:accessControl ;
+                      rdfs:hasValue hpc:PROJECTS ] .
+
+hpc:Queue a owl:Class .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      rdfs:onProperty hpc:accessControl ;
+                      rdfs:hasValue ?user ] .
+
+hpc:accesscontrol a owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range hpc:Accesscontrol .
+
+hpc:autoattach a owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:boolean .
+
+hpc:consumer a owl:DatatypeProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:string .

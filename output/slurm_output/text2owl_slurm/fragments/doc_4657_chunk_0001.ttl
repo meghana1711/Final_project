@@ -1,0 +1,12 @@
+hpc:Slurmversion2505 a owl:Class .
+
+hpc:SlurmUsersQuickStartGuide rdf:type hpc:Documentation .
+hpc:Slurmversion2505 rdfs:subClassOf hpc:Documentation .
+
+hpc:commandsummary a owl:ObjectProperty .
+hpc:Commandsummary rdfs:domain hpc:Slurmversion2505 .
+hpc:Commandsummary rdfs:range hpc:Command .
+
+hpc:optionsummary a owl:ObjectProperty .
+hpc:Optionsummary rdfs:domain hpc:Slurmversion2505 .
+hpc:Optionsummary rdfs:range hpc:Option .

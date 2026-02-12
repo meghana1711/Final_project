@@ -1,0 +1,55 @@
+hpc:Factor a owl:Class .
+hpc:Subfactor a owl:Class .
+hpc:Metric a owl:Class .
+
+hpc:Fs a owl:Class ;
+    rdfs:subClassOf hpc:Factor ;
+    rdfs:comment "user-based fair share factor" .
+
+hpc:fairsharefeature a owl:ObjectProperty ;
+    rdfs:domain hpc:Factor ;
+    rdfs:range hpc:Factor .
+
+hpc:dynamicuserpriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Factor ;
+    rdfs:range hpc:Factor .
+
+hpc:fairshare a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+
+hpc:cpuTimeFactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Factor .
+
+hpc:fwdJobFactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Factor .
+
+hpc:runTimeFactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Factor .
+
+hpc:runJobFactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Factor .
+
+hpc:histHours a owl:DatatypeProperty ;
+    rdfs:domain hpc:Factor .
+
+hpc:Rsrc a owl:Class ;
+    rdfs:subClassOf hpc:Factor .
+
+hpc:Proc a owl:Class ;
+    rdfs:subClassOf hpc:Rsrc .
+
+hpc:tasklimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue .
+
+hpc:mem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rsrc .
+
+hpc:swap a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rsrc .
+
+hpc:Work a owl:Class ;
+    rdfs:subClassOf hpc:Factor .
+
+hpc:jpriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Work .

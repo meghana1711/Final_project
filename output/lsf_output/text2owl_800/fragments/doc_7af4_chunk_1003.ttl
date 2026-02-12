@@ -1,0 +1,29 @@
+hpc:enableEgoDaemonControl a owl:DatatypeProperty .
+hpc:EgoDaemonControl rdfs:domain hpc:LsfCluster .
+hpc:EgoDaemonControl rdfs:range xsd:string .
+
+hpc:enableEgo a owl:ObjectProperty .
+hpc:EnableEgo rdfs:domain hpc:LsfCluster .
+hpc:EnableEgo rdfs:range xsd:string .
+hpc:ENABLE_EGO_Y rdf:value "Y" .
+hpc:ENABLE_EGO_N rdf:value "N" .
+
+hpc:lsfEnableEgo a owl:DatatypeProperty .
+hpc:LsfEnableEgo rdfs:domain hpc:LsfConfiguration .
+hpc:LsfEnableEgo rdfs:range xsd:string .
+
+hpc:lsfEgoEnvdir a owl:DatatypeProperty .
+hpc:LsfEgoEnvdir rdfs:domain hpc:LsfConfiguration .
+hpc:LsfEgoEnvdir rdfs:range xsd:string .
+
+hpc:epBackup a owl:DatatypeProperty .
+hpc:EpBackup rdfs:domain hpc:LsfCluster .
+hpc:EpBackup rdfs:range xsd:string .
+hpc:EP_BACKUP_Y rdf:value "Y" .
+hpc:EP_BACKUP_N rdf:value "N" .
+
+hpc:lsfAdmins a owl:ObjectProperty .
+hpc:LsfAdmins rdfs:domain hpc:LsfCluster .
+hpc:LsfAdmins rdfs:range hpc:User .
+
+hpc:User a owl:Class .

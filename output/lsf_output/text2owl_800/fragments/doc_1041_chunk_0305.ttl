@@ -1,0 +1,66 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf (hpc:Hasreservation rdf:type owl:ObjectProperty) ;
+    rdfs:subClassOf (hpc:Hasid rdf:type owl:ObjectProperty) ;
+    rdfs:subClassOf (hpc:Hasstatus rdf:type owl:ObjectProperty) ;
+    rdfs:subClassOf (hpc:Hasqueue rdf:type owl:ObjectProperty) ;
+    rdfs:subClassOf (hpc:Hascommand rdf:type owl:ObjectProperty) ;
+    rdfs:subClassOf (hpc:Hasuser rdf:type owl:ObjectProperty) ;
+    rdfs:subClassOf (hpc:Hasproject rdf:type owl:ObjectProperty) ;
+    rdfs:subClassOf (hpc:Hasresourceusage rdf:type owl:ObjectProperty) ;
+    rdfs:subClassOf (hpc:Haspendingreason rdf:type owl:ObjectProperty) ;
+    rdfs:subClassOf (hpc:Hasschedulingparameters rdf:type owl:ObjectProperty) .
+
+# Reservation Class
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+# HasReservation Property
+hpc:hasreservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Reservation .
+
+# HasID Property
+hpc:hasid a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+# HasStatus Property
+hpc:hasstatus a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+# HasQueue Property
+hpc:hasqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+# HasCommand Property
+hpc:hascommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+# HasUser Property
+hpc:hasuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+# HasProject Property
+hpc:hasproject a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+# HasResourceUsage Property
+hpc:hasresourceusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+# HasPendingReason Property
+hpc:haspendingreason a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+# HasSchedulingParameters Property
+hpc:hasschedulingparameters a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .

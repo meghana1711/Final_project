@@ -1,0 +1,21 @@
+hpc:maxEventStreamSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Systemperformanceanalysistool ;
+    rdfs:range xsd:integer .
+
+hpc:maxIdleJobsReport a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:integer .
+
+hpc:maxInfoDirs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:LsbSharedir a owl:Class .
+hpc:ClusterName a owl:Class .
+hpc:Logdir a owl:Class .
+hpc:Info a owl:Class ;
+    rdfs:subClassOf hpc:Logdir .
+
+hpc:Mbatchd a owl:Class .
+hpc:Systemperformanceanalysistool a owl:Class .
+hpc:Cluster a owl:Class .

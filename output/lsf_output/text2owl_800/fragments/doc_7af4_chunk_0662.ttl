@@ -1,0 +1,45 @@
+hpc:Corelimit a owl:Class ;
+    rdfs:subClassOf owl:Real ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The core limit value for the job." .
+
+hpc:Stacklimit a owl:Class ;
+    rdfs:subClassOf owl:Real ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The stack limit value for the job." .
+
+hpc:Processlimit a owl:Class ;
+    rdfs:subClassOf owl:Real ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The process limit value for the job." .
+
+hpc:Runtimelimit a owl:Class ;
+    rdfs:subClassOf owl:Real ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The runtime limit value for the job." .
+
+hpc:Pendingtimelimit a owl:Class ;
+    rdfs:subClassOf owl:Duration ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "The pending time limit value for the job." .
+
+hpc:Eligiblependingtimelimit a owl:Class ;
+    rdfs:subClassOf owl:Duration ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "The eligible pending time limit value for the job." .
+
+hpc:inputfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The specified input file for the job." .
+
+hpc:outputfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The specified output file for the job." .

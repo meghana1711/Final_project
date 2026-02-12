@@ -1,0 +1,14 @@
+hpc:LsbGpdCluster a owl:Class .
+hpc:lsbGpdPort a owl:ObjectProperty .
+hpc:lsbGpuAutoboost a owl:DatatypeProperty .
+
+hpc:LsbGpdCluster rdfs:subClassOf owl:Class .
+hpc:LsbGpdPort rdfs:domain owl:NamedIndividual ;
+                  rdfs:range xsd:integer .
+hpc:LsbGpuAutoboost rdfs:domain owl:NamedIndividual ;
+                      rdfs:range xsd:string .
+
+hpc:LSB_GPD_CLUSTER rdfs:comment "Defines the name of the cluster whose management hosts start the gpolicyd daemon for the global fair share policy among multiple clusters. The LSB_GPD_CLUSTER setting must be configured for every cluster participating in global fair share. Default Not defined." .
+hpc:LSB_GPD_PORT rdfs:comment "TCP service port for communication with the gpolicyd daemon. LSB_GPD_PORT must be configured for every cluster participating in global fair share. Default Not defined." .
+hpc:LSB_GPU_AUTOBOOST rdfs:comment "Obsolete. As of LSF 10.1 Fix Pack 4, LSF synchronizes the GPU auto-boost to resolve any issues that previously required disabling the auto-boost. Nvidia K80 provides the auto boost feature by default. This is designed for applications that use a single GPU. For multi-GPU jobs, this results in different GPUs running at different speeds. By default, LSF enables auto boost." .
+hpc:LSB_GPU_AUTOBOOST rdfs:obsolete true .

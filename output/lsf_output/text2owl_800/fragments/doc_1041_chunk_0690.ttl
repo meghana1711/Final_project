@@ -1,0 +1,31 @@
+hpc:Gpurequirement a owl:Class .
+hpc:hasgpucount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hassocketgpucount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasmemorypergpu a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Host a owl:Class .
+hpc:hasgpurequirements a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Gpurequirement .
+
+# Alternative Resource Requirements
+hpc:Alternativeresourcerequirement a owl:Class .
+hpc:hasalternativeresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Alternativeresourcerequirement ;
+    rdfs:range hpc:Resourcerequirement .
+
+hpc:Resourcerequirement a owl:Class .
+hpc:hasmandatoryfirstexecutionhost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:boolean .
+hpc:satisfiedbyjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range hpc:Job .
+
+# Assuming Job, Queue, and other related classes are already defined

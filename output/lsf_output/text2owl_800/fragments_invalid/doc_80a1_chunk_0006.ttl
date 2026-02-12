@@ -1,0 +1,76 @@
+hpc:totalthroughput a owl:DatatypeProperty ;
+    rdfs:domain hpc:Optimizedworkload ;
+    rdfs:range xsd:decimal .
+
+hpc:averagewaittime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Optimizedworkload ;
+    rdfs:range xsd:decimal .
+
+hpc:clustermemoryusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Optimizedworkload ;
+    rdfs:range xsd:decimal .
+
+hpc:Modeldeployment a owl:Class ;
+    rdfs:subClassOf hpc:Optimizedworkload .
+
+hpc:joboptimization a owl:ObjectProperty ;
+    rdfs:domain hpc:Modeldeployment ;
+    rdfs:range hpc:Modeldeployment .
+
+hpc:Lsfproductioncluster a owl:Class .
+
+hpc:Lsfsimulator a owl:Class ;
+    rdfs:subClassOf hpc:Modeldeployment .
+
+hpc:Bsimcommand a owl:Class ;
+    rdfs:subClassOf hpc:Lsfsimulator .
+
+hpc:improvedperformance a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsimcommand .
+
+hpc:Installationdirectory a owl:Class .
+
+hpc:Knownissues a owl:Class ;
+    rdfs:subClassOf hpc:Optimizedworkload .
+
+hpc:Jobpendingstate a owl:Class ;
+    rdfs:subClassOf hpc:Knownissues .
+
+hpc:resolution a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpendingstate ;
+    rdfs:range xsd:string .
+
+hpc:Systemtimecompressionfactor a owl:Class ;
+    rdfs:subClassOf hpc:Knownissues .
+
+hpc:Simulation a owl:Class ;
+    rdfs:subClassOf hpc:Knownissues .
+
+hpc:timecompressionfactoroption a owl:ObjectProperty ;
+    rdfs:domain hpc:Simulation ;
+    rdfs:range xsd:string .
+
+hpc:letsystemdecide a owl:ObjectProperty ;
+    rdfs:domain hpc:Timecompressionfactoroption ;
+    rdfs:range xsd:string .
+
+hpc:inaccurateresult a owl:ObjectProperty ;
+    rdfs:domain hpc:Timecompressionfactoroption ;
+    rdfs:range xsd:boolean .
+
+hpc:Supporteddelimiterset a owl:Class .
+
+hpc:Delimiter a owl:Class .
+
+hpc:delimitcharset a owl:ObjectProperty ;
+    rdfs:domain hpc:Supporteddelimiterset ;
+    rdfs:range xsd:string .
+
+hpc:Jobname a owl:Class ;
+    rdfs:subClassOf hpc:Delimiter .
+
+hpc:Projectname a owl:Class ;
+    rdfs:subClassOf hpc:Delimiter .
+
+hpc:Jobdirectory a owl:Class ;
+    rdfs:subClassOf hpc:Del

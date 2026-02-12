@@ -1,0 +1,42 @@
+hpc:Queue a owl:Class .
+hpc:Crossqueuefairsharequeue a owl:Class .
+hpc:dispatchorder a owl:ObjectProperty .
+hpc:priority a owl:DatatypeProperty .
+
+hpc:Dispatchorder rdfs:domain hpc:Queue .
+hpc:Dispatchorder rdfs:range xsd:integer .
+hpc:Priority rdfs:domain hpc:Crossqueuefairsharequeue .
+hpc:Priority rdfs:range xsd:integer .
+
+hpc:hassamepriority a owl:ObjectProperty .
+hpc:Hassamepriority rdfs:domain hpc:Queue .
+hpc:Hassamepriority rdfs:range rdf:List .
+hpc:Hassamepriority rdfs:range rdf:List rdf:first hpc:Queue .
+hpc:Hassamepriority rdfs:range rdf:List rdf:rest hpc:Hassamepriority .
+
+hpc:Samefairsharequeue a owl:Class .
+hpc:Samefairsharequeue rdfs:subClassOf hpc:Queue .
+hpc:Samefairsharequeue rdfs:subClassOf hpc:Crossqueuefairsharequeue .
+
+hpc:dispatchedfirstcomefirstserved a owl:ObjectProperty .
+hpc:Dispatchedfirstcomefirstserved rdfs:domain hpc:Queue .
+hpc:Dispatchedfirstcomefirstserved rdfs:range hpc:Queue .
+
+hpc:Fairsharequeue a owl:Class .
+hpc:Fairsharequeue rdfs:subClassOf hpc:Queue .
+
+hpc:Crossqueuefairshareset a owl:Class .
+hpc:Crossqueuefairshareset rdfs:subClassOf rdf:List .
+hpc:Crossqueuefairshareset rdfs:range rdf:List .
+hpc:Crossqueuefairshareset rdfs:range rdf:List rdf:first hpc:Crossqueuefairsharequeue .
+hpc:Crossqueuefairshareset rdfs:range rdf:List rdf:rest hpc:Crossqueuefairshareset .
+
+hpc:dispatchedbyorder a owl:ObjectProperty .
+hpc:Dispatchedbyorder rdfs:domain hpc:Queue .
+hpc:Dispatchedbyorder rdfs:range rdf:List .
+hpc:Dispatchedbyorder rdfs:range rdf:List rdf:first hpc:Crossqueuefairsharequeue .
+hpc:Dispatchedbyorder rdfs:range rdf:List rdf:rest hpc:Dispatchedbyorder .
+
+hpc:excludedfromcrossqueuefairshare a owl:ObjectProperty .
+hpc:Excludedfromcrossqueuefairshare rdfs:domain hpc:Queue .
+hpc:Excludedfromcrossqueuefairshare rdfs:range xsd:boolean .

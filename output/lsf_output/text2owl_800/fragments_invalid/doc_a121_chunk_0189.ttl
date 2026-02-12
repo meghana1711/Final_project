@@ -1,0 +1,38 @@
+hpc:Shell a owl:Class .
+hpc:esubargument a owl:DatatypeProperty .
+hpc:Esub a owl:Class .
+hpc:Esubargumentrange rdfs:range xsd:string .
+hpc:Esubargumentmaxlength rdfs:domain hpc:Esubargument .
+hpc:Esubargumentmaxlength rdfs:range xsd:integer .
+hpc:Esubargumentcount rdfs:domain hpc:Esub .
+hpc:Esubargumentcount rdfs:range xsd:integer .
+hpc:ESubFaultTolerance rdfs:comment "Allows extra space characters between entities including esub, separators and arguments." .
+hpc:ESubFaultTolerance rdfs:label "faultTolerance" .
+hpc:ESubFaultTolerance rdfs:subPropertyOf rdf:PlainLiteral .
+hpc:Esubfaulttolerance rdfs:domain hpc:Esub .
+hpc:Esubfaulttolerance rdfs:range rdf:PlainLiteral .
+hpc:ESubUsageVariation rdfs:comment "Varies among different shells." .
+hpc:ESubUsageVariation rdfs:label "usageVariation" .
+hpc:ESubUsageVariation rdfs:subPropertyOf rdf:PlainLiteral .
+hpc:Esubusagevariation rdfs:domain hpc:Esub .
+hpc:Esubusagevariation rdfs:range rdf:PlainLiteral .
+hpc:ESubEscapeCharacter rdfs:comment "Used to specify arguments containing special characters, separators and space characters." .
+hpc:ESubEscapeCharacter rdfs:label "escapeCharacter" .
+hpc:ESubEscapeCharacter rdfs:subPropertyOf rdf:PlainLiteral .
+hpc:Esubescapecharacter rdfs:domain hpc:Esub .
+hpc:Esubescapecharacter rdfs:range rdf:PlainLiteral .
+hpc:ESubInteractiveJob rdfs:label "interactiveJob" .
+hpc:ESubInteractiveJob rdfs:subPropertyOf rdf:PlainLiteral .
+hpc:Esubinteractivejob rdfs:domain hpc:Esub .
+hpc:Esubinteractivejob rdfs:range rdf:PlainLiteral .
+hpc:ESubRemoteTask rdfs:label "remoteTask" .
+hpc:ESubRemoteTask rdfs:subPropertyOf rdf:PlainLiteral .
+hpc:Esubremotetask rdfs:domain hpc:Esub .
+hpc:Esubremotetask rdfs:range rdf:PlainLiteral .
+hpc:ESubSameArguments rdfs:comment "The same arguments that are passed to esub are also passed to epsub." .
+hpc:ESubSameArguments rdfs:label "sameArguments" .
+hpc:ESubSameArguments rdfs:subPropertyOf rdf:PlainLiteral .
+hpc:Esubsamearguments rdfs:domain hpc:Esub .
+hpc:Esubsamearguments rdfs:range rdf:PlainLiteral .
+hpc:BatchSchedulingPolicy rdfs:label "batchSchedulingPolicy" .
+hpc:BatchSchedulingPolicy rdfs:subPropertyOf rdf:PlainLiteral

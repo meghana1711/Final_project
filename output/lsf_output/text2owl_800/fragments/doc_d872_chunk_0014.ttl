@@ -1,0 +1,49 @@
+hpc:Lsfqueueadministrator a owl:Class .
+hpc:performsadministrativeoperation a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfqueueadministrator ;
+    rdfs:range hpc:Administrativeoperation .
+hpc:changelsfconfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfqueueadministrator ;
+    rdfs:range rdf:nil .
+hpc:operateonlsfdaemon a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfqueueadministrator ;
+    rdfs:range rdf:nil .
+
+hpc:Resourceusage a owl:Class .
+hpc:totalcputime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusage ;
+    rdfs:range xsd:decimal .
+hpc:totalresidentmemory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusage ;
+    rdfs:range xsd:decimal .
+hpc:totalvirtualmemory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusage ;
+    rdfs:range xsd:decimal .
+hpc:currentlyactiveprocessgroupid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusage ;
+    rdfs:range xsd:integer .
+hpc:currentlyactiveprocesses a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusage ;
+    rdfs:range rdf:List .
+
+hpc:Pim a owl:Class .
+hpc:collectsjoblevelresourceusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Pim ;
+    rdfs:range rdf:nil .
+
+hpc:sbdSleepTime a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:decimal .
+
+hpc:Loadindex a owl:Class .
+hpc:loadsched a owl:ObjectProperty ;
+    rdfs:domain hpc:Loadindex ;
+    rdfs:range xsd:decimal .
+
+hpc:Staticresource a owl:Class .
+hpc:maxram a owl:DatatypeProperty ;
+    rdfs:domain hpc:Staticresource ;
+    rdfs:range xsd:decimal .
+hpc:numberofprocessors a owl:DatatypeProperty ;
+    rdfs:domain hpc:Staticresource ;
+    rdfs:range xsd:integer .

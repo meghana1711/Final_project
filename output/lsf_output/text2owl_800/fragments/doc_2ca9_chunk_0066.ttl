@@ -1,0 +1,69 @@
+hpc:jobfinishmessage a owl:DatatypeProperty .
+hpc:jobid a owl:DatatypeProperty .
+hpc:jobstatusmessage a owl:DatatypeProperty .
+hpc:jobstatusoption a owl:ObjectProperty .
+hpc:LSB_SUBK_SHOW_JOBID a rdfs:DatatypeProperty .
+
+hpc:JobStatusOption
+  rdfs:domain hpc:Job .
+hpc:JobStatusOption
+    rdfs:range hpc:Jobstatusmessage ;
+    rdfs:subPropertyOf hpc:JobStatusOption .
+
+hpc:JobStatusMessage
+  rdfs:domain hpc:Job .
+hpc:JobStatusMessage
+    rdfs:range xsd:string ;
+    rdfs:subClassOf rdf:Literal .
+
+hpc:JobID
+  rdfs:domain hpc:Job .
+hpc:JobID
+    rdfs:range xsd:string ;
+    rdfs:subClassOf rdf:Literal .
+
+# Job Control
+hpc:jobcontrolreason a owl:DatatypeProperty .
+hpc:jobcontroloption a owl:ObjectProperty .
+
+hpc:JobControlOption
+  rdfs:domain hpc:Job .
+hpc:JobControlOption
+    rdfs:range hpc:Jobcontrolreason ;
+    rdfs:subPropertyOf hpc:JobControlOption .
+
+hpc:JobControlReason
+  rdfs:domain hpc:Job .
+hpc:JobControlReason
+    rdfs:range xsd:string ;
+    rdfs:subClassOf rdf:Literal .
+
+# Cluster Management
+hpc:sharedresourcelocation a owl:DatatypeProperty .
+hpc:Sharedresource a owl:Class .
+hpc:Allsharedresource a owl:Class .
+
+hpc:SharedResource
+  rdfs:subClassOf hpc:Resource .
+
+hpc:AllSharedResource
+  rdfs:subClassOf hpc:Sharedresource .
+
+hpc:SharedResourceLocation
+  rdfs:domain hpc:Sharedresource .
+hpc:SharedResourceLocation
+    rdfs:range xsd:string .
+
+hpc:individualsharedresourcelocation a owl:DatatypeProperty .
+
+hpc:IndividualSharedResourceLocation
+  rdfs:domain hpc:Sharedresource ;
+  rdfs:subPropertyOf hpc:SharedResourceLocation .
+
+# GPU Resources
+hpc:GPUResourceIgnore a rdfs:DatatypeProperty .
+
+hpc:GPUResourceIgnore
+  rdfs:domain hpc:Lsf .
+hpc:GPUResourceIgnore
+    rdfs:range xsd:boolean .

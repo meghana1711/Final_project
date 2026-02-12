@@ -1,0 +1,36 @@
+hpc:Lsmake a owl:Class .
+hpc:hasHostName owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsmake ;
+    rdfs:range xsd:string .
+hpc:numCores owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsmake .
+hpc:hasNumCores owl:ObjectProperty ;
+    rdfs:domain hpc:Lsmake ;
+    rdfs:range hpc:Lsmake .
+hpc:hasNumTasks owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsmake .
+hpc:hasDebugLevel owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsmake ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasSeconds owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsmake .
+hpc:hasNumRetries owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsmake ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasMakeOption owl:ObjectProperty ;
+    rdfs:domain hpc:Lsmake .
+hpc:hasTarget owl:ObjectProperty ;
+    rdfs:domain hpc:Lsmake .
+hpc:noBlockShellMode owl:ObjectProperty ;
+    rdfs:domain hpc:Lsmake .
+hpc:hasResReq owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsmake .
+hpc:hasMaxCores owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsmake .
+
+hpc:Makeoption a owl:Class .
+hpc:makeoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsmake ;
+    rdfs:range hpc:Makeoption .
+
+hpc:Resourcereq a owl:Class .

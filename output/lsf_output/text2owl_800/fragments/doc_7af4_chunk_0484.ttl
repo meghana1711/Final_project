@@ -1,0 +1,25 @@
+hpc:remotemaxpreexecretry a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executioncluster ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Define the maximum number of times to attempt the pre-execution command of a job from the remote cluster. Used only with the multicluster job forwarding model." .
+
+hpc:reqqueueexitvalues a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Reqqueueexitvalues ;
+    rdfs:comment "Enables automatic job requeue and sets the LSB_EXIT_REQUEUE environment variable." .
+
+hpc:Reqqueueexitvalues a owl:Class ;
+    rdfs:subClassOf owl:Collection ;
+    rdfs:comment "Use spaces to separate multiple exit codes. Application-level exit values override queue-level values. Job-level exit values (bsub -Q) override application-level and queue-level values." .
+
+hpc:reqqueueexitvaluesvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reqqueueexitvalues ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Application-level exit values override queue-level values. Job-level exit values (bsub -Q) override application-level and queue-level values." .
+
+hpc:Exitcode a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Exit codes are typically between 0 and 255." .
+
+hpc:AllExitCodes a owl:NamedIndividual ;
+    hpc:hasExitCode xsd:anyURI .

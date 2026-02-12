@@ -1,0 +1,67 @@
+hpc:NonAdministrativeUser
+    a owl:Class ;
+    rdfs:subClassOf hpc:User .
+
+hpc:resettableResource
+    a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:belongsTo
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Nonadministrativeuser ;
+    rdfs:range hpc:Resettableresource .
+
+hpc:clusterAffinity
+    a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:clusterAffinityRequirement
+    a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:jobAffinity
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Clusteraffinity .
+
+hpc:jobAffinityAttributeName
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobaffinity .
+
+hpc:jobControlAction
+    a owl:Class .
+
+hpc:jobStarter
+    a owl:Class ;
+    rdfs:subClassOf hpc:Jobcontrolaction .
+
+hpc:jobExecutionControl
+    a owl:Class ;
+    rdfs:subClassOf hpc:Jobcontrolaction .
+
+hpc:preExecutionProcessing
+    a owl:Class ;
+    rdfs:subClassOf hpc:Jobexecutioncontrol .
+
+hpc:postExecutionProcessing
+    a owl:Class ;
+    rdfs:subClassOf hpc:Jobexecutioncontrol .
+
+hpc:resourceUsageLimit
+    a owl:Class ;
+    rdfs:subClassOf hpc:Jobcontrolaction .
+
+hpc:loadCondition
+    a owl:Class ;
+    rdfs:subClassOf hpc:Resourceusagelimit .
+
+hpc:jobSubmission
+    a owl:Class ;
+    rdfs:subClassOf hpc:Jobcontrolaction .
+
+hpc:usermapping
+    a owl:Class .
+
+hpc:submitAsOtherUser
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission .

@@ -1,0 +1,61 @@
+hpc:install a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range rdf:Literal .
+
+hpc:compile a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range rdf:Literal .
+
+hpc:Librarylocation a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Slurmapi a owl:Class .
+
+hpc:Slurm a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:slurmapidirectuse a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range hpc:Slurmapi ;
+    rdfs:range hpc:Librarylocation .
+
+hpc:slurmconfigure a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range rdf:Literal .
+
+hpc:slurmconfigurehelp a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range rdf:Literal .
+
+hpc:slurmdebug a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range rdf:Literal .
+
+hpc:slurminstall a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range rdf:Literal .
+
+hpc:Slurmnode a owl:Class .
+
+hpc:Slurmnodetype a owl:Class .
+
+hpc:slurmprefix a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:string .
+
+hpc:slurmsysconfdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:string .
+
+hpc:Controllernode a owl:Class ;
+    rdfs:subClass hpc:SlurmNode .
+
+hpc:Computenode a owl:Class ;
+    rdfs:subClass hpc:SlurmNode .
+
+hpc:Productioncluster a owl:Class .
+
+hpc:Singlepurposenode a owl:Class ;
+    rdfs:subClass hpc:SlurmNode .
+
+hpc:Optionalfunctionality a owl:Class .

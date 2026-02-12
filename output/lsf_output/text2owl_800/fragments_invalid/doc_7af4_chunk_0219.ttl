@@ -1,0 +1,56 @@
+hpc:resourcename a owl:DatatypeProperty .
+hpc:Resourcename rdfs:domain hpc:Resource .
+hpc:Resourcename rdfs:range xsd:string .
+
+hpc:ResourceNameRULE1 rdf:value "^[0-9]" ; begins with a number
+hpc:ResourceNameRULE1 rdf:type owl:Restriction .
+hpc:ResourceNameRULE1 rdfs:subPropertyOf hpc:ResourceName .
+hpc:ResourceNameRULE1 owl:onProperty hpc:ResourceName .
+hpc:ResourceNameRULE1 owl:hasValue "_" .
+
+hpc:ResourceNameRULE2 rdf:value "[: . ( ) [ + - * / ! & | < > @ = ,]"
+hpc:ResourceNameRULE2 rdf:type owl:Restriction .
+hpc:ResourceNameRULE2 rdfs:subPropertyOf hpc:ResourceName .
+hpc:ResourceNameRULE2 owl:onProperty hpc:ResourceName .
+hpc:ResourceNameRULE2 owl:hasValue "_" .
+
+hpc:ResourceNameRULE3 rdf:value "inf"
+hpc:ResourceNameRULE3 rdf:type owl:Restriction .
+hpc:ResourceNameRULE3 rdfs:subPropertyOf hpc:ResourceName .
+hpc:ResourceNameRULE3 owl:onProperty hpc:ResourceName .
+hpc:ResourceNameRULE3 owl:hasValue "_" .
+
+hpc:ResourceNameRULE4 rdf:value "nan"
+hpc:ResourceNameRULE4 rdf:type owl:Restriction .
+hpc:ResourceNameRULE4 rdfs:subPropertyOf hpc:ResourceName .
+hpc:ResourceNameRULE4 owl:onProperty hpc:ResourceName .
+hpc:ResourceNameRULE4 owl:hasValue "_" .
+
+hpc:ResourceNameLength rdf:value "39"
+hpc:ResourceNameLength rdf:type xsd:integer .
+
+hpc:resourcenamecasesensitive a owl:DatatypeProperty .
+
+hpc:SolarisMachineReservedKeyword rdf:value "int"
+hpc:SolarisMachineReservedKeyword rdf:type xsd:string .
+
+hpc:Resourcetype a owl:Class .
+hpc:Resourcetype rdfs:subClassOf owl:Class .
+
+hpc:Numericresource a owl:Class .
+hpc:Numericresource rdfs:subClassOf hpc:Resourcetype .
+
+hpc:GlobalResource rdf:value "true"
+hpc:GlobalResource rdf:type xsd:boolean .
+
+hpc:LoadIndex rdf:value "true"
+hpc:LoadIndex rdf:type xsd:boolean .
+
+hpc:HostCPUFactor rdf:value "true"
+hpc:HostCPUFactor rdf:type xsd:boolean .
+
+hpc:ResourceRequirementString rdf:value "-R"
+hpc:ResourceRequirementString rdf:type xsd:string .
+
+hpc:InfxxResourceRequirement rdf:value "infxx"
+hpc:InfxxResourceRequirement rdf:type xsd:string .

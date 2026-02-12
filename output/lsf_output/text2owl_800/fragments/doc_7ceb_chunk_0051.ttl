@@ -1,0 +1,40 @@
+hpc:Lsf a owl:Class .
+hpc:Lim a owl:Class .
+
+hpc:haslsfconffile a owl:ObjectProperty .
+hpc:setupenvironment a owl:ObjectProperty .
+hpc:checkforerrors a owl:ObjectProperty .
+hpc:communicationtimesout a owl:ObjectProperty .
+hpc:needsinitialization a owl:ObjectProperty .
+
+hpc:Lsfconf hpc:haslsfconffile rdf:nil .
+hpc:LSFConf rdf:type hpc:File .
+
+hpc:lsfConfDirectory rdf:type hpc:Directory .
+hpc:LSF_ENVDIR rdf:type hpc:EnvironmentVariable .
+
+hpc:cshrclsf a owl:ObjectProperty .
+hpc:profilelsf a owl:ObjectProperty .
+
+hpc:Lsfenvironment a owl:Class .
+hpc:Userenvironment a owl:Class .
+hpc:Lsfenvironment rdfs:subClassOf hpc:Userenvironment .
+
+hpc:lsfenvironmentvariable a owl:DatatypeProperty .
+hpc:Environmentvariable rdfs:domain hpc:Userenvironment .
+hpc:Environmentvariable rdfs:range xsd:string .
+
+hpc:limconfigfile a owl:DatatypeProperty .
+hpc:Limconfigfile rdfs:domain hpc:Lim .
+hpc:Limconfigfile rdfs:range hpc:File .
+
+hpc:limerrorlog a owl:DatatypeProperty .
+hpc:Limerrorlog rdfs:domain hpc:Lim .
+hpc:Limerrorlog rdfs:range hpc:File .
+
+hpc:lsadminckconfig a owl:ObjectProperty .
+hpc:lsload a owl:ObjectProperty .
+
+hpc:liminitializationtime a owl:DatatypeProperty .
+hpc:Liminitializationtime rdfs:domain hpc:Lim .
+hpc:Liminitializationtime rdfs:range xsd:nonNegativeInteger .

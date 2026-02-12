@@ -1,0 +1,34 @@
+hpc:LsfLdSecurity a owl:Class .
+hpc:LsfLdSecurityConfiguration a owl:Class .
+hpc:bsub a owl:ObjectProperty .
+hpc:badmin a owl:ObjectProperty .
+hpc:lsadmin a owl:ObjectProperty .
+hpc:LogDirectory a owl:Class .
+hpc:LogFile a owl:Class .
+hpc:Administrator a owl:Class .
+hpc:readPermission a owl:DatatypeProperty .
+hpc:writePermission a owl:DatatypeProperty .
+hpc:executionPermission a owl:DatatypeProperty .
+
+hpc:LsfLdSecurity rdfs:subClassOf owl:Class .
+hpc:LsfLdSecurityConfiguration rdfs:subClassOf hpc:LsfLdSecurity .
+hpc:Bsub rdfs:domain hpc:LsfLdSecurity .
+hpc:Badmin rdfs:domain hpc:Administrator .
+hpc:Lsadmin rdfs:domain hpc:Administrator .
+hpc:LogDirectory rdfs:subClassOf owl:Class .
+hpc:LogFile rdfs:subClassOf hpc:LogDirectory .
+hpc:Administrator rdfs:subClassOf owl:Class .
+
+hpc:Bsub rdfs:range hpc:LsfLdSecurityConfiguration .
+hpc:Badmin rdfs:range hpc:Administrator .
+hpc:Lsadmin rdfs:range hpc:Administrator .
+
+hpc:LogDirectory rdfs:range hpc:LogFile .
+
+hpc:ReadPermission rdfs:domain hpc:LogDirectory .
+hpc:WritePermission rdfs:domain hpc:LogDirectory .
+hpc:ExecutionPermission rdfs:domain hpc:Administrator .
+
+hpc:ReadPermission rdfs:range xsd:string .
+hpc:WritePermission rdfs:range xsd:string .
+hpc:ExecutionPermission rdfs:range xsd:string .

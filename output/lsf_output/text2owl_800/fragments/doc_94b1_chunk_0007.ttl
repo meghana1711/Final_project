@@ -1,0 +1,41 @@
+hpc:Powerpolicy a owl:Class ;
+    rdfs:subClassOf hpc:Policy .
+
+hpc:Policy a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Powerpolicy ;
+    rdfs:range xsd:string .
+
+hpc:hosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Powerpolicy ;
+    rdfs:range rdf:List .
+
+hpc:timeWindow a owl:DatatypeProperty ;
+    rdfs:domain hpc:Powerpolicy ;
+    rdfs:range xsd:time .
+
+hpc:minIdleTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Powerpolicy ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:cycleTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Powerpolicy ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:powerStatusLogMax a owl:ObjectProperty ;
+    rdfs:domain hpc:Eventswitch ;
+    rdfs:range hpc:Powerstatuslog .
+
+hpc:maxJobNum a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eventswitch ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:minSwitchPeriod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eventswitch ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:powerOnWait a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:nonNegativeInteger .

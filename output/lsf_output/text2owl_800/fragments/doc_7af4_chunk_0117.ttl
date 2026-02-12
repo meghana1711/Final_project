@@ -1,0 +1,29 @@
+hpc:Environmentvariable a owl:Class .
+hpc:Commandaction a owl:Class .
+
+hpc:lsbJobpgids a owl:ObjectProperty .
+hpc:lsbJobpids a owl:ObjectProperty .
+hpc:lsbSuspReasons a owl:ObjectProperty .
+hpc:lsbSuspSubreasons a owl:ObjectProperty .
+
+hpc:LsbJobpgids rdfs:domain hpc:Environmentvariable ;
+    rdfs:range xsd:integer .
+hpc:LsbJobpids rdfs:domain hpc:Environmentvariable ;
+    rdfs:range xsd:integer .
+hpc:LsbSuspReasons rdfs:domain hpc:Environmentvariable ;
+    rdfs:range xsd:integer .
+hpc:LsbSuspSubreasons rdfs:domain hpc:Environmentvariable ;
+    rdfs:range xsd:integer .
+
+hpc:commandpath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Commandaction ;
+    rdfs:range xsd:string .
+
+hpc:SuspendReasons rdfs:subClassOf hpc:Environmentvariable .
+hpc:SuspendSubreasons rdfs:subClassOf hpc:Environmentvariable .
+
+hpc:SuspendReasons rdfs:subClassOf hpc:LsbSuspReasons .
+hpc:SuspendSubreasons rdfs:subClassOf hpc:LsbSuspSubreasons .
+
+hpc:SUSPEND_REASONS rdfs:comment "An integer representing a bitmap of suspending reasons as deﬁned in lsbatch.h." .
+hpc:SUSPEND_SUBREASONS rdfs:comment "An integer representing the load index that caused the job to be suspended" .

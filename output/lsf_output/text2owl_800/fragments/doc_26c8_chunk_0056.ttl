@@ -1,0 +1,45 @@
+hpc:nnumas a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpuextend ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:gbrand a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpuextend ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:Property .
+
+hpc:Gbrand rdfs:subPropertyOf hpc:GPUBrand .
+
+hpc:Gbrand rdfs:comment "The GPU brand. This value is case sensitive, and supports NVIDIA GPUs."@en .
+
+hpc:Gbrand rdfs:label "GPU Brand"@en .
+
+hpc:gmodel a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpuextend ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:Property .
+
+hpc:Gmodel rdfs:subPropertyOf hpc:GPUModel .
+
+hpc:Gmodel rdfs:comment "The GPU model. This value is case sensitive, and supports NVIDIA GPUs."@en .
+
+hpc:Gmodel rdfs:label "GPU Model"@en .
+
+hpc:gmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpuextend ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:nvlink a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpuextend ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:Property .
+
+hpc:type a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpuextend ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:Property .
+
+hpc:Type rdfs:subPropertyOf hpc:HostType .
+
+hpc:Type rdfs:comment "The default value is given by the setting of the LSB_RC_DEFAULT_HOST_TYPE in the lsf.conf file."@en .
+
+hpc:Type rdfs:label "Type"@en .

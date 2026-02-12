@@ -1,0 +1,72 @@
+hpc:allocBuffer a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:clusterDistribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range hpc:Cluster .
+
+hpc:clusterMode a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:boolean .
+
+hpc:checkoutFromFirstHostOnly a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:boolean .
+
+hpc:ClusterName rdfs:domain hpc:AllocBuffer ;
+    rdfs:range xsd:string .
+
+hpc:demandLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:disablePreemption a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:boolean .
+
+hpc:distribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+
+hpc:dynamic a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:boolean .
+
+hpc:enableDynamicRusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:boolean .
+
+hpc:enableMinjobPreemption a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:boolean .
+
+hpc:fastDispatch a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:boolean .
+
+hpc:featureDelta a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:flexName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+
+hpc:groupDistribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range hpc:Group .
+
+hpc:inuseFromRusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lmLicenseName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+
+hpc:lmRemoveInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lmRemoveSuspJobs a owl:ObjectProperty ;

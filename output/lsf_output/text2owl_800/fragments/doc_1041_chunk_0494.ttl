@@ -1,0 +1,53 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Jobstate a owl:Class ;
+    rdfs:subClassOf hpc:Resourcestate .
+
+hpc:PSUSP a hpc:JobState ;
+    rdfs:label "PSUSP" .
+
+hpc:USUSP a hpc:JobState ;
+    rdfs:label "USUSP" .
+
+hpc:Resumablejob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:subClassOf hpc:Resumableresource .
+
+hpc:Resumableresource a owl:Class .
+
+hpc:resumesignal a owl:ObjectProperty ;
+    rdfs:domain hpc:Resumablejob ;
+    rdfs:range hpc:Signal .
+
+hpc:Signal a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Resumepermission a owl:Class ;
+    rdfs:subClassOf hpc:User .
+
+hpc:Administrator a owl:Class ;
+    rdfs:subClassOf hpc:Resumepermission .
+
+hpc:Root a owl:Class ;
+    rdfs:subClassOf hpc:Resumepermission .
+
+hpc:suspendedby a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resumepermission .
+
+hpc:enableuserresume a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:boolean .
+
+hpc:Lsbparams a owl:Class .
+
+hpc:resumemultiplejobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Resumablejob ;
+    rdfs:range hpc:Resumablejob .
+
+hpc:resumejobprofile a owl:ObjectProperty ;
+    rdfs:domain hpc:Resumablejob ;
+    rdfs:range hpc:Applicationprofile .
+
+hpc:Applicationprofile a owl:Class .

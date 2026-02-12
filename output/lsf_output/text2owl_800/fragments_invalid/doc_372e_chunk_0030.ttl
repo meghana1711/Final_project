@@ -1,0 +1,37 @@
+hpc:Feature a owl:Class .
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+hpc:lmLicenseName a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+
+hpc:AppZ201Feature a hpc:Feature ;
+    hpc:name "AppZ201" .
+hpc:Appz201feature hpc:lmLicenseName "201-AppZ" .
+
+hpc:CombinedFeature a hpc:Feature ;
+    rdfs:subClassOf hpc:Feature .
+hpc:combinedlicenses a owl:ObjectProperty ;
+    rdfs:domain hpc:Combinedfeature ;
+    rdfs:range xsd:string .
+hpc:AppZ201CombinedFeature a hpc:CombinedFeature ;
+    hpc:name "AppZ201" ;
+    hpc:combinedLicenses "201-AppZ 202-AppZ" .
+
+hpc:Distributionpolicy a owl:Class .
+hpc:servicedomain a owl:DatatypeProperty ;
+    rdfs:domain hpc:Distributionpolicy ;
+    rdfs:range xsd:string .
+hpc:projectshareratio a owl:DatatypeProperty ;
+    rdfs:domain hpc:Distributionpolicy ;
+    rdfs:range xsd:decimal .
+hpc:distribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Distributionpolicy ;
+    rdfs:range xsd:string .
+hpc:basicDistribution a hpc:DistributionPolicy ;
+    hpc:serviceDomain "DesignCenterA" ;
+    hpc:projectShareRatio "LpA" "2" ;
+    hpc:projectShareRatio "LpB" "1" ;
+    hpc:projectShareRatio "default" "1" ;
+    hpc:Distribution "default" .

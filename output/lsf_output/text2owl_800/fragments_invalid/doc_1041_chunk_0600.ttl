@@ -1,0 +1,68 @@
+hpc:File a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:Folder a owl:Class ;
+    rdfs:subClassOf hpc:File .
+
+hpc:Tag a owl:Class ;
+    rdfs:subClassOf hpc:File ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf owl:Restriction ;
+    rdfs:domain hpc:File ;
+    owl:onProperty hpc:name ;
+    owl:hasValue '_' ;
+    owl:allValueFrom xsd:string ;
+    owl:minLength 1 ;
+    owl:pattern '^[A-Za-z0-9]+$' .
+
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+
+hpc:hasspecialchar a owl:ObjectProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:boolean ;
+    rdfs:range [ a xsd:boolean ;
+                   owl:allValueFrom [ xsd:true ] ] ;
+    rdfs:subPropertyOf rdf:type ;
+    owl:inverseOf hpc:isSpecialChar .
+
+hpc:isspecialchar a owl:ObjectProperty ;
+    rdfs:domain xsd:string ;
+    rdfs:range hpc:File ;
+    rdfs:subPropertyOf rdf:type ;
+    owl:inverseOf hpc:hasSpecialChar .
+
+hpc:hasspace a owl:ObjectProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:boolean ;
+    rdfs:range [ a xsd:boolean ;
+                   owl:allValueFrom [ xsd:true ] ] ;
+    rdfs:subPropertyOf rdf:type ;
+    owl:inverseOf hpc:hasNoSpace .
+
+hpc:hasnospace a owl:ObjectProperty ;
+    rdfs:domain xsd:string ;
+    rdfs:range hpc:File ;
+    rdfs:subPropertyOf rdf:type ;
+    owl:inverseOf hpc:hasSpace .
+
+hpc:hasstartingdash a owl:ObjectProperty ;
+    rdfs:domain hpc:Tag ;
+    rdfs:range xsd:boolean ;
+    rdfs:range [ a xsd:boolean ;
+                   owl:allValueFrom [ xsd:false ] ] ;
+    rdfs:subPropertyOf rdf:type ;
+    owl:inverseOf hpc:noStartingDash .
+
+hpc:nostartingdash a owl:ObjectProperty ;
+    rdfs:domain xsd:string ;
+    rdfs:range hpc:Tag ;
+    rdfs:subPropertyOf rdf:type ;
+    owl:inverseOf hpc:hasStartingDash .
+
+hpc:isdataspec a owl:ObjectProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range hpc:File ;
+    rdfs

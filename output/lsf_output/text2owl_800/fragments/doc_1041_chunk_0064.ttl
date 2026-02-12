@@ -1,0 +1,30 @@
+hpc:Host a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Egoclosedhost a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:hasstatus a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:lockid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Egoclosedhost .
+
+hpc:removelockid a owl:ObjectProperty ;
+    rdfs:domain hpc:Administrator ;
+    rdfs:range hpc:Egoclosedhost .
+
+hpc:all a owl:NamedIndividual .
+
+hpc:suspendresume a owl:ObjectProperty ;
+    rdfs:domain hpc:Administrator ;
+    rdfs:range hpc:Host .
+
+hpc:hascomment a owl:DatatypeProperty ;
+    rdfs:domain hpc:Administratorcomment .
+
+hpc:Administratorcomment a owl:Class ;
+    rdfs:subClassOf rdf:PlainLiteral .
+
+hpc:Administrator a owl:Class .

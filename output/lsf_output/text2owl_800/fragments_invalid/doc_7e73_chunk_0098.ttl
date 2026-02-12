@@ -1,0 +1,61 @@
+hpc:Googlecloudplatformadministrator a owl:Class .
+hpc:rootaccess a owl:ObjectProperty ;
+    rdfs:domain hpc:Googlecloudplatformadministrator ;
+    rdfs:range xsd:boolean .
+
+hpc:Managementhost a owl:Class .
+hpc:reachable a owl:ObjectProperty ;
+    rdfs:domain hpc:Managementhost ;
+    rdfs:range hpc:Googlecloudinstance .
+
+hpc:Googlecloudinstance a owl:Class .
+
+hpc:Dnsserver a owl:Class .
+hpc:correctpermissions a owl:ObjectProperty ;
+    rdfs:domain hpc:Dnsserver ;
+    rdfs:range xsd:boolean .
+
+hpc:Lsfcluster a owl:Class .
+hpc:HasDNSServer owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range rdf:Resource .
+
+hpc:restartable a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:boolean .
+
+hpc:familiarity a owl:ObjectProperty ;
+    rdfs:domain hpc:Googlecloudplatformadministrator ;
+    rdfs:range xsd:string .
+
+hpc:gcpadministrativeoperations a owl:ObjectProperty ;
+    rdfs:domain hpc:Googlecloudplatformadministrator ;
+    rdfs:range xsd:string .
+
+hpc:vpcconfigured a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:boolean .
+
+hpc:Linuxsystem a owl:Class .
+hpc:kernelversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Linuxsystem ;
+    rdfs:range xsd:string .
+
+hpc:glibcversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Linuxsystem ;
+    rdfs:range xsd:string .
+
+hpc:Rhel a owl:Class ;
+    rdfs:subClassOf hpc:Linuxsystem .
+
+hpc:Centos a owl:Class ;
+    rdfs:subClassOf hpc:Linuxsystem .
+
+hpc:Lsfstandardedition a owl:Class .
+hpc:version a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfstandardedition ;
+    rdfs:range xsd:string .
+
+hpc:fixpack a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfstandardedition ;
+    rdfs:range xsd:nonNegativeInteger .

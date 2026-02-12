@@ -1,0 +1,34 @@
+hpc:User a owl:Class .
+hpc:Administrator a owl:Class .
+hpc:Job a owl:Class .
+hpc:Suspendedjob a owl:Class .
+hpc:Resumablejob a owl:Class .
+hpc:resumablebyuser a owl:ObjectProperty .
+hpc:resumablebyadmin a owl:ObjectProperty .
+hpc:resumablebyroot a owl:ObjectProperty .
+hpc:enforceoneuglimits a owl:ObjectProperty .
+hpc:enforceduglimits a owl:DatatypeProperty .
+
+hpc:User rdfs:subClassOf rdf:Resource .
+hpc:Administrator rdfs:subClassOf hpc:User .
+hpc:Job rdfs:subClassOf rdf:Resource .
+hpc:Suspendedjob rdfs:subClassOf hpc:Job .
+hpc:Resumablejob rdfs:subClassOf hpc:Job .
+
+hpc:Resumablebyuser rdfs:domain hpc:Resumablejob ;
+    rdfs:range hpc:User .
+hpc:Resumablebyadmin rdfs:domain hpc:Resumablejob ;
+    rdfs:range hpc:Administrator .
+hpc:Resumablebyroot rdfs:domain hpc:Resumablejob ;
+    rdfs:range xsd:string .
+hpc:Enforceoneuglimits rdfs:domain hpc:Resumablejob ;
+    rdfs:range xsd:string .
+hpc:Enforceduglimits rdfs:domain hpc:Resumablejob ;
+    rdfs:range hpc:Usergroup .
+
+hpc:ResumableJob rdf:type owl:Class .
+hpc:resumablebyuser a owl:ObjectProperty .
+hpc:resumablebyadmin a owl:ObjectProperty .
+hpc:resumablebyroot a owl:ObjectProperty .
+hpc:enforceoneuglimits a owl:ObjectProperty .
+hpc:enforceduglimits a owl:DatatypeProperty .

@@ -1,0 +1,54 @@
+hpc:Profilinglevel a owl:Class ;
+    rdfs:subClassOf owl:Integer ;
+    rdfs:comment "Specifies a timing level for checking how long the proﬁler runs, in milliseconds. Specify an integer greater than 0. The default is 5." .
+
+hpc:defaultProfilingLevel a xsd:integer ;
+    rdfs:comment "The default is 5." .
+
+# mbschd Profiling Settings
+hpc:Mbschdprofilingsettings a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The settings for mbschd proﬁler." .
+
+hpc:LSB_PROFILE_SCH rdf:type hpc:MBschdProfilingSetting ;
+    rdfs:comment "The LSB_PROFILE_SCH setting for mbschd proﬁler." .
+
+hpc:LsbProfileSch rdfs:domain hpc:Mbschdprofilingsettings ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The value is a string representing the LSB_PROFILE_SCH setting." .
+
+hpc:INTERVAL rdf:type hpc:ProfilingInterval ;
+    rdfs:subClassOf xsd:nonNegativeInteger ;
+    rdfs:comment "Represents an interval in milliseconds." .
+
+hpc:THRESHOLD rdf:type hpc:ProfilingThreshold ;
+    rdfs:subClassOf xsd:decimal ;
+    rdfs:comment "Represents a threshold value for profiling." .
+
+hpc:LOG_LEVEL rdf:type hpc:LogLevel ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Represents the log level for profiling." .
+
+hpc:TIME_LEVEL rdf:type hpc:ProfilingTime ;
+    rdfs:subClassOf xsd:nonNegativeInteger ;
+    rdfs:comment "Represents the time level for profiling in milliseconds." .
+
+# Query Enhancement
+hpc:Queryenhancement a owl:Class ;
+    rdfs:subClassOf owl:Boolean ;
+    rdfs:comment "Enables or disables multithreaded query support for batch query commands." .
+
+hpc:LSB_QUERY_ENH rdf:type hpc:QueryEnhancement ;
+    rdfs:comment "Enables multithreaded query support for several common batch query commands." .
+
+hpc:Mbatchdsystemquerymonitoring a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents the mbatchd system query monitoring mechanism." .
+
+hpc:startsAutomatically rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:Mbatchdsystemquerymonitoring ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the mbatchd system query monitoring starts automatically." .
+
+hpc:fasterQueryResponseTime rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:Mbatchdsystemquerymonitor

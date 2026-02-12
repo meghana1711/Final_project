@@ -1,0 +1,38 @@
+hpc:Computeunit a owl:Class .
+hpc:Command a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Servicedomain a owl:Class .
+hpc:Outputformat a owl:Class .
+
+# Object Properties
+hpc:hasComputeUnit rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Computeunit .
+hpc:hasCluster rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Cluster .
+hpc:hasServiceDomain rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Servicedomain .
+hpc:hasOutputFormat rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Outputformat .
+
+# Datatype Properties
+hpc:hasArguments rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Command .
+
+# Class and Property Restrictions
+hpc:Computeunit a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        rdfs:onProperty hpc:hasArguments ;
+        rdf:type rdfs:Datatype ;
+        rdfs:datatype xsd:string ;
+        owl:hasValue "" .
+    ] .
+hpc:Outputformat a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        rdf:type rdfs:Datatype ;
+        rdfs:datatype xsd:string ;
+        owl:hasValue "*" .
+    ] .

@@ -1,0 +1,38 @@
+hpc:Dynamicjobadjustment a owl:Class .
+
+hpc:hasinitialvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dynamicjobadjustment ;
+    rdfs:range xsd:decimal .
+
+hpc:hasadjustmentfactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dynamicjobadjustment ;
+    rdfs:range xsd:decimal .
+
+hpc:hasstep a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dynamicjobadjustment ;
+    rdfs:range xsd:decimal .
+
+hpc:hashisttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dynamicjobadjustment ;
+    rdfs:range xsd:decimal .
+
+hpc:hasfactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dynamicjobadjustment ;
+    rdfs:range xsd:decimal .
+
+hpc:hascheckinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dynamicjobadjustment ;
+    rdfs:range xsd:integer .
+
+hpc:Dynamicjobadjustmentstrategy a owl:Class ;
+    rdfs:subClassOf hpc:Dynamicjobadjustment .
+
+hpc:Absoluteadjustment a owl:Class ;
+    rdfs:subClassOf hpc:Dynamicjobadjustmentstrategy .
+
+hpc:Multiplicativeadjustment a owl:Class ;
+    rdfs:subClassOf hpc:Dynamicjobadjustmentstrategy .
+
+hpc:hasdynamicstep a owl:ObjectProperty ;
+    rdfs:domain hpc:Dynamicjobadjustmentstrategy ;
+    rdfs:range hpc:Dynamicjobadjustment .

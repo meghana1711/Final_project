@@ -1,0 +1,43 @@
+hpc:Projectorcluster a owl:Class .
+hpc:Licensefeature a owl:Class .
+hpc:Servicedomain a owl:Class .
+hpc:Share a owl:Class .
+hpc:License a owl:Class .
+
+hpc:hasshare a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectorcluster ;
+    rdfs:range hpc:Share .
+
+hpc:totalnumberoflicenses a owl:DatatypeProperty ;
+    rdfs:domain hpc:Servicedomain ;
+    rdfs:range xsd:decimal .
+
+hpc:sumofallshares a owl:DatatypeProperty ;
+    rdfs:domain hpc:Servicedomain ;
+    rdfs:range xsd:decimal .
+
+hpc:sharesassignedtoprojectorcluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Projectorcluster ;
+    rdfs:range xsd:decimal .
+
+hpc:clusterMode a owl:Enum ;
+    rdfs:member hpc:static ;
+    rdfs:member hpc:dynamic .
+
+hpc:Staticdistributionpolicy a owl:Class ;
+    rdfs:subClassOf hpc:Clustermode .
+
+hpc:Dynamicdistributionpolicy a owl:Class ;
+    rdfs:subClassOf hpc:Clustermode .
+
+hpc:buffersize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dynamicdistributionpolicy ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:initialallocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dynamicdistributionpolicy ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:allocationupdateinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dynamicdistributionpolicy ;
+    rdfs:range xsd:nonNegativeInteger .

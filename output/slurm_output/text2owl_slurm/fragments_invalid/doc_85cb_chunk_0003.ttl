@@ -1,0 +1,17 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Cluster a owl:Class.
+hpc:Controlhost rdf:property rdfs:range xsd:string. .
+hpc:License a owl:Class.
+hpc:Name rdf:property rdfs:domain hpc:License;
+                 rdfs:range xsd:string.
+hpc:Server rdf:property rdfs:domain hpc:License;
+                 rdfs:range xsd:string.
+hpc:Type rdf:property rdfs:domain hpc:License;
+                 rdfs:range xsd:string.
+hpc:Count rdf:property rdfs:domain hpc:License;
+                 rdfs:

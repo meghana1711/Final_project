@@ -1,0 +1,38 @@
+hpc:Job a owl:Class .
+hpc:Memoryreservation a owl:Class .
+hpc:Pendingjob a owl:Class .
+hpc:availablememory a owl:DatatypeProperty .
+hpc:reservedmemory a owl:DatatypeProperty .
+hpc:maxreservetime a owl:DatatypeProperty .
+hpc:resourcereserve a owl:ObjectProperty .
+hpc:Queue a owl:Class .
+hpc:queuedescription a owl:DatatypeProperty .
+hpc:queuepriority a owl:DatatypeProperty .
+hpc:resourcereservevalue a owl:DatatypeProperty .
+
+hpc:Job rdfs:subClassOf hpc:Pendingjob .
+hpc:Memoryreservation rdfs:domain hpc:Job .
+hpc:Availablememory rdfs:domain hpc:Host .
+hpc:Reservedmemory rdfs:domain hpc:Job .
+hpc:Maxreservetime rdfs:domain hpc:Job .
+hpc:Resourcereserve rdfs:domain hpc:Queue .
+hpc:Resourcereserve rdfs:range hpc:Memoryreservation .
+
+hpc:Availablememory rdfs:range xsd:nonNegativeInteger .
+hpc:Reservedmemory rdfs:range xsd:nonNegativeInteger .
+hpc:Maxreservetime rdfs:range xsd:nonNegativeInteger .
+hpc:Resourcereservevalue rdfs:range xsd:nonNegativeInteger .
+
+hpc:Memoryreservation rdfs:subClassOf hpc:Reservedmemory .
+hpc:Memoryreservation rdfs:subClassOf hpc:Expirableresource .
+
+hpc:Expirableresource a owl:Class .
+hpc:expirationtime a owl:DatatypeProperty .
+hpc:Expirationtime rdfs:domain hpc:Expirableresource .
+hpc:Expirationtime rdfs:range xsd:dateTime .
+
+hpc:Expirableresource rdfs:subClassOf hpc:Resource .
+
+hpc:Resource a owl:Class .
+
+hpc:Host a owl:Class .

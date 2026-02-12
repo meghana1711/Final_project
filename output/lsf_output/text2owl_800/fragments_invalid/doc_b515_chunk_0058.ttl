@@ -1,0 +1,55 @@
+hpc:Job a owl:Class .
+hpc:Paralleljob a owl:Class .
+hpc:Serialjob a owl:Class .
+
+hpc:requiresmemory a owl:ObjectProperty .
+hpc:needscpus a owl:ObjectProperty .
+hpc:duration a owl:DatatypeProperty .
+hpc:Memoryrequirement rdfs:range xsd:nonNegativeInteger .
+hpc:Cpurequirement rdfs:range xsd:nonNegativeInteger .
+hpc:Duration rdfs:range xsd:nonNegativeInteger .
+
+hpc:Job subClassOf rdf:Resource .
+hpc:Paralleljob rdfs:subClassOf hpc:Job .
+hpc:Serialjob rdfs:subClassOf hpc:Job .
+
+hpc:Requiresmemory rdfs:domain hpc:Job .
+hpc:Needscpus rdfs:domain hpc:Job .
+hpc:Duration rdfs:domain hpc:Job .
+
+hpc:ParallelJob rdfs:subPropertyChain rdf:type (hpc:requiresMemory rdf:type owl:ObjectProperty ;
+                                                   rdfs:domain rdf:type rdfs:Class ;
+                                                   rdfs:range rdf:type owl:DatatypeProperty ;
+                                                   rdfs:range rdf:type xsd:nonNegativeInteger) .
+hpc:ParallelJob rdfs:subPropertyChain rdf:type (hpc:needsCPUs rdf:type owl:ObjectProperty ;
+                                                   rdfs:domain rdf:type rdfs:Class ;
+                                                   rdfs:range rdf:type owl:DatatypeProperty ;
+                                                   rdfs:range rdf:type xsd:nonNegativeInteger) .
+
+hpc:usesslots a owl:ObjectProperty .
+hpc:reservesmemory a owl:ObjectProperty .
+
+hpc:Usesslots rdfs:domain hpc:Paralleljob .
+hpc:Reservesmemory rdfs:domain hpc:Paralleljob .
+
+hpc:Usesslots rdfs:range xsd:nonNegativeInteger .
+hpc:Reservesmemory rdfs:range xsd:nonNegativeInteger .
+
+hpc:myJob1 a hpc:ParallelJob .
+hpc:myJob2 a hpc:ParallelJob .
+hpc:myJob3 a hpc:ParallelJob .
+hpc:myJob4 a hpc:SerialJob .
+hpc:myJob5 a hpc:SerialJob .
+
+hpc:Myjob1 hpc:requiresmemory "100" .
+hpc:Myjob1 hpc:needscpus "4" .
+hpc:Myjob1 hpc:usesslots "4" .
+hpc:Myjob1 hpc:duration "300" .
+
+hpc:Myjob2 hpc:requiresmemory "100" .
+hpc:Myjob2 hpc:needscpus "4" .
+hpc:Myjob2 hpc:usesslots "4" .
+hpc:Myjob2 hpc:duration "300" .
+
+hpc:Myjob3 hpc:requiresmemory "100" .
+hpc:Myjob3 hpc:needs

@@ -1,0 +1,31 @@
+hpc:Compoundresourcerequirement a owl:Class .
+hpc:Lastterm a owl:Class .
+hpc:Resizeablejob a owl:Class .
+hpc:Gpuresourcerequirement a owl:Class .
+hpc:numgpus a owl:DatatypeProperty .
+hpc:mode a owl:ObjectProperty .
+
+hpc:Compoundresourcerequirement rdfs:subClassOf hpc:Resourcerequirement .
+hpc:Lastterm rdfs:subClassOf hpc:Compoundresourcerequirement .
+hpc:Resizeablejob rdfs:subClassOf hpc:Job .
+hpc:Gpuresourcerequirement rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:Numgpus rdfs:domain hpc:Gpuresourcerequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Mode rdfs:domain hpc:Gpuresourcerequirement ;
+    rdfs:range xsd:string .
+
+hpc:Supports rdfs:domain hpc:Gpuresourcerequirement ;
+    rdfs:range xsd:boolean .
+
+hpc:Behaviorforresizerequirement rdfs:domain hpc:Resizeablejob ;
+    rdfs:range xsd:string .
+
+hpc:GrowsOrShrinksTasks rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Resizeablejob ;
+    rdfs:range hpc:Task .
+
+hpc:GrowsOrShrinksGpus rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Resizeablejob ;
+    rdfs:range hpc:Gpu .

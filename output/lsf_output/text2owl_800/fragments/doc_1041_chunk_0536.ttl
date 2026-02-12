@@ -1,0 +1,47 @@
+hpc:Host a owl:Class .
+hpc:Hostgroup a owl:Class .
+
+# WeeklyPlanner and AdvanceReservation classes
+hpc:Weeklyplanner a owl:Class .
+hpc:Advancereservation a owl:Class .
+
+# Object properties
+hpc:hashost a owl:ObjectProperty ;
+    rdfs:domain hpc:Weeklyplanner ;
+    rdfs:range rdf:List .
+hpc:hashostgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Weeklyplanner ;
+    rdfs:range rdf:List .
+hpc:hasallhosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Weeklyplanner ;
+    rdfs:range hpc:Weeklyplanner .
+hpc:hasreservations a owl:ObjectProperty ;
+    rdfs:domain hpc:Weeklyplanner ;
+    rdfs:range rdf:List .
+hpc:haszonedplanner a owl:ObjectProperty ;
+    rdfs:domain hpc:Weeklyplanner ;
+    rdfs:range hpc:Weeklyplanner .
+
+# Datatype properties
+hpc:reservationid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range xsd:string .
+hpc:timewindow a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range xsd:string .
+
+# Subclass relations
+hpc:WeeklyPlannerForSpecificHosts a hpc:WeeklyPlanner ;
+    rdfs:subClassOf [ a owl:Class ;
+                      owl:onProperty hpc:hasHost ;
+                      owl:someValuesFrom hpc:Host ] .
+hpc:WeeklyPlannerForSpecificHostGroups a hpc:WeeklyPlanner ;
+    rdfs:subClassOf [ a owl:Class ;
+                      owl:onProperty hpc:hasHostGroup ;
+                      owl:someValuesFrom hpc:HostGroup ] .
+hpc:WeeklyPlannerForAllHostsWithReservations a hpc:WeeklyPlanner ;
+    rdfs:subClassOf [ a owl:Class ;
+                      owl:onProperty hpc:hasAllHosts ] .
+hpc:ZonedPlanner a hpc:WeeklyPlanner ;
+    rdfs:subClassOf [ a owl:Class ;
+                      owl:onProperty hpc:hasZonedPlanner ] .

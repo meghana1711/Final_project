@@ -1,0 +1,6 @@
+hpc:Burstbuffer a owl:Class .
+hpc:Jobstatetransition a owl:Class .
+
+hpc:burstbuffertransition a owl:ObjectProperty ;
+    rdfs:domain hpc:Burstbuffer ;
+    rdfs:range hpc:Jobstatetransition .

@@ -1,0 +1,19 @@
+hpc:LsbParams a owl:Class .
+hpc:lsbDisableLimlockExcl hpc:lsbParam a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbParams ;
+    rdfs:range hpc:Boolean .
+hpc:lsbDisableLimlockExclValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbDisableLimlockExcl ;
+    rdfs:range xsd:string .
+hpc:lsbDisableLimlockExclDefault a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbParams ;
+    rdfs:range xsd:string .
+hpc:lsfDisableLsrun hpc:lsbParam a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbParams ;
+    rdfs:range hpc:Boolean .
+hpc:lsbDisableRerunPostExec hpc:lsbParam a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbParams ;
+    rdfs:range hpc:Boolean .
+hpc:lsbDisableRerunPostExecDescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbDisableRerunPostExec ;
+    rdfs:range xsd:string .

@@ -1,0 +1,20 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Cluster a owl:Class.
+hpc:Account a owl:Class.
+hpc:User a owl:Class.
+hpc:Partition a owl:Class.
+hpc:Association a owl:Class.
+hpc:Database a owl:Class.
+hpc:Grafana a owl:Class.
+hpc:Influxdb a owl:Class.
+hpc:Prometheus a owl:Class.
+
+hpc:addcluster a owl:ObjectProperty.
+hpc:addaccount a owl:ObjectProperty.
+hpc:adduser a owl:ObjectProperty.
+hpc:createaccountassociation a owl:ObjectProperty.
+hpc:Hascluster rdfs:domain hpc:Association

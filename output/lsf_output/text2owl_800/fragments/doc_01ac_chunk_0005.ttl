@@ -1,0 +1,31 @@
+hpc:Datastaging a owl:Class .
+hpc:Datatransferjob a owl:Class .
+hpc:Dataspecificationfile a owl:Class .
+hpc:Datatag a owl:Class .
+
+hpc:hasDataStagingArea rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Datastaging ;
+    rdfs:range hpc:Datastagingarea .
+
+hpc:hasDataTransferJob rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Datastaging .
+
+hpc:hasDataSpecificationFile rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Dataspecificationfile ;
+    rdfs:range xsd:string .
+
+hpc:hasSourceFile rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Dataspecificationfile ;
+    rdfs:range xsd:string .
+
+hpc:hasHost rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Dataspecificationfile ;
+    rdfs:range xsd:string .
+
+hpc:hasDataTag rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Datatag ;
+    rdfs:range hpc:Datataggedfile .
+
+hpc:Datataggedfile a owl:Class .
+
+hpc:Datastagingarea a owl:Class .

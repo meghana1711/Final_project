@@ -1,0 +1,48 @@
+hpc:Autojobrequeue a owl:Class .
+hpc:runonspecifiedhost a owl:ObjectProperty .
+hpc:Runonspecifiedhost rdfs:domain hpc:Autojobrequeue ;
+                        rdfs:range rdf:Resource .
+
+hpc:rerunifhostorsystemfails a owl:ObjectProperty .
+hpc:Rerunifhostorsystemfails rdfs:domain hpc:Autojobrequeue ;
+                               rdfs:range xsd:boolean .
+
+hpc:dontrerunifjobfails a owl:ObjectProperty .
+hpc:Dontrerunifjobfails rdfs:domain hpc:Autojobrequeue ;
+                          rdfs:range xsd:boolean .
+
+hpc:rcacct a owl:ObjectProperty .
+hpc:Rcacct rdfs:domain hpc:Autojobrequeue ;
+           rdfs:range rdf:Resource .
+
+hpc:accountname a owl:DatatypeProperty .
+hpc:Accountname rdfs:domain hpc:Host ;
+                rdfs:range xsd:string .
+
+hpc:neverrerunnable a owl:ObjectProperty .
+hpc:Neverrerunnable rdfs:domain hpc:Job .
+                    rdfs:range xsd:boolean .
+
+hpc:executablepath a owl:DatatypeProperty .
+hpc:Executablepath rdfs:domain hpc:Job ;
+                   rdfs:range xsd:string .
+
+hpc:stacksegmentsizelimit a owl:DatatypeProperty .
+hpc:Stacksegmentsizelimit rdfs:domain hpc:Process ;
+                           rdfs:range xsd:nonNegativeInteger .
+
+hpc:signalonqueuerunwindowclose a owl:ObjectProperty .
+hpc:Signalonqueuerunwindowclose rdfs:domain hpc:Job ;
+                                 rdfs:range xsd:nonNegativeInteger .
+
+hpc:serviceclass a owl:DatatypeProperty .
+hpc:Serviceclass rdfs:domain hpc:Job ;
+                rdfs:range xsd:string .
+
+hpc:smtmode a owl:DatatypeProperty .
+hpc:Smtmode rdfs:domain hpc:Csmjob ;
+           rdfs:range xsd:string .
+
+hpc:userassignedpriority a owl:DatatypeProperty .
+hpc:Userassignedpriority rdfs:domain hpc:Job ;
+                         rdfs:range xsd:nonNegativeInteger .

@@ -1,0 +1,65 @@
+hpc:Bstage a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "Copy or symbolically link files from the data manager staging cache to the job execution host." .
+
+hpc:hasuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Bstage ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The user who is executing the bstage command." .
+
+hpc:hasdestination a owl:ObjectProperty ;
+    rdfs:domain hpc:Bstage ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The path where the files are to be copied or linked." .
+
+hpc:haslink a owl:ObjectProperty ;
+    rdfs:domain hpc:Bstage ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether to symbolically link the files or copy them." .
+
+hpc:alloption a owl:ObjectProperty ;
+    rdfs:domain hpc:Bstage ;
+    rdfs:range hpc:Bstageall ;
+    rdfs:comment "Copies all the files that are requested with the job submission to the job current working directory." .
+
+hpc:Bstageall a owl:Class ;
+    rdfs:subClassOf hpc:Bstage ;
+    rdfs:comment "A specific type of bstage command that copies all requested files." .
+
+hpc:srcoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Bstage ;
+    rdfs:range hpc:Source ;
+    rdfs:comment "The source location of the files to be copied or linked." .
+
+hpc:tagoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Bstage ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The tag name of the files to be copied or linked." .
+
+hpc:Arrayjob a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "A job that is an array element." .
+
+hpc:arrayindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Arrayjob ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The index of the array job." .
+
+hpc:jobstagingarea a owl:ObjectProperty ;
+    rdfs:domain hpc:Arrayjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The staging area of the job in the array." .
+
+hpc:Cache a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "The staging cache where the files are stored." .
+
+hpc:cachelocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bstage ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The location of the file in the cache." .
+
+hpc:flatdirectorystructure a owl:ObjectProperty ;
+    rdfs:domain hpc:Bstageall ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the input files are copied into

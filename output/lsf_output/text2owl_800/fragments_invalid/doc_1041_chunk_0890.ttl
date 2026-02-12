@@ -1,0 +1,81 @@
+hpc:Taskmanager a owl:Class .
+hpc:Application a owl:Class .
+hpc:Resourceusage a owl:Class .
+hpc:Cpu a owl:Class .
+hpc:Memory a owl:Class .
+hpc:Lsflicensescheduler a owl:Class .
+
+hpc:starts a owl:ObjectProperty ;
+ rdfs:domain hpc:Taskmanager ;
+ rdfs:range hpc:Application .
+
+hpc:monitors a owl:ObjectProperty ;
+ rdfs:domain hpc:Taskmanager ;
+ rdfs:range hpc:Resourceusage .
+
+hpc:reportsto a owl:ObjectProperty ;
+ rdfs:domain hpc:Taskmanager ;
+ rdfs:range hpc:Lsflicensescheduler .
+
+hpc:ends a owl:ObjectProperty ;
+ rdfs:domain hpc:Application ;
+ rdfs:range hpc:Taskmanager .
+
+hpc:reserves a owl:ObjectProperty ;
+ rdfs:domain hpc:Taskmanager ;
+ rdfs:range hpc:License .
+
+hpc:expires a owl:DatatypeProperty ;
+ rdfs:domain hpc:License ;
+ rdfs:range xsd:integer .
+
+hpc:checkout a owl:ObjectProperty ;
+ rdfs:domain hpc:Application ;
+ rdfs:range hpc:License .
+
+hpc:reallocate a owl:ObjectProperty ;
+ rdfs:domain hpc:Taskmanager ;
+ rdfs:range hpc:License .
+
+hpc:duration a owl:DatatypeProperty ;
+ rdfs:domain hpc:Reallocation ;
+ rdfs:range xsd:nonNegativeInteger .
+
+hpc:taskmancommand a owl:ObjectProperty ;
+ rdfs:domain hpc:Taskmanager ;
+ rdfs:range rdf:Statement .
+
+hpc:required a owl:ObjectProperty ;
+ rdfs:domain hpc:Taskmanagercommand ;
+ rdfs:range rdf:Literal .
+
+hpc:verbose a owl:ObjectProperty ;
+ rdfs:domain hpc:Taskmanagercommand ;
+ rdfs:range rdf:Literal .
+
+hpc:nretries a owl:DatatypeProperty ;
+ rdfs:domain hpc:Taskmanagercommand ;
+ rdfs:range xsd:nonNegativeInteger .
+
+hpc:project a owl:DatatypeProperty ;
+ rdfs:domain hpc:Taskmanagercommand ;
+ rdfs:range rdf:Literal .
+
+hpc:interactive a owl:DatatypeProperty ;
+ rdfs:domain hpc:Lsflicensescheduler ;
+ rdfs:range rdf:Literal .
+
+hpc:Batchresources a owl:Class .
+hpc:detects a owl:ObjectProperty ;
+ rdfs:domain hpc:Lsflicensescheduler ;
+ rdfs:range hpc:Batchresources .
+
+hpc:Rusage a owl:Class .
+hpc:token a owl:DatatypeProperty ;
+ rdfs:domain hpc:Rusage ;
+ rdfs:range xsd:nonNegativeInteger .
+hpc:duration a owl:DatatypeProperty ;
+ rdfs:domain hpc:Rusage ;
+ rdfs:range xsd:duration .
+
+hpc:LicenseProject a owl

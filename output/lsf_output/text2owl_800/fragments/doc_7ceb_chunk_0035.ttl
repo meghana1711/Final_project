@@ -1,0 +1,34 @@
+hpc:Host a owl:Class .
+hpc:Hostmodel a owl:Class .
+hpc:Hosttype a owl:Class .
+hpc:Unknownhosttype a owl:Class .
+hpc:Defaulthosttype a owl:Class .
+
+hpc:dynamichostconfiguration a owl:ObjectProperty .
+hpc:hashostconfiguration a owl:ObjectProperty .
+hpc:Dynamichostconfiguration rdfs:domain hpc:Host .
+hpc:Dynamichostconfiguration rdfs:range rdf:Resource .
+
+hpc:Lsfcluster a owl:Class .
+hpc:lsfclustername a owl:DatatypeProperty .
+hpc:Lsfclustername rdfs:domain hpc:Lsfcluster .
+hpc:Lsfclustername rdfs:range xsd:string .
+
+hpc:Managementhost a owl:Class .
+hpc:removehost a owl:ObjectProperty .
+hpc:Removehost rdfs:domain hpc:Host .
+hpc:Removehost rdfs:range rdf:Void .
+
+hpc:badminhclose a owl:ObjectProperty .
+hpc:Badminhclose rdfs:domain hpc:Host .
+hpc:Badminhclose rdfs:range rdf:Void .
+
+hpc:Runningdaemon a owl:Class .
+hpc:stoprunningdaemon a owl:ObjectProperty .
+hpc:Stoprunningdaemon rdfs:domain hpc:Host .
+hpc:Stoprunningdaemon rdfs:range rdf:Void .
+
+hpc:Rootuser a owl:Class .
+hpc:logon a owl:ObjectProperty .
+hpc:Logon rdfs:domain rdf:Resource .
+hpc:Logon rdfs:range hpc:Rootuser .

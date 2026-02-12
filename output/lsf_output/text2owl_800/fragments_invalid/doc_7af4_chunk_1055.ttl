@@ -1,0 +1,31 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:lsfDebugCmd a owl:ObjectProperty .
+hpc:lsfDebugLim a owl:ObjectProperty .
+hpc:lsfDebugRes a owl:ObjectProperty .
+hpc:lsfEauthAuxData a owl:ObjectProperty .
+hpc:lsfEauthAuxPass a owl:ObjectProperty .
+hpc:lsfEauthClient a owl:ObjectProperty .
+hpc:lsfEauthServer a owl:ObjectProperty .
+hpc:lsfEauthUid a owl:DatatypeProperty .
+
+rdfs:domain hpc:LsfDebugCmd rdf:Resource .
+rdfs:domain hpc:LsfDebugLim rdf:Resource .
+rdfs:domain hpc:LsfDebugRes rdf:Resource .
+rdfs:domain hpc:LsfEauthAuxData rdf:Literal .
+rdfs:domain hpc:LsfEauthAuxPass rdf:Literal .
+rdfs:domain hpc:LsfEauthClient rdf:Resource .
+rdfs:domain hpc:LsfEauthServer rdf:Resource .
+rdfs:domain hpc:LsfEauthUid xsd:integer .
+
+rdfs:range hpc:LsfDebugCmd rdf:Resource .
+rdfs:range hpc:LsfDebugLim rdf:Resource .
+rdfs:range hpc:LsfDebugRes rdf:Resource .
+rdfs:range hpc:LsfEauthAuxData xsd:string .
+rdfs:range hpc:LsfEauthAuxPass xsd:boolean .
+rdfs:range hpc:LsfEauthClient xsd:string .
+rdfs:range hpc:LsfEauthServer xsd:string .
+rdfs:range hpc:LsfEauthUid xsd:integer .

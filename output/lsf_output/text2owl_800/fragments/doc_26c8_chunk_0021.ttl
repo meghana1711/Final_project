@@ -1,0 +1,53 @@
+hpc:Host a owl:Class .
+
+hpc:hasattribute a owl:ObjectProperty .
+hpc:Hasattribute rdfs:domain hpc:Host .
+hpc:Hasattribute rdfs:range hpc:Attribute .
+
+hpc:Attribute a owl:Class .
+hpc:Attribute rdfs:subClassOf owl:Class .
+hpc:Attribute rdf:type owl:Class .
+
+hpc:hasattributename a owl:DatatypeProperty .
+hpc:Hasattributename rdfs:domain hpc:Attribute .
+hpc:Hasattributename rdfs:range xsd:string .
+
+hpc:hasattributetype a owl:DatatypeProperty .
+hpc:Hasattributetype rdfs:domain hpc:Attribute .
+hpc:Hasattributetype rdfs:range xsd:string .
+
+hpc:hasattributevalue a owl:DatatypeProperty .
+hpc:Hasattributevalue rdfs:domain hpc:Attribute .
+hpc:Hasattributevalue rdfs:range xsd:string .
+
+hpc:isbooleanattribute a owl:DatatypeProperty .
+hpc:Isbooleanattribute rdfs:domain hpc:Attribute .
+hpc:Isbooleanattribute rdfs:range xsd:boolean .
+
+hpc:isnumericattribute a owl:DatatypeProperty .
+hpc:Isnumericattribute rdfs:domain hpc:Attribute .
+hpc:Isnumericattribute rdfs:range xsd:decimal .
+
+hpc:hasnumericrange a owl:DatatypeProperty .
+hpc:Hasnumericrange rdfs:domain hpc:Attribute .
+hpc:Hasnumericrange rdfs:range xsd:decimal .
+
+hpc:hasdefaulttype a owl:DatatypeProperty .
+hpc:Hasdefaulttype rdfs:domain hpc:Host .
+hpc:Hasdefaulttype rdfs:range xsd:string .
+
+hpc:hasdefaultncpus a owl:DatatypeProperty .
+hpc:Hasdefaultncpus rdfs:domain hpc:Host .
+hpc:Hasdefaultncpus rdfs:range xsd:decimal .
+
+hpc:hasimage a owl:ObjectProperty .
+hpc:Hasimage rdfs:domain hpc:Host .
+hpc:Hasimage rdfs:range xsd:string .
+
+hpc:Imagename a owl:Class .
+hpc:Imagename rdfs:subClassOf owl:Class .
+hpc:ImageName rdf:type owl:Class .
+
+hpc:isrequired a owl:DatatypeProperty .
+hpc:Isrequired rdfs:domain hpc:Imagename .
+hpc:Isrequired rdfs:range xsd:boolean .

@@ -1,0 +1,26 @@
+hpc:Impttaskbklg a owl:Class .
+hpc:Impttaskbklg rdfs:subClassOf owl:Integer .
+hpc:Impttaskbklg rdfs:domain hpc:Receivejobsqueue .
+hpc:Impttaskbklg rdfs:range xsd:nonNegativeInteger .
+
+hpc:Impttaskbklginfinit a owl:Class .
+hpc:Impttaskbklginfinit rdfs:subClassOf owl:Thing .
+
+hpc:hasimpttaskbklg a owl:ObjectProperty .
+hpc:Hasimpttaskbklg rdfs:domain hpc:Receivejobsqueue .
+hpc:Hasimpttaskbklg rdfs:range hpc:Impttaskbklg .
+
+hpc:Impttasklimit a owl:Class .
+hpc:Impttasklimit rdfs:subClassOf owl:Integer .
+hpc:Impttasklimit rdfs:domain hpc:Receivejobsqueue .
+hpc:Impttasklimit rdfs:range xsd:positiveInteger .
+
+hpc:Impttasklimitinfinit a owl:Class .
+hpc:Impttasklimitinfinit rdfs:subClassOf owl:Thing .
+
+hpc:hasimpttasklimit a owl:ObjectProperty .
+hpc:Hasimpttasklimit rdfs:domain hpc:Receivejobsqueue .
+hpc:Hasimpttasklimit rdfs:range hpc:Impttasklimit .
+
+
+Assuming the conceptual base IRI is `http://example.org/hpc#` and the prefixes `hpc:, rdf:, rdfs:, owl:, xsd:` are already defined.

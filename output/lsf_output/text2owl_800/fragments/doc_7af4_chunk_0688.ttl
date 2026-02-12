@@ -1,0 +1,30 @@
+hpc:LsbEnableHpcAllocation a owl:Class .
+hpc:hasvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbEnableHpcAllocation ;
+    rdfs:range xsd:string .
+
+hpc:affectscommand a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbEnableHpcAllocation ;
+    rdfs:range hpc:Command .
+
+hpc:Command a owl:Class .
+
+hpc:Bjobs a owl:Class .
+hpc:Bhist a owl:Class .
+hpc:Bacct a owl:Class .
+hpc:Bapp a owl:Class .
+hpc:Bhosts a owl:Class .
+hpc:Bmod a owl:Class .
+hpc:Bqueues a owl:Class .
+hpc:Bsub a owl:Class .
+hpc:Busers a owl:Class .
+
+hpc:EstimatorSimStartInterval rdfs:subClassOf hpc:Parameter .
+hpc:EstimatorMaxTimePrediction rdfs:subClassOf hpc:Parameter .
+hpc:EstimatorMaxJobsPrediction rdfs:subClassOf hpc:Parameter .
+hpc:EstimatorMaxRuntimePrediction rdfs:subClassOf hpc:Parameter .
+hpc:EstimatorCpus rdfs:subClassOf hpc:Parameter .
+
+hpc:Parameter a owl:Class .
+hpc:hasparametername a owl:DatatypeProperty ;
+    rdfs:domain hpc:Parameter .

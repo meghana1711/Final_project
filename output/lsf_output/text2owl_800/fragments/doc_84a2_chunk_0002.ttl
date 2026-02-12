@@ -1,0 +1,35 @@
+hpc:configdir a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range rdf:Resource .
+
+hpc:Batchworkfile a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Egoconfigurationfile a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Workfile a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Egopasswordfile a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Egoxmlconfigurationfile a owl:Class ;
+    rdfs:subClassOf hpc:Egoconfigurationfile ;
+    rdfs:subClassOf owl:Class .
+
+hpc:old a owl:ObjectProperty ;
+    rdfs:domain hpc:Configdir ;
+    rdfs:range rdf:Literal .
+
+hpc:new a owl:ObjectProperty ;
+    rdfs:domain hpc:Configdir ;
+    rdfs:range rdf:Resource .
+
+hpc:startup a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range rdf:Literal .
+
+hpc:activatequeues a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range rdf:Literal .

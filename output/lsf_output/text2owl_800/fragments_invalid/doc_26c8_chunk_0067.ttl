@@ -1,0 +1,65 @@
+hpc:imageid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string .
+
+hpc:launchtemplateid a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Lsfcluster .
+
+hpc:diskimageid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Disk ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:ImageId .
+
+hpc:vmtype a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:VmTypeSpec .
+
+hpc:Vmtypespec a owl:Class .
+
+hpc:Customvmtype a owl:Class ;
+    rdfs:subClassOf hpc:Vmtypespec ;
+    rdfs:subClassOf rdf:PlainLiteral .
+
+hpc:Customvmtype rdfs:subClassOf xsd:string ;
+    rdfs:subClassOf xsd:string ;
+    owl:onProperty hpc:VmType ;
+    owl:onProperty hpc:VmTypeSpec ;
+    owl:hasValue "custom-" .
+
+hpc:Cpus a xsd:nonNegativeInteger ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Memory a xsd:nonNegativeInteger ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:subPropertyOf hpc:MemoryInMB .
+
+hpc:MemoryInMB a xsd:decimal ;
+    rdfs:range xsd:decimal ;
+    rdfs:subClassOf xsd:nonNegativeInteger ;
+    rdfs:subClassOf xsd:nonNegativeInteger ;
+    owl:onProperty hpc:Memory .
+
+hpc:Lsfcluster a owl:Class ;
+    rdfs:subClassOf rdf:PlainLiteral ;
+    rdfs:subClassOf rdf:List ;
+    rdfs:subClassOf rdf:Seq ;
+    rdfs:subClassOf rdf:Bag ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:subClassOf rdf:Statement ;
+    rdfs:subClassOf rdf:Description ;
+    rdfs:subClassOf rdf:Subject ;
+    rdfs:subClassOf rdf:Object ;
+    rdfs:subClassOf rdf:URIRef ;
+    rdfs:subClassOf rdf:XMLLiteral ;
+    rdfs:subClassOf rdf:BlankNode ;
+    rdfs:subClassOf rdf:Literal ;
+    rdfs:subClassOf rdf:Statement ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:subClassOf rdf:Node ;
+    rdfs:subClassOf rdf:Term ;
+    rdfs:subClassOf rdf:Seq ;
+    rdfs:subClassOf rdf:Bag ;
+    rdfs:subClassOf rdf:List ;
+    rdfs:subClassOf rdf:Resource

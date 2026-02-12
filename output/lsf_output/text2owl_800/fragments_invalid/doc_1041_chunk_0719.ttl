@@ -1,0 +1,66 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:x11forward a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string ;
+    rdfs:comment "String property that takes no arguments." .
+
+hpc:exclusiveschedule a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobspool ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Zs jobSpool property that takes no arguments." .
+
+hpc:scriptstring a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobspool ;
+    rdfs:range xsd:string ;
+    rdfs:comment "ScriptString property that takes no arguments." .
+
+hpc:help a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Help string property that takes no arguments." .
+
+hpc:version a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Version string property that takes no arguments." .
+
+hpc:Command a owl:Class ;
+    rdfs:comment "The job command with arguments or job script." .
+
+hpc:Io a owl:Class ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "Class for input and output properties." .
+
+hpc:outputdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Io ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Output directory for the job." .
+
+hpc:Limit a owl:Class ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "Class for limit properties." .
+
+hpc:corelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Limit ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Number of cores for the job." .
+
+hpc:cputimelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Limit ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "CPU time limit for the job." .
+
+hpc:Resource a owl:Class ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "Class for resource properties." .
+
+hpc:computenodemem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Memory for the compute node." .
+
+hpc

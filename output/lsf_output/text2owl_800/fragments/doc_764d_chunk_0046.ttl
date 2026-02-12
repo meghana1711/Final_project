@@ -1,0 +1,13 @@
+hpc:Sendjobsqueue a owl:Class .
+hpc:sndjobsTo a owl:ObjectProperty .
+hpc:SndjobsTo rdfs:domain hpc:Sendjobsqueue ;
+    rdfs:range xsd:string .
+
+hpc:fwdUsers a owl:ObjectProperty .
+hpc:FwdUsers rdfs:domain hpc:Sendjobsqueue ;
+    rdfs:range xsd:string .
+
+hpc:Executionqueue a owl:Class .
+hpc:Receivejobsqueue a owl:Class .
+
+hpc:Lsbqueue a owl:Class .

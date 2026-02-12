@@ -1,0 +1,23 @@
+hpc:Joboutputdirectory a owl:Class .
+
+# Object Property for Job Output Directory
+hpc:hasjoboutputdirectory a owl:ObjectProperty .
+
+# Datatype Property for Job ID
+hpc:jobid a owl:DatatypeProperty .
+hpc:Jobid rdfs:domain hpc:Joboutputdirectory .
+hpc:Jobid rdfs:range xsd:string .
+
+# Datatype Property for Job Group
+hpc:jobgroup a owl:DatatypeProperty .
+hpc:Jobgroup rdfs:domain hpc:Joboutputdirectory .
+hpc:Jobgroup rdfs:range xsd:string .
+
+# Object Property for LSB_STDOUT_DIRECT
+hpc:haslsbStdoutDirect a owl:ObjectProperty .
+hpc:HaslsbStdoutDirect rdfs:domain hpc:Joboutputdirectory .
+hpc:HaslsbStdoutDirect rdfs:range xsd:string .
+
+# Subclass relationship for Job Output Directory with IO category
+hpc:Io rdfs:subClassOf owl:Class .
+hpc:Joboutputdirectory rdfs:subClassOf hpc:Io .

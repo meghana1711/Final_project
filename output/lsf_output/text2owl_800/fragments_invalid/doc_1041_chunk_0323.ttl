@@ -1,0 +1,67 @@
+hpc:Jobresourcerequirement a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the level of detail for job resource requirements." .
+
+hpc:bjobsResReqDisplay a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobresourcerequirement ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Controls the level of detail displayed for job resource requirements." .
+
+hpc:None a owl:NamedIndividual ;
+    hpc:BJOBS_RES_REQ_DISPLAY "none" .
+
+hpc:Brief a owl:NamedIndividual ;
+    hpc:BJOBS_RES_REQ_DISPLAY "brief" .
+
+hpc:Full a owl:NamedIndividual ;
+    hpc:BJOBS_RES_REQ_DISPLAY "full" .
+
+# Requested Network
+hpc:Networkresource a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents network resource information for IBM Parallel Edition (PE) jobs." .
+
+hpc:protocol a owl:DatatypeProperty ;
+    rdfs:domain hpc:Networkresource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the network protocol for a PE job." .
+
+hpc:mode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Networkresource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the mode for a PE job." .
+
+hpc:type a owl:DatatypeProperty ;
+    rdfs:domain hpc:Networkresource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the type of network resource for a PE job." .
+
+hpc:instance a owl:DatatypeProperty ;
+    rdfs:domain hpc:Networkresource ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Represents the instance of network resource for a PE job." .
+
+hpc:usage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Networkresource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the usage of network resource for a PE job." .
+
+# Data Requirements
+hpc:Datarequirement a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the requested files for jobs with data requirements." .
+
+# Forwarded Job Information
+hpc:cluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Forwardedjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the name of the cluster to which the job was forwarded." .
+
+hpc:forwardTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Forwardedjob ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "Represents the time that the job was forwarded." .
+
+# Job Array Summary Information
+hpc:Jobarraysummary a owl:Class ;
+    rdfs:

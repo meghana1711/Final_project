@@ -1,0 +1,40 @@
+hpc:Lsfhost a owl:Class .
+hpc:njobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfhost ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:running a owl:ObjectProperty ;
+    rdfs:domain hpc:Njobs ;
+    rdfs:range xsd:boolean .
+
+hpc:ususpend a owl:ObjectProperty ;
+    rdfs:domain hpc:Njobs ;
+    rdfs:range xsd:boolean .
+
+hpc:ssuspend a owl:ObjectProperty ;
+    rdfs:domain hpc:Njobs ;
+    rdfs:range xsd:boolean .
+
+hpc:repo a owl:DatatypeProperty ;
+    rdfs:domain hpc:Njobs ;
+    rdfs:range xsd:string .
+
+hpc:tags a owl:DatatypeProperty ;
+    rdfs:domain hpc:Njobs ;
+    rdfs:range xsd:string .
+
+hpc:lastUsedTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Njobs ;
+    rdfs:range xsd:dateTime .
+
+hpc:totalNjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfhost ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:pulledTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfhost ;
+    rdfs:range xsd:dateTime .
+
+hpc:customizedoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfhost ;
+    rdfs:range xsd:boolean .

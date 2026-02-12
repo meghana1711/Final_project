@@ -1,0 +1,11 @@
+hpc:Jobinfo a owl:Class .
+
+hpc:licensesallocated a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobinfo ;
+    rdfs:range xsd:string .
+
+hpc:mailtype a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobinfo ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:first xsd:string ;
+    rdfs:range rdf:rest rdf:List .

@@ -1,0 +1,37 @@
+hpc:Hosttype a owl:Class .
+hpc:Hostmodel a owl:Class .
+
+hpc:hashosttype a owl:ObjectProperty .
+hpc:hashostmodel a owl:ObjectProperty .
+hpc:hascpufactor a owl:DatatypeProperty .
+
+hpc:Hosttype rdfs:subClassOf owl:Class .
+hpc:Hostmodel rdfs:subClassOf owl:Class .
+
+hpc:Hashosttype rdfs:domain hpc:Host .
+hpc:Hashostmodel rdfs:domain hpc:Host .
+hpc:Hascpufactor rdfs:domain hpc:Host .
+
+hpc:Opteron240 a hpc:HostModel .
+hpc:Opteron840 a hpc:HostModel .
+hpc:Intel_EM64T a hpc:HostModel .
+hpc:Intel_IA64 a hpc:HostModel .
+
+hpc:lsinfoT a owl:ObjectProperty .
+hpc:LsinfoT rdfs:domain hpc:Lsf .
+hpc:LsinfoT rdfs:range rdf:Resource .
+
+hpc:lsinfoM a owl:ObjectProperty .
+hpc:LsinfoM rdfs:domain hpc:Lsf .
+hpc:LsinfoM rdfs:range rdf:Resource .
+
+hpc:lsinfoM a owl:ObjectProperty .
+hpc:LsinfoM rdfs:domain hpc:Lsf .
+hpc:LsinfoM rdfs:range rdf:Resource .
+
+hpc:Lsfuser a owl:Class .
+hpc:Lsfadministrator a owl:Class .
+
+hpc:haspermission a owl:ObjectProperty .
+hpc:Haspermission rdfs:domain hpc:User .
+hpc:Haspermission rdfs:range xsd:string .

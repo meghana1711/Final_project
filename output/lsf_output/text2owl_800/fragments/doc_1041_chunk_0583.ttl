@@ -1,0 +1,47 @@
+hpc:Jobreportmail a owl:Class .
+hpc:hasJobExitStatus rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Jobreportmail ;
+    rdfs:range xsd:integer .
+
+hpc:Paralleljob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:notify rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range xsd:integer .
+
+hpc:numberOfNodes rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Csmjob ;
+    rdfs:range xsd:integer .
+
+hpc:jobOutputFile rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:overwriteOutput rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Joboutputfile ;
+    rdfs:range xsd:boolean .
+
+hpc:outputDirectory rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:jobProject rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:processLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:jobPack rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:pendingTimeLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:autoJobReQueue rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .

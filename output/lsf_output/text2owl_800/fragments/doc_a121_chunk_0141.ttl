@@ -1,0 +1,58 @@
+hpc:jobpostproctimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:minute .
+
+hpc:jobpostproctimeouttimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobpostproctimeout ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Jobpostproc a owl:Class .
+
+hpc:jobpostproctimeoutpreventnewjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpostproctimeout ;
+    rdfs:range hpc:Job .
+
+hpc:jobpostproctimeoutenablecompletion a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpostproctimeout ;
+    rdfs:range xsd:boolean .
+
+hpc:jobpostproctimeoutspecifyminutes a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpostproctimeout ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobpostproctimeoutreleaseresources a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpostproctimeout ;
+    rdfs:range xsd:boolean .
+
+hpc:jobpostproctimeoutjobfinishstatus a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpostproctimeout ;
+    rdfs:range xsd:string .
+
+hpc:jobpostproctimeoutpostexecutionprocessingstatus a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpostproctimeout ;
+    rdfs:range xsd:string .
+
+hpc:jobpostproctimeoutjobhistoryandaccounting a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpostproctimeout ;
+    rdfs:range xsd:boolean .
+
+hpc:jobpostproctimeoutjobcontrolcommands a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpostproctimeout ;
+    rdfs:range xsd:string .
+
+hpc:jobpostproctimeouthostunavailable a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpostproctimeout ;
+    rdfs:range xsd:boolean .
+
+hpc:jobpostproctimeoutpreemption a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpostproctimeout ;
+    rdfs:range xsd:boolean .
+
+hpc:jobpostproctimeoutrerunjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobpostproctimeout ;
+    rdfs:range xsd:boolean .
+
+hpc:Jobpostproc a owl:Class ;
+    rdfs:subClassOf hpc:Postexecutionprocessing .
+
+hpc:Postexecutionprocessing a owl:Class .

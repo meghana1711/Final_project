@@ -1,0 +1,39 @@
+hpc:Job a owl:Class .
+hpc:hasid a owl:ObjectProperty .
+hpc:isinqueue a owl:ObjectProperty .
+hpc:scripttype a owl:ObjectProperty .
+hpc:shell a owl:ObjectProperty .
+hpc:runsunder a owl:ObjectProperty .
+hpc:Jobscript a owl:Class .
+hpc:hasshell a owl:DatatypeProperty .
+hpc:hascomment a owl:DatatypeProperty .
+hpc:setenvironmentvariable a owl:ObjectProperty .
+hpc:utmpregistration a owl:ObjectProperty .
+hpc:Lsfconfiguration a owl:Class .
+hpc:lsbUtmp a owl:DatatypeProperty .
+
+hpc:Job a rdfs:subClassOf [ a owl:Class ;
+                              rdfs:subClassOf owl:NamedIndividual ] .
+hpc:Jobscript a rdfs:subClassOf [ a owl:Class ;
+                                    rdfs:subClassOf owl:NamedIndividual ] .
+hpc:Lsfconfiguration a rdfs:subClassOf [ a owl:Class ;
+                                            rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:Hasid rdfs:domain hpc:Job ;
+          rdfs:range xsd:string .
+hpc:Isinqueue rdfs:domain hpc:Job ;
+             rdfs:range xsd:string .
+hpc:Scripttype rdfs:domain hpc:Job ;
+             rdfs:range hpc:Jobscript .
+hpc:Shell rdfs:domain hpc:Jobscript ;
+          rdfs:range xsd:string .
+hpc:Runsunder rdfs:domain hpc:Job ;
+             rdfs:range hpc:Lsfconfiguration .
+hpc:Hasshell rdfs:domain hpc:Jobscript ;
+             rdfs:range xsd:string .
+hpc:Hascomment rdfs:domain hpc:Jobscript ;
+             rdfs:range xsd:string .
+hpc:Setenvironmentvariable rdfs:domain hpc:Jobscript ;
+             rdfs:range xsd:string .
+hpc:Utmpregistration rdfs:domain hpc:Lsfconfiguration ;
+             rdfs:range xsd:boolean .

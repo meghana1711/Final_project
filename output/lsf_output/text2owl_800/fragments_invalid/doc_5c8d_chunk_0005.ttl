@@ -1,0 +1,31 @@
+hpc:Lsfinstallation a owl:Class .
+hpc:Installationdirectory rdfs:domain hpc:Lsfinstallation ;
+    rdfs:range xsd:string .
+
+hpc:Lsfpackage a owl:Class ;
+    rdfs:subClassOf hpc:Lsfinstallation .
+
+hpc:rpminstall a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfinstallation ;
+    rdfs:range hpc:Lsfpackage .
+
+hpc:Buildnumber rdfs:domain hpc:Lsfpackage ;
+    rdfs:range xsd:string .
+
+hpc:Entitlementfile rdfs:domain hpc:Lsfinstallation ;
+    rdfs:range xsd:string .
+
+hpc:copyentitlementfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfinstallation ;
+    rdfs:range void:void .
+
+hpc:Custominstallationdirectory rdfs:domain hpc:Lsfinstallation ;
+    rdfs:range xsd:string .
+
+hpc:Csmintegration a owl:Class .
+
+hpc:submitlsfjobwithcsm a owl:ObjectProperty ;
+    rdfs:domain hpc:Csmintegration .
+
+hpc:configurecsmintegration a owl:ObjectProperty ;
+    rdfs:domain hpc:Csmintegration .

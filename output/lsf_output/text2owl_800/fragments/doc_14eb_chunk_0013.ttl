@@ -1,0 +1,62 @@
+hpc:Consumeradministrator a owl:Class .
+hpc:canadministrateobject a owl:ObjectProperty ;
+    rdfs:domain hpc:Consumeradministrator ;
+    rdfs:range hpc:Consumer .
+
+hpc:Consumeruser a owl:Class .
+hpc:canrunworkload a owl:ObjectProperty ;
+    rdfs:domain hpc:Consumeruser ;
+    rdfs:range hpc:Consumer .
+
+hpc:Useraccount a owl:Class ;
+    rdfs:subClassOf hpc:Consumeruser .
+
+hpc:Ego a owl:Class .
+
+hpc:egoauthorizesusers a owl:ObjectProperty ;
+    rdfs:domain hpc:Ego ;
+    rdfs:range hpc:Useraccount .
+
+hpc:Lsfusergroup a owl:Class .
+hpc:usesexistingunixlinuxgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfusergroup ;
+    rdfs:range xsd:string .
+
+hpc:Externalauthentication a owl:Class .
+hpc:providessecurityplugin a owl:ObjectProperty ;
+    rdfs:domain hpc:Externalauthentication ;
+    rdfs:range xsd:string .
+
+hpc:customizedeauthexecutable a owl:DatatypeProperty ;
+    rdfs:domain hpc:Externalauthentication ;
+    rdfs:range xsd:string .
+
+hpc:credentialspassedfromexternalsecuritysystem a owl:ObjectProperty .
+
+hpc:Insideworkloadmanagement a owl:Class .
+
+hpc:understandsjoblifecycle a owl:ObjectProperty ;
+    rdfs:domain hpc:Insideworkloadmanagement ;
+    rdfs:range xsd:boolean .
+
+hpc:bsub a owl:ObjectProperty .
+
+hpc:Jobsubmission a owl:Class .
+hpc:submitjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsub ;
+    rdfs:range hpc:Jobsubmission .
+
+hpc:Jobsubmissionoptions a owl:Class .
+hpc:specifyjobsubmissionoptions a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsub ;
+    rdfs:range hpc:Jobsubmissionoptions .
+
+hpc:Jobqueue a owl:Class .
+
+hpc:Jobdispatch a owl:Class .
+
+hpc:eligiblehosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobdispatch ;
+    rdfs:range xsd:string .
+
+hpc:Joblifecycle a owl:Class .

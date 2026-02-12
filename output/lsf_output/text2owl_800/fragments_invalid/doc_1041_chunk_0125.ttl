@@ -1,0 +1,59 @@
+hpc:Clusteradmin hpc:Administrator a owl:Class .
+hpc:User hpc:Usergroupadmin hpc:Usergroup a owl:Class .
+hpc:Staticserver a owl:Class .
+hpc:Guaranteedresourcepool hpc:Usershare a owl:Class .
+
+# Object Properties
+hpc:manages rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range hpc:Guaranteedresourcepool .
+
+hpc:adjusts rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Usergroupadmin ;
+    rdfs:range hpc:Usershare .
+
+hpc:hasRights rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Usergroupadmin ;
+    rdfs:range rdfs:Resource .
+
+hpc:canRun rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Staticserver ;
+    rdfs:range hpc:Bconfcommand .
+
+# Datatype Properties
+hpc:hasconfigfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bconfcommand ;
+    rdfs:range xsd:string .
+
+hpc:hasconfigfilebackup a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bconfcommand ;
+    rdfs:range xsd:string .
+
+hpc:hasHistory rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bconfcommand ;
+    rdfs:range xsd:boolean .
+
+# Subclass Relations
+hpc:Administrator rdfs:subClassOf hpc:User .
+
+# Domain and Range Constraints
+hpc:Manages rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range hpc:Guaranteedresourcepool .
+
+hpc:Adjusts rdfs:domain hpc:Usergroupadmin ;
+    rdfs:range hpc:Usershare .
+
+hpc:Hasrights rdfs:domain hpc:Usergroupadmin ;
+    rdfs:range rdfs:Resource .
+
+hpc:Canrun rdfs:domain hpc:Staticserver ;
+    rdfs:range hpc:Bconfcommand .
+
+hpc:Hasconfigfile rdfs:domain hpc:Bconfcommand ;
+    rdfs:range xsd:string .
+
+hpc:Hasconfigfilebackup rdfs:domain hpc:Bconfcommand ;
+    rdfs:range xsd:string .
+
+hpc:Hashistory rdfs:domain hpc:Bconfcommand ;
+    rdfs:range xsd:boolean .

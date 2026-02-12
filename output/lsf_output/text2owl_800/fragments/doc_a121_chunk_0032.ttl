@@ -1,0 +1,40 @@
+hpc:planfinishtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .
+
+hpc:outputwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:positiveInteger .
+
+hpc:Field a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Job a owl:Class .
+
+hpc:bjobscommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfuser ;
+    rdfs:range hpc:Bjobsoutput .
+
+hpc:Bjobsoutput a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:bjobsnoheader a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobscommand ;
+    rdfs:range xsd:boolean .
+
+hpc:bjobsjson a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobscommand ;
+    rdfs:range hpc:Bjobsjsonoutput .
+
+hpc:Bjobsjsonoutput a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:bruncommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadmin ;
+    rdfs:range hpc:Job .
+
+hpc:Lsfadmin a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Lsfuser a owl:Class ;
+    rdfs:subClassOf owl:Class .

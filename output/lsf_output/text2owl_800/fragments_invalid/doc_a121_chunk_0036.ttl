@@ -1,0 +1,42 @@
+hpc:Job a owl:Class .
+hpc:ExecutionHost owl:ObjectProperty .
+hpc:FirstExecutionHost owl:ObjectProperty .
+hpc:Unreachstate rdf:Datatype rdfs:subClassOf xsd:string .
+hpc:Unavailstate rdf:Datatype rdfs:subClassOf xsd:string .
+hpc:Runlimit rdf:Datatype rdfs:subClassOf xsd:integer .
+hpc:Orphanjob a owl:Class .
+hpc:Dependencycondition rdf:Datatype rdfs:subClassOf xsd:string .
+hpc:Pendingjob a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Host a owl:Class .
+hpc:Jobgroup a owl:Class .
+hpc:killjob a owl:ObjectProperty .
+hpc:Jobid rdf:Datatype rdfs:subClassOf xsd:integer .
+hpc:Groupid rdf:Datatype rdfs:subClassOf xsd:integer .
+hpc:Hostid rdf:Datatype rdfs:subClassOf xsd:string .
+hpc:group a owl:ObjectProperty .
+hpc:killallpendingjobs a owl:ObjectProperty .
+hpc:killlargenumberofjobs a owl:ObjectProperty .
+hpc:Cleanperiod rdf:Datatype rdfs:subClassOf xsd:duration .
+hpc:Lsbacct rdf:Datatype rdfs:subClassOf xsd:string .
+hpc:Executionhost rdfs:domain hpc:Job .
+hpc:Firstexecutionhost rdfs:domain hpc:Paralleljob .
+hpc:Unreachstate rdfs:range hpc:Executionhost .
+hpc:Unavailstate rdfs:range hpc:Executionhost .
+hpc:Runlimit rdfs:range hpc:Job .
+hpc:OrphanJob rdfs:subClass hpc:Job .
+hpc:Dependencycondition rdfs:range hpc:Orphanjob .
+hpc:PendingJob rdfs:subClass hpc:Job .
+hpc:Cluster rdfs:subClass hpc:Host .
+hpc:Host rdfs:subClass hpc:ExecutionHost .
+hpc:Jobgroup rdfs:domain hpc:Job .
+hpc:Killjob rdfs:domain hpc:Job .
+hpc:Jobid rdfs:range hpc:Integer .
+hpc:Groupid rdfs:range hdfs:Integer .
+hpc:Hostid rdfs:range hdfs:String .
+hpc:Group rdfs:range hpc:Jobgroup .
+hpc:Killallpendingjobs rdfs:domain hpc:Cluster .
+hpc:Killallpendingjobs rdfs:range hpc:Job .
+hpc:Killlargenumberofjobs rdfs:domain hpc:Cluster .
+hpc:Cleanperiod rdfs:range hdfs:duration .
+hpc:Lsbacct rdfs:range hdfs:String .

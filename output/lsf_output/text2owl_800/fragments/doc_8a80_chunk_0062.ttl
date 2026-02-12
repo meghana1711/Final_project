@@ -1,0 +1,13 @@
+hpc:Servicedomain a owl:Class .
+hpc:servicedomainname a owl:ObjectProperty .
+
+hpc:workloadDistribution a owl:ObjectProperty .
+hpc:ServiceDomainName rdfs:domain hpc:Servicedomain .
+hpc:WorkloadDistribution rdfs:domain hpc:Servicedomain .
+
+hpc:lsfDistribution a owl:DatatypeProperty .
+hpc:nonLsfDistribution a owl:DatatypeProperty .
+hpc:LsfDistribution rdfs:range xsd:decimal .
+hpc:NonLsfDistribution rdfs:range xsd:decimal .
+hpc:LsfDistribution rdfs:domain hpc:WorkloadDistribution .
+hpc:NonLsfDistribution rdfs:domain hpc:WorkloadDistribution .

@@ -1,0 +1,30 @@
+hpc:LsbStageStorage a owl:Class .
+
+hpc:hasResourceName an owl:ObjectProperty ;
+    rdfs:domain hpc:LsbStageStorage ;
+    rdfs:range xsd:string .
+
+hpc:reportsavailablestorage a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbStageresource ;
+    rdfs:range xsd:decimal .
+
+hpc:reportstotalstorage a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbStageresourcemax ;
+    rdfs:range xsd:decimal .
+
+hpc:LsbStageresource a owl:Class ;
+    rdfs:subClassOf hpc:LsbStageStorage ;
+    owl:hasValue rdfs:datatype xsd:decimal ;
+    rdfs:subClassOf owl:ObjectPropertyDomain ;
+    rdfs:subPropertyOf hpc:hasResourceName ;
+    owl:inverseOf hpc:reportsAvailableStorage .
+
+hpc:LsbStageresourcemax a owl:Class ;
+    rdfs:subClassOf hpc:LsbStageStorage ;
+    owl:hasValue rdfs:datatype xsd:decimal ;
+    rdfs:subClassOf owl:ObjectPropertyDomain ;
+    rdfs:subPropertyOf hpc:hasResourceName ;
+    owl:inverseOf hpc:reportsTotalStorage .
+
+
+This ontology fragment defines a class `hpc:LSB_STAGE_STORAGE` for resources that report available storage space for direct data staging. It also defines two object properties `hpc:hasResourceName` and two datatype properties `hpc:reportsAvailableStorage` and `hpc:reportsTotalStorage`. The properties are used to describe the resource name and the reported available and total storage space. The `hpc:LSB_StageResource` and `hpc:LSB_StageResourceMax` classes are subclasses of `hpc:LSB_STAGE_STORAGE` and are used to represent the resources that report the available and total storage space, respectively.

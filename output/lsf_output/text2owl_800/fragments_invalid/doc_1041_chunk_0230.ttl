@@ -1,0 +1,58 @@
+hpc:Network a owl:Class .
+hpc:hasnetworkid a owl:ObjectProperty ;
+    rdfs:domain hpc:Network ;
+    rdfs:range xsd:string .
+
+hpc:networkStatus a owl:Enum ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:member rdf:"ok" ;
+    rdfs:member rdf:"closed_Full" ;
+    rdfs:member rdf:"closed_Dedicated" ;
+    rdfs:member rdf:"unavail" .
+
+hpc:Networkinformation a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:NetworkID rdf:type rdfs:Property ;
+    rdfs:domain hpc:Networkinformation ;
+    rdfs:range xsd:string .
+
+hpc:status rdf:type rdfs:Property ;
+    rdfs:domain hpc:Networkinformation ;
+    rdfs:range hpc:Networkstatus .
+
+hpc:rsv_windows rdf:type rdfs:Property ;
+    rdfs:domain hpc:Networkinformation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:total_windows rdf:type rdfs:Property ;
+    rdfs:domain hpc:Networkinformation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Configuredaffinity a owl:Class .
+
+hpc:hascpulist a owl:ObjectProperty ;
+    rdfs:domain hpc:Configuredaffinity ;
+    rdfs:range xsd:string .
+
+hpc:isavailable a owl:ObjectProperty ;
+    rdfs:domain hpc:Configuredaffinity ;
+    rdfs:range xsd:boolean .
+
+hpc:Resource a owl:Class .
+
+hpc:hasname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string .
+
+hpc:hastotalfree a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Resourceinformation a owl:Class .
+
+hpc:hasresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceinformation ;
+    rdfs:range hpc:Resource ;
+    rdfs:range xsd:nonNegativeInteger .

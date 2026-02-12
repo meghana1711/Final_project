@@ -1,0 +1,9 @@
+hpc:Featuregroup a owl:Class .
+hpc:hasname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Featuregroup ;
+    rdfs:range xsd:string .
+hpc:containsfeature a owl:ObjectProperty ;
+    rdfs:domain hpc:Featuregroup ;
+    rdfs:range hpc:Feature .
+
+hpc:Feature a owl:Class .

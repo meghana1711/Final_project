@@ -1,0 +1,13 @@
+hpc:Prioritytype a owl:Class .
+hpc:prioritydecayhalflife a owl:DatatypeProperty ;
+    rdfs:domain hpc:Prioritytype ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:prioritycalcperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Prioritytype ;
+    rdfs:range xsd:time .
+hpc:priorityusageresetperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Prioritytype ;
+    rdfs:range xsd:time .
+
+hpc:Multifactorjobpriorityplugin a owl:Class ;
+    rdfs:subClassOf hpc:Prioritytype .

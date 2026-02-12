@@ -1,0 +1,19 @@
+hpc:Cluster a owl:Class .
+hpc:Job a owl:Class .
+hpc:Orphanjob a owl:Class .
+hpc:dependency a owl:ObjectProperty .
+hpc:graceperiod a owl:DatatypeProperty .
+hpc:orphanterminationgraceperiod a owl:DatatypeProperty .
+
+hpc:Cluster rdfs:subClassOf owl:Class .
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Orphanjob rdfs:subClassOf hpc:Job .
+
+hpc:Dependency rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Job .
+
+hpc:Graceperiod rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Orphanterminationgraceperiod rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:nonNegativeInteger .

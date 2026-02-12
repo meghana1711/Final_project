@@ -1,0 +1,67 @@
+hpc:delay a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "By default, the delay is 1 second." .
+
+hpc:Filesystem a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a file system." .
+
+hpc:Slowerfilesystem a owl:Class ;
+    rdfs:subClassOf hpc:Filesystem ;
+    rdfs:comment "Slower file systems require a longer delay." .
+
+hpc:Executionhost a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents an execution host." .
+
+hpc:Dependenttarget a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a dependent target." .
+
+hpc:hasdelay a owl:ObjectProperty ;
+    rdfs:domain hpc:Dependenttarget ;
+    rdfs:range hpc:Delay ;
+    rdfs:comment "The delay associated with the dependent target." .
+
+hpc:sameexecutionhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Dependenttarget ;
+    rdfs:range hpc:Executionhost ;
+    rdfs:comment "Indicates if the dependent target's commands start on the same execution host." .
+
+hpc:retries a owl:ObjectProperty ;
+    rdfs:domain hpc:Dependenttarget ;
+    rdfs:range hpc:Retries ;
+    rdfs:comment "Indicates if retries are enabled for the dependent target." .
+
+hpc:retryinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Retries ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The interval between retries, depending on the delay time." .
+
+hpc:numtasks a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of tasks to start concurrently on each core." .
+
+hpc:overloadrisk a owl:ObjectProperty ;
+    rdfs:domain hpc:Numtasks ;
+    rdfs:range hpc:Execution ;
+    rdfs:comment "Indicates if specifying too many tasks might overload a host." .
+
+hpc:environmentvariables a owl:ObjectProperty ;
+    rdfs:domain hpc:Numtasks ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Sets the environment variables for every task sent remotely." .
+
+hpc:debuglevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Enables debugging, specify the debug level." .
+
+hpc:multiplecores a owl:ObjectProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Uses multiple cores, selecting the best available." .
+
+hpc:MaxCores

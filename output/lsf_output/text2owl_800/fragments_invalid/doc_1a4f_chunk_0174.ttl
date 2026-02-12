@@ -1,0 +1,66 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A job with resource requirements and hosts that match the requirements are the candidate hosts." .
+
+hpc:Candidatehost a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Hosts that match the resource requirements of a job." .
+
+hpc:loadindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:Schedulingcondition a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Conditions for scheduling a job based on load values." .
+
+hpc:schedulingthreshold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Schedulingcondition ;
+    rdfs:range xsd:decimal .
+
+hpc:jobdispatch a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "Jobs are only dispatched to a host if all load values are within the scheduling thresholds." .
+
+hpc:defaultjobplacement a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "By default, if a job has no resource requirements, LSF places it on a host of the same type as the submission host." .
+
+hpc:overridedefaultplacement a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "To override the LSF defaults, specify resource requirements explicitly." .
+
+hpc:Resourcerequirement a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "An expression that contains resource names and operators." .
+
+hpc:resourcerequirementspecification a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Resourcerequirement ;
+    rdfs:comment "Resource requirements set for queues." .
+
+hpc:Applicationprofile a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Resource requirements set for application profiles." .
+
+hpc:jobresourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resourcerequirement ;
+    rdfs:comment "Resource requirements set for individual jobs." .
+
+hpc:applicationresourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range hpc:Resourcerequirement ;
+    rdfs:comment "Resource requirements specified for each application." .
+
+hpc:Remotetasklist a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A list containing executable name together with its resource requirements." .
+
+hpc:bsubcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Remotetasklist ;
+    r

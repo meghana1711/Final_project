@@ -1,0 +1,52 @@
+hpc:Host a owl:Class .
+hpc:status a owl:ObjectProperty .
+hpc:jl a owl:DatatypeProperty .
+hpc:u a owl:DatatypeProperty .
+hpc:max a owl:DatatypeProperty .
+hpc:njobs a owl:DatatypeProperty .
+hpc:run a owl:DatatypeProperty .
+hpc:ssusp a owl:DatatypeProperty .
+hpc:ususp a owl:DatatypeProperty .
+hpc:rsv a owl:DatatypeProperty .
+
+hpc:Hostgroup a owl:Class .
+hpc:belongsto a owl:ObjectProperty .
+
+hpc:Condensedhostgroup a owl:Class .
+hpc:Uncondensedhostgroup a owl:Class .
+
+hpc:Host rdfs:domain hpc:Condensedhostgroup, hpc:Uncondensedhostgroup .
+hpc:Status rdfs:domain hpc:Host .
+hpc:Jl rdfs:range xsd:nonNegativeInteger .
+hpc:U rdfs:range xsd:nonNegativeInteger .
+hpc:Max rdfs:range xsd:nonNegativeInteger .
+hpc:Njobs rdfs:range xsd:nonNegativeInteger .
+hpc:Run rdfs:range xsd:nonNegativeInteger .
+hpc:Ssusp rdfs:range xsd:nonNegativeInteger .
+hpc:Ususp rdfs:range xsd:nonNegativeInteger .
+hpc:Rsv rdfs:range xsd:nonNegativeInteger .
+
+# Example hosts
+hpc:hostA a hpc:Host ;
+    hpc:Status "ok" ;
+    hpc:JL 0.0 ;
+    hpc:U 0.0 ;
+    hpc:MAX 0.0 ;
+    hpc:NJOBS 4 ;
+    hpc:RUN 0.4 ;
+    hpc:SSUSP 0 ;
+    hpc:USUSP 4316 ;
+    hpc:RSV "10G" ;
+    hpc:Belongsto hpc:groupa .
+
+hpc:hostB a hpc:Host ;
+    hpc:Status "ok" ;
+    hpc:JL 1.0 ;
+    hpc:U 0.0 ;
+    hpc:MAX 0.0 ;
+    hpc:NJOBS 8.2 ;
+    hpc:RUN 2 ;
+    hpc:SSUSP 2 ;
+    hpc:USUSP 14 ;
+    hpc:RSV "4231M" ;
+    hpc:belongsTo _:groupB .

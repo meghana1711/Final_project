@@ -1,0 +1,64 @@
+hpc:Resourceconsumer a owl:Class .
+hpc:Hostgroup rdfs:subClassOf hpc:Resourceconsumer .
+hpc:Computeunit rdfs:subClassOf hpc:Resourceconsumer .
+hpc:User rdfs:subClassOf hpc:Resourceconsumer .
+hpc:Usergroup rdfs:subClassOf hpc:Resourceconsumer .
+
+# Resource Allocation Limits
+hpc:Resourceallocationlimit a owl:Class .
+hpc:HostGroupLimit rdf:type hpc:ResourceAllocationLimit ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range xsd:integer .
+hpc:ComputeUnitLimit rdf:type hpc:ResourceAllocationLimit ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range xsd:integer .
+hpc:UserLimit rdf:type hpc:ResourceAllocationLimit ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+hpc:UserGroupLimit rdf:type hpc:ResourceAllocationLimit ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:integer .
+
+# Resource Usage
+hpc:Resourceusage a owl:Class .
+hpc:ResourceUsageByHost rdf:type hpc:ResourceUsage ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range xsd:integer .
+hpc:ResourceUsageByComputeUnit rdf:type hpc:ResourceUsage ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range xsd:integer .
+hpc:ResourceUsageByUser rdf:type hpc:ResourceUsage ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+hpc:ResourceUsageByUserGroup rdf:type hpc:ResourceUsage ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:integer .
+
+# Resource Queues
+hpc:Resourcequeue a owl:Class .
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resourcequeue .
+
+# Job States
+hpc:Jobstate a owl:Class .
+hpc:Running rdf:type hpc:JobState .
+hpc:Pending rdf:type hpc:JobState .
+
+# Job
+hpc:Job a owl:Class .
+hpc:hasjobid a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:hasuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:User .
+hpc:hasstate a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Jobstate .
+hpc:isinqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resourcequeue .
+hpc:wassubmittedfrom a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:hasjobname a owl:ObjectProperty

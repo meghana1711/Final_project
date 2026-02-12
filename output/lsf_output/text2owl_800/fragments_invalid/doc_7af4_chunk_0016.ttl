@@ -1,0 +1,72 @@
+hpc:Parallelconfiguration a owl:Class .
+hpc:Highthroughputconfiguration a owl:Class .
+hpc:Defaultconfiguration a owl:Class .
+
+# Default Configuration properties
+hpc:lsfconf a owl:DatatypeProperty ;
+    rdfs:domain hpc:Defaultconfiguration ;
+    rdfs:range xsd:string .
+
+hpc:daemonshutdowndelay a owl:DatatypeProperty ;
+    rdfs:domain hpc:Defaultconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsblinuxcgroupacct a owl:DatatypeProperty ;
+    rdfs:domain hpc:Defaultconfiguration ;
+    rdfs:range xsd:boolean .
+
+hpc:lsfprocesstracking a owl:DatatypeProperty ;
+    rdfs:domain hpc:Defaultconfiguration ;
+    rdfs:range xsd:boolean .
+
+hpc:lsbparams a owl:DatatypeProperty ;
+    rdfs:domain hpc:Defaultconfiguration ;
+    rdfs:range xsd:string .
+
+# Parallel Configuration properties
+hpc:lsbshorthostlist a owl:DatatypeProperty ;
+    rdfs:domain hpc:Parallelconfiguration ;
+    rdfs:range xsd:boolean .
+
+hpc:lsblinuxcgroupacct a owl:DatatypeProperty ;
+    rdfs:domain hpc:Parallelconfiguration ;
+    rdfs:range xsd:boolean .
+
+hpc:lsfprocesstracking a owl:DatatypeProperty ;
+    rdfs:domain hpc:Parallelconfiguration ;
+    rdfs:range xsd:boolean .
+
+hpc:lsfenableextscheduler a owl:DatatypeProperty ;
+    rdfs:domain hpc:Parallelconfiguration ;
+    rdfs:range xsd:boolean .
+
+hpc:lsfhpcextensions a owl:DatatypeProperty ;
+    rdfs:domain hpc:Parallelconfiguration ;
+    rdfs:range xsd:string .
+
+# High Throughput Configuration properties
+hpc:jobdeplastsub a owl:DatatypeProperty ;
+    rdfs:domain hpc:Highthroughputconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobschedulinginterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Highthroughputconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maxjobnum a owl:DatatypeProperty ;
+    rdfs:domain hpc:Highthroughputconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:newjobrefresh a owl:DatatypeProperty ;
+    rdfs:domain hpc:Highthroughputconfiguration ;
+    rdfs:range xsd:boolean .
+
+hpc:sbdsleeptime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Highthroughputconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Fair Share Scheduling
+hpc:Fairsharescheduling a owl:Class .
+hpc:Usershares a owl:Class .
+
+hpc:userShares a owl:Datatype

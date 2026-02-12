@@ -1,0 +1,62 @@
+hpc:Pool a owl:Class ;
+    rdfs:subClassOf hpc:Resourcepool .
+
+hpc:Hostgroup a owl:Class .
+
+hpc:Hashosts rdfs:domain hpc:Pool, hpc:Hostgroup ;
+    rdfs:range rdf:Resource .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Belongstopool rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Pool .
+
+hpc:shares a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:decimal .
+
+hpc:jobslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:eligiblejobs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:joblimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:usedslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:decayedslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Preemptivequeue a owl:Class ;
+    rdfs:subClass hpc:Queue .
+
+hpc:Preemptablequeue a owl:Class ;
+    rdfs:subClass hpc:Queue .
+
+hpc:Slotreservablequeue a owl:Class ;
+    rdfs:subClass hpc:Queue .
+
+hpc:Poolordering rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Pool ;
+    rdfs:range hpc:Queue .
+
+hpc:Slotallocation rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Queue .
+
+hpc:Slotredistribution rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Queue .
+
+hpc:Jobschedulingpolicy a owl:Class .
+
+hpc:QueueBasedFairShare rdfs:subClass hpc:JobSchedulingPolicy .

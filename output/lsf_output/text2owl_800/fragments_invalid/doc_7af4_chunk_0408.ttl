@@ -1,0 +1,50 @@
+hpc:Apptainer a owl:Class .
+hpc:Apptainer rdfs:subClassOf owl:Class .
+hpc:Apptainer rdfs:comment "Apptainer User Service" .
+hpc:Apptainer rdfs:domain apptainer .
+
+hpc:apptainer a owl:ObjectProperty .
+hpc:Apptainer rdfs:domain hpc:Apptainer .
+hpc:Apptainer rdfs:range rdf:Resource .
+
+hpc:options a owl:ObjectProperty .
+hpc:Options rdfs:domain hpc:Apptainer .
+hpc:Options rdfs:range rdf:Resource .
+
+hpc:Podman a owl:Class .
+hpc:Podman rdfs:subClassOf owl:Class .
+hpc:Podman rdfs:comment "Podman User Service with pre-execution script for options" .
+hpc:Podman rdfs:domain podman .
+
+hpc:podman a owl:ObjectProperty .
+hpc:Podman rdfs:domain hpc:Podman .
+hpc:Podman rdfs:range rdf:Resource .
+
+hpc:optionspodman a owl:ObjectProperty .
+hpc:Optionspodman rdfs:domain hpc:Podman .
+hpc:Optionspodman rdfs:range rdf:Resource .
+
+hpc:Docker a owl:Class .
+hpc:Docker rdfs:subClassOf owl:Class .
+hpc:Docker rdfs:comment "Docker User Service with pre-execution script for options" .
+hpc:Docker rdfs:domain docker .
+
+hpc:docker a owl:ObjectProperty .
+hpc:Docker rdfs:domain hpc:Docker .
+hpc:Docker rdfs:range rdf:Resource .
+
+hpc:optionsdocker a owl:ObjectProperty .
+hpc:Optionsdocker rdfs:domain hpc:Docker .
+hpc:Optionsdocker rdfs:range rdf:Resource .
+
+hpc:containerIo a owl:ObjectProperty .
+hpc:ContainerIo rdfs:domain hpc:Docker .
+hpc:ContainerIo rdfs:range rdf:Resource .
+
+hpc:jobPrePost a owl:ObjectProperty .
+hpc:JobPrePost rdfs:domain hpc:Docker .
+hpc:JobPrePost rdfs:range rdf:Resource .
+
+hpc:Enroot a owl:Class .
+hpc:Enroot rdfs:subClassOf owl:Class .
+hpc:Enroot rdfs:comment "Enroot User Service with pre-

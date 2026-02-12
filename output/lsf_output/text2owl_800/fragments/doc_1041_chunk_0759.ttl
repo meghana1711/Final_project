@@ -1,0 +1,40 @@
+hpc:EgoLogMask a owl:Class .
+hpc:EgoLogMask rdfs:subClassOf owl:Thing .
+
+hpc:EgoLogClass a owl:Class .
+hpc:EgoLogClass rdfs:subClassOf hpc:EgoLogMask .
+
+hpc:EgoEntitlementFile a owl:Class .
+hpc:EgoEntitlementFile rdfs:subClassOf owl:Thing .
+
+hpc:EgoDefineNcpus a owl:Class .
+hpc:EgoDefineNcpus rdfs:subClassOf owl:Thing .
+hpc:EgoDefineNcpus rdfs:domain hpc:EgoDefineNcpus .
+hpc:EgoDefineNcpus rdfs:range xsd:string .
+
+hpc:Procs a owl:Class .
+hpc:Procs rdfs:subClassOf hpc:EgoDefineNcpus .
+
+hpc:Cores a owl:Class .
+hpc:Cores rdfs:subClassOf hpc:EgoDefineNcpus .
+
+hpc:Threads a owl:Class .
+hpc:Threads rdfs:subClassOf hpc:EgoDefineNcpus .
+
+hpc:EgoEnableDualcore a owl:Class .
+hpc:EgoEnableDualcore rdfs:subClassOf owl:Thing .
+hpc:EgoEnableDualcore rdfs:domain hpc:EgoEnableDualcore .
+hpc:EgoEnableDualcore rdfs:range xsd:boolean .
+
+hpc:EgoConfdir a owl:Class .
+hpc:EgoConfdir rdfs:subClassOf owl:Thing .
+
+hpc:EgoCluster a owl:Class .
+hpc:EgoCluster rdfs:subClassOf hpc:EgoConfdir .
+
+hpc:Lsacct a owl:Class .
+hpc:Lsacct rdfs:subClassOf owl:Thing .
+
+hpc:lsacctOptions a owl:ObjectProperty .
+hpc:LsacctOptions rdfs:domain hpc:Lsacct .
+hpc:LsacctOptions rdfs:range xsd:string .

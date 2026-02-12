@@ -1,0 +1,15 @@
+hpc:lsbRcExternalHostAbnormalTime a owl:DatatypeProperty .
+hpc:LsbRcExternalHostAbnormalTime rdfs:domain hpc:Resourceconnector .
+hpc:LsbRcExternalHostAbnormalTime rdfs:range xsd:time .
+
+hpc:lsbRcExternalHostFlag a owl:ObjectProperty .
+hpc:LsbRcExternalHostFlag rdfs:domain hpc:Lsf .
+hpc:LsbRcExternalHostFlag rdfs:range xsd:string .
+
+hpc:lsbRcExternalHostIdleTime a owl:DatatypeProperty .
+hpc:LsbRcExternalHostIdleTime rdfs:domain hpc:Resourceconnector .
+hpc:LsbRcExternalHostIdleTime rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsbRcExternalHostMaxTtl a owl:DatatypeProperty .
+hpc:LsbRcExternalHostMaxTtl rdfs:domain hpc:Resourceconnector .
+hpc:LsbRcExternalHostMaxTtl rdfs:range xsd:nonNegativeInteger .

@@ -1,0 +1,47 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a job in the LSF Data Manager system." .
+
+hpc:datatransfer a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Data ;
+    rdfs:comment "The transfer of data to or from a job." .
+
+hpc:bstagecommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The bstage command used for file transfer." .
+
+hpc:lsrcpcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The lsrcp command used for file transfer." .
+
+hpc:LSB_LSRCP_DO_BSTAGE a xsd:string ;
+    rdfs:comment "Environment variable indicating whether to use bstage for file transfer." .
+
+hpc:LSB_NO_BSTAGE_IN a xsd:string ;
+    rdfs:comment "Environment variable to disable bstage and use lsrcp for specific jobs." .
+
+hpc:Stagingarea a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "The area where data is temporarily stored before job execution." .
+
+hpc:Executionhost a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "The host where the job is executed." .
+
+hpc:Submissionhost a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "The host where the job is submitted." .
+
+hpc:Datamanager a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "The system responsible for managing data transfers." .
+
+hpc:TransferOperator a xsd:string ;
+    rdfs:comment "Operator used for file transfer (< or >)." .
+
+hpc:Data a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a data file." .

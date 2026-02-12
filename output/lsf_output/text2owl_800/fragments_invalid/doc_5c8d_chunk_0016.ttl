@@ -1,0 +1,61 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a job with specific parameters." .
+
+hpc:smt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:positiveInteger ;
+    rdfs:comment "Specifies a positive integer that satisfies the CSM_VALID_SMT parameter values." .
+
+hpc:smtOverridden a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:positiveInteger ;
+    rdfs:comment "The value specified in the CSM_REQ parameter of the lsb.queues file, that overrides the -smt option." .
+
+hpc:outputfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Specifies the standard output of the job to a file with the job ID as the file name." .
+
+hpc:errorfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Specifies the standard error output of the job to a file with the job ID as the file name." .
+
+hpc:resourcerequirement a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the resource requirement string for the jsrun command." .
+
+hpc:jsruncommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Represents the jsrun command within the JSM package." .
+
+hpc:Expertmode a owl:Class ;
+    rdfs:subClassOf hpc:Jsruncommand ;
+    rdfs:comment "Represents the jsrun command in expert mode." .
+
+hpc:expertmodeOptions a owl:ObjectProperty ;
+    rdfs:domain hpc:Expertmode ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies the options that cannot be used in expert mode." .
+
+hpc:Directdatastaging a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Represents a direct data staging job." .
+
+hpc:Lsf a owl:Class ;
+    rdfs:subClassOf hpc:Directdatastaging ;
+    rdfs:comment "Represents a direct data staging job submitted with LSF." .
+
+hpc:Csmintegration a owl:Class ;
+    rdfs:subClassOf hpc:Directdatastaging ;
+    rdfs:comment "Represents the CSM integration for direct data staging jobs." .
+
+hpc:Ibmpower a owl:Class ;
+    rdfs:subClassOf hpc:Csmintegration ;
+    rdfs:comment "Represents the CSM integration for direct data staging jobs on IBM POWER." .
+
+hpc:resourcerequirementstring a owl:DatatypeProperty ;
+    rdfs:domain

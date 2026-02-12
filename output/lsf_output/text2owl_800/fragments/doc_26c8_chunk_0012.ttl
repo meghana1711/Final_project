@@ -1,0 +1,27 @@
+hpc:Lsfclusterhost a owl:Class .
+hpc:haslsfclusterhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfclusterhost ;
+    rdfs:range xsd:string .
+
+hpc:Mqttbrokerhost a owl:Class ;
+    rdfs:subClassOf hpc:Lsfclusterhost .
+
+hpc:bctrldrestart a owl:ObjectProperty ;
+    rdfs:domain hpc:Mqttbrokerhost ;
+    rdfs:range xsd:string .
+
+hpc:pscommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Mqttbrokerhost ;
+    rdfs:range xsd:string .
+
+hpc:lsfrcqueryinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfclusterhost ;
+    rdfs:range xsd:integer .
+
+hpc:lsfrcrequeuebuffer a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfclusterhost ;
+    rdfs:range xsd:integer .
+
+hpc:lsbrcqueryinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfclusterhost ;
+    rdfs:range xsd:integer .

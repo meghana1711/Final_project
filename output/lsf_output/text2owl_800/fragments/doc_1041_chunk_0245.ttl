@@ -1,0 +1,36 @@
+hpc:Job a owl:Class .
+
+hpc:hasJobID rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:dependsOn rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:hasParentJob rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:hasChildJob rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:hasLevel rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:jobstatus a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:isPartiallyCleaned rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:hasDependencyRequirementStatus rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:Jobdependency a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Joblevel a owl:Class ;
+    rdfs:subClassOf hpc:Job .

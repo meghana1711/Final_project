@@ -1,0 +1,15 @@
+hpc:planstarttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:timeStamp .
+
+hpc:planfinishtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:timeStamp .
+
+hpc:outputwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Field a owl:Class .
+
+hpc:Job a owl:Class .

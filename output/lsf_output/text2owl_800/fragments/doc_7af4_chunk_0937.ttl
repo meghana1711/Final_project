@@ -1,0 +1,25 @@
+hpc:Licenseserver a owl:Class .
+hpc:Remotelicenseserver a owl:Class .
+hpc:Locallicenseserver a owl:Class .
+hpc:Remoteagenthost a owl:Class .
+hpc:serves a owl:ObjectProperty .
+hpc:licenseserverdefinedinlicservers a owl:DatatypeProperty .
+hpc:Remotelmstatserver a owl:Class .
+hpc:Ignored a owl:Class .
+hpc:Remoteagent a owl:Class .
+hpc:remoteagenthostdefinedinlicservers a owl:DatatypeProperty .
+hpc:Projectmode a owl:Class .
+hpc:Clustermode a owl:Class .
+
+hpc:Remotelicenseserver rdfs:subClassOf hpc:Licenseserver .
+hpc:RemoteAgent rdfs:subClass hpc:RemoteLicenseServer .
+hpc:Remoteagenthost rdfs:subClassOf hpc:Remotelicenseserver .
+
+hpc:Remotelicenseserver rdfs:domain hpc:Licenseserver .
+hpc:Serves rdfs:domain hpc:Remotelicenseserver .
+hpc:Remotelicenseserver rdfs:domain hpc:Remoteagenthost .
+hpc:Licenseserverdefinedinlicservers rdfs:range xsd:string .
+hpc:Remoteagenthostdefinedinlicservers rdfs:range xsd:string .
+
+hpc:Projectmode rdfs:subClassOf hpc:Remotelicenseserver .
+hpc:Clustermode rdfs:subClassOf hpc:Remotelicenseserver .

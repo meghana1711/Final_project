@@ -1,0 +1,41 @@
+hpc:Resourceusage a owl:Class .
+hpc:resource a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusage ;
+    rdfs:range xsd:string .
+hpc:value a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusage .
+hpc:R1m a hpc:Resource .
+hpc:Mem a hpc:Resource .
+hpc:Swp a hpc:Resource .
+
+hpc:Task a owl:Class .
+hpc:Intensivetask a owl:Class ;
+    rdfs:subClassOf hpc:Task .
+hpc:DefaultResourceUsage a hpc:ResourceUsage ;
+    hpc:R15s "1.0"^^xsd:double ;
+    hpc:R1m "1.0"^^xsd:double ;
+    hpc:R15m "1.0"^^xsd:double .
+hpc:hostassignment a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:Host .
+
+hpc:Host a owl:Class .
+hpc:RunQueueLength a hpc:Resource .
+hpc:Memory a hpc:Resource .
+hpc:SwapSpace a hpc:Resource .
+
+hpc:Resourcereservation a owl:Class ;
+    rdfs:subClassOf hpc:Task .
+hpc:Batchjob a owl:Class ;
+    rdfs:subClassOf hpc:Resourcereservation .
+
+hpc:runonhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcereservation ;
+    rdfs:range hpc:Host .
+
+hpc:Pseudoterminal a owl:Class .
+hpc:Interactionjob a owl:Class ;
+    rdfs:subClassOf hpc:Task .
+hpc:notsupportedonwindows a owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminal ;
+    rdfs:range hpc:Interactionjob .

@@ -1,0 +1,16 @@
+hpc:Lsbapplication a owl:Class .
+hpc:Resizablejob a owl:Class .
+hpc:autooption a owl:ObjectProperty .
+hpc:Autooption rdfs:domain hpc:Resizablejob ;
+                 rdfs:range xsd:string .
+
+hpc:resourcereservepertask a owl:DatatypeProperty .
+hpc:Resourcereservepertask rdfs:domain hpc:Lsbapplication ;
+                             rdfs:range xsd:string .
+
+hpc:Reservationresource a owl:Class .
+hpc:Memoryresource a owl:Class .
+
+hpc:runjobfactor a owl:DatatypeProperty .
+hpc:Runjobfactor rdfs:domain hpc:Lsbapplication ;
+                   rdfs:range xsd:decimal .

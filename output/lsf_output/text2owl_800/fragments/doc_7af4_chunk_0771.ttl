@@ -1,0 +1,43 @@
+hpc:jobterminateinterval a owl:DatatypeProperty .
+hpc:Jobterminateinterval rdfs:domain hpc:Job .
+hpc:Jobterminateinterval rdfs:range xsd:nonNegativeInteger .
+
+hpc:Job a owl:Class .
+
+hpc:Lsbparams a owl:Class .
+
+hpc:lsbuserreqqueuetobottom a owl:ObjectProperty .
+hpc:Lsbuserreqqueuetobottom rdfs:domain hpc:Lsbparams .
+hpc:Lsbuserreqqueuetobottom rdfs:range xsd:boolean .
+
+hpc:lsbmig2pend a owl:ObjectProperty .
+hpc:Lsbmig2pend rdfs:domain hpc:Lsbparams .
+hpc:Lsbmig2pend rdfs:range xsd:boolean .
+
+hpc:lsbreqqueuetobottom a owl:ObjectProperty .
+hpc:Lsbreqqueuetobottom rdfs:domain hpc:Lsbparams .
+hpc:Lsbreqqueuetobottom rdfs:range xsd:boolean .
+
+hpc:lsbutmp a owl:ObjectProperty .
+hpc:Lsbutmp rdfs:domain hpc:Lsbparams .
+hpc:Lsbutmp rdfs:range xsd:string .
+
+hpc:Multiclusterenvironment a owl:Class .
+
+hpc:Interactivebatchjob a owl:Class .
+
+hpc:utmpfileregistration a owl:ObjectProperty .
+hpc:Utmpfileregistration rdfs:domain hpc:Interactivebatchjob .
+hpc:Utmpfileregistration rdfs:range xsd:boolean .
+
+hpc:Supportedplatform a owl:Class .
+
+hpc:Solaris a owl:Class .
+hpc:Hpux a owl:Class .
+hpc:Linux a owl:Class .
+hpc:Supportedplatform rdfs:subClassOf hpc:Platform .
+hpc:Platform rdfs:subClassOf owl:Class .
+
+hpc:utmpfileregistrationsupportedon a owl:ObjectProperty .
+hpc:Utmpfileregistrationsupportedon rdfs:domain hpc:Supportedplatform .
+hpc:Utmpfileregistrationsupportedon rdfs:range hpc:Interactivebatchjob .

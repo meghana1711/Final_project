@@ -1,0 +1,57 @@
+hpc:changedirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Makefile ;
+    rdfs:range rdf:Resource .
+
+hpc:Directory a owl:Class .
+
+hpc:debug a owl:ObjectProperty ;
+    rdfs:domain hpc:Makefile ;
+    rdfs:range xsd:string .
+
+hpc:Debugoptions a owl:Class .
+
+hpc:basicdebug a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugoptions ;
+    rdfs:range xsd:string .
+
+hpc:implicit a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugoptions ;
+    rdfs:range xsd:string .
+
+hpc:verbose a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugoptions ;
+    rdfs:range xsd:string .
+
+hpc:jobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Debugoptions ;
+    rdfs:range xsd:string .
+
+hpc:Makefile a owl:Class .
+
+hpc:environmentoverrides a owl:ObjectProperty ;
+    rdfs:domain hpc:Makefile ;
+    rdfs:range rdf:Resource .
+
+hpc:file a owl:DatatypeProperty ;
+    rdfs:domain hpc:Makefile ;
+    rdfs:range xsd:string .
+
+hpc:ignoreerrors a owl:ObjectProperty ;
+    rdfs:domain hpc:Makefile ;
+    rdfs:range xsd:boolean .
+
+hpc:includedir a owl:ObjectProperty ;
+    rdfs:domain hpc:Makefile ;
+    rdfs:range xsd:string .
+
+hpc:keepgoing a owl:ObjectProperty ;
+    rdfs:domain hpc:Makefile ;
+    rdfs:range xsd:boolean .
+
+hpc:loadaverage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Makefile ;
+    rdfs:range xsd:decimal .
+
+hpc:checksymlinktimes a owl:ObjectProperty ;
+    rdfs:domain hpc:Makefile ;
+    rdfs:range xsd:boolean .

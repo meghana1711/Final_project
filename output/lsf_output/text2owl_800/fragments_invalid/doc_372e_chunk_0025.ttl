@@ -1,0 +1,13 @@
+hpc:Servicedomain a owl:Class .
+hpc:name a owl:ObjectProperty ;
+    rdfs:domain hpc:Servicedomain ;
+    rdfs:range xsd:string .
+
+hpc:licServers a owl:ObjectProperty ;
+    rdfs:domain hpc:Servicedomain ;
+    rdfs:range xsd:string .
+
+hpc:Licenseserver a owl:Class .
+
+
+This ontology fragment defines a ServiceDomain class, a NAME object property, and a LIC_SERVERS object property. The ServiceDomain class has two properties: NAME and LIC_SERVERS. The NAME property has a domain of ServiceDomain and a range of xsd:string. The LIC_SERVERS property also has a domain of ServiceDomain and a range of xsd:string. Additionally, a LicenseServer class is defined but not populated with any properties in the given documentation.

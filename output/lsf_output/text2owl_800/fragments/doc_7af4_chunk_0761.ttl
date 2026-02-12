@@ -1,0 +1,12 @@
+hpc:Lsbscript a owl:Class .
+hpc:lsbStageMaxStageIn a owl:ObjectProperty .
+hpc:lsbStageOutExec a owl:ObjectProperty .
+hpc:lsbStageStorage a owl:ObjectProperty .
+
+hpc:Lsbscript rdfs:subClassOf owl:Class .
+hpc:LsbStageMaxStageIn rdfs:domain hpc:Lsbscript ;
+                               rdfs:range xsd:nonNegativeInteger .
+hpc:LsbStageOutExec rdfs:domain hpc:Lsbscript ;
+                         rdfs:range xsd:string .
+hpc:LsbStageStorage rdfs:domain hpc:Lsbscript ;
+                      rdfs:range xsd:string .

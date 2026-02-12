@@ -1,0 +1,42 @@
+hpc:Status a owl:Class .
+hpc:Status rdfs:subClassOf owl:Enum .
+hpc:Status rdfs:range xsd:nonNegativeInteger .
+
+hpc:num a owl:DatatypeProperty .
+hpc:Num rdfs:domain hpc:Provision .
+hpc:Num rdfs:range xsd:nonNegativeInteger .
+
+hpc:hostnamelist a owl:ObjectProperty .
+hpc:Hostnamelist rdfs:domain hpc:Provision .
+hpc:Hostnamelist rdfs:range rdf:List .
+
+hpc:hoststatuslist a owl:ObjectProperty .
+hpc:Hoststatuslist rdfs:domain hpc:Provision .
+hpc:Hoststatuslist rdfs:range rdf:List .
+
+hpc:HostClosureLockIdCtrl a owl:Class .
+hpc:HostClosureLockIdCtrl rdfs:subClassOf owl:NamedIndividual .
+
+hpc:versionnumber a owl:DatatypeProperty .
+hpc:Versionnumber rdfs:domain hpc:Hostclosurelockid .
+hpc:Versionnumber rdfs:range xsd:nonNegativeInteger .
+
+hpc:eventtime a owl:DatatypeProperty .
+hpc:Eventtime rdfs:domain hpc:Hostclosurelockid .
+hpc:Eventtime rdfs:range xsd:dateTime .
+
+hpc:host a owl:DatatypeProperty .
+hpc:Host rdfs:domain hpc:Hostclosurelockid .
+hpc:Host rdfs:range xsd:string .
+
+hpc:opcode a owl:DatatypeProperty .
+hpc:Opcode rdfs:domain hpc:Hostclosurelockid .
+hpc:Opcode rdfs:range xsd:nonNegativeInteger .
+
+hpc:numlockids a owl:DatatypeProperty .
+hpc:Numlockids rdfs:domain hpc:Hostclosurelockid .
+hpc:Numlockids rdfs:range xsd:nonNegativeInteger .
+
+hpc:lockids a owl:DatatypeProperty .
+hpc:Lockids rdfs:domain hpc:Hostclosurelockid .
+hpc:Lockids rdfs:range rdf:List .

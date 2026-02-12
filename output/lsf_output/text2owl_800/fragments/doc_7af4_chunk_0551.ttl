@@ -1,0 +1,19 @@
+hpc:Resourcerequirement a owl:Class .
+hpc:hasresourcerequirement a owl:ObjectProperty .
+hpc:Hasresourcerequirement rdfs:domain hpc:Host .
+hpc:Hasresourcerequirement rdfs:range xsd:string .
+
+hpc:Distribution a owl:Class .
+hpc:hasdistribution a owl:ObjectProperty .
+hpc:Hasdistribution rdfs:domain hpc:Pool .
+hpc:Hasdistribution rdfs:range rdf:List .
+
+hpc:Serviceclass a owl:Class .
+hpc:Serviceclass rdfs:subClassOf hpc:Resourceclass .
+hpc:ServiceClass rdf:type rdfs:Class .
+hpc:hasserviceclassamount a owl:DatatypeProperty .
+hpc:Hasserviceclassamount rdfs:domain hpc:Distribution .
+hpc:Hasserviceclassamount rdfs:range xsd:decimal .
+
+hpc:Resourceclass a owl:Class .
+hpc:ResourceClass rdf:type rdfs:Class .

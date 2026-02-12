@@ -1,0 +1,27 @@
+hpc:Eventlog a owl:Class .
+hpc:eventsFile rdf:datatype xsd:string ;
+    rdfs:range xsd:string .
+
+hpc:Logfile a owl:Class ;
+    rdfs:subClassOf hpc:Eventlog .
+
+hpc:sufﬁx rdf:datatype xsd:integer ;
+    rdfs:range xsd:integer .
+
+hpc:maxJobPreempt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:integer .
+hpc:maxJobPreemptReset a owl:ObjectProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:boolean .
+
+hpc:MAX_JOB_PREEMPT_RESET_Y a xsd:boolean .
+hpc:MAX_JOB_PREEMPT_RESET_N a xsd:boolean .
+
+hpc:maxJobRequeue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:integer .
+
+hpc:maxJobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:integer .

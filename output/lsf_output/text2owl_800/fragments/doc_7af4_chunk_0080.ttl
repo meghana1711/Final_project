@@ -1,0 +1,32 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a job in the HPC system." .
+
+hpc:postexecutionprocessing a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Postexecutionprocessingstatus ;
+    rdfs:comment "Indicates whether post-execution processing is included as part of the job." .
+
+hpc:Postexecutionprocessingstatus a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf hpc:Jobstatus ;
+    rdfs:comment "Represents the status of post-execution processing for a job." .
+
+hpc:PostExecutionProcessingStatusDONE a hpc:PostExecutionProcessingStatus ;
+    rdfs:comment "Indicates that post-execution processing has finished successfully." .
+
+hpc:PostExecutionProcessingStatusPOST_DONE a hpc:PostExecutionProcessingStatus ;
+    rdfs:comment "Indicates that post-execution processing has finished successfully." .
+
+hpc:PostExecutionProcessingStatusPOST_ERR a hpc:PostExecutionProcessingStatus ;
+    rdfs:comment "Indicates that post-execution processing has failed." .
+
+hpc:jobIncludePostproc a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether post-execution processing is included as part of the job." .
+
+hpc:jobPostprocTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies a timeout in minutes for job post-execution processing." .

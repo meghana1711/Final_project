@@ -1,0 +1,19 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Cpufactor a owl:Class .
+hpc:runlimit a owl:ObjectProperty .
+hpc:SubmissionHost rdf:type owl:Class .
+hpc:Job rdf:type owl:Class .
+
+hpc:acctArchiveAge a owl:DatatypeProperty .
+hpc:acctArchiveSize a owl:DatatypeProperty .
+hpc:acctArchiveTime a owl:DatatypeProperty .
+hpc:LSFAccountingLogFile rdf:type owl:Class .
+
+hpc:advrsvUserLimit a owl:DatatypeProperty .
+hpc:User rdf:type owl:Class .
+hpc:UserGroup rdf:type owl:Class .
+hpc:System rdf:type owl:Class .

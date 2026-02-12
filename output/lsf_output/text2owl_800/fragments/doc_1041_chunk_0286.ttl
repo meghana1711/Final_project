@@ -1,0 +1,41 @@
+hpc:Effectivependingtimelimit a owl:Class .
+hpc:effectiveEplimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Effectivependingtimelimit ;
+    rdfs:range xsd:duration .
+
+hpc:Eligiblependingtimelimit a owl:Class .
+hpc:eplimitRemain a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eligiblependingtimelimit ;
+    rdfs:range xsd:duration .
+
+hpc:Pendingtimeremaining a owl:Class .
+
+hpc:Cpuusedtime a owl:Class .
+hpc:cpuUsed a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cpuusedtime ;
+    rdfs:range xsd:duration .
+
+hpc:Cpuruntime a owl:Class .
+hpc:cpuRunTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cpuruntime ;
+    rdfs:range xsd:duration .
+
+hpc:Idlefactor a owl:Class .
+hpc:idleFactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Idlefactor ;
+    rdfs:range xsd:decimal .
+
+hpc:Exceptionstatus a owl:Class .
+hpc:exceptionStatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exceptionstatus ;
+    rdfs:range xsd:integer .
+
+hpc:Exceptionstat a owl:Class .
+
+hpc:Slotsusedbyjob a owl:Class .
+
+hpc:idlefactorusedforjobhandling a owl:ObjectProperty ;
+    rdfs:domain hpc:Idlefactor ;
+    rdfs:range hpc:Job .
+
+hpc:Job a owl:Class .

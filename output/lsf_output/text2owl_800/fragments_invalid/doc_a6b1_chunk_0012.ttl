@@ -1,0 +1,48 @@
+hpc:LsfLogdir a owl:Class ;
+    rdfs:comment "Directory where LSF logs are stored if defined." .
+
+hpc:Syslog a owl:Class ;
+    rdfs:comment "System logging service." .
+
+hpc:SyslogConfiguration a owl:Class ;
+    rdfs:comment "Configuration of syslog." .
+
+hpc:SyslogMessage a owl:Class ;
+    rdfs:comment "Individual message logged by syslog." .
+
+hpc:LogFile a owl:Class ;
+    rdfs:comment "File where logs are stored." .
+
+hpc:EventLog a owl:Class ;
+    rdfs:comment "Log containing events related to LSF daemons." .
+
+hpc:lsb_events a Log_File ;
+    rdfs:comment "Event log file used by mbatchd." .
+
+hpc:LsbParams a owl:Class ;
+    rdfs:comment "Parameter file for LSF." .
+
+hpc:maxJobNum a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbParams ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Parameter controlling the number of batch job completions before lsb.events is backed up and rewritten." .
+
+hpc:logstosyslog a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfLogdir ;
+    rdfs:range hpc:Syslog ;
+    rdfs:comment "Relation between LSF_LOGDIR and syslog when LSF_LOGDIR is not defined." .
+
+hpc:cannotfindlsfConf a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfLogdir ;
+    rdfs:range hpc:Syslog ;
+    rdfs:comment "Relation between LSF_LOGDIR and syslog when LSF daemons cannot find lsf.conf." .
+
+hpc:managedbysyslog a owl:ObjectProperty ;
+    rdfs:domain hpc:LogFile ;
+    rdfs:range hpc:Syslog ;
+    rdfs:comment "Relation between a log file and syslog when the log is managed by syslog." .
+
+hpc:automaticallycleared a owl:ObjectProperty ;
+    rdfs:domain hpc:Syslog ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Property indicating whether syslog messages are automatically cleared." .

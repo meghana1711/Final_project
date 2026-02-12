@@ -1,0 +1,68 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Reserves job slots or hosts in advance for a specified period." .
+
+hpc:reservation_name rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Name of the reservation." .
+
+hpc:user_name rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:User ;
+    rdfs:comment "The user who created the reservation." .
+
+hpc:user_group rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Usergroup ;
+    rdfs:comment "The user group for the reservation." .
+
+hpc:unit rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Unit ;
+    rdfs:comment "The unit (slot or host) for the reservation." .
+
+hpc:host rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Unit ;
+    rdfs:comment "A host in the system." .
+
+hpc:slot rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Unit ;
+    rdfs:comment "A job slot in the system." .
+
+hpc:startTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:time ;
+    rdfs:comment "Start time of the reservation." .
+
+hpc:endTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:time ;
+    rdfs:comment "End time of the reservation." .
+
+hpc:duration rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "Duration of the reservation." .
+
+hpc:recurringReservation rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the reservation is recurring." .
+
+hpc:ReservationPolicy rdf:type owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A policy for advance reservations." .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:Usergroup a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A group of users." .
+
+hpc:Unit a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A unit (slot or host) in the system." .
+
+hpc:

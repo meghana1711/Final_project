@@ -1,0 +1,68 @@
+hpc:LaunchTemplate
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a launch template in the HPC context." .
+
+hpc:NetworkInterface
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a network interface in the HPC context." .
+
+hpc:SubnetID
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Launchtemplate ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The subnet ID associated with the launch template." .
+
+hpc:SecurityGroup
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Launchtemplate ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The security group associated with the launch template." .
+
+hpc:EFANetworkInterface
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents an EFA network interface in the HPC context." .
+
+hpc:SupportedAMIorInstanceType
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a supported Amazon Machine Image (AMI) or instance type for EFA network interfaces." .
+
+hpc:EFAEnabledSecurityGroup
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents an EFA-enabled security group." .
+
+hpc:InstallEFA
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Efanetworkinterface ;
+    rdfs:comment "The action of installing an EFA network interface." .
+
+hpc:ConfigureEFA
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Efanetworkinterface ;
+    rdfs:comment "The action of configuring an EFA network interface." .
+
+hpc:PrepareEFAEnabledSecurityGroup
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Efaenabledsecuritygroup ;
+    rdfs:comment "The action of preparing an EFA-enabled security group." .
+
+hpc:LaunchTemporaryInstance
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Instance ;
+    rdfs:comment "The action of launching a temporary instance." .
+
+hpc:InstallEFASoftware
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range hpc:Efanetworkinterface ;
+    rdfs:comment "The action of installing EFA software on an instance." .
+
+hpc:

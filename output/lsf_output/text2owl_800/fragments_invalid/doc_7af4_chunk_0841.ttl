@@ -1,0 +1,66 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:lsfLogdirUseWinReg a owl:DatatypeProperty ;
+    rdfs:domain hpc:Windows ;
+    rdfs:range xsd:boolean .
+
+hpc:Windows a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      rdfs:subClassOf rdf:Resource ] .
+
+hpc:Lsf a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      rdfs:subClassOf rdf:Resource ] .
+
+hpc:lsfLogdir a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range rdf:Resource .
+
+hpc:lsfTmpdir a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range rdf:Resource .
+
+hpc:tmp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Windows ;
+    rdfs:range xsd:string .
+
+hpc:syslog a owl:ObjectProperty ;
+    rdfs:domain hpc:Unix ;
+    rdfs:range rdf:Resource .
+
+hpc:lsbCmdLogMask a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range rdf:Resource .
+
+hpc:lsbCmdLogdir a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range rdf:Resource .
+
+hpc:lsbDebug a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range rdf:Resource .
+
+hpc:lsbDebugCmd a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range rdf:Resource .
+
+hpc:lsbTimeCmd a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range rdf:Resource .
+
+hpc:lsfCmdLogdir a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range rdf:Resource .
+
+hpc:lsfCmdLogMask a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range rdf:Resource .
+
+hpc:lsfLogMask a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range rdf:Resource .
+
+hpc:Res.log a owl:Class ;

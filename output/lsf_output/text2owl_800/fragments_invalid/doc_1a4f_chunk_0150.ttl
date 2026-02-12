@@ -1,0 +1,42 @@
+hpc:Jobgroupname a owl:Class .
+hpc:Hasslashatstart rdfs:domain hpc:Jobgroupname .
+hpc:Hasslashatend rdfs:domain hpc:Jobgroupname .
+hpc:Hasslashesinrow rdfs:domain hpc:Jobgroupname .
+hpc:Containsspace rdfs:domain hpc:Jobgroupname .
+hpc:Hasslashatstart rdfs:range xsd:boolean .
+hpc:Hasslashatend rdfs:range xsd:boolean .
+hpc:Hasslashesinrow rdfs:range xsd:boolean .
+hpc:Containsspace rdfs:range xsd:boolean .
+hpc:Jobgroupname rdfs:subClassOf [ a owl:Restriction ;
+                                     rdfs:onProperty hpc:hasSlashAtStart ;
+                                     rdfs:allValuesFrom xsd:false ] .
+hpc:Jobgroupname rdfs:subClassOf [ a owl:Restriction ;
+                                     rdfs:onProperty hpc:hasSlashAtEnd ;
+                                     rdfs:allValuesFrom xsd:false ] .
+hpc:Jobgroupname rdfs:subClassOf [ a owl:Restriction ;
+                                     rdfs:onProperty hpc:hasSlashesInRow ;
+                                     rdfs:onDatatype xsd:string ;
+                                     owl:hasPattern "^(.*[/][^/]*[/][^/]*)(.*)$" ] .
+hpc:Jobgroupname rdfs:subClassOf [ a owl:Restriction ;
+                                     rdfs:onProperty hpc:containsSpace ;
+                                     rdfs:allValuesFrom xsd:false ] .
+hpc:Projectname a owl:Class .
+hpc:Username a owl:Class .
+hpc:Projectname rdfs:subClassOf [ a owl:Restriction ;
+                                     rdfs:onProperty hpc:hasSlashAtStart ;
+                                     rdfs:allValuesFrom xsd:false ] .
+hpc:Projectname rdfs:subClassOf [ a owl:Restriction ;
+                                     rdfs:onProperty hpc:hasSlashAtEnd ;
+                                     rdfs:allValuesFrom xsd:false ] .
+hpc:Projectname rdfs:subClassOf [ a owl:Restriction ;
+                                     rdfs:onProperty hpc:containsSpace ;
+                                     rdfs:allValuesFrom xsd:false ] .
+hpc:Projectname rdfs:subClassOf [ a owl:Restriction ;
+                                     rdfs:onProperty hpc:hasSlashesInRow ;
+                                     rdfs:onDatatype xsd:string ;
+                                     owl:hasPattern "^(.*[/][^/]*)(.*)$" ] .
+hpc:Username rdfs:subClassOf [ a owl:Restriction ;
+                                 rdfs:onProperty hpc:hasSlashAtStart ;
+                                 rdfs:allValuesFrom xsd:false ] .
+hpc:Username rdfs:subClassOf [ a owl:Restriction ;
+                                 rdfs:onProperty hpc:

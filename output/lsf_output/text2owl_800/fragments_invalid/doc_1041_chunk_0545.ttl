@@ -1,0 +1,17 @@
+hpc:Serviceclass a owl:Class .
+hpc:hasServiceClassName owl:DatatypeProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:string .
+hpc:hasDescription owl:DatatypeProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:string .
+hpc:hasStrictOutput owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceclass .
+hpc:hasTimeBasedSLA owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceclass .
+hpc:Serviceclasswiththroughput a owl:Class ;
+    rdfs:subClassOf hpc:Serviceclass .
+hpc:Serviceclasswithvelocity a owl:Class ;
+    rdfs:subClassOf hpc:Serviceclass .
+hpc:Serviceclasswithdeadline a owl:Class ;
+    rdfs:subClassOf hpc:Serviceclass .

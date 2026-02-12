@@ -1,0 +1,56 @@
+hpc:Host a owl:Class .
+hpc:hasname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:isegohost a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .
+
+hpc:isstaticmember a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Host .
+
+hpc:isdynamicmember a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Host .
+
+hpc:iscondensed a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range xsd:boolean .
+
+hpc:iscomputeunit a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Computeunit .
+
+hpc:isgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Hostgroup .
+
+hpc:hasnamewithplus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:hasnamewithminus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:isexpandedlist a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Host .
+
+hpc:iswideformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range xsd:boolean .
+
+hpc:iscomputeunitinfo a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Computeunit .
+
+hpc:cuName a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Computeunit .
+
+hpc:groupName a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Hostgroup .

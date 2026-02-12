@@ -1,0 +1,13 @@
+hpc:Jobsubmitresponse a owl:Class ;
+    rdfs:subClassOf hpc:Openapiresponse ;
+    rdfs:comment "Response from job submission API call." ;
+    rdfs:label "Job Submit Response" ;
+    rdfs:isDefinedBy <http://example.org/api#> ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        rdfs:onProperty hpc:contentType ;
+        rdfs:allValuesFrom xsd:string ;
+        rdfs:label "application/json"
+    ] .
+
+hpc:JobSubmitResponse a

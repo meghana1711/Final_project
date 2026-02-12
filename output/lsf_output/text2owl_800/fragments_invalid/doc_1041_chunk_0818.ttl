@@ -1,0 +1,68 @@
+hpc:Lsfloadcommand a owl:Class .
+hpc:Localclusterhost a owl:Class .
+hpc:Equivalentclusterhost a owl:Class .
+hpc:Dynamicclusterhost a owl:Class .
+hpc:Standardlsfhost a owl:Class .
+hpc:Dynamicclustervmhost a owl:Class .
+hpc:Dchostresource a owl:Class .
+hpc:Jobvmresource a owl:Class .
+hpc:Gpuhost a owl:Class .
+hpc:Hostbasedgpuresource a owl:Class .
+hpc:Gpubasedresource a owl:Class .
+hpc:Jsonformat a owl:Class .
+hpc:Longformat a owl:Class .
+hpc:Ioformat a owl:Class .
+hpc:Externalloadformat a owl:Class .
+
+# Object Properties
+hpc:hasloadinformation a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfloadcommand ;
+    rdfs:range hpc:Localclusterhost, hpc:Equivalentclusterhost .
+
+hpc:isdynamicclusteronly a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfloadcommand ;
+    rdfs:range hpc:Dynamicclusterhost .
+
+hpc:hasvmhostconfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:Dynamicclusterhost ;
+    rdfs:range hpc:Jobvmresource .
+
+hpc:hasgpuresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpuhost ;
+    rdfs:range hpc:Hostbasedgpuresource, hpc:Gpubasedresource .
+
+hpc:hascustomizedoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfloadcommand ;
+    rdfs:range hpc:Jsonformat .
+
+hpc:useslongformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfloadcommand ;
+    rdfs:range hpc:Longformat .
+
+hpc:usesioformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Longformat ;
+    rdfs:range xsd:string .
+
+hpc:usesexternalloadformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Longformat ;
+    rdfs:range xsd:string .
+
+# Datatype Properties
+hpc:hasdefaultoutput a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfloadcommand ;
+    rdfs:range xsd:string .
+
+hpc:hasdefaultloadindices a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfloadcommand ;
+    rdfs:range xsd:string .
+
+hpc:hasresourceloadinformation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfloadcommand ;
+    rdfs:range hpc:Dchostresource .
+
+hpc:hascpuandpagingload a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfloadcommand ;
+    rdfs:range xsd:boolean .
+
+hpc:requireslsfLsloadFormat a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jsonformat

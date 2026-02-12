@@ -1,0 +1,12 @@
+hpc:Unit
+    a owl:Class ;
+        rdfs:subClassOf hpc:Service ;
+        rdfs:comment "Slurm node daemon" .
+
+hpc:Unit
+    hpc:Hasafter hpc:networktarget ;
+    hpc:Hasafter hpc:mungeservice ;
+    hpc:Hasafter hpc:remotefstarget ;
+    rdfs:seeAlso <http://example.org/network.target> ;
+    rdfs:seeAlso <http://example.org/munge.service> ;
+    rdfs:seeAlso <http://example.org/remote-

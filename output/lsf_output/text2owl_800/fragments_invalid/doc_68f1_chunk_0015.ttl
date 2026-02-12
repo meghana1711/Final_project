@@ -1,0 +1,28 @@
+hpc:Job a owl:Class .
+hpc:Rusage rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Preemption a owl:Class .
+hpc:basicpreemption a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+hpc:hierarchicalpreemption a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+hpc:topdownpreemption a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:HierarchicalPreemption .
+hpc:bottomuppreemption a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:HierarchicalPreemption .
+
+hpc:Project a owl:Class .
+hpc:Projectgroup a owl:Class ;
+    rdfs:subClassOf hpc:Project .
+
+hpc:projectlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Project .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Preemptionrestriction a owl:Class .
+hpc:MAX_JOB_PREEMPT rdfs:subPropertyOf hpc:PreemptionRestriction .
+hpc:PREEMPT_RESERVE rdfs:subPropertyOf hpc:PreemptionRestriction .
+hpc:LM_REMOVE_INTERVAL rdfs:subPropertyOf hpc:PreemptionRestriction .

@@ -1,0 +1,6 @@
+hpc:Esubscript a owl:Class .
+hpc:hasCustomRequirements owl:DatatypeProperty .
+hpc:Logintolsfserverhost rdfs:domain hpc:Esubscript ;
+                          rdfs:range xsd:string .
+hpc:Root rdfs:domain hpc:Logintolsfserverhost ;
+         rdfs:range xsd:string .

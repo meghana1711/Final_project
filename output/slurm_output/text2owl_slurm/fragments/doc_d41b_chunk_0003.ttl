@@ -1,0 +1,41 @@
+hpc:Qos a owl:Class ;
+    rdfs:subClassOf hpc:Association ;
+    rdfs:comment "Quality of Service for jobs." .
+
+hpc:Association a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Combination of cluster, account, user names and optional partition name." .
+
+hpc:hasqos a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Qos ;
+    rdfs:comment "The QOS associated with a job." .
+
+hpc:issafe a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the job will only be launched when using a safe association or QOS." .
+
+hpc:haswckey a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Wckey ;
+    rdfs:comment "The WCKey associated with a user." .
+
+hpc:Wckey a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a WCKey." .
+
+hpc:trackwckey a owl:ObjectProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the association tracks WCKey." .
+
+hpc:accountingstorageenforce a owl:ObjectProperty ;
+    rdfs:domain hpc:Association ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if jobs are executed based upon policies configured in Slurm on each cluster." .
+
+hpc:sacctmgr a owl:ObjectProperty ;
+    rdfs:domain hpc:Tool ;
+    rdfs:range hpc:Tool ;
+    rdfs:comment "The tool used to manage accounting policy." .

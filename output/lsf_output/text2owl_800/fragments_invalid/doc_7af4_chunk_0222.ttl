@@ -1,0 +1,68 @@
+hpc:Resourcerequirement a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents resource requirement strings in LSB configuration." .
+
+hpc:Resource a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents resources in LSB configuration." .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a server host in a cluster." .
+
+hpc:Hostgroup a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a group of hosts in a cluster." .
+
+hpc:Hostpartition a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a partition of hosts in a cluster." .
+
+hpc:Computeunit a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a compute unit in a cluster." .
+
+hpc:Configurationfile a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a configuration file in LSB." .
+
+# Object Properties
+hpc:hasresourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range hpc:Resourcerequirement ;
+    rdfs:comment "Relates a configuration file to its resource requirement." .
+
+hpc:hasresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range hpc:Resource ;
+    rdfs:comment "Relates a configuration file to the resources it manages." .
+
+hpc:ishost a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "Relates a host group to the hosts it contains." .
+
+hpc:ishostpartition a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hdfs:HostPartition ;
+    rdfs:comment "Relates a host group to the host partitions it contains." .
+
+hpc:iscomputeunit a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostpartition ;
+    rdfs:range hpc:Computeunit ;
+    rdfs:comment "Relates a host partition to the compute units it contains." .
+
+hpc:includes a owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationfile ;
+    rdfs:range hpc:Configurationfile ;
+    rdfs:comment "Relates a configuration file to another file it includes." .
+
+# Datatype Properties
+hpc:maxlength a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Indicates the maximum length of a resource requirement string." .
+
+hpc:casesensitive a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    r

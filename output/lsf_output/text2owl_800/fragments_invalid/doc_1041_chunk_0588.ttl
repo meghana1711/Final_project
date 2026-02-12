@@ -1,0 +1,38 @@
+hpc:Lsfserverdir a owl:Class .
+hpc:Executablefile a owl:Class .
+hpc:Esub a owl:Class .
+hpc:Epsub a owl:Class .
+hpc:methodname a owl:DatatypeProperty .
+hpc:filenamingrule a owl:ObjectProperty .
+hpc:Validfilename a owl:Class .
+hpc:Allowedcharacter a owl:Class .
+hpc:Allowedcharacter rdfs:subClassOf xsd:string .
+hpc:AllowedCharacters rdfs:unionOf (hpc:AlphanumericCharacter hpc:Underscore hpc:Hyphen) .
+hpc:Alphanumericcharacter rdfs:subClassOf xsd:string .
+hpc:Underscore rdf:value "_" .
+hps:Hyphen rdf:value "-" .
+hpc:esubmethod a owl:ObjectProperty .
+hpc:LSB_ESUB_METHOD rdf:resource "http://example.org/hpc#LSB_ESUB_METHOD" .
+hpc:applicationspecific a owl:ObjectProperty .
+hpc:Applicationspecific rdfs:domain hpc:Esub ;
+                          rdfs:domain hpc:Epsub ;
+                          rdfs:range (hpc:Esubfile hpc:Epsubfile) .
+hpc:Esubfile a owl:Class .
+                 rdfs:subClassOf (hpc:Esub hpc:Epsub) .
+hpc:Epsubfile a owl:Class .
+                 rdfs:subClassOf (hpc:Esub hpc:Epsub) .
+hpc:ESubFile rdf:value { ".application_name" } .
+hpc:EpsubFile rdf:value { ".application_name" } .
+hpc:communicationencryption a owl:ObjectProperty .
+hpc:Communicationencryption rdfs:domain hpc:Esub .
+hpc:sshenabled a owl:DatatypeProperty .
+hpc:esubarguments a owl:ObjectProperty .
+hpc:Esubarguments rdfs:domain hpc:Esub .
+hpc:epsubarguments a owl:ObjectProperty .
+hpc:Epsubarguments rdfs:domain hpc:Epsub .
+hpc:jobsubmissionfilter a owl:ObjectProperty .
+hpc:jobsubmissionlogic a owl:ObjectProperty .
+hpc:Environmentvariable a owl:Class .
+hpc:Commandoutputsubstitution a owl:Class .
+hpc:samearguments a owl:ObjectProperty .
+hpc:Samearguments rdfs:domain (hpc:Esubarguments hpc:Epsubarguments) .

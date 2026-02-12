@@ -1,0 +1,54 @@
+hpc:V0.0_41_openapi_clusters_resp a owl:Class .
+hpc:V0.0_41_openapi_resp a owl:Class .
+hpc:V0.0_41_openapi_wckey_resp a owl:Class .
+hpc:V0.0_41_openapi_diag_resp a owl:Class .
+
+hpc:postRequestbodyContent a owl:ObjectProperty ;
+    rdfs:domain hpc:Post ;
+    rdfs:range hpc:V0.0_41_openapi_clusters_resp .
+hpc:postRequestbodyContentApplicationJsonrequest a owl:DatatypeProperty ;
+    rdfs:domain hpc:Post ;
+    rdfs:range xsd:string .
+hpc:postRequestbodyContentApplicationXYaml a owl:DatatypeProperty ;
+    rdfs:domain hpc:Post ;
+    rdfs:range xsd:string .
+
+hpc:postResponses a owl:ObjectProperty ;
+    rdfs:domain hpc:Post ;
+    rdfs:range hpc:Response .
+hpc:postResponsesDefault a owl:DatatypeProperty ;
+    rdfs:domain hpc:Post ;
+    rdfs:range hpc:Response .
+
+hpc:getResponses a owl:ObjectProperty ;
+    rdfs:domain hpc:Get ;
+    rdfs:range hpc:Response .
+hpc:getResponsesDefault a owl:DatatypeProperty ;
+    rdfs:domain hpc:Get ;
+    rdfs:range hpc:Response .
+hpc:getResponses200 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Get ;
+    rdfs:range hpc:Response .
+
+hpc:content a owl:ObjectProperty ;
+    rdfs:domain hpc:Response ;
+    rdfs:range hpc:Mediatype .
+hpc:contentApplicationXYaml a owl:DatatypeProperty ;
+    rdfs:domain hpc:Response ;
+    rdfs:range xsd:string .
+hpc:contentTextYaml a owl:DatatypeProperty ;
+    rdfs:domain hpc:Response ;
+    rdfs:range xsd:string .
+
+hpc:schema a owl:ObjectProperty ;
+    rdfs:domain hpc:Mediatype ;
+    rdfs:range hpc:V0.0_41_openapi_clusters_resp .
+hpc:schemaApplicationJsonrequest a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mediatype ;
+    rdfs:range hpc:V0.0_41_openapi_clusters_resp .
+hpc:schemaApplicationXYaml a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mediatype ;
+    rdfs:range hpc:V0.0_41_openapi_resp .
+hpc:schemaTextYamlJsonrequest a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mediatype ;
+    rdfs:range hpc:V0.0_41_openapi_resp .

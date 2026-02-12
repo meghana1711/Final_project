@@ -1,0 +1,52 @@
+hpc:Job a owl:Class .
+hpc:User a owl:Class .
+hpc:Project a owl:Class .
+hpc:Status a owl:Class .
+hpc:Queue a owl:Class .
+hpc:command a owl:DatatypeProperty .
+hpc:Host a owl:Class .
+hpc:Core a owl:Class .
+hpc:Socket a owl:Class .
+hpc:Numa a owl:Class .
+hpc:MemoryBindingPolicy a owl:Enum .
+hpc:memorysize a owl:DatatypeProperty .
+hpc:numaid a owl:DatatypeProperty .
+hpc:Schedulingparameters a owl:Class .
+hpc:Resourcerequirementdetails a owl:Class .
+hpc:Effectiveresourcerequirement a owl:Class .
+hpc:Combinedresourcerequirement a owl:Class .
+hpc:Affinity a owl:Class .
+hpc:cpubinding a owl:ObjectProperty .
+hpc:memorybinding a owl:ObjectProperty .
+hpc:hosttype a owl:DatatypeProperty .
+hpc:level a owl:DatatypeProperty .
+hpc:exclusive a owl:ObjectProperty .
+hpc:ids a owl:DatatypeProperty .
+hpc:pol a owl:DatatypeProperty .
+hpc:numasize a owl:DatatypeProperty .
+
+hpc:Memorybindingpolicy rdfs:subClassOf owl:Enum ;
+  rdfs:range xsd:string .
+
+hpc:Job rdfs:subClassOf owl:Class ;
+  rdfs:subClassOf hpc:Resource .
+
+hpc:Resource rdf:type owl:Class ;
+  rdfs:subClassOf owl:ObjectPropertyDomain .
+
+hpc:User rdfs:subClassOf owl:Class .
+hpc:Project rdfs:subClassOf owl:Class .
+hpc:Status rdfs:subClassOf owl:Class .
+hpc:Queue rdfs:subClassOf owl:Class .
+hpc:Command rdfs:domain hpc:Job ;
+  rdfs:range xsd:string .
+
+hpc:Host rdfs:subClassOf owl:Class .
+hpc:Core rdfs:subClassOf owl:Class ;
+  rdfs:subClassOf hpc:Host .
+hpc:Socket rdfs:subClassOf owl:Class ;
+  rdfs:subClassOf hpc:Host .
+hpc:Numa rdfs:subClassOf owl:Class ;
+  rdfs:subClassOf hpc:Host .
+
+hpc:Cpubinding rdfs:domain hpc:Core ;

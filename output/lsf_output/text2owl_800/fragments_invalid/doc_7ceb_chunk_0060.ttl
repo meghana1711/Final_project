@@ -1,0 +1,21 @@
+hpc:Hosttype a owl:Class .
+hpc:Hostmodel a owl:Class .
+
+hpc:hasType rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hosttype ;
+    rdfs:range xsd:string .
+
+hpc:hasModel rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostmodel ;
+    rdfs:range hpc:Hostmodeltype .
+
+hpc:Hostmodeltype a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        owl:intersectionOf ( hpc:Cpufactor rdfs:range xsd:decimal ;
+                                                     hpc:Architecture rdfs:range xsd:string ) ] .
+
+hpc:cpufactor a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal .
+
+hpc:architecture a owl:DatatypeProperty ;
+    rdfs:range xsd:string .

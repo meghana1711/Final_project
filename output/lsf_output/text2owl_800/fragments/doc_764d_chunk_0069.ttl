@@ -1,0 +1,18 @@
+hpc:Job a owl:Class .
+hpc:retrythreshold a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:suspendnotification a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:lsbMcInitfailRetry a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsbMcInitfailMail a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:boolean .
+
+hpc:Lsfconfiguration a owl:Class .

@@ -1,0 +1,65 @@
+hpc:swapoutcount a owl:DatatypeProperty ;
+  rdfs:domain hpc:Process ;
+  rdfs:range xsd:integer .
+
+hpc:blockinputops a owl:DatatypeProperty ;
+  rdfs:domain hpc:Process ;
+  rdfs:range xsd:integer .
+
+hpc:blockoutputops a owl:DatatypeProperty ;
+  rdfs:domain hpc:Process ;
+  rdfs:range xsd:integer .
+
+hpc:iochars a owl:DatatypeProperty ;
+  rdfs:domain hpc:Process ;
+  rdfs:range xsd:integer .
+
+hpc:msgsent a owl:DatatypeProperty ;
+  rdfs:domain hpc:Process ;
+  rdfs:range xsd:integer .
+
+hpc:msgrecv a owl:DatatypeProperty ;
+  rdfs:domain hpc:Process ;
+  rdfs:range xsd:integer .
+
+hpc:signalsrecv a owl:DatatypeProperty ;
+  rdfs:domain hpc:Process ;
+  rdfs:range xsd:integer .
+
+hpc:volcontextswitches a owl:DatatypeProperty ;
+  rdfs:domain hpc:Process ;
+  rdfs:range xsd:integer .
+
+hpc:involcontextswitches a owl:DatatypeProperty ;
+  rdfs:domain hpc:Process ;
+  rdfs:range xsd:integer .
+
+hpc:exactusertime a owl:DatatypeProperty ;
+  rdfs:domain hp-ux:Process ;
+  rdfs:range xsd:integer .
+
+hpc:exitstatus a owl:DatatypeProperty ;
+  rdfs:domain hpc:Process ;
+  rdfs:range xsd:integer .
+
+hpc:execcwd a owl:DatatypeProperty ;
+  rdfs:domain hpc:Process ;
+  rdfs:range xsd:string .
+
+hpc:exechome a owl:DatatypeProperty ;
+  rdfs:domain hpc:Process ;
+  rdfs:range xsd:string .
+
+hpc:execusername a owl:DatatypeProperty ;
+  rdfs:domain hpc:Process ;
+  rdfs:range xsd:string .
+
+hpc:msgid a owl:DatatypeProperty ;
+  rdfs:domain hpc:Message ;
+  rdfs:range xsd:integer .
+
+hpc:actstatus a owl:DatatypeProperty ;
+  rdfs:domain hpc:Action ;
+  rdfs:range xsd:integer .
+
+hpc:sigvalue a owl:DatatypeProperty ;

@@ -1,0 +1,39 @@
+hpc:jobacceptinterval a owl:DatatypeProperty .
+hpc:maxcus a owl:ObjectProperty .
+hpc:usablecuslots a owl:DatatypeProperty .
+hpc:balance a owl:ObjectProperty .
+
+hpc:Jobacceptinterval rdfs:domain hpc:Job .
+hpc:Maxcus rdfs:domain hpc:Job .
+hpc:Usablecuslots rdfs:domain hpc:Job .
+hpc:Balance rdfs:domain hpc:Job .
+
+hpc:Job a owl:Class .
+hpc:Maxcus rdfs:range xsd:nonNegativeInteger .
+hpc:Usablecuslots rdfs:range xsd:nonNegativeInteger .
+
+hpc:Job rdfs:subClassOf rdf:Resource .
+hpc:MaxCUS rdf:type owl:ObjectProperty .
+hpc:UsableCUSlots rdf:type owl:DatatypeProperty .
+
+hpc:Jobacceptinterval rdfs:range xsd:nonNegativeInteger .
+
+hpc:Job withMaxCUS some hpc:Job withMaxCUSValue maxCUSValue .
+hpc:Job withMinCUS some hpc:Job withMinCUSValue minCUSValue .
+hpc:Job withUsableCUSlots some hpc:Job withUsableCUSlotsValue usableCUSlotsValue .
+hpc:Job withBalance some hpc:Job withBalanceValue balanceValue .
+
+hpc:Job withMaxCUSValue rdf:type xsd:nonNegativeInteger .
+hpc:Job withMinCUSValue rdf:type xsd:nonNegativeInteger .
+hpc:Job withUsableCUSlotsValue rdf:type xsd:nonNegativeInteger .
+hpc:Job withBalanceValue rdf:type xsd:nonNegativeInteger .
+
+hpc:Job withMaxCUSValue min maxCUSValue .
+hpc:Job withMinCUSValue min minCUSValue .
+hpc:Job withUsableCUSlotsValue usableCUSlotsValue usableCUSlotsValue .
+hpc:Job withBalanceValue balanceValue balanceValue .
+
+hpc:Job withMaxCUSValue min maxCUSValue . withoutMaxCUS a owl:Class .
+hpc:Job withMinCUSValue min minCUSValue . withoutMaxCUS a owl:Class .
+hpc:Job withUsableCUSlotsValue usableCUSlotsValue usableCUSlotsValue . withoutBalance a owl:Class .
+hpc:Job withBalanceValue balanceValue balanceValue . withoutUsableCUSlots a owl:Class .

@@ -1,0 +1,18 @@
+hpc:Jobsizelist a owl:Class .
+hpc:Jobsizelist rdfs:subClassOf owl:Class .
+
+hpc:validvalues a owl:DatatypeProperty .
+hpc:Validvalues rdfs:domain hpc:Jobsizelist .
+hpc:Validvalues rdfs:range xsd:positiveInteger .
+
+hpc:jobstarter a owl:ObjectProperty .
+hpc:Jobstarter rdfs:domain hpc:Job .
+hpc:Jobstarter rdfs:range rdf:Resource .
+
+hpc:Starter a owl:Class .
+hpc:Starter rdfs:subClassOf rdf:Resource .
+
+hpc:Job a owl:Class .
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Job rdfs:subClassOf hpc:Jobsizelist .
+hpc:Job rdfs:subClassOf hpc:Hasjobstarter .

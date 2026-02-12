@@ -1,0 +1,26 @@
+hpc:Host a owl:Class .
+hpc:Command a owl:Class .
+hpc:Jobslot a owl:Class .
+hpc:Paralleljob a owl:Class .
+hpc:Sequentialjob a owl:Class .
+hpc:Component a owl:Class .
+hpc:Task a owl:Class .
+hpc:Hostfile a owl:Class .
+hpc:Hostname a owl:Class .
+hpc:Appprofile a owl:Class .
+hpc:Pjob a owl:Class .
+hpc:uses a owl:ObjectProperty .
+hpc:hascomponent a owl:ObjectProperty .
+hpc:hasappprofile a owl:ObjectProperty .
+hpc:hasmintasks a owl:DatatypeProperty .
+hpc:hasmaxtasks a owl:DatatypeProperty .
+hpc:hasjobslotlimit a owl:DatatypeProperty .
+hpc:hasMinJobSlotLimit xsd:nonNegativeInteger .
+hpc:hasMaxJobSlotLimit xsd:nonNegativeInteger .
+hpc:isDefault xsd:boolean .
+hpc:isReserved xsd:boolean .
+hpc:isBackfilled xsd:boolean .
+hpc:isRunning xsd:boolean .
+hpc:isSuspended xsd:boolean .
+hpc:isAssociatedWith xsd:string .
+hpc:isPhysical xsd:boolean .

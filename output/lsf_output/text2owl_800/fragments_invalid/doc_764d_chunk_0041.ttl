@@ -1,0 +1,30 @@
+hpc:Executionhost a owl:Class .
+hpc:MigrationThreshold an owl:DatatypeProperty ;
+    rdfs:domain hpc:Executionhost ;
+    rdfs:range xsd:integer .
+
+hpc:Sendjobsqueue a owl:Class .
+hpc:CheckpointDirectory an owl:ObjectProperty ;
+    rdfs:domain hpc:Sendjobsqueue .
+
+hpc:Receivejobsqueue a owl:Class .
+hpc:CheckpointDirectory an owl:ObjectProperty ;
+    rdfs:domain hpc:Receivejobsqueue .
+
+hpc:Applicationprofile a owl:Class .
+hpc:CheckpointDirectory an owl:DatatypeProperty ;
+hpc:CheckpointMethod an owl:DatatypeProperty ;
+hpc:CheckpointInitPeriod an owl:DatatypeProperty ;
+hpc:CheckpointPeriod an owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile .
+
+hpc:Multiclusterjob a owl:Class .
+hpc:canbemigrated a owl:ObjectProperty ;
+    rdfs:range xsd:boolean ;
+    rdfs:domain hpc:Multiclusterjob .
+
+hpc:Checkpointablemulticlusterjob a owl:Class ;
+    rdfs:subClassOf hpc:Multiclusterjob .
+
+hpc:jobmigration a owl:ObjectProperty .
+hpc:CheckpointThenResumeOnSameHost rdfs:subPropertyOf hpc:JobMigration .

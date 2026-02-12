@@ -1,0 +1,64 @@
+hpc:Lsf a owl:Class .
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Lsf ;
+    rdfs:comment "Represents a job in LSF." .
+
+hpc:Reservationlimit a owl:Class ;
+    rdfs:subClassOf hpc:Lsf ;
+    rdfs:comment "Represents a limit set by RESRSV_LIMIT." .
+
+hpc:Consumableresourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Lsf ;
+    rdfs:comment "Represents the resource requirements for an application-level or job-level rusage." .
+
+hpc:estimatedjobruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:runtimelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Consumableresourcerequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobchunking a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:advancereservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:sla a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:slotreservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:backfill a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:jobrunlimitratio a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:decimal .
+
+hpc:jobruntimeestimate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:applicationlevelruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Consumableresourcerequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:joblevelruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:normalizedruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:absrunlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .

@@ -1,0 +1,14 @@
+hpc:estimatedruntime a owl:DatatypeProperty .
+hpc:Estimatedruntime rdfs:domain hpc:Job .
+hpc:Estimatedruntime rdfs:range xsd:nonNegativeInteger .
+
+hpc:estimatormaxjobsprediction a owl:ObjectProperty .
+hpc:Estimatormaxjobsprediction rdfs:domain hpc:Lsf .
+hpc:Estimatormaxjobsprediction rdfs:range xsd:positiveInteger .
+
+hpc:estimatormaxruntimeprediction a owl:ObjectProperty .
+hpc:Estimatormaxruntimeprediction rdfs:domain hpc:Lsf .
+hpc:Estimatormaxruntimeprediction rdfs:range xsd:positiveInteger .
+
+hpc:Lsf a owl:Class .
+hpc:Job a owl:Class .

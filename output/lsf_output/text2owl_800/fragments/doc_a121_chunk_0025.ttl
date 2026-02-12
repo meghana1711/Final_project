@@ -1,0 +1,38 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a job in the HPC system." .
+
+hpc:effectivependingtimeremain a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The effective pending time remaining for a job, in seconds." .
+
+hpc:cpuused a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The amount of CPU used time while executing the job, in seconds." .
+
+hpc:runtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The duration that the job has been running, in seconds." .
+
+hpc:idlefactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The idle factor used for job exception handling." .
+
+hpc:exceptionstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The job's exception status." .
+
+hpc:slotsused a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The number of slots used by the job." .
+
+hpc:mem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The amount of memory used by the job, as defined in lsf.conf." .

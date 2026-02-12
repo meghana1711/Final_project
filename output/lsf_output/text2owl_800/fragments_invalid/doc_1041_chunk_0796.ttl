@@ -1,0 +1,26 @@
+hpc:Numhosts a owl:Class .
+hpc:command a owl:ObjectProperty ;
+    rdfs:domain hpc:Numhosts ;
+    rdfs:range rdf:Seq .
+
+hpc:resourcerequirement a owl:DatatypeProperty ;
+    rdfs:domain hpc:Numhosts ;
+    rdfs:range xsd:string .
+
+hpc:Exclusiveresource a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:Hosttype a owl:Class .
+hpc:Host a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       owl:equivalentClass [ a owl:Restriction ;
+                                             owl:onProperty hpc:HostType ;
+                                             owl:hasValue ?localHost ] ] .
+
+hpc:processornumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:Numhosts ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:definedresource a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:boolean .

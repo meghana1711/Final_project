@@ -1,0 +1,45 @@
+hpc:Tres a owl:Class .
+hpc:Type a owl:Class .
+hpc:name a owl:DatatypeProperty .
+
+hpc:BB a hpc:Type .
+hpc:Billing a hpc:Type .
+hpc:CPU a hpc:Type .
+hpc:Energy a hpc:Type .
+hpc:FS a hpc:Type .
+hpc:GRES a hpc:Type .
+hpc:IC a hpc:Type .
+hpc:License a hpc:Type .
+hpc:Mem a hpc:Type .
+hpc:Node a hpc:Type .
+hpc:Pages a hpc:Type .
+hpc:VMem a hpc:Type .
+
+hpc:Billingtres a owl:Class .
+hpc:Hasbillingtresweights rdfs:domain hpc:Partition .
+hpc:Hasbillingtresweights rdfs:range xsd:integer .
+
+hpc:Fs a owl:Class .
+hpc:Validfs rdfs:subClassOf hpc:Fs .
+hpc:Disk rdfs:subClassOf hpc:Validfs .
+hpc:Lustre rdfs:subClassOf hpc:Validfs .
+
+hpc:Ic a owl:Class .
+hpc:Validic rdfs:subClassOf hpc:Ic .
+hpc:Ofed rdfs:subClassOf hpc:Validic .
+
+hpc:Slurmconfsettings a owl:Class .
+hpc:Accountingstoragetres rdfs:domain hpc:Slurmconfsettings .
+hpc:Accountingstoragetres rdfs:range hpc:Tres .
+
+hpc:Usedtres a owl:Class .
+hpc:Usedfortracking rdfs:domain hpc:System .
+hpc:Usedfortracking rdfs:range hpc:Tres .
+hpc:UsedForTracking rdf:value "Billing" .
+hpc:UsedForTracking rdf:value "CPU" .
+hpc:UsedForTracking rdf:value "Energy" .
+hpc:UsedForTracking rdf:value "Memory" .
+hpc:UsedForTracking rdf:value "Node" .
+hpc:UsedForTracking rdf:value "FS/Disk" .
+hpc:UsedForTracking rdf:value "Pages" .
+hpc:UsedForTracking rdf:value "VMem" .

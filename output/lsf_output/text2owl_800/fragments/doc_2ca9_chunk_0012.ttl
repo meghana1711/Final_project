@@ -1,0 +1,32 @@
+hpc:Sschedcommand a owl:Class .
+hpc:memLimitOption a owl:ObjectProperty ;
+    rdfs:domain hpc:Sschedcommand ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Badminlsfproxydstatuscommand a owl:Class .
+hpc:totalColumn a owl:ObjectProperty ;
+    rdfs:domain hpc:Badminlsfproxydstatuscommand .
+
+hpc:Dockerjob a owl:Class .
+
+hpc:containerIo a owl:ObjectProperty ;
+    rdfs:domain hpc:Dockerjob ;
+    rdfs:range xsd:string .
+
+hpc:jobPrePost a owl:ObjectProperty ;
+    rdfs:domain hpc:Dockerjob .
+
+hpc:Lsfexecutiondriver a owl:Class .
+hpc:context a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfexecutiondriver ;
+    rdfs:range xsd:string .
+hpc:path a owl:DatatypeProperty ;
+    rdfs:domain hpc:Context .
+
+hpc:lsbdockerpassenv a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfexecutiondriver ;
+    rdfs:range xsd:string .
+
+hpc:Multiclusterenvironment a owl:Class .
+hpc:forwardedPendingRunningJobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Multiclusterenvironment .

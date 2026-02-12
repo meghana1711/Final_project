@@ -1,0 +1,59 @@
+hpc:cpuspeedscalingfactor a owl:DatatypeProperty .
+rdf:domain hpc:Host .
+rdf:range xsd:decimal .
+
+# Number of local disks
+hpc:numberoflocaldisks a owl:DatatypeProperty .
+rdf:domain hpc:Host .
+rdf:range xsd:nonNegativeInteger .
+
+# Static resources
+hpc:Staticresources a owl:Class .
+
+# Static Boolean resource
+hpc:staticbooleanresource a owl:DatatypeProperty .
+rdf:domain hpc:StaticResources .
+rdf:range xsd:boolean .
+
+# Dynamic numeric or string resource
+hpc:Dynamicresource a owl:Class .
+
+# Resource name
+hpc:resourcename a owl:DatatypeProperty .
+rdf:domain hpc:DynamicResource .
+rdf:range xsd:string .
+
+# Exclusive resource
+hpc:exclusiveresource a owl:ObjectProperty .
+rdf:domain hpc:DynamicResource .
+rdf:range hpc:Host .
+
+# Host
+hpc:Host a owl:Class .
+rdf:subClassOf hpc:Resource .
+
+hpc:Host has hpc:Model .
+hpc:Host has hpc:Type .
+hpc:Host has hpc:Server .
+hpc:Host has hpc:Resources .
+hpc:Host has hpc:RunWindow .
+
+hpc:model a owl:DatatypeProperty .
+rdf:domain hpc:Host .
+rdf:range xsd:string .
+
+hpc:type a owl:DatatypeProperty .
+rdf:domain hpc:Host .
+rdf:range xsd:string .
+
+hpc:server a owl:DatatypeProperty .
+rdf:domain hpc:Host .
+rdf:range xsd:string .
+
+hpc:resources a owl:DatatypeProperty .
+rdf:domain hpc:Host .
+rdf:range hpc:StaticResources .
+
+hpc:runwindow a owl:DatatypeProperty .
+rdf:domain hpc:Host .
+rdf:range xsd:string .

@@ -1,0 +1,15 @@
+hpc:Job a owl:Class.
+hpc:Cpu a owl:Class.
+hpc:Core a owl:Class.
+hpc:Timeslicer a owl:Class.
+hpc:Partition a owl:Class.
+hpc:Node a owl:Class.
+hpc:State a owl:Class.
+
+hpc:hascpu a owl:ObjectProperty;
+    rdfs:domain hpc:Job;
+    rdfs:range hpc:Cpu.
+
+hpc:hascore a owl:ObjectProperty;
+    rdfs:domain hpc:Cpu;
+    rdfs:range hpc

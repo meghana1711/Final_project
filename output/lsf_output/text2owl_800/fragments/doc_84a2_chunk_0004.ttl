@@ -1,0 +1,10 @@
+hpc:Ibmspectrumlsf a owl:Class .
+
+hpc:workingwithjobs a owl:ObjectProperty .
+hpc:monitoringjobs a owl:ObjectProperty .
+
+hpc:Ibmspectrumlsf rdfs:subClassOf owl:Thing .
+hpc:Workingwithjobs rdfs:domain hpc:Ibmspectrumlsf ;
+                      rdfs:range rdf:Resource .
+hpc:Monitoringjobs rdfs:domain hpc:Ibmspectrumlsf ;
+                    rdfs:range rdf:Resource .

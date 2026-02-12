@@ -1,0 +1,43 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:File a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:domain hpc:Job ;
+    rdfs:range [ a owl:ObjectProperty ;
+                  rdfs:domain hpc:Job ;
+                  rdfs:range hpc:File ] .
+
+hpc:inputfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:File ;
+    rdfs:subPropertyOf hpc:hasResource .
+
+hpc:outputfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:File ;
+    rdfs:subPropertyOf hpc:hasResource ;
+    rdfs:range [ a owl:ObjectProperty ;
+                  rdfs:domain hpc:File ;
+                  rdfs:range hpc:Location ] .
+
+hpc:location a owl:ObjectProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range hpc:Location .
+
+hpc:hashash a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hassize a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:decimal .
+
+hpc:hasstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:haspermission a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:Location a owl:Class .
+
+hpc:TransferJob a xsd:string .

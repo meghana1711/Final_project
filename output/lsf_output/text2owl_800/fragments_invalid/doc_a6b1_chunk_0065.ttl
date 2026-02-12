@@ -1,0 +1,73 @@
+hpc:Lsfkerberossolution a owl:Class .
+hpc:preinstalled a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfkerberossolution ;
+    rdfs:range xsd:boolean .
+
+hpc:dynamicallylinked a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfkerberossolution .
+
+hpc:preliminarytgtforwardingsupport a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfkerberossolution .
+
+hpc:shareddirectorysupport a owl:ObjectProperty ;
+    rdfs:domain hpc:Preliminarytgtforwardingsupport ;
+    rdfs:range xsd:boolean .
+
+hpc:Lsfconf a owl:Class .
+
+hpc:lsbKrbTgtDir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconf .
+
+hpc:nfsv4environment a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfkerberossolution .
+
+hpc:installlocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfkerberossolution .
+
+hpc:Krb5libraries a owl:Class .
+
+hpc:libkrb5So a owl:DatatypeProperty ;
+    rdfs:domain hpc:Krb5libraries .
+
+hpc:libkrb5supportSo a owl:DatatypeProperty ;
+    rdfs:domain hpc:Krb5libraries .
+
+hpc:libk5cryptoSo a owl:DatatypeProperty ;
+    rdfs:domain hpc:Krb5libraries .
+
+hpc:libcomErrSo a owl:DatatypeProperty ;
+    rdfs:domain hpc:Krb5libraries .
+
+hpc:lsbKrbLibPath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconf .
+
+hpc:accountmappingfeature a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:executionuserpermission a owl:ObjectProperty ;
+    rdfs:domain hpc:Accountmappingfeature ;
+    rdfs:range xsd:string .
+
+hpc:runtimetgtdirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Accountmappingfeature .
+
+hpc:krb5librariesrequired a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:tgtmanipulation a owl:ObjectProperty ;
+    rdfs:domain hpc:Krb5librariesrequired .
+
+hpc:tgtrenewlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:jobexecutiontime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:blaunchcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:taskresinvokedperhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Blaunchcommand ;
+    rdfs:range xsd:boolean .
+
+h

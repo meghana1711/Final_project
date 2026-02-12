@@ -1,0 +1,38 @@
+hpc:Specman a owl:Class .
+hpc:Order a owl:Class ;
+  rdfs:subClassOf owl:Interval .
+
+hpc:Builtin a owl:Class ;
+  rdfs:subClassOf owl:Dynamic .
+
+hpc:Release a owl:Class ;
+  rdfs:subClassOf owl:Dynamic .
+
+hpc:Consumable a owl:Class .
+
+hpc:Numeric a owl:Class ;
+  rdfs:subClassOf xsd:decimal .
+  rdfs:subClassOf hpc:Specman .
+  rdfs:subProperty rdf:type hpc:hasType ;
+  rdfs:range xsd:boolean .
+
+hpc:Resource a owl:Class .
+
+hpc:resourcename a owl:ObjectProperty ;
+  rdfs:domain hpc:Resource ;
+  rdfs:range xsd:string .
+
+hpc:interval a owl:DatatypeProperty ;
+  rdfs:domain hpc:Resource ;
+  rdfs:range xsd:nonNegativeInteger .
+
+hpc:increasing a owl:ObjectProperty .
+
+hpc:description a owl:DatatypeProperty ;
+  rdfs:domain hpc:Resource .
+
+hpc:Osname a xsd:string .
+hpc:Osver a xsd:string .
+hpc:Cpuarch a xsd:string .
+hpc:Cpuspeed a xsd:decimal .
+hpc:Bandwidth a xsd:decimal .

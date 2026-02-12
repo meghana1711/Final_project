@@ -1,0 +1,37 @@
+hpc:jobInfoMemoryCacheSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobArrayEventsCombine a owl:ObjectProperty ;
+    rdfs:subClassOf owl:FunctionalProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:relaxJobDispatchOrder a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Job .
+
+hpc:allocReuseDuration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:duration .
+
+hpc:JOB_SWITCH2_EVENT rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Obsoleteevent .
+
+hpc:RELAX_JOB_DISPATCH_ORDER_POLICY rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Jobdispatchpolicy .
+
+hpc:condensePendingReasons a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:boolean .
+
+hpc:STRICT_OUTPUT rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Cluster .
+
+hpc:diagnoseLogdir a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string .
+
+hpc:enableDiagnose a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:boolean .

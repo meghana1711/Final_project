@@ -1,0 +1,23 @@
+hpc:Jobaffinity a owl:Class .
+hpc:jobaffinitysamecu a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobaffinity ;
+    rdfs:range hpc:Job .
+hpc:jobaffinitydifferentcu a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobaffinity ;
+    rdfs:range hpc:Job .
+
+# Cluster Affinity
+hpc:Clusteraffinity a owl:Class .
+hpc:clusteraffinityattribute a owl:ObjectProperty ;
+    rdfs:domain hpc:Clusteraffinity ;
+    rdfs:range rdf:Resource .
+hpc:clusteraffinityttl a owl:DatatypeProperty ;
+    rdfs:domain hpc:Clusteraffinity ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Job and Cluster
+hpc:Job a owl:Class .
+hpc:Cluster a owl:Class .
+
+
+This ontology fragment defines classes for JobAffinity, ClusterAffinity, Job, and Cluster. It also defines object properties for JobAffinitySameCU and JobAffinityDifferentCU, and a datatype property for ClusterAffinityTTL. The properties are defined with their respective domains and ranges.

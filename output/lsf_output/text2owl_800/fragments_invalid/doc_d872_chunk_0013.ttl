@@ -1,0 +1,10 @@
+hpc:Lsf Administrator a owl:Class.
+hpc:primarylsfadmin a owl:ObjectProperty;
+    rdfs:domain hpc:Lsf Administrator;
+    rdfs:range hpc:Lsf Administrator;
+    rdfs:comment "The first LSF administrator specified during installation and the first administrator listed in lsf.cluster.cluster_name." .
+
+hpc:clusteradmin a owl:ObjectProperty;
+    rdfs:domain hpc:Lsf Administrator;
+    rdfs:range hpc:Lsf Administrator;
+    rdfs:comment "Cluster administrators can perform administrative operations on all jobs and

@@ -1,0 +1,21 @@
+hpc:LsfConfiguration a owl:Class .
+hpc:libConntimeout a owl:DatatypeProperty .
+hpc:libRecvtimeout a owl:DatatypeProperty .
+hpc:lmRemoveByHandle a owl:ObjectProperty .
+hpc:lmRemoveInterval a owl:DatatypeProperty .
+
+hpc:LibConntimeout rdfs:domain hpc:LsfConfiguration ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies a timeout value in seconds for communication between LSF License Scheduler and LSF APIs. LIB_CONNTIMEOUT=0 indicates no timeout. Used for both project mode and cluster mode. Default 5 seconds." .
+
+hpc:LibRecvtimeout rdfs:domain hpc:LsfConfiguration ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies a timeout value in seconds for communication between LSF License Scheduler and LSF. LIB_RECVTIMEOUT=0 indicates no timeout. Used for both project mode and cluster mode. Default 5 seconds." .
+
+hpc:LmRemoveByHandle rdfs:domain hpc:LsfConfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Applicable to FlexNet only. Enables LSF License Scheduler to use the handle that is included in the license usage information instead of the display (tty) information while calling lmremove to remove license features from each recently-suspended job. LSF License Scheduler still uses the display (tty) information while calling the lmremove command if the license usage information does not include a handle, even if the LM_REMOVE_BY_HANDLE parameter is defined as Y." .
+
+hpc:LmRemoveInterval rdfs:domain hpc:LsfConfiguration ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies the minimum time a job must have a license checked out before lmremove (for FlexNet) or rlmremove (for Reprise License Manager) can remove the license (using preemption). lmremove or rlmremove causes the license manager daemon and vendor daemons to close the TCP connection with the application. LSF License Scheduler only considers preempting a job after this interval has elapsed. When using lmremove or rlmremove as part of the preemption action (LM_REMOVE_SUSP_JOBS), define LM_REMOVE_INTERVAL=0 to ensure that LSF License Scheduler can preempt a job immediately after checkout. After suspending the job, LSF License Scheduler then uses lmremove or rlmremove to release licenses from the job. Used for both project mode and cluster mode." .

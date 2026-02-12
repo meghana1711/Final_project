@@ -1,0 +1,10 @@
+hpc:Interactivejobsubmission a owl:Class .
+hpc:Commandlinejob a owl:Class .
+hpc:spoolcommand a owl:ObjectProperty .
+hpc:modifyorremovecommandfile a owl:ObjectProperty .
+
+hpc:Commandlinejob rdfs:subClassOf hpc:Interactivejobsubmission .
+hpc:Spoolcommand rdfs:domain hpc:Commandlinejob ;
+                   rdfs:range xsd:string .
+hpc:Modifyorremovecommandfile rdfs:domain hpc:Commandlinejob ;
+                              rdfs:range xsd:string .

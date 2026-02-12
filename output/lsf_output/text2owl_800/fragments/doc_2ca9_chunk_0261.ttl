@@ -1,0 +1,51 @@
+hpc:Lsf a owl:Class .
+hpc:lsbresources a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Lsbresourcesfile .
+
+hpc:loanpolicies a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Loanpolicy .
+
+hpc:Loanpolicy a owl:Class .
+hpc:loanPolicies a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loanpolicy ;
+    rdfs:range xsd:string .
+
+hpc:jobdispatchlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Jobdispatchlimit .
+
+hpc:Jobdispatchlimit a owl:Class .
+hpc:limittype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobdispatchlimit ;
+    rdfs:range xsd:string .
+
+hpc:projectname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .
+
+hpc:jobsperschedcycle a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:eligiblependingjobs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:applicationprofile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobdispatchlimit ;
+    rdfs:range xsd:string .
+
+hpc:queueignoringloanpolicies a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loanpolicy ;
+    rdfs:range xsd:boolean .
+
+hpc:maxqueuelength a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Resource a owl:Class .

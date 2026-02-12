@@ -1,0 +1,52 @@
+hpc:Job a owl:Class .
+hpc:ParentJob a subClassOf hpc:Job .
+hpc:ChildJob a subClassOf hpc:Job .
+hpc:OrphanJob a subClassOf hpc:Job .
+
+hpc:requestedby a owl:ObjectProperty .
+hpc:Requestedby rdfs:domain hpc:Job .
+hpc:Requestedby rdfs:range xsd:string .
+
+hpc:requestedByLSF a subPropertyOf hpc:requestedBy .
+
+hpc:on a owl:DatatypeProperty .
+hpc:On rdfs:domain hpc:Job .
+hpc:On rdfs:range xsd:string .
+
+hpc:using a owl:ObjectProperty .
+hpc:Using rdfs:domain hpc:Job .
+hpc:Using rdfs:range xsd:string .
+
+hpc:LSF9_1_3 a subClassOf hpc:Version .
+
+hpc:terminatedautomatically a owl:ObjectProperty .
+hpc:Terminatedautomatically rdfs:domain hpc:Orphanjob .
+hpc:Terminatedautomatically rdfs:range xsd:boolean .
+
+hpc:enforcedonperjobbasis a owl:ObjectProperty .
+hpc:Enforcedonperjobbasis rdfs:domain hpc:Orphanjob .
+hpc:Enforcedonperjobbasis rdfs:range xsd:boolean .
+
+hpc:ignoresgraceperiod a owl:ObjectProperty .
+hpc:Ignoresgraceperiod rdfs:domain hpc:Childjob .
+hpc:Ignoresgraceperiod rdfs:range xsd:boolean .
+
+hpc:dependencyExpression a owl:DatatypeProperty .
+hpc:DependencyExpression rdfs:domain hpc:Childjob .
+hpc:DependencyExpression rdfs:range xsd:string .
+
+hpc:submittedwithTi a owl:ObjectProperty .
+hpc:SubmittedwithTi rdfs:domain hpc:Childjob .
+hpc:SubmittedwithTi rdfs:range xsd:string .
+
+hpc:queryorphanterminationsettings a owl:ObjectProperty .
+hpc:Queryorphanterminationsettings rdfs:domain hpc:Job .
+hpc:Queryorphanterminationsettings rdfs:range xsd:string .
+
+hpc:immediateorphantermination a owl:DatatypeProperty .
+hpc:Immediateorphantermination rdfs:domain hpc:Job .
+hpc:Immediateorphantermination rdfs:range xsd:boolean .
+
+hpc:killedbylsf a owl:ObjectProperty .
+hpc:Killedbylsf rdfs:domain hpc:Orphanjob .
+hpc:Killedbylsf rdfs:range xsd:string .

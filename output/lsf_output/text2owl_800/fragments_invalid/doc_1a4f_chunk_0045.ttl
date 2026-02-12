@@ -1,0 +1,57 @@
+hpc:Host a owl:Class .
+hpc:Elimexecutable a owl:Class .
+hpc:Managementhost a owl:Class .
+hpc:Otherhost a owl:Class .
+hpc:Lsf a owl:Class .
+
+hpc:starts a owl:ObjectProperty .
+hpc:shutsdown a owl:ObjectProperty .
+hpc:checks a owl:ObjectProperty .
+hpc:verifies a owl:ObjectProperty .
+hpc:exitswith a owl:ObjectProperty .
+
+hpc:lsfMaster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Elimexecutable ;
+    rdfs:range xsd:string .
+
+hpc:lsfResources a owl:DatatypeProperty ;
+    rdfs:domain hpc:Elimexecutable ;
+    rdfs:range xsd:string .
+
+hpc:elimAbortValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Elimexecutable ;
+    rdfs:range xsd:integer .
+
+hpc:Managementhost rdfs:subClassOf hpc:Host .
+hpc:Otherhost rdfs:subClassOf hpc:Host .
+
+hpc:LSF_MASTER_Y a xsd:string ;
+    owl:sameAs hpc:LSF_MASTER "Y" .
+hpc:LSF_MASTER_N a xsd:string ;
+    owl:sameAs hpc:LSF_MASTER "N" .
+
+hpc:Starts hpc:elimexecutable, hpc:Host .
+hpc:Shutsdown hpc:elimexecutable, hpc:Host .
+hpc:Checks hpc:elimexecutable, hpc:LSF_MASTER .
+hpc:Verifies hpc:elimexecutable, hpc:LSF_RESOURCES .
+hpc:Exitswith hpc:elimexecutable, hpc:ELIM_ABORT_VALUE .
+
+hpc:Default rdfs:subClassOf hpc:Resource .
+hpc:All rdfs:subClassOf hpc:Resource .
+hpc:Hostlist rdfs:subClassOf hpc:Resource .
+
+hpc:Resourcemap a owl:Class .
+hpc:resourcemapping a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcemap ;
+    rdfs:range hpc:Resourcemappingvalue .
+
+hpc:Resourcemappingvalue a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Resource rdfs:subClassOf hpc:Resource .
+hpc:Serverhost rdfs:subClassOf hpc:Resource .
+hpc:Managementhost rdfs:subClassOf hpc:Resource .
+
+hpc:ResourceMap "default" hpc:default .
+hpc:ResourceMap "all" hpc:all .
+hpc:ResourceMap "hostList" hpc:hostList .

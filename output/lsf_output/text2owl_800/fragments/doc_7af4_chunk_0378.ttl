@@ -1,0 +1,13 @@
+hpc:runJobFactor a owl:DatatypeProperty .
+hpc:RunJobFactor rdfs:domain hpc:Schedulingpolicy .
+hpc:RunJobFactor rdfs:range xsd:decimal .
+
+hpc:runTimeDecay a owl:ObjectProperty .
+hpc:RunTimeDecay rdfs:domain hpc:Schedulingpolicy .
+hpc:RunTimeDecay rdfs:range xsd:boolean .
+
+hpc:runTimeFactor a owl:DatatypeProperty .
+hpc:RunTimeFactor rdfs:domain hpc:Schedulingpolicy .
+hpc:RunTimeFactor rdfs:range xsd:decimal .
+
+hpc:Schedulingpolicy a owl:Class .

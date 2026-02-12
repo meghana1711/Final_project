@@ -1,0 +1,34 @@
+hpc:Host a owl:Class .
+hpc:DockerImage rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:order rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host .
+
+hpc:LSB_ECHKPNT_METHOD rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string ;
+    hpc:LsbEchkpntMethod rdfs:subClassOf hpc:Environmentvariable .
+
+hpc:LSB_ECHKPNT_METHOD_DIR rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string ;
+    hpc:LsbEchkpntMethodDir rdfs:subClassOf hpc:Environmentvariable .
+
+hpc:LSB_ECHKPNT_KEEP_OUTPUT rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string ;
+    hpc:LsbEchkpntKeepOutput rdfs:subClassOf hpc:Environmentvariable .
+
+hpc:LSB_EFFECTIVE_RSRCREQ rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    hpc:LsbEffectiveRsrcreq rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:LSB_ERESTART_USRCMD rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+
+In this ontology fragment, we have defined classes for `Host` and `Job`, and datatype properties for various parameters such as `DockerImage`, `order`, `LSB_ECHKPNT_METHOD`, `LSB_ECHKPNT_METHOD_DIR`, `LSB_ECHKPNT_KEEP_OUTPUT`, `LSB_EFFECTIVE_RSRCREQ`, and `LSB_ERESTART_USRCMD`. We have also defined a subclass relationship between `LSB_ECHKPNT_METHOD`, `LSB_ECHKPNT_METHOD_DIR`, and `LSB_ECHKPNT_KEEP_OUTPUT` and the superclass `EnvironmentVariable`. Additionally, we have defined the domain and range for each property.

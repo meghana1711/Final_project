@@ -1,0 +1,54 @@
+hpc:Topologynode a owl:Class .
+hpc:AvailableResources an rdfs:DatatypeProperty ;
+    rdfs:domain hpc:Topologynode ;
+    rdfs:range xsd:decimal .
+
+hpc:taskallocation a owl:ObjectProperty ;
+    rdfs:domain hpc:Topologynode ;
+    rdfs:range hpc:Topologynode .
+
+hpc:firstavailableprocessorunits a owl:ObjectProperty .
+
+hpc:jobdistributeonhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Topologynode ;
+    rdfs:range xsd:string .
+
+hpc:Jobdistributeonhostdefault a owl:Class ;
+    rdfs:subClassOf hpc:Jobdistributeonhost .
+
+hpc:jobdistributeonhostdefaultvalue a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobdistributeonhostdefault ;
+    rdfs:range xsd:string ;
+    rdfs:range rdf:PlainLiteral "any" .
+
+hpc:jobexitrateduration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Topologynode ;
+    rdfs:range xsd:duration .
+
+hpc:jobexitratedurationdefault a owl:DatatypeProperty ;
+    rdfs:domain hpc:Topologynode ;
+    rdfs:range xsd:duration ;
+    rdfs:range rdf:PlainLiteral "PT5M" .
+
+hpc:jobexitratedurationexample a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexitrateduration ;
+    rdfs:range xsd:string ;
+    rdfs:range rdf:PlainLiteral "JOB_EXIT_RATE_DURATION=10" .
+
+hpc:jobgroupclean a owl:ObjectProperty ;
+    rdfs:domain hpc:Topologynode ;
+    rdfs:range xsd:boolean .
+
+hpc:Jobgroupcleanparameter a owl:Class ;
+    rdfs:subClassOf hpc:Jobgroupclean .
+
+hpc:jobgroupcleanparametervalue a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroupcleanparameter ;
+    rdfs:range xsd:boolean ;
+    rdfs:range rdf:PlainLiteral "true" .
+
+hpc:Jobgroupempty a owl:Class .
+
+hpc:jobgroupcleandeletion a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroupempty ;
+    rdfs:range hpc:Topologynode .

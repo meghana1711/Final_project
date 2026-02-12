@@ -1,0 +1,56 @@
+hpc:Job a owl:Class .
+hpc:ended a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:done a owl:NamedIndividual .
+hpc:exit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:exitcode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exit ;
+    rdfs:range xsd:string .
+hpc:exitCode a owl:ObjectProperty ;
+    rdfs:domain hpc:Exit ;
+    rdfs:range xsd:string .
+hpc:operator a owl:ObjectProperty ;
+    rdfs:domain hpc:ExitCode ;
+    rdfs:range xsd:string .
+hpc:external a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:statusText a owl:DatatypeProperty ;
+    rdfs:domain hpc:External .
+hpc:numdone a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+hpc:jobId a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:jobName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:Job a rdfs:subClassOf [ a owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Restriction ;
+        owl:onProperty hpc:Job_ID ;
+        owl:allValuesFrom xsd:string ] ] .
+hpc:Ended rdfs:subClassOf [ a owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Restriction ;
+        owl:onProperty hpc:ended ;
+        owl:hasValue hpc:done ] ] .
+hpc:Exit rdfs:subClassOf [ a owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Restriction ;
+        owl:onProperty hpc:exit ;
+        owl:hasValue hpc:done ] ] .
+hpc:Exit rdfs:subClassOf [ a owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Restriction ;
+        owl:onProperty hpc:exit ;
+        owl:someValuesFrom [ rdf:type owl:Class ;
+            owl:equivalentClass [ rdf:type owl:Restriction ;
+                owl:onProperty hpc:exitCode ;
+                owl:hasValue ?exit_code ] ] ] ] .
+hpc:External rdfs:subClassOf [ a owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Restriction ;
+        owl:onProperty hpc:external ;
+        owl:hasValue ?status_text ] ] .
+hpc:Numdone rdfs:subClassOf [ a owl:Class ;
+    owl:equ

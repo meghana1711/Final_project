@@ -1,0 +1,48 @@
+hpc:Querylog a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a log file containing query information." .
+
+hpc:enablediagnose a owl:ObjectProperty ;
+    rdfs:domain hpc:Querylog ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the query information is logged." .
+
+hpc:logfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Querylog ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The log file where query information is saved." .
+
+hpc:logfilepermission a owl:ObjectProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The permissions of the log file." .
+
+hpc:owner a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The owner of the log file." .
+
+hpc:dynamicsetting a owl:ObjectProperty ;
+    rdfs:domain hpc:Querylog ;
+    rdfs:range hpc:Querylog ;
+    rdfs:comment "The dynamic settings that override the static parameters." .
+
+hpc:expiryduration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Querylog ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "The duration for which the query information is tracked." .
+
+hpc:commandlineoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Dynamicsetting ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The option specified in the command line." .
+
+hpc:lsfadmin a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The user specified in the LSF_ADMIN parameter." .
+
+hpc:lsfproxyddaemon a owl:ObjectProperty ;
+    rdfs:domain hpc:Querylog ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the lsfproxyd daemon collects information." .

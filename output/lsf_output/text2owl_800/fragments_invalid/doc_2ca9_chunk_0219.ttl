@@ -1,0 +1,51 @@
+hpc:Lsfversion a owl:Class .
+hpc:Fixpack11 hpc:lsfversion ;
+    rdfs:subClassOf hpc:Version .
+hpc:Fixpack12 hpc:lsfversion ;
+    rdfs:subClassOf hpc:Version .
+hpc:Fixpack13 hpc:lsfversion ;
+    rdfs:subClassOf hpc:Version .
+
+hpc:Bjobs a owl:Class .
+hpc:BjobsO hpc:objectproperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Allows to display a unit prefix for the following resource fields: max_mem, avg_mem, memlimit, swap, swaplimit, corelimit, stacklimit, and hrusage (for hrusage, the unit prefix is for mem and swap resources only)." .
+hpc:BjobsODefaultwidth hpc:datatypeproperty ;
+    rdfs:domain hpc:BjobsO ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The default width for these resource fields except hrusage are increased from 10 to 15." .
+hpc:BjobsL hpc:objectproperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Shows additional Nvidia Multi-Instance GPU (MIG) information." .
+
+hpc:Bjgroup a owl:Class .
+hpc:BjgroupIdleTime hpc:datatypeproperty ;
+    rdfs:domain hpc:Bjgroup ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Displays the idle time value of each job group." .
+
+hpc:Bkill a owl:Class .
+hpc:BkillD hpc:objectproperty ;
+    rdfs:domain hpc:Bkill ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Kills jobs, and records jobs as DONE after the jobs exit." .
+hpc:BkillStatus hpc:objectproperty ;
+    rdfs:domain hpc:Bkill ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Kills jobs in the specified status." .
+
+hpc:Blimits a owl:Class .
+hpc:BlimitsA hpc:objectproperty ;
+    rdfs:domain hpc:Blimits ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Shows all resource allocation limits, even if they are not being applied to running jobs." .
+hpc:BlimitsA hpc:objectproperty ;
+    rdfs:domain hpc:Blimits ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Displays limits for specific application profiles." .
+hpc:BlimitsGl hpc:objectproperty ;
+    rdfs:domain hpc:Blimits ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Displays current usage of global limits that are configured in the Limit sections of the lsb.globalpolicies file instead of the resource configurations in the Limit

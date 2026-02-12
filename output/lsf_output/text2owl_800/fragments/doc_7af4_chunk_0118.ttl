@@ -1,0 +1,29 @@
+hpc:Swaplimit a owl:Class .
+hpc:Swaplimit rdfs:subClassOf owl:Real .
+hpc:Swaplimit rdfs:domain xsd:nonNegativeInteger .
+hpc:Swaplimit rdfs:range xsd:decimal .
+hpc:SWAPLIMIT rdfs:comment "Limits the amount of total virtual memory limit for the job." .
+
+hpc:Cpulimit a owl:Class .
+hpc:Cpulimit rdfs:subClassOf owl:Real .
+hpc:Cpulimit rdfs:domain xsd:nonNegativeInteger .
+hpc:Cpulimit rdfs:range xsd:decimal .
+hpc:CPULIMIT rdfs:comment "CPU limit for the job." .
+
+hpc:Tasklimit a owl:Class .
+hpc:Tasklimit rdfs:subClassOf owl:Integer .
+hpc:Tasklimit rdfs:domain xsd:nonNegativeInteger .
+hpc:Tasklimit rdfs:range xsd:nonNegativeInteger .
+hpc:TASKLIMIT rdfs:comment "Maximum number of tasks that can be allocated to a job." .
+
+hpc:hasswaplimit a owl:ObjectProperty .
+hpc:Hasswaplimit rdfs:domain hpc:Job .
+hpc:Hasswaplimit rdfs:range hpc:Swaplimit .
+
+hpc:hascpulimit a owl:ObjectProperty .
+hpc:Hascpulimit rdfs:domain hpc:Job .
+hpc:Hascpulimit rdfs:range hpc:Cpulimit .
+
+hpc:hastasklimit a owl:ObjectProperty .
+hpc:Hastasklimit rdfs:domain hpc:Job .
+hpc:Hastasklimit rdfs:range hpc:Tasklimit .

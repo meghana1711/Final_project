@@ -1,0 +1,20 @@
+hpc:V0043wckeytagstruct a owl:Class.
+hpc:flags a owl:ObjectProperty.
+hpc:Flags rdfs:domain hpc:V0043wckeytagstruct;
+                      rdfs:range rdf:List;
+                      rdfs:range xsd:string.
+hpc:flags rdfs:subPropertyOf rdf:list.
+hpc:flags1 a owl:DatatypeProperty.
+hpc:Flags1 rdfs:domain hpc:V0043wckeytagstruct;
+                      rdfs:range xsd:string.
+hpc:flags1 rdfs:subPropertyOf rdf:list.
+hpc:flags1 rdf:value "ASSIGNED_DEFAULT" .
+
+hpc:V0043x11flags a owl:Class.
+
+hpc:V0043openapireservationmodresp a owl:Class.
+
+hpc:X-slurm a owl:Class;
+                 rdfs:subClassOf rdf:Resource;
+                 rdfs:subClassOf hpc:Info;
+                 rdfs:subClassOf hpc

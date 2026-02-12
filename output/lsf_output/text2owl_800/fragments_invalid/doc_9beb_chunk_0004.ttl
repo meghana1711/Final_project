@@ -1,0 +1,70 @@
+hpc:Task a owl:Class ;
+    rdfs:subClassOf hpc:Executableentity ;
+    rdfs:comment "Represents a task to be executed." .
+
+hpc:Executableentity a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents an entity that can be executed." .
+
+hpc:submittedtask a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The time a task was submitted." .
+
+hpc:donetask a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a task has been completed." .
+
+hpc:exittask a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The exit code of a task." .
+
+hpc:executedtask a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a task has been executed." .
+
+hpc:errortask a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a task encountered an error." .
+
+hpc:Tasksummary a owl:Class ;
+    rdfs:subClassOf hpc:Executableentitysummary ;
+    rdfs:comment "Summarizes the status of tasks." .
+
+hpc:Executableentitysummary a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Summarizes the status of executable entities." .
+
+hpc:Taskerrorsummary a owl:Class ;
+    rdfs:subClassOf hpc:Executableentityerrorsummary ;
+    rdfs:comment "Summarizes the errors encountered by tasks." .
+
+hpc:Executableentityerrorsummary a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Summarizes the errors encountered by executable entities." .
+
+hpc:taskid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The unique identifier of a task." .
+
+hpc:submittime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The time a task was submitted." .
+
+hpc:starttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The time a task started execution." .
+
+hpc:endtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The time a task ended execution." .
+
+hpc:ExitCode a owl

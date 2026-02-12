@@ -1,0 +1,33 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Executioncluster a owl:Class .
+hpc:Lsfmulticlusterenvironment a owl:Class .
+hpc:Highioorgs a owl:Class .
+hpc:Organization a owl:Class .
+hpc:Project a owl:Class .
+hpc:User a owl:Class .
+
+hpc:Hasexecutioncluster rdfs:domain hpc:Executioncluster .
+hpc:Hasexecutioncluster rdfs:range hpc:Executioncluster .
+hpc:Ispartof rdfs:domain hpc:Highioorgs .
+hpc:Ispartof rdfs:range hpc:Executioncluster .
+hpc:Hasorganization rdfs:domain hpc:Highioorgs .
+hpc:Hasorganization rdfs:range hpc:Organization .
+hpc:Hasproject rdfs:domain hpc:Highioorgs .
+hpc:Hasproject rdfs:range hpc:Project .
+hpc:Hasuser rdfs:domain hpc:Highioorgs .
+hpc:Hasuser rdfs:range hpc:User .
+
+hpc:fairshareresourceusage a owl:ObjectProperty .
+hpc:dynamicuserpriority a owl:DatatypeProperty .
+hpc:remoteload a owl:DatatypeProperty .
+
+hpc:Fairshareresourceusage rdfs:domain hpc:Highioorgs .
+hpc:Fairshareresourceusage rdfs:range xsd:decimal .
+hpc:Dynamicuserpriority rdfs:domain hpc:Highioorgs .
+hpc:Dynamicuserpriority rdfs:range xsd:decimal .
+hpc:Remoteload rdfs:domain hpc:User .
+hpc:Remoteload rdfs:range xsd:decimal .

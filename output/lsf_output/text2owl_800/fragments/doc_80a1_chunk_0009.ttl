@@ -1,0 +1,33 @@
+hpc:Maxvirtualmemorysetting a owl:Class .
+hpc:checkmaxvirtualmemorysetting a owl:ObjectProperty .
+hpc:Command rdfs:domain hpc:Maxvirtualmemorysetting ;
+    rdfs:range xsd:string .
+
+hpc:Dockerusergroup a owl:Class .
+hpc:addusertodockergroup a owl:ObjectProperty .
+hpc:User rdfs:domain hpc:Dockerusergroup ;
+    rdfs:range xsd:string .
+hpc:Host rdfs:range xsd:string .
+
+hpc:Installationdirectory a owl:Class .
+hpc:navigatetoinstallationdirectory a owl:ObjectProperty .
+hpc:Directory rdfs:domain hpc:Installationdirectory ;
+    rdfs:range xsd:string .
+hpc:Package rdfs:range xsd:string .
+
+hpc:Installationpackage a owl:Class .
+hpc:extractinstallationpackage a owl:ObjectProperty .
+hpc:Directory rdfs:domain hpc:Installationpackage ;
+    rdfs:range xsd:string .
+hpc:Package rdfs:domain hpc:Installationpackage ;
+    rdfs:range xsd:string .
+
+hpc:Installation a owl:Class .
+hpc:changetoinstallationdirectory a owl:ObjectProperty .
+hpc:Directory rdfs:domain hpc:Installation ;
+    rdfs:range xsd:string .
+
+hpc:Service a owl:Class .
+hpc:startservice a owl:ObjectProperty .
+hpc:Directory rdfs:domain hpc:Service ;
+    rdfs:range xsd:string .

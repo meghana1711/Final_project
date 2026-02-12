@@ -1,0 +1,16 @@
+hpc:Command a owl:Class .
+hpc:Connectionmethod a owl:Class .
+hpc:Remotelicenseserver a owl:Class .
+hpc:Remoteagenthost a owl:Class .
+hpc:Servicedomain a owl:Class .
+hpc:remoteLmstatServers a owl:ObjectProperty .
+
+hpc:Command rdfs:subClassOf owl:Class .
+hpc:Connectionmethod rdfs:subClassOf owl:Class .
+hpc:Remotelicenseserver rdfs:subClassOf hpc:Command .
+hpc:Remoteagenthost rdfs:subClassOf hpc:Command .
+hpc:Servicedomain rdfs:subClassOf owl:Class .
+
+hpc:RemoteLmstatServers rdfs:domain hpc:Servicedomain .
+hpc:RemoteLmstatServers rdfs:range hpc:Remoteagenthost .
+hpc:RemoteLmstatServers rdfs:range xsd:string .

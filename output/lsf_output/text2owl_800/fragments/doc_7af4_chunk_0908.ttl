@@ -1,0 +1,31 @@
+hpc:Remotedatamanagers a owl:Class .
+
+hpc:clustername a owl:ObjectProperty ;
+    rdfs:domain hpc:Remotedatamanagers ;
+    rdfs:range xsd:string .
+
+hpc:servers a owl:DatatypeProperty ;
+    rdfs:domain hpc:Remotedatamanagers ;
+    rdfs:range xsd:string .
+
+hpc:LSFDataHosts rdf:type rdfs:DatatypeProperty ;
+    rdfs:domain hpc:Servers .
+
+hpc:LSFDataPort rdf:type rdfs:DatatypeProperty ;
+    rdfs:domain hpc:Servers .
+
+hpc:Lsflicensescheduler a owl:Class .
+
+hpc:projectgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsflicensescheduler .
+
+hpc:Parameters a owl:Class .
+
+hpc:FeatureDelta rdf:type rdfs:DatatypeProperty ;
+    rdfs:domain hpc:Parameters .
+
+hpc:Feature rdf:type rdfs:Class ;
+    rdfs:subClassOf hpc:Parameters .
+
+hpc:Projects rdf:type rdfs:Class ;
+    rdfs:subClassOf hpc:Parameters .

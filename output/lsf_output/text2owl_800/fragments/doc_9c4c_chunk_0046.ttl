@@ -1,0 +1,65 @@
+hpc:Directory a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:Resource ] .
+
+hpc:lsfTardir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Serverhost ;
+    rdfs:range xsd:string .
+
+hpc:lsfLocalResources a owl:ObjectProperty ;
+    rdfs:domain hpc:Serverhost ;
+    rdfs:range hpc:Localresourcelist .
+
+hpc:Localresourcelist a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:Collection ] .
+
+hpc:Localresource a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:Resource ] .
+
+hpc:Numericresource a owl:Class ;
+    rdfs:subClassOf hpc:Localresource ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:numericresourcemap a owl:ObjectProperty ;
+    rdfs:domain hpc:Numericresource ;
+    rdfs:range xsd:string .
+
+hpc:Booleanresource a owl:Class ;
+    rdfs:subClassOf hpc:Localresource ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:Managementhost a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:Resource ] .
+
+hpc:Serverhost a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:Resource ] .
+
+hpc:resourcemap a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range hpc:Resourcemapentrylist .
+
+hpc:Resourcemapentrylist a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:Collection ] .
+
+hpc:Resourcemapentry a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:lsfShared a owl:ObjectProperty ;
+    rdfs:domain hpc:Managementhost ;
+    rdfs:range hpc:Resourcemap .
+
+hpc:lsfConf a owl:ObjectProperty ;
+    rdfs:domain hpc:Serverhost ;
+    rdfs:range hpc:Localresourcelist .
+
+hpc:duplicateLsfLocalResources a owl:ObjectProperty ;
+    rdfs:domain hpc:Serverhost ;
+    rdfs:range hpc:Localresourcelist .

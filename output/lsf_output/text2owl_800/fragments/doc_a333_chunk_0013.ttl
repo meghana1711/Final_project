@@ -1,0 +1,41 @@
+hpc:Lsfsimulator a owl:Class .
+hpc:Lsfcluster a owl:Class .
+hpc:Licenseserver a owl:Class .
+hpc:Licensefile a owl:Class .
+hpc:Licensemanager a owl:Class .
+hpc:Flexnetlicensemanager a owl:Class .
+
+# Object Properties
+hpc:supports a owl:ObjectProperty .
+hpc:manages a owl:ObjectProperty .
+hpc:configuredon a owl:ObjectProperty .
+hpc:haslicensefile a owl:ObjectProperty .
+hpc:useslicensemanager a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:Licenseinformation rdfs:domain hpc:Licensefile ;
+    rdfs:range xsd:string .
+hpc:Reallicensevalue rdfs:domain hpc:Licensefile ;
+    rdfs:range xsd:string .
+
+# Class and Property Restrictions
+hpc:Lsfsimulator rdfs:subClassOf hpc:Softwaresimulator .
+hpc:Lsfcluster rdfs:subClassOf hpc:Highperformancecomputingcluster .
+hpc:Licenseserver rdfs:subClassOf hpc:Computingresource .
+hpc:Licensefile a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdf:property hpc:hasLicenseFile ;
+                        owl:onClass hpc:LicenseServer ;
+                        owl:hasValue xsd:string ] .
+hpc:Flexnetlicensemanager rdfs:subClassOf hpc:Licensemanager .
+
+hpc:Supports rdfs:domain hpc:Lsfsimulator ;
+    rdfs:range hpc:Flexnetlicensemanager .
+hpc:Manages rdfs:domain hpc:Lsfsimulator ;
+    rdfs:range hpc:Lsfcluster .
+hpc:Configuredon rdfs:domain hpc:Lsfsimulator ;
+    rdfs:range hpc:Lsfcluster .
+hpc:Haslicensefile rdfs:domain hpc:Lsfsimulator ;
+    rdfs:range hpc:Licensefile .
+hpc:Useslicensemanager rdfs:domain hpc:Lsfsimulator ;
+    rdfs:range hpc:Flexnetlicensemanager .

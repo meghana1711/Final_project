@@ -1,0 +1,55 @@
+hpc:Directory a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A directory in the HPC system." .
+
+hpc:Destinationdirectory a owl:Class ;
+    rdfs:subClassOf hpc:Directory ;
+    rdfs:comment "A directory that serves as the destination for file transfer." .
+
+hpc:Stagingarea a owl:Class ;
+    rdfs:subClassOf hpc:Directory ;
+    rdfs:comment "A directory that serves as the staging area for files in the HPC system." .
+
+hpc:linkoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether symbolic links should be used instead of copying files." .
+
+hpc:tagoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Tag ;
+    rdfs:comment "Specifies the tag name associated with the files to be copied." .
+
+hpc:Tag a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "A name used to group related files in the HPC system." .
+    rdfs:domainInhheritance true ;
+    owl:hasValue "^[A-Za-z0-9._-]+$" .
+
+hpc:tagnamepattern a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tag ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The pattern for valid tag names." .
+
+hpc:tagdirectoryreadpermission a owl:ObjectProperty ;
+    rdfs:domain hpc:Tag ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the user has read permission on the tag directory." .
+
+hpc:tagdirectoryprohibitednames a owl:ObjectProperty ;
+    rdfs:domain hpc:Tag ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The names that are prohibited for tags." .
+    rdfs:range [ ".." "." "~" "/" ] .
+
+hpc:tagspaceprohibited a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tagnamepattern ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates whether the tag name contains a space." .
+    rdfs:range "\\s" .
+
+hpc:tagnamestartswithdashprohibited a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tagnamepattern ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates whether the tag name starts with a dash." .
+    rdfs:range "^-" .

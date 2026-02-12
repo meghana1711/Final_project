@@ -1,0 +1,52 @@
+hpc:Gpusortpolicy a owl:Class .
+hpc:Gpusortpolicy rdfs:subClassOf owl:Class .
+
+hpc:gpackpolicy a owl:ObjectProperty .
+hpc:Gpackpolicy rdfs:domain hpc:Gpusortpolicy ;
+                 rdfs:range hpc:Gpupackpolicy .
+
+hpc:Gpupackpolicy a owl:Class .
+hpc:Gpupackpolicy rdfs:subClassOf owl:Class .
+
+hpc:sharedgpusfirst a owl:ObjectProperty .
+hpc:Sharedgpusfirst rdfs:domain hpc:Gpupackpolicy ;
+                     rdfs:range hpc:Sharedgpus .
+
+hpc:exclusivegpusnext a owl:ObjectProperty .
+hpc:Exclusivegpusnext rdfs:domain hpc:Gpupackpolicy ;
+                       rdfs:range hpc:Exclusivegpus .
+
+hpc:numrunningjobs a owl:DatatypeProperty .
+hpc:Numrunningjobs rdfs:domain hpc:Gpu ;
+                    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Gpujobscheduling a owl:Class .
+hpc:Gpujobscheduling rdfs:subClassOf owl:Class .
+
+hpc:packscheduling a owl:ObjectProperty .
+hpc:Packscheduling rdfs:domain hpc:Gpujobscheduling ;
+                     rdfs:range xsd:boolean .
+
+hpc:gvendor a owl:DatatypeProperty .
+hpc:Gvendor rdfs:domain hpc:Gpujobscheduling ;
+          rdfs:range xsd:string .
+
+hpc:gmodel a owl:DatatypeProperty .
+hpc:Gmodel rdfs:domain hpc:Gpujobscheduling ;
+         rdfs:range xsd:string .
+
+hpc:Gpuvendor a owl:Class .
+hpc:Gpuvendor rdfs:subClassOf owl:Class .
+
+hpc:Amdgpu a owl:Class ;
+            rdfs:subClassOf hpc:Gpuvendor .
+
+hpc:Nvidiagpu a owl:Class ;
+              rdfs:subClassOf hpc:Gpuvendor .
+
+hpc:Gpumodel a owl:Class .
+hpc:Gpumodel rdfs:subClassOf owl:Class .
+
+hpc:gpumemory a owl:DatatypeProperty .
+hpc:Gpumemory rdfs:domain hpc:Gpumodel ;
+             rdfs:range xsd:nonNegativeInteger .

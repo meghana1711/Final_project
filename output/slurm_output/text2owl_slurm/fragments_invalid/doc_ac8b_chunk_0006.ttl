@@ -1,0 +1,22 @@
+hpc:Trackableresource a owl:Class.
+hpc:Job a owl:Class.
+hpc:tresbillingweights a owl:ObjectProperty.
+hpc:billingweight a owl:DatatypeProperty.
+hpc:CPU a hpc:TrackableResource;
+    rdfs:label "CPU";
+    rdfs:subClassOf hpc:Trackableresource.
+hpc:Memory a hpc:TrackableResource;
+    rdfs:label "Memory";
+    rdfs:subClassOf hpc:Trackableresource.
+hpc:Node a hpc:TrackableResource;
+    rdfs:label "Node";
+    rdfs:subClassOf hpc:Trackableresource.
+hpc:License a hpc:TrackableResource;
+    rdfs:label "License";
+    rdfs:subClassOf hpc:Trackableresource.
+hpc:GenericResource a hpc:TrackableResource;
+    rdfs:label "Generic Resource";
+    rdfs:subClassOf hpc:Trackableresource.
+hpc:Job rdfs:domain hpc:Tresbillingweights;
+    rdfs:domain hpc:Partition.
+hpc:Billing

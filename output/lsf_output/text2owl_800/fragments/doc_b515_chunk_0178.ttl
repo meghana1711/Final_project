@@ -1,0 +1,67 @@
+hpc:FCFSQueue
+    a owl:Class ;
+    rdfs:subClassOf hpc:Queue .
+
+hpc:FairShareQueue
+    a owl:Class ;
+    rdfs:subClassOf hpc:Queue .
+
+hpc:JobOwner
+    a owl:Class .
+
+hpc:QueuePriority
+    a owl:Class .
+
+hpc:Job
+    a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:CPU_TIME_FACTOR
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:float .
+
+hpc:RUN_JOB_FACTOR
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:float .
+
+hpc:RUN_TIME_FACTOR
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:float .
+
+hpc:FAIRSHARE_ADJUSTMENT_FACTOR
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:float .
+
+hpc:GPU_RUN_TIME_FACTOR
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:float .
+
+hpc:COMMITTED_RUN_TIME_FACTOR
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:float .
+
+hpc:DynamicSharePriority
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobowner ;
+    rdfs:range hpc:Job .
+
+hpc:DispatchOrder
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Job .
+
+hpc:FairSharePolicy
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobowner ;
+    rdfs:range hpc:Queue .
+
+hpc:QueueConfigurationFile
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:File .

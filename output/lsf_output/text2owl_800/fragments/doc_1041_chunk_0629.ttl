@@ -1,0 +1,21 @@
+hpc:Gpurequirement a owl:Class .
+hpc:Resourcerequirement a owl:Class .
+hpc:mode a owl:ObjectProperty .
+hpc:jexclusive a owl:ObjectProperty .
+hpc:mps a owl:ObjectProperty .
+hpc:num a owl:DatatypeProperty .
+
+hpc:Gpurequirement rdfs:subClassOf hpc:Resourcerequirement .
+hpc:Mode rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:string .
+hpc:Jexclusive rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:boolean .
+hpc:Mps rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:boolean .
+hpc:Num rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Exclusiveprocess a owl:Class ;
+    rdfs:subClassOf hpc:Gpurequirement .
+hpc:Shared a owl:Class ;
+    rdfs:subClassOf hpc:Gpurequirement .

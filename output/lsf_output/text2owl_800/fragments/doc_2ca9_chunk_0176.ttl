@@ -1,0 +1,67 @@
+hpc:Lsfjob a owl:Class .
+hpc:Esubbehavior a owl:Class ;
+    rdfs:subClassOf hpc:Lsfjob .
+
+hpc:hasmandatoryesubexecutable a owl:ObjectProperty ;
+    rdfs:domain hpc:Esubbehavior ;
+    rdfs:range rdf:Resource .
+
+hpc:useslsbesubmethod a owl:ObjectProperty ;
+    rdfs:domain hpc:Esubbehavior ;
+    rdfs:range rdf:Resource .
+
+hpc:hascorrespondingesuboneifmissing a owl:ObjectProperty ;
+    rdfs:domain hpc:Esubbehavior ;
+    rdfs:range rdf:Resource .
+
+hpc:hascorrespondingepsuboneifmissing a owl:ObjectProperty ;
+    rdfs:domain hpc:Esubbehavior ;
+    rdfs:range rdf:Resource .
+
+hpc:normalexternaljobsubmission a owl:ObjectProperty ;
+    rdfs:domain hpc:Esubbehavior ;
+    rdfs:range hpc:Lsfjob .
+
+hpc:hasapplicationspecificepsub a owl:ObjectProperty ;
+    rdfs:domain hpc:Esubbehavior ;
+    rdfs:range rdf:Resource .
+
+hpc:hasmandatoryepsubexecutable a owl:ObjectProperty ;
+    rdfs:domain hpc:Esubbehavior ;
+    rdfs:range rdf:Resource .
+
+hpc:usessameframeworkasesub a owl:ObjectProperty ;
+    rdfs:domain hpc:Esubbehavior ;
+    rdfs:range rdf:Literal .
+
+hpc:savesjobschedulersnapshot a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range rdf:Resource .
+
+hpc:snapshotfileformat a owl:DatatypeProperty ;
+    rdfs:domain hpc:Snapshot ;
+    rdfs:range xsd:string .
+
+hpc:snapshotfilelocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Snapshot ;
+    rdfs:range xsd:string .
+
+hpc:snapshotfilecustomname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Snapshot ;
+    rdfs:range xsd:string .
+
+hpc:snapshotfilecustompath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Snapshot ;
+    rdfs:range xsd:string .
+
+hpc:snapshotfiletype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Snapshot ;
+    rdfs:range xsd:string .
+
+hpc:Snapshot a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Lsfjobrequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Jobscheduler a owl:Class .

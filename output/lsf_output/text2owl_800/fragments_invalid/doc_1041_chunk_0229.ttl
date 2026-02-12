@@ -1,0 +1,61 @@
+hpc:Totalload a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "The total load is the sum of the current load and the reserved load." .
+
+hpc:Currentload a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "The current load is the load that is shown by the lsload command." .
+
+hpc:Reservedload a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "The reserved load is the load that is reserved for a specific purpose." .
+
+hpc:Availableload a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "The available load is the difference between the current load and the reserved load." .
+
+hpc:Loadindex a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "A load index is a measure of the current load state." .
+
+hpc:Loadthreshold a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Displays the scheduling threshold and the suspending threshold." .
+
+hpc:Loadusedforexceptions a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Displays the configured threshold of EXIT_RATE for the host and its current load value for host exceptions." .
+
+hpc:Adminactioncomment a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "If the EGO administrator specified an administrator comment with the -C option of the badmin host control commands hclose or hopen, the comment text is displayed." .
+
+hpc:Penetworkinformation a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Displays network resource information for IBM Parallel Edition (PE) jobs." .
+
+# Object properties
+hpc:hastotalload a owl:ObjectProperty ;
+    rdfs:domain hpc:Totalload ;
+    rdfs:range hpc:Load ;
+    rdfs:comment "The total load of a system." .
+
+hpc:hascurrentload a owl:ObjectProperty ;
+    rdfs:domain hpc:Totalload ;
+    rdfs:range hpc:Load ;
+    rdfs:comment "The current load of a system." .
+
+hpc:hasreservedload a owl:ObjectProperty ;
+    rdfs:domain hpc:Totalload ;
+    rdfs:range hpc:Load ;
+    rdfs:comment "The reserved load of a system." .
+
+hpc:hasavailableload a owl:ObjectProperty ;
+    rdfs:domain hpc:Totalload ;
+    rdfs:range hdfs:Load ;
+    rdfs:comment "The available load of a system." .
+
+hpc:hasloadindex a owl:ObjectProperty ;
+    rdfs:domain hpc:Loadindex ;
+    rdfs:range hpc:Loadindex ;
+    rdfs:comment "The load index of a specific

@@ -1,0 +1,35 @@
+hpc:User a owl:Class .
+hpc:Address a owl:Class .
+hpc:allowsaccess a owl:ObjectProperty .
+
+hpc:User rdfs:subClassOf rdf:Resource .
+hpc:Address rdfs:subClassOf rdf:Resource .
+
+hpc:Users rdfs:domain hpc:User ;
+    rdfs:range rdf:XMLLiteral ;
+    rdfs:comment "The users that are allowed to initiate requests to LSF Web Services." .
+
+hpc:Addresses rdfs:domain hpc:User ;
+    rdfs:range rdf:XMLLiteral ;
+    rdfs:comment "IP addresses deﬁned in the addresses ﬁeld." .
+
+hpc:Allowsaccess rdfs:domain hpc:User ;
+    rdfs:range hpc:Address ;
+    rdfs:comment "Allows a user to access LSF Web Services from a specified IP address." .
+
+hpc:ttl a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The authentication token's time to live (TTL), in seconds, for the specified users, to control the amount of time that users have to use LSF Web Services." .
+
+hpc:TtlMin rdf:datatype xsd:nonNegativeInteger ;
+    owl:hasValue 300 ;
+    rdfs:comment "Minimum value for Ttl." .
+
+hpc:TtlMax rdf:datatype xsd:nonNegativeInteger ;
+    owl:hasValue 9223372036854775 ;
+    rdfs:comment "Maximum value for Ttl." .
+
+hpc:DefaultTtl rdf:datatype xsd:nonNegativeInteger ;
+    owl:hasValue 86400 ;
+    rdfs:comment "Default value of Ttl when not specified." .

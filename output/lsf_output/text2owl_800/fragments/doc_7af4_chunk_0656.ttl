@@ -1,0 +1,48 @@
+hpc:Exclusivejob a owl:Class .
+hpc:nreqslot a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusivejob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:submittime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusivejob ;
+    rdfs:range xsd:dateTime .
+
+hpc:starttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusivejob ;
+    rdfs:range xsd:dateTime .
+
+hpc:estimatedstarttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusivejob ;
+    rdfs:range xsd:dateTime .
+
+hpc:specifiedstarttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusivejob ;
+    rdfs:range xsd:dateTime .
+
+hpc:specifiedterminatetime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusivejob ;
+    rdfs:range xsd:dateTime .
+
+hpc:timeleft a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusivejob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:finishtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusivejob ;
+    rdfs:range xsd:dateTime .
+
+hpc:estimatedruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusivejob ;
+    rdfs:range xsd:duration .
+
+hpc:ruutime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusivejob ;
+    rdfs:range xsd:duration .
+
+hpc:rustime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusivejob ;
+    rdfs:range xsd:duration .
+
+hpc:percentcomplete a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusivejob ;
+    rdfs:range xsd:decimal .

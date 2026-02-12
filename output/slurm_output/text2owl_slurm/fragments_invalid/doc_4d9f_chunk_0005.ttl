@@ -1,0 +1,21 @@
+hpc:Arrayjobid a owl:Class.
+hpc:Arraytaskid a owl:Class.
+hpc:Jobarray a owl:Class.
+hpc:Jobid a owl:Class.
+hpc:arrayjobidtaskid a owl:ObjectProperty.
+hpc:operateonall a owl:ObjectProperty.
+hpc:operateonindividual a owl:ObjectProperty.
+hpc:Jobarrayelement a owl:Class.
+hpc:ExitCode a xsd:nonNegativeInteger.
+hpc:Jobarraydependencies a owl:Class.
+hpc:afterclause a owl:ObjectProperty.
+hpc:afterany a owl:ObjectProperty.
+hpc:aftercorr a owl:ObjectProperty.
+hpc:afterok a owl:ObjectProperty.
+
+hpc:Jobarray a rdfs:subClassOf hpc:Jobid. .
+hpc:Arrayjobid rdfs:subClassOf hpc:Jobid. .
+hpc:Arraytaskid rdfs:subClassOf hpc:Jobid. .
+hpc:arrayjobidtaskid a owl:ObjectProperty;
+                     rdfs:domain hpc:Arrayjobid;
+                     rdfs:range hpc

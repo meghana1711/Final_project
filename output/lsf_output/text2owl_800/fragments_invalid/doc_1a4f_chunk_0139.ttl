@@ -1,0 +1,48 @@
+hpc:User a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:mapping a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:User .
+
+hpc:systemlevelmapping a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Mapping .
+
+hpc:userlevelmapping a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Mapping .
+
+hpc:Crossclusteruseraccountmapping a owl:Class .
+hpc:crossclusterjobsubmission a owl:ObjectProperty ;
+    rdfs:domain hpc:Crossclusteruseraccountmapping ;
+    rdfs:range hpc:Command .
+hpc:crossclusterjobmonitoring a owl:ObjectProperty ;
+    rdfs:domain hpc:Crossclusteruseraccountmapping ;
+    rdfs:range hpc:Command .
+
+hpc:Unixwindowsuseraccountmapping a owl:Class .
+
+hpc:User1 a hpc:User ;
+    hpc:Systemlevelmapping hpc:user2@cluster2 .
+hpc:User3 a hpc:User ;
+    hpc:Systemlevelmapping hpc:user6@cluster2 .
+hpc:User1 a hpc:User ;
+    hpc:Userlevelmapping hpc:user2@cluster2 .
+hpc:User2 a hpc:User ;
+    hpc:Userlevelmapping hpc:user1@cluster1 .
+hpc:User1 a hpc:User ;
+    hpc:Crossclusterjobsubmission hpc:lsfguest@cluster2 .
+hpc:User1 a hpc:User ;
+    hpc:CrossClusterJobMonitoring xsd:string .
+hpc:lsfguest a hpc:CrossClusterUserAccountMapping ;
+    hpc:Crossclusterjobmonitoring hpc:user1@cluster1 .
+
+hpc:bsub a hpc:Command ;
+    rdfs:comment "Submits the job with the user name and password of the user who entered the command." .
+hpc:bjobs a hpc:Command ;
+    rdfs:comment "Displays detailed information about jobs, including the user name of the user who submitted the job and the user name with which the job executed." .
+hpc:bhist a hpc:Command ;
+    rdfs:comment "Displays detailed historical information about jobs, including the user name of the user who submitted the job and the user name with which the job executed." .
+hpc:Unixwindowsuseraccountmapping a owl:Class ;
+    rdfs:comment "The UNIX and Windows user account mapping feature enables cross-platform job submission and execution in a mixed UNIX and Windows environment." .

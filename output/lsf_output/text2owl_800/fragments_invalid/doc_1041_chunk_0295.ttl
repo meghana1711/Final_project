@@ -1,0 +1,61 @@
+hpc:Candidatehost a owl:Class .
+hpc:Noncandidatehost a owl:Class .
+
+# PendingReason class and properties
+hpc:Pendingreason a owl:Class .
+hpc:hasPendingReasonMessage rdf:Property ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+hpc:hasNumberOfHosts rdf:Property ;
+    rdfs:domain hpc:Pendingreason ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasGlobalField rdf:Property ;
+    rdfs:domain hpc:Pendingreason ;
+    rdfs:range xsd:string .
+hpc:hasJobGroup rdf:Property ;
+    rdfs:domain hpc:Pendingreason ;
+    rdfs:range xsd:string .
+hpc:hasProjectName rdf:Property ;
+    rdfs:domain hpc:Pendingreason ;
+    rdfs:range xsd:string .
+hpc:hasClusterName rdf:Property ;
+    rdfs:domain hpc:Pendingreason ;
+    rdfs:range xsd:string .
+hpc:hasInvalidProjectName rdf:Property ;
+    rdfs:domain hpc:Pendingreason ;
+    rdfs:range xsd:string .
+hpc:hasDefaultProject rdf:Property ;
+    rdfs:domain hpc:Pendingreason ;
+    rdfs:range xsd:string .
+hpc:hasHostExclusionList rdf:Property ;
+    rdfs:domain hpc:Pendingreason ;
+    rdfs:range xsd:string .
+hpc:hasLocalCluster rdf:Property ;
+    rdfs:domain hpc:Pendingreason ;
+    rdfs:range xsd:string .
+hpc:hasGlobalLimitAmount rdf:Property ;
+    rdfs:domain hpc:Pendingreason ;
+    rdfs:range xsd:string .
+hpc:hasJobSlotLimit rdf:Property ;
+    rdfs:domain hpc:Pendingreason ;
+    rdfs:range xsd:string .
+
+# Host class properties
+hpc:Candidatehost rdfs:subClassOf hpc:Host .
+hpc:Noncandidatehost rdfs:subClassOf hpc:Host .
+hpc:Host
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf [ a owl:Class ;
+            rdfs:subClassOf owl:Thing ] ;
+        rdfs:subClassOf [ a owl:Class ;
+            rdfs:subClassOf [ a owl:Class ;
+                rdfs:subClassOf [ a owl:Class ;
+                    rdfs:subClassOf owl:NamedIndividual ] ;
+                rdfs:subClassOf [ a owl:Class ;
+                    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf [ a owl:Class ;
+                            rdfs:subClassOf [ a owl:Class ;
+                                rdfs:subClassOf [ a owl:Class ;
+                                    rdfs:subClassOf [ a owl:Class ;
+                                        rdfs:subClassOf [ a owl

@@ -1,0 +1,73 @@
+hpc:Hostgroup a owl:Class .
+hpc:Computeunit a owl:Class .
+hpc:Hostname a owl:Class .
+
+hpc:Hostgroup rdfs:subClassOf owl:Class .
+hpc:Computeunit rdfs:subClassOf owl:Class .
+hpc:Hostname rdfs:subClassOf owl:Class .
+
+hpc:hasHostGroup rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Hostgroup .
+
+hpc:hasComputeUnit rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range hpc:Computeunit .
+
+hpc:hasHostName rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range hpc:Hostname .
+
+hpc:hasHostName rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range hpc:Hostname .
+
+hpc:hasHostName rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup .
+
+hpc:hhist rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostgroup ;
+    rdfs:range rdfs:Resource .
+
+hpc:hhist rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range rdfs:Resource .
+
+hpc:hhist rdf:type owl:ObjectProperty ;
+    rdfs:domain rdfs:Resource ;
+    rdfs:range xsd:string .
+
+hpc:hhistTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Hhist ;
+    rdfs:range xsd:dateTime .
+
+hpc:hhistFile rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Hhist ;
+    rdfs:range xsd:string .
+
+hpc:hopen rdf:type owl:ObjectProperty ;
+    rdfs:domain rdfs:Resource ;
+    rdfs:range rdfs:Resource .
+
+hpc:hopenComment rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Hopen ;
+    rdfs:range xsd:string .
+
+hpc:hopenLockID rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Hopen ;
+    rdfs:range xsd:string .
+
+hpc:hopenLockID rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Hopen ;
+    rdfs:range xsd:string ;
+    rdfs:multipleValue rdfs:true .
+
+hpc:hpower rdf:type owl:ObjectProperty ;
+    rdfs:domain rdfs:Resource ;
+    rdfs:range xsd:string .
+
+hpc:hpowerAction rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Hpower ;
+    rdfs:range xsd:string .
+
+hpc:hpower

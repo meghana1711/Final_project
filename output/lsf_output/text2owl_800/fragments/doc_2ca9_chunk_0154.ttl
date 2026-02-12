@@ -1,0 +1,38 @@
+hpc:lsbSubSwpUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:integer .
+
+hpc:lsbSubMemUsage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:integer .
+
+hpc:loanPolicies a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcepool ;
+    rdfs:range rdf:List .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resourcepool .
+
+hpc:ignoredretainloanpolicy a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+
+hpc:ignoreddurationloanpolicy a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+
+hpc:Dockerintegration a owl:Class .
+
+hpc:runsindockercontainer a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Dockerintegration .
+
+hpc:Awsconfiguration a owl:Class .
+
+hpc:awsresourceprovider a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceconnector ;
+    rdfs:range hpc:Awsconfiguration .
+
+hpc:launchesinstancesfromaws a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceconnector ;
+    rdfs:range hpc:Awsconfiguration .

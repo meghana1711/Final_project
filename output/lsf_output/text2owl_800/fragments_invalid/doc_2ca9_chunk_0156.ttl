@@ -1,0 +1,27 @@
+hpc:Arrayjob a owl:Class .
+hpc:Jobreadyevent a owl:Class .
+hpc:Dependencycondition a owl:Class .
+hpc:Scheduler a owl:Class .
+hpc:optimizedrecoveryperformance a owl:ObjectProperty .
+hpc:improvedhandlingofsatisfieddependencyconditions a owl:ObjectProperty .
+hpc:improveddependencychecking a owl:ObjectProperty .
+hpc:improvedprocessingofevents a owl:ObjectProperty .
+hpc:optimizedeventhandlingperformance a owl:ObjectProperty .
+hpc:Intelknightslanding a owl:Class .
+hpc:Linuxx8664 a owl:Class .
+hpc:Ibmspectrumlsf a owl:Class .
+hpc:Ibmplatformcomputingrenamed a owl:Class .
+hpc:Ibmspectrumcomputing a owl:Class .
+hpc:Ibmknowledgecenter a owl:Class .
+hpc:renamedto a owl:ObjectProperty .
+hpc:newplatformsupport a owl:ObjectProperty .
+hpc:supports a owl:ObjectProperty .
+hpc:releasedate a owl:DatatypeProperty .
+hpc:Date xsd:date .
+hpc:Ibmspectrumlsfversion101 a owl:Class .
+hpc:whatisnew a owl:ObjectProperty .
+hpc:important a owl:ObjectProperty .
+hpc:ibmplatformlsfproduct a owl:DatatypeProperty .
+hpc:ProductName xsd:string .
+hpc:Ibmknowledgecenterdocumentation a owl:Class .
+hpc:doesnotreflectnewproductname a owl:ObjectProperty .

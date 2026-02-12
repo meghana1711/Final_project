@@ -1,0 +1,10 @@
+hpc:Clocksynchronization a owl:Class ;
+    rdfs:comment "Represents the need for synchronized clocks on a cluster." .
+
+hpc:Mungedecodeerror a owl:Class ;
+    rdfs:comment "Represents an error in Slurm log files due to expired credentials." ;
+    rdfs:subClassOf hpc:Clocksynchronization .
+
+hpc:Mungedecodeexpiredcredential a owl:Class ;
+    rdfs:comment "Specific type of MungeDecodeError, indicating expired credentials." ;
+    rdfs:subClassOf hpc:Mungedecodeerror .

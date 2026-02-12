@@ -1,0 +1,49 @@
+hpc:Slurmdaemon a owl:Class .
+hpc:Slurmctld a hpc:SlurmDaemon .
+hpc:Slurmdbd a hpc:SlurmDaemon .
+hpc:Slurmd a hpc:SlurmDaemon .
+
+hpc:communicationparameters a owl:ObjectProperty .
+
+hpc:Ipv4communication a owl:Class .
+hpc:Ipv6communication a owl:Class .
+hpc:Dualstackcommunication a owl:Class .
+
+hpc:Ipv4communication rdfs:subClassOf hpc:Communicationparameters .
+hpc:Ipv6communication rdfs:subClassOf hpc:Communicationparameters .
+hpc:Dualstackcommunication rdfs:subClassOf hpc:Communicationparameters .
+
+hpc:Ipv4communication rdfs:domain hpc:Slurmdaemon .
+hpc:Ipv6communication rdfs:domain hpc:Slurmdaemon .
+hpc:Dualstackcommunication rdfs:domain hpc:Slurmdaemon .
+
+hpc:hasipv6address a owl:ObjectProperty .
+hpc:hasipv4address a owl:ObjectProperty .
+
+hpc:Hasipv6address rdfs:domain hpc:Slurmdaemon .
+hpc:Hasipv4address rdfs:domain hpc:Slurmdaemon .
+
+hpc:Hasipv6address rdfs:range xsd:string .
+hpc:Hasipv4address rdfs:range xsd:string .
+
+hpc:Nodemapping a owl:Class .
+hpc:Singleipaddressmapping a owl:Class .
+
+hpc:Nodemapping rdfs:subClassOf hpc:Node .
+hpc:Singleipaddressmapping rdfs:subClassOf hpc:Nodemapping .
+
+hpc:getaddrinfo a owl:ObjectProperty .
+
+hpc:Getaddrinfo rdfs:domain hpc:Slurmctld .
+hpc:Getaddrinfo rdfs:range hpc:Singleipaddressmapping .
+
+hpc:Gaiconf a owl:Class .
+hpc:precedence a owl:ObjectProperty .
+
+hpc:Gaiconf rdfs:domain hpc:Slurmdaemon .
+hpc:Precedence rdfs:domain hpc:Gaiconf .
+hpc:Precedence rdfs:range xsd:string .
+
+hpc:debugnetworklogging a owl:ObjectProperty .
+
+hpc:Debugnetworklogging rdfs:domain hpc:Slurmctld .

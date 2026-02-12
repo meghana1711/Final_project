@@ -1,0 +1,48 @@
+hpc:Activity a owl:Class .
+hpc:correlate a owl:ObjectProperty ;
+    rdfs:domain hpc:Activity ;
+    rdfs:range rdfs:Resource .
+
+hpc:elapsedtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Activity ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:reads a owl:DatatypeProperty ;
+    rdfs:domain hpc:Activity ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:megabytesread a owl:DatatypeProperty ;
+    rdfs:domain hpc:Activity ;
+    rdfs:range xsd:nonNegativeDecimal .
+
+hpc:writes a owl:DatatypeProperty ;
+    rdfs:domain hpc:Activity ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:megabyteswritten a owl:DatatypeProperty ;
+    rdfs:domain hpc:Activity ;
+    rdfs:range xsd:nonNegativeDecimal .
+
+hpc:Network a owl:Class ;
+    rdfs:subClassOf hpc:Activity .
+
+hpc:acctgatherinterconnecttype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Network ;
+    rdfs:range xsd:string .
+
+hpc:appropriatelysetnetworkfrequency a owl:ObjectProperty ;
+    rdfs:domain hpc:Network ;
+    rdfs:range rdfs:Resource .
+
+hpc:Dateandtime a owl:Class ;
+    rdfs:subClassOf hpc:Datasample .
+
+hpc:Datasample a owl:Class .
+
+hpc:timeofday a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dateandtime ;
+    rdfs:range xsd:dateTime .
+
+hpc:elapsedsincebeginning a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dateandtime ;
+    rdfs:range xsd:nonNegativeInteger .

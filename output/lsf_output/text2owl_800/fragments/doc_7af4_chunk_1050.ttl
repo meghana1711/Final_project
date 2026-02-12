@@ -1,0 +1,13 @@
+hpc:lsbSubParmFile a owl:DatatypeProperty .
+hpc:LsbSubParmFile rdfs:domain hpc:Jobsubmission .
+hpc:LsbSubParmFile rdfs:range xsd:string .
+
+hpc:lsbSubResReq a owl:DatatypeProperty .
+hpc:LsbSubResReq rdfs:domain hpc:Jobsubmission .
+hpc:LsbSubResReq rdfs:range xsd:string .
+
+hpc:lsbSubUser a owl:DatatypeProperty .
+hpc:LsbSubUser rdfs:domain hpc:Jobsubmission .
+hpc:LsbSubUser rdfs:range xsd:string .
+
+hpc:Jobsubmission a owl:Class .

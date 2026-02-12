@@ -1,0 +1,50 @@
+hpc:Timeexpression a owl:Class .
+
+# If-else construct class
+hpc:Ifelseconstruct a owl:Class .
+hpc:Ifelseconstruct rdfs:subClassOf hpc:Timeexpression .
+
+# Time expression property for start time
+hpc:starttime a owl:DatatypeProperty .
+hpc:Starttime rdfs:domain hpc:Timeexpression .
+hpc:Starttime rdfs:range xsd:time .
+
+# Time expression property for end time
+hpc:endtime a owl:DatatypeProperty .
+hpc:Endtime rdfs:domain hpc:Timeexpression .
+hpc:Endtime rdfs:range xsd:time .
+
+# Configuration file class
+hpc:Configurationfile a owl:Class .
+
+# Configuration file property for associated time expressions
+hpc:associatedtimeexpressions a owl:ObjectProperty .
+hpc:Associatedtimeexpressions rdfs:domain hpc:Configurationfile .
+hpc:Associatedtimeexpressions rdfs:range rdf:List .
+
+# Configuration statement class
+hpc:Configurationstatement a owl:Class .
+
+# Host class
+hpc:Host a owl:Class .
+hpc:Host rdfs:subClassOf hpc:Configurationstatement .
+
+# Host property for host name
+hpc:hostname a owl:DatatypeProperty .
+hpc:Hostname rdfs:domain hpc:Host .
+hpc:Hostname rdfs:range xsd:string .
+
+# Host properties for resource allocation
+hpc:cpuresource a owl:DatatypeProperty .
+hpc:Cpuresource rdfs:domain hpc:Host .
+hpc:Cpuresource rdfs:range xsd:nonNegativeInteger .
+
+hpc:memoryresource a owl:DatatypeProperty .
+hpc:Memoryresource rdfs:domain hpc:Host .
+hpc:Memoryresource rdfs:range xsd:nonNegativeInteger .
+
+# Application class
+hpc:Application a owl:Class .
+hpc:Application rdfs:subClassOf hpc:Configurationstatement .
+
+# ... (Repeat the same pattern for lsb.params, lsb.queues, lsb.resources, lsb.users, lsf.licensescheduler)

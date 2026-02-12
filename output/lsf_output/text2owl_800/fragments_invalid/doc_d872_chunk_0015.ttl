@@ -1,0 +1,24 @@
+hpc:Loadschedthreshold a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Threshold for dispatching pending jobs." ;
+    rdfs:label "LoadSchedThreshold" ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal ;
+
+hpc:Loadstopthreshold a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Threshold for suspending running jobs." ;
+    rdfs:label "LoadStopThreshold" ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal ;
+
+hpc:Hostloadcondition a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Condition of a host's load." ;
+    rdfs:label "HostLoadCondition" ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal ;
+
+hpc:hasloadschedthreshold a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rd

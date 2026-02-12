@@ -1,0 +1,34 @@
+hpc:Job a owl:Class .
+hpc:User a owl:Class .
+hpc:Queue a owl:Class .
+hpc:jobname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:submittime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .
+hpc:status a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:queue a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queue .
+hpc:fromHost a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:JobName a owl:Class .
+hpc:submitTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobName ;
+    rdfs:range xsd:dateTime .
+hpc:jobId a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobName ;
+    rdfs:range xsd:integer .
+hpc:bswitch a owl:ObjectProperty .
+hpc:bmod a owl:ObjectProperty .
+
+hpc:Job_ID "5308" hpc:Job_Name "5308" hpc:Job_ID "5310" hpc:Job_Name "5311" hpc:Job_Name "5309" .
+hpc:Job_ID "5311" hpc:Job "5311" .
+hpc:Job "5308" hpc:Status "RUN" hpc:Queue "normal" hpc:From_Host "hostA" hpc:Job_Name "/s500" hpc:Submit_Time "2021-10-23T10:16" .
+hpc:Job "5311" hpc:Status "PEND" hpc:Queue "night" hpc:From_Host "hostA" hpc:Job_Name "/s200" hpc:Submit_Time "2021-10-23T18:17" .
+hpc:Job "5310" hpc:Status "PEND" hpc:Queue "night" hpc:From_Host "hostB" hpc:Job_Name "/myjob" hpc:Submit_Time "2021-10-23T13:45" .
+hpc:Job "5309" hpc:Status "PEND" hpc:Queue "night" hpc:From_Host "hostA" hpc:Job_Name "/s700" hpc:Submit_Time "2021-10-23T11:04" .

@@ -1,0 +1,62 @@
+hpc:Field a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a field in the blimits output." .
+
+hpc:Blimitoutput a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the blimits output configuration." .
+
+# Object Properties
+hpc:hasfield a owl:ObjectProperty ;
+    rdfs:domain hpc:Blimitoutput ;
+    rdfs:range hpc:Field ;
+    rdfs:comment "Relates a blimits output configuration to a field." .
+
+hpc:haswidth a owl:ObjectProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:positiveInteger ;
+    rdfs:comment "Relates a field to its width." .
+
+hpc:hasjustification a owl:ObjectProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Relates a field to its justification." .
+
+hpc:hasdelimiter a owl:ObjectProperty ;
+    rdfs:domain hpc:Blimitoutput ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Relates a blimits output configuration to its delimiter." .
+
+hpc:isdefault a owl:ObjectProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if a field is the default." .
+
+hpc:excludesoptions a owl:ObjectProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Relates a field to the options it excludes." .
+
+# Data Type Properties
+hpc:outputwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blimitoutput ;
+    rdfs:range xsd:positiveInteger ;
+    rdfs:comment "The width for the blimits output." .
+
+hpc:delimiter a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blimitoutput ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The delimiter for the blimits output." .
+
+# Instances
+hpc:Name a hpc:Field ;
+    hpc:hasName "NAME" ;
+    hpc:hasWidth "12" ;
+    hpc:isDefault true ;
+    hpc:excludesOptions (hpc:CLUSTER hpc:USERS hpc:QUEUES hpc:HOSTS hpc:PROJECTS hpc:LIC_PROJECTS hpc:APPS hpc:SLOTS hpc:MEM hpc:TMP hpc:SWP hpc:JOBS hpc:AnyUserDefinedResources) .
+
+hpc:Cluster a hpc:Field ;
+    hpc:hasName "CLUSTER" ;
+    hpc:hasWidth "12" ;
+    hpc:isDefault true ;
+    hpc:excludesOptions (hpc:NAME hpc:USERS hpc:QUEUES hpc:HOSTS hpc:

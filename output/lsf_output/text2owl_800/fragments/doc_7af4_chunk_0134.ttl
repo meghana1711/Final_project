@@ -1,0 +1,39 @@
+hpc:Executionclusterjobid a owl:Class .
+
+hpc:versionnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executionclusterjobid ;
+    rdfs:range xsd:integer .
+
+hpc:eventtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executionclusterjobid ;
+    rdfs:range xsd:dateTime .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executionclusterjobid ;
+    rdfs:range xsd:integer .
+
+hpc:idx a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executionclusterjobid ;
+    rdfs:range xsd:integer .
+
+hpc:jobrmtattr a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionclusterjobid ;
+    rdfs:range hpc:Remotejobattributes .
+
+hpc:Remotejobattributes a owl:Class .
+
+hpc:srccluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobrmtattr ;
+    rdfs:range xsd:string .
+
+hpc:srcjobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobrmtattr ;
+    rdfs:range xsd:integer .
+
+hpc:dstcluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobrmtattr ;
+    rdfs:range xsd:string .
+
+hpc:dstjobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobrmtattr ;
+    rdfs:range xsd:integer .

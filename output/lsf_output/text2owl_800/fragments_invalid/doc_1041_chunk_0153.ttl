@@ -1,0 +1,83 @@
+hpc:File a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Datagroup a owl:Class .
+
+hpc:hasdata a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Datagroup .
+
+hpc:hascache a owl:ObjectProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range hpc:Cache .
+
+hpc:hashash a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasrefjob a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range hpc:Job .
+
+hpc:hasxferjob a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasxferjobstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Xferjob .
+
+hpc:Cache a owl:Class .
+
+hpc:haspermission a owl:DatatypeProperty ;
+    rdfs:domain hpc:Folder .
+
+hpc:hashash a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hassize a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasstatusFile a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hasrefjobFile a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range hpc:Job .
+
+hpc:hasxferjobFile a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:Xferjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:hasstatusXferjob a owl:DatatypeProperty ;
+    rdfs:domain hpc:Xferjob .
+
+hpc:hasfinishtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Xferjob .
+
+hpc:Folder a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:haspermissionFolder a owl:DatatypeProperty ;
+    rdfs:domain hpc:Folder .
+
+hpc:hashashFolder a owl:DatatypeProperty ;
+    rdfs:domain hpc:Folder .
+
+hpc:hassizeFolder a owl:DatatypeProperty ;
+    rdfs:domain hpc:Folder .
+
+hpc:hasstatusFolder a owl:DatatypeProperty ;
+    rdfs:domain hpc:Folder .
+
+hpc:hasrefjobFolder a owl:DatatypeProperty ;
+    rdfs:domain hpc:Folder ;
+    rdfs:range hpc:Job .
+
+hpc:hasxferjobFolder a owl:DatatypeProperty ;
+    rdfs:domain hpc:Folder

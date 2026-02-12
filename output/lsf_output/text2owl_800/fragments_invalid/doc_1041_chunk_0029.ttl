@@ -1,0 +1,62 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClass [ a owl:Class ;
+                      owl:unionOf (hpc:OneTimeReservation hpc:RecurringReservation) ] .
+
+hpc:Onetimereservation a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subPropertyOf (hpc:hasReservationFields hpc:OneTimeFields) ] .
+
+hpc:Recurringreservation a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subPropertyOf (hpc:hasReservationFields hpc:RecurringFields) ] .
+
+hpc:onetimefields a owl:DatatypeProperty ;
+    rdfs:domain hpc:Onetimereservation ;
+    rdfs:range xsd:string .
+
+hpc:recurringfields a owl:DatatypeProperty ;
+    rdfs:domain hpc:Recurringreservation ;
+    rdfs:range xsd:string .
+
+hpc:Accountingjobinformation a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subPropertyOf (hpc:hasAffinityInfo hpc:AccountingJobAffinityInfo) ] .
+
+hpc:affinityinfo a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+
+hpc:Accountingjobaffinityinfo a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subPropertyOf (hpc:hasAffinityTable hpc:AffinityTable) ] .
+
+hpc:Affinitytable a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subPropertyOf (hpc:hasAffinityHeader hpc:AffinityHeader) ] .
+
+hpc:affinityheader a owl:DatatypeProperty ;
+    rdfs:domain hpc:Affinitytable ;
+    rdfs:range xsd:string .
+
+hpc:Cpuaffinity a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subPropertyOf (hpc:hasCpuBinding hpc:CpuBinding)
+                                         (hpc:hasMemoryBinding hpc:MemoryBinding)
+                                         (hpc:hasHost hpc:Host) ] .
+
+hpc:cpubinding a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cpuaffinity ;
+    rdfs:range xsd:string .
+
+hpc:memorybinding a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cpuaffinity ;
+    rdfs:range xsd:string .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ] .
+
+hpc:ProcessorUnitType a owl:Enum ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subPropertyOf (hpc:hasProcessorUnitType hpc:Numa)
+                                         (hpc:hasProcessorUnitType hpc:Socket)
+                                         (h

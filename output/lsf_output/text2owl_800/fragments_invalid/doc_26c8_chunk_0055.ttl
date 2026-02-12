@@ -1,0 +1,26 @@
+hpc:Templateid a owl:Class .
+hpc:attributes a owl:ObjectProperty .
+
+hpc:attributename a owl:DatatypeProperty .
+hpc:attributetype a owl:DatatypeProperty .
+hpc:attributevalue a owl:DatatypeProperty .
+
+hpc:Boolean a xsd:boolean .
+hpc:String a xsd:string .
+hpc:Numeric a xsd:decimal .
+
+hpc:gpuextend a owl:DatatypeProperty .
+hpc:ngpus a xsd:nonNegativeInteger .
+
+hpc:Templateid rdfs:subClassOf owl:Class .
+hpc:Attributes rdfs:domain hpc:Templateid ;
+                 rdfs:range rdf:List .
+hpc:Attributename rdfs:domain hpc:Attributes ;
+                  rdfs:range xsd:string .
+hpc:Attributetype rdfs:domain hpc:Attributes ;
+                  rdfs:range xsd:string .
+hpc:Attributevalue rdfs:domain hpc:Attributes ;
+                   rdfs:range ( xsd:boolean | xsd:decimal | xsd:string ) .
+hpc:Gpuextend rdfs:domain hpc:Templateid ;
+               rdfs:range ( xsd:string | hpc:Ngpus ) .
+hpc:Ngpus rdfs:range xsd:nonNegativeInteger .

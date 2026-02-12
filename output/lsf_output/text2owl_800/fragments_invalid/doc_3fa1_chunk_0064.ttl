@@ -1,0 +1,48 @@
+hpc:Serviceclass a owl:Class .
+hpc:hasgoals a owl:ObjectProperty .
+hpc:Name rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:string .
+hpc:Goals rdfs:domain hpc:Serviceclass ;
+    rdfs:range rdf:List .
+hpc:accessControl a owl:ObjectProperty .
+hpc:Queues rdfs:domain hpc:AccessControl ;
+    rdfs:range rdf:List .
+hpc:Users rdfs:domain hpc:AccessControl ;
+    rdfs:range rdf:List .
+hpc:FairshareGroups rdfs:domain hpc:AccessControl ;
+    rdfs:range rdf:List .
+hpc:Apps rdfs:domain hpc:AccessControl ;
+    rdfs:range rdf:List .
+hpc:Projects rdfs:domain hpc:AccessControl ;
+    rdfs:range rdf:List .
+hpc:LicProjects rdfs:domain hpc:AccessControl ;
+    rdfs:range rdf:List .
+
+hpc:Job a owl:Class .
+hpc:meetsaccesscontrolcriteria a owl:ObjectProperty .
+hpc:Queue rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:User rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:FairshareGroup rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:App rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:Project rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:LicProject rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Serviceclasswithaccesscontrol a owl:Class ;
+    rdfs:subClassOf hpc:Serviceclass .
+hpc:ServiceClassWithAccessControl rdf:type hpc:ServiceClassWithAccessControl .
+hpc:Serviceclasswithoutaccesscontrol a owl:Class ;
+    rdfs:subClassOf hpc:Serviceclass .
+hpc:ServiceClassWithoutAccessControl rdf:type hpc:ServiceClass .
+
+hpc:ServiceClassWithAccessControl meetsAccessControlCriteria rdf:type owl:FunctionalProperty ;
+    rdfs:domain hpc:Serviceclasswithaccesscontrol ;
+    rdfs:range xsd:boolean .
+hpc:ServiceClassWithoutAccessControl meetsAccessControlCriteria rdf:type owl:FunctionalProperty ;
+    rdfs:domain hpc:Serviceclasswithoutaccesscontrol ;
+    rdfs:range xsd:boolean .

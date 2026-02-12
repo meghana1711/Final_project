@@ -1,0 +1,61 @@
+hpc:useloginshell a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Command .
+
+hpc:noshell a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Command .
+
+hpc:Command a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:commandargument a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Commandargument .
+
+hpc:commandusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:lsfreleaseversion a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:diagnostic a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:commandexitstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsbgetalloc a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Api .
+
+hpc:lslaunch a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Command .
+
+hpc:blcollect a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Blcollect .
+
+hpc:Blcollectdaemon a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:collectorname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blcollectdaemon ;
+    rdfs:range xsd:string .
+
+hpc:hostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blcollectdaemon ;
+    rdfs:range xsd:string .
+
+hpc:licenseschedulerport a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blcollectdaemon ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lmstatinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blcollectdaemon ;
+    rdfs:range xsd:nonNegativeInteger .

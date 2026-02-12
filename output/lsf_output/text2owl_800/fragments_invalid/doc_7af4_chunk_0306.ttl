@@ -1,0 +1,26 @@
+hpc:jobacceptinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The time to wait after dispatching a job to a host before dispatching a second job to the same host." .
+
+hpc:JobAcceptIntervalUnit a owl:Enum ;
+    rdfs:subClassOf hpc:Jobacceptinterval ;
+    rdfs:comment "The unit of the JOB_ACCEPT_INTERVAL value. Can be 'S' for seconds or 'M' for minutes." ;
+    owl:oneOf ( xsd:string "S" ;
+                 xsd:string "s" ;
+                 xsd:string "M" ;
+                 xsd:string "m" ) .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A queue in lsb.queues." .
+
+hpc:queueexpiredtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The HIST_HOUR value for the EXPIRED_TIME parameter. Must be zero to use the EXPIRED_TIME parameter." .
+
+hpc:mbdsleeptime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The default value of MBD_SLEEP_TIME (60 seconds by default)." .

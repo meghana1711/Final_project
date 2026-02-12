@@ -1,0 +1,30 @@
+hpc:Memorylimit a owl:Class .
+hpc:Processlimit a owl:Class .
+hpc:Runtimelimit a owl:Class .
+hpc:Threadlimit a owl:Class .
+hpc:Stacksegmentsizelimit a owl:Class .
+hpc:Swapusagelimit a owl:Class .
+
+hpc:hasmemorylimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasprocesslimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasruntimelimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:duration .
+
+hpc:hasthreadlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasstacksegmentsizelimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Process ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasswapusagelimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .

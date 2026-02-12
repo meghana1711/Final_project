@@ -1,0 +1,41 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Sshconfigureduser a owl:Class .
+hpc:Sshconfiguredjob a owl:Class .
+hpc:Xwindowjob a owl:Class .
+hpc:Externallysubmittedjob a owl:Class .
+hpc:Interactivejob a owl:Class .
+hpc:lsfLsloginSsh a owl:DatatypeProperty .
+hpc:lsfMachdep a owl:DatatypeProperty .
+hpc:lsfManageFrequency a owl:DatatypeProperty .
+
+hpc:Sshconfigureduser rdfs:subClassOf [ a owl:Class ;
+                                         rdfs:subClassOf hpc:User ] .
+hpc:Sshconfiguredjob rdfs:subClassOf [ a owl:Class ;
+                                         rdfs:subClassOf hpc:Job ] .
+hpc:Xwindowjob rdfs:subClassOf hpc:Sshconfiguredjob .
+hpc:Externallysubmittedjob rdfs:subClassOf hpc:Sshconfiguredjob .
+hpc:Interactivejob rdfs:subClassOf hpc:Sshconfiguredjob .
+
+hpc:LsfLsloginSsh rdfs:domain hpc:User ;
+                      rdfs:range xsd:string .
+hpc:LsfMachdep rdfs:domain hpc:Lsf ;
+                 rdfs:range xsd:string .
+hpc:LsfManageFrequency rdfs:domain hpc:Lsf ;
+                          rdfs:range xsd:string .
+
+hpc:lsfBindir a owl:ObjectProperty ;
+              rdfs:domain hpc:LsfMachdep ;
+              rdfs:range xsd:string .
+hpc:lsfLibdir a owl:ObjectProperty ;
+             rdfs:domain hpc:LsfMachdep ;
+             rdfs:range xsd:string .
+hpc:lsfServerdir a owl:ObjectProperty ;
+             rdfs:domain hpc:LsfMachdep ;
+             rdfs:range xsd:string .
+hpc:xlsfUiddir a owl:ObjectProperty ;
+             rdfs:domain hpc:LsfMachdep ;
+             rdfs:range xsd:string .

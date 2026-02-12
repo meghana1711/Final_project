@@ -1,0 +1,20 @@
+hpc:Psusp a owl:Class .
+hpc:run a owl:ObjectProperty .
+hpc:ususp a owl:ObjectProperty .
+hpc:ssusp a owl:ObjectProperty .
+hpc:Unkwn a owl:Class .
+hpc:Total a owl:Class .
+
+hpc:Run rdfs:domain hpc:Psusp ;
+    rdfs:range hpc:Psusp .
+
+hpc:Ususp rdfs:domain hpc:Psusp ;
+    rdfs:range xsd:integer .
+
+hpc:Ssusp rdfs:domain hpc:Psusp ;
+    rdfs:range xsd:integer .
+
+hpc:Unkwn rdfs:subClassOf hpc:Psusp .
+hpc:total a owl:DatatypeProperty ;
+    rdfs:domain hpc:Psusp ;
+    rdfs:range xsd:integer .

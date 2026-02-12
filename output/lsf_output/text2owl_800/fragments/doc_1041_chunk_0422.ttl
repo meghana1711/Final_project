@@ -1,0 +1,37 @@
+hpc:errorfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:outputfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:cpulimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resourcelimit .
+
+hpc:memorylimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resourcelimit .
+
+hpc:rerunnable a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:runlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Runlimit .
+
+hpc:swaplimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Resourcelimit a owl:Class .
+
+hpc:Runlimit a owl:Class ;
+    rdfs:subClassOf hpc:Resourcelimit .
+
+hpc:Swaplimit a owl:Class ;
+    rdfs:subClassOf hpc:Resourcelimit .
+
+hpc:Job a owl:Class .

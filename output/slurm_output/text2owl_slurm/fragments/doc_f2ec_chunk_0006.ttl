@@ -1,0 +1,26 @@
+hpc:Slurmdaemon a owl:Class .
+hpc:supportedslurmversion a owl:ObjectProperty .
+
+hpc:Slurmdaemon rdfs:subClassOf [ a owl:Class ;
+                                   rdfs:label "SlurmDaemon with supported versions" ] .
+
+hpc:Supportedslurmversion rdfs:domain hpc:Slurmdaemon .
+hpc:Supportedslurmversion rdfs:range xsd:string .
+
+hpc:SlurmDaemon17_11x a hpc:SlurmDaemon .
+hpc:SlurmDBD a hpc:SlurmDaemon17_11x .
+hpc:slurmctld a hpc:SlurmDaemon17_11x .
+
+hpc:SlurmDaemon17_02x a hpc:SlurmDaemon .
+hpc:SlurmDaemon16_05x a hpc:SlurmDaemon .
+
+hpc:Slurmdaemon1711x rdfs:subClassOf [ a owl:Class ;
+                                          rdfs:label "SlurmDaemon version 17.11.x" ] .
+hpc:Slurmdaemon1702x rdfs:subClassOf [ a owl:Class ;
+                                          rdfs:label "SlurmDaemon version 17.02.x" ] .
+hpc:Slurmdaemon1605x rdfs:subClassOf [ a owl:Class ;
+                                          rdfs:label "SlurmDaemon version 16.05.x" ] .
+
+hpc:Slurmdaemon1711x hpc:supportedslurmversion "17.11.x" .
+hpc:Slurmdaemon1711x hpc:supportedslurmversion "17.02.x" .
+hpc:Slurmdaemon1711x hpc:supportedslurmversion "16.05.x" .

@@ -1,0 +1,19 @@
+hpc:Pamconfiguration a owl:Class.
+hpc:Pamfile a owl:Class.
+hpc:Pammodule a owl:Class.
+hpc:Pamstack a owl:Class.
+hpc:pamcontrolflag a owl:ObjectProperty.
+hpc:pamorder a owl:ObjectProperty.
+hpc:pamconflict a owl:ObjectProperty.
+hpc:pamincludedfile a owl:ObjectProperty.
+hpc:pamlastmodule a owl:ObjectProperty.
+hpc:pamrequiresslurmadopt a owl:DatatypeProperty.
+hpc:pamusestaskcgroup a owl:DatatypeProperty.
+hpc:pamusesproctrackcgroup a owl:DatatypeProperty.
+hpc:pamneedssystemddisabled a owl:DatatypeProperty.
+hpc:pamneedsprologscript a owl:DatatypeProperty.
+hpc:pamneedsepilogscript a owl:DatatypeProperty.
+hpc:pamneedsxdgvariables a owl:DatatypeProperty.
+hpc:pamshortcircuit a owl:DatatypeProperty.
+
+hpc:Pamfile rdfs:subClassOf owl:Thing

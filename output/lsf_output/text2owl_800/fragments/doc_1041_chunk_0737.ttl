@@ -1,0 +1,68 @@
+hpc:HostName a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain hpc:Switch .
+
+hpc:HostGroup a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain hpc:Switch .
+
+hpc:ComputeUnit a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain hpc:Switch .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain hpc:Switch .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain hpc:Switch .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain hpc:Switch .
+
+hpc:Group a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain hpc:Switch .
+
+hpc:DestinationQueue a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain hpc:Switch .
+
+hpc:jobId a owl:DatatypeProperty ;
+    rdfs:domain hpc:Switch ;
+    rdfs:range xsd:string .
+
+hpc:runlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queue ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+hpc:submittedBy a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:User ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+hpc:submittedByAll a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:User ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+hpc:submittedByGroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Group ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+hpc:WindowsUser a owl:Class ;
+    rdfs:subClassOf hpc:User ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:domain hpc:Switch .
+
+hpc:domainName a owl:DatatypeProperty ;
+    rdfs:domain hpc:WindowsUser ;
+    rdfs:range xsd:string .
+
+hpc:userName a owl:DatatypeProperty ;
+    rdfs:domain hpc:WindowsUser ;
+    rdfs:range xsd:string .

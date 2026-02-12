@@ -1,0 +1,68 @@
+hpc:Processorbinding a owl:Class .
+hpc:DefaultProcessorBinding a hpc:ProcessorBinding ;
+    rdfs:comment "No processor binding by default." .
+
+hpc:Multihostparalleljob a owl:Class ;
+    rdfs:subClassOf hpc:Paralleljob ;
+    rdfs:comment "Multi-host parallel job." .
+
+hpc:Resizablejob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Job that can have slots added or removed, triggering unbinding and rebinding." .
+
+hpc:jobunbinding a owl:ObjectProperty ;
+    rdfs:domain hpc:Resizablejob ;
+    rdfs:range hpc:Jobprocess ;
+    rdfs:comment "Unbinding of job processes." .
+
+hpc:jobrebinding a owl:ObjectProperty ;
+    rdfs:domain hpc:Resizablejob ;
+    rdfs:range hpc:Jobprocess ;
+    rdfs:comment "Rebinding of job processes." .
+
+hpc:RebindingGuarantee owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobrebinding ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Whether the processes can be bound to the same processors they were bound to previously." .
+
+hpc:jobresizing a owl:ObjectProperty ;
+    rdfs:domain hpc:Resizablejob ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Resizing of a job." .
+
+hpc:Singlehostparalleljob a owl:Class ;
+    rdfs:subClassOf hpc:Paralleljob ;
+    rdfs:comment "Parallel job running on a single host." .
+
+hpc:Sequentialjob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Job that runs sequentially." .
+
+hpc:jobbinding a owl:ObjectProperty ;
+    rdfs:domain hpc:Multihostparalleljob ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Binding of a multi-host parallel job." .
+
+hpc:lsbBindJob a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobbinding ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Environment variable for binding method." .
+
+hpc:lsbBindCpuList a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobbinding ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Environment variable for new CPU list." .
+
+hpc:blaunch a owl:ObjectProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range hpc:Command ;
+    rdfs:comment "Command for launching parallel and distributed applications within LSF." .
+
+hpc:Taskgeometry a owl:Class ;
+    rdfs:comment "Flexibility in how tasks are grouped for execution on system nodes." .
+
+hpc:Distributedapplication a owl:Class ;
+    rdfs:subClassOf hpc:Application ;
+    rdfs:comment "Distributed application." .
+
+hpc:MPI

@@ -1,0 +1,63 @@
+# Classes
+hpc:Interactivejob a owl:Class .
+
+# Object Properties
+hpc:sendsstandardoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:sendstoterminal a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:sendsmailoncompletion a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:usesinputfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:sendsoutputtofile a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:string .
+
+hpc:sendserrortofile a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:string .
+
+hpc:displaysoutputorerror a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:ischeckpointable a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:isrerunnable a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:usestty a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+
+# Datatype Properties
+hpc:hassynopsis a owl:DatatypeProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:string .
+
+hpc:hasconflictingoptions a owl:DatatypeProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:string .
+
+hpc:hasdescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:string .
+
+hpc:hascategories a owl:DatatypeProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:string .
+
+hpc:hasexample a owl:DatatypeProperty ;
+    rdfs:domain

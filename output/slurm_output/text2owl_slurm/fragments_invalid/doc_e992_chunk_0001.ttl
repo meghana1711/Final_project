@@ -1,0 +1,13 @@
+hpc:Plugin a owl:Class .
+hpc:plugintype a owl:DatatypeProperty .
+hpc:plugintype a owl:ObjectProperty .
+hpc:pluginname a owl:DatatypeProperty .
+hpc:pluginname a owl:ObjectProperty .
+hpc:pluginversion a owl:DatatypeProperty .
+hpc:pluginversion a owl:ObjectProperty .
+
+hpc:Plugintype rdfs:domain hpc:Plugin .
+hpc:Plugintype rdfs:range xsd:string .
+hpc:Pluginname rdfs:domain hpc:Plugin .
+hpc:Pluginname rdfs:range xsd:string .
+hpc:Pluginversion rdfs:domain hpc

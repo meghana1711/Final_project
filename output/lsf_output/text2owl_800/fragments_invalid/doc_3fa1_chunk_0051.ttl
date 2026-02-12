@@ -1,0 +1,59 @@
+hpc:Parentqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A queue that can have child queues." .
+
+hpc:Childqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A queue that is a child of another queue." .
+
+hpc:Haschildqueue hpc:objectproperty ;
+    rdfs:domain hpc:Parentqueue ;
+    rdfs:range hpc:Childqueue ;
+    rdfs:comment "Relates a parent queue to one of its child queues." .
+
+hpc:Belongstoparentqueue hpc:objectproperty ;
+    rdfs:domain hpc:Childqueue ;
+    rdfs:range hpc:Parentqueue ;
+    rdfs:comment "Relates a child queue to its parent queue." .
+
+hpc:Hasfairsharepolicy hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Relates a queue to its fair share policies." .
+
+hpc:Fairsharepolicy a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A policy that defines the fair share rules for a queue." .
+
+hpc:FAIRSHARE_QUEUES rdfs:DatatypeProperty ;
+    rdfs:domain hpc:Fairsharepolicy ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The queues to which the fair share policy applies." .
+
+hpc:crossQueueFairSharing rdfs:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A type of fair share policy that applies to multiple queues." .
+
+hpc:excludesFAIRSHARE_QUEUES rdfs:DatatypeProperty ;
+    rdfs:domain hpc:Crossqueuefairsharing ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The queues that are excluded from the cross-queue fair sharing." .
+
+hpc:cannotBeChildOf rdfs:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Relates a queue to the queues it cannot be a child of." .
+
+hpc:cannotBeParentOf rdfs:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Relates a queue to the queues it cannot be a parent of." .
+
+hpc:cannotBeUsedWith rdfs:ObjectProperty ;
+    rdfs:domain hpc:Crossqueuefairsharing ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Relates a cross-queue fair sharing to the things it cannot be used with." .
+
+hpc:cannotBeUsedWith_hostPartitionFairSharing rdfs:ObjectProperty ;

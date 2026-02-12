@@ -1,0 +1,28 @@
+hpc:Jobsubmissionwithlsfextension a owl:Class .
+
+# JSDL File used for strict submission
+hpc:Jsdlfile a owl:Class ;
+    rdfs:subClassOf hpc:Jobsubmissionwithlsfextension ;
+    rdfs:comment "A JSDL file used for strict submission." .
+
+# Submits a job using a JSDL file that only uses the standard JSDL elements and POSIX extensions to specify job submission options.
+hpc:jsdlStrict a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmissionwithlsfextension ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Submits a job using a JSDL file that only uses the standard JSDL elements and POSIX extensions." .
+
+# Conflicting options
+hpc:Conflictingoptions a owl:Class ;
+    rdfs:subClassOf hpc:Jobsubmissionwithlsfextension ;
+    rdfs:comment "Do not use with the following options: -json, -jsdl, -yaml." .
+
+# The parameters that are specified in the JSDL file override the job script.
+hpc:jsdlfileoverridesjobscript a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmissionwithlsfextension ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "The parameters that are specified in the JSDL file override the job script." .
+
+# The JSDL schema, the POSIX extension, and the LSF extension are located in the LSF_LIBDIR directory.
+hpc:Jsdlschema a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "The JSDL schema (jsdl.xsd), the POSIX extension (jsdl-posix.xsd), and the LSF extension (jsdl-lsf.xsd) are located in the LSF_LIBDIR directory." .

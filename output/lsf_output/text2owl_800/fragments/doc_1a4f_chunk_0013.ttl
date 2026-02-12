@@ -1,0 +1,45 @@
+hpc:Processor a owl:Class .
+hpc:Core a owl:Class .
+hpc:Thread a owl:Class .
+hpc:Physicalprocessor a owl:Class .
+hpc:Virtualprocessor a owl:Class .
+hpc:Detectedprocessor a owl:Class .
+hpc:Unrecognizedprocessor a owl:Class .
+
+hpc:Hastype rdfs:domain hpc:Physicalprocessor ;
+    rdfs:range xsd:string .
+
+hpc:Isvirtual rdfs:domain hpc:Processor ;
+    rdfs:range xsd:boolean .
+
+hpc:Hascorecount rdfs:domain hpc:Physicalprocessor ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Hasthreadcount rdfs:domain hpc:Core ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Isdetected rdfs:domain hpc:Detectedprocessor ;
+    rdfs:range xsd:boolean .
+
+hpc:Isunrecognized rdfs:domain hpc:Unrecognizedprocessor ;
+    rdfs:range xsd:boolean .
+
+hpc:Isoverridden rdfs:domain hpc:Processor ;
+    rdfs:range hpc:Host .
+
+hpc:Issupportedarchitecture rdfs:domain hpc:Processor ;
+    rdfs:range xsd:string .
+
+hpc:Usesdefaults rdfs:domain hpc:Processor ;
+    rdfs:range xsd:boolean .
+
+hpc:Isrunninginvirtualenvironment rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .
+
+hpc:Isrecognizedbyos rdfs:domain hpc:Processor ;
+    rdfs:range xsd:boolean .
+
+hpc:Usesspecificdetectionmethod rdfs:domain hpc:Processor ;
+    rdfs:range xsd:string .
+
+hpc:AIXProcessor a hpc:DetectedProcessor .

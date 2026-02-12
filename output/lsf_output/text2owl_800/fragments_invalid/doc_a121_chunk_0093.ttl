@@ -1,0 +1,19 @@
+hpc:Graceperiod a owl:Class .
+hpc:Mem hpc:Graceperiod rdfs:subClassOf xsd:string .
+hpc:Jpriority hpc:Graceperiod rdfs:subClassOf xsd:string .
+hpc:Qpriority hpc:Graceperiod rdfs:subClassOf xsd:string .
+hpc:Rsrc hpc:Graceperiod rdfs:subClassOf xsd:string .
+
+hpc:hasgraceperiod a owl:ObjectProperty .
+hpc:Hasgraceperiod rdfs:domain hpc:Factor ;
+                      rdfs:range hpc:Graceperiod .
+
+hpc:Factor a owl:Class .
+hpc:MEM a hpc:Factor ;
+         hpc:hasGracePeriod "10h"^^xsd:string .
+hpc:JPRIORITY a hpc:Factor ;
+              hpc:hasGracePeriod "10m"^^xsd:string .
+hpc:QPRIORITY a hpc:Factor ;
+              hpc:hasGracePeriod "10s"^^xsd:string .
+hpc:RSRC a hpc:Factor ;
+          hpc:hasGracePeriod "10"^^xsd:string .

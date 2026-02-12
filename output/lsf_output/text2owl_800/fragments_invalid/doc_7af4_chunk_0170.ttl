@@ -1,0 +1,29 @@
+hpc:notifyid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Notification ;
+    rdfs:range xsd:integer .
+
+hpc:resizenotifycmdpid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resizenotificationcommand ;
+    rdfs:range xsd:integer .
+
+hpc:resizenotifycmdpgid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resizenotificationcommand ;
+    rdfs:range xsd:integer .
+
+hpc:status a owl:DatatypeProperty ;
+    rdfs:domain hpc:Notification ;
+    rdfs:range xsd:integer .
+
+hpc:Jobresizenotifydone a owl:Class .
+
+hpc:versionnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobresizenotifydone ;
+    rdfs:range xsd:string .
+
+hpc:eventtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobresizenotifydone ;
+    rdfs:range xsd:integer .
+
+hpc:Notification a owl:Class .
+hpc:Resizenotificationcommand a owl:Class .
+hpc:Jobresizenotifydone a rdfs:subClassOf hpc:Notification .

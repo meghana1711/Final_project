@@ -1,0 +1,66 @@
+hpc:Bjobsfieldconfiguration a owl:Class .
+
+hpc:hasfield a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobsfieldconfiguration ;
+    rdfs:range hpc:Bjobsfield .
+
+hpc:fieldorder a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobsfieldconfiguration .
+
+hpc:fieldwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobsfield .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:fieldjustification a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobsfield .
+    rdfs:range xsd:string .
+
+hpc:fieldprefix a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobsfield .
+    rdfs:range xsd:string .
+
+hpc:fieldalias a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobsfield .
+    rdfs:range xsd:string .
+
+hpc:allFields a owl:NamedIndividual ;
+    hpc:Hasfield hpc:all .
+
+hpc:unlimitedWidth a owl:NamedIndividual ;
+    hpc:fieldWidth xsd:unbounded .
+
+hpc:leftJustification a owl:NamedIndividual ;
+    hpc:fieldJustification "left" .
+
+hpc:rightJustification a owl:NamedIndividual ;
+    hpc:fieldJustification "right" .
+
+hpc:Truncatedfield a owl:Class .
+hpc:truncatedfield a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobsfield .
+    rdfs:range hpc:Bjobsfield .
+
+hpc:recommendedWidth a owl:NamedIndividual ;
+    hpc:fieldWidth xsd:unbounded .
+
+hpc:maximumWidth a owl:NamedIndividual .
+hpc:maximumwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobsfield .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Truncatedfieldtype a owl:Class .
+hpc:Truncatedfieldtype rdfs:subClassOf hpc:Bjobsfield .
+
+hpc:JobsNameField a hpc:BjobsField .
+hpc:JobsNameField a owl:NamedIndividual .
+hpc:Jobsnamefield hpc:hasfield "JOB_NAME" .
+hpc:Jobsnamefield hpc:truncatedfieldtype true .
+
+hpc:Fieldwithunitprefix a owl:Class .
+hpc:Fieldwithunitprefix rdfs:subClassOf hpc:Bjobsfield .
+hpc:Fieldwithunitprefix hpc:fieldprefix xsd:string .
+hpc:Fieldwithunitprefix hpc:fieldprefix "mem" .
+hpc:Fieldwithunitprefix hpc:fieldprefix "max_mem" .
+hpc:Fieldwithunitprefix hpc:fieldprefix "avg_mem" .
+hpc:Fieldwithunitprefix hpc:fieldprefix "memlimit" .
+hpc:FieldWithUnitPrefix hpc:

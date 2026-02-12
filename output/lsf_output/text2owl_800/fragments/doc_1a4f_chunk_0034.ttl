@@ -1,0 +1,46 @@
+hpc:Lsf a owl:Class .
+hpc:LSF_Admin rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Useraccount .
+
+hpc:Elim rdf:type owl:Class .
+hpc:Elim_Executable rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Elim ;
+    rdfs:range xsd:string .
+
+hpc:Host rdf:type owl:Class .
+hpc:Cluster rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:Host_Based_Resource rdf:type owl:Class .
+hpc:Shared_Resource rdf:type owl:Class .
+
+hpc:Dynamic_Resource rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+hpc:Resource rdf:type owl:Class .
+
+hpc:Job_Scheduling rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Job .
+
+hpc:Host_Selection rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Host .
+
+hpc:Site_Specific_Executable rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Elim ;
+    rdfs:range xsd:string .
+
+hpc:Site_Specific_Load_Index rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Elim ;
+    rdfs:range hpc:LoadIndex .
+
+hpc:Load_Index rdf:type owl:Class .
+hpc:Load_Index_Value rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:LoadIndex ;
+    rdfs:range xsd:float .
+
+hpc:External_Resource rdf:type owl:Class ;
+    rdfs:subClassOf hpc:DynamicResource .
+hpc:LSF_Shared rdf:type owl:Class ;
+    rdfs:subClassOf hpc:SharedResource .

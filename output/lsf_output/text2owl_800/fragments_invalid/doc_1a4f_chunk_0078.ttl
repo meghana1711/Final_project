@@ -1,0 +1,27 @@
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A queue in the HPC system." .
+
+hpc:Queuedefinition a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A definition of a queue in the HPC system." .
+
+hpc:hasQueueDefinition owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Queuedefinition ;
+    rdfs:comment "The definition of a queue." .
+
+hpc:queuename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queuedefinition ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the queue." .
+
+hpc:priority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queuedefinition ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The priority of the queue." .
+
+hpc:runwindow a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queuedefinition ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The time window(s) for the queue." .

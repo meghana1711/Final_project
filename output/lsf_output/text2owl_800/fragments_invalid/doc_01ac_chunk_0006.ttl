@@ -1,0 +1,55 @@
+hpc:Datamanager a owl:Class .
+hpc:User a owl:Class .
+hpc:Job a owl:Class .
+hpc:File a owl:Class .
+hpc:Stagingarea a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Datasource a owl:Class .
+hpc:Lsfmanagementhost a owl:Class .
+hpc:Datamanagerhost a owl:Class .
+hpc:Iohost a owl:Class .
+hpc:Executionhost a owl:Class .
+
+hpc:transfers a owl:ObjectProperty .
+hpc:associates a owl:ObjectProperty .
+hpc:reports a owl:ObjectProperty .
+hpc:queries a owl:ObjectProperty .
+hpc:stages a owl:ObjectProperty .
+hpc:notifies a owl:ObjectProperty .
+hpc:retrieves a owl:ObjectProperty .
+hpc:consults a owl:ObjectProperty .
+hpc:stores a owl:ObjectProperty .
+hpc:submits a owl:ObjectProperty .
+hpc:requires a owl:ObjectProperty .
+
+hpc:Name rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+hpc:Jobid rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:Clusterid rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string .
+hpc:Datasourceid rdfs:domain hpc:Datasource ;
+    rdfs:range xsd:string .
+hpc:Hostid rdfs:domain hpc:Lsfmanagementhost, hpc:Datamanagerhost, hpc:Iohost, hpc:Executionhost ;
+    rdfs:range xsd:string .
+hpc:Path rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+
+hpc:Singleclusterimplementation a owl:Class ;
+    rdfs:subClassOf hpc:Datamanager .
+hpc:Multiclustercapabilityimplementation a owl:Class ;
+    rdfs:subClassOf hpc:Datamanager .
+
+hpc:Singleclusterimplementation hpc:Hasdatasource rdfs:domain hpc:Singleclusterimplementation ;
+    rdfs:range hpc:Datasource .
+hpc:Singleclusterimplementation hpc:Haslsfmanagementhost rdfs:domain hpc:Singleclusterimplementation ;
+    rdfs:range hpc:Lsfmanagementhost .
+hpc:Singleclusterimplementation hpc:Hasdatamanagerhost rdfs:domain hpc:Singleclusterimplementation ;
+    rdfs:range hpc:Datamanagerhost .
+hpc:Singleclusterimplementation hpc:Hasiohost rdfs:domain hpc:Singleclusterimplementation ;
+    rdfs:range hpc:Iohost .
+hpc:Singleclusterimplementation hpc:Hasexecutionhost rdfs:domain hpc:Singleclusterimplementation ;
+    rdfs:range hpc:Executionhost .
+
+hpc:Multiclustercapabilityimplementation hpc:Hasqueueconfiguration rdfs:domain hpc:Multiclustercapabilityimplementation ;
+    rdfs:range hpc:Queueconfiguration .

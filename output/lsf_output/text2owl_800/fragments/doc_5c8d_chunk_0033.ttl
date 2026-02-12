@@ -1,0 +1,6 @@
+hpc:csmReqValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:hasSMTValue .
+
+hpc:Lsbqueuesfile a owl:Class .

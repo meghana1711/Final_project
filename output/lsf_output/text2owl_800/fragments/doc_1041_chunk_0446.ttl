@@ -1,0 +1,63 @@
+hpc:Queuename             a owl:Class ;
+                          rdfs:subClassOf owl:Class ;
+                          rdfs:comment "Represents the name of a queue." .
+
+hpc:Description           a owl:Class ;
+                          rdfs:subClassOf owl:Class ;
+                          rdfs:comment "Represents the description of a queue." .
+
+hpc:Priority              a owl:Class ;
+                          rdfs:subClassOf owl:Class ;
+                          rdfs:comment "Represents the priority of a queue." .
+
+hpc:Status                a owl:Class ;
+                          rdfs:subClassOf owl:Class ;
+                          rdfs:comment "Represents the status of a queue." .
+
+hpc:Max                   a owl:Class ;
+                          rdfs:subClassOf owl:Class ;
+                          rdfs:comment "Represents the maximum value of a queue." .
+
+# Datatype Properties
+hpc:outputwidth           a owl:DatatypeProperty ;
+                          rdfs:domain hpc:Queuename ;
+                          rdfs:range xsd:nonNegativeInteger ;
+                          rdfs:comment "Represents the output width for a queue name." .
+
+hpc:justification         a owl:DatatypeProperty ;
+                          rdfs:domain hpc:Description, hpc:Priority, hpc:Status, hpc:Max ;
+                          rdfs:range xsd:string ;
+                          rdfs:comment "Represents the justification for the output alignment." .
+
+hpc:alignment            a owl:DatatypeProperty ;
+                          rdfs:domain hpc:Description, hpc:Priority, hpc:Status, hpc:Max ;
+                          rdfs:range xsd:string ;
+                          rdfs:comment "Represents the alignment for the output." .
+
+hpc:delimiter             a owl:DatatypeProperty ;
+                          rdfs:domain hpc:Queuename ;
+                          rdfs:range xsd:string ;
+                          rdfs:comment "Represents the delimiter for the output." .
+
+# Object Properties
+hpc:hasfield              a owl:ObjectProperty ;
+                          rdfs:domain hpc:Queuename ;
+                          rdfs:range hpc:Field ;
+                          rdfs:comment "Represents a field in the output for a queue." .
+
+# Classes for Output Fields
+hpc:Field                 a owl:Class ;
+                          rdfs:subClassOf owl:Class ;
+                          rdfs:comment "Represents a field in the output." .
+
+hpc:Queuenamefield        a owl:Class ;
+                          rdfs:subClassOf hpc:Field ;
+                          rdfs:comment "Represents the queue name field in the output." .
+
+hpc:Descriptionfield      a owl:Class ;
+                          rdfs:subClassOf hpc:Field ;
+                          rdfs:comment "Represents the description field in the output." .
+
+hpc:Priorityfield         a owl:Class ;
+                          rdfs:subClassOf hpc:Field ;
+                          rdfs:comment "Represents the priority field in the output." .

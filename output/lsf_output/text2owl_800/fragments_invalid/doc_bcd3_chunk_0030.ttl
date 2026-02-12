@@ -1,0 +1,25 @@
+hpc:Hostname a owl:Class.
+hpc:Type a owl:Class.
+hpc:Model a owl:Class.
+hpc:Cpufrequency a owl:Class.
+hpc:Numberofcpus a owl:Class.
+hpc:Maxmemory a owl:Class.
+hpc:Maxswap a owl:Class.
+hpc:Server a owl:Class.
+hpc:Resources a owl:Class.
+hpc:Numberofdisks a owl:Class.
+hpc:Maxtmp a owl:Class.
+hpc:Resourceexpiration a owl:Class.
+hpc:Numberofprocesses a owl:Class.
+hpc:Numberofcores a owl:Class.
+hpc:Numberofthreads a owl:Class.
+hpc:Runwindows a owl:Class.
+
+hpc:hostname a owl:DatatypeProperty;
+    rdfs:domain hpc:Hostname;
+    rdfs:range xsd:string.
+hpc:type a owl:DatatypeProperty;
+    rdfs:domain hpc:Type;
+    rdfs:range xsd:string.
+hpc:model a owl:DatatypeProperty;
+    rdfs:domain hpc

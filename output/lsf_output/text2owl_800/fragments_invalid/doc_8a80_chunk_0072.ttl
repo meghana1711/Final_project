@@ -1,0 +1,62 @@
+hpc:Feature a owl:Class .
+hpc:Configurationstatement a owl:Class .
+hpc:Distributionpolicy a owl:Class .
+hpc:Timerange a owl:Class .
+hpc:Platform a owl:Class .
+hpc:Platformpartition a owl:Class .
+
+# Object Properties
+hpc:hasname a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+hpc:hasdistributionpolicy a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range hpc:Distributionpolicy .
+hpc:hastimerange a owl:ObjectProperty ;
+    rdfs:domain hpc:Distributionpolicy ;
+    rdfs:range hpc:Timerange .
+hpc:usesplatform a owl:ObjectProperty ;
+    rdfs:domain hpc:Distributionpolicy ;
+    rdfs:range hpc:Platform .
+hpc:haspartition a owl:ObjectProperty ;
+    rdfs:domain hpc:Distributionpolicy ;
+    rdfs:range hpc:Platformpartition .
+
+# Datatype Properties
+hpc:hasconfigurationstatements a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range rdf:Bag .
+
+# Class and Property Restrictions
+hpc:Feature a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty hpc:hasName ;
+        owl:hasValue ?name ;
+        owl:allValuesFrom xsd:string ] .
+
+hpc:Distributionpolicy a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty hpc:hasTimeRange ;
+        owl:hasValue ?timeRange ;
+        owl:allValuesFrom hpc:TimeRange ] .
+
+hpc:Timerange a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty rdf:nil ;
+        owl:hasValue ?timeExpression ;
+        owl:allValuesFrom xsd:string ] .
+
+hpc:Platform a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty rdf:nil ;
+        owl:hasValue ?platformName ;
+        owl:allValuesFrom xsd:string ] .
+
+hpc:Platformpartition a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty hpc:usesPlatform ;
+        owl:hasValue ?platform ;
+        owl:allValuesFrom hpc:Platform ;
+        owl:onProperty hpc:hasPartition ;
+        owl:hasValue ?partition ;
+        owl:allValuesFrom xsd:nonNegativeInteger ] .

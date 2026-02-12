@@ -1,0 +1,19 @@
+hpc:ssh a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionhost ;
+    rdfs:range rdf:Resource .
+
+hpc:domainname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executionhost ;
+    rdfs:range xsd:string .
+
+hpc:inputfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource .
+
+hpc:Job a owl:Class .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Inputfile ;
+    rdfs:range xsd:string .
+
+hpc:Executionhost a owl:Class .

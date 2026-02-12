@@ -1,0 +1,32 @@
+hpc:maxTotalTimePreempt a owl:DatatypeProperty .
+hpc:lsb_queues rdfs:seeAlso <http://example.org/lsb_queues> .
+
+hpc:shareInfoFor a owl:ObjectProperty .
+hpc:UserGroup rdfs:domain hpc:ShareInfoFor ;
+    rdfs:range rdf:Resource .
+
+hpc:shares a owl:DatatypeProperty .
+hpc:Shares rdfs:domain hpc:ShareInfoFor ;
+    rdfs:range xsd:integer .
+
+hpc:priority a owl:DatatypeProperty .
+hpc:Priority rdfs:domain ?QueueMember ;
+    rdfs:range xsd:decimal .
+
+hpc:QueueMember rdfs:subClassOf rdf:Resource .
+
+hpc:QUEUE_MEMBER rdf:type hpc:QueueMember ;
+    hpc:SHARE_INFO_FOR ?Queue ;
+    hpc:STARTED xsd:integer ;
+    hpc:RESERVED xsd:integer ;
+    hpc:CPU_TIME xsd:decimal ;
+    hpc:RUN_TIME xsd:decimal .
+
+hpc:Queue rdfs:subClassOf rdf:Resource .
+hpc:QUEUE rdf:type hpc:Queue ;
+    hpc:MAX_TOTAL_TIME_PREEMPT xsd:decimal .
+
+hpc:Started rdfs:domain hpc:QueueMember .
+hpc:Reserved rdfs:domain hpc:QueueMember .
+hpc:CpuTime rdfs:domain hpc:QueueMember .
+hpc:RunTime rdfs:domain hpc:QueueMember .

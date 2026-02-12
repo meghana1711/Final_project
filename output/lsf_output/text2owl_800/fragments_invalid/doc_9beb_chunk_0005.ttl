@@ -1,0 +1,75 @@
+hpc:Task a owl:Class ;
+    rdfs:subClassOf hpc:Execution ;
+    rdfs:comment "Represents a task in the system." .
+
+hpc:Execution a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents an execution of a task." .
+
+hpc:submittime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:dateTime .
+
+hpc:starttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:dateTime .
+
+hpc:endtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:dateTime .
+
+hpc:exitcode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:exitreason a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:string .
+
+hpc:exechosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:first hpc:Host ;
+    rdfs:range rdf:rest hpc:Exechost .
+
+hpc:exechome a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:string .
+
+hpc:execdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:string .
+
+hpc:command a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:string .
+
+hpc:action a owl:DatatypeProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range xsd:string .
+
+hpc:taskid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:submittimetask a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:Execution ;
+    rdfs:inverseOf hpc:submittedTask .
+
+hpc:hasdispatcherror a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:Execution ;
+    rdfs:inverseOf hpc:taskWithDispatchError .
+
+hpc:haspreexec a owl:ObjectProperty ;
+    rdfs:domain hpc:Execution ;
+    rdfs:range hpc:Execution .
+
+hpc:Taskerror a owl:Class ;
+    rdfs:subClassOf hpc:Execution ;
+    rdfs:comment "Represents an error during task execution." .
+
+hpc:Dispatcherror a owl:Class ;
+    rdfs:subClassOf hpc:Taskerror ;
+    rdfs:comment "Represents a dispatch error during task execution." .

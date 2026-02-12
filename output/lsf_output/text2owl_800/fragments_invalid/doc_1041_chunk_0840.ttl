@@ -1,0 +1,65 @@
+hpc:Version a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Prints the version number of make and exits." .
+
+hpc:printdirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Make ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Prints the current directory." .
+
+hpc:noprintdirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Make ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Turns off -w, even if it was turned on implicitly." .
+
+hpc:whatiffile a owl:ObjectProperty ;
+    rdfs:domain hpc:Make ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Always considers the file to be new. Do not change modification time." .
+
+hpc:newfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Make ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Always considers the file to be new. Do not change modification time." .
+
+hpc:assumenewfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Make ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Always considers the file to be new. Do not change modification time." .
+
+hpc:WarnUndeﬁnedVariables a owl:ObjectProperty ;
+    rdfs:domain hpc:Make ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Warns when an undeﬁned variable is referenced." .
+
+hpc:noblockshellmode a owl:ObjectProperty ;
+    rdfs:domain hpc:Make ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Runs child shell tasks without blocking mode." .
+
+hpc:Target a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Specifies targets to make." .
+
+hpc:outputwithy a owl:ObjectProperty ;
+    rdfs:domain hpc:Make ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Outputs with the -y option" .
+
+hpc:totalruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Make ;
+    rdfs:range xsd:time ;
+    rdfs:comment "Total lsmake job run time, in the format hh:mm:ss." .
+
+hpc:mostconcurrenttasks a owl:DatatypeProperty ;
+    rdfs:domain hpc:Make ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Maximum number of tasks that ran simultaneously." .
+
+hpc:retriesallowed a owl:DatatypeProperty ;
+    rdfs:domain hpc:Make ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Maximum number of retries allowed. Set by the lsmake -x option." .
+
+hpc:Hostsandnumberofslotsallocated a owl:Class ;
+    rdfs

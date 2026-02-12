@@ -1,0 +1,53 @@
+hpc:Blanchapplication a owl:Class .
+
+hpc:lsfResAliveTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blanchapplication ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsfDjobTaskRegWaitTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blanchapplication ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsbFanoutTimeoutPerLayer a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blanchapplication ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsbTaskGeometry a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blanchapplication ;
+    rdfs:range xsd:string .
+
+hpc:IbmSpectrumLsfConfiguration a owl:Class .
+
+hpc:SgiMpiSupport a owl:Class .
+
+hpc:lsfVplugin a owl:ObjectProperty ;
+    rdfs:domain hpc:SgiMpiSupport ;
+    rdfs:range xsd:string .
+
+hpc:mpiLibraryFilePermissionMode a owl:DatatypeProperty ;
+    rdfs:domain hpc:SgiMpiSupport ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:MultihostMpiApplications a owl:Class .
+
+hpc:rshPasswordPromptBetweenHosts a owl:ObjectProperty ;
+    rdfs:domain hpc:MultihostMpiApplications ;
+    rdfs:range xsd:boolean .
+
+hpc:remoteHostDefinition a owl:DatatypeProperty ;
+    rdfs:domain hpc:MultihostMpiApplications ;
+    rdfs:range xsd:string .
+
+hpc:RunningJobs a owl:Class .
+
+hpc:mpirun a owl:ObjectProperty ;
+    rdfs:domain hpc:RunningJobs ;
+    rdfs:range rdf:Resource .
+
+hpc:bsub a owl:ObjectProperty ;
+    rdfs:domain hpc:RunningJobs ;
+    rdfs:range rdf:Resource .
+
+hpc:lsfSelectHost a owl:ObjectProperty ;
+    rdfs:domain hpc:RunningJobs ;
+    rdfs:range xsd:boolean .

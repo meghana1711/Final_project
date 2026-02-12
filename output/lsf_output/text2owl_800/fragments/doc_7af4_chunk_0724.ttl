@@ -1,0 +1,17 @@
+hpc:Windows a owl:Class .
+hpc:lsbMailprog a owl:ObjectProperty .
+hpc:Default a owl:Class .
+hpc:Unix a hpc:Default ;
+    rdfs:comment "Unix: /usr/lib/sendmail" .
+hpc:Windows a hpc:Default ;
+    rdfs:comment "Windows: empty" .
+hpc:Examples a owl:Class .
+hpc:Syntax a owl:Class .
+hpc:lsbMailsender a owl:DatatypeProperty ;
+    rdfs:domain hpc:Windows ;
+    rdfs:range xsd:string .
+hpc:Description a owl:Class .
+hpc:seealso a owl:ObjectProperty .
+hpc:lsbMailserver a owl:ObjectProperty ;
+    rdfs:domain hpc:Windows ;
+    rdfs:range xsd:string .

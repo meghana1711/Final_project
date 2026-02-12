@@ -1,0 +1,47 @@
+hpc:Host a owl:Class .
+hpc:HostName rdfs:domain hpc:Host .
+hpc:HostName rdfs:range xsd:string .
+
+hpc:HostGroup a owl:Class .
+hpc:HostGroup rdfs:subClassOf hpc:Host .
+hpc:HostGroupName rdfs:domain hpc:HostGroup .
+hpc:HostGroupName rdfs:range xsd:string .
+
+hpc:ComputeUnit a owl:Class .
+hpc:ComputeUnit rdfs:subClassOf hpc:Host .
+hpc:ComputeUnitName rdfs:domain hpc:ComputeUnit .
+hpc:ComputeUnitName rdfs:range xsd:string .
+
+hpc:Cluster a owl:Class .
+hpc:Cluster rdfs:subClassOf hpc:Host .
+hpc:ClusterName rdfs:domain hpc:Cluster .
+hpc:ClusterName rdfs:range xsd:string .
+
+hpc:bhostsS a owl:ObjectProperty .
+hpc:BhostsS rdfs:domain hpc:Command .
+hpc:BhostsS rdfs:range hpc:Host .
+
+hpc:bhostsSLoc a owl:ObjectProperty .
+hpc:BhostsSLoc rdfs:domain hpc:Command .
+hpc:BhostsSLoc rdfs:range hpc:Host .
+
+hpc:Command a owl:Class .
+hpc:Command rdfs:subClassOf rdf:Resource .
+
+hpc:CommandUsage rdfs:domain hpc:Command .
+hps:Command_Usage rdfs:range xsd:string .
+
+hpc:LsfReleaseVersion rdfs:domain hpc:Command .
+hps:LSF_Release_Version rdfs:range xsd:string .
+
+hpc:commandOutputFormat a owl:ObjectProperty .
+hpc:CommandOutputFormat rdfs:domain hpc:Command .
+hpc:CommandOutputFormat rdfs:range xsd:string .
+
+hpc:commandOutputType a owl:DatatypeProperty .
+hpc:CommandOutputType rdfs:domain hpc:Command .
+hpc:CommandOutputType rdfs:range xsd:string .
+
+hpc:commandOptions a owl:DatatypeProperty .
+hpc:CommandOptions rdfs:domain hpc:Command .
+hpc:CommandOptions rdfs:range xsd:string .

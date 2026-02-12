@@ -1,0 +1,37 @@
+hpc:Preemptionrestriction a owl:Class .
+
+hpc:Lsfpreemption a owl:Class .
+hpc:Lsfpreemption rdfs:subClassOf hpc:Basicpreemption .
+hpc:Lsfpreemption rdfs:domain hpc:Job .
+
+hpc:Basicpreemption a owl:Class .
+hpc:Basicpreemption rdfs:subClassOf hpc:Preemptionrestriction .
+hpc:Basicpreemption rdfs:domain hpc:Project .
+
+hpc:projectfairsharesetting a owl:ObjectProperty .
+hpc:Projectfairsharesetting rdfs:domain hpc:Project .
+hpc:Projectfairsharesetting rdfs:range xsd:decimal .
+
+hpc:projectpriority a owl:ObjectProperty .
+hpc:Projectpriority rdfs:domain hpc:Project .
+hpc:Projectpriority rdfs:range xsd:decimal .
+
+hpc:projectownership a owl:DatatypeProperty .
+hpc:Projectownership rdfs:domain hpc:Project .
+hpc:Projectownership rdfs:range xsd:decimal .
+
+hpc:jobrusage a owl:DatatypeProperty .
+hpc:Jobrusage rdfs:domain hpc:Job .
+hpc:Jobrusage rdfs:range xsd:decimal .
+
+hpc:Preemptbypriority a owl:Class .
+hpc:Preemptbypriority rdfs:subClassOf hpc:Basicpreemption .
+hpc:Preemptbypriority rdfs:domain hpc:Job .
+
+hpc:Preemptbyownership a owl:Class .
+hpc:Preemptbyownership rdfs:subClassOf hpc:Basicpreemption .
+hpc:Preemptbyownership rdfs:domain hpc:Job .
+
+hpc:enableminjobpreemption a owl:ObjectProperty .
+hpc:Enableminjobpreemption rdfs:domain hpc:Feature .
+hpc:Enableminjobpreemption rdfs:range xsd:boolean .

@@ -1,0 +1,13 @@
+hpc:lmReservation a owl:DatatypeProperty .
+hpc:LmReservation rdfs:domain hpc:Lsfconfiguration .
+hpc:LmReservation rdfs:range xsd:string .
+
+hpc:lmStatInterval a owl:DatatypeProperty .
+hpc:LmStatInterval rdfs:domain hpc:Lsfconfiguration .
+hpc:LmStatInterval rdfs:range xsd:integer .
+
+hpc:lmStatPerFeature a owl:DatatypeProperty .
+hpc:LmStatPerFeature rdfs:domain hpc:Lsfconfiguration .
+hpc:LmStatPerFeature rdfs:range xsd:string .
+
+hpc:Lsfconfiguration a owl:Class .

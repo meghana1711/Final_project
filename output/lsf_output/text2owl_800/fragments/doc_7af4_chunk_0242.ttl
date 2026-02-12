@@ -1,0 +1,60 @@
+hpc:Computeunit a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:label "ComputeUnit" ;
+    rdfs:comment "An alphanumeric string representing the name of the compute unit." .
+
+hpc:Reservednames a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "The reserved names for compute units." ;
+    rdfs:subClassOf hpc:Namedthing ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:member "all" ;
+    rdfs:member "allremote" ;
+    rdfs:member "others" ;
+    rdfs:member "default" .
+
+hpc:Conflictingnames a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Names that cannot be used for compute units, host names, host partitions, or host group names." ;
+    rdfs:subClassOf hpc:Namedthing ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:Condensed a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:label "Condensed" ;
+    rdfs:comment "Defines condensed compute units." ;
+    rdfs:subClassOf hpc:Computeunit .
+
+hpc:Notcondensed a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:label "N" ;
+    rdfs:comment "The specified host group is not condensed." ;
+    rdfs:subClassOf hpc:Computeunit .
+
+hpc:member a owl:ObjectProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range rdfs:List ;
+    rdfs:comment "A space-delimited list of host names or previously defined compute unit names." .
+
+hpc:hostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Member ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of a host." .
+
+hpc:computeunitname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the compute unit." .
+
+hpc:Externallydefinedgroup a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "An externally-defined host group." ;
+    rdfs:subClassOf hpc:Namedthing ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Hostgroup .
+
+hpc:Patterndefinition a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "String literals and special characters when defining compute unit members." ;
+    rdfs:subClassOf hpc:Namedthing ;
+    rdfs:subClassOf owl:NamedIndividual .

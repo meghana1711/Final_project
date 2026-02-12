@@ -1,0 +1,67 @@
+hpc:GlobalFairShareScheduling
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The global fair share scheduling policy for IBM Spectrum LSF." .
+
+hpc:EnterpriseGridOrchestrator
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The enterprise grid orchestrator capability for IBM Spectrum LSF." .
+
+hpc:LoadSharingXApplications
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Using LSF with the Etnus TotalView Debugger for X applications." .
+
+hpc:RegisterLSFHost
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Registering LSF host names and IP addresses to LSF servers." .
+
+hpc:ErrorAndEventLogging
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Learning about LSF error logs, system event logs, and their management." .
+
+hpc:SystemDirectoriesAndLogFiles
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Managing system directories, log files, temporary work files, transaction files, and job spooling files." .
+
+hpc:DuplicateLoggingOfEventLogs
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Errorandeventlogging ;
+    rdfs:range hpc:Boolean ;
+    rdfs:comment "Configuring duplicate logging of event logs." .
+
+hpc:SetDaemonMessageLogLevel
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Errorandeventlogging ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Setting daemon message log levels." .
+
+hpc:SetDaemonTimingLevels
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Errorandeventlogging ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Setting daemon timing levels." .
+
+hpc:LSFLogAndEventFiles
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The LSF log and event files, including those for License Scheduler and Data Manager." .
+
+hpc:LSF_TOP
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The directory where LSF log and event files are located." .
+
+hpc:LSF_TOP_log
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The directory for LSF log files." .
+
+hpc:LSF_TOP

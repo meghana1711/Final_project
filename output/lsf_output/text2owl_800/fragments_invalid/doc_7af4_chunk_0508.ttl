@@ -1,0 +1,41 @@
+hpc:ThreadlimitPerTask a owl:Class ;
+    rdfs:subClassOf owl:Real ;
+    rdfs:comment "Specifies the number of threads per task.";
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "THREADLIMIT_PER_TASK" .
+
+hpc:Threadlimit a owl:Class ;
+    rdfs:subClassOf owl:Real ;
+    rdfs:comment "The thread limit value for a job.";
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "THREADLIMIT" .
+
+hpc:UjobLimit a owl:Class ;
+    rdfs:subClassOf owl:Integer ;
+    rdfs:comment "Specifies the per-user job slot limit for the queue.";
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "UJOB_LIMIT" .
+
+hpc:UsepamCreds a owl:Class ;
+    rdfs:subClassOf owl:Boolean ;
+    rdfs:comment "Applies PAM limits to this queue.";
+    rdfs:domain hpc:Queue ;
+    rdfs:label "USE_PAM_CREDS" .
+
+hpc:HasthreadlimitPerTask hpc:objectproperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:ThreadlimitPerTask ;
+    rdfs:label "hasThreadLimit_Per_Task" .
+
+hpc:HasujobLimit hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:UjobLimit ;
+    rdfs:label "hasUJob_Limit" .
+
+hpc:Appliespamlimits hpc:objectproperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:UsepamCreds ;
+    rdfs:label "appliesPamLimits" .

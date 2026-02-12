@@ -1,0 +1,24 @@
+hpc:Groupname a owl:Class.
+hpc:User a owl:Class.
+hpc:Share a owl:Class.
+hpc:hasgroup a owl:ObjectProperty.
+hpc:hasuser a owl:ObjectProperty.
+hpc:hasshare a owl:ObjectProperty.
+
+hpc:Groupname rdfs:subClassOf owl:Class.
+hpc:User rdfs:subClassOf owl:Class.
+hpc:Share rdfs:subClassOf owl:Class.
+hpc:Hasgroup rdfs:domain hpc:Groupname;
+                               rdfs:range hpc:User.
+hpc:Hasuser rdfs:domain hpc:User;
+                          rdfs:range hpc:Groupname.
+hpc:Hasshare rdfs:domain hpc:Share;
+                         rdfs:range xsd:nonNegativeInteger.
+
+hpc:testers a hpc:User;
+           hpc:Hasgroup hpc:group1.
+hpc:engineers a hpc:User;
+           hpc:Hasgroup hpc:group2.
+hpc:develop a hpc:User;
+           hpc:Hasgroup hpc:group3.
+hpc:

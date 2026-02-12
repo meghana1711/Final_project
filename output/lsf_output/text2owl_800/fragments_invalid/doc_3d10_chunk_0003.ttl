@@ -1,0 +1,7 @@
+hpc:Ldapuser a owl:Class .
+hpc:hasUsername an owl:ObjectProperty .
+hpc:Hasusername rdfs:domain hpc:Ldapuser ;
+    rdfs:range xsd:string .
+
+hpc:Lsfwebservicesuser a owl:Class ;
+    rdfs:subClassOf hpc:Ldapuser .

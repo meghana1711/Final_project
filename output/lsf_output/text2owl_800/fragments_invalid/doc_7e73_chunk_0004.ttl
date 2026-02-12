@@ -1,0 +1,31 @@
+hpc:Lsfcluster a owl:Class .
+hpc:Resourceprovider a owl:Class .
+hpc:Azurecyclecloudprovider a rdfs:subClassOf hpc:Resourceprovider .
+hpc:Googlecloudplatformprovider a rdfs:subClassOf hpc:Resourceprovider .
+hpc:Openstackprovider a rdfs:subClassOf hpc:Resourceprovider .
+
+hpc:hasprovider a owl:ObjectProperty .
+hpc:haslsfcluster a owl:ObjectProperty .
+hpc:isidle a owl:DatatypeProperty .
+
+hpc:Hasprovider rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Resourceprovider .
+hpc:Haslsfcluster rdfs:domain hpc:Resourceprovider ;
+    rdfs:range hpc:Lsfcluster .
+hpc:Isidle rdfs:domain hpc:Resourceprovider ;
+    rdfs:range xsd:boolean .
+
+hpc:hostprovidersjson a owl:DatatypeProperty .
+hpc:Hostprovidersjson rdfs:range xsd:string .
+
+hpc:providerlog a owl:DatatypeProperty .
+hpc:Providerlog rdfs:domain hpc:Resourceprovider ;
+    rdfs:range xsd:string .
+
+hpc:persistencefile a owl:DatatypeProperty .
+hpc:Persistencefile rdfs:domain hpc:Resourceprovider ;
+    rdfs:range xsd:string .
+
+hpc:allproviderssameadminaccount a owl:ObjectProperty .
+hpc:Allproviderssameadminaccount rdfs:domain hpc:Lsfcluster ;
+    rdfs:range rdf:List .

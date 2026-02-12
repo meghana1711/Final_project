@@ -1,0 +1,36 @@
+hpc:Firewall a owl:Class .
+hpc:haslisteningport a owl:ObjectProperty .
+hpc:Haslisteningport rdfs:domain hpc:Firewall ;
+                        rdfs:range xsd:integer .
+
+hpc:LSF_LIM_PORT a xsd:integer .
+hpc:LSF_LIM_PORT rdfs:value "7869" .
+hpc:LSF_LIM_PORT rdfs:subPropertyOf hpc:hasListeningPort .
+
+hpc:LSF_RES_PORT a xsd:integer .
+hpc:LSF_RES_PORT rdfs:value "6878" .
+hpc:LSF_RES_PORT rdfs:subPropertyOf hpc:hasListeningPort .
+
+hpc:LSB_SBD_PORT a xsd:integer .
+hpc:LSB_SBD_PORT rdfs:value "6882" .
+hpc:LSB_SBD_PORT rdfs:subPropertyOf hpc:hasListeningPort .
+
+hpc:Prepareuserforlsf a owl:Class .
+
+hpc:installsoftware a owl:ObjectProperty .
+hpc:Installsoftware rdfs:domain hpc:Awsinstance .
+hpc:Installsoftware rdfs:range hpc:Software .
+
+hpc:configureserver a owl:ObjectProperty .
+hpc:Configureserver rdfs:domain hpc:Awsinstance .
+
+hpc:LSF_LIM_PORT_TCP a xsd:integer .
+hpc:LSF_LIM_PORT_TCP rdfs:value "7869" .
+hpc:LSF_LIM_PORT_UDP a xsd:integer .
+hpc:LSF_LIM_PORT_UDP rdfs:value "7869" .
+
+hpc:LSF_RES_PORT_TCP a xsd:integer .
+hpc:LSF_RES_PORT_TCP rdfs:value "6878" .
+
+hpc:LSB_SBD_PORT_TCP a xsd:integer .
+hpc:LSB_SBD_PORT_TCP rdfs:value "6882" .

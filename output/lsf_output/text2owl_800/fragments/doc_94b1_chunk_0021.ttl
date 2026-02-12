@@ -1,0 +1,18 @@
+hpc:Currcpufreqs a owl:Class .
+hpc:Availcpufreqs a owl:Class .
+
+hpc:elimfrequency a owl:ObjectProperty .
+hpc:Elimfrequency rdfs:domain hpc:Currcpufreqs ;
+                  rdfs:range hpc:Currcpufreqs ;
+                  rdfs:subClassOf owl:Property .
+
+hpc:Currcpufreqs rdfs:subClassOf hpc:Availcpufreqs .
+
+hpc:CurrCpuFreqs rdfs:comment "Logical CPU available frequency updated by elim.frequency every 3600 seconds."@en ;
+                 rdfs:label "Logical CPU available frequency"@en .
+
+hpc:elimFrequency rdfs:comment "Updated every 3600 seconds."@en ;
+                  rdfs:label "elim.frequency"@en .
+
+hpc:Currcpufreqs rdfs:domain hpc:Availcpufreqs ;
+                rdfs:range xsd:decimal .

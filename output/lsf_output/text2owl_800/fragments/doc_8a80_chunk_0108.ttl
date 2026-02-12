@@ -1,0 +1,30 @@
+hpc:AcumUse a owl:Class .
+hpc:ScaledAcum a owl:Class .
+
+hpc:Project a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Fastdispatchprojectmode a owl:Class .
+
+hpc:alloc a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:idealalloc a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:percentage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:decimal .
+
+hpc:inuse a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:AcumUse .
+
+hpc:reserve a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:AcumUse .
+
+hpc:scaledacum a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:nonNegativeDecimal .

@@ -1,0 +1,54 @@
+hpc:Computeunittype a owl:Class .
+hpc:usablecuslots a owl:DatatypeProperty .
+hpc:Usablecuslots rdfs:domain hpc:Computeunittype ;
+                   rdfs:range xsd:nonNegativeInteger .
+
+hpc:Balance a owl:Class .
+hpc:pref a owl:ObjectProperty .
+hpc:Pref rdfs:domain hpc:Balance ;
+          rdfs:range hpc:Computeunit .
+
+hpc:maxcus a owl:DatatypeProperty .
+hpc:Maxcus rdfs:domain hpc:Computeunittype ;
+           rdfs:range xsd:nonNegativeInteger .
+
+hpc:type a owl:DatatypeProperty .
+hpc:Type rdfs:domain hpc:Computeunit ;
+         rdfs:range xsd:string .
+
+hpc:Enclosure a owl:Class .
+hpc:Resizable a owl:Class .
+hpc:app a owl:ObjectProperty .
+hpc:App rdfs:domain hpc:Job ;
+         rdfs:range hpc:Computeunit .
+hpc:ar a owl:ObjectProperty .
+hpc:Ar rdfs:domain hpc:Job ;
+       rdfs:range hpc:Computeunit .
+
+hpc:Myjob a owl:Class .
+hpc:Myjob rdfs:subClassOf hpc:Job .
+
+hpc:Cu1 a hpc:ComputeUnit ;
+       hpc:Type "enclosure" ;
+       hpc:MaxCUS 2 .
+
+hpc:Cu2 a hpc:ComputeUnit ;
+       hpc:Type "enclosure" .
+
+hpc:Cu a hpc:ComputeUnit .
+hpc:Balance1 a hpc:Balance ;
+            hpc:Pref "minavail" ;
+            hpc:Ar myjob .
+hpc:Balance2 a hpc:Balance ;
+            hpc:Pref "maxavail" ;
+            hpc:Ar myjob .
+hpc:AutoresizableJob a hpc:ResizableJob .
+hpc:AutoresizableJob1 a hpc:AutoresizableJob ;
+                      hpc:Ar myjob ;
+                      hpc:MaxCUS 2 ;
+                      hpc:Type "enclosure" .
+hpc:BalancedJob a hpc:ResizableJob .
+hpc:BalancedJob1 a hpc:BalancedJob ;
+                 hpc:Ar myjob ;
+                 hpc:Balance "balance:maxcus=4:type=enclosure" ;
+                 hpc:Type "enclosure" .

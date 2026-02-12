@@ -1,0 +1,36 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a job in the HPC system." .
+
+hpc:destinationpath a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The destination folder for the staged files." .
+
+hpc:sourcepath a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The source folder or file path for the files to be staged." .
+
+hpc:hostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sourcepath ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The host name of the source file." .
+
+hpc:absolutefilepath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sourcepath ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The absolute file path of the source file." .
+
+hpc:filecopy a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:File ;
+    rdfs:comment "The act of copying a file." .
+
+hpc:File a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a file." .
+
+hpc:Jobdirectory a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a directory in the HPC system." .

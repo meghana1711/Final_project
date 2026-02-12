@@ -1,0 +1,17 @@
+hpc:lsbNtries a owl:DatatypeProperty .
+hpc:LsbNtries rdfs:domain hpc:LsbJob .
+hpc:LsbNtries rdfs:range xsd:integer .
+
+hpc:LSB_NTRIES_Default a owl:NamedIndividual .
+hpc:LSB_NTRIES_Default rdf:value xsd:INFINIT_INT .
+
+hpc:lsbOldJobid a owl:DatatypeProperty .
+hpc:LsbOldJobid rdfs:domain hpc:LsbJob .
+hpc:LsbOldJobid rdfs:range xsd:integer .
+
+hpc:lsbJobid a owl:ObjectProperty .
+hpc:LsbJobid rdfs:domain hpc:Job .
+hpc:LsbJobid rdfs:range hpc:Jobid .
+
+hpc:Job a owl:Class .
+hpc:JobID a xsd:string .

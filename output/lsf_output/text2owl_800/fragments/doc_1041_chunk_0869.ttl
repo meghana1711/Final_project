@@ -1,0 +1,37 @@
+hpc:Installation a owl:Class .
+hpc:hastopdefinedby a owl:ObjectProperty .
+hpc:Hastop rdfs:domain hpc:Installation ;
+                      rdfs:range xsd:string .
+
+hpc:Configurationfile a owl:Class .
+hpc:defines a owl:ObjectProperty .
+hpc:Defines rdfs:domain hpc:Configurationfile ;
+              rdfs:range hpc:Parameter .
+
+hpc:Parameter a owl:Class .
+
+hpc:Backupdirectory a owl:Class .
+hpc:Historydirectory a owl:Class .
+
+hpc:pversions a owl:ObjectProperty .
+hpc:Pversions rdfs:domain hpc:Installation ;
+              rdfs:range xsd:string .
+
+hpc:Pversionsoptions a owl:Class .
+hpc:pversionswithfile a owl:ObjectProperty .
+hpc:productname a owl:DatatypeProperty .
+hpc:buildnumber a owl:DatatypeProperty .
+hpc:queryfile a owl:DatatypeProperty .
+hpc:packagename a owl:DatatypeProperty .
+hpc:help a owl:DatatypeProperty .
+
+hpc:Versioninformation a owl:Class .
+hpc:basicversioninfo a owl:ObjectProperty .
+hpc:packagebuilddate a owl:DatatypeProperty .
+hpc:buildnumber a owl:DatatypeProperty .
+hpc:packageinstalleddate a owl:DatatypeProperty .
+hpc:patchesinstalled a owl:ObjectProperty .
+hpc:packagetype a owl:DatatypeProperty .
+hpc:installedbuildnumber a owl:DatatypeProperty .
+hpc:installeddate a owl:DatatypeProperty .
+hpc:fixes a owl:DatatypeProperty .

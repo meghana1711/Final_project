@@ -1,0 +1,18 @@
+hpc:EgoDaemonControl a owl:Class;
+ rdfs:subClassOf xsd:boolean .
+
+hpc:LsfConf a owl:Class .
+
+hpc:LSF_DAEMON_CONTROL rdf:value "Y"^^xsd:boolean ;
+ rdfs:domain hpc:EgoDaemonControl ;
+ rdfs:range xsd:boolean .
+
+hpc:LsfUserDomain a owl:Class .
+
+hpc:LSF_CONF_EDIT rdf:value "C:/LSF10.1.0/conf/lsf.conf"^^xsd:string ;
+ rdfs:domain hpc:LsfConf ;
+ rdfs:range xsd:string .
+
+hpc:LSF_USER_DOMAIN_ADD rdf:value "LSF_USER_DOMAIN"^^xsd:string ;
+ rdfs:domain hpc:LsfConf ;
+ rdfs:range xsd:string .

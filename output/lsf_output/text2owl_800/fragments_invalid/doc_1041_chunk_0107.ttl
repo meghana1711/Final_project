@@ -1,0 +1,36 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Hostgroup a owl:Class .
+hpc:Hostname a owl:Class .
+hpc:hostgroupattr a owl:ObjectProperty .
+hpc:all a owl:ObjectProperty .
+hpc:attrname a owl:DatatypeProperty .
+hpc:clusteraffinity a owl:ObjectProperty .
+hpc:userName a xsd:string .
+hpc:clusterName a xsd:string .
+
+rdfs:subClassOf hpc:Hostgroupattr hpc:Hostgroupattrdelete .
+rdfs:subClassOf hpc:Hostgroupattr hpc:Hostgroupattrreset .
+rdfs:subClassOf hpc:Hostgroupattr hpc:Hostgroupattrshow .
+
+rdfs:domain hpc:Hostgroupattr hpc:Hostgroup .
+rdfs:domain hpc:Hostgroupattrdelete hpc:Hostname .
+rdfs:domain hpc:Hostgroupattrreset hpc:Hostname .
+rdfs:domain hpc:Hostgroupattrshow hpc:Hostname .
+rdfs:domain hpc:Clusteraffinity hpc:Hostgroup .
+
+rdfs:range hpc:Hostgroupattr attr:string .
+rdfs:range hpc:Hostgroupattrdelete attr:string .
+rdfs:range hpc:Hostgroupattrreset attr:string .
+rdfs:range hpc:Hostgroupattrshow attr:string .
+rdfs:range hpc:Clusteraffinity attr:string .
+
+hpc:hostgroupattrdelete a owl:ObjectProperty .
+hpc:hostgroupattrreset a owl:ObjectProperty .
+hpc:hostgroupattrshow a owl:ObjectProperty .
+hpc:battrDelete a hpc:HostGroupAttrDelete .
+hpc:battrReset a hpc:HostGroupAttrReset .
+hpc:battrShow a hpc:HostGroupAttrShow .

@@ -1,0 +1,27 @@
+hpc:lsbMbdDownMsg a owl:DatatypeProperty .
+hpc:Hasmessagestring rdfs:domain hpc:LsbMbdDownMsg ;
+    rdfs:range xsd:string .
+
+hpc:lsbMbdBusyMsg a owl:DatatypeProperty .
+hpc:Hasmessagestring rdfs:domain hpc:LsbMbdBusyMsg ;
+    rdfs:range xsd:string .
+
+hpc:Hostmodel a owl:Class .
+hpc:Bogomips rdfs:domain hpc:Hostmodel ;
+    rdfs:range xsd:decimal .
+hpc:Architecture rdfs:domain hpc:Hostmodel ;
+    rdfs:range xsd:string .
+
+hpc:Lim a owl:Class .
+hpc:Collectshostinfo rdfs:domain hpc:Lim ;
+    rdfs:range hpc:Host .
+hpc:Determineshostmodel rdfs:domain hpc:Lim ;
+    rdfs:range hpc:Hostmodel .
+
+hpc:Host a owl:Class .
+hpc:Hasmodel rdfs:domain hpc:Host ;
+    rdfs:range hpc:Hostmodel .
+
+hpc:Fuzzymatching rdfs:subClassOf hpc:Matching .
+hpc:Exactmatching rdfs:subClassOf hpc:Matching .
+hpc:Matching rdfs:subClassOf hpc:Lim .

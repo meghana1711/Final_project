@@ -1,0 +1,40 @@
+hpc:Computeunit a owl:Class .
+hpc:Enclosure a owl:Class .
+hpc:Rack a owl:Class .
+hpc:hastype a owl:ObjectProperty .
+hpc:hasfreeslots a owl:DatatypeProperty .
+hpc:haspref a owl:DatatypeProperty .
+hpc:hasconfiguration a owl:ObjectProperty .
+hpc:enclosure en rdf:type hpc:Enclosure ;
+   rdfs:subClassOf hpc:Computeunit ;
+   hpc:hasType "enclosure" ;
+   hpc:hasConfiguration "default" .
+hpc:rack r en rdf:type hpc:Rack ;
+   rdfs:subClassOf hpc:Computeunit ;
+   hpc:hasType "rack" .
+hpc:hasFreeSlots r owl:Domain hpc:ComputeUnit ;
+   owl:Range xsd:integer .
+hpc:hasPref p owl:Domain hpc:ComputeUnit ;
+   owl:Range xsd:string .
+hpc:inConfiguration e1 rdf:type hpc:Enclosure ;
+   hpc:hasFreeSlots 30 .
+hpc:inConfiguration e2 rdf:type hpc:Enclosure ;
+   hpc:hasFreeSlots 10 .
+hpc:inConfiguration e3 rdf:type hpc:Enclosure ;
+   hpc:hasFreeSlots 18 .
+hpc:inConfiguration e4 rdf:type hpc:Enclosure ;
+   hpc:hasFreeSlots 6 .
+hpc:inConfiguration e5 rdf:type hpc:Enclosure ;
+   hpc:hasFreeSlots 4 .
+hpc:inConfiguration e6 rdf:type hpc:Enclosure ;
+   hpc:hasFreeSlots 4 .
+hpc:inConfiguration e7 rdf:type hpc:Enclosure ;
+   hpc:hasFreeSlots 0 .
+hpc:inConfiguration e8 rdf:type hpc:Enclosure ;
+   hpc:hasFreeSlots 0 .
+hpc:inRack r1 rdf:type hpc:Rack ;
+   hpc:hasFreeSlots 88 .
+hpc:inRack r2 rdf:type hpc:Rack ;
+   hpc:hasFreeSlots 90 .
+hpc:inRack r3 rdf:type hpc:Rack ;
+   hpc:hasFreeSlots 89 .

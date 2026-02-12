@@ -1,0 +1,41 @@
+hpc:Globalfairshareconfiguration a owl:Class .
+hpc:Participatingcluster a owl:Class .
+hpc:lsbGpdCluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalfairshareconfiguration ;
+    rdfs:range xsd:string .
+hpc:lsbGpdPort a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalfairshareconfiguration ;
+    rdfs:range xsd:string .
+hpc:disableglobalfairshare a owl:ObjectProperty ;
+    rdfs:domain hpc:Globalfairshareconfiguration ;
+    rdfs:range hpc:Disableglobalfairshareaction .
+hpc:Disableglobalfairshareaction a owl:Class .
+hpc:restartsbatchd a owl:ObjectProperty ;
+    rdfs:domain hpc:Disableglobalfairshareaction ;
+    rdfs:range hpc:Restartsbatchdaction .
+hpc:restartmbatchd a owl:ObjectProperty ;
+    rdfs:domain hpc:Disableglobalfairshareaction ;
+    rdfs:range hpc:Restartmbatchdaction .
+hpc:changegpdcluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Globalfairshareconfiguration ;
+    rdfs:range hpc:Changegpdclusteraction .
+hpc:setlsbGpdCluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Globalfairshareconfiguration ;
+    rdfs:range hpc:SetlsbGpdClusteraction .
+hpc:setlsbGpdPort a owl:ObjectProperty ;
+    rdfs:domain hpc:Globalfairshareconfiguration ;
+    rdfs:range hpc:SetlsbGpdPortaction .
+
+hpc:GlobalFairShareEnabledMultipleClusterEnvironment a hpc:GlobalFairShareConfiguration ;
+    hpc:DynamicUserPriorityOneShareAccount .
+hpc:RealTheoreticalGlobalFairShare a hpc:GlobalFairShareConfiguration ;
+    rdfs:subClassOf hpc:Globalfairshareconfiguration ;
+    hpc:DynamicUserPriorityOneShareAccount .
+hpc:DifferentFairShareConfigurationInParticipatingQueues a hpc:GlobalFairShareConfiguration ;
+    rdfs:subClassOf hpc:Globalfairshareconfiguration .
+hpc:GlobalFairShareSchedulingDisabled a hpc:GlobalFairShareConfiguration .
+
+hpc:GlobalFairShareParticipatingCluster a hpc:ParticipatingCluster ;
+    hpc:Hasglobalfairshareconfiguration hpc:globalfairshareconfiguration ;
+    hpc:HasLSB_GPD_CLUSTER xsd:string ;
+    hpc:HasLSB_GPD_PORT xsd:string .

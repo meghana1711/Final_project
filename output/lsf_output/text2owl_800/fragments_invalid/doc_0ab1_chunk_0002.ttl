@@ -1,0 +1,37 @@
+hpc:Gpujobdevice a owl:Class .
+hpc:containsJobProcesses an owl:ObjectProperty .
+hpc:Containsjobprocesses rdfs:domain hpc:Gpujobdevice ;
+                          rdfs:range hpc:Jobprocess .
+
+hpc:Gpujobdevice rdfs:subClassOf hpc:Device .
+
+hpc:GPUJobDevice rdf:type hpc:DeviceWithGPUResources ;
+                  rdfs:subClassOf hpc:Device .
+
+hpc:Linuxcgroupdevice a owl:Class .
+hpc:LinuxCgroupDevice rdf:type hpc:Device ;
+                       rdfs:subClassOf hpc:Device .
+
+hpc:Gpupowermanagement a owl:Class .
+hpc:decreaseGPUPower an owl:ObjectProperty .
+hpc:Decreasegpupower rdfs:domain hpc:Gpujobdevice ;
+                      rdfs:range xsd:decimal .
+
+hpc:lsfManageMig a owl:DatatypeProperty .
+hpc:LsfManageMig rdfs:domain hpc:Lsf .
+hpc:LsfManagesMig rdfs:range xsd:boolean .
+
+hpc:Nvidiadcgm a owl:Class .
+hpc:integratesWithLSF an owl:ObjectProperty .
+hpc:Integrateswithlsf rdfs:domain hpc:Nvidiadcgm ;
+                       rdfs:range hpc:Lsf .
+
+hpc:nvidiadcgmGpuusageinformation a owl:DatatypeProperty .
+hpc:NvidiadcgmGpuusageinformation rdfs:domain hpc:Nvidiadcgm ;
+                                     rdfs:range xsd:decimal .
+
+hpc:NvidiaDCGM_GPUStatusCheck an owl:ObjectProperty .
+hpc:NvidiadcgmGpustatuscheck rdfs:domain hpc:Nvidiadcgm ;
+                               rdfs:range hpc:Gpustatus .
+
+hpc:Gpustatus a owl:Class .

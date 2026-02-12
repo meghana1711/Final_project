@@ -1,0 +1,47 @@
+hpc:Error a owl:Class ;
+    rdfs:subClassOf owl:DomainInstantiation ;
+    rdfs:comment "An error returned by sbrk() or malloc() call to extend the data segment beyond the data limit." .
+
+hpc:Linux a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Operating system that uses (mmap()) instead of sbrk() and brk() within its calloc() and malloc()." .
+
+hpc:Aix a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Operating system that enforces DATALIMIT value if XPG_SUS_ENV=ON and fails operation with errno set to EINVAL or EFAULT if not set." .
+
+hpc:Datalimit a owl:Class ;
+    rdfs:subClassOf xsd:integer ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Value that cannot be enforced on Linux applications that call sbrk() and malloc()." .
+
+hpc:Filesizelimit a owl:Class ;
+    rdfs:subClassOf xsd:integer ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "File size limit in KB for each process that belongs to a batch job." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "A batch job with file size and memory limits." .
+
+hpc:Process a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "A process that belongs to a job." .
+
+hpc:filelimit a owl:ObjectProperty ;
+    rdfs:domain Job ;
+    rdfs:range Process ;
+    rdfs:comment "The file size limit for a process in a job." .
+
+hpc:memorylimit a owl:ObjectProperty ;
+    rdfs:domain Job ;
+    rdfs:range Process ;
+    rdfs:comment "The memory limit for a process in a job." .
+
+hpc:Signal a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "A SIGXFSZ signal sent by the kernel when a process attempts to write to a file such that the file size would increase beyond the file limit." .
+
+hpc:Softlimit a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "A limit that can be set and enforced, but can be exceeded if not enforced." .

@@ -1,0 +1,35 @@
+hpc:lsfResConnectRetry a owl:DatatypeProperty .
+hpc:LsfResConnectRetry rdfs:domain hpc:Application .
+hpc:LsfResConnectRetry rdfs:range xsd:integer .
+
+hpc:lsfResDebug a owl:DatatypeProperty .
+hpc:LsfResDebug rdfs:domain hpc:Application .
+hpc:LsfResDebug rdfs:range xsd:integer .
+
+hpc:LSF_RES_DEBUG_1 a owl:NamedIndividual .
+hpc:LSF_RES_DEBUG_1 rdf:value 1 .
+
+hpc:LSF_RES_DEBUG_2 a owl:NamedIndividual .
+hpc:LSF_RES_DEBUG_2 rdf:value 2 .
+
+hpc:LsfRes a owl:Class .
+
+hpc:hasdebugmode a owl:ObjectProperty .
+hpc:Hasdebugmode rdfs:domain hpc:LsfRes .
+hpc:Hasdebugmode rdfs:range hpc:LsfResDebug .
+
+hpc:hasconnectretry a owl:ObjectProperty .
+hpc:Hasconnectretry rdfs:domain hpc:LsfRes .
+hpc:Hasconnectretry rdfs:range xsd:integer .
+
+hpc:lsfResPort a owl:DatatypeProperty .
+hpc:LsfResPort rdfs:domain hpc:LsfRes .
+hpc:LsfResPort rdfs:range xsd:integer .
+
+hpc:lsfResRlimitUnlim a owl:DatatypeProperty .
+hpc:LsfResRlimitUnlim rdfs:domain hpc:LsfRes .
+hpc:LsfResRlimitUnlim rdfs:range xsd:string .
+
+hpc:LSF_NIOS_RES_HEARTBEAT rdf:seeAlso hpc:LSF_RES_CONNECT_RETRY .
+hpc:LSF_RES_DEBUG rdf:seeAlso hpc:LSF_LIM_DEBUG, hpc:LSF_CMD_LOGDIR, hpc:LSF_CMD_LOG_MASK, hpc:LSF_LOG_MASK, hpc:LSF_LOGDIR .
+hpc:LSF_RES_PORT rdf:seeAlso hpc:LSF_LIM_PORT, hpc:LSF_RES_PORT, hpc:LSB_MBD_PORT, hpc:LSB_SBD_PORT .

@@ -1,0 +1,20 @@
+hpc:Databaseserver a owl:Class.
+hpc:upgrade a owl:ObjectProperty;
+    rdfs:domain hpc:Databaseserver;
+    rdfs:range hpc:Upgradeprocedure. .
+
+hpc:Slurmdbd a owl:Class;
+    rdfs:subClassOf hpc:Databaseserver;
+    hpc:Supportsdatabase rdfs:range xsd:string;
+    hpc:Recommendedupgradeversion rdfs:domain hpc:Slurmdbd;
+    hpc:Recommendedupgradeversion rdfs:range xsd:string. .
+
+hpc:Slurmctld a owl:Class;
+    rdfs:subClassOf hpc:Databaseserver;
+    hpc:Preferredupgradetime rdfs:domain hpc:Slurmctld;
+    hpc:Preferredupgradetime rdfs:range xsd:integer. .
+
+hpc:slurmctldupgrade a owl:ObjectProperty;
+    rdfs:domain hpc:Slurmctld;
+    rdfs:range hpc:Upgradeprocedure;
+    hpc:Recommendedupgradeprocedure rdfs:

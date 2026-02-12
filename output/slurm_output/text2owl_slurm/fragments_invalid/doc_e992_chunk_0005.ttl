@@ -1,0 +1,26 @@
+hpc:Slurmsteplayout a owl:Class ;
+  rdfs:subClassOf owl:Class ;
+  rdfs:comment "Represents the layout of a SLURM step." .
+
+hpc:nodecnt a owl:DatatypeProperty ;
+  rdfs:domain hpc:Slurmsteplayout ;
+  rdfs:range xsd:unsignedInt .
+
+hpc:nodelist a owl:ObjectProperty ;
+  rdfs:domain hpc:Slurmsteplayout ;
+  rdfs:range rdf:List .
+
+hpc:Task a owl:Class ;
+  rdfs:subClassOf owl:Class ;
+  rdfs:comment "Represents a task." .
+
+hpc:taskcnt a owl:DatatypeProperty ;
+  rdfs:domain hpc:Slurmsteplayout ;
+  rdfs:range xsd:unsignedInt .
+
+hpc:taskcntintasks a owl:DatatypeProperty ;
+  rdfs:domain hpc:Task ;
+  rdfs:range xsd:unsignedInt .
+
+hpc:tasklist a owl:ObjectProperty ;
+  rdfs:domain

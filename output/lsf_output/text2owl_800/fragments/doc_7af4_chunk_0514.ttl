@@ -1,0 +1,45 @@
+hpc:Custompendingreason a owl:Class .
+hpc:Resource a owl:Class .
+hpc:message a owl:DatatypeProperty ;
+    rdfs:domain hpc:Custompendingreason ;
+    rdfs:range xsd:string .
+hpc:priority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Custompendingreason ;
+    rdfs:range xsd:integer .
+
+hpc:hasresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Custompendingreason ;
+    rdfs:range hpc:Resource .
+
+hpc:Emu_a a hpc:Resource .
+hpc:Lic_a a hpc:Resource .
+hpc:Gpu a hpc:Resource .
+
+hpc:CustomPendingReason_for_Emu_a a hpc:CustomPendingReason ;
+    hpc:Hasresource hpc:emuA ;
+    hpc:MESSAGE "No type A emulators available"^^xsd:string ;
+    hpc:PRIORITY "107"^^xsd:integer .
+
+hpc:CustomPendingReason_for_Lic_a a hpc:CustomPendingReason ;
+    hpc:Hasresource hpc:licA ;
+    hpc:MESSAGE "No license for SimWorkBench"^^xsd:string ;
+    hpc:PRIORITY "10"^^xsd:integer .
+
+hpc:CustomPendingReason_for_Gpu a hpc:CustomPendingReason ;
+    hpc:Hasresource hpc:gpu ;
+    hpc:MESSAGE "All GPUs are in use"^^xsd:string ;
+    hpc:PRIORITY "5"^^xsd:integer .
+
+hpc:custommessagetakespriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Custompendingreason ;
+    rdfs:range hpc:Custompendingreason .
+
+hpc:Multiclustersupport a owl:Class .
+
+hpc:Submissioncluster a owl:Class ;
+    rdfs:subClassOf hpc:Multiclustersupport .
+
+hpc:Executioncluster a owl:Class ;
+    rdfs:subClassOf hpc:Multiclustersupport .
+
+hpc:Lsbresources a owl:Class .

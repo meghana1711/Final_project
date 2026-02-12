@@ -1,0 +1,44 @@
+hpc:Architecture a owl:Class .
+hpc:Lsfsessionscheduler a owl:Class .
+hpc:Executionagent a owl:Class .
+hpc:Taskdefinitionfile a owl:Class .
+hpc:Task a owl:Class .
+
+hpc:submits rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsessionscheduler ;
+    rdfs:range hpc:Task .
+
+hpc:schedules rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsessionscheduler ;
+    rdfs:range hpc:Executionagent .
+
+hpc:runs rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Executionagent ;
+    rdfs:range hpc:Task .
+
+hpc:finishes rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Task .
+
+hpc:dispatches rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsessionscheduler ;
+    rdfs:range hpc:Executionagent .
+
+hpc:bypasses rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsessionscheduler ;
+    rdfs:range hpc:Lsfmbatchd .
+
+hpc:unaware rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfmbatchd ;
+    rdfs:range hpc:Task .
+
+hpc:Sschedcommand a owl:Class ;
+    rdfs:subClassOf hpc:Lsfsessionscheduler ;
+    rdfs:comment "Accepts and dispatches tasks within the nodes allocated for a job session." .
+
+hpc:reads rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Sschedcommand ;
+    rdfs:range hpc:Taskdefinitionfile .
+
+hpc:sends rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Sschedcommand ;
+    rdfs:range hpc:Executionagent .

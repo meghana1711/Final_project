@@ -1,0 +1,65 @@
+hpc:Setexcept a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Time Event for misscheduled exception specifies when time event ended." ;
+    rdfs:domain hpc:Job ;
+    rdfs:range [ rdf:type xsd:integer ] ;
+    rdfs:label setexcept .
+
+hpc:exceptinfo a owl:DatatypeProperty ;
+    rdfs:domain hpc:Setexcept ;
+    rdfs:range [ rdf:type xsd:integer ] ;
+    rdfs:comment "Pending reason for misscheduled or cantrun exception, the exit code of the job for the abend exception, otherwise 0." ;
+    rdfs:label exceptInfo .
+
+hpc:idx a owl:DatatypeProperty ;
+    rdfs:domain hpc:Setexcept ;
+    rdfs:range [ rdf:type xsd:integer ] ;
+    rdfs:label idx .
+
+hpc:Jobarrayindex a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Index in a job array." ;
+    rdfs:label JobArrayIndex .
+
+hpc:JobExtMsg a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "An external message has been sent to a job." ;
+    rdfs:domain hpc:Job ;
+    rdfs:label JOB_EXT_MSG .
+
+hpc:versionnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobExtMsg ;
+    rdfs:range xsd:string ;
+    rdfs:label versionNumber .
+
+hpc:eventtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobExtMsg ;
+    rdfs:range [ rdf:type xsd:integer ] ;
+    rdfs:label eventTime .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobExtMsg ;
+    rdfs:range [ rdf:type xsd:integer ] ;
+    rdfs:label jobId .
+
+hpc:idx a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobExtMsg ;
+    rdfs:range [ rdf:type xsd:integer ] ;
+    rdfs:label idx .
+
+hpc:msgidx a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobExtMsg ;
+    rdfs:range [ rdf:type xsd:integer ] ;
+    rdfs:label msgIdx .
+
+hpc:userid a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobExtMsg ;
+    rdfs:range [ rdf:type xsd:integer ] ;
+    rdfs:label userId .
+
+hpc:datasize a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobExtMsg ;
+    rdfs:range [ rdf:type xsd:long ] ;
+    rdfs:label dataSize .
+
+hpc:postTime a owl:Datatype

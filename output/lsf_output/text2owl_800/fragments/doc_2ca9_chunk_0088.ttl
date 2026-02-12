@@ -1,0 +1,52 @@
+hpc:Dmstageintransferscript a owl:Class .
+hpc:Dmstageinhelperscript a owl:Class .
+hpc:Dmstageouttransferscript a owl:Class .
+
+hpc:hasscripttype a owl:ObjectProperty .
+hpc:enforcesjobmemorylimit a owl:ObjectProperty .
+hpc:lsfserverdir a owl:DatatypeProperty .
+hpc:Resourcemanagement a owl:Class .
+hpc:excludeswapthreshold a owl:ObjectProperty .
+hpc:lsbmemlimitenfcontrol a owl:DatatypeProperty .
+hpc:sethardmemorylimit a owl:ObjectProperty .
+hpc:bsubm a owl:ObjectProperty .
+hpc:bmodm a owl:ObjectProperty .
+hpc:resourcereservationmethod a owl:DatatypeProperty .
+hpc:StrictResourceReservationMethod a owl:Class .
+hpc:rusageRss a owl:DatatypeProperty .
+hpc:UnixOperatingSystem a owl:Class .
+hpc:rusage a owl:DatatypeProperty .
+
+hpc:Dmstageintransferscript hpc:hasscripttype hpc:StageIn .
+hpc:Dmstageinhelperscript hpc:hasscripttype hpc:Helper .
+hpc:Dmstageouttransferscript hpc:hasscripttype hpc:StageOut .
+
+hpc:Resourcemanagement rdfs:subClassOf hpc:Dmtransferscript .
+
+hpc:Excludeswapthreshold rdfs:domain hpc:Resourcemanagement .
+hpc:Excludeswapthreshold rdfs:range xsd:integer .
+
+hpc:Lsbmemlimitenfcontrol rdfs:domain hpc:Resourcemanagement .
+hpc:Lsbmemlimitenfcontrol rdfs:range xsd:string .
+
+hpc:Sethardmemorylimit rdfs:domain hpc:Resourcemanagement .
+hpc:Sethardmemorylimit rdfs:range xsd:string .
+
+hpc:Bsubm rdfs:domain hpc:Resourcemanagement .
+hpc:Bsubm rdfs:range xsd:string .
+
+hpc:Bmodm rdfs:domain hpc:Resourcemanagement .
+hpc:Bmodm rdfs:range xsd:string .
+
+hpc:Resourcereservationmethod rdfs:domain hpc:Resourcemanagement .
+hpc:Resourcereservationmethod rdfs:range xsd:string .
+
+hpc:StrictResourceReservationMethod rdfs:subClassOf hpc:Resourcemanagement .
+
+hpc:RusageRss rdfs:domain hpc:UnixOperatingSystem .
+hpc:RusageRss rdfs:range xsd:string .
+
+hpc:Rusage rdfs:domain hpc:StrictResourceReservationMethod .
+hpc:Rusage rdfs:range xsd:string .
+
+hpc:UnixOperatingSystem rdfs:subClassOf owl:Thing .

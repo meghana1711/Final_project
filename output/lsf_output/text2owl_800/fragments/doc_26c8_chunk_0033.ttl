@@ -1,0 +1,13 @@
+hpc:Template a owl:Class ;
+    rdfs:subClassOf hpc:Resourcetemplate ;
+    rdfs:comment "A set of hosts with common attributes." .
+
+hpc:templateid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The unique template name." .
+
+hpc:maxnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of instances to provide." .

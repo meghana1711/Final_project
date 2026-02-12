@@ -1,0 +1,69 @@
+hpc:Hosta a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Host for which LSF calculates the normalized run time using the CPU factor." .
+
+hpc:Ultra5s a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Host model for which LSF calculates the normalized run time using the CPU factor defined." .
+
+hpc:hasCPUFactor rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hosta ;
+    rdfs:range xsd:decimal .
+
+hpc:calculatesNormalizedRuntime rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hosta ;
+    rdfs:range xsd:decimal .
+
+hpc:RUNTIME rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Ultra5s ;
+    rdfs:range xsd:decimal .
+
+hpc:bsubWe rdf:type owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:decimal .
+
+hpc:calculatesNormalizedRuntimeUsing rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Ultra5s ;
+    rdfs:range xsd:decimal .
+
+hpc:lsinfoCommand rdf:type owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string .
+
+hpc:definesRuntimeEstimate rdf:type owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:boolean .
+
+hpc:jobLevelRuntimeLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:decimal .
+
+hpc:applicationLevelRuntimeLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:decimal .
+
+hpc:queueLevelRuntimeLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:decimal .
+
+hpc:ignoresEstimatedRuntimeValue rdf:type owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:boolean .
+
+hpc:usesRunLimitValueForScheduling rdf:type owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:boolean .
+
+hpc:smallestRunLimitValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:decimal .
+
+hpc:jobRunLimitRatio rdf:type owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:decimal .
+
+hpc:planBasedSchedulingEnabled rdf:type owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:boolean .
+
+hpc:allocationPlannerEnabled

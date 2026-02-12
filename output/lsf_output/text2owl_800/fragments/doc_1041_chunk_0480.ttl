@@ -1,0 +1,46 @@
+hpc:Job a owl:Class .
+hpc:jobname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:JobnameIndexlist a owl:Class ;
+    rdfs:subClassOf hpc:Jobname .
+
+hpc:wildcard a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobname ;
+    rdfs:range xsd:string .
+
+hpc:arrayindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobnameIndexlist ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:username a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:domainname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Username ;
+    rdfs:range xsd:string .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:JobidIndexlist a owl:Class ;
+    rdfs:subClassOf hpc:Jobid .
+
+hpc:requeue a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:requeueUsername a owl:ObjectProperty ;
+    rdfs:domain hpc:Requeue ;
+    rdfs:range hpc:Username .
+
+hpc:requeueAll a owl:ObjectProperty ;
+    rdfs:domain hpc:Requeue ;
+    rdfs:range hpc:Job .
+
+hpc:printusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Requeue ;
+    rdfs:range rdf:PlainLiteral .

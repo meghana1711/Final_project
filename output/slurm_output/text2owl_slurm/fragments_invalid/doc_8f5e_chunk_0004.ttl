@@ -1,0 +1,14 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Upgrade a owl:Class.
+hpc:Preparation hpc:Upgrade rdfs:subClassOf owl:Class.
+hpc:Reviewreleasenotes hpc:Preparation rdfs:subClassOf owl:ObjectProperty.
+hpc:Reviewchangelog hpc:Preparation rdfs:subClassOf owl:ObjectProperty.
+hpc:Testenvironment hpc:Preparation rdfs:subClassOf owl:Class.
+hpc:Testintestenvironment hpc:Reviewreleasenotes rdfs:domain hpc:Upgrade ;
+                                                 rdfs:range hpc:Testenvironment.
+h

@@ -1,0 +1,45 @@
+# Classes
+hpc:Bpeek a owl:Class .
+hpc:Bpost a owl:Class .
+hpc:Bqueues a owl:Class .
+
+# Object Properties
+hpc:hascommandoption a owl:ObjectProperty .
+hpc:exitsonjobcompletion a owl:ObjectProperty .
+hpc:cannotgetnewoutput a owl:ObjectProperty .
+hpc:requiresabortpreviouscommand a owl:ObjectProperty .
+hpc:sendsmessage a owl:ObjectProperty .
+hpc:specifiednotificationlevel a owl:ObjectProperty .
+hpc:displaysglobalfairsharepolicyname a owl:ObjectProperty .
+hpc:displaysremoteshareload a owl:ObjectProperty .
+hpc:showspendingtimelimits a owl:ObjectProperty .
+hpc:customizesdisplayfields a owl:ObjectProperty .
+hpc:displaysinjsonformat a owl:ObjectProperty .
+hpc:displaysnormalizedfairsharefactors a owl:ObjectProperty .
+hpc:displaysstartedjobs a owl:ObjectProperty .
+hpc:displaysreservedjobs a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hasfixpack a owl:DatatypeProperty .
+hpc:hasCommandOptionRange xsd:string .
+
+# Domain and Range
+hpc:Exitsonjobcompletion rdfs:domain hpc:Bpeek ;
+    rdfs:range xsd:boolean .
+hpc:Cannotgetnewoutput rdfs:domain hpc:Bpeek ;
+    rdfs:range xsd:boolean .
+hpc:Requiresabortpreviouscommand rdfs:domain hpc:Bpeek ;
+    rdfs:range xsd:boolean .
+hpc:Sendsmessage rdfs:domain hpc:Bpost ;
+    rdfs:range xsd:string .
+hpc:Specifiednotificationlevel rdfs:domain hpc:Bpost ;
+    rdfs:range xsd:string .
+hpc:Displaysglobalfairsharepolicyname rdfs:domain hpc:Bqueues ;
+    rdfs:range xsd:string .
+hpc:Displaysremoteshareload rdfs:domain hpc:Bqueues ;
+    rdfs:range xsd:string .
+hpc:Showspendingtimelimits rdfs:domain hpc:Bqueues ;
+    rdfs:range xsd:string .
+hpc:Customizesdisplayfields rdfs:domain hpc:Bqueues ;
+    rdfs:range xsd:string .
+hpc:Displaysinjsonformat rdfs:domain h

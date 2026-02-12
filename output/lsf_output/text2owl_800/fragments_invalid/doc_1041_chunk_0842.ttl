@@ -1,0 +1,25 @@
+hpc:User a owl:Class .
+hpc:Lsfadministrator a owl:Class .
+hpc:Root a owl:Class .
+
+hpc:hasdomainname a owl:ObjectProperty .
+hpc:haspassword a owl:DatatypeProperty .
+hpc:hashosttype a owl:ObjectProperty .
+hpc:createpassword a owl:ObjectProperty .
+hpc:verifypassword a owl:ObjectProperty .
+hpc:deletepassword a owl:ObjectProperty .
+hpc:updatepassword a owl:ObjectProperty .
+
+hpc:Hasdomainname rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+hpc:Haspassword rdfs:domain hpc:User ;
+    rdfs:range xsd:string ;
+    rdfs:rangeMinInclusive xsd:3 ;
+    rdfs:rangeMaxInclusive xsd:23 .
+hpc:Hashosttype rdfs:domain hpc:User .
+hpc:Createpassword rdfs:domain hpc:User ;
+    rdfs:subClassOf rdf:List .
+hpc:Verifypassword rdfs:domain hpc:User .
+hpc:Deletepassword rdfs:subClassOf (hpc:Lsfadministrator rdf:type owl:Class, hpc:Root rdf:type owl:Class) .
+hpc:Updatepassword rdfs:domain hpc:User ;
+    rdfs:subClassOf (hpc:User rdf:type owl:Class, hpc:Lsfadministrator rdf:type owl:Class, hpc:Root rdf:type owl:Class) .

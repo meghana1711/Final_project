@@ -1,0 +1,45 @@
+hpc:File a owl:Class .
+hpc:haspermission a owl:ObjectProperty .
+hpc:hashash a owl:DatatypeProperty .
+hpc:size a owl:DatatypeProperty .
+hpc:status a owl:DatatypeProperty .
+hpc:refjob a owl:DatatypeProperty .
+hpc:xferjob a owl:DatatypeProperty .
+hpc:grace a owl:DatatypeProperty .
+hpc:modified a owl:DatatypeProperty .
+hpc:cachelocation a owl:ObjectProperty .
+hpc:to a owl:ObjectProperty .
+hpc:Hashash rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+hpc:Size rdfs:domain hpc:File ;
+    rdfs:range xsd:decimal .
+hpc:Status rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+hpc:Refjob rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+hpc:Xferjob rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+hpc:Grace rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+hpc:Modified rdfs:domain hpc:File ;
+    rdfs:range xsd:dateTime .
+hpc:Cachelocation rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+hpc:To rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+
+hpc:User a owl:Class .
+hpc:Group a owl:Class .
+
+hpc:Haspermission hpc:file rdfs:subPropertyOf hpc:hasPermissionBy .
+hpc:hasPermissionBy rdf:Type owl:ObjectProperty .
+hpc:Haspermissionby hpc:File rdfs:domain hpc:User ;
+    rdfs:range hpc:File .
+
+hpc:Haspermissionby hpc:file rdfs:subPropertyOf hpc:hasPermissionByGroup .
+hpc:hasPermissionByGroup rdf:Type owl:ObjectProperty .
+hpc:Haspermissionbygroup hpc:File rdfs:domain hpc:Group ;
+    rdfs:range hpc:File .
+
+
+This is the ontology fragment for the provided documentation. It includes classes for `File`, `User`, and `Group`, as well as properties for various file attributes and permissions. The properties have been defined with their domains and ranges. However, the actual instances and their values are not included in this fragment.

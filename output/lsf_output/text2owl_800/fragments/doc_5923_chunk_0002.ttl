@@ -1,0 +1,44 @@
+hpc:Installation a owl:Class .
+hpc:LsfTop rdfs:domain hpc:Installation ;
+    rdfs:range xsd:string .
+
+hpc:LsfAdmins rdfs:domain hpc:Installation ;
+    rdfs:range xsd:string .
+
+hpc:LsfClusterName rdfs:domain hpc:Installation ;
+    rdfs:range xsd:string .
+
+hpc:LsfMasterList rdfs:domain hpc:Installation ;
+    rdfs:range xsd:string .
+
+hpc:LsfEntitlementFile rdfs:domain hpc:Installation ;
+    rdfs:range xsd:string .
+
+hpc:LsfInstallationDir rdfs:domain hpc:Installation ;
+    rdfs:range xsd:string .
+
+hpc:installationprocedure a owl:ObjectProperty .
+hpc:Installationprocedure rdfs:domain hpc:Installation ;
+    rdfs:range hpc:Installationprocedure .
+
+hpc:InstallationProcedure rdfs:subPropertyOf owl:performs .
+
+hpc:Installationprocedurestep a owl:Class .
+hpc:Installationprocedurestep rdfs:subClassOf hpc:Installationprocedure .
+
+hpc:taskdefinitionfile a owl:ObjectProperty .
+hpc:Taskdefinitionfile rdfs:domain hpc:Task ;
+    rdfs:range xsd:string .
+
+hpc:Task a owl:Class .
+hpc:Task rdfs:subClassOf hpc:Job .
+
+hpc:taskdefinition a owl:ObjectProperty .
+hpc:Taskdefinition rdfs:domain hpc:Task ;
+    rdfs:range xsd:string .
+
+hpc:TaskDefinition rdfs:subPropertyOf owl:hasPart .
+
+hpc:taskline a owl:DatatypeProperty .
+hpc:Taskline rdfs:domain hpc:Taskdefinition ;
+    rdfs:range xsd:string .

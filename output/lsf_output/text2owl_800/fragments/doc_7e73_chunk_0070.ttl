@@ -1,0 +1,34 @@
+hpc:Resourcegroup a owl:Class .
+hpc:hasAzureResourceGroup rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcegroup ;
+    rdfs:range xsd:string .
+
+hpc:Azurevirtualnetwork a owl:Class .
+hpc:hasVNet rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Azurevirtualnetwork ;
+    rdfs:range xsd:string .
+
+hpc:Subnet a owl:Class .
+hpc:hasSubnetName rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Subnet ;
+    rdfs:range xsd:string .
+
+hpc:Networksecuritygroup a owl:Class .
+hpc:hasNSG rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Networksecuritygroup ;
+    rdfs:range xsd:string .
+
+hpc:hasCustomizedRule rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Networksecuritygroup .
+
+hpc:Lsfresourcegroup a owl:Class ;
+    rdfs:subClassOf hpc:Resourcegroup .
+
+hpc:Lsfvnet a owl:Class ;
+    rdfs:subClassOf hpc:Azurevirtualnetwork .
+
+hpc:Lfssubnet a owl:Class ;
+    rdfs:subClassOf hpc:Subnet .
+
+hpc:Lsfnsg a owl:Class ;
+    rdfs:subClassOf hpc:Networksecuritygroup .

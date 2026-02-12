@@ -1,0 +1,36 @@
+hpc:Stage a owl:Class .
+
+# Object properties
+hpc:hasstorage a owl:ObjectProperty ;
+    rdfs:domain hpc:Stage ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasinscript a owl:ObjectProperty ;
+    rdfs:domain hpc:Stage ;
+    rdfs:range xsd:string .
+hpc:hasoutscript a owl:ObjectProperty ;
+    rdfs:domain hpc:Stage ;
+    rdfs:range xsd:string .
+
+# Datatype properties
+hpc:storage a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:inscript a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+hpc:outscript a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+# Categories
+hpc:Stepcgroup a owl:Class .
+
+# Object property
+hpc:usescgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Stepcgroup .
+
+# Limit
+hpc:threadlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Job
+hpc:Job a owl:Class .

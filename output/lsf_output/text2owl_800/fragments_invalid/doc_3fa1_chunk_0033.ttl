@@ -1,0 +1,26 @@
+hpc:User a owl:Class .
+hpc:Group a owl:Class .
+hpc:Shareassignment a owl:Class .
+
+hpc:Hasuser hpc:objectproperty ;
+    rdfs:domain hpc:Shareassignment ;
+    rdfs:range hpc:User .
+hpc:Hasshare hpc:datatypeproperty ;
+    rdfs:domain hpc:Shareassignment ;
+    rdfs:range xsd:integer .
+hpc:Isgroupmember hpc:objectproperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Group .
+
+hpc:Group hpc:hasmember rdfs:symmetric .
+hpc:Group hpc:hassubgroup rdfs:subPropertyOf hpc:isGroupMember .
+
+hpc:Hierarchicalfairshare hpc:subclassof hpc:ShareAssignment .
+hpc:Fcfsscheduling hpc:subclassof hpc:ShareAssignment .
+
+hpc:Hierarchicalfairshare hpc:Hasgroup rdfs:domain hpc:Hierarchicalfairshare ;
+    rdfs:range hpc:Group .
+hpc:Hierarchicalfairshare hpc:Totalshares rdfs:domain hpc:Hierarchicalfairshare ;
+    rdfs:range xsd:integer .
+hpc:Fcfsscheduling hpc:Hasuser rdfs:domain hpc:Fcfsscheduling ;
+    rdfs:range hpc:User .

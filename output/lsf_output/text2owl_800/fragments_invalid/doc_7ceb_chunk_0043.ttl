@@ -1,0 +1,49 @@
+hpc:Lsfserver a owl:Class .
+hpc:Lsfsudoersfile a owl:Class .
+hpc:hasLSFServer rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfserver ;
+    rdfs:range hpc:Lsfsudoersfile .
+hpc:hasLSFAdminUsers rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfsudoersfile ;
+    rdfs:range xsd:string .
+hpc:hasLSFStartupPath rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfsudoersfile ;
+    rdfs:range xsd:string .
+hpc:Lsfserverfile a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hpc:hasLSFServer ;
+            owl:allValuesFrom [ a xsd:file ] ] ] .
+hpc:Lsfsudoersfilefile a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hpc:hasLSFServer ;
+            owl:allValuesFrom [ a xsd:file ;
+                owl:hasLeafName "lsf.sudoers" ] ] ] .
+hpc:lsfserverfilepermissionmode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfserverfile ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:lsfsudoersfilepermissionmode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfsudoersfile ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:LSFServerFileReadableBy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfserverfile ;
+    rdfs:range xsd:string .
+hpc:LsfSudoersFileReadableBy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsudoersfile ;
+    rdfs:range xsd:string .
+hpc:LSFServerFileWritableBy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfserverfile ;
+    rdfs:range xsd:string .
+hpc:LsfSudoersFileWritableBy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsudoersfile ;
+    rdfs:range xsd:string .
+hpc:LSFServerFileExecutableBy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfserverfile ;
+    rdfs:range xsd:string .
+hpc:LsfSudoersFileExecutableBy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsudoersfile ;
+    rdfs:range xsd:string .
+hpc:LSFServerFileHasSetuidBit rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfserverfile ;
+    r

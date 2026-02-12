@@ -1,0 +1,26 @@
+hpc:Flags a owl:Class .
+
+hpc:groups a owl:ObjectProperty ;
+    rdfs:domain hpc:Flags ;
+    rdfs:range xsd:string .
+
+hpc:licenses a owl:ObjectProperty ;
+    rdfs:domain hpc:Flags ;
+    rdfs:range xsd:string .
+
+hpc:maxstartdelay a owl:DatatypeProperty ;
+    rdfs:domain hpc:Flags ;
+    rdfs:range hpc:V0043reservationdescmsg .
+
+hpc:V0043rollupstatshourly a owl:Class .
+hpc:V0043rollupstatsdaily a owl:Class .
+hpc:V0043rollupstatsmonthly a owl:Class .
+
+hpc:V0043scheduleexitfields a owl:Class .
+
+hpc:endjobqueue a owl:DatatypeProperty ;
+    rdfs:domain hpc:V0043scheduleexitfields ;
+    rdfs:range xsd:integer .
+
+hpc:defaultqueuedepth a owl:DatatypeProperty ;
+    rdfs:domain

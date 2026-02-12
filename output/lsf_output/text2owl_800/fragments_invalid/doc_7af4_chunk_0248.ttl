@@ -1,0 +1,65 @@
+hpc:Cbnt a owl:Class .
+hpc:Hasrack hpc:cbnt owl:ObjectProperty ;
+    rdfs:domain hpc:Cbnt ;
+    rdfs:range hpc:Rack .
+
+hpc:Rack a owl:Class .
+hpc:Contains hpc:rack owl:ObjectProperty ;
+    rdfs:domain hpc:Rack ;
+    rdfs:range hpc:Enclosure .
+
+hpc:Enclosure a owl:Class .
+hpc:Hascomputeunit hpc:enclosure owl:ObjectProperty ;
+    rdfs:domain hpc:Enclosure ;
+    rdfs:range hpc:Computeunit .
+
+hpc:CBNT1 a hpc:CBNT ;
+    hpc:Hasrack hpc:rack1, hpc:rack2 .
+hpc:Cbnt1 hpc:shows hpc:condensedOutput .
+
+hpc:CBNT2 a hpc:CBNT ;
+    hpc:Hasrack hpc:rack3 .
+hpc:Cbnt2 hpc:shows hpc:noncondensedOutput .
+
+hpc:Computeunittype a owl:Class .
+hpc:Rack rdfs:subClassOf hpc:Computeunittype .
+
+hpc:Enclosure6 a hpc:Enclosure ;
+    hpc:Hascomputeunit hpc:encl6 .
+
+hpc:CBNT3 a hpc:CBNT .
+hpc:hasRack _:rack (
+    _:rack a hpc:Rack ;
+        hpc:Contains hpc:encl6
+) .
+hpc:Cbnt3 hpc:cannotcontain hpc:encl6 .
+
+hpc:Automatictimebasedconfiguration a owl:Class .
+hpc:Uses hpc:automatictimebasedconfiguration owl:ObjectProperty ;
+    rdfs:domain hpc:Cbnt .
+
+hpc:Configurationvariable a owl:Class .
+hpc:Automatictimebasedconfiguration rdfs:subClassOf hpc:Configurationvariable .
+
+hpc:Lsbhost a owl:Class .
+hpc:Usesifelseconstruct hpc:lsbhost owl:ObjectProperty ;
+    rdfs:domain hpc:Configurationvariable .
+
+hpc:Timeexpression a owl:Class .
+hpc:Lsbhost rdfs:subClassOf hpc:Configurationvariable .
+
+hpc:reconfigurecluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Automatictimebasedconfiguration .
+
+hpc:reconfigurecommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Reconfigurecluster .
+
+hpc:evaluatedevery a owl:DatatypeProperty ;
+    rdfs:domain hpc:Automatictimebasedconfiguration ;
+    rdfs:range xsd:decimal .
+
+hpc:dynamicchange a owl:ObjectProperty ;
+    rdfs:domain hpc:Automatictimebasedconfiguration .
+
+hpc:continuoussystemavailability a owl:ObjectProperty ;
+    rdfs:domain hpc:Automatictimebasedconfiguration .

@@ -1,0 +1,32 @@
+hpc:Battach a owl:Class .
+hpc:Battach rdfs:subClassOf owl:ProcessCommand .
+
+hpc:Battr a owl:Class .
+hpc:Battr rdfs:subClassOf owl:JobManagementCommand .
+
+hpc:Bconf a owl:Class .
+hpc:Bconf rdfs:subClassOf owl:JobManagementCommand .
+hpc:Bconf rdfs:domain hpc:Jobmanagementsystem .
+hpc:Bconf rdfs:range hpc:Bconfrequest .
+
+hpc:Bconfrequest a owl:Class .
+hpc:Bconfrequest rdfs:subClassOf owl:JobManagementRequest .
+
+hpc:Bctrld a owl:Class .
+hpc:Bctrld rdfs:subClassOf owl:AdministrativeTool .
+hpc:Bctrld rdfs:domain hpc:Jobmanagementsystem .
+
+hpc:serviceclass a owl:DatatypeProperty .
+hpc:Serviceclass rdfs:domain hpc:Modifyserviceclasscommand .
+hpc:Serviceclass rdfs:range xsd:string .
+
+hpc:Modifyserviceclasscommand a owl:Class .
+hpc:Modifyserviceclasscommand rdfs:subClassOf owl:JobManagementCommand .
+
+hpc:propack a owl:ObjectProperty .
+hpc:Propack rdfs:domain hpc:Bconf .
+hpc:Propack rdfs:range xsd:integer .
+
+hpc:setaction a owl:ObjectProperty .
+hpc:Setaction rdfs:domain hpc:Bconfrequest .
+hpc:Setaction rdfs:range xsd:string .

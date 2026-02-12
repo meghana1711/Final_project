@@ -1,0 +1,34 @@
+hpc:Lsfconfiguration a owl:Class .
+hpc:hasMaxPackJobs an owl:DatatypeProperty .
+hpc:Hasmaxpackjobs rdfs:domain hpc:Lsfconfiguration ;
+                    rdfs:range xsd:nonNegativeInteger .
+
+hpc:usesJobPacks an owl:ObjectProperty .
+hpc:Usesjobpacks rdfs:domain hpc:Lsfconfiguration ;
+                  rdfs:range xsd:boolean .
+
+hpc:hasPackMesub an owl:DatatypeProperty .
+hpc:Haspackmesub rdfs:domain hpc:Lsfconfiguration ;
+                 rdfs:range xsd:nonNegativeInteger .
+
+hpc:skipsErrorOnPacks an owl:DatatypeProperty .
+hpc:Skipserroronpacks rdfs:domain hpc:Lsfconfiguration ;
+                       rdfs:range xsd:boolean .
+
+hpc:Jobsubmissionfile a owl:Class .
+hpc:Jobsubmissionfile rdfs:subClassOf hpc:File .
+
+hpc:Jobsubmission a owl:Class .
+hpc:Jobsubmission rdfs:subClassOf hpc:Job .
+hpc:Jobsubmission rdfs:subClassOf hpc:Jobpackmember .
+
+hpc:Jobpack a owl:Class .
+hpc:Jobpack rdfs:subClassOf hpc:Job .
+hpc:Jobpack rdfs:subClassOf hpc:Jobpackmember .
+hpc:Jobpack rdfs:subClassOf hpc:Jobpackmaster .
+
+hpc:Jobpackmember a owl:Class .
+hpc:Jobpackmember rdfs:subClassOf hpc:Job .
+
+hpc:Jobpackmaster a owl:Class .
+hpc:Jobpackmaster rdfs:subClassOf hpc:Job .

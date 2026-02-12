@@ -1,0 +1,21 @@
+hpc:Dynamicnode a owl:Class .
+hpc:Topology a owl:Class .
+hpc:Topologyunit a owl:Class .
+hpc:topologyname a owl:DatatypeProperty;
+    rdfs:domain hpc:Topology;
+    rdfs:range xsd:string .
+hpc:topologyoption a owl:ObjectProperty;
+    rdfs:domain hpc:Dynamicnode;
+    rdfs:range rdf:List .
+hpc:topologylist a owl:DatatypeProperty;
+    rdfs:domain hpc:Topologyoption;
+    rdfs:range rdf:List .
+hpc:topologyunitlist a owl:DatatypeProperty;
+    rdfs:domain hpc:Topologyunit;
+    rdfs:range rdf:List .
+hpc:topologynameunit a owl:DatatypeProperty;
+    rdfs:domain hpc:Topologyunit;
+    rdfs:range xsd:string .
+hpc:Topologyconf a owl:Class;
+    rdfs:subClassOf hpc:Topology .
+hpc:Topologyyaml a owl:Class;

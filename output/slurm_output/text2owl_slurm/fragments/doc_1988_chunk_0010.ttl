@@ -1,0 +1,24 @@
+hpc:Job a owl:Class .
+hpc:scancelcommand a owl:ObjectProperty .
+
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Scancelcommand rdfs:domain hpc:Job ;
+                      rdfs:range rdf:Plural .
+
+hpc:ScancelCommand rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf hpc:SendsSignal .
+
+hpc:sendssignal a owl:ObjectProperty ;
+                rdfs:domain hpc:Command ;
+                rdfs:range xsd:integer .
+
+hpc:SendsSignal rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:action .
+
+hpc:SIGSTOP rdf:type xsd:integer ;
+            xsd:minInclusive "1" ;
+            xsd:maxInclusive "1" .
+
+hpc:SIGCONT rdf:type xsd:integer ;
+            xsd:minInclusive "2" ;
+            xsd:maxInclusive "2" .

@@ -1,0 +1,34 @@
+hpc:Job a owl:Class ;
+  rdfs:subClassOf owl:NamedIndividual ;
+  rdfs:label "Job" ;
+  rdfs:comment "Represents a job in the HPC system." .
+
+hpc:submittime a owl:DatatypeProperty ;
+  rdfs:domain hpc:Job ;
+  rdfs:range xsd:dateTime .
+
+hpc:jobname a owl:DatatypeProperty ;
+  rdfs:domain hpc:Job ;
+  rdfs:range xsd:string .
+
+hpc:SubmitTime "664" wt1 hpc:SubmitTime .
+hpc:JobName "RUN" wt1 hpc:JobName .
+hpc:JobName "normal" wt1 hpc:JobName .
+hpc:JobName "lwshost" wt1 hpc:JobName .
+hpc:JobName "lwsexec" wt1 hpc:JobName .
+hpc:JobName "sleep" wt1 hpc:JobName .
+hpc:JobName "20" wt1 hpc:JobName .
+hpc:JobName "Jun" wt1 hpc:JobName .
+hpc:JobName "12" wt1 hpc:JobName .
+hpc:JobName "00" wt1 hpc:JobName .
+hpc:JobName ":" wt1 hpc:JobName .
+hpc:JobName "10" wt1 hpc:JobName .
+hpc:JobName "Jun" wt1 hpc:JobName .
+hpc:JobName "00" wt1 hpc:JobName .
+hpc:JobName ":10" wt1 hpc:JobName .
+
+hpc:runtime a owl:ObjectProperty ;
+  rdfs:domain hpc:Job ;
+  rdfs:range hpc:Job .
+
+wt1 hpc:RunTime wt1 .

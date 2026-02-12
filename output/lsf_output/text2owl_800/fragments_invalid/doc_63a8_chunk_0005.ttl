@@ -1,0 +1,81 @@
+hpc:DataFileRequirementWithAsterisk
+    a owl:Class ;
+    rdfs:subClassOf hpc:Datafilerequirement ;
+    rdfs:comment "The data file requirements must be in quotation marks." .
+
+hpc:DefaultHostName
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datafilerequirement ;
+    rdfs:range xsd:string .
+
+hpc:SubmissionHostName
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datafilerequirement ;
+    rdfs:range xsd:string .
+
+hpc:PasswordlessSshConfigured
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Datafilerequirement ;
+    rdfs:range xsd:boolean .
+
+hpc:FileCache
+    a owl:Class ;
+    rdfs:subClassOf hpc:Datafilerequirement .
+
+hpc:FileCacheable
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Datafilerequirement ;
+    rdfs:range hpc:Filecache .
+
+hpc:FileCacheRejected
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Datafilerequirement ;
+    rdfs:range xsd:boolean .
+
+hpc:AllowedFileCharacters
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datafilerequirement ;
+    rdfs:range xsd:string .
+
+hpc:DisallowedFileCharacters
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Allowedfilecharacters ;
+    rdfs:range xsd:string .
+
+hpc:AllowedFileNameCharacters
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datafilerequirement ;
+    rdfs:range xsd:string .
+
+hpc:DisallowedFileNameCharacters
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Allowedfilenamecharacters ;
+    rdfs:range xsd:string .
+
+hpc:AllowedPathCharacters
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datafilerequirement ;
+    rdfs:range xsd:string .
+
+hpc:DisallowedPathCharacters
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Allowedpathcharacters ;
+    rdfs:range xsd:string .
+
+hpc:SymbolicLinkRespected
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Datafilerequirement ;
+    rdfs:range xsd:boolean .
+
+hpc:BrokenSymbolicLinkDetected
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Datafilerequirement ;
+    rdfs:range xsd:boolean .
+
+hpc:FolderAccessRequired
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Datafilerequirement ;
+    rdfs:range xsd:boolean .
+
+hpc:ReadPermission
+    a o

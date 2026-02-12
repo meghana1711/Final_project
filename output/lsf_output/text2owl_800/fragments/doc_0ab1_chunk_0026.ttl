@@ -1,0 +1,22 @@
+hpc:Gtile a owl:Class .
+hpc:hasgtile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gtile ;
+    rdfs:range xsd:integer .
+
+hpc:nvlink a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:glink a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:xgmi a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:Affinityjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Nonaffinityjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .

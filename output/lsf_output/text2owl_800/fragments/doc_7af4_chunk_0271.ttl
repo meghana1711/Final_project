@@ -1,0 +1,18 @@
+hpc:csmValidSmt a owl:ObjectProperty .
+hpc:CsmValidSmt rdfs:domain hpc:Job .
+hpc:CsmValidSmt rdfs:range xsd:positiveInteger .
+hpc:CSM_VALID_SMT rdfs:subPropertyOf hpc:SMT_Mode .
+
+hpc:SmtMode a owl:Class .
+hpc:SmtMode rdfs:subClassOf hpc:Property .
+
+hpc:defaultApplication a owl:ObjectProperty .
+hpc:DefaultApplication rdfs:domain hpc:Lsf .
+hpc:DefaultApplication rdfs:range hpc:Applicationprofile .
+
+hpc:Applicationprofile a owl:Class .
+hpc:Applicationprofile rdfs:subClassOf hpc:Namedentity .
+
+hpc:defaultBwaitTimeout a owl:DatatypeProperty .
+hpc:DefaultBwaitTimeout rdfs:domain hpc:Lsf .
+hpc:DefaultBwaitTimeout rdfs:range xsd:nonNegativeInteger .

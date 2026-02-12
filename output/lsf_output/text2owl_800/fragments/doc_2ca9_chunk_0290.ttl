@@ -1,0 +1,48 @@
+hpc:JobResizeNotifyStart a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Remote job move result." ;
+    rdfs:label "JOB_RESIZE_NOTIFY_START" ;
+    rdfs:domain hpc:Job .
+
+hpc:GpuAllocCompat rdfs:domain hpc:JobResizeNotifyStart ;
+    rdfs:range xsd:string .
+
+hpc:GpuMemRsv rdfs:domain hpc:JobResizeNotifyStart ;
+    rdfs:range xsd:string .
+
+hpc:JobNew a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "JOB_NEW record." ;
+    rdfs:label "JOB_NEW" ;
+    rdfs:domain hpc:Job .
+
+hpc:pendtimelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobNew ;
+    rdfs:range xsd:decimal .
+
+hpc:eligiblependtimelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobNew ;
+    rdfs:range xsd:decimal .
+
+hpc:JobArrayEventsCombine rdfs:domain hpc:JobNew ;
+    rdfs:range xsd:string .
+
+hpc:indexrangestart1 a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobNew ;
+    rdfs:range xsd:decimal .
+
+hpc:indexrangeend1 a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobNew ;
+    rdfs:range xsd:decimal .
+
+hpc:indexrangestep1 a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobNew ;
+    rdfs:range xsd:decimal .
+
+hpc:indexrangestartn a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobNew ;
+    rdfs:range xsd:decimal .
+
+hpc:indexrangeendn a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobNew ;
+    rdfs:range xsd:decimal .

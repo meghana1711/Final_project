@@ -1,0 +1,58 @@
+hpc:LsfGpuResourceIgnore a owl:Class .
+hpc:LsfGpuAutoconfig a owl:Class .
+hpc:LsbGpuNewSyntax a owl:Class .
+
+hpc:hasversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfGpuResourceIgnore ;
+    rdfs:range xsd:string .
+
+hpc:isenabled a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfGpuResourceIgnore ;
+    rdfs:range xsd:boolean .
+
+hpc:requiresrtmversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfGpuResourceIgnore ;
+    rdfs:range xsd:string .
+
+hpc:LsfGpuResourceIgnore rdfs:subClassOf hpc:Parameter .
+
+hpc:LsloadGpuload a owl:Class .
+
+hpc:displayspowerutilization a owl:ObjectProperty ;
+    rdfs:domain hpc:LsloadGpuload ;
+    rdfs:range hpc:Gpu .
+
+hpc:Gpu a owl:Class .
+
+hpc:haspowerutilization a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range xsd:float .
+
+hpc:requiresnvidiagpu a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range hpc:Gpu .
+
+hpc:requiresnvlink a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range xsd:boolean .
+
+hpc:requiresglink a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range xsd:boolean .
+
+hpc:requiresgvendor a owl:ObjectProperty ;
+    rdfs:domain hpc:GpuRequirementString ;
+    rdfs:range xsd:string .
+
+hpc:GpuRequirementString a owl:Class .
+
+hpc:LsbGpuNewSyntaxValue a owl:Class ;
+    rdfs:subClassOf hpc:Parametervalue .
+
+hpc:LsfGpuAutoconfigValue a owl:Class ;
+    rdfs:subClassOf hpc:Parametervalue .
+
+hpc:LsfGpuResourceIgnoreValue a owl:Class ;
+    rdfs:subClassOf hpc:Parametervalue .
+
+hpc:Parametervalue a owl:Class .

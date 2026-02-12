@@ -1,0 +1,26 @@
+hpc:User a owl:Class .
+hpc:Usergroup a owl:Class .
+hpc:ValidLoginName rdf:type owl:ObjectProperty .
+hpc:UserGroupName rdf:type owl:ObjectProperty .
+hpc:UNIXUserGroup rdf:type owl:Class .
+hpc:LSBUserGroup rdf:type owl:Class .
+hpc:Unixusergroup rdf:type rdfs:subClassOf hpc:Usergroup .
+hpc:Lsbusergroup rdf:type rdfs:subClassOf hpc:Usergroup .
+hpc:ConfiguredInLSB rdf:type owl:ObjectProperty .
+hpc:PerUser rdf:type owl:ObjectProperty .
+hpc:DoNotConfigureUSERSandPerUserInSameLimit rdf:type owl:ObjectProperty .
+hpc:HorizontalFormat rdf:type owl:ObjectProperty .
+hpc:VerticalFormat rdf:type owl:ObjectProperty .
+hpc:OneUSERSLinePerLimit rdf:type owl:ObjectProperty .
+hpc:all rdf:type owl:Class .
+hpc:notOperator rdf:type owl:ObjectProperty .
+hpc:ExcludeUsersOrUserGroupsFromAllSpecification rdf:type owl:ObjectProperty .
+hpc:ReservationUsage rdf:type owl:Class .
+hpc:Resources rdf:type owl:ObjectProperty .
+hpc:ReservationMethod rdf:type owl:ObjectProperty .
+hpc:USERS rdf:type owl:DatatypeProperty .
+hpc:Reservationusage rdfs:subClassOf owl:Class .
+hpc:Resources rdfs:domain hpc:Reservationusage .
+hpc:Reservationmethod rdfs:domain hpc:Reservationusage .
+hpc:Users rdfs:domain hpc:Reservationusage .
+hpc:Users rdfs:range xsd:string .

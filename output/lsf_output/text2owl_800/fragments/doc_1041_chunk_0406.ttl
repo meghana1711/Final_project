@@ -1,0 +1,46 @@
+hpc:Job a owl:Class .
+hpc:Environmentvariable a owl:Class .
+hpc:Lsf a owl:Class .
+hpc:migratejob a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range rdf:List .
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Migratejob ;
+    rdfs:range xsd:integer .
+hpc:jobname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Migratejob ;
+    rdfs:range xsd:string .
+hpc:Checkpointablejob a owl:Class .
+hpc:checkpoint a owl:ObjectProperty ;
+    rdfs:domain hpc:Checkpointablejob ;
+    rdfs:range hpc:Job .
+hpc:aps a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+hpc:LSB_RESTART a hpc:EnvironmentVariable ;
+    rdfs:label "LSB_RESTART"@en ;
+    rdfs:comment "Set to Y when a migrating job restarts or reruns." .
+hpc:LSB_REQUEUE_TO_BOTTOM a hpc:EnvironmentVariable ;
+    rdfs:label "LSB_REQUEUE_TO_BOTTOM"@en ;
+    rdfs:comment "If configured, the migrated jobs keep their APS information." .
+hpc:LSB_MIG2PEND a hpc:EnvironmentVariable ;
+    rdfs:label "LSB_MIG2PEND"@en ;
+    rdfs:comment "If configured, the migrated jobs compete with other pending jobs based on the APS value." .
+hpc:BrunCommand a hpc:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .
+hpc:BmigCommand a hpc:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .
+hpc:BrequequeCommand a hpc:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .
+hpc:AbsoluteJobPriorityScheduling a hpc:LSF ;
+    rdfs:label "Absolute Job Priority Scheduling (APS)"@en ;
+    rdfs:comment "When configured in the queue, LSF always schedules migrated jobs before pending jobs." .
+hpc:JobMigration a hpc:LSF ;
+    rdfs:label "Job Migration"@en ;
+    rdfs:comment "LSF keeps the existing job priority during job migration." .
+hpc:MulticlusterCapability a hpc:LSF ;
+    rdfs:label "Multicluster Capability"@en ;
+    rdfs:comment "You must use the brun command rather than the bmig command to move a job to another host in LSF multicluster capability." .

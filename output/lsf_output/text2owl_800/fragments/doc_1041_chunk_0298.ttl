@@ -1,0 +1,19 @@
+hpc:Job a owl:Class .
+hpc:Ineligiblependingjob a owl:Class .
+hpc:Eligiblependingjob a owl:Class .
+
+hpc:hasstarttimeconstraint a owl:ObjectProperty .
+hpc:issuspended a owl:ObjectProperty .
+hpc:hasinactivequeue a owl:ObjectProperty .
+hpc:hasinactivetimewindow a owl:ObjectProperty .
+hpc:hasunsatisfieddependencyconditions a owl:ObjectProperty .
+hpc:cannotfitintoruntimewindow a owl:ObjectProperty .
+hpc:hasdelayedscheduling a owl:ObjectProperty .
+hpc:hasnonexistentqueueorapplicationprofile a owl:ObjectProperty .
+
+hpc:hasabsolutepriorityschedulingfactor a owl:DatatypeProperty .
+
+hpc:Pendingjobfilter a owl:Class .
+hpc:hasallocationplan a owl:ObjectProperty .
+
+hpc:Detailedpriorityschedulingfactors a owl:Class .

@@ -1,0 +1,52 @@
+hpc:Lsfdatamanager a owl:Class .
+hpc:Parameterssection a owl:Class .
+hpc:Remotedatamanagerssection a owl:Class .
+
+hpc:admin a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range rdf:List .
+
+hpc:username a owl:DatatypeProperty ;
+    rdfs:domain hpc:Admin .
+
+hpc:filetransfercommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfdatamanager .
+
+hpc:stagingarea a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfdatamanager .
+
+hpc:cacheaccessiblefiles a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanager .
+
+hpc:cacheaccesscontrol a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanager .
+
+hpc:cacheInputGracePeriod a xsd:nonNegativeInteger ;
+    rdfs:domain hpc:Lsfdatamanager .
+
+hpc:cacheOutputGracePeriod a xsd:nonNegativeInteger ;
+    rdfs:domain hpc:Lsfdatamanager .
+
+hpc:cachepermissions a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanager .
+
+hpc:cacheRefreshInterval a xsd:nonNegativeInteger ;
+    rdfs:domain hpc:Lsfdatamanager .
+
+hpc:permissionMask a xsd:nonNegativeInteger ;
+    rdfs:domain hpc:Lsfdatamanager .
+
+hpc:queryNThreads a xsd:nonNegativeInteger ;
+    rdfs:domain hpc:Lsfdatamanager .
+
+hpc:remoteCacheRefreshInterval a xsd:nonNegativeInteger ;
+    rdfs:domain hpc:Remotedatamanagerssection .
+
+hpc:Lsfdatamanagerconfigurationfile a owl:Class ;
+    rdfs:subClassOf hpc:File .
+
+hpc:parameterssectioninlsfdatamanagerconfigurationfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfdatamanagerconfigurationfile .
+
+hpc:remotedatamanagerssectioninlsfdatamanagerconfigurationfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfdatamanagerconfigurationfile .

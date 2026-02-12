@@ -1,0 +1,24 @@
+hpc:Hostexceptionhandling a owl:Class .
+hpc:Host a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:exitrate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostexceptionhandling ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobexitrateduration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalexceptionhandling ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:globalexitrate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalexceptionhandling ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobexitratemonitor a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostexceptionhandling ;
+    rdfs:range hpc:Host .
+
+hpc:Hostexception a owl:Class ;
+    rdfs:subClassOf hpc:Exception .
+
+hpc:Globalexceptionhandling a owl:Class .

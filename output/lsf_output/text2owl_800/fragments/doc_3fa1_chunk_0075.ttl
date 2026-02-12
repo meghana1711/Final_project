@@ -1,0 +1,17 @@
+hpc:Guaranteedresourcepool a owl:Class .
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range xsd:string .
+
+hpc:distribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range rdf:List .
+
+hpc:Sla a owl:Class .
+hpc:share a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sla ;
+    rdfs:range xsd:decimal .
+
+hpc:addmember a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range rdf:Statement .

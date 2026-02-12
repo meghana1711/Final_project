@@ -1,0 +1,13 @@
+hpc:Mbdcall a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a call to an MBD function." .
+
+hpc:callserver a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbdcall ;
+    rdfs:range hpc:Mbdcall ;
+    rdfs:comment "The call to the server." .
+
+hpc:stmin a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbdcall ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "

@@ -1,0 +1,62 @@
+hpc:Command a owl:Class .
+hpc:Subcommand a owl:Class .
+
+hpc:Bkill a owl:Class ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "Kills jobs." .
+
+hpc:app a owl:ObjectProperty ;
+    rdfs:domain hpc:Bkill ;
+    rdfs:range hpc:Applicationprofile .
+
+hpc:user a owl:ObjectProperty ;
+    rdfs:domain hpc:Bkill ;
+    rdfs:range xsd:string .
+
+hpc:status a owl:ObjectProperty ;
+    rdfs:domain hpc:Bkill ;
+    rdfs:range xsd:string .
+
+hpc:Applicationprofile a owl:Class .
+
+hpc:Bladmin a owl:Class ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "Administrative tool for IBM® Spectrum LSF License Scheduler." .
+
+hpc:subcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Bladmin ;
+    rdfs:range hpc:Subcommand .
+
+hpc:hostName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reconfig ;
+    rdfs:range xsd:string .
+
+hpc:all a xsd:string .
+
+hpc:Ckconfig a owl:Class ;
+    rdfs:subClassOf hpc:Subcommand .
+
+hpc:Reconfig a owl:Class ;
+    rdfs:subClassOf hpc:Subcommand .
+
+hpc:Shutdown a owl:Class ;
+    rdfs:subClassOf hpc:Subcommand .
+
+hpc:Blddebug a owl:Class ;
+    rdfs:subClassOf hpc:Subcommand .
+
+hpc:className a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blddebug ;
+    rdfs:range xsd:string .
+
+hpc:debug_level a xsd:nonNegativeInteger .
+
+hpc:logfile_name a xsd:string .
+
+hpc:o a xsd:boolean .
+
+hpc:Blcdebug a owl:Class ;
+    rdfs:subClassOf hpc:Subcommand .
+
+hpc:debug_level a xsd:nonNegativeInteger ;
+    rdfs:range hpc:Blcdebug .

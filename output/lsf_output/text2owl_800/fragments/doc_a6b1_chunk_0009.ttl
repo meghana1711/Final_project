@@ -1,0 +1,38 @@
+hpc:Lsfdaemon a owl:Class .
+hpc:ResLog a hpc:LSFDaemon ;
+    rdfs:subClassOf hpc:Errorlogfile .
+hpc:SbatchdLog a hpc:LSFDaemon ;
+    rdfs:subClassOf hpc:Errorlogfile .
+hpc:MbatchdLog a hpc:LSFDaemon ;
+    rdfs:subClassOf hpc:Errorlogfile .
+hpc:MbschdLog a hpc:LSFDaemon .
+
+hpc:Errorlogfile a owl:Class .
+hpc:haslogfilename a owl:ObjectProperty ;
+    rdfs:domain hpc:Errorlogfile ;
+    rdfs:range xsd:string .
+
+hpc:Logpriority a owl:Class .
+hpc:lsfLogMask a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsystem ;
+    rdfs:range hpc:Logpriority .
+hpc:egoLogMask a owl:ObjectProperty ;
+    rdfs:domain hpc:Lim ;
+    rdfs:range hpc:Logpriority .
+
+hpc:Logpriority a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Lsfsystem a owl:Class .
+hpc:Lsfadministrator a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:setlogfilesowner a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsystem ;
+    rdfs:range hpc:Lsfadministrator .
+
+hpc:viewfiledescriptorsremaining a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsystem .
+
+hpc:locateerrorlogs a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsystem .

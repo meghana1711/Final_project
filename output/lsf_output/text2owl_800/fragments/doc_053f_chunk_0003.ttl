@@ -1,0 +1,13 @@
+hpc:Procedure a owl:Class .
+hpc:Slotgroup a owl:Class .
+hpc:Procedure rdfs:subClassOf [ a owl:Restriction ;
+                                 owl:onProperty hpc:hasSlotGroup ;
+                                 owl:hasValue 4 ;
+                                 owl:cardinalityMin 1 ;
+                                 owl:allValuesFrom hpc:SlotGroup ] .
+hpc:Host a owl:Class .
+hpc:Host rdfs:subClassOf [ a owl:Restriction ;
+                                 owl:onProperty hpc:hasSlotGroup ;
+                                 owl:hasValue hpc:SlotGroup ;
+                                 owl:cardinalityMax 1 ] .
+hpc:hasslotgroup a owl:ObjectProperty .

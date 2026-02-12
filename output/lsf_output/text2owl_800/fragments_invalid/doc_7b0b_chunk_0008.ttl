@@ -1,0 +1,64 @@
+hpc:ServerManager
+    a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:subClassOf hpc:Administrativetool ;
+    rdfs:label "Server Manager"@en ;
+    rdfs:comment "Represents the Server Manager tool in the context of this ontology." .
+
+hpc:Role
+    a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:subClassOf hpc:Administrativetool ;
+    rdfs:label "Role"@en ;
+    rdfs:comment "Represents a role in the context of this ontology." .
+
+hpc:AddRole
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Role ;
+    rdfs:range hpc:Additionevent ;
+    rdfs:label "addRole"@en ;
+    rdfs:comment "Represents the action of adding a role." .
+
+hpc:TerminalServices
+    a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:label "Terminal Services"@en ;
+    rdfs:comment "Represents Terminal Services in the context of this ontology." .
+
+hpc:TerminalServicesRole
+    a owl:Class ;
+    rdfs:subClassOf hpc:Role ;
+    rdfs:label "Terminal Services Role"@en ;
+    rdfs:comment "Represents a role related to Terminal Services." .
+
+hpc:TerminalServicesRoleService
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Terminalservicesrole ;
+    rdfs:range hpc:Service ;
+    rdfs:label "terminalServicesRoleService"@en ;
+    rdfs:comment "Represents the service associated with a Terminal Services Role." .
+
+hpc:AuthenticationMethod
+    a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:label "Authentication Method"@en ;
+    rdfs:comment "Represents an authentication method in the context of this ontology." .
+
+hpc:LicensingMode
+    a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:label "Licensing Mode"@en ;
+    rdfs:comment "Represents a licensing mode in the context of this ontology." .
+
+hpc:UserGroup
+    a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:label "User Group"@en ;
+    rdfs:comment "Represents a user group in the context of this ontology." .
+
+hpc:UserGroupAllowedAccess
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Terminalservicesrole ;
+    rdfs:range hpc:Usergroup ;
+    rdfs:label "userGroupAllowedAccess"@en ;
+    rdfs:comment

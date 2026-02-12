@@ -1,0 +1,65 @@
+hpc:Synopsysresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Host3 a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:Sharedsynopsysresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:subClassOf hpc:Sharedresource .
+
+hpc:Consoleresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Defaultresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Solarismachine a owl:Class ;
+    rdfs:subClassOf hpc:Machine .
+
+hpc:Int a xsd:string ;
+    rdfs:range xsd:string .
+
+hpc:Jsdlprocedure a owl:Class .
+
+hpc:Resourcerequirementstring a owl:Class .
+
+hpc:osname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jsdlprocedure ;
+    rdfs:range xsd:string .
+
+hpc:osversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jsdlprocedure ;
+    rdfs:range xsd:string .
+
+hpc:cpuarch a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jsdlprocedure ;
+    rdfs:range xsd:string .
+
+hpc:cpuspeed a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jsdlprocedure ;
+    rdfs:range xsd:string .
+
+hpc:bandwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jsdlprocedure ;
+    rdfs:range xsd:string .
+
+hpc:Reservedsharedresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:subClassOf hpc:Sharedresource .
+
+hpc:Resourcereservation a owl:Class .
+
+hpc:resourcerequirementstring a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcereservation ;
+    rdfs:range hpc:Resourcerequirementstring .
+
+hpc:Jobsubmission a owl:Class .
+
+hpc:Veriloglicence a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Externalloadindex a owl:Class .
+
+hpc:Dynamicexternalresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource .

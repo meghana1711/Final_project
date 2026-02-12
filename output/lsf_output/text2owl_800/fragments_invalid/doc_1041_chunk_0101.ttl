@@ -1,0 +1,32 @@
+hpc:Reqqueueexitvalues a owl:Class .
+hpc:resreq a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range hpc:Host .
+
+hpc:jobstarter a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile .
+
+hpc:rerunnable a owl:DatatypeProperty ;
+    rdfs:range xsd:boolean .
+
+hpc:resumecontrol a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:first hpc:Actiontype ;
+    rdfs:range rdf:rest hpc:Command .
+
+hpc:suspendcontrol a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:first hpc:Actiontype ;
+    rdfs:range rdf:rest hpc:Command .
+
+hpc:terminatecontrol a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:first hpc:Actiontype ;
+    rdfs:range rdf:rest hpc:Command .
+
+hpc:Actiontype a owl:Class .
+hpc:command a owl:DatatypeProperty ;
+    rdfs:range xsd:string .

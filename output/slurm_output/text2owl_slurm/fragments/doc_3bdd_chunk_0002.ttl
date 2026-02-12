@@ -1,0 +1,39 @@
+hpc:Slurmdirectory a owl:Class .
+hpc:Generalbuildtools a owl:Class .
+hpc:acincludeM4 rdf:value "acinclude.m4" ;
+    rdfs:range xsd:string ;
+    rdfs:comment "General build tool." .
+hpc:configureAc rdf:value "configure.ac" ;
+    rdfs:range xsd:string ;
+    rdfs:comment "General build tool." .
+hpc:MakefileAm rdf:value "Makefile.am" ;
+    rdfs:range xsd:string ;
+    rdfs:comment "General build tool." .
+hpc:MakeRpmMk rdf:value "Make-rpm.mk" ;
+    rdfs:range xsd:string ;
+    rdfs:comment "General build tool." .
+hpc:META rdf:value "META" ;
+    rdfs:range xsd:string ;
+    rdfs:comment "General build tool." .
+hpc:README rdf:value "README" ;
+    rdfs:range xsd:string ;
+    rdfs:comment "General build tool." .
+hpc:slurmSpecIn rdf:value "slurm.spec.in" ;
+    rdfs:range xsd:string ;
+    rdfs:comment "General build tool." .
+hpc:Auxdir a owl:Class ;
+    rdfs:subClassOf hpc:Slurmdirectory ;
+    rdfs:comment "Used for building Slurm." .
+hpc:Contributedtools a owl:Class .
+hpc:Doc a owl:Class ;
+    rdfs:subClassOf hpc:Slurmdirectory ;
+    rdfs:comment "Documentation including man pages." .
+hpc:buildProcess rdf:value "README" ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Documentation for the build process." .
+hpc:copyrightDisclaimer rdf:value "COPYING, DISCLAIMER" ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Files containing copyright and disclaimer information." .
+hpc:autoconfVersion rdf:value "2.52" ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Minimum required version of autoconf to build Slurm." .

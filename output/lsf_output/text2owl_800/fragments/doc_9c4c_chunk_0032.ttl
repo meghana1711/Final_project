@@ -1,0 +1,34 @@
+hpc:Egodaemoncontrol a owl:Class .
+hpc:Egodaemoncontrol rdfs:subClassOf xsd:string .
+
+hpc:egodaemoncontroldefault a owl:DatatypeProperty .
+hpc:Egodaemoncontroldefault rdfs:domain hpc:Egodaemoncontrol .
+hpc:Egodaemoncontroldefault rdfs:range xsd:string .
+
+hpc:Enablecgroup a owl:Class .
+hpc:Enablecgroup rdfs:subClassOf xsd:string .
+
+hpc:enablecgroupdefault a owl:DatatypeProperty .
+hpc:Enablecgroupdefault rdfs:domain hpc:Enablecgroup .
+hpc:Enablecgroupdefault rdfs:range xsd:string .
+
+hpc:Enabledynamichosts a owl:Class .
+hpc:Enabledynamichosts rdfs:subClassOf xsd:string .
+
+hpc:enabledynamichostsdefault a owl:DatatypeProperty .
+hpc:Enabledynamichostsdefault rdfs:domain hpc:Enabledynamichosts .
+hpc:Enabledynamichostsdefault rdfs:range xsd:string .
+
+hpc:Enableego a owl:Class .
+hpc:Enableego rdfs:subClassOf xsd:string .
+
+hpc:enableegodefault a owl:DatatypeProperty .
+hpc:Enableegodefault rdfs:domain hpc:Enableego .
+hpc:Enableegodefault rdfs:range xsd:string .
+
+hpc:Enablegpu a owl:Class .
+hpc:Enablegpu rdfs:subClassOf xsd:string .
+
+hpc:enablegpudefault a owl:DatatypeProperty .
+hpc:Enablegpudefault rdfs:domain hpc:Enablegpu .
+hpc:Enablegpudefault rdfs:range xsd:string .

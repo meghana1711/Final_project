@@ -1,0 +1,15 @@
+hpc:Pam a owl:Class.
+hpc:hasPAMConfiguration a owl:Property ;
+    rdfs:domain hpc:Pam ;
+    rdfs:range hpc:Pamconfiguration.
+
+hpc:Pamconfiguration a owl:Class.
+
+hpc:joincontainer a owl:ObjectProperty ;
+    rdfs:domain hpc:Pam ;
+    rdfs:range xsd:boolean.
+
+hpc:Sysctl a owl:Class.
+hpc:hasSysctlParameter a owl:Property ;
+    rdfs:domain hpc:Sysctl ;
+    rdfs:range hpc:

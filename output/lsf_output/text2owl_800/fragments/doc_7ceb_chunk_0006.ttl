@@ -1,0 +1,52 @@
+hpc:Computer a owl:Class .
+hpc:Operatingsystem a owl:Class .
+hpc:Computerarchitecture a owl:Class .
+hpc:Hosttype a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf hpc:Computer ] .
+
+hpc:binarycompatibility a owl:ObjectProperty ;
+    rdfs:domain hpc:Hosttype ;
+    rdfs:range hpc:Hosttype .
+
+hpc:Hostmodel a owl:Class ;
+    rdfs:subClassOf hpc:Hosttype .
+
+hpc:cpuspeedscalingfactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostmodel .
+
+hpc:Lsfhostmodel a owl:Class ;
+    rdfs:subClassOf hpc:Hostmodel .
+
+hpc:Lsfresource a owl:Class .
+
+hpc:resourceusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfresource .
+
+hpc:Job a owl:Class .
+
+hpc:totalcputime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:totalresidentmemoryusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:totalvirtualmemoryusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:activeprocessgroupid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:activeprocesses a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:Pim a owl:Class .
+
+hpc:loadindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loadindex .
+
+hpc:Loadindices a owl:Class .
+
+hpc:Dynamicnonsharedresource a owl:Class .

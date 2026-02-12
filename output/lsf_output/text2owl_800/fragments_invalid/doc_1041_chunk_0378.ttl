@@ -1,0 +1,33 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Servicedomainname a owl:Class .
+hpc:Tokenname a owl:Class .
+hpc:Alpha a owl:Class .
+hpc:Total a owl:Class .
+hpc:Avail a owl:Class .
+hpc:Featuregroup a owl:Class .
+hpc:slots a owl:ObjectProperty .
+hpc:Projectname a owl:Class .
+hpc:fieldname a owl:DatatypeProperty .
+hpc:Outputwidth xsd:nonNegativeInteger rdfs:range hpc:Fieldname .
+hpc:Delimiter xsd:string rdfs:range hpc:Fieldname .
+hpc:ResourceRequirement rdf:type owl:Class .
+hpc:Hostname a owl:Class .
+hpc:Hostgroup a owl:Class .
+hpc:commandlineargument a owl:ObjectProperty .
+hpc:Servicedomainname rdfs:subClassOf owl:Class .
+hpc:Tokenname rdfs:subClassOf owl:Class .
+hpc:Alpha rdfs:subClassOf hpc:Total .
+hpc:Total rdfs:subClassOf owl:Class .
+hpc:Avail rdfs:subClassOf hpc:Total .
+hpc:Featuregroup rdfs:domain hpc:Servicedomainname .
+hpc:Slots rdfs:domain hpc:Servicedomainname .
+hpc:Projectname rdfs:domain hpc:Servicedomainname .
+hpc:Fieldname rdfs:domain hpc:Projectname .
+hpc:Resourcerequirement rdfs:domain hpc:Projectname .
+hpc:Hostname rdfs:domain hpc:Resourcerequirement .
+hpc:Hostgroup rdfs:domain hpc:Resourcerequirement .
+hpc:Commandlineargument rdfs:range rdf:Resource .

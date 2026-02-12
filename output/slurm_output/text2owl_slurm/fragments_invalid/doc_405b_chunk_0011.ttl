@@ -1,0 +1,21 @@
+hpc:Partitionnodelimit a owl:Class.
+hpc:Partitionnodelimit rdfs:subClassOf owl:Class.
+hpc:Partitionnodelimit rdfs:domain hpc:Job.
+hpc:Partitionnodelimit rdfs:range xsd:nonNegativeInteger.
+
+hpc:Partitiontimelimit a owl:Class.
+hpc:Partitiontimelimit rdfs:subClassOf owl:Class.
+hpc:Partitiontimelimit rdfs:domain hpc:Job.
+hpc:Partitiontimelimit rdfs:range xsd:nonNegativeDuration.
+
+hpc:Priority a owl:Class.
+hpc:Priority rdfs:subClassOf owl:Class.
+hpc:Priority rdfs:domain hpc:Job.
+hpc:Priority rdfs:range xsd:nonNegativeInteger.
+
+hpc:Prolog a owl:Class.
+hpc:Prolog rdfs:subClassOf owl:Class.
+hpc:Prolog rdfs:domain hpc:Job.
+hpc:Prolog rdfs:range xsd:boolean.
+
+hpc:Qosgrpbb a owl

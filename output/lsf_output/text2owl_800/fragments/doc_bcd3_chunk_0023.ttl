@@ -1,0 +1,39 @@
+hpc:Applicationprofile a owl:Class .
+hpc:lsfacpncurl a owl:DatatypeProperty .
+hpc:watchdog a owl:ObjectProperty .
+hpc:Script a owl:Class .
+hpc:init a owl:DatatypeProperty .
+hpc:period a owl:DatatypeProperty .
+hpc:Lsfconffile a owl:Class .
+
+hpc:Applicationprofile rdfs:subClassOf rdf:Resource .
+hpc:Lsfacpncurl rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:string .
+hpc:Watchdog rdfs:domain hpc:Applicationprofile ;
+    rdfs:range hpc:Script .
+hpc:Script rdfs:subClassOf rdf:Resource .
+hpc:Init rdfs:domain hpc:Script ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Period rdfs:domain hpc:Script ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Lsfconffile rdfs:subClassOf rdf:Resource .
+
+hpc:LsfAcPncUrl rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The URL and listen port of the LSF Application Center Notifications server." .
+hpc:WATCHDOG rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range hpc:Script ;
+    rdfs:comment "The external watchdog script to monitor the application." .
+hpc:Script rdf:type owl:Class ;
+    rdfs:comment "A file path to the external watchdog script to check the application data and other information." .
+hpc:Init rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Script ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The delay to start the watchdog script after the job starts, in seconds. Specify a number larger than 30 seconds. The default value is 60 seconds." .
+hpc:Period rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Script ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The interval in which to start the watchdog script after the previous time that the watchdog script started, in seconds. Specify a number larger than 30 seconds. The default value is 60 seconds." .
+hpc:LsfConfFile rdf:type owl:Class ;
+    rdfs:comment "The lsf.conf file where the LSF_AC_PNC_URL parameter is defined." .

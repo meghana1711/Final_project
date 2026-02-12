@@ -1,0 +1,37 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "An instance of a job submitted to a chunk job queue." .
+
+hpc:runlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The time limit for a job to run, normalized according to the CPU factor of the submission and execution hosts." .
+
+hpc:normalizedruntime a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Normalizedruntime ;
+    rdfs:comment "The normalized runtime of a job, scaled so that the job has approximately the same run time for a given run limit, even if it is sent to a host with a faster or slower CPU." .
+
+hpc:cpufactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The CPU factor of a host." .
+
+hpc:DefaultHostSpec a owl:NamedIndividual ;
+    rdfs:comment "The default host specification specified in the lsb.params file." .
+
+hpc:Executionhost hpc:job rdfs:subjectByProperty hpc:executionHost ;
+hpc:Submissionhost hpc:job rdfs:subjectByProperty hpc:submissionHost ;
+
+hpc:scaledrunlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Runlimit ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The scaled run limit of a job, adjusted based on the CPU factor of the execution host." .
+
+hpc:scalingfactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The scaling factor of a host, used to adjust the actual run limit at the execution host." .
+
+hpc:Hashost hpc:job rdfs:subjectByProperty hpc:hasHost ;
+hpc:Hashostmodel hpc:job rdfs:subjectByProperty hpc:hasHostModel ;

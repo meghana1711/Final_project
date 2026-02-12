@@ -1,0 +1,38 @@
+hpc:Instancetemplate a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a Google Cloud instance template." .
+
+hpc:Vmtype rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The type of the virtual machine, only required if not defined in the instance template." .
+
+hpc:Mincpuplatform rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The minimum CPU platform for the instance, optional." .
+
+hpc:Zone rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The location of the instances." .
+
+hpc:Launchtemplateid rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The ID of an instance template in Google Cloud, optional." .
+
+hpc:launchTemplateId rdfs:subPropertyOf hpc:vmType ;
+    rdfs:comment "If launchTemplateId is defined, vmType becomes optional." .
+
+hpc:Localssd rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the instance has local SSD, only applicable to instance templates." .
+
+hpc:Preemptible rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the instance is preemptible, only applicable to instance templates." .
+
+hpc:Gputype rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The type of GPU for the instance, optional." .
+
+hpc:Gpunumber rdfs:domain hpc:Instancetemplate ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of GPUs for the instance, optional." .

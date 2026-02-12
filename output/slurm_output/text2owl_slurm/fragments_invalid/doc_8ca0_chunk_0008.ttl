@@ -1,0 +1,17 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Node a owl:Class .
+hpc:hasname a owl:ObjectProperty .
+hpc:hasstate a owl:DatatypeProperty .
+hpc:hasweight a owl:DatatypeProperty .
+hpc:isondemand a owl:ObjectProperty .
+hpc:Iscloud a owl:Class .
+hpc:Partition a owl:Class .
+hpc:haspartitionparameters a owl:ObjectProperty .
+hpc:powerdownonidle a owl:DatatypeProperty .
+hpc:Powerdownonidlevalue a owl:Class .
+hpc:Powerdownonidlevalueno a rdfs:subClassOf hpc:Powerdownonidlevalue

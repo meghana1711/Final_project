@@ -1,0 +1,44 @@
+hpc:Longtailedjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Sessionschedulerjob rdfs:subClassOf hpc:Longtailedjob .
+
+hpc:Resizablejob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Parallelizablejob rdfs:subClassOf hpc:Resizablejob .
+
+hpc:Automaticallyresizablejob a owl:Class ;
+    rdfs:subClassOf hpc:Resizablejob ;
+    rdfs:domain hpc:Job .
+
+hpc:minimumtaskrequest a owl:DatatypeProperty ;
+    rdfs:domain hpc:Automaticallyresizablejob .
+
+hpc:maximumtaskrequest a owl:DatatypeProperty ;
+    rdfs:domain hpc:Automaticallyresizablejob .
+
+hpc:pendingallocationrequest a owl:DatatypeProperty ;
+    rdfs:domain hpc:Automaticallyresizablejob .
+
+hpc:bsub a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:bresize a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:bresize a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:release a owl:ObjectProperty ;
+    rdfs:domain hpc:Bresize ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:request a owl:ObjectProperty ;
+    rdfs:domain hpc:Bresize ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:Task a xsd:nonNegativeInteger .

@@ -1,0 +1,31 @@
+hpc:Slurmconf a owl:Class .
+hpc:debugflags a owl:DatatypeProperty .
+hpc:Debugflags rdfs:domain hpc:Slurmconf .
+hpc:Debugflags rdfs:range xsd:string .
+
+hpc:Burstbuffer a owl:Class .
+hpc:burstbuffertype a owl:ObjectProperty .
+hpc:Burstbuffertype rdfs:domain hpc:Slurmconf .
+hpc:Burstbuffertype rdfs:range hpc:Burstbuffertypevalue .
+hpc:Burstbuffertypevalue a owl:Class .
+
+hpc:Burstbufferplugin a owl:Class .
+hpc:Burstbufferplugin rdfs:subClassOf hpc:Burstbuffertypevalue .
+
+hpc:Datawarp a owl:Class .
+hpc:Datawarp rdfs:subClassOf hpc:Burstbufferplugin .
+
+hpc:dwWlmCli a owl:ObjectProperty .
+hpc:DwWlmCli rdfs:domain hpc:Datawarp .
+
+hpc:dwstat a owl:ObjectProperty .
+hpc:Dwstat rdfs:domain hpc:Datawarp .
+
+hpc:BurstBufferConf a owl:Class .
+hpc:getsysstate a owl:DatatypeProperty .
+hpc:Getsysstate rdfs:domain hpc:BurstBufferConf .
+hpc:Getsysstate rdfs:range xsd:string .
+
+hpc:Jsonclibrary a owl:Class .
+hpc:Jsonclibrary rdfs:subClassOf hpc:Prerequisite .
+hpc:Prerequisite a owl:Class .

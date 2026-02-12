@@ -1,0 +1,36 @@
+hpc:Jobdescriptionfilter a owl:Class .
+hpc:wildcardCharacter rdf:datatype xsd:string ;
+    rdfs:comment "Can be used anywhere within a job description." .
+
+# JSON Output Format
+hpc:Jsonoutputformat a owl:Class .
+hpc:conflictingOptions rdf:list ;
+    rdfs:first hpc:noheader ;
+    rdfs:rest hpc:JSONOutputFormatConflictingOption .
+hpc:Jsonoutputformatconflictingoption a owl:Class .
+
+# Job Information Filter
+hpc:Jobinformationfilter a owl:Class .
+hpc:plannedStartTime rdf:datatype xsd:dateTime ;
+    rdfs:comment "Planned start time for jobs with a schedule and reservation plan." .
+hpc:GPURequirement rdf:datatype xsd:string ;
+    rdfs:comment "GPU requirement and allocation information" .
+hpc:accountName rdf:datatype xsd:string ;
+    rdfs:comment "Account name for LSF resource connector" .
+hpc:clusterAffinity rdf:datatype xsd:string ;
+    rdfs:comment "Requested cluster affinity information" .
+hpc:synchronousExecution rdf:datatype xsd:boolean ;
+    rdfs:comment "If the job was submitted with the bsub -K command, the -l option displays Synchronous Execution." .
+
+# Job Array Information
+hpc:Jobarrayinformation a owl:Class .
+hpc:jobArrayJobLimit rdf:datatype xsd:decimal ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Job array job limit (% job_limit) if set." .
+
+# LSF Project Filter
+hpc:Lsfprojectfilter a owl:Class .
+hpc:lsProjectName rdf:datatype xsd:string ;
+    rdfs:domain hpc:Lsfprojectfilter ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Displays jobs that belong to the specified LSF License Scheduler project." .

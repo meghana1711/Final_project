@@ -1,0 +1,56 @@
+hpc:checksymlinktimes a owl:ObjectProperty ;
+    rdfs:domain hpc:Makecommand ;
+    rdfs:range xsd:boolean .
+
+hpc:justprint a owl:ObjectProperty ;
+    rdfs:domain hpc:Makecommand ;
+    rdfs:range xsd:boolean .
+
+hpc:dryrun a owl:ObjectProperty ;
+    rdfs:domain hpc:Makecommand ;
+    rdfs:range xsd:boolean .
+
+hpc:recon a owl:ObjectProperty ;
+    rdfs:domain hpc:Makecommand ;
+    rdfs:range xsd:boolean .
+
+hpc:oldfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Makecommand ;
+    rdfs:range xsd:string .
+
+hpc:printdatabase a owl:ObjectProperty ;
+    rdfs:domain hpc:Makecommand ;
+    rdfs:range xsd:boolean .
+
+hpc:question a owl:ObjectProperty ;
+    rdfs:domain hpc:Makecommand ;
+    rdfs:range xsd:boolean .
+
+hpc:nobuiltinrules a owl:ObjectProperty ;
+    rdfs:domain hpc:Makecommand ;
+    rdfs:range xsd:boolean .
+
+hpc:nobuiltinvariables a owl:ObjectProperty ;
+    rdfs:domain hpc:Makecommand ;
+    rdfs:range xsd:boolean .
+
+hpc:version a owl:DatatypeProperty ;
+    rdfs:domain hpc:Makecommand ;
+    rdfs:range xsd:string .
+
+hpc:ResReq rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Makecommand .
+
+hpc:silentmode a owl:ObjectProperty ;
+    rdfs:domain hpc:Makecommand ;
+    rdfs:range xsd:boolean .
+
+hpc:noechocommands a owl:ObjectProperty ;
+    rdfs:domain hpc:Silentmode ;
+    rdfs:range xsd:boolean .
+
+hpc:touchtargets a owl:ObjectProperty ;
+    rdfs:domain hpc:Silentmode ;
+    rdfs:range xsd:boolean .
+
+hpc:Makecommand a owl:Class .

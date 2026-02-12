@@ -1,0 +1,37 @@
+hpc:Jobtuning a owl:Class .
+hpc:Modeldeployment a owl:Class .
+hpc:Modeltrainingparameters a owl:Class .
+
+hpc:tunejob a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobtuning ;
+    rdfs:range hpc:Job .
+
+hpc:disableprediction a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobtuning ;
+    rdfs:range xsd:boolean .
+
+hpc:subsamplerate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobtuning ;
+    rdfs:range xsd:decimal .
+
+hpc:modelaccuracy a owl:DatatypeProperty ;
+    rdfs:domain hpc:Modeldeployment ;
+    rdfs:range xsd:decimal .
+
+hpc:Largedataset a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Smalldataset a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Modeltrainingparameter a owl:Class ;
+    rdfs:subClassOf hpc:Modeltrainingparameters .
+
+hpc:enabled a owl:ObjectProperty ;
+    rdfs:domain hpc:Modeltrainingparameter ;
+    rdfs:range xsd:boolean .
+
+hpc:configjsonfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Modeltrainingparameters ;
+    rdfs:range xsd:string .

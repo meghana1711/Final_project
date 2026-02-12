@@ -1,0 +1,38 @@
+hpc:Jobslot a owl:Class .
+hpc:Job a owl:Class .
+hpc:Backfilljob a owl:Class .
+hpc:Resizablejob a owl:Class .
+hpc:Queue a owl:Class .
+hpc:Host a owl:Class .
+hpc:Processor a owl:Class .
+hpc:User a owl:Class .
+
+hpc:hasJobSlot an owl:ObjectProperty .
+hpc:hasBackfillJobSlot an owl:ObjectProperty .
+hpc:hasReservedJobSlot an owl:ObjectProperty .
+hpc:Hasqueue rdfs:domain hpc:Job .
+hpc:Hashost rdfs:domain hpc:Jobslot .
+hpc:Hasprocessor rdfs:domain hpc:Jobslot .
+hpc:Hasuser rdfs:domain hpc:Jobslot .
+
+hpc:estimatedstarttime a owl:DatatypeProperty .
+hpc:runtime a owl:DatatypeProperty .
+hpc:runlimit a owl:DatatypeProperty .
+hpc:remainingruntime a owl:DatatypeProperty .
+
+hpc:Jobslotlimitforhost rdfs:range xsd:nonNegativeInteger .
+hpc:Jobslotlimitforprocessor rdfs:range xsd:nonNegativeInteger .
+hpc:Jobslotlimitforuser rdfs:range xsd:nonNegativeInteger .
+hpc:Jobslotlimitforqueue rdfs:range xsd:nonNegativeInteger .
+
+hpc:backfillingallowed a owl:ObjectProperty .
+hpc:backfillingEnabledAtQueueLevel rdfs:subPropertyOf hpc:backfillingAllowed .
+hpc:backfillingAllowedForProcessorReservation rdfs:subPropertyOf hpc:backfillingAllowed .
+
+hpc:enforcesrunlimits a owl:ObjectProperty .
+hpc:runLimitSpecifiedByCommandLine rdfs:subPropertyOf hpc:enforcesRunLimits .
+hpc:runLimitSpecifiedByLsbQueues rdfs:subPropertyOf hpc:enforcesRunLimits .
+hpc:runLimitSpecifiedByLsbApplications rdfs:subPropertyOf hpc:enforcesRunLimits .
+
+hpc:pendingresizerequestsupportedbybackfillpolicies a owl:ObjectProperty .
+hpc:runTimeOfPendingResizeRequestEqualsRemainingRunTime rdfs:subPropertyOf hpc:pendingResizeRequestSupportedByBackfillPolicies .

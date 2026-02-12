@@ -1,0 +1,42 @@
+hpc:Bhostsoption a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a bhosts command option." .
+
+hpc:Filteringbhostsoption a owl:Class ;
+    rdfs:subClassOf hpc:Bhostsoption ;
+    rdfs:comment "Represents a bhosts command option that applies output filtering." .
+
+hpc:Nonfilteringbhostsoption a owl:Class ;
+    rdfs:subClassOf hpc:Bhostsoption ;
+    rdfs:comment "Represents a bhosts command option that does not apply output filtering." .
+
+hpc:Outputfield a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a field in the bhosts output." .
+
+# Object Properties
+hpc:appliestobhostsoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Outputfield ;
+    rdfs:range hpc:Bhostsoption ;
+    rdfs:comment "Indicates which bhosts options this output field applies to." .
+
+hpc:hasalias a owl:ObjectProperty ;
+    rdfs:domain hpc:Outputfield ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates an alias for an output field." .
+
+hpc:haswidth a owl:ObjectProperty ;
+    rdfs:domain hpc:Outputfield ;
+    rdfs:range xsd:positiveInteger ;
+    rdfs:comment "Indicates the width of an output field." .
+
+hpc:hasunit a owl:ObjectProperty ;
+    rdfs:domain hpc:Outputfield ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates the unit of measurement for an output field." .
+
+# Datatype Properties
+hpc:fieldname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Outputfield ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates the name of an output field." .

@@ -1,0 +1,50 @@
+hpc:Jobstate a owl:Class .
+hpc:Pending a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate .
+hpc:Stagingin a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate .
+hpc:Stagedin a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate .
+hpc:Prerun a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate .
+hpc:Running a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate .
+hpc:Postrun a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate .
+hpc:Stagingout a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate .
+hpc:Teardown a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate .
+hpc:Teardownfail a owl:Class ;
+    rdfs:subClassOf hpc:Jobstate .
+
+hpc:burstbufferstate a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobstate ;
+    rdfs:range xsd:string .
+
+hpc:actiononrestart a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobstate .
+
+hpc:donothing a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:actionOnRestart .
+
+hpc:runteardown a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:actionOnRestart .
+
+hpc:waitshorttime a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:actionOnRestart .
+
+hpc:restartstagein a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:actionOnRestart .
+
+hpc:restartprerun a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:actionOnRestart .
+
+hpc:restartrunning a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:actionOnRestart .
+
+hpc:restartpostrun a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:actionOnRestart .
+
+hpc:restartteardown a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:actionOnRestart .

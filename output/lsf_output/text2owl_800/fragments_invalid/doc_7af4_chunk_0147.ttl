@@ -1,0 +1,48 @@
+hpc:Queueevent a owl:Class .
+hpc:versionnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queueevent ;
+    rdfs:range xsd:integer .
+hpc:eventtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queueevent ;
+    rdfs:range xsd:integer .
+hpc:opcode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queueevent .
+hpc:queue a owl:ObjectProperty ;
+    rdfs:domain hpc:Queueevent ;
+    rdfs:range hpc:Queuename .
+hpc:userid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queueevent ;
+    rdfs:range xsd:integer .
+hpc:username a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queueevent ;
+    rdfs:range xsd:string .
+hpc:ctrlcomments a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queueevent ;
+    rdfs:range xsd:string .
+
+hpc:Hostevent a owl:Class .
+hpc:versionnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostevent ;
+    rdfs:range xsd:integer .
+hpc:eventtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostevent ;
+    rdfs:range xsd:integer .
+hpc:opcode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostevent .
+hpc:host a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostevent ;
+    rdfs:range hpc:Hostname .
+hpc:userid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostevent ;
+    rdfs:range xsd:integer .
+hpc:username a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostevent ;
+    rdfs:range xsd:string .
+hpc:ctrlcomments a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostevent ;
+    rdfs:range xsd:string .
+
+hpc:MbdStart a owl:Class .
+
+
+This ontology fragment defines two classes `hpc:Queueevent` and `hpc:Hostevent`, and several datatype and object properties related to the events. The properties are associated with their respective classes using `rdfs:domain`, and their data types are specified using `rdfs:range`. The properties are named according to the given documentation. The `hpc:MbdStart` class is also defined as a separate class.

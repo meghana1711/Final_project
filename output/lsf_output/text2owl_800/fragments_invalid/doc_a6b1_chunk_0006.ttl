@@ -1,0 +1,46 @@
+hpc:LsfLogdir a owl:Class ;
+    rdfs:comment "Directory where LSF error logs are stored if LSF_LOGDIR parameter is defined." .
+
+hpc:Syslog a owl:Class ;
+    rdfs:comment "System logging service that handles LSF error logs when LSF_LOGDIR is not defined." .
+
+hpc:Logfile a owl:Class ;
+    rdfs:comment "A file that keeps track of the state of the LSF system." .
+
+hpc:lsbEvents a hpc:LogFile ;
+    rdfs:comment "File used by LSF to keep track of the state of all jobs." .
+
+hpc:writetolsflogdir a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfLogdir ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the daemons can write to files in the LSF_LOGDIR." .
+
+hpc:logtosyslog a owl:ObjectProperty ;
+    rdfs:domain hpc:Syslog ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the error logs are managed by syslog." .
+
+hpc:logdirectorypermissions a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfLogdir ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Describes the permissions on the LSF_LOGDIR directory." .
+
+hpc:logdirectoryownership a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfLogdir ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Describes the ownership of the LSF_LOGDIR directory." .
+
+hpc:LsfLogdir rdfs:subClassOf owl:Class ;
+    rdfs:comment "Class for LSF directories that are writable by root and owned by the LSF administrator." .
+    rdfs:subClassOf [
+        a owl:Class ;
+        rdfs:comment "Restriction on LSF_LOGDIR class for writable by root." ;
+        owl:onProperty hpc:logDirectoryPermissions ;
+        owl:hasValue "700" .
+    ] ;
+    rdfs:subClassOf [
+        a owl:Class ;
+        rdfs:comment "Restriction on LSF_LOGDIR class for owned by LSF administrator." ;
+        owl:onProperty hpc:logDirectoryOwnership ;
+        owl:hasValue "root" .
+    ] .

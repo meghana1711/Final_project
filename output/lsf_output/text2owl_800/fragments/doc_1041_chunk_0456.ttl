@@ -1,0 +1,49 @@
+hpc:Datalimit a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "Enforced by the setrlimit system call if it supports the RLIMIT_DATA option, and unsupported otherwise." .
+
+hpc:Stacklimit a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "The maximum size of the stack segment of a process. This limit restricts the amount of memory a process can use for local variables or recursive function calls. Enforced by the setrlimit system call if it supports the RLIMIT_STACK option." .
+
+hpc:Corelimit a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "The maximum size of a core file. This limit is enforced by the setrlimit system call if it supports the RLIMIT_CORE option." .
+
+hpc:Hostlimitperjob a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "The maximum number of hosts that a job in this queue can use. LSF verifies the host limit during the allocation phase of scheduling." .
+
+hpc:Schedulingparameters a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "The scheduling and suspending thresholds for the queue." .
+
+hpc:haslimittype a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The type of the limit." .
+
+hpc:haslimitvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The value of the limit." .
+
+hpc:hasunit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The unit of the limit." .
+
+hpc:isenforcedby a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The system call that enforces the limit." .
+
+hpc:isdefaultunit a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The default unit for display." .
+
+hpc:isapplicableto a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range hpc:Resource ;
+    rdfs:comment "The resource to which the limit applies (job or queue)." .

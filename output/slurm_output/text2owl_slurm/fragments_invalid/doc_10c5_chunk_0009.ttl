@@ -1,0 +1,18 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Job a owl:Class .
+hpc:jobid a owl:DatatypeProperty .
+hpc:state a owl:DatatypeProperty .
+hpc:time a owl:DatatypeProperty .
+hpc:nodes a owl:DatatypeProperty .
+hpc:sockets a owl:DatatypeProperty .
+hpc:cores a owl:DatatypeProperty .
+hpc:threads a owl:DatatypeProperty .
+hpc:scoresthreads a owl:DatatypeProperty .
+hpc:nodelist a owl:ObjectProperty .
+hpc:memory a owl:DatatypeProperty .
+hpc:reqsockets a owl:DatatypeProperty .
+hpc:reqcores a owl:DatatypeProperty

@@ -1,0 +1,19 @@
+hpc:Slurmrestd a owl:Class .
+hpc:slurmrestd a owl:ObjectProperty .
+
+hpc:Slurmstepd a owl:Class .
+hpc:slurmstepd a owl:ObjectProperty .
+
+hpc:Spank a owl:Class .
+hpc:spank a owl:ObjectProperty .
+
+hpc:Slurmrestd rdfs:subClassOf owl:Class .
+hpc:Slurmstepd rdfs:subClassOf owl:Class .
+hpc:Spank rdfs:subClassOf owl:Class .
+
+hpc:Slurmrestd rdfs:domain hpc:Slurmrestd ;
+    rdfs:range hpc:Slurmrestd .
+hpc:Slurmstepd rdfs:domain hpc:Slurmstepd ;
+    rdfs:range hpc:Slurmstepd .
+hpc:Spank rdfs:domain hpc:Spank ;
+    rdfs:range hpc:Spank .

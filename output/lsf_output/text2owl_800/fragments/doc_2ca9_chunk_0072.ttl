@@ -1,0 +1,30 @@
+hpc:Cyclecloudprovtemplates a owl:Class .
+hpc:imagename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cyclecloudprovtemplates ;
+    rdfs:range xsd:string .
+
+hpc:Resourcemanagement a owl:Class .
+
+hpc:Improvedresourceutilization a owl:Class ;
+    rdfs:subClassOf hpc:Resourcemanagement .
+
+hpc:lsfschedulingalgorithm a owl:ObjectProperty ;
+    rdfs:domain hpc:Improvedresourceutilization .
+
+hpc:Packageguarantee a owl:Class ;
+    rdfs:subClassOf hpc:Improvedresourceutilization .
+
+hpc:Ownerhost a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:Sharedhost a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:Guaranteedresourcepool a owl:Class ;
+    rdfs:subClassOf hpc:Resourcepool .
+
+hpc:Loaninginformation a owl:Class ;
+    rdfs:subClassOf hpc:Guaranteedresourcepool .
+
+hpc:Queuebasedpreemption a owl:Class ;
+    rdfs:subClassOf hpc:Guaranteedresourcepool .

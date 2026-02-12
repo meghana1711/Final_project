@@ -1,0 +1,22 @@
+hpc:Multiprocessorsystem a owl:Class .
+hpc:Lim a owl:Class .
+hpc:lsfLimMulticoreAdjust a owl:DatatypeProperty .
+hpc:lsfJobDaemonNice a owl:DatatypeProperty .
+
+hpc:Multiprocessorsystem rdfs:subClassOf owl:Class .
+hpc:Lim rdfs:subClassOf hpc:Multiprocessorsystem .
+
+hpc:haslimadjustment a owl:ObjectProperty .
+hpc:hasjobdaemonnice a owl:ObjectProperty .
+
+hpc:Haslimadjustment rdfs:domain hpc:Lim ;
+    rdfs:range xsd:float .
+
+hpc:Hasjobdaemonnice rdfs:domain hpc:Job .
+hpc:Hasjobdaemonnice rdfs:range xsd:integer .
+
+hpc:LsfLimMulticoreAdjust rdfs:range xsd:float ;
+    rdfs:minInclusive 0 ;
+    rdfs:maxInclusive 1 .
+
+hpc:LsfJobDaemonNice rdfs:range xsd:integer .

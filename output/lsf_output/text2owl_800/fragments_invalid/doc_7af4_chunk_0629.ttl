@@ -1,0 +1,42 @@
+hpc:LsbReportSsjobFailure        a owl:Class .
+hpc:LsbRequeueToBottom          a owl:Class .
+hpc:LsbResourceEnforce           a owl:Class .
+hpc:LsbRlaPort                   a owl:Class .
+hpc:LsbRlaUpdate                a owl:Class .
+hpc:LsbRlaWorkdir               a owl:Class .
+hpc:LsbSacctOneUg              a owl:Class .
+hpc:LsbSbdPort                  a owl:Class .
+hpc:LsbSbdStartupRetryInterval a owl:Class .
+hpc:LsbSbdStartupRetryTimes   a owl:Class .
+hpc:LsbSetTmpdir                a owl:Class .
+hpc:LsbSharedir                  a owl:Class .
+hpc:LsbShortHostlist            a owl:Class .
+hpc:LsbSigstop                   a owl:Class .
+hpc:LsbSkipFullHosts           a owl:Class .
+hpc:lsbSshXforwardCmd          a owl:ObjectProperty .
+hpc:LsbStageInExec             a owl:Class .
+hpc:LsbStageMaxStageIn        a owl:Class .
+hpc:LsbStageOutExec            a owl:Class .
+hpc:LsbStageStorage             a owl:Class .
+hpc:LsbStageTransferRate       a owl:Class .
+hpc:LsbStepCgroupDefault       a owl:Class .
+hpc:LsbStartEbrokerd             a owl:Class .
+hpc:LsbStartMps                  a owl:Class .
+hpc:LsbStdoutDirect              a owl:Class .
+hpc:LsbStopIgnoreIt             a owl:Class .
+hpc:lsbSubCommandname           a owl:ObjectProperty .
+hpc:lsbSubkShowExecHost       a owl:ObjectProperty .
+hpc:lsbSubkShowJobid           a owl:ObjectProperty .
+hpc:LsbSuppressCustomReasons   a owl:Class .
+
+hpc:LSB_SSH_XFORWARD_CMD
+  rdfs:domain hpc:LsbReportSsjobFailure ;
+  rdfs:range xsd:string .
+
+hpc:LSB_STAGE_IN_EXEC
+  rdfs:subClassOf hpc:LsbReportSsjobFailure ;
+  rdfs:comment "Specifies the stage in script for direct data staging" .
+
+hpc:LSB_STAGE_MAX_STAGE_IN
+  rdfs:subClassOf hpc:LsbReportSsjobFailure ;
+  rdfs:comment "Specifies the maximum number of concurrent stage in processes that can run

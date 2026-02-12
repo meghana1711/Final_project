@@ -1,0 +1,35 @@
+hpc:Computeunit a owl:Class .
+hpc:hasname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range xsd:string .
+hpc:hasmember a owl:ObjectProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range hpc:Host .
+hpc:hastype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+hpc:pref a owl:ObjectProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range xsd:string .
+hpc:maxcus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Computeunit ;
+    rdfs:range xsd:integer .
+
+hpc:Host a owl:Class .
+
+hpc:ComputeUnit_1 a hpc:ComputeUnit ;
+    hpc:hasName "h1" ;
+    hpc:Hasmember hpc:host1 ;
+    hpc:hasType "host" .
+hpc:ComputeUnit_2 a hpc:ComputeUnit ;
+    hpc:hasName "h2" ;
+    hpc:Hasmember hpc:host2 ;
+    hpc:hasType "host" .
+hpc:ComputeUnit_50 a hpc:ComputeUnit ;
+    hpc:hasName "h50" ;
+    hpc:Hasmember hpc:host50 ;
+    hpc:hasType "host" .
+
+hpc:host1 a hpc:Host .
+hpc:host2 a hpc:Host .
+hpc:host50 a hpc:Host .

@@ -1,0 +1,42 @@
+hpc:Ipv6address a owl:Class .
+
+hpc:ipv6addressrange a owl:ObjectProperty .
+
+hpc:Ipv6addressrange rdfs:domain hpc:Ipv6address .
+hpc:Ipv6addressrange rdfs:range xsd:string .
+
+hpc:ipv6addressLeadingzeros a owl:DatatypeProperty .
+hpc:Ipv6addressLeadingzeros rdfs:domain hpc:Ipv6address .
+hpc:Ipv6addressLeadingzeros rdfs:range xsd:string .
+
+hpc:ipv6addressTrailingzeros a owl:DatatypeProperty .
+hpc:Ipv6addressTrailingzeros rdfs:domain hpc:Ipv6address .
+hpc:Ipv6addressTrailingzeros rdfs:range xsd:string .
+
+hpc:ipv6addressCompressed a owl:DatatypeProperty .
+hpc:Ipv6addressCompressed rdfs:domain hpc:Ipv6address .
+hpc:Ipv6addressCompressed rdfs:range xsd:string .
+
+hpc:IPv6Address_doubleColon a owl:FunctionalProperty .
+hpc:Ipv6addressDoublecolon rdfs:domain hpc:Ipv6address .
+hpc:Ipv6addressDoublecolon rdfs:range xsd:boolean .
+
+hpc:ipv6addressOpenrange a owl:DatatypeProperty .
+hpc:Ipv6addressOpenrange rdfs:domain hpc:Ipv6address .
+hpc:Ipv6addressOpenrange rdfs:range xsd:string .
+
+hpc:ipv6addressAsterisk a owl:DatatypeProperty .
+hpc:Ipv6addressAsterisk rdfs:domain hpc:Ipv6address .
+hpc:Ipv6addressAsterisk rdfs:range xsd:string .
+
+hpc:ipv6addressExplicitrange a owl:DatatypeProperty .
+hpc:Ipv6addressExplicitrange rdfs:domain hpc:Ipv6address .
+hpc:Ipv6addressExplicitrange rdfs:range xsd:string .
+
+hpc:ipv6addressLimit a owl:DatatypeProperty .
+hpc:Ipv6addressLimit rdfs:domain hpc:Ipv6address .
+hpc:Ipv6addressLimit rdfs:range xsd:integer .
+
+hpc:ipv6addressChecklog a owl:ObjectProperty .
+hpc:Ipv6addressChecklog rdfs:domain hpc:Ipv6address .
+hpc:Ipv6addressChecklog rdfs:range rdf:Resource .

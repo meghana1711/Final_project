@@ -1,0 +1,31 @@
+hpc:Consumableresource a owl:Class .
+hpc:Linearplugin a owl:Class .
+hpc:Selectplugin a owl:Class .
+hpc:Constresplugin a owl:Class .
+hpc:Selectconstresplugin a owl:Class .
+hpc:oversubscribe a owl:DatatypeProperty .
+hpc:OverSubscribeRange rdfs:datatype xsd:string .
+hpc:Partition a owl:Class .
+hpc:Job a owl:Class .
+hpc:Shareablejob a owl:Class .
+hpc:Nonsharedjob a owl:Class .
+hpc:sharedresources a owl:ObjectProperty .
+hpc:runson a owl:ObjectProperty .
+hpc:OverSubscribeValue owl:datatype xsd:nonNegativeInteger .
+
+hpc:Consumableresource rdfs:subClassOf hpc:Resource .
+hpc:Linearplugin rdfs:subClassOf hpc:Plugin .
+hpc:Selectplugin rdfs:subClassOf hpc:Plugin .
+hpc:Constresplugin rdfs:subClassOf hpc:Selectplugin .
+hpc:Selectconstresplugin rdfs:subClassOf hpc:Constresplugin .
+hpc:Partition rdfs:subClassOf hpc:Resource .
+hpc:Job rdfs:subClassOf hpc:Resource .
+
+hpc:Oversubscribe rdfs:domain hpc:Partition .
+hpc:Oversubscribe rdfs:range xsd:string .
+hpc:Oversubscribevalue rdfs:range xsd:nonNegativeInteger .
+
+hpc:Sharedresources rdfs:domain hpc:Partition .
+hpc:Sharedresources rdfs:range hpc:Consumableresource .
+hpc:Runson rdfs:domain hpc:Job .
+hpc:Runson rdfs:range hpc:Partition .

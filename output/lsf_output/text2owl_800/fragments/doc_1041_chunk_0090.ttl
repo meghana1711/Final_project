@@ -1,0 +1,40 @@
+hpc:Mbschddaemon a owl:Class .
+hpc:Commandlineoptions a owl:Class .
+
+hpc:className a owl:DatatypeProperty ;
+    rdfs:domain hpc:Commandlineoptions ;
+    rdfs:range xsd:string .
+
+hpc:debugLevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Commandlineoptions ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:logfileName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Commandlineoptions ;
+    rdfs:range xsd:string .
+
+hpc:logQueueSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Commandlineoptions ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:rangeMinInclusive 100 ;
+    rdfs:rangeMaxInclusive 500000 .
+
+hpc:LsfAdminister a owl:Class .
+
+hpc:Root a owl:Class ;
+    rdfs:subClassOf hpc:LsfAdminister .
+
+hpc:LoggingQueue a owl:Class ;
+    rdfs:subClassOf hpc:Mbschddaemon .
+
+hpc:loggingThread a owl:ObjectProperty ;
+    rdfs:domain hpc:LoggingQueue ;
+    rdfs:range hpc:Mbschddaemon .
+
+hpc:logFile a owl:ObjectProperty ;
+    rdfs:domain hpc:LoggingQueue ;
+    rdfs:range xsd:string .
+
+hpc:timingLevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Commandlineoptions ;
+    rdfs:range xsd:nonNegativeInteger .

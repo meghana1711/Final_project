@@ -1,0 +1,60 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Suspendedjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Resumedjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:runtimedecay a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:histhours a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue, hpc:Cluster ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:committedruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeDuration .
+
+hpc:cputime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeDuration .
+
+hpc:runtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeDuration .
+
+hpc:numbercpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:dynamicpriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeDecimal .
+
+hpc:cputimefactor a owl:DatatypeProperty ;
+    rdfs:domain rdf:nil ;
+    rdfs:range xsd:nonNegativeDecimal .
+
+hpc:runtimefactor a owl:DatatypeProperty ;
+    rdfs:domain rdf:nil ;
+    rdfs:range xsd:nonNegativeDecimal .
+
+hpc:runjobfactor a owl:DatatypeProperty ;
+    rdfs:domain rdf:nil ;
+    rdfs:range xsd:nonNegativeDecimal .
+
+hpc:fairshareadjustmentfactor a owl:DatatypeProperty ;
+    rdfs:domain rdf:nil ;
+    rdfs:range xsd:nonNegativeDecimal .
+
+hpc:gpuruntimefactor a owl:DatatypeProperty ;
+    rdfs:domain rdf:nil ;
+    rdfs:range xsd:nonNegativeDecimal .
+
+hpc:ngpusphysical a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .

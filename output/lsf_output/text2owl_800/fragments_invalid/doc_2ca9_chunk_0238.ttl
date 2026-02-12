@@ -1,0 +1,32 @@
+hpc:preexecutionscript a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfprofile ;
+    rdfs:range rdf:XMLLiteral .
+
+hpc:execdriver a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfprofile ;
+    rdfs:range xsd:string .
+
+hpc:priority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfprofile ;
+    rdfs:range xsd:integer .
+
+hpc:estimatedruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfprofile ;
+    rdfs:range xsd:duration .
+
+hpc:planbasedschedulingcandidate a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfprofile ;
+    rdfs:range xsd:boolean .
+
+hpc:gpurequirements a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfprofile ;
+    rdfs:range xsd:string .
+
+hpc:Gpuaffinity hpc:gpurequirements ;
+    rdfs:subPropertyOf hpc:GPURequirements ;
+    rdfs:range xsd:string .
+
+hpc:NoGPUAffinity a owl:NamedIndividual ;
+    hpc:GPUAffinity "aff=no" .
+
+hpc:Lsfprofile a owl:Class .

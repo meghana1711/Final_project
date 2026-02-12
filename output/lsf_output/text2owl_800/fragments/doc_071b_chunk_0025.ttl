@@ -1,0 +1,16 @@
+hpc:Clusteradministrator a owl:Class .
+hpc:Primaryclusteradministrator a owl:Class .
+hpc:Otherclusteradministrator a owl:Class .
+
+hpc:hasprimaryadmin a owl:ObjectProperty .
+hpc:hasotheradmin a owl:ObjectProperty .
+hpc:Hasprimaryadmin rdfs:domain hpc:Cluster .
+hpc:Hasotheradmin rdfs:domain hpc:Cluster .
+hpc:Hasprimaryadmin rdfs:range hpc:Primaryclusteradministrator .
+hpc:Hasotheradmin rdfs:range hpc:Otherclusteradministrator .
+
+hpc:clusteradmins a owl:DatatypeProperty .
+hpc:Clusteradmins rdfs:domain hpc:Cluster .
+hpc:Clusteradmins rdfs:range xsd:string .
+
+hpc:Cluster a owl:Class .

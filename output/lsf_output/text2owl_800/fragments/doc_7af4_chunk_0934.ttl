@@ -1,0 +1,27 @@
+hpc:Licenseschedulerdaemon a owl:Class .
+hpc:lmStatInterval a owl:DatatypeProperty .
+hpc:LmStatInterval rdfs:domain hpc:Licenseschedulerdaemon ;
+                      rdfs:range xsd:integer .
+
+hpc:Servicedomain a owl:Class .
+
+hpc:lmStatPerFeature a owl:ObjectProperty .
+hpc:LmStatPerFeature rdfs:domain hpc:Licenseschedulerdaemon ;
+                         rdfs:range xsd:boolean .
+
+hpc:Flexnetlicenseserver a owl:Class .
+
+hpc:lmType a owl:DatatypeProperty .
+hpc:LmType rdfs:domain hpc:Licenseschedulerdaemon ;
+           rdfs:range xsd:string .
+
+hpc:FLEXLM a xsd:string .
+hpc:RLM a xsd:string .
+
+hpc:LM_STAT_PER_FEATURE_Y a xsd:string .
+hpc:LM_STAT_PER_FEATURE_N a xsd:string .
+
+hpc:Blcollect a owl:Class ;
+              rdfs:subClassOf hpc:Licensecollectordaemon .
+
+hpc:Licensecollectordaemon a owl:Class .

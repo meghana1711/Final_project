@@ -1,0 +1,29 @@
+hpc:enableGpu a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Enable GPU support." .
+
+hpc:enableStream a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Enables LSF event streaming." .
+
+hpc:lsfAddServers a owl:ObjectProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "List of extra LSF server hosts." .
+
+hpc:LsfAddServersValue a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:LSF_ADD_SERVERS ;
+                        rdfs:allValuesFrom xsd:string ] .
+
+hpc:lsfAddClients a owl:ObjectProperty ;
+    rdfs:domain hpc:Configuration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "List of LSF client-only hosts." .
+
+hpc:LsfAddClientsValue a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:LSF_ADD_CLIENTS ;
+                        rdfs:allValuesFrom xsd:string ] .

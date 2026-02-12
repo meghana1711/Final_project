@@ -1,0 +1,26 @@
+hpc:Egodaemon a owl:Class .
+hpc:lsfdaemonscpus a owl:DatatypeProperty .
+hpc:lsfdatabsubchksum a owl:ObjectProperty .
+hpc:lsfdatacluster a owl:DatatypeProperty .
+hpc:lsfdatahosts a owl:DatatypeProperty .
+
+rdfs:domain hpc:Lsfdaemonscpus rdf:Resource .
+rdfs:domain hpc:Lsfdatabsubchksum rdf:Resource .
+rdfs:domain hpc:Lsfdatacluster rdf:Resource .
+rdfs:domain hpc:Lsfdatahosts rdf:Resource .
+
+rdfs:range hpc:Lsfdaemonscpus xsd:string .
+rdfs:range hpc:Lsfdatabsubchksum xsd:string .
+rdfs:range hpc:Lsfdatacluster xsd:string .
+rdfs:range hpc:Lsfdatahosts xsd:string .
+
+hpc:LsfDaemonsCpus rdfs:subPropertyOf owl:DatatypeProperty .
+hpc:LsfDataBsubChksum rdfs:subPropertyOf owl:ObjectProperty .
+hpc:LsfDataCluster rdfs:subPropertyOf owl:DatatypeProperty .
+hpc:LsfDataHosts rdfs:subPropertyOf owl:DatatypeProperty .
+
+hpc:DefaultLsfDaemonsCpus a owl:NamedIndividual .
+hpc:Defaultlsfdaemonscpus hpc:lsfdaemonscpus "not defined" .
+
+hpc:LsfDataBsubChksumDefault a owl:NamedIndividual .
+hpc:Lsfdatabsubchksumdefault hpc:lsfdatabsubchksum "N" .

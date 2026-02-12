@@ -1,0 +1,20 @@
+hpc:Limitclass a owl:Class .
+hpc:Reservationusageclass a owl:Class .
+hpc:Resourceclass a owl:Class .
+hpc:Resourcemapclass a owl:Class .
+hpc:Distributepolicyclass a owl:Class .
+
+hpc:hasname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Distributepolicyclass ;
+    rdfs:range xsd:string .
+
+hpc:distributiontype a owl:ObjectProperty ;
+    rdfs:domain hpc:Distributepolicyclass ;
+    rdfs:range xsd:string .
+
+hpc:distributionpolicytype a owl:ObjectProperty ;
+    rdfs:domain hpc:Distributepolicyclass ;
+    rdfs:range xsd:string .
+
+hpc:isoptional a owl:ObjectProperty ;
+    rdfs:domain (hpc:Limitclass owl:unionOf (hpc:Reservationusageclass hpc:Resourceclass hpc:Resourcemapclass hpc:Distributepolicyclass)) .

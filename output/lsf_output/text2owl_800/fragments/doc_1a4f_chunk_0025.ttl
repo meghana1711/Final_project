@@ -1,0 +1,9 @@
+hpc:resourcename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string .
+
+hpc:description a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string .
+
+hpc:Resource a owl:Class .

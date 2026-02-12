@@ -1,0 +1,35 @@
+hpc:Lsbcontainerimage a owl:Class .
+hpc:Lsbcontainerimage rdfs:subClassOf owl:Class .
+
+hpc:usesimage a owl:ObjectProperty .
+hpc:Usesimage rdfs:domain hpc:Lsbcontainerimage ;
+                 rdfs:range xsd:string .
+
+hpc:submissionmethod a owl:ObjectProperty .
+hpc:Submissionmethod rdfs:domain hpc:Lsbcontainerimage ;
+                      rdfs:range xsd:string .
+
+hpc:Esubscript a owl:Class .
+hpc:Esubscript rdfs:subClassOf hpc:Lsbcontainerimage .
+
+hpc:esubscriptlocation a owl:DatatypeProperty .
+hpc:Esubscriptlocation rdfs:domain hpc:Esubscript ;
+                        rdfs:range xsd:string .
+
+hpc:Dockerentrypointimage a owl:Class .
+hpc:Dockerentrypointimage rdfs:subClassOf hpc:Lsbcontainerimage .
+
+hpc:placeholder a owl:ObjectProperty .
+hpc:Placeholder rdfs:domain hpc:Dockerentrypointimage ;
+                 rdfs:range xsd:string .
+
+hpc:dockerimageaffinity a owl:DatatypeProperty .
+hpc:Dockerimageaffinity rdfs:domain hpc:Lsbcontainerimage ;
+                        rdfs:range xsd:string .
+
+hpc:Ibmspectrumlsf a owl:Class .
+hpc:Ibmspectrumlsf rdfs:subClassOf owl:Class .
+
+hpc:runsinshifter a owl:ObjectProperty .
+hpc:Runsinshifter rdfs:domain hpc:Ibmspectrumlsf ;
+                   rdfs:range hpc:Lsbcontainerimage .

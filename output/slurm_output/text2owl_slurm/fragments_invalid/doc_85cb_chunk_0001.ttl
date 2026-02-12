@@ -1,0 +1,18 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Slurm a owl:Class.
+hpc:Softwarelicense a owl:Class.
+hpc:Locallicense a owl:Class.
+hpc:Remotelicense a owl:Class.
+
+hpc:slurmconf a owl:ObjectProperty.
+hpc:Slurmconf a rdfs:domain hpc:Slurm.
+hpc:licenses a owl:DatatypeProperty; rdfs:domain hpc:slurmconf.
+
+hpc:licensename a owl:DatatypeProperty.
+hpc:total a owl:DatatypeProperty; rdfs:domain hpc:licensename.
+hpc:used a owl:

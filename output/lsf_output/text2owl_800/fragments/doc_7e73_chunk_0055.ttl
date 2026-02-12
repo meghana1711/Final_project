@@ -1,0 +1,58 @@
+hpc:Pricingresource a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Pricing option: spot/ondemand" ;
+    rdfs:domain hpc:Lsfconfiguration .
+
+hpc:Lsfconfiguration a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:domain rdf:Resource .
+
+hpc:resourcename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Pricingresource ;
+    rdfs:range xsd:string .
+
+hpc:resourcetype a owl:ObjectProperty ;
+    rdfs:domain hpc:Pricingresource ;
+    rdfs:range hpc:Machinetype .
+
+hpc:Machinetype a owl:Class .
+
+hpc:interval a owl:ObjectProperty ;
+    rdfs:domain hpc:Pricingresource ;
+    rdfs:range xsd:anyURI .
+
+hpc:increasing a owl:ObjectProperty ;
+    rdfs:domain hpc:Pricingresource ;
+    rdfs:range xsd:boolean .
+
+hpc:Spotinstancetemplate a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:domain rdf:Resource .
+
+hpc:vmtype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Spotinstancetemplate ;
+    rdfs:range xsd:string .
+
+hpc:fleetrole a owl:ObjectProperty ;
+    rdfs:domain hpc:Spotinstancetemplate ;
+    rdfs:range hpc:Iamrole .
+
+hpc:spotprice a owl:DatatypeProperty ;
+    rdfs:domain hpc:Spotinstancetemplate ;
+    rdfs:range xsd:decimal .
+
+hpc:allocationstrategy a owl:ObjectProperty ;
+    rdfs:domain hpc:Spotinstancetemplate ;
+    rdfs:range hpc:Allocationstrategytype .
+
+hpc:Allocationstrategytype a owl:Class ;
+    rdfs:subClassOf owl:Enum ;
+    rdfs:comment "The allocation strategy for Spot fleet" ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:domain rdf:Resource .
+
+hpc:SpotPriceLower a hpc:AllocationStrategyType ;
+    rdfs:comment "The Spot instances come from the pool with the lowest price" .
+
+hpc:SpotPriceDiversified a hpc:AllocationStrategyType ;
+    rdfs:comment "The Spot instances are distributed across all pools" .

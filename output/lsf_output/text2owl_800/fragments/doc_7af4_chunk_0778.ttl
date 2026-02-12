@@ -1,0 +1,44 @@
+hpc:lsfCgroupCoreAutoCreate a owl:DatatypeProperty ;
+  rdfs:domain hpc:Jobsubmission .
+hpc:lsbResourceEnforce a owl:ObjectProperty ;
+  rdfs:domain hpc:Jobsubmission .
+hpc:lsfProcessTracking a owl:DatatypeProperty ;
+  rdfs:domain hpc:Jobsubmission .
+hpc:lsfLinuxCgroupAcct a owl:DatatypeProperty ;
+  rdfs:domain hpc:Jobsubmission .
+
+# Cgroup Configuration Parameters
+hpc:affinity a owl:DatatypeProperty ;
+  rdfs:domain hpc:Systemconfiguration .
+
+# Job States
+hpc:Withaffinity a owl:Class ;
+  rdfs:subClassOf hpc:Jobsubmission .
+hpc:Withoutaffinity a owl:Class ;
+  rdfs:subClassOf hpc:Jobsubmission .
+
+# Affinity Types
+hpc:Coreaffinity a owl:Class ;
+  rdfs:subClassOf hpc:Affinity .
+hpc:Numaaffinity a owl:Class ;
+  rdfs:subClassOf hpc:Affinity .
+
+# Affinity Properties
+hpc:core a owl:DatatypeProperty ;
+  rdfs:domain hpc:Coreaffinity ;
+  rdfs:range xsd:integer .
+hpc:numa a owl:DatatypeProperty ;
+  rdfs:domain hpc:Numaaffinity ;
+  rdfs:range xsd:integer .
+hpc:numasame a owl:ObjectProperty ;
+  rdfs:domain hpc:Numaaffinity .
+hpc:cpubind a owl:ObjectProperty ;
+  rdfs:domain hpc:Numaaffinity .
+hpc:membind a owl:ObjectProperty ;
+  rdfs:domain hpc:Numaaffinity .
+hpc:localprefer a owl:ObjectProperty ;
+  rdfs:domain hpc:Numaaffinity .
+
+# System Configuration
+hpc:lsfClearcaseWrapperRetry a owl:DatatypeProperty ;
+  rdfs:domain hpc:Systemconfiguration .

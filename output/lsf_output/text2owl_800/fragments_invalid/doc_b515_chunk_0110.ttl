@@ -1,0 +1,9 @@
+hpc:Joblauncherenvironment a owl:Class. .
+hpc:djobcommfailaction a owl:ObjectProperty. .
+hpc:lsbdjobcommfailaction a owl:DatatypeProperty. .
+hpc:djobenvscript a owl:DatatypeProperty. .
+
+hpc:Joblauncherenvironment rdfs:subClassOf owl:Class. .
+hpc:Djobcommfailaction rdfs:domain hpc:Joblauncherenvironment ;
+                                rdfs:range xsd:string. .
+hpc:Lsbdjobcommfailaction rdfs:domain hpc:Joblauncherenvironment ;

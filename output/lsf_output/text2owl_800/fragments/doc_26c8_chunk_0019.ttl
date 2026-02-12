@@ -1,0 +1,42 @@
+hpc:openstackpassword a owl:DatatypeProperty ;
+    rdfs:domain hpc:Openstackcredentials ;
+    rdfs:range xsd:string .
+
+hpc:openstackdomainid a owl:ObjectProperty ;
+    rdfs:domain hpc:Openstackcredentials ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:OpenStackID .
+
+hpc:openstackprojectname a owl:ObjectProperty ;
+    rdfs:domain hpc:Openstackcredentials ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:OpenStackID .
+
+hpc:openstackauthurl a owl:ObjectProperty ;
+    rdfs:domain hpc:Openstackcredentials ;
+    rdfs:range xsd:string .
+
+hpc:openstacknetworkname a owl:ObjectProperty ;
+    rdfs:domain hpc:Openstacknetwork ;
+    rdfs:range xsd:string .
+
+hpc:openstackdnsserver a owl:DatatypeProperty ;
+    rdfs:domain hpc:Openstacknetwork ;
+    rdfs:range xsd:string .
+
+hpc:openstackuserdomainid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Openstackcredentials ;
+    rdfs:range xsd:string .
+
+hpc:openstackkeypair a owl:DatatypeProperty ;
+    rdfs:domain hpc:Openstackcredentials ;
+    rdfs:range xsd:string .
+
+hpc:openstacksecuritygroups a owl:DatatypeProperty ;
+    rdfs:domain hpc:Openstackcredentials ;
+    rdfs:range xsd:string .
+
+hpc:Openstacksecuritygroup a owl:Class .
+hpc:Openstacksecuritygroup rdfs:subClassOf xsd:string .
+
+hpc:Openstacknetwork a owl:Class .

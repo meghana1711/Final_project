@@ -1,0 +1,37 @@
+hpc:EndServiceDomain .
+
+hpc:Feature a owl:Class ;
+    rdfs:subClassOf hpc:Featurebase .
+
+hpc:featurename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+
+hpc:distribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range hpc:Distributionpolicy .
+
+hpc:featuredelta a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range hpc:Delta .
+
+hpc:Result a owl:Class ;
+    rdfs:subClassOf hpc:Resultbase .
+
+hpc:flexname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+
+hpc:groupdistribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+
+hpc:toplevelhierarchyname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Groupdistribution ;
+    rdfs:range xsd:string .
+
+hpc:Projectgroup a owl:Class ;
+    rdfs:subClassOf hpc:Group .
+
+hpc:Hierarchicaldistributionpolicy a owl:Class ;
+    rdfs:subClassOf hpc:Distributionpolicy .

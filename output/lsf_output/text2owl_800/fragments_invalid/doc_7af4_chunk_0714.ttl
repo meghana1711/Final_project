@@ -1,0 +1,8 @@
+hpc:lsbSetTmpdir a owl:ObjectProperty .
+hpc:lsbJobidDispLength a owl:DatatypeProperty .
+hpc:LsbJobidDispLength rdfs:domain hpc:LsbJobs .
+hpc:LsbJobidDispLength rdfs:range xsd:integer .
+hpc:lsbJobinfoDir a owl:ObjectProperty .
+
+
+This ontology fragment defines three properties: `hpc:LSB_SET_TMPDIR`, `hpc:LSB_JOBID_DISP_LENGTH`, and `hpc:LSB_JOBINFO_DIR`. These properties are associated with the class `hpc:LSB_Jobs` and have the appropriate data type and domain/range restrictions.

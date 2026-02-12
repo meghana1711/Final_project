@@ -1,0 +1,33 @@
+hpc:Host a owl:Class .
+hpc:PreferenceLevel rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasrequesteddockerimage a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Dockerimage .
+
+hpc:DockerImage rdf:type owl:Class .
+
+hpc:Order rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host .
+
+hpc:Container rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host .
+
+hpc:EligiblePendingTimeLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:duration .
+
+hpc:Eligiblependingtimelimit a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:EligiblePendingTimeLimit ;
+                        owl:hasValue "PT0H1M" ;
+                        owl:allValuesFrom xsd:duration ] .
+
+hpc:Eligiblependingtimelimit a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:EligiblePendingTimeLimit ;
+                        owl:hasValue (str(x) || "PT" || "0H" || str(y) || "M") ;
+                        owl:allValuesFrom [ a xsd:duration ;
+                                            rdf:value (str(x) || "PT" || str(y) || "M"^^xsd:duration ] ] .

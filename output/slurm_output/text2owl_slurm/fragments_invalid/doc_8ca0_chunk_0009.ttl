@@ -1,0 +1,25 @@
+hpc:Exclusiveuser a owl:Class.
+hpc:Oversubscribe a owl:Class.
+
+hpc:afterAllRunningJobsComplete rdf:type owl:ObjectProperty;
+    rdfs:domain hpc:Exclusiveuser;
+    rdfs:range hpc:Node.
+
+hpc:beforeAnotherUsersJobAllocated rdf:type owl:ObjectProperty;
+    rdfs:domain hpc:Oversubscribe;
+    rdfs:range hpc:Node.
+
+hpc:NodesAreStillSubjectToPoweringDownWhenBeingIDLEForSuspendTime rdf:type owl:ObjectProperty;
+    rdfs:domain hpc:Node;
+    rdfs:range hpc:Time.
+
+hpc:PowerDownOnIdle rdf:type owl:ObjectProperty;
+    rdfs:domain hpc:Node;
+    rdfs:range xsd:boolean.
+
+hpc:ResumeTimeout rdf:type owl:DatatypeProperty;
+    rdfs:domain hpc:Node;
+    rdfs:range xsd:integer.
+
+hpc:NodesWhichFailToRespondInThisTimeFrameWillBeMarkedDOWN rdf:type owl:ObjectProperty;
+    rd

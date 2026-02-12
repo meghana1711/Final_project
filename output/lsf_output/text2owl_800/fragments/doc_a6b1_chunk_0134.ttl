@@ -1,0 +1,23 @@
+hpc:Lsfadmin a owl:Class .
+hpc:Egoadmin a owl:Class .
+hpc:Lsfsudoersfile a owl:Class .
+
+hpc:Haslsfadminuser rdfs:domain hpc:Lsfadmin ;
+    rdfs:range xsd:string .
+hpc:Hasegoadminuser rdfs:domain hpc:Egoadmin ;
+    rdfs:range xsd:string .
+hpc:Haslsfsudoersfile rdfs:domain hpc:Lsfsudoersfile ;
+    rdfs:range xsd:string .
+
+hpc:enablessetuidbit a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadmin ;
+    rdfs:range xsd:boolean .
+hpc:configuresegocredentials a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadmin ;
+    rdfs:range hpc:Egoadmin .
+hpc:setslsfsudoers a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadmin ;
+    rdfs:range hpc:Lsfsudoersfile .
+
+hpc:LsfEgoAdminUser rdfs:subClassOf hpc:Haslsfadminuser .
+hpc:LsfEgoAdminPasswd rdfs:subClassOf hpc:Haslsfadminuser .

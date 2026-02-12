@@ -1,0 +1,30 @@
+hpc:Lsfjob a owl:Class .
+hpc:hasSubmissionHost rdf:Property ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:string .
+hpc:usesStagingArea rdf:Property ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:string .
+hpc:hasDataManager rdf:Property ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:string .
+hpc:hasTransferNode rdf:Property ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:string .
+hpc:hasDataTransferCommand rdf:Property ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:string .
+hpc:hasbstageoutsubcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range hpc:Bstageoutcommand .
+hpc:Bstageoutcommand a owl:Class .
+hpc:hasSourceFile rdf:Property ;
+    rdfs:domain hpc:Bstageoutcommand ;
+    rdfs:range xsd:string .
+hpc:hasDestination rdf:Property ;
+    rdfs:domain hpc:Bstageoutcommand ;
+    rdfs:range xsd:string .
+hpc:isRegularFile rdf:Property ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:boolean .
+hpc:File a owl:Class .

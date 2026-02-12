@@ -1,0 +1,37 @@
+hpc:Jobdescription a owl:Class ;
+    rdfs:subClassOf hpc:Parameterspecification .
+
+hpc:Joballocationrequest a owl:Class ;
+    rdfs:subClassOf hpc:Jobdescription ;
+    rdfs:subClassOf hpc:Parameterspecification .
+
+hpc:Slurmctlddaemondatastructure a owl:Class ;
+    rdfs:subClassOf hpc:Parameterspecification .
+
+hpc:modifyuid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmctlddaemondatastructure ;
+    rdfs:range xsd:integer .
+
+hpc:jobloggingandmodification a owl:ObjectProperty .
+
+hpc:Jobloggingandmodificationfunction a owl:Class ;
+    rdfs:subClassOf hpc:Luafunction ;
+    rdfs:subClassOf hpc:Jobloggingandmodification .
+
+hpc:Jobenvironment a owl:Class ;
+    rdfs:subClassOf hpc:Jobdescription ;
+    rdfs:subClassOf hpc:Parameterspecification .
+
+hpc:Environmentvariable a owl:Class ;
+    rdfs:subClassOf hpc:Jobenvironment .
+
+hpc:isavailableforbatchjobs a owl:ObjectProperty .
+
+hpc:Luafunction a owl:Class ;
+    rdfs:subClassOf hpc:Jobloggingandmodificationfunction .
+
+hpc:Script a owl:Class ;
+    rdfs:subClassOf hpc:Jobenvironment .
+
+hpc:getenvironmentforalljobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Clifilterplugin .

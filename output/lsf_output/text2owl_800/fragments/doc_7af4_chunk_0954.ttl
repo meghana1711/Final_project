@@ -1,0 +1,28 @@
+hpc:Administrator a owl:Class .
+hpc:Featuredelta a owl:Class .
+hpc:Servicedomain a owl:Class .
+
+hpc:Hasservicedomain rdfs:domain hpc:Featuredelta ;
+    rdfs:range hpc:Servicedomain .
+
+hpc:target a owl:ObjectProperty ;
+    rdfs:domain hpc:Administrator ;
+    rdfs:range xsd:positiveInteger .
+
+hpc:interval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Featuredelta ;
+    rdfs:range xsd:decimal .
+
+hpc:abs a owl:ObjectProperty .
+hpc:mult a owl:ObjectProperty .
+
+hpc:dyn a owl:ObjectProperty ;
+    rdfs:domain hpc:Featuredelta .
+
+hpc:init a owl:DatatypeProperty ;
+    rdfs:domain hpc:Featuredelta ;
+    rdfs:range xsd:decimal .
+
+hpc:adjustment a owl:DatatypeProperty ;
+    rdfs:domain hpc:Featuredelta ;
+    rdfs:range xsd:decimal .

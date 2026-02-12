@@ -1,0 +1,18 @@
+hpc:lsbMcRecalledJobsHide a owl:DatatypeProperty .
+hpc:LsbMcRecalledJobsHide rdfs:domain hpc:Cluster .
+hpc:LsbMcRecalledJobsHide rdfs:range xsd:string .
+
+hpc:lsbMcRecallExitInfo a owl:DatatypeProperty .
+hpc:LsbMcRecallExitInfo rdfs:domain hpc:Cluster .
+hpc:LsbMcRecallExitInfo rdfs:range xsd:string .
+
+hpc:lsbMemlimitEnforce a owl:DatatypeProperty .
+hpc:LsbMemlimitEnforce rdfs:domain hpc:Cluster .
+hpc:LsbMemlimitEnforce rdfs:range xsd:string .
+
+hpc:lsbMemlimitEnfControl a owl:DatatypeProperty .
+hpc:LsbMemlimitEnfControl rdfs:domain hpc:Job .
+hpc:LsbMemlimitEnfControl rdfs:range xsd:string .
+
+hpc:Cluster a owl:Class .
+hpc:Job a owl:Class .

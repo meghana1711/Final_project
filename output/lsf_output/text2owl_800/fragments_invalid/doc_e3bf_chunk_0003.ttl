@@ -1,0 +1,28 @@
+hpc:ManagementHost
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A host that performs management tasks." .
+
+hpc:ManagementCandidate
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A host that can potentially become a management host." .
+
+hpc:ServerHost
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A host that runs server processes." .
+
+hpc:ClientOnlyHost
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A host that only runs client processes." .
+
+hpc:InstallationDirectory
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A directory where the system is installed." .
+
+hpc:SharedDirectory
+    a owl:Class ;
+    rdfs:sub

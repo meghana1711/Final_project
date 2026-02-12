@@ -1,0 +1,56 @@
+hpc:Resourceprovider a owl:Class .
+hpc:IBMCloud a hpc:ResourceProvider ;
+    rdfs:subClassOf hpc:Resourceprovider ;
+    rdfs:comment "IBM Cloud Virtual Servers for VPC Gen 2 (IBM Cloud Gen 2)" .
+hpc:IBMCloud requiresFixPack owl:ObjectProperty ;
+    rdfs:domain hpc:Ibmcloud ;
+    rdfs:range xsd:integer .
+hpc:IBMCloud requiresIBMGen2ConfigFile owl:ObjectProperty ;
+    rdfs:domain hpc:Ibmcloud ;
+    rdfs:range xsd:string .
+hpc:IBMCloud requiresIBMGen2TemplatesFile owl:ObjectProperty ;
+    rdfs:domain hpc:Ibmcloud ;
+    rdfs:range xsd:string .
+hpc:AWS a hpc:ResourceProvider ;
+    rdfs:subClassOf hpc:Resourceprovider ;
+    rdfs:comment "Amazon Web Services" .
+hpc:AWS requiresFixPack owl:ObjectProperty ;
+    rdfs:domain hpc:Aws ;
+    rdfs:range xsd:integer .
+hpc:Azure a hpc:ResourceProvider ;
+    rdfs:subClassOf hpc:Resourceprovider ;
+    rdfs:comment "Microsoft Azure" .
+hpc:Azure requiresFixPack owl:ObjectProperty ;
+    rdfs:domain hpc:Azure ;
+    rdfs:range xsd:integer .
+hpc:GoogleCompute a hpc:ResourceProvider ;
+    rdfs:subClassOf hpc:Resourceprovider ;
+    rdfs:comment "Google Compute Cloud" .
+hpc:GoogleCompute requiresFixPack owl:ObjectProperty ;
+    rdfs:domain hpc:Googlecompute ;
+    rdfs:range xsd:integer .
+hpc:OpenStack a hpc:ResourceProvider ;
+    rdfs:subClassOf hpc:Resourceprovider ;
+    rdfs:comment "OpenStack" .
+hpc:OpenStack requiresFixPack owl:ObjectProperty ;
+    rdfs:domain hpc:Openstack ;
+    rdfs:range xsd:integer .
+hpc:OSProvConfigFile owl:DatatypeProperty ;
+    rdfs:domain hpc:Openstack ;
+    rdfs:range xsd:string .
+hpc:OSProvTemplatesFile owl:DatatypeProperty ;
+    rdfs:domain hpc:Openstack ;
+    rdfs:range xsd:string .
+hpc:Lsfcluster a owl:Class .
+hpc:LSFCluster borrowsHostsFrom owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Resourceprovider .
+hpc:LSFCluster returnsHostsToProvider owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Resourceprovider .
+hpc:LSFCluster generatesRequestForExtraHosts owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:integer .
+hpc:LSFCluster dispatchesJobsToDynamicHosts owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range h

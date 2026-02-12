@@ -1,0 +1,24 @@
+hpc:Jobsubmission a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:oversubscribe a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:boolean ;
+    rdfs:subPropertyOf owl:FunctionalProperty .
+
+hpc:exclusive a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:boolean ;
+    rdfs:subPropertyOf owl:FunctionalProperty .
+
+hpc:Jobsubmissionfatal a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:Jobsubmissionfatal rdfs:subClassOf hpc:Jobsubmission ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:Thing ;
+                        rdfs:subClassOf hpc:Jobsubmission ;
+                        rdfs:subClassOf (hpc:Oversubscribe rdfs:range xsd:boolean) ;
+                        rdfs:subClassOf (hpc:Exclusive rdfs:range xsd:boolean) ] .

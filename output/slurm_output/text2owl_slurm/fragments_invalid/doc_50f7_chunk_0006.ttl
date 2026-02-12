@@ -1,0 +1,22 @@
+hpc:Node a owl:Class.
+hpc:nodename a owl:DatatypeProperty.
+hpc:hasname rdf:Property.
+hpc:arch a owl:DatatypeProperty.
+hpc:hasarch rdf:Property.
+hpc:corespersocket a owl:DatatypeProperty.
+hpc:hascorespersocket rdf:Property.
+hpc:cpualloc a owl:DatatypeProperty.
+hpc:hascpualloc rdf:Property.
+hpc:cputot a owl:DatatypeProperty.
+hpc:hascputot rdf:Property.
+hpc:cpuload a owl:DatatypeProperty.
+hpc:hascpuload rdf:Property.
+hpc:features a owl:DatatypeProperty.
+hpc:hasfeatures rdf:Property.
+hpc:nodeaddr a owl:DatatypeProperty.
+hpc:hasnodeaddr rdf:Property.
+hpc:nodehostname a owl:DatatypeProperty.
+hpc:hasnodehostname rdf:Property.
+hpc:version a owl:DatatypeProperty.
+hpc:hasversion rdf:Property.
+hpc:Os a owl:Dat

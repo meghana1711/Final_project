@@ -1,0 +1,42 @@
+hpc:modifytime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .
+
+hpc:pendtimelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:eligiblependtimelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:Jobforward a owl:Class .
+
+hpc:versionnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobevent ;
+    rdfs:range xsd:integer .
+
+hpc:eventtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobevent ;
+    rdfs:range xsd:dateTime .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobevent ;
+    rdfs:range xsd:integer .
+
+hpc:numreserhosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobevent ;
+    rdfs:range xsd:integer .
+
+hpc:Cluster a owl:Class .
+
+hpc:Reserhosts a owl:Class ;
+    rdfs:subClassOf hpc:Stringlist .
+
+hpc:idx a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobevent ;
+    rdfs:range xsd:integer .
+
+hpc:srcjobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobevent ;
+    rdfs:range xsd:integer .

@@ -1,0 +1,14 @@
+hpc:Applicationprofile a owl:Class.
+hpc:Watchdogenabled rdfs:domain hpc:Applicationprofile ;
+                      rdfs:range xsd:boolean.
+
+hpc:Lsfacpncurl rdfs:domain hpc:Applicationprofile ;
+                 rdfs:range xsd:string.
+
+hpc:Watchdogscript a owl:Class.
+
+hpc:Monitorapplication a hpc:Watchdogscript.
+hpc:Receivenotifications a hpc:Watchdogscript.
+
+hpc:Scriptexecutionstatus xsd:integer rdfs:range hpc:Watchdogscript.
+hpc:Message

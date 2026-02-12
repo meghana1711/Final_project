@@ -1,0 +1,63 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Ipv4host a owl:Class .
+hpc:Ipv6host a owl:Class .
+hpc:Allowedclienthost a owl:Class .
+hpc:floatclientsaddrrange a owl:ObjectProperty .
+
+hpc:Ipv4host rdfs:subClassOf hpc:Allowedclienthost .
+hpc:Ipv6host rdfs:subClassOf hpc:Allowedclienthost .
+
+hpc:Floatclientsaddrrange rdfs:domain hpc:Allowedclienthost .
+
+hpc:IPv4Host
+  rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty hpc:FloatClientsAddrRange ;
+    owl:hasValue "100.*" ;
+    rdfs:someValuesFrom xsd:string
+  ] .
+
+hpc:IPv6Host
+  rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty hpc:FloatClientsAddrRange ;
+    owl:hasValue "100:*" ;
+    rdfs:someValuesFrom xsd:string
+  ] .
+
+hpc:AllowedClientHost_1
+  a hpc:AllowedClientHost ;
+  hpc:FloatClientsAddrRange "100-110.34.1-10.4-56" .
+
+hpc:AllowedClientHost_2
+  a hpc:AllowedClientHost ;
+  hpc:FloatClientsAddrRange "100.172.1.13" .
+
+hpc:AllowedClientHost_3
+  a hpc:AllowedClientHost ;
+  hpc:FloatClientsAddrRange "100.*30-54" .
+
+hpc:AllowedClientHost_4
+  a hpc:AllowedClientHost ;
+  hpc:FloatClientsAddrRange "124.24-*.1.*-34" .
+
+hpc:AllowedClientHost_5
+  a hpc:AllowedClientHost ;
+  hpc:FloatClientsAddrRange "12.23.45.*" .
+
+hpc:AllowedClientHost_6
+  a hpc:AllowedClientHost ;
+  hpc:FloatClientsAddrRange "100.*43" .
+
+hpc:AllowedClientHost_7
+  a hpc:AllowedClientHost ;
+  hpc:FloatClientsAddrRange "100.*43" ;
+  hpc:FloatClientsAddrRange "100.172.1.13" .
+
+hpc:AllowedClientHost_8
+  a hpc:AllowedClientHost ;
+  hpc:FloatClientsAddrRange "3ffe" .

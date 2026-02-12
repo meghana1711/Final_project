@@ -1,0 +1,40 @@
+hpc:CgroupCpuSharesFactor a owl:Class .
+hpc:CgroupCpuSharesFactor rdfs:subClassOf xsd:nonNegativeInteger .
+hpc:CgroupCpuSharesFactor rdfs:domain hpc:Applicationprofile ;
+                                          hpc:Queue .
+hpc:CgroupCpuSharesFactor rdfs:range xsd:integer .
+
+hpc:LsbCgroupCpuSharesOldDefault a owl:Class .
+hpc:LsbCgroupCpuSharesOldDefault rdfs:subClassOf xsd:string .
+
+hpc:cpuShares a owl:ObjectProperty .
+hpc:CpuShares rdfs:domain hpc:Job ;
+                         hpc:ApplicationProfile ;
+                         hpc:Queue .
+hpc:CpuShares rdfs:range xsd:nonNegativeInteger .
+
+hpc:cpuWeight a owl:ObjectProperty .
+hpc:CpuWeight rdfs:domain hpc:Job ;
+                         hpc:ApplicationProfile ;
+                         hpc:Queue .
+hpc:CpuWeight rdfs:range xsd:nonNegativeInteger .
+
+hpc:CGROUP_CPU_SHARES_FACTOR rdfs:subPropertyOf hpc:CPU_SHARES ;
+                                                 hpc:CPU_WEIGHT .
+
+hpc:cpulimit a owl:DatatypeProperty .
+hpc:Cpulimit rdfs:domain hpc:Job .
+hpc:Cpulimit rdfs:range xsd:nonNegativeDuration .
+
+hpc:memlimit a owl:DatatypeProperty .
+hpc:Memlimit rdfs:domain hpc:Job .
+hpc:Memlimit rdfs:range xsd:nonNegativeInteger .
+
+hpc:memlimitType a owl:ObjectProperty .
+hpc:MemlimitType rdfs:domain hpc:Job .
+hpc:MemlimitType rdfs:range xsd:string .
+
+hpc:MEMLIMIT_TYPE rdfs:subPropertyOf hpc:MEMLIMIT .
+
+hpc:MEMLIMIT rdfs:subPropertyOf hpc:MEMLIMIT_TYPE ;
+                                      rdfs:range xsd:decimal .

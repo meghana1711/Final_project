@@ -1,0 +1,32 @@
+hpc:Memorylimittype a owl:Class .
+hpc:JobMemoryLimit a MemoryLimitType .
+hpc:ProcessMemoryLimit a MemoryLimitType .
+hpc:TaskMemoryLimit a MemoryLimitType .
+hpc:ProcessJobMemoryLimit a MemoryLimitType .
+hpc:TaskJobMemoryLimit a MemoryLimitType .
+
+hpc:enables a owl:ObjectProperty .
+
+hpc:Jobmemorylimit rdfs:subClassOf hpc:Memorylimittype .
+hpc:Processmemorylimit rdfs:subClassOf hpc:Memorylimittype .
+hpc:Taskmemorylimit rdfs:subClassOf hpc:Memorylimittype .
+hpc:Processjobmemorylimit rdfs:subClassOf hpc:Memorylimittype .
+hpc:Taskjobmemorylimit rdfs:subClassOf hpc:Memorylimittype .
+
+hpc:Enables rdfs:domain hpc:Memorylimittype ;
+                                rdfs:range hpc:Memorylimittype .
+
+
+For the MIG property, it is not clear from the provided documentation whether it is a part of the MemoryLimitType ontology or a separate concept. If it is part of the MemoryLimitType ontology, you can model it as follows:
+
+hpc:mig a owl:DatatypeProperty .
+hpc:Mig rdfs:domain hpc:Memorylimittype ;
+                          rdfs:range xsd:nonNegativeInteger .
+
+
+If MIG is a separate concept, you can model it as follows:
+
+hpc:Mig a owl:Class .
+hpc:Mig rdfs:subClassOf owl:DatatypeProperty .
+hpc:Mig rdfs:domain hpc:Job .
+hpc:Mig rdfs:range xsd:nonNegativeInteger .

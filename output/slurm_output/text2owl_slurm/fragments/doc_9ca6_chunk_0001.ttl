@@ -1,0 +1,30 @@
+hpc:Hierarchicalresources a owl:Class .
+hpc:Resourcesconfiguration a owl:Class .
+hpc:Resourcehierarchy a owl:Class .
+hpc:Resourcelayer a owl:Class .
+hpc:resourcecount a owl:DatatypeProperty .
+hpc:planningmode a owl:ObjectProperty .
+hpc:Mode1 a owl:Class .
+hpc:Mode2 a owl:Class .
+hpc:sufficientresourcesonoverlappinglayer a owl:ObjectProperty .
+hpc:noimpactonscheduling a owl:ObjectProperty .
+
+hpc:Hierarchicalresources rdfs:subClassOf owl:Class .
+hpc:Resourcesconfiguration rdfs:subClassOf owl:Class .
+hpc:Resourcehierarchy rdfs:subClassOf hpc:Hierarchicalresources .
+hpc:Resourcelayer rdfs:subClassOf hpc:Resourcehierarchy .
+
+hpc:Resourcecount rdfs:domain hpc:Resourcelayer ;
+                    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Planningmode rdfs:domain hpc:Hierarchicalresources ;
+                  rdfs:range hpc:Mode1 .
+
+hpc:Mode1 rdfs:subClassOf hpc:Planningmode .
+hpc:Mode2 rdfs:subClassOf hpc:Planningmode .
+
+hpc:Sufficientresourcesonoverlappinglayer rdfs:domain hpc:Mode1 ;
+                                             rdfs:range hpc:Resourcelayer .
+
+hpc:Noimpactonscheduling rdfs:domain hpc:Resourcelayer ;
+                            rdfs:range xsd:boolean .

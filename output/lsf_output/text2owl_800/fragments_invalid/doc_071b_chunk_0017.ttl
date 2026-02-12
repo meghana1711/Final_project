@@ -1,0 +1,57 @@
+hpc:Command a owl:Class .
+hpc:description a owl:DatatypeProperty .
+hpc:badmin a owl:ObjectProperty .
+hpc:showconf a owl:ObjectProperty .
+hpc:lsadminreconfig a owl:ObjectProperty .
+hpc:badminreconfig a owl:ObjectProperty .
+hpc:badminmbdrestart a owl:ObjectProperty .
+hpc:bctrldrestartsbd a owl:ObjectProperty .
+
+hpc:Configurationfile a owl:Class .
+hpc:Daemon a owl:Class .
+hpc:Parameter a owl:Class .
+
+hpc:badmin rdf:type hpc:Command ;
+    rdfs:comment "reconfigures the mbatchd daemon without restarting" ;
+    hpc:Badminreconfig rdfs:domain hpc:Command ;
+    hpc:Badminreconfig rdfs:range hpc:Daemon .
+
+hpc:badminMbdrestart rdf:type hpc:Command ;
+    rdfs:comment "restarts the mbatchd daemon" ;
+    hpc:Badminmbdrestart rdfs:domain hpc:Command ;
+    hpc:Badminmbdrestart rdfs:range hpc:Daemon .
+
+hpc:bctrld rdf:type hpc:Daemon ;
+    rdfs:comment "sbatchd daemon" ;
+    hpc:Bctrldrestartsbd rdfs:domain hpc:Command ;
+    hpc:Bctrldrestartsbd rdfs:range hpc:Daemon .
+
+hpc:lsbConf rdf:type hpc:ConfigurationFile ;
+    rdfs:comment "lsf.conf configuration file" .
+
+hpc:egoConf rdf:type hpc:ConfigurationFile ;
+    rdfs:comment "ego.conf configuration file" .
+
+hpc:lsfSudoers rdf:type hpc:ConfigurationFile ;
+    rdfs:comment "lsf.sudoers configuration file" .
+
+hpc:lsfMulticluster rdf:type hpc:ConfigurationFile ;
+    rdfs:comment "configuration file for LSF multicluster capability" .
+
+hpc:Lsfparameter a owl:Class ;
+    rdfs:subClassOf hpc:Parameter ;
+    rdfs:comment "parameters in LSF configuration files" .
+
+hpc:RequiresRestart rdf:type hpc:Parameter ;
+    rdfs:subClassOf hpc:Lsfparameter ;
+    rdfs:comment "parameters that require restart" .
+
+hpc:RequiresReconfig rdf:type hpc:Parameter ;
+    rdfs:subClassOf hpc:Lsfparameter ;
+    rdfs:comment "parameters that require only reconfiguration" .
+
+hpc:hosts rdf:type hpc:ConfigurationFile ;
+    rdfs:subClassOf hpc:Requiresreconfig .
+
+hpc:lsbApplications rdf:type hpc:ConfigurationFile ;
+    rdfs:subClassOf hpc:Requiresreconfig .

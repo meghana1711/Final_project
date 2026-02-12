@@ -1,0 +1,30 @@
+hpc:Mps a owl:Class .
+hpc:exclusiveProcessMode owl:ObjectProperty .
+hpc:sharedMode owl:ObjectProperty .
+hpc:daemonSharing owl:ObjectProperty .
+hpc:Mpsdaemon a owl:Class .
+hpc:host owl:Class .
+hpc:job owl:Class .
+hpc:user owl:Class .
+hpc:resourceRequirements owl:DatatypeProperty .
+hpc:GPU owl:Class .
+hpc:socket owl:Class .
+hpc:Startmpsdaemon rdfs:domain hpc:Lsf .
+hpc:Startmpsdaemon rdfs:range hpc:Mpsdaemon .
+hpc:Startonempsdaemonperhost rdfs:subClassOf hpc:Startmpsdaemon .
+hpc:Startonempsdaemonperjob rdfs:subClassOf hpc:Startmpsdaemon .
+hpc:Startonempsdaemonpersocket rdfs:subClassOf hpc:Startmpsdaemon .
+hpc:Startmpsdaemonperhostperjob rdfs:subClassOf hpc:Startonempsdaemonperhost .
+hpc:Startmpsdaemonforalljobsbysameuserwithsamerequirements rdfs:subClassOf hpc:Startonempsdaemonperhost .
+hpc:Setcudavisibledevices rdfs:domain hpc:Lsf .
+hpc:Setcudavisibledevices rdfs:range xsd:boolean .
+hpc:Disablecudavisibledevices rdfs:subClassOf hpc:Setcudavisibledevices .
+hpc:Nocvd rdfs:subClassOf hpc:Setcudavisibledevices .
+hpc:Persocket rdfs:domain hpc:Lsf .
+hpc:Persocket rdfs:range xsd:boolean .
+hpc:Perhost rdfs:domain hpc:Lsf .
+hpc:Perhost rdfs:range xsd:boolean .
+hpc:Shared rdfs:domain hpc:Mps .
+hpc:Shared rdfs:range xsd:boolean .
+hpc:Exclusiveprocess rdfs:domain hpc:Mps .
+hpc:Exclusiveprocess rdfs:range xsd:boolean .

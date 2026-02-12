@@ -1,0 +1,37 @@
+hpc:Mic a owl:Class .
+hpc:Freemem0 hpc:Mic rdfs:subClassOf xsd:decimal .
+hpc:Freemem1 hpc:Mic rdfs:subClassOf xsd:decimal .
+hpc:Util0 hpc:Mic rdfs:subClassOf xsd:decimal .
+hpc:Util1 hpc:Mic rdfs:subClassOf xsd:decimal .
+hpc:Ncores0 hpc:Mic rdfs:subClassOf xsd:nonNegativeInteger .
+hpc:Ncores1 hpc:Mic rdfs:subClassOf xsd:nonNegativeInteger .
+
+hpc:Nmics a owl:Class .
+hpc:Nmics rdfs:subClassOf rdf:List .
+hpc:Nmics rdfs:range hpc:Mic .
+
+hpc:Reservationusage a owl:Class .
+hpc:resource a owl:ObjectProperty .
+hpc:Resource rdfs:domain hpc:Reservationusage .
+hpc:Resource rdfs:range rdfs:Literal .
+hpc:method a owl:ObjectProperty .
+hpc:Method rdfs:domain hpc:Reservationusage .
+hpc:Method rdfs:range rdfs:Literal .
+hpc:reserve a owl:ObjectProperty .
+hpc:Reserve rdfs:domain hpc:Reservationusage .
+hpc:Reserve rdfs:range rdfs:Literal .
+hpc:perTask a owl:ObjectProperty .
+hpc:PerTask rdfs:domain hpc:Reservationusage .
+hpc:PerTask rdfs:range hpc:N .
+
+hpc:Resourcemap a owl:Class .
+hpc:Resourcemap rdfs:subClassOf rdf:List .
+hpc:Resourcemap rdfs:range hpc:Resource .
+
+hpc:lsload a owl:ObjectProperty .
+hpc:Lsload rdfs:domain rdf:Resource .
+hpc:Lsload rdfs:range rdf:List .
+
+hpc:bhost a owl:ObjectProperty .
+hpc:Bhost rdfs:domain rdf:Resource .
+hpc:Bhost rdfs:range rdf:List .

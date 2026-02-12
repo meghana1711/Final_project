@@ -1,0 +1,53 @@
+hpc:Featuredelta a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Allows an administrator to specify a number of dispatched jobs greater than actual tokens managed by the license server." .
+
+hpc:init a owl:DatatypeProperty ;
+    rdfs:domain hpc:Featuredelta ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Specifies an initial number of dispatched jobs." .
+
+hpc:max a owl:DatatypeProperty ;
+    rdfs:domain hpc:Featuredelta ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Specifies the maximum number of dispatched jobs." .
+
+hpc:step a owl:DatatypeProperty ;
+    rdfs:domain hpc:Featuredelta ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Specifies the step size for incrementing dispatched jobs." .
+
+hpc:dynstep a owl:DatatypeProperty ;
+    rdfs:domain hpc:Featuredelta ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Specifies a multiplication factor of dispatched jobs." .
+
+hpc:target a owl:DatatypeProperty ;
+    rdfs:domain hpc:Featuredelta ;
+    rdfs:range xsd:number ;
+    rdfs:comment "Specifies a target utilization level." .
+
+hpc:interval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Featuredelta ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Specifies the interval for adjusting dispatched jobs." .
+
+hpc:dyn a owl:ObjectProperty ;
+    rdfs:domain hpc:Featuredelta ;
+    rdfs:range hpc:Featuredelta ;
+    rdfs:comment "Enables LSF License Scheduler to dynamically adjust the number of dispatched jobs." .
+
+hpc:servicedomainname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Featuredelta ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the service domain." .
+
+hpc:abs a owl:ObjectProperty ;
+    rdfs:domain hpc:Featuredelta ;
+    rdfs:range hpc:Featuredelta ;
+    rdfs:comment "Specifies an absolute number of dispatched jobs." .
+
+hpc:mult a owl:ObjectProperty ;
+    rdfs:domain hpc:Featuredelta ;
+    rdfs:range hpc:Featuredelta ;
+    rdfs:comment "Specifies a multiplication factor of dispatched jobs." .

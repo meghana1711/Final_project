@@ -1,0 +1,10 @@
+hpc:Debuglevel a owl:Class;
+    rdfs:subClassOf [ rdf:type owl:Class ; owl:unionOf (hpc:LogDebug3 hpc:LogDebug2 hpc:LogDebug1 hpc:LogDebug ) ] .
+
+hpc:Loggingfile a owl:Class .
+
+hpc:lsLogMask a owl:ObjectProperty;
+    rdfs:domain hpc:Debuglevel;
+    rdfs:range xsd:string .
+
+hpc:logfile a owl:DatatypeProperty .

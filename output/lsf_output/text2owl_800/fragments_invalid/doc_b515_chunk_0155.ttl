@@ -1,0 +1,17 @@
+hpc:Job a owl:Class .
+hpc:reservationid a owl:DatatypeProperty .
+hpc:jobid a owl:DatatypeProperty .
+hpc:Hasreservationid hpc:Job rdfs:domain hpc:Job ; rdfs:domain hpc:Job .
+hpc:Hasreservationid rdfs:range xsd:string .
+hpc:Hasjobid hpc:Reservationid rdfs:domain hpc:Reservationid .
+hpc:Hasjobid rdfs:range xsd:integer .
+hpc:listofjobids a owl:ObjectProperty .
+hpc:Listofjobids rdfs:domain hpc:Reservationid .
+hpc:Listofjobids rdfs:range rdf:List .
+hpc:listOfJobID a rdf:List .
+hpc:listOfJobID rdf:first hpc:JobID .
+hpc:listOfJobID rdf:rest rdf:list .
+hpc:viewreservationid a owl:ObjectProperty .
+hpc:Viewreservationid rdfs:domain hpc:Job ; rdfs:domain hpc:Job .
+hpc:Viewreservationid rdfs:range hpc:Reservationid .
+h

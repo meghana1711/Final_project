@@ -1,0 +1,4 @@
+hpc:Powerfulclass a owl:Class .
+hpc:haspower a owl:ObjectProperty .
+hpc:Haspower rdfs:domain hpc:Powerfulclass ;
+    rdfs:range xsd:decimal .

@@ -1,0 +1,53 @@
+hpc:Datatransferjob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Represents a data transfer job in LSF." .
+
+hpc:hastransferqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Datatransferjob ;
+    rdfs:range hpc:Queue ;
+    rdfs:comment "The queue where the data transfer job is placed." .
+
+# Transfer Queue
+hpc:Transferqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "Represents a queue dedicated for data transfer jobs." .
+
+hpc:hassndjobsto a owl:ObjectProperty ;
+    rdfs:domain hpc:Transferqueue ;
+    rdfs:range hpc:Queue ;
+    rdfs:comment "The remote queue from the submission cluster that pushes the data requirements to the execution cluster and pulls the output data back." .
+
+hpc:hasrcvjobsfrom a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Queue ;
+    rdfs:comment "The queue in the submission cluster that receives data transfer jobs from the execution cluster." .
+
+# IBM Spectrum LSF Multicluster Capability
+hpc:Ibmspectrumlsfmulticlustercapability a owl:Class ;
+    rdfs:subClassOf hpc:Capability ;
+    rdfs:comment "Represents the IBM Spectrum LSF multicluster capability." .
+
+# Execution Cluster
+hpc:Executioncluster a owl:Class ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:comment "Represents an execution cluster in the IBM Spectrum LSF multicluster capability." .
+
+# Public-Cloud Infrastructure
+hpc:Publiccloudinfrastructure a owl:Class ;
+    rdfs:subClassOf hpc:Infrastructure ;
+    rdfs:comment "Represents a public-cloud infrastructure." .
+
+# Forwarding Job's Data Requirements
+hpc:Forwardingjobdatarequirements a owl:Class ;
+    rdfs:subClassOf hpc:Jobdatarequirements ;
+    rdfs:comment "Represents the data requirements for a forwarding job." .
+
+# Queue Parameters
+hpc:Queueparameters a owl:Class ;
+    rdfs:subClassOf hpc:Jobparameters ;
+    rdfs:comment "Represents the parameters for a queue." .
+
+# Scheduling Policies
+hpc:Schedulingpolicy a owl:Class ;
+    rdfs:subClassOf hpc:Policy ;
+    rdfs:comment "Represents a scheduling policy for a queue." .

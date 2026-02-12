@@ -1,0 +1,15 @@
+hpc:Jobtemporarydirectory a owl:Class .
+hpc:lsfTmpdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobtemporarydirectory ;
+    rdfs:range xsd:string .
+hpc:lsbSetTmpdir a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobtemporarydirectory ;
+    rdfs:range xsd:string .
+hpc:Jobspecifictemporarydirectory a owl:Class ;
+    rdfs:subClassOf hpc:Jobtemporarydirectory .
+hpc:JobspecifictemporarydirectoryRegularjob a owl:Class ;
+    rdfs:subClassOf hpc:Jobspecifictemporarydirectory ;
+    rdfs:comment "Job specific temporary directory for regular jobs." .
+hpc:JobspecifictemporarydirectoryJobarrayelement a owl:Class ;
+    rdfs:subClassOf hpc:Jobspecifictemporarydirectory ;
+    rdfs:comment "Job specific temporary directory for each job array element." .

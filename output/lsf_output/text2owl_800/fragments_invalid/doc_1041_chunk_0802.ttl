@@ -1,0 +1,59 @@
+# Classes
+hpc:Fieldname a owl:Class .
+hpc:Outputfield a owl:Class .
+
+# Object Properties
+hpc:hasalias a owl:ObjectProperty .
+hpc:hasunit a owl:ObjectProperty .
+hpc:haswidth a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:name a owl:DatatypeProperty .
+hpc:recommendedwidth a owl:DatatypeProperty .
+hpc:unit a owl:DatatypeProperty .
+
+# Subclass relations
+hpc:Outputfield rdfs:subClassOf hpc:Fieldname .
+
+# Domain and Range
+hpc:Hasalias rdfs:domain hpc:Outputfield ;
+    rdfs:range xsd:string .
+hpc:Hasunit rdfs:domain hpc:Outputfield ;
+    rdfs:range xsd:string .
+hpc:Haswidth rdfs:domain hpc:Outputfield ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Field names, recommended width, aliases, and units of measurement
+hpc:HOST_NAME a hpc:OutputField ;
+    hpc:name "HOST_NAME" ;
+    hpc:recommendedWidth 20 ;
+    hpc:aliases ("hname") .
+hpc:type a hpc:OutputField ;
+    hpc:name "type" ;
+    hpc:recommendedWidth 10 ;
+    hpc:aliases () .
+hpc:model a hpc:OutputField ;
+    hpc:name "model" ;
+    hpc:recommendedWidth 10 ;
+    hpc:aliases () .
+hpc:cpuf a hpc:OutputField ;
+    hpc:name "cpuf" ;
+    hpc:recommendedWidth 10 ;
+    hpc:aliases () .
+hpc:ncpus a hpc:OutputField ;
+    hpc:name "ncpus" ;
+    hpc:recommendedWidth 8 ;
+    hpc:aliases () .
+hpc:maxmem a hpc:OutputField ;
+    hpc:name "maxmem" ;
+    hpc:recommendedWidth 10 ;
+    hpc:aliases () .
+hpc:maxswp a hpc:OutputField ;
+    hpc:name "maxswp" ;
+    hpc:recommendedWidth 10 ;
+    hpc:aliases () .
+hpc:server a hpc:OutputField ;
+    hpc:name "server" ;
+    hpc:recommendedWidth 10 ;
+    hpc:aliases () .
+hpc:RESOURCES a h

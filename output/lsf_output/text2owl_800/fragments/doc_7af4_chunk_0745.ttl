@@ -1,0 +1,13 @@
+hpc:Mbatchd a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "LSF Message Passing Interface daemon." .
+
+hpc:lsbQueryPort a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Port number used by mbatchd to service query requests from the LSF system." .
+
+hpc:mbdRefreshTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Interval used by the mbatchd daemon for forking new child mbatchd daemons." .

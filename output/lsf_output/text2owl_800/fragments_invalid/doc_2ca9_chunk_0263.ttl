@@ -1,0 +1,76 @@
+hpc:Fileinsertiondirective a owl:Class .
+
+# Priority in User and UserGroup sections
+hpc:priority a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:integer .
+
+# Hostname in Host section
+hpc:Condensedhostname a owl:Class ;
+    rdfs:subClassOf hpc:Hostname .
+
+hpc:squarebrackets a owl:ObjectProperty ;
+    rdfs:domain hpc:Condensedhostname ;
+    rdfs:range xsd:string .
+
+hpc:multiplenumbers a owl:ObjectProperty ;
+    rdfs:domain hpc:Squarebrackets ;
+    rdfs:range xsd:string .
+
+hpc:hyphen a owl:ObjectProperty ;
+    rdfs:domain hpc:Multiplenumbers ;
+    rdfs:range xsd:string .
+
+hpc:colon a owl:ObjectProperty ;
+    rdfs:domain hpc:Multiplenumbers ;
+    rdfs:range xsd:string .
+
+hpc:comma a owl:ObjectProperty ;
+    rdfs:domain hpc:Squarebrackets ;
+    rdfs:range xsd:string .
+
+# lsf.conf Parameters
+hpc:Lsfconf a owl:Class .
+
+# lsb_BJOBS_FORMAT Parameters
+hpc:effectiveplimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconf ;
+    rdfs:range xsd:integer .
+
+hpc:plimitremain a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconf ;
+    rdfs:range xsd:integer .
+
+hpc:effectiveeplimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconf ;
+    rdfs:range xsd:integer .
+
+hpc:eplimitremain a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconf ;
+    rdfs:range xsd:integer .
+
+hpc:pendingtimelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:remainingpendingtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:eligiblependingtimelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:remainingeligiblepending a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:pendreason a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+# bconf Command Parameters
+hpc:Lsbbjobsformat a owl:Class .
+
+hpc:lsbbjobspendingreason a owl:DatatypeProperty ;

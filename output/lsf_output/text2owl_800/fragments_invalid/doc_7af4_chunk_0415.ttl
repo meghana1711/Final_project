@@ -1,0 +1,42 @@
+hpc:Defaultqueue a owl:Class .
+hpc:defaultHostSpec hpc:defaulthostspecproperty a owl:ObjectProperty ;
+    rdfs:domain hpc:Defaultqueue ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Specifies the default CPU time normalization host for the queue." .
+
+hpc:DefaultHostSpecProperty rdfs:subPropertyOf hpc:HostSpecProperty .
+
+hpc:Defaulthostspec a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:DEFAULT_HOST_SPEC ;
+                        owl:hasValue hpc:HostName ;
+                        owl:allValuesFrom rdf:Resource ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:DEFAULT_HOST_SPEC ;
+                        owl:hasValue hpc:HostModel ;
+                        owl:allValuesFrom rdf:Resource ] .
+
+hpc:hostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Defaulthostspec .
+
+hpc:hostmodel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Defaulthostspec .
+
+hpc:Descriptionqueue a owl:Class .
+hpc:description hpc:descriptionproperty a owl:ObjectProperty ;
+    rdfs:domain hpc:Descriptionqueue ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies a description of the job queue that is displayed by bqueues -l." .
+
+hpc:DescriptionProperty rdfs:subPropertyOf hpc:QueueProperty .
+
+hpc:Dispatchbyqueue a owl:Class .
+hpc:dispatchByQueue hpc:dispatchbyqueueproperty a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dispatchbyqueue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Enables the scheduling decision for the specified queue to be published without waiting for the whole scheduling session to finish." .
+
+hpc:DispatchByQueueProperty rdfs:subPropertyOf hpc:QueueProperty .
+
+hpc:Obsoletequeue a owl:Class .
+hpc:DISPATCH_BY_QUEUE rdfs:subPropertyOf hpc:ObsoleteProperty .

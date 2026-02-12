@@ -1,0 +1,35 @@
+hpc:Searchkeyword a owl:Class .
+hpc:apiobject a owl:ObjectProperty ;
+    rdfs:domain hpc:Searchkeyword ;
+    rdfs:range hpc:Api .
+
+hpc:Fix a owl:Class .
+hpc:fixlevelrecommendationtool a owl:ObjectProperty ;
+    rdfs:domain hpc:Fix ;
+    rdfs:range hpc:Webpage .
+
+hpc:Fixlevelrecommendationtoolpage a owl:Class .
+hpc:product a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+hpc:version a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+hpc:operatingsystem a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:Selectfixespage a owl:Class .
+hpc:fixlist a owl:ObjectProperty ;
+    rdfs:domain hpc:Selectfixespage ;
+    rdfs:range hpc:Fix .
+
+hpc:Downloadoptionspage a owl:Class .
+hpc:downloadoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Downloadoptionspage ;
+    rdfs:range hpc:Downloadoption .
+
+hpc:Downloadoption a owl:Class .
+hpc:downloadmethod a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:Fixfile a owl:Class .
+hpc:Fix a owl:subClassOf owl:Class .
+hpc:Searchkeyword rdfs:subClassOf owl:Class .

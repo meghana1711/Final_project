@@ -1,0 +1,59 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:PATCH_BACKUP_DIR
+    a owl:Class ;
+    rdfs:comment "Full path to the patch backup directory." ;
+    rdfs:subClassOf owl:String .
+
+hpc:PATCH_BACKUP_DIR_Location
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:PatchBackupDir ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The file system that contains the patch backup directory must have sufficient disk space." .
+
+hpc:PATCH_BACKUP_DIR_Writable
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:PatchBackupDir ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "If the directory exists, it must be writable by the cluster administrator." .
+
+hpc:PATCH_BACKUP_DIR_Root
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:PatchBackupDir ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Cannot be the root directory (/)." .
+
+hpc:PATCH_HISTORY_DIR
+    a owl:Class ;
+    rdfs:comment "Full path to the patch history directory." ;
+    rdfs:subClassOf owl:String .
+
+hpc:PATCH_HISTORY_DIR_Location
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:PatchHistoryDir ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The location is saved as the PATCH_HISTORY_DIR parameter in the LSF_TOP/patch.conf directory." .
+
+hpc:PATCH_HISTORY_DIR_Writable
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:PatchHistoryDir ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "If the directory exists, it must be writable by lsfadmin." .
+
+hpc:PATCH_HISTORY_DIR_Root
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:PatchHistoryDir ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Cannot be the root directory (/)." .
+
+hpc:SILENT_INSTALL
+    a owl:Class ;
+    rdfs:comment "Enabling the silent installation." ;
+    rdfs:subClassOf xsd:string .
+
+hpc:SILENT_INSTALL_Value
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:SilentInstall

@@ -1,0 +1,56 @@
+hpc:taskprolog a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:Logging .
+
+hpc:srunprolog a owl:ObjectProperty ;
+    rdfs:domain hpc:Task ;
+    rdfs:range hpc:Cancellation .
+
+hpc:cudaMpsActiveThreadPercentage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:cudaVisibleDevices a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Gres a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Mpsplugin a owl:Class ;
+    rdfs:subClassOf hpc:Gres .
+
+hpc:Gpuplugin a owl:Class ;
+    rdfs:subClassOf hpc:Gres .
+
+hpc:prolog a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Program .
+
+hpc:epilog a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Program .
+
+hpc:flags a owl:ObjectProperty ;
+    rdfs:domain hpc:Gresconf ;
+    rdfs:range hpc:Exclusion .
+
+hpc:autodetect a owl:ObjectProperty ;
+    rdfs:domain hpc:Gresconf ;
+    rdfs:range hpc:Boolean .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Program a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Gresconf a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Exclusion a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:boolean a owl:DatatypeProperty ;
+    rdfs:domain hpc:Exclusion ;
+    rdfs:range xsd:boolean .

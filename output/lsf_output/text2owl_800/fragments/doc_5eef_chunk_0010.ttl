@@ -1,0 +1,38 @@
+hpc:Bsub a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a Bsub command." .
+
+hpc:Storage a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents the storage space in a Bsub command." .
+
+hpc:Filepath a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a file path in a Bsub command." .
+
+# Object Properties
+hpc:hasstorage a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsub ;
+    rdfs:range hpc:Storage ;
+    rdfs:comment "Relates a Bsub command to its storage specification." .
+
+hpc:hasinfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsub ;
+    rdfs:range hpc:Filepath ;
+    rdfs:comment "Relates a Bsub command to its input file path." .
+
+hpc:hasoutfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsub ;
+    rdfs:range hpc:Filepath ;
+    rdfs:comment "Relates a Bsub command to its output file path." .
+
+# Datatype Properties
+hpc:hasminsize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Storage ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Represents the minimum required storage space in a Storage." .
+
+hpc:hasmaxsize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Storage ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Represents the maximum available storage space in a Storage (optional)." .

@@ -1,0 +1,10 @@
+hpc:Azureprovider a owl:Class .
+hpc:Hasazureregion hpc:Azureprovider rdfs:domain hpc:Azureprovider ;
+    rdfs:range xsd:string .
+hpc:Hasazurecredentialfile hpc:Azureprovider rdfs:domain hpc:Azureprovider ;
+    rdfs:range xsd:string .
+hpc:Azuretemplate a owl:Class .
+hpc:Hasimageid hpc:Azuretemplate rdfs:domain hpc:Azuretemplate ;
+    rdfs:range xsd:string .
+hpc:Hasvmtype hpc:Azuretemplate rdfs:domain hpc:Azuretemplate ;
+    rdfs:range xsd:string .

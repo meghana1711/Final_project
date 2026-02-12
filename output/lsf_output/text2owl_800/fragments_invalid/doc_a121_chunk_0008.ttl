@@ -1,0 +1,69 @@
+hpc:JobControl
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Operations that can be performed on a job before it completes." .
+
+hpc:PostProcessing
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Operations that occur after a job completes and cannot be controlled." .
+
+hpc:PostProcessingExitCode
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Exit codes for post-processing that are not reported to LSF." .
+
+hpc:JobInformation
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Details about a job." .
+
+hpc:bjobs
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobinformation ;
+    rdfs:range hpc:Jobinformation ;
+    rdfs:comment "Used to display job information." .
+
+hpc:User
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a user in the LSF environment." .
+
+hpc:JobID
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobinformation ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The unique identifier for a job." .
+
+hpc:MultiClusterEnvironment
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "An LSF environment with multiple clusters." .
+
+hpc:ExecutionCluster
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "The cluster where a job is executed in a multi-cluster environment." .
+
+hpc:ForwardedJob
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A job that is forwarded to a different execution cluster." .
+
+hpc:LocalJobID
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Forwardedjob ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The local identifier for a forwarded job." .
+
+hpc:SrcJobID
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Forwardedjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The job ID of the source cluster for a forwarded job." .
+
+hpc:SrcClusterName
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Forwardedjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the source cluster for a

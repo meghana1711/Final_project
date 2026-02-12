@@ -1,0 +1,18 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Tresbillingweights a owl:Class.
+hpc:Node a owl:Class.
+hpc:hastresbillingweights hpc:tresbillingweights a owl:ObjectProperty;
+    rdfs:domain hpc:Node;
+    rdfs:range xsd:integer.
+hpc:Partition a owl:Class.
+hpc:haspartition hpc:node a owl:ObjectProperty;
+    rdfs:domain hpc:Node.
+
+hpc:Notresbillingweights a owl:Class;
+    rdfs:subClassOf hpc:Tresbillingweights.
+hpc:NoTRESBillingWeights rdf

@@ -1,0 +1,64 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Advancereservation .
+
+hpc:Advancereservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Recurringreservation ;
+    rdfs:subClassOf hpc:Nonrecurringreservation .
+
+hpc:Recurringreservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:subClassOf hpc:Hastimewindow ;
+    rdfs:subClassOf hpc:Hasstartdate ;
+    rdfs:subClassOf hpc:Hasenddate ;
+    rdfs:subClassOf hpc:Hasinstance ;
+    rdfs:subClassOf hpc:Hasrecurrencepattern ;
+    rdfs:subClassOf hpc:Hastimewindowslot .
+
+hpc:Nonrecurringreservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:subClassOf hpc:Hastimewindow ;
+    rdfs:subClassOf hpc:Hasstartdate ;
+    rdfs:subClassOf hpc:Hasenddate .
+
+hpc:hastimewindow a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Timewindow .
+
+hpc:Timewindow a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Hasstarttime ;
+    rdfs:subClassOf hpc:Hasendtime .
+
+hpc:hasstartdate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:date .
+
+hpc:hasenddate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:date .
+
+hpc:hasinstance a owl:ObjectProperty ;
+    rdfs:domain hpc:Recurringreservation ;
+    rdfs:range hpc:Reservationinstance .
+
+hpc:hasrecurrencepattern a owl:ObjectProperty ;
+    rdfs:domain hpc:Recurringreservation ;
+    rdfs:range hpc:Recurrencepattern .
+
+hpc:hastimewindowslot a owl:ObjectProperty ;
+    rdfs:domain hpc:Recurringreservation ;
+    rdfs:range hpc:Timewindowslot .
+
+hpc:Reservationinstance a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Hasstartdate ;
+    rdfs:subClassOf hpc:Hasenddate .
+
+hpc:Recurrencepattern a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Hasrecurrencetype ;
+    rdfs

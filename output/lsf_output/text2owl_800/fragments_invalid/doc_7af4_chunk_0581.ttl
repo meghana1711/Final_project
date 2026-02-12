@@ -1,0 +1,54 @@
+hpc:Usergroup a owl:Class .
+hpc:Hasgroupname rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:string .
+hpc:Hasgroupmembers rdfs:domain hpc:Usergroup ;
+    rdfs:range rdf:List .
+hpc:Hasgroupadmin rdfs:domain hpc:Usergroup ;
+    rdfs:range rdf:List .
+hpc:Hasgrouppriority rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:decimal .
+hpc:Hasusershares rdfs:domain hpc:Usergroup ;
+    rdfs:range rdf:List .
+hpc:usershare a owl:DatatypeProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:decimal .
+hpc:Hasuser rdfs:domain hpc:Usershare ;
+    rdfs:range xsd:string .
+hpc:User a owl:Class .
+hpc:Hasusershares rdfs:domain hpc:User ;
+    rdfs:range rdf:List .
+hpc:Hasfullaccess rdfs:domain hpc:User ;
+    rdfs:range xsd:boolean .
+hpc:Hasgroup rdfs:domain hpc:User ;
+    rdfs:range hpc:Usergroup .
+hpc:Hasgroupshare rdfs:domain hpc:User ;
+    rdfs:range xsd:decimal .
+hpc:Group a owl:Class .
+hpc:Hasgroupshares rdfs:domain hpc:Group ;
+    rdfs:range rdf:List .
+hpc:Hasgroupusers rdfs:domain hpc:Group ;
+    rdfs:range rdf:List .
+hpc:groupshare a owl:DatatypeProperty ;
+    rdfs:domain hpc:Group ;
+    rdfs:range xsd:decimal .
+hpc:Hasgroupuser rdfs:domain hpc:Groupshare ;
+    rdfs:range xsd:string .
+hpc:Haspriority rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:decimal .
+
+hpc:Usergroup hpc:hasgroupname "GROUP_NAME" .
+hpc:Usergroup hpc:hasgroupmembers (?user1 ?user2 ?user3 ?user4) .
+hpc:Usergroup hpc:hasgroupadmin (?user5) .
+hpc:Usergroup hpc:hasgrouppriority 100 .
+hpc:Usergroup hpc:hasusershares (<user5,full>) .
+hpc:Usergroup hpc:hasgroup (groupA) .
+hpc:Usergroup hpc:hasgrouppriority 50 .
+hpc:Usergroup hpc:hasgroup (groupA groupA) .
+hpc:Usergroup hpc:hasgrouppriority 50 .
+hpc:Usergroup hpc:hasgroup (!) .
+hpc:Usergroup hpc:hasgrouppriority 10 .
+
+hpc:Usergroup hpc:hasgroupname "GROUP_NAME" .
+hpc:Usergroup hpc:hasgroupmembers (?user1 ?user2 ?user3 ?user4) .
+hpc:Usergroup hpc:hasgroupadmin (?user5) .
+hpc:UserGroup hpc:

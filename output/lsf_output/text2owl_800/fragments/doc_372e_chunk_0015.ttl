@@ -1,0 +1,30 @@
+hpc:Servicedomain a owl:Class .
+hpc:Lsf a owl:Class .
+hpc:NonLsf a owl:Class .
+
+hpc:workloaddistribution a owl:ObjectProperty .
+hpc:clusterdistribution a owl:ObjectProperty .
+
+hpc:Feature a owl:Class .
+hpc:name a owl:DatatypeProperty .
+hpc:Clusterdistribution rdfs:domain hpc:Feature .
+hpc:Workloaddistribution rdfs:domain hpc:Feature .
+
+hpc:Mywanserver a owl:Class .
+hpc:token_name a xsd:string .
+
+hpc:bladminReconfig a owl:ObjectProperty .
+hpc:badminMbdrestart a owl:ObjectProperty .
+
+hpc:blstat a owl:ObjectProperty .
+hpc:TokenName rdfs:range xsd:string .
+
+hpc:Clustermode a owl:Class .
+hpc:guaranteeType a owl:ObjectProperty .
+hpc:Slas a owl:Class .
+hpc:guarantees a owl:ObjectProperty .
+hpc:loans a owl:ObjectProperty .
+hpc:Host a owl:Class .
+hpc:Job a owl:Class .
+hpc:Consumer a owl:Class .
+hpc:Set a owl:Class .

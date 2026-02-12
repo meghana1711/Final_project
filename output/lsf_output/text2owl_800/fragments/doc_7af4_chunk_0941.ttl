@@ -1,0 +1,28 @@
+hpc:Allocation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Defines the allocation of license features across clusters and interactive tasks." .
+
+hpc:ProjectName a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Specify a License Scheduler project that is allowed to use the licenses." .
+
+hpc:ClusterName a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Specify LSF cluster names or interactive tasks that licenses are to be allocated to." .
+
+hpc:numberShares a owl:DatatypeProperty ;
+    rdfs:domain hpc:Allocation ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Specify a positive integer representing the number of shares assigned to the cluster." .
+
+hpc:HasProject rdfs:domain hpc:Allocation ;
+    rdfs:range hpc:ProjectName ;
+    rdfs:comment "Specify the project associated with the allocation." .
+
+hpc:HasCluster rdfs:domain hpc:Allocation ;
+    rdfs:range hpc:ClusterName ;
+    rdfs:comment "Specify the cluster associated with the allocation." .
+
+hpc:HasShare rdfs:domain hpc:Allocation ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Specify the number of shares associated with the allocation." .

@@ -1,0 +1,40 @@
+hpc:DefaultProjectName a owl:Class .
+hpc:hasMaxProjectNameLength rdf:datatype xsd:integer ;
+    rdfs:range xsd:integer ;
+    rdfs:domain hpc:DefaultProjectName .
+hpc:DefaultProjectVersion101Fp6 hpc:defaultProjectName ;
+    rdf:value "10.1 Fix Pack 6" .
+hpc:DefaultProjectVersion101Fp7 hpc:defaultProjectName ;
+    rdf:value "10.1 Fix Pack 7" .
+hpc:controlsTimeIntervalForDynamicHostGroupUpdate rdf:Property ;
+    rdfs:domain hpc:DefaultProjectName .
+hpc:canBeSpecifiedInMinutes rdf:DatatypeProperty ;
+    rdfs:range xsd:integer .
+hpc:projectNameLengthUpdateTimeInterval rdf:DatatypeProperty ;
+    rdfs:domain hpc:DefaultProjectName ;
+    rdfs:range xsd:integer .
+hpc:EnableGpuHistRunTime a owl:Class .
+hpc:enablesHistoricalGPURunTimeCalculation rdf:Property ;
+    rdfs:domain hpc:EnableGpuHistRunTime .
+hpc:enablesJobKillingOverRunLimit rdf:Property ;
+    rdfs:domain hpc:EnableGpuHistRunTime .
+hpc:CsmValidSmtModes a owl:Class .
+hpc:validSMTMode rdf:Property ;
+    rdfs:domain hpc:CsmValidSmtModes ;
+    rdfs:range xsd:string .
+hpc:csmValidSmtModesDefaultValue a owl:ObjectProperty ;
+    rdfs:domain hpc:CsmValidSmtModes ;
+    rdfs:range hpc:CsmValidSmtModes .
+hpc:CSM_VALID_SMT_MODES_VERSION_10_1_FP8 a hpc:CSM_VALID_SMT_MODES .
+    hpc:validSMTMode "firstValue" .
+hpc:SecureInfodirUserAccess a owl:Class .
+hpc:providesFullGranularity rdf:Property ;
+    rdfs:domain hpc:SecureInfodirUserAccess .
+hpc:SecureJobInfoLevel a owl:Class .
+hpc:hasAdditionalInformationLevel rdf:DatatypeProperty ;
+    rdfs:range xsd:integer .
+hpc:jobInfoLevel5 rdf:DatatypeProperty ;
+    rdfs:range xsd:integer .
+hpc:SECURE_JOB_INFO_LEVEL_VERSION_10_1_FP9 a hpc:SECURE_JOB_INFO_LEVEL .
+    hpc:hasAdditionalInformationLevel 5 .
+hpc:Givespreferenceforexecutionhostswithrequesteddockerimage a owl:Class .

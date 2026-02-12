@@ -1,0 +1,43 @@
+hpc:srun a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Sruntask .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Sruntask a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:nodecount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Srun ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:noderange a owl:DatatypeProperty ;
+    rdfs:domain hpc:Srun ;
+    rdfs:range xsd:string .
+
+hpc:workingnode a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Node .
+
+hpc:taskcount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Srun ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Script a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:outputfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:timelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Script ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Node a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:noderangeexpression a owl:DatatypeProperty ;
+    rdfs:domain hpc:Srun ;
+    rdfs:range xsd:string .

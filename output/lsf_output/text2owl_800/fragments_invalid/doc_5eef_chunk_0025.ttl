@@ -1,0 +1,32 @@
+hpc:Chmod a owl:Class .
+hpc:Haspermissionmask hpc:datatypeproperty ;
+    rdfs:domain hpc:Chmod ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Isincache hpc:objectproperty ;
+    rdfs:domain hpc:Chmod ;
+    rdfs:range hpc:File .
+hpc:Isfile hpc:datatypeproperty ;
+    rdfs:domain hpc:Chmod ;
+    rdfs:range hpc:File .
+hpc:Isinstate hpc:objectproperty ;
+    rdfs:domain hpc:Chmod ;
+    rdfs:range hpc:Filestate .
+hpc:Filestate a owl:Class .
+hpc:Hasowner hpc:objectproperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range hpc:User .
+hpc:Hasgroup hpc:objectproperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range hpc:Group .
+hpc:File a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:unionOf (hpc:Transferred hpc:Idle) ] .
+hpc:User a owl:Class .
+hpc:Group a owl:Class .
+hpc:Hasdirectory hpc:objectproperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range hdfs:Directory .
+hpc:Directory a owl:Class .
+hpc:Hasfilepermission hpc:datatypeproperty ;
+    rdfs:domain hpc:Directory ;
+    rdfs:range xsd:nonNegativeInteger .

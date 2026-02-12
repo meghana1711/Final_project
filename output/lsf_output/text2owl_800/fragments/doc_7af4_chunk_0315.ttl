@@ -1,0 +1,17 @@
+hpc:Jobgroup a owl:Class .
+hpc:JOB_GROUP_IDLE_TTL rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range xsd:integer .
+
+hpc:hasidlestarttime a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range xsd:dateTime .
+
+hpc:jobgroupremovalcondition a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup .
+
+hpc:JOB_INCLUDE_POSTPROC rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Job a owl:Class .

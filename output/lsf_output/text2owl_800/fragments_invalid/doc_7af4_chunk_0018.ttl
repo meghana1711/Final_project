@@ -1,0 +1,62 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:EnableEgo a owl:Class .
+hpc:EnableGpu a owl:Class .
+
+hpc:haslsffeature a owl:ObjectProperty .
+hpc:isenabled a owl:DatatypeProperty .
+hpc:requiresego a owl:DatatypeProperty .
+
+hpc:LSF_ENABLE_EGO rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:EnableEgo ;
+    rdfs:range xsd:string .
+
+hpc:LSF_EGO_ENVDIR rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:EnableEgo ;
+    rdfs:range xsd:string .
+
+hpc:SLA_SCHEDULING rdf:type hpc:Resource ;
+    hpc:Haslsffeature hpc:lsfDaemonControl ;
+    hpc:requiresEGO "Y" .
+
+hpc:LSF_daemon_control rdf:type hpc:Resource ;
+    hpc:requiresEGO "Y" .
+
+hpc:GPU_SUPPORT rdf:type hpc:Resource ;
+    hpc:Haslsffeature hpc:lsfGpuSupport .
+
+hpc:LSF_GPU_support rdf:type hpc:Resource ;
+    hpc:requiresEGO "Y" .
+
+hpc:ngpus_shared rdf:type hpc:Resource ;
+    hpc:requiresEGO "Y" .
+
+hpc:ngpus_excl_t rdf:type hpc:Resource ;
+    hpc:requiresEGO "Y" .
+
+hpc:ngpus_excl_p rdf:type hpc:Resource ;
+    hpc:requiresEGO "Y" .
+
+hpc:LSB_RESOURCE_ENFORCE rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:GpuSupport ;
+    rdfs:range xsd:string .
+
+hpc:lsf_conf a hpc:ConfigurationFile .
+hpc:lsf_cluster_name a hpc:ConfigurationFile .
+hpc:lsf_shared a hpc:ConfigurationFile .
+
+hpc:ResourceMap a rdf:List ;
+    rdf:first hpc:ResourceMap_begin ;
+    rdf:rest hpc:ResourceMap_end .
+
+hpc:ResourceMap_begin a hpc:ResourceMapEntry ;
+    hpc:Hasresource hpc:resourcemapResourcename ;
+    hpc:Haslocation hpc:resourcemapLocation .
+
+hpc:ResourceMap_end a hpc:ResourceMapEntry ;
+    rdf:value "" .
+
+hpc:RESOURCEMAP_RE

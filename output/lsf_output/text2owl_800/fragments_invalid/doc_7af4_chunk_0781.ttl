@@ -1,0 +1,30 @@
+hpc:Loglevel a owl:Class .
+hpc:Loglevel rdfs:subClassOf owl:Class .
+
+hpc:LsfCmdLogMask hpc:loglevel .
+hpc:LsfLogMask hpc:loglevel .
+hpc:LsbCmdLogMask hpc:loglevel .
+
+hpc:LogEmerg rdfs:subClassOf hpc:Loglevel .
+hpc:LogAlert rdfs:subClassOf hpc:Loglevel .
+hpc:LogCrit rdfs:subClassOf hpc:Loglevel .
+hpc:LogErr rdfs:subClassOf hpc:Loglevel .
+hpc:LogWarning rdfs:subClassOf hpc:Loglevel .
+hpc:LogNotice rdfs:subClassOf hpc:Loglevel .
+hpc:LogInfo rdfs:subClassOf hpc:Loglevel .
+hpc:LogDebug rdfs:subClassOf hpc:Loglevel .
+hpc:LogDebug1 rdfs:subClassOf hpc:Loglevel .
+hpc:LogDebug2 rdfs:subClassOf hpc:Loglevel .
+hpc:LogDebug3 rdfs:subClassOf hpc:Loglevel .
+
+hpc:default a owl:DatatypeProperty .
+hpc:Default rdfs:domain hpc:Loglevel .
+hpc:Default rdfs:range xsd:string .
+
+hpc:lsfCmdLogdir a owl:ObjectProperty .
+hpc:LsfCmdLogdir rdfs:domain hpc:Loglevel .
+hpc:LsfCmdLogdir rdfs:range xsd:string .
+
+hpc:lsfCollectEnergyUsage a owl:DatatypeProperty .
+hpc:LsfCollectEnergyUsage rdfs:domain hpc:Loglevel .
+hpc:LsfCollectEnergyUsage rdfs:range xsd:string .

@@ -1,0 +1,26 @@
+hpc:Account a owl:Class.
+hpc:effectiveusage a owl:DatatypeProperty;
+    rdfs:domain hpc:Account;
+    rdfs:range xsd:decimal. .
+
+hpc:User a owl:Class.
+
+hpc:fairsharefactor a owl:DatatypeProperty;
+    rdfs:domain hpc:User;
+    rdfs:range xsd:decimal. .
+
+hpc:Accounteffectiveusage hpc:user rdf:Property;
+    rdfs:subPropertyOf hpc:EffectiveUsage. .
+
+hpc:Userfairsharefactor hpc:user rdf:Property;
+    rdfs:subPropertyOf hpc:FairShareFactor. .
+
+hpc:Account_1 a hpc:Account;
+    hpc:Account_effectiveUsage 0.25 0.0;
+    hpc:Account_effectiveUsage 0.1458 0.1458. .
+
+hpc:User_1 a hpc:User;
+    hpc:User_effectiveUsage 0.3875;
+    hpc:User_fairShareFactor 0.408479. .
+
+hpc:User_2 a h

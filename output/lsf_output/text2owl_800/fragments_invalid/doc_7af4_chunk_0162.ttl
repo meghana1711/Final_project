@@ -1,0 +1,57 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Jobchunk a owl:Class .
+hpc:jobversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobchunk ;
+    rdfs:range xsd:string .
+hpc:eventtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobchunk ;
+    rdfs:range xsd:dateTime .
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobchunk ;
+    rdfs:range xsd:long .
+hpc:idx a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobchunk ;
+    rdfs:range xsd:long .
+hpc:msgidx a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobchunk ;
+    rdfs:range xsd:long .
+hpc:datasize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobchunk ;
+    rdfs:range xsd:long .
+hpc:datastatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobchunk ;
+    rdfs:range xsd:int .
+hpc:filename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobchunk ;
+    rdfs:range xsd:string .
+
+hpc:Job a owl:Class .
+hpc:version a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:eventtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .
+hpc:membsize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:long .
+hpc:membjobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:long .
+hpc:numexhosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:long .
+hpc:exechosts a owl:ObjectProperty .
+hpc:Exechosts rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Unreportedstatuschange a owl:Class .
+hpc:version a owl:DatatypeProperty ;
+    rdfs:domain hpc:Unreportedstatuschange ;
+    rdfs:range xsd:string .
+hpc:eventtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Unreportedstatuschange ;

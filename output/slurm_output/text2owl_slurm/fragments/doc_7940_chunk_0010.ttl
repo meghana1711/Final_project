@@ -1,0 +1,23 @@
+hpc:Federatedview a owl:Class ;
+  rdfs:subClassOf [ a owl:Class ;
+                     rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:hasgrid a owl:ObjectProperty ;
+  rdfs:domain hpc:Federatedview ;
+  rdfs:range xsd:boolean ;
+  rdfs:subPropertyOf rdf:Property .
+
+hpc:GridEnabled a xsd:boolean ;
+  rdfs:range xsd:boolean .
+
+hpc:GridEnabled false hpc:GridEnabled .
+hpc:GridEnabled true rdf:nil .
+
+hpc:Gridenabled rdfs:domain hpc:Grid .
+hpc:Grid a owl:Class .
+
+hpc:Grid hpc:hasview rdf:Property .
+hpc:Hasview rdfs:domain hpc:Grid ;
+  rdfs:range hpc:Federatedview .
+
+hpc:Federatedview hpc:hasgrid hpc:GridEnabled .

@@ -1,0 +1,16 @@
+hpc:filelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Specifies the per-process file size limit for all job processes from this queue." .
+
+hpc:fwdJobfactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:number ;
+    rdfs:comment "In the calculation of a user's dynamic share priority, this factor determines the relative importance of the number of forwarded job slots reserved and in use by a user when using the LSF multicluster capability." .
+
+hpc:fwdUsers a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Specifies a space-separated list of user names or user groups that can forward jobs to remote clusters in this queue when using the LSF multicluster capability." .
+
+hpc:Queue a owl:Class .

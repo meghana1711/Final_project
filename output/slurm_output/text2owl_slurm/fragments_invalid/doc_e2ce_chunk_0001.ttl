@@ -1,0 +1,23 @@
+hpc:Slurm a owl:Class.
+hpc:slurmconf hpc:hasproperty hpc:maxnodecount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:nonNegativeInteger. .
+
+hpc:slurmconf hpc:hasproperty hpc:selecttype a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm . .
+
+hpc:Constres a owl:Class ;
+    rdfs:subClassOf hpc:Selecttype . .
+
+hpc:dynamicnodecommunications hpc:hasproperty hpc:nodeaddr a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmcontroller . .
+
+hpc:partition hpc:hasproperty hpc:nodes a owl:ObjectProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range rdf:List . .
+
+hpc:nodeset hpc:hasproperty hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Nodeset . .
+
+hpc:nodeset hpc:hasproperty hpc:feature a owl:ObjectProperty ;
+    rdfs:domain hpc:Nodeset . .

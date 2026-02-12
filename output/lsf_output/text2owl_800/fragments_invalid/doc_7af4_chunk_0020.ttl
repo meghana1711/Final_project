@@ -1,0 +1,24 @@
+hpc:Serverhost a owl:Class .
+hpc:Clienthost a owl:Class .
+hpc:Adminuser a owl:Class .
+
+hpc:Hasserverhost an rdfs:domain hpc:Serverhost ;
+    rdfs:range rdf:List .
+hpc:Hasclienthost an rdfs:domain hpc:Clienthost ;
+    rdfs:range rdf:List .
+hpc:Isadminuser an rdfs:domain hpc:Adminuser ;
+    rdfs:range rdf:List .
+
+hpc:lsfAddServers a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfMasterList ;
+    rdfs:range hpc:Serverhost .
+hpc:lsfAddClients a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfAddClients ;
+    rdfs:range hpc:Clienthost .
+hpc:lsfAdmins a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfAdmins ;
+    rdfs:range hpc:Adminuser .
+
+hpc:Serverhost rdfs:subClassOf owl:Class .
+hpc:Clienthost rdfs:subClassOf owl:Class .
+hpc:Adminuser rdfs:subClassOf owl:Class .

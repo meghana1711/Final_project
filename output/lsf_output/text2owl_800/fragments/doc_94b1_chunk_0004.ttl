@@ -1,0 +1,67 @@
+hpc:ComputeNode
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a compute node." .
+
+hpc:PState
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Computenode ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether P-States are enabled on a compute node." .
+
+hpc:CState
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Computenode ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether C-States are enabled on a compute node." .
+
+hpc:ProvisioningManagementSystem
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a system that manages provisioning for LSF." .
+
+hpc:ProvisioningTool
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a tool that can be used by a provisioning management system." .
+
+hpc:PowerSavedMode
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a host status that allows it to enter power saved mode." .
+
+hpc:PowerOperationFeature
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents the power operation feature of a host." .
+
+hpc:PowerPolicy
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a power management policy." .
+
+hpc:lsbParams
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents the LSF parameters file." .
+
+hpc:PowerStateManagementParameters
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents the power management parameters in lsb.params." .
+
+hpc:PowerPolicySection
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents the PowerPolicy section in lsb.resources." .
+
+hpc:AdvanceReservation
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents the System Advance Reservation (AR)." .
+
+hpc:takesPrecedenceOver
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range hpc:Powerpolicy ;
+    rdfs:comment "Indicates that System Advance Reservation takes precedence over a power policy." .

@@ -1,0 +1,26 @@
+hpc:PbsTorque       a owl:Class .
+hpc:Slurm            a owl:Class .
+hpc:Lsf              a owl:Class .
+hpc:Sge              a owl:Class .
+hpc:Loadleveler      a owl:Class .
+
+hpc:command          a owl:ObjectProperty .
+hpc:environmentvariable a owl:ObjectProperty .
+hpc:jobspecificationoption a owl:ObjectProperty .
+
+hpc:PbsTorque rdfs:subClassOf hpc:Workloadmanager .
+hpc:Slurm rdfs:subClassOf hpc:Workloadmanager .
+hpc:Lsf rdfs:subClassOf hpc:Workloadmanager .
+hpc:Sge rdfs:subClassOf hpc:Workloadmanager .
+hpc:Loadleveler rdfs:subClassOf hpc:Workloadmanager .
+
+hpc:Workloadmanager rdfs:subClassOf hpc:Hpcsystem .
+
+hpc:Command rdfs:domain hpc:Workloadmanager ;
+             rdfs:range xsd:string .
+
+hpc:Environmentvariable rdfs:domain hpc:Workloadmanager ;
+                         rdfs:range xsd:string .
+
+hpc:Jobspecificationoption rdfs:domain hpc:Workloadmanager ;
+                             rdfs:range xsd:string .

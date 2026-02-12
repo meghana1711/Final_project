@@ -1,0 +1,63 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A job that can be executed on an HPC system." .
+
+hpc:preexecutioncommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "The command that runs before a job." .
+
+hpc:postexecutioncommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "The command that runs after a job, regardless of its exit state." .
+
+hpc:userdefinedpostexecutioncommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "The user-defined command that runs after a job." .
+
+hpc:userpostexecutionenvironmentvariable a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The environment variable defining the user-defined post-execution command." .
+
+hpc:successfulpostexecutionprocessing a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Boolean ;
+    rdfs:comment "Indicates whether the post-execution processing was successful." .
+
+hpc:failedpostexecutionprocessing a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Boolean ;
+    rdfs:comment "Indicates whether the post-execution processing failed." .
+
+hpc:hostbasedpreandpostexecutionprocessing a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "The host-based pre and post-execution processing for a job." .
+
+hpc:lsbPrePostExecUser a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The parameter for configuring the user account under which host-based pre and post-execution commands run." .
+
+hpc:LsfSudoers a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The configuration file for LSF sudoers." .
+
+hpc:Executionhost a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A host where job execution takes place." .
+
+hpc:precommandreceivedbyexecutionhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionhost ;
+    rdfs:range rdf:Boolean ;
+    rdfs:comment "Indicates whether the pre-command was received by the execution host." .
+
+hpc:postcommandreceivedbyexecutionhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Executionhost ;
+    rdfs:range rdf:Boolean ;
+    rdfs:comment "Indicates whether the post-command was received by the execution host." .
+
+hpc:PreCommandExitCodeZero a owl:Object

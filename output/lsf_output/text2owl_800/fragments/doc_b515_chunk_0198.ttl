@@ -1,0 +1,47 @@
+hpc:User1 a owl:Class .
+hpc:Groupa a owl:Class .
+hpc:Groupb a owl:Class .
+hpc:Groupc a owl:Class .
+hpc:Groupd a owl:Class .
+
+hpc:hashighestdynamicsharepriority a owl:ObjectProperty .
+hpc:belongsto a owl:ObjectProperty .
+hpc:submitsjob a owl:ObjectProperty .
+hpc:associatesjobwith a owl:ObjectProperty .
+hpc:issubgroupof a owl:ObjectProperty .
+hpc:Chargebackfairshare a owl:Class .
+
+hpc:User1 rdfs:subClassOf hpc:User .
+hpc:Group rdfs:subClassOf owl:Class .
+
+hpc:Hashighestdynamicsharepriority rdfs:domain hpc:User .
+hpc:Hashighestdynamicsharepriority rdfs:domain hpc:Group .
+hpc:Belongsto rdfs:domain hpc:User .
+hpc:Belongsto rdfs:range hpc:Group .
+hpc:Submitsjob rdfs:domain hpc:User .
+hpc:Associatesjobwith rdfs:domain hpc:User .
+hpc:Associatesjobwith rdfs:range hpc:Group .
+hpc:Issubgroupof rdfs:domain hpc:Group .
+hpc:Issubgroupof rdfs:range hpc:Group .
+
+hpc:Groupa rdfs:subClassOf hpc:Group .
+hpc:Groupb rdfs:subClassOf hpc:Group .
+hpc:Groupc rdfs:subClassOf hpc:Group .
+hpc:Groupd rdfs:subClassOf hpc:Group .
+
+hpc:User1 hpc:belongsto hpc:GroupA .
+hpc:User1 hpc:belongsto hpc:GroupB .
+hpc:User1 hpc:belongsto hpc:GroupC .
+
+hpc:bsubSleep100 a hpc:Job .
+hpc:Bsubsleep100 hpc:submitsjob hpc:User1 .
+hpc:Bsubsleep100 hpc:associatesjobwith hpc:GroupA .
+
+hpc:bsubSleep100_2 a hpc:Job .
+hpc:Bsubsleep1002 hpc:submitsjob hpc:User1 .
+hpc:Bsubsleep1002 hpc:associatesjobwith hpc:GroupB .
+
+hpc:Groupc hpc:issubgroupof hpc:GroupA .
+hpc:Groupd hpc:issubgroupof hpc:GroupC .
+
+hpc:Chargebackfairshare rdfs:subClassOf owl:Class .

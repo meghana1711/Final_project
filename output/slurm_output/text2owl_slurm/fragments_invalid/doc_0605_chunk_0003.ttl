@@ -1,0 +1,11 @@
+hpc:Slurmindex a owl:Class.
+hpc:Slurmindex hpc:Hashealthstatus rdfs:domain hpc:Slurmindex; rdfs:subPropertyOf rdfs:domain.
+hpc:Slurmindex hpc:hashealthstatus rdf:type owl:ObjectProperty.
+hpc:Slurmindex hpc:Hashealthstatus rdfs:range xsd:string.
+hpc:Slurmindex hpc:Hasstatus rdfs:domain hpc:Slurmindex; rdfs:subPropertyOf rdfs:domain.
+hpc:Slurmindex hpc:hasstatus rdf:type owl:ObjectProperty.
+hpc:Slurmindex hpc:Hasuuid rdfs:domain hpc:Slurmindex; rdfs:subPropertyOf rdfs:domain.
+hpc:Slurmindex hpc:hasuuid rdf:type owl:ObjectProperty.
+hpc:Slurmindex hpc:Haspri rdfs:domain hpc:Slurmindex; rdfs:subPropertyOf rdfs:domain.
+hpc:Slurmindex hpc:haspri rdf:type owl:ObjectProperty.
+hpc:Slurmindex h

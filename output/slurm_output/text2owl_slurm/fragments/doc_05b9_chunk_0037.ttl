@@ -1,0 +1,11 @@
+hpc:elapsedtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Elapsedtime ;
+    rdfs:range xsd:int32 .
+
+hpc:start a owl:ObjectProperty ;
+    rdfs:domain hpc:Elapsedtime ;
+    rdfs:range hpc:Elapsedtime .
+
+hpc:suspended a owl:ObjectProperty ;
+    rdfs:domain hpc:Elapsedtime ;
+    rdfs:range hpc:Elapsedtime .

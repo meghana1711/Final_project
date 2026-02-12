@@ -1,0 +1,20 @@
+hpc:Slurmjob a owl:Class .
+hpc:Slurmjobid rdfs:domain hpc:Slurmjob .
+hpc:Slurmjobid rdfs:range xsd:integer .
+
+hpc:Mountpoint a owl:Class .
+hpc:Mountpointpath rdfs:domain hpc:Mountpoint .
+hpc:Mountpointpath rdfs:range xsd:string .
+
+hpc:Mountedon rdfs:domain hpc:Mountpoint .
+hpc:Mountedon rdfs:range hpc:Mountpoint .
+
+hpc:Accessrestricted a owl:Class .
+hpc:AccessRestricted rdfs:subClass hpc:MountPoint .
+
+hpc:Tmpfsplugin a owl:Class .
+
+hpc:Pamslurmadopt a owl:Class .
+hpc:pamslurmadoptjoincontainer a owl:ObjectProperty .
+hpc:Pamslurmadoptjoincontainer rdfs:domain hpc:Pamslurmadopt .
+hpc:Pamslurmadoptjoincontainer rdfs:range xsd:boolean .

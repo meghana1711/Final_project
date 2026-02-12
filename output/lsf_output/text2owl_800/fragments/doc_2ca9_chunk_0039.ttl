@@ -1,0 +1,28 @@
+hpc:Preemptiblevminstance a owl:Class .
+hpc:haspreemptibility a owl:ObjectProperty .
+hpc:Haspreemptibility rdfs:domain hpc:Preemptiblevminstance ;
+                          rdfs:range xsd:boolean .
+hpc:Preemptiblevminstance rdfs:subClassOf hpc:Vminstance .
+
+hpc:Vminstancetransition a owl:Class .
+hpc:Vminstancetransition rdfs:subClassOf hpc:Jobstatustransition .
+hpc:Vminstancetransition rdfs:subClassOf hpc:Instancestatustransition .
+hpc:VMInstanceTerminated a hpc:VMInstanceTransition .
+
+hpc:Googlecloudinstancecreation a owl:Class .
+hpc:usesbulkapiendpoint a owl:ObjectProperty .
+hpc:Usesbulkapiendpoint rdfs:domain hpc:Googlecloudinstancecreation .
+hpc:Usesbulkapiendpoint rdfs:range xsd:string .
+hpc:Googlecloudinstancecreation rdfs:subClassOf hpc:Cloudinstancecreation .
+
+hpc:googlecloudregion a owl:DatatypeProperty .
+hpc:Googlecloudregion rdfs:domain hpc:Googleprovconfig .
+hpc:Googlecloudregion rdfs:range xsd:string .
+
+hpc:googleprovtemplateregion a owl:DatatypeProperty .
+hpc:Googleprovtemplateregion rdfs:domain hpc:Googleprovtemplate .
+hpc:Googleprovtemplateregion rdfs:range xsd:string .
+
+hpc:googleprovtemplateoverridesregion a owl:ObjectProperty .
+hpc:Googleprovtemplateoverridesregion rdfs:domain hpc:Googleprovtemplate .
+hpc:Googleprovtemplateoverridesregion rdfs:range hpc:Googleprovconfig .

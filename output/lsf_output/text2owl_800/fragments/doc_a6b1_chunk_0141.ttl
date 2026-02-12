@@ -1,0 +1,61 @@
+hpc:Log_ERR
+    a owl:EnumMember ;
+    rdfs:label "Log only those messages that indicate error conditions" ;
+    rdfs:first [ rdf:type owl:DatatypeProperty ;
+                 rdfs:domain hpc:EgoLoglevel ;
+                 rdfs:range xsd:string ] .
+
+hpc:Log_WARNING
+    a owl:EnumMember ;
+    rdfs:label "Log only those messages that are warnings or more serious messages. This is the default level of debug information." ;
+    rdfs:first [ rdf:type owl:DatatypeProperty ;
+                 rdfs:domain hpc:EgoLoglevel ;
+                 rdfs:range xsd:string ] .
+
+hpc:Log_NOTICE
+    a owl:EnumMember ;
+    rdfs:label "Log those messages that indicate normal but significant conditions or warnings and more serious messages." ;
+    rdfs:first [ rdf:type owl:DatatypeProperty ;
+                 rdfs:domain hpc:EgoLoglevel ;
+                 rdfs:range xsd:string ] .
+
+hpc:Log_INFO
+    a owl:EnumMember ;
+    rdfs:label "Log all informational messages and more serious messages." ;
+    rdfs:first [ rdf:type owl:DatatypeProperty ;
+                 rdfs:domain hpc:EgoLoglevel ;
+                 rdfs:range xsd:string ] .
+
+hpc:Log_DEBUG
+    a owl:EnumMember ;
+    rdfs:label "Log all debug-level messages." ;
+    rdfs:first [ rdf:type owl:DatatypeProperty ;
+                 rdfs:domain hpc:EgoLoglevel ;
+                 rdfs:range xsd:string ] .
+
+hpc:Log_TRACE
+    a owl:EnumMember ;
+    rdfs:label "Log all available messages." ;
+    rdfs:first [ rdf:type owl:DatatypeProperty ;
+                 rdfs:domain hpc:EgoLoglevel ;
+                 rdfs:range xsd:string ] .
+
+hpc:EGO_LogMask
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:EgoLoglevel ;
+    rdfs:range hpc:EgoLoglevel .
+
+hpc:EGO_DEBUG_PEM
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:EgoLoglevel ;
+    rdfs:range xsd:string .
+
+hpc:EGO_DEBUG_vemkd
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:EgoLoglevel ;
+    rdfs:range xsd:string .
+
+hpc:WSG_PORT
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:WsgLoglevel ;
+    rdfs:range xsd:integer .

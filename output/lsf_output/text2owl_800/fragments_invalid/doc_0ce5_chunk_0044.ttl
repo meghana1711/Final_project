@@ -1,0 +1,65 @@
+hpc:Eventlogging a owl:Class .
+hpc:LsbEventsFile rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Eventlogging ;
+    rdfs:range xsd:string .
+
+hpc:Job a owl:Class .
+hpc:MinSwitchPeriod rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Eventlogging ;
+    rdfs:range xsd:integer .
+
+hpc:Loadinformationexchange a owl:Class .
+hpc:AutomaticLoadUpdates rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Loadinformationexchange ;
+    rdfs:range hpc:Automaticloadupdate .
+
+hpc:Automaticloadupdate a owl:Class .
+hpc:Periodically rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Loadinformationexchange ;
+    rdfs:range xsd:boolean .
+
+hpc:Largecluster a owl:Class .
+hpc:LsfAutomaticLoad rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Largecluster ;
+    rdfs:range hpc:Lsfautomaticloadinfo .
+
+hpc:Lsfautomaticloadinfo a owl:Class .
+hpc:DynamicallyAdjusted rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfautomaticloadinfo ;
+    rdfs:range xsd:boolean .
+
+hpc:LsfClusterFile rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Largecluster ;
+    rdfs:range xsd:string .
+
+hpc:Exinterval rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfclusterfile ;
+    rdfs:range xsd:string .
+
+hpc:Iodirectoryperformance a owl:Class .
+hpc:ManageIO rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Iodirectoryperformance ;
+    rdfs:range hpc:Manageioprocedure .
+
+hpc:Largeclusterjobfiles a owl:Class .
+hpc:TotalSizeLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Largeclusterjobfiles ;
+    rdfs:range xsd:string .
+
+hpc:Subdirectory a owl:Class .
+hpc:CreatedByMaxInfoDirs rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Subdirectory ;
+    rdfs:range hpc:Maxinfodirs .
+
+hpc:MaxInfoDirs rdf:type owl:Class .
+hpc:NumSubdirs rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Maxinfodirs ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Infodirectory a owl:Class .
+hpc:HasSubdirectories rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Infodirectory ;
+    rdfs:range hpc:Subdirectory .
+
+hpc:Jobinfocache a owl:Class .
+hpc:JobScriptFiles rdf:type owl:DatatypeProperty ;

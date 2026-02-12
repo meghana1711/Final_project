@@ -1,0 +1,26 @@
+hpc:Lsfjob a owl:Class .
+hpc:Lsfjob rdfs:subClassOf owl:Thing .
+
+hpc:successExitValues a owl:ObjectProperty .
+hpc:SuccessExitValues rdfs:domain hpc:Lsfjob .
+hpc:SuccessExitValues rdfs:range xsd:nonNegativeInteger .
+
+hpc:Done a owl:Class .
+hpc:Done rdfs:subClassOf hpc:Lsfjob .
+
+hpc:Exit a owl:Class .
+hpc:Exit rdfs:subClassOf hpc:Lsfjob .
+
+hpc:exitReason a owl:DatatypeProperty .
+hpc:ExitReason rdfs:domain hpc:Lsfjob .
+hpc:ExitReason rdfs:range xsd:string .
+
+hpc:Multiclusterjob a owl:Class .
+hpc:Multiclusterjob rdfs:subClassOf hpc:Lsfjob .
+
+hpc:Remotecluster a owl:Class .
+hpc:Remotecluster rdfs:subClassOf owl:Thing .
+
+hpc:successexitvalues a owl:DatatypeProperty .
+hpc:Successexitvalues rdfs:domain hpc:Lsfjob .
+hpc:Successexitvalues rdfs:range xsd:nonNegativeInteger .

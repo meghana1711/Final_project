@@ -1,0 +1,23 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:LsfProxyd a owl:Class .
+hpc:lsfProxydHosts a owl:ObjectProperty .
+hpc:lsfProxydPort a owl:DatatypeProperty .
+hpc:lsfProxydHeartbeatInterval a owl:DatatypeProperty .
+hpc:lsfProxydBypass a owl:ObjectProperty .
+
+rdfs:domain hpc:LsfProxyd rdf:type owl:Class .
+rdfs:domain hpc:LsfProxydHosts rdf:type owl:ObjectProperty .
+rdfs:domain hpc:LsfProxydPort rdf:type owl:DatatypeProperty .
+rdfs:domain hpc:LsfProxydHeartbeatInterval rdf:type owl:DatatypeProperty .
+rdfs:domain hpc:LsfProxydBypass rdf:type owl:ObjectProperty .
+
+rdfs:range hpc:LsfProxydHosts xsd:string .
+rdfs:range hpc:LsfProxydPort xsd:nonNegativeInteger .
+rdfs:range hpc:LsfProxydHeartbeatInterval xsd:nonNegativeInteger .
+
+hpc:LsfProxydHeartbeatInterval rdfs:subClassOf owl:DatatypeProperty .
+hpc:LsfProxyd rdfs:subClassOf owl:Class .

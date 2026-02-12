@@ -1,0 +1,30 @@
+hpc:Schedule a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:jobaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Schedule ;
+    rdfs:range rdf:List .
+
+hpc:Attribute a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:preference a owl:ObjectProperty ;
+    rdfs:domain hpc:Attribute ;
+    rdfs:range xsd:string .
+
+hpc:Hostattribute a owl:Class ;
+    rdfs:subClassOf hpc:Attribute .
+
+hpc:samehost a owl:ObjectProperty ;
+    rdfs:domain hpc:Schedule ;
+    rdfs:range xsd:string .
+
+hpc:clusteraffinity a owl:DatatypeProperty ;
+    rdfs:domain hpc:Schedule ;
+    rdfs:range xsd:string .
+
+hpc:NoPreference a xsd:string .
+hpc:Preferred a xsd:string .
+hpc:Mandatory a xsd:string .
+hpc:NotPreferred a xsd:string .
+hpc:SameHostPreference a xsd:string .

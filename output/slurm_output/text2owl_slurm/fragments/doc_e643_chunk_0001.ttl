@@ -1,0 +1,30 @@
+hpc:NssSlurm a owl:Class .
+hpc:installationprocedure a owl:ObjectProperty .
+
+hpc:NSS_SLURM
+  rdfs:subClassOf owl:Class ;
+  rdfs:comment "Optional NSS plugin for passwd, group and cloud node host resolution for a job on the compute node." .
+
+hpc:installationProcedure
+  rdfs:domain hpc:NssSlurm ;
+  rdfs:range rdf:Seq ;
+  rdfs:comment "Procedure to install NSS_SLURM." .
+
+hpc:Installationprocedureseq a owl:Class ;
+  rdfs:subClassOf owl:Class ;
+  rdfs:comment "Sequence of steps to install NSS_SLURM." .
+
+hpc:makestep a owl:ObjectProperty ;
+  rdfs:domain hpc:Installationprocedureseq ;
+  rdfs:range rdf:Literal ;
+  rdfs:comment "Step to run 'make' command." .
+
+hpc:makeinstallstep a owl:ObjectProperty ;
+  rdfs:domain hpc:Installationprocedureseq ;
+  rdfs:range rdf:Literal ;
+  rdfs:comment "Step to install the built library." .
+
+hpc:symlinkstep a owl:ObjectProperty ;
+  rdfs:domain hpc:Installationprocedureseq ;
+  rdfs:range rdf:Literal ;
+  rdfs:comment "Step to symlink the installed library to the NSS plugins directory." .

@@ -1,0 +1,35 @@
+hpc:Gpuautoboost a owl:Class ;
+    rdfs:subClassOf hpc:Jobfeature .
+
+hpc:Dcgmiintegration a owl:Class ;
+    rdfs:subClassOf hpc:Systemsetting .
+
+hpc:lsfDcgmPort a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dcgmiintegration ;
+    rdfs:range xsd:integer .
+
+# External Job Switch Control
+hpc:Externaljobswitchcontrol a owl:Class ;
+    rdfs:subClassOf hpc:Jobschedulingmethod .
+
+hpc:Eswitch a owl:Class ;
+    rdfs:subClassOf hpc:Externaljobswitchcontrol .
+
+hpc:Eswitchfile a owl:Class ;
+    rdfs:subClassOf hpc:File .
+
+hpc:eswitchmethod a owl:ObjectProperty ;
+    rdfs:domain hpc:Dcgmiintegration ;
+    rdfs:range hpc:Eswitchfile+ .
+
+hpc:lsbEswitchMethod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dcgmiintegration ;
+    rdfs:range hpc:Eswitchfile+ .
+
+hpc:associatedeswitchfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Eswitch ;
+    rdfs:range hpc:Eswitchfile .
+
+# Advance Reservation Enhancements
+hpc:Advancereservationenhancement a owl:Class ;
+    rdfs:subClassOf hpc:Jobschedulingmethod .

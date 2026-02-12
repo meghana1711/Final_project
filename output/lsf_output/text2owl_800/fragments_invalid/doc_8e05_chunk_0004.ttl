@@ -1,0 +1,18 @@
+hpc:Job a owl:Class .
+
+hpc:hasgrandparent a owl:ObjectProperty .
+
+hpc:Hasgrandparent rdfs:domain hpc:Job .
+hpc:Hasgrandparent rdfs:range hpc:Job .
+
+hpc:hasGrandparent rdf:subPropertyOf hpc:hasAncestor .
+hpc:hasAncestor rdfs:subPropertyOf rdf:type .
+
+hpc:Hasancestor rdfs:domain hpc:Job .
+hpc:Hasancestor rdfs:range hpc:Job .
+
+hpc:level rdf:type owl:DatatypeProperty .
+hpc:Level rdfs:domain hpc:Job .
+hpc:Level rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasGrandparent rdfs:subProperty chain(hpc:hasAncestor; rdf:first hpc:level; rdf:rest hpc:hasAncestor) .

@@ -1,0 +1,45 @@
+hpc:Applicationprofile a owl:Class ;
+    rdfs:subClassOf hpc:Clusterprofile ;
+    rdfs:comment "Represents an application profile in the HPC system." .
+
+hpc:Receivequeue a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "Represents a receive queue in the HPC system." .
+
+hpc:Sendjob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Represents a job waiting to be sent to a receive queue." .
+
+hpc:Remotecluster a owl:Class ;
+    rdfs:subClassOf hpc:Cluster ;
+    rdfs:comment "Represents a remote cluster in the HPC system." .
+
+hpc:tasklimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Clusterprofile, hpc:Receivequeue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Represents the task limit for a cluster or queue." .
+
+hpc:processorrequirements a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range hpc:Processor ;
+    rdfs:comment "Represents the processor requirements for an application profile." .
+
+hpc:satisfy a owl:ObjectProperty ;
+    rdfs:domain hpc:Tasklimit ;
+    rdfs:range hpc:Processor ;
+    rdfs:comment "Indicates whether the task limit can satisfy the processor requirements." .
+
+hpc:forwardjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Sendjob ;
+    rdfs:range hpc:Receivequeue ;
+    rdfs:comment "Indicates that a job is forwarded to a receive queue." .
+
+hpc:jobrejected a owl:ObjectProperty ;
+    rdfs:domain hpc:Sendjob ;
+    rdfs:range hpc:Sendjob ;
+    rdfs:comment "Indicates that a job is rejected and returned to the submission cluster." .
+
+hpc:schedulingcycle a owl:ObjectProperty ;
+    rdfs:domain hpc:Sendjob ;
+    rdfs:range xsd:dayTimeDuration ;
+    rdfs:comment "Represents the time between two scheduling cycles for a job." .

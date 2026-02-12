@@ -1,0 +1,39 @@
+hpc:Job a owl:Class .
+hpc:User a owl:Class .
+hpc:Project a owl:Class .
+hpc:Jobgroup a owl:Class .
+hpc:Status a owl:Enum .
+hpc:Queue a owl:Class .
+hpc:fromhost a owl:ObjectProperty .
+hpc:jobname a owl:DatatypeProperty .
+hpc:submittime a owl:DatatypeProperty .
+hpc:jobid a owl:DatatypeProperty .
+hpc:jobgrouppath a owl:DatatypeProperty .
+hpc:Sla a owl:Class .
+hpc:Serviceclass a owl:Class .
+hpc:jobsla a owl:ObjectProperty .
+hpc:jobgroupsla a owl:ObjectProperty .
+hpc:Jobgroup rdfs:subClassOf hpc:Job .
+hpc:Job rdfs:subClassOf rdf:Resource .
+hpc:Job hpc:Hasstatus rdfs:domain hpc:Job .
+hpc:Job hpc:Hasstatus rdfs:range xsd:string .
+hpc:Job hpc:Hasqueue rdfs:domain hpc:Job .
+hpc:Job hpc:Hasqueue rdfs:range xsd:string .
+hpc:Job hpc:Isattachedtosla rdfs:domain hpc:Job .
+hpc:Job hpc:Isattachedtosla rdfs:range hpc:Sla .
+hpc:Sla hpc:Hasserviceclass rdfs:domain hpc:Sla .
+hpc:Sla hpc:Hasserviceclass rdfs:range hpc:Serviceclass .
+hpc:Jobgrouppath rdfs:domain hpc:Jobgroup .
+hpc:Jobgrouppath rdfs:range xsd:string .
+hpc:Job hpc:Hasuser rdfs:domain hpc:Job .
+hpc:Job hpc:Hasuser rdfs:range hpc:User .
+hpc:Job hpc:Hasproject rdfs:domain hpc:Job .
+hpc:Job hpc:Hasproject rdfs:range hpc:Project .
+hpc:Job hpc:Issubmittedfrom rdfs:domain hpc:Job .
+hpc:Job hpc:Issubmittedfrom rdfs:range hpc:Fromhost .
+hpc:Job hpc:Hasjobname rdfs:domain hpc:Job .
+hpc:Job hpc:Hasjobname rdfs:range xsd:string .
+hpc:Job hpc:Hassubmittime rdfs:domain hpc:Job .
+hpc:Job hpc:Hassubmittime rdfs:range xsd:dateTime .
+hpc:Jobgroup hpc:Hasfairshare rdfs:domain hpc:Jobgroup .
+hpc:Jobgroup hpc:Hasfairshare rdfs:range xsd:float .

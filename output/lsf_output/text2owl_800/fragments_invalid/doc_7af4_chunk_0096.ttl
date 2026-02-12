@@ -1,0 +1,57 @@
+hpc:preexecutioncommand a owl:ObjectProperty .
+hpc:postexecutioncommand a owl:ObjectProperty .
+hpc:path a owl:DatatypeProperty .
+hpc:Lsfenvironment a owl:Class .
+hpc:Preemptivejob a owl:Class .
+hpc:preemptdelay a owl:DatatypeProperty .
+
+hpc:Preexecutioncommand rdfs:domain hpc:Lsfenvironment .
+hpc:Postexecutioncommand rdfs:domain hpc:Lsfenvironment .
+hpc:Path rdfs:range xsd:string .
+hpc:Preemptivejob rdfs:subClassOf hpc:Job .
+hpc:Preemptdelay rdfs:domain hpc:Preemptivejob .
+hpc:Preemptdelay rdfs:range xsd:nonNegativeInteger .
+
+hpc:PreExecutionCommand_value a owl:NamedIndividual ;
+    hpc:PreExecutionCommand "PRE_EXEC= /usr/share/lsf/misc/testq_pre >> /tmp/pre.out" .
+
+hpc:PostExecutionCommand_value a owl:NamedIndividual ;
+    hpc:PostExecutionCommand "POST_EXEC= /usr/share/lsf/misc/testq_post | grep -v 'Hey!'" .
+
+hpc:Path_value a owl:NamedIndividual ;
+    hpc:Path "/bin /usr/bin /sbin /usr/sbin" .
+
+hpc:LSFEnvironment_value a owl:NamedIndividual ;
+    hpc:PreExecutionCommand_value ;
+    hpc:PostExecutionCommand_value ;
+    hpc:Path_value .
+
+hpc:userpostexecution a owl:ObjectProperty .
+hpc:Userpostexecution rdfs:domain hpc:Lsfenvironment .
+hpc:Userpostexecution rdfs:range hpc:Usercommand .
+
+hpc:Usercommand a owl:Class .
+hpc:Usercommand rdfs:subClassOf hpc:Command .
+hpc:UserCommand_value a owl:NamedIndividual ;
+    hpc:UserPostExecution_value ;
+    hpc:Path_value .
+
+hpc:Command a owl:Class .
+hpc:Command rdfs:subClassOf hpc:Executable .
+
+hpc:Executable a owl:Class .
+hpc:Executable rdfs:subClassOf owl:Thing .
+
+hpc:Windows a owl:Class .
+hpc:Windows rdfs:subClassOf hpc:Operatingsystem .
+
+hpc:preexecutioncommandWindows a owl:ObjectProperty ;
+    rdfs:domain hpc:Windows .
+    rdfs:range hpc:Command .
+
+hpc:postexecutioncommandWindows a owl:ObjectProperty ;
+    rdfs:domain hpc:Windows .
+    rdfs:range hpc:Command .
+
+hpc:preemptivejobPreemptdelay a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger .

@@ -1,0 +1,12 @@
+hpc:Executionhost a owl:Class .
+hpc:lsbSubkShowJobid a owl:DatatypeProperty .
+hpc:lsbSuppressCustomReasons a owl:DatatypeProperty .
+hpc:lsbTerminalServicePort a owl:DatatypeProperty .
+
+hpc:Executionhost rdfs:subClassOf owl:Class .
+hpc:LsbSubkShowJobid rdfs:domain hpc:Executionhost ;
+                          rdfs:range xsd:string .
+hpc:LsbSuppressCustomReasons rdfs:domain hpc:Executionhost ;
+                                 rdfs:range xsd:string .
+hpc:LsbTerminalServicePort rdfs:domain hpc:Executionhost ;
+                                rdfs:range xsd:integer .

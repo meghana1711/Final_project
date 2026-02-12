@@ -1,0 +1,42 @@
+hpc:Useraccountmapping a owl:Class .
+hpc:Betweenhostmapping a owl:Class .
+
+hpc:hasRequiredOperatingSystemPermissions rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Useraccountmapping ;
+    rdfs:range xsd:boolean .
+
+hpc:canExecuteCommandsOnRemoteHosts rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Useraccountmapping ;
+    rdfs:range xsd:boolean .
+
+hpc:isRegisteredWithLSF rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Windowsuseraccount ;
+    rdfs:range xsd:boolean .
+
+hpc:passwordLength rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Windowsuseraccount ;
+    rdfs:range xsd:integer .
+
+hpc:passwordCharacterLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Password ;
+    rdfs:range xsd:integer .
+
+hpc:LSF_MASTER_LIST rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfiguration .
+
+hpc:authorizationOptions rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadministrator ;
+    rdfs:range hpc:Authorizationoption .
+
+hpc:enableUserAccountMapping rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Authorizationoption .
+
+hpc:specifyUserAccountForExecution rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Authorizationoption .
+
+hpc:controlUserAccess rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Authorizationoption .
+
+hpc:Betweenhostmapping rdfs:subClassOf hpc:Useraccountmapping .
+hpc:Crossclustermapping rdfs:subClassOf hpc:Useraccountmapping .
+hpc:Unixwindowsmapping rdfs:subClassOf hpc:Useraccountmapping .

@@ -1,0 +1,30 @@
+hpc:GlobalFairsharePolicy rdf:type owl:NamedIndividual ;
+    rdf:about <policy1> ;
+    hpc:name "policy1" ;
+    hpc:Syncmode hpc:partialsync .
+
+hpc:Participatingcluster a owl:Class .
+hpc:Participatingqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue .
+
+hpc:Globalfairshareparticipant a owl:Class ;
+    rdfs:subClassOf hpc:Queue .
+
+hpc:Globalfairshareusergroup a owl:Class .
+hpc:usergroupmember a owl:ObjectProperty ;
+    rdfs:domain hpc:Globalfairshareusergroup ;
+    rdfs:range hpc:Usergroup .
+
+hpc:usergroupshare a owl:DatatypeProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:decimal .
+
+hpc:usergroupfspolicy a owl:DatatypeProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:string .
+
+hpc:Usergroupproject a owl:Class ;
+    rdfs:subClassOf hpc:Usergroup .
+
+hpc:Topusergroup a owl:Class ;
+    rdfs:subClassOf hpc:Usergroup .

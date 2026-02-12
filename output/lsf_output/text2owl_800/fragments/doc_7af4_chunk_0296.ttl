@@ -1,0 +1,37 @@
+hpc:lsbEnableEstimation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Defines whether job start time estimation is enabled and the parameter to use." .
+
+hpc:estimatorMaxTimePrediction a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Maximum time for job start time estimation." .
+
+hpc:estimatorMaxJobsPrediction a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Maximum number of jobs for start time estimation." .
+
+hpc:estimatorMaxRuntimePrediction a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Maximum runtime for job start time estimation." .
+
+hpc:estimatorCpus a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Number of CPUs for job start time estimation." .
+
+hpc:LsfConf a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Configuration file for LSF." .
+
+hpc:Jobdependencyevaluation a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Process that checks whether each job's dependency condition is satisfied." .
+
+hpc:evaluateJobDependency a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Limits the amount of time mbatchd spends on evaluating job dependencies in a scheduling cycle." .

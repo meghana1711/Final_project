@@ -1,0 +1,53 @@
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A queue for jobs in a cluster." .
+
+hpc:hasqueuename a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the queue." .
+
+hpc:hasdescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A description of the queue." .
+
+hpc:isbackfill a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the queue is for backfilling." .
+
+hpc:isinterruptiblebackfill a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The minimal time slice in seconds for a job to be considered for backfill." .
+
+hpc:hasrunlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum time slice for backfill." .
+
+hpc:haspriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The priority of the queue." .
+
+hpc:Queuewithinterruptiblebackfill a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "A queue with interruptible backfill." .
+
+hpc:Queuewithoutinterruptiblebackfill a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "A queue without interruptible backfill." .
+
+hpc:Queuewithoutbackfill a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "A queue without backfill." .
+
+hpc:Queuewithbackfill a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "A queue with backfill." .
+
+hpc:Queuewithrunlimit a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "A queue with run limit." .

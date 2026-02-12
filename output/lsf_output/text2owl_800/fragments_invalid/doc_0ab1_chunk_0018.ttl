@@ -1,0 +1,53 @@
+hpc:Applicationprofile a owl:Class ;
+    rdfs:subClassOf hpc:Resourceprofile ;
+    rdfs:comment "Represents an application profile with GPU resource requirements." .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resourceprofile ;
+    rdfs:comment "Represents a queue with GPU resource requirements." .
+
+hpc:Cluster a owl:Class ;
+    rdfs:subClassOf hpc:Resourceprofile ;
+    rdfs:comment "Represents a cluster with default GPU resource requirements." .
+
+hpc:Resourceprofile a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a resource profile with GPU requirements." .
+
+hpc:Gpurequirement a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the GPU requirement for a job, queue, or cluster." .
+
+hpc:hasGPURequirement an owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceprofile ;
+    rdfs:range hpc:Gpurequirement ;
+    rdfs:comment "Relates a resource profile to its GPU requirement." .
+
+hpc:numgpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Represents the number of physical GPUs required." .
+
+hpc:mode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the mode of GPU usage: shared or exclusive_process." .
+
+hpc:mps a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the Multi-Process Service (MPS) setting for the GPUs." .
+
+hpc:jobsubmission a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourceprofile ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Relates a resource profile to the job that uses it." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a job that requires GPU resources." .
+
+hpc:bsubcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Represents the bsub command used to submit the job." .

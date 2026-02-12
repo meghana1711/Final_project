@@ -1,0 +1,62 @@
+hpc:Mbatchdmessage a owl:Class .
+hpc:Sbatchdmessage a owl:Class .
+
+hpc:renewjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchdmessage ;
+    rdfs:range xsd:string .
+hpc:renewjobfailed a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbatchdmessage ;
+    rdfs:range xsd:string .
+hpc:lsfadmincheck a owl:ObjectProperty ;
+    rdfs:domain hpc:Renewjobfailed ;
+    rdfs:range xsd:string .
+hpc:afscheck a owl:ObjectProperty ;
+    rdfs:domain hpc:Renewjobfailed ;
+    rdfs:range xsd:string .
+
+hpc:logjobinfo a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchdmessage ;
+    rdfs:range hpc:Logjobinfo .
+hpc:logjobinfofailed a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logjobinfo ;
+    rdfs:range xsd:string .
+hpc:logdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logjobinfo ;
+    rdfs:range xsd:string .
+hpc:data a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logjobinfo ;
+    rdfs:range xsd:string .
+hpc:pos a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logjobinfo ;
+    rdfs:range xsd:int .
+hpc:logfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logjobinfo ;
+    rdfs:range xsd:string .
+
+hpc:rmlogjobinfo a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchdmessage ;
+    rdfs:range xsd:string .
+hpc:rmlogjobinfofailed a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rmlogjobinfo ;
+    rdfs:range xsd:string .
+hpc:queue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rmlogjobinfo ;
+    rdfs:range xsd:string .
+hpc:lostandfoundqueue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rmlogjobinfofailed ;
+    rdfs:range xsd:string .
+
+hpc:Reconfiguredjobs a owl:Class ;
+    rdfs:subClassOf hpc:Mbatchdmessage .
+hpc:queuenotfound a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reconfiguredjobs ;
+    rdfs:range xsd:string .
+hpc:lostandfoundqueue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reconfiguredjobs ;
+    rdfs:range xsd:string .
+
+hpc:replaystartjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchdmessage ;
+    rdfs:range hpc:Replaystartjob .
+hpc:exechostnotfound a owl:DatatypeProperty ;
+    rdfs:

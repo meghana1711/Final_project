@@ -1,0 +1,72 @@
+hpc:Reservation a owl:Class .
+hpc:Host a owl:Class .
+hpc:User a owl:Class .
+hpc:Timewindow a owl:Class .
+hpc:Advancereservationoption a owl:Class .
+hpc:Script a owl:Class .
+hpc:Time a owl:Class .
+
+# Object Properties
+hpc:hasreservationid a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservationoption ;
+    rdfs:range xsd:string .
+
+hpc:addshost a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservationoption ;
+    rdfs:range hpc:Host .
+
+hpc:addsuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservationoption ;
+    rdfs:range hpc:User .
+
+hpc:disables a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservationoption ;
+    rdfs:range xsd:string .
+
+hpc:removeshost a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservationoption ;
+    rdfs:range hpc:Host .
+
+hpc:removesuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservationoption ;
+    rdfs:range hpc:User .
+
+hpc:hasbegintime a owl:ObjectProperty ;
+    rdfs:domain hpc:Timewindow ;
+    rdfs:range xsd:string .
+
+hpc:hasendtime a owl:ObjectProperty ;
+    rdfs:domain hpc:Timewindow ;
+    rdfs:range xsd:string .
+
+# Datatype Properties
+hpc:hasreservationidtype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservationoption ;
+    rdfs:range xsd:string .
+
+hpc:hasnumberunit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservationoption ;
+    rdfs:range xsd:string .
+
+hpc:hasreservationidtypereservationid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:string .
+
+hpc:hasreservationidtypeaddhost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservationoption ;
+    rdfs:range xsd:string .
+
+hpc:hasreservationidtypeadduser a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservationoption ;
+    rdfs:range xsd:string .
+
+hpc:hasreservationidtypedisable a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservationoption ;
+    rdfs:range xsd:string .
+
+hpc:hasreservationidtyperemovehost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservationoption ;
+    rdfs:range xsd:string .
+
+hpc:hasreservationidtyperemoveuser a owl:DatatypeProperty ;
+    rdfs:

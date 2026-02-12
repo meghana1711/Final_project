@@ -1,0 +1,44 @@
+hpc:Device a owl:Class .
+hpc:JobProcess rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Device ;
+    rdfs:range hpc:Jobprocess .
+
+hpc:GPUPowerConsumption rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:IdleGPUPower rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:PowerLimit rdf:type owl:Enum ;
+    rdfs:subClassOf owl:Class ;
+    owl:oneOf ( hpc:MAX_POWER_LIMIT hpc:MIN_POWER_LIMIT ) .
+
+hpc:MAX_POWER_LIMIT a owl:NamedIndividual ;
+    rdf:value "MAX power limit" .
+
+hpc:MIN_POWER_LIMIT a owl:NamedIndividual ;
+    rdf:value "MIN power limit" .
+
+hpc:lsbGpuPoweroffDuration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Lsf a owl:Class .
+
+hpc:SBATCHD_DAEMON_RESTART rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Gpu ;
+    rdfs:range hpc:Time .
+
+hpc:NVML_LIBRARY_VERSION rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:NvidiaK80Hardware ;
+    rdfs:range xsd:string .
+
+hpc:NvidiaK80Hardware a owl:Class .
+
+hpc:GPU_POWEROFF_CRITERIA rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:GpuPoweroffCriteria .
+
+hpc:GpuPoweroffCriteria a owl:Class .

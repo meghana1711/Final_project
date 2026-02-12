@@ -1,0 +1,32 @@
+hpc:lsbMaxProbeSbd a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of probes that mbatchd will send before considering a host as down." .
+
+hpc:maxSbdFail a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of failures that a service can have before it is considered down." .
+
+hpc:Mbatchd a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "The LSF mbatchd service." .
+
+hpc:Lsbparams a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Parameters for the LSF LSB." .
+
+hpc:lsbMbdBusyMsg a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsbparams ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The message displayed when mbatchd is too busy to accept new connections or respond to client requests." .
+
+hpc:lsfApiConntimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Batchcommand ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The time in seconds that a batch command will wait for a connection to mbatchd." .
+
+hpc:lsfApiRecvtimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Batchcommand ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The time in seconds that a batch command will wait for a response from mbatchd." .

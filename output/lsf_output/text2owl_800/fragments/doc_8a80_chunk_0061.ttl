@@ -1,0 +1,17 @@
+hpc:Clustermode a owl:Class .
+hpc:clusterdistribution a owl:ObjectProperty .
+hpc:allocbuffer a owl:DatatypeProperty .
+hpc:retentionfactor a owl:DatatypeProperty .
+hpc:Servicedomain a owl:Class .
+hpc:servicedomainname a owl:DatatypeProperty .
+
+hpc:Clustermode rdfs:subClassOf owl:Class .
+hpc:Clusterdistribution rdfs:domain hpc:Clustermode ;
+                          rdfs:range rdf:List .
+hpc:Allocbuffer rdfs:domain hpc:Clustermode ;
+                 rdfs:range xsd:integer .
+hpc:Retentionfactor rdfs:domain hpc:Clustermode ;
+                    rdfs:range xsd:decimal .
+hpc:Servicedomain rdfs:subClassOf owl:Class .
+hpc:Servicedomainname rdfs:domain hpc:Servicedomain ;
+                      rdfs:range xsd:string .

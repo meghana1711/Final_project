@@ -1,0 +1,39 @@
+hpc:Slurmnode a owl:Class .
+hpc:Slurmjob a owl:Class .
+hpc:Slurmuser a owl:Class .
+hpc:Slurmgroup a owl:Class .
+
+# Object Properties
+hpc:hasnodename a owl:ObjectProperty .
+hpc:hasspooldir a owl:ObjectProperty .
+hpc:hasuser a owl:ObjectProperty .
+hpc:hasgroup a owl:ObjectProperty .
+hpc:isjob a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:userid a owl:DatatypeProperty .
+hpc:groupid a owl:DatatypeProperty .
+hpc:username a owl:DatatypeProperty .
+hpc:groupname a owl:DatatypeProperty .
+hpc:homedirectory a owl:DatatypeProperty .
+hpc:shell a owl:DatatypeProperty .
+
+# Domain and Range
+rdfs:domain hpc:Hasnodename hpc:Slurmnode .
+rdfs:domain hpc:Hasspooldir hpc:Slurmnode .
+rdfs:domain hpc:Hasuser hpc:Slurmjob .
+rdfs:domain hpc:Hasgroup hpc:Slurmjob .
+rdfs:domain hpc:Isjob hpc:Slurmuser .
+
+rdfs:range hpc:Userid xsd:integer .
+rdfs:range hpc:Groupid xsd:integer .
+rdfs:range hpc:Username xsd:string .
+rdfs:range hpc:Groupname xsd:string .
+rdfs:range hpc:Homedirectory xsd:string .
+rdfs:range hpc:Shell xsd:string .
+
+# Subclass Relations
+hpc:Slurmnode rdfs:subClassOf owl:Class .
+hpc:Slurmjob rdfs:subClassOf owl:Class .
+hpc:Slurmuser rdfs:subClassOf hpc:Slurmjob .
+hpc:Slurmgroup rdfs:subClassOf hpc:Slurmjob .

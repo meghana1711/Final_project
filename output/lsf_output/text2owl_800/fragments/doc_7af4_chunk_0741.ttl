@@ -1,0 +1,25 @@
+hpc:lsbPerfMetricsLogdir a owl:DatatypeProperty .
+hpc:LsbPerfMetricsLogdir rdfs:domain hpc:LsbConfiguration .
+hpc:LsbPerfMetricsLogdir rdfs:range xsd:string .
+
+hpc:lsbPerfMetricsSamplePeriod a owl:DatatypeProperty .
+hpc:LsbPerfMetricsSamplePeriod rdfs:domain hpc:LsbConfiguration .
+hpc:LsbPerfMetricsSamplePeriod rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsbPlanKeepReserve a owl:ObjectProperty .
+hpc:LsbPlanKeepReserve rdfs:domain hpc:LsbConfiguration .
+hpc:LsbPlanKeepReserve rdfs:range xsd:string .
+
+hpc:LSB_PLAN_KEEP_RESERVE_Y a owl:NamedIndividual .
+hpc:LSB_PLAN_KEEP_RESERVE_Y rdf:value "Y"^^xsd:string .
+
+hpc:LSB_PLAN_KEEP_RESERVE_N a owl:NamedIndividual .
+hpc:LSB_PLAN_KEEP_RESERVE_N rdf:value "N"^^xsd:string .
+
+hpc:lsbPostexecSendMail a owl:ObjectProperty .
+hpc:LsbPostexecSendMail rdfs:domain hpc:LsbConfiguration .
+hpc:LsbPostexecSendMail rdfs:range xsd:string .
+
+hpc:lsbProfileMbd a owl:ObjectProperty .
+hpc:LsbProfileMbd rdfs:domain hpc:LsbConfiguration .
+hpc:LsbProfileMbd rdfs:range xsd:string .

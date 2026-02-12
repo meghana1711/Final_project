@@ -1,0 +1,67 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A job submitted to a high-performance computing system." .
+
+hpc:CommandName an owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The command used as the job name." .
+
+hpc:QuotationMarksSignificant an owl:DatatypeProperty ;
+    rdfs:domain hpc:Commandname ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether quotation marks are significant for the command name." .
+
+hpc:FilePath an owl:DatatypeProperty ;
+    rdfs:domain hpc:Option ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The path of a file related to the option." .
+
+hpc:PathLength an owl:DatatypeProperty ;
+    rdfs:domain hpc:Filepath ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum length of the path in characters." .
+
+hpc:OperatingSystem an owl:DatatypeProperty ;
+    rdfs:domain hpc:Option ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The operating system for which the option applies." .
+
+hpc:CharacterLimit an owl:DatatypeProperty ;
+    rdfs:domain hpc:Option ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum number of characters for the option." .
+
+hpc:ResourceUsageLimit an owl:Class ;
+    rdfs:subClassOf hpc:Option ;
+    rdfs:comment "A limit on the resource usage for a job." .
+
+hpc:CoreLimit an owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resourceusagelimit ;
+    rdfs:comment "The limit on the number of cores for the job." .
+
+hpc:MemoryLimit an owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resourceusagelimit ;
+    rdfs:comment "The limit on the memory for the job." .
+
+hpc:StackLimit an owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resourceusagelimit ;
+    rdfs:comment "The limit on the stack for the job." .
+
+hpc:SwapLimit an owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resourceusagelimit ;
+    rdfs:comment "The limit on the swap for the job." .
+
+hpc:UnitForLimits an owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The unit used for the limits." .
+
+hpc:FairShare an owl:Class ;
+    rdfs:subClassOf hpc:Resourceusagelimit ;
+    rdfs:comment "The fair share of

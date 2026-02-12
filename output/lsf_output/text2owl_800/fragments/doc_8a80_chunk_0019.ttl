@@ -1,0 +1,19 @@
+hpc:lsMaxStreamSize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Projectmode ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Defines the maximum size of the bld.stream file in MB. Once this size is reached an EVENT_END_OF_STREAM is logged, a new bld.stream file is created, and the old bld.stream file is renamed bld.stream.time_stamp. Used for both project mode and cluster mode. Default." .
+
+hpc:lsMaxTaskmanPreempt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Projectmode ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Defines the maximum number of times taskman jobs can be preempted. Maximum preemption time checking for all jobs is enabled by LS_ENABLE_MAX_PREEMPT. Used for project mode only. Default unlimited." .
+
+hpc:lsMaxTaskmanSessions a owl:DatatypeProperty ;
+    rdfs:domain (hpc:Projectmode hpc:Clustermode) ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Defines the maximum number of taskman jobs that run simultaneously. This prevents system-wide performance issues that occur if there are a large number of taskman jobs running in License Scheduler. The number of taskman sessions must be a positive integer. The actual maximum number of taskman jobs is affected by the operating system file descriptor limit. Make sure the operating system file descriptor limit and the maximum concurrent connections are large enough to support all taskman tasks, License Scheduler (bl* commands), and connections between LSF License Scheduler and LSF." .
+
+hpc:lsPreemptPeer a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectmode ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Enables bottom-up license token preemption in hierarchical project group configuration." .

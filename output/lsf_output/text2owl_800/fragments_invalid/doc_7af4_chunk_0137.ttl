@@ -1,0 +1,38 @@
+hpc:Executioncluster a owl:Class .
+hpc:effectiveresreq a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executioncluster ;
+    rdfs:range xsd:string .
+hpc:numNetwork a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executioncluster ;
+    rdfs:range xsd:integer .
+hpc:networkid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executioncluster ;
+    rdfs:range xsd:string .
+hpc:numWindow a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executioncluster ;
+    rdfs:range xsd:integer .
+hpc:cpuFrequency a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executioncluster ;
+    rdfs:range xsd:integer .
+hpc:numallocslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executioncluster ;
+    rdfs:range xsd:integer .
+hpc:allocslots a owl:ObjectProperty ;
+    rdfs:domain hpc:Executioncluster ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:ListMember rdf:first hpc:Executionhost ;
+    rdfs:range rdf:List rdf:rest hpc:Executionhost .
+hpc:ineligiblependtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executioncluster ;
+    rdfs:range xsd:integer .
+hpc:schedulingOverhead a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executioncluster ;
+    rdfs:range xsd:float .
+hpc:jobStartAccept a owl:ObjectProperty ;
+    rdfs:domain hpc:Executioncluster ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:ListMember rdf:first xsd:string ;
+    rdfs:range rdf:List rdf:rest xsd:string .
+hpc:versionnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:JobStartAccept ;
+    rdfs:range xsd:string .

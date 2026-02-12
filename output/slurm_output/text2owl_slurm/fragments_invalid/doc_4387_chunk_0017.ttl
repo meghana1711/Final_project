@@ -1,0 +1,19 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:User a owl:Class.
+hpc:System a owl:Class.
+hpc:Database a owl:Class.
+hpc:grantpermission a owl:ObjectProperty.
+hpc:innodbsupport a owl:DatatypeProperty.
+hpc:Engine a owl:Class.
+hpc:Slurmdbd a owl:Class.
+
+hpc:User rdfs:subClassOf rdf:Resource.
+hpc:System rdfs:subClassOf rdf:Resource.
+hpc:Database rdfs:subClassOf rdf:Resource.
+hpc:GrantPermission rdf:type owl:ObjectProperty.
+hpc:

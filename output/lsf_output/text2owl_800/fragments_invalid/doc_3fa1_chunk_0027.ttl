@@ -1,0 +1,32 @@
+hpc:Usershare a owl:Class .
+hpc:KeyUsers a hpc:UserShare .
+hpc:Others a hpc:UserShare .
+hpc:hasshare a owl:ObjectProperty .
+hpc:Hasshare rdfs:domain hpc:Usershare .
+hpc:Hasshare rdfs:range xsd:integer .
+hpc:Staticpriorityfairshare a owl:Class .
+hpc:Dynamicpriorityfairshare a owl:Class .
+hpc:Hostpartitionfairshare a owl:Class .
+hpc:setcpuTimeFactor a owl:DatatypeProperty .
+hpc:SetcpuTimeFactor rdfs:domain hpc:Staticpriorityfairshare .
+hpc:SetcpuTimeFactor rdfs:range xsd:float .
+hpc:setrunTimeFactor a owl:DatatypeProperty .
+hpc:SetrunTimeFactor rdfs:domain hpc:Staticpriorityfairshare .
+hpc:SetrunTimeFactor rdfs:range xsd:float .
+hpc:setrunJobFactor a owl:DatatypeProperty .
+hpc:SetrunJobFactor rdfs:domain hpc:Staticpriorityfairshare .
+hpc:SetrunJobFactor rdfs:range xsd:float .
+hpc:setcommittedRunTimeFactor a owl:DatatypeProperty .
+hpc:SetcommittedRunTimeFactor rdfs:domain hpc:Staticpriorityfairshare .
+hpc:SetcommittedRunTimeFactor rdfs:range xsd:float .
+hpc:setfairshareAdjustmentFactor a owl:DatatypeProperty .
+hpc:SetfairshareAdjustmentFactor rdfs:domain hpc:Staticpriorityfairshare .
+hpc:SetfairshareAdjustmentFactor rdfs:range xsd:float .
+hpc:setgpuRunTimeFactor a owl:DatatypeProperty .
+hpc:SetgpuRunTimeFactor rdfs:domain hpc:Staticpriorityfairshare .
+hpc:SetgpuRunTimeFactor rdfs:range xsd:float .
+hpc:FairshareDistribution rdfs:subClassOf hpc:Usershare .
+hpc:FairshareDistribution hpc:hasshare rdfs:minCardinality 2 .
+hpc:FairshareDistribution hpc:hasshare rdfs:maxCardinality 2 .
+hpc:FairshareDistribution hpc:hasshare rdfs:first 2000 .
+hpc:FairshareDistribution hpc:hasshare rdfs:rest 1 .

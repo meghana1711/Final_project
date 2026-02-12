@@ -1,0 +1,26 @@
+hpc:Hostfile a owl:Class ;
+    rdfs:comment "Runs the task on all hosts that are listed in the host_file file." .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a host where remote tasks can be launched." .
+
+hpc:runonhosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Specifies a list of hosts on which to run the task." .
+
+hpc:runonhost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Runs the task on all hosts that are listed in the host_file file." .
+
+hpc:exclusiveof a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Hostfile ;
+    rdfs:comment "The -u option is exclusive of the -z option." .
+
+hpc:useloginshell a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Launches commands through user's login shell." .

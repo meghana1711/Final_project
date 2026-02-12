@@ -1,0 +1,22 @@
+hpc:Host a owl:Class .
+hpc:hostName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:status a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:Host_Status a owl:Enum ;
+    rdfs:subClassOf owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    owl:oneOf (
+        "ok" .
+        "unavail" .
+        "unreach" .
+        "lost_and_found"
+    ) .
+
+hpc:HostGroup a owl:Class .
+hpc:CondensedHostGroup a owl:Class ;
+    rdfs:subClassOf hpc:HostGroup .

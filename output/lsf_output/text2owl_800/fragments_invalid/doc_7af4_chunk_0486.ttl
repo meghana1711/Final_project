@@ -1,0 +1,31 @@
+hpc:Job a owl:Class .
+hpc:requeueExitValues a owl:ObjectProperty .
+hpc:rerunnable a owl:ObjectProperty .
+
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:RequeueExitValues rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+hpc:Rerunnable rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:JobInterrupted a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+hpc:JobRerunnable a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Job_Interrupted rdf:type hpc:Job_Interrupted ;
+    hpc:REQUEUE_EXIT_VALUES 137 .
+hpc:Job_Interrupted rdf:type hpc:Job_Interrupted ;
+    hpc:REQUEUE_EXIT_VALUES 7 .
+hpc:Job_Rerunnable rdf:type hpc:Job_Rerunnable ;
+    hpc:RERUNNABLE "yes" .
+hpc:JobNotRerunnable a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+hpc:Job_Not_Rerunnable rdf:type hpc:Job_Not_Rerunnable ;
+    hpc:RERUNNABLE "no" .
+
+hpc:ExclusiveRequeue a owl:Class ;
+    rdfs:subClassOf hpc:JobInterrupted .
+hpc:Exclusive_REQUEUE rdf:type hpc:Exclusive_REQUEUE ;
+    hpc:REQUEUE_EXIT_VALUES someValue .
+    FILTER(someValue != 20) .

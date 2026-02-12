@@ -1,0 +1,35 @@
+hpc:Hosttype a owl:Class .
+hpc:ncpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hosttype ;
+    rdfs:range xsd:integer .
+hpc:imageid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template .
+hpc:imagename a owl:ObjectProperty ;
+    rdfs:domain hpc:Template .
+
+hpc:Hosttype rdfs:subClassOf [ a owl:Class ;
+    owl:equivalentClass [ a owl:Restriction ;
+        owl:onProperty hpc:ncpus ;
+        owl:allValuesFrom [ xsd:integer "1" ] ] ] .
+
+hpc:Template a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:unionOf (hpc:CustomImageTemplate hpc:GalleryImageTemplate) ] .
+
+hpc:Customimagetemplate a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:unionOf (
+            [ a owl:Restriction ;
+                owl:onProperty hpc:imageId ;
+                owl:hasValue ?customImageId ]
+            [ a owl:Restriction ;
+                owl:onProperty hpc:imageName ;
+                owl:hasValue ?galleryImageId ;
+                owl:before [ a owl:Restriction ;
+                    owl:onProperty hpc:imageId ;
+                    owl:hasValue ?customImageId ] ] ) ] .
+
+hpc:Galleryimagetemplate a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:onProperty hpc:imageName ;
+        owl:hasValue ?galleryImageId ] .

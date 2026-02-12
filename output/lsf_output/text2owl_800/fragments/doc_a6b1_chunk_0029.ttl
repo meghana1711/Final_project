@@ -1,0 +1,24 @@
+hpc:jobexitcode a owl:DatatypeProperty .
+hpc:Signal a owl:Class .
+hpc:Catchablesignal a owl:Class .
+hpc:Uncatchablesignal a owl:Class .
+hpc:Terminationreason a owl:Class .
+hpc:Exitcodevalue rdfs:domain hpc:Jobexitcode ;
+                    rdfs:range xsd:integer .
+hpc:Signalvalue rdfs:domain hpc:Signal ;
+                  rdfs:range xsd:integer .
+hpc:Catchablesignalvalue rdfs:subClassOf hpc:Signalvalue ;
+                        rdfs:comment "Signals that can be caught by the job." .
+hpc:Untcatchablesignalvalue rdfs:subClassOf hpc:Signalvalue ;
+                             rdfs:comment "Signals that cannot be caught by the job." .
+hpc:Terminationreasonvalue rdfs:domain hpc:Terminationreason ;
+                            rdfs:range xsd:string .
+hpc:WrapAroundEffect rdfs:comment "The phenomenon where negative exit values or values > 255 may have a wrap-around effect on the range 0-255." .
+hpc:Lsfexitcode rdfs:subClassOf hpc:Jobexitcode ;
+                   rdfs:comment "The exit code as shown by LSF, which is the application exit value (128 + signal) in most cases." .
+hpc:Lsfcatchablesignal rdfs:subClassOf hpc:Catchablesignal ;
+                         rdfs:comment "Signals that LSF sends to the job and are catchable." .
+hpc:Lsfuntcatchablesignal rdfs:subClassOf hpc:Untcatchablesignal ;
+                              rdfs:comment "Signals that LSF sends to the job and are uncatchable." .
+hpc:Lsfterminationreason rdfs:subClassOf hpc:Terminationreason ;
+                             rdfs:comment "The reason for the job termination as shown by LSF." .

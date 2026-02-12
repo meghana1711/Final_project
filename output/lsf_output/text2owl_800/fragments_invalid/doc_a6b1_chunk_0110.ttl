@@ -1,0 +1,71 @@
+hpc:GPDCluster
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a Global Fair Share Participating Cluster." .
+
+hpc:LSFConfFile
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the lsf.conf file in a cluster." .
+
+hpc:LsfGpdPort
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpdcluster ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The port number for LSB_GPD_PORT parameter in the lsf.conf file." .
+
+hpc:LsfGpdClusterName
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpdcluster ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the GPD cluster." .
+
+hpc:LsbGlobalPoliciesFile
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the lsb.globalpolicies file in a cluster." .
+
+hpc:GlobalFairSharePolicy
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a Global Fair Share Policy." .
+
+hpc:ParticipatingQueue
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a queue participating in a Global Fair Share Policy." .
+
+hpc:FairShareConfiguration
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the configuration of fair share settings." .
+
+hpc:hasGpdCluster
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpdcluster ;
+    rdfs:range hpc:Gpdcluster ;
+    rdfs:comment "Indicates the GPD cluster associated with the LSF Conf File." .
+
+hpc:hasLsfGpdPort
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpdcluster ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Indicates the port number for LSB_GPD_PORT parameter in the lsf.conf file." .
+
+hpc:hasLsfGpdClusterName
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpdcluster ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates the name of the GPD cluster." .
+
+hpc:hasLsbGlobalPoliciesFile
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpdcluster ;
+    rdfs:range hpc:Lsbglobalpoliciesfile ;
+    rdfs:comment "Indicates the lsb.globalpolicies file associated with the GPD cluster." .
+
+hpc:hasGlobalFairSharePolicy
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbglobalpoliciesfile ;
+    rdfs:range hpc:Globalfairsharepolicy ;
+    rdfs:comment "

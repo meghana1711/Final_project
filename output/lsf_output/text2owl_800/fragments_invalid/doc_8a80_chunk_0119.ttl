@@ -1,0 +1,61 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Job a owl:Class .
+hpc:Job rdfs:subClassOf owl:NamedIndividual .
+
+hpc:jobid a owl:DatatypeProperty .
+hpc:Jobid rdfs:domain hpc:Job .
+hpc:Jobid rdfs:range xsd:string .
+
+hpc:user a owl:DatatypeProperty .
+hpc:User rdfs:domain hpc:Job .
+hpc:User rdfs:range xsd:string .
+
+hpc:host a owl:DatatypeProperty .
+hpc:Host rdfs:domain hpc:Job .
+hpc:Host rdfs:range xsd:string .
+
+hpc:project a owl:DatatypeProperty .
+hpc:Project rdfs:domain hpc:Job .
+hpc:Project rdfs:range xsd:string .
+
+hpc:cluster a owl:DatatypeProperty .
+hpc:Cluster rdfs:domain hpc:Job .
+hpc:Cluster rdfs:range xsd:string .
+
+hpc:startTime a owl:DatatypeProperty .
+hpc:StartTime rdfs:domain hpc:Job .
+hpc:StartTime rdfs:range xsd:dateTime .
+
+hpc:Resource a owl:Class .
+hpc:Resource rdfs:subClassOf owl:NamedIndividual .
+
+hpc:rusage a owl:DatatypeProperty .
+hpc:Rusage rdfs:domain hpc:Resource .
+hpc:Rusage rdfs:range xsd:integer .
+
+hpc:serviceDomain a owl:DatatypeProperty .
+hpc:ServiceDomain rdfs:domain hpc:Resource .
+hpc:ServiceDomain rdfs:range xsd:string .
+
+hpc:inuse a owl:DatatypeProperty .
+hpc:Inuse rdfs:domain hpc:Resource .
+hpc:Inuse rdfs:range xsd:integer .
+
+hpc:effectiveProject a owl:DatatypeProperty .
+hpc:EffectiveProject rdfs:domain hpc:Resource .
+hpc:EffectiveProject rdfs:range xsd:string .
+
+hpc:Feature a owl:Class .
+hpc:Feature rdfs:subClassOf owl:NamedIndividual .
+
+hpc:feature1 a hpc:Feature .
+hpc:feature2 a hpc:Feature .
+hpc:feature3 a hpc:Feature .
+
+hpc:SD1 a owl:NamedIndividual .
+
+hpc:propname1 a owl:ObjectProperty

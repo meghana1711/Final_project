@@ -1,0 +1,28 @@
+hpc:Host a owl:Class .
+hpc:hasSlotCount an rdfs:datatype xsd:nonNegativeInteger ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hasName an owl:ObjectProperty ;
+    rdfs:domain hpc:Host .
+hpc:belongsToCluster an owl:ObjectProperty ;
+    rdfs:domain hpc:Host .
+hpc:Hostfile a owl:Class .
+hpc:containsHost an owl:ObjectProperty ;
+    rdfs:domain hpc:Hostfile ;
+    rdfs:range hpc:Host .
+hpc:hasrankfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostfile .
+hpc:hasrank a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host .
+hpc:isInLocalCluster rdf:PlainLiteral "true" ;
+    rdfs:subPropertyOf hpc:belongsToCluster .
+hpc:isInRemoteCluster rdf:PlainLiteral "true" ;
+    rdfs:subPropertyOf hpc:belongsToCluster .
+hpc:Host rdfs:subClassOf [ a owl:Class ;
+    rdfs:subClassOf hpc:Hostwithslotcount ] .
+hpc:Hostwithslotcount a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf hpc:Host ;
+        rdfs:subClassOf [ a owl:Restriction ;
+            rdfs:onProperty hpc:hasSlotCount ;
+            owl:hasValue xsd:1 ] ] .

@@ -1,0 +1,65 @@
+hpc:LSF_DCGM_PORT
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:integer .
+
+hpc:badmin
+    a owl:Class .
+
+hpc:badmin_rc_view
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Badmin ;
+    rdfs:range hpc:Lsf .
+
+hpc:badmin_rc_error
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Badmin ;
+    rdfs:range hpc:Errormessage .
+
+hpc:ErrorMessage
+    a owl:Class .
+
+hpc:LSB_RC_MQTT_ERROR_LIMIT
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:LSF_Resource_Connector
+    a owl:Class .
+
+hpc:dynamic_resource_snapshot
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfResourceConnector ;
+    rdfs:range hpc:Dynamicresource .
+
+hpc:DynamicResource
+    a owl:Class .
+
+hpc:LSB_RC_TEMPLATE_REQUEST_DELAY
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Host_Management_with_Instance_IDs
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfResourceConnector ;
+    rdfs:range hpc:Provisionedhost .
+
+hpc:ProvisionedHost
+    a owl:Class .
+
+hpc:Improved_Fault_Tolerance
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfResourceConnector ;
+    rdfs:range hpc:Resource .
+
+hpc:Resource
+    a owl:Class .
+
+hpc:bhosts
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Host .
+
+hpc:Host
+    a owl:Class .

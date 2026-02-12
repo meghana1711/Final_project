@@ -1,0 +1,46 @@
+hpc:lsfBindir a owl:DatatypeProperty .
+hpc:LsfBindir rdfs:domain hpc:Lsf .
+hpc:LsfBindir rdfs:range xsd:string .
+
+hpc:lsfLibdir a owl:DatatypeProperty .
+hpc:LsfLibdir rdfs:domain hpc:Lsf .
+hpc:LsfLibdir rdfs:range xsd:string .
+
+hpc:lsfServerdir a owl:DatatypeProperty .
+hpc:LsfServerdir rdfs:domain hpc:Lsf .
+hpc:LsfServerdir rdfs:range xsd:string .
+
+hpc:xlsfUiddir a owl:DatatypeProperty .
+hpc:XlsfUiddir rdfs:domain hpc:Lsf .
+hpc:XlsfUiddir rdfs:range xsd:string .
+
+hpc:lsfMandir a owl:DatatypeProperty .
+hpc:LsfMandir rdfs:domain hpc:Lsf .
+hpc:LsfMandir rdfs:range xsd:string .
+
+hpc:lsfManageFrequency a owl:DatatypeProperty .
+hpc:LsfManageFrequency rdfs:domain hpc:Lsf .
+hpc:LsfManageFrequency rdfs:range xsd:string .
+
+hpc:lsfManageMig a owl:ObjectProperty .
+hpc:LsfManageMig rdfs:domain hpc:Lsf .
+hpc:LsfManageMig rdfs:range xsd:string .
+
+hpc:LSF_MANAGE_MIG_Y a owl:NamedIndividual .
+hpc:LSF_MANAGE_MIG_Y rdf:value "Y" .
+hpc:LSF_MANAGE_MIG_y a owl:NamedIndividual .
+hpc:LSF_MANAGE_MIG_y rdf:value "y" .
+hpc:LSF_MANAGE_MIG_N a owl:NamedIndividual .
+hpc:LSF_MANAGE_MIG_N rdf:value "N" .
+hpc:LSF_MANAGE_MIG_n a owl:NamedIndividual .
+hpc:LSF_MANAGE_MIG_n rdf:value "n" .
+
+hpc:lsfGpuResourceIgnore a owl:ObjectProperty .
+hpc:LsfGpuResourceIgnore rdfs:domain hpc:Lsf .
+hpc:LsfGpuResourceIgnore rdfs:range xsd:string .
+
+hpc:LSF_MAN_FREQUENCY_N a owl:NamedIndividual .
+hpc:LSF_MAN_FREQUENCY_N rdf:value "N" .
+hpc:LSF_MAN_FREQUENCY_CORE a owl:NamedIndividual .
+hpc:LSF_MAN_FREQUENCY_CORE rdf:value "CORE" .
+hpc:LSF_MAN_FREQUENCY_HOST a o

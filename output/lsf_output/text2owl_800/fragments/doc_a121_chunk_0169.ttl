@@ -1,0 +1,53 @@
+hpc:Lsfjoberror a owl:Class .
+hpc:lsbSubJobErr a owl:DatatypeProperty .
+hpc:LsbSubJobErr rdfs:domain hpc:Lsfjoberror .
+hpc:LsbSubJobErr rdfs:range xsd:integer .
+
+hpc:Epsub a owl:Class .
+hpc:epsubScript a owl:ObjectProperty .
+hpc:EpsubScript rdfs:domain hpc:Epsub .
+hpc:EpsubScript rdfs:range hpc:File .
+
+hpc:lsbEsubMethod a owl:ObjectProperty .
+hpc:LsbEsubMethod rdfs:domain hpc:Epsub .
+hpc:LsbEsubMethod rdfs:range hpc:File .
+
+hpc:lsbSubModifyFile a owl:DatatypeProperty .
+hpc:LsbSubModifyFile rdfs:domain hpc:Epsub .
+hpc:LsbSubModifyFile rdfs:range xsd:boolean .
+
+hpc:lsbSubParmFile a owl:DatatypeProperty .
+hpc:LsbSubParmFile rdfs:domain hpc:Epsub .
+hpc:LsbSubParmFile rdfs:range hpc:File .
+
+hpc:Bsub a owl:Class .
+hpc:Bmod a owl:Class .
+
+hpc:bsubReturnTime a owl:DatatypeProperty .
+hpc:BsubReturnTime rdfs:domain hpc:Bsub .
+hpc:BsubReturnTime rdfs:range xsd:duration .
+
+hpc:bmodReturnTime a owl:DatatypeProperty .
+hpc:BmodReturnTime rdfs:domain hpc:Bmod .
+hpc:BmodReturnTime rdfs:range xsd:duration .
+
+hpc:JobSubmissionFailure a owl:Class .
+hpc:JobSubmissionFailure rdfs:subClassOf hpc:Lsfjoberror .
+
+hpc:Esub a owl:Class .
+hpc:esubScript a owl:ObjectProperty .
+hpc:EsubScript rdfs:domain hpc:Esub .
+hpc:EsubScript rdfs:range hpc:File .
+
+hpc:esubValidation a owl:ObjectProperty .
+hpc:EsubValidation rdfs:domain hpc:Esub .
+hpc:EsubValidation rdfs:range hpc:Boolean .
+
+hpc:esubCommandLineSyntax a owl:ObjectProperty .
+hpc:EsubCommandLineSyntax rdfs:domain hpc:Esub .
+hpc:EsubCommandLineSyntax rdfs:range hpc:String .
+
+hpc:Mbatchd a owl:Class .
+hpc:mbatchdLoad a owl:ObjectProperty .
+hpc:MbatchdLoad rdfs:domain hpc:Esub .
+hpc:MbatchdLoad rdfs:range hpc:Mbatchdaemon .

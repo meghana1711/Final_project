@@ -1,0 +1,38 @@
+hpc:Job a owl:Class .
+hpc:jobsoftrunlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:jobhardrunlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Queue a owl:Class .
+hpc:extendablerunlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Jobsoftrunlimit .
+hpc:Queue a rdfs:subClassOf owl:Class ;
+    hpc:Queue rdfs:subClassOf (hpc:Queuewithextendablerunlimit
+                                   rdfs:subClassOf owl:Class) .
+hpc:Queuewithextendablerunlimit a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    owl:hasValue hpc:EXTENDABLE_RUNLIMIT ;
+    rdfs:subClassOf (hpc:Queuewithbaserunlimit
+                         rdfs:subClassOf hpc:Queuewithextendablerunlimit) .
+hpc:Queuewithbaserunlimit a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    owl:hasValue hpc:BASE ;
+    rdfs:subClassOf (hpc:Queuewithincrementminutes
+                         rdfs:subClassOf hpc:Queuewithbaserunlimit) .
+hpc:Queuewithincrementminutes a owl:Class ;
+    rdfs:subClassOf hpc:Queuewithbaserunlimit ;
+    owl:hasValue hpc:INCREMENT ;
+    rdfs:subClassOf (hpc:Queuewithgraceminutes
+                         rdfs:subClassOf hpc:Queuewithincrementminutes) .
+hpc:Queuewithgraceminutes a owl:Class ;
+    rdfs:subClassOf hpc:Queuewithincrementminutes ;
+    owl:hasValue hpc:GRACE ;
+    rdfs:subClassOf (hpc:Queuewithrequeueoption
+                         rdfs:subClassOf hpc:Queuewithgraceminutes) .
+hpc:Queuewithrequeueoption a owl:Class ;
+    rdfs:subClassOf hpc:Queuewithgraceminutes ;
+    owl:hasValue hpc:REQUEUE ;
+    rdfs:subClassOf owl:Class .

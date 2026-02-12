@@ -1,0 +1,36 @@
+hpc:Snapshotfileformat a owl:Class .
+hpc:snapshotfileformattype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Snapshotfileformat ;
+    rdfs:range xsd:string .
+
+hpc:Accesslevel a owl:Class .
+hpc:readaccess a owl:ObjectProperty ;
+    rdfs:domain hpc:Accesslevel ;
+    rdfs:range hpc:User .
+hpc:writeaccess a owl:ObjectProperty ;
+    rdfs:domain hpc:Accesslevel ;
+    rdfs:range hpc:User .
+hpc:executeaccess a owl:ObjectProperty ;
+    rdfs:domain hpc:Accesslevel ;
+    rdfs:range hpc:User .
+hpc:LSF_ADMIN a hpc:User ;
+    hpc:Hasaccesslevel hpc:accesslevel .
+
+hpc:Snapshotfile a owl:Class ;
+    rdfs:subClassOf hpc:File .
+hpc:Hasformat hpc:snapshotfileformat ;
+    rdfs:domain hpc:Snapshotfile .
+
+hpc:Diagnosecommand a owl:Class .
+hpc:diagnosecommandtype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Diagnosecommand ;
+    rdfs:range xsd:string .
+hpc:logfileName a owl:ObjectProperty ;
+    rdfs:domain hpc:Diagnosecommand ;
+    rdfs:range xsd:string .
+hpc:minutes a owl:DatatypeProperty ;
+    rdfs:domain hpc:Diagnosecommand ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:lsfproxyd a owl:ObjectProperty ;
+    rdfs:domain hpc:Diagnosecommand ;
+    rdfs:range hpc:Component .

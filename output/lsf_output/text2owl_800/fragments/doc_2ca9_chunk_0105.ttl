@@ -1,0 +1,30 @@
+hpc:Brsvadd a owl:Class .
+hpc:brsvaddforce a owl:ObjectProperty ;
+    rdfs:domain hpc:Brsvadd ;
+    rdfs:range xsd:boolean .
+
+hpc:Brsvdel a owl:Class .
+hpc:brsvdelforce a owl:ObjectProperty ;
+    rdfs:domain hpc:Brsvdel ;
+    rdfs:range xsd:boolean .
+
+hpc:Containersupport a owl:Class .
+
+hpc:Bimages a owl:Class .
+hpc:imageinfopublishinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bimages ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:imageinfoexpireinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bimages ;
+    rdfs:range xsd:dayTimeDuration .
+
+hpc:Commandoutputformatting a owl:Class .
+hpc:jsonformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Commandoutputformatting .
+
+hpc:allocatedguaranteehosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Commandoutputformatting ;
+    rdfs:range hpc:Guaranteesla .
+
+hpc:Guaranteesla a owl:Class .

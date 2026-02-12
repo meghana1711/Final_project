@@ -1,0 +1,43 @@
+hpc:Host a owl:Class .
+hpc:Domain a owl:Class .
+hpc:LsfFloatingClient a owl:Class .
+
+hpc:hasDomain rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Domain .
+
+hpc:isAllowedAccessTo rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:LsfFloatingClient .
+
+hpc:hostInactivityLimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host .
+    rdfs:range xsd:integer .
+
+hpc:exinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Lim a owl:Class .
+hpc:Serverhostlim a owl:Class ;
+    rdfs:subClassOf hpc:Lim .
+hpc:Managementhostlim a owl:Class ;
+    rdfs:subClassOf hpc:Lim .
+
+hpc:sendLoadInformation rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Serverhostlim ;
+    rdfs:range rdf:Plural .
+
+hpc:announcement rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Managementhostlim ;
+    rdfs:range rdf:Plural .
+
+hpc:HOST_INACTIVITY_LIMIT_VALUE rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Serverhostlim .
+    rdfs:range xsd:nonNegativeInteger .
+    owl:hasMinCardinality 2 .
+
+hpc:lsfElimBlocktime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host .
+    rdfs:range xsd:nonNegativeInteger .
+    owl:hasMinCardinality 1 .

@@ -1,0 +1,35 @@
+hpc:Shellscript a owl:Class .
+hpc:LMSTAT_PATH rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Shellscript ;
+    rdfs:range hpc:Path .
+
+hpc:LicCollector rdf:type owl:Class .
+
+hpc:Blcollect rdf:type owl:Class .
+hpc:BlcollectLog rdf:type owl:Class .
+hpc:BlcollectError rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Blcollectlog .
+
+hpc:LsbTokens rdf:type owl:Class .
+hpc:Allocation rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Lsbtokens .
+hpc:Usage rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Lsbtokens .
+
+hpc:MBatchd rdf:type owl:Class .
+hpc:Bld rdf:type owl:Class .
+hpc:Network rdf:type owl:Class .
+hpc:Connection rdf:type owl:Class ;
+    rdfs:subClassOf owl:BinaryRelation ;
+    rdfs:domain hpc:Mbatchd, hpc:Bld ;
+    rdfs:range hpc:Connectionstate .
+hpc:ConnectionState rdf:type owl:Class .
+
+hpc:LSB_SHAREDIR rdf:type owl:Class .
+hpc:ClusterName rdf:type owl:Class .
+hpc:LogDir rdf:type owl:Class .
+
+hpc:MBD_REFRESH_INTERVAL rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsflicensescheduler .
+hpc:LSF_LICENSE_SCHEDULER_ELIM rdf:type owl:ObjectProperty .
+hpc:LSF_DYNAMIC_RESOURCE rdf:type owl:ObjectProperty .

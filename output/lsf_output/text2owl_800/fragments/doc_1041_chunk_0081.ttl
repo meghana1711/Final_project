@@ -1,0 +1,41 @@
+hpc:Command a owl:Class .
+hpc:hasargument a owl:ObjectProperty .
+hpc:Hasargument rdfs:domain hpc:Command ;
+    rdfs:range rdf:List .
+hpc:hasoption a owl:ObjectProperty .
+hpc:Hasoption rdfs:domain hpc:Command ;
+    rdfs:range rdf:List .
+hpc:Option a owl:Class .
+hpc:Option rdfs:subClassOf hpc:Commandargument .
+hpc:hasvalue a owl:DatatypeProperty .
+hpc:Hasvalue rdfs:domain hpc:Option ;
+    rdfs:range xsd:string .
+hpc:Verbosemode a owl:Class ;
+    rdfs:subClassOf hpc:Option .
+hpc:VerboseMode rdfs:label "Verbose mode" .
+hpc:Disablesinteraction a owl:Class ;
+    rdfs:subClassOf hpc:Option .
+hpc:DisablesInteraction rdfs:label "Disables interaction and proceeds with reconfiguration if configuration files contain no unrecoverable errors" .
+hpc:ReconﬁgCommand a owl:ObjectProperty .
+hpc:ReconﬁgCommand rdfs:domain hpc:Command ;
+    rdfs:range rdf:List .
+hpc:ReconﬁgCommand rdfs:label "Reconﬁgures the cluster" .
+hpc:mbdrestartcommand a owl:ObjectProperty .
+hpc:Mbdrestartcommand rdfs:domain hpc:Command ;
+    rdfs:range rdf:List .
+hpc:MBDRestartCommand rdfs:label "Restarts the MBD" .
+hpc:Resourcerequirementloss a owl:Class .
+hpc:ResourceRequirementLoss rdfs:label "Resource requirements that are determined by the queue no longer apply to a running job after using the badmin reconﬁg command" .
+hpc:Queuelevelresourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+hpc:QueueLevelResourceRequirement rdfs:label "Resource requirements for running jobs at the queue level" .
+hpc:reconfigcommandeffect a owl:ObjectProperty .
+hpc:Reconfigcommandeffect rdfs:domain hpc:Command ;
+    rdfs:range hpc:Resourcerequirementloss .
+hpc:ReconfigCommandEffect rdfs:label "The previous queue-level resource requirements for running jobs are lost" .
+hpc:loglevelsetting a owl:ObjectProperty .
+hpc:Loglevelsetting rdfs:domain hpc:Command ;
+    rdfs:range rdf:List .
+hpc:LogLevelSetting rdfs:label "Sets the message log level for the sbatchd daemon to include additional information in log files" .
+hpc:Rootrequirement a owl:Class .
+hpc:RootRequirement rdfs:label "You must be root or the LSF administrator to use this command" .

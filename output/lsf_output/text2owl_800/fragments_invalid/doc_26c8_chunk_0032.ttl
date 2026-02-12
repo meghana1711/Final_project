@@ -1,0 +1,14 @@
+hpc:AwsRegion a owl:Class .
+hpc:awsSpotTerminateOnReclaim a owl:ObjectProperty ;
+    rdfs:domain hpc:AwsRegion ;
+    rdfs:range xsd:boolean .
+hpc:awsTagInstanceid a owl:ObjectProperty ;
+    rdfs:domain hpc:AwsRegion ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:first owl:DatatypeProperty ;
+    rdfs:range rdf:rest owl:DatatypeProperty ;
+    rdfs:range rdf:first xsd:string ;
+    rdfs:range rdf:rest hpc:AwsInstanceId .
+hpc:awsInstanceId a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+hpc:AwsprovTemplates.json a owl:Class .

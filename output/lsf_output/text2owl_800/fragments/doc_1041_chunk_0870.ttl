@@ -1,0 +1,47 @@
+hpc:Environmentfile a owl:Class .
+hpc:haspath a owl:ObjectProperty .
+hpc:Haspath rdfs:domain hpc:Environmentfile ;
+                                rdfs:range xsd:string .
+
+hpc:Buildnumber a owl:Class .
+hpc:hasbuildnumber a owl:DatatypeProperty .
+hpc:Hasbuildnumber rdfs:domain hpc:Buildnumber ;
+                                rdfs:range xsd:nonNegativeInteger .
+
+hpc:Installedpackage a owl:Class .
+hpc:hasinstallationdate a owl:DatatypeProperty .
+hpc:Hasinstallationdate rdfs:domain hpc:Installedpackage ;
+                                rdfs:range xsd:date .
+hpc:hasnotes a owl:DatatypeProperty .
+hpc:Hasnotes rdfs:domain hpc:Installedpackage ;
+                                rdfs:range xsd:string .
+hpc:hasfixes a owl:DatatypeProperty .
+hpc:Hasfixes rdfs:domain hpc:Installedpackage ;
+                                rdfs:range xsd:string .
+hpc:hasfiles a owl:ObjectProperty .
+hpc:Hasfiles rdfs:domain hpc:Installedpackage ;
+                                rdfs:range hpc:File .
+
+hpc:Uninstalledpackage a owl:Class .
+hpc:hasnotes a owl:DatatypeProperty .
+hpc:Hasnotes rdfs:domain hpc:Uninstalledpackage ;
+                                rdfs:range xsd:string .
+hpc:hasfixes a owl:DatatypeProperty .
+hpc:Hasfixes rdfs:domain hpc:Uninstalledpackage ;
+                                rdfs:range xsd:string .
+hpc:hasfiles a owl:ObjectProperty .
+hpc:Hasfiles rdfs:domain hpc:Uninstalledpackage ;
+                                rdfs:range hpc:File .
+
+hpc:File a owl:Class .
+hpc:haspath a owl:DatatypeProperty .
+hpc:Haspath rdfs:domain hpc:File ;
+                                rdfs:range xsd:string .
+
+hpc:Product a owl:Class .
+hpc:hasproductname a owl:DatatypeProperty .
+hpc:Hasproductname rdfs:domain hpc:Product ;
+                                rdfs:range xsd:string .
+
+hpc:Lsf a owl:Class ;
+        rdfs:subClassOf hpc:Product .

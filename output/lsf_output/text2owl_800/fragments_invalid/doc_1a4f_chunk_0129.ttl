@@ -1,0 +1,46 @@
+hpc:Unixuseraccount a owl:Class .
+hpc:Windowsuseraccount a owl:Class .
+hpc:Mappeduseraccount a owl:Class .
+
+hpc:hasDomainName owl:FunctionalProperty ;
+    rdfs:domain hpc:Windowsuseraccount ;
+    rdfs:range xsd:string .
+
+hpc:hasUNIXUserAccount owl:ObjectProperty ;
+    rdfs:domain hpc:Mappeduseraccount ;
+    rdfs:range hpc:Unixuseraccount .
+
+hpc:Externalhostgroup a owl:Class .
+hpc:Externalusergroup a owl:Class .
+hpc:Mixedhostgroup a owl:Class .
+
+hpc:belongsToGroup owl:ObjectProperty ;
+    rdfs:domain hpc:Hostoruser .
+    rdfs:range hpc:Group .
+
+hpc:Group a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf hpc:Externalhostgroup ;
+                       rdfs:subClassOf hpc:Externalusergroup ;
+                       rdfs:subClassOf hpc:Mixedhostgroup ] .
+
+hpc:Egroupexecutable a owl:Class .
+hpc:updateInterval xsd:duration .
+
+hpc:retrievesGroupMembershipFor owl:ObjectProperty ;
+    rdfs:domain hpc:Egroupexecutable ;
+    rdfs:range rdfs:Class .
+
+hpc:retrievesHostGroups rdfs:Class ;
+    rdfs:subClassOf hpc:Retrievesgroupmembershipfor .
+
+hpc:retrievesUserGroups rdfs:Class ;
+    rdfs:subClassOf hpc:Retrievesgroupmembershipfor .
+
+hpc:retrievesMixedGroups rdfs:Class ;
+    rdfs:subClassOf hpc:Retrievesgroupmembershipfor .
+
+hpc:requiresClusterReconfiguration rdfs:Class .
+hpc:requiresValidUserAccounts rdfs:Class .
+hpc:requiresCorrectPermissions rdfs:Class .
+hpc:supportsStaticHosts rdfs:Class .

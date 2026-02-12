@@ -1,0 +1,45 @@
+hpc:Ego a owl:Class .
+
+hpc:LsfTop hpc:hassubdirectory hpc:LSF_1_0_0 .
+hpc:Lsf100 hpc:hasname "10.1.0" .
+hpc:Lsf100 hpc:hasdescription "Binaries and other machine dependent files" .
+hpc:Lsf100 hpc:iswritable false .
+
+hpc:LsfTop hpc:hassubdirectory hpc:conf .
+hpc:Conf hpc:hasname "conf" .
+hpc:Conf hpc:hasdescription "LSF 10.1.0 configuration files" .
+hpc:Conf hpc:iswritable "LSF administrator, management host, and management candidate hosts" .
+
+hpc:LsfTop hpc:hassubdirectory hpc:log .
+hpc:Log hpc:hasname "log" .
+hpc:Log hpc:hasdescription "LSF 10.1.0 log files" .
+hpc:Log hpc:iswritable "all hosts in the cluster" .
+
+hpc:LsfTop hpc:hassubdirectory hpc:work .
+hpc:Work hpc:hasname "work" .
+hpc:Work hpc:hasdescription "LSF 10.1.0 working directory" .
+hpc:Work hpc:iswritable "management host and management candidate hosts, and is accessible to server hosts" .
+
+hpc:Ego hpc:hassubdirectory hpc:LSF_BINDIR .
+hpc:LsfBindir hpc:hasname "LSF_BINDIR" .
+hpc:LsfBindir hpc:hasdescription "EGO binaries and other machine dependent files" .
+hpc:LsfBindir hpc:iswritable false .
+
+hpc:Ego hpc:hassubdirectory hpc:LSF_CONFDIR .
+hpc:LsfConfdir hpc:hasname "LSF_CONFDIR" .
+hpc:LsfConfdir hpc:hasdescription "EGO services configuration and log files" .
+hpc:LsfConfdir rdfs:subClassOf hpc:EgoConfdir .
+
+hpc:Ego hpc:hassubdirectory hpc:LSF_EGO_ENVDIR .
+hpc:LsfEgoEnvdir hpc:hasname "LSF_EGO_ENVDIR" .
+hpc:LsfEgoEnvdir hpc:hasdescription "EGO kernel configuration, log files and working directory, including conf/log/work" .
+hpc:LsfEgoEnvdir hpc:iswritable true .
+
+hpc:Ego hpc:hassubdirectory hpc:EGO_WORKDIR .
+hpc:EgoWorkdir hpc:hasname "EGO_WORKDIR" .
+hpc:EgoWorkdir hpc:hasdescription "EGO working directory" .
+hpc:EgoWorkdir hpc:iswritable true .
+
+hpc:EgoEsrvdir hpc:hasname "EGO_ESRVDIR" .
+hpc:EgoEsrvdir hpc:hasdescription "EGO services configuration and log files" .
+hpc:EGO_ES

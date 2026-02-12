@@ -1,0 +1,35 @@
+hpc:Hostpartition a owl:Class .
+hpc:hasname a owl:DatatypeProperty .
+hpc:Hasname rdfs:domain hpc:Hostpartition ;
+    rdfs:range xsd:string .
+
+hpc:includeshosts a owl:ObjectProperty .
+hpc:Includeshosts rdfs:domain hpc:Hostpartition ;
+    rdfs:range rdf:List .
+
+hpc:Host a owl:Class .
+hpc:belongstopartition a owl:DatatypeProperty .
+hpc:Belongstopartition rdfs:domain hpc:Host ;
+    rdfs:range hpc:Hostpartition .
+
+hpc:Hostgroup a owl:Class .
+hpc:isnotempty a owl:DatatypeProperty .
+hpc:Isnotempty rdfs:domain hpc:Hostgroup ;
+    rdfs:range xsd:boolean .
+
+hpc:Sharedresource a owl:Class .
+hpc:issharedbypartitions a owl:ObjectProperty .
+hpc:Issharedbypartitions rdfs:domain hpc:Sharedresource ;
+    rdfs:range rdf:List .
+
+hpc:Queue a owl:Class .
+hpc:useshostpartitions a owl:ObjectProperty .
+hpc:Useshostpartitions rdfs:domain hpc:Queue ;
+    rdfs:range rdf:List .
+
+hpc:queuepriority a owl:DatatypeProperty .
+hpc:Queuepriority rdfs:domain hpc:Queue .
+
+hpc:hostpartitionorder a owl:ObjectProperty .
+hpc:Hostpartitionorder rdfs:domain hdfs:LSB ;
+    rdfs:range rdf:List .

@@ -1,0 +1,12 @@
+hpc:Slurmdaemon a owl:Class .
+hpc:Slurmcommand a owl:Class .
+hpc:Haserrormessage rdfs:domain hpc:Slurmcommand ; rdfs:range xsd:string .
+hpc:Isoperative rdfs:domain hpc:Slurmdaemon ; rdfs:range xsd:boolean .
+hpc:Isstarting rdfs:domain hpc:Slurmdaemon ; rdfs:range xsd:boolean .
+hpc:Hasnode rdfs:domain hpc:Slurmdaemon ; rdfs:range hpc:Node .
+hpc:Hasstateinformation rdfs:domain hpc:Slurmdaemon ; rdfs:range xsd:boolean .
+hpc:Clearstate rdfs:domain hpc:Slurmdaemon ; rdfs:range xsd:boolean .
+hpc:Job a owl:Class .
+hpc:Hasjobid rdfs:domain hpc:Job ; rdfs:range xsd:integer .
+hpc:Hasuserid rdfs:domain hpc:Job ; rdfs:range xsd:integer .
+hpc:Hasusername rdfs:domain hpc:

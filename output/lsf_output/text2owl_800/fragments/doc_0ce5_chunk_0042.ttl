@@ -1,0 +1,29 @@
+hpc:Lsfadmin a owl:Class .
+hpc:Queueadmin a owl:Class .
+
+hpc:jobPositionControlByAdmin a owl:ObjectProperty .
+hpc:JobPositionControlByAdmin rdfs:domain hpc:Lsfadmin ;
+                                    rdfs:range xsd:boolean .
+
+hpc:maxSbdFail a owl:DatatypeProperty .
+hpc:MaxSbdFail rdfs:domain hpc:Lsfadmin ;
+                    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsbMaxProbeSbd a owl:DatatypeProperty .
+hpc:LsbMaxProbeSbd rdfs:domain hpc:Lsfadmin ;
+                        rdfs:range xsd:nonNegativeInteger .
+
+hpc:condensePendingReasons a owl:ObjectProperty .
+hpc:CondensePendingReasons rdfs:domain hpc:Lsfadmin ;
+                               rdfs:range xsd:boolean .
+
+hpc:badminDiagnose a owl:ObjectProperty .
+hpc:BadminDiagnose rdfs:domain hpc:Lsfadmin ;
+                       rdfs:range xsd:string .
+
+hpc:userPermissionDenied a owl:DatatypeProperty .
+hpc:UserPermissionDenied rdfs:domain hpc:BadminDiagnose ;
+                             rdfs:range xsd:string .
+
+hpc:eventFilePerformance a owl:ObjectProperty .
+hpc:EventFilePerformance rdfs:domain hpc:Lsfadmin .

@@ -1,0 +1,30 @@
+hpc:Bltasks a owl:Class .
+hpc:Hashostname hpc:Bltasks rdfs:domain hpc:Bltasks ;
+    rdfs:range xsd:string .
+hpc:Hasterminalname hpc:Bltasks rdfs:domain hpc:Bltasks ;
+    rdfs:range xsd:string .
+hpc:Hasusername hpc:Bltasks rdfs:domain hpc:Bltasks ;
+    rdfs:range xsd:string .
+hpc:Hastaskid hpc:Bltasks rdfs:domain hpc:Bltasks ;
+    rdfs:range xsd:string .
+hpc:ispreempted hpc:bltask a owl:ObjectProperty ;
+    rdfs:domain hpc:Bltasks ;
+    rdfs:range hpc:Bltask .
+hpc:isrunning hpc:bltask a owl:ObjectProperty ;
+    rdfs:domain hpc:Bltasks ;
+    rdfs:range hpc:Bltask .
+hpc:iswaiting hpc:bltask a owl:ObjectProperty ;
+    rdfs:domain hpc:Bltasks ;
+    rdfs:range hpc:Bltask .
+hpc:belongstoproject hpc:bltask a owl:ObjectProperty ;
+    rdfs:domain hpc:Bltasks ;
+    rdfs:range hpc:Project .
+hpc:Project a owl:Class .
+hpc:haslongformat hpc:bltask a owl:ObjectProperty ;
+    rdfs:domain hpc:Bltasks ;
+    rdfs:range xsd:boolean .
+hpc:Haslsfproject hpc:Bltasks rdfs:domain hpc:Bltasks ;
+    rdfs:range xsd:string .
+hpc:hasshortformat hpc:bltask a owl:ObjectProperty ;
+    rdfs:domain hpc:Bltasks ;
+    rdfs:range xsd:boolean .

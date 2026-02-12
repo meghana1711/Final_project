@@ -1,0 +1,19 @@
+hpc:LsfUserDomain a owl:Class .
+hpc:LsfUserDomSingleDomain a owl:Class .
+
+hpc:hasdomainname a owl:DatatypeProperty .
+
+hpc:LsfUserDomSingleDomain rdfs:subClassOf hpc:LsfUserDomain .
+hpc:LsfUserDomSingleDomain rdfs:domain hpc:LsfUserDomain .
+hpc:LsfUserDomSingleDomain rdfs:range xsd:string .
+hpc:LsfUserDomSingleDomain hpc:hasdomainname rdf:type owl:FunctionalProperty .
+
+hpc:LsfUserDomMultiDomain rdfs:subClassOf hpc:LsfUserDomain .
+hpc:LsfUserDomMultiDomain rdfs:domain hpc:LsfUserDomain .
+hpc:LsfUserDomMultiDomain rdfs:range xsd:string .
+hpc:LsfUserDomMultiDomain hpc:hasdomainname rdf:type owl:FunctionalProperty .
+
+hpc:LsfUserDomDefault rdfs:subClassOf hpc:LsfUserDomain .
+hpc:LsfUserDomDefault rdfs:domain hpc:LsfUserDomain .
+hpc:LsfUserDomDefault rdfs:range xsd:string .
+hpc:LsfUserDomDefault hpc:hasdomainname rdf:type owl:FunctionalProperty .

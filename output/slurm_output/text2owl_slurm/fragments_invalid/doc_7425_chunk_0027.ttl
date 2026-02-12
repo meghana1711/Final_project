@@ -1,0 +1,30 @@
+hpc:Step a owl:Class.
+hpc:Step rdfs:subClassOf rdf:Resource; .
+
+hpc:id a owl:DatatypeProperty;
+    rdfs:domain hpc:Step;
+    rdfs:range xsd:integer. .
+
+hpc:requestedfrequency a owl:DatatypeProperty;
+    rdfs:domain hpc:Step;
+    rdfs:range xsd:integer. .
+
+hpc:Statistics a owl:Class;
+    rdfs:subClassOf hpc:Step. .
+
+hpc:Cpu a owl:Class;
+    rdfs:subClassOf hpc:Statistics. .
+
+hpc:cpurange a owl:DatatypeProperty;
+    rdfs:domain hpc:Cpu;
+    rdfs:range xsd:integer. .
+
+hpc:Tres a owl:Class;
+    rdfs:subClassOf hpc:Step. .
+
+hpc:requested a owl:DatatypeProperty;
+    rdfs:domain hpc:Tres;
+    rdfs:range xsd:string. .
+
+hpc:consumed a owl:DatatypeProperty;
+    rdfs:domain hpc:T

@@ -1,0 +1,50 @@
+hpc:Demovendor a owl:Class .
+hpc:Start hpc:Demovendor rdfs:domain hpc:Demovendor ;
+    rdfs:range xsd:date .
+hpc:Sign hpc:Demovendor rdfs:domain hpc:Demovendor ;
+    rdfs:range xsd:string .
+hpc:VendorString hpc:Demovendor rdfs:domain hpc:Demovendor ;
+    rdfs:range xsd:string .
+hpc:Supercede hpc:Demovendor rdfs:domain hpc:Demovendor ;
+    rdfs:range xsd:boolean .
+hpc:vendorInfo hpc:demovendor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Demovendor ;
+    rdfs:range xsd:string .
+hpc:issued hpc:demovendor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Demovendor ;
+    rdfs:range xsd:date .
+hpc:notice hpc:demovendor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Demovendor ;
+    rdfs:range xsd:string .
+hpc:sn hpc:demovendor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Demovendor ;
+    rdfs:range xsd:string .
+hpc:start1 hpc:demovendor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Demovendor ;
+    rdfs:range xsd:date .
+hpc:sign1 hpc:demovendor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Demovendor ;
+    rdfs:range xsd:string .
+hpc:Server a owl:Class .
+hpc:ThisHost hpc:Server rdfs:domain hpc:Server ;
+    rdfs:range xsd:string .
+hpc:Port hpc:Server rdfs:domain hpc:Server ;
+    rdfs:range xsd:integer .
+hpc:Vendor hpc:Server rdfs:domain hpc:Server ;
+    rdfs:range hpc:Demovendor .
+hpc:Feature a owl:Class .
+hpc:Name hpc:Feature rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+hpc:Version hpc:Feature rdfs:domain hpc:Feature ;
+    rdfs:range xsd:float .
+hpc:Permanent hpc:Feature rdfs:domain hpc:Feature ;
+    rdfs:range xsd:boolean .
+hpc:Duration hpc:Feature rdfs:domain hpc:Feature ;
+    rdfs:range xsd:integer .
+hpc:Reserve hpc:Feature rdfs:domain hpc:Feature ;
+    rdfs:range xsd:boolean .
+hpc:Inuse hpc:Feature rdfs:domain hpc:Feature ;
+    rdfs:range xsd:boolean .
+hpc:prop1 hpc:feature a owl:ObjectProperty .
+hpc:prop2 hpc:feature a owl:ObjectProperty .
+``

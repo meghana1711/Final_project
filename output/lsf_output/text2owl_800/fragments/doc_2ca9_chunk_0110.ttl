@@ -1,0 +1,60 @@
+hpc:Gpuenhancement a owl:Class ;
+    rdfs:subClassOf hpc:Enhancement .
+
+hpc:Gpuautoconfiguration a owl:Class ;
+    rdfs:subClassOf hpc:Gpuenhancement .
+
+hpc:Resourceconnectorenhancement a owl:Class ;
+    rdfs:subClassOf hpc:Enhancement .
+
+hpc:Resourcemanagementenhancement a owl:Class ;
+    rdfs:subClassOf hpc:Enhancement .
+
+hpc:Jobschedulingexecutionenhancement a owl:Class ;
+    rdfs:subClassOf hpc:Enhancement .
+
+hpc:Commandoutputformattingenhancement a owl:Class ;
+    rdfs:subClassOf hpc:Enhancement .
+
+hpc:Otherchange a owl:Class ;
+    rdfs:subClassOf hpc:Enhancement .
+
+# Object Properties
+hpc:hasenhancement a owl:ObjectProperty ;
+    rdfs:domain hpc:Enhancement ;
+    rdfs:range hpc:Enhancement .
+
+hpc:hasautoconfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpuenhancement ;
+    rdfs:range hpc:Gpuautoconfiguration .
+
+hpc:requiresresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Enhancement ;
+    rdfs:range hpc:Resource .
+
+# Datatype Properties
+hpc:hasconfiguration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpuautoconfiguration ;
+    rdfs:range xsd:string .
+
+hpc:hasmaxgpu a owl:DatatypeProperty ;
+    rdfs:domain hpc:Enhancement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Classes for specific resources
+hpc:Gpuresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+# Commands
+hpc:Lsload a owl:Class ;
+    rdfs:subClassOf hpc:Command .
+
+hpc:Lshosts a owl:Class ;
+    rdfs:subClassOf hpc:Command .
+
+# References
+hpc:LSF_GPU_AUTOCONFIG rdf:Datatype rdfs:Resource ;
+    rdfs:label "LSF_GPU_AUTOCONFIG" .
+
+hpc:LSF_HOST_MAX_GPU rdf:Datatype rdfs:Resource ;
+    rdfs:label "LSF_HOST_MAX_GPU" .

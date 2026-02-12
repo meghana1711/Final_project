@@ -1,0 +1,49 @@
+hpc:Lsfclusteradmin a owl:Class .
+hpc:Lsfclusteradmin rdfs:subClassOf owl:Thing .
+
+hpc:canSubmitJob an owl:ObjectProperty .
+hpc:Cansubmitjob rdfs:domain hpc:Lsfclusteradmin ;
+                   rdfs:range rdf:Resource .
+
+hpc:hasloginname a owl:DatatypeProperty ;
+                  rdfs:domain hpc:Lsfclusteradmin ;
+                  rdfs:range xsd:string .
+
+hpc:isclusteradminfor a owl:ObjectProperty ;
+                        rdfs:domain rdf:Resource ;
+                        rdfs:range hpc:Lsfclusteradmin .
+
+hpc:isIncludedInUserGroup an owl:ObjectProperty .
+hpc:Isincludedinusergroup rdfs:domain rdf:Resource ;
+                             rdfs:range rdf:Resource .
+
+hpc:Isusergroup a owl:Class .
+hpc:Isusergroup rdfs:subClassOf owl:Thing .
+
+hpc:Iswindowsuser a owl:Class .
+hpc:Iswindowsuser rdfs:subClassOf hpc:User .
+
+hpc:Iswindowsusergroup a owl:Class .
+hpc:Iswindowsusergroup rdfs:subClassOf hpc:Usergroup .
+
+hpc:isclusteradmin a owl:ObjectProperty ;
+                     rdfs:domain rdf:Resource ;
+                     rdfs:range hpc:Lsfclusteradmin .
+
+hpc:isExcludedFromUserGroup an owl:ObjectProperty .
+hpc:Isexcludedfromusergroup rdfs:domain rdf:Resource ;
+                                 rdfs:range rdf:Resource .
+
+hpc:Allusers a owl:Class .
+hpc:Allusers rdfs:subClassOf hpc:User .
+
+hpc:Allusergroups a owl:Class .
+hpc:Allusergroups rdfs:subClassOf hpc:Usergroup .
+
+hpc:hasdomainname a owl:DatatypeProperty ;
+                    rdfs:domain hpc:Windowsuser ;
+                    rdfs:range xsd:string .
+
+hpc:hasdomainname a owl:DatatypeProperty ;
+                    rdfs:domain hpc:Windowsusergroup ;
+                    rdfs:range xsd:string .

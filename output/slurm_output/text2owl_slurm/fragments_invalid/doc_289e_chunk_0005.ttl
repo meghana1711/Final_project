@@ -1,0 +1,13 @@
+hpc:QOS
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Quality of Service definition." .
+
+hpc:EnforceUsageThreshold
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "If set, and the QOS also has a UsageThreshold, any jobs submitted with this QOS that fall below the UsageThreshold will be held until their Fairshare Usage goes above the Threshold." .
+
+hpc:NoDecay
+    a owl:Object

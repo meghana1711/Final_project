@@ -1,0 +1,51 @@
+hpc:Lsfloggingqueue a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Queue for messages to be logged in the log files." .
+
+hpc:lsflogqueuesize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfloggingqueue ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Maximum size of the logging queue." .
+
+hpc:lsfdiscardlog a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfloggingqueue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Behavior of the logging thread if the logging queue is full." .
+
+hpc:LoggingThreadDiscardBehavior a owl:Enum ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Behavior of the logging thread when the logging queue is full." ;
+    owl:hasValue "Y" ;
+    owl:hasValue "N" .
+
+hpc:loggingqueuefullaction a owl:ObjectProperty ;
+    rdfs:domain hpc:Loggingthreaddiscardbehavior ;
+    rdfs:range hpc:Loggingqueue ;
+    rdfs:comment "The action to take when the logging queue is full." .
+
+hpc:Loggingqueuediscardedmessages a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Messages discarded from the logging queue." .
+
+hpc:loggingqueuediscardedmessagesummary a owl:ObjectProperty ;
+    rdfs:domain hpc:Loggingqueuediscardedmessages ;
+    rdfs:range hpc:Loggingqueue ;
+    rdfs:comment "The log file where the summary of discarded messages is logged." .
+
+hpc:Restartcommand a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Command to restart a stopped checkpointable job." .
+
+hpc:Resourcerequirement a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Resources required for a job." .
+
+hpc:reserveresources a owl:ObjectProperty ;
+    rdfs:domain hpc:Restartcommand ;
+    rdfs:range hpc:Resourcerequirement ;
+    rdfs:comment "Reserve resources when restarting a job." .
+
+hpc:resourcerequirementstring a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:string ;
+    rdfs:comment "String representing the resource requirements." .

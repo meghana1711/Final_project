@@ -1,0 +1,27 @@
+hpc:Job a owl:Class .
+hpc:apsvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+hpc:submissiontime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:queuepriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue .
+hpc:queueorder a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Job .
+hpc:Apsqueue a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+hpc:Calculatedapsvalue a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+hpc:Resizablejob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+hpc:Finishedjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+hpc:Apsqueue hpc:Apsvalue rdfs:range minus-sign .
+hpc:Apsqueue hpc:Submissiontime rdfs:range xsd:dateTime .
+hpc:Apsqueue hpc:Queuepriority rdfs:range xsd:decimal .
+hpc:Apsqueue hpc:Queueorder rdfs:domain hpc:Apsqueue ;
+    rdfs:range hpc:Job .
+hpc:Calculatedapsvalue hpc:Apsvalue rdfs:range xsd:decimal .
+hpc:Resizablejob hpc:Apsvalue rdfs:range xsd:decimal .
+hpc:Finishedjob hpc:Submissiontime rdfs:range xsd:dateTime .

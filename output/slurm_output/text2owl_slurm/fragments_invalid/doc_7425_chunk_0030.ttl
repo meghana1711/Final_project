@@ -1,0 +1,25 @@
+hpc:Path a owl:Class;
+    rdfs:subClassOf hpc:Resource.
+
+hpc:Job a owl:Class;
+    rdfs:subClassOf hpc:Resource;
+    rdfs:subClassOf hpc:Identifiable;
+    rdfs:subClassOf hpc:Namedthing;
+    rdfs:domain hpc:Path;
+    rdfs:range hpc:Jobid .
+
+hpc:Qos a owl:Class;
+    rdfs:subClassOf hpc:Resource;
+    rdfs:subClassOf hpc:Identifiable;
+    rdfs:subClassOf hpc:Namedthing;
+    rdfs:domain hpc:Path;
+    rdfs:range hpc:Qosname .
+
+hpc:Tres a owl:Class;
+    rdfs:subClassOf hpc:Resource;
+    rdfs:subClassOf hpc:Identifiable;
+    rdfs:subClassOf hpc:Namedthing;
+    rdfs:domain hpc:Path;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:User a owl:Class

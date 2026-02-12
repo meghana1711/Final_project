@@ -1,0 +1,27 @@
+hpc:Globalfairshare a owl:Class .
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalfairshare ;
+    rdfs:range xsd:string .
+hpc:participants a owl:ObjectProperty ;
+    rdfs:domain hpc:Globalfairshare ;
+    rdfs:range xsd:string .
+hpc:syncMode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalfairshare ;
+    rdfs:range xsd:string .
+
+hpc:AllModeGlobalFairshare a hpc:GlobalFairshare ;
+    hpc:SYNC_MODE "all" .
+
+hpc:PartialModeGlobalFairshare a hpc:GlobalFairshare ;
+    hpc:SYNC_MODE "partial" .
+
+hpc:Queue a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:participant a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Cluster .
+
+hpc:Lsbusers a owl:Class .
+hpc:fsPolicy a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbusers ;
+    rdfs:range hpc:Globalfairshare .

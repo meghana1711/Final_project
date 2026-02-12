@@ -1,0 +1,20 @@
+hpc:Loadindex a owl:Class .
+hpc:Dynamicloadindex a owl:Class .
+hpc:Fixedupdateinterval rdfs:domain hpc:Dynamicloadindex ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Externalloadindex a owl:Class .
+hpc:Elim rdfs:domain hpc:Externalloadindex ;
+    rdfs:range rdf:Resource .
+
+hpc:Staticresource a owl:Class .
+hpc:Maxram rdfs:domain hpc:Staticresource ;
+    rdfs:range xsd:nonNegativeDecimal .
+hpc:Numberofprocessors rdfs:domain hpc:Staticresource ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Loadthreshold a owl:Class .
+hpc:Loadsched rdfs:subClassOf hpc:Loadthreshold ;
+    rdfs:domain hpc:Loadsched rdfs:range xsd:nonNegativeDecimal .
+hpc:Loadstop rdfs:subClassOf hpc:Loadthreshold ;
+    rdfs:domain hpc:Loadstop rdfs:range xsd:nonNegativeDecimal .

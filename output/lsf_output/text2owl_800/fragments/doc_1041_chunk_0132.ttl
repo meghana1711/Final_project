@@ -1,0 +1,59 @@
+hpc:Action a owl:Class .
+hpc:Action rdfs:subClassOf owl:Class .
+
+hpc:addmember a owl:ObjectProperty .
+hpc:Addmember rdfs:domain hpc:Action ;
+                          rdfs:range hpc:Objecttype .
+
+hpc:rmmember a owl:ObjectProperty .
+hpc:Rmmember rdfs:domain hpc:Action ;
+                          rdfs:range hpc:Objecttype .
+
+hpc:update a owl:ObjectProperty .
+hpc:Update rdfs:domain hpc:Action .
+
+hpc:create a owl:ObjectProperty .
+hpc:Create rdfs:domain hpc:Action .
+
+hpc:add a owl:ObjectProperty .
+hpc:Add rdfs:domain hpc:Action ;
+              rdfs:range hpc:Objecttype .
+
+hpc:delete a owl:ObjectProperty .
+hpc:Delete rdfs:domain hpc:Action ;
+              rdfs:range hpc:Objecttype .
+
+hpc:Configfile a owl:Class .
+hpc:Configfile rdfs:subClassOf owl:Class .
+
+hpc:lsbresources a owl:NamedIndividual ;
+                rdf:value "lsb.resources" .
+hpc:lsbreques a owl:NamedIndividual ;
+              rdf:value "lsb.queues" .
+hpc:lsbusers a owl:NamedIndividual ;
+             rdf:value "lsb.users" .
+hpc:lsbhosts a owl:NamedIndividual ;
+             rdf:value "lsb.hosts" .
+hpc:lsfclusterclustername a owl:NamedIndividual ;
+                      rdf:value "lsf.cluster.clustername" .
+hpc:lsbserviceclasses a owl:NamedIndividual ;
+                     rdf:value "lsb.serviceclasses" .
+
+hpc:Historyfile a owl:Class .
+hpc:Historyfile rdfs:subClassOf owl:Class .
+
+hpc:historyfile a owl:DatatypeProperty .
+hpc:Historyfile rdfs:domain hpc:Historyfile ;
+                   rdfs:range xsd:string .
+
+hpc:disable a owl:ObjectProperty .
+hpc:Disable rdfs:domain hpc:Action .
+
+hpc:usage a owl:ObjectProperty .
+hpc:Usage rdfs:domain hpc:Action .
+
+hpc:help a owl:ObjectProperty .
+hpc:Help rdfs:domain hpc:Action .
+
+hpc:Objecttype a owl:Class .
+hpc:Objecttype rdfs:subClassOf owl:Class .

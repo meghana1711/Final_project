@@ -1,0 +1,50 @@
+hpc:Root a owl:Class .
+hpc:Projectgroup a owl:Class .
+hpc:Project a owl:Class .
+hpc:Groupaparticular a owl:Class .
+hpc:Groupageneric a owl:Class .
+hpc:Projectothers a owl:Class .
+hpc:haschild a owl:ObjectProperty .
+hpc:hasproject a owl:ObjectProperty .
+hpc:hasdefaultproject a owl:ObjectProperty .
+hpc:hasdefaultshare a owl:DatatypeProperty .
+hpc:projectgrouppath a owl:ObjectProperty .
+hpc:lsflicschedstrictprojectname a owl:DatatypeProperty .
+hpc:remotelmstatprotocol a owl:DatatypeProperty .
+
+hpc:Root rdfs:subClassOf owl:Class .
+hpc:Projectgroup rdfs:subClassOf hpc:Root .
+hpc:Project rdfs:subClassOf hpc:Projectgroup .
+hpc:Groupaparticular rdfs:subClassOf hpc:Project .
+hpc:Groupageneric rdfs:subClassOf hpc:Project .
+hpc:Projectothers rdfs:subClassOf hpc:Project .
+
+hpc:Haschild rdfs:domain hpc:Root ;
+                      rdfs:range hpc:Projectgroup .
+hpc:Hasproject rdfs:domain hpc:Projectgroup ;
+                      rdfs:range hpc:Project .
+hpc:Hasdefaultproject rdfs:domain hpc:Projectgroup ;
+                      rdfs:range hpc:Project .
+hpc:Projectgrouppath rdfs:domain hpc:Projectgroup .
+hpc:Lsflicschedstrictprojectname rdfs:domain hpc:Projectgroup .
+hpc:Remotelmstatprotocol rdfs:domain hpc:Projectgroup .
+
+hpc:Groupaparticular rdfs:subClassOf hpc:Project ;
+                      rdfs:subClassOf [ a owl:Restriction ;
+                                        rdfs:onProperty hpc:hasProject ;
+                                        rdfs:allValuesFrom hpc:Proj1 ] .
+hpc:Groupageneric rdfs:subClassOf hpc:Project ;
+                      rdfs:subClassOf [ a owl:Restriction ;
+                                        rdfs:onProperty hpc:hasProject ;
+                                        rdfs:someValuesFrom hpc:Proj1 ] .
+hpc:Projectothers rdfs:subClassOf hpc:Project ;
+                      rdfs:subClassOf [ a owl:Restriction ;
+                                        rdfs:onProperty hpc:hasProject ;
+                                        rdfs:onClass hpc:Others ] .
+
+hpc:Proj1 a owl:NamedIndividual .
+hpc:Others a owl:Class .
+hpc:Proj1 rdf:type hpc:Proj1 .
+hpc:Others rdf:type hpc:Others .
+hpc:Others rdfs:subClassOf hpc:Project .
+hpc:Others rdfs:default [ a xsd:decimal ; xsd:value "0" ] .

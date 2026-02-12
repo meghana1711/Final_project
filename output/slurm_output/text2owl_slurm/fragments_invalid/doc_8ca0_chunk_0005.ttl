@@ -1,0 +1,14 @@
+hpc:idleonnodesuspend a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range hpc:Node .
+
+hpc:noderegmempercent a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:decimal .
+
+hpc:powersaveinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Powersavethread ;
+    rdfs:range xsd:duration .
+
+hpc:powersavemininterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:P

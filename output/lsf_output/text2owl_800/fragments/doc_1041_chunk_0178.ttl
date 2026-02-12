@@ -1,0 +1,24 @@
+hpc:Globalfairsharepolicy a owl:Class .
+
+# FairShareLoadSynchronizationInterval Datatype Property
+hpc:fairshareloadsynchronizationinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Globalfairsharepolicy ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# SynchronizationMode Object Property
+hpc:synchronizationmode a owl:ObjectProperty ;
+    rdfs:domain hpc:Globalfairsharepolicy .
+
+# Participants Object Property
+hpc:participants a owl:ObjectProperty ;
+    rdfs:domain hpc:Globalfairsharepolicy .
+
+# GlobalPolicy Class
+hpc:Globalpolicy a owl:Class ;
+    rdfs:subClassOf hpc:Globalfairsharepolicy .
+
+# Low Global Policy
+hpc:low a hpc:GlobalPolicy .
+
+# Admin Global Policy
+hpc:admin a hpc:GlobalPolicy .

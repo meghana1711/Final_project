@@ -1,0 +1,21 @@
+hpc:Host a owl:Class .
+hpc:lockid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+hpc:Comment a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+hpc:eventtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Comment ;
+    rdfs:range xsd:dateTime .
+hpc:Admin a owl:Class .
+hpc:hasLockID obj:LockID .
+hpc:hasComment obj:Comment .
+hpc:close an owl:ObjectProperty ;
+    rdfs:domain hpc:Admin ;
+    rdfs:range hpc:Host .
+hpc:open an owl:ObjectProperty ;
+    rdfs:domain hpc:Admin ;
+    rdfs:range hpc:Host .
+hpc:removeLockID an owl:ObjectProperty ;
+    rdfs:domain hpc:Admin ;
+    rdfs:range hpc:Host .

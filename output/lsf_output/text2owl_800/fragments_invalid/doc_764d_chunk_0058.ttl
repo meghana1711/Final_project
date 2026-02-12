@@ -1,0 +1,69 @@
+hpc:memorylimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Mem_limit rdfs:subPropertyOf hpc:MemoryLimit .
+
+# Rerunnable attribute
+hpc:rerunnable a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:Rerunnable_attribute rdfs:subPropertyOf hpc:Rerunnable .
+
+# Run limit
+hpc:runlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:duration .
+
+hpc:Hour rdfs:subClassOf xsd:duration .
+hpc:Minute rdfs:subClassOf xsd:duration .
+hpc:Host_name rdfs:subPropertyOf hpc:RunLimit .
+hpc:Host_model rdfs:subPropertyOf hpc:RunLimit .
+
+# Swap limit
+hpc:swaplimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+# Standard output/error
+hpc:standardoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Outputfile .
+
+hpc:Out_file rdfs:subPropertyOf hpc:StandardOutput .
+hpc:Out_file_name rdfs:subPropertyOf hpc:Out_file .
+
+hpc:standarderror a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Errorfile .
+
+hpc:Err_file rdfs:subPropertyOf hpc:StandardError .
+hpc:Err_file_name rdfs:subPropertyOf hpc:Err_file .
+
+# Remote queue workload job-forwarding scheduler
+hpc:Remotequeueworkloadscheduler a owl:Class .
+
+# Enhanced scheduler decisions
+hpc:Enhancedschedulerdecisions a owl:Class ;
+    rdfs:subClassOf hpc:Remotequeueworkloadscheduler .
+
+hpc:remotequeueattributes a owl:ObjectProperty ;
+    rdfs:domain hpc:Enhancedschedulerdecisions ;
+    rdfs:range hpc:Queueattribute .
+
+hpc:Queuepriority rdfs:subClassOf hpc:Queueattribute .
+hpc:Numberofpreemptablejobs rdfs:subClassOf hpc:Queueattribute .
+hpc:Queueworkload rdfs:subClassOf hpc:Queueattribute .
+
+# MC_PLUGIN_SCHEDULE_ENHANCE
+hpc:mcPluginScheduleEnhance a owl:ObjectProperty ;
+    rdfs:domain hpc:Enhancedschedulerdecisions ;
+    rdfs:range xsd:boolean .
+
+# Remote resource availability
+hpc:mcPluginRemoteResource a owl:ObjectProperty ;
+    rdfs:domain hpc:Enhancedschedulerdecisions ;
+    rdfs:range xsd:string .
+
+hpc:Type

@@ -1,0 +1,41 @@
+hpc:Job a owl:Class .
+hpc:Gpu a owl:Class .
+hpc:Gpurequirement a owl:Class .
+hpc:Hasgpurequirement hpc:objectproperty .
+hpc:GPUModel owl:DatatypeProperty .
+hpc:computeCapability owl:DatatypeProperty .
+hpc:totalMemory owl:DatatypeProperty .
+hpc:ngpus_physical owl:DatatypeProperty .
+hpc:gmodel owl:DatatypeProperty .
+hpc:Hasdirectnvlink hpc:objectproperty .
+hpc:Hasconcurrentjob hpc:objectproperty .
+hpc:currentGPUMode owl:DatatypeProperty .
+hpc:monitoringGPUJobs owl:DatatypeProperty .
+
+hpc:Job a rdfs:subClassOf [ a owl:Class ;
+                              rdfs:subClassOf hpc:Resource ] .
+hpc:Gpu a rdfs:subClassOf [ a owl:Class ;
+                              rdfs:subClassOf hpc:Resource ] .
+hpc:Gpurequirement a rdfs:subClassOf [ a owl:Class ;
+                                         rdfs:subClassOf hpc:Requirement ] .
+
+hpc:Hasgpurequirement rdfs:domain hpc:Job .
+hpc:Hasgpurequirement rdfs:range hpc:Gpurequirement .
+hpc:Gpumodel rdfs:domain hpc:Gpu .
+hpc:Gpumodel rdfs:range xsd:string .
+hpc:Computecapability rdfs:domain hpc:Gpu .
+hpc:Computecapability rdfs:range xsd:decimal .
+hpc:Totalmemory rdfs:domain hpc:Gpu .
+hpc:Totalmemory rdfs:range xsd:decimal .
+hpc:NgpusPhysical rdfs:domain hpc:Gpu .
+hpc:NgpusPhysical rdfs:range xsd:nonNegativeInteger .
+hpc:Gmodel rdfs:domain hpc:Gpu .
+hpc:Gmodel rdfs:range xsd:string .
+hpc:Hasdirectnvlink rdfs:domain hpc:Gpu .
+hpc:Hasdirectnvlink rdfs:range hpc:Gpu .
+hpc:Hasconcurrentjob rdfs:domain hpc:Gpu .
+hpc:Hasconcurrentjob rdfs:range xsd:nonNegativeInteger .
+hpc:Currentgpumode rdfs:domain hpc:Gpu .
+hpc:Currentgpumode rdfs:range xsd:string .
+hpc:Monitoringgpujobs rdfs:domain hpc:Gpu .
+hpc:Monitoringgpujobs rdfs:range xsd:boolean .

@@ -1,0 +1,43 @@
+hpc:Jobsnapshot a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a snapshot of the scheduler job bucket information." .
+
+hpc:hasjobreq a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsnapshot ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The required job requirements for the snapshot." .
+
+hpc:hasfilename a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsnapshot ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The file name where the snapshot is saved." .
+
+hpc:isunixonly a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsnapshot ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the snapshot is only available on UNIX systems." .
+
+hpc:hasformat a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsnapshot ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The format of the snapshot file (xml or json)." .
+
+hpc:isoverwritten a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsnapshot ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the snapshot file is overwritten with the current information if it already exists." .
+
+hpc:isdefaultname a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsnapshot ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The default name for the snapshot file." .
+
+hpc:hasowner a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsnapshot ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The owner of the log file." .
+
+hpc:haspermissions a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsnapshot ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The permissions of the log file." .

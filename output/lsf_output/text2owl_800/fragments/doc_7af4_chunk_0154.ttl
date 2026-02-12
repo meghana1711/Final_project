@@ -1,0 +1,41 @@
+hpc:Stinfiles a owl:Class .
+
+hpc:options a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stinfiles ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:host a owl:ObjectProperty ;
+    rdfs:domain hpc:Stinfiles ;
+    rdfs:range xsd:string .
+
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stinfiles ;
+    rdfs:range xsd:string .
+
+hpc:hash a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stinfiles ;
+    rdfs:range xsd:string .
+
+hpc:size a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stinfiles ;
+    rdfs:range xsd:long .
+
+hpc:modifytime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stinfiles ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:pendtimelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stinfiles ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:eligiblependtimelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stinfiles ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:datagrp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stinfiles ;
+    rdfs:range xsd:string .
+
+hpc:numrmtctrlresult2 a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stinfiles ;
+    rdfs:range xsd:nonNegativeInteger .

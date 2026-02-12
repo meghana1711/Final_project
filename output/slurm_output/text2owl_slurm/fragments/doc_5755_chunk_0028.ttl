@@ -1,0 +1,47 @@
+hpc:Slurmd a owl:Class .
+hpc:Slurmdconf a owl:Class .
+hpc:Node a owl:Class .
+hpc:Partition a owl:Class .
+
+hpc:Hasnode rdfs:domain hpc:Partition .
+hpc:Hasnode rdfs:range hpc:Node .
+hpc:Hasslurmd rdfs:domain hpc:Node .
+hpc:Hasslurmd rdfs:range hpc:Slurmd .
+hpc:Hasport rdfs:domain hpc:Slurmd .
+hpc:Hasport rdfs:range xsd:integer .
+hpc:Hasnodename rdfs:domain hpc:Slurmd .
+hpc:Hasnodename rdfs:range hpc:Nodename .
+hpc:Hasnodehostname rdfs:domain hpc:Slurmd .
+hpc:Hasnodehostname rdfs:range hpc:Nodehostname .
+hpc:Hasnodeaddr rdfs:domain hpc:Slurmd .
+hpc:Hasnodeaddr rdfs:range xsd:string .
+hpc:Hascpus rdfs:domain hpc:Node .
+hpc:Hascpus rdfs:range xsd:nonNegativeInteger .
+hpc:Hasrealmemory rdfs:domain hpc:Node .
+hpc:Hasrealmemory rdfs:range xsd:nonNegativeInteger .
+
+hpc:slurmdparameters a owl:ObjectProperty .
+hpc:Slurmdparameters rdfs:domain hpc:Slurmd .
+hpc:Slurmdparameters rdfs:range hpc:Configoverrides .
+
+hpc:Configoverrides a owl:Class .
+hpc:Configoverrides rdfs:subClassOf hpc:Nodespecification .
+
+hpc:Nodespecification a owl:Class .
+hpc:Nodespecification rdfs:subClassOf rdf:Resource .
+hpc:Nodespecification rdfs:subClassOf owl:NamedIndividual .
+hpc:Nodespecification rdfs:subClassOf owl:Object .
+hpc:Nodespecification rdfs:subClassOf owl:ActiveResource .
+
+hpc:nodename a owl:DatatypeProperty .
+hpc:nodehostname a owl:DatatypeProperty .
+hpc:nodeaddr a owl:DatatypeProperty .
+hpc:cpus a owl:DatatypeProperty .
+hpc:realmemory a owl:DatatypeProperty .
+
+hpc:Configoverrides rdfs:domain hpc:Slurmdparameters .
+hpc:Configoverrides rdfs:range hpc:Cpus .
+hpc:Configoverrides rdfs:range hpc:Sockets .
+hpc:Configoverrides rdfs:range hpc:Corespersocket .
+hpc:Configoverrides rdfs:range hpc:Threadspercore .
+hpc:Configoverrides rdfs:range hpc:Tmpdisk .

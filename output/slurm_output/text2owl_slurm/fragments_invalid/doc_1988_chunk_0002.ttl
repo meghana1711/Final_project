@@ -1,0 +1,27 @@
+@base <http://example.org/hpc/>
+
+hpc:Heterogeneousjob a owl:Class .
+
+hpc:selecttype a owl:ObjectProperty ;
+    rdfs:domain hpc:Gangschedulingconfiguration ;
+    rdfs:range hpc:Selecttypevalue .
+
+hpc:Selecttypevalue a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:selecttypeparameters rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Selecttype ;
+    rdfs:range hpc:Selecttypeparametersvalue .
+
+hpc:Selecttypeparametersvalue a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:defmempercpu rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Gangschedulingconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:defmempernode rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Gangschedulingconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maxmempercpu rdf:type owl:DatatypeProperty ;

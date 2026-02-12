@@ -1,0 +1,71 @@
+hpc:Ego a owl:Class ;
+    rdfs:subClassOf hpc:Clustercomponent .
+
+hpc:Lsf a owl:Class ;
+    rdfs:subClassOf hpc:Cluster .
+
+hpc:Lim a owl:Class ;
+    rdfs:subClassOf hpc:Clustercomponent .
+
+hpc:Pim a owl:Class ;
+    rdfs:subClassOf hpc:Clustercomponent .
+
+hpc:Elim a owl:Class ;
+    rdfs:subClassOf hpc:Clustercomponent .
+
+# Object Properties
+hpc:hasego a owl:ObjectProperty .
+
+hpc:haslim a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Lim .
+
+hpc:haspim a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Pim .
+
+hpc:haselim a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Elim .
+
+# Datatype Properties
+hpc:hasegoparameter a owl:DatatypeProperty .
+
+hpc:EgoDisableUnresolvableHost rdfs:domain hpc:Ego ;
+    rdfs:range xsd:boolean .
+
+hpc:EgoEnableAutoDaemonShutdown rdfs:domain hpc:Ego ;
+    rdfs:range xsd:boolean .
+
+hpc:EgoDaemonsCpus rdfs:domain hpc:Ego ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:EgoDefineNcpus rdfs:domain hpc:Ego ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:EgoSlaveCtrlRemoteHost rdfs:domain hpc:Ego ;
+    rdfs:range xsd:string .
+
+hpc:EgoWorkdir rdfs:domain hpc:Ego ;
+    rdfs:range xsd:string .
+
+hpc:EgoPimSwapReport rdfs:domain hpc:Ego ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:EgoEslimTimeout rdfs:domain hpc:Ego ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Lsfconflocation rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .
+
+hpc:Lsfconffile rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .
+
+hpc:Lsfconfoverride rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .
+
+hpc:Lsfconfentryform rdfs:domain hpc:Lsfconffile ;
+    rdfs:range xsd:string .
+
+hpc:Lsfconfentryvalue rdfs:domain hpc:Lsfconfentryform ;
+    rdfs:range xsd

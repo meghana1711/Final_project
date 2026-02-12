@@ -1,0 +1,23 @@
+hpc:Applicationprofile a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Specify any ASCII string up to 60 characters long." ;
+    rdfs:label "ApplicationProfile" .
+
+hpc:applicationversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Version of the application profile, if specified in a JSDL file." .
+
+hpc:Defaultapplicationprofile a owl:Class ;
+    rdfs:subClassOf hpc:Applicationprofile ;
+    rdfs:comment "Default application profile name." .
+
+hpc:nice a owl:ObjectProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Adjusts the UNIX scheduling priority at which jobs from the application execute." .
+
+hpc:nopreemptinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies the number of minutes a preemptable job can run before it is preempted." .

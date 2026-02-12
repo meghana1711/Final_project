@@ -1,0 +1,66 @@
+hpc:Checkpointdirectory a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:filePath ;
+                        rdfs:hasValue "*"^^xsd:string ;
+                        owl:maxCardinality 4000 ] .
+
+hpc:lsbSubCommandname a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:String .
+
+hpc:lsbSubChkpntPeriod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:lsbSubDependCond a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:String .
+
+hpc:lsbSubErrFile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:lsbSubExclusive a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:lsbSubHold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:lsbSubHostSpec a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range [ a owl:Class ;
+                   rdfs:subClassOf [ a owl:UnionOf ;
+                                      owl:member hpc:HostSpecifier_CPU ;
+                                      owl:member hpc:HostSpecifier_RUN ] ] .
+
+hpc:lsbSubHosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:String .
+
+hpc:lsbSubInFile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:lsbSubInteractive a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:lsbSubLoginShell a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:String .
+
+hpc:lsbSubJobName a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:String .
+
+hpc:lsbSubJobWarningAction a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:String .
+
+hpc:lsbSubJobWarningTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:lsbSubMailUser a owl:DatatypeProperty ;

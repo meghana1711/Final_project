@@ -1,0 +1,26 @@
+hpc:Queryparameter a owl:Class;
+    rdfs:subClassOf hpc:Parameter. .
+
+hpc:start a owl:DatatypeProperty;
+    rdfs:domain hpc:Queryparameter;
+    rdfs:range xsd:xsdDateTime. .
+
+hpc:user a owl:ObjectProperty;
+    rdfs:domain hpc:Queryparameter;
+    rdfs:range rdf:List. .
+
+hpc:Returntype a owl:Class;
+    rdfs:subClassOf hpc:Responsetype. .
+
+hpc:v0_0_43_openapi_assocs_removed_resp a hpc:ReturnType. .
+
+hpc:contenttype a owl:DatatypeProperty;
+    rdfs:domain hpc:Returntype;
+    rdfs:range xsd:string. .
+
+hpc:removedassociations a owl:ObjectProperty;
+    rdfs:domain hpc:V0043openapiassocsremovedresp;
+    rdfs:range rdf:List. .
+
+hpc:error a owl:DatatypeProperty;
+    rdfs:domain hpc:V0043openapiassoc

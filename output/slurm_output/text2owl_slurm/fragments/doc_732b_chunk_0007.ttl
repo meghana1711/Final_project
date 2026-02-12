@@ -1,0 +1,29 @@
+hpc:ActionAdoptFailure a owl:Class ;
+    rdfs:subClassOf hpc:Action ;
+    rdfs:comment "The action to perform if the process is unable to be adopted into any job for whatever reason.";
+    rdfs:label "action_adopt_failure" ;
+    rdfs:domain hpc:Job ;
+    rdfs:range [ a owl:ObjectProperty ;
+                 rdfs:domain hpc:Job ;
+                 rdfs:range hpc:Action ] .
+
+hpc:ActionGenericFailure a owl:Class ;
+    rdfs:subClassOf hpc:Action ;
+    rdfs:comment "The action to perform if there are certain failures such as the inability to talk to the local slurmd or if the kernel doesn't offer the correct facilities.";
+    rdfs:label "action_generic_failure" ;
+    rdfs:domain hpc:System ;
+    rdfs:range [ a owl:ObjectProperty ;
+                 rdfs:domain hpc:System ;
+                 rdfs:range hpc:Action ] .
+
+hpc:allow a owl:ObjectProperty ;
+    rdfs:domain hpc:Connection ;
+    rdfs:range hpc:Action ;
+    rdfs:comment "Let the connection through without adoption." ;
+    rdfs:label "allow" .
+
+hpc:deny a owl:ObjectProperty ;
+    rdfs:domain hpc:Connection ;
+    rdfs:range hpc:Action ;
+    rdfs:comment "Deny the connection." ;
+    rdfs:label "deny" .

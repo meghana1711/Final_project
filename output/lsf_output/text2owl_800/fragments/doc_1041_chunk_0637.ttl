@@ -1,0 +1,33 @@
+hpc:Interactivejob a owl:Class .
+
+# Interactive Job properties
+hpc:hasconflictingoptions a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range rdf:List .
+hpc:hasconflictingoptionsvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:string .
+hpc:isinteractive a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+hpc:cannotbecheckpointed a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+hpc:cannotbererun a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+hpc:requirespseudoterminal a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+hpc:issupportedonwindows a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:boolean .
+
+# Pseudo-terminal Job
+hpc:Pseudoterminaljob a owl:Class ;
+    rdfs:subClassOf hpc:Interactivejob .
+
+# Pseudo-terminal Job properties
+hpc:usesssh a owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminaljob ;
+    rdfs:range xsd:string .

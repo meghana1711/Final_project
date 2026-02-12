@@ -1,0 +1,20 @@
+hpc:Slurmdservice a owl:Class.
+hpc:Slurmdservice rdfs:subClassOf owl:Class.
+hpc:Slurmdservice rdfs:domain xsd:boolean.
+hpc:SlurmdService rdfs:comment "Indicates whether 'ConditionPathExists=*' is present in the slurmd unit file." .
+
+hpc:Configfile a owl:Class.
+hpc:Configfile rdfs:subClassOf owl:Class.
+hpc:ConfigFile rdfs:comment "Represents a Slurm configuration file." .
+
+hpc:include a owl:ObjectProperty.
+hpc:Include rdfs:domain hpc:Configfile.
+hpc:Include rdfs:range hpc:Configfile.
+hpc:Include rdfs:comment "Indicates that a config file includes additional config files." .
+
+hpc:Prologscript a owl:Class.
+hpc:Prologscript rdfs:subClassOf owl:Class.
+hpc:PrologScript rdfs:comment "Represents a Prolog script specified in slurm.conf." .
+
+hpc:Epilogscript a owl:Class.
+hpc:Epilogscript rdfs:subClassOf owl

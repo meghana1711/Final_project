@@ -1,0 +1,60 @@
+hpc:Fairshare a owl:Class .
+hpc:FSFactor an owl:DatatypeProperty ;
+    rdfs:domain hpc:Fairshare ;
+    rdfs:range xsd:decimal .
+
+hpc:CPU_TIME_FACTOR an owl:DatatypeProperty ;
+    rdfs:domain hpc:Fairshare .
+
+hpc:FWD_JOB_FACTOR an owl:DatatypeProperty ;
+    rdfs:domain hpc:Fairshare .
+
+hpc:RUN_TIME_FACTOR an owl:DatatypeProperty ;
+    rdfs:domain hpc:Fairshare .
+
+hpc:RUN_JOB_FACTOR an owl:DatatypeProperty ;
+    rdfs:domain hpc:Fairshare .
+
+hpc:HIST_HOURS an owl:DatatypeProperty ;
+    rdfs:domain hpc:Fairshare .
+
+hpc:Rsrc a owl:Class ;
+    rdfs:subClassOf hpc:Resourcefactor .
+
+hpc:Proc a owl:Class ;
+    rdfs:subClassOf hpc:Resourcefactor .
+
+hpc:RequestedTasks an owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:mem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequest ;
+    rdfs:range xsd:decimal .
+
+hpc:swap a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcerequest ;
+    rdfs:range xsd:decimal .
+
+hpc:Work a owl:Class .
+
+hpc:JPRIORITY an owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:DefaultJPriority an owl:DatatypeProperty ;
+    rdfs:domain hpc:Jpriority ;
+    rdfs:range xsd:decimal .
+
+hpc:UserJPriority an owl:DatatypeProperty ;
+    rdfs:domain hpc:Jpriority .
+
+hpc:PriorityEscalation an owl:DatatypeProperty ;
+    rdfs:domain hpc:Jpriority .
+
+hpc:PendingJobPriority an owl:DatatypeProperty ;
+    rdfs:domain hpc:Jpriority .
+
+hpc:QueuePriority an owl:DatatypeProperty ;
+    rdfs:domain hpc:Jpriority .
+
+hpc:Queue hpc:subclassof hpc:Work .

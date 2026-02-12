@@ -1,0 +1,63 @@
+hpc:Energyaccounting a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Enhanced energy accounting with IBM Spectrum LSF Explorer." .
+
+hpc:energyusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Energyaccounting ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Energy usage in Joule and kWh." .
+
+hpc:Allocationplanner a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "If lsb.params conﬁguration ﬁle is conﬁgured with ALLOCATION_PLANNER = Y." .
+
+hpc:Joballocationplan a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "LSF creates a scheduling and reservation allocation plan." .
+
+hpc:plannedstarttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Joballocationplan ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "Planned start time for all jobs with an allocation plan." .
+
+hpc:plannedallocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Joballocationplan ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Planned allocation for each job." .
+
+hpc:Hostfilter a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Categories filter." .
+
+hpc:Scheduling a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Displays jobs dispatched to the specified hosts." .
+
+hpc:bjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Scheduling ;
+    rdfs:range hpc:Hostfilter ;
+    rdfs:comment "To see the available hosts, use bhosts." .
+
+hpc:bhosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostfilter ;
+    rdfs:range hpc:Scheduling ;
+    rdfs:comment "To determine the available host groups, use bmgroup." .
+
+hpc:bmgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostfilter ;
+    rdfs:range hpc:Scheduling ;
+    rdfs:comment "To determine the available compute units, use bmgroup -cu." .
+
+hpc:bclusters a owl:ObjectProperty ;
+    rdfs:domain hpc:Scheduling ;
+    rdfs:range hpc:Scheduling ;
+    rdfs:comment "To determine the available clusters." .
+
+hpc:Remotecluster a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "If a remote cluster name is speciﬁed." .
+
+hpc:remotejobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Remotecluster ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Displays the remote job ID, even

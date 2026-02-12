@@ -1,0 +1,19 @@
+hpc:Host a owl:Class .
+hpc:Loadsched hpc:Host rdfs:domain owl:ObjectProperty .
+hpc:Loadstop hpc:Host rdfs:domain owl:ObjectProperty .
+hpc:Migrationthreshold hpc:Host rdfs:domain owl:ObjectProperty .
+hpc:Status hpc:Host rdfs:domain owl:ObjectProperty .
+
+hpc:ClosedAdm a owl:Class .
+hpc:ClosedBusy a owl:Class .
+hpc:ClosedCuExcl a owl:Class .
+hpc:ClosedEgo a owl:Class .
+
+hpc:Loadsched rdfs:range xsd:float .
+hpc:Loadstop rdfs:range xsd:float .
+hpc:Migrationthreshold rdfs:range xsd:duration .
+
+hpc:ClosedAdm rdfs:subClassOf hpc:Status .
+hpc:ClosedBusy rdfs:subClassOf hpc:Status .
+hpc:ClosedCuExcl rdfs:subClassOf hpc:Status .
+hpc:ClosedEgo rdfs:subClassOf hpc:Status .

@@ -1,0 +1,19 @@
+hpc:Remotelmstatprotocol a owl:Class .
+hpc:hascommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Remotelmstatprotocol ;
+    rdfs:range xsd:string .
+
+hpc:REMOTE_LMSTAT_PROTOCOL a hpc:RemoteLMSTATProtocol ;
+    hpc:hasCommand "ssh [ssh_command_options]"^^xsd:string ;
+    hpc:hasCommand "rsh [rsh_command_options]"^^xsd:string ;
+    hpc:hasCommand "lsrun [lsrun_command_options]"^^xsd:string .
+
+hpc:RestrictFeatureName a owl:Class .
+hpc:hasvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:RestrictFeatureName ;
+    rdfs:range xsd:string .
+
+hpc:RESTRICT_FEATURE_NAME_Y a hpc:RESTRICT_FEATURE_NAME .
+hpc:RestrictFeatureNameY hpc:hasvalue "Y" .
+hpc:RESTRICT_FEATURE_NAME_N a hpc:RESTRICT_FEATURE_NAME .
+hpc:RestrictFeatureNameN hpc:hasvalue "N" .

@@ -1,0 +1,39 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a job in the HPC system." .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:jobname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:joboutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Output .
+
+hpc:Output a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents the output of a job." .
+
+hpc:phase a owl:DatatypeProperty ;
+    rdfs:domain hpc:Output ;
+    rdfs:range xsd:string .
+
+hpc:timerange a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bhist ;
+    rdfs:range xsd:string .
+
+hpc:bhist a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Jobhistory .
+
+hpc:Jobhistory a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents the history of events for a job." .
+
+hpc:Command a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a command executed in the HPC system." .

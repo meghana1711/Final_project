@@ -1,0 +1,54 @@
+hpc:Awsinstance a owl:Class .
+hpc:Lsfmasterhost a owl:Class .
+hpc:Vm a owl:Class .
+hpc:Ibmspectrumlsf a owl:Class .
+hpc:Linuxos a owl:Class .
+hpc:Kernel a owl:Class .
+hpc:Glibc a owl:Class .
+hpc:Rhel a owl:Class .
+hpc:Centos a owl:Class .
+hpc:Sles a owl:Class .
+hpc:Ubuntu a owl:Class .
+hpc:lsfresourceconnectorwithaws a owl:ObjectProperty ;
+    rdfs:domain hpc:Awsinstance ;
+    rdfs:range hpc:Lsfmasterhost .
+hpc:joinslsfcluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Awsinstance ;
+    rdfs:range hpc:Lsfcluster .
+hpc:terminatedwhenidle a owl:ObjectProperty ;
+    rdfs:domain hpc:Awsinstance ;
+    rdfs:range hpc:Lsfcluster .
+hpc:testedon a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfresourceconnectorwithaws ;
+    rdfs:range hpc:Operatingsystem .
+hpc:assumedtoworkon a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfresourceconnectorwithaws ;
+    rdfs:range hpc:Operatingsystem .
+hpc:Operatingsystem a owl:Class ;
+    rdfs:subClassOf hpc:Linuxos .
+hpc:Linuxos a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:Kernel ;
+                        owl:hasValue xsd:3.10 ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:glibc ;
+                        owl:hasValue xsd:2.17 ] .
+hpc:kernel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Operatingsystem .
+hpc:glibc a owl:DatatypeProperty ;
+    rdfs:domain hpc:Operatingsystem .
+hpc:Rhel a owl:Class ;
+    rdfs:subClassOf hpc:Operatingsystem ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:Kernel ;
+                        owl:hasValue xsd:3.10 ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:glibc ;
+                        owl:hasValue xsd:2.17 ] .
+hpc:Centos a owl:Class ;
+    rdfs:subClassOf hpc:Operatingsystem ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:Kernel ;
+                        owl:hasValue xsd:3.10 ] ;
+    rdfs:subClassOf [ a owl:Rest

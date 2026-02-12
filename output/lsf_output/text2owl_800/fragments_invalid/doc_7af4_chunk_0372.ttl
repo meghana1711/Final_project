@@ -1,0 +1,16 @@
+hpc:Hungjobremoval a owl:Class .
+hpc:Runlimitremoval a owl:Class .
+hpc:Hostunavailremoval a owl:Class .
+hpc:Allremoval a owl:Class .
+
+hpc:haswaittime a owl:ObjectProperty .
+
+hpc:Runlimitremoval rdfs:subClassOf hpc:Hungjobremoval .
+hpc:Hostunavailremoval rdfs:subClassOf hpc:Hungjobremoval .
+hpc:Allremoval rdfs:subClassOf hpc:Hungjobremoval .
+
+hpc:Haswaittime rdfs:domain hpc:Hungjobremoval ;
+                rdfs:range xsd:minute .
+
+
+This ontology defines three classes for different types of hung job removals in LSF, Version 10: `RunLimitRemoval`, `HostUnavailRemoval`, and `AllRemoval`. It also defines an object property `hasWaitTime` that indicates the waiting time for hung job removal. The domain of `hasWaitTime` is `HungJobRemoval`, and its range is `xsd:minute`.

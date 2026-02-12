@@ -1,0 +1,56 @@
+hpc:Job a owl:Class .
+hpc:Hasmemoryrequirement hpc:objectproperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+hpc:Runtime hpc:datatypeproperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:ispending a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+hpc:Hasreservedmemory hpc:objectproperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+hpc:Hasfreememory hpc:objectproperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+hpc:Reservation a owl:Class .
+hpc:Hasmemory hpc:datatypeproperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:decimal .
+hpc:Hasslotcount hpc:datatypeproperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Jobslot a owl:Class .
+hpc:Job1 a hpc:Job ;
+    hpc:hasMemoryRequirement 400 ;
+    hpc:runTime 300 .
+hpc:Job2 a hpc:Job ;
+    hpc:hasMemoryRequirement 400 ;
+    hpc:runTime 300 .
+hpc:Job3 a hpc:Job ;
+    hpc:hasMemoryRequirement 400 ;
+    hpc:runTime 300 ;
+    hpc:hasReservedMemory [ xsd:decimal "400" ] ;
+    hpc:hasFreeMemory [
+        xsd:decimal ">20" ;
+        xsd:decimal "<200"
+    ] .
+hpc:Job4 a hpc:Job ;
+    hpc:hasMemoryRequirement 50 ;
+    hpc:runTime 400 ;
+    hpc:isPending true .
+hpc:Job5 a hpc:Job ;
+    hpc:hasMemoryRequirement 50 ;
+    hpc:runTime 100 ;
+    hpc:hasReservedMemory [ xsd:decimal "400" ] .
+hpc:Job6 a hpc:Job ;
+    hpc:hasMemoryRequirement 300 ;
+    hpc:runTime 100 ;
+    hpc:isPending true .
+hpc:Job7 a hpc:Job ;
+    hpc:hasMemoryRequirement 50 ;
+    hpc:runTime 100 .
+hpc:Reservation1 a hpc:Reservation ;
+    hpc:hasMemory [ xsd:decimal "400" ] ;
+    hpc:hasSlotCount 1 .

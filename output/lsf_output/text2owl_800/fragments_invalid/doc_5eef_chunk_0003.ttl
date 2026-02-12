@@ -1,0 +1,61 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:File a owl:Class .
+hpc:Datarequirement a owl:Class .
+hpc:Datamanageroptions a owl:Class .
+hpc:Datagroup a owl:Class .
+hpc:Directdatastaging a owl:Class .
+hpc:Ibmcastburstbuffer a owl:Class .
+
+hpc:hasDataRequirement rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Datarequirement .
+
+hpc:hasDataManagerOptions rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Datamanageroptions .
+
+hpc:hasDataGroup rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Datarequirement ;
+    rdfs:range hpc:Datagroup .
+
+hpc:hasDirectDataStaging rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Datarequirement ;
+    rdfs:range hpc:Directdatastaging .
+
+hpc:hasIBMCASTBurstBuffer rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Directdatastaging ;
+    rdfs:range hpc:Ibmcastburstbuffer .
+
+hpc:filePath rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+
+hpc:userGroup rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Datagroup ;
+    rdfs:range xsd:string .
+
+hpc:tag rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Datarequirement ;
+    rdfs:range xsd:string .
+
+hpc:dataCheck rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Datarequirement ;
+    rdfs:range xsd:boolean .
+
+hpc:folderPath rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      owl:equivalentClass [ rdf:type owl:UnionOf ;
+                                             owl:members ( hpc:JobWithFiles hpc:JobWithTags ) ] ] .
+
+hpc:Jobwithfiles a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      owl:unionOf ( [ a owl:Restriction ;
+                                       owl:onProperty

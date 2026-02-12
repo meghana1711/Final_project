@@ -1,0 +1,43 @@
+hpc:Performancemetric a owl:Class .
+hpc:samplingperiod a owl:DatatypeProperty .
+hpc:Samplingperiod rdfs:domain hpc:Performancemetric .
+hpc:Samplingperiod rdfs:range xsd:decimal .
+
+hpc:queryhandledbymbatchd a owl:ObjectProperty .
+hpc:Queryhandledbymbatchd rdfs:domain hpc:Performancemetric .
+
+hpc:queryforjobs a owl:ObjectProperty .
+hpc:Queryforjobs rdfs:domain hpc:Performancemetric .
+
+hpc:queryforqueues a owl:ObjectProperty .
+hpc:Queryforqueues rdfs:domain hpc:Performancemetric .
+
+hpc:queryforhosts a owl:ObjectProperty .
+hpc:Queryforhosts rdfs:domain hpc:Performancemetric .
+
+hpc:otherdaemonrequests a owl:ObjectProperty .
+hpc:Otherdaemonrequests rdfs:domain hpc:Performancemetric .
+
+hpc:jobsubmissionrequests a owl:ObjectProperty .
+hpc:Jobsubmissionrequests rdfs:domain hpc:Performancemetric .
+
+hpc:jobssubmitted a owl:ObjectProperty .
+hpc:Jobssubmitted rdfs:domain hpc:Performancemetric .
+
+hpc:jobsdispatched a owl:ObjectProperty .
+hpc:Jobsdispatched rdfs:domain hpc:Performancemetric .
+
+hpc:reorderedjobs a owl:ObjectProperty .
+hpc:Reorderedjobs rdfs:domain hpc:Performancemetric .
+
+hpc:resourcerequirementpatterns a owl:ObjectProperty .
+hpc:Resourcerequirementpatterns rdfs:domain hpc:Schedulerperformancemetric .
+
+hpc:matchinghostsrequired a owl:ObjectProperty .
+hpc:Matchinghostsrequired rdfs:domain hpc:Schedulerperformancemetric .
+
+hpc:schedulerbuckets a owl:ObjectProperty .
+hpc:Schedulerbuckets rdfs:domain hpc:Schedulerperformancemetric .
+
+hpc:Schedulerperformancemetric a owl:Class .
+hpc:Schedulerperformancemetric rdfs:subClassOf hpc:Performancemetric .

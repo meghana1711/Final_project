@@ -1,0 +1,79 @@
+hpc:HostProvider
+    a owl:Class ;
+    rdfs:subClassOf hpc:Provider ;
+    rdfs:comment "A host provider in LSF." .
+
+hpc:hasAdminAccount
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Provider ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The LSF administrator account." .
+
+hpc:hasUniqueName
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostprovider ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The unique name of the host provider." .
+
+hpc:conflictingNameWarningIssued
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostprovider ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if a warning was logged due to a conflicting name." .
+
+hpc:ignoredEntry
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostprovider ;
+    rdfs:range hpc:Hostprovider ;
+    rdfs:comment "The ignored host provider entry due to a conflicting name." .
+
+hpc:hasConfPath
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostprovider ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The path to the configuration files." .
+
+hpc:hasScriptPath
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostprovider ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The path to the scripts." .
+
+hpc:defaultConfPath
+    a owl:NamedIndividual ;
+    hpc:hasConfPath "LSF_TOP/conf/resource_connector"^^xsd:string ;
+    rdfs:comment "The default configuration file path." .
+
+hpc:defaultScriptPath
+    a owl:NamedIndividual ;
+    hpc:hasScriptPath "LSF_TOP/LSF_VERSION/resource_connector/"^^xsd:string ;
+    rdfs:comment "The default script path." .
+
+hpc:requiresReconfiguration
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostprovider ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the host provider requires reconfiguration." .
+
+hpc:reconfigurationCommand
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostprovider ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The command to reconfigure the host provider." .
+
+# Templates
+hpc:Template
+    a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A template in LSF." .
+
+hpc:hasJobType
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The type of job that can be run on this template instance." .
+
+# Resources
+hpc:Resource
+    a owl:Class ;
+    rdfs:subClassOf owl:

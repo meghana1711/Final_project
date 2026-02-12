@@ -1,0 +1,27 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Hosttype a owl:Class .
+hpc:Model a owl:Class .
+hpc:Highspeedconnectiongroup a owl:Class .
+hpc:hgconnect a owl:DatatypeProperty .
+hpc:Type rdfs:domain hpc:Hosttype ;
+                      rdfs:range xsd:string .
+hpc:Model rdfs:domain hpc:Hosttype ;
+              rdfs:range xsd:string .
+hpc:Highspeedconnectiongroup rdfs:domain hpc:Hosttype ;
+                         rdfs:range xsd:string .
+hpc:Hgconnect rdfs:domain hpc:Hosttype ;
+               rdfs:range xsd:string .
+
+hpc:samehosttype a owl:ObjectProperty .
+hpc:samemodel a owl:ObjectProperty .
+hpc:samehsconnection a owl:ObjectProperty .
+hpc:Samehosttype rdfs:domain hpc:Hosttype ;
+               rdfs:range rdf:List .
+hpc:Samemodel rdfs:domain hpc:Hosttype ;
+              rdfs:range rdf:List .
+hpc:Samehsconnection rdfs:domain hpc:Highspeedconnectiongroup ;
+                    rdfs:range rdf:List .

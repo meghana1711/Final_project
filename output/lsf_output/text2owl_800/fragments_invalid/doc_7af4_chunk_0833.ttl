@@ -1,0 +1,30 @@
+hpc:Lsfhost a owl:Class .
+hpc:Cgroupversion a owl:Class .
+hpc:version1 cgroupVersion rdfs:label "cgroup v1" .
+hpc:version2 cgroupVersion rdfs:label "cgroup v2" .
+hpc:LsfhostHasCgroupversion hpc:lsfhost owl:ObjectProperty .
+hpc:LsfhostHasCgroupversion rdfs:domain hpc:Lsfhost .
+hpc:LsfhostHasCgroupversion rdfs:range hpc:Cgroupversion .
+hpc:LsfLiveConfdir a owl:Class .
+hpc:LSF_LIVE_CONFDIR_is_directory DatatypeProperty .
+hpc:LsfLiveConfdirIsDirectory rdfs:domain hpc:LsfLiveConfdir .
+hpc:LsfLiveConfdirIsDirectory rdfs:range xsd:boolean .
+hpc:LSF_LIVE_CONFDIR_enables_live_reconfiguration ObjectProperty .
+hpc:LsfLiveConfdirEnablesLiveReconfiguration rdfs:domain hpc:LsfLiveConfdir .
+hpc:LsfLiveConfdirEnablesLiveReconfiguration rdfs:range xsd:boolean .
+hpc:LSF_LIVE_CONFDIR_saves_configuration_files DatatypeProperty .
+hpc:LsfLiveConfdirSavesConfigurationFiles rdfs:domain hpc:LsfLiveConfdir .
+hpc:LsfLiveConfdirSavesConfigurationFiles rdfs:range xsd:string .
+hpc:bconf_requests_rejected_if_directory_not_exists ObjectProperty .
+hpc:BconfRequestsRejectedIfDirectoryNotExists rdfs:domain hpc:BconfRequests .
+hpc:BconfRequestsRejectedIfDirectoryNotExists rdfs:range xsd:boolean .
+hpc:bconf_requests_rejected_if_directory_cannot_be_created ObjectProperty .
+hpc:BconfRequestsRejectedIfDirectoryCannotBeCreated rdfs:domain hpc:BconfRequests .
+hpc:BconfRequestsRejectedIfDirectoryCannotBeCreated rdfs:range xsd:boolean .
+hpc:bconf_requests_read_configuration_files_instead_of_LSF_CONFDIR ObjectProperty .
+hpc:BconfRequestsReadConfigurationFilesInsteadOfLsfConfdir rdfs:domain hpc:BconfRequests .
+hpc:BconfRequestsReadConfigurationFilesInsteadOfLsfConfdir rdfs:range xsd:boolean .
+hpc:badmin_mdbrestart_and_lsadmin_reconfigure_cluster ObjectProperty .
+hpc:BadminMdbrestartAndLsadminReconfigureCluster rdfs:domain hpc:LsfLiveConfdir .
+hpc:BadminMdbrestartAndLsadminReconfigureCluster rdfs:range xsd:string .
+hpc:important_remove_LSF_LI

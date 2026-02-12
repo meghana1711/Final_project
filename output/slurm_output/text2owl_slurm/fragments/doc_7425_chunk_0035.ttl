@@ -1,0 +1,26 @@
+hpc:V0_0_37_Node
+    a owl:Class ;
+    rdfs:subClassOf hpc:Node ;
+    rdfs:comment "Version 0.0.37 node" ;
+    rdfs:label "v0.0.37_node" ;
+    rdfs:isDefinedBy <http://example.org/schema#> .
+
+hpc:alloc_cpus
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:V0037node ;
+    rdfs:range xsd:integer .
+
+hpc:idle_cpus
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:V0037node ;
+    rdfs:range xsd:integer .
+
+hpc:alloc_memory
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:V0037node ;
+    rdfs:range xsd:decimal .
+
+hpc:partitions
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:V0037node ;
+    rdfs:range hpc:Partitions .

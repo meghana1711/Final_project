@@ -1,0 +1,31 @@
+hpc:Root a owl:Class .
+hpc:Taskmancommand a owl:Class .
+hpc:Globauth a owl:Class .
+hpc:Bladmin a owl:Class .
+hpc:Bladminckconfig a owl:Class .
+
+hpc:lsstreamfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Root ;
+    rdfs:range xsd:string .
+
+hpc:Lsftop a owl:Class ;
+    rdfs:subClassOf hpc:Path .
+
+hpc:mbdheartbeatinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Root ;
+    rdfs:range xsd:integer .
+
+hpc:mbdrefreshinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Root ;
+    rdfs:range xsd:integer .
+
+hpc:Mbdlicenseallocation a owl:Class ;
+    rdfs:subClassOf hpc:Timeinterval .
+
+hpc:mbdmergebyservicedomain a owl:ObjectProperty ;
+    rdfs:domain hpc:Root ;
+    rdfs:range xsd:boolean .
+
+hpc:peakinuseperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Root ;
+    rdfs:range xsd:integer .

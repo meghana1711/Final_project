@@ -1,0 +1,62 @@
+hpc:Queue a owl:Class .
+hpc:Hasjob hpc:job hpc:Queue .
+hpc:Isrunning hpc:job owl:ObjectProperty .
+hpc:Isclosed hpc:queue owl:ObjectProperty .
+hpc:Queueswitch hpc:objectproperty .
+hpc:Jobid xsd:integer rdfs:range .
+hpc:User xsd:string rdfs:range .
+hpc:State xsd:string rdfs:range .
+hpc:Queuename xsd:string rdfs:range .
+hpc:Host xsd:string rdfs:range .
+hpc:Jobname xsd:string rdfs:range .
+hpc:Submittime xsd:dateTime rdfs:range .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:isRunning ;
+                        owl:hasValue false ] .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:isClosed ;
+                        owl:hasValue true ] .
+
+hpc:Hasjob rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Job .
+
+hpc:Isrunning rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:Isclosed rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+
+hpc:Queueswitch rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Queue .
+
+hpc:jobid hpc:job a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:user hpc:job a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:state hpc:job a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:queuename hpc:queue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+
+hpc:host hpc:job a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:jobname hpc:job a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:submittime hpc:job a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .

@@ -1,0 +1,29 @@
+hpc:jobacceptinterval a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:subPropertyOf hpc:JobSchedulingPolicy .
+
+hpc:RunningJobsOnHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .
+
+hpc:jobacceptintervalonhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:subPropertyOf hpc:JobSchedulingPolicy .
+
+hpc:jobarrayeventscombine a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:boolean .
+
+hpc:Strictjobacceptintervalpolicy a owl:Class ;
+    rdfs:subClassOf hpc:Jobschedulingpolicy .
+
+hpc:Loosejobarrayeventscombine a owl:Class ;
+    rdfs:subClassOf hpc:Jobschedulingpolicy .
+
+hpc:DefaultJobAcceptInterval a xsd:nonNegativeInteger ;
+    rdf:value "0" .
+
+hpc:MinimumJobAcceptInterval a xsd:nonNegativeInteger ;
+    rdf:value "1" .

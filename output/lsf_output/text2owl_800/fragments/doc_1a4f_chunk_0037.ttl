@@ -1,0 +1,37 @@
+hpc:Intervalresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:hasinterval a owl:ObjectProperty ;
+    rdfs:domain hpc:Intervalresource ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:isdynamicresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Intervalresource ;
+    rdfs:range hpc:Resource .
+
+hpc:isstaticresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range hpc:Resource .
+
+hpc:isincreasingload a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:boolean .
+
+hpc:isincreasingloady a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:boolean .
+
+hpc:isincreasingloadny a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:boolean .
+
+hpc:isreleasesresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Sharedresource ;
+    rdfs:range xsd:boolean .
+
+hpc:isreleasesresourcesuspended a owl:ObjectProperty ;
+    rdfs:domain hpc:Sharedresource ;
+    rdfs:range xsd:boolean .
+
+hpc:hasdescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource .

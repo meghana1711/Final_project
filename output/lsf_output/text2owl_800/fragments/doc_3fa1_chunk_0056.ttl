@@ -1,0 +1,48 @@
+hpc:QueuePool
+    a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A group of queues for job scheduling." .
+
+hpc:FairSharePolicy
+    a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A policy for distributing resources based on fair share." .
+
+hpc:QueueFairSharePolicy
+    a owl:Class ;
+    rdfs:subClassOf hpc:Fairsharepolicy ;
+    rdfs:comment "A fair share policy applied to a specific queue." .
+
+hpc:CrossQueueFairShare
+    a owl:Class ;
+    rdfs:subClassOf hpc:Fairsharepolicy ;
+    rdfs:comment "A fair share policy that affects multiple queues." .
+
+hpc:QueueBasedFairShare
+    a owl:Class ;
+    rdfs:subClassOf hpc:Fairsharepolicy ;
+    rdfs:comment "A fair share policy based on individual queues." .
+
+hpc:SlotReservation
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of slots reserved for a queue." .
+
+hpc:Backfill
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Queue ;
+    rdfs:comment "The queue from which backfilling is allowed." .
+
+hpc:PoolMembership
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Queuepool ;
+    rdfs:comment "The pool to which a queue belongs." .
+
+hpc:DynamicSharePriority
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The dynamic priority of a user in a fair share policy." .

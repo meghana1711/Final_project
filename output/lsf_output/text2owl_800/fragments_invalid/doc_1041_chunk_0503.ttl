@@ -1,0 +1,53 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Creates a reservation for system use. LSF does not dispatch jobs to the specified hosts while the reservation is active." .
+
+hpc:brsvsub a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Placeholder ;
+    rdfs:comment "Automatically creates a placeholder and submits a job to the reservation." .
+
+hpc:Placeholder a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:begintime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:time ;
+    rdfs:comment "Begin time for a one-time reservation." .
+
+hpc:beginTimeYear a xsd:integer ;
+    rdfs:range [ xsd:minInclusive "1900" ; xsd:maxInclusive "9999" ] ;
+    rdfs:comment "Any year after 1900 (YYYY)." .
+
+hpc:beginTimeMonth a xsd:gYearMonth ;
+    rdfs:range [ xsd:minInclusive "01" ; xsd:maxInclusive "12" ] ;
+    rdfs:comment "month" .
+
+hpc:beginTimeDay a xsd:day ;
+    rdfs:range [ xsd:minInclusive "01" ; xsd:maxInclusive "31" ] ;
+    rdfs:comment "day of the month" .
+
+hpc:beginTimeHour a xsd:time ;
+    rdfs:range [ xsd:minInclusive "00:00:00" ; xsd:maxInclusive "23:59:59" ] ;
+    rdfs:comment "hour" .
+
+hpc:beginTimeMinute a xsd:minute ;
+    rdfs:range [ xsd:minInclusive "00" ; xsd:maxInclusive "59" ] ;
+    rdfs:comment "minute" .
+
+hpc:beginTimeSecond a xsd:second ;
+    rdfs:range [ xsd:minInclusive "00" ; xsd:maxInclusive "59" ] ;
+    rdfs:comment "second (implicit in xsd:time)" .
+
+hpc:beginTimeRequired a owl:Restriction ;
+    rdfs:onProperty hpc:beginTimeHour ;
+    rdfs:allValuesFrom xsd:time ;
+    rdfs:comment "You must specify at least hour:minute. Year, month, and day are optional. Three fields are assumed to be day:hour:minute. Four fields are assumed to be month:day:hour:minute, and ﬁve fields are year:month:day:hour:minute." .
+
+hpc:beginTimeOptional a owl:Restriction ;
+    rdfs:onProperty hpc:beginTimeYear ;
+    rdfs:onProperty hpc:beginTimeMonth ;
+    rdfs:onProperty hpc:beginTimeDay ;
+    rdfs:onSubClassOf hpc:Reservation .
+
+hpc:beginTimeRequiredOrOptional a owl:Restriction

@@ -1,0 +1,29 @@
+hpc:Serviceclass a owl:Class .
+hpc:hasserviceclassproperties a owl:ObjectProperty .
+hpc:Serviceclass rdfs:subClassOf owl:Class .
+hpc:Hasserviceclassproperties rdfs:domain hpc:Serviceclass ;
+                                   rdfs:range rdf:* .
+
+hpc:Resumejob a owl:Class .
+hpc:hasresumedjobproperties a owl:ObjectProperty .
+hpc:Resumejob rdfs:subClassOf owl:Class .
+hpc:Hasresumedjobproperties rdfs:domain hpc:Resumejob ;
+                                   rdfs:range rdf:* .
+
+hpc:jobid a owl:DatatypeProperty .
+hpc:Jobid rdfs:domain hpc:Resumejob ;
+          rdfs:range xsd:string .
+
+hpc:queue a owl:DatatypeProperty .
+hpc:Queue rdfs:domain hpc:Resumejob ;
+          rdfs:range xsd:string .
+
+hpc:userorgroup a owl:DatatypeProperty .
+hpc:Userorgroup rdfs:domain hpc:Resumejob ;
+              rdfs:range xsd:string .
+
+hpc:windowsuser a owl:DatatypeProperty .
+hpc:Windowsuser rdfs:domain hpc:Resumejob ;
+              rdfs:range xsd:string .
+
+hpc:windowsUser rdf:regularExpression "^[A-Z]+\\\\[A-Za-z0-9]+$" .

@@ -1,0 +1,22 @@
+hpc:SschedUpdateSummaryByTask a owl:Class ;
+    rdfs:subClassOf owl:Integer ;
+    rdfs:comment "Used by Platform Session Scheduler (ssched). Update the Session Scheduler task summary via bpost after the specified number of tasks finish.";
+    rdfs:seeAlso hpc:SSCHED_UPDATE_SUMMARY_INTERVAL ;
+    rdfs:domain hpc:Sessionscheduler .
+
+hpc:SschedUpdateSummaryInterval a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeInteger ;
+    rdfs:comment "Used by the Session Scheduler (ssched). Update the Session Scheduler task summary via bpost after the specified number of seconds.";
+    rdfs:seeAlso hpc:SSCHED_UPDATE_SUMMARY_BY_TASK ;
+    rdfs:domain hpc:Sessionscheduler ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:StrictUgControl a owl:Class ;
+    rdfs:subClassOf xsd:boolean ;
+    rdfs:comment "When STRICT_UG_CONTROL=Y is defined: Jobs submitted with -G usergroup specified can only be controlled by the user group administrator of the specified user group.";
+    rdfs:seeAlso hpc:DEFAULT_USER_GROUP, hpc:ENFORCE_ONE_UG_LIMIT, hpc:ENFORCE_UG_TREE .
+
+hpc:subTryInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sessionscheduler ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of seconds for the requesting client to wait before resubmitting a job." .

@@ -1,0 +1,39 @@
+hpc:Queue a owl:Class .
+
+# Adding a queue
+hpc:hasDefinitionFile rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+
+# Removing a queue
+hpc:removeDefinitionFile rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Queue .
+
+# LSF environment setup for users
+
+# cshrc.lsf file
+hpc:Cshrclsf a owl:Class .
+hpc:hasContent rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Cshrclsf ;
+    rdfs:range xsd:string .
+hpc:shouldBeSourced rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Cshrclsf ;
+    rdfs:range xsd:string .
+
+# profile.lsf file
+hpc:Profilelsf a owl:Class .
+hpc:hasContent rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Profilelsf ;
+    rdfs:range xsd:string .
+hpc:shouldBeSourced rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Profilelsf ;
+    rdfs:range xsd:string .
+
+# Adding a host to your cluster
+hpc:Host a owl:Class .
+hpc:hasType rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+hpc:hasInstallationFile rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .

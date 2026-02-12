@@ -1,0 +1,44 @@
+hpc:Lsf a owl:Class .
+hpc:hasversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .
+
+hpc:hasenvironmentsetup a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:hasresourceconnectorpackage a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:hasresourceconnectordirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:hasazuresubdirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:hashostprovidersjson a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:hasebrokerdexecutable a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:runsbadminmbdrestart a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:usesazureasresourceprovider a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:hasmultipleazureproviders a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:Azureprovider a owl:Class .
+hpc:hasconfiguration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Azureprovider ;
+    rdfs:range xsd:string .
+
+hpc:haslogfiles a owl:DatatypeProperty ;
+    rdfs:domain hpc:Azureprovider ;
+    rdfs:range xsd:string .
+
+hpc:hasworkingfiles a owl:DatatypeProperty ;
+    rdfs:domain hpc:Azureprovider ;
+    rdfs:range xsd:string .

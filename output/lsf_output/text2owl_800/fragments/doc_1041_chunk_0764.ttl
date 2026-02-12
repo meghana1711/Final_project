@@ -1,0 +1,38 @@
+hpc:Messagessent a owl:Class .
+hpc:Messagesrcvd a owl:Class .
+hpc:Voluntarycontsw a owl:Class .
+hpc:Involuntaryconsw a owl:Class .
+hpc:Turnaround a owl:Class .
+hpc:Pertaskstatistics a owl:Class .
+
+hpc:Messagessent rdfs:subClassOf hpc:Pertaskstatistics .
+hpc:Messagesrcvd rdfs:subClassOf hpc:Pertaskstatistics .
+hpc:Voluntarycontsw rdfs:subClassOf hpc:Pertaskstatistics .
+hpc:Involuntaryconsw rdfs:subClassOf hpc:Pertaskstatistics .
+hpc:Turnaround rdfs:subClassOf hpc:Pertaskstatistics .
+
+hpc:hasnumberofmessagessent a owl:ObjectProperty .
+hpc:hasnumberofmessagesrcvd a owl:ObjectProperty .
+hpc:hasnumberofvoluntarycontswitches a owl:ObjectProperty .
+hpc:hasnumberofinvoluntarycontswitches a owl:ObjectProperty .
+hpc:hasturnaroundtime a owl:ObjectProperty .
+
+hpc:Hasturnaroundtime rdfs:domain hpc:Pertaskstatistics .
+hpc:Hasnumberofmessagessent rdfs:domain hpc:Messagessent .
+hpc:Hasnumberofmessagesrcvd rdfs:domain hpc:Messagesrcvd .
+hpc:Hasnumberofvoluntarycontswitches rdfs:domain hpc:Voluntarycontsw .
+hpc:Hasnumberofinvoluntarycontswitches rdfs:domain hpc:Involuntaryconsw .
+
+hpc:startingtime a owl:DatatypeProperty .
+hpc:userandhostname a owl:DatatypeProperty .
+hpc:pid a owl:DatatypeProperty .
+hpc:executionhost a owl:DatatypeProperty .
+hpc:commandline a owl:DatatypeProperty .
+hpc:cwd a owl:DatatypeProperty .
+
+hpc:Startingtime rdfs:range xsd:dateTime .
+hpc:Userandhostname rdfs:range xsd:string .
+hpc:Pid rdfs:range xsd:integer .
+hpc:Executionhost rdfs:range xsd:string .
+hpc:Commandline rdfs:range xsd:string .
+hpc:Cwd rdfs:range xsd:string .

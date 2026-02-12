@@ -1,0 +1,28 @@
+hpc:Slurmddaemon a owl:Class .
+hpc:Slurmstepdprogram a owl:Class .
+hpc:mpisetup a owl:ObjectProperty .
+hpc:callswitchplugin a owl:ObjectProperty .
+hpc:createcontainer a owl:ObjectProperty .
+hpc:changeuserid a owl:ObjectProperty .
+hpc:configureio a owl:ObjectProperty .
+hpc:setupenvironmentvariables a owl:ObjectProperty .
+hpc:forkexectasks a owl:ObjectProperty .
+
+hpc:Jobsteptermination a owl:Class .
+hpc:Userinitiatedtermination a owl:Class .
+hpc:Systeminitiatedtermination a owl:Class .
+hpc:Usercancelledtermination a owl:Class .
+hpc:Timelimitreachedtermination a owl:Class .
+
+hpc:Jobtermination a owl:Class .
+hpc:Userinitiatedjobtermination a owl:Class .
+hpc:Systeminitiatedjobtermination a owl:Class .
+
+hpc:Slurmctlddaemon a owl:Class .
+hpc:notifyslurmddaemons a owl:ObjectProperty .
+
+hpc:Jobaccountingrecord a owl:Class .
+hpc:Externstep a owl:Class .
+hpc:Batchstep a owl:Class .
+hpc:prologflags a owl:DatatypeProperty .
+hpc:accountingstoragetype a owl:DatatypeProperty .

@@ -1,0 +1,61 @@
+hpc:Usergroup a owl:Class .
+hpc:Queue a owl:Class .
+hpc:Project a owl:Class .
+hpc:Organization a owl:Class .
+hpc:Highioorgs a owl:Class .
+hpc:usershare a owl:DatatypeProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:queuename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+hpc:fairshare a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Usergroup .
+hpc:gpdccluster a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster .
+hcp:GPDCport a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster .
+
+hpc:UserGroup
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf [ a owl:Class ;
+            rdfs:subClassOf owl:Object ;
+            rdfs:subClassOf [ a owl:Class ;
+                rdfs:subClassOf owl:Collection ;
+                rdfs:subClassOf [ a owl:Class ;
+                    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] ] ] ] ] .
+
+hpc:Queue
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf owl:Object ;
+        rdfs:subClassOf [ a owl:Class ;
+            rdfs:subClassOf owl:NamedIndividual ] ] .
+
+hpc:Project
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:Organization
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:HighIOOrgs
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf owl:Object ;
+        rdfs:subClassOf [ a owl:Class ;
+            rdfs:subClassOf owl:Collection ;
+            rdfs:subClassOf [ a owl:Class ;
+                rdfs:subClassOf owl:NamedIndividual ] ] ] .
+
+hpc:UserGroup "project_a" hpc:Project "user1" hpc:UserShare "100" .
+hpc:UserGroup "project_a" hpc:Project "user2" hpc:UserShare "100" .
+hpc:UserGroup "project_b" hpc:Project "user3" hpc:UserShare "100" .
+hpc:UserGroup "project_b" hpc:Project "user4" hpc:UserShare "100" .
+hpc:UserGroup

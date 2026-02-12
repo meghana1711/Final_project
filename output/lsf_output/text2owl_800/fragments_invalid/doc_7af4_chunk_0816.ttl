@@ -1,0 +1,33 @@
+hpc:lsfHostMaxGpu a owl:DatatypeProperty .
+hpc:LsfHostMaxGpu rdfs:domain hpc:LsfCluster .
+hpc:LsfHostMaxGpu rdfs:range xsd:integer .
+
+hpc:LSF_HOST_MAX_GPU_Min a owl:Restriction .
+hpc:LSF_HOST_MAX_GPU_Min rdfs:subPropertyOf hpc:LSF_HOST_MAX_GPU .
+hpc:LsfHostMaxGpuMin rdfs:domain hpc:LsfCluster .
+hpc:LSF_HOST_MAX_GPU_Min rdf:type rdfs:DatatypeRestriction .
+hpc:LSF_HOST_MAX_GPU_Min xsd:minInclusive xsd:integer "1" .
+
+hpc:LSF_HOST_MAX_GPU_Max a owl:Restriction .
+hpc:LSF_HOST_MAX_GPU_Max rdfs:subPropertyOf hpc:LSF_HOST_MAX_GPU .
+hpc:LsfHostMaxGpuMax rdfs:domain hpc:LsfCluster .
+hpc:LSF_HOST_MAX_GPU_Max rdf:type rdfs:DatatypeRestriction .
+hpc:LSF_HOST_MAX_GPU_Max xsd:maxInclusive xsd:integer "32" .
+
+hpc:lsfHpcExtensions a owl:ObjectProperty .
+hpc:LsfHpcExtensions rdfs:domain hpc:LsfCluster .
+
+hpc:CumulativeRusage a owl:Class .
+hpc:DispResUsageLimits a owl:Class .
+hpc:HostRusage a owl:Class .
+
+hpc:enables a owl:ObjectProperty .
+hpc:Enables rdfs:domain hpc:LsfCluster .
+
+hpc:cumulativeRusageEffect a owl:ObjectProperty .
+hpc:dispResUsageLimitsEffect a owl:ObjectProperty .
+hpc:hostRusageEffect a owl:ObjectProperty .
+
+hpc:CumulativeRusageEffect rdfs:domain hpc:CumulativeRusage .
+hpc:DispResUsageLimitsEffect rdfs:domain hpc:DispResUsageLimits .
+hpc:HostRusageEffect rdfs:domain hpc:HostRusage .

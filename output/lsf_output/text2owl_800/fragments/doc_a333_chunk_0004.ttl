@@ -1,0 +1,51 @@
+hpc:Lsfsimulator a owl:Class .
+hpc:Operatingsystemversion a owl:Class .
+hpc:Browserversion a owl:Class .
+hpc:Knownissue a owl:Class .
+
+hpc:supports a owl:ObjectProperty ;
+ rdfs:domain hpc:Lsfsimulator ;
+ rdfs:range hpc:Operatingsystemversion .
+
+hpc:certifiedfor a owl:ObjectProperty ;
+ rdfs:domain hpc:Operatingsystemversion ;
+ rdfs:range xsd:string .
+
+hpc:browsersupport a owl:ObjectProperty ;
+ rdfs:domain hpc:Lsfsimulator ;
+ rdfs:range hpc:Browserversion .
+
+hpc:certifiedforbrowser a owl:ObjectProperty ;
+ rdfs:domain hpc:Browserversion ;
+ rdfs:range xsd:string .
+
+hpc:webconsoleheaderversion a owl:DatatypeProperty ;
+ rdfs:domain hpc:Lsfsimulator .
+
+hpc:Fixpack a owl:Class .
+hpc:resolves a owl:ObjectProperty ;
+ rdfs:domain hpc:Fixpack ;
+ rdfs:range hpc:Knownissue .
+
+hpc:upgradeFailure a hpc:knownIssue ;
+ rdfs:subClassOf hpc:Knownissue .
+
+hpc:symbolicLinkingSupportRequired a hpc:knownIssue ;
+ rdfs:subClassOf hpc:Knownissue .
+
+hpc:importConfigurationFailure a hpc:knownIssue ;
+ rdfs:subClassOf hpc:Knownissue .
+
+hpc:permissionIssue a hpc:knownIssue ;
+ rdfs:subClassOf hpc:Knownissue .
+
+hpc:excludedDirectories a hpc:knownIssue ;
+ rdfs:subClassOf hpc:Knownissue .
+
+hpc:firstLoginPasswordChange a hpc:knownIssue .
+
+hpc:Experimentgraph a owl:Class .
+
+hpc:graphtabview a owl:ObjectProperty ;
+ rdfs:domain hpc:Lsfsimulator ;
+ rdfs:range hpc:Experimentgraph .

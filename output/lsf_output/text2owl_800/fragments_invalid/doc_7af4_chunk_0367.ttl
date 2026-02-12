@@ -1,0 +1,22 @@
+hpc:Lsfresourceconnectortemplate a owl:Class .
+hpc:rcTemplateByResreqOrder a owl:ObjectProperty .
+hpc:priority a owl:DatatypeProperty .
+
+hpc:Lsfresourceconnectortemplate rdfs:subClassOf owl:Class .
+hpc:RcTemplateByResreqOrder rdfs:domain hpc:Lsfresourceconnectortemplate ;
+                                   rdfs:range rdf:List .
+hpc:Priority rdfs:domain hpc:Lsfresourceconnectortemplate ;
+                   rdfs:range xsd:integer .
+
+hpc:hasTemplateId rdf:type owl:ObjectProperty ;
+                     rdfs:domain hpc:Lsfresourceconnectortemplate ;
+                     rdfs:range xsd:string .
+
+hpc:Templateorderedbyresource a owl:Class .
+hpc:Resource rdf:type owl:DatatypeProperty ;
+                   rdfs:range xsd:string .
+
+hpc:Templateorderedbyresource rdfs:subClassOf hpc:Lsfresourceconnectortemplate .
+hpc:TemplateOrderedByResource rdf:type owl:Class .
+hpc:Templateorderedbyresource hpc:hasresource rdf:first hpc:Resource ;
+                                      rdf:rest hpc:TemplateOrderedByResource .

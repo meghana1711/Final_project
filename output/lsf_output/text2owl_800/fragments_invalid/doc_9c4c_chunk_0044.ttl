@@ -1,0 +1,37 @@
+hpc:Lsfadmin a owl:Class .
+hpc:Hassecondaryadmin hpc:lsfadmin rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadmin ;
+    rdfs:range xsd:string .
+
+hpc:Lsfentitlementfile a owl:Class .
+hpc:Hasentitlementfile hpc:lsfentitlementfile rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfadmin ;
+    rdfs:range xsd:string .
+
+hpc:Lsfentitlementfilepath a owl:Class ;
+    rdfs:subClassOf hpc:Lsfentitlementfile .
+
+hpc:Hasentitlementfilepath hpc:lsfentitlementfilepath rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfentitlementfile ;
+    rdfs:range xsd:string .
+
+hpc:Lsfedition a owl:Class .
+hpc:Hasstandardedition hpc:lsfedition rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfentitlementfile ;
+    rdfs:range xsd:string .
+hpc:Hasexpressedition hpc:lsfedition rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfentitlementfile ;
+    rdfs:range xsd:string .
+hpc:Hasadvancededition hpc:lsfedition rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfentitlementfile ;
+    rdfs:range xsd:string .
+
+hpc:Lsfport a owl:Class .
+hpc:Haslsfport hpc:lsfport rdf:type owl:DatatypeProperty ;
+    rdfs:domain hdf:LSF ;
+    rdfs:range xsd:string .
+
+hpc:Lsfserverhosts a owl:Class .
+hpc:Haslsfserverhosts hpc:lsfserverhosts rdf:type owl:DatatypeProperty ;
+    rdfs:domain hdf:LSF ;
+    rdfs:range xsd:string .

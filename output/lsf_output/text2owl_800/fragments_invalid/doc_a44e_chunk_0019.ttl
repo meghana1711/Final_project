@@ -1,0 +1,38 @@
+hpc:Datatransfercommand a owl:Class .
+hpc:filetransfercmd a owl:ObjectProperty ;
+    rdfs:domain hpc:Datatransfercommand ;
+    rdfs:range xsd:string .
+
+hpc:permissionmask a owl:DatatypeProperty ;
+    rdfs:domain hpc:Datatransfercommand ;
+    rdfs:range xsd:string .
+
+hpc:Octalmode a owl:Class .
+hpc:hasoctalmode a owl:ObjectProperty ;
+    rdfs:domain hpc:Permissionmask ;
+    rdfs:range hpc:Octalmode .
+
+hpc:octalmodevalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Octalmode ;
+    rdfs:range xsd:integer .
+
+hpc:ValidDataTransferCommand subClassOf hpc:DataTransferCommand .
+hpc:ValidDataTransferCommand equivalentClass (
+    hpc:DataTransferCommand[hpc:FileTransferCmd "scp"]
+    FILTER (?cmd = "/usr/bin/scp" || IRIStr(?cmd) = "scp")
+) .
+
+hpc:ValidOctalMode subClassOf hpc:OctalMode .
+hpc:ValidOctalMode equivalentClass (
+    hpc:OctalMode[
+        hpc:OctalModeValue[xsd:integer >= 0] &&
+        hpc:OctalModeValue[xsd:integer <= 7] &&
+        (
+            hpc:OctalModeValue[xsd:integer = (4 + 2 + 1)] ||
+            hpc:OctalModeValue[xsd:integer = (4 + 2)] ||
+            hpc:OctalModeValue[xsd:integer = 4] ||
+            hpc:OctalModeValue[xsd:integer = 2] ||
+            hpc:OctalModeValue[xsd:integer = 1]
+        )
+    ]
+) .

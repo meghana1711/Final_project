@@ -1,0 +1,40 @@
+hpc:Bmig a owl:Class ;
+    rdfs:subClassOf hpc:Jobmanagementtool .
+
+hpc:hasjobid a owl:ObjectProperty ;
+    rdfs:domain hpc:Bmig ;
+    rdfs:range xsd:string .
+
+hpc:hasjobname a owl:ObjectProperty ;
+    rdfs:domain hpc:Bmig ;
+    rdfs:range xsd:string .
+
+hpc:hashost a owl:ObjectProperty ;
+    rdfs:domain hpc:Bmig ;
+    rdfs:range xsd:string .
+
+hpc:hasuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Bmig ;
+    rdfs:range xsd:string .
+
+hpc:hashostgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Bmig ;
+    rdfs:range hpc:Hostgroup .
+
+hpc:Hostgroup a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:hassubgroup a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:iscomputeunittype a owl:ObjectProperty ;
+    rdfs:domain hpc:Host .
+    rdfs:range hpc:Computeunittype .
+
+hpc:Configurationfile a owl:Class ;
+    rdfs:subClassOf hpc:File .
+    rdfs:subClassOf hpc:Configuration .
+
+hpc:LSBHosts a hpc:ConfigurationFile .
+hpc:LSParams a hpc:ConfigurationFile .

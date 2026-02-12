@@ -1,0 +1,24 @@
+hpc:Nodeconfiguration a owl:Class .
+hpc:Realmemory rdfs:domain hpc:Nodeconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Cpus rdfs:domain hpc:Nodeconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Tmpdisk rdfs:domain hpc:Nodeconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Nodestatus a owl:Class .
+hpc:Nodestatus rdfs:subClassOf hpc:Nodeconfiguration .
+hpc:Down a owl:Class ;
+    rdfs:subClassOf hpc:Nodestatus .
+
+hpc:eiotimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:minjobage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:slurmdtimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:nonNegativeInteger .

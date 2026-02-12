@@ -1,0 +1,51 @@
+hpc:Job a owl:Class .
+hpc:Job rdfs:subClassOf owl:Class .
+
+hpc:joblevelrusage a owl:ObjectProperty .
+hpc:Joblevelrusage rdfs:domain hpc:Job .
+hpc:Joblevelrusage rdfs:range rdfs:ResourceRequirement .
+
+hpc:applicationlevelrusage a owl:ObjectProperty .
+hpc:Applicationlevelrusage rdfs:domain hpc:Application .
+hpc:Applicationlevelrusage rdfs:range rdfs:ResourceRequirement .
+
+hpc:Resourcerequirement a owl:Class .
+hpc:Resourcerequirement rdfs:subClassOf owl:Class .
+
+hpc:rusage a owl:DatatypeProperty .
+hpc:Rusage rdfs:domain hpc:Resourcerequirement .
+hpc:Rusage rdfs:range rdfs:Literal .
+hpc:Rusage rdfs:range rdf:first hpc:Rusagemem .
+hpc:Rusage rdfs:range rdf:rest xsd:Decimal .
+hpc:Rusage rdfs:range rdf:rest rdf:first hpc:Rusageduration .
+hpc:Rusage rdfs:range rdf:rest rdf:rest xsd:Decimal .
+hpc:Rusage rdfs:range rdf:rest rdf:rest rdf:first hpc:Rusagedecay .
+hpc:Rusage rdfs:range rdf:rest rdf:rest rdf:rest xsd:Decimal .
+hpc:Rusage rdfs:range rdf:rest rdf:rest rdf:rest rdf:first hpc:Rusageswap .
+hpc:Rusage rdfs:range rdf:rest rdf:rest rdf:rest rdf:rest xsd:Decimal .
+
+hpc:rusagemem a owl:DatatypeProperty .
+hpc:Rusagemem rdfs:domain hpc:Resourcerequirement .
+hpc:Rusagemem rdfs:range xsd:decimal .
+
+hpc:rusageduration a owl:DatatypeProperty .
+hpc:Rusageduration rdfs:domain hpc:Resourcerequirement .
+hpc:Rusageduration rdfs:range xsd:nonNegativeInteger .
+
+hpc:rusagedecay a owl:DatatypeProperty .
+hpc:Rusagedecay rdfs:domain hpc:Resourcerequirement .
+hpc:Rusagedecay rdfs:range xsd:nonNegativeDecimal .
+
+hpc:rusageswap a owl:DatatypeProperty .
+hpc:Rusageswap rdfs:domain hpc:Resourcerequirement .
+hpc:Rusageswap rdfs:range xsd:decimal .
+
+hpc:jobleveloverridesapplicationlevel a owl:ObjectProperty .
+hpc:Jobleveloverridesapplicationlevel rdfs:domain hpc:Job .
+hpc:Jobleveloverridesapplicationlevel rdfs:range hpc:Resourcerequirement .
+
+hpc:applicationlevelswapkept a owl:ObjectProperty .
+hpc:Applicationlevelswapkept rdfs:domain hpc:Resourcerequirement .
+hpc:Applicationlevelswapkept rdfs:range hpc:Resourcerequirement .
+
+hpc:mergedresourcerequirement a owl:ObjectProperty

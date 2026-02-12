@@ -1,0 +1,21 @@
+hpc:lsbMaxThreadsRusage a owl:DatatypeProperty .
+hpc:lsbJobSubmitTime a owl:DatatypeProperty .
+hpc:lsbJobStartTime a owl:DatatypeProperty .
+hpc:lsbJobEndTime a owl:DatatypeProperty .
+hpc:lsbJobPendTime a owl:DatatypeProperty .
+hpc:LsbJobStatus a owl:Class .
+hpc:lsbResizeNotifyOk a owl:DatatypeProperty .
+
+hpc:LsbMaxThreadsRusage rdfs:domain hpc:LsbJobStatus .
+hpc:LsbJobSubmitTime rdfs:domain hpc:LsbJobStatus .
+hpc:LsbJobStartTime rdfs:domain hpc:LsbJobStatus .
+hpc:LsbJobEndTime rdfs:domain hpc:LsbJobStatus .
+hpc:LsbJobPendTime rdfs:domain hpc:LsbJobStatus .
+hpc:LsbResizeNotifyOk rdfs:domain hpc:LsbResizeNotifyOk .
+
+hpc:LsbMaxThreadsRusage rdfs:range xsd:nonNegativeInteger .
+hpc:LsbJobSubmitTime rdfs:range xsd:dateTime .
+hpc:LsbJobStartTime rdfs:range xsd:dateTime .
+hpc:LsbJobEndTime rdfs:range xsd:dateTime .
+hpc:LsbJobPendTime rdfs:range xsd:nonNegativeInteger .
+hpc:LsbResizeNotifyOk rdfs:range xsd:boolean .

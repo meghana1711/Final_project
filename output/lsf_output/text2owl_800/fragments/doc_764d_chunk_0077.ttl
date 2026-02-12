@@ -1,0 +1,10 @@
+hpc:fwdJobFactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:decimal .
+
+hpc:lsfMcForwardFairshareChargeDuration a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfConfiguration ;
+    rdfs:range xsd:integer .
+
+hpc:LsfConfiguration a owl:Class .
+hpc:Queue a owl:Class .

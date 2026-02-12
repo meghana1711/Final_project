@@ -1,0 +1,68 @@
+hpc:Projectmodefeature a owl:Class .
+hpc:Servicedomain a owl:Class .
+hpc:Feature a owl:Class .
+hpc:Site a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Project a owl:Class .
+hpc:Localproject a owl:Class .
+hpc:Fastdispatchproject a owl:Class .
+
+hpc:Hasservicedomain rdfs:domain hpc:Feature ;
+    rdfs:range hpc:Servicedomain .
+
+hpc:Ispartof rdfs:domain hpc:Project ;
+    rdfs:range hpc:Localproject .
+
+hpc:Hascluster rdfs:domain hpc:Localproject ;
+    rdfs:range hpc:Cluster .
+
+hpc:Hassite rdfs:domain hpc:Feature ;
+    rdfs:range hpc:Site .
+
+hpc:Isfastdispatchproject rdfs:subClassOf hpc:Localproject .
+
+hpc:Inuse rdfs:domain hpc:Feature ;
+    rdfs:range xsd:integer .
+
+hpc:Reserve rdfs:domain hpc:Feature ;
+    rdfs:range xsd:integer .
+
+hpc:Free rdfs:domain hpc:Feature ;
+    rdfs:range xsd:integer .
+
+hpc:Demand rdfs:domain hpc:Feature ;
+    rdfs:range xsd:integer .
+
+hpc:Own rdfs:domain hpc:Projectshare ;
+    rdfs:range hpc:Feature .
+
+hpc:Share rdfs:domain hpc:Projectshare ;
+    rdfs:range xsd:decimal .
+
+hpc:projectshare a owl:ObjectProperty .
+hpc:Projectshare a owl:Class .
+
+hpc:ClusterB a hpc:Cluster ;
+    hpc:clusterSize 25.0 .
+
+hpc:ClusterC a hpc:Cluster ;
+    hpc:clusterSize 25.0 .
+
+hpc:ClusterD a hpc:Cluster ;
+    hpc:clusterSize 25.0 .
+
+hpc:Lp1 a hpc:Feature .
+hpc:Lp2 a hpc:Feature .
+
+hpc:f50 a hpc:Feature .
+hpc:f100 a hpc:Feature .
+
+hpc:myProj1 a hpc:Project ;
+    hpc:isFastDispatchProject true .
+
+hpc:myProj2 a hpc:Project ;
+    hpc:isFastDispatchProject true .
+
+hpc:siteB a hpc:Site .
+hpc:clusterA a hpc:Cluster .
+hpc:SD1 a hpc

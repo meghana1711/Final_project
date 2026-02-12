@@ -1,0 +1,71 @@
+hpc:Loadindex a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Job array index" ;
+    rdfs:label "LoadIndex" ;
+    rdfs:domain hpc:Job .
+
+hpc:versionnumber a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Version number" ;
+    rdfs:domain hpc:Loadindex .
+
+hpc:eventtime a owl:DatatypeProperty ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The time of the event" ;
+    rdfs:domain hpc:Loadindex .
+
+hpc:nidx a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Number of index names" ;
+    rdfs:domain hpc:Loadindex .
+
+hpc:name a owl:ObjectProperty ;
+    rdfs:range rdf:List ;
+    rdfs:comment "List of index names" ;
+    rdfs:domain hpc:Loadindex .
+
+hpc:Jobsigact a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "An action on a job has been taken" ;
+    rdfs:label "JOB_SIGACT" ;
+    rdfs:domain hpc:Job .
+
+hpc:versionnumber a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Version number" ;
+    rdfs:domain hpc:Jobsigact .
+
+hpc:eventtime a owl:DatatypeProperty ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The time of the event" ;
+    rdfs:domain hpc:Jobsigact .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Job ID" ;
+    rdfs:domain hpc:Jobsigact .
+
+hpc:period a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Action period" ;
+    rdfs:domain hpc:Jobsigact .
+
+hpc:pid a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Process ID of the child sbatchd that initiated the action" ;
+    rdfs:domain hpc:Jobsigact .
+
+hpc:jstatus a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Job status" ;
+    rdfs:domain hpc:Jobsigact .
+
+hpc:reasons a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Job pending reasons" ;
+    rdfs:domain hpc:Jobsigact .
+
+hpc:flags a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Action flags, see <lsf/lsbatch.h>" ;
+    rdfs:domain hpc:

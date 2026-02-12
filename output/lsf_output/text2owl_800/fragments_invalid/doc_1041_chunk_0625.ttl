@@ -1,0 +1,38 @@
+hpc:Gpumodel a owl:Class .
+hpc:brandname a owl:ObjectProperty .
+hpc:modelname a owl:ObjectProperty .
+hpc:memorysize a owl:DatatypeProperty .
+hpc:shortmodelname a owl:ObjectProperty .
+hpc:modelnamewithmemorysize a owl:ObjectProperty .
+hpc:gpumemory a owl:DatatypeProperty .
+hpc:tilespersocket a owl:DatatypeProperty .
+hpc:explicitTileNumber a xsd:integer .
+hpc:autoCalculateTileNumber a xsd:boolean .
+hpc:availablegpumodels a owl:ObjectProperty .
+
+hpc:Gpumodel rdfs:subClassOf owl:Class .
+hpc:Brandname rdfs:domain hpc:Gpumodel ;
+    rdfs:range xsd:string .
+hpc:Modelname rdfs:domain hpc:Gpumodel ;
+    rdfs:range xsd:string .
+hpc:Memorysize rdfs:domain hpc:Gpumodel ;
+    rdfs:range xsd:string .
+hpc:Shortmodelname rdfs:domain hpc:Gpumodel ;
+    rdfs:range xsd:string .
+hpc:Modelnamewithmemorysize rdfs:domain hpc:Gpumodel ;
+    rdfs:range xsd:string .
+hpc:Gpumemory rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:Tilespersocket rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+hpc:Explicittilenumber rdfs:range xsd:integer .
+hpc:Autocalculatetilenumber rdfs:range xsd:boolean .
+hpc:Availablegpumodels rdfs:domain hpc:Host ;
+    rdfs:range hpc:Gpumodel .
+
+hpc:GPUModel "TeslaK80" a hpc:GPUModel ;
+    hpc:brandName "Tesla" ;
+    hpc:modelName "K80" .
+hpc:GPUModel "TeslaP100" a hpc:GPUModel ;
+    hpc:brandName "Tesla" ;
+    hpc:modelName "P100" .

@@ -1,0 +1,32 @@
+hpc:LsbEswitchMethod a owl:Class .
+hpc:LsfServerdir a owl:Class .
+hpc:Eswitch a owl:Class .
+hpc:Eswitchargument a owl:Class .
+
+hpc:hasESwitchMethod rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsbEswitchMethod ;
+    rdfs:range hpc:Eswitch .
+
+hpc:hasServerDir rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Eswitch .
+
+hpc:hasArgument rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Eswitch .
+
+hpc:eswitchname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eswitch .
+    rdfs:range xsd:string .
+
+hpc:eswitchprogramfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eswitch .
+    rdfs:range xsd:string .
+
+hpc:LSF_SERVERDIR_CONTAINS_ESWITCH rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfServerdir .
+    rdfs:range hpc:Eswitch .
+
+hpc:Job_has_ESwitch rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range hpc:Eswitch .
+
+hpc:EnvironmentVariable rdf:type owl:Class .

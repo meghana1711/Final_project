@@ -1,0 +1,23 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:User a owl:Class ;
+  rdfs:subClassOf a owl:Class ;
+  rdfs:subClassOf owl:NamedIndividual .
+
+hpc:userid a owl:DatatypeProperty ;
+  rdfs:domain hpc:User ;
+  rdfs:range xsd:string .
+
+hpc:count a owl:DatatypeProperty ;
+  rdfs:domain hpc:User ;
+  rdfs:range xsd:int .
+
+hpc:time a owl:DatatypeProperty ;
+  rdfs:domain hpc:User ;
+  rdfs:range xsd:string .
+
+hpc:Rpctime a owl:Class ;
+  rdfs

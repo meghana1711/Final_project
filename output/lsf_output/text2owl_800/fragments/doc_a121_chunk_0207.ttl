@@ -1,0 +1,57 @@
+hpc:Script a owl:Class ;
+    rdfs:subClassOf hpc:Jobscript .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:commandline a owl:ObjectProperty ;
+    rdfs:domain hpc:Script ;
+    rdfs:range rdf:Literal .
+
+hpc:spooledcommandline a owl:ObjectProperty ;
+    rdfs:domain hpc:Script ;
+    rdfs:range rdf:Literal .
+
+hpc:submittedtoqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queue .
+
+hpc:defaultqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Queue .
+
+hpc:lsbBsubParseScript a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+
+hpc:jobscriptfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Script ;
+    rdfs:range xsd:string .
+
+hpc:scriptwithimperatives a owl:ObjectProperty ;
+    rdfs:domain hpc:Script ;
+    rdfs:range hpc:Script .
+
+hpc:Bourneshell a owl:Class ;
+    rdfs:subClassOf hpc:Shell .
+
+hpc:Shell a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:interpreter a owl:DatatypeProperty ;
+    rdfs:domain hpc:Script ;
+    rdfs:range xsd:string .
+
+hpc:coredump a owl:ObjectProperty ;
+    rdfs:domain hpc:Script ;
+    rdfs:range xsd:string .
+
+hpc:coredumpcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Coredump ;
+    rdfs:range xsd:string .
+
+hpc:Cshshell a owl:Class ;
+    rdfs:subClassOf hpc:Shell .

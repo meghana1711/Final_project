@@ -1,0 +1,12 @@
+hpc:LsfResources a owl:Class .
+hpc:LsfNiosDebug a owl:Class .
+hpc:LsfNiosErrLogdir a owl:Class .
+hpc:lsfNiosDieCmd a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfNiosDieCmd rdf:Type owl:Class ;
+    rdfs:range xsd:string .
+hpc:lsfNiosIgnoreSigwindow a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfNiosIgnoreSigwindow rdf:Type owl:Class ;
+    rdfs:range xsd:string .
+
+hpc:LSF_NIOS_DIE_CMD rdfs:comment "If set, the command defined by the LSF_NIOS_DIE_CMD environment variable is executed for a pending job before NIOS exits with a failure. You can use the %J special character to specify the command. %J is replaced by the job ID. Default 'bkill %J'." .
+hpc:LSF_NIOS_IGNORE_SIGWINDOW rdfs:comment "If defined, the NIOS will ignore the SIGWINDOW signal. Default not defined. Notes When the signal SIGWINDOW is defined, some tasks appear to die when they receive the SIGWINDOW while inputting and outputting. By defining LSF_NIOS_IGNORE_SIGWINDOW, these tasks are given the chance to ignore the signal." .

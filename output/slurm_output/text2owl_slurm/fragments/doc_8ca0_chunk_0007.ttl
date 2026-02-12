@@ -1,0 +1,21 @@
+hpc:suspendprogram a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:suspendrate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:suspendtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:suspendtimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Feature a owl:Class .
+
+hpc:Node a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf owl:NamedIndividual ] .

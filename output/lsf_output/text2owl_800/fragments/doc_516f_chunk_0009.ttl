@@ -1,0 +1,62 @@
+hpc:Eventlogfile a owl:Class .
+hpc:search a owl:ObjectProperty ;
+    rdfs:domain hpc:Eventlogfile ;
+    rdfs:range hpc:Eventlogsearch .
+
+hpc:Eventlogsearch a owl:Class .
+
+hpc:Jobhistory a owl:Class .
+hpc:viewjobhistory a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Jobhistory .
+
+hpc:Jobstatus a owl:Class .
+
+hpc:Timeinformation a owl:Class ;
+    rdfs:subClassOf hpc:Jobstatus .
+
+hpc:Jobsummary a owl:Class ;
+    rdfs:subClassOf hpc:Jobstatus .
+
+hpc:Schedulingevent a owl:Class ;
+    rdfs:subClassOf hpc:Jobstatus .
+
+hpc:bhist a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Jobhistory .
+
+hpc:bhistL a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhist ;
+    rdfs:range hpc:Timeinformation .
+
+hpc:bhistUAll a owl:ObjectProperty ;
+    rdfs:domain hpc:Bhist ;
+    rdfs:range hpc:Jobsummary .
+
+hpc:Job a owl:Class .
+hpc:Jobenvironment a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+hpc:Jobscript a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:bjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Job .
+
+hpc:bjobsEnv a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range hpc:Jobenvironment ;
+    rdfs:range hpc:Jobscript .
+
+hpc:bjobsScript a owl:ObjectProperty ;
+    rdfs:domain hpc:Bjobs ;
+    rdfs:range hpc:Jobscript .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:BjobsEnv ;
+    rdfs:domain hpc:BjobsScript ;
+    xsd:nonNegativeInteger rdfs:range .
+
+hpc:jobarrayelement a owl:DatatypeProperty ;
+    rdfs:domain hpc:BjobsEnv ;
+    xsd:nonNegativeInteger rdfs:range .

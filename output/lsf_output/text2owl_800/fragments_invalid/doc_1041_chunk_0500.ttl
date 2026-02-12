@@ -1,0 +1,51 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Reservation a owl:Class .
+hpc:reservationname a owl:DatatypeProperty .
+hpc:queuename a owl:ObjectProperty .
+hpc:description a owl:DatatypeProperty .
+hpc:prearscript a owl:DatatypeProperty .
+hpc:preartime a owl:DatatypeProperty .
+hpc:postarscript a owl:DatatypeProperty .
+hpc:postartime a owl:DatatypeProperty .
+hpc:Reservationrequest a owl:Class .
+hpc:begintime a owl:DatatypeProperty .
+hpc:endtime a owl:DatatypeProperty .
+hpc:Timewindow a owl:Class .
+hpc:Hostgroup a owl:Class .
+hpc:hostname a owl:DatatypeProperty .
+
+hpc:Reservation rdfs:subClassOf owl:Class .
+hpc:Reservationname rdfs:domain hpc:Reservation ;
+                      rdfs:range xsd:string .
+hpc:Queuename rdfs:domain hpc:Reservation ;
+                      rdfs:range rdf:Bag .
+hpc:Description rdfs:domain hpc:Reservation ;
+                      rdfs:range xsd:string .
+hpc:Prearscript rdfs:domain hpc:Reservation ;
+                      rdfs:range xsd:string .
+hpc:Preartime rdfs:domain hpc:Reservation ;
+                      rdfs:range xsd:string .
+hpc:Postarscript rdfs:domain hpc:Reservation ;
+                      rdfs:range xsd:string .
+hpc:Postartime rdfs:domain hpc:Reservation ;
+                      rdfs:range xsd:string .
+hpc:Reservationrequest rdfs:subClassOf owl:Class .
+hpc:Begintime rdfs:domain hpc:Reservation ;
+                      rdfs:range xsd:dateTime .
+hpc:Endtime rdfs:domain hpc:Reservation ;
+                      rdfs:range xsd:dateTime .
+hpc:Timewindow rdfs:subClassOf owl:Class .
+hpc:Hostgroup rdfs:subClassOf owl:Class .
+hpc:Hostname rdfs:domain hpc:Hostgroup ;
+                      rdfs:range xsd:string .
+
+hpc:brsvadd a owl:ObjectProperty .
+hpc:Brsvadd rdfs:domain hpc:Reservation ;
+                      rdfs:range rdf:Bag .
+hpc:brsvadd rdf:subPropertyOf hpc:Reservation .
+hpc:brsvadd rdfs:comment "Add reservation" .
+hpc:br

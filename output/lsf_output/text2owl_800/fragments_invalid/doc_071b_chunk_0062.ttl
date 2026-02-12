@@ -1,0 +1,66 @@
+hpc:Joboutputdirectory a owl:Class ;
+    rdfs:subClassOf hpc:Directory .
+
+hpc:Submissionuser a owl:Class .
+
+hpc:Executionhost a owl:Class .
+
+hpc:Res a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Egorsh a owl:Class .
+
+hpc:Lsfjobreport a owl:Class .
+
+# Object Properties
+hpc:hasoutputdirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Joboutputdirectory ;
+    rdfs:range hpc:Directory .
+
+hpc:hassubmissionuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Joboutputdirectory .
+
+hpc:hasexecutionhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Joboutputdirectory .
+
+hpc:usesres a owl:ObjectProperty ;
+    rdfs:domain hpc:Submissionhost .
+
+hpc:runsegorsh a owl:ObjectProperty ;
+    rdfs:domain hpc:Submissionhost .
+
+hpc:generateslsfjobreport a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+# Datatype Properties
+hpc:hasdefaultjoboutdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:string .
+
+hpc:hasstandardoutput a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjobreport .
+    rdfs:range xsd:string .
+
+hpc:hasstandarderror a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjobreport .
+    rdfs:range xsd:string .
+
+hpc:haslsfjobinfo a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjobreport .
+    rdfs:range xsd:string .
+
+hpc:hascpuusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjobreport .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasprocessusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjobreport .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasmemoryusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjobreport .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:haslsbpostexecsendmail a owl:DatatypeProperty ;
+    rdfs:domain hsd:LSFConfiguration .
+    rdfs:range xsd:boolean .

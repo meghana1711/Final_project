@@ -1,0 +1,70 @@
+hpc:Advancereservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Reservation .
+
+hpc:hastotalhosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobslotsornumberhosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:reservationforsystemuse a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range xsd:boolean .
+
+hpc:allowedqueues a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range rdf:List .
+
+hpc:resourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range rdf:List .
+
+hpc:selectresourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:boolean .
+
+hpc:sameresourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:boolean .
+
+hpc:hostlist a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range rdf:List .
+
+hpc:timewindow a owl:DatatypeProperty ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range xsd:string .
+
+hpc:Timewindow a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:subClassOf hpc:Advancereservationtime .
+
+hpc:Advancereservationtime a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:subClassOf hpc:Time .
+
+hpc:Time a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:subClassOf hpc:Timevalue .
+
+hpc:Timevalue a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:subClassOf hpc:Timepart .
+
+hpc:Dayofweek a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeInteger ;
+    rdfs:subClassOf hpc:Timepart .
+
+hpc:Hour a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeInteger ;
+    rdfs:subClassOf hpc:Timepart .
+
+hpc:Minute a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeInteger ;
+    rdfs:subClassOf hpc:Timepart .
+
+hpc:Timepart a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeInteger .

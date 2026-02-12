@@ -1,0 +1,17 @@
+hpc:ApplicationProfile rdf:Type owl:Class .
+hpc:ResumeReason rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Resume ;
+    rdfs:range xsd:string .
+hpc:JobGroup rdf:Type owl:Class .
+hpc:JobGroupName rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range xsd:string .
+hpc:Job rdf:Type owl:Class .
+hpc:JobName rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:JobWildcard rdf:Type owl:ObjectProperty .
+hpc:JobDispatchHost rdf:Type owl:ObjectProperty .
+hpc:JobQueue rdf:Type owl:ObjectProperty .
+hpc:JobServiceClass rdf:Type owl:ObjectProperty .
+hpc:ResumeReasonMaxLength xsd:int .

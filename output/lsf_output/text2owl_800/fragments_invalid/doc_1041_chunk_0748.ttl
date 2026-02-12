@@ -1,0 +1,14 @@
+hpc:Bwaitcommand a owl:Class .
+
+hpc:Haswaitcondition hpc:Bwaitcommand rdfs:domain hpc:Bwaitcommand ;
+    rdfs:range hpc:Waitcondition .
+
+hpc:Hastimeout hpc:Bwaitcommand rdfs:domain hpc:Bwaitcommand ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Waitcondition a owl:Class .
+
+hpc:Issatisfiedby hpc:Waitcondition rdfs:domain hpc:Waitcondition ;
+    rdfs:range hpc:Jobcondition .
+
+hpc:Jobcondition a owl:Class .

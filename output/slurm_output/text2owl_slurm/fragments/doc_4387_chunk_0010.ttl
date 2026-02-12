@@ -1,0 +1,42 @@
+hpc:Qos a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Requires all jobs to specify a valid QOS." .
+
+hpc:nojobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Makes it so no job information is stored in accounting." .
+
+hpc:nosteps a owl:ObjectProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Makes it so no step information is stored in accounting." .
+
+hpc:associations a owl:ObjectProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range hpc:Association ;
+    rdfs:comment "The associations option is automatically set if this option is set." .
+
+hpc:limits a owl:ObjectProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range hpc:Limit ;
+    rdfs:comment "If you want QOS limits to be enforced you need to use this option." .
+
+hpc:safe a owl:ObjectProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Ensures a job will only be launched when using an association or qos that has a TRES-minutes limit set if the job will be able to run to completion." .
+
+hpc:wckeys a owl:ObjectProperty ;
+    rdfs:domain hpc:Qos ;
+    rdfs:range hpc:User ;
+    rdfs:comment "Prevent users from running jobs under a wckey that they don't have access to." .
+
+hpc:Association a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Limit a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf owl:Class .

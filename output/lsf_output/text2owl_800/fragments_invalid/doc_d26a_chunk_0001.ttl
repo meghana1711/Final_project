@@ -1,0 +1,29 @@
+hpc:Spanstring a owl:Class.
+
+hpc:hasnumber a owl:DatatypeProperty;
+    rdfs:domain hpc:Spanstring;
+    rdfs:range xsd:nonNegativeInteger.
+
+hpc:Cpublock a owl:Class.
+hpc:hasnumberofcpus a owl:DatatypeProperty;
+    rdfs:domain hpc:Cpublock;
+    rdfs:range xsd:nonNegativeInteger.
+
+hpc:cpublockallocation a owl:ObjectProperty;
+    rdfs:domain hpc:Job;
+    rdfs:range hpc:Cpublock.
+
+hpc:Job a owl:Class.
+hpc:hasfirstexecutionhost a owl:ObjectProperty;
+    rdfs:domain hpc:Job.
+
+hpc:Executionhost a owl:Class.
+
+hpc:Cleanupoperation a owl:Class.
+hpc:hasoperationtype a owl:DatatypeProperty;
+    rdfs:domain hpc:Cleanupoperation;
+    rdfs:range xsd:string.
+
+hpc:jobcleanup a owl:ObjectProperty;
+    rdfs:domain hpc:Job;
+    rdfs:range

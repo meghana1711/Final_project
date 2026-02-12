@@ -1,0 +1,21 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Lsfenvironment a owl:Class .
+hpc:setlsfenvironment a owl:ObjectProperty ;
+ rdfs:domain hpc:Lsfenvironment ;
+ rdfs:range hpc:Setlsfenvironment .
+
+hpc:Setlsfenvironment a owl:Class .
+hpc:source a owl:DatatypeProperty ;
+ rdfs:domain hpc:Setlsfenvironment ;
+ rdfs:range xsd:string .
+
+hpc:submitjob a owl:ObjectProperty ;
+ rdfs:domain hpc:Lsfenvironment ;
+ rdfs:range hpc:Submitjob .
+
+hpc:Submitjob a owl:Class .

@@ -1,0 +1,46 @@
+hpc:Clustermode a owl:Class ;
+    rdfs:comment "Distributes license tokens to clusters, where LSF scheduling takes over. Emphasizes high utilization of license tokens over other considerations such as ownership.";
+    rdfs:subClassOf owl:Class .
+
+hpc:Projectmode a owl:Class ;
+    rdfs:comment "Distributes license token to projects configured across all clusters. Emphasizes ownership of license tokens by specific projects which span multiple clusters.";
+    rdfs:subClassOf owl:Class .
+
+hpc:distributelicensetokens a owl:ObjectProperty ;
+    rdfs:domain hpc:Clustermode ;
+    rdfs:range hpc:Cluster ;
+    rdfs:comment "Distributing license tokens to clusters." .
+
+hpc:distributelicensetoprojects a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectmode ;
+    rdfs:range hpc:Project ;
+    rdfs:comment "Distributing license tokens to projects." .
+
+hpc:highlightutilization a owl:ObjectProperty ;
+    rdfs:domain hpc:Clustermode ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Emphasizes high utilization of license tokens over other considerations." .
+
+hpc:slowdowneachschedulingcycle a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectmode ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "The process of collecting and evaluating demand for all projects in all clusters slows down each scheduling cycle." .
+
+hpc:reuselicenses a owl:ObjectProperty ;
+    rdfs:domain hpc:Clustermode ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "License tokens are reused by LSF when a job finishes, without waiting for confirmation from lmstat or rlmstat that license tokens are available." .
+
+hpc:confirmlicensetokenavailability a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectmode ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "License tokens are distributed in the next scheduling cycle after lmstat or rlmstat confirms license token availability." .
+
+hpc:Cluster a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Project a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Shortjob a owl:Class ;
+    rdfs:subClassOf owl:Class .

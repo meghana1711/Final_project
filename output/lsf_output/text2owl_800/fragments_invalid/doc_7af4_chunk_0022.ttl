@@ -1,0 +1,19 @@
+hpc:LsfClusterName a owl:Class .
+hpc:lsfDynamicHostWaitTime a owl:DatatypeProperty .
+
+hpc:LsfClusterName rdfs:subClassOf [ a owl:Restriction ;
+                                         rdf:property rdf:type ;
+                                         owl:onProperty hpc:LSF_CLUSTER_NAME ;
+                                         owl:hasValue rdf:nil ;
+                                         owl:allValuesFrom xsd:string ] .
+
+hpc:LsfDynamicHostWaitTime rdfs:domain hpc:LsfClusterNode .
+hpc:LsfDynamicHostWaitTime rdfs:range xsd:nonNegativeInteger .
+
+hpc:LSF_DYNAMIC_HOST_WAIT_TIME rdf:type owl:CardinalityRestriction ;
+                                   owl:maxCardinality 1 .
+
+hpc:LSF_DYNAMIC_HOST_WAIT_TIME rdfs:comment "Time in seconds that the server host LIM waits after startup before it calls the management host LIM to dynamically add the server host." .
+
+
+Assuming that `LSF_CLUSTER_NODE` is another class in the ontology, and the necessary prefixes are already defined.

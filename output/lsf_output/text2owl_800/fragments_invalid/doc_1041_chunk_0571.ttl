@@ -1,0 +1,48 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Jobscript a owl:Class .
+hpc:bsub a owl:ObjectProperty .
+
+hpc:Command a owl:Class .
+hpc:Arguments a owl:Class .
+hpc:resReq a owl:ObjectProperty .
+
+hpc:JobScript rdfs:domain hpc:Bsub .
+hpc:Command rdfs:domain hpc:Bsub .
+hpc:Arguments rdfs:domain hpc:Bsub .
+
+hpc:Options rdfs:subClassOf owl:Class .
+hpc:Category a owl:Class .
+hpc:categories a owl:ObjectProperty .
+hpc:io a hpc:Category .
+hpc:limit a hpc:Category .
+
+hpc:Cwd rdfs:domain hpc:Bsub .
+hpc:E rdfs:domain hpc:Bsub .
+hpc:Eo rdfs:domain hpc:Bsub .
+hpc:F rdfs:domain hpc:Bsub .
+hpc:I rdfs:domain hpc:Bsub .
+hpc:Is rdfs:domain hpc:Bsub .
+hpc:O rdfs:domain hpc:Bsub .
+hpc:Oo rdfs:domain hpc:Bsub .
+hpc:Outdir rdfs:domain hpc:Bsub .
+hpc:Tty rdfs:domain hpc:Bsub .
+
+hpc:C rdfs:domain hpc:Bsub .
+hpc:C rdfs:domain hpc:Bsub .
+hpc:D rdfs:domain hpc:Bsub .
+hpc:Eptl rdfs:domain hpc:Bsub .
+hpc:F rdfs:domain hpc:Bsub .
+hpc:Hl rdfs:domain hpc:Bsub .
+hpc:M rdfs:domain hpc:Bsub .
+hpc:P rdfs:domain hpc:Bsub .
+hpc:Ptl rdfs:domain hpc:Bsub .
+hpc:S rdfs:domain hpc:Bsub .
+hpc:T rdfs:domain hpc:Bsub .
+hpc:Ul rdfs:domain hpc:Bsub .
+hpc:V rdfs:domain hpc:Bsub .
+hpc:W rdfs:domain hpc:Bsub .
+hpc:We rdfs:domain hpc:Bsub .

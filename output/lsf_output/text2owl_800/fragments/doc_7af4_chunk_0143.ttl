@@ -1,0 +1,49 @@
+hpc:IndexRangeEndN rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobswitch2 ;
+    rdfs:range xsd:integer .
+
+hpc:IndexRangeStepN rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobswitch2 ;
+    rdfs:range xsd:integer .
+
+hpc:JobSwitch2 rdf:type owl:Class .
+
+hpc:VersionNumber rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobswitch2 ;
+    rdfs:range xsd:string .
+
+hpc:EventTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobswitch2 ;
+    rdfs:range xsd:integer .
+
+hpc:UserId rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobswitch2 ;
+    rdfs:range xsd:integer .
+
+hpc:JobId rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobswitch2 ;
+    rdfs:range xsd:integer .
+
+hpc:Queue rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobswitch2 ;
+    rdfs:range xsd:string .
+
+hpc:UserName rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobswitch2 ;
+    rdfs:range xsd:string .
+
+hpc:IndexRangeCnt rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobswitch2 ;
+    rdfs:range xsd:string .
+
+hpc:IndexRangeStart1 rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobswitch2 ;
+    rdfs:range xsd:integer .
+
+hpc:IndexRangeEnd1 rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobswitch2 ;
+    rdfs:range xsd:integer .
+
+hpc:IndexRangeStep1 rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobswitch2 ;
+    rdfs:range xsd:integer .

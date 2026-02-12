@@ -1,0 +1,57 @@
+hpc:HostPreExec a owl:Class ;
+    rdfs:comment "The host-based pre-execution command for the queue.";
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Command ;
+    rdfs:subPropertyOf hpc:PRE_EXEC ;
+    rdfs:domain hpc:Executionhost ;
+    rdfs:range hpc:Command ;
+    rdfs:subPropertyOf hpc:PRE_EXEC ;
+    rdfs:domain xsd:NonNegativeInteger ;
+    rdfs:range hpc:Executionhost ;
+    rdfs:subPropertyOf hpc:CAN_NOT_RUN_ON ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Operatingsystem ;
+    rdfs:range rdf:PlainLiteral ;
+    rdfs:range xsd:string .
+
+hpc:HostPostExec a owl:Class ;
+    rdfs:comment "The host-based post-execution command for the queue.";
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Command ;
+    rdfs:subPropertyOf hpc:POST_EXEC ;
+    rdfs:domain hpc:Executionhost ;
+    rdfs:range hpc:Command ;
+    rdfs:subPropertyOf hpc:POST_EXEC ;
+    rdfs:domain xsd:NonNegativeInteger ;
+    rdfs:range hpc:Executionhost ;
+    rdfs:subPropertyOf hpc:CAN_NOT_RUN_ON ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Operatingsystem ;
+    rdfs:range rdf:PlainLiteral ;
+    rdfs:range xsd:string .
+
+hpc:LocalMaxPreexecRetryAction a owl:Class ;
+    rdfs:comment "The action to take on a job when the number of times to attempt its pre-execution command on the local cluster is reached." ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Action ;
+    rdfs:subPropertyOf hpc:LOCAL_MAX_PREEXEC_RETRY .
+
+hpc:RequeueExitValues a owl:Class ;
+    rdfs:comment "Jobs that exit with these values are automatically re-queued." ;
+    rdfs:subClassOf owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ResReq a owl:Class ;
+    rdfs:comment "Resource requirements of the queue." ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Resourcerequirement .
+
+hpc:ResrsvLimit a owl:Class ;
+    rdfs:comment "Resource requirement limits of the queue." ;
+    rdfs:subClassOf owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;

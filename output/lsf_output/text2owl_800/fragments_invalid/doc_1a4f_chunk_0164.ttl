@@ -1,0 +1,24 @@
+hpc:Job a owl:Class .
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:Jobgroup a owl:Class .
+hpc:killcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range xsd:string .
+
+hpc:submittedqueue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:terminatedjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range hpc:Job .
+
+hpc:deletejobgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range xsd:string .
+
+hpc:Jobgrouphierarchy a owl:Class ;
+    rdfs:subClassOf hpc:Jobgroup .
+hpc:Jobgrouphierarchy rdfs:subClassOf (hpc:Jobgroup rdfs:and (hpc:Terminatedjob some (hpc:Terminatedjob rdf:first hpc:Job) (hpc:Terminatedjob rdf:rest hpc:Job))) .

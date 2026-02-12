@@ -1,0 +1,47 @@
+hpc:Userpriority a owl:Class .
+hpc:Userpriority rdfs:domain xsd:integer .
+
+hpc:Serviceclass a owl:Class .
+hpc:Serviceclass rdfs:domain xsd:string .
+
+hpc:Group a owl:Class .
+hpc:Group rdfs:domain xsd:string .
+
+hpc:Externalscheduler a owl:Class .
+hpc:Externalscheduler rdfs:domain xsd:string .
+
+hpc:Hold a owl:Class .
+hpc:Hold rdfs:domain xsd:boolean .
+
+hpc:Jobgroup a owl:Class .
+hpc:Jobgroup rdfs:domain xsd:string .
+
+hpc:Notificationparams a owl:Class .
+
+hpc:notifyatstart a owl:ObjectProperty .
+hpc:Notifyatstart rdfs:domain hpc:Job .
+hpc:Notifyatstart rdfs:range xsd:boolean .
+
+hpc:notifyatfinish a owl:ObjectProperty .
+hpc:Notifyatfinish rdfs:domain hpc:Job .
+hpc:Notifyatfinish rdfs:range xsd:boolean .
+
+hpc:notificationemail a owl:ObjectProperty .
+hpc:Notificationemail rdfs:domain hpc:Notificationparams .
+hpc:Notificationemail rdfs:range xsd:string .
+
+hpc:notifyatstart-B a owl:DatatypeProperty .
+hpc:Notifyatstart-B rdfs:domain hpc:Notificationparams .
+hpc:Notifyatstart-B rdfs:range xsd:boolean .
+
+hpc:notifyatfinish-N a owl:DatatypeProperty .
+hpc:Notifyatfinish-N rdfs:domain hpc:Notificationparams .
+hpc:Notifyatfinish-N rdfs:range xsd:boolean .
+
+hpc:notificationemail-u a owl:DatatypeProperty .
+hpc:Notificationemail-u rdfs:domain hpc:Notificationparams .
+hpc:Notificationemail-u rdfs:range xsd:string .
+
+hpc:Bsub a owl:Class .
+
+hpc:Runtimeparam a owl:Class .

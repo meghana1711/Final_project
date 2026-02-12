@@ -1,0 +1,27 @@
+hpc:Slurmtool a owl:Class.
+hpc:scancel a owl:ObjectProperty;
+    rdfs:domain hpc:Slurmtool;
+    rdfs:range hpc:Joborjobstep. .
+
+hpc:scontrol a owl:ObjectProperty;
+    rdfs:domain hpc:Slurmtool;
+    rdfs:range hpc:Slurmstate. .
+
+hpc:sinfo a owl:ObjectProperty;
+    rdfs:domain hpc:Slurmtool; .
+
+hpc:sprio a owl:ObjectProperty;
+    rdfs:domain hpc:Slurmtool;
+    rdfs:range hpc:Job. .
+
+hpc:squeue a owl:ObjectProperty;
+    rdfs:domain hpc:Slurmtool;
+    rdfs:range hpc:Joborjobstep. .
+
+hpc:srun a owl:ObjectProperty;
+    rdfs:domain hpc:Slurmtool;
+    rdfs:range hpc:Job. .
+
+hpc:Joborjobstep a owl:Class. .
+hpc:Job a owl:Class;
+    rdfs:subClassOf hpc:Joborjobstep. .

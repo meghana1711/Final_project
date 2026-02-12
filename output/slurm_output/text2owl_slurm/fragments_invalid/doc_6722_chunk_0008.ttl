@@ -1,0 +1,24 @@
+hpc:Jobsubmissioncommand a owl:Class .
+hpc:Jobrequest a owl:Class .
+hpc:Burstbufferrequirement a owl:Class .
+hpc:Burstbufferstage a owl:Class .
+hpc:Burstbufferresourcepool a owl:Class .
+
+hpc:hasburstbufferrequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmissioncommand ;
+    rdfs:range hpc:Burstbufferrequirement .
+
+hpc:hasburstbufferstage a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmissioncommand ;
+    rdfs:range hpc:Burstbufferstage .
+
+hpc:usesburstbufferresourcepool a owl:ObjectProperty ;
+    rdfs:domain hpc:Burstbufferrequirement ;
+    rdfs:range hpc:Burstbufferresourcepool .
+
+hpc:happensbefore a owl:ObjectProperty ;
+    rdfs:domain hpc:Burstbufferstage ;
+    rdfs:range hpc:Burstbufferstage .
+
+hpc:isnormalmodeofoperation a owl:ObjectProperty ;
+    rdfs

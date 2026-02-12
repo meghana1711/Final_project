@@ -1,0 +1,50 @@
+hpc:Cluster a owl:Class .
+hpc:ClusterName rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string .
+
+hpc:ClusterAdmins rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Clusteradmin .
+
+hpc:Clusteradmin a owl:Class .
+
+hpc:HostType rdf:type owl:Class .
+
+hpc:Host rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Hosttype .
+
+hpc:ManagementHost rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:ServerHost rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Host ;
+    rdfs:subClassOf hpc:Server .
+
+hpc:ClientOnlyHost rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Host ;
+    rdfs:subClassOf hpc:Client .
+
+hpc:Hosts rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range rdf:List .
+
+hpc:ServerColumn rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:integer .
+
+hpc:FileSystem rdf:type owl:Class .
+hpc:Directory rdf:type owl:Class .
+hpc:File rdf:type owl:Class .
+
+hpc:SharedFileSystem rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Filesystem .
+
+hpc:UserDataCopy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Batchjob ;
+    rdfs:range hpc:File .
+
+hpc:ResultCopy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Batchjob ;
+    rdfs:range hpc:File .

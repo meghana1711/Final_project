@@ -1,0 +1,56 @@
+hpc:Sendjobsqueue a owl:Class .
+hpc:Receivejobsqueue a owl:Class .
+hpc:Executionqueue a owl:Class .
+hpc:Submissioncluster a owl:Class .
+hpc:Executioncluster a owl:Class .
+hpc:Multiclusterjob a owl:Class .
+
+hpc:affects a owl:ObjectProperty .
+hpc:enforced a owl:ObjectProperty .
+hpc:ignored a owl:ObjectProperty .
+hpc:negotiated a owl:ObjectProperty .
+hpc:created a owl:ObjectProperty .
+hpc:visible a owl:ObjectProperty .
+hpc:specified a owl:ObjectProperty .
+
+hpc:Queuelevelparameters rdfs:subClassOf owl:Class .
+hpc:Runtimequeuelevelparameters rdfs:subClassOf hpc:Queuelevelparameters .
+hpc:Resourcerequirements rdfs:subClassOf hpc:Queuelevelparameters .
+hpc:Resourcelimits rdfs:subClassOf hpc:Queuelevelparameters .
+hpc:Jobslotlimits rdfs:subClassOf hpc:Queuelevelparameters .
+hpc:Advancereservation rdfs:subClassOf hpc:Queuelevelparameters .
+
+hpc:Affects rdfs:domain hpc:Multiclusterjob ;
+    rdfs:range hpc:Queue .
+
+hpc:Enforced rdfs:domain hpc:Queuelevelparameters ;
+    rdfs:range hpc:Queue .
+
+hpc:Ignored rdfs:domain hpc:Queuelevelparameters ;
+    rdfs:range hpc:Sendjobsqueue .
+
+hpc:Created rdfs:domain hpc:Advancereservation ;
+    rdfs:range hpc:Executioncluster .
+
+hpc:Visible rdfs:domain hpc:Advancereservation ;
+    rdfs:range hpc:Submissioncluster .
+
+hpc:Specified rdfs:domain hpc:Multiclusterjob ;
+    rdfs:range hpc:Advancereservation .
+
+hpc:Executioncluster rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf hpc:Queue .
+
+hpc:Submissioncluster rdfs:subClassOf owl:Class .
+
+hpc:hjoblimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ujoblimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:qjoblimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .

@@ -1,0 +1,51 @@
+hpc:Lsfjob a owl:Class .
+hpc:Datamanager a owl:Class .
+hpc:Datamanagerstagingarea a owl:Class .
+hpc:Jobexecutionhost a owl:Class .
+hpc:Datafile a owl:Class .
+hpc:Datafolder a owl:Class .
+hpc:Datamanagerstagingcache a owl:Class .
+hpc:Datamanagementcache a owl:Class .
+hpc:Transferjob a owl:Class .
+
+# Object Properties
+hpc:stagesdatafiles a owl:ObjectProperty .
+hpc:stagesindatafiles a owl:ObjectProperty .
+hpc:stagesoutdatafiles a owl:ObjectProperty .
+hpc:copiesdatafiles a owl:ObjectProperty .
+hpc:createssymboliclinks a owl:ObjectProperty .
+hpc:requeststransferjob a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:Hasreleaseversion rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:string .
+hpc:Hasdatarequirements rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:boolean .
+hpc:Haspermissiontoread rdfs:domain hpc:Datafile ;
+    rdfs:range xsd:boolean .
+hpc:Isstagedin rdfs:domain hpc:Datafile ;
+    rdfs:range hpc:Jobexecutionhost .
+hpc:Isstagedout rdfs:domain hpc:Datafile ;
+    rdfs:range hpc:Datamanagementcache .
+
+# Subclass Relations
+hpc:Bstage a hpc:LSFJob .
+hpc:DataManagerStagingCache a hpc:DataManager .
+hpc:DataManagementCache a hpc:DataManager .
+hpc:JobExecutionHost a hpc:DataManagerStagingArea .
+hpc:DataFile a hpc:File .
+hpc:DataFolder a hpc:Folder .
+
+# Domain and Range Restrictions
+hpc:Stagesdatafiles rdfs:domain hpc:Bstage ;
+    rdfs:range hpc:Datafile .
+hpc:Stagesindatafiles rdfs:domain hpc:Bstage ;
+    rdfs:range hpc:Datafile .
+hpc:Stagesoutdatafiles rdfs:domain hpc:Bstage ;
+    rdfs:range hpc:Datafile .
+hpc:Copiesdatafiles rdfs:domain hpc:Stagesdatafiles ;
+    rdfs:range hpc:Datafile .
+hpc:Createssymboliclinks rdfs:domain hpc:Stagesdatafiles ;
+    rdfs:range hpc:Datafile .
+hpc:Requeststransferjob rdfs:domain hpc:Stagesoutdatafiles ;
+    rdfs:range hpc:Transferjob .

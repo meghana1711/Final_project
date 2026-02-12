@@ -1,0 +1,41 @@
+hpc:Slurmauthandcredkiosk a owl:Class .
+hpc:Slurmauthandcredkiosk rdfs:subClassOf owl:Class .
+
+hpc:hasSlurmJWKsFile rdf:type owl:ObjectProperty .
+hpc:Hasslurmjwksfile rdfs:domain hpc:Slurmauthandcredkiosk .
+hpc:Hasslurmjwksfile rdfs:range xsd:string .
+
+hpc:useClientIds rdf:type owl:ObjectProperty .
+hpc:Useclientids rdfs:domain hpc:Slurmauthandcredkiosk .
+hpc:Useclientids rdfs:range xsd:boolean .
+
+hpc:SlurmInternalAuth rdf:type owl:Class .
+hpc:Slurminternalauth rdfs:subClassOf owl:Class .
+
+hpc:SACK rdf:type owl:Class .
+hpc:Sack rdfs:subClassOf hpc:Slurminternalauth .
+
+hpc:sackd rdf:type owl:Class .
+hpc:Sackd rdfs:subClassOf owl:Class .
+
+hpc:coExistingSackdDaemons rdf:type owl:ObjectProperty .
+hpc:Coexistingsackddaemons rdfs:domain hpc:Sackd .
+hpc:Coexistingsackddaemons rdfs:range xsd:string .
+
+hpc:RuntimeDirectory rdf:type owl:DatatypeProperty .
+hpc:Runtimedirectory rdfs:domain hpc:Sackd .
+hpc:Runtimedirectory rdfs:range xsd:string .
+
+hpc:SLURM_CONF rdf:type owl:DatatypeProperty .
+hpc:SlurmConf rdfs:domain hpc:Slurmclient .
+hpc:SlurmConf rdfs:range xsd:string .
+
+hpc:SlurmClientAuth rdf:type owl:Class .
+hpc:Slurmclientauth rdfs:subClassOf owl:Class .
+
+hpc:JWT rdf:type owl:Class .
+hpc:Jwt rdfs:subClassOf hpc:Slurmclientauth .
+
+hpc:AuthAltType rdf:type owl:DatatypeProperty .
+hpc:Authalttype rdfs:domain hpc:Slurm .
+hpc:Authalttype rdfs:range xsd:string .

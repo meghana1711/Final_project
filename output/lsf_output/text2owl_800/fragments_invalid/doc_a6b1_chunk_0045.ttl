@@ -1,0 +1,21 @@
+hpc:Managementhost a owl:Class .
+hpc:Lsfcluster a owl:Class .
+hpc:Sharedconfigurationfile a owl:Class .
+hpc:includedirective a owl:ObjectProperty .
+
+hpc:Managementhost rdfs:subClassOf owl:Thing .
+hpc:Lsfcluster rdfs:subClassOf owl:Class .
+hpc:Sharedconfigurationfile rdfs:subClassOf owl:Class .
+
+hpc:includedirective a owl:ObjectProperty ;
+    rdfs:domain hpc:Sharedconfigurationfile ;
+    rdfs:range hpc:File .
+
+hpc:LsfCluster rdfs:subPropertyChainOf hpc:IncludeDirective ;
+    rdfs:subPropertyChain rdf:List (hpc:IncludeDirective) .
+
+hpc:LsfCluster rdfs:subPropertyChainOf hpc:hasManagementHost ;
+    rdfs:subPropertyChain rdf:List (hpc:ManagementHost) .
+
+hpc:SharedConfigurationFile rdfs:subPropertyChainOf hpc:includes ;
+    rdfs:subPropertyChain rdf:List (hpc:SharedConfigurationFile) .

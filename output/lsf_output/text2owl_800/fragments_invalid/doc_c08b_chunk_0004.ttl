@@ -1,0 +1,24 @@
+hpc:Job a owl:Class .
+hpc:Defaultqueue a owl:Class .
+hpc:User a owl:Class .
+hpc:Host a owl:Class .
+hpc:Program a owl:Class .
+hpc:Nfsvolume a owl:Class .
+hpc:Tgtfile a owl:Class .
+
+hpc:submits a owl:ObjectProperty .
+hpc:runson a owl:ObjectProperty .
+hpc:hastgtfile a owl:ObjectProperty .
+hpc:isinqueue a owl:ObjectProperty .
+hpc:hasuser a owl:ObjectProperty .
+hpc:hashost a owl:ObjectProperty .
+hpc:usesprogram a owl:ObjectProperty .
+hpc:hasnfsvolume a owl:ObjectProperty .
+
+hpc:hasticketcache a owl:DatatypeProperty .
+hpc:hasprincipal a owl:DatatypeProperty .
+hpc:hasexpiration a owl:DatatypeProperty .
+hpc:hasserviceprincipal a owl:DatatypeProperty .
+
+hpc:Job a owl:NamedIndividual ;
+       rdfs:subClassOf owl:

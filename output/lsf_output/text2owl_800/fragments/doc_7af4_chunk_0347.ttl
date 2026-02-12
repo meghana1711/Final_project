@@ -1,0 +1,32 @@
+hpc:MC_STRICT_JOBID_CHECKING
+    a owl:Class ;
+    rdfs:subClassOf owl:Boolean .
+
+hpc:MC_STRICT_JOBID_CHECKING_Y
+    a owl:NamedIndividual ;
+    rdf:type hpc:MC_STRICT_JOBID_CHECKING ;
+    rdfs:label "MC_STRICT_JOBID_CHECKING=Y" .
+
+hpc:MC_STRICT_JOBID_CHECKING_N
+    a owl:NamedIndividual ;
+    rdf:type hpc:MC_STRICT_JOBID_CHECKING ;
+    rdfs:label "MC_STRICT_JOBID_CHECKING=N" .
+
+hpc:Default_MC_STRICT_JOBID_CHECKING
+    a owl:NamedIndividual ;
+    rdf:type hpc:MC_STRICT_JOBID_CHECKING ;
+    rdfs:label "Default" .
+
+hpc:MIN_SWITCH_PERIOD
+    a owl:Class ;
+    rdfs:subClassOf owl:QuantitativeValue .
+
+hpc:MIN_SWITCH_PERIOD_seconds
+    a owl:NamedIndividual ;
+    rdf:type hpc:MIN_SWITCH_PERIOD ;
+    rdfs:label "seconds" .
+
+hpc:MIN_SWITCH_PERIOD_range
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:MinSwitchPeriod ;
+    rdfs:range xsd:nonNegativeInteger .

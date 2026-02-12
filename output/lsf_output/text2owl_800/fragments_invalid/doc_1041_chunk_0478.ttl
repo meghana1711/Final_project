@@ -1,0 +1,54 @@
+hpc:User a owl:Class .
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf owl:Thing ] .
+
+hpc:requeue a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Job .
+
+hpc:hasjobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:requeuestatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:string .
+
+hpc:requeuetime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:dateTime .
+
+hpc:submittime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:dateTime .
+
+hpc:jobstate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:string .
+
+hpc:jobtype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:string .
+
+hpc:Cluster a owl:Class .
+
+hpc:executioncluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range hpc:Cluster .
+
+hpc:submissioncluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range hpc:Cluster .
+
+hpc:localqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster .
+    rdfs:range hpc:Queue .
+
+hpc:Queue a owl:Class .
+
+
+This ontology fragment represents the classes `User`, `Job`, `Cluster`, and `Queue`, as well as various properties related to jobs, such as `hasJobID`, `requeueStatus`, `requeueTime`, `submitTime`, `jobState`, `jobType`, `executionCluster`, `submissionCluster`, and `localQueue`.

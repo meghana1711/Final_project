@@ -1,0 +1,49 @@
+hpc:Edapplication a owl:Class .
+hpc:installCommand an owl:ObjectProperty ;
+    rdfs:domain hpc:Edapplication ;
+    rdfs:range xsd:string .
+
+hpc:Installationparameters a owl:Class .
+hpc:LSF_TOP rdf:type hpc:InstallationParameter ;
+    rdfs:range xsd:string .
+hpc:LSF_ADMINS rdf:type hpc:InstallationParameter ;
+    rdfs:range xsd:string .
+hpc:LSF_CLUSTER_NAME rdf:type hpc:InstallationParameter ;
+    rdfs:range xsd:string .
+hpc:LSF_MASTER_LIST rdf:type hpc:InstallationParameter ;
+    rdfs:range xsd:string .
+hpc:LSF_ENTITLEMENT_FILE rdf:type hpc:InstallationParameter ;
+    rdfs:range xsd:string .
+
+hpc:Primarylsfadministrator a owl:Class ;
+    rdfs:subClassOf hpc:User .
+
+hpc:osaccountname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Primarylsfadministrator ;
+    rdfs:range xsd:string .
+
+hpc:osgroup a owl:DatatypeProperty ;
+    rdfs:domain hpc:Primarylsfadministrator ;
+    rdfs:range xsd:string .
+
+hpc:Installationserver a owl:Class ;
+    rdfs:subClassOf hpc:Server .
+
+hpc:Installationpackage a owl:Class .
+hpc:InstallerScriptPackage an owl:ObjectProperty ;
+    rdfs:domain hpc:Installationpackage ;
+    rdfs:range hpc:Scriptpackage .
+
+hpc:Scriptpackage a owl:Class ;
+    rdfs:subClassOf hpc:File .
+
+hpc:Distributionpackage a owl:Class .
+hpc:LinuxKernelVersion rdf:type hpc:DistributionPackageVersion ;
+    rdfs:range xsd:string .
+
+hpc:Installationconfigfile a owl:Class ;
+    rdfs:subClassOf hpc:File .
+
+hpc:Installationvariable a owl:Class .
+hpc:InstallationVariableName rdf:type hpc:InstallationVariable ;
+    rdfs:range xsd:string .

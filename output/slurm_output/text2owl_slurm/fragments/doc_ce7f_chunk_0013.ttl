@@ -1,0 +1,50 @@
+hpc:Node a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A computing node in a cluster." .
+
+hpc:Controller a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A controller managing the cluster." .
+
+hpc:Partition a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A grouping of nodes in a cluster." .
+
+hpc:hasNode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range hpc:Node ;
+    rdfs:comment "A partition contains one or more nodes." .
+
+hpc:Noderangeexpression a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "A string expression for specifying a range of nodes." .
+
+hpc:hasMinimumCPUs rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The minimum number of CPUs a node should have." .
+
+hpc:hasMinimumRealMemory rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The minimum real memory (in megabytes) a node should have." .
+
+hpc:hasMinimumTmpDisk rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The minimum temporary disk space (in megabytes) a node should have." .
+
+hpc:nodename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name used by all Slurm tools when referring to the node." .
+
+hpc:nodeaddr a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name or IP address Slurm uses to communicate with the node." .
+
+hpc:nodehostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name returned by the command /bin/hostname -s." .

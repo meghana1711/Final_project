@@ -1,0 +1,53 @@
+# bsub command options
+hpc:Bsubcommandoption a owl:Class ;
+  rdfs:subClassOf [ a owl:Class ;
+                     rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:BsubI a hpc:BsubCommandOption ;
+  rdfs:label "bsub -I" ;
+  rdfs:comment "Interactive job submission" .
+
+hpc:BsubIp a hpc:BsubCommandOption ;
+  rdfs:label "bsub -Ip" ;
+  rdfs:comment "Interactive job priority" .
+
+hpc:BsubIS a hpc:BsubCommandOption ;
+  rdfs:label "bsub -IS" ;
+  rdfs:comment "Interactive job state" .
+
+hpc:BsubISp a hpc:BsubCommandOption ;
+  rdfs:label "bsub -ISp" ;
+  rdfs:comment "Interactive job state priority" .
+
+hpc:BsubISs a hpc:BsubCommandOption ;
+  rdfs:label "bsub -ISs" ;
+  rdfs:comment "Interactive job state submission" .
+
+hpc:BsubIs a hpc:BsubCommandOption ;
+  rdfs:label "bsub -Is" ;
+  rdfs:comment "Interactive job state (case sensitive)" .
+
+hpc:BsubIX a hpc:BsubCommandOption ;
+  rdfs:label "bsub -IX" ;
+  rdfs:comment "Interactive job exit status" .
+
+# Changing job priorities and limits dynamically
+hpc:Dynamicjobprioritychange a owl:Class ;
+  rdfs:subClassOf [ a owl:Class ;
+                     rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:EADMIN_TRIGGER_INTERVAL a xsd:string ;
+  rdfs:domain hpc:Dynamicjobprioritychange ;
+  rdfs:range xsd:nonNegativeInteger ;
+  rdfs:label "EADMIN_TRIGGER_INTERVAL in the lsb.params file" .
+
+hpc:PERSIST_LIVE_CONFIG a xsd:boolean ;
+  rdfs:domain hpc:Dynamicjobprioritychange ;
+  rdfs:label "PERSIST_LIVE_CONFIG in the lsb.params file" .
+
+hpc:Bconfcommand a owl:Class ;
+  rdfs:subClassOf [ a owl:Class ;
+                     rdfs:subClassOf owl:NamedIndividual ] .
+
+# Specify a UDP port range for LSF daemons
+hpc:LSFUDPPortRange a owl:

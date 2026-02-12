@@ -1,0 +1,43 @@
+hpc:Javaruntimeinstallation a owl:Class .
+hpc:Javaruntimeinstallation rdfs:subClassOf owl:Thing .
+
+hpc:javaruntimepath a owl:DatatypeProperty .
+hpc:Javaruntimepath rdfs:domain hpc:Javaruntimeinstallation .
+hpc:Javaruntimepath rdfs:range xsd:string .
+
+hpc:Hadoopinstallation a owl:Class .
+hpc:Hadoopinstallation rdfs:subClassOf owl:Thing .
+
+hpc:hadooppath a owl:DatatypeProperty .
+hpc:Hadooppath rdfs:domain hpc:Hadoopinstallation .
+hpc:Hadooppath rdfs:range xsd:string .
+
+hpc:Lsfserverhost a owl:Class .
+hpc:Lsfserverhost rdfs:subClassOf owl:Thing .
+
+hpc:accessibleto a owl:ObjectProperty .
+hpc:Accessibleto rdfs:domain hpc:Javaruntimeinstallation .
+hpc:Accessibleto rdfs:range hpc:Lsfserverhost .
+
+hpc:overwriteableatsubmission a owl:ObjectProperty .
+hpc:Overwriteableatsubmission rdfs:domain hpc:Javaruntimeinstallation .
+hpc:Overwriteableatsubmission rdfs:range hpc:Lsfserverhost .
+
+hpc:Hadoopapplication a owl:Class .
+hpc:Hadoopapplication rdfs:subClassOf owl:Thing .
+
+hpc:compiledandreadytorun a owl:ObjectProperty .
+hpc:Compiledandreadytorun rdfs:domain hpc:Hadoopapplication .
+hpc:Compiledandreadytorun rdfs:range xsd:boolean .
+
+hpc:jarfile a owl:DatatypeProperty .
+hpc:Jarfile rdfs:domain hpc:Hadoopapplication .
+hpc:Jarfile rdfs:range xsd:string .
+
+hpc:Lsfserverhostwithhadoopapp a owl:Class .
+hpc:Lsfserverhostwithhadoopapp rdfs:subClassOf hpc:Lsfserverhost .
+hpc:Lsfserverhostwithhadoopapp rdfs:subClassOf owl:Thing .
+
+hpc:runninghadoopapponlsf a owl:ObjectProperty .
+hpc:Runninghadoopapponlsf rdfs:domain hpc:Hadoopapplication .
+hpc:Runninghadoopapponlsf rdfs:range hpc:Lsfserverhostwithhadoopapp .

@@ -1,0 +1,63 @@
+hpc:Samplinginterval a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:endtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Samplinginterval ;
+    rdfs:range xsd:integer .
+
+hpc:threadid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Samplinginterval ;
+    rdfs:range xsd:integer .
+
+hpc:stackdepth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Samplinginterval ;
+    rdfs:range xsd:integer .
+
+hpc:stack a owl:ObjectProperty ;
+    rdfs:domain hpc:Samplinginterval ;
+    rdfs:range hpc:Stack .
+
+hpc:Stack a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:functionname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Stack ;
+    rdfs:range xsd:string .
+
+hpc:JobSwitch2Event a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:JobSwitchEvent a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:improveperformance a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range hpc:JobSwitch2Event .
+
+hpc:jobSwitch2Logging a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range hpc:JobSwitch2Event .
+
+hpc:jobSwitchLogging a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range hpc:JobSwitchEvent .
+
+hpc:jobSwitch2EventLogging a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbparams ;
+    rdfs:range hpc:JobSwitch2Event .
+
+hpc:Mbatchd a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:Lsbparams a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:Jobarray a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf owl:NamedIndividual ] .

@@ -1,0 +1,54 @@
+hpc:Gpustatusobsolete a owl:Class .
+hpc:gpuStatus0 rdf:type hpc:GPUStatusObsolete ;
+    rdfs:comment "Obsolete parameter in LSF Version 10.1 Fix Pack 4." .
+
+hpc:Gpuautoboostsync a owl:Class .
+hpc:gpuAutoBoostSync rdf:type hpc:GPUStatusObsolete ;
+    rdfs:comment "Parameter in LSF Version 10.1 Fix Pack 4 that synchronizes the GPU auto-boost." .
+
+hpc:Hwloclibraryload a owl:Class .
+hpc:hwlocLibraryLoad rdf:type hpc:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101fp4 ;
+    rdfs:range hpc:Object .
+
+hpc:Eswitchexecutable a owl:Class .
+hpc:eswitchExecutable rdf:type hpc:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101fp4 ;
+    rdfs:range hpc:File .
+
+hpc:Jobremovalduration a owl:Class .
+hpc:jobRemovalDuration rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:Lsfversion101fp4 ;
+    rdfs:range xsd:duration .
+
+hpc:Fairshareschedulingjobremoval a owl:Class .
+hpc:fairShareSchedulingJobRemoval rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:Lsfversion101fp4 ;
+    rdfs:range xsd:duration ;
+    rdfs:subPropertyOf hpc:jobRemovalDuration .
+
+hpc:Mbatchdebrokerdstart a owl:Class .
+hpc:mBatchdEBrokerdStart rdf:type hpc:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101fp4 ;
+    rdfs:range hpc:Boolean .
+
+hpc:Lsfresourceconnectorbhosts a owl:Class .
+hpc:lsfResourceConnectorBHosts rdf:type hpc:ObjectProperty ;
+    rdfs:domain hpc:Lsfversion101fp4 ;
+    rdfs:range hpc:Lsfresourceconnector .
+
+hpc:Mqttbrokerhost a owl:Class .
+hpc:mqttBrokerHost rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:Lsfversion101fp4 ;
+    rdfs:range xsd:string .
+
+hpc:Mqttbrokerport a owl:Class .
+hpc:mqttBrokerPort rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:Lsfversion101fp4 ;
+    rdfs:range xsd:integer .
+
+hpc:Lsfresourceconnectormqttbrokerhost a owl:Class ;
+    rdfs:subClassOf hpc:Lsfresourceconnector .
+
+hpc:Lsfresourceconnectorproviderhosts a owl:Class ;
+    rdfs:subClassOf hpc:Lsfresourceconnector .

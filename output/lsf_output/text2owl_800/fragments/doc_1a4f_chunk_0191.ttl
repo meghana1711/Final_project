@@ -1,0 +1,51 @@
+hpc:CompoundApplicationRequirement
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:Restriction ;
+                        rdfs:domain hpc:Application ] .
+
+hpc:satisfies
+    a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+                    rdfs:subClassOf hpc:Compoundqueuerequirement ] ;
+    rdfs:range [ a owl:Class ;
+                  rdfs:subClassOf hpc:Job ] .
+
+hpc:ignored
+    a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+                    rdfs:subClassOf ( hpc:Compoundqueuerequirement
+                                         rdfs:union ( hpc:CompoundApplicationRequirement
+                                                         rdfs:union hpc:QueueRequirement ) ) ] ;
+    rdfs:range xsd:boolean .
+
+hpc:combine
+    a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+                    rdfs:subClassOf ( hpc:Compoundapplicationrequirement
+                                         rdfs:union hpc:QueueRequirement ) ] ;
+    rdfs:range xsd:string .
+
+hpc:merge
+    a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+                    rdfs:subClassOf ( hpc:Compoundapplicationrequirement
+                                         rdfs:union hpc:QueueRequirement ) ] ;
+    rdfs:range xsd:string .
+
+hpc:overwrites
+    a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+                    rdfs:subClassOf ( hpc:Compoundapplicationrequirement
+                                         rdfs:union hpc:QueueRequirement ) ] ;
+    rdfs:range xsd:boolean .
+
+hpc:appliesToAllCompoundTerms
+    a owl:ObjectProperty ;
+    rdfs:domain xsd:string ;
+    rdfs:range xsd:boolean .
+
+hpc:conflicts
+    a owl:ObjectProperty ;
+    rdfs:domain xsd:string ;
+    rdfs:range xsd:boolean .

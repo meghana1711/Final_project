@@ -1,0 +1,45 @@
+hpc:Sharedresource a owl:Class .
+hpc:Specificresource a owl:Class .
+hpc:Reservedresource a owl:Class .
+                                                     rdfs:subClassOf hpc:Sharedresource ] .
+hpc:Hostbasedresource a owl:Class .
+hpc:Customresource a owl:Class .
+hpc:Reservationmethod a owl:Class .
+hpc:PerJob a owl:Class .
+hpc:PerHost a owl:Class .
+hpc:PerTask a owl:Class .
+hpc:Reserve a owl:Class .
+hpc:Reserveableresource a owl:Class .
+hpc:reserveablebyjob a owl:ObjectProperty .
+hpc:reserveablebyhost a owl:ObjectProperty .
+hpc:Reserveablebyhost rdfs:domain hpc:Hostbasedresource ;
+                        rdfs:range hpc:Reservedresource .
+hpc:Reserveablebyjob rdfs:domain hpc:Sharedresource ;
+                      rdfs:range hpc:Reservedresource .
+hpc:ReserveableByHost rdfs:subPropertyOf hpc:ReservedBy .
+hpc:ReserveableByJob rdfs:subPropertyOf hpc:ReservedBy .
+hpc:Reservedby rdfs:domain hpc:Reservedresource ;
+                 rdfs:range hpc:Resource .
+hpc:Resource a owl:Class .
+hpc:mem a hpc:Resource .
+hpc:tmp a hpc:Resource .
+hpc:swp a hpc:Resource .
+hpc:mem rdfs:comment "Memory" ;
+          rdfs:label "mem" .
+hpc:tmp rdfs:comment "Temporary storage" ;
+          rdfs:label "tmp" .
+hpc:swp rdfs:comment "Swap space" ;
+          rdfs:label "swp" .
+hpc:Reservationmethod rdfs:domain hpc:Reservation .
+hpc:Reservation a owl:Class .
+hpc:Reservation rdfs:subClassOf [ rdf:type owl:Class ;
+                                    rdfs:subClassOf hpc:Resourcereservation ] .
+hpc:Resourcereservation a owl:Class .
+hpc:ResourceReserve_PER_SLOT obsolete a xsd:boolean .
+hpc:ResourceReserve_PER_TASK a xsd:boolean .
+hpc:ResourceReserve_PER_TASK rdfs:comment "Controls resources not configured in lsb.resources." .
+hpc:ResourcereservePerTask rdfs:domain hpc:Resourcereservation ;
+                             rdfs:range xsd:boolean .
+hpc:ResourceNotReservedInLsbResources a xsd:boolean .
+hpc:ResourceNotReservedInLsbResources rdfs:comment "Resources not reserved in lsb.resources are reserved by job if it is a shared resource or by host if it is a host-based resource." .
+h

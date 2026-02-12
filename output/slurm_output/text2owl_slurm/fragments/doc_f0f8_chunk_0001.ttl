@@ -1,0 +1,18 @@
+hpc:Cluster a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Represents a Slurm cluster." .
+
+hpc:hasclustername a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the Slurm cluster." .
+
+# Control Machine
+hpc:Controlmachine a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Represents a control machine in a Slurm cluster." .
+
+hpc:hascontrolmachinename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Controlmachine ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The hostname of the control machine." .

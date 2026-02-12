@@ -1,0 +1,78 @@
+hpc:usertimeused a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:systemtimeused a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:rumaxrss a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:ruixrss a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:ruisrss a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:ruidrss a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:ruismsrss a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:subClassOf xsd:decimal .
+
+hpc:ruminflt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:numberofpagereclaims a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:numberofpagefaults a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:numberoftimesswappedout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:numberofblockinputoperations a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:numberofblockoutputoperations a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:numberofcharactersreadandwritten a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:subClassOf xsd:nonNegativeInteger .
+
+hpc:numberofsystemvipcmessagessent a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:numberofmessagesreceived a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:numberofsignalsreceived a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:numberofvoluntarycontextswitches a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:numberofinvoluntarycontextswitches a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:exactusertimeused a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:subClassOf xsd:decimal .
+
+hpc:mailuser a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:projectname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:exitstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maxnumprocessors a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:

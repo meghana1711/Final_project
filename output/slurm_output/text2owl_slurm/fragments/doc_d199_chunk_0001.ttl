@@ -1,0 +1,49 @@
+hpc:Slurmrestd a owl:Class .
+
+# Generating OpenAPI Specification (OAS)
+hpc:generateoas a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Generates the OpenAPI Specification (OAS) for SlurmRESTD." .
+
+# Configuration of SlurmRESTD
+hpc:slurmConf a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The path to the SLURM configuration file." .
+
+hpc:slurmctld a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The slurmctld plugin version." .
+
+hpc:slurmdbd a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The slurmdbd plugin version." .
+
+hpc:version a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmrestd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The version of SlurmRESTD." .
+
+# OpenAPI Standard Compliance
+hpc:Openapicompliance a owl:Class .
+
+hpc:compliancetest a owl:ObjectProperty ;
+    rdfs:domain hpc:Openapicompliance ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The tool used to test OpenAPI compliance." .
+
+hpc:compatibleversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Openapicompliance ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The version of the tool that was used to test OpenAPI compliance." .
+
+# OpenAPI Specification Documentation
+hpc:Openapidocumentation a owl:Class .
+
+hpc:documentationpath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Openapidocumentation ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The path to the generated OpenAPI documentation." .

@@ -1,0 +1,65 @@
+hpc:Joboutputdirectory a owl:Class ;
+    rdfs:subClassOf owl:Resource ;
+    rdfs:comment "Directory created and managed dynamically based on configuration parameters." .
+
+hpc:hasjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Joboutputdirectory ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "The job associated with the output directory." .
+
+hpc:iscreatedbylsf a owl:ObjectProperty ;
+    rdfs:domain hpc:Joboutputdirectory ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the output directory was created by LSF." .
+
+hpc:issharedfilesystem a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the job is running on a shared file system." .
+
+hpc:isflexible a owl:ObjectProperty ;
+    rdfs:domain hpc:Joboutputdirectory ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the job output directory is flexible." .
+
+hpc:iscreatedatstartofjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Joboutputdirectory ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "Indicates the time when the output directory was created at the start of the job." .
+
+hpc:iscreatedonsubmissionhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Joboutputdirectory ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the output directory was created on the submission host." .
+
+hpc:isabsolutepath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Joboutputdirectory ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the directory path is absolute." .
+
+hpc:includesdynamicpattern a owl:DatatypeProperty ;
+    rdfs:domain hpc:Joboutputdirectory ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the directory path includes dynamic patterns." .
+
+hpc:haspermissions a owl:ObjectProperty ;
+    rdfs:domain hpc:Joboutputdirectory ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Indicates the permissions of the job output directory." .
+
+hpc:hasownership a owl:ObjectProperty ;
+    rdfs:domain hpc:Joboutputdirectory ;
+    rdfs:range hpc:User ;
+    rdfs:comment "Indicates the ownership of the job output directory." .
+
+hpc:ischeckpointed a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the job was check-pointed." .
+
+hpc:ismigrated a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the job was migrated." .
+
+hpc:IsReQueued a o

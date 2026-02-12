@@ -1,0 +1,24 @@
+hpc:Reservation a owl:Class;
+    rdfs:subClassOf owl:Class;
+    rdfs:comment "Represents a reservation of computing resources." .
+
+hpc:Job a owl:Class;
+    rdfs:subClassOf owl:Class;
+    rdfs:comment "Represents a job that uses a reservation." .
+
+hpc:hasreservation a owl:ObjectProperty;
+    rdfs:domain hpc:Job;
+    rdfs:range hpc:Reservation;
+    rdfs:comment "The reservation that this job uses." .
+
+hpc:reservationID rdfs:datatype xsd:string;
+    rdfs:comment "The unique identifier of a reservation." .
+
+hpc:numSlots rdfs:datatype xsd:nonNegativeInteger;
+    rdfs:comment "The number of slots reserved in a reservation." .
+
+hpc:usedSlots rdfs:datatype xsd:nonNegativeInteger;
+    rdfs:comment "The number of slots used by jobs in a reservation." .
+
+hpc:availableSlots rdfs:datatype xsd:nonNegativeInteger;
+    rdfs:comment "The number of slots still

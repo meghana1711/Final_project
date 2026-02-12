@@ -1,0 +1,22 @@
+hpc:Loggingmbatchdprofilinginformation a owl:Class .
+hpc:Loggingmbschdprofilinginformation a owl:Class .
+
+# LSB_PROFILE_MBD parameter in the lsf.conf file
+hpc:lsbProfileMbdparameter a owl:ObjectProperty ;
+    rdfs:domain hpc:Loggingmbatchdprofilinginformation ;
+    rdfs:range xsd:string .
+
+# LSB_PROFILE_SCH parameter in the lsf.conf file
+hpc:lsbProfileSchparameter a owl:ObjectProperty ;
+    rdfs:domain hpc:Loggingmbschdprofilinginformation ;
+    rdfs:range xsd:string .
+
+# Specify multiple email addresses with the bsub -u option
+hpc:Multipleemailaddresseswithbsubu a owl:Class .
+
+# Specify remote hosts with the bsub -m option
+hpc:Specifyremotehostswithbsubm a owl:Class .
+
+# New MAX_PEND_SLOTS parameter and change to MAX_PEND_JOBS parameter
+hpc:NewmaxPendSlotsparameter a owl:Class .
+hpc:ChangetomaxPendJobsparameter a owl:Class .

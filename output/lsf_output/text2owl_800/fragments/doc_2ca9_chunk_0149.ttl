@@ -1,0 +1,34 @@
+hpc:Dcgm a owl:Class .
+hpc:lsfDcgmPort a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dcgm ;
+    rdfs:range xsd:integer .
+
+hpc:enableCgroup a owl:DatatypeProperty ;
+    rdfs:domain hpc:Installation ;
+    rdfs:range xsd:boolean .
+
+hpc:enableGpu a owl:DatatypeProperty ;
+    rdfs:domain hpc:Installation ;
+    rdfs:range xsd:boolean .
+
+hpc:Accurateaffinityaccounting a owl:Class ;
+    rdfs:subClassOf hpc:Resourcemanagement .
+
+hpc:Gpuusageinformation a owl:Class ;
+    rdfs:subClassOf hpc:Dcgm .
+
+hpc:Gpustatuscheck a owl:Class ;
+    rdfs:subClassOf hpc:Dcgm .
+
+hpc:Gpuautoboostsynchronization a owl:Class ;
+    rdfs:subClassOf hpc:Dcgm .
+
+hpc:Linuxcgroupaccounting a owl:Class ;
+    rdfs:subClassOf hpc:Installation .
+
+hpc:Automaticgpuresourcesupport a owl:Class ;
+    rdfs:subClassOf hpc:Installation .
+
+hpc:affinityaccounting a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcemanagement ;
+    rdfs:range hpc:Jobslot .

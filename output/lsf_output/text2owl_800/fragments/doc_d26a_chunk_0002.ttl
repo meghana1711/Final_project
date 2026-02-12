@@ -1,0 +1,38 @@
+hpc:Lsf a owl:Class .
+hpc:hasparameter a owl:ObjectProperty .
+hpc:Parameter a owl:Class .
+hpc:hascondition a owl:ObjectProperty .
+hpc:Condition a owl:Class .
+hpc:haswaittime a owl:DatatypeProperty .
+hpc:WaitTime a xsd:nonNegativeInteger .
+
+hpc:Lsf rdfs:subClassOf owl:Class .
+hpc:Hasparameter rdfs:domain hpc:Lsf ;
+                   rdfs:range hpc:Parameter .
+hpc:Parameter rdfs:subClassOf owl:Class .
+hpc:Hascondition rdfs:domain hpc:Parameter ;
+                   rdfs:range hpc:Condition .
+hpc:Condition rdfs:subClassOf owl:Class .
+hpc:Haswaittime rdfs:domain hpc:Condition ;
+                   rdfs:range xsd:nonNegativeInteger .
+
+hpc:removeHungJobsFor a owl:ObjectProperty .
+hpc:RemoveHungJobsFor rdfs:domain hpc:Lsf .
+hpc:RemoveHungJobsFor rdfs:range hpc:Parameter .
+
+hpc:all a owl:NamedIndividual ;
+      hpc:Hascondition hpc:all .
+hpc:runlimit a owl:NamedIndividual ;
+          hpc:Hascondition hpc:runlimit .
+hpc:host_unavail a owl:NamedIndividual ;
+          hpc:Hascondition hpc:hostUnavail .
+
+hpc:All hpc:haswaittime xsd:10 .
+hpc:Runlimit hpc:haswaittime xsd:5 .
+hpc:HostUnavail hpc:haswaittime xsd:10 .
+
+hpc:Runlimit hpc:hascondition hpc:runlimit ;
+             hpc:hasWaitTime xsd:5 .
+hpc:HostUnavail hpc:hascondition hpc:host_unavail ;
+             hpc:hasWaitTime xsd:10 .
+hpc:All hpc:hascondition hpc:all .

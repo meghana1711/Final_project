@@ -1,0 +1,67 @@
+hpc:Jobcwd a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The current working directory (CWD) for a job." .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcwd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The unique identifier for a job." .
+
+hpc:jobgroup a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcwd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The group of a job (if specified)." .
+
+hpc:index a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcwd ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The index of a job (default value is 0)." .
+
+hpc:executionjobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcwd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The execution job ID." .
+
+hpc:executionindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcwd ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The execution index." .
+
+hpc:projectname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcwd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The project name." .
+
+hpc:username a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcwd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The user name." .
+
+hpc:usergroup a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcwd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The user group." .
+
+hpc:firstexecutionhostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcwd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The first execution host name." .
+
+hpc:jobCwdTtl a owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "The time to live value for the job CWD." .
+
+hpc:lsbJobCwd a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The job CWD defined in LSB parameters." .
+
+hpc:defaultJobCwd a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The default job CWD value." .
+
+hpc:lsbExitIfCwdNotexist a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string

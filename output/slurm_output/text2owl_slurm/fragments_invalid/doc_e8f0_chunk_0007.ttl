@@ -1,0 +1,20 @@
+hpc:Building a hpc:Jobsubmitplugin a owl:Class.
+hpc:LuaInterface a hpc:JobSubmitPlugin ;
+    rdfs:subClassOf hpc:Jobsubmitplugin ;
+    rdfs:comment "Simple to write and maintain with minimal dependencies upon the Slurm data structures." .
+
+hpc:CInterface a hpc:JobSubmitPlugin ;
+    rdfs:subClassOf hpc:Jobsubmitplugin ;
+    rdfs:comment "Provides a mechanism to get more information than available using LUA including full access to all of the data structures and functions in the slurmctld daemon." .
+
+hpc:Buildprocess a owl:Class ;
+    rdfs:subClassOf hpc:Process ;
+    rdfs:comment "The simplest way to build a C program would be to just replace one of the job submit plugins included in the Slurm distribution with your own code." .
+
+hpc:ReplaceJobSubmitPlugin a hpc:BuildProcess ;
+    rdfs:subClassOf hpc:Buildprocess ;
+    rdfs:comment "Use a patch with your own code." .
+
+hpc:BuildSlurm a hpc:BuildProcess ;
+    rdfs:subClassOf hpc:Buildprocess ;
+    rdfs:comment

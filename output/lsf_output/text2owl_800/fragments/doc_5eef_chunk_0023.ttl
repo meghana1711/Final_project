@@ -1,0 +1,62 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:File a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Hasfile .
+
+hpc:hasfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:File .
+
+hpc:host a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:permission a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:hash a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:size a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:status a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:xferjob a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:xferstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Xferjob .
+
+hpc:xferfinished a owl:DatatypeProperty ;
+    rdfs:domain hpc:Xferjob .
+
+hpc:xferTime a xsd:dateTime .
+
+hpc:cachelocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:group a owl:DatatypeProperty ;
+    rdfs:domain hpc:File .
+
+hpc:chgrp a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:clustername a owl:DatatypeProperty ;
+    rdfs:domain hpc:Chgrp .
+
+hpc:usergroupname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Chgrp .
+
+hpc:hostpath a owl:DatatypeProperty ;
+    rdfs:domain hpc:Chgrp .
+
+hpc:tagname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Chgrp .
+
+hpc:grace a xsd:string .
+
+hpc:modified a xsd:dateTime .

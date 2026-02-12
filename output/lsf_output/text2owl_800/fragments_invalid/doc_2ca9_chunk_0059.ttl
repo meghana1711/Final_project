@@ -1,0 +1,67 @@
+hpc:Bjobscommandoption a owl:Class .
+hpc:lsbbjobsformat a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobscommandoption ;
+    rdfs:range xsd:string .
+
+hpc:lsbunitforjobsdisplay a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bjobscommandoption ;
+    rdfs:range xsd:string .
+
+hpc:lsbresourceenforce a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationoption ;
+    rdfs:range xsd:string .
+
+hpc:lsbresourcetracking a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationoption ;
+    rdfs:range xsd:string .
+
+hpc:linuxcgroupacct a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationoption ;
+    rdfs:range xsd:string .
+
+hpc:processtracking a owl:DatatypeProperty ;
+    rdfs:domain hpc:Configurationoption ;
+    rdfs:range xsd:string .
+
+hpc:Cgroupversion2 a owl:Class .
+hpc:Cgroupversion2 rdfs:subClassOf hpc:Linuxcgroup .
+
+hpc:Cgroupv1 a owl:Class .
+
+hpc:Extschedapi a owl:Class .
+
+hpc:jobeventcallbackfunction a owl:ObjectProperty ;
+    rdfs:domain hpc:Extschedapi ;
+    rdfs:range hpc:Function .
+
+hpc:jobcreated a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobeventcallbackfunction ;
+    rdfs:range hpc:Job .
+
+hpc:jobdestroyed a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobeventcallbackfunction ;
+    rdfs:range hpc:Job .
+
+hpc:Linuxcgroupaffinitybinding a owl:Class .
+
+hpc:Linuxcgroupmemoryswaplimitenforcement a owl:Class .
+
+hpc:Platform a owl:Class .
+hpc:Platform rdfs:subClassOf hpc:Operatingsystem .
+
+hpc:Rhel a owl:Class ;
+    rdfs:subClassOf hpc:Platform ;
+    hpc:Kernelversion rdfs:range xsd:string ;
+    hpc:Glibcversion rdfs:range xsd:string .
+
+hpc:Sles a owl:Class ;
+    rdfs:subClassOf hpc:Platform ;
+    hpc:Kernelversion rdfs:range xsd:string ;
+    hpc:Glibcversion rdfs:range xsd:string .
+
+hpc:Ubuntu a owl:Class ;
+    rdfs:subClassOf hpc:Platform ;
+    hpc:Kernelversion rdfs:range xsd:string ;
+    hpc:Glibcversion rdfs:range xsd:string .
+
+hpc:Configurationoption a owl:Class .

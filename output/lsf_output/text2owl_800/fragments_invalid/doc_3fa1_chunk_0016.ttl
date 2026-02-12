@@ -1,0 +1,77 @@
+hpc:Jobarray a owl:Class .
+hpc:Job a owl:Class .
+hpc:Jobgroup a owl:Class .
+
+hpc:controlarray a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:string .
+
+hpc:controlindividualjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:string .
+
+hpc:controlgroupofjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:string .
+
+hpc:indexlist a owl:DatatypeProperty ;
+    rdfs:domain xsd:string ;
+    rdfs:range xsd:string .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain xsd:string ;
+    rdfs:range xsd:string .
+
+hpc:jobarrayHasindexlist a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:string .
+
+hpc:jobarrayHasjobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:string .
+
+hpc:jobarrayHasjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range hpc:Job .
+
+hpc:jobarrayHasjobgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range hpc:Jobgroup .
+
+hpc:jobgroupHasjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range hpc:Job .
+
+hpc:jobHasstate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:jobarrayHasstate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:string .
+
+hpc:JobarrayIsdone a owl:Class ;
+    rdfs:subClassOf hpc:Jobarray .
+
+hpc:JobarrayIsexit a owl:Class ;
+    rdfs:subClassOf hpc:Jobarray .
+
+hpc:brequeue a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:string .
+
+hpc:brequeueRequeue a owl:ObjectProperty ;
+    rdfs:domain hpc:Brequeue ;
+    rdfs:range xsd:string .
+
+hpc:brequeueJobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Brequeue ;
+    rdfs:range xsd:string .
+
+hpc:brequeueState a owl:DatatypeProperty ;
+    rdfs:domain hpc:Brequeue ;
+    rdfs:range xsd:string .
+
+hpc:brequeueOption a owl:DatatypeProperty ;
+    rdfs:domain hpc:Brequeue ;
+    rdfs:

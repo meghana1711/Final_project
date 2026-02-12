@@ -1,0 +1,41 @@
+hpc:Jobhistory a owl:Class .
+hpc:Jobcurrentworkingdirectory a owl:Class .
+hpc:Jobspooldirectory a owl:Class .
+hpc:Jobtemporarydirectory a owl:Class .
+hpc:Joboutputdirectory a owl:Class .
+
+hpc:hasjobhistory a owl:ObjectProperty .
+hpc:hasjobcurrentworkingdirectory a owl:ObjectProperty .
+hpc:hasjobspooldirectory a owl:ObjectProperty .
+hpc:hasjobtemporarydirectory a owl:ObjectProperty .
+hpc:hasjoboutputdirectory a owl:ObjectProperty .
+
+hpc:Jobhistory rdfs:subClassOf hpc:Jobinformation .
+hpc:Jobcurrentworkingdirectory rdfs:subClassOf hpc:Jobdirectory .
+hpc:Jobspooldirectory rdfs:subClassOf hpc:Jobdirectory .
+hpc:Jobtemporarydirectory rdfs:subClassOf hpc:Jobdirectory .
+hpc:Joboutputdirectory rdfs:subClassOf hpc:Jobdirectory .
+
+hpc:Jobhistory rdfs:domain hpc:Job .
+hpc:Hasjobhistory rdfs:domain hpc:Job .
+hpc:Jobcurrentworkingdirectory rdfs:domain hpc:Job .
+hpc:Hasjobcurrentworkingdirectory rdfs:domain hpc:Job .
+hpc:Jobspooldirectory rdfs:domain hpc:Job .
+hpc:Hasjobspooldirectory rdfs:domain hpc:Job .
+hpc:Jobtemporarydirectory rdfs:domain hpc:Job .
+hpc:Hasjobtemporarydirectory rdfs:domain hpc:Job .
+hpc:Joboutputdirectory rdfs:domain hpc:Job .
+hpc:Hasjoboutputdirectory rdfs:domain hpc:Job .
+
+hpc:Job rdfs:range rdf:Resource .
+hpc:Jobhistory rdfs:range rdf:List .
+hpc:Jobdirectory rdfs:range rdf:Resource .
+
+hpc:Jobcurrentworkingdirectory rdfs:range rdf:Resource .
+hpc:Hasjobcurrentworkingdirectory rdfs:range rdf:Resource .
+hpc:Jobspooldirectory rdfs:range rdf:Resource .
+hpc:Hasjobspooldirectory rdfs:range rdf:Resource .
+hpc:Jobtemporarydirectory rdfs:range rdf:Resource .
+hpc:Hasjobtemporarydirectory rdfs:range rdf:Resource .
+hpc:Joboutputdirectory rdfs:range rdf:Resource .
+hpc:Hasjoboutputdirectory rdfs:range rdf:Resource .

@@ -1,0 +1,47 @@
+hpc:Bpeekcommandconfiguration a owl:Class .
+
+# Properties related to remote output retrieval
+hpc:remoteoutputretrievalmethod a owl:ObjectProperty .
+hpc:Remoteoutputretrievalmethod rdfs:domain hpc:Bpeekcommandconfiguration ;
+                                  rdfs:range xsd:string .
+
+hpc:localhostfirst a owl:DatatypeProperty ;
+                     rdfs:domain hpc:Bpeekcommandconfiguration ;
+                     rdfs:range xsd:boolean .
+
+# Properties related to bqueues command output format
+hpc:bqueuesoutputformat a owl:ObjectProperty .
+hpc:Bqueuesoutputformat rdfs:domain hpc:Bpeekcommandconfiguration ;
+                          rdfs:range rdf:List .
+hpc:Bqueuesoutputformat rdfs:range rdf:List ;
+                          rdfs:subPropertyOf hpc:bqueuesOutputFormat ;
+                          rdfs:range rdf:List ;
+                          rdfs:subPropertyOf hpc:bqueuesOutputFormat ;
+                          rdfs:range rdf:List ;
+                          rdfs:subPropertyOf hpc:bqueuesOutputFormat .
+
+hpc:fieldname a owl:DatatypeProperty .
+hpc:Fieldname rdfs:domain hpc:Bqueuesoutputformat ;
+                 rdfs:range xsd:string .
+
+hpc:outputwidth a owl:DatatypeProperty .
+hpc:Outputwidth rdfs:domain hpc:Bqueuesoutputformat ;
+                 rdfs:range xsd:nonNegativeInteger .
+
+hpc:delimiter a owl:DatatypeProperty .
+hpc:Delimiter rdfs:domain hpc:Bqueuesoutputformat ;
+                 rdfs:range xsd:string .
+
+# Directories related to bpeek command
+hpc:Userhomedirectory a owl:Class .
+hpc:JobSpoolDir a owl:Class .
+hpc:Checkpointdirectory a owl:Class .
+
+hpc:sharedfilesystem a owl:ObjectProperty .
+hpc:Sharedfilesystem rdfs:domain hpc:Directory ;
+                       rdfs:range xsd:boolean .
+
+# Environment variables
+hpc:Environmentvariable a owl:Class .
+hpc:LSB_BPEEK_REMOTE_OUTPUT a hpc:EnvironmentVariable .
+hpc:LSB_BQUEUES_FORMAT a hpc:EnvironmentVariable .

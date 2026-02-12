@@ -1,0 +1,63 @@
+hpc:Limit a owl:Class .
+hpc:Notify a owl:Class .
+hpc:Pack a owl:Class .
+hpc:Properties a owl:Class .
+hpc:Resource a owl:Class .
+hpc:Schedule a owl:Class .
+hpc:Script a owl:Class .
+hpc:Io a owl:Class .
+
+# Object Properties
+hpc:haslimit a owl:ObjectProperty .
+hpc:controlsnotification a owl:ObjectProperty .
+hpc:submitspack a owl:ObjectProperty .
+hpc:specifiesproperties a owl:ObjectProperty .
+hpc:specifiesresources a owl:ObjectProperty .
+hpc:controlsscheduling a owl:ObjectProperty .
+hpc:usesscript a owl:ObjectProperty .
+hpc:specifiesio a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hasspecificlimit a owl:DatatypeProperty .
+
+# Domain and Range
+hpc:Haslimit rdfs:domain hpc:Limit ;
+    rdfs:range xsd:string .
+hpc:Controlsnotification rdfs:domain hpc:Notify ;
+    rdfs:range xsd:string .
+hpc:Submitspack rdfs:domain hpc:Pack ;
+    rdfs:range xsd:string .
+hpc:Specifiesproperties rdfs:domain hpc:Properties ;
+    rdfs:range xsd:string .
+hpc:Specifiesresources rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string .
+hpc:Controlsscheduling rdfs:domain hpc:Schedule ;
+    rdfs:range xsd:string .
+hpc:Usesscript rdfs:domain hpc:Script ;
+    rdfs:range xsd:string .
+hpc:Specifiesio rdfs:domain hpc:Io ;
+    rdfs:range xsd:string .
+
+# Subclasses
+hpc:Specificlimit a owl:Class ;
+    rdfs:subClassOf hpc:Limit .
+
+# Specific Limit Values
+hpc:SpecificLimit "-c" a hpc:SpecificLimit .
+hpc:SpecificLimit "-C" a hpc:SpecificLimit .
+hpc:SpecificLimit "-D" a hpc:SpecificLimit .
+hpc:SpecificLimit "-eptl" a hpc:SpecificLimit .
+hpc:SpecificLimit "-F" a hpc:SpecificLimit .
+hpc:SpecificLimit "-hl" a hpc:SpecificLimit .
+hpc:SpecificLimit "-M" a hpc:SpecificLimit .
+hpc:SpecificLimit "-p" a hpc:SpecificLimit .
+hpc:SpecificLimit "-ptl" a hpc:SpecificLimit .
+hpc:SpecificLimit "-S" a hpc:SpecificLimit .
+hpc:SpecificLimit "-T" a hpc:SpecificLimit .
+hpc:SpecificLimit "-ul" a hpc:SpecificLimit .
+hpc:SpecificLimit "-v" a hpc:SpecificLimit .
+hpc:SpecificLimit "-W" a hpc:SpecificLimit .
+hpc:SpecificLimit "-We" a hpc:SpecificLimit .
+
+# Notify Control Values
+hpc

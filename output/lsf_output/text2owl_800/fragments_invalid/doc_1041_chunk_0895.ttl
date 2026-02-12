@@ -1,0 +1,53 @@
+hpc:Command a owl:Class .
+hpc:Hasargument hpc:objectproperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "A job that can be specified by a command line or through the standard input." .
+
+hpc:Jobname hpc:datatypeproperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The job name if not specified with the -J option." .
+
+hpc:Commandlength hpc:datatypeproperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum length of the command for UNIX and Linux or for Windows." .
+
+hpc:Runorder hpc:objectproperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "The order in which the jobs are run." .
+
+hpc:Printusage hpc:objectproperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Prints command usage to stderr and exits." .
+
+hpc:Printversion hpc:objectproperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Prints LSF release version to stderr and exits." .
+
+hpc:Wgpasswd a owl:Class .
+hpc:Wgpasswdcommand hpc:objectproperty ;
+    rdfs:domain hpc:Wgpasswd ;
+    rdfs:range xsd:string .
+
+hpc:Username hpc:datatypeproperty ;
+    rdfs:domain hpc:Wgpasswd ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The user name to change the password for." .
+
+hpc:Runonworkgroup hpc:objectproperty ;
+    rdfs:domain hpc:Wgpasswd ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates that the command must be run on a host in a Microsoft Windows workgroup." .
+
+hpc:Hasadminprivileges hpc:objectproperty ;
+    rdfs:domain hpc:Wgpasswd ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates that the user must have administrative privileges to change another user’s password." .

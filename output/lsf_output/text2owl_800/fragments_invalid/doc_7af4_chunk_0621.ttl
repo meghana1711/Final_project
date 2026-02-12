@@ -1,0 +1,67 @@
+hpc:Resourcename a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdfs:onProperty hpc:resourceName ;
+                        rdf:first hpc:ResourceName ;
+                        owl:hasValue "_" ;
+                        owl:minCardinality 1 ;
+                        owl:allValuesFrom xsd:string ] .
+
+hpc:Invalidcharacter a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdf:first hpc:InvalidCharacter ;
+                        owl:onProperty hpc:resourceName ;
+                        owl:hasValue ":" ;
+                        owl:minCardinality 1 ] .
+
+hpc:Invalidcharacter a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdf:first hpc:InvalidCharacter ;
+                        owl:onProperty hpc:resourceName ;
+                        owl:hasValue "." ;
+                        owl:minCardinality 1 ] .
+
+hpc:Invalidcharacter a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdf:first hpc:InvalidCharacter ;
+                        owl:onProperty hpc:resourceName ;
+                        owl:hasValue "(" ;
+                        owl:minCardinality 1 ] .
+
+hpc:Invalidcharacter a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdf:first hpc:InvalidCharacter ;
+                        owl:onProperty hpc:resourceName ;
+                        owl:hasValue ")" ;
+                        owl:minCardinality 1 ] .
+
+hpc:Invalidcharacter a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdf:first hpc:InvalidCharacter ;
+                        owl:onProperty hpc:resourceName ;
+                        owl:hasValue "[" ;
+                        owl:minCardinality 1 ] .
+
+hpc:Invalidcharacter a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdf:first hpc:InvalidCharacter ;
+                        owl:onProperty hpc:resourceName ;
+                        owl:hasValue "]" ;
+                        owl:minCardinality 1 ] .
+
+hpc:Invalidcharacter a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdf:first hpc:InvalidCharacter ;
+                        owl:onProperty hpc:resourceName ;
+                        owl:hasValue "+" ;
+                        owl:minCardinality 1 ] .
+
+hpc:Invalidcharacter a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdf:first hpc:InvalidCharacter ;
+                        owl:onProperty hpc:resourceName ;
+                        owl:hasValue "-" ;
+                        owl:minCardinality 1 ] .
+
+hpc:Invalidcharacter a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        rdf:

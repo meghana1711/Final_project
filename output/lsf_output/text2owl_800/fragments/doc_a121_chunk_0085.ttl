@@ -1,0 +1,27 @@
+hpc:Jobpriority a owl:Class .
+hpc:jobpriorityovertime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobpriority ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Jobpriorityfactor a owl:Class .
+hpc:Jobprioritysubfactor a owl:Class .
+
+hpc:jobpriorityweight a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobpriorityfactor ;
+    rdfs:range xsd:nonNegativeFloat .
+
+hpc:Absolutejobpriorityscheduling a owl:Class .
+hpc:jobprioritycalculation a owl:ObjectProperty ;
+    rdfs:domain hpc:Absolutejobpriorityscheduling .
+
+hpc:jobprioritysorting a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Job .
+
+hpc:jobprioritysum a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobstarvationprevention a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Absolutejobpriorityscheduling .

@@ -1,0 +1,22 @@
+hpc:Environmentvariable a owl:Class .
+hpc:EpsubEnvironmentVariable a hpc:EnvironmentVariable .
+hpc:EexecEnvironmentVariable a hpc:EnvironmentVariable .
+
+hpc:LsbSubJobErr rdfs:domain hpc:Epsubenvironmentvariable ;
+    rdfs:range xsd:integer .
+hpc:LsbSubJobId rdfs:domain hpc:Epsubenvironmentvariable ;
+    rdfs:range xsd:integer .
+hpc:LsbSubJobQueue rdfs:domain hpc:Epsubenvironmentvariable ;
+    rdfs:range xsd:string .
+hpc:LsbSubParmFile rdfs:domain hpc:Epsubenvironmentvariable ;
+    rdfs:range xsd:string .
+
+hpc:LsExecT rdfs:domain hpc:Eexecenvironmentvariable ;
+    rdfs:range xsd:string .
+hpc:LsJobpid rdfs:domain hpc:Eexecenvironmentvariable ;
+    rdfs:range xsd:integer .
+
+hpc:Jobsubmissioncontrol a owl:Class .
+hpc:CustomizedEsub a hpc:JobSubmissionControl .
+hpc:CustomizedEpsub a hpc:JobSubmissionControl .
+hpc:CustomizedEexec a hpc:JobSubmissionControl .

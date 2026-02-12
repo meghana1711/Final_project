@@ -1,0 +1,8 @@
+hpc:Writtenmegabytes a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:label "Write Megabytes" ;
+    rdfs:comment "Number of megabytes written to local disk." .
+
+hpc:numberofmegabyteswritten a owl:DatatypeProperty ;
+    rdfs:domain hpc:Writtenmegabytes ;
+    rdfs:range xsd:decimal .

@@ -1,0 +1,31 @@
+hpc:MbatchdCpuList a owl:Class .
+hpc:MbschdCpuList a owl:Class .
+
+hpc:hasMBatchdCPUList rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfDaemonsCpus ;
+    rdfs:range hpc:MbatchdCpuList .
+
+hpc:hasMBSCHDCPUList rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfDaemonsCpus ;
+    rdfs:range hpc:MbschdCpuList .
+
+hpc:LSF_DAEMONS_CPUS rdf:type owl:Class ;
+    rdfs:comment "Defines the list of management host CPUs where the mbatchd and mbschd daemon processes can run." .
+
+hpc:MbatchdCpuList rdfs:subClassOf xsd:string .
+hpc:MbschdCpuList rdfs:subClassOf xsd:string .
+
+hpc:lsfIntelligentCpuBind a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range xsd:boolean .
+
+hpc:egoDaemonsCpus a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range hpc:CpuList .
+
+hpc:mbdQueryCpus a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfConf ;
+    rdfs:range hpc:CpuList .
+
+hpc:CpuList a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeInteger .

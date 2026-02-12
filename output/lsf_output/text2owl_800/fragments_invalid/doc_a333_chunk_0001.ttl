@@ -1,0 +1,62 @@
+hpc:Jobsubmission a owl:Class .
+hpc:Jsdlfilejobsubmission a owl:Class .
+
+# JSDL File Job Submission properties
+hpc:jsdlfile a owl:ObjectProperty .
+hpc:jsdlstrict a owl:ObjectProperty .
+hpc:lsfextension a owl:ObjectProperty .
+
+# Job Submission parameters
+hpc:jobparameters a owl:ObjectProperty .
+hpc:commandlineparameters a owl:ObjectProperty .
+hpc:jobscriptparameters a owl:ObjectProperty .
+hpc:interactivejobinputparameters a owl:ObjectProperty .
+
+# Job Submission parameter domain and range
+hpc:Jobparameters rdfs:domain hpc:Jobsubmission ;
+    rdfs:range hpc:Jobsubmissionparameter .
+hpc:Commandlineparameters rdfs:domain hpc:Jsdlfilejobsubmission ;
+    rdfs:range xsd:string .
+hpc:Jobscriptparameters rdfs:domain hpc:Jsdlfilejobsubmission ;
+    rdfs:range xsd:string .
+hpc:Interactivejobinputparameters rdfs:domain hpc:Jsdlfilejobsubmission ;
+    rdfs:range xsd:string .
+
+# Job Submission conflict resolution
+hpc:conflictresolutionrule a owl:ObjectProperty .
+hpc:commandlineoverridesall a owl:ObjectProperty .
+hpc:jobscriptoverridesjsdl a owl:ObjectProperty .
+
+# JSDL File Job Submission errors
+hpc:Invalidelement a owl:Class .
+hpc:Notjsdlelement a owl:Class .
+hpc:Notsupportedelement a owl:Class .
+hpc:Unsupportedelement a owl:Class .
+hpc:Notjsdlstandardelement a owl:Class .
+
+# JSDL Resource Collection
+hpc:Resourcecollection a owl:Class .
+hpc:resourcecollectionenabled a owl:ObjectProperty .
+
+# JSDL Collected Resources
+hpc:operatingsystemname a owl:DatatypeProperty .
+hpc:operatingsystemversion a owl:DatatypeProperty .
+hpc:cpuarchitecturename a owl:DatatypeProperty .
+hpc:individualcpuspeed a owl:DatatypeProperty .
+hpc:individualnetworkbandwidth a owl:DatatypeProperty .
+
+# JSDL Resource Collection configuration
+hpc:Resourcesmap a owl:Class .
+hpc:Resource a owl:Class .
+hpc:Lsfcluster a owl:Class .
+hpc:Lsfshared a owl:Class .
+hpc:enablejsdlresourcecollection a owl:ObjectProperty .
+hpc:osnameresource a owl:ObjectProperty .
+hpc:osverresource a owl:ObjectProperty .
+hpc:cpuarchresource a owl:ObjectProperty .
+hpc:cpuspeedresource a owl:ObjectProperty .
+hpc:bandwidthresource a owl:ObjectProperty .
+
+# JSDL Resource Collection configuration domain and range
+hpc:Enablejsdlresourcecollection rdfs:domain hpc:Lsfcluster ;
+    rdfs:

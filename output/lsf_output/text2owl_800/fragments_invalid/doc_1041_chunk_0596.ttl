@@ -1,0 +1,31 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Resource a owl:Class .
+hpc:coreisolation a owl:DatatypeProperty .
+hpc:csm a owl:ObjectProperty .
+hpc:expertmode a owl:ObjectProperty .
+hpc:currentworkingdirectory a owl:ObjectProperty .
+
+rdfs:domain hpc:Coreisolation rdf:Resource .
+rdfs:domain hpc:Csm rdf:Resource .
+rdfs:domain hpc:Expertmode rdf:Resource .
+rdfs:domain hpc:Currentworkingdirectory rdf:Resource .
+
+rdfs:range hpc:Coreisolation xsd:integer .
+rdfs:range hpc:Csm xsd:boolean .
+
+hpc:CoreIsolation rdfs:subPropertyOf owl:hasValue .
+hpc:Csm rdfs:subPropertyOf owl:hasValue .
+
+hpc:Coreisolation rdfs:range [ xsd:minInclusive "1" ; xsd:maxInclusive "5" ] .
+hpc:CoreIsolation rdfs:default [ xsd:string "0" ] .
+
+hpc:Expertmode rdfs:range xsd:boolean .
+hpc:ExpertMode rdfs:default [ xsd:string "n" ] .
+
+hpc:currentworkingdirectory a owl:DatatypeProperty .
+hpc:Currentworkingdirectory rdfs:domain rdf:Literal .
+hpc:Currentworkingdirectory rdfs:range xsd:string .

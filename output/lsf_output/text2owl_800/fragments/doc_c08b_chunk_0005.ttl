@@ -1,0 +1,17 @@
+hpc:Afsvolume a owl:Class.
+hpc:Userdatafile a owl:Class;
+    rdfs:subClassOf hpc:Afsvolume.
+
+hpc:Job a owl:Class.
+
+hpc:Jobspooldir a owl:Class;
+    rdfs:subClassOf hpc:Afsvolume.
+
+hpc:Tgtfile a owl:Class.
+
+hpc:Childsbatchddaemon a owl:Class;
+    rdfs:subClassOf hpc:Jobres.
+
+hpc:Jobres a owl:Class.
+
+hpc:Pag a owl:Class.

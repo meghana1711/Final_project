@@ -1,0 +1,59 @@
+hpc:Echkpntapplication a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "An echkpnt.application must return a value of 0 when checkpointing succeeds and a non-zero value when checkpointing fails." .
+
+hpc:Erestartapplication a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "The erestart interface provided with LSF restarts the job using a restart command that erestart.application writes to a file." .
+
+hpc:hasreturnvalue a owl:ObjectProperty ;
+    rdfs:domain hpc:Echkpntapplication ;
+    rdfs:range xsd:integer .
+
+hpc:succeeds a owl:ObjectProperty ;
+    rdfs:domain hpc:Echkpntapplication ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "A value of 0 indicates that checkpointing succeeds." .
+
+hpc:fails a owl:ObjectProperty ;
+    rdfs:domain hpc:Echkpntapplication ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "A non-zero value indicates that checkpointing fails." .
+
+hpc:writestorestartcmdfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Erestartapplication ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "A non-zero value indicates that erestart.application failed to write to the .restart_cmd file." .
+
+hpc:echkpntsyntax a owl:ObjectProperty ;
+    rdfs:domain hpc:Echkpntapplication ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The syntax used by the echkpnt interface." .
+
+hpc:erestartsyntax a owl:ObjectProperty ;
+    rdfs:domain hpc:Erestartapplication ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The syntax used by the erestart interface." .
+
+hpc:mutuallyexclusive a owl:ObjectProperty ;
+    rdfs:domain hpc:Echkpntapplication ;
+    rdfs:range hpc:Option ;
+    rdfs:comment "The -k and -s options are mutually exclusive." .
+
+hpc:Option a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "An option provided in the echkpnt and erestart interfaces." .
+
+hpc:variabledescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:Option ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The description of the option." .
+
+hpc:operatingsystems a owl:DatatypeProperty ;
+    rdfs:domain hpc:Option ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The operating systems the option applies to." .
+
+hpc:-c a hpc:Option ;
+    hpc:variableDescription "STRICT" ;
+    hpc:operatingSystems "All" .

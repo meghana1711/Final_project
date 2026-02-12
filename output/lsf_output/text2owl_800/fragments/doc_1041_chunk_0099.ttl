@@ -1,0 +1,20 @@
+hpc:chkpntPeriod a owl:DatatypeProperty .
+hpc:ChkpntMethod a owl:Class .
+hpc:MIG a xsd:nonNegativeInteger .
+hpc:preExec a owl:ObjectProperty .
+hpc:postExec a owl:ObjectProperty .
+hpc:hostPreExec a owl:ObjectProperty .
+hpc:hostPostExec a owl:ObjectProperty .
+
+hpc:ChkpntPeriod rdfs:domain hpc:ChkpntMethod ;
+                   rdfs:range xsd:nonNegativeInteger .
+hpc:MIG rdfs:subPropertyOf hpc:CHKPNT_PERIOD .
+
+hpc:PreExec rdfs:domain hpc:ChkpntMethod ;
+             rdfs:range rdf:Resource .
+hpc:PostExec rdfs:domain hpc:ChkpntMethod ;
+              rdfs:range rdf:Resource .
+hpc:HostPreExec rdfs:domain hpc:ChkpntMethod ;
+                rdfs:range rdf:Resource .
+hpc:HostPostExec rdfs:domain hpc:ChkpntMethod ;
+                  rdfs:range rdf:Resource .

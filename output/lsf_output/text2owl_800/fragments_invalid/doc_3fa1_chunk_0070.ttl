@@ -1,0 +1,72 @@
+hpc:Package
+    a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A collection of resources reserved for a specific job." .
+
+hpc:Pool
+    a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A collection of packages from which jobs can request resources." .
+
+hpc:GuaranteePolicy
+    a owl:Class ;
+    rdfs:subClassOf hpc:Policy ;
+    rdfs:comment "A policy that guarantees resources to a service class." .
+
+hpc:Queue
+    a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "A collection of jobs waiting to be executed." .
+
+hpc:requiresSinglePackage
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Pool ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "A pool can only have jobs that require a single package." .
+
+hpc:loanFromPool
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Pool ;
+    rdfs:comment "A queue can loan resources from a pool." .
+
+hpc:trySchedulingTwice
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "LSF tries scheduling from the queue twice during each scheduling session." .
+
+hpc:schedulingPerformanceConcern
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if scheduling performance is a concern for the queue." .
+
+hpc:limitQueuesAbleToLoan
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Queue ;
+    rdfs:comment "Limits the number of queues able to loan from the pool." .
+
+hpc:RES_SELECT
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Pool ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The resources to be used when configuring the pool." .
+
+hpc:staticResources
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:ResSelect ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The static resources to be used in the pool." .
+
+hpc:dynamicallyChangingResources
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:ResSelect ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The dynamically changing resources to be avoided in the pool." .
+
+hpc:belongsToServiceClass
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range

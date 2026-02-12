@@ -1,0 +1,17 @@
+hpc:threadspercore a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maxmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:maxswap a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:isserver a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .
+
+hpc:Host a owl:Class .

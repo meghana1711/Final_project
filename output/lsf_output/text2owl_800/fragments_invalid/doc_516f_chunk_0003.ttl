@@ -1,0 +1,51 @@
+hpc:Bhist a owl:Class .
+
+hpc:Job a owl:Class .
+hpc:Queue hpc:Job rdfs:subClassOf owl:Class .
+hpc:Host hpc:Job rdfs:subClassOf owl:Class .
+hpc:Project hpc:Job rdfs:subClassOf owl:Class .
+hpc:Status hpc:Job rdfs:subClassOf owl:Class .
+hpc:Jobid hpc:Status rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:Jobname hpc:Status rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Unfinishedjob hpc:Job rdfs:subClassOf owl:Class .
+hpc:Summaryinformation hpc:Unfinishedjob rdfs:subClassOf owl:Class .
+hpc:Alljobs hpc:Job rdfs:subClassOf owl:Class .
+hpc:Runningjobs hpc:Job rdfs:subClassOf owl:Class .
+hpc:Pendingreasons hpc:Job rdfs:subClassOf owl:Class .
+hpc:Jobsuspendingreasons hpc:Job rdfs:subClassOf owl:Class .
+hpc:Detailedjobinformation hpc:Job rdfs:subClassOf owl:Class .
+hpc:Jobgroupinformation hpc:Job rdfs:subClassOf owl:Class .
+hpc:Slaprogress hpc:Job rdfs:subClassOf owl:Class .
+hpc:Joboutput hpc:Job rdfs:subClassOf owl:Class .
+hpc:Jobhistory hpc:Job rdfs:subClassOf owl:Class .
+hpc:Jobsubmissionenvironment hpc:Job rdfs:subClassOf owl:Class .
+
+hpc:bjobs a owl:ObjectProperty .
+hpc:Bjobs rdfs:domain hpc:Bhist ;
+    rdfs:range hpc:Job .
+
+hpc:bjobssum a owl:ObjectProperty .
+hpc:Bjobssum rdfs:domain hpc:Bhist ;
+    rdfs:range hpc:Summaryinformation .
+
+hpc:bjobsall a owl:ObjectProperty .
+hpc:Bjobsall rdfs:domain hpc:Bhist ;
+    rdfs:range hpc:Alljobs .
+
+hpc:bjobspendingreasons a owl:ObjectProperty .
+hpc:Bjobspendingreasons rdfs:domain hpc:Bhist ;
+    rdfs:range hpc:Pendingreasons .
+
+hpc:bjobssuspendingreasons a owl:ObjectProperty .
+hpc:Bjobssuspendingreasons rdfs:domain hpc:Bhist ;
+    rdfs:range hpc:Jobsuspendingreasons .
+
+hpc:bjobsdetailedinformation a owl:ObjectProperty .
+hpc:Bjobsdetailedinformation rdfs:domain hpc:Bhist ;
+    rdfs:range hpc:Detailedjobinformation .
+
+hpc:bjobsjobgroupinformation a owl:ObjectProperty .
+hpc:Bjobsjobgroupinformation rdfs:domain hpc:

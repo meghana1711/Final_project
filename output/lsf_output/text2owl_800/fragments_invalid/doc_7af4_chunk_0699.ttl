@@ -1,0 +1,26 @@
+hpc:Gpujob a owl:Class .
+hpc:affprop a owl:ObjectProperty .
+hpc:blockprop a owl:ObjectProperty .
+hpc:gpackprop a owl:ObjectProperty .
+
+hpc:Affprop rdfs:domain hpc:Gpujob ;
+    rdfs:range xsd:boolean .
+
+hpc:Blockprop rdfs:domain hpc:Gpujob ;
+    rdfs:range xsd:boolean .
+
+hpc:Gpackprop rdfs:domain hpc:Gpujob ;
+    rdfs:range xsd:boolean .
+
+hpc:Strictgpucpuaffinity a owl:Class ;
+    rdfs:subClassOf hpc:Gpujob .
+
+hpc:Blockdistribution a owl:Class ;
+    rdfs:subClassOf hpc:Gpujob .
+
+hpc:StrictGPUCPUAffinity rdfs:subPropertyChain [ hpc:affProp ; owl:inverseOf hpc:affProp ] .
+hpc:BlockDistribution rdfs:subPropertyChain [ hpc:blockProp ; owl:inverseOf hpc:blockProp ] .
+
+hpc:conflictswith a owl:ObjectProperty .
+
+hpc:StrictGPUCPUAffinity conflictsWith hpc:BlockDistribution .

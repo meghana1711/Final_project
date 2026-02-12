@@ -1,0 +1,32 @@
+hpc:Resizenotificationcommand a owl:Class .
+hpc:succeeds a owl:ObjectProperty .
+hpc:Succeeds rdfs:domain hpc:Resizenotificationcommand ;
+    rdfs:range xsd:string .
+
+hpc:fails a owl:ObjectProperty .
+hpc:Fails rdfs:domain hpc:Resizenotificationcommand ;
+    rdfs:range xsd:string .
+
+hpc:event a owl:DatatypeProperty .
+hpc:Event rdfs:domain hpc:Resizenotificationcommand ;
+    rdfs:range xsd:string .
+
+hpc:Eventtype a owl:Class ;
+    rdfs:subClassOf hpc:Resizeevent .
+hpc:grow a hpc:eventType .
+hpc:shrink a hpc:eventType .
+
+hpc:hosts a owl:ObjectProperty .
+hpc:Hosts rdfs:domain hpc:Resizenotificationcommand ;
+    rdfs:range xsd:string .
+
+hpc:gpus a owl:ObjectProperty .
+hpc:Gpus rdfs:domain hpc:Resizenotificationcommand ;
+    rdfs:range xsd:string .
+
+hpc:Resizeevent a owl:Class .
+hpc:resizetime a owl:DatatypeProperty .
+hpc:Resizetime rdfs:domain hpc:Resizeevent ;
+    rdfs:range xsd:dateTime .
+
+hpc:Sessionscheduler a owl:Class .

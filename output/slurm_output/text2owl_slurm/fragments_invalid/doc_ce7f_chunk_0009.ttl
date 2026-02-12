@@ -1,0 +1,20 @@
+hpc:Slurmctld a owl:Class.
+hpc:Slurmdbd a owl:Class.
+hpc:Useridentification a owl:Class.
+hpc:Groupidentification a owl:Class.
+hpc:Authentication a owl:Class.
+hpc:authtype a owl:ObjectProperty.
+hpc:Uniformusernamespace rdfs:domain hpc:Useridentification;
+    rdfs:range hpc:Slurmctld;
+    rdfs:subClassOf hpc:Identification.
+hpc:Uniformgroupnamespace rdfs:domain hpc:Useridentification;
+    rdfs:range hpc:Slurmctld;
+    rdfs:subClassOf hpc:Identification.
+hpc:Resolvableoncontrolhosts rdfs:domain hpc:Useridentification;
+    rdfs:range hpc:Slurmctld;
+    rdfs:subClassOf hpc:Identification.
+hpc:Authenticatedcommunication rdfs:domain hpc:Authentication;
+    rdfs:range hpc:Slurm.
+hpc:Authenticationinfrastructure rdfs:domain hpc:Authentication;
+    rdfs:range hpc:Slurm.
+hpc:M

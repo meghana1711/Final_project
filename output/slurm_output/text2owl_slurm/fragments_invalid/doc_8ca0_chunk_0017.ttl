@@ -1,0 +1,18 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Instance a owl:Class.
+hpc:Instancetype rdfs:domain hpc:Instance;
+                  rdfs:range xsd:string.
+hpc:Extra rdfs:domain hpc:Instance;
+             rdfs:range xsd:string.
+hpc:Nodename rdfs:domain hpc:Instance;
+             rdfs:range xsd:string.
+hpc:Arch rdfs:domain hpc:Instance;
+          rdfs:range xsd:string.
+hpc:Corespersocket rdfs:domain hpc:Instance;
+               rdfs:range xsd:integer.
+hpc:Instanceid rdfs:domain hpc:Instance;
+              rdfs:range

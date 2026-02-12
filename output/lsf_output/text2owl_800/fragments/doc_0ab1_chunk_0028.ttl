@@ -1,0 +1,66 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:hasgpurequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Gpurequirement .
+
+hpc:Gpurequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:overrides a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range hpc:Resourcerequirement ;
+    rdfs:subPropertyOf rdf:Property .
+
+hpc:hasesubparameter a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:ismerged a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:boolean .
+
+hpc:hasmode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:string .
+
+hpc:hasgmodel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:string .
+
+hpc:hasgmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasgtile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:string .
+
+hpc:hasmps a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:boolean .
+
+hpc:hasglink a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:string .
+
+hpc:isconvertedtorusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range hpc:Rusage .
+
+hpc:Rusage a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:hasngpusphysical a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rusage ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Applicationprofile a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:Defaultcluster a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .

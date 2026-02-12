@@ -1,0 +1,52 @@
+hpc:Bqueue a owl:Class .
+hpc:bbq a owl:ObjectProperty .
+
+hpc:Bparam a owl:Class .
+
+hpc:Jobschedulinganddispatch a owl:Class .
+
+hpc:Timewindowforjobdispatch a owl:Class .
+hpc:deadlineconstraintscheduling a owl:ObjectProperty .
+hpc:Applicationprofile a owl:Class .
+hpc:schedulingpolicy a owl:ObjectProperty .
+hpc:applicationlevelrequirements a owl:DatatypeProperty .
+hpc:exclusiveuseexecutionhost a owl:ObjectProperty .
+
+hpc:Jobdependency a owl:Class .
+hpc:jobstate a owl:DatatypeProperty .
+
+hpc:Jobpriority a owl:Class .
+hpc:jobdispatchorder a owl:ObjectProperty .
+
+hpc:Requeuejob a owl:Class .
+hpc:jobfailure a owl:DatatypeProperty .
+
+hpc:Jobrerun a owl:Class .
+hpc:executionhostunavailability a owl:DatatypeProperty .
+
+hpc:Simulationbasedjobstarttimeestimator a owl:Class .
+hpc:managementhost a owl:DatatypeProperty .
+hpc:mbatchddaemon a owl:DatatypeProperty .
+hpc:clustersnapshot a owl:DatatypeProperty .
+
+hpc:Exclusivescheduling a owl:Class .
+hpc:hostexclusiveuse a owl:ObjectProperty .
+
+hpc:Computeunitexclusivescheduling a owl:Class .
+hpc:computeunitexclusiveuse a owl:ObjectProperty .
+
+hpc:JobDomain rdf:type rdfs:Domain .
+hpc:TimeWindowForJobDispatch rdf:type rdfs:Domain .
+hpc:ApplicationProfile rdf:type rdfs:Domain .
+hpc:JobDependency rdf:type rdfs:Domain .
+hpc:JobPriority rdf:type rdfs:Domain .
+hpc:ReQueueJob rdf:type rdfs:Domain .
+hpc:JobRerun rdf:type rdfs:Domain .
+hpc:SimulationBasedJobStartTimeEstimator rdf:type rdfs:Domain .
+hpc:ExclusiveScheduling rdf:type rdfs:Domain .
+hpc:ComputeUnitExclusiveScheduling rdf:type rdfs:Domain .
+
+hpc:JobDispatchOrder rdf:type rdfs:Range xsd:integer .
+hpc:JobState rdf:type rdfs:Range xsd:string .
+hpc:JobFailure rdf:type rdfs:Range xsd:boolean .
+hpc:ExecutionHostUnavailability rdf:type rdfs:Range xsd:string .

@@ -1,0 +1,58 @@
+hpc:Advancereservationpostscriptexpiryoption a owl:Class .
+hpc:brsvmodEpt a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservationpostscriptexpiryoption ;
+    rdfs:range xsd:integer .
+
+hpc:Advancereservationpostscriptexpiryoptionremoval a owl:Class .
+hpc:brsvmodEptn a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservationpostscriptexpiryoptionremoval .
+
+# LSF Version 10.1 Fix Pack 5 and Fix Pack 6
+hpc:brsvmodR a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservationpostscriptexpiryoptionremoval .
+
+# LSF Version 10.1 Fix Pack 11
+hpc:Dynamichostselection a owl:Class .
+hpc:brsvmodAddhostF a owl:ObjectProperty ;
+    rdfs:domain hpc:Dynamichostselection .
+
+# LSF Version 10.1 Fix Pack 4
+hpc:Advancereservationqueuedisplay a owl:Class .
+hpc:brsvsL a owl:ObjectProperty ;
+    rdfs:domain hpc:Advancereservationqueuedisplay ;
+    rdfs:range hpc:Queue .
+
+# LSF Version 10.1 Fix Pack 7
+hpc:Usedguaranteehostsdisplay a owl:Class .
+hpc:bslaDisplay a owl:ObjectProperty ;
+    rdfs:domain hpc:Usedguaranteehostsdisplay ;
+    rdfs:range hpc:Job .
+
+# LSF Version 10.1 Fix Pack 3
+hpc:Cleartoolsetviewfailurereasondisplay a owl:Class .
+hpc:bstatusFailurereason a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cleartoolsetviewfailurereasondisplay ;
+    rdfs:range xsd:string .
+
+# LSF Version 10.1 Fix Pack 10
+hpc:Jobstopreason a owl:Class .
+hpc:bstopC a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobstopreason ;
+    rdfs:range xsd:string .
+
+# LSF Version 10.1 Fix Pack 3
+hpc:Epsubexecutablefile a owl:Class .
+hpc:bsubA a owl:ObjectProperty ;
+    rdfs:domain hpc:Epsubexecutablefile .
+
+# LSF Version 10.1 Fix Pack 1
+hpc:Memusagevariable a owl:Class ;
+    rdfs:subClassOf hpc:Environmentvariable .
+hpc:Swpusagevariable a owl:Class ;
+    rdfs:subClassOf hpc:Environmentvariable .
+hpc:LsbSubMemUsage rdfs:range xsd:integer .
+hpc:LsbSubSwpUsage rdfs:range xsd:integer .
+
+# LSF Version 10.1 Fix Pack 2
+hpc:Resourcerequirementunit a owl:Class ;
+    rdfs:subClassOf hpc:Resource

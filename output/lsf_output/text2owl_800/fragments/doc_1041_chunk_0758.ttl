@@ -1,0 +1,23 @@
+hpc:Host a owl:Class .
+hpc:Socket a owl:Class .
+hpc:Processorunit a owl:Class .
+
+hpc:Hashost rdfs:domain hpc:Processorunit ;
+    rdfs:range hpc:Host .
+
+hpc:On rdfs:domain hpc:Socket ;
+    rdfs:range hpc:Processorunit .
+
+hpc:Egoconf a owl:Class .
+
+hpc:egoLimPort a owl:DatatypeProperty ;
+    rdfs:domain hpc:Egoconf .
+
+hpc:egoServerdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Egoconf .
+
+hpc:egoLogdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Egoconf .
+
+hpc:egoLogMask a owl:DatatypeProperty ;
+    rdfs:domain hpc:Egoconf .

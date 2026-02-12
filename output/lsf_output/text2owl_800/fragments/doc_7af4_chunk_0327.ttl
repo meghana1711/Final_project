@@ -1,0 +1,34 @@
+hpc:KillJobsOverRunlimit a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Parameter to clean up or remove jobs that reached the RUNLIMIT value for a long period of time." ;
+    rdfs:label "KILL_JOBS_OVER_RUNLIMIT" ;
+    rdfs:domain hpc:Parameter .
+
+hpc:interval a owl:DatatypeProperty ;
+    rdfs:domain hpc:KillJobsOverRunlimit ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Integer greater than 30 minutes." ;
+    rdfs:label "interval" .
+
+hpc:waitTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:KillJobsOverRunlimit ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Default not defined. If not defined, the default value is 10 minutes." ;
+    rdfs:label "wait_time" .
+
+hpc:LocalMaxPreexecRetry a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The maximum number of times to attempt the pre-execution command of a job on the local cluster." ;
+    rdfs:label "LOCAL_MAX_PREEXEC_RETRY" ;
+    rdfs:domain hpc:Parameter .
+
+hpc:localMaxPreexecRetryAction a owl:ObjectProperty ;
+    rdfs:domain hpc:LocalMaxPreexecRetry ;
+    rdfs:range hpc:Action ;
+    rdfs:comment "Default behavior of the job is defined by the LOCAL_MAX_PREEXEC_RETRY_ACTION parameter in lsb.params, lsb.queues, or lsb.applications." ;
+    rdfs:label "LOCAL_MAX_PREEXEC_RETRY_ACTION" .
+
+hpc:Action a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Action to be taken when the limit of pre-execution retry times is reached." ;
+    rdfs:label "Action" .

@@ -1,0 +1,10 @@
+hpc:BswitchModifyRusage a owl:Class .
+hpc:cleanPeriod a owl:DatatypeProperty .
+hpc:clusterAffinityTtl a owl:DatatypeProperty .
+
+hpc:BswitchModifyRusage rdfs:domain xsd:string .
+hpc:CleanPeriod rdfs:domain xsd:decimal .
+hpc:ClusterAffinityTtl rdfs:domain xsd:decimal .
+hpc:BswitchModifyRusage rdfs:range owl:Boolean .
+hpc:CleanPeriod rdfs:range xsd:nonNegativeInteger .
+hpc:ClusterAffinityTtl rdfs:range xsd:nonNegativeInteger .

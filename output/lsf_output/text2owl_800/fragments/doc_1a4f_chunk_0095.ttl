@@ -1,0 +1,15 @@
+hpc:hasPendingJob
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbApplicationprofile ;
+    rdfs:range hpc:LsbJob .
+
+hpc:LSB_Job
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a job in the LSB." .
+
+hpc:movePendingJobsToAnotherProfile
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:LsbApplicationprofile ;
+    rdfs:range hpc:LsbApplicationprofile ;
+    rdfs:comment "Moves all pending jobs of an application profile to another application profile." .

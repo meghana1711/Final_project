@@ -1,0 +1,19 @@
+hpc:Host a owl:Class .
+hpc:Package a owl:Class .
+hpc:Job a owl:Class .
+
+hpc:Hashost rdfs:domain hpc:Guaranteedresourcepool ;
+        rdfs:range hpc:Host .
+hpc:Haspackage rdfs:domain hpc:Guaranteedresourcepool ;
+        rdfs:range hpc:Package .
+hpc:Hasjob rdfs:domain hpc:Guaranteedresourcepool ;
+        rdfs:range hpc:Job .
+
+hpc:ResSelect rdfs:domain hpc:Job ;
+        rdfs:range xsd:string .
+hpc:Hosts rdfs:domain hpc:Guaranteedresourcepool ;
+        rdfs:range xsd:integer .
+
+hpc:totalpackages a owl:DatatypeProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range xsd:integer .

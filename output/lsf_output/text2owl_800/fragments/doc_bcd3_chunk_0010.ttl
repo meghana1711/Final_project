@@ -1,0 +1,29 @@
+hpc:Lsflogfile a owl:Class .
+hpc:enablediagnose a owl:ObjectProperty .
+hpc:staticmethod a owl:ObjectProperty .
+hpc:dynamicmethod a owl:ObjectProperty .
+hpc:logdirectory a owl:DatatypeProperty .
+hpc:batchopcode a owl:DatatypeProperty .
+hpc:user a owl:DatatypeProperty .
+hpc:hostname a owl:DatatypeProperty .
+hpc:size a owl:DatatypeProperty .
+hpc:accept a owl:DatatypeProperty .
+hpc:receivetime a owl:DatatypeProperty .
+hpc:processtime a owl:DatatypeProperty .
+hpc:Mbatchddaemon a owl:Class .
+hpc:Lsfproxyddaemon a owl:Class .
+hpc:Lsfproxydlogfile a owl:Class .
+hpc:Mbatchdlogfile a owl:Class .
+hpc:Mbatchddaemonlogfile rdfs:subClassOf hpc:Lsflogfile .
+hpc:Lsfproxyddaemonlogfile rdfs:subClassOf hpc:Lsflogfile .
+hpc:Enablediagnose rdfs:domain hpc:Mbatchddaemon, hpc:Lsfproxyddaemon .
+hpc:Staticmethod rdfs:domain hpc:Mbatchddaemon, hpc:Lsfproxyddaemon .
+hpc:Dynamicmethod rdfs:domain hpc:Mbatchddaemon, hpc:Lsfproxyddaemon .
+hpc:Logdirectory rdfs:domain hpc:Mbatchddaemon, hpc:Lsfproxyddaemon .
+hpc:Batchopcode rdfs:range xsd:string .
+hpc:User rdfs:range xsd:string .
+hpc:Hostname rdfs:range xsd:string .
+hpc:Size rdfs:range xsd:decimal .
+hpc:Accept rdfs:range xsd:boolean .
+hpc:Receivetime rdfs:range xsd:dateTime .
+hpc:Processtime rdfs:range xsd:dateTime .

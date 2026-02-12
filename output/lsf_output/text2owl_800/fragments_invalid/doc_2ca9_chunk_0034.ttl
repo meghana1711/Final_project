@@ -1,0 +1,64 @@
+hpc:Jobexecution a owl:Class ;
+    rdfs:subClassOf hpc:Execution ;
+    rdfs:comment "Represents a job execution in an HPC system." .
+
+hpc:executionHome rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexecution ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The home directory of the job execution." .
+
+hpc:executionCWD rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Jobexecution ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The current working directory of the job execution." .
+
+hpc:startTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobexecution ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The start time of the job execution." .
+
+hpc:endTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobexecution ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The end time of the job execution." .
+
+hpc:cpuTimeUsed rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobexecution ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The CPU time used by the job execution." .
+
+# Resource Usage
+hpc:memoryUsage rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Resourceusage ;
+    rdfs:comment "Represents the memory usage of a job execution." .
+
+hpc:maxMemory rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Memoryusage ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The maximum memory used by the job execution." .
+
+hpc:avgMemory rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Memoryusage ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The average memory used by the job execution." .
+
+hpc:memoryEfficiency rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Memoryusage ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The memory efficiency of the job execution." .
+
+# CPU Usage
+hpc:cpuEfficiency rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobexecution ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The CPU efficiency of the job execution." .
+
+hpc:cpuPeakUsage rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobexecution ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The peak CPU usage of the job execution." .
+
+# Scheduling Parameters
+hpc:schedulingParameters rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Jobexecution ;
+    rdfs:comment "Represents the scheduling parameters of a job execution."

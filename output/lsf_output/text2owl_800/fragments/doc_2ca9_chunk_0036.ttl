@@ -1,0 +1,26 @@
+hpc:Security a owl:Class .
+hpc:Resourceconnectorenhancements a owl:Class .
+hpc:LSFResourceConnectorEnhancements a hpc:ResourceConnectorEnhancements .
+hpc:Gpuenhancements a owl:Class .
+hpc:LSFGPUEnhancements a hpc:GPUEnhancements .
+hpc:Deprecatedfeatures a owl:Class .
+hpc:IBMSpectrumLSFDeprecatedFeatures a hpc:DeprecatedFeatures .
+hpc:Changestoibmspectrumlsf a owl:Class .
+
+hpc:newadministrationsubcommand a owl:ObjectProperty .
+hpc:Hasnewadministrationsubcommand rdfs:domain hpc:Security .
+hpc:Hasnewadministrationsubcommand rdfs:range hpc:Administrationsubcommand .
+
+hpc:badminsecurityview a owl:ObjectProperty .
+hpc:Hasbadminsecurityview rdfs:domain hpc:Security .
+hpc:Hasbadminsecurityview rdfs:range hpc:Badminsecurityviewcommand .
+
+hpc:viewclustersecuritysettings a owl:ObjectProperty .
+hpc:Hasviewclustersecuritysettings rdfs:domain hpc:Security .
+hpc:Hasviewclustersecuritysettings rdfs:range hpc:Clustersecuritysettings .
+
+hpc:Administrationsubcommand a owl:Class .
+hpc:BadminSecurityViewCommand a hpc:AdministrationSubcommand .
+hpc:previoususerauthenticationkeyusage a owl:ObjectProperty .
+hpc:Hasprevioususerauthenticationkeyusage rdfs:domain hpc:Security .
+hpc:Hasprevioususerauthenticationkeyusage rdfs:range xsd:boolean .

@@ -1,0 +1,39 @@
+hpc:Managementhost a owl:Class .
+hpc:Loadinformationmanager hpc:hasdaemon hpc:RootRES .
+hpc:Loadinformationmanager hpc:hasdaemon hpc:RootLIM .
+hpc:Loadinformationmanager hpc:hasdaemon hpc:Sbatchd .
+hpc:Loadinformationmanager hpc:hasdaemon hpc:Pim .
+hpc:Loadinformationmanager hpc:hasdaemon hpc:Melim .
+hpc:Loadinformationmanager hpc:hasdaemon hpc:Mbatchd .
+hpc:Loadinformationmanager hpc:hasdaemon hpc:Rla .
+hpc:Loadinformationmanager hpc:hasdaemon hpc:Mbschd .
+hpc:Loadinformationmanager hpc:hasdaemon hpc:Krbrenewd .
+hpc:Loadinformationmanager hpc:hasdaemon hpc:Elim .
+hpc:Loadinformationmanager hpc:hasdaemon owl:Class hpc:-2Mbatchd .
+hpc:Loadinformationmanager hpc:hasdaemon owl:Class hpc:-2RootMbatchd .
+hpc:Loadinformationmanager hpc:protectsfromoomkiller rdf:true .
+hpc:Loadinformationmanager hpc:hasoomprotectionparameter rdf:List .
+hpc:Loadinformationmanager hpc:hasoomprotectionparameter rdf:first hpc:OomAdj .
+hpc:Loadinformationmanager hpc:hasoomprotectionparameter rdf:rest hpc:OomScoreAdj .
+hpc:Loadinformationmanager hpc:loglevel rdf:List .
+hpc:Loadinformationmanager hpc:loglevel rdf:first hpc:Debug .
+hpc:Loadinformationmanager hpc:loglevel rdf:rest hpc:LSF_LOG_MASK .
+hpc:Resourceexecutionserver a owl:Class .
+hpc:Resourceexecutionserver hpc:hasconfigurationparameter rdf:List .
+hpc:Resourceexecutionserver hpc:hasconfigurationparameter rdf:first hpc:LSF_DEBUG_RES .
+hpc:Resourceexecutionserver hpc:hasconfigurationparameter rdf:rest xsd:string .
+hpc:Enterprisegridorchestrator a owl:Class .
+hpc:Enterprisegridorchestrator hpc:hasconfigurationparameter rdf:List .
+hpc:Enterprisegridorchestrator hpc:hasconfigurationparameter rdf:first hpc:EGO_LOG_MASK .
+hpc:Enterprisegridorchestrator hpc:hasconfigurationparameter rdf:rest xsd:string .
+hpc:Sbatchd a owl:Class .
+hpc:Sbatchd hpc:hasconfigurationparameter rdf:List .
+hpc:Sbatchd hpc:hasconfigurationparameter rdf:first hpc:LSB_DEBUG_SBD .
+hpc:Sbatchd hpc:hasconfigurationparameter rdf:rest xsd:string .
+hpc:Pim a owl:Class .
+hpc:Pim hpc:hasconfigurationparameter rdf:List .
+hpc:Pim hpc:hasconfigurationparameter rdf:first hpc:LSF_DEBUG_PIM .
+hpc:Pim hpc:hasconfigurationparameter rdf:rest xsd:string .
+hpc:Mbatchd a owl:Class .
+hpc:Mbatchd hpc:hasconfigurationparameter rdf:List .
+hpc:Mbatchd hpc:has

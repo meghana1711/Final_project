@@ -1,0 +1,50 @@
+hpc:Timedifferentialparameter a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "If the time differential is larger than this specified value, LSF rejects the request." .
+
+hpc:hasvalidvalue a owl:ObjectProperty ;
+    rdfs:domain hpc:Timedifferentialparameter ;
+    rdfs:range xsd:integer ;
+    rdfs:minInclusive xsd:0 ;
+    rdfs:maxInclusive xsd:60 ;
+    rdfs:comment "The timeout value must be an integer between 0 and 60." .
+
+hpc:defaultvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Timedifferentialparameter ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Default 5 minutes" .
+
+# EGO Configuration Directory
+hpc:Egoconfigurationdirectory a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Directory where all EGO conﬁguration ﬁles are installed. These ﬁles are shared throughout the system and should be readable from any host." .
+
+hpc:hasdefaultvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Egoconfigurationdirectory ;
+    rdfs:range xsd:string ;
+    rdfs:comment "LSF_CONFDIR/ego/cluster_name/kernel. If not deﬁned, or commented out, /etc is assumed." .
+
+# Elim Directory (Windows only)
+hpc:Elimdirectory a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Directory in which the LSF elim binary ﬁles are installed." .
+
+hpc:hasdefaultvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Elimdirectory ;
+    rdfs:range xsd:string ;
+    rdfs:comment "LSF_SERVERDIR" .
+
+hpc:seealso a owl:ObjectProperty ;
+    rdfs:domain hpc:Elimdirectory ;
+    rdfs:range hpc:Elimdirectory ;
+    rdfs:comment "LSF_SERVERDIR, EGO_ELIM_DIR" .
+
+# Enable LSF Beats Service
+hpc:Enablebeatservice a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Enables the LSF Beats services (lsfbeat tool)." .
+
+hpc:hasservice a owl:DatatypeProperty ;
+    rdfs:domain hpc:Enablebeatservice ;
+    rdfs:range xsd:string ;
+    rdfs:comment "services ..." .

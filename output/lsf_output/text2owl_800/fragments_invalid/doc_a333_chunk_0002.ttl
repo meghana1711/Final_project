@@ -1,0 +1,27 @@
+hpc:Lsfsimulator a owl:Class .
+hpc:js DLResourceCollector a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Js DLResourceCollector .
+
+hpc:Ibmspectrumlsfsimulator a owl:Class ;
+    rdfs:subClassOf hpc:Lsfsimulator .
+
+hpc:ibmspectrumlsfsimulatorreleasenotes a owl:DatatypeProperty ;
+    rdfs:domain hpc:Ibmspectrumlsfsimulator .
+
+hpc:Dockerce a owl:Class .
+hpc:manageservice a owl:ObjectProperty ;
+    rdfs:domain hpc:Ibmspectrumlsfsimulator ;
+    rdfs:range hpc:Bcogncommand .
+
+hpc:updateservice a owl:ObjectProperty ;
+    rdfs:domain hpc:Ibmspectrumlsfsimulator .
+
+hpc:whatisnew a owl:DatatypeProperty ;
+    rdfs:domain hpc:Ibmspectrumlsfsimulator .
+
+hpc:knownissuesandlimitations a owl:DatatypeProperty ;
+    rdfs:domain hpc:Ibmspectrumlsfsimulator .
+
+hpc:lsfsimulatorversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Whatisnew .

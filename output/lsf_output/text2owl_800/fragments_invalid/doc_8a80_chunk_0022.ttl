@@ -1,0 +1,78 @@
+hpc:Interval a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadvancededition ;
+    rdfs:range hpc:Megacluster .
+
+hpc:Megacluster a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Submissioncluster a owl:Class ;
+    rdfs:subClassOf hpc:Megacluster .
+
+hpc:Executioncluster a owl:Class ;
+    rdfs:subClassOf hpc:Megacluster .
+
+hpc:Parameterssection a owl:Class .
+hpc:Featuresection a owl:Class .
+
+hpc:featuresectionprecedence a owl:ObjectProperty ;
+    rdfs:domain hpc:Featuresection ;
+    rdfs:range hpc:Featuresection .
+
+hpc:defaultinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Interval ;
+    rdfs:range xsd:integer ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:port a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfadvancededition ;
+    rdfs:range xsd:integer ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Nonprivilegedport a owl:Class ;
+    rdfs:subClassOf xsd:integer .
+
+hpc:preemptaction a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadvancededition ;
+    rdfs:range xsd:string .
+
+hpc:Script a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Projectmode a owl:Class .
+hpc:Clustermode a owl:Class .
+
+hpc:Lshost a owl:Class .
+hpc:Candidatelshost a owl:Class ;
+    rdfs:subClassOf hpc:Lshost .
+
+hpc:preempttstp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Preemptaction ;
+    rdfs:range xsd:string .
+
+hpc:preemptscript a owl:DatatypeProperty ;
+    rdfs:domain hpc:Preemptaction ;
+    rdfs:range xsd:string .
+
+hpc:Projectmodeonly a owl:Class ;
+    rdfs:subClassOf hpc:Preemptaction .
+
+hpc:notdefined a owl:DatatypeProperty ;
+    rdfs:domain hpc:Preemptaction ;
+    rdfs:range xsd:string .
+
+hpc:Projectmodeproject a owl:Class .
+hpc:Projectmodeprojectgroup a owl:Class .
+
+hpc:projectgrouppath a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectmode ;
+    rdfs:range xsd:boolean .
+
+hpc:Hierarchicalprojectgrouppaths a owl:Class ;
+    rdfs:subClassOf hpc:Projectgrouppath .
+
+hpc:Uniqueprojects a owl:Class ;
+    rdfs:subClassOf hpc:Project .
+
+hpc:Uniqueprojectgroups a owl:Class ;
+    r

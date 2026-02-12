@@ -1,0 +1,19 @@
+hpc:djobHbInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Value in seconds used to calculate the heartbeat interval between the task RES and job RES of a parallel or distributed job. This parameter only applies to the blaunch distributed application framework. When DJOB_HB_INTERVAL is specified, the interval is scaled according to the number of tasks in the job: max(DJOB_HB_INTERVAL, 10) + host_factor where host_factor = 0.01 * number of hosts allocated for the job. Default Not defined. Interval is the default value of LSB_DJOB_HB_INTERVAL." .
+
+hpc:hostFactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeFloat ;
+    rdfs:comment "0.01 * number of hosts allocated for the job." .
+
+hpc:djobResizeGracePeriod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "When a resizable job releases resources, the LSF distributed parallel job framework terminates running tasks if a host has been completely removed. A DJOB_RESIZE_GRACE_PERIOD defines a grace period in seconds for the application to clean up tasks itself before LSF forcibly terminates them. No grace period." .
+
+hpc:djobRuInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Value in seconds used to calculate the resource usage update interval for the tasks of a parallel or distributed job. This parameter only applies to the blaunch distributed application framework. When DJOB_RU_INTERVAL is specified, the interval is scaled according to the number of tasks in the job: max(DJOB_RU_INTERVAL, 10) + host_factor where host_factor = 0.01 * number of hosts allocated for the job. Default Not defined." .

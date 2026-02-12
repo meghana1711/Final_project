@@ -1,0 +1,13 @@
+hpc:Slurmconf a owl:Class.
+hpc:SlurmUser rdf:type owl:ObjectProperty;
+    rdfs:domain hpc:Slurmconf;
+    rdfs:range rdf:Resource.
+
+hpc:Controlmachine a owl:Class;
+    rdfs:subClassOf hpc:Machine;
+    hpc:controlmachine a owl:ObjectProperty;
+    rdfs:domain hpc:Slurmconf;
+    rdfs:range rdf:Literal.
+
+hpc:CommunicationName rdf:type owl:DatatypeProperty;
+    rdfs:domain hpc:Controlmachine;

@@ -1,0 +1,30 @@
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:maxslotsinpool a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:integer .
+
+hpc:slotreserve a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:integer .
+
+hpc:backfill a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+
+hpc:cgroupcpusharesfactor a owl:DatatypeProperty ;
+    rdfs:domain (hpc:Applicationprofile rdfs:or hpc:Queue) ;
+    rdfs:range xsd:integer .
+
+hpc:cgroupcpusharesfactorfactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Cgroupcpusharesfactor ;
+    rdfs:range xsd:decimal .
+
+hpc:lsbcgroupcpusharesolddefault a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbconfiguration ;
+    rdfs:range xsd:string .
+
+hpc:checkpoint a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .

@@ -1,0 +1,31 @@
+hpc:Jobexception a owl:Class .
+hpc:JobId rdfs:domain hpc:Jobexception ;
+                 rdfs:range xsd:string .
+hpc:RunTime rdfs:domain hpc:Jobexception ;
+                 rdfs:range xsd:nonNegativeInteger .
+hpc:IdleFactor rdfs:domain hpc:Jobexception ;
+                 rdfs:range xsd:decimal .
+hpc:User rdfs:domain hpc:Jobexception ;
+                 rdfs:range xsd:string .
+hpc:Queue rdfs:domain hpc:Jobexception ;
+                 rdfs:range xsd:string .
+hpc:ExecHost rdfs:domain hpc:Jobexception ;
+                 rdfs:range xsd:string .
+hpc:JobName rdfs:domain hpc:Jobexception ;
+                 rdfs:range xsd:string .
+
+hpc:Hostlevelexception a owl:Class ;
+                 rdfs:subClassOf hpc:Jobexception .
+
+hpc:extendjobexceptionnotify a owl:ObjectProperty .
+hpc:jobExceptionEmailFormat a owl:DatatypeProperty .
+
+hpc:Lsf a owl:Class .
+hpc:bstop a owl:ObjectProperty .
+hpc:eadmin a owl:ObjectProperty .
+hpc:lsbParams a owl:ObjectProperty .
+hpc:lsfServerdir a owl:ObjectProperty .
+hpc:badmin a owl:ObjectProperty .
+hpc:badminHist a owl:ObjectProperty .
+hpc:badminHhist a owl:ObjectProperty .
+hpc:jobExitThresholdExceeded a owl:ObjectProperty .

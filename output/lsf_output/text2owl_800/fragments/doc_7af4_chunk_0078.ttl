@@ -1,0 +1,37 @@
+hpc:Jobindex a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "job index (default value is 0)".
+
+hpc:Executionjobid a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "execution job ID".
+
+hpc:Executionjobindex a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "execution job index".
+
+hpc:Projectname a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "project name".
+
+hpc:Username a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "user name".
+
+hpc:Usergroup a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "user group".
+
+hpc:Firstexecutionhostname a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "first execution host name".
+
+hpc:jobCwd a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobindex ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Unsupported patterns are treated as text. If this parameter is changed, then any newly submitted jobs with the -app option will use the new value for CWD if bsub -cwd is not defined. JOB_CWD supports all LSF path conventions such as UNIX, UNC and Windows formats. In the mixed UNIX /Windows cluster it can be specified with one value for UNIX and another value for Windows separated by a pipe character (|). JOB_CWD=unix_path|windows_path. The first part of the path must be for UNIX and the second part must be for Windows. Both paths must be full paths. Default Not deﬁned.".
+
+hpc:jobCwdTtl a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobindex ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies the time-to-live (TTL) for the current working directory (CWD) of a job. LSF cleans created CWD directories after a job finishes based on the TTL value. LSF deletes the CWD for the job if LSF created that directory for the job. The following options are available: 0 - sbatchd deletes CWD when all process related to the job finish.".

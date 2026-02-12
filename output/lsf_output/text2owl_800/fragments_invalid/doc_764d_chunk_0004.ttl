@@ -1,0 +1,36 @@
+hpc:Multiclustersystem a owl:Class .
+hpc:uniqueclustername a owl:ObjectProperty ;
+    rdfs:domain hpc:Multiclustersystem ;
+    rdfs:range xsd:string .
+
+hpc:Standalonecluster a owl:Class .
+
+hpc:Multiclusterenvironment a owl:Class .
+hpc:multiclusterenvironmentalrequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Multiclusterenvironment .
+
+hpc:Localmanagementhost a owl:Class .
+hpc:remoteclustercommunication a owl:ObjectProperty ;
+    rdfs:domain hpc:Localmanagementhost ;
+    rdfs:range hpc:Remoteclustercommunication .
+hpc:localclustercommunication a owl:ObjectProperty ;
+    rdfs:domain hpc:Localmanagementhost ;
+    rdfs:range hps:Cluster .
+hpc:specifiedclusters a owl:ObjectProperty ;
+    rdfs:domain hpc:Localmanagementhost ;
+    rdfs:range xsd:string .
+hpc:recognizedclusters a owl:ObjectProperty ;
+    rdfs:domain hpc:Localmanagementhost ;
+    rdfs:range xsd:string .
+hpc:validmanagementhostlist a owl:ObjectProperty ;
+    rdfs:domain hpc:Localmanagementhost ;
+    rdfs:range xsd:string .
+hpc:sameportnumbers a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster .
+hpc:resourcedefinitions a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster .
+hpc:commondefinitions a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcedefinitions .
+hpc:Hosttypes a owl:Class .
+hpc:Hostmodels a owl:Class .
+hpc:Resources a owl:Class .

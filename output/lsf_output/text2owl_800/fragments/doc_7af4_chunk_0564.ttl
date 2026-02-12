@@ -1,0 +1,59 @@
+hpc:Policy a owl:Class .
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Policy ;
+    rdfs:range xsd:string .
+
+hpc:hosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Policy ;
+    rdfs:range xsd:string .
+
+hpc:timewindow a owl:DatatypeProperty ;
+    rdfs:domain hpc:Policy ;
+    rdfs:range xsd:string .
+
+hpc:Timewindow rdfs:subClassOf hpc:String .
+
+hpc:Timewindowvalue a owl:Class ;
+    rdfs:subClassOf hpc:Timewindow .
+
+hpc:TimeWindowValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Timewindowvalue ;
+    rdfs:range xsd:string .
+
+hpc:Timewindowvalue rdfs:subClassOf xsd:string .
+
+hpc:TimewindowvalueHour a owl:Class ;
+    rdfs:subClassOf hpc:Timewindowvalue .
+
+hpc:TimeWindowValue_Hour rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:TimewindowvalueHour ;
+    rdfs:range xsd:integer .
+
+hpc:TimewindowvalueHour rdfs:subClassOf xsd:integer .
+
+hpc:TimewindowvalueMinute a owl:Class ;
+    rdfs:subClassOf hpc:Timewindowvalue .
+
+hpc:TimeWindowValue_Minute rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:TimewindowvalueMinute ;
+    rdfs:range xsd:integer .
+
+hpc:TimewindowvalueMinute rdfs:subClassOf xsd:integer .
+
+hpc:TimewindowvalueDay a owl:Class ;
+    rdfs:subClassOf hpc:Timewindowvalue .
+
+hpc:TimeWindowValue_Day rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:TimewindowvalueDay ;
+    rdfs:range xsd:integer .
+
+hpc:TimewindowvalueDay rdfs:subClassOf xsd:integer .
+
+hpc:TimewindowvalueDayofweek a owl:Class ;
+    rdfs:subClassOf hpc:Timewindowvalue .
+
+hpc:TimeWindowValue_DayOfWeek rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:TimewindowvalueDayofweek ;
+    rdfs:range xsd:integer .
+
+hpc:TimewindowvalueDayofweek rdfs:subClassOf xsd:integer .

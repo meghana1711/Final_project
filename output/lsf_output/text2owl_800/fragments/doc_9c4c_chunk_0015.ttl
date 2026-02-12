@@ -1,0 +1,49 @@
+hpc:SelectFixesPage
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Page to browse and select fixes." .
+
+hpc:Fix
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A solution to a system issue." .
+
+hpc:ReleaseDate
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fix ;
+    rdfs:range xsd:date .
+
+hpc:DownloadOptionsPage
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Page to specify download options." .
+
+hpc:Download
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Downloadoptionspage ;
+    rdfs:range hpc:File .
+
+hpc:File
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A file to be downloaded." .
+
+hpc:FileName
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:File ;
+    rdfs:range xsd:string .
+
+hpc:ReadmeFile
+    a owl:Class ;
+    rdfs:subClassOf hpc:File ;
+    rdfs:comment "File containing instructions to apply the fix." .
+
+hpc:ApplyFix
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Flrt ;
+    rdfs:range hpc:Action .
+
+hpc:Action
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "An action to be performed, such as applying a fix." .

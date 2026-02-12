@@ -1,0 +1,29 @@
+hpc:Usershareassignment a owl:Class .
+hpc:User rdfs:domain hpc:Usershareassignment ;
+    rdfs:range rdf:List .
+
+hpc:Windowsuser a owl:Class ;
+    rdfs:subClassOf hpc:User .
+hpc:Windowsuser rdfs:subClassOf rdf:List ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:first hpc:Domainname ;
+    rdfs:range rdf:rest hpc:Username .
+
+hpc:Windowsgroup a owl:Class ;
+    rdfs:subClassOf hpc:User .
+hpc:Windowsgroup rdfs:subClassOf rdf:List ;
+    rdfs:range rdf:List ;
+    rdfs:range rdf:first hpc:Domainname ;
+    rdfs:range rdf:rest hpc:Groupname .
+
+hpc:Defaultuser a owl:Class ;
+    rdfs:subClassOf hpc:User .
+
+hpc:Othersuser a owl:Class ;
+    rdfs:subClassOf hpc:User .
+
+hpc:numbershares a owl:DatatypeProperty ;
+    rdfs:domain hpc:Usershareassignment .
+hpc:Numbershares rdfs:range xsd:integer .
+
+hpc:Clusterresources a owl:Class .

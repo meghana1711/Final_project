@@ -1,0 +1,43 @@
+hpc:User a owl:Class .
+hpc:Usergroup a owl:Class .
+hpc:Job a owl:Class .
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:integer .
+
+hpc:jobId a owl:ObjectProperty ;
+    rdfs:domain hpc:User .
+
+hpc:bstop a owl:ObjectProperty ;
+    rdfs:domain hpc:User .
+
+hpc:bresume a owl:ObjectProperty ;
+    rdfs:domain hpc:User .
+
+hpc:bkill a owl:ObjectProperty ;
+    rdfs:domain hpc:User .
+
+hpc:sigstop a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bstop .
+    rdfs:range xsd:string .
+
+hpc:sigtstp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bstop .
+    rdfs:range xsd:string .
+
+hpc:sigttp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bkill .
+    rdfs:range xsd:string .
+
+hpc:contp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bkill .
+    rdfs:range xsd:string .
+
+hpc:Ususp a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Root a owl:Class ;
+    rdfs:subClassOf hpc:User .
+
+hpc:LsfAdministrator a owl:Class ;
+    rdfs:subClassOf hpc:User .

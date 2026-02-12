@@ -1,0 +1,22 @@
+hpc:User a owl:Class .
+hpc:Resource a owl:Class .
+hpc:Share a owl:Class .
+hpc:Job a owl:Class .
+hpc:Jobslot a owl:Class .
+hpc:Queue a owl:Class .
+hpc:Hostpartition a owl:Class .
+
+hpc:hasresource a owl:ObjectProperty .
+hpc:hasshare a owl:ObjectProperty .
+hpc:hasuser a owl:ObjectProperty .
+hpc:hasjob a owl:ObjectProperty .
+hpc:reservesanduses a owl:ObjectProperty .
+hpc:runson a owl:ObjectProperty .
+hpc:hasdynamicpriority a owl:ObjectProperty .
+hpc:hasnumberofshares a xsd:decimal .
+hpc:hasresourceusage a xsd:decimal .
+hpc:hasjobslotusage a xsd:decimal .
+hpc:hasruntime a xsd:decimal .
+hpc:hascumulativeactualcputime a xsd:decimal .
+hpc:hasdecayedruntime a xsd:decimal .
+hpc:hashistoricalruntime a xsd:decimal

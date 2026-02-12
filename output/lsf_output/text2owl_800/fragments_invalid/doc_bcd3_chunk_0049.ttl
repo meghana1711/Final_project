@@ -1,0 +1,13 @@
+hpc:Guaranteedresourcepool a owl:Class.
+hpc:PackagePool a hpc:GuaranteedResourcePool .
+hpc:Package a owl:Class .
+hpc:Host a owl:Class .
+hpc:User a owl:Class .
+hpc:Usergroup a owl:Class .
+
+hpc:hasguaranteepolicy a owl:ObjectProperty .
+hpc:comprises a owl:ObjectProperty .
+hpc:hasdistribution a owl:ObjectProperty .
+hpc:hasloanpolicies a owl:ObjectProperty .
+hpc:hasstatus a owl:ObjectProperty .
+hpc:hasresources

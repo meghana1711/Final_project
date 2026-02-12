@@ -1,0 +1,52 @@
+hpc:Installconfig a owl:Class .
+hpc:testcluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Installconfig ;
+    rdfs:range hpc:Command .
+
+hpc:Command a owl:Class .
+
+hpc:lsid a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:lshosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:bhosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:Ibmfixcentral a owl:Class .
+
+hpc:fixes a owl:ObjectProperty ;
+    rdfs:domain hpc:Ibmfixcentral ;
+    rdfs:range xsd:string .
+
+hpc:searchfixcentral a owl:ObjectProperty ;
+    rdfs:domain hpc:Ibmfixcentral ;
+    rdfs:range xsd:string .
+
+hpc:Fixpack a owl:Class ;
+    rdfs:subClassOf hpc:Fixes .
+
+hpc:Interimfix a owl:Class ;
+    rdfs:subClassOf hpc:Fixes .
+
+hpc:Linux64bit a owl:Class .
+hpc:Linuxx8664 a owl:Class .
+hpc:Linuxppc64le a owl:Class .
+
+hpc:Product a owl:Class .
+hpc:Productgroup a owl:Class .
+
+hpc:findproduct a owl:ObjectProperty ;
+    rdfs:domain hpc:Ibmfixcentral ;
+    rdfs:range hpc:Product .
+
+hpc:selectproduct a owl:ObjectProperty ;
+    rdfs:domain hibmFixCentral ;
+    rdfs:range hpc:Productgroup .
+
+hpc:ibmid a owl:DatatypeProperty .
+hpc:password a owl:DatatypeProperty .

@@ -1,0 +1,34 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Job a owl:Class .
+hpc:User a owl:Class .
+hpc:Project a owl:Class .
+hpc:Status a owl:Class .
+hpc:Queue a owl:Class .
+hpc:command a owl:ObjectProperty .
+hpc:submittedfrom a owl:ObjectProperty .
+hpc:cwd a owl:ObjectProperty .
+hpc:datarequirementrequested a owl:ObjectProperty .
+hpc:pendingreasons a owl:DatatypeProperty .
+hpc:schedulingparameters a owl:ObjectProperty .
+hpc:resourcerequirementdetails a owl:ObjectProperty .
+hpc:combined a owl:ObjectProperty .
+hpc:effective a owl:ObjectProperty .
+hpc:resourcerequirementdetails a owl:ObjectProperty .
+hpc:Resourcerequirementdetails rdfs:subClassOf hpc:Objectproperty .
+hpc:Combined rdfs:domain hpc:Resourcerequirementdetails .
+hpc:Combined rdfs:range hpc:Select .
+hpc:Select a owl:Class .
+hpc:order a owl:ObjectProperty .
+hpc:Resourcerequirementdetails rdfs:subClassOf hpc:Objectproperty .
+hpc:Effective rdfs:domain hpc:Resourcerequirementdetails .
+hpc:datarequirements a owl:ObjectProperty .
+hpc:file a owl:DatatypeProperty .
+hpc:size a owl:DatatypeProperty .
+hpc:modified a owl:DatatypeProperty .
+hpc:File rdfs:domain hpc:Datarequirements .
+hpc:Size rdfs:range xsd:decimal .
+hpc:Modified rdfs:range xsd:dateTime .

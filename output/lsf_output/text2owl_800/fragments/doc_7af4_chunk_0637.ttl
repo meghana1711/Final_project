@@ -1,0 +1,19 @@
+hpc:mqttBrokerPort a owl:DatatypeProperty ;
+    rdfs:domain hpc:MqttBroker ;
+    rdfs:range xsd:integer .
+
+hpc:MqttBroker a owl:Class .
+
+hpc:ebrokerdHostCleanDelay a owl:DatatypeProperty ;
+    rdfs:domain hpc:EbrokerdHost ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:EbrokerdHost a owl:Class .
+
+hpc:egoDaemonsCpus a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:CpuList .
+
+hpc:CpuList a owl:Class .
+
+hpc:Lsf a owl:Class .

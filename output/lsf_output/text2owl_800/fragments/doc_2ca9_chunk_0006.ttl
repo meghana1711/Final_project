@@ -1,0 +1,40 @@
+hpc:Lsfversion a owl:Class .
+hpc:Fixpack a owl:Class .
+hpc:Operatingsystem a owl:Class .
+hpc:Endoflife a owl:Class .
+hpc:Endofsupport a owl:Class .
+hpc:Operatingsystemversion a owl:Class .
+
+hpc:hasfixpack a owl:ObjectProperty .
+hpc:hasversion a owl:DatatypeProperty .
+hpc:issupportedby a owl:ObjectProperty .
+hpc:hasreleasedate a owl:DatatypeProperty .
+hpc:hasoperatingsystemversion a owl:ObjectProperty .
+
+hpc:LSF a hpc:LSFVersion .
+hpc:FixPack1 a hpc:FixPack ;
+    hpc:hasVersion "1.1"^^xsd:string ;
+    hpc:hasReleaseDate "2021-05-01"^^xsd:date .
+hpc:FixPack2 a hpc:FixPack ;
+    hpc:hasVersion "1.2"^^xsd:string ;
+    hpc:hasReleaseDate "2022-05-01"^^xsd:date .
+hpc:FixPack15 a hpc:FixPack ;
+    hpc:hasVersion "1.15"^^xsd:string ;
+    hpc:hasReleaseDate "2025-05-01"^^xsd:date .
+
+hpc:IBMSpectrumLSF a hpc:LSF .
+
+hpc:Operatingsystemversion rdfs:subClassOf hpc:Operatingsystem .
+hpc:Endoflife rdfs:subClassOf hpc:Operatingsystem .
+hpc:Endofsupport rdfs:subClassOf hpc:Operatingsystem .
+
+hpc:Lsf rdfs:subClassOf hpc:Ibmspectrumlsf .
+
+hpc:Hasoperatingsystemversion rdfs:domain hpc:Lsfversion ;
+    rdfs:range hpc:Operatingsystemversion .
+hpc:Hasreleasedate rdfs:domain hpc:Fixpack ;
+    rdfs:range xsd:date .
+hpc:Hasversion rdfs:domain hpc:Fixpack ;
+    rdfs:range xsd:string .
+hpc:Issupportedby rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Operatingsystem .

@@ -1,0 +1,58 @@
+hpc:JobGroup
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a job group in the HPC system." .
+
+hpc:RiskGroup
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Represents a job group with risk associated." .
+
+hpc:subJobGroup
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Jobgroup ] ;
+    rdfs:range [ rdf:type hpc:Jobgroup ] ;
+    rdfs:subPropertyOf [ rdf:type owl:ObjectProperty ] ;
+    rdfs:comment "Indicates a sub-job group of a job group." .
+
+hpc:owns
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:User ] ;
+    rdfs:range [ rdf:type hpc:Jobgroup ] ;
+    rdfs:subPropertyOf [ rdf:type owl:ObjectProperty ] ;
+    rdfs:comment "Indicates that a user owns a job group." .
+
+hpc:isEmpty
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Jobgroup ] ;
+    rdfs:range xsd:boolean ;
+    rdfs:subPropertyOf [ rdf:type owl:ObjectProperty ] ;
+    rdfs:comment "Indicates whether a job group is empty or not." .
+
+hpc:requestedJobGroupName
+    a owl:DatatypeProperty ;
+    rdfs:domain [ rdf:type hpc:Bgdel ] ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf [ rdf:type owl:DatatypeProperty ] ;
+    rdfs:comment "Indicates the name of the job group to be deleted." .
+
+hpc:bgdel
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:User ] ;
+    rdfs:range [ rdf:type hpc:Jobgroup ] ;
+    rdfs:subPropertyOf [ rdf:type owl:ObjectProperty ] ;
+    rdfs:comment "Indicates the action of deleting a job group." .
+
+hpc:bgmod
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Jobgroup ] ;
+    rdfs:range xsd:anyURI ;
+    rdfs:subPropertyOf [ rdf:type owl:ObjectProperty ] ;
+    rdfs:comment "Indicates the action of modifying a job group limit." .
+
+hpc:limit
+    a owl:DatatypeProperty ;
+    rdfs:domain [ rdf:type hpc:Bgmod ] ;
+    rdfs:range xsd:integer ;
+    rdfs:subPropertyOf [ rdf:type owl:DatatypeProperty ] ;
+    rdfs:comment "Indicates the new limit for a

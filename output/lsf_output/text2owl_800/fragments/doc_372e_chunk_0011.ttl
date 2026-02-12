@@ -1,0 +1,34 @@
+hpc:MBD_REFRESH_INTERVAL
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Clusterallocationbuffer ;
+    rdfs:range xsd:nonNegativeDuration ;
+    rdfs:comment "Determines the maximum rate of transfer to a cluster." .
+
+hpc:ClusterDistribution
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Cluster ;
+    rdfs:comment "Determines the distribution of licenses among clusters." .
+
+hpc:MinimumAllocation
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Reserves license tokens for exclusive use by the cluster." .
+
+hpc:MaximumAllocation
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Limits the total number of license tokens that are received by the cluster." .
+
+hpc:ClusterShare
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Takes precedence over minimum allocations configured." .
+
+hpc:DynamicSharing
+    a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Indicates that dynamic sharing is enabled." .

@@ -1,0 +1,39 @@
+hpc:Pseudoterminal a owl:Class .
+hpc:runusingpseudoterminal a owl:ObjectProperty ;
+    rdfs:domain hpc:Pseudoterminal ;
+    rdfs:range xsd:string .
+
+hpc:Sequentialtask a owl:Class .
+hpc:runonhostsinsequence a owl:ObjectProperty ;
+    rdfs:domain hpc:Sequentialtask ;
+    rdfs:range xsd:string .
+
+hpc:Paralleltask a owl:Class .
+hpc:runinparallel a owl:ObjectProperty ;
+    rdfs:domain hpc:Paralleltask ;
+    rdfs:range xsd:string .
+
+hpc:Hostlist a owl:Class .
+hpc:hostfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostlist ;
+    rdfs:range xsd:string .
+
+hpc:Interactivetask a owl:Class ;
+    rdfs:subClassOf hpc:Sequentialtask .
+
+hpc:Lsftask a owl:Class ;
+    rdfs:subClassOf hpc:Interactivetask .
+
+hpc:Fileoperation a owl:Class .
+hpc:filetooperate a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fileoperation ;
+    rdfs:range xsd:string .
+hpc:operationtype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fileoperation ;
+    rdfs:range xsd:string .
+
+hpc:Mergefile a owl:Class ;
+    rdfs:subClassOf hpc:Fileoperation .
+
+hpc:Removefile a owl:Class ;
+    rdfs:subClassOf hpc:Fileoperation .

@@ -1,0 +1,50 @@
+hpc:Awsspotinstancetemplate a owl:Class .
+hpc:templateid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awsspotinstancetemplate ;
+    rdfs:range xsd:string .
+
+hpc:maxnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awsspotinstancetemplate ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:pricing a owl:ObjectProperty ;
+    rdfs:domain hpc:Awsspotinstancetemplate ;
+    rdfs:range rdf:List .
+
+hpc:pricing rdf:first a xsd:string ;
+    rdfs:range xsd:string .
+
+# User Data Script
+hpc:Userdatascript a owl:Class .
+hpc:userdata a owl:DatatypeProperty ;
+    rdfs:domain hpc:Userdatascript ;
+    rdfs:range xsd:string .
+
+# Spot Fleet Role
+hpc:Spotfleetrole a owl:Class .
+
+# Logging and Troubleshooting
+hpc:loglevel a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string .
+
+hpc:Spotfleetrequest a owl:Class .
+hpc:spotfleetrequestid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Spotfleetrequest ;
+    rdfs:range xsd:string .
+
+hpc:spotinstancerequestid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Spotfleetrequest ;
+    rdfs:range xsd:string .
+
+hpc:spotinstancemachineid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Spotfleetrequest ;
+    rdfs:range xsd:string .
+
+hpc:stateupdatemessage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Spotfleetrequest ;
+    rdfs:range xsd:string .
+
+# Limitations and Known Issues
+hpc:Systemclocksynchronization a owl:Class .
+hpc:Spotinstanceterminationnotice a owl:Class .

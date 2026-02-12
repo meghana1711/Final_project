@@ -1,0 +1,34 @@
+hpc:Lsfcluster a owl:Class .
+hpc:Lsfserverhost a owl:Class .
+hpc:Datamanagerhost a owl:Class .
+hpc:Lsfdatamanager a owl:Class .
+hpc:installedOn rdf:Property ;
+    rdfs:domain hpc:Lsfserverhost ;
+    rdfs:range hpc:Lsfdatamanager .
+hpc:configured rdf:Property ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:boolean .
+hpc:hasDataManager rdf:Property ;
+    rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Datamanagerhost .
+hpc:requiresInstallationOf rdf:Property ;
+    rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range hpc:Lsfcluster .
+hpc:hasConfigurationFile rdf:Property ;
+    rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range xsd:string .
+hpc:isAccessibleFrom rdf:Property ;
+    rdfs:domain hpc:Datamanagerhost ;
+    rdfs:range hpc:Datamanagerhost .
+hpc:supportedOperatingSystem rdf:Property ;
+    rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range xsd:string .
+hpc:hasPrerequisite rdf:Property ;
+    rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range hpc:Lsfcluster .
+hpc:hasKnownIssue rdf:Property ;
+    rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range xsd:string .
+hpc:requiresEd rdf:Property ;
+    rdfs:domain hpc:Lsfdatamanager ;
+    rdfs:range xsd:boolean .

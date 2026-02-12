@@ -1,0 +1,29 @@
+hpc:Profilehdf5default a owl:Class .
+
+hpc:hasdatatypes a owl:ObjectProperty ;
+    rdfs:domain hpc:Profilehdf5default ;
+    rdfs:range xsd:string .
+
+hpc:Timeseriescontrolparameters a owl:Class .
+
+hpc:jobacctgatherfrequency a owl:DatatypeProperty ;
+    rdfs:domain hpc:Timeseriescontrolparameters ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:acctgfreq a owl:ObjectProperty ;
+    rdfs:domain hpc:Timeseriescontrolparameters ;
+    rdfs:range xsd:string .
+
+hpc:pollingfrequency a owl:DatatypeProperty ;
+    rdfs:domain hpc:Otherplugin ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ipmienergyfrequency a owl:DatatypeProperty ;
+    rdfs:domain hpc:AcctGatherConf ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Otherplugin a owl:Class .
+hpc:Plugin a owl:Class .
+hpc:Nodestepfile a owl:Class .
+hpc:Job a owl:Class .
+hpc:Step a owl:Class .

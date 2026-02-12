@@ -1,0 +1,44 @@
+hpc:Joboutputformat a owl:Class ;
+    rdfs:subClassOf owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobcommand ;
+    rdfs:range xsd:string .
+
+hpc:Jobcommand a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Joboutputformat .
+
+hpc:Cluster a owl:Class .
+
+# Cluster Status
+hpc:Clusterstatus a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:string .
+
+# Job Summary
+hpc:Jobsummary a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Jobsummary .
+
+# Floating Software Licenses
+hpc:Floatinglicensepool a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Joblicenserequirement a owl:Class ;
+    rdfs:subClassOf owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Joblicenserequirement .

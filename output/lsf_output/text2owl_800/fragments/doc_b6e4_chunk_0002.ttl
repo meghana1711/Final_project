@@ -1,0 +1,58 @@
+hpc:Gateway a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Loadbalancer a owl:Class ;
+    rdfs:subClassOf hpc:Gateway .
+
+hpc:Apachehttpserver a owl:Class ;
+    rdfs:subClassOf hpc:Loadbalancer .
+
+hpc:Haproxy a owl:Class ;
+    rdfs:subClassOf hpc:Loadbalancer .
+
+hpc:Nginx a owl:Class ;
+    rdfs:subClassOf hpc:Loadbalancer .
+
+hpc:Oauth2 a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Openidconnect a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Identityprovider a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Keycloak a owl:Class ;
+    rdfs:subClassOf hpc:Identityprovider .
+
+hpc:Highavailability a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Configurationfile a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Lsfwebservice a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Rhel8 a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:hasloadbalancer a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfwebservice ;
+    rdfs:range hpc:Loadbalancer .
+
+hpc:hasauthenticationserver a owl:ObjectProperty ;
+    rdfs:domain hpc:Oauth2 ;
+    rdfs:range hpc:Identityprovider .
+
+hpc:hashighavailability a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfwebservice ;
+    rdfs:range hpc:Highavailability .
+
+hpc:hasconfigurationfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfwebservice ;
+    rdfs:range hpc:Configurationfile .
+
+hpc:isbasedon a owl:DatatypeProperty ;
+    rdfs:domain hpc:Rhel8 ;
+    rdfs:range xsd:string .

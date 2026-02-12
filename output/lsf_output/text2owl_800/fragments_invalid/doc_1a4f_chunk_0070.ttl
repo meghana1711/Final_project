@@ -1,0 +1,25 @@
+hpc:Host a owl:Class .
+hpc:Managementcandidate hpc:host .
+hpc:Dynamichost hpc:host .
+
+hpc:limshutdown a owl:ObjectProperty ;
+    rdfs:domain hpc:Managementcandidate ;
+    rdfs:range rdf:String .
+
+hpc:lsadminreconfigure a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range rdf:Resource .
+
+hpc:limstartup a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range rdf:String .
+
+hpc:lsfMasterList a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range rdf:Resource .
+
+hpc:lsfDynamicHostTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Expired hpc:Dynamichost a owl:Class .

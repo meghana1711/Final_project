@@ -1,0 +1,20 @@
+hpc:bswitchSyncMode a owl:DatatypeProperty .
+hpc:SyncMode rdfs:domain hpc:BswitchSyncMode .
+hpc:SyncMode rdfs:range xsd:string .
+
+hpc:SyncModeValue a owl:Class .
+hpc:all a hpc:SYNC_MODE_Value .
+hpc:partial a hpc:SYNC_MODE_Value .
+
+hpc:Limit a owl:Class .
+hpc:BeginLimit rdfs:subClassOf hpc:Limit .
+hpc:EndLimit rdfs:subClassOf hpc:Limit .
+
+hpc:ResourceLimit a owl:Class .
+hpc:Resource rdfs:domain hpc:ResourceLimit .
+hpc:Resource rdfs:range xsd:string .
+hpc:MaxAmount rdfs:subClassOf hpc:ResourceLimit .
+
+hpc:JobClass a owl:Class .
+hpc:ResourceConsumer rdfs:domain hpc:ResourceLimit .
+hpc:ResourceConsumer rdfs:range hpc:JobClass .

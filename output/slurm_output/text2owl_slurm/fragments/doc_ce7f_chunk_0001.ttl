@@ -1,0 +1,61 @@
+hpc:Quickstartguide a owl:Class .
+hpc:Platforms a owl:Class .
+hpc:Upgradeguide a owl:Class .
+hpc:Superquickstart a owl:Class .
+
+hpc:hasPrerequisite rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Superquickstart ;
+    rdfs:range hpc:Quickstartguide .
+
+hpc:synchronizeClocks rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Superquickstart ;
+    rdfs:range xsd:boolean .
+
+hpc:installMUNGE rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Superquickstart ;
+    rdfs:range xsd:string .
+
+hpc:sameMungeKey rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Installmunge ;
+    rdfs:range xsd:boolean .
+
+hpc:startMUNGEDaemon rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Superquickstart ;
+    rdfs:range xsd:string .
+
+hpc:downloadSlurm rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Superquickstart ;
+    rdfs:range xsd:string .
+
+hpc:installSlurm rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Downloadslurm ;
+    rdfs:range xsd:string .
+
+hpc:buildRPMorDEB rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Installslurm ;
+    rdfs:range xsd:string .
+
+hpc:buildManually rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Installslurm ;
+    rdfs:range xsd:string .
+
+hpc:useSlurmConfigurationTool rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Superquickstart ;
+    rdfs:range xsd:string .
+
+hpc:Slurmuser a owl:Class .
+hpc:hasExistenceRequirement rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmuser ;
+    rdfs:range hpc:Superquickstart .
+
+hpc:existsOnAllNodes rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmuser ;
+    rdfs:range xsd:boolean .
+
+hpc:createLogFileDirectories rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Superquickstart ;
+    rdfs:range xsd:string .
+
+hpc:makeWritableBySlurmUser rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Createlogfiledirectories ;
+    rdfs:range xsd:string .

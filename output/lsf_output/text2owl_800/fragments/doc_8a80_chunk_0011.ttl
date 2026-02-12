@@ -1,0 +1,17 @@
+hpc:Lsflicensescheduler a owl:Class .
+hpc:lmRemoveSuspJobs a owl:ObjectProperty .
+hpc:lmRemoveSuspJobsInterval a owl:ObjectProperty .
+
+hpc:LSFLicenseScheduler
+  rdfs:subClassOf [ a owl:Class ;
+                    rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:LM_REMOVE_SUSP_JOBS
+  rdfs:domain hpc:Lsflicensescheduler ;
+  rdfs:range xsd:nonNegativeInteger ;
+  rdfs:comment "Enables LSF License Scheduler to use lmremove (for FlexNet) or rlmremove (for Reprise License Manager) to remove license features from each recently-suspended job." .
+
+hpc:LM_REMOVE_SUSP_JOBS_INTERVAL
+  rdfs:domain hpc:Lsflicensescheduler ;
+  rdfs:range xsd:nonNegativeInteger ;
+  rdfs:comment "Specifies the minimum length of time between subsequent child processes that LSF License Scheduler forks to run lmremove (for FlexNet) or rlmremove (for Reprise License Manager) every time it receives an update from a license collector daemon (blcollect)." .

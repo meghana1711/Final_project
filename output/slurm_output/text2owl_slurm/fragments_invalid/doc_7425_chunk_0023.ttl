@@ -1,0 +1,30 @@
+hpc:JobLimit
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf hpc:Limit ;
+    rdfs:comment "Maximum limit for a job." .
+
+hpc:WallClockJobLimit
+    a owl:Class ;
+    rdfs:subClassOf hpc:Joblimit ;
+    rdfs:comment "Maximum wall clock time for a job." .
+
+hpc:ActiveJobsLimit
+    a owl:Class ;
+    rdfs:subClassOf hpc:Joblimit ;
+    rdfs:comment "Maximum number of active jobs per account or user." .
+
+hpc:Account
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf hpc:User ;
+    rdfs:comment "An account in the HPC system." .
+
+hpc:User
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A user in the HPC system." .
+
+hpc:Job
+    a owl:Class ;
+    rdfs:

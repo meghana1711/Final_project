@@ -1,0 +1,25 @@
+hpc:Lsfsimulatorservice a owl:Class .
+hpc:Starts hpc:lsfsimulatorservice rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsimulatorservice ;
+    rdfs:range xsd:string .
+
+hpc:Configuration hpc:lsfsimulatorservice rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfsimulatorservice ;
+    rdfs:range xsd:string .
+
+hpc:Mapping hpc:lsfsimulatorservice rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfsimulatorservice ;
+    rdfs:range xsd:string .
+
+hpc:Defaultmappinglocation hpc:lsfsimulatorservice rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfsimulatorservice ;
+    rdfs:range xsd:string .
+
+hpc:Importfromremote hpc:lsfsimulatorservice rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsimulatorservice ;
+    rdfs:range xsd:string .
+
+hpc:defaultFileVolumeMountings rdf:type owl:Class .
+hpc:Hasdefaultfilevolumemounting hpc:defaultfilevolumemountings rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Defaultfilevolumemountings ;
+    rdfs:range hpc:Filevolumemounting .

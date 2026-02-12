@@ -1,0 +1,38 @@
+hpc:Project a owl:Class .
+hpc:Project rdfs:subClassOf owl:Class .
+
+hpc:projectshare a owl:DatatypeProperty .
+hpc:Projectshare rdfs:domain hpc:Project ;
+                   rdfs:range xsd:decimal .
+
+hpc:owned a owl:DatatypeProperty .
+hpc:Owned rdfs:domain hpc:Project ;
+              rdfs:range xsd:nonNegativeInteger .
+
+hpc:inuse a owl:DatatypeProperty .
+hpc:Inuse rdfs:domain hpc:Project ;
+            rdfs:range xsd:nonNegativeInteger .
+
+hpc:reserved a owl:DatatypeProperty .
+hpc:Reserved rdfs:domain hpc:Project ;
+              rdfs:range xsd:nonNegativeInteger .
+
+hpc:free a owl:DatatypeProperty .
+hpc:Free rdfs:domain hpc:Project ;
+           rdfs:range xsd:nonNegativeInteger .
+
+hpc:demand a owl:DatatypeProperty .
+hpc:Demand rdfs:domain hpc:Project ;
+            rdfs:range xsd:nonNegativeInteger .
+
+hpc:nonshared a owl:DatatypeProperty .
+hpc:Nonshared rdfs:domain hpc:Project ;
+               rdfs:range xsd:nonNegativeInteger .
+
+hpc:description a owl:DatatypeProperty .
+hpc:Description rdfs:domain hpc:Project ;
+                rdfs:range xsd:string .
+
+hpc:accumulateduse a owl:DatatypeProperty .
+hpc:Accumulateduse rdfs:domain hpc:Project ;
+                   rdfs:range xsd:nonNegativeInteger .

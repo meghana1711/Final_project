@@ -1,0 +1,48 @@
+hpc:Lsfhost a owl:Class .
+hpc:Hasipaddress rdfs:domain hpc:Lsfhost ;
+                  rdfs:range xsd:string .
+hpc:Isregistered rdfs:domain hpc:Lsfhost ;
+                  rdfs:range xsd:boolean .
+hpc:Lsfservice a owl:Class .
+hpc:Startsupautomatically rdfs:domain hpc:Lsfservice ;
+                      rdfs:range xsd:boolean .
+hpc:Isinstalledasservice rdfs:domain hpc:Lsfservice ;
+                         rdfs:range xsd:boolean .
+hpc:Hashostregsetupfile rdfs:domain hpc:Lsfservice ;
+                          rdfs:range xsd:string .
+hpc:lsreghostcommand a owl:ObjectProperty .
+hpc:Lsreghostcommand rdfs:domain hpc:Lsfservice ;
+                      rdfs:range xsd:string .
+hpc:hostregsetupfile a owl:DatatypeProperty .
+hpc:Hostregsetupfile rdfs:domain hpc:Lsfservice ;
+                      rdfs:range xsd:string .
+hpc:Lsfserver a owl:Class .
+hpc:Hashostname rdfs:domain hpc:Lsfserver ;
+                 rdfs:range xsd:string .
+hpc:Isinhostregsetupfile rdfs:domain hpc:Lsfserver ;
+                        rdfs:range xsd:boolean .
+hpc:lsfRegFloatHosts a owl:ObjectProperty .
+hpc:LsfRegFloatHosts rdfs:domain hpc:LsfConf ;
+                        rdfs:range xsd:string .
+hpc:LsfConf a owl:Class .
+hpc:HaslsfRegFloatHosts rdfs:domain hpc:LsfConf ;
+                           rdfs:range xsd:string .
+hpc:lsfBindir a owl:DatatypeProperty .
+hpc:LsfBindir rdfs:domain hpc:Lsfservice ;
+                      rdfs:range xsd:string .
+
+hpc:Lsfhost rdfs:subClassOf [ a owl:Class ;
+                                 owl:equivalentClass [ a owl:Class ;
+                                                         owl:intersectionOf ( [ a owl:Class ;
+                                                                                     owl:oneOf ( hpc:LSFHost ) ]
+                                                                               [ a owl:Class ;
+                                                                                     owl:onProperty [ a owl:ObjectProperty ;
+                                                                                                          rdfs:domain hpc:Lsfservice ;
+                                                                                                          rdfs:range xsd:string ;
+                                                                                                          owl:inverseOf hpc:lsreghostCommand ] ) ] ) ] .
+
+hpc:Lsfservice rdfs:subClassOf [ a owl:Class ;
+                                   owl:equivalentClass [ a owl:Class ;
+                                                           owl:intersectionOf ( [ a owl:Class ;
+                                                                                     owl:oneOf ( hpc:LSFService ) ]
+                                                                               [ a o

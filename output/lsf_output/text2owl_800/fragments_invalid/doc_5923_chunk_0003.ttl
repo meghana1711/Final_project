@@ -1,0 +1,36 @@
+hpc:Lsfsessionschedulersessionjob a owl:Class .
+hpc:haslsfstatus a owl:ObjectProperty .
+hpc:Haslsfstatus rdfs:domain hpc:Lsfsessionschedulersessionjob ;
+                  rdfs:range xsd:string .
+hpc:iscompatiblewith a owl:ObjectProperty .
+hpc:Iscompatiblewith rdfs:domain hpc:Lsfsessionschedulersessionjob ;
+                      rdfs:range xsd:string .
+hpc:requiresprivileges a owl:DatatypeProperty .
+hpc:Requiresprivileges rdfs:domain hpc:Lsfsessionschedulersessionjob ;
+                        rdfs:range xsd:string .
+hpc:supportsapplicationlevelcheckpointing a owl:ObjectProperty .
+hpc:Supportsapplicationlevelcheckpointing rdfs:domain hpc:Lsfsessionschedulersessionjob ;
+                                             rdfs:range xsd:boolean .
+hpc:doesnotsupportjobchunking a owl:ObjectProperty .
+hpc:Doesnotsupportjobchunking rdfs:domain hpc:Lsfsessionschedulersessionjob ;
+                                 rdfs:range xsd:boolean .
+hpc:runsundersubmissionuseraccount a owl:ObjectProperty .
+hpc:Runsundersubmissionuseraccount rdfs:domain hpc:Lsfsessionschedulersessionjob ;
+                                     rdfs:range xsd:string .
+hpc:exitsnormallywhenalltaskscompleted a owl:ObjectProperty .
+hpc:Exitsnormallywhenalltaskscompleted rdfs:domain hpc:Lsfsessionschedulersessionjob ;
+                                          rdfs:range xsd:boolean .
+hpc:updatesstatusfrequencyconfigurablebylsfadministrators a owl:ObjectProperty .
+hpc:Updatesstatusfrequencyconfigurablebylsfadministrators rdfs:domain hpc:Lsfsessionschedulersessionjob ;
+                                                            rdfs:range xsd:boolean .
+hpc:islongrunning a owl:ObjectProperty .
+hpc:Islongrunning rdfs:domain hpc:Lsfsessionschedulersessionjob ;
+                   rdfs:range xsd:boolean .
+hpc:useslsfbpostcommand a owl:ObjectProperty .
+hpc:Useslsfbpostcommand rdfs:domain hpc:Lsfsessionschedulersessionjob ;
+                          rdfs:range xsd:string .
+hpc:viewstatususingbread or hpc:viewstatususingbjobsl a owl:ObjectProperty .
+hpc:viewStatusUsingBread rdfs:subPropertyOf hpc:usesLSFBpostCommand ;
+                           rdfs:label "view status using bread"@en ;
+hpc:viewStatusUsingBjobsL rdfs:subPropertyOf hpc:usesLSFBpostCommand ;
+                           rdfs:label "view status using bjobs -l"@en .

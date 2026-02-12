@@ -1,0 +1,49 @@
+hpc:LsbJobCpulimit a owl:Class .
+
+hpc:hascpulimittype a owl:ObjectProperty .
+hpc:Hascpulimittype rdfs:domain hpc:LsbJobCpulimit .
+hpc:Hascpulimittype rdfs:range xsd:string .
+
+hpc:OsEnforced a owl:Class .
+hpc:LsfEnforced a owl:Class .
+
+hpc:Perprocesslimit a owl:Class .
+hpc:Perjoblimit a owl:Class .
+
+hpc:OS_enforced_perProcessLimit rdf:type hpc:perProcessLimit .
+hpc:LSF_enforced_perJobLimit rdf:type hpc:perJobLimit .
+
+hpc:enforcedByOS rdf:type owl:ObjectProperty .
+hpc:Enforcedbyos rdfs:domain hpc:Perprocesslimit .
+hpc:Enforcedbyos rdfs:range hpc:OsEnforced .
+
+hpc:enforcedByLSF rdf:type owl:ObjectProperty .
+hpc:Enforcedbylsf rdfs:domain hpc:Perjoblimit .
+hpc:Enforcedbylsf rdfs:range hpc:LsfEnforced .
+
+hpc:SIGXCPU_supported rdf:type owl:ObjectProperty .
+hpc:SigxcpuSupported rdfs:domain hpc:OsEnforced .
+hpc:SigxcpuSupported rdfs:range xsd:boolean .
+
+hpc:JOB_TERMINATE_INTERVAL rdf:type owl:ObjectProperty .
+hpc:JobTerminateInterval rdfs:domain hpc:LsfEnforced .
+hpc:JobTerminateInterval rdfs:range xsd:nonNegativeInteger .
+
+hpc:JOB_CONTROLS rdf:type owl:ObjectProperty .
+hpc:JobControls rdfs:domain hpc:LsbJobCpulimit .
+hpc:JobControls rdfs:range hpc:LsbJobCpulimit .
+
+hpc:Not_defined rdf:type hpc:LSB_JOB_CPULIMIT .
+hpc:y rdf:type hpc:LSB_JOB_CPULIMIT .
+hpc:n rdf:type hpc:LSB_JOB_CPULIMIT .
+
+hpc:Not_defined rdf:type hpc:OS_enforced_perProcessLimit .
+hpc:y_enforced_by_OS rdf:type hpc:OS_enforced_perProcessLimit .
+hpc:n_enforced_by_OS rdf:type hpc:OS_enforced_perProcessLimit .
+
+hpc:Not_defined rdf:type hpc:LSF_enforced_perJobLimit .
+hpc:y_enforced_by_LSF rdf:type hpc:LSF_enforced_perJobLimit .
+hpc:n_enforced_by_LSF rdf:type hpc:LSF_enforced_perJobLimit .
+
+hpc:LSB_INTERACT_MSG_ENH rdf:type owl:ObjectProperty .
+hpc:LSB_INTERACT_MSG_ENH

@@ -1,0 +1,14 @@
+hpc:Account a owl:Class.
+hpc:tres a owl:ObjectProperty ;
+    rdfs:domain hpc:Account ;
+    rdfs:range xsd:integer.
+hpc:active a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean.
+hpc:accruing a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean.
+hpc:total a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer.
+hpc:count a owl:DatatypeProperty ;

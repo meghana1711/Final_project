@@ -1,0 +1,40 @@
+hpc:Mem a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "The amount of available RAM." .
+
+hpc:memunit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mem ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The unit of the memory, by default in KB." .
+
+# External index ontology
+
+hpc:Externalindex a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Indicates whether external load indices are shown." .
+
+hpc:showexternalindex a owl:ObjectProperty ;
+    rdfs:domain hpc:Externalindex ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Specifies whether to show indices for all dynamic custom resources available on the host." .
+
+hpc:specifiedexternalindex a owl:ObjectProperty ;
+    rdfs:domain hpc:Externalindex ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Specifies the non-shared (host-based) dynamic numeric custom resources to show." .
+
+# Resource information ontology
+
+hpc:Resource a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Name of the resource." .
+
+hpc:value a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Value for an instance of the resource." .
+
+hpc:location a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Hosts associated with the instance of the resource." .

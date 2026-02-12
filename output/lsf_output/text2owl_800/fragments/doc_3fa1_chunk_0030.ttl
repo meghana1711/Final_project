@@ -1,0 +1,16 @@
+hpc:Hierarchicalfairsharepolicy a owl:Class .
+hpc:toplevelshareassignment a owl:ObjectProperty .
+hpc:Sharetree a owl:Class .
+hpc:Usergroup a owl:Class .
+hpc:usershareassignment a owl:ObjectProperty .
+hpc:dynamicuserpriority a owl:DatatypeProperty .
+
+hpc:Hierarchicalfairsharepolicy rdfs:subClassOf owl:Class .
+hpc:Toplevelshareassignment rdfs:domain hpc:Hierarchicalfairsharepolicy ;
+                                 rdfs:range rdf:Resource .
+hpc:Sharetree rdfs:subClassOf hpc:Hierarchicalfairsharepolicy .
+hpc:Usergroup rdfs:subClassOf hpc:Sharetree .
+hpc:Usershareassignment rdfs:domain hpc:Usergroup ;
+                             rdfs:range rdf:Resource .
+hpc:Dynamicuserpriority rdfs:domain hpc:Usergroup ;
+                             rdfs:range xsd:decimal .

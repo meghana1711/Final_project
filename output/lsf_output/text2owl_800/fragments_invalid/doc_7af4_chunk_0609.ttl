@@ -1,0 +1,32 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Ipv4clienthost a owl:Class .
+hpc:Ipv6clienthost a owl:Class .
+
+hpc:LsfHostAddrRange rdfs:domain hpc:Ipv6clienthost .
+hpc:LsfHostAddrRange rdfs:range xsd:string .
+hpc:LsfHostAddrRange rdfs:subClassOf owl:Restriction .
+hpc:LSF_HOST_ADDR_RANGE owl:onProperty hpc:hasDomain .
+hpc:hasdomain a owl:ObjectProperty .
+
+hpc:Ipv6clienthost3ffeTo4fff rdfs:subClassOf hpc:Ipv6clienthost .
+hpc:Ipv6clienthost3ffeTo4fff rdfs:subClassOf hpc:LsfHostAddrRange .
+hpc:IPv6ClientHost_3ffe_to_4fff rdfs:label "IPv6 client hosts belonging to domains starting with 3ffe up to 4fff" .
+
+hpc:Ipv6clienthostFffe::88bb rdfs:subClassOf hpc:Ipv6clienthost .
+hpc:Ipv6clienthostFffe::88bb rdfs:subClassOf hpc:LsfHostAddrRange .
+hpc:IPv6ClientHost_fffe::88bb rdfs:label "IPv6 client host belonging to fffe::88bb" .
+
+hpc:Ipv6clienthost3fffToFff rdfs:subClassOf hpc:Ipv6clienthost .
+hpc:Ipv6clienthost3fffToFff rdfs:subClassOf hpc:LsfHostAddrRange .
+hpc:IPv6ClientHost_3fff_to_fff rdfs:label "IPv6 client hosts belonging to domains starting with 3fff up to ffff" .
+
+hpc:Ipv6clienthost3fffToFf rdfs:subClassOf hpc:Ipv6clienthost .
+hpc:Ipv6clienthost3fffToFf rdfs:subClassOf hpc:LsfHostAddrRange .
+hpc:IPv6ClientHost_3fff_to_ff rdfs:label "IPv6 client hosts belonging to domains starting with 3fff up to ff" .
+
+hpc:Ipv4clienthost122345 rdfs:subClassOf hpc:Ipv4clienthost .
+hpc:IPv4ClientHost_12_23_45 rdfs:label "IPv4 client hosts belonging to domains starting with 12.23.45

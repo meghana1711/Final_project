@@ -1,0 +1,12 @@
+hpc:Jobdescription a owl:Class .
+hpc:hasscript a owl:ObjectProperty .
+hpc:hasenvironment a owl:ObjectProperty .
+hpc:Environment a owl:Class .
+hpc:hasfoo a owl:DatatypeProperty .
+hpc:Jobdescription rdfs:subClassOf owl:Class .
+hpc:Environment rdfs:subClassOf owl:Class .
+hpc:hasscript a owl:ObjectProperty ;
+               rdfs:domain hpc:Jobdescription ;
+               rdfs:range xsd:string .
+hpc:hasenvironment a owl:ObjectProperty ;
+               rdfs

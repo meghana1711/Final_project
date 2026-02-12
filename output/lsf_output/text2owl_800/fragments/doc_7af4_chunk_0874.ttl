@@ -1,0 +1,26 @@
+hpc:lsfRemoteCopyCmd a owl:DatatypeProperty .
+hpc:LsfRemoteCopyCmd rdfs:domain hpc:Lsfconfiguration .
+hpc:LsfRemoteCopyCmd rdfs:range xsd:string .
+
+hpc:lsfRegInterval a owl:DatatypeProperty .
+hpc:LsfRegInterval rdfs:domain hpc:Lsfconfiguration .
+hpc:LsfRegInterval rdfs:range xsd:integer .
+
+hpc:LsfConnectionChange rdfs:subClassOf owl:NamedIndividual .
+hpc:LsfRegFloatHosts rdfs:subClassOf owl:NamedIndividual .
+
+hpc:bsub a owl:ObjectProperty .
+hpc:Bsub rdfs:domain hpc:Lsfcommand .
+hpc:Bsub rdfs:range hpc:Lsfcommand .
+
+hpc:bmod a owl:ObjectProperty .
+hpc:Bmod rdfs:domain hpc:Lsfcommand .
+hpc:Bmod rdfs:range hpc:Lsfcommand .
+
+hpc:lsrcp a owl:ObjectProperty .
+hpc:Lsrcp rdfs:domain hpc:Lsfcommand .
+hpc:Lsrcp rdfs:range hpc:Lsfcommand .
+
+hpc:lsrcpErrno a owl:DatatypeProperty .
+hpc:LsrcpErrno rdfs:domain hpc:Lsfcommand .
+hpc:LsrcpErrno rdfs:range xsd:integer .

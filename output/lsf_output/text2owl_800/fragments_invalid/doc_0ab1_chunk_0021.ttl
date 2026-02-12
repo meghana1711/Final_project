@@ -1,0 +1,54 @@
+hpc:Gpurequirement a owl:Class .
+hpc:mps a owl:ObjectProperty .
+hpc:gvendor a owl:DatatypeProperty .
+hpc:exclusiveprocessmode a owl:DatatypeProperty .
+hpc:shared a owl:DatatypeProperty .
+hpc:nocvd a owl:DatatypeProperty .
+
+hpc:Job GPURequirement rdfs:subClassOf hpc:Gpurequirement .
+hpc:Application GPURequirement rdfs:subClassOf hpc:Gpurequirement .
+hpc:Queue GPURequirement rdfs:subClassOf hpc:Gpurequirement .
+hpc:Cluster GPURequirement rdfs:subClassOf hpc:Gpurequirement .
+
+hpc:Mps rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:boolean .
+
+hpc:Gvendor rdfs:domain hpc:Gpurequirement ;
+    rdfs:range xsd:string .
+
+hpc:Exclusiveprocessmode rdfs:domain hpc:Mps ;
+    rdfs:range xsd:string .
+
+hpc:Shared rdfs:domain hpc:Mps ;
+    rdfs:range xsd:boolean .
+
+hpc:Nocvd rdfs:domain hpc:Mps ;
+    rdfs:range xsd:boolean .
+
+hpc:ignoresMPS rdf:type owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       owl:intersectionOf ( hpc:GPURequirement
+                                             hpc:MPS [ rdf:value "amd" ] ) ] .
+
+hpc:efficientMPS rdf:type owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       owl:intersectionOf ( hpc:GPURequirement
+                                             hpc:MPS [ rdf:value true ] ) ] .
+
+hpc:sharedMPS rdf:type owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       owl:intersectionOf ( hpc:GPURequirement
+                                             hpc:MPS [ rdf:value true ]
+                                             hpc:shared [ rdf:value true ] ) ] .
+
+hpc:exclusiveMPS rdf:type owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       owl:intersectionOf ( hpc:GPURequirement
+                                             hpc:MPS [ rdf:value true ]
+                                             hpc:exclusiveProcessMode [ rdf:value "EXCLUSIVE_PROCESS" ] ) ] .
+
+hpc:noCUDAVisibleDevices rdf:type owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       owl:intersectionOf ( hpc:GPURequirement
+                                             hpc:MPS [ rdf:value true ]
+                                             hpc:nocvd [ rdf:value true ] ) ] .

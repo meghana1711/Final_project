@@ -1,0 +1,47 @@
+hpc:Newjobeventfield a owl:Class .
+hpc:Changedjobeventfield a owl:Class .
+
+# Command Options and Output Classes
+hpc:Newcommandoption a owl:Class .
+hpc:Changedcommandoutput a owl:Class .
+
+# Command Class
+hpc:Command a owl:Class .
+
+# Host Group Property
+hpc:acceptshostgroup a owl:ObjectProperty .
+hpc:Acceptshostgroup rdfs:domain hpc:Command .
+hpc:Acceptshostgroup rdfs:range hpc:Hostgroup .
+
+# Host Group Configuration Property
+hpc:requireslsfhostgroupinfoconfigured a owl:ObjectProperty .
+hpc:Requireslsfhostgroupinfoconfigured rdfs:domain hpc:Command .
+hpc:Requireslsfhostgroupinfoconfigured rdfs:range hpc:Boolean .
+
+# Condensed Host Name Property
+hpc:supportscondensedhostname a owl:ObjectProperty .
+hpc:Supportscondensedhostname rdfs:domain hpc:Command .
+hpc:Supportscondensedhostname rdfs:range hpc:Boolean .
+
+# Range of Numbers in Condensed Host Name Property
+hpc:usescolonforrange a owl:ObjectProperty .
+hpc:Usescolonforrange rdfs:domain hpc:Command .
+hpc:Usescolonforrange rdfs:range hpc:Boolean .
+
+# Leading Zeros in Host Name Property
+hpc:supportsleadingzeros a owl:ObjectProperty .
+hpc:Supportsleadingzeros rdfs:domain hpc:Command .
+hpc:Supportsleadingzeros rdfs:range hpc:Boolean .
+
+# Multiple Square Brackets Property
+hpc:supportsmultiplesquarebrackets a owl:ObjectProperty .
+hpc:Supportsmultiplesquarebrackets rdfs:domain hpc:Command .
+hpc:Supportsmultiplesquarebrackets rdfs:range hpc:Boolean .
+
+# Resource Requirement String Class
+hpc:Resourcerequirementstring a owl:Class .
+
+# Size Limit Removed Property
+hpc:hasnosizelimit a owl:DatatypeProperty .
+hpc:Hasnosizelimit rdfs:domain hpc:Resourcerequirementstring .
+hpc:Hasnosizelimit rdfs:range xsd:boolean .

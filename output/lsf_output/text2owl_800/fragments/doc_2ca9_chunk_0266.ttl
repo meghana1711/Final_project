@@ -1,0 +1,32 @@
+hpc:Tssubport a owl:Class .
+hpc:LsbTimeGpd rdfs:subClassOf hpc:Tssubport ;
+    rdfs:domain hpc:Tssubport ;
+    rdfs:range xsd:decimal .
+
+hpc:lsfAuth a owl:ObjectProperty ;
+    rdfs:domain hpc:Tssubport ;
+    rdfs:range xsd:string .
+
+hpc:lsfConnectionChange a owl:ObjectProperty ;
+    rdfs:domain hpc:Tssubport ;
+    rdfs:range xsd:boolean .
+
+hpc:lsfOnCray a owl:ObjectProperty ;
+    rdfs:domain hpc:Tssubport ;
+    rdfs:range xsd:boolean .
+
+hpc:lsfRurAccounting a owl:ObjectProperty ;
+    rdfs:domain hpc:Tssubport ;
+    rdfs:range xsd:boolean .
+
+hpc:lsfCrayRurDir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tssubport ;
+    rdfs:range xsd:string .
+
+hpc:lsfRurPrologScript a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tssubport ;
+    rdfs:range xsd:string .
+
+hpc:lsfRurEpilogScript a owl:DatatypeProperty ;
+    rdfs:domain hpc:Tssubport ;
+    rdfs:range xsd:string .

@@ -1,0 +1,50 @@
+hpc:Affinity a owl:Class .
+hpc:Host rdfs:domain hpc:Affinity ;
+    rdfs:range rdf:Resource .
+
+hpc:Requestedcputype rdfs:domain hpc:Affinity ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:DatatypeProperty .
+
+hpc:Requestedcpulevel rdfs:domain hpc:Affinity ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:DatatypeProperty .
+
+hpc:Exclusivecpulevel rdfs:domain hpc:Affinity ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:DatatypeProperty .
+
+hpc:Ids rdfs:domain hpc:Affinity ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:DatatypeProperty .
+
+hpc:Requestedmemorypolicy rdfs:domain hpc:Affinity ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf owl:DatatypeProperty .
+
+hpc:Cpubindingtype a owl:Class ;
+    rdfs:subClassOf owl:Enum ;
+    rdfs:subClassOf owl:Class .
+hpc:Cpubindinglevel a owl:Class ;
+    rdfs:subClassOf owl:Enum ;
+    rdfs:subClassOf owl:Class .
+hpc:Exclusivebindinglevel a owl:Class ;
+    rdfs:subClassOf owl:Enum ;
+    rdfs:subClassOf owl:Class .
+hpc:Memorybindingpolicy a owl:Class ;
+    rdfs:subClassOf owl:Enum ;
+    rdfs:subClassOf owl:Class .
+
+hpc:CPUBindingType "numa" .
+hpc:CPUBindingType "socket" .
+hpc:CPUBindingType "core" .
+hpc:CPUBindingType "thread" .
+hpc:CPUBindingLevel "numa" .
+hpc:CPUBindingLevel "socket" .
+hpc:CPUBindingLevel "core" .
+hpc:CPUBindingLevel "thread" .
+hpc:ExclusiveBindingLevel "numa" .
+hpc:ExclusiveBindingLevel "socket" .
+hpc:ExclusiveBindingLevel "core" .
+hpc:MemoryBindingPolicy "local" .
+hpc:MemoryBindingPolicy "pref" .

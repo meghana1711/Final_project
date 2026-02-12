@@ -1,0 +1,56 @@
+hpc:exitcode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:exitreason a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:interactive a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:fromhost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:firsthost a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+
+hpc:exechost a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Host .
+
+hpc:numexechosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:askhosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:allocslot a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Allocatedslot .
+
+hpc:Allocatedslot a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      rdfs:subClassOf [ a owl:Class ;
+                                         rdfs:subClassOf [ a owl:Class ;
+                                                            rdfs:subClassOf [ a owl:Class ;
+                                                                                 rdfs:subClassOf [ a owl:Class ;
+                                                                                                      rdfs:subClassOf [ a owl:Class ;
+                                                                                                                     rdfs:subClassOf [ a owl:Class ;
+                                                                                                                                    rdfs:subClassOf [ a owl:Class ;
+                                                                                                                                             rdfs:subClassOf [ a owl:Class ;
+                                                                                                                                                  rdfs:subClassOf [ a owl:Class ;
+                                                                                                                                                       rdfs:subClassOf [ a owl:Class ;
+                                                                                                                                                        rdfs:subClassOf [ a owl:Class ;
+                                                                                                                                                         rdfs:subClassOf [ a owl:Class ;
+                                                                                                                                                          rdfs:subClassOf [ a owl:Class ;
+                                                                                                                                                           rdfs:subClassOf [ a owl:Class ;
+                                                                                                                                                            rdfs:subClassOf [ a owl:Class ;
+                                                                                                                                                             rdfs:subClassOf [ a owl:Class ;
+                                                                                                                                                              rdfs:subClassOf [ a owl:Class ;
+                                                                                                                                                               rdfs:subClassOf [

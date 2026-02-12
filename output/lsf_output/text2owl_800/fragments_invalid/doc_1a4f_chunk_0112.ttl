@@ -1,0 +1,22 @@
+hpc:It a owl:Class .
+hpc:Tm a owl:Class .
+hpc:Swp a owl:Class .
+hpc:Mem a owl:Class .
+
+hpc:loadsched a owl:ObjectProperty .
+hpc:loadstop a owl:ObjectProperty .
+
+hpc:Resourcerequirementdetails a owl:Class .
+hpc:Combined a owl:Class .
+hpc:select a owl:ObjectProperty, rdfs:domain hpc:combined, rdfs:range rdf:Resource .
+hpc:type a owl:DatatypeProperty, rdfs:domain hpc:select, rdfs:range xsd:string .
+hpc:order a owl:DatatypeProperty, rdfs:domain hpc:combined, rdfs:range xsd:dateTime .
+
+hpc:Host a owl:Class .
+hpc:slots a owl:DatatypeProperty, rdfs:domain hpc:host, rdfs:range xsd:integer .
+
+hpc:Planbasedscheduling a owl:Class .
+hpc:planbasedschedulingruntime a owl:DatatypeProperty, rdfs:domain hpc:planbasedscheduling, rdfs:range xsd:string .
+
+hpc:EstimatedRuntime a owl:Class .
+hpc:estimatedRuntimeDerivation a owl:DatatypeProperty, rdfs:domain hpc:estimatedRuntime, rdfs:range xsd:string .

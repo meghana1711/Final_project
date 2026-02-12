@@ -1,0 +1,58 @@
+hpc:LsfCluster a owl:Class .
+hpc:Managementhost rdfs:subClassOf hpc:Host .
+hpc:Serverhost rdfs:subClassOf hpc:Host .
+hpc:Clienthost rdfs:subClassOf hpc:Host .
+hpc:Host a owl:Class .
+
+hpc:lsfVersion a owl:DatatypeProperty .
+hpc:LsfVersion rdfs:domain hpc:LsfCluster .
+hpc:LsfVersion rdfs:range xsd:string .
+
+hpc:lsfEauthKey a owl:DatatypeProperty .
+hpc:LsfEauthKey rdfs:domain hpc:LsfCluster .
+hpc:LsfEauthKey rdfs:range xsd:string .
+
+hpc:querycommandauthentication a owl:ObjectProperty .
+hpc:Querycommandauthentication rdfs:domain hpc:LsfCluster .
+hpc:Querycommandauthentication rdfs:range hpc:Command .
+
+hpc:Command a owl:Class .
+hpc:Command rdfs:subClassOf rdf:Resource .
+
+hpc:lsfApis a owl:ObjectProperty .
+hpc:LsfApis rdfs:domain hpc:Command .
+hpc:LsfApis rdfs:range xsd:string .
+
+hpc:lsfAuthQueryCommands a owl:DatatypeProperty .
+hpc:LsfAuthQueryCommands rdfs:domain hpc:LsfCluster .
+hpc:LsfAuthQueryCommands rdfs:range xsd:string .
+
+hpc:lsfAuth a owl:DatatypeProperty .
+hpc:LsfAuth rdfs:domain hpc:LsfCluster .
+hpc:LsfAuth rdfs:range xsd:string .
+
+hpc:kerberosAuthentication a owl:ObjectProperty .
+hpc:KerberosAuthentication rdfs:domain hpc:LsfCluster .
+hpc:KerberosAuthentication rdfs:range xsd:boolean .
+
+hpc:externalAuthentication a owl:ObjectProperty .
+hpc:ExternalAuthentication rdfs:domain hpc:LsfCluster .
+hpc:ExternalAuthentication rdfs:range xsd:boolean .
+
+hpc:ContainerSupport a owl:Class .
+hpc:ContainerSupport rdfs:subClassOf hpc:LsfCluster .
+
+hpc:Podman a owl:Class .
+hpc:Podman rdfs:subClassOf hpc:Container .
+hpc:Podman rdfs:subClassOf hpc:LsfContainer .
+
+hpc:podmanIntegration a owl:ObjectProperty .
+hpc:PodmanIntegration rdfs:domain hpc:Podman .
+hpc:PodmanIntegration rdfs:range xsd:string .
+
+hpc:podmanVersion a owl:DatatypeProperty .
+hpc:PodmanVersion rdfs:domain hpc:Podman .
+hpc:PodmanVersion rdfs:range xsd:string .
+
+hpc:podmanMinimumVersion a owl:DatatypeProperty .
+hpc:Podman_Min

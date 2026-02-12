@@ -1,0 +1,31 @@
+hpc:jobindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:executionjobid a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:executionjobindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Executionjob ;
+    rdfs:range xsd:integer .
+
+hpc:projectname a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:username a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Newusergroup a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                      rdfs:subClassOf rdf:Resource ] .
+
+hpc:firstexecutionhostname a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:defaultJobOutdir a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .

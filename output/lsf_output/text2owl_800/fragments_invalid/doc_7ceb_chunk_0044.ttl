@@ -1,0 +1,47 @@
+hpc:Hostsetupcommand a owl:Class .
+hpc:Fullpath rdfs:domain hpc:Hostsetupcommand ;
+    rdfs:range xsd:string .
+hpc:Relativepath rdfs:domain hpc:Hostsetupcommand ;
+    rdfs:range xsd:string .
+hpc:Setuid rdfs:domain hpc:Hostsetupcommand ;
+    rdfs:range xsd:boolean .
+hpc:Lsfexecutablefile a owl:Class .
+hpc:Badmin rdfs:subClassOf hpc:Lsfexecutablefile ;
+    rdfs:comment "badmin executable file" .
+hpc:Lsadmin rdfs:subClassOf hpc:Lsfexecutablefile ;
+    rdfs:comment "lsadmin executable file" .
+hpc:Egosh rdfs:subClassOf hpc:Lsfexecutablefile ;
+    rdfs:comment "egosh executable file" .
+hpc:Utmpreg rdfs:subClassOf hpc:Lsfexecutablefile ;
+    rdfs:comment "utmpreg executable file" .
+hpc:SwtblApi rdfs:subClassOf hpc:Lsfexecutablefile ;
+    rdfs:comment "swtbl_api executable file" .
+hpc:NtblApi rdfs:subClassOf hpc:Lsfexecutablefile ;
+    rdfs:comment "ntbl_api executable file" .
+hpc:LstblNid rdfs:subClassOf hpc:Lsfexecutablefile ;
+    rdfs:comment "lstbl_nid executable file" .
+hpc:SwtblPoe rdfs:subClassOf hpc:Lsfexecutablefile ;
+    rdfs:comment "swtbl_poe executable file" .
+hpc:lsfrestart a owl:ObjectProperty .
+hpc:Top rdfs:domain hpc:Hostsetupcommand ;
+    rdfs:range xsd:string .
+hpc:Setuid rdfs:domain hpc:Hostsetupcommand ;
+    rdfs:range xsd:boolean .
+hpc:hostsetupcommandsetup a owl:ObjectProperty .
+hpc:Hostsetupcommandsetup rdfs:domain hpc:Hostsetupcommand ;
+    rdfs:range xsd:boolean .
+hpc:Lsfserverhost a owl:Class .
+hpc:Lsfcluster a owl:Class .
+hpc:Hosttype rdfs:domain hpc:Lsfserverhost ;
+    rdfs:range xsd:string .
+hpc:Model rdfs:domain hpc:Lsfserverhost ;
+    rdfs:range xsd:string .
+hpc:Nodelockedsoftwarelicenses rdfs:domain hpc:Lsfserverhost ;
+    rdfs:range xsd:string .
+hpc:Hostbasedresource a owl:Class .
+hpc:Hostbasedresource rdfs:subClassOf hpc:Resource .
+hpc:hostBasedResource rdfs:comment "Resource available on all hosts in the cluster" .
+hpc:Sharedresource a owl:Class .
+hpc:Sharedresource rdfs:subClassOf hpc:Resource .
+hpc:sharedResource rdfs:comment "Resource shared by a group of LSF hosts" .
+hpc:dynamicSharedResource a o

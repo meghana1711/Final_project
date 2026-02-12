@@ -1,0 +1,21 @@
+hpc:Remotetaskcrash a owl:Class .
+hpc:Killjobtaskdone a owl:Class .
+hps:KilljobTaskExit a owl:Class .
+
+hpc:Environmentvariable a owl:Class .
+
+hpc:lsbDjobRtaskGoneAction a owl:DatatypeProperty ;
+    rdfs:domain hpc:Environmentvariable ;
+    rdfs:range xsd:string .
+
+hpc:Remotetaskcrash rdfs:subClassOf hpc:Remotetask .
+hpc:Killjobtaskdone rdfs:subClassOf hpc:Remotetask .
+hpc:Killjobtaskexit rdfs:subClassOf hpc:Remotetask .
+
+hpc:IGNORE_TASKCRASH a owl:NamedIndividual ;
+    hpc:LSB_DJob_RTask_Gone_Action "IGNORE_TASKCRASH" .
+
+hpc:KILLJOB_TASKDONE a owl:NamedIndividual .
+hpc:KILLJOB_TASKEXIT a owl:NamedIndividual .
+
+hpc:Default a owl:NamedIndividual .

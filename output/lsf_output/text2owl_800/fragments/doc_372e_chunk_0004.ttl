@@ -1,0 +1,28 @@
+hpc:NAME
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Servicedomain ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the service domain." .
+
+hpc:LIC_SERVERS
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Servicedomain ;
+    rdfs:range hpc:Licserver ;
+    rdfs:comment "The license servers for the service domain." .
+
+hpc:LicServer
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a license server with host and port." .
+
+hpc:host
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Licserver ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The host name of the license server." .
+
+hpc:port
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Licserver ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The license manager port number of the license server." .

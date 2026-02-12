@@ -1,0 +1,64 @@
+hpc:Projectlimit a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf (hpc:Hasprojects rdfs:domain hpc:Projectlimit) ;
+    rdfs:subClassOf (hpc:Hasqueues rdfs:domain hpc:Projectlimit) ;
+    rdfs:domain hpc:Projectlimit .
+
+hpc:hasprojects a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectlimit ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf rdf:list .
+
+hpc:hasqueues a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectlimit ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf rdf:list .
+
+hpc:AllProjects a owl:NamedIndividual ;
+    rdf:value "all" .
+
+hpc:Projectspecification a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf (hpc:Inprojects rdfs:domain hpc:Projectspecification) ;
+    rdfs:subClassOf (hpc:Excludeprojects rdfs:domain hpc:Projectspecification) .
+
+hpc:inprojects a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectspecification ;
+    rdfs:range rdf:List ;
+    rdfs:subPropertyOf rdf:list .
+
+hpc:excludeprojects a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectspecification ;
+    rdfs:range rdf:List ;
+    rdfs:subPropertyOf rdf:list .
+
+hpc:Queuelimit a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf (hpc:Inqueues rdfs:domain hpc:Queuelimit) .
+
+hpc:inqueues a owl:ObjectProperty ;
+    rdfs:domain hpc:Queuelimit ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf rdf:list .
+
+hpc:Verticalformat a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf (hpc:Hasprojectsinparentheses rdfs:domain hpc:Verticalformat) .
+
+hpc:hasprojectsinparentheses a owl:ObjectProperty ;
+    rdfs:domain hpc:Verticalformat ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf rdf:list .
+
+hpc:Horizontalformat a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf (hpc:Hasprojectsonline rdfs:domain hpc:Horizontalformat) .
+
+hpc:hasprojectsonline a owl:ObjectProperty ;
+    rdfs:domain hpc:Horizontalformat ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf rdf:list .
+
+hpc:Emptyfield a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs

@@ -1,0 +1,8 @@
+hpc:Jobgroup a owl:Class .
+hpc:bgadd a owl:ObjectProperty .
+hpc:grpAdd a owl:DatatypeProperty .
+hpc:GrpAdd rdfs:domain hpc:Jobgroup .
+hpc:GrpAdd rdfs:range xsd:integer .
+hpc:Explicitjobgroup a owl:Class .
+hpc:Implicitjobgroup a owl:Class .
+hpc:Jobgroup rdfs:subClass [ a owl:Class ; owl:unionOf (hpc:Explicitjobgroup hpc:Implicitjobgroup) ] .

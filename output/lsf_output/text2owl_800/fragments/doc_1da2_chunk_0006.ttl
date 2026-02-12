@@ -1,0 +1,26 @@
+hpc:Clearcasetask a owl:Class .
+hpc:clearstarter a owl:ObjectProperty .
+hpc:hostA rdf:type xsd:string .
+hpc:mytask rdf:type xsd:string .
+
+hpc:Lsfenvironmentvariable a owl:Class .
+hpc:clearcaseDrive a owl:DatatypeProperty .
+hpc:clearcaseMountdir a owl:DatatypeProperty .
+hpc:clearcaseRoot a owl:DatatypeProperty .
+hpc:daemonWrapDebug a owl:DatatypeProperty .
+hpc:nocheckviewPostexec a owl:DatatypeProperty .
+
+hpc:ClearcasetaskRequiresClearcaseDrive rdfs:domain hpc:Clearcasetask ;
+    rdfs:range hpc:ClearcaseDrive .
+hpc:ClearcasetaskRequiresClearcaseMountdir rdfs:domain hpc:Clearcasetask ;
+    rdfs:range hpc:ClearcaseMountdir .
+hpc:ClearcasetaskRequiresClearcaseRoot rdfs:domain hpc:Clearcasetask ;
+    rdfs:range hpc:ClearcaseRoot .
+hpc:ClearcasetaskRequiresDaemonWrapDebug rdfs:domain hpc:Clearcasetask ;
+    rdfs:range xsd:boolean .
+hpc:ClearcasetaskUsesClearstarter rdfs:domain hpc:Clearcasetask ;
+    rdfs:range hpc:Clearstarter .
+hpc:ClearcasetaskUsesHost rdfs:domain hpc:Clearcasetask ;
+    rdfs:range hpc:Hosta .
+hpc:ClearcasetaskUsesTask rdfs:domain hpc:Clearcasetask ;
+    rdfs:range hpc:Mytask .

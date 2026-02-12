@@ -1,0 +1,60 @@
+hpc:Excludedhost a owl:Class .
+hpc:HasExclusionPattern rdf:Type owl:ObjectProperty .
+hpc:Hasexclusionpattern rdfs:domain hpc:Excludedhost ;
+    rdfs:range xsd:string .
+
+hpc:Leaseinhost a owl:Class .
+hpc:IsLeaseInHost rdf:Type owl:ObjectProperty .
+hpc:Isleaseinhost rdfs:domain hpc:Leaseinhost ;
+    rdfs:range xsd:string .
+
+hpc:Hostgroupadmin a owl:Class .
+hpc:HasGroupAdmin rdf:Type owl:ObjectProperty .
+hpc:Hasgroupadmin rdfs:domain hpc:Hostgroupadmin ;
+    rdfs:range xsd:string .
+hpc:Hasgroupadmin rdfs:range hpc:User ;
+    rdfs:range hpc:Usergroup .
+
+hpc:UserGroupAdmin rdf:Type owl:Class ;
+    rdfs:subClassOf hpc:Hostgroupadmin .
+
+hpc:UserGroup rdf:Type owl:Class .
+hpc:HasUserGroupMembers rdf:Type owl:ObjectProperty .
+hpc:Hasusergroupmembers rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:string .
+hpc:Hasusergroupmembers rdfs:range hpc:User ;
+    rdfs:range hpc:Usergroup .
+
+hpc:User rdf:Type owl:Class .
+hpc:HasGroupAdminRights rdf:Type owl:ObjectProperty .
+hpc:Hasgroupadminrights rdfs:domain hpc:User ;
+    rdfs:range hpc:Hostgroup .
+
+hpc:HasComment rdf:Type owl:ObjectProperty .
+hpc:Hascomment rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+
+hpc:ExternalUserGroup rdf:Type owl:Class .
+hpc:IsExternalUserGroup rdf:Type owl:ObjectProperty .
+hpc:Isexternalusergroup rdfs:domain hpc:Usergroup .
+hpc:Isexternalusergroup rdfs:range hpc:Externalusergroup .
+
+hpc:GroupAdminComment rdf:Type owl:DatatypeProperty .
+hpc:Groupadmincomment rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+
+hpc:GroupInheritance rdf:Type owl:ObjectProperty .
+hpc:Groupinheritance rdfs:domain hpc:User ;
+    rdfs:range hpc:Hostgroup .
+
+hpc:PatternWildcard rdf:Type owl:DatatypeProperty .
+hpc:Patternwildcard rdfs:domain hpc:Excludedhost ;
+    rdfs:range xsd:string .
+
+hpc:PatternRange rdf:Type owl:DatatypeProperty .
+hpc:Patternrange rdfs:domain hpc:Excludedhost ;
+    rdfs:range xsd:string .
+
+hpc:PatternList rdf:Type owl:DatatypeProperty .
+hpc:Patternlist rdfs:domain hpc:Excludedhost ;
+    rdfs:range xsd:string .

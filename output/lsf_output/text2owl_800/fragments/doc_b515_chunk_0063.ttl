@@ -1,0 +1,61 @@
+hpc:Deadlineconstraintscheduling a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Paralleljob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:cpulimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:runlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Candidatehost a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:minimumnumberofprocessors a owl:DatatypeProperty ;
+    rdfs:domain hpc:Candidatehost ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:deadlinetime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Deadlineconstraintscheduling ;
+    rdfs:range xsd:dateTime .
+
+hpc:currenttime a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:dateTime .
+
+hpc:Optimizedpreemption a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:preemptionfor a owl:ObjectProperty ;
+    rdfs:domain hpc:Optimizedpreemption ;
+    rdfs:range xsd:string .
+
+hpc:Minijob a owl:Class .
+
+hpc:Jobslot a owl:Class .
+
+hpc:Preemptivejob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Preemptedjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:sufficientjobslots a owl:ObjectProperty ;
+    rdfs:domain hpc:Preemptivejob ;
+    rdfs:range hpc:Jobslot .
+
+hpc:overpreemption a owl:ObjectProperty ;
+    rdfs:domain hpc:Preemptivejob ;
+    rdfs:range xsd:boolean .
+
+hpc:Optimizedpreemptionmechanism a owl:Class .
+
+hpc:configuringoptimizedpreemption a owl:ObjectProperty ;
+    rdfs:domain hpc:Optimizedpreemption ;
+    rdfs:range hpc:Procedure .
+
+hpc:Procedure a owl:Class .

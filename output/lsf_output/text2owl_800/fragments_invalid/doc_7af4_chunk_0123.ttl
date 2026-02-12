@@ -1,0 +1,57 @@
+hpc:UsePamCreds a owl:Class;
+    rdfs:subClassOf owl:Enum;
+    rdfs:comment "Only supported on Linux systems. If the execution host does not have PAM configured and this parameter is enabled, the job fails.";
+
+hpc:Linuxsystem a owl:Class;
+    rdfs:comment "A system that supports the USE_PAM_CREDS parameter.";
+
+hpc:PamSession a owl:Class;
+    rdfs:subClassOf owl:Class;
+    rdfs:comment "A session opened using PAM.";
+
+hpc:Job a owl:Class;
+    rdfs:subClassOf owl:Class;
+    rdfs:comment "A job that can be dispatched to a Linux host using PAM.";
+
+hpc:Task a owl:Class;
+    rdfs:subClassOf owl:Class;
+    rdfs:comment "A task launched by the blaunch command or an API.";
+
+hpc:USE_PAM_CREDS_y a owl:NamedIndividual;
+    hpc:UsePamCreds hpc:usePamCreds;
+    rdfs:comment "Enables PAM for the job or task.";
+
+hpc:USE_PAM_CREDS_n a owl:NamedIndividual;
+    hpc:UsePamCreds hpc:usePamCreds;
+    rdfs:comment "Disables PAM for the job or task.";
+
+hpc:USE_PAM_CREDS_session a owl:NamedIndividual;
+    hpc:UsePamCreds hpc:usePamCreds;
+    rdfs:comment "Opens a PAM session for the user and forks a RES process within that session.";
+
+hpc:limits a owl:NamedIndividual;
+    rdfs:comment "A set of limits that can be defined together with the session keyword.";
+
+hpc:hasPAM_SESSION rdf:Property;
+    rdfs:domain hpc:Job;
+    rdfs:range hpc:PamSession;
+
+hpc:appliesToLinuxSystem rdf:Property;
+    rdfs:domain hpc:UsePamCreds;
+    rdfs:range hpc:Linuxsystem;
+
+hpc:jobFailsWithoutPAM rdf:Property;
+    rdfs:domain hpc:UsePamCreds;
+    rdfs:range xsd:boolean;
+
+hpc:usesPAM_SESSION_limits rdf:Property;
+    rdfs:domain hpc:UsePamCreds;
+    rdfs:range xsd:boolean;
+
+hpc:launchesPAM_SESSION_onFirstHost rdf:Property;
+    rdfs:domain hpc:UsePamCreds;
+    rdfs:range xsd:boolean;
+
+hpc:launchesPAM_SESSION_onAllTasks rdf:Property;
+    rdfs:domain hpc:UsePamCreds;
+    rdfs:range xsd:boolean;

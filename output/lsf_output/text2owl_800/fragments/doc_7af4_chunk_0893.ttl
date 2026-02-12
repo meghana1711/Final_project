@@ -1,0 +1,15 @@
+hpc:Hosttype a owl:Class .
+hpc:lsfWindowsHostTypes a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hosttype ;
+    rdfs:range xsd:string .
+
+hpc:mqttBrokerHost a owl:ObjectProperty ;
+    rdfs:domain hpc:Hosttype ;
+    rdfs:range xsd:string .
+
+hpc:mqttBrokerPort a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hosttype ;
+    rdfs:range xsd:integer .
+
+hpc:EbrokerdHostCleanDelay rdfs:subClassOf owl:Property .
+hpc:LsfMqBrokerHosts rdfs:subClassOf owl:Property .

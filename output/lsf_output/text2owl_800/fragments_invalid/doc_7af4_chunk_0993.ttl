@@ -1,0 +1,22 @@
+hpc:LsfEauthUser a owl:Class .
+hpc:LsfEauthOldkey a owl:Class .
+hpc:LsfEauthOldkeyExpiry a owl:Class .
+hpc:LsfEexecUser a owl:Class .
+
+hpc:LsfEauthUser rdfs:subClassOf owl:NamedIndividual .
+hpc:LsfEauthOldkey rdfs:subClassOf owl:NamedIndividual .
+hpc:LsfEauthOldkeyExpiry rdfs:subClassOf owl:NamedIndividual .
+hpc:LsfEexecUser rdfs:subClassOf owl:NamedIndividual .
+
+hpc:hasExpiryDate rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfEauthOldkey ;
+    rdfs:range xsd:dateTime .
+
+hpc:runsAs rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:LsfEauthUser, hpc:LsfEexecUser ;
+    rdfs:range hpc:Unixuser .
+
+hpc:UNIXUser rdf:type owl:Class .
+
+
+This ontology fragment defines four classes: `hpc:LSF_EAUTH_USER`, `hpc:LSF_EAUTH_OLDKEY`, `hpc:LSF_EAUTH_OLDKEY_EXPIRY`, and `hpc:LSF_EEXEC_USER`. It also defines two object properties: `hpc:runsAs` and `hpc:hasExpiryDate`. The `hpc:runsAs` property is used to specify the UNIX user account under which the `eauth` and `eexec` executables run. The `hpc:hasExpiryDate` property is used to specify the expiry date for the previous `eauth` key. The `hpc:UNIXUser` class is used as the range for both properties.

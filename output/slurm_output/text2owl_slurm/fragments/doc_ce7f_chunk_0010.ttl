@@ -1,0 +1,30 @@
+hpc:Authtype a owl:Class .
+hpc:SlurmAuth a hpc:AuthType .
+hpc:Slurmauth rdfs:subClassOf hpc:Authtype .
+hpc:SlurmAuth rdfs:comment "Internal authentication plugin requiring a key file shared to all Slurm daemons." .
+hpc:SlurmAuth rdfs:seeAlso <https://example.org/slurm_auth> .
+
+hpc:slurmauthrequiresjwt a owl:ObjectProperty .
+hpc:Slurmauthrequiresjwt rdfs:domain hpc:Slurmauth .
+hpc:Slurmauthrequiresjwt rdfs:range xsd:boolean .
+
+hpc:mungedefault a owl:ObjectProperty .
+hpc:Mungedefault rdfs:domain hpc:Authtype .
+hpc:Mungedefault rdfs:range xsd:boolean .
+hpc:MungeDefault rdfs:comment "MUNGE is currently the default and recommended option." .
+
+hpc:Prioritytype a owl:Class .
+hpc:BasicPriority a hpc:PriorityType .
+hpc:MultifactorPriority a hpc:PriorityType .
+hpc:Basicpriority rdfs:subClassOf hpc:Prioritytype .
+hpc:Multifactorpriority rdfs:subClassOf hpc:Prioritytype .
+
+hpc:Schedulertype a owl:Class .
+hpc:BuiltinScheduler a hpc:SchedulerType .
+hpc:BackfillScheduler a hpc:SchedulerType .
+hpc:Builtinscheduler rdfs:subClassOf hpc:Schedulertype .
+hpc:Backfillscheduler rdfs:subClassOf hpc:Schedulertype .
+
+hpc:jobtimelimit a owl:DatatypeProperty .
+hpc:Jobtimelimit rdfs:domain rdf:Resource .
+hpc:Jobtimelimit rdfs:range xsd:nonNegativeDuration .

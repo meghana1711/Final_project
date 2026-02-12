@@ -1,0 +1,68 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a job in the High Performance Computing system." .
+
+hpc:Datafile a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a data file associated with a job." .
+
+hpc:Tag a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a unique identifier for a tag used in the High Performance Computing system." .
+
+hpc:User a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a user in the High Performance Computing system." .
+
+hpc:Usergroup a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a group of users in the High Performance Computing system." .
+
+hpc:bsstageout a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Datafile ;
+    rdfs:comment "Stages out data files for jobs with data requirements." .
+
+hpc:src a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bsstageout ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The source file path or folder path." .
+
+hpc:dst a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bsstageout ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The destination host path (optional)." .
+
+hpc:link a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsstageout ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether to create a symbolic link." .
+
+hpc:tag a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsstageout ;
+    rdfs:range hpc:Tag ;
+    rdfs:comment "The tag associated with the data file." .
+
+hpc:user a owl:ObjectProperty ;
+    rdfs:domain hpc:Tag ;
+    rdfs:range hpc:User ;
+    rdfs:comment "The user who owns the tag." .
+
+hpc:group a owl:ObjectProperty ;
+    rdfs:domain hpc:Tag ;
+    rdfs:range hpc:Usergroup ;
+    rdfs:comment "The user group associated with the tag." .
+
+hpc:cacheaccesscontrol a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the CACHE_ACCESS_CONTROL parameter is configured in the lsf.datamanager file." .
+
+hpc:stagein a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Datafile ;
+    rdfs:comment "Stages in data files for jobs." .
+
+hpc:u a owl:ObjectProperty ;
+    rdfs:domain hpc:Stagein ;
+    rdfs:range hpc

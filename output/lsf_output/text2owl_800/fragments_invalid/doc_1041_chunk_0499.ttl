@@ -1,0 +1,34 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Host a owl:Class .
+hpc:CpusetOs a owl:Class .
+hpc:LINUX_4 a hpc:CPUSET_OS .
+hpc:NCPUS rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:CpusetOs ;
+    rdfs:range xsd:integer .
+hpc:NFREECPUS rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:CpusetOs ;
+    rdfs:range xsd:integer .
+hpc:NNODES rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:CpusetOs ;
+    rdfs:range xsd:integer .
+hpc:NCPU_NODE rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:CpusetOs ;
+    rdfs:range xsd:integer .
+hpc:NSTATIC_CPUSETS rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:CpusetOs ;
+    rdfs:range xsd:integer .
+hpc:host a owl:ObjectProperty .
+hpc:CPUSET_OS rdf:type owl:Class .
+hpc:host rdf:type hpc:Host .
+hpc:Linux4 hpc:cpusetOs hpc:NCPUS 4 ;
+    hpc:NFREECPUS 3 ;
+    hpc:NNODES 2 ;
+    hpc:NCPU_NODE 2 ;
+    hpc:NSTATIC_CPUSETS 0 .
+hpc:Hosta hpc:host .
+hpc:Hostb hpc:host .
+hpc:Hostc hpc:host .

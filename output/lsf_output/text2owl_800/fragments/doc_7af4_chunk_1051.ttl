@@ -1,0 +1,22 @@
+hpc:lsbSubkShowJobid a owl:DatatypeProperty .
+hpc:LsbSubkShowJobid rdfs:domain hpc:Job .
+hpc:LsbSubkShowJobid rdfs:range xsd:integer .
+
+hpc:lsbSuccessExitValues a owl:ObjectProperty .
+hpc:LsbSuccessExitValues rdfs:domain hpc:Application .
+hpc:LsbSuccessExitValues rdfs:range rdf:List .
+
+hpc:exit_code a owl:Datatype .
+hpc:ExitCode rdfs:range xsd:integer .
+
+hpc:lsbSuccessExitValuesOverride a owl:ObjectProperty .
+hpc:LsbSuccessExitValuesOverride rdfs:domain hpc:Application .
+hpc:LsbSuccessExitValuesOverride rdfs:range hpc:Application .
+
+hpc:lsbSuspReasons a owl:DatatypeProperty .
+hpc:LsbSuspReasons rdfs:domain hpc:Job .
+hpc:LsbSuspReasons rdfs:range xsd:integer .
+
+hpc:lsbSuspSubreasons a owl:DatatypeProperty .
+hpc:LsbSuspSubreasons rdfs:domain hpc:Job .
+hpc:LsbSuspSubreasons rdfs:range xsd:integer .

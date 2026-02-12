@@ -1,0 +1,61 @@
+hpc:Lsfserver a owl:Class .
+hpc:Esubfile a owl:Class ;
+    rdfs:subClassOf hpc:Executablefile .
+
+hpc:lsbesubmethod a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfserver ;
+    rdfs:range hpc:Esubfile .
+
+hpc:bsubasubs a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfserver ;
+    rdfs:range rdf:List .
+
+hpc:joborder a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfserver ;
+    rdfs:range rdf:List .
+
+hpc:Eexec a owl:Class ;
+    rdfs:subClassOf hpc:Executablefile .
+
+hpc:jobenvironment a owl:ObjectProperty ;
+    rdfs:domain hpc:Eexec ;
+    rdfs:range rdf:List .
+
+hpc:jobstatemonitoring a owl:ObjectProperty ;
+    rdfs:domain hpc:Eexec .
+
+hpc:resourceusagemonitoring a owl:ObjectProperty ;
+    rdfs:domain hpc:Eexec .
+
+hpc:datatransfer a owl:ObjectProperty ;
+    rdfs:domain hpc:Eexec .
+
+hpc:shellscriptexecution a owl:ObjectProperty ;
+    rdfs:domain hpc:Eexec .
+
+hpc:taskmonitoring a owl:ObjectProperty ;
+    rdfs:domain hpc:Eexec .
+
+hpc:resourceusagepolicyenforcement a owl:ObjectProperty ;
+    rdfs:domain hpc:Eexec .
+
+hpc:dcecredentialstransfer a owl:ObjectProperty ;
+    rdfs:domain hpc:Eexec .
+
+hpc:afstokentransfer a owl:ObjectProperty ;
+    rdfs:domain hpc:Eexec .
+
+hpc:crossplatformenvironmentsetting a owl:ObjectProperty ;
+    rdfs:domain hpc:Eexec .
+
+hpc:eexecexecutionlocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Eexec ;
+    rdfs:range xsd:string .
+
+hpc:eexecexecutionorder a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfserver ;
+    rdfs:range xsd:integer .
+
+hpc:eexecenabled a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfserver ;
+    rdfs:range xsd:boolean .

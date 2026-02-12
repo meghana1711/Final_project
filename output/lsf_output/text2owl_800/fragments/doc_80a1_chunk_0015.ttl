@@ -1,0 +1,29 @@
+hpc:Ibmcloudapikey a owl:Class .
+hpc:Ibmcloudregion rdfs:domain hpc:Ibmcloudapikey ;
+                    rdfs:range xsd:string .
+hpc:Ibmcloudpakfordata a owl:Class .
+hpc:Ibmcloudpakfordataurl rdfs:domain hpc:Ibmcloudpakfordata ;
+                          rdfs:range xsd:string .
+hpc:Username rdfs:domain hpc:Ibmcloudpakfordata ;
+                 rdfs:range xsd:string .
+hpc:Password rdfs:domain hpc:Ibmcloudpakfordata ;
+                 rdfs:range xsd:string .
+hpc:Workingprojectname rdfs:domain hpc:Ibmcloudpakfordata ;
+                      rdfs:range xsd:string .
+hpc:Predictortab a owl:Class .
+hpc:Predictiontab rdfs:subClassOf hpc:Predictortab ;
+                  rdfs:comment "The Prediction tab in the web console." .
+hpc:Connectionsetupwindow a owl:Class .
+hpc:Connectionsettings a owl:Class .
+hpc:Ibmcloudregionvalue a owl:Class .
+hpc:Ibmcloudregion rdfs:domain hpc:Ibmcloudregionvalue ;
+                     rdfs:range xsd:string .
+hpc:Privatecloud rdfs:subClassOf hpc:Ibmcloudregionvalue ;
+                  rdfs:comment "IBM Cloud Pak for Data is installed in your private cloud." .
+hpc:Useast rdfs:subClassOf hpc:Ibmcloudregionvalue ;
+                 rdfs:comment "IBM public cloud located in Washington, D.C." .
+hpc:Ussouth rdfs:subClassOf hpc:Ibmcloudregionvalue ;
+                 rdfs:comment "IBM public cloud located in Dallas, TX." .
+hpc:Predictorengine a owl:Class .
+hpc:Cloudpakfordataautoai rdfs:subClassOf hpc:Predictorengine ;
+                         rdfs:comment "The predictor engine used by IBM Spectrum LSF Predictor." .

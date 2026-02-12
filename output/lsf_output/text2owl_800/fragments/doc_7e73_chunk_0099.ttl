@@ -1,0 +1,55 @@
+hpc:ServiceAccountKey
+    a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:comment "A key used for service account authentication." .
+
+hpc:GoogleServiceAccountKey
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceaccount ;
+    rdfs:range hpc:Serviceaccountkey ;
+    rdfs:comment "The relationship between a service account and its key." .
+
+hpc:GoogleProjectCreation
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Googleproject ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "The process of creating a Google project." .
+
+hpc:GoogleServiceAccountKeyCreation
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceaccount ;
+    rdfs:range hpc:Serviceaccountkey ;
+    rdfs:comment "The process of creating a service account key." .
+
+hpc:GoogleServiceAccount
+    a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:comment "A service account on Google Cloud Platform." .
+
+hpc:VPCNetwork
+    a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:comment "A virtual private cloud network on Google Cloud." .
+
+hpc:Subnetwork
+    a owl:Class ;
+    rdfs:subClassOf rdf:Resource ;
+    rdfs:comment "A subnetwork within a VPC network on Google Cloud." .
+
+hpc:GoogleProjectCreationProcedure
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Googleproject ;
+    rdfs:range rdf:List ;
+    rdfs:comment "The procedure for creating a Google project." .
+
+hpc:GoogleServiceAccountKeyCreationProcedure
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceaccount ;
+    rdfs:range rdf:List ;
+    rdfs:comment "The procedure for creating a service account key." .
+
+hpc:GoogleServiceAccountKeyType
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Serviceaccountkey ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The type of the service account key." .

@@ -1,0 +1,12 @@
+hpc:lsbRcDefaultHostType a owl:DatatypeProperty .
+hpc:X8664 rdfs:range xsd:string .
+
+hpc:lsbRcExternalHostFlag a owl:ObjectProperty .
+hpc:LsbRcExternalHostFlag rdfs:domain rdf:Resource .
+hpc:LsbRcExternalHostFlag rdfs:range xsd:string .
+
+hpc:lsbRcExternalHostIdleTime a owl:DatatypeProperty .
+hpc:LsbRcExternalHostIdleTime rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsbRcExternalHostMaxTtl a owl:DatatypeProperty .
+hpc:LsbRcExternalHostMaxTtl rdfs:range xsd:nonNegativeInteger .

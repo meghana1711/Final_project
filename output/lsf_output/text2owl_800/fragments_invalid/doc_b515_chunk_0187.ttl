@@ -1,0 +1,11 @@
+hpc:Usergroup a owl:Class. .
+hpc:sharetree a owl:ObjectProperty. .
+hpc:usershareassignments a owl:ObjectProperty. .
+hpc:dynamicuserpriority a owl:ObjectProperty.
+
+hpc:Usergroup rdfs:subClassOf owl:Class. .
+hpc:Sharetree rdfs:domain hpc:Usergroup ;
+                      rdfs:range rdf:List. .
+hpc:Usershareassignments rdfs:domain hpc:Usergroup ;
+                          rdfs:range rdf:List. .
+hpc:Dynamicuserpriority rdfs:domain h

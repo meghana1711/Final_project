@@ -1,0 +1,59 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:maxjobnum a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum number of finished jobs that are logged in current event file:" .
+
+hpc:maxsbdfail a owl:DatatypeProperty ;
+    rdfs:domain hpc:Serverbatchdaemon ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum number of retries for reaching a server batch daemon:" .
+
+hpc:histhours a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceconsumptionhistory ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The number of hours of resource consumption history:" .
+
+hpc:Defaultproject a owl:Class ;
+    rdfs:comment "The default project assigned to jobs." .
+
+hpc:lsbsynchoststatlim a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Sync up host status with management host LIM is enabled:" .
+
+hpc:mbdquerycpus a owl:ObjectProperty ;
+    rdfs:domain hpc:Mbdchildqueryprocess ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "MBD child query processes will only run on the following CPUs:" .
+
+hpc:mbdsleeptime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdaemon ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Sleep time for LSF daemons." .
+
+hpc:sbdsleeptime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdaemon ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Sleep time for Server Batch Daemon." .
+
+hpc:jobacceptinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdaemon ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Job acceptance interval." .
+
+hpc:subtryinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdaemon ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Submission try interval." .
+
+hpc:maxjobinfoqueryperiod a owl:DatatypeProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Maximum job information query period." .
+
+hpc:PendingReasonUpdateInterval a

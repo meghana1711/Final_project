@@ -1,0 +1,27 @@
+hpc:Container a owl:Class .
+hpc:eligiblependingtimelimit a owl:DatatypeProperty .
+hpc:Eligiblependingtimelimit rdfs:domain hpc:Queue .
+hpc:Eligiblependingtimelimit rdfs:range xsd:string .
+hpc:EligiblePendingTimeLimit rdfs:subPropertyOf hpc:TimeLimit .
+hpc:EligiblePendingTimeLimit rdfs:comment "Specifies the eligible pending time limit for a job." .
+
+hpc:eligiblependingtimelimitsyntax a owl:ObjectProperty .
+hpc:Eligiblependingtimelimitsyntax rdfs:domain hpc:Eligiblependingtimelimit .
+hpc:Eligiblependingtimelimitsyntax rdfs:range xsd:string .
+hpc:EligiblePendingTimeLimitSyntax rdfs:comment "Syntax: ELIGIBLE_PEND_TIME_LIMIT=[hour:]minute" .
+
+hpc:eligiblependingtimelimitformat a owl:DatatypeProperty .
+hpc:Eligiblependingtimelimitformat rdfs:domain hpc:Eligiblependingtimelimit .
+hpc:Eligiblependingtimelimitformat rdfs:range xsd:string .
+hpc:EligiblePendingTimeLimitFormat rdfs:comment "The minutes can be specified as a number greater than 59. For example, three and a half hours can either be specified as 3:30, or 210." .
+
+hpc:enablegpuhistruntime a owl:DatatypeProperty .
+hpc:Enablegpuhistruntime rdfs:domain hpc:Queue .
+hpc:Enablegpuhistruntime rdfs:range xsd:string .
+hpc:EnableGPUHistRunTime rdfs:subPropertyOf hpc:BooleanProperty .
+hpc:EnableGPUHistRunTime rdfs:comment "Enables the use of historical GPU run time in the calculation of fair share scheduling priority." .
+
+hpc:enablegpuhistruntimesyntax a owl:ObjectProperty .
+hpc:Enablegpuhistruntimesyntax rdfs:domain hpc:Enablegpuhistruntime .
+hpc:Enablegpuhistruntimesyntax rdfs:range xsd:string .
+hpc:EnableGPUHistRunTimeSyntax rdfs:comment "Syntax: ENABLE_GPU_HIST_RUN_TIME=y | Y | n | N" .

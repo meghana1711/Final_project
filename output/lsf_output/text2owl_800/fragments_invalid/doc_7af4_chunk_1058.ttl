@@ -1,0 +1,30 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:lsfLdLibraryPath a owl:ObjectProperty .
+hpc:lsfLdPreload a owl:ObjectProperty .
+hpc:lsfLimApiNtries a owl:DatatypeProperty .
+
+rdfs:domain hpc:LsfLdLibraryPath rdf:Resource .
+rdfs:domain hpc:LsfLdPreload rdf:Resource .
+rdfs:domain hpc:LsfLimApiNtries xsd:integer .
+
+rdfs:range hpc:LsfLdLibraryPath rdf:Resource .
+rdfs:range hpc:LsfLdPreload rdf:Resource .
+
+hpc:LSF_LIM_API_NTRIES rdfs:subPropertyOf hpc:LSF_LIM_API_NTRIES .
+
+hpc:LSF_LIM_API_NTRIES_Default a owl:NamedIndividual .
+hpc:LsfLimApiNtriesDefault hpc:lsfLimApiNtries "Not defined" .
+
+hpc:lsfLdSecurity a owl:ObjectProperty .
+hpc:LSF_LD_PRELOAD rdfs:subPropertyOf hpc:LSF_LD_SECURITY .
+hpc:LSF_LD_LIBRARY_PATH rdfs:subPropertyOf hpc:LSF_LD_SECURITY .
+
+hpc:LSF_LIM_API_NTRIES_From_Command_Line a owl:NamedIndividual .
+hpc:LsfLimApiNtriesFromCommandLine hpc:lsfLimApiNtries "From the command line" .
+
+hpc:LSF_LIM_API_NTRIES_From_lsf_conf a owl:NamedIndividual .
+hpc:LsfLimApiNtriesFromLsfConf hpc:lsfLimApiNtries "From lsf.conf" .

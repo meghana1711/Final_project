@@ -1,0 +1,12 @@
+hpc:Cgroup a owl:Class .
+hpc:Cpuset a owl:Class;
+    rdfs:subClassOf hpc:Cgroup .
+hpc:Memory a owl:Class;
+    rdfs:subClassOf hpc:Cgroup .
+hpc:Freezer a owl:Class;
+    rdfs:subClassOf hpc:Cgroup .
+hpc:Cpuacct a owl:Class;
+    rdfs:subClassOf hpc:Cgroup .
+hpc:MountedOn rdf:type owl:ObjectProperty .
+hpc:Mountedon rdfs:domain hpc:Cgroup .
+hpc:Mountedon rdfs:range xsd:string .

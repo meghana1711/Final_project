@@ -1,0 +1,62 @@
+hpc:Lsf a owl:Class .
+hpc:Feature a owl:Class .
+hpc:Distribution a owl:Class .
+hpc:Timerange a owl:Class .
+hpc:Host a owl:Class .
+hpc:Resource a owl:Class .
+
+# Define object properties
+hpc:hasfeature a owl:ObjectProperty .
+hpc:hasdistribution a owl:ObjectProperty .
+hpc:hastimerange a owl:ObjectProperty .
+hpc:ishostof a owl:ObjectProperty .
+hpc:providesresource a owl:ObjectProperty .
+
+# Define datatype properties
+hpc:name a owl:DatatypeProperty .
+hpc:value a owl:DatatypeProperty .
+
+# Define domain and range for properties
+rdfs:domain hpc:Hasfeature hpc:Lsf .
+rdfs:domain hpc:Hasdistribution hpc:Feature .
+rdfs:domain hpc:Hastimerange hpc:Distribution .
+rdfs:domain hpc:Ishostof hpc:Resource .
+rdfs:domain hpc:Providesresource hpc:Resource .
+rdfs:range xsd:string hpc:Name .
+rdfs:range xsd:string hpc:Value .
+
+# Define subclass relations
+hpc:Feature a rdfs:subClassOf hpc:Lsf .
+hpc:Distribution a rdfs:subClassOf hpc:Feature .
+
+# Example Feature
+hpc:f1 a hpc:Feature ;
+    hpc:name "f1" ;
+    hpc:Hastimerange hpc:timerange1 ;
+    hpc:Hasdistribution hpc:distribution1 ;
+    hpc:Hasdistribution hpc:distribution2 ;
+    hpc:Hasdistribution hpc:distribution3 .
+
+hpc:timeRange1 a hpc:TimeRange ;
+    hpc:value "5:16:30-1:8:30 20:00-8:30" .
+
+hpc:distribution1 a hpc:Distribution ;
+    hpc:value "Lan(P1 2/5 P2 1)" .
+
+hpc:distribution2 a hpc:Distribution ;
+    hpc:value "Lan(P3 1)" .
+
+hpc:distribution3 a hpc:Distribution ;
+    hpc:value "Lan(P1 1 P2 2/5)" .
+
+hpc:Resource a hpc:Resource ;
+    hpc:Ishostof hpc:host1 ;
+    hpc:Providesresource hpc:resource1 .
+
+hpc:host1 a hpc:Host .
+hpc:resource1 a hpc:Resource .
+
+# INCLUDE directive
+hpc:include a owl:ObjectProperty .
+rdfs:domain hpc:Include hpc:Lsf .
+rdfs:range xsd:string rdfs:range .

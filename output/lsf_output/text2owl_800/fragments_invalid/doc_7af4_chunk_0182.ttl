@@ -1,0 +1,24 @@
+hpc:Distributepolicy a owl:Class;
+    rdfs:subClassOf owl:Class;
+    rdfs:comment "Specifies the distribution of global resources or global limits among all the clusters.";
+    rdfs:label "DistributePolicy";
+
+hpc:distribute a owl:ObjectProperty;
+    rdfs:domain hpc:Distributepolicy;
+    rdfs:range xsd:string;
+    rdfs:comment "Specifies whether the policy defines the distribution of global resources or global limits among all the clusters.";
+    rdfs:label "DISTRIBUTE";
+
+hpc:name a owl:DatatypeProperty;
+    rdfs:domain hpc:Distributepolicy;
+    rdfs:range xsd:string;
+    rdfs:comment "Name of the distribution policy.";
+    rdfs:label "NAME";
+
+hpc:policy a owl:DatatypeProperty;
+    rdfs:domain hpc:Distributepolicy;
+    rdfs:range xsd:string;
+    rdfs:comment "Specifies the type of policy to control the distribution among all the clusters.";
+    rdfs:label "POLICY";
+
+hpc:DISTRIBUTE rdf:typedef "resource | limit";

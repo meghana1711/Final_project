@@ -1,0 +1,15 @@
+hpc:Project a owl:Class .
+hpc:queues a owl:ObjectProperty .
+hpc:Queuename rdfs:domain hpc:Queues ;
+                 rdfs:range xsd:string .
+hpc:Allqueues a owl:Class ;
+                rdfs:subClassOf hpc:Queues .
+hpc:Excludedqueue rdfs:subClassOf hpc:Queues .
+hpc:QueuesLimit rdfs:domain hpc:Allqueues ;
+                 rdfs:range xsd:string .
+hpc:Excludedfromallqueues rdfs:domain hpc:Allqueues ;
+                      rdfs:range xsd:string .
+
+hpc:projects a owl:DatatypeProperty .
+hpc:ProjectsValue rdfs:domain hpc:Project ;
+                    rdfs:range xsd:string .

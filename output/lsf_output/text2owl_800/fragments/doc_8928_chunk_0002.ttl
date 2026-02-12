@@ -1,0 +1,25 @@
+hpc:Joboutputformat a owl:Class .
+hpc:Field a owl:Class .
+hpc:Delimiter a owl:Class .
+
+# Object Properties
+hpc:hasfield a owl:ObjectProperty .
+hpc:hasdelimiter a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:fieldname a owl:DatatypeProperty .
+hpc:outputwidth a owl:DatatypeProperty .
+hpc:delimiter a owl:DatatypeProperty .
+
+# Domain and Range
+rdfs:domain hpc:Joboutputformat hpc:Hasfield .
+rdfs:domain hpc:Joboutputformat hpc:Hasdelimiter .
+rdfs:range xsd:string hpc:Fieldname .
+rdfs:range xsd:string hpc:Outputwidth .
+rdfs:range xsd:string hpc:Delimiter .
+
+# Example Job Output Format
+hpc:JobOutputFormat_bjobs_o a hpc:JobOutputFormat .
+hpc:JoboutputformatBjobsO hpc:hasfield hpc:jobid .
+hpc:JoboutputformatBjobsO hpc:hasfield hpc:exec_host .
+hpc:JoboutputformatBjobsO hpc:hasdelimiter " " .

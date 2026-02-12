@@ -1,0 +1,32 @@
+hpc:JobCompLoc
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:JobCompType
+    a owl:Enum ;
+    rdfs:member hpc:elasticsearch ;
+    rdfs:member hpc:filetxt ;
+    rdfs:member hpc:kafka ;
+    rdfs:member hpc:lua ;
+    rdfs:member hpc:script .
+
+hpc:JobAcctGatherType
+    a owl:Enum ;
+    rdfs:member hpc:linux ;
+    rdfs:member hpc:specificLinux .
+
+hpc:JobAcctGatherFrequency
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:AccountingStorageType
+    a owl:Enum ;
+    rdfs:member hpc:slurmdbD ;
+    rdfs:member hpc:none .
+
+hpc:AccountingStorageLoc
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Accountingstorage ;
+    rdfs:range xsd:string .

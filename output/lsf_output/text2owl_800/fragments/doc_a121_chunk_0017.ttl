@@ -1,0 +1,31 @@
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:jobindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:User a owl:Class .
+
+hpc:usergroup a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+
+hpc:Queue a owl:Class .
+
+hpc:jobname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:jobdescription a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Project a owl:Class .
+
+hpc:Application a owl:Class .
+
+hpc:serviceclass a owl:DatatypeProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range xsd:string .

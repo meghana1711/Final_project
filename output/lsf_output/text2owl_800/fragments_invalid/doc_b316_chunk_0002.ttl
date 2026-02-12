@@ -1,0 +1,26 @@
+hpc:Job a owl:Class .
+hpc:Task a owl:Class .
+hpc:Jobsession a owl:Class .
+hpc:Scheduler a owl:Class .
+
+hpc:isIndividuallyScheduled by hpc:Job to hpc:Scheduler .
+hpc:ismanagedby hpc:scheduler a owl:ObjectProperty .
+hpc:Isdispatchedby hpc:scheduler to hpc:Task .
+hpc:Isallocatedfor hpc:jobsession to hpc:Scheduler .
+
+hpc:Job a rdfs:subClassOf hpc:Task .
+
+hpc:Hasenvironmentdatavalue rdfs:domain hpc:Task ;
+    rdfs:range xsd:string .
+hpc:Hasexecutablevalue rdfs:domain hpc:Task ;
+    rdfs:range xsd:string .
+hpc:Hasresourceslimitvalue rdfs:domain hpc:Task ;
+    rdfs:range xsd:string .
+hpc:Haspreexecutionprogramvalue rdfs:domain hpc:Task ;
+    rdfs:range xsd:string .
+hpc:Haspostexecutionprogramvalue rdfs:domain hpc:Task ;
+    rdfs:range xsd:string .
+hpc:Hasjobstartervalue rdfs:domain hpc:Task ;
+    rdfs:range xsd:string .
+
+hpc:Jobsession rdfs:subClassOf hpc:Job .

@@ -1,0 +1,28 @@
+hpc:Childsbatchd a owl:Class ;
+    rdfs:subClassOf hpc:Remoteexecutiondaemon ;
+    rdfs:comment "Exits when the job is complete." .
+
+hpc:Res a owl:Class ;
+    rdfs:subClassOf hpc:Remoteexecutionserver ;
+    rdfs:comment "Remote execution server running on each server host." .
+
+hpc:Lim a owl:Class ;
+    rdfs:subClassOf hpc:Loadinformationmanager ;
+    rdfs:comment "Load information manager running on each server host." .
+
+hpc:Parentlim a owl:Class ;
+    rdfs:subClassOf hpc:Lim ;
+    rdfs:comment "The LIM running on the management host." .
+
+hpc:Pim a owl:Class ;
+    rdfs:subClassOf hpc:Processinformationmanager ;
+    rdfs:comment "Process information manager running on each server host." .
+
+hpc:Elim a owl:Class ;
+    rdfs:subClassOf hpc:Externalloadinformationmanager ;
+    rdfs:comment "External LIM (ELIM) is a site-definable executable file that collects and tracks custom dynamic load indexes." .
+
+hpc:schedcommunicationpath a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfdaemon ;
+    rdfs:range hpc:Lsfdaemon ;
+    rdfs:comment "Understand the communication paths between the LSF daemons in the cluster." .

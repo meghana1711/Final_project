@@ -1,0 +1,86 @@
+hpc:Resource a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Builtinresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:Externalresource a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+# Object Properties
+hpc:hasname a owl:ObjectProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string .
+
+hpc:hasstatus a owl:ObjectProperty ;
+    rdfs:domain hpc:Builtinresource ;
+    rdfs:range xsd:string .
+
+hpc:haserror a owl:ObjectProperty ;
+    rdfs:domain hpc:Builtinresource ;
+    rdfs:range xsd:string .
+
+hpc:haswidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fielddefinition ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasunits a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fielddefinition ;
+    rdfs:range xsd:string .
+
+# Datatype Properties
+hpc:Fielddefinition a owl:Class .
+
+# Example Field Definitions
+hpc:host_name a hpc:FieldDefinition ;
+    hpc:hasName "HOST_NAME" ;
+    hpc:hasWidth 20 ;
+    hpc:hasUnits "" .
+
+hpc:status a hpc:FieldDefinition ;
+    hpc:hasName "status" ;
+    hpc:hasWidth 15 ;
+    hpc:hasUnits "" .
+
+hpc:r15s a hpc:FieldDefinition ;
+    hpc:hasName "r15s" ;
+    hpc:hasWidth 6 ;
+    hpc:hasUnits "" .
+
+hpc:r1m a hpc:FieldDefinition ;
+    hpc:hasName "r1m" ;
+    hpc:hasWidth 6 ;
+    hpc:hasUnits "" .
+
+hpc:r15m a hpc:FieldDefinition ;
+    hpc:hasName "r15m" ;
+    hpc:hasWidth 6 ;
+    hpc:hasUnits "" .
+
+hpc:ut a hpc:FieldDefinition ;
+    hpc:hasName "ut" ;
+    hpc:hasWidth 6 ;
+    hpc:hasUnits "" .
+
+hpc:pg a hpc:FieldDefinition ;
+    hpc:hasName "pg" ;
+    hpc:hasWidth 6 ;
+    hpc:hasUnits "" .
+
+hpc:ls a hpc:FieldDefinition ;
+    hpc:hasName "ls" ;
+    hpc:hasWidth 6 ;
+    hpc:hasUnits "" .
+
+hpc:it a hpc:FieldDefinition ;
+    hpc:hasName "it" ;
+    hpc:hasWidth 6 ;
+    hpc:hasUnits "" .
+
+hpc:io a hpc:FieldDefinition ;
+    hpc:hasName "io" ;
+    hpc:hasWidth 6 ;
+    hpc:hasUnits "" .
+
+hpc:tmp a hpc:FieldDefinition ;
+    hpc:hasName "tmp"

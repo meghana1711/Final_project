@@ -1,0 +1,52 @@
+hpc:JobGroup
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "A group of jobs, with a limit on the number of running and suspended jobs." .
+
+hpc:hasJobGroupLimit
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of running and suspended jobs under the job group." .
+
+hpc:hasParentJobGroup
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range hpc:Jobgroup ;
+    rdfs:comment "The parent job group in the job group hierarchy." .
+
+hpc:hasChildJobGroup
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range hpc:Jobgroup ;
+    rdfs:comment "A child job group in the job group hierarchy." .
+
+hpc:hasProject
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range hpc:Project ;
+    rdfs:comment "The project associated with the job group." .
+
+hpc:hasSLA
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "The service level agreement associated with the job group." .
+
+hpc:JobGroupLimit
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobgrouplimit ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of running and suspended jobs under the job group (including child groups). If limit is zero, no jobs under the group can run." .
+
+hpc:hasNoLimit
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobgroup ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if a job group has no limit." .
+
+hpc:JobGroupLimitValue
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobgrouplimit ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The value of the job group limit." .

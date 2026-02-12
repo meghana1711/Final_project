@@ -1,0 +1,34 @@
+hpc:Ineligiblependinglimit a owl:Class .
+hpc:hasineligibleparameter a owl:ObjectProperty .
+hpc:Hasineligibleparameter rdfs:domain hpc:Ineligiblependinglimit ;
+                             rdfs:range xsd:string .
+
+# Best Fit Allocation for Compute Unit Resource Requirements
+hpc:Bestfitallocation a owl:Class .
+hpc:usescomputeunitstring a owl:ObjectProperty .
+hpc:Usescomputeunitstring rdfs:domain hpc:Bestfitallocation ;
+                             rdfs:range xsd:string .
+
+# Compute Unit String
+hpc:Computeunitstring a owl:Class .
+
+# Control Job Locality using Compute Units
+hpc:Controljoblocality a owl:Class .
+hpc:usescomputeunitstring a owl:ObjectProperty .
+hpc:Usescomputeunitstring rdfs:domain hpc:Controljoblocality ;
+                             rdfs:range hpc:Computeunitstring .
+
+# Job Scheduling and Execution
+hpc:Jobschedulingandexecution a owl:Class .
+
+# Parse Job Scripts with bsub command
+hpc:Parsejobscript a owl:Class .
+hpc:usesjobscript a owl:ObjectProperty .
+hpc:Usesjobscript rdfs:domain hpc:Parsejobscript ;
+                     rdfs:range xsd:string .
+hpc:requireslsbbsubparsescript a owl:ObjectProperty .
+hpc:Requireslsbbsubparsescript rdfs:domain hpc:Parsejobscript ;
+                                 rdfs:range xsd:boolean .
+
+# Fair Share Factors for Absolute Priority Scheduling
+hpc:Fairsharefactors a owl:Class .

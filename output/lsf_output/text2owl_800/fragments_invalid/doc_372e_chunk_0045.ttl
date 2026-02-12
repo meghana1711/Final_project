@@ -1,0 +1,31 @@
+hpc:Licensefeature a owl:Class .
+hpc:Lsflicensescheduler a owl:Class .
+hpc:Parameters a owl:Class .
+hpc:enableinteractive a owl:ObjectProperty .
+hpc:allocation a owl:ObjectProperty .
+hpc:Feature a owl:Class .
+hpc:name a owl:DatatypeProperty .
+hpc:distribution a owl:DatatypeProperty .
+hpc:allocation a owl:DatatypeProperty .
+
+hpc:Licensefeature rdfs:subClassOf owl:Class .
+hpc:Lsflicensescheduler rdfs:subClassOf owl:Class .
+hpc:Parameters rdfs:subClassOf owl:Class .
+hpc:Enableinteractive rdfs:domain hpc:Lsflicensescheduler ;
+                          rdfs:range xsd:string .
+hpc:Allocation rdfs:domain hpc:Lsflicensescheduler ;
+                 rdfs:range xsd:string .
+hpc:Feature rdfs:subClassOf owl:Class .
+hpc:Name rdfs:domain hpc:Feature ;
+             rdfs:range xsd:string .
+hpc:Distribution rdfs:domain hpc:Feature ;
+             rdfs:range xsd:string .
+hpc:Allocation rdfs:domain hpc:Feature ;
+             rdfs:range xsd:string .
+
+hpc:Lsflicensescheduler hpc:parameters rdf:type rdf:Property .
+hpc:Lsflicensescheduler hpc:enableinteractive rdf:type rdf:Property .
+hpc:Lsflicensescheduler hpc:allocation rdf:type rdf:Property .
+hpc:Feature hpc:name rdf:type rdf:Property .
+hpc:Feature hpc:distribution rdf:type rdf:Property .
+hpc:Feature hpc:allocation rdf:type rdf:Property .

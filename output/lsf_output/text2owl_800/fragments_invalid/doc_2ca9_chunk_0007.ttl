@@ -1,0 +1,47 @@
+hpc:Lsf a owl:Class .
+hpc:Eoloperatingsystem rdfs:subClassOf hpc:Operatingsystem .
+hpc:Supportedoperatingsystem rdfs:subClassOf hpc:Operatingsystem .
+hpc:Obsoleteoperatingsystem rdfs:subClassOf hpc:Operatingsystem .
+hpc:Installationpackage a owl:Class .
+hpc:Fixpack15 a owl:Class .
+hpc:linux2_6Package a hpc:InstallationPackage .
+hpc:linux4_18Package a hpl:InstallationPackage .
+hpc:Egoenabledslascheduling a owl:Class .
+hpc:Obsoleteegoenabledslascheduling a owl:Class .
+hpc:LsbGpuNewSyntaxparameter a owl:Class .
+hpc:LsbTimeReserveNumjobsparameter a owl:Class .
+hpc:Linuxx86 a owl:Class .
+hpc:Kernelversion418 a owl:Class .
+hpc:Glibc228orlater a owl:Class .
+
+hpc:hasOperatingSystemVersion rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Operatingsystem ;
+    rdfs:range xsd:string .
+
+hpc:isSupportedByLSF rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Operatingsystem ;
+    rdfs:range hpc:Lsf .
+
+hpc:isObsolete rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Installationpackage ;
+    rdfs:range xsd:boolean .
+
+hpc:isObsoleteEGOEnabled rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:supportsValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbGpuNewSyntaxparameter ;
+    rdfs:range xsd:string .
+
+hpc:isObsoleteValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:LsbTimeReserveNumjobsparameter ;
+    rdfs:range xsd:boolean .
+
+hpc:targetsKernelVersion rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Linux418package ;
+    rdfs:range hpc:Kernelversion418 .
+
+hpc:requiresGlibc rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Linux418package ;
+    rdfs:range hpc:Glibc228orlater .

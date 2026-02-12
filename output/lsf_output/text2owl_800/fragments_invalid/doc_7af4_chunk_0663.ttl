@@ -1,0 +1,69 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The job entity." .
+
+hpc:errorfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The specified output file for the job's standard error." .
+
+hpc:outputfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The specified standard output file for the job." .
+
+hpc:outputdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The specified standard output file directory for the job." .
+
+hpc:subcwd a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The path location from where the job was submitted." .
+
+hpc:exechome a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The home directory for the job on the execution host." .
+
+hpc:execcwd a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The current working directory for the job on the execution host." .
+
+hpc:licenseproject a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The license project specified for the job." .
+
+hpc:Forwardcluster a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The cluster that forwarded the job." .
+
+hpc:forwardtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Forwardcluster ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The time when the job was forwarded." .
+
+hpc:fwdCluster rdfs:subPropertyOf hpc:forwardCluster ;
+    rdfs:comment "The name of the cluster that forwarded the job." .
+
+hpc:fwdTime rdfs:subPropertyOf hpc:forwardTime ;
+    rdfs:comment "time stamp" .
+
+hpc:srcjobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The job ID assigned by the cluster that accepted the job." .
+
+hpc:Field a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A field in the job." .
+
+hpc:width a owl:DatatypeProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The width of the field." .
+
+hpc:alias a

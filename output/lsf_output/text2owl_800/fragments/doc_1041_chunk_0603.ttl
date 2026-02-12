@@ -1,0 +1,35 @@
+hpc:Job a owl:Class .
+hpc:Datafile a owl:Class .
+hpc:Dataspecificationfile a owl:Class .
+
+hpc:Hasdatafile hpc:job rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Datafile .
+
+hpc:Usesdataspecificationfile hpc:job rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Dataspecificationfile .
+
+hpc:Hasdataspecification hpc:dataspecificationfile rdf:Property ;
+    rdfs:domain hpc:Dataspecificationfile ;
+    rdfs:range hpc:Datafile .
+
+hpc:Iswildcard hpc:datafile owl:ObjectProperty ;
+    rdfs:range xsd:boolean .
+
+hpc:Isrecursive hpc:datafile owl:ObjectProperty ;
+    rdfs:range xsd:boolean .
+
+hpc:Isarrayjob hpc:job owl:ObjectProperty ;
+    rdfs:range xsd:boolean .
+
+hpc:Hasarrayindex hpc:job rdf:Property ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Hastagname hpc:datafile rdf:Property ;
+    rdfs:domain hpc:Datafile ;
+    rdfs:range xsd:string .
+
+hpc:Dataspecificationfile a owl:Class .
+hpc:Datafile a owl:Class .

@@ -1,0 +1,41 @@
+hpc:Threadlimit a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf owl:Quantified ;
+    rdfs:subClassOf owl:Real ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "A job's thread limit value limits the number of concurrent threads that can be part of a job." .
+
+hpc:threadlimitpertask a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Threadlimit ;
+    rdfs:comment "Used to calculate a job's thread limit based on the number of tasks for the job." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf owl:Quantified ;
+    rdfs:subClassOf owl:Real ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "An LSF job." .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf owl:Quantified ;
+    rdfs:domain hpc:Lsfqueue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "An LSF queue." .
+
+hpc:Lsfjob a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf owl:Quantified ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "An LSF job." .
+
+hpc:Lsfqueue a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:subClassOf owl:Quantified ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "An LSF queue." .

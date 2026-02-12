@@ -1,0 +1,19 @@
+hpc:Rhostsetup a owl:Class .
+hpc:Hasrshcmd hpc:Rhostsetup rdfs:domain hpc:Rhostsetup ;
+    rdfs:range xsd:string .
+hpc:Hasrshcmds hpc:rhostsetup rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Rhostsetup ;
+    rdfs:range xsd:string .
+hpc:Hashosts hpc:rhostsetup rdf:type owl:ObjectProperty .
+hpc:Hastopdir hpc:rhostsetup rdf:type owl:DatatypeProperty .
+hpc:Hasboot hpc:rhostsetup rdf:type owl:DatatypeProperty .
+hpc:Hasquiet hpc:rhostsetup rdf:type owl:DatatypeProperty .
+hpc:Lsf a owl:Class .
+hpc:Hashpcfeatures hpc:lsf rdf:type owl:ObjectProperty .
+hpc:HPCFeatures rdf:type owl:Class .
+hpc:Isinstalledon hpc:hpcfeatures rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hpcfeatures ;
+    rdfs:range hpc:Unixhost .
+hpc:PARALLEL rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Hpcfeatures .
+hpc:Unixhost a owl:Class .

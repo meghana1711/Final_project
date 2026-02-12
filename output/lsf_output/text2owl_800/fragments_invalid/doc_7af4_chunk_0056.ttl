@@ -1,0 +1,25 @@
+hpc:Cputime a owl:Class .
+hpc:hasMinutes owl:DatatypeProperty ;
+    rdfs:domain hpc:Cputime ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Datasegmentsizelimit a owl:Class .
+hpc:hasDataSegmentSizeLimit owl:DatatypeProperty ;
+    rdfs:domain hpc:Datasegmentsizelimit ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Jobprofile a owl:Class .
+hpc:hasDataLimit owl:ObjectProperty ;
+    rdfs:domain hpc:Jobprofile ;
+    rdfs:range hpc:Datasegmentsizelimit .
+
+hpc:Applicationprofile a owl:Class ;
+    rdfs:subClassOf hpc:Jobprofile .
+
+hpc:Description a owl:Class .
+hpc:hasDescription owl:DatatypeProperty ;
+    rdfs:domain hpc:Applicationprofile ;
+    rdfs:range xsd:string .
+
+hpc:Defaultunlimited a owl:Class ;
+    rdfs:subClassOf hpc:Datasegmentsizelimit .

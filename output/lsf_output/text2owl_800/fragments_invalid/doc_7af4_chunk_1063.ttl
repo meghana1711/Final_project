@@ -1,0 +1,31 @@
+hpc:lsfTsLogonTime a owl:DatatypeProperty .
+hpc:LsfTsLogonTime rdfs:domain lsf:Cluster .
+hpc:LsfTsLogonTime rdfs:range xsd:integer .
+hpc:LSF_TS_LOGON_TIME rdfs:comment "Time in milliseconds for LSF to attempt making a terminal service session with the terminal service server." .
+
+hpc:lsfUseHostequiv a owl:ObjectProperty .
+hpc:LsfUseHostequiv rdfs:domain lsf:Cluster .
+hpc:LsfUseHostequiv rdfs:range xsd:string .
+hpc:LSF_USE_HOSTEQUIV rdfs:comment "Used for authentication purposes. If LSF_USE_HOSTEQUIV is defined, RES and mbatchd call the ruserok(3) function to decide if a user is allowed to run remote jobs." .
+
+hpc:LsfAuth a owl:Class .
+hpc:LsfAuth rdfs:subClassOf owl:Class .
+hpc:LSF_AUTH rdfs:comment "Configuration setting related to LSF authentication." .
+
+hpc:lsfRootRex a owl:ObjectProperty .
+hpc:LsfRootRex rdfs:domain lsf:Cluster .
+hpc:LsfRootRex rdfs:range xsd:string .
+hpc:LSF_ROOT_REX rdfs:comment "If set, root can also execute remote jobs with the same permission test as for normal users." .
+
+hpc:lsfUserDomain a owl:DatatypeProperty .
+hpc:LsfUserDomain rdfs:domain lsf:Cluster .
+hpc:LsfUserDomain rdfs:range xsd:string .
+hpc:LSF_USER_DOMAIN rdfs:comment "Set during LSF installation or setup. If you modify this parameter in an existing cluster, you probably have to modify passwords and configuration files also." .
+
+hpc:Windowscluster a owl:Class .
+hpc:Windowscluster rdfs:subClassOf owl:Class .
+hpc:WindowsCluster rdfs:comment "A cluster that runs Windows operating system." .
+
+hpc:Mixedcluster a owl:Class .
+hpc:Mixedcluster rdfs:subClassOf owl:Class .
+hpc:MixedCluster rdfs:comment "A cluster that runs both UNIX and Windows operating systems." .

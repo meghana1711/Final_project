@@ -1,0 +1,43 @@
+hpc:Applicationlevelcommand a owl:Class ;
+    rdfs:subClassOf hpc:Queuelevelcommand .
+
+hpc:Queuelevelcommand a owl:Class .
+
+hpc:hostbasedpostexec a owl:ObjectProperty ;
+    rdfs:domain hpc:Queuelevelcommand ;
+    rdfs:range xsd:string ;
+    owl:inverseOf hpc:HostBasedPreExec .
+
+hpc:hostbasedpreexec a owl:ObjectProperty ;
+    rdfs:domain hpc:Queuelevelcommand ;
+    rdfs:range xsd:string ;
+    owl:inverseOf hpc:HostBasedPostExec .
+
+hpc:postExec a owl:ObjectProperty ;
+    rdfs:domain hpc:Queuelevelcommand ;
+    rdfs:range xsd:string .
+
+hpc:preExec a owl:ObjectProperty ;
+    rdfs:domain hpc:Queuelevelcommand ;
+    rdfs:range xsd:string .
+
+hpc:hostPreExec a owl:ObjectProperty ;
+    rdfs:domain hpc:Queuelevelcommand ;
+    rdfs:range xsd:string ;
+    owl:inverseOf hpc:HOST_POST_EXEC .
+
+hpc:hostPostExec a owl:ObjectProperty ;
+    rdfs:domain hpc:Queuelevelcommand ;
+    rdfs:range xsd:string ;
+    owl:inverseOf hpc:HOST_PRE_EXEC .
+
+hpc:Windowssystem a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Jobbasedprocessing a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Hostbasedpreexecution a owl:Class ;
+    rdfs:subClassOf hpc:Preexecutionprocessing .
+
+hpc:Preexecutionprocessing a owl:Class .

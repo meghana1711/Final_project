@@ -1,0 +1,7 @@
+hpc:Hosttype a owl:Class .
+hpc:Hostmodel a owl:Class .
+hpc:cpufactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostmodel ;
+    rdfs:range xsd:string .
+hpc:hostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host .

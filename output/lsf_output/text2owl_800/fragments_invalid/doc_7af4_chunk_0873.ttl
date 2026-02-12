@@ -1,0 +1,23 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Host a owl:Class .
+hpc:Hostregsetupfile a owl:Class .
+hpc:Lsfserver a owl:Class .
+hpc:lsfserverregistration a owl:ObjectProperty .
+hpc:lsfreghostinterval a owl:DatatypeProperty .
+hpc:Lsfreghostinterval rdfs:domain hpc:Host .
+hpc:Lsfreghostinterval rdfs:range xsd:integer .
+hpc:LsfRegHostInterval rdfs:subPropertyOf owl:hasValue .
+hpc:LsfRegHostInterval rdfs:comment "Windows only. Specifies the interval, in minutes, in which lsreghost sends additional registration messages to LSF servers." .
+hpc:lsfregfloathosts a owl:ObjectProperty .
+hpc:Lsfregfloathosts rdfs:domain LSF_SERVER .
+hpc:Lsfregfloathosts rdfs:range hpc:Host .
+hpc:lsfreghostintervalincluster a owl:ObjectProperty .
+hpc:Lsfreghostintervalincluster rdfs:domain hpc:Host .
+hpc:Lsfreghostintervalincluster rdfs:range hpc:Host .
+hpc:lsfconnectionchange a owl:ObjectProperty .
+hpc:Lsfconnectionchange rdfs:domain hpc:Host .
+hpc:Lsfconnectionchange rdfs:range LSF_SERVER .

@@ -1,0 +1,42 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer ;
+    rdfs:comment "A job that uses resources over a period of time." .
+
+hpc:resourcereservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resourcerequirement ;
+    rdfs:comment "The resources reserved for a job." .
+
+hpc:Resourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Quantifiableresource ;
+    rdfs:comment "The resources required by a job." .
+
+hpc:Loadinformation a owl:Class ;
+    rdfs:subClassOf hpc:Resourceinformation ;
+    rdfs:comment "The resources consumed by a job." .
+
+hpc:Overcommitment a owl:Class ;
+    rdfs:subClassOf hpc:Resourcemismanagement ;
+    rdfs:comment "The situation where resources are reserved for more jobs than available." .
+
+hpc:Queuelevelresourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement ;
+    rdfs:comment "The resource requirements configured at the queue level." .
+
+hpc:Pendingjobresizeallocationrequest a owl:Class ;
+    rdfs:subClassOf hpc:Resourceallocationrequest ;
+    rdfs:comment "The request to resize resources for a pending job." .
+
+hpc:Slotreservationpolicy a owl:Class ;
+    rdfs:subClassOf hpc:Resourcemanagementpolicy ;
+    rdfs:comment "The policy for reserving resources in slots." .
+
+hpc:Resourcemanagementpolicy a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:System ;
+    rdfs:range hpc:Policy ;
+    rdfs:comment "The policies for managing resources in a system." .
+
+hpc:Policy a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A set of rules or guidelines for managing resources." .

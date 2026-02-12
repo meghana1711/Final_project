@@ -1,0 +1,23 @@
+hpc:Srunovercommit a owl:Class ;
+    rdfs:comment "Preventing multiple jobs to run on nodes." .
+
+hpc:srunovercommitnotmultiple a owl:ObjectProperty ;
+    rdfs:domain hpc:Srunovercommit ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the srun --overcommit option permits multiple jobs to run on nodes." .
+
+hpc:Srununbuffered a owl:Class ;
+    rdfs:comment "Adding a carriage return to output." .
+
+hpc:srununbufferedcarriagereturn a owl:ObjectProperty ;
+    rdfs:domain hpc:Srununbuffered ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the srun --u/--unbuffered option adds a carriage return to output." .
+
+hpc:Sbatch a owl:Class ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "Command for batch job submission." .
+
+hpc:Srun a owl:Class ;
+    rdfs:subClassOf hpc:Command ;
+    rdfs:comment "Command for launching

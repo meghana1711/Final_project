@@ -1,0 +1,53 @@
+hpc:Datatransferqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue .
+
+hpc:bstop a owl:ObjectProperty ;
+    rdfs:domain hpc:Datatransferjob ;
+    rdfs:range xsd:void .
+
+hpc:bresume a owl:ObjectProperty ;
+    rdfs:domain hpc:Datatransferjob ;
+    rdfs:range xsd:void .
+
+hpc:bkill a owl:ObjectProperty ;
+    rdfs:domain hpc:Datatransferjob ;
+    rdfs:range xsd:void .
+
+hpc:btop a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadministrator ;
+    rdfs:range hpc:Datatransferjob .
+
+hpc:bbot a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadministrator ;
+    rdfs:range hpc:Datatransferjob .
+
+hpc:Datatransferjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Lsfdatamanager a owl:Class .
+
+hpc:cannotusewith a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Queueparameter .
+
+hpc:defaultqueues a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range rdf:List .
+
+hpc:defaultapplication a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+
+hpc:defaultextsched a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+
+hpc:defaulthostspec a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+
+hpc:queueparameters a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range rdf:List .
+
+hpc:Queueparameter a owl:Class .

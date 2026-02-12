@@ -1,0 +1,22 @@
+hpc:installationtop a owl:DatatypeProperty ;
+    rdfs:domain hpc:Highavailabilityenvironment ;
+    rdfs:range xsd:string .
+
+hpc:lsfenvdir a owl:ObjectProperty ;
+    rdfs:domain hpc:Highavailabilityenvironment ;
+    rdfs:range xsd:string .
+
+hpc:sslvalidhosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Highavailabilityenvironment ;
+    rdfs:range xsd:string .
+
+hpc:lwsclustername a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfwebservicescluster ;
+    rdfs:range xsd:string .
+
+hpc:sharedconfigurationdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfwebservicescluster ;
+    rdfs:range xsd:string .
+
+hpc:Highavailabilityenvironment a owl:Class .
+hpc:Lsfwebservicescluster a owl:Class .

@@ -1,0 +1,24 @@
+hpc:Jobsubmissionoption a owl:Class .
+
+# Quiet Job Submission Option
+hpc:Quietjobsubmissionoption a owl:Class .
+hpc:hasquietvalue a owl:ObjectProperty .
+
+# BSUB_QUIET Property
+hpc:bsubQuiet a owl:DatatypeProperty .
+hpc:BsubQuiet rdfs:domain hpc:Quietjobsubmissionoption .
+hpc:BsubQuiet rdfs:range xsd:string .
+
+# BSUB_QUIET2 Property
+hpc:bsubQuiet2 a owl:DatatypeProperty .
+hpc:BsubQuiet2 rdfs:domain hpc:Jobsubmissionoption .
+hpc:BsubQuiet2 rdfs:range xsd:string .
+
+# STDERR Redirection Job Submission Option
+hpc:Stderrredirectionjobsubmissionoption a owl:Class .
+hpc:stderrredirection a owl:ObjectProperty .
+
+# BSUB_STDERR Property
+hpc:bsubStderr a owl:DatatypeProperty .
+hpc:BsubStderr rdfs:domain hpc:Stderrredirectionjobsubmissionoption .
+hpc:BsubStderr rdfs:range xsd:string .

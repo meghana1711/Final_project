@@ -1,0 +1,28 @@
+hpc:Instance
+hpc:BuildLSFCloudImage
+    rdfs:subClassOf   rdf:Resource ;
+    rdfs:comment "An instance that has been built for the LSF cloud image." .
+
+hpc:LogInToInstance
+    rdf:type         owl:ObjectProperty ;
+    rdfs:domain      hpc:Instance ;
+    rdfs:range       rdf:Resource ;
+    rdfs:comment "The action of logging into the instance." .
+
+hpc:CopyLSFPackages
+    rdf:type         owl:ObjectProperty ;
+    rdfs:domain      hpc:Instance ;
+    rdfs:range       rdf:List ;
+    rdfs:comment "The action of copying LSF packages to the instance." .
+
+hpc:InstallLSFSoftware
+    rdf:type         owl:ObjectProperty ;
+    rdfs:domain      hpc:Instance ;
+    rdfs:range       rdf:Resource ;
+    rdfs:comment "The action of installing LSF software on the instance." .
+
+hpc:EditServerConfigFile
+    rdf:type         owl:ObjectProperty ;
+    rdfs:domain      hpc:Instance ;
+    rdfs:range       rdf:Resource ;
+    rdfs:comment "The action of editing the server configuration file on the instance." .

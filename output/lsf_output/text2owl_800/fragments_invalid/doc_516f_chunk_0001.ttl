@@ -1,0 +1,27 @@
+hpc:Job a owl:Class .
+hpc:Computeunit a owl:Class .
+hpc:pref a owl:ObjectProperty .
+hpc:slot a owl:DatatypeProperty .
+hpc:pendingtimelimit a owl:DatatypeProperty .
+hpc:eligiblependingtimelimit a owl:DatatypeProperty .
+
+hpc:Job rdfs:subClassOf owl:Thing .
+hpc:Computeunit rdfs:subClassOf owl:Thing .
+
+hpc:Pref rdfs:domain hpc:Job ;
+    rdfs:range rdf:List .
+
+hpc:Slot rdfs:domain hpc:Computeunit ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Pendingtimelimit rdfs:domain hpc:Job ;
+    rdfs:range xsd:duration .
+
+hpc:Eligiblependingtimelimit rdfs:domain hpc:Job ;
+    rdfs:range xsd:duration .
+
+hpc:Pref hasValue (hpc:MaxAvail | hpc:BestFit) .
+hpc:MaxAvail rdf:first hpc:maxavail ;
+    rdf:rest rdf:nil .
+hpc:BestFit rdf:first hpc:bestfit ;
+    rdf:rest rdf:nil .

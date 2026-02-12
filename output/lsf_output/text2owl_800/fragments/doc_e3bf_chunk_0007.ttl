@@ -1,0 +1,34 @@
+hpc:Host a owl:Class .
+hpc:Managementcandidate a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+hpc:Lsfserverhost a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+hpc:Lsfclienthost a owl:Class ;
+    rdfs:subClassOf hpc:Host .
+
+hpc:install a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range rdf:Literal .
+
+hpc:startup a owl:ObjectProperty ;
+    rdfs:domain hpc:Managementcandidate ;
+    rdfs:range rdf:Literal .
+
+hpc:lsfstartup a owl:ObjectProperty ;
+    rdfs:domain hpc:Managementcandidate ;
+    rdfs:range rdf:Literal .
+
+hpc:test a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range rdf:Literal .
+
+hpc:Lsfinstallationparameters a owl:Class .
+hpc:quickreference a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfinstallationparameters ;
+    rdfs:range hpc:Document .
+
+hpc:dialogwindow a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfinstallationparameters .
+
+hpc:syntax a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfinstallationparameters .

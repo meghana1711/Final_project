@@ -1,0 +1,62 @@
+hpc:groupshares a owl:ObjectProperty .
+hpc:ownershiplimits a owl:ObjectProperty .
+hpc:nonshared a owl:ObjectProperty .
+hpc:Group a owl:Class .
+hpc:Project a owl:Class .
+hpc:Servicedomain a owl:Class .
+hpc:limit a owl:DatatypeProperty .
+hpc:Token a xsd:nonNegativeInteger .
+
+hpc:Projectgroup rdfs:subClassOf owl:Class .
+hpc:Groupshares rdfs:domain hpc:Projectgroup ;
+                 rdfs:range rdf:List .
+hpc:Ownershiplimits rdfs:domain hpc:Projectgroup ;
+                   rdfs:range rdf:List .
+hpc:Nonshared rdfs:domain hpc:Projectgroup ;
+               rdfs:range rdf:PlainLiteral .
+
+hpc:Group rdfs:subClassOf owl:Class .
+hpc:Project rdfs:subClassOf owl:Class .
+hpc:Servicedomain rdfs:subClassOf owl:Class .
+
+hpc:hasgroup a owl:ObjectProperty ;
+             rdfs:domain hpc:Projectgroup ;
+             rdfs:range hpc:Group .
+hpc:sharesownership a owl:ObjectProperty ;
+                   rdfs:domain hpc:Projectgroup ;
+                   rdfs:range hpc:Group .
+hpc:ownershiplimits a owl:ObjectProperty ;
+                   rdfs:domain hpc:Projectgroup ;
+                   rdfs:range rdf:List .
+hpc:nonshared a owl:ObjectProperty ;
+              rdfs:domain hpc:Projectgroup ;
+              rdfs:range rdf:PlainLiteral .
+
+hpc:hasproject a owl:ObjectProperty ;
+              rdfs:domain hpc:Group ;
+              rdfs:range hpc:Project .
+hpc:hasservicedomain a owl:ObjectProperty ;
+                   rdfs:domain hpc:Project ;
+                   rdfs:range hpc:Servicedomain .
+
+hpc:Projectgroup hpc:group "topgrp" .
+hpc:group hpc:Group "g1" .
+hpc:group hpc:Group "g2" .
+hpc:group hpc:Group "g3" .
+hpc:group hpc:Group "g4" .
+hpc:group hpc:Group "g5" .
+hpc:group hpc:Group "g6" .
+hpc:project hpc:Project "p1" .
+hpc:project hpc:Project "p2" .
+hpc:project hpc:Project "p3" .
+hpc:project hpc:Project "p4" .
+hpc:project hpc:Project "p5" .
+hpc:project hpc:Project "p6" .
+hpc:project hpc:Project "p7" .
+hpc:project hpc:Project "p8" .
+hpc:project hpc:Project "p9" .
+hpc:project hpc:Project "p10" .
+hpc:project hpc:Project "p11" .
+hpc:project hpc:Project "p12" .
+
+hpc:hasGroup

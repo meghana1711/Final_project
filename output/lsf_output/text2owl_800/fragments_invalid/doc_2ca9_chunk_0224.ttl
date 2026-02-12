@@ -1,0 +1,56 @@
+hpc:Lsfversion a owl:Class .
+hpc:Fixpack a owl:Class .
+
+hpc:sbatchddaemonmailoption a owl:ObjectProperty .
+hpc:Sbatchddaemonmailoption rdfs:domain hpc:Lsfversion ;
+                               rdfs:range hpc:Emailnotificationoption .
+hpc:Emailnotificationoption a owl:Class ;
+                               rdfs:comment "Enables the sbatchd daemon to send mail only when the job exits." .
+
+hpc:bresume a owl:ObjectProperty .
+hpc:Bresume rdfs:domain hpc:Lsfversion ;
+                               rdfs:range hpc:Jobresumeoption .
+hpc:Jobresumeoption a owl:Class ;
+                      rdfs:comment "Specifies a reason for resuming the job." .
+
+hpc:brsvadd a owl:ObjectProperty .
+hpc:Brsvadd rdfs:domain hpc:Lsfversion ;
+                               rdfs:range hpc:Advancereservationaddoption .
+hpc:Advancereservationaddoption a owl:Class ;
+                                 rdfs:subClassOf hpc:Option ;
+                                 rdfs:comment "Specifies queues allowed to run on the advance reservation hosts even if the jobs cannot finish before the advance reservation starts." .
+
+hpc:brsvaddQ a owl:DatatypeProperty ;
+             rdfs:domain hpc:Advancereservationaddoption ;
+             rdfs:range xsd:boolean .
+
+hpc:brsvaddNosusp a owl:ObjectProperty .
+hpc:BrsvaddNosusp rdfs:domain hpc:Lsfversion ;
+                             rdfs:range hpc:Advancereservationaddoption .
+
+hpc:brsvaddE a owl:ObjectProperty .
+hpc:BrsvaddE rdfs:domain hpc:Advancereservationaddoption ;
+                             rdfs:range hpc:Script .
+
+hpc:brsvaddEt a owl:DatatypeProperty ;
+             rdfs:domain hpc:Advancereservationaddoption ;
+             rdfs:range xsd:nonNegativeInteger .
+
+hpc:brsvaddEp a owl:ObjectProperty .
+hpc:BrsvaddEp rdfs:domain hpc:Advancereservationaddoption ;
+                             rdfs:range hpc:Script .
+
+hpc:brsvaddEpt a owl:DatatypeProperty ;
+             rdfs:domain hpc:Advancereservationaddoption ;
+             rdfs:range xsd:nonNegativeInteger .
+
+hpc:brsvaddR a owl:ObjectProperty .
+hpc:BrsvaddR rdfs:domain hpc:Advancereservationaddoption ;
+                             rdfs:range hpc:String .
+
+hpc:brsvmod a owl:ObjectProperty .
+hpc:Brsvmod rdfs:domain hpc:Lsfversion ;
+                             rdfs:range hpc:Advancereservationmodifyoption .
+hpc:Advancereservationmodifyoption a owl:Class ;
+                                 rdfs:subClassOf hpc:Option ;
+                                 rdfs:comment "Changes the queues whose jobs are allowed

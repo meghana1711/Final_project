@@ -1,0 +1,25 @@
+hpc:Backfillqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue .
+
+hpc:enforcerunlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+
+hpc:runlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:duration .
+
+hpc:runtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Application ;
+    rdfs:range xsd:duration .
+
+hpc:backfill a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Queue .
+
+hpc:interruptiblebackfill a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+
+hpc:Backfillslot a owl:Class ;
+    rdfs:subClassOf hpc:Jobslot .

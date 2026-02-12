@@ -1,0 +1,31 @@
+hpc:Ibmcloudvpcgen2provider a owl:Class .
+hpc:hasConfigFile rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Ibmcloudvpcgen2provider ;
+    rdfs:range xsd:string .
+
+hpc:Ibmcloudgen2Configfile hpc:hasconfigfile .
+
+hpc:Ibmcloudvpcgen2templates a owl:Class .
+hpc:hasTemplatesFile rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Ibmcloudvpcgen2templates ;
+    rdfs:range xsd:string .
+
+hpc:Ibmcloudgen2Templatesfile hpc:hastemplatesfile .
+
+hpc:Cyclecloudspotvm a owl:Class .
+hpc:isInterruptible rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Cyclecloudspotvm ;
+    rdfs:range xsd:boolean .
+
+hpc:maxPrice rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Cyclecloudspotvm ;
+    rdfs:range xsd:decimal .
+
+hpc:Lsfjoblevelaccount a owl:Class .
+hpc:isTaggedOnHost rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjoblevelaccount .
+
+hpc:CyclecloudprovTemplates a owl:Class .
+hpc:hasSpotVMConfiguration rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:CyclecloudprovTemplates ;
+    rdfs:range hpc:Cyclecloudspotvm .

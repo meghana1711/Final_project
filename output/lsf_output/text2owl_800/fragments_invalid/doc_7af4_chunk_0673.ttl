@@ -1,0 +1,76 @@
+hpc:User a owl:Class .
+hpc:Usergroup a owl:Class .
+
+hpc:user rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+
+hpc:jl_p rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+
+hpc:max rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:nstart rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:pend rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:run rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:ssusp rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:ususp rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:rsv rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:njobs rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:pjobs rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:mpend rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:mpjobs rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:priority rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:ngpus rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:ngpus_shared rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:ngpus_excl rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:ngpus_shared_jexcl rdf:type hpc:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:integer .
+
+hpc:all r

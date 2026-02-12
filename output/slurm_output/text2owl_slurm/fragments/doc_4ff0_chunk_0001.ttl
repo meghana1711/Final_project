@@ -1,0 +1,57 @@
+hpc:AddingFileToSlurm
+    a owl:Class ;
+    rdfs:subClassOf hpc:Slurmmodification ;
+    rdfs:comment "Procedure to add a new C file to the Slurm code base." .
+
+hpc:AddingPluginToSlurm
+    a owl:Class ;
+    rdfs:subClassOf hpc:Slurmmodification ;
+    rdfs:comment "Procedure to add a new plugin to the Slurm code base." .
+
+hpc:gitBranch
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmmodification ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Recommended method for adding files or plugins to Slurm." .
+
+hpc:newFile
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Addingfiletoslurm ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Add your new file to the git repository." .
+
+hpc:modifyMakefileAm
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Addingfiletoslurm ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Modify the 'Makefile.am' file in the file's parent directory." .
+
+hpc:executeAutoreconf
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Addingfiletoslurm ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Execute 'autoreconf' in Slurm's top level directory." .
+
+hpc:modifyMakefileIn
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Addingfiletoslurm ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Manually modify the Makefile.in file if you have older versions of the autoconf, automake, libtool or aclocal." .
+
+hpc:newPluginDirectory
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Addingplugintoslurm ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Create a new directory for the plugin." .
+
+hpc:addPluginDirectory
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Addingplugintoslurm ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Add this new directory to its parent directory's 'Makefile.am' file." .
+
+hpc:pluginName
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Addingplugintoslurm ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Name of the plugin." .

@@ -1,0 +1,13 @@
+hpc:Jobrequest a owl:Class .
+hpc:Hasjobscript hpc:Jobrequest rdfs:domain hpc:Jobrequest .
+hpc:Hasjobscript hpc:Jobrequest rdfs:range xsd:string .
+hpc:Hasresourcerequest hpc:Jobrequest rdfs:domain hpc:Jobrequest .
+hpc:Hasresourcerequest hpc:Jobrequest rdfs:range hpc:Resourcerequest .
+
+hpc:Resourcerequest a owl:Class .
+hpc:Hasresourcetype hpc:Resourcerequest rdfs:domain hpc:Resourcerequest .
+hpc:Hasresourcetype hpc:Resourcerequest rdfs:range xsd:string .
+hpc:Hasresourcevalue hpc:Resourcerequest rdfs:domain hpc:Resourcerequest .
+hpc:Hasresourcevalue hpc:Resourcerequest rdfs:range xsd:integer .
+
+hpc:Jobscript a owl:Class .

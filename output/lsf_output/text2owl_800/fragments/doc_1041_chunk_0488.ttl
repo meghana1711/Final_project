@@ -1,0 +1,58 @@
+hpc:CloseOnDemand a owl:Class .
+hpc:loanpolicies a owl:ObjectProperty ;
+    rdfs:domain hpc:CloseOnDemand ;
+    rdfs:range hpc:Loanpolicies .
+
+hpc:Guarantee a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:total a owl:DatatypeProperty ;
+    rdfs:domain hpc:Guarantee ;
+    rdfs:range xsd:decimal .
+
+hpc:free a owl:DatatypeProperty ;
+    rdfs:domain hpc:Guarantee ;
+    rdfs:range xsd:decimal .
+
+hpc:allocated a owl:DatatypeProperty ;
+    rdfs:domain hpc:Guarantee ;
+    rdfs:range xsd:decimal .
+
+hpc:owneruse a owl:DatatypeProperty ;
+    rdfs:domain hpc:Guarantee ;
+    rdfs:range xsd:decimal .
+
+hpc:Guaranteepool a owl:Class ;
+    rdfs:subClassOf hpc:Resourcepool .
+
+hpc:name a owl:DatatypeProperty ;
+    rdfs:domain hpc:Guaranteepool .
+
+hpc:description a owl:DatatypeProperty ;
+    rdfs:domain hpc:Guaranteepool .
+
+hpc:distribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteepool ;
+    rdfs:range hpc:Distribution .
+
+hpc:loanpolicies a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteepool .
+
+hpc:hosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteepool .
+
+hpc:Longoutput a owl:Class .
+
+hpc:guaranteedresourcepool a owl:ObjectProperty ;
+    rdfs:domain hpc:Longoutput ;
+    rdfs:range hpc:Guaranteepool .
+
+hpc:distribution a owl:ObjectProperty ;
+    rdfs:domain hpc:Longoutput ;
+    rdfs:range hpc:Distribution .
+
+hpc:loanpolicies a owl:ObjectProperty ;
+    rdfs:domain hpc:Longoutput .
+
+hpc:hosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Longoutput .

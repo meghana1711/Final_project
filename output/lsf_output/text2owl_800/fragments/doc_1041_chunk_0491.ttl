@@ -1,0 +1,67 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a job in the HPC system." .
+
+hpc:Checkpointedjob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Represents a checkpointed job that can be restarted." .
+
+hpc:Restartablejob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Represents a job that can be restarted." .
+
+hpc:filelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum number of files a job can use." .
+
+hpc:memlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum memory a job can use." .
+
+hpc:stacklimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum stack size a job can use." .
+
+hpc:termtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "The time a job is allowed to run." .
+
+hpc:resreq a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Resourcerequirement ;
+    rdfs:comment "The resource requirements of a job." .
+
+hpc:Resourcerequirement a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents the resource requirements for a job." .
+
+hpc:Hostname a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement ;
+    rdfs:comment "Represents the host name required for a job." .
+
+hpc:Hostgroup a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement ;
+    rdfs:comment "Represents the host group required for a job." .
+
+hpc:preflevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostname ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The preference level for a host name." .
+
+hpc:Usergroup a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement ;
+    rdfs:comment "Represents the user group required for a job." .
+
+hpc:checkpointdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Checkpointedjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The directory where the checkpoint files are saved." .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Checkpointedjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The ID of the checkpointed job." .

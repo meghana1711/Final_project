@@ -1,0 +1,26 @@
+hpc:haspriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The priority of a project." .
+
+hpc:Defaultproject a owl:Class ;
+    rdfs:subClassOf hpc:Project ;
+    rdfs:comment "The default project." .
+
+hpc:isdefaultproject a owl:DatatypeProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if a project is the default project." .
+
+hpc:Automaticconfiguration a owl:Class ;
+    rdfs:subClassOf hpc:Feature ;
+    rdfs:comment "Variable configuration is used to automatically change License Scheduler license token distribution policy configuration based on time windows." .
+
+hpc:timebasedconfiguration a owl:ObjectProperty ;
+    rdfs:domain hpc:Automaticconfiguration ;
+    rdfs:range hpc:Timebasedconfiguration ;
+    rdfs:comment "The time-based configuration for an automatic configuration." .
+
+hpc:Timebasedconfiguration a owl:Class ;
+    rdfs:subClassOf hpc:Configuration ;
+    rdfs:comment "Defines the time expressions and associated configuration statements for automatic configuration changes." .

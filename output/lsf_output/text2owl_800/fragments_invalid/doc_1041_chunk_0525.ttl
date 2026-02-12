@@ -1,0 +1,53 @@
+hpc:Advancereservationdescription a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A description for the reservation." ;
+    rdfs:label "AdvanceReservationDescription" ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range xsd:string ;
+    owl:maxCardinality 1 .
+
+hpc:advancereservationbegintime a owl:DatatypeProperty ;
+    rdfs:subPropertyOf rdf:Property ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The modified time value for the begin time." ;
+    rdfs:label "AdvanceReservationBeginTime" ;
+    xsd:minInclusive "1970-01-01T00:00:00" ;
+    xsd:maxInclusive "2038-01-19T03:14:07" .
+
+hpc:advancereservationendtime a owl:DatatypeProperty ;
+    rdfs:subPropertyOf rdf:Property ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The time value for the end time." ;
+    rdfs:label "AdvanceReservationEndTime" ;
+    xsd:minInclusive "1970-01-01T00:00:00" ;
+    xsd:maxInclusive "2038-01-19T03:14:07" ;
+    rdfs:rangeIncludes hpc:Advancereservationbegintime ;
+    rdfs:rangeMinCardinality 1 .
+
+hpc:advancereservationbegintimesyntax a owl:ObjectProperty ;
+    rdfs:subPropertyOf rdf:Property ;
+    rdfs:domain hpc:Advancereservationbegintime ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The syntax for the begin time." ;
+    rdfs:label "AdvanceReservationBeginTimeSyntax" .
+
+hpc:advancereservationendtimesyntax a owl:ObjectProperty ;
+    rdfs:subPropertyOf rdf:Property ;
+    rdfs:domain hpc:Advancereservationendtime ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The syntax for the end time." ;
+    rdfs:label "AdvanceReservationEndTimeSyntax" .
+
+hpc:advancereservationprescript a owl:ObjectProperty ;
+    rdfs:subPropertyOf rdf:Property ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range xsd:anyURI ;
+    rdfs:comment "The absolute file path to the script that is run to create the advance reservation." ;
+    rdfs:label "AdvanceReservationPreScript" .
+
+hpc:advancereservationprescriptremoval a owl:ObjectProperty ;
+    rdfs:subPropertyOf rdf:Property ;
+    rdfs:domain hpc:Advancereservation ;
+    rdfs:range xsd:boolean ;

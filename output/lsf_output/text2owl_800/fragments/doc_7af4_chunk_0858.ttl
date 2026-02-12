@@ -1,0 +1,37 @@
+hpc:lsfNiosJobstatusInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Nios ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "When defined, NIOS polls mbatchd on the defined interval to check if a job is still running." .
+
+hpc:Mbatchd a owl:Class ;
+    rdfs:comment "The mbatchd service." .
+
+hpc:polls a owl:ObjectProperty ;
+    rdfs:domain hpc:Nios ;
+    rdfs:range hpc:Mbatchd ;
+    rdfs:comment "NIOS polls mbatchd." .
+
+hpc:exitcode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The exit code of a job." .
+
+hpc:jobdoesnotexist a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if the job does not exist." .
+
+hpc:niosPendTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:Environment ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Environment variable for LSF_NIOS_PEND_TIMEOUT." .
+
+hpc:lsfNiosMaxTasks a owl:DatatypeProperty ;
+    rdfs:domain hpc:Environment ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Specifies the maximum number of NIOS tasks." .
+
+hpc:lsfNiosPortRange a owl:DatatypeProperty ;
+    rdfs:domain hpc:Environment ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Defines a range of listening ports for NIOS to use." .

@@ -1,0 +1,21 @@
+hpc:Paralleljob a owl:Class .
+hpc:LSFUtilJob a hpc:ParallelJob .
+hpc:BlaunchJob a hpc:ParallelJob .
+
+hpc:hasncpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:runson a owl:ObjectProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range hpc:Host .
+
+hpc:lsfutiljob runsWithLSFUtil a owl:ObjectProperty .
+hpc:blaunchjob runsWithBlaunch a owl:ObjectProperty .
+
+hpc:lsfutiljob usesLSBParams a owl:DatatypeProperty ;
+    rdfs:range xsd:boolean .
+
+hpc:blaunchjob requiresNoCommandLine a owl:DatatypeProperty .
+
+hpc:Host a owl:Class .

@@ -1,0 +1,48 @@
+hpc:BillingTRES
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf [ a owl:Class ;
+                                           rdfs:subClassOf owl:Real ] ] ;
+    rdfs:comment "Represents the Billing TRES of a job or node." .
+
+hpc:TRES
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf owl:Real ] ;
+    rdfs:comment "Represents the Total Resource Units (TRES) available in the system." .
+
+hpc:JobBillingTRES
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Billingtres ;
+    rdfs:comment "The Billing TRES of a job." .
+
+hpc:NodeBillingTRES
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range hpc:Billingtres ;
+    rdfs:comment "The Billing TRES of a node." .
+
+hpc:TRESBillingWeights
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Partition ;
+    rdfs:range xsd:nonNegativeReal ;
+    rdfs:comment "The TRES Billing Weights defined for a partition." .
+
+hpc:sacct
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Tres ;
+    rdfs:comment "The TRES of a job as viewed by sacct." .
+
+hpc:sacctmgr
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Tres ;
+    rdfs:comment "The TRES of a job as viewed by sacctmgr." .
+
+hpc:sreport
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Tres ;
+    rdfs:comment "The TRES of a job as reported by sreport." .

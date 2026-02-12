@@ -1,0 +1,49 @@
+hpc:Job a owl:Class .
+hpc:Containerjob a owl:Class .
+hpc:starterscript a owl:ObjectProperty .
+hpc:execdriver a owl:ObjectProperty .
+hpc:Container a owl:Class .
+hpc:Image a owl:Class .
+hpc:Options a owl:Class .
+hpc:Script a owl:Class .
+hpc:Runtimeoptions a owl:Class .
+hpc:Optionscript a owl:Class .
+hpc:name a owl:DatatypeProperty .
+hpc:description a owl:DatatypeProperty .
+hpc:containerparameter a owl:ObjectProperty .
+hpc:execdriverparameter a owl:ObjectProperty .
+hpc:Podman a owl:Class .
+hpc:Docker a owl:Class .
+hpc:Enroot a owl:Class .
+hpc:imagename a owl:DatatypeProperty .
+hpc:filelimit a owl:DatatypeProperty .
+hpc:FileLimitValue xsd:integer .
+hpc:gpureq a owl:DatatypeProperty .
+hpc:Undefined a owl:Class .
+hpc:Starter a owl:Class .
+hpc:Controller a owl:Class .
+hpc:Monitor a owl:Class .
+hpc:Context a owl:Class .
+hpc:User a owl:Class .
+hpc:path a owl:DatatypeProperty .
+hpc:UserName xsd:string .
+hpc:PathOne xsd:string .
+hpc:PathTwo xsd:string .
+
+hpc:Job rdfs:subClassOf rdf:Resource .
+hpc:Containerjob rdfs:subClassOf hpc:Job .
+hpc:Starterscript rdfs:domain hpc:Containerjob ;
+                                        rdfs:range hpc:Script .
+hpc:Execdriver rdfs:domain hpc:Containerjob ;
+                               rdfs:range hpc:Context .
+hpc:Container rdfs:domain hpc:Containerjob ;
+                      rdfs:range hpc:Image ;
+                      rdfs:range hpc:Options .
+hpc:Image rdfs:subClassOf rdf:Resource .
+hpc:Options rdfs:subClassOf rdf:Resource .
+hpc:Script rdfs:subClassOf rdf:Resource .
+hpc:Runtimeoptions rdfs:subClassOf hpc:Options .
+hpc:Optionscript rdfs:subClassOf hpc:Options .
+hpc:Name rdfs:domain hpc:Job ;
+                      rdfs:range xsd:string .
+hpc:Description rdfs:domain hpc:

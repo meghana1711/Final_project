@@ -1,0 +1,25 @@
+hpc:eventStreamFile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Systemperformanceanalysistool ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Determines the path to the event data stream file used by system performance analysis tools." .
+
+hpc:eventUpdateInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Systemperformanceanalysistool ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Used with duplicate logging of event and accounting log files. LSB_LOCALDIR in lsf.conf must also be specified. Specifies how often to back up the data and synchronize the directories (LSB_SHAREDIR and LSB_LOCALDIR). If you do not define this parameter, the directories are synchronized when data is logged to the files, or when mbatchd is started on the first LSF management host. If you define this parameter, mbatchd synchronizes the directories only at the speciﬁed time intervals. Use this parameter if NFS trafﬁc is too high and you want to reduce network trafﬁc. Valid values Between 10 and 30 seconds, or longer depending on the amount of network trafﬁc. Note: Avoid setting the value to exactly 30 seconds, because this will trigger the default behavior and cause mbatchd to synchronize the data every time an event is logged. Default Not deﬁned." .
+
+hpc:exitRateType a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostexceptionhandling ;
+    rdfs:range xsd:string ;
+    rdfs:comment "When host exception handling is configured (EXIT_RATE in lsb.hosts or GLOBAL_EXIT_RATE in lsb.params), specifies the type of job exit to be handled." .
+
+hpc:Jobexit a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:Jobexitnonlsf a owl:Class ;
+    rdfs:subClassOf hpc:Jobexit .
+
+hpc:Hpcinit a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:LSB_LOCALDIR rdfs:seeAlso "http://example.org/lsf#LSB_LOCALDIR" .

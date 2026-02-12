@@ -1,0 +1,31 @@
+hpc:LsfDaemon a owl:Class .
+hpc:memoryRequirement a owl:DatatypeProperty .
+hpc:MemoryRequirement rdfs:domain hpc:LsfDaemon ;
+                        rdfs:range xsd:decimal .
+
+hpc:ManagementHost a owl:Class .
+hpc:clusterSize a owl:DatatypeProperty .
+hpc:ClusterSize rdfs:domain hpc:ManagementHost ;
+                 rdfs:range xsd:nonNegativeInteger .
+hpc:activeJobs a owl:DatatypeProperty .
+hpc:ActiveJobs rdfs:domain hpc:ManagementHost ;
+                rdfs:range xsd:nonNegativeInteger .
+hpc:minimumRequiredMemory a owl:DatatypeProperty .
+hpc:MinimumRequiredMemory rdfs:domain hpc:ManagementHost ;
+                           rdfs:range xsd:decimal .
+hpc:recommendedServerCpu a owl:DatatypeProperty .
+hpc:RecommendedServerCpu rdfs:domain hpc:ManagementHost ;
+                           rdfs:range xsd:string .
+
+hpc:Small_Cluster a hpc:Management_Host ;
+                   hpc:cluster_size "100" ;
+                   hpc:minimum_required_memory "1.0" ;
+                   hpc:recommended_server_CPU "Any server CPU" .
+hpc:Medium_Cluster a hpc:Management_Host ;
+                    hpc:cluster_size "1000" ;
+                    hpc:minimum_required_memory "4.0" ;
+                    hpc:recommended_server_CPU "Multi-core CPU (2 cores)" .
+hpc:Large_Cluster a hpc:Management_Host ;
+                   hpc:cluster_size "500000" ;
+                   hpc:minimum_required_memory "32.0" ;
+                   hpc:recommended_server_CPU "Multi-core CPU (8 cores)" .

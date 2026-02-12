@@ -1,0 +1,19 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Ociruntime a owl:Class .
+hpc:Ociruntimeconfiguration a owl:Class .
+hpc:Containerruntime a owl:Class .
+hpc:Kernel a owl:Class .
+hpc:Computenode a owl:Class .
+hpc:Ocibundle a owl:Class .
+hpc:Ocicontainerimplementationlimitations a owl:Class .
+
+hpc:hasruntime a owl:ObjectProperty .
+hpc:hasconfiguration a owl:ObjectProperty .
+hpc:haskernel a owl:ObjectProperty .
+hpc:isdeployedon a owl:ObjectProperty .
+hpc:has

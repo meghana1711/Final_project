@@ -1,0 +1,14 @@
+hpc:lsbJobOutputLogging a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:lsbJobReportMail a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:LSB_JOB_REPORT_MAIL_TYPE .
+
+hpc:lsbJobReportMailType a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:subClassOf rdf:List ;
+    rdfs:range [ rdf:first xsd:string ; rdf:rest xsd:string ] .

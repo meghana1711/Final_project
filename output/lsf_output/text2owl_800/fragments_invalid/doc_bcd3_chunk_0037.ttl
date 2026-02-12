@@ -1,0 +1,12 @@
+hpc:stacklimit a owl:DatatypeProperty;
+  rdfs:domain hpc:Job;
+  rdfs:range xsd:decimal; .
+hpc:corelimit a owl:DatatypeProperty;
+  rdfs:domain hpc:Job;
+  rdfs:range xsd:decimal; .
+hpc:memorylimit a owl:DatatypeProperty;
+  rdfs:domain hpc:Job;
+  rdfs:range xsd:decimal; .
+hpc:swaplimit a owl:DatatypeProperty;
+  rdfs:domain hpc:Job;
+  rdfs:range xsd:

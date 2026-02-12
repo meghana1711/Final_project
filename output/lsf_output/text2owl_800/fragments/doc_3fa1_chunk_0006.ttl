@@ -1,0 +1,21 @@
+hpc:Lsfconfiguration a owl:Class .
+hpc:hasmaxpackjobs a owl:ObjectProperty .
+hpc:Hasmaxpackjobs rdfs:domain hpc:Lsfconfiguration ;
+                     rdfs:range xsd:nonNegativeInteger .
+hpc:packjobsubmissionrate a owl:ObjectProperty .
+hpc:Packjobsubmissionrate rdfs:domain hpc:Lsfconfiguration ;
+                            rdfs:range xsd:nonNegativeInteger .
+hpc:processrequestswitherrors a owl:ObjectProperty .
+hpc:Processrequestswitherrors rdfs:domain hpc:Lsfconfiguration ;
+                                rdfs:range xsd:boolean .
+
+hpc:LSF_MAX_PACK_JOBS a xsd:nonNegativeInteger .
+hpc:LsbMaxPackJobs hpc:hasmaxpackjobs hpc:LSF_MAX_PACK_JOBS .
+
+hpc:LSB_PACK_MESUB a xsd:nonNegativeInteger .
+hpc:LSB_PACK_MESUB rdf:type hpc:packJobSubmissionRate ;
+                     hpc:hasMaxPackJobs "N"^^xsd:nonNegativeInteger .
+
+hpc:LSB_PACK_SKIP_ERROR a xsd:boolean .
+hpc:LSB_PACK_SKIP_ERROR rdf:type hpc:processRequestsWithErrors ;
+                           hpc:processRequestsWithErrors "Y"^^xsd:boolean .

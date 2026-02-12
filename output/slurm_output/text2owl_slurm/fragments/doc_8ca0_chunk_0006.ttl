@@ -1,0 +1,40 @@
+hpc:Node a owl:Class .
+hpc:Usablenode a owl:Class ;
+    rdfs:subClassOf hpc:Node .
+
+hpc:Powereddown a owl:Class .
+hpc:Idle a owl:Class ;
+    rdfs:subClassOf hpc:Powereddown .
+hpc:Down a owl:Class ;
+    rdfs:subClassOf hpc:Powereddown .
+hpc:Draining a owl:Class ;
+    rdfs:subClassOf hpc:Powereddown .
+
+hpc:Nodeset a owl:Class .
+hpc:nodecount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Nodeset ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:excludednodeset a owl:ObjectProperty ;
+    rdfs:domain hpc:Nodeset ;
+    rdfs:range hpc:Usablenode .
+
+hpc:Suspendexcludedpartitions a owl:Class .
+hpc:Partition a owl:Class .
+
+hpc:Suspendexcludedstates a owl:Class .
+hpc:Nodestate a owl:Class .
+hpc:Validstate rdfs:subClassOf hpc:Nodestate .
+hpc:Invalidstate rdfs:subClassOf hpc:Nodestate .
+hpc:Cloudstate rdfs:subClassOf hpc:Validstate .
+hpc:Downstate rdfs:subClassOf hpc:Powereddown .
+hpc:Drainingstate rdfs:subClassOf hpc:Powereddown .
+hpc:Dynamicfuturestate rdfs:subClassOf hpc:Validstate .
+hpc:Dynamicnormstate rdfs:subClassOf hpc:Validstate .
+hpc:Failstate rdfs:subClassOf hpc:Invalidstate .
+hpc:Invalidregstate rdfs:subClassOf hpc:Invalidstate .
+hpc:Maintenancestate rdfs:subClassOf hpc:Invalidstate .
+hpc:Notrespondingstate rdfs:subClassOf hpc:Invalidstate .
+hpc:Perfctrsstate rdfs:subClassOf hpc:Validstate .
+hpc:Plannedstate rdfs:subClassOf hpc:Validstate .
+hpc:Reservedstate rdfs:subClassOf hpc:Validstate .

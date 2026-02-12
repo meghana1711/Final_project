@@ -1,0 +1,59 @@
+hpc:Jobsubmission a owl:Class ;
+    rdfs:subClassOf hpc:Process ;
+    rdfs:comment "To enable the dispatching of a specific Terminal Services job to Windows client hosts." .
+
+hpc:tssubmitjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "Submit the job with tssub instead of bsub." .
+
+hpc:setsenvironmentvariable a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Set the JOB_INCLUDE_POSTPROC environment variable." .
+
+hpc:dispatchesto a owl:ObjectProperty ;
+    rdfs:domain hpc:Tssubmitjob ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "Dispatches the job to a specific host." .
+
+hpc:hasresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates the presence of the msts resource on the host." .
+
+hpc:setslsbTsjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Tssubmitjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Sets the LSB_TSJOB environment variable." .
+
+hpc:setslsfLogonDesktop a owl:ObjectProperty ;
+    rdfs:domain hpc:Tssubmitjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Sets the LSF_LOGON_DESKTOP environment variable." .
+
+hpc:Jobpending a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "The job is set to the PEND state and a pending reason is written in sbatchd.log.host_name." .
+
+hpc:haspendingreason a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobpending ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The reason for the job being in the PEND state." .
+
+hpc:tssubmitwithi a owl:ObjectProperty ;
+    rdfs:domain hpc:Tssubmitjob ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "If specified, a terminal display is visible on the submission host after the job has been started." .
+
+hpc:isguijob a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the job is a GUI job." .
+
+hpc:runscommandwindow a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Commandwindow ;
+    rdfs:comment "If the job is not a GUI job, LSF runs a command window and output is displayed in the command window when something is written to stdout." .
+
+hpc:ExecutesPrePostCommandsInSession a owl

@@ -1,0 +1,20 @@
+hpc:Feature a owl:Class .
+hpc:lmstatInterval a owl:DatatypeProperty .
+hpc:LM_STAT_INTERVAL_Domain rdf:PlainLiteral .
+hpc:LM_STAT_INTERVAL_Range xsd:nonNegativeInteger .
+
+hpc:Licensemanagersystem a owl:Class .
+
+hpc:blhosts a owl:ObjectProperty .
+hpc:BlhostsDomain hpc:licensecollector .
+hpc:blhosts_Range rdf:List .
+hpc:BlhostsRangeItem hpc:host .
+
+hpc:Host a owl:Class .
+
+hpc:blinfo a owl:ObjectProperty .
+hpc:BlinfoDomain hpc:licensemanager .
+hpc:blinfo_Range rdf:List .
+hpc:BlinfoRangeItem hpc:staticconfigurationinfo .
+
+hpc:Staticconfigurationinfo a owl:Class .

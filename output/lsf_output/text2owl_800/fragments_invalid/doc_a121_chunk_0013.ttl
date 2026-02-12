@@ -1,0 +1,48 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:It a owl:Class .
+hpc:Tmp a owl:Class .
+hpc:Swp a owl:Class .
+hpc:Mem a owl:Class .
+
+hpc:loadsched a owl:ObjectProperty .
+hpc:loadstop a owl:ObjectProperty .
+hpc:cpuspeed a owl:DatatypeProperty .
+hpc:bandwidth a owl:DatatypeProperty .
+
+hpc:Exceptionstatus a owl:Class .
+hpc:Overrun a owl:Class .
+hpc:Idle a owl:Class .
+
+hpc:Resourcerequirementdetails a owl:Class .
+hpc:Combined a owl:Class .
+hpc:select a owl:ObjectProperty .
+hpc:type a owl:ObjectProperty .
+hpc:Local a owl:Class .
+hpc:R15s a owl:Class .
+hpc:Pg a owl:Class .
+hpc:ptile a owl:DatatypeProperty .
+hpc:hosts a owl:DatatypeProperty .
+
+hpc:Effective a owl:Class .
+
+hpc:Procedure a owl:Class .
+hpc:bjobs a owl:ObjectProperty .
+hpc:sum a owl:ObjectProperty .
+hpc:display a owl:ObjectProperty .
+
+hpc:Jobstate a owl:Class .
+hpc:Running a owl:Class .
+hpc:Systemsuspended a owl:Class .
+hpc:Usersuspended a owl:Class .
+hpc:Unknown a owl:Class .
+hpc:Pending a owl:Class .
+hpc:Forwardedtoremoteclustersandpending a owl:Class .
+
+hpc:jobslotcount a owl:DatatypeProperty .
+
+hpc:bjobsenv a owl:ObjectProperty .
+hpc:jobscript a owl:ObjectProperty .

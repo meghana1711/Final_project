@@ -1,0 +1,26 @@
+hpc:Dispatchwindow a owl:Class .
+hpc:Runwindow a owl:Class .
+hpc:Queue a owl:Class .
+hpc:Queueadministrator a owl:Class .
+
+hpc:hasTimePeriod an owl:ObjectProperty .
+hpc:belongsToQueue an owl:ObjectProperty .
+hpc:administersQueue an owl:ObjectProperty .
+hpc:hasQueueAdministrator an owl:ObjectProperty .
+hpc:isClosed rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+hpc:canSubmitJob rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Queue .
+hpc:isOpen rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+hpc:isDeactivated rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean .
+
+hpc:Queue subClassOf rdf:Resource .
+hpc:DispatchWindow subClassOf rdf:Resource .
+hpc:RunWindow subClassOf rdf:Resource .
+hpc:QueueAdministrator subClassOf rdf:Resource .

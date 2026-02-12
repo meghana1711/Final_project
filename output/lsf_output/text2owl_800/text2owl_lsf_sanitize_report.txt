@@ -1,0 +1,700 @@
+Total blocks: 16974
+Kept blocks : 4643
+Dropped     : 12331
+
+Drop reasons:
+  - rdflib_parse_fail: 12314
+  - contains_illegal_dash_qname: 10
+  - illegal_qname_subject_starts_with_dash: 6
+  - malformed_owl_collection_with_property_value_pair: 1
+
+Sanitizer stats:
+  - fixed_dangling_semicolon_to_dot: 34375
+  - fixed_dots_inside_blanknode_to_semicolons: 218
+  - dropped_xsd_facet_lines: 12
+  - dropped_numN_property_lines: 7
+  - rewrote_domain_function_syntax: 4
+  - repaired_broken_hpc_prefix_token: 2
+  - rewrote_range_function_syntax: 1
+
+Sample parse failures:
+--------------------------------------------------------------------------------
+Block #1: BadSyntax: at line 13 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'hpc:openhost a owl:ObjectProperty .\n    rdfs:domain hpc:Host'^b' .\n    rdfs:range hpc:Openevent .\nhpc:OpenEvent rdf:type owl'..."
+hpc:Host a owl:Class .
+hpc:Queue a owl:Class .
+hpc:openhost a owl:ObjectProperty .
+    rdfs:domain hpc:Host .
+    rdfs:range hpc:Openevent .
+hpc:OpenEvent rdf:type owl:DatatypeProperty .
+    rdfs:domain hpc:Openhost .
+    rdfs:range xsd:boolean .
+hpc:queueaction a owl:ObjectProperty .
+    rdfs:domain hpc:Queue .
+--------------------------------------------------------------------------------
+Block #13: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'nager .\n                   rdfs:range hpc:Rcaccountparameter'^b' .\nhpc:Hasconfigurationfile rdfs:domain hpc:Rcaccountparamet'..."
+hpc:Hasparameter rdfs:domain hpc:Resourcemanager .
+                   rdfs:range hpc:Rcaccountparameter .
+hpc:Hasconfigurationfile rdfs:domain hpc:Rcaccountparameter .
+                         rdfs:range xsd:string .
+hpc:Haslevel rdfs:domain hpc:Rcaccountparameter .
+               rdfs:range xsd:string .
+hpc:Hasresourcename rdfs:domain hpc:Resource .
+                    rdfs:range xsd:string .
+hpc:Hastype rdfs:domain hpc:Resource .
+              rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #15: BadSyntax: at line 12 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b's:domain hpc:Script .\n                 rdfs:range hpc:Vmtype'^b' .\nhpc:Vmtype rdfs:subClassOf owl:Class .\nhpc:Logfile rdfs:d'..."
+hpc:Script rdfs:subClassOf owl:Class .
+hpc:Hasvmtype rdfs:domain hpc:Script .
+                 rdfs:range hpc:Vmtype .
+hpc:Vmtype rdfs:subClassOf owl:Class .
+hpc:Logfile rdfs:domain hpc:Script .
+              rdfs:range xsd:string .
+hpc:LsfConfFile rdfs:domain hpc:Script .
+              rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #16: BadSyntax: at line 13 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'wl:DatatypeProperty .\n    rdfs:domain hpc:Remotedatamanagers'^b' .\n    rdfs:range xsd:string .\nhpc:servers a owl:DatatypePro'..."
+# Fragment: doc_0177_chunk_0001.ttl
+hpc:Remotedatamanagers a owl:Class .
+hpc:clustername a owl:DatatypeProperty .
+    rdfs:domain hpc:Remotedatamanagers .
+    rdfs:range xsd:string .
+hpc:servers a owl:DatatypeProperty .
+    rdfs:domain hpc:Remotedatamanagers .
+    rdfs:range xsd:string .
+hpc:port a owl:DatatypeProperty .
+    rdfs:domain hpc:Remotedatamanagers .
+--------------------------------------------------------------------------------
+Block #17: BadSyntax: at line 16 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'hpc:Remotedatamanager .\n                 rdfs:range rdf:List'^b' .\nhpc:Servers rdfs:domain hpc:Remotedatamanager .\n         '..."
+# Fragment: doc_0177_chunk_0002.ttl
+hpc:Remotedatamanager a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:hasserver a owl:ObjectProperty .
+hpc:hasport a owl:DatatypeProperty .
+hpc:Clustername rdfs:domain hpc:Remotedatamanager .
+                 rdfs:range rdf:List .
+hpc:Servers rdfs:domain hpc:Remotedatamanager .
+             rdfs:range rdf:List .
+hpc:Hasport rdfs:domain hpc:Remotedatamanager .
+--------------------------------------------------------------------------------
+Block #18: BadSyntax: at line 15 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'der .\n                             rdfs:range rdf:XMLLiteral'^b' .\nhpc:Ibmcloudgen2Templatefile rdfs:domain hpc:Ibmcloudgen2'..."
+hpc:Ibmcloudgen2resourceprovider a owl:Class .
+hpc:ibmcloudgen2Configfile a owl:ObjectProperty .
+hpc:ibmcloudgen2Templatefile a owl:ObjectProperty .
+hpc:Ibmcloudgen2resourceprovider rdfs:subClassOf hpc:Remotedatamanager .
+hpc:Ibmcloudgen2Configfile rdfs:domain hpc:Ibmcloudgen2resourceprovider .
+                             rdfs:range rdf:XMLLiteral .
+hpc:Ibmcloudgen2Templatefile rdfs:domain hpc:Ibmcloudgen2resourceprovider .
+                              rdfs:range rdf:XMLLiteral .
+--------------------------------------------------------------------------------
+Block #21: BadSyntax: at line 12 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'edAt a owl:DatatypeProperty .\n    rdfs:domain hpc:ProvStatus'^b' .\n    rdfs:range xsd:dateTime .\n'"
+hpc:ProvStatus a owl:Class .
+hpc:updatedAt a owl:DatatypeProperty .
+    rdfs:domain hpc:ProvStatus .
+    rdfs:range xsd:dateTime .
+--------------------------------------------------------------------------------
+Block #24: BadSyntax: at line 12 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'\nhpc:Status rdfs:domain hpc:Host .\n    rdfs:range xsd:string'^b' .\nhpc:ProvStatus rdfs:domain hpc:Host .\n    rdfs:range xsd:'..."
+hpc:Host rdfs:subClassOf owl:Class .
+hpc:Status rdfs:domain hpc:Host .
+    rdfs:range xsd:string .
+hpc:ProvStatus rdfs:domain hpc:Host .
+    rdfs:range xsd:string .
+hpc:RcStatus rdfs:domain hpc:Host .
+    rdfs:range xsd:string .
+hpc:UpdatedAt rdfs:domain hpc:Host .
+    rdfs:range xsd:dateTime .
+--------------------------------------------------------------------------------
+Block #25: BadSyntax: at line 14 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'dfs:domain hpc:Allocatedrunning .\n    rdfs:range xsd:integer'^b' .\n    rdfs:domain hpc:Allocatedrunning .\n    rdfs:range xsd'..."
+# Fragment: doc_0177_chunk_0010.ttl
+hpc:Allocatedrunning a owl:Class .
+hpc:lsf1awsclosed a owl:ObjectProperty .
+hpc:Lsf1awsclosed rdfs:domain hpc:Allocatedrunning .
+    rdfs:range xsd:integer .
+    rdfs:domain hpc:Allocatedrunning .
+    rdfs:range xsd:nonNegativeInteger .
+    rdfs:domain hpc:Allocatedrunning .
+    rdfs:range xsd:nonPositiveInteger .
+    rdfs:domain hpc:Allocatedrunning .
+--------------------------------------------------------------------------------
+Block #26: BadSyntax: at line 15 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'stage a owl:ObjectProperty .\n    rdfs:domain hpc:Datamanager'^b' .\n    rdfs:range hpc:Datafile .\nhpc:Datarepository a owl:Cl'..."
+# Fragment: doc_01ac_chunk_0001.ttl
+hpc:Application a owl:Class .
+hpc:Datamanager a owl:Class .
+hpc:Datalocality a owl:Class .
+hpc:datastage a owl:ObjectProperty .
+    rdfs:domain hpc:Datamanager .
+    rdfs:range hpc:Datafile .
+hpc:Datarepository a owl:Class .
+hpc:datarequirement a owl:ObjectProperty .
+    rdfs:domain hpc:Application .
+--------------------------------------------------------------------------------
+Block #28: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'df:type owl:ObjectProperty .\n    rdfs:domain hpc:Datastaging'^b' .\n    rdfs:range hpc:Datastagingarea .\n'"
+hpc:hasDataStagingArea rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:Datastaging .
+    rdfs:range hpc:Datastagingarea .
+--------------------------------------------------------------------------------
+Block #29: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'df:type owl:ObjectProperty .\n    rdfs:domain hpc:Datastaging'^b' .\n'"
+hpc:hasDataTransferJob rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:Datastaging .
+--------------------------------------------------------------------------------
+Block #30: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'DatatypeProperty .\n    rdfs:domain hpc:Dataspecificationfile'^b' .\n    rdfs:range xsd:string .\n'"
+hpc:hasDataSpecificationFile rdf:type owl:DatatypeProperty .
+    rdfs:domain hpc:Dataspecificationfile .
+    rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #31: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'DatatypeProperty .\n    rdfs:domain hpc:Dataspecificationfile'^b' .\n    rdfs:range xsd:string .\n'"
+hpc:hasSourceFile rdf:type owl:DatatypeProperty .
+    rdfs:domain hpc:Dataspecificationfile .
+    rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #32: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'DatatypeProperty .\n    rdfs:domain hpc:Dataspecificationfile'^b' .\n    rdfs:range xsd:string .\n'"
+hpc:hasHost rdf:type owl:DatatypeProperty .
+    rdfs:domain hpc:Dataspecificationfile .
+    rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #33: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'ag rdf:type owl:ObjectProperty .\n    rdfs:domain hpc:Datatag'^b' .\n    rdfs:range hpc:Datataggedfile .\n'"
+hpc:hasDataTag rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:Datatag .
+    rdfs:range hpc:Datataggedfile .
+--------------------------------------------------------------------------------
+Block #43: BadSyntax: at line 13 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'rdf:type owl:ObjectProperty .\n    rdfs:domain hpc:Lsfcluster'^b' .\n    rdfs:range hpc:Host .\n'"
+# Fragment: doc_026b_chunk_0001.ttl
+hpc:Lsfcluster a owl:Class .
+hpc:ManagementHost rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:Lsfcluster .
+    rdfs:range hpc:Host .
+--------------------------------------------------------------------------------
+Block #44: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'rdf:type owl:ObjectProperty .\n    rdfs:domain hpc:Lsfcluster'^b' .\n    rdfs:range hpc:Host .\n'"
+hpc:ExecutionHost rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:Lsfcluster .
+    rdfs:range hpc:Host .
+--------------------------------------------------------------------------------
+Block #46: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'rdf:type owl:ObjectProperty .\n    rdfs:domain hpc:Lsfcluster'^b' .\n    rdfs:range hpc:Host .\n'"
+hpc:DataManagerHost rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:Lsfcluster .
+    rdfs:range hpc:Host .
+--------------------------------------------------------------------------------
+Block #47: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'rdf:type owl:ObjectProperty .\n    rdfs:domain hpc:Lsfcluster'^b' .\n    rdfs:range hpc:Host .\n'"
+hpc:DataTransferNode rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:Lsfcluster .
+    rdfs:range hpc:Host .
+--------------------------------------------------------------------------------
+Block #48: BadSyntax: at line 12 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'owl:ObjectProperty .\n    rdfs:domain hpc:Lsfdatamanageradmin'^b' .\n    rdfs:range hpc:Lsfadmin .\n'"
+hpc:Lsfdatamanageradmin a owl:Class .
+hpc:hasLSFAdmin rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:Lsfdatamanageradmin .
+    rdfs:range hpc:Lsfadmin .
+--------------------------------------------------------------------------------
+Block #50: BadSyntax: at line 12 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'ObjectProperty .\n    rdfs:domain hpc:Stagingarearequirements'^b' .\n    rdfs:range hpc:Fileserver .\n'"
+hpc:Stagingarearequirements a owl:Class .
+hpc:requiresPasswordlessSSHAccess rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:Stagingarearequirements .
+    rdfs:range hpc:Fileserver .
+--------------------------------------------------------------------------------
+Block #52: BadSyntax: at line 13 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b':domain hpc:Installconfiguration .\n    rdfs:range xsd:string'^b' .\nhpc:LsfAdmins rdfs:domain hpc:Installconfiguration .\n    '..."
+# Fragment: doc_026b_chunk_0006.ttl
+hpc:Installconfiguration a owl:Class .
+hpc:LsfTop rdfs:domain hpc:Installconfiguration .
+    rdfs:range xsd:string .
+hpc:LsfAdmins rdfs:domain hpc:Installconfiguration .
+    rdfs:range xsd:string .
+hpc:LsfClusterName rdfs:domain hpc:Installconfiguration .
+    rdfs:range xsd:string .
+hpc:LsfMasterList rdfs:domain hpc:Installconfiguration .
+    rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #53: BadSyntax: at line 13 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'pc:Lsfdatamanagerparametersfile .\n    rdfs:range xsd:boolean'^b' .\nhpc:Isaccessiblefromalldatamanagerhosts rdfs:domain hpc:L'..."
+# LSF Data Manager Parameters File
+hpc:Lsfdatamanagerparametersfile a owl:Class .
+hpc:Isinenvironmentdirectory rdfs:domain hpc:Lsfdatamanagerparametersfile .
+    rdfs:range xsd:boolean .
+hpc:Isaccessiblefromalldatamanagerhosts rdfs:domain hpc:Lsfdatamanagerparametersfile .
+    rdfs:range xsd:boolean .
+--------------------------------------------------------------------------------
+Block #54: BadSyntax: at line 13 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'figuration .\n    rdfs:range hpc:Lsfdatamanagerparametersfile'^b' .\n'"
+# LSF Data Manager Object Property
+hpc:configureslsfdatamanager a owl:ObjectProperty .
+hpc:Configureslsfdatamanager rdfs:domain hpc:Installconfiguration .
+    rdfs:range hpc:Lsfdatamanagerparametersfile .
+--------------------------------------------------------------------------------
+Block #55: BadSyntax: at line 15 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'a owl:ObjectProperty .\n    rdfs:domain hpc:Datatransferqueue'^b' .\n    rdfs:range xsd:string .\nhpc:datatransfer a owl:Object'..."
+# Fragment: doc_026b_chunk_0008.ttl
+hpc:Host a owl:Class .
+hpc:Stagingarea a owl:Class .
+hpc:Datatransferqueue a owl:Class .
+hpc:queuename a owl:ObjectProperty .
+    rdfs:domain hpc:Datatransferqueue .
+    rdfs:range xsd:string .
+hpc:datatransfer a owl:ObjectProperty .
+    rdfs:domain hpc:Datatransferqueue .
+    rdfs:range xsd:boolean .
+--------------------------------------------------------------------------------
+Block #56: BadSyntax: at line 14 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'ue a owl:DatatypeProperty .\n    rdfs:domain hpc:Rusagestring'^b' .\n    rdfs:range xsd:string .\nhpc:resourcename a owl:Dataty'..."
+# Fragment: doc_0381_chunk_0001.ttl
+hpc:Taskmanenvironmentvariable a owl:Class .
+hpc:Rusagestring a owl:Class .
+hpc:resourcevalue a owl:DatatypeProperty .
+    rdfs:domain hpc:Rusagestring .
+    rdfs:range xsd:string .
+hpc:resourcename a owl:DatatypeProperty .
+    rdfs:domain hpc:Rusagestring .
+    rdfs:range xsd:string .
+hpc:issatisfiedbytask a owl:ObjectProperty .
+--------------------------------------------------------------------------------
+Block #57: BadSyntax: at line 13 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'onfile a owl:ObjectProperty .\n    rdfs:domain hpc:Lsfcluster'^b' .\n    rdfs:range xsd:string .\nhpc:hasbinarytype a owl:Datat'..."
+# Fragment: doc_0381_chunk_0002.ttl
+hpc:Lsfcluster a owl:Class .
+hpc:hasconfigurationfile a owl:ObjectProperty .
+    rdfs:domain hpc:Lsfcluster .
+    rdfs:range xsd:string .
+hpc:hasbinarytype a owl:DatatypeProperty .
+    rdfs:domain hpc:Lsfcluster .
+    rdfs:range xsd:string .
+hpc:hasfixes a owl:DatatypeProperty .
+    rdfs:domain hpc:Lsfcluster .
+--------------------------------------------------------------------------------
+Block #67: BadSyntax: at line 12 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b':Hasslot rdfs:domain hpc:Host .\n    rdfs:range rdfs:Resource'^b' .\n'"
+hpc:hasslot a owl:ObjectProperty .
+hpc:Hasslot rdfs:domain hpc:Host .
+    rdfs:range rdfs:Resource .
+--------------------------------------------------------------------------------
+Block #68: BadSyntax: at line 12 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'rdfs:domain hpc:Host .\n    rdfs:range xsd:nonNegativeInteger'^b' .\n'"
+hpc:numslots a owl:DatatypeProperty .
+hpc:Numslots rdfs:domain hpc:Host .
+    rdfs:range xsd:nonNegativeInteger .
+--------------------------------------------------------------------------------
+Block #69: BadSyntax: at line 12 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'main hpc:Paralleljob .\n    rdfs:range xsd:nonNegativeInteger'^b' .\n'"
+hpc:numcpusingroup a owl:DatatypeProperty .
+hpc:Numcpusingroup rdfs:domain hpc:Paralleljob .
+    rdfs:range xsd:nonNegativeInteger .
+--------------------------------------------------------------------------------
+Block #70: BadSyntax: at line 12 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'main hpc:Paralleljob .\n    rdfs:range xsd:nonNegativeInteger'^b' .\n'"
+hpc:maxhostgroups a owl:DatatypeProperty .
+hpc:Maxhostgroups rdfs:domain hpc:Paralleljob .
+    rdfs:range xsd:nonNegativeInteger .
+--------------------------------------------------------------------------------
+Block #75: BadSyntax: at line 13 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b's .\nhpc:bconf a owl:ObjectProperty .\n    rdfs:domain hpc:Lsf'^b' .\n    rdfs:range hpc:Configurationfile .\n'"
+# Fragment: doc_071b_chunk_0003.ttl
+hpc:Lsf a owl:Class .
+hpc:bconf a owl:ObjectProperty .
+    rdfs:domain hpc:Lsf .
+    rdfs:range hpc:Configurationfile .
+--------------------------------------------------------------------------------
+Block #76: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'LiveConfdir a owl:DatatypeProperty .\n    rdfs:domain hpc:Lsf'^b' .\n    rdfs:range xsd:string .\n'"
+hpc:lsfLiveConfdir a owl:DatatypeProperty .
+    rdfs:domain hpc:Lsf .
+    rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #77: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'\nhpc:addadmin a owl:ObjectProperty .\n    rdfs:domain hpc:Lsf'^b' .\n    rdfs:range hpc:Admin .\n'"
+hpc:addadmin a owl:ObjectProperty .
+    rdfs:domain hpc:Lsf .
+    rdfs:range hpc:Admin .
+--------------------------------------------------------------------------------
+Block #79: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'ttl\n\nhpc:lsid a owl:ObjectProperty .\n    rdfs:domain hpc:Lsf'^b' .\n    rdfs:range hpc:Lsfversion .\n'"
+hpc:lsid a owl:ObjectProperty .
+    rdfs:domain hpc:Lsf .
+    rdfs:range hpc:Lsfversion .
+--------------------------------------------------------------------------------
+Block #80: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'\nhpc:Lsfversion a owl:Class .\n    rdfs:subClassOf owl:String'^b' .\n'"
+hpc:Lsfversion a owl:Class .
+    rdfs:subClassOf owl:String .
+--------------------------------------------------------------------------------
+Block #81: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'pc:lsclusters a owl:ObjectProperty .\n    rdfs:domain hpc:Lsf'^b' .\n    rdfs:range hpc:Clusterinfo .\n'"
+hpc:lsclusters a owl:ObjectProperty .
+    rdfs:domain hpc:Lsf .
+    rdfs:range hpc:Clusterinfo .
+--------------------------------------------------------------------------------
+Block #83: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'ame a owl:DatatypeProperty .\n    rdfs:domain hpc:Clusterinfo'^b' .\n    rdfs:range xsd:string .\n'"
+hpc:clustername a owl:DatatypeProperty .
+    rdfs:domain hpc:Clusterinfo .
+    rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #84: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'tus a owl:DatatypeProperty .\n    rdfs:domain hpc:Clusterinfo'^b' .\n    rdfs:range xsd:string .\n'"
+hpc:status a owl:DatatypeProperty .
+    rdfs:domain hpc:Clusterinfo .
+    rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #85: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'ost a owl:DatatypeProperty .\n    rdfs:domain hpc:Clusterinfo'^b' .\n    rdfs:range xsd:string .\n'"
+hpc:masterhost a owl:DatatypeProperty .
+    rdfs:domain hpc:Clusterinfo .
+    rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #86: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'ame a owl:DatatypeProperty .\n    rdfs:domain hpc:Clusterinfo'^b' .\n    rdfs:range xsd:string .\n'"
+hpc:adminname a owl:DatatypeProperty .
+    rdfs:domain hpc:Clusterinfo .
+    rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #87: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'sts a owl:DatatypeProperty .\n    rdfs:domain hpc:Clusterinfo'^b' .\n    rdfs:range xsd:integer .\n'"
+hpc:hosts a owl:DatatypeProperty .
+    rdfs:domain hpc:Clusterinfo .
+    rdfs:range xsd:integer .
+--------------------------------------------------------------------------------
+Block #88: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'ers a owl:DatatypeProperty .\n    rdfs:domain hpc:Clusterinfo'^b' .\n    rdfs:range xsd:integer .\n'"
+hpc:servers a owl:DatatypeProperty .
+    rdfs:domain hpc:Clusterinfo .
+    rdfs:range xsd:integer .
+--------------------------------------------------------------------------------
+Block #89: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'\n\nhpc:bparams a owl:ObjectProperty .\n    rdfs:domain hpc:Lsf'^b' .\n    rdfs:range hpc:Configurationparameter .\n'"
+hpc:bparams a owl:ObjectProperty .
+    rdfs:domain hpc:Lsf .
+    rdfs:range hpc:Configurationparameter .
+--------------------------------------------------------------------------------
+Block #91: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'l\n\nhpc:badmin a owl:ObjectProperty .\n    rdfs:domain hpc:Lsf'^b' .\n    rdfs:range hpc:Systemruntimeinfo .\n'"
+hpc:badmin a owl:ObjectProperty .
+    rdfs:domain hpc:Lsf .
+    rdfs:range hpc:Systemruntimeinfo .
+--------------------------------------------------------------------------------
+Block #94: BadSyntax: at line 18 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'shcommand a owl:ObjectProperty .\n    rdfs:domain hpc:Lsfhost'^b' .\n    rdfs:range hpc:Lsfcommand .\nhpc:startcommand a owl:Ob'..."
+# Fragment: doc_071b_chunk_0007.ttl
+hpc:Lsfhost a owl:Class .
+hpc:Lsfcommand a owl:Class .
+hpc:Osuser a owl:Class .
+hpc:LSFAdministrator rdf:type owl:Class .
+hpc:LsfSudoersFile rdf:type owl:Class .
+hpc:LsfConfFile rdf:type owl:Class .
+hpc:lsfrshcommand a owl:ObjectProperty .
+    rdfs:domain hpc:Lsfhost .
+    rdfs:range hpc:Lsfcommand .
+--------------------------------------------------------------------------------
+Block #95: BadSyntax: at line 23 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b':domain hpc:Command .\n                 rdfs:range xsd:string'^b' .\n'"
+# Fragment: doc_071b_chunk_0010.ttl
+hpc:Lsf a owl:Class .
+hpc:Configurationfile a owl:Class .
+hpc:Daemon a owl:Class .
+hpc:Eventfile a owl:Class .
+hpc:Managementhost a owl:Class .
+hpc:Mbatchddaemon a owl:Class .
+hpc:Sbatchddaemon a owl:Class .
+hpc:Mbcschddaemon a owl:Class .
+hpc:command a owl:ObjectProperty .
+--------------------------------------------------------------------------------
+Block #96: BadSyntax: at line 16 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'Control a owl:ObjectProperty .\n    rdfs:domain hpc:LsfDaemon'^b' .\n    rdfs:range hpc:Boolean .\nhpc:AuthorizedUser a owl:Cla'..."
+# Fragment: doc_071b_chunk_0012.ttl
+hpc:LsfDaemon a owl:Class .
+hpc:Useraccount a owl:Class .
+hpc:LsfSudoersfile a owl:Class .
+hpc:WindowsServicesAdminGroup a owl:Class .
+hpc:lsfStartupControl a owl:ObjectProperty .
+    rdfs:domain hpc:LsfDaemon .
+    rdfs:range hpc:Boolean .
+hpc:AuthorizedUser a owl:Class .
+    rdfs:subClassOf hpc:Useraccount .
+--------------------------------------------------------------------------------
+Block #98: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'er a owl:ObjectProperty .\n    rdfs:domain hpc:LsfStartupUser'^b' .\n    rdfs:range xsd:string .\n'"
+hpc:hasuser a owl:ObjectProperty .
+    rdfs:domain hpc:LsfStartupUser .
+    rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #99: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'th a owl:ObjectProperty .\n    rdfs:domain hpc:LsfStartupPath'^b' .\n    rdfs:range xsd:string .\n'"
+hpc:haspath a owl:ObjectProperty .
+    rdfs:domain hpc:LsfStartupPath .
+    rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #100: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'erAdmin a owl:Class .\n    rdfs:subClassOf hpc:LsfStartupUser'^b' .\n'"
+hpc:ClusterAdmin a owl:Class .
+    rdfs:subClassOf hpc:LsfStartupUser .
+--------------------------------------------------------------------------------
+Block #101: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'dminEgo a owl:Class .\n    rdfs:subClassOf hpc:LsfStartupUser'^b' .\n'"
+hpc:AdminEgo a owl:Class .
+    rdfs:subClassOf hpc:LsfStartupUser .
+--------------------------------------------------------------------------------
+Block #103: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'mand a owl:DatatypeProperty .\n    rdfs:domain hpc:LsfCommand'^b' .\n    rdfs:range xsd:string .\n'"
+hpc:iscommand a owl:DatatypeProperty .
+    rdfs:domain hpc:LsfCommand .
+    rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #104: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'mandof a owl:ObjectProperty .\n    rdfs:domain hpc:LsfCommand'^b' .\n    rdfs:range rdf:List .\n'"
+hpc:issubcommandof a owl:ObjectProperty .
+    rdfs:domain hpc:LsfCommand .
+    rdfs:range rdf:List .
+--------------------------------------------------------------------------------
+Block #106: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'le a owl:ObjectProperty .\n    rdfs:domain hpc:LsfStartupUser'^b' .\n    rdfs:range hpc:LsfSudoersFile .\n'"
+hpc:hassudoersfile a owl:ObjectProperty .
+    rdfs:domain hpc:LsfStartupUser .
+    rdfs:range hpc:LsfSudoersFile .
+--------------------------------------------------------------------------------
+Block #107: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'it a owl:ObjectProperty .\n    rdfs:domain hpc:LsfSudoersFile'^b' .\n    rdfs:range xsd:boolean .\n'"
+hpc:hassetuidbit a owl:ObjectProperty .
+    rdfs:domain hpc:LsfSudoersFile .
+    rdfs:range xsd:boolean .
+--------------------------------------------------------------------------------
+Block #108: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'ableTo a owl:ObjectProperty .\n    rdfs:domain hpc:LsfCommand'^b' .\n    rdfs:range hpc:LsfCommand .\n'"
+hpc:applicableTo a owl:ObjectProperty .
+    rdfs:domain hpc:LsfCommand .
+    rdfs:range hpc:LsfCommand .
+--------------------------------------------------------------------------------
+Block #110: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'pControl a owl:ObjectProperty .\n    rdfs:domain hpc:UnixHost'^b' .\n    rdfs:range hpc:LsfSudoersFile .\n'"
+hpc:haslsfStartupControl a owl:ObjectProperty .
+    rdfs:domain hpc:UnixHost .
+    rdfs:range hpc:LsfSudoersFile .
+--------------------------------------------------------------------------------
+Block #113: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'rdf:type owl:ObjectProperty .\n    rdfs:domain hpc:LsfSudoers'^b' .\n    rdfs:range xsd:string .\n'"
+hpc:hasConfigurationFile rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:LsfSudoers .
+    rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #114: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'rdf:type owl:ObjectProperty .\n    rdfs:domain hpc:LsfSudoers'^b' .\n'"
+hpc:hasParameter rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:LsfSudoers .
+--------------------------------------------------------------------------------
+Block #115: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'type owl:DatatypeProperty .\n    rdfs:domain hpc:Hasparameter'^b' .\n    rdfs:range xsd:string .\n'"
+hpc:hasSyntax rdf:type owl:DatatypeProperty .
+    rdfs:domain hpc:Hasparameter .
+    rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #116: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'type owl:DatatypeProperty .\n    rdfs:domain hpc:Hasparameter'^b' .\n'"
+hpc:defaultBehavior rdf:type owl:DatatypeProperty .
+    rdfs:domain hpc:Hasparameter .
+--------------------------------------------------------------------------------
+Block #117: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'type owl:ObjectProperty .\n    rdfs:domain hpc:LsfStartupuser'^b' .\n'"
+hpc:enablesLSFDaemonStartupByUsers rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:LsfStartupuser .
+--------------------------------------------------------------------------------
+Block #118: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'roperty .\n    rdfs:domain hpc:Enableslsfdaemonstartupbyusers'^b' .\n    rdfs:range hpc:LsfSudoers .\n'"
+hpc:allowsLSFAdministrators rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:Enableslsfdaemonstartupbyusers .
+    rdfs:range hpc:LsfSudoers .
+--------------------------------------------------------------------------------
+Block #119: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'roperty .\n    rdfs:domain hpc:Enableslsfdaemonstartupbyusers'^b' .\n'"
+hpc:specifiedUserAccounts rdf:type owl:DatatypeProperty .
+    rdfs:domain hpc:Enableslsfdaemonstartupbyusers .
+--------------------------------------------------------------------------------
+Block #120: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'type owl:ObjectProperty .\n    rdfs:domain hpc:LsfStartupuser'^b' .\n'"
+hpc:enablesLSFDaemonStartupBySingleUser rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:LsfStartupuser .
+--------------------------------------------------------------------------------
+Block #121: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'ty .\n    rdfs:domain hpc:Enableslsfdaemonstartupbysingleuser'^b' .\n'"
+hpc:specifiedUser rdf:type owl:DatatypeProperty .
+    rdfs:domain hpc:Enableslsfdaemonstartupbysingleuser .
+--------------------------------------------------------------------------------
+Block #122: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'type owl:ObjectProperty .\n    rdfs:domain hpc:LsfStartuppath'^b' .\n'"
+hpc:specifiesDirectory rdf:type owl:ObjectProperty .
+    rdfs:domain hpc:LsfStartuppath .
+--------------------------------------------------------------------------------
+Block #123: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'wl:DatatypeProperty .\n    rdfs:domain hpc:Specifiesdirectory'^b' .\n'"
+hpc:containsLSFDaemonBinaryFiles rdf:type owl:DatatypeProperty .
+    rdfs:domain hpc:Specifiesdirectory .
+--------------------------------------------------------------------------------
+Block #124: BadSyntax: at line 17 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b' .\n                                   rdfs:range xsd:boolean'^b' .\nhpc:Promptsforrestart rdfs:domain hpc:Reconfigcommand .\n '..."
+# Fragment: doc_071b_chunk_0018.ttl
+hpc:Lsfcluster a owl:Class .
+hpc:Rootuser a owl:Class .
+hpc:Limdaemon a owl:Class .
+hpc:Mbatchddaemon a owl:Class .
+hpc:reconfigcommand a owl:ObjectProperty .
+hpc:Checksforconfigurationerrors rdfs:domain hpc:Reconfigcommand .
+                                   rdfs:range xsd:boolean .
+hpc:Promptsforrestart rdfs:domain hpc:Reconfigcommand .
+                      rdfs:range xsd:string .
+--------------------------------------------------------------------------------
+Block #125: BadSyntax: at line 14 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'veConfdir a owl:DatatypeProperty .\n    rdfs:domain hpc:Bconf'^b' .\n    rdfs:range xsd:string .\nhpc:lsfConfdir a owl:Datatype'..."
+# Fragment: doc_071b_chunk_0020.ttl
+hpc:Bconf a owl:Class .
+hpc:Liveconfiguration a owl:Class .
+hpc:lsfLiveConfdir a owl:DatatypeProperty .
+    rdfs:domain hpc:Bconf .
+    rdfs:range xsd:string .
+hpc:lsfConfdir a owl:DatatypeProperty .
+    rdfs:domain hpc:Bconf .
+    rdfs:range xsd:string .
+hpc:bconfhist a owl:ObjectProperty .
+--------------------------------------------------------------------------------
+Block #126: BadSyntax: at line 13 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'owl:DatatypeProperty .\n    rdfs:domain hpc:Liveconfiguration'^b' .\n    rdfs:range xsd:anyURI .\n'"
+# Fragment: doc_071b_chunk_0022.ttl
+hpc:Liveconfiguration a owl:Class .
+hpc:lsfconfdir a owl:DatatypeProperty .
+    rdfs:domain hpc:Liveconfiguration .
+    rdfs:range xsd:anyURI .
+--------------------------------------------------------------------------------
+Block #127: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'tion a owl:Class .\n    rdfs:subClassOf hpc:Liveconfiguration'^b' .\n'"
+hpc:Livereconfiguration a owl:Class .
+    rdfs:subClassOf hpc:Liveconfiguration .
+--------------------------------------------------------------------------------
+Block #129: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'owl:ObjectProperty .\n    rdfs:domain hpc:Livereconfiguration'^b' .\n    rdfs:range hpc:Liveconfiguration .\n'"
+hpc:definelsfliveconfdir a owl:ObjectProperty .
+    rdfs:domain hpc:Livereconfiguration .
+    rdfs:range hpc:Liveconfiguration .
+--------------------------------------------------------------------------------
+Block #130: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'wl:ObjectProperty .\n    rdfs:domain hpc:Definelsfliveconfdir'^b' .\n    rdfs:range hpc:Livereconfigprocedure .\n    rdfs:range'..."
+hpc:reapplynewparametersetting a owl:ObjectProperty .
+    rdfs:domain hpc:Definelsfliveconfdir .
+    rdfs:range hpc:Livereconfigprocedure .
+    rdfs:range hpc:Lsfreconfigcommand .
+--------------------------------------------------------------------------------
+Block #132: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b' a owl:NamedIndividual .\n    rdf:type hpc:LsfReconfigCommand'^b' .\n'"
+hpc:BadminMbdrestart a owl:NamedIndividual .
+    rdf:type hpc:LsfReconfigCommand .
+--------------------------------------------------------------------------------
+Block #133: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'owl:DatatypeProperty .\n    rdfs:domain hpc:Liveconfiguration'^b' .\n    rdfs:range xsd:anyURI .\n'"
+hpc:lsfliveconfdirdirectory a owl:DatatypeProperty .
+    rdfs:domain hpc:Liveconfiguration .
+    rdfs:range xsd:anyURI .
+--------------------------------------------------------------------------------
+Block #134: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'a owl:ObjectProperty .\n    rdfs:domain hpc:Lsfrestartcommand'^b' .\n    rdfs:range hpc:File .\n'"
+hpc:fileinliveconfdirreadpreferred a owl:ObjectProperty .
+    rdfs:domain hpc:Lsfrestartcommand .
+    rdfs:range hpc:File .
+--------------------------------------------------------------------------------
+Block #135: BadSyntax: at line 11 of <>:
+Bad syntax (objectList expected) at ^ in:
+"...b'ue a owl:Class .\n    rdfs:subClassOf hpc:Livereconfiguration'^b' .\n'"
+hpc:Addusersharetofairsharequeue a owl:Class .
+    rdfs:subClassOf hpc:Livereconfiguration .

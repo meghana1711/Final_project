@@ -1,0 +1,27 @@
+hpc:Lsfversion101Fixpack2 a owl:Class .
+hpc:defaulttimeintervalforbwaitcommand a owl:ObjectProperty .
+hpc:Defaulttimeintervalforbwaitcommand rdfs:domain hpc:Lsfversion101Fixpack2 .
+hpc:Defaulttimeintervalforbwaitcommand rdfs:range xsd:nonNegativeInteger .
+hpc:defaultTimeIntervalForBwaitCommand rdfs:comment "Specifies the default time interval to reregister the wait condition from the bwait command to the mbatchd daemon, in minutes." .
+hpc:lsbQueryPort a owl:ObjectProperty .
+hpc:LsbQueryPort rdfs:domain hpc:Lsfversion101Fixpack2 .
+hpc:LsbQueryPort rdfs:range xsd:nonNegativeInteger .
+hpc:LSB_QUERY_PORT rdfs:comment "Specifies the port number that the mbatchd daemon uses for LSF query requests." .
+hpc:LsbQueryPort1 rdfs:subClassOf hpc:LsbQueryPort .
+hpc:LSB_QUERY_PORT1 rdfs:comment "Enables the multithread mbatchd job query daemon." .
+hpc:LsbQueryPort2 rdfs:subClassOf hpc:LsbQueryPort .
+hpc:LSB_QUERY_PORT2 rdfs:comment "Extends multithreaded query support to batch query requests." .
+hpc:lsfDcgmPort a owl:ObjectProperty .
+hpc:LsfDcgmPort rdfs:domain hpc:Lsfversion101Fixpack2 .
+hpc:LsfDcgmPort rdfs:range xsd:nonNegativeInteger .
+hpc:LSF_DCGM_PORT rdfs:comment "Specifies the port number that LSF uses to communicate with the DCGM daemon." .
+hpc:LsfDcgmPort1 rdfs:subClassOf hpc:LsfDcgmPort .
+hpc:LSF_DCGM_PORT1 rdfs:comment "Enables the NVIDIA Data Center GPU Manager (DCGM) features." .
+hpc:LsfDcgmPort2 rdfs:subClassOf hpc:LsfDcgmPort .
+hpc:LSF_DCGM_PORT2 rdfs:comment "Allows units that are defined by the LSF_UNIT_FOR_LIMITS parameter to also apply cluster-wide to the tmp resource." .
+hpc:lsfMaxResourceInstances a owl:ObjectProperty .
+hpc:LsfMaxResourceInstances rdfs:domain hpc:Lsfversion101Fixpack2 .
+hpc:LsfMaxResourceInstances rdfs:range xsd:nonNegativeInteger .
+hpc:LSF_MAX_RESOURCE_INSTANCES rdfs:comment "Specifies the maximum number of resource instances that can be launched for any template for any resource provider in the cluster." .
+hpc:LSF_MAX_RESOURCE_INSTANCES rdfs:default "50" .
+hpc:LSB_BHOSTS_

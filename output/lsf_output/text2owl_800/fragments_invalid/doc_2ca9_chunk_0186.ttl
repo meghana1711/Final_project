@@ -1,0 +1,58 @@
+hpc:Ubuntu2004Lts a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf hpc:Os ] ;
+    hpc:hasKernel 5.4 ;
+    hpc:hasGlibc 2.31 .
+
+hpc:Ubuntu2204Lts a owl:Class ;
+    rdfs:subClassOf hpc:Ubuntu2004Lts ;
+    hpc:hasKernel 5.15 ;
+    hpc:hasGlibc 2.31 ;
+    hpc:hasGlibc 2.35 .
+
+hpc:Ubuntu2404Lts a owl:Class ;
+    rdfs:subClassOf hpc:Ubuntu2004Lts ;
+    hpc:hasKernel 6.8 ;
+    hpc:hasGlibc 2.39 .
+
+hpc:RockylinuxX86 a owl:Class ;
+    rdfs:subClassOf hpc:Os ;
+    hpc:hasKernel 5.14 ;
+    hpc:hasGlibc 2.34 .
+
+hpc:IbmPower a owl:Class ;
+    rdfs:subClassOf hpc:Os .
+
+hpc:IbmPower9Le a owl:Class ;
+    rdfs:subClassOf hpc:IbmPower ;
+    hpc:Hasos hpc:leRhel8 .
+
+hpc:IbmPower10Lerhel8 a owl:Class ;
+    rdfs:subClassOf hpc:IbmPower ;
+    hpc:hasKernel 4.18 ;
+    hpc:hasGlibc 2.28 ;
+    hpc:Hasos hpc:rhel8 .
+
+hpc:Sles15x a owl:Class ;
+    rdfs:subClassOf hpc:Os ;
+    hpc:hasKernel 5.3.18 ;
+    hpc:hasGlibc 2.26 .
+
+hpc:CentosStream9 a owl:Class ;
+    rdfs:subClassOf hpc:Os ;
+    hpc:hasKernel 5.14 ;
+    hpc:hasGlibc 2.34 .
+
+hpc:LinuxArmAarch64 a owl:Class ;
+    rdfs:subClassOf hpc:Os ;
+    hpc:hasArchitecture "ARMv8" .
+
+hpc:LinuxArmAarch64Armv8Support a owl:Class ;
+    rdfs:subClassOf hpc:LinuxArmAarch64 ;
+    hpc:Hasos hpc:lsf101Linux312-glibc2_17-armv8_tar_Z .
+
+hpc:AppleMacos a owl:Class ;
+    rdfs:subClassOf hpc:Os ;
+    hpc:hasArchitecture "ARM64" .
+
+hpc:Apple_macOS_ARM64_13

@@ -1,0 +1,54 @@
+hpc:Mungeservice a owl:Class .
+hpc:enablemunge a owl:ObjectProperty ;
+    rdfs:domain hpc:Mungeservice ;
+    rdfs:range xsd:boolean .
+
+hpc:startmunge a owl:ObjectProperty ;
+    rdfs:domain hpc:Mungeservice ;
+    rdfs:range xsd:boolean .
+
+hpc:Slurmdaemon a owl:Class .
+hpc:restart a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmdaemon ;
+    rdfs:range xsd:boolean .
+
+hpc:slurmauthtype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmdaemon ;
+    rdfs:range xsd:string .
+
+hpc:slurmcredtype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmdaemon ;
+    rdfs:range xsd:string .
+
+hpc:Slurmkey a owl:Class .
+hpc:createslurmkey a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmkey ;
+    rdfs:range rdf:Resource .
+
+hpc:ownslurmkey a owl:ObjectProperty ;
+    rdfs:domain xsd:string ;
+    rdfs:range hpc:Slurmuser .
+
+hpc:Slurmuser a owl:Class .
+
+hpc:protectslurmkey a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmkey ;
+    rdfs:range xsd:boolean .
+
+hpc:distributeslurmkey a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurmkey ;
+    rdfs:range rdf:Resource .
+
+hpc:Slurmconf a owl:Class ;
+    rdfs:subClassOf hpc:Slurmdaemon .
+
+hpc:Slurmdbdconf a owl:Class ;
+    rdfs:subClassOf hpc:Slurmdaemon .
+
+hpc:authtype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmconf ;
+    rdfs:range xsd:string .
+
+hpc:credtype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmdbdconf ;
+    rdfs:range xsd:string .

@@ -1,0 +1,31 @@
+hpc:Lsfinstallationscriptpackage a owl:Class .
+hpc:extractedlsfinstallationscript a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfinstallationscriptpackage ;
+    rdfs:range hpc:Extractedlsfinstallationscript .
+
+hpc:Extractedlsfinstallationscript a owl:Class .
+
+hpc:Linuxplatform a owl:Class ;
+    rdfs:subClassOf hpc:Platform .
+
+hpc:Linuxx8664 a owl:Class ;
+    rdfs:subClassOf hpc:Linuxplatform .
+
+hpc:Otherplatform a owl:Class ;
+    rdfs:subClassOf hpc:Platform .
+
+hpc:Lsfdistributionpackage a owl:Class .
+hpc:hosttype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdistributionpackage ;
+    rdfs:range xsd:string .
+
+hpc:Lsfentitlementfile a owl:Class .
+hpc:edition a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfentitlementfile ;
+    rdfs:range xsd:string .
+
+hpc:Lsfupgradepreparation a owl:Class .
+hpc:deactivatequeues a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfupgradepreparation .
+hpc:backupconfigurationfiles a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfupgradepreparation .

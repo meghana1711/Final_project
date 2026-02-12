@@ -1,0 +1,58 @@
+hpc:Esub a owl:Class .
+hpc:Epsub a owl:Class .
+
+hpc:hassubmissionoptions a owl:ObjectProperty .
+hpc:Hassubmissionoptions rdfs:domain hpc:Esub ;
+                          rdfs:range rdf:Resource .
+
+hpc:hasjobid a owl:DatatypeProperty .
+hpc:Hasjobid rdfs:domain hpc:Esub ;
+             rdfs:range xsd:string .
+
+hpc:hasjobarrayindex a owl:DatatypeProperty .
+hpc:Hasjobarrayindex rdfs:domain hpc:Esub ;
+                     rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasfinalqueue a owl:ObjectProperty .
+hpc:Hasfinalqueue rdfs:domain hpc:Esub ;
+                  rdfs:range xsd:string .
+
+hpc:hasjoberror a owl:DatatypeProperty .
+hpc:Hasjoberror rdfs:domain hpc:Esub ;
+                rdfs:range xsd:nonNegativeInteger .
+
+hpc:runsonsubmissionhost a owl:ObjectProperty .
+hpc:Runsonsubmissionhost rdfs:domain hpc:Epsub ;
+                         rdfs:range hpc:Esub .
+
+hpc:runsafterjobsubmission a owl:ObjectProperty .
+hpc:Runsafterjobsubmission rdfs:domain hpc:Epsub ;
+                            rdfs:range rdf:Resource .
+
+hpc:passesjobinfotoentity a owl:ObjectProperty .
+hpc:Passesjobinfotoentity rdfs:domain hpc:Epsub ;
+                           rdfs:range rdf:Resource .
+
+hpc:postsjobinfotolocallogfile a owl:ObjectProperty .
+hpc:Postsjobinfotolocallogfile rdfs:domain hpc:Epsub ;
+                                 rdfs:range rdf:Resource .
+
+hpc:performsgenerallogic a owl:ObjectProperty .
+hpc:Performsgenerallogic rdfs:domain hpc:Epsub ;
+                           rdfs:range rdf:Resource .
+
+hpc:lsbSubParmFile a owl:DatatypeProperty .
+hpc:LsbSubParmFile rdfs:domain hpc:Epsub ;
+                      rdfs:range xsd:string .
+
+hpc:lsbSubJobId a owl:DatatypeProperty .
+hpc:LsbSubJobId rdfs:domain hpc:Esub ;
+                rdfs:range xsd:string .
+
+hpc:lsbSubJobQueue a owl:DatatypeProperty .
+hpc:LsbSubJobQueue rdfs:domain hpc:Esub ;
+              rdfs:range xsd:string .
+
+hpc:lsbSubJobErr a owl:DatatypeProperty .
+hpc:LsbSubJobErr rdfs:domain hpc:Esub ;
+             rdfs:range xsd:nonNegativeInteger .

@@ -1,0 +1,60 @@
+hpc:Joboption a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Options related to job names." ;
+    rdfs:comment "Can contain up to 4094 characters." ;
+    rdfs:comment "Can be modified for a pending job." .
+
+hpc:Modifiablejoboption a owl:Class ;
+    rdfs:subClassOf hpc:Joboption ;
+    rdfs:comment "Options that can be modified for a pending job." .
+
+hpc:Unmodifiablejoboption a owl:Class ;
+    rdfs:subClassOf hpc:Joboption ;
+    rdfs:comment "Options that cannot be modified for a pending job." .
+
+hpc:Unmodifiableonsubmissionclusterjoboption a owl:Class ;
+    rdfs:subClassOf hpc:Unmodifiablejoboption ;
+    rdfs:domain hpc:Joboption ;
+    rdfs:range hpc:Joboption ;
+    rdfs:comment "Options that cannot be modified on the submission cluster." .
+
+hpc:Unmodifiableonexecutionclusterjoboption a owl:Class ;
+    rdfs:subClassOf hpc:Unmodifiablejoboption ;
+    rdfs:domain hpc:Joboption ;
+    rdfs:range hpc:Joboption ;
+    rdfs:comment "Options that cannot be modified on the execution cluster." .
+
+hpc:Modifiableonsubmissionclusterjoboption a owl:Class ;
+    rdfs:subClassOf hpc:Modifiablejoboption ;
+    rdfs:domain hpc:Joboption ;
+    rdfs:range hpc:Joboption ;
+    rdfs:comment "Modifications take effect only on the submission cluster." .
+
+hpc:Cancellationoption a owl:Class ;
+    rdfs:subClassOf hpc:Joboption ;
+    rdfs:domain hpc:Joboption ;
+    rdfs:range hpc:Joboption ;
+    rdfs:comment "Options related to job cancellation." .
+
+hpc:jobbegintimeoption a owl:DatatypeProperty ;
+    rdfs:domain hpc:Joboption ;
+    rdfs:range xsd:time ;
+    rdfs:comment "Option to modify the job begin time." .
+
+hpc:Esubexecutablefile a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Executable files invoked by the bsub command." .
+
+hpc:Jobenvironmentchangeableesub a owl:Class ;
+    rdfs:subClassOf hpc:Esubexecutablefile ;
+    rdfs:domain hpc:Esubexecutablefile ;
+    rdfs:range hpc:Esubexecutablefile ;
+    rdfs:comment "Esub executable files that can change the job environment on the submission host." .
+
+hpc:Jobenvironmentnotchangeableesub a owl:Class ;
+    rdfs:subClassOf hpc:Esubexecutablefile ;
+    rdfs:domain hpc:Esubexecutablefile ;
+    rdfs:range hpc:Esubexecutablefile ;
+    rdfs:comment "Esub executable files that cannot change the job environment." .
+
+hpc:Argumentmodifiableesub a owl:Class ;

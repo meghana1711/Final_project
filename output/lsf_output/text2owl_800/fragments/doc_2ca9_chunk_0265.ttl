@@ -1,0 +1,17 @@
+hpc:lsbGslaPreferAdrsvHost a owl:ObjectProperty .
+hpc:LsbGslaPreferAdrsvHost rdfs:domain xsd:string .
+hpc:LsbGslaPreferAdrsvHost rdfs:range xsd:string .
+
+hpc:LsbGpdCluster a owl:Class .
+
+hpc:lsbGpdPort a owl:ObjectProperty .
+hpc:LsbGpdPort rdfs:domain xsd:integer .
+hpc:LsbGpdPort rdfs:range xsd:integer .
+
+hpc:lsbSuppressCustomReasons a owl:ObjectProperty .
+hpc:LsbSuppressCustomReasons rdfs:domain xsd:string .
+hpc:LsbSuppressCustomReasons rdfs:range xsd:string .
+
+hpc:lsbTerminalServicePort a owl:DatatypeProperty .
+hpc:LsbTerminalServicePort rdfs:domain xsd:integer .
+hpc:LsbTerminalServicePort rdfs:range xsd:integer .

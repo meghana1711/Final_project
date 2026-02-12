@@ -1,0 +1,35 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents a job in the LSF system." .
+
+hpc:Action a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:comment "Represents an action that can be performed on a job." .
+
+hpc:Terminateaction a owl:Class ;
+    rdfs:subClassOf hpc:Action ;
+    rdfs:comment "Represents the termination action for a job." .
+
+hpc:terminateactionshellcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Terminateaction ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The command to be run for the termination action, using /bin/sh -c." .
+
+hpc:NullDevice a xsd:string ;
+    rdfs:comment "The null device on UNIX, used for redirecting standard input, output, and error of a command." .
+
+hpc:JobUser a xsd:string ;
+    rdfs:comment "The user under which the job's actions are run." .
+
+hpc:JobEnvironment a rdf:List ;
+    rdfs:comment "The environment variables set for the job." .
+
+hpc:checkpointaction a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Action ;
+    rdfs:comment "The action that causes the system to checkpoint the job." .
+
+hpc:checkpointactionbehavior a owl:ObjectProperty ;
+    rdfs:domain hpc:Terminateaction ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the checkpoint action also terminates the job." .

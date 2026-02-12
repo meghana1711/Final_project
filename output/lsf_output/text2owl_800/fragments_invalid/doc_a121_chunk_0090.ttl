@@ -1,0 +1,31 @@
+hpc:UgPriority a owl:Class ;
+    rdfs:subClassOf owl:Real .
+
+hpc:hasugPriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:AdminFactor a owl:Class ;
+    rdfs:subClassOf owl:Real .
+
+hpc:hasadminFactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:getjobinfofrom a owl:ObjectProperty ;
+    rdfs:domain hpc:Factor ;
+    rdfs:range hpc:Jobinformationsource .
+
+hpc:Jobinformationsource a owl:Class .
+
+hpc:Job a owl:Class .
+
+hpc:Compoundresourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    hpc:hasmem a owl:DatatypeProperty ;
+    hpc:hasReservedPerSlot owl:ObjectProperty ;
+    rdfs:domain hpc:Compoundresourcerequirement ;
+    hpc:Hasreservedperslot rdfs:range xsd:boolean .
+
+hpc:hasmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .

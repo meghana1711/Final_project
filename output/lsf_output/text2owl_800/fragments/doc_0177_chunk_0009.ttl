@@ -1,0 +1,15 @@
+hpc:Host a owl:Class .
+hpc:status a owl:ObjectProperty .
+hpc:provStatus a owl:DatatypeProperty .
+hpc:rcStatus a owl:DatatypeProperty .
+hpc:updatedAt a owl:DatatypeProperty .
+
+hpc:Host rdfs:subClassOf owl:Class .
+hpc:Status rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+hpc:ProvStatus rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+hpc:RcStatus rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+hpc:UpdatedAt rdfs:domain hpc:Host ;
+    rdfs:range xsd:dateTime .

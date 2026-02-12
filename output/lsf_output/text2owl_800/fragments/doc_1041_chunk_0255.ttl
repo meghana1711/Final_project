@@ -1,0 +1,53 @@
+hpc:Jobfiltering a owl:Class ;
+    rdfs:subClassOf hpc:Hpcoperation .
+
+hpc:datafilter a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobfiltering ;
+    rdfs:range hpc:Job .
+
+hpc:Datarequirement a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:environmentvariables a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Environmentvariable .
+
+hpc:jobforwarding a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobfiltering ;
+    rdfs:range hpc:Job .
+
+hpc:usergroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobfiltering ;
+    rdfs:range hpc:Usergroup .
+
+hpc:jobgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobfiltering ;
+    rdfs:range hpc:Jobgroup .
+
+hpc:gpujoballocation a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Gpujoballocationinfo .
+
+hpc:hmstimeformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Gpujoballocationinfo ;
+    rdfs:range xsd:string .
+
+hpc:hostfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Hostfileinfo .
+
+hpc:jobname a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobfiltering ;
+    rdfs:range xsd:string .
+
+hpc:jobdescription a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobfiltering ;
+    rdfs:range xsd:string .
+
+hpc:jsonoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobfiltering ;
+    rdfs:range xsd:string .
+
+hpc:customoutputformat a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpujoballocationinfo ;
+    rdfs:range xsd:string .

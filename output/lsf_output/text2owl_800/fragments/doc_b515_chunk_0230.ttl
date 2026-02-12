@@ -1,0 +1,52 @@
+hpc:Host a owl:Class .
+hpc:Computeunit a owl:Class .
+hpc:Hostgroup a owl:Class .
+
+hpc:release a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range rdf:Void .
+
+hpc:lastterm a owl:ObjectProperty ;
+    rdfs:domain hpc:Compoundresourcerequirement ;
+    rdfs:range hpc:Task .
+
+hpc:subsequentlastterms a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range rdf:List .
+
+hpc:request a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range rdf:Void .
+
+hpc:pendingrequest a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:Void .
+
+hpc:tasklimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Autoresizablejob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:pendingdemand a owl:ObjectProperty ;
+    rdfs:domain hpc:Autoresizablejob ;
+    rdfs:range rdf:Void .
+
+hpc:cancelpendingdemand a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range rdf:Void .
+
+hpc:Jobowner a owl:Class ;
+    rdfs:subClassOf hpc:User .
+
+hpc:Clusteradmin a owl:Class ;
+    rdfs:subClassOf hpc:User .
+
+hpc:Queueadmin a owl:Class ;
+    rdfs:subClassOf hpc:User .
+
+hpc:Usergroupadmin a owl:Class ;
+    rdfs:subClassOf hpc:User .
+
+hpc:resizenotificationcommand a owl:ObjectProperty .

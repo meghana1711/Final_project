@@ -1,0 +1,28 @@
+hpc:Mpiapplication a owl:Class .
+hpc:mpiruncommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Mpiapplication ;
+    rdfs:range rdf:Seq .
+
+hpc:numberofprocessors a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mpiapplication ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hostselection a owl:ObjectProperty ;
+    rdfs:domain hpc:Mpiapplication ;
+    rdfs:range rdf:Seq .
+
+hpc:Jobrequest a owl:Class ;
+    rdfs:subClassOf hpc:Mpiapplication .
+
+hpc:numberoftasks a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobrequest ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:taskplacement a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobrequest ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:taskplacementlimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobrequest ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:subPropertyOf hpc:TaskPlacement .

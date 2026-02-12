@@ -1,0 +1,23 @@
+hpc:Jobstatus a owl:Class .
+hpc:Pending a owl:Class ;
+    rdfs:subClassOf hpc:Jobstatus .
+hpc:Prov a owl:Class ;
+    rdfs:subClassOf hpc:Jobstatus .
+hpc:Running a owl:Class ;
+    rdfs:subClassOf hpc:Jobstatus .
+hpc:Suspendedbyowner a owl:Class ;
+    rdfs:subClassOf hpc:Jobstatus .
+hpc:Suspendedbylsfadmin a owl:Class ;
+    rdfs:subClassOf hpc:Jobstatus .
+hpc:Suspendedbylsf a owl:Class ;
+    rdfs:subClassOf hpc:Jobstatus .
+
+hpc:loadsched a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:loadstop a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:Job a owl:Class .

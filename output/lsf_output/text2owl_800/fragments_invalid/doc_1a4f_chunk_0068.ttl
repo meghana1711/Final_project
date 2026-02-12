@@ -1,0 +1,52 @@
+hpc:Host a owl:Class .
+hpc:HostStartupCommand rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:HostAddition rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:RemovalOfHost rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:HostManagement rdf:type owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Automaticrestarting hpc:hostmanagement ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Manualrestarting hpc:hostmanagement ;
+    rdfs:subClassOf owl:Class .
+
+hpc:HostSetupCommand rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Automaticrestarting ;
+    rdfs:range xsd:string .
+
+hpc:HostDaemon rdf:type owl:Class .
+
+hpc:StartDaemon rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Hostdaemon ;
+    rdfs:range xsd:string .
+
+hpc:RemoteStartDaemon rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range rdf:List .
+
+hpc:RemoteStartDaemonMember rdf:type owl:ObjectProperty ;
+    rdfs:domain rdf:List ;
+    rdfs:range xsd:string .
+
+hpc:AddHostToCluster rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:HostConfigurationFile rdf:type owl:Class .
+
+hpc:HostRemoval rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+
+hpc:ManagementHost rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Host .

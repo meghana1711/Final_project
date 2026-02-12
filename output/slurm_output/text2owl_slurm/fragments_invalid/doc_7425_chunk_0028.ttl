@@ -1,0 +1,31 @@
+hpc:Developer a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Openapi a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Plugin a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Dataparser a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Node a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Slurm a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Tres a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Associations a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Wckeys a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Jobproperties a owl:Class ;
+    rdfs:subClassOf rdf:Resource .
+
+hpc:Tresupdate a owl:Class ;

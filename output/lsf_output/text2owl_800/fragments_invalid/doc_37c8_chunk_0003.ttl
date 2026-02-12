@@ -1,0 +1,30 @@
+hpc:Job a owl:Class .
+hpc:Hasgpuresource hpc:objectproperty .
+hpc:Gpuresource a owl:Class .
+hpc:Hasmodel rdfs:domain hpc:Gpuresource ;
+                 rdfs:range xsd:string .
+hpc:Haslink rdfs:domain hpc:Gpuresource ;
+              rdfs:range xsd:string .
+hpc:Exclusiveprocessgpu rdfs:subClassOf hpc:Gpuresource .
+hpc:Teslap100 rdfs:subClassOf hpc:Gpuresource .
+hpc:Hasnum rdfs:domain hpc:Exclusiveprocessgpu ;
+             rdfs:range xsd:nonNegativeInteger .
+hpc:Hasmode rdfs:domain hpc:Exclusiveprocessgpu ;
+             rdfs:range xsd:string .
+hpc:Container a owl:Class .
+hpc:Usescontainerruntime hpc:objectproperty .
+hpc:Containerruntime a owl:Class .
+hpc:Supportsgpu hpc:objectproperty .
+hpc:Lsfcontainer rdfs:subClassOf hpc:Container .
+hpc:Jobbasedcontainer rdfs:subClassOf hpc:Lsfcontainer .
+hpc:Containerimage rdfs:domain hpc:Container ;
+                rdfs:range xsd:string .
+hpc:Runson rdfs:domain hpc:Container ;
+             rdfs:range xsd:string .
+hpc:Isportable rdfs:domain hpc:Container .
+hpc:Supportedby rdfs:domain hpc:Containerruntime ;
+              rdfs:range xsd:string .
+hpc:Supportsdocker rdfs:domain hpc:Containerruntime .
+hpc:Supportssingularity rdfs:domain hpc:Containerruntime .
+hpc:Supportsshifter rdfs:domain hpc:Containerruntime .
+hpc:Usesnvidiadocker rdfs:domain hpc:Containerruntime .

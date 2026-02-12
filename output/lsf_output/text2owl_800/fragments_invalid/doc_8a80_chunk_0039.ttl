@@ -1,0 +1,12 @@
+hpc:Servicedomain a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:clusterdistribution a owl:ObjectProperty .
+hpc:Servicedomain rdfs:subClassOf owl:Class .
+hpc:Cluster rdfs:subClassOf owl:Class .
+hpc:Clusterdistribution rdfs:domain hpc:Servicedomain ;
+                               rdfs:range rdf:List .
+hpc:ServiceDomain rdfs:subPropertyOf hpc:ClusterDistribution ;
+                   rdfs:range rdf:List .
+hpc:Cluster shares rdfs:range xsd:integer .
+hpc:Cluster min rdfs:range xsd:integer .
+hpc:Cluster max rdfs:range xsd:integer .

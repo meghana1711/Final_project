@@ -1,0 +1,27 @@
+hpc:Resourcecategory a owl:Class .
+hpc:Jobsubmission a owl:Class .
+
+hpc:coreisolation a owl:ObjectProperty .
+hpc:Coreisolation rdfs:domain hpc:Jobsubmission ;
+                   rdfs:range xsd:integer .
+
+hpc:csmintegration a owl:ObjectProperty .
+hpc:Csmintegration rdfs:domain hpc:Jobsubmission ;
+                    rdfs:range hpc:Csm .
+
+hpc:Csm a owl:Class .
+
+hpc:csmexpertmode a owl:ObjectProperty .
+hpc:Csmexpertmode rdfs:domain hpc:Csm ;
+                   rdfs:range xsd:boolean .
+
+hpc:resourcerequirement a owl:DatatypeProperty .
+hpc:Resourcerequirement rdfs:domain hpc:Csm ;
+                          rdfs:range xsd:string .
+
+hpc:coreisolationlevel a owl:DatatypeProperty .
+hpc:Coreisolationlevel rdfs:domain hpc:Coreisolation ;
+                          rdfs:range xsd:integer .
+
+hpc:CoreIsolationLevel_default a xsd:integer .
+hpc:CoreIsolationLevel_default 0 .

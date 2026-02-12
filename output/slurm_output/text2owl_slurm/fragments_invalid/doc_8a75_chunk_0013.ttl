@@ -1,0 +1,25 @@
+@base <http://example.org/hpc/>
+
+hpc:slurmtaskspernode a owl:ObjectProperty .
+hpc:slurmtopologyaddr a owl:ObjectProperty .
+hpc:slurmtopologyaddrpattern a owl:ObjectProperty .
+hpc:slurmwckey a owl:DatatypeProperty .
+hpc:slurmdnodename a owl:DatatypeProperty .
+
+hpc:slurmtaskspernode a owl:ObjectProperty ;
+    rdfs:domain SrunProlog . ;
+    rdfs:domain TaskProlog . ;
+    rdfs:domain SrunEpilog . ;
+    rdfs:domain TaskEpilog .
+
+hpc:slurmtopologyaddr a owl:ObjectProperty ;
+    rdfs:domain SrunProlog . ;
+    rdfs:domain TaskProlog . ;
+    rdfs:domain SrunEpilog . ;
+    rdfs:domain TaskEpilog .
+
+hpc:slurmtopologyaddrpattern a owl:ObjectProperty ;
+    rdfs:domain SrunProlog . ;
+    rdfs:domain TaskProlog . ;
+    rdfs:domain SrunEpilog . ;
+    r

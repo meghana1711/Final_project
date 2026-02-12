@@ -1,0 +1,29 @@
+hpc:Server a owl:Class .
+hpc:hasstaticresource a owl:ObjectProperty ;
+    rdfs:domain hpc:Server ;
+    rdfs:range xsd:integer .
+
+hpc:isclient a owl:ObjectProperty ;
+    rdfs:domain hpc:Server .
+
+hpc:isserver a owl:ObjectProperty ;
+    rdfs:domain hpc:Server .
+
+hpc:numberofcpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Server ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:egoDefineNcpus a owl:ObjectProperty ;
+    rdfs:domain hpc:Numberofcpus .
+
+hpc:hasvalue a owl:ObjectProperty ;
+    rdfs:domain hpc:EgoDefineNcpus ;
+    rdfs:range xsd:string .
+
+hpc:numberofdisks a owl:DatatypeProperty ;
+    rdfs:domain hpc:Server ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maximummemory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Server ;
+    rdfs:range xsd:positiveInteger .

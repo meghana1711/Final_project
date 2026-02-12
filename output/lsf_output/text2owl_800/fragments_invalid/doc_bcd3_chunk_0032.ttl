@@ -1,0 +1,21 @@
+hpc:Host a owl:Class .
+hpc:Status a owl:Class .
+hpc:CPUF a xsd:string .
+hpc:MAX a xsd:nonNegativeInteger .
+hpc:NJOBS a xsd:nonNegativeInteger .
+hpc:RUN a xsd:nonNegativeInteger .
+hpc:SSUSP a xsd:nonNegativeInteger .
+hpc:USUSP a xsd:nonNegativeInteger .
+hpc:RSVP a xsd:nonNegativeInteger .
+hpc:DISPATCH_WINDOW a xsd:duration .
+
+hpc:Bhost a owl:Class ;
+hpc:hostA a hpc:Bhost .
+hpc:bhosts a owl:ObjectProperty .
+hpc:hasstatus a owl:ObjectProperty .
+hpc:hascpuf a owl:DatatypeProperty .
+hpc:hasmax a owl:DatatypeProperty .
+hpc:hasnjobs a owl:DatatypeProperty .
+hpc:hasrun a owl:DatatypeProperty .
+hpc:hasssusp a owl:DatatypeProperty .
+hpc:hasususp a owl:Dat

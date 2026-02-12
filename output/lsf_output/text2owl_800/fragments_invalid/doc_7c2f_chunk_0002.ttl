@@ -1,0 +1,56 @@
+hpc:Resourcelimit a owl:Class .
+hpc:Resourceusage a owl:Class .
+hpc:Internalresourcelimit a owl:Class .
+hpc:Externalresourcelimit a owl:Class .
+hpc:Verticalformat a owl:Class .
+hpc:Horizontalformat a owl:Class .
+hpc:Namedlimit a owl:Class .
+hpc:Unnamedlimit a owl:Class .
+hpc:Configuredlimit a owl:Class .
+hpc:Usedlimit a owl:Class .
+hpc:Limitreached a owl:Class .
+hpc:Pendingjob a owl:Class .
+
+hpc:hasresource a owl:ObjectProperty .
+hpc:hasusage a owl:ObjectProperty .
+hpc:haslimit a owl:ObjectProperty .
+hpc:hasformat a owl:ObjectProperty .
+hpc:hasname a owl:ObjectProperty .
+hpc:hasconfiguredlimit a owl:ObjectProperty .
+hpc:hasusedlimit a owl:ObjectProperty .
+hpc:hasreachedlimit a owl:ObjectProperty .
+hpc:haspendingjob a owl:ObjectProperty .
+
+hpc:Resource rdf:type owl:Class .
+hpc:Memory rdf:type owl:Class .
+hpc:Slots rdf:type owl:Class .
+hpc:Mem rdf:type owl:Class .
+hpc:Tmp rdf:type owl:Class .
+hpc:SwpLoadIndices rdf:type owl:Class .
+hpc:CustomExternalResource rdf:type owl:Class .
+hpc:BuiltInResource rdf:type owl:Class .
+hpc:VerticalTabularFormat rdf:type owl:Class .
+hpc:HorizontalFormat rdf:type owl:Class .
+hpc:Named rdf:type rdfs:Datatype .
+hpc:Unnamed rdf:type rdfs:Datatype .
+hpc:Configured rdf:type rdfs:Datatype .
+hpc:Used rdf:type rdfs:Datatype .
+hpc:Reached rdf:type rdfs:Datatype .
+hpc:Pending rdf:type rdfs:Datatype .
+
+hpc:Hasmaxmem rdfs:domain hpc:Lshosts .
+hpc:Hasmaxmem rdfs:range xsd:decimal .
+hpc:Mem rdfs:range xsd:decimal .
+hpc:Islimitedto rdfs:domain hpc:Mem .
+hpc:Islimitedto rdfs:range xsd:decimal .
+hpc:Isused rdfs:domain hpc:Mem .
+hpc:Isused rdfs:range xsd:decimal .
+hpc:Islimit rdfs:domain hpc:Mem .
+hpc:Islimit rdfs:range xsd:decimal .
+
+hpc:Internalresourcelimit rdfs:subClassOf hpc:Resourcelimit .
+hpc:Externalresourcelimit rdfs:subClassOf hpc:Resourcelimit .
+hpc:Verticaltabularformat rdfs:subClassOf hpc:Verticalformat .
+hpc:Horizontalformat rdfs:subClassOf hpc:Verticalformat .
+hpc:Namedlimit rdfs:subClassOf hpc:Internalresourcelimit .
+hpc:UnnamedLimit rdfs:subClass

@@ -1,0 +1,74 @@
+hpc:LsfService a owl:Class .
+hpc:lsfdService a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfService ;
+    rdfs:range hpc:File .
+
+hpc:lsadminCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfService ;
+    rdfs:range hpc:Command .
+
+hpc:badminCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfService ;
+    rdfs:range hpc:Command .
+
+hpc:btrldCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfService ;
+    rdfs:range hpc:Command .
+
+hpc:startCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfDaemon ;
+    rdfs:range hpc:Command .
+
+hpc:stopCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfDaemon ;
+    rdfs:range hpc:Command .
+
+hpc:restartCommand a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfDaemon ;
+    rdfs:range hpc:Command .
+
+hpc:LsfDaemon a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf owl:Thing ] .
+
+hpc:lsfServerdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfDaemon ;
+    rdfs:range xsd:string .
+
+hpc:LsfLinuxcgroup a owl:Class .
+
+hpc:cgroupSubsystem a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfLinuxcgroup ;
+    rdfs:range xsd:string .
+
+hpc:lsfConffile a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfLinuxcgroup ;
+    rdfs:range xsd:string .
+
+hpc:osDefault a owl:DatatypeProperty ;
+    rdfs:domain hpc:CpuLimits ;
+    rdfs:range xsd:string .
+
+hpc:CpuLimits a owl:Class .
+
+hpc:cpuShares a owl:DatatypeProperty ;
+    rdfs:domain hpc:CpuLimits ;
+    rdfs:range xsd:integer .
+
+hpc:cpuWeight a owl:DatatypeProperty ;
+    rdfs:domain hpc:CpuLimits ;
+    rdfs:range xsd:integer .
+
+hpc:Executionhost a owl:Class .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf hpc:Workload ] .
+
+hpc:Workload a owl:Class .
+
+hpc:lsbCgroupCpusharesOldDefault a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfLinuxcgroup ;
+    rdfs:range xsd:string .
+
+h

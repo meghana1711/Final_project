@@ -1,0 +1,26 @@
+hpc:Slurmmailinglist a owl:Class .
+hpc:SlurmAnnounceList a hpc:SlurmMailingList ;
+    rdfs:comment "Designated for communications about Slurm releases. Only SchedMD may post to this list. Low traffic." ;
+    rdfs:subClassOf hpc:Mailinglist .
+
+hpc:SlurmUsersList a hpc:SlurmMailingList ;
+    rdfs:comment "For discussion by the Slurm community, and is typically used by Slurm system administrators for discussion and community-provided support. Any person subscribed to this mailing list may post to it. High traffic." ;
+    rdfs:subClassOf hpc:Mailinglist .
+
+hpc:Mailinglist a owl:Class .
+
+hpc:postableby a owl:ObjectProperty ;
+    rdfs:domain hpc:Mailinglist ;
+    rdfs:range xsd:string .
+
+hpc:subscriptionoptions a owl:ObjectProperty ;
+    rdfs:domain hpc:Mailinglist ;
+    rdfs:range xsd:string .
+
+hpc:unsubscribe a owl:ObjectProperty ;
+    rdfs:domain hpc:Mailinglist ;
+    rdfs:range xsd:string .
+
+hpc:archive a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slurmuserslist ;
+    rdfs:range xsd:anyURI .

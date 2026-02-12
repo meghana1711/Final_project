@@ -1,0 +1,33 @@
+hpc:Job a owl:Class .
+hpc:lsbDjobHbInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:sbdSleepTime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobparameters ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Jobparameters a owl:Class .
+
+hpc:lsbTaskGeometry a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobenvironment ;
+    rdfs:range hpc:Taskgeometry .
+
+hpc:Taskgeometry a owl:Class .
+
+hpc:lsbMcpuHosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range rdf:List .
+
+hpc:lsfHpcExtensions a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:string .
+
+hpc:Resizablejob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Pe a owl:Class .
+hpc:Blaunch a owl:Class .
+hpc:peBlaunchintegration a owl:ObjectProperty ;
+    rdfs:domain hpc:Pe ;
+    rdfs:range hpc:Blaunch .

@@ -1,0 +1,37 @@
+hpc:lsfProxydTokenWaitTime a owl:DatatypeProperty .
+hpc:lsfAddonHosts a owl:ObjectProperty .
+hpc:lsfProxydNtokenNtries a owl:DatatypeProperty .
+
+hpc:LsfProxydTokenWaitTime rdfs:domain hpc:Resource .
+hpc:LsfAddonHosts rdfs:domain hpc:Resource .
+hpc:LsfProxydNtokenNtries rdfs:domain hpc:Resource .
+
+hpc:QueryInfo a owl:Class .
+hpc:Queryproxylog a owl:Class .
+hpc:hostname a owl:DatatypeProperty .
+hpc:Request a owl:Class .
+hpc:datasize a owl:DatatypeProperty .
+hpc:receivingtime a owl:DatatypeProperty .
+hpc:processingtime a owl:DatatypeProperty .
+hpc:rejected a owl:DatatypeProperty .
+hpc:accepted a owl:DatatypeProperty .
+
+hpc:enableDiagnose a owl:ObjectProperty .
+hpc:lsbParms a owl:DatatypeProperty .
+hpc:badmin a owl:ObjectProperty .
+hpc:diagnose a owl:ObjectProperty .
+hpc:c a owl:DatatypeProperty .
+
+hpc:lsfDebugProxyd a owl:DatatypeProperty .
+hpc:LsfDebugProxyd rdfs:range xsd:string .
+
+hpc:lsbDebugMbd a owl:DatatypeProperty .
+hpc:LsbDebugMbd rdfs:range xsd:string .
+
+hpc:Offloading a owl:Class .
+hpc:Logging a owl:Class .
+hpc:Performancemetrics a owl:Class .
+
+hpc:Offloading rdfs:subClassOf hpc:Resource .
+hpc:Logging rdfs:subClassOf hpc:Resource .
+hpc:Performancemetrics rdfs:subClassOf hpc:Resource .

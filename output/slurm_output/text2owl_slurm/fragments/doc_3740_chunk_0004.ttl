@@ -1,0 +1,33 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconfiguration .
+
+hpc:Corespecializationoption a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Computenode a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconfiguration .
+
+hpc:configuredCoreCount rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Computenode ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:configuredCPUs rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Computenode ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:coreCount rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Computenode ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hyperthread rdf:type owl:Class .
+
+hpc:hasHyperthread rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Computenode ;
+    rdfs:range hpc:Hyperthread .
+
+hpc:AllowSpecResourcesUsage rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:clearCoreSpecializationOnOtherConfigurations rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job .

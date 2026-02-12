@@ -1,0 +1,59 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a job in the system." .
+
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The unique identifier of a job." .
+
+hpc:jobname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of a job." .
+
+hpc:arrayindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobid ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The index of an array job." .
+
+hpc:wildcard a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobname ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Matches any character within a job name." .
+
+# bpost command and related properties
+hpc:bpostcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Command ;
+    rdfs:comment "Sends external status messages and attaches data files to a job." .
+
+hpc:messageindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bpostcommand ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The index of the message to be sent." .
+
+hpc:description a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bpostcommand ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The description of the message to be sent." .
+
+hpc:messagelevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bpostcommand ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The level of the message to be sent (INFO, WARNING, ERROR, CRITICAL)." .
+
+hpc:datafile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bpostcommand ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The data file to be attached to the job." .
+
+hpc:ownership a owl:ObjectProperty ;
+    rdfs:domain hpc:Bpostcommand ;
+    rdfs:range hpc:User ;
+    rdfs:comment "Indicates the user who owns the job." .
+
+# Command-related class
+hpc:Command a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a command in the system." .

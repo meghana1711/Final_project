@@ -1,0 +1,62 @@
+hpc:Host a owl:Class .
+hpc:Numa a owl:Class .
+hpc:Socket a owl:Class .
+hpc:Core a owl:Class .
+hpc:Thread a owl:Class .
+
+hpc:Hasmemory rdfs:domain hpc:Host ;
+    rdfs:range xsd:decimal .
+
+hpc:Hasnuma rdfs:domain hpc:Host ;
+    rdfs:range rdf:List .
+
+hpc:Hassocket rdfs:domain hpc:Numa ;
+    rdfs:range rdf:List .
+
+hpc:Hascore rdfs:domain hpc:Socket ;
+    rdfs:range rdf:List .
+
+hpc:Hasthread rdfs:domain hpc:Core ;
+    rdfs:range rdf:List .
+
+hpc:Socket contains hpc:Core .
+hpc:Core may contain hpc:Thread .
+
+hpc:lshoststoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Displays all enabled CPUs on a host, not just those defined in the CPU list in lsb.hosts" .
+
+hpc:lsbhostsaffoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range rdf:List ;
+    rdfs:comment "Socket and core IDs are not displayed for each NUMA node. The requested memory of a NUMA node is not displayed" .
+
+hpc:Numanodememory rdfs:domain hpc:Numa ;
+    rdfs:range xsd:decimal .
+
+hpc:Numanodecores rdfs:domain hpc:Numa ;
+    rdfs:range rdf:List .
+
+hpc:Socketcoreids rdfs:domain hpc:Socket ;
+    rdfs:range rdf:List .
+
+hpc:Corethreadids rdfs:domain hpc:Core ;
+    rdfs:range rdf:List .
+
+hpc:numanodedisplayed a owl:ObjectProperty ;
+    rdfs:domain hpc:Numa ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the NUMA node's memory is displayed" .
+
+hpc:socketcoredisplayed a owl:ObjectProperty ;
+    rdfs:domain hpc:Socket ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the socket and core IDs are displayed for each NUMA node" .
+
+hpc:Lshoststdetectedtopology rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether LSF can detect processor unit topology" .
+
+hpc:Processorunit a owl:Class .
+hpc:processorUnit contains hpc:Socket .

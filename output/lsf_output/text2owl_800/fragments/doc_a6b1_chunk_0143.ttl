@@ -1,0 +1,30 @@
+hpc:Loglevel a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Level of logging detail." .
+
+hpc:Logfile a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "File where log messages are stored." .
+
+hpc:LogLevelLogFile rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Loglevel ;
+    rdfs:range hpc:Logfile ;
+    rdfs:comment "The log file associated with a log level." .
+
+hpc:logfilelocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The location of the log file." .
+
+hpc:logfilecontent a owl:DatatypeProperty ;
+    rdfs:domain hpc:Logfile ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The content of the log file." .
+
+hpc:EscLog a hpc:LogFile ;
+    hpc:logFileLocation "LSF_LOGDIR/esc.log.host_name"^^xsd:string ;
+    hpc:logFileContent "Logs service failures and service instance restarts based on availability plans." .
+
+hpc:NamedLog a hpc:LogFile ;
+    hpc:logFileLocation "named.log"^^xsd:string ;
+    hpc:logFileContent "Logs service failures and service instance restarts based on availability plans." .

@@ -1,0 +1,11 @@
+hpc:Gpuenhancement a owl:Class .
+hpc:gpufairsharescheduling a owl:ObjectProperty .
+hpc:gpuRunTimeFactor a owl:DatatypeProperty .
+
+hpc:Gpuenhancement rdfs:subClassOf hpc:Enhancement .
+hpc:GPUFairShareScheduling rdf:domain hpc:GPUEnhancement ;
+                             rdfs:range rdf:Resource .
+hpc:GPU_RUN_TIME_FACTOR rdf:domain hpc:GPUEnhancement ;
+                          rdfs:range xsd:float .
+
+hpc:GPUFairShareScheduling rdfs:subPropertyOf hpc:EnhancementProperty .

@@ -1,0 +1,27 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:bsubStderr a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "When this parameter is set, LSF messages for bsub are redirected to stderr. Default Not deﬁned" .
+
+hpc:ClearcaseDrive a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Optional, Windows only. Defines the virtual drive letter for a Rational ClearCase view to the drive. This is useful if you wish to map a Rational ClearCase view to a virtual drive as an alias. If this letter is unavailable, Windows attempts to map to another drive. Therefore, CLEARCASE_DRIVE only defines the default drive letter to which the Rational ClearCase view is mapped, not the final selected drive letter. However, the PATH value is automatically updated to the final drive letter if it is different from CLEARCASE_DRIVE." .
+
+hpc:hasclearcasedrive a owl:DatatypeProperty ;
+    rdfs:domain hpc:ClearcaseDrive ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Optional. Defines the virtual drive letter for a Rational ClearCase view to the drive." .
+
+hpc:ClearcaseMountdir a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Optional." .
+
+hpc:hasclearcasemountdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:ClearcaseMountdir ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Optional." .

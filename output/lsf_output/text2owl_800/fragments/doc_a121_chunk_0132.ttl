@@ -1,0 +1,47 @@
+hpc:PreExecCommand a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Command .
+
+hpc:PostExecCommand a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Command .
+
+hpc:HostPreExecCommand a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Command .
+
+hpc:Command a owl:Class .
+
+hpc:Usesenvironmentvariables rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .
+
+hpc:Isassociatedwithjob rdfs:domain hpc:Command ;
+    rdfs:range hpc:Job .
+
+hpc:runsevenifjobmoved a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean .
+
+hpc:runsevenifpostexecutioncommandchanged a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean .
+
+hpc:runsevenifrequeued a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean .
+
+hpc:runsafterjobfinishes a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean .
+
+hpc:Isaffectedbyjobexitstatus rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean .
+
+hpc:Successorfailurehasnoeffectonjobexitstatus rdfs:domain hpc:Command ;
+    rdfs:range xsd:boolean .
+
+hpc:Allowsuserdefinedpostexecutioncommands rdfs:domain hpc:Command ;
+    rdfs:range xsd:string .

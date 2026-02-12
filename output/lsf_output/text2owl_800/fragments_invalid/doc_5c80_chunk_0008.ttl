@@ -1,0 +1,55 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Jobsubmission a owl:Class .
+hpc:inputfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:string .
+hpc:outputdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:string .
+hpc:Limit a owl:Class ;
+    rdfs:subClassOf hpc:Jobsubmission .
+hpc:corelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Limit ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:cputimelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Limit ;
+    rdfs:range xsd:dateTime .
+hpc:Resource a owl:Class ;
+    rdfs:subClassOf hpc:Jobsubmission .
+hpc:computenodemem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hostfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string .
+hpc:Properties a owl:Class ;
+    rdfs:subClassOf hpc:Jobsubmission .
+hpc:queuename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Properties ;
+    rdfs:range xsd:string .
+hpc:rerun a owl:DatatypeProperty ;
+    rdfs:domain hpc:Properties ;
+    rdfs:range xsd:string .
+hpc:Schedule a owl:Class ;
+    rdfs:subClassOf hpc:Properties .
+hpc:hold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Schedule ;
+    rdfs:range xsd:string .
+hpc:usergroup a owl:DatatypeProperty ;
+    rdfs:domain hpc:Properties ;
+    rdfs:range xsd:string .
+hpc:Notify a owl:Class ;
+    rdfs:subClassOf hpc:Properties .
+hpc:notifyjobdone a owl:DatatypeProperty ;
+    rdfs:domain hpc:Notify ;
+    rdfs:range xsd:string .
+hpc:Notifyjobexit a owl:Class ;
+    rdfs:subClassOf hpc:Notify .
+hpc:mailuser a owl:DatatypeProperty ;
+    rdfs:domain hpc:Notifyjobexit ;
+    rdfs:range xsd:string .
+hpc:command a owl:DatatypeProperty ;

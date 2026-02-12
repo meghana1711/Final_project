@@ -1,0 +1,37 @@
+hpc:Job            a owl:Class .
+hpc:Finishedjob a owl:Class .
+hpc:Pendingjob a owl:Class .
+
+hpc:User           a owl:Class .
+hpc:Group          a owl:Class .
+hpc:Project        a owl:Class .
+
+hpc:relaxjobdispatchorder a owl:ObjectProperty .
+hpc:share           a owl:ObjectProperty .
+hpc:user            a owl:ObjectProperty, hpc:share .
+hpc:group           a owl:ObjectProperty, hpc:share .
+hpc:project         a owl:ObjectProperty, hpc:share .
+
+hpc:Lsf            a owl:Class .
+
+hpc:hasuser        a owl:DatatypeProperty .
+hpc:hasgroup       a owl:DatatypeProperty .
+hpc:hasproject     a owl:DatatypeProperty .
+
+hpc:Relaxjobdispatchorder rdfs:domain hpc:Lsf .
+hpc:Share rdfs:domain hpc:Relaxjobdispatchorder .
+hpc:User rdfs:range hpc:Pendingjob .
+hpc:Group rdfs:range hpc:Pendingjob .
+hpc:Project rdfs:range hpc:Pendingjob .
+
+hpc:Hasuser rdfs:domain hpc:Job .
+hpc:Hasgroup rdfs:domain hpc:Job .
+hpc:Hasproject rdfs:domain hpc:Job .
+hpc:Hasuser rdfs:range xsd:string .
+hpc:Hasgroup rdfs:range xsd:string .
+hpc:Hasproject rdfs:range xsd:string .
+
+hpc:Googlecloud a owl:Class .
+hpc:hostproject a owl:DatatypeProperty .
+hpc:Hostproject rdfs:domain hpc:Googlecloud .
+hpc:Hostproject rdfs:range xsd:string .

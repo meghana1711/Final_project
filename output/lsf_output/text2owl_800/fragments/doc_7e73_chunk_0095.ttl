@@ -1,0 +1,31 @@
+hpc:LsfCluster a owl:Class .
+hpc:lsfDynamicHostWaitTime a owl:DatatypeProperty .
+hpc:LsfDynamicHostWaitTime rdfs:domain hpc:LsfCluster ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsfHostAddrRange a owl:ObjectProperty .
+hpc:LsfHostAddrRange rdfs:domain hpc:LsfCluster ;
+    rdfs:range xsd:string .
+
+hpc:Microsoftazurecyclecloud a owl:Class .
+hpc:hostproviderjson a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:cyclecloudconfconfig a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:cyclecloudconftemplates a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:Azureinstance a owl:Class .
+hpc:ipaddress a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:Lsfresourceconnector a owl:Class .
+hpc:ebrokerdprocess a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+hpc:bsubcommand a owl:DatatypeProperty .
+hpc:bhostscommand a owl:DatatypeProperty .
+hpc:bhostsmonitorhoststatus a owl:ObjectProperty .
+hpc:bhostsmonitorborrowedhosts a owl:ObjectProperty .

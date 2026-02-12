@@ -1,0 +1,33 @@
+hpc:Gpuallocationinformation a owl:Class .
+hpc:gpu_num rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpuallocationinformation ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:gpu_mode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Gpuallocationinformation ;
+    rdfs:range hpc:Gpucomputemode .
+hpc:job_exclusive rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpuallocationinformation ;
+    rdfs:range xsd:boolean .
+
+# GPU Compute Mode
+hpc:Gpucomputemode a owl:Class .
+hpc:shared rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Gpucomputemode .
+hpc:exclusive_process rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Gpucomputemode .
+
+# Security
+hpc:Usercredentialauthorization a owl:Class .
+hpc:eauth rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Usercredentialauthorization ;
+    rdfs:range hpc:Lsfserver .
+hpc:LSF_EXT_SERVERDIR rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:anyURI .
+hpc:LSF_EAUTH_KEY rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfsudoers ;
+    rdfs:range xsd:anyURI .
+
+# LSF Servers and Configuration
+hpc:Lsfserver a owl:Class .
+hpc:Lsfconfiguration a owl:Class .

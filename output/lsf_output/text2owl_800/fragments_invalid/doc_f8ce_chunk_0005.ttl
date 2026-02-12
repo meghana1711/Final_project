@@ -1,0 +1,18 @@
+hpc:Lsfdatamanager a owl:Class.
+hpc:Datamanageradministrator a owl:Class.
+hpc:Rootuser a owl:Class.
+hpc:bdataadminshutdown a owl:ObjectProperty.
+hpc:Bdataadminshutdown rdfs:domain hpc:Datamanageradministrator;
+    rdfs:range xsd:string.
+hpc:requiresshutdownoflim a owl:ObjectProperty.
+hpc:Runson rdfs:domain hpc:Lsfdatamanager;
+    rdfs:range hpc:Host.
+hpc:isshutdownby a owl:ObjectProperty;
+    hpc:Isshutdownby rdfs:subClassOf owl:ObjectProperty;
+    hpc:Isshutdownby rdfs:subPropertyOf hpc:bdataadminshutdown.
+hpc:Host a owl:Class.
+hpc:Datamanagercandidate a owl:Class.
+hpc:LSFDataManager rdfs:subClass hpc:DatamanagerCandidate.
+hpc:Lim a owl:Class.
+hpc:bctrldstoplim a owl:ObjectProperty.
+hpc:Bctrldstoplim rdfs:subClassOf hpc

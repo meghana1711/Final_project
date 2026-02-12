@@ -1,0 +1,34 @@
+hpc:Project a owl:Class .
+hpc:hasprojectname a owl:DatatypeProperty .
+hpc:projectlimit a owl:ObjectProperty .
+
+hpc:Projectlimit rdfs:domain hpc:Project .
+hpc:Projectlimit rdfs:range rdfs:Resource .
+hpc:Hasprojectname rdfs:domain hpc:Project .
+hpc:Hasprojectname rdfs:range xsd:string .
+
+hpc:Allprojects a owl:Class .
+hpc:Excludedproject a owl:Class .
+
+hpc:Allprojects rdfs:subClassOf hpc:Project .
+hpc:Excludedproject rdfs:subClassOf hpc:Project .
+
+hpc:allprojectslimit a owl:ObjectProperty .
+hpc:excludedprojectslimit a owl:ObjectProperty .
+
+hpc:Allprojectslimit rdfs:domain hpc:Allprojects .
+hpc:Allprojectslimit rdfs:range rdfs:Resource .
+hpc:Excludedprojectslimit rdfs:domain hpc:Excludedproject .
+hpc:Excludedprojectslimit rdfs:range rdfs:Resource .
+
+hpc:projectname a owl:DatatypeProperty .
+hpc:projectnames a owl:DatatypeProperty .
+
+hpc:Projectname rdfs:domain hpc:Project .
+hpc:Projectname rdfs:range xsd:string .
+hpc:Projectnames rdfs:domain rdfs:Resource .
+hpc:Projectnames rdfs:range xsd:string .
+
+hpc:enforcedlimitonproject a owl:ObjectProperty .
+hpc:Enforcedlimitonproject rdfs:domain hpc:Projectlimit .
+hpc:Enforcedlimitonproject rdfs:range hpc:Project .

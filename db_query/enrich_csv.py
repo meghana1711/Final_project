@@ -1,13 +1,13 @@
 import sqlite3
 import csv
 
-DB_PATH = r"onto_db/slurm_llm_final.db"
-OUT_CSV = r"llm_is_a_edges_core.csv"
+DB_PATH = r"final_db/lsf_new.db"
+OUT_CSV = r"non_taxonomic_edges_accep_lsf.csv"
 
 conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()
 
-cur.execute("SELECT * FROM llm_is_a_edges_core")
+cur.execute("SELECT * FROM non_taxonomic_edges_accept")
 rows = cur.fetchall()
 col_names = [d[0] for d in cur.description]
 

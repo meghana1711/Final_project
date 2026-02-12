@@ -1,0 +1,60 @@
+hpc:Chmod a owl:Class .
+hpc:Tags a owl:Class .
+hpc:Showconf a owl:Class .
+hpc:Admin a owl:Class .
+hpc:Cache a owl:Class .
+hpc:Connections a owl:Class .
+
+hpc:ChangesFilePermissionMode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Chmod ;
+    rdfs:range xsd:string .
+
+hpc:DataManagementTag rdf:type owl:Class .
+hpc:Query rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Datamanagementtag ;
+    rdfs:range xsd:string .
+hpc:Cleanup rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Datamanagementtag .
+
+hpc:EffectiveConfiguration rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Showconf .
+
+hpc:DataManagementConnection rdf:type owl:Class .
+hpc:ManagementHost rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Datamanagementconnection .
+hpc:Status rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Datamanagementconnection .
+hpc:OutgoingConnection rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Datamanagementconnection .
+hpc:IncomingConnection rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Datamanagementconnection .
+
+hpc:DataManagerDaemon rdf:type owl:Class .
+hpc:Reconfigure rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Admin .
+hpc:Shutdown rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Admin .
+
+hpc:CacheQuery rdf:type owl:Class .
+hpc:FileBasedQuery rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Cachequery .
+hpc:UserName rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Filebasedquery .
+hpc:UserGroupName rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Filebasedquery .
+hpc:ClusterName rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Filebasedquery .
+hpc:HostName rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Filebasedquery .
+hpc:AbsFilePath rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Filebasedquery .
+hpc:AbsFolderPath rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Filebasedquery .
+hpc:JobBasedQuery rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Cachequery .
+hpc:ClusterName1 rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobbasedquery .
+hpc:Wildcard rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobbasedquery .
+hpc:JobID rdf:type owl:DatatypeProperty ;
+    rdfs:

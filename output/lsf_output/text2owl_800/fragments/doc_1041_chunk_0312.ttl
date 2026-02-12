@@ -1,0 +1,59 @@
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:originalqueuename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+
+hpc:LostAndFoundQueue a owl:NamedIndividual ;
+    hpc:originalQueueName "" .
+
+hpc:bswitchcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Queue .
+
+hpc:fromhost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:remotequeuename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fromhost ;
+    rdfs:range xsd:string .
+
+hpc:clustername a owl:DatatypeProperty ;
+    rdfs:domain hpc:Remotequeuename ;
+    rdfs:range xsd:string .
+
+hpc:remotejobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Remotequeuename ;
+    rdfs:range xsd:string .
+
+hpc:exechost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:LostAndFound a owl:NamedIndividual ;
+    hpc:execHost "" .
+
+hpc:ConfiguredHost a owl:NamedIndividual ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:RemovedHost a owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Configuredhost .
+
+hpc:originalhostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lostandfound ;
+    rdfs:range xsd:string .
+
+hpc:CondensedHostGroup a owl:NamedIndividual ;
+    rdfs:subClassOf [ a owl:Class ;
+                        rdfs:subClassOf owl:NamedIndividual ] .
+
+hpc:ComputeUnit a owl:NamedIndividual ;
+    rdfs:subClassOf hpc:Condensedhostgroup .
+
+hpc:belongstomultiplecondensedhostgroups a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Condensedhostgroup .

@@ -1,0 +1,63 @@
+hpc:RuntimeLimit
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Backfilljobslot ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "Maximum time slice for backfill." .
+
+hpc:ProcessorsRequired
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Backfilljobslot ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Number of processors required for a backfill job." .
+
+hpc:BSlots
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Backfillsystem ;
+    rdfs:range hpc:Backfilljobslot ;
+    rdfs:comment "Displays job slots available for backfill jobs." .
+
+hpc:BackfillQueue
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Queue for backfill jobs." .
+
+hpc:RequeueExitValues
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Backfillqueue ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Values for automatic resubmission of jobs." .
+
+hpc:CheckpointExitValue
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Exit value for checkpoint-able jobs." .
+
+hpc:SIGTERMExitValue
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Exit value for jobs that periodically save data on their own." .
+
+hpc:ParallelJob
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Parallel job." .
+
+hpc:DeadlineConstraintScheduling
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates if deadline constraint scheduling is enabled." .
+
+hpc:CPULimit
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "CPU limit for a parallel job." .
+
+hpc:RunLimit
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "Run limit for a parallel job." .

@@ -1,0 +1,54 @@
+hpc:Gpu a owl:Class .
+hpc:Gpuerror a owl:Class .
+
+hpc:haswidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:isrecommendedwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:isrightaligned a owl:ObjectProperty ;
+    rdfs:domain hpc:Field .
+
+hpc:isleftaligned a owl:ObjectProperty ;
+    rdfs:domain hpc:Field .
+
+hpc:isautomaticallyscaled a owl:ObjectProperty ;
+    rdfs:domain hpc:Field .
+
+hpc:hasalignment a owl:ObjectProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:string .
+
+hpc:hasmaxwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Field ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Field a owl:Class .
+hpc:Loadinformation a owl:Class .
+hpc:Resourcerequirement a owl:Class .
+hpc:Resource a owl:Class .
+hpc:loadsortedby a owl:ObjectProperty ;
+    rdfs:domain hpc:Loadinformation ;
+    rdfs:range hpc:Resource .
+hpc:satisfiesrequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Loadinformation ;
+    rdfs:range hpc:Resourcerequirement .
+hpc:Hostname a owl:Class ;
+    rdfs:subClassOf hpc:Field .
+hpc:Status a owl:Class ;
+    rdfs:subClassOf hpc:Field .
+hpc:R15s a owl:Class ;
+    rdfs:subClassOf hpc:Field .
+hpc:R1m a owl:Class ;
+    rdfs:subClassOf hpc:Field .
+hpc:R15m a owl:Class ;
+    rdfs:subClassOf hpc:Field .
+hpc:Tmp a owl:Class ;
+    rdfs:subClassOf hpc:Field .
+hpc:Swp a owl:Class ;
+    rdfs:subClassOf hpc:Field .
+hpc:Mem a owl:Class ;
+    rdfs:subClassOf hpc:Field .

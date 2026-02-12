@@ -1,0 +1,21 @@
+hpc:numberofshares a owl:DatatypeProperty .
+hpc:Numberofshares rdfs:domain hpc:Project .
+hpc:Numberofshares rdfs:range xsd:nonNegativeInteger .
+
+hpc:Defaultproject a owl:Class .
+hpc:Defaultproject rdfs:subClassOf hpc:Project .
+
+hpc:preemptive a owl:ObjectProperty .
+hpc:Preemptive rdfs:domain hpc:Project .
+hpc:Preemptive rdfs:range xsd:boolean .
+
+hpc:Projectmode a owl:Class .
+
+hpc:Distribution a owl:Class .
+hpc:Distribution rdfs:subClassOf hpc:Feature .
+
+hpc:Servicedomain a owl:Class .
+
+hpc:distributionpolicy a owl:ObjectProperty .
+hpc:Distributionpolicy rdfs:domain hpc:Servicedomain .
+hpc:Distributionpolicy rdfs:range rdfs:Resource .

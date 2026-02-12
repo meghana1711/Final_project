@@ -1,0 +1,24 @@
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a scheduled reservation." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a job submitted to the scheduler." .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Represents a computing host." .
+
+hpc:hasreservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Reservation ;
+    rdfs:comment "The reservation that a job is scheduled for." .
+
+hpc:ishostfor a owl:ObjectProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range hpc:Host ;
+    rdfs:comment "The host(s) that the reservation is scheduled on." .
+
+hpc:issubmittedby a owl:ObjectProperty ;
+    rdfs:domain hpc:

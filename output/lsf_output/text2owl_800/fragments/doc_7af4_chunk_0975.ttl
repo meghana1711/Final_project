@@ -1,0 +1,23 @@
+hpc:priority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Projectgroup ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The priority of a project group, with a higher number indicating a higher priority." .
+
+hpc:preemptpeer a owl:ObjectProperty ;
+    rdfs:domain hpc:Projectgroup ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether bottom-up license token preemption is enabled in hierarchical project group configuration." .
+
+hpc:shares a owl:DatatypeProperty ;
+    rdfs:domain hpc:Projectgroup ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Defines the shares assigned to the hierarchical group member projects." .
+
+hpc:Defaultproject a owl:Class ;
+    rdfs:subClassOf hpc:Projectgroup ;
+    rdfs:comment "The default project, which has a priority of 0 by default." .
+
+hpc:haspriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Defaultproject ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The priority of the default project, which can be overridden." .

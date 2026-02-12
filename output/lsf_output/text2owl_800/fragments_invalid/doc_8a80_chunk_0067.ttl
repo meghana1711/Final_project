@@ -1,0 +1,12 @@
+hpc:Group a owl:Class .
+hpc:Hasmember hpc:objectproperty .
+hpc:Group rdfs:subClassOf owl:Class .
+hpc:Hasmaxlicenses hpc:objectproperty .
+hpc:Nonshared hpc:objectproperty .
+hpc:Maxlicenses rdfs:domain hpc:Group .
+hpc:Hasmaxlicenses rdfs:domain hpc:Group .
+hpc:Nonshared rdfs:domain hpc:Group .
+hpc:Maxlicenses rdfs:range xsd:nonNegativeInteger .
+hpc:Nonshared rdfs:range xsd:nonNegativeInteger .
+hpc:InfiniteLicenses a xsd:string .
+hpc:InfiniteLicenses rdfs:value "INFINIT_INT" .

@@ -1,0 +1,19 @@
+hpc:Fixpack13 a owl:Class .
+hpc:Hasfixedbugs rdfs:domain hpc:Fixpack .
+hpc:Hasfixedbugs rdfs:range xsd:string .
+hpc:Fixpack13 hpc:hasfixedbugs "Bugs fixed in LSF 10.1 Fix Pack 13" .
+
+hpc:Fixpack12 a owl:Class .
+hpc:Hasfixedbugs rdfs:domain hpc:Fixpack .
+hpc:Hasfixedbugs rdfs:range xsd:string .
+hpc:Fixpack12 hpc:hasfixedbugs "Bugs fixed in LSF 10.1 Fix Pack 12" .
+
+hpc:Fixpack11 a owl:Class .
+hpc:Hasfixedbugs rdfs:domain hpc:Fixpack .
+hpc:Hasfixedbugs rdfs:range xsd:string .
+hpc:Fixpack11 hpc:hasfixedbugs "Bugs fixed in LSF 10.1 Fix Pack 11" .
+
+hpc:Fixpack10 a owl:Class .
+hpc:Hasfixedbugs rdfs:domain hpc:Fixpack .
+hpc:Hasfixedbugs rdfs:range xsd:string .
+hpc:Fixpack10 hpc:hasfixedbugs "Bugs fixed in LSF 10.1 Fix Pack 10" .

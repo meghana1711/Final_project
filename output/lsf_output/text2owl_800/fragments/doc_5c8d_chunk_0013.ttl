@@ -1,0 +1,23 @@
+hpc:numnodes a owl:DatatypeProperty .
+hpc:computeunitresourcerequirement a owl:ObjectProperty .
+hpc:userlevelcsmallocationprologsepilogs a owl:ObjectProperty .
+hpc:smtmode a owl:DatatypeProperty .
+hpc:Jsrun a owl:Class .
+hpc:Compoundresourcerequirement a owl:Class .
+
+hpc:Numnodes rdfs:domain hpc:Job .
+hpc:Numnodes rdfs:range xsd:nonNegativeInteger .
+
+hpc:Computeunitresourcerequirement rdfs:domain hpc:Computenode .
+hpc:Computeunitresourcerequirement rdfs:range xsd:string .
+
+hpc:Userlevelcsmallocationprologsepilogs rdfs:domain hpc:Job .
+hpc:Userlevelcsmallocationprologsepilogs rdfs:range xsd:string .
+
+hpc:Smtmode rdfs:domain hpc:Job .
+hpc:Smtmode rdfs:range xsd:positiveInteger .
+
+hpc:Jsrun rdfs:subClassOf owl:Class .
+
+hpc:Compoundresourcerequirement a owl:Class .
+hpc:Compoundresourcerequirement rdfs:subClassOf owl:Object .

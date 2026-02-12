@@ -1,0 +1,19 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Queue a owl:Class.
+hpc:Pool a owl:Class.
+hpc:hasqueue a owl:ObjectProperty;
+    rdfs:domain hpc:Pool;
+    rdfs:range rdf:List.
+hpc:hasshare a owl:DatatypeProperty;
+    rdfs:domain hpc:Queue;
+    rdfs:range xsd:decimal.
+
+hpc:queue1 a hpc:Queue;
+    hpc:NAME "Roma" ;
+    hpc:PRIORITY 50 ;
+    hpc:SHARE 0.1 ;
+    hpc:MAX_JOBS_RUN

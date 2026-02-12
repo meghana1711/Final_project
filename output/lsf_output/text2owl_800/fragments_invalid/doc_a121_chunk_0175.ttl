@@ -1,0 +1,65 @@
+hpc:begintime a owl:DatatypeProperty .
+hpc:Begintime rdfs:domain hpc:Job .
+hpc:Begintime rdfs:range xsd:integer .
+
+hpc:checkpointdirectory a owl:ObjectProperty .
+hpc:Checkpointdirectory rdfs:domain hpc:Job .
+hpc:Checkpointdirectory rdfs:range xsd:string .
+
+hpc:checkpointperiod a owl:DatatypeProperty .
+hpc:Checkpointperiod rdfs:domain hpc:Job .
+hpc:Checkpointperiod rdfs:range xsd:integer .
+
+hpc:currentworkingdirectory a owl:ObjectProperty .
+hpc:Currentworkingdirectory rdfs:domain hpc:Job .
+hpc:Currentworkingdirectory rdfs:range xsd:string .
+
+hpc:dependencycondition a owl:ObjectProperty .
+hpc:Dependencycondition rdfs:domain hpc:Job .
+hpc:Dependencycondition rdfs:range xsd:string .
+
+hpc:standarderrorfile a owl:ObjectProperty .
+hpc:Standarderrorfile rdfs:domain hpc:Job .
+hpc:Standarderrorfile rdfs:range xsd:string .
+
+hpc:exclusiveexecution a owl:ObjectProperty .
+hpc:Exclusiveexecution rdfs:domain hpc:Job .
+hpc:Exclusiveexecution rdfs:range xsd:boolean .
+
+hpc:holdjob a owl:ObjectProperty .
+hpc:Holdjob rdfs:domain hpc:Job .
+hpc:Holdjob rdfs:range xsd:boolean .
+
+hpc:hostspecifier a owl:ObjectProperty .
+hpc:Hostspecifier rdfs:domain hpc:Job .
+hpc:Hostspecifier rdfs:range xsd:string .
+
+hpc:listofrequestedexecutionhostnames a owl:ObjectProperty .
+hpc:Listofrequestedexecutionhostnames rdfs:domain hpc:Job .
+hpc:Listofrequestedexecutionhostnames rdfs:range xsd:string .
+
+hpc:standardinputfile a owl:ObjectProperty .
+hpc:Standardinputfile rdfs:domain hpc:Job .
+hpc:Standardinputfile rdfs:range xsd:string .
+
+hpc:interactivejob a owl:ObjectProperty .
+hpc:Interactivejob rdfs:domain hpc:Job .
+hpc:Interactivejob rdfs:range xsd:boolean .
+
+hpc:jobaffinitypreferences a owl:ObjectProperty .
+hpc:Jobaffinitypreferences rdfs:domain hpc:Job .
+hpc:Jobaffinitypreferences rdfs:range xsd:string .
+
+hpc:jobdescription a owl:DatatypeProperty .
+hpc:Jobdescription rdfs:domain hpc:Job .
+hpc:Jobdescription rdfs:range xsd:string .
+
+hpc:jobname a owl:DatatypeProperty .
+hpc:Jobname rdfs:domain hpc:Job .
+hpc:Jobname rdfs:range xsd:string .
+
+hpc:loginshell a owl:ObjectProperty .
+hpc:Loginshell rdfs:domain hpc:Job .
+hpc:Loginshell rdfs:range xsd:string .
+
+hpc:EmailAddress a o

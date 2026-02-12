@@ -1,0 +1,53 @@
+hpc:Node a owl:Class .
+hpc:Socket a owl:Class .
+hpc:Core a owl:Class .
+hpc:Task a owl:Class .
+hpc:Allocation a owl:Class .
+
+hpc:hasNode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Allocation ;
+    rdfs:range hpc:Node .
+
+hpc:hasSocket rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range hpc:Socket .
+
+hpc:hasCore rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Socket ;
+    rdfs:range hpc:Core .
+
+hpc:hasTask rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Allocation ;
+    rdfs:range hpc:Task .
+
+hpc:ntasksPerNode rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Allocation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ntasksPerSocket rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Allocation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:ntasksPerCore rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Allocation ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Computebound a owl:Class .
+hpc:Memorybound a owl:Class .
+hpc:Multithread a owl:Class .
+
+hpc:bindtasks a owl:ObjectProperty ;
+    rdfs:domain hpc:Allocation ;
+    rdfs:range hpc:Computebound .
+
+hpc:computeBoundUseAllCoresInEachSocket rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Computebound ;
+    rdfs:range hpc:Task .
+
+hpc:memoryBoundUseOnlyOneCoreInEachSocket rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Memorybound ;
+    rdfs:range hpc:Task .
+
+hpc:useMultithread rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Multithread ;
+    rdfs:range hpc:Task .

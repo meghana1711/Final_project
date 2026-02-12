@@ -1,0 +1,50 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Numeric a owl:Class .
+hpc:Switch a owl:Class .
+hpc:Rack a owl:Class .
+hpc:Owner a owl:Class .
+hpc:elimres a owl:DatatypeProperty .
+hpc:ostype a owl:DatatypeProperty .
+hpc:lmhostid a owl:DatatypeProperty .
+hpc:limversion a owl:DatatypeProperty .
+
+rdfs:domain hpc:Elimres rdf:Resource .
+rdfs:domain hpc:Ostype rdf:Resource .
+rdfs:domain hpc:Lmhostid rdf:Resource .
+rdfs:domain hpc:Limversion rdf:Resource .
+
+rdfs:range hpc:Elimres xsd:nonNegativeInteger .
+
+hpc:Resourcename a owl:Class .
+hpc:Cpu a owl:Class .
+hpc:cpuf a owl:ObjectProperty .
+hpc:Io a owl:Class .
+hpc:Logins a owl:Class .
+hpc:Ls a owl:Class .
+hpc:Idle a owl:Class .
+hpc:maxmem a owl:DatatypeProperty .
+hpc:maxswp a owl:DatatypeProperty .
+hpc:maxtmp a owl:DatatypeProperty .
+hpc:type a owl:DatatypeProperty .
+hpc:model a owl:DatatypeProperty .
+hpc:status a owl:DatatypeProperty .
+hpc:Mem a owl:Class .
+hpc:ncpus a owl:ObjectProperty .
+hpc:defineNcpusCores a owl:ObjectProperty .
+hpc:defineNcpusProcs a owl:ObjectProperty .
+hpc:defineNcpusThreads a owl:ObjectProperty .
+hpc:Ndisks a owl:Class .
+hpc:Pg a owl:Class .
+hpc:r15m a owl:DatatypeProperty .
+hpc:r15s a owl:DatatypeProperty .
+hpc:r1m a owl:DatatypeProperty .
+hpc:swap a owl:DatatypeProperty .
+hpc:swp a owl:DatatypeProperty .
+hpc:tmp a owl:DatatypeProperty .
+hpc:ut a owl:DatatypeProperty .
+hpc:It a owl:Class .
+hpc:Boolean a owl:Class .

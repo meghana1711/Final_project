@@ -1,0 +1,20 @@
+hpc:Paralleljob a owl:Class .
+hpc:resourcerequirementstring a owl:ObjectProperty .
+hpc:span a owl:ObjectProperty .
+hpc:Hosts a xsd:nonNegativeInteger .
+hpc:ptile a owl:DatatypeProperty .
+hpc:DefaultPtile a xsd:nonNegativeInteger .
+hpc:PredefinedPtile a xsd:string .
+
+hpc:Resourcerequirementstring rdfs:domain hpc:Paralleljob .
+hpc:Span rdfs:domain hpc:Resourcerequirementstring .
+hpc:Hosts rdfs:range xsd:nonNegativeInteger .
+hpc:Ptile rdfs:range xsd:nonNegativeInteger ;
+    rdfs:subPropertyOf hpc:Span .
+
+hpc:Span[hosts=1] a hpc:Span ;
+    rdfs:label "All processors on the same host" .
+hpc:Span[ptile=4] a hpc:Span ;
+    rdfs:label "4 processors on each host" .
+hpc:Span[ptile="!"] a hpc:Span ;
+    rdfs:label "Predefined ptile value" .

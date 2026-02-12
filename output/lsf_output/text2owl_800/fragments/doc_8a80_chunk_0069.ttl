@@ -1,0 +1,45 @@
+hpc:Project a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a project." .
+
+hpc:ownership a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Defines the ownership of a project." .
+
+hpc:OwnershipNonShared rdf:datatype xsd:string ;
+    rdfs:comment "Value for Ownership when defined as less than NON_SHARED." .
+
+hpc:OwnershipLimit rdf:datatype xsd:string ;
+    rdfs:comment "Value for Ownership when defined as greater than LIMITS." .
+
+hpc:priority a owl:ObjectProperty ;
+    rdfs:domain hpc:Project ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Defines the priority assigned to a project." .
+
+hpc:Groupproject a owl:Class ;
+    rdfs:subClassOf hpc:Project ;
+    rdfs:comment "Represents a project in a hierarchical group." .
+
+hpc:hierarchicalgrouppriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Groupproject ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Defines the priority of a group project in a hierarchical group." .
+
+hpc:Defaultproject a owl:Class ;
+    rdfs:subClassOf hpc:Project ;
+    rdfs:comment "Represents the default project." .
+
+hpc:defaultprojectpriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Defaultproject ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Defines the priority of the default project." .
+
+hpc:lspreemptpeer a owl:ObjectProperty ;
+    rdfs:domain hpc:Groupproject ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Enables bottom-up license token preemption in hierarchical project group configuration." .
+
+hpc:LSPreemptPeerY rdf:datatype xsd:string ;
+    rdfs:comment "Value for LSPreemptPeer when set to Y." .

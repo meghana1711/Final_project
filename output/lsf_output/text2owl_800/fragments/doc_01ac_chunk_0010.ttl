@@ -1,0 +1,29 @@
+hpc:Datamanager a owl:Class .
+hpc:Localstagingarea a owl:Class .
+hpc:Job a owl:Class .
+hpc:Clusterpreference a owl:Class .
+hpc:Datareadyevent a owl:Class .
+hpc:Scheduleevent a owl:Class .
+
+hpc:informs a owl:ObjectProperty .
+hpc:appends a owl:ObjectProperty .
+hpc:schedules a owl:ObjectProperty .
+
+hpc:Datamanager rdfs:subClassOf owl:Class .
+hpc:Localstagingarea rdfs:subClassOf owl:Class .
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Clusterpreference rdfs:subClassOf owl:Class .
+hpc:Datareadyevent rdfs:subClassOf owl:Class .
+hpc:Scheduleevent rdfs:subClassOf owl:Class .
+
+hpc:Datamanager rdfs:domain hpc:Job .
+hpc:Localstagingarea rdfs:domain hpc:Data .
+hpc:Clusterpreference rdfs:domain hpc:Job .
+hpc:Datareadyevent rdfs:domain hpc:Datamanager .
+hpc:Scheduleevent rdfs:domain hpc:Lsf .
+
+hpc:Informs rdfs:range hpc:Datareadyevent .
+hpc:Appends rdfs:range hpc:Clusterpreference .
+hpc:Schedules rdfs:range hpc:Job .
+
+hpc:Data rdfs:range hpc:Localstagingarea .

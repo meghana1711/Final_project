@@ -1,0 +1,29 @@
+hpc:Span a owl:Class .
+hpc:stripe a owl:ObjectProperty .
+
+hpc:Span rdfs:subClassOf owl:Class .
+hpc:Stripe rdfs:domain hpc:Span .
+
+hpc:ptileValue rdf:type owl:DatatypeProperty .
+hpc:Ptilevalue rdfs:range xsd:integer .
+hpc:Ptilevalue rdfs:domain hpc:Span .
+
+hpc:defaultPtileValue a hpc:PtileValue .
+hpc:defaultPtileValue rdfs:label "Default ptile value"@en .
+
+hpc:predefinedPtileValue a hpc:PtileValue .
+hpc:predefinedPtileValue rdfs:label "'!'"@en .
+
+hpc:Hosttype a owl:Class .
+hpc:Hostmodel a owl:Class .
+
+hpc:sametype a owl:ObjectProperty .
+hpc:Sametype rdfs:domain hpc:Span .
+hpc:Sametype rdfs:range hpc:Hosttype .
+
+hpc:samemodel a owl:ObjectProperty .
+hpc:Samemodel rdfs:domain hpc:Span .
+hpc:Samemodel rdfs:range hpc:Hostmodel .
+
+hpc:Hosttype rdfs:subClassOf owl:Class .
+hpc:Hostmodel rdfs:subClassOf owl:Class .

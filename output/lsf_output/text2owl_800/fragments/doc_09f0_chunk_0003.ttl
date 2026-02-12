@@ -1,0 +1,42 @@
+hpc:Lsbjob a owl:Class .
+hpc:defaultJobCwd a owl:ObjectProperty .
+hpc:lsbJobCwd a owl:ObjectProperty .
+hpc:jobSpoolDir a owl:ObjectProperty .
+
+hpc:Lsbjob rdfs:subClassOf owl:Class .
+
+hpc:DefaultJobCwd rdfs:domain hpc:Lsbjob ;
+    rdfs:range xsd:string .
+
+hpc:LsbJobCwd rdfs:domain hpc:Lsbjob ;
+    rdfs:range xsd:string .
+
+hpc:JobSpoolDir rdfs:domain hpc:Lsbjob ;
+    rdfs:range xsd:string .
+
+hpc:Jobspooldirectory a owl:Class .
+
+hpc:Jobspooldirectory rdfs:subClassOf owl:Class .
+
+hpc:JobSpoolDirectory rdf:type owl:Class .
+
+hpc:Jobspooldirectoryfile a owl:Class ;
+    rdfs:subClassOf hpc:Jobspooldirectory .
+
+hpc:JobSpoolDirectoryFile rdf:type owl:Class .
+
+hpc:jobspooldirectorytemporary a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobspooldirectoryfile ;
+    rdfs:range xsd:boolean .
+
+hpc:jobspooldirectorydeletedafterjobcompletion a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobspooldirectoryfile ;
+    rdfs:range xsd:boolean .
+
+hpc:defaultjobspooldirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbjob ;
+    rdfs:range hpc:Jobspooldirectory .
+
+hpc:alternativejobspooldirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsbjob ;
+    rdfs:range hpc:Jobspooldirectory .

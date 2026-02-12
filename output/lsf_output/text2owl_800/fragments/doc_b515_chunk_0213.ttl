@@ -1,0 +1,60 @@
+hpc:checkpointdir a owl:DatatypeProperty .
+hpc:Checkpointdir rdfs:domain hpc:Checkpoint .
+hpc:Checkpointdir rdfs:range xsd:string .
+
+hpc:copies a owl:ObjectProperty .
+hpc:Copies rdfs:domain hpc:Checkpoint .
+hpc:Copies rdfs:range xsd:boolean .
+
+hpc:forces a owl:ObjectProperty .
+hpc:Forces rdfs:domain hpc:Checkpoint .
+hpc:Forces rdfs:range xsd:boolean .
+
+hpc:kills a owl:ObjectProperty .
+hpc:Kills rdfs:domain hpc:Checkpoint .
+hpc:Kills rdfs:range xsd:boolean .
+
+hpc:stops a owl:ObjectProperty .
+hpc:Stops rdfs:domain hpc:Checkpoint .
+hpc:Stops rdfs:range xsd:boolean .
+
+hpc:Checkpointdirspec a owl:Class .
+hpc:Checkpointdirspec rdfs:subClassOf hpc:Checkpoint .
+
+hpc:Cprprocesstype a owl:Class .
+hpc:Cprprocesstype rdfs:subClassOf hpc:Checkpoint .
+
+hpc:processgroupid a owl:DatatypeProperty .
+hpc:Processgroupid rdfs:domain hpc:Checkpoint .
+hpc:Processgroupid rdfs:range xsd:string .
+
+hpc:Jobcheckpointrestartbehavior a owl:Class .
+
+hpc:automaticcheckpoint a owl:ObjectProperty .
+hpc:Automaticcheckpoint rdfs:domain hpc:Jobcheckpointrestartbehavior .
+hpc:Automaticcheckpoint rdfs:range hpc:Checkpoint .
+
+hpc:manualcheckpoint a owl:ObjectProperty .
+hpc:Manualcheckpoint rdfs:domain hpc:Jobcheckpointrestartbehavior .
+hpc:Manualcheckpoint rdfs:range hpc:Checkpoint .
+
+hpc:migration a owl:ObjectProperty .
+hpc:Migration rdfs:domain hpc:Jobcheckpointrestartbehavior .
+hpc:Migration rdfs:range hpc:Checkpoint .
+
+hpc:restart a owl:ObjectProperty .
+hpc:Restart rdfs:domain hpc:Jobcheckpointrestartbehavior .
+hpc:Restart rdfs:range hpc:Checkpoint .
+
+hpc:Useraccount a owl:Class .
+
+hpc:Checkpointfile a owl:Class .
+hpc:Checkpointfile rdfs:subClassOf hpc:File .
+
+hpc:checkpointfileid a owl:DatatypeProperty .
+hpc:Checkpointfileid rdfs:domain hpc:Checkpointfile .
+hpc:Checkpointfileid rdfs:range xsd:string .
+
+hpc:jobid a owl:DatatypeProperty .
+hpc:Jobid rdfs:domain hpc:Checkpoint .
+hpc:Jobid rdfs:range xsd:string .

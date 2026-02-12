@@ -1,0 +1,77 @@
+hpc:Preexecutioncommand a owl:Class .
+hpc:Job a owl:Class .
+hpc:Postexecutioncommand a owl:Class .
+
+hpc:runs a owl:ObjectProperty ;
+    rdfs:domain hpc:Preexecutioncommand ;
+    rdfs:range hpc:Job .
+
+hpc:runssuccessfully a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:haspreexecutioncommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Preexecutioncommand .
+
+hpc:haspostexecutioncommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Postexecutioncommand .
+
+hpc:canrunmultipletimes a owl:ObjectProperty ;
+    rdfs:domain hpc:Preexecutioncommand ;
+    rdfs:range xsd:boolean .
+
+hpc:usessameuserid a owl:ObjectProperty ;
+    rdfs:domain hpc:Preexecutioncommand ;
+    rdfs:range xsd:string .
+
+hpc:usessameenvironment a owl:ObjectProperty ;
+    rdfs:domain hpc:Preexecutioncommand ;
+    rdfs:range xsd:string .
+
+hpc:usessamehome a owl:ObjectProperty ;
+    rdfs:domain hpc:Preexecutioncommand ;
+    rdfs:range xsd:string .
+
+hpc:usessameworkingdirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Preexecutioncommand ;
+    rdfs:range xsd:string .
+
+hpc:usessamestandardinputoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Preexecutioncommand ;
+    rdfs:range xsd:string .
+
+hpc:requiresfullpath a owl:ObjectProperty ;
+    rdfs:domain hpc:Preexecutioncommand ;
+    rdfs:range xsd:string .
+
+hpc:pathlengthconstraint a owl:ObjectProperty ;
+    rdfs:domain hpc:Preexecutioncommand ;
+    rdfs:range xsd:integer .
+
+hpc:appliestounixlinux a owl:ObjectProperty ;
+    rdfs:domain hpc:Preexecutioncommand ;
+    rdfs:range xsd:boolean .
+
+hpc:appliestowindows a owl:ObjectProperty ;
+    rdfs:domain hpc:Preexecutioncommand ;
+    rdfs:range xsd:boolean .
+
+hpc:appendsstandarderror a owl:ObjectProperty ;
+    rdfs:domain hpc:Postexecutioncommand ;
+    rdfs:range xsd:string .
+
+hpc:runsafterjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Postexecutioncommand ;
+    rdfs:range hpc:Job .
+
+hpc:overridesapplicationlevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Postexecutioncommand ;
+    rdfs:range hpc:Postexecutioncommand .
+
+hpc:runsafterapplicationlevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Postexecutioncommand ;
+    rdfs:range hpc:Postexecutioncommand .
+
+h

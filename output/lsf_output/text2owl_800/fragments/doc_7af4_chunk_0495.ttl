@@ -1,0 +1,40 @@
+hpc:runTimeFactor
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Specifies the run time weighting factor for a job." .
+
+hpc:runTimeFactorDefault
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Default value for run time factor when not defined." .
+
+hpc:runTimeDecay
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:comment "Represents the decayed run time of a job." .
+
+hpc:runTimeDecayRecalculation
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Describes the recalculation of decayed run time when badmin reconﬁg or mbatchd is restarted during a job's run time." .
+
+hpc:runWindow
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies time periods during which jobs in the queue are allowed to run." .
+
+hpc:runWindowDefault
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Default value for run window when not defined." .
+
+hpc:runWindowReopen
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Describes the reopening of the run window, resuming suspended jobs and dispatching additional jobs." .

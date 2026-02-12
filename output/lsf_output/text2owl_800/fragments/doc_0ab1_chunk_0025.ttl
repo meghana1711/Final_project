@@ -1,0 +1,48 @@
+hpc:Gpumodel a owl:Class .
+hpc:hasmodelname a owl:ObjectProperty .
+hpc:hasmemory a owl:DatatypeProperty .
+hpc:numgpuspersocket a owl:DatatypeProperty .
+
+hpc:Gpumodel rdfs:subClassOf owl:Class .
+hpc:Hasmodelname rdfs:domain hpc:Gpumodel ;
+                  rdfs:range xsd:string .
+hpc:Hasmemory rdfs:domain hpc:Gpumodel ;
+               rdfs:range xsd:decimal .
+hpc:Numgpuspersocket rdfs:domain hpc:Gpumodel ;
+                      rdfs:range xsd:integer .
+
+hpc:Hasbrand rdfs:domain hpc:Gpumodel ;
+             rdfs:range xsd:string .
+hpc:Hasmemorysize rdfs:domain hpc:Gpumodel ;
+                   rdfs:range xsd:decimal .
+
+hpc:hasshortmodelname a owl:ObjectProperty ;
+                        rdfs:subPropertyOf hpc:hasModelName .
+
+hpc:hasfullmodelname a owl:ObjectProperty ;
+                       rdfs:subPropertyOf hpc:hasModelName ;
+                       rdfs:domain hpc:Gpumodel ;
+                       rdfs:range xsd:string ;
+                       owl:inverseOf hpc:hasModelName .
+
+hpc:hasmodelnamewithmemory a owl:ObjectProperty ;
+                             rdfs:subPropertyOf hpc:hasModelName ;
+                             rdfs:domain hpc:Gpumodel ;
+                             rdfs:range xsd:string .
+
+hpc:hasmemoryunit a owl:DatatypeProperty ;
+                    rdfs:domain xsd:decimal ;
+                    rdfs:range xsd:string ;
+                    owl:enumeration ( "M" "G" "T" "MB" "GB" "TB" ) .
+
+hpc:hasexplicitnumgpuspersocket a owl:DatatypeProperty ;
+                                   rdfs:domain hpc:Gpumodel ;
+                                   rdfs:range xsd:integer .
+
+hpc:hasautocalculatednumgpuspersocket a owl:DatatypeProperty ;
+                                         rdfs:domain hpc:Gpumodel ;
+                                         rdfs:range xsd:boolean .
+
+hpc:jobrequiresgpumodel a owl:ObjectProperty .
+hpc:jobrequiresgpumemory a owl:DatatypeProperty .
+hpc:jobrequiresnumgpuspersocket a owl:DatatypeProperty .

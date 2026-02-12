@@ -1,0 +1,53 @@
+hpc:Memlimit a owl:Class ;
+    rdfs:comment "The limit to the amount of memory that can be used by the job." ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf owl:Real ] ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "memlimit" .
+
+hpc:Swap a owl:Class ;
+    rdfs:comment "The amount of swap memory used by the job." ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf owl:Real ] ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "swap" .
+
+hpc:Swaplimit a owl:Class ;
+    rdfs:comment "The limit to the amount of swap memory that can be used by the job." ;
+    rdfs:subClassOf [ a owl:Class ;
+                       rdfs:subClassOf owl:Real ] ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "swaplimit" .
+
+hpc:Gnum a owl:Class ;
+    rdfs:comment "The number of GPUs used by the job." ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "gpu_num" .
+
+hpc:Gmode a owl:Class ;
+    rdfs:comment "The GPU mode used for the job." ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "gpu_mode" .
+
+hpc:Jexcl a owl:Class ;
+    rdfs:comment "Whether or not the job is using GPUs in job exclusive mode." ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "j_exclusive" .
+
+hpc:Galloc a owl:Class ;
+    rdfs:comment "GPU allocation for the job." ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "gpu_alloc" .
+
+hpc:Nthreads a owl:Class ;
+    rdfs:comment "The number of threads created by the job." ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "nthreads" .

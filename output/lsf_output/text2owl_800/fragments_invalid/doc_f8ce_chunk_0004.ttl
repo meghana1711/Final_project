@@ -1,0 +1,17 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Lsfdatamanager a owl:Class .
+hpc:Lsfdatamanagerhost a owl:Class .
+hpc:Lsfdatahost a owl:Class .
+hpc:Lsfdataport a owl:Class .
+hpc:Lsflogdir a owl:Class .
+hpc:Lsflogmask a owl:Class .
+hpc:cacheinputgraceperiod a owl:DatatypeProperty .
+hpc:cacheoutputgraceperiod a owl:DatatypeProperty .
+hpc:cachepermissions a owl:DatatypeProperty .
+hpc:filetransfercmd a owl:DatatypeProperty .
+hpc:lsbTime

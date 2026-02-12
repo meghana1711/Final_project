@@ -1,0 +1,41 @@
+hpc:Application a owl:Class .
+hpc:Workloaddistribution a owl:Class .
+hpc:Licenseserver a owl:Class .
+hpc:Featuregroup a owl:Class .
+
+hpc:hasname a owl:ObjectProperty .
+hpc:hasdistribution a owl:ObjectProperty .
+hpc:hasworkloaddistribution a owl:ObjectProperty .
+hpc:hasfeaturegroup a owl:ObjectProperty .
+
+hpc:Hasname rdfs:domain hpc:Application ;
+    rdfs:range xsd:string .
+
+hpc:Hasdistribution rdfs:domain hpc:Application ;
+    rdfs:range hpc:Licenseserver .
+
+hpc:Hasworkloaddistribution rdfs:domain hpc:Licenseserver ;
+    rdfs:range xsd:decimal .
+
+hpc:Hasfeaturegroup rdfs:domain hpc:Application ;
+    rdfs:range hpc:Featuregroup .
+
+hpc:ApplicationX a hpc:Application ;
+    hpc:hasName "ApplicationX" ;
+    hpc:hasDistribution [ a hpc:LicenseServer ;
+                            hpc:hasName "LicenseServer1" ;
+                            hpc:hasWorkloadDistribution "8 2" ] .
+
+hpc:LicenseServer1 a hpc:LicenseServer ;
+    hpc:hasWorkloadDistribution "8 2" .
+
+hpc:Featuregroup a owl:Class ;
+    rdfs:subClassOf hpc:Featuregroup .
+
+hpc:featuregroup NAME a owl:DatatypeProperty ;
+    rdfs:domain hpc:Featuregroup ;
+    rdfs:range xsd:string .
+
+hpc:featurelist a owl:ObjectProperty ;
+    rdfs:domain hpc:Featuregroup ;
+    rdfs:range rdf:List .

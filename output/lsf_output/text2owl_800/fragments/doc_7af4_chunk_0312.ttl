@@ -1,0 +1,18 @@
+hpc:validvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Range is from 0 to INFINIT_INT-1. To disable this feature, set the value to 0, or to a value greater than the LSB_MAX_JOB_DISPATCH_PER_SESSION parameter in the lsf.conf file. If disabled, all job dispatch decisions are published at the end of the scheduling cycle. INFINIT_INT is defined in lsf.h." .
+
+hpc:LSB_MAX_JOB_DISPATCH_PER_SESSION a xsd:integer ;
+    rdfs:comment "Parameter in lsf.conf" .
+
+hpc:jobDistributeOnHost a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "For NUMA CPU and memory affinity scheduling. Specifies how LSF distributes tasks for different jobs. The parameter has the following values:" .
+
+hpc:pack a owl:NamedIndividual ;
+    rdfs:comment "LSF attempts to pack tasks as tightly as possible across jobs. Topology nodes with fewer available resources will be favored for task allocations. JOB_DISTRIBUTE_ON_HOST is not the same as the distribute clause on the command-line affinity resource requirement. JOB_DISTRIBUTE_ON_HOST decides how to distribute tasks between jobs, rather than within a job. Use pack to allow your application to use memory locality." .
+
+hpc:balance a owl:NamedIndividual ;
+    rdfs:comment "LSF attempts to distribute tasks equally across hosts' topology, while considering the allocations of all jobs. Topology nodes with more available resources will be favored for task allocations." .

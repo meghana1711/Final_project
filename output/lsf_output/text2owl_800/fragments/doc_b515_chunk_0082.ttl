@@ -1,0 +1,51 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                       rdfs:subClassOf rdf:Resource ] .
+
+# Affinity Job Class
+hpc:Affinityjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+# Job Resource Requirements Class
+hpc:Jobresourcerequirements a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+# Affinity Resource Requirements Datatype Property
+hpc:affinity a owl:DatatypeProperty ;
+    rdfs:domain hpc:Affinityjob ;
+    rdfs:range xsd:string .
+
+# CPU Binding Datatype Property
+hpc:cpubind a owl:DatatypeProperty ;
+    rdfs:domain hpc:Affinityresourcerequirements ;
+    rdfs:range xsd:string .
+
+# Memory Binding Datatype Property
+hpc:membind a owl:DatatypeProperty ;
+    rdfs:domain hpc:Affinityresourcerequirements ;
+    rdfs:range xsd:string .
+
+# Affinity Resource Requirements Class
+hpc:Affinityresourcerequirements a owl:Class ;
+    rdfs:subClassOf hpc:Jobresourcerequirements .
+
+# Task Class
+hpc:Task a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+# Affinity Task Class
+hpc:Affinitytask a owl:Class ;
+    rdfs:subClassOf hpc:Task .
+
+# Scheduling Parameters Datatype Property
+hpc:schedulingparameters a owl:DatatypeProperty ;
+    rdfs:domain hpc:Affinitytask ;
+    rdfs:range xsd:string .
+
+# Resource Requirement Details Datatype Property
+hpc:resourcerequirementdetails a owl:DatatypeProperty ;
+    rdfs:domain hpc:Affinitytask ;
+    rdfs:range xsd:string .
+
+# Host Class
+hpc:Host a owl:Class .

@@ -1,0 +1,12 @@
+hpc:maxPreexecForwardingRetry a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "MultiCluster job forwarding model only. At the submission cluster, the maximum number of times to attempt forwarding a job to a remote cluster, if the job has been rejected due to the pre-execution command of the job." .
+
+hpc:LocalMaxPreexecRetryAction rdfs:subClassOf hpc:Action ;
+    rdfs:comment "Related reference" .
+
+hpc:maxSbdConns a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mbatchd ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Sets the maximum number of open file connections between the mbatchd and sbatchd daemons." .

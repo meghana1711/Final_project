@@ -1,0 +1,47 @@
+hpc:Elim a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "An executable that collects and reports external load indices." .
+
+hpc:hasexternalloadindex a owl:ObjectProperty ;
+    rdfs:domain hpc:Elim ;
+    rdfs:range hpc:Externalloadindex ;
+    rdfs:comment "The name of the external load index." .
+
+hpc:hasindexvalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Elim ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The external load index value." .
+
+hpc:Externalloadindex a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:writeloadupdatestring a owl:ObjectProperty ;
+    rdfs:domain hpc:Elim ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the load update string was written successfully to stdout." .
+
+hpc:exitonfailure a owl:ObjectProperty ;
+    rdfs:domain hpc:Elim ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the elim should exit if it fails to write the load update string to stdout." .
+
+hpc:useunbufferedoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Elim ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether setbuf(3) is used during initialization to send unbuffered output to stdout." .
+
+hpc:updatefrequency a owl:DatatypeProperty ;
+    rdfs:domain hpc:Elim ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The frequency at which the elim updates the load information (in seconds)." .
+
+hpc:reportonlyonchange a owl:ObjectProperty ;
+    rdfs:domain hpc:Elim ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the elim should report new values only when a change is detected." .
+
+hpc:INFINIT_LOAD a xsd:decimal ;
+    rdfs:comment "The maximum allowed value for external load indices." .
+
+hpc:MIN_LOAD a xsd:decimal ;
+    rdfs:comment "The minimum allowed value for external load indices." .

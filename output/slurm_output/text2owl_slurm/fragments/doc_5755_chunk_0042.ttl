@@ -1,0 +1,36 @@
+hpc:Slurmcluster a owl:Class .
+hpc:Slurmnode a owl:Class .
+hpc:Slurmdaemon a owl:Class .
+hpc:Slurmctld a hpc:SlurmDaemon .
+hpc:Slurmd a hpc:SlurmDaemon .
+
+hpc:drainnode a owl:ObjectProperty .
+hpc:stopslurmctld a owl:ObjectProperty .
+hpc:updateslurmconf a owl:ObjectProperty .
+hpc:restartslurmd a owl:ObjectProperty .
+hpc:restartslurmctld a owl:ObjectProperty .
+hpc:scontrolreconfigure a owl:ObjectProperty .
+
+hpc:Drainnode rdfs:domain hpc:Slurmnode ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Drain node of all jobs." .
+
+hpc:Stopslurmctld rdfs:domain hpc:Slurmnode ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Stop the slurmctld daemon." .
+
+hpc:Updateslurmconf rdfs:domain hpc:Slurmnode ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Update the slurm.conf file on a node." .
+
+hpc:Restartslurmd rdfs:domain hpc:Slurmnode ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Restart the slurmd daemon." .
+
+hpc:Restartslurmctld rdfs:domain hpc:Slurmnode ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Restart the slurmctld daemon." .
+
+hpc:Scontrolreconfigure rdfs:domain hpc:Slurmcluster ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Run scontrol reconfigure." .

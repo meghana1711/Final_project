@@ -1,0 +1,18 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf hpc:Advancereservation ;
+    rdfs:subClassOf hpc:Modifiablereservation ;
+    rdfs:subClassOf hpc:Resourcereservation .
+
+hpc:Advancereservation a owl:Class ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:subClassOf hpc:Recurringreservation .
+
+hpc:Modifiablereservation a owl:Class ;
+    rdfs:subClassOf hpc:Reservation ;
+    rdfs:subClassOf hpc:Modifiable .

@@ -1,0 +1,61 @@
+hpc:Lsfexecution a owl:Class .
+hpc:LsfBindir rdfs:domain hpc:Lsfexecution ;
+    rdfs:range xsd:string .
+
+hpc:Pathspecifiedexecution a owl:Class ;
+    rdfs:subClassOf hpc:Lsfexecution .
+
+hpc:pathname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Pathspecifiedexecution ;
+    rdfs:range xsd:string .
+
+hpc:Systemdefinedexecution a owl:Class ;
+    rdfs:subClassOf hpc:Lsfexecution .
+
+hpc:DjobEnvScript rdfs:domain hpc:Systemdefinedexecution ;
+    rdfs:range xsd:string ;
+    rdfs:seeAlso hpc:DJOB_ENV_SCRIPT_in_lsb_applications .
+
+hpc:DjobEnvScriptInLsbApplications a owl:Class .
+
+hpc:lsbDjobHbInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfexecution ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Heartbeatmessage a owl:Class .
+
+hpc:Heartbeatmessagesentbytask rdfs:domain hpc:Heartbeatmessage ;
+    rdfs:range hpc:Executiontask .
+
+hpc:Executiontask rdfs:domain hpc:Lsfexecution .
+
+hpc:Headnode rdfs:domain hpc:Heartbeatmessage ;
+    rdfs:range hpc:Node .
+
+hpc:LsbDjobCommfailAction rdfs:domain hpc:Heartbeatmessage ;
+    rdfs:range hpc:Action .
+
+hpc:Action rdfs:domain hpc:Heartbeatmessage ;
+    rdfs:range xsd:string .
+
+hpc:heartbeatmessagesendingcannotbedisabled a owl:ObjectProperty .
+
+hpc:LsbDjobHbIntervalCanBeSetAsAnEnvironmentVariableOfBsub rdfs:domain hpc:LsbDjobHbInterval ;
+    rdfs:range hpc:Environmentvariable .
+
+hpc:OverwritesdjobHbInterfaceConfigurationInApplicationProfile rdfs:domain hpc:LsbDjobHbInterval ;
+    rdfs:range hpc:Configuration .
+
+hpc:IfNeitherParameterIsDefinedLsfUsesTheDefaultValue rdfs:domain hpc:LsbDjobHbInterval ;
+    rdfs:range hpc:Defaultvalue .
+
+hpc:Defaultvalue a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeInteger .
+
+hpc:Formula rdfs:domain hpc:Defaultvalue ;
+    rdfs:range xsd:string .
+
+hpc:Max rdfs:domain hpc:Formula ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:NumberOfExecutionHosts rdfs:domain hpc

@@ -1,0 +1,26 @@
+hpc:Eauth a owl:Class .
+hpc:Externalauthentication a owl:Class .
+hpc:Authenticationfailure a owl:Class .
+hpc:Security a owl:Class .
+
+hpc:EauthHasCredentialsFromFile rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Eauth ;
+    rdfs:range hpc:File .
+
+hpc:EauthUsesEncryptionKey rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Eauth ;
+    rdfs:range xsd:string ;
+    rdfs:rangeMinLength 6 .
+
+hpc:TrustedUserAccount rdf:Type owl:Class ;
+    rdfs:subClassOf hpc:Account .
+
+hpc:SetuidBitEnabled rdf:Type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:boolean .
+
+hpc:LsfSudoersFile rdf:Type owl:Class .
+hpc:LsfSudoersKey rdf:Type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfsudoersfile ;
+    rdfs:range xsd:string ;
+    rdfs:rangeMinLength 6 .

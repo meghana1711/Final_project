@@ -1,0 +1,37 @@
+hpc:Licensescheduleradmin a owl:Class .
+hpc:badminmbdrestart a owl:ObjectProperty ;
+    rdfs:domain hpc:Licensescheduleradmin ;
+    rdfs:range xsd:string .
+
+hpc:Projectchange a owl:Class .
+hpc:Featurechange a owl:Class .
+hpc:Clusterlocationchange a owl:Class .
+hpc:lsadminreconfig a owl:ObjectProperty ;
+    rdfs:domain hpc:Licensescheduleradmin ;
+    rdfs:range xsd:string .
+
+hpc:addcluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Licensescheduleradmin ;
+    rdfs:range hpc:Cluster .
+
+hpc:downloadlicenseschedulerpackage a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster .
+
+hpc:installlicenseschedulerpackage a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster .
+
+hpc:useexistinglsflicensescheduler a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster .
+
+hpc:addclustername a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsflicensescheduler ;
+    rdfs:range xsd:string .
+
+hpc:modifylicensedistributionpolicies a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsflicensescheduler .
+
+hpc:maintaincentrallsflicensescheduler a owl:ObjectProperty ;
+    rdfs:domain hpc:Licensescheduleradmin .
+
+hpc:Lsflicensescheduler a owl:Class .
+hpc:Cluster a owl:Class .

@@ -1,0 +1,35 @@
+hpc:Servicedomain a owl:Class .
+hpc:Licenseserver a owl:Class .
+hpc:Projectgroup a owl:Class .
+hpc:Project a owl:Class .
+hpc:licenseownership a owl:ObjectProperty .
+hpc:ServiceDomainType a owl:Enum .
+hpc:LAN a rdfs:member hpc:ServiceDomainType .
+hpc:WAN a rdfs:member hpc:ServiceDomainType .
+hpc:Licenseserverhost a owl:Class .
+hpc:networkconnectioncapability a owl:ObjectProperty .
+hpc:userenvironmentconfiguration a owl:ObjectProperty .
+hpc:licenseservername a owl:DatatypeProperty .
+hpc:portnumber a owl:DatatypeProperty .
+hpc:projectgroupmembership a owl:ObjectProperty .
+hpc:projectgrouplicenseownership a owl:ObjectProperty .
+hpc:projectgroupdistributionpolicy a owl:ObjectProperty .
+hpc:projectgroupservicedomain a owl:ObjectProperty .
+hpc:projectgroupprojectlimit a owl:ObjectProperty .
+hpc:Projectgroup rdfs:subClassOf hpc:Project .
+hpc:Project rdfs:subClassOf hpc:Resource .
+hpc:Servicedomain rdfs:subClassOf hpc:Resource .
+hpc:Licenseserverhost rdfs:subClassOf hpc:Resource .
+hpc:Licenseserver rdfs:subClassOf hpc:Resource .
+
+hpc:Licenseserverhost rdfs:domain hpc:Licenseserver .
+hpc:Licenseservername rdfs:range xsd:string .
+hpc:Portnumber rdfs:range xsd:integer .
+hpc:Networkconnectioncapability rdfs:domain hpc:User .
+hpc:Userenvironmentconfiguration rdfs:domain hpc:User .
+hpc:Projectgroupmembership rdfs:domain hpc:Projectgroup .
+hpc:Projectgroup rdfs:domain hpc:Project .
+hpc:Projectgrouplicenseownership rdfs:domain hpc:Projectgroup .
+hpc:Projectgroupdistributionpolicy rdfs:domain hpc:Projectgroup .
+hpc:Projectgroupservicedomain rdfs:domain hpc:Projectgroup .
+hpc:Projectgroupprojectlimit rdfs:domain hpc:Projectgroup .

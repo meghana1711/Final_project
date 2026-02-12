@@ -1,0 +1,27 @@
+hpc:Applicationprofile a owl:Class .
+hpc:Appprofiles a owl:Class .
+hpc:Appprofiles rdfs:subClassOf hpc:Sequence .
+hpc:Appprofile rdfs:subClassOf hpc:Namedentity .
+hpc:Hasappprofile hpc:objectproperty .
+hpc:Hasappprofile rdfs:domain hpc:Application .
+hpc:Hasappprofile rdfs:range hpc:Appprofiles .
+
+hpc:Eligiblependingjobs a owl:Class .
+hpc:Eligiblependingjobs rdfs:subClassOf hpc:Namedentity .
+hpc:Haseligiblependingjobs hpc:datatypeproperty .
+hpc:Haseligiblependingjobs rdfs:domain hpc:Consumer .
+hpc:Haseligiblependingjobs rdfs:range xsd:integer .
+
+hpc:Host a owl:Class .
+hpc:Hosts a owl:Class .
+hpc:Hosts rdfs:subClassOf hpc:Sequence .
+hpc:Host rdfs:subClassOf hpc:Namedentity .
+hpc:Ishost hpc:objectproperty .
+hpc:Ishost rdfs:domain hpc:Hosts .
+hpc:Ishost rdfs:range hpc:Host .
+hpc:Ishostnegated hpc:objectproperty .
+hpc:Ishostnegated rdfs:domain hpc:Hosts .
+hpc:Ishostnegated rdfs:range xsd:boolean .
+hpc:Ishostgroup hpc:objectproperty .
+hpc:Ishostgroup rdfs:domain hpc:Hosts .
+hpc:Ishostgroup rdfs:range hpc:Hostgroup .

@@ -1,0 +1,42 @@
+hpc:Jobinformation a owl:Class .
+hpc:bjobs a owl:ObjectProperty .
+hpc:Bjobs rdfs:domain hpc:Jobinformation .
+hpc:Bjobs rdfs:range hpc:Job .
+
+hpc:Job a owl:Class .
+hpc:Job rdfs:subClassOf hpc:Jobinformation .
+
+hpc:brun a owl:ObjectProperty .
+hpc:Brun rdfs:domain hpc:User .
+hpc:Brun rdfs:range hpc:Job .
+
+hpc:Usersuspended a owl:Class .
+hpc:Usersuspended rdfs:subClassOf hpc:Job .
+hpc:USUSP rdf:datatype xsd:string .
+
+hpc:bkill a owl:ObjectProperty .
+hpc:Bkill rdfs:domain hpc:User .
+hpc:Bkill rdfs:range hpc:Job .
+
+hpc:signal a owl:DatatypeProperty .
+hpc:Signal rdfs:domain hpc:Job .
+hpc:Signal rdfs:range xsd:string .
+
+hpc:Dataprovenance a owl:Class .
+hpc:dataprovenancetool a owl:ObjectProperty .
+hpc:Dataprovenancetool rdfs:domain hpc:Dataprovenance .
+hpc:Dataprovenancetool rdfs:range hpc:Tool .
+
+hpc:Tool a owl:Class .
+
+hpc:suspendjob a owl:ObjectProperty .
+hpc:Suspendjob rdfs:domain hpc:Job .
+hpc:Suspendjob rdfs:range xsd:string .
+
+hpc:resumejob a owl:ObjectProperty .
+hpc:Resumejob rdfs:domain hpc:Job .
+hpc:Resumejob rdfs:range xsd:string .
+
+hpc:terminatejob a owl:ObjectProperty .
+hpc:Terminatejob rdfs:domain hpc:Job .
+hpc:Terminatejob rdfs:range xsd:string .

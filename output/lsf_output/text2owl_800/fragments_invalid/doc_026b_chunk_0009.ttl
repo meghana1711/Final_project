@@ -1,0 +1,5 @@
+hpc:Restart a owl:Class .
+hpc:Restart lim rdfs:domain hpc:Restart ;
+                          rdfs:range xsd:string .
+hpc:admin a owl:ObjectProperty .
+hpc:Mbdrestart rdfs:subClassOf hpc:Restart .

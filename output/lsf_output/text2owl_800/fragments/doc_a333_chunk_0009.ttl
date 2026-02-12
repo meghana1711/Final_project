@@ -1,0 +1,55 @@
+hpc:Lsfserver a owl:Class ;
+    rdfs:subClassOf hpc:Hpcsystem ;
+    rdfs:comment "Server or client in a production environment to load the LSF configuration files." .
+
+hpc:Lsfclient a owl:Class ;
+    rdfs:subClassOf hpc:Hpcsystem ;
+    rdfs:comment "Client in a production environment to load the LSF configuration files." .
+
+hpc:Lsfsimulator a owl:Class ;
+    rdfs:subClassOf hpc:Lsfserver ;
+    rdfs:comment "Simulator for LSF." .
+
+hpc:hasmemoryrequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Hpcsystem ;
+    rdfs:range xsd:decimal .
+
+hpc:hasminmemoryrequirement a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hpcsystem ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Minimum memory requirement for the system." .
+
+hpc:hasinstallationdirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Hpcsystem ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Directory used for extraction of the installation package." .
+
+hpc:hasfreespacerequirement a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hpcsystem ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Minimum free space requirement for the installation directory." .
+
+hpc:hasuser a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfserver ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "User for LSF Simulator." .
+
+hpc:addtodockergroup a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Add a user to the docker group." .
+
+hpc:hasmmapcountlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfsimulator ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Limit on the mmap counts for Elasticsearch." .
+
+hpc:increasemmapcountlimit a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range rdf:Literal ;
+    rdfs:comment "Increase the limit for Elasticsearch." .
+
+hpc:editsysctlconffile a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "Edit the /etc/sysctl.conf file." .

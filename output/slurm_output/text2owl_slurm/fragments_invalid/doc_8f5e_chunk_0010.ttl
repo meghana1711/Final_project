@@ -1,0 +1,25 @@
+hpc:UpgradeProcess
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "The process of upgrading the SLURM system." .
+
+hpc:SlurmctldUpgrade
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Upgradeprocess ;
+    rdfs:range hpc:Slurmctld ;
+    rdfs:comment "Upgrading the slurmctld daemon(s)." .
+
+hpc:SlurmdUpgrade
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Upgradeprocess ;
+    rdfs:range hpc:Slurmd ;
+    rdfs:comment "Upgrading the slurmd daemons on the compute nodes." .
+
+hpc:ShutdownSlurmctld
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Upgradeprocess ;
+    rdfs:range hpc:Slurmctld ;
+    rdfs:comment "Shutdown the slurmctld daemon(s)." .
+
+hpc:ShutdownSlurmd
+    a o

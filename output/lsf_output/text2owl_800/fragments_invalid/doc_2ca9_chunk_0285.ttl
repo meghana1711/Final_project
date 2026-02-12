@@ -1,0 +1,53 @@
+hpc:Ibmcloudgen2Config a owl:Class .
+hpc:Ibmcloudgen2Templates a owl:Class .
+hpc:PolicyConfig a owl:Class .
+
+hpc:manages rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Ibmcloudgen2Config ;
+    rdfs:range hpc:Cloudvpcgen2 .
+
+hpc:defines rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Ibmcloudgen2Templates ;
+    rdfs:range hpc:Lsfresourcedemandrequestmapping .
+
+hpc:configures rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:PolicyConfig ;
+    rdfs:range hpc:Resourceprovider .
+
+hpc:namedPolicy rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Policy .
+
+hpc:name rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Namedpolicy ;
+    rdfs:range xsd:string .
+
+hpc:consumer rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Namedpolicy ;
+    rdfs:range xsd:string .
+
+hpc:maxInstances rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Namedpolicy ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maxInstancesInPeriod rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Namedpolicy ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:bmgroup rdf:type owl:ObjectProperty ;
+    rdfs:domain xsd:string ;
+    rdfs:range xsd:string .
+
+hpc:Leasedinhosts rdfs:range xsd:string ;
+hpc:leasedInHosts rdfs:comment "The form of leased-in hosts in the HOSTS column by default." .
+
+hpc:Allremote rdfs:range xsd:string ;
+hpc:allremote rdfs:comment "A keyword representing leased-in hosts if LSB_BMGROUP_ALLREMOTE_EXPAND=N is configured." .
+
+hpc:LSB_SUB_JOB_ID rdf:type owl:DatatypeProperty ;
+    rdfs:domain xsd:string ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:submittedJobID rdfs:comment "The ID of a submitted job that is assigned by LSF, as shown by bjobs." .
+
+hpc:-1 rdf:type xsd:nonNegativeInteger ;
+    hpc:submittedJobID rdfs:comment "A value of -1 indicates that mbatchd rejected the job submission." .

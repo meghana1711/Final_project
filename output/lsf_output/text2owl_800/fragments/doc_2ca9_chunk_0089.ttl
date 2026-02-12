@@ -1,0 +1,41 @@
+hpc:Resourcereservationmethod a owl:Class .
+hpc:PerTaskReservation a hpc:ResourceReservationMethod ;
+  rdfs:comment "Specifies per-task reservation of the specified resource." ;
+  rdfs:subClassOf hpc:Resourcereservationmethod .
+hpc:PerJobReservation a hpc:ResourceReservationMethod ;
+  rdfs:comment "Specifies per-job reservation of the specified resource. This is not allowed in the GPU requirements string." ;
+  rdfs:subClassOf hpc:Resourcereservationmethod .
+hpc:PerHostReservation a hpc:ResourceReservationMethod ;
+  rdfs:comment "Specifies per-host reservation of the specified resource." ;
+  rdfs:subClassOf hpc:Resourcereservationmethod .
+
+hpc:usagestring a owl:DatatypeProperty ;
+  rdfs:domain hpc:Job .
+
+hpc:Resourcerequirement a owl:Class ;
+  rdfs:subClassOf hpc:Usagestring .
+hpc:RusageString a hpc:ResourceRequirement ;
+  rdfs:subClassOf hpc:Usagestring ;
+  rdfs:range xsd:string .
+hpc:GpuRequirement a hpc:ResourceRequirement ;
+  rdfs:subClassOf hpc:Usagestring ;
+  rdfs:range xsd:string .
+
+hpc:hasresourcereservationmethod a owl:ObjectProperty ;
+  rdfs:domain hpc:Resourcerequirement ;
+  rdfs:range hpc:Resourcereservationmethod .
+hpc:hasrusagevalue a owl:DatatypeProperty ;
+  rdfs:domain hpc:Rusagestring ;
+  rdfs:range xsd:string .
+hpc:hasgpuvalue a owl:DatatypeProperty ;
+  rdfs:domain hpc:Gpurequirement ;
+  rdfs:range xsd:string .
+hpc:hasnumgpus a owl:DatatypeProperty ;
+  rdfs:domain hpc:Gpurequirement ;
+  rdfs:range xsd:integer .
+hpc:hasmode a owl:DatatypeProperty ;
+  rdfs:domain hpc:Gpurequirement ;
+  rdfs:range xsd:string .
+hpc:hasjexclusive a owl:DatatypeProperty ;
+  rdfs:domain hpc:Gpurequirement ;
+  rdfs:range xsd:boolean .

@@ -1,0 +1,26 @@
+hpc:Bsubjob a owl:Class .
+
+hpc:hasrerunoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsubjob ;
+    rdfs:range xsd:boolean .
+
+hpc:resizenotificationcmd a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsubjob ;
+    rdfs:range xsd:string .
+
+hpc:stacklimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Bsubjob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:signal a owl:ObjectProperty ;
+    rdfs:domain hpc:Bsubjob ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Rerunnablequeue a owl:Class ;
+    rdfs:subClassOf hpc:Bsubjob .
+
+hpc:Resizenotificationcommandlimit a owl:Class ;
+    rdfs:subClassOf hpc:Bsubjob .
+
+hpc:Stacklimit a owl:Class ;
+    rdfs:subClassOf hpc:Bsubjob .

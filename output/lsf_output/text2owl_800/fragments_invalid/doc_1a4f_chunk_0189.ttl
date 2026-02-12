@@ -1,0 +1,45 @@
+hpc:Resourcerequirement a owl:Class .
+hpc:Joblevelrequirement a owl:Class .
+hpc:Applicationlevelrequirement a owl:Class .
+hpc:Queuelevelrequirement a owl:Class .
+hpc:Rusagerequirement a owl:Class .
+hpc:Compoundrequirement a owl:Class .
+hpc:Alternativerequirement a owl:Class .
+hpc:Simplerequirement a owl:Class .
+
+hpc:mergesWith rdf:Property .
+hpc:overwrites rdf:Property .
+hpc:conflictsOccur rdf:Property .
+hpc:resolvedBy rdf:Property .
+
+hpc:Joblevelrequirement rdfs:domain hpc:Job .
+hpc:Applicationlevelrequirement rdfs:domain hpc:Application .
+hpc:Queuelevelrequirement rdfs:domain hpc:Queue .
+hpc:Rusagerequirement rdfs:domain hpc:Resourcerequirement .
+hpc:Compoundrequirement rdfs:domain hpc:Resourcerequirement .
+hpc:Alternativerequirement rdfs:domain hpc:Resourcerequirement .
+hpc:Simplerequirement rdfs:domain hpc:Resourcerequirement .
+
+hpc:Job rdfs:subClassOf rdf:Resource .
+hpc:Application rdfs:subClassOf rdf:Resource .
+hpc:Queue rdfs:subClassOf rdf:Resource .
+
+hpc:Joblevelrequirement rdfs:range hpc:Resourcerequirement .
+hpc:Applicationlevelrequirement rdfs:range hpc:Resourcerequirement .
+hpc:Queuelevelrequirement rdfs:range hpc:Resourcerequirement .
+hpc:Rusagerequirement rdfs:range hpc:Resourcerequirement .
+hpc:Compoundrequirement rdfs:range hpc:Resourcerequirement .
+hpc:Alternativerequirement rdfs:range hpc:Resourcerequirement .
+hpc:Simplerequirement rdfs:range hpc:Resourcerequirement .
+
+hpc:Mergeswith hpc:joblevelrequirement, hpc:ApplicationLevelRequirement, hpc:RusageRequirement .
+hpc:Overwrites hpc:joblevelrequirement, hpc:ApplicationLevelRequirement .
+hpc:Conflictsoccur hpc:joblevelrequirement, hpc:ApplicationLevelRequirement .
+hpc:Resolvedby hpc:compoundrequirement .
+
+hpc:JobLevelRequirement rdfs:subPropertyOf hpc:mergesWith .
+hpc:ApplicationLevelRequirement rdfs:subPropertyOf hpc:mergesWith .
+hpc:RusageRequirement rdfs:subPropertyOf hpc:mergesWith .
+hpc:JobLevelRequirement rdfs:subPropertyOf hpc:overwrites .
+hpc:ApplicationLevelRequirement rdfs:subPropertyOf hpc:overwrites .
+hpc:JobLevelRequ

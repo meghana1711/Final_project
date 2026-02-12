@@ -1,0 +1,25 @@
+hpc:Lsf a owl:Class .
+hpc:Lsfconf a owl:Class .
+hpc:lsfenablesupportipv6 a owl:ObjectProperty .
+hpc:lsfdynamichosttimeout a owl:DatatypeProperty .
+
+hpc:Lsf rdfs:subClassOf owl:Class .
+hpc:Lsfconf rdfs:subClassOf hpc:Lsf .
+hpc:LsfEnableSupportIpv6 rdf:type owl:ObjectProperty .
+hpc:LsfDynamicHostTimeout rdf:type owl:DatatypeProperty .
+
+hpc:Lsfenablesupportipv6 rdfs:domain hpc:Lsf .
+hpc:Lsfenablesupportipv6 rdfs:range xsd:boolean .
+hpc:Lsfdynamichosttimeout rdfs:domain hpc:Lsf .
+hpc:Lsfdynamichosttimeout rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsfdynamichosttimeouttimeout a owl:DatatypeProperty .
+hpc:lsfdynamichosttimeoutthreshold a owl:DatatypeProperty .
+hpc:lsfdynamichosttimeoutinterval a owl:DatatypeProperty .
+
+hpc:Lsfdynamichosttimeouttimeout rdfs:domain hpc:Lsfdynamichosttimeout .
+hpc:Lsfdynamichosttimeouttimeout rdfs:range xsd:nonNegativeInteger .
+hpc:Lsfdynamichosttimeoutthreshold rdfs:domain hpc:Lsfdynamichosttimeout .
+hpc:Lsfdynamichosttimeoutthreshold rdfs:range xsd:nonNegativeInteger .
+hpc:Lsfdynamichosttimeoutinterval rdfs:domain hpc:Lsfdynamichosttimeout .
+hpc:Lsfdynamichosttimeoutinterval rdfs:range xsd:nonNegativeInteger .

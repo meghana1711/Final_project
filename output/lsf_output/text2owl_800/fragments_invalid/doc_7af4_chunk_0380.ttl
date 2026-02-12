@@ -1,0 +1,22 @@
+hpc:SbdSleepTime a owl:Class ;
+    rdfs:comment "Setting this parameter greater than 60 seconds causes the host to be frequently marked SBDDOWN and triggers mbatchd probe, thus slowing performance." .
+
+hpc:SchedMetricEnable a owl:Class ;
+    rdfs:comment "Enable scheduler performance metric collection." ;
+    rdfs:subClassOf owl:Boolean .
+
+hpc:SchedMetricSamplePeriod a owl:Class ;
+    rdfs:comment "Set a default performance metric sampling period in seconds." ;
+    rdfs:domain hpc:SchedMetricSamplePeriod rdf:Property ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:minCardinality 1 .
+
+hpc:schedMetricSamplePeriod a owl:DatatypeProperty ;
+    rdfs:comment "Cannot be less than 60 seconds." .
+
+hpc:SchedPerJobSort a owl:Class ;
+    rdfs:comment "Enable this parameter to use the per-job sorting feature in scheduler." .
+
+hpc:propname a owl:ObjectProperty ;
+    rdfs:domain hpc:Classname ;
+    rdfs:range rdf:Property .

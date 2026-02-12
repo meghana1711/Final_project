@@ -1,0 +1,20 @@
+hpc:LsfDhcpEnv a owl:Class .
+hpc:LSF_DYNAMIC_HOST_WAIT_TIME rdfs:seeAlso hpc:LSF_DHCP_ENV .
+
+hpc:LsfDisableLsrun a owl:Class .
+hpc:LsfRootUser rdfs:domain hpc:LsfDisableLsrun ;
+    rdfs:range xsd:string .
+
+hpc:LSF_ROOT_REX rdfs:seeAlso hpc:LSF_DISABLE_LSRUN .
+
+hpc:LsfDiscardLog a owl:Class .
+hpc:LSF_LOG_QUEUE_SIZE rdfs:seeAlso hpc:LSF_DISCARD_LOG .
+hpc:LsfDiscardLog rdfs:subClassOf owl:Class ;
+    rdfs:domain hpc:LsfDiscardLog ;
+    rdfs:range xsd:string .
+
+hpc:Discardloggingmessages rdfs:domain hpc:LsfDiscardLog ;
+    rdfs:range xsd:boolean .
+
+hpc:Extendloggingqueue rdfs:domain hpc:LsfDiscardLog ;
+    rdfs:range xsd:boolean .

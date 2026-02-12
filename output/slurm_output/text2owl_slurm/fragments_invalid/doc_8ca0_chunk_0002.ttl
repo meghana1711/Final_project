@@ -1,0 +1,25 @@
+hpc:ResumeRate
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Powersavingoperation ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "ResumeRate must be greater than or equal to 0." .
+
+hpc:SuspendRate
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Powersavingoperation ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "SuspendRate must be greater than or equal to 0." .
+
+hpc:PowerSavingOperation
+    a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:SlurmControlDaemonRestart
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Powersavingoperation ;
+    rdfs:range hpc:Slurmcontroldaemon ;
+    rdfs:comment "The Slurm control daemon, slurmctld, must be restarted to initially enable Power Saving operation." .
+
+hpc:SlurmConfigModify
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Powersaving

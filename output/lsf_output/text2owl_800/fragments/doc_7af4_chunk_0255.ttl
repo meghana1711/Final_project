@@ -1,0 +1,22 @@
+hpc:Defaultqueue a owl:Class .
+hpc:Defaultqueue rdfs:subClassOf owl:Class .
+
+hpc:timezone a owl:DatatypeProperty .
+hpc:Timezone rdfs:domain hpc:Defaultqueue .
+hpc:Timezone rdfs:range xsd:string .
+
+hpc:defaultqueuename a owl:ObjectProperty .
+hpc:Defaultqueuename rdfs:domain hpc:Defaultqueue .
+hpc:Defaultqueuename rdfs:range xsd:string .
+
+hpc:mbdSleepTime a owl:DatatypeProperty .
+hpc:MbdSleepTime rdfs:domain hpc:Defaultqueue .
+hpc:MbdSleepTime rdfs:range xsd:nonNegativeInteger .
+
+hpc:sbdSleepTime a owl:DatatypeProperty .
+hpc:SbdSleepTime rdfs:domain hpc:Defaultqueue .
+hpc:SbdSleepTime rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobAcceptInterval a owl:DatatypeProperty .
+hpc:JobAcceptInterval rdfs:domain hpc:Defaultqueue .
+hpc:JobAcceptInterval rdfs:range xsd:nonNegativeInteger .

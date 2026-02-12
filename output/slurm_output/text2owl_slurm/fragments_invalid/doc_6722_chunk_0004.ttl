@@ -1,0 +1,21 @@
+hpc:Slurmburstbufferluascript a owl:Class.
+hpc:hasLocation rdf:type owl:DatatypeProperty;
+    rdfs:domain hpc:Slurmburstbufferluascript;
+    rdfs:range xsd:string.
+
+hpc:Slurmconfiguration a owl:Class.
+hpc:burstBufferType rdf:type owl:ObjectProperty;
+    rdfs:domain hpc:Slurmconfiguration;
+    rdfs:range hpc:Burstbuffertype.
+
+hpc:Burstbuffertype a owl:Class.
+hpc:islua a owl:DatatypeProperty;
+    rdfs:domain hpc:Burstbuffertype;
+    rdfs:range xsd:boolean.
+
+hpc:slurmbbjobprocess a owl:ObjectProperty.
+hpc:slurmbbpools a owl:ObjectProperty.
+hpc:slurmbbjobteardown a owl:ObjectProperty.
+hpc:slurmbbsetup a owl:ObjectProperty.
+hpc:slurmbbdatain a owl:ObjectProperty.
+hpc:slurmBbTestDataIn a o

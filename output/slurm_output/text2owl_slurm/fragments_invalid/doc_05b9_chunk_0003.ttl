@@ -1,0 +1,11 @@
+hpc:Slurmapiresponse a owl:Class.
+hpc:Pingtestresponse a owl:Class.
+hpc:pingtestresult a owl:ObjectProperty;
+    rdfs:domain hpc:Pingtestresponse;
+    rdfs:range rdf:List;
+    rdfs:subPropertyOf rdf:list.
+hpc:PingTestResult/pinged rdf:DatatypeProperty;
+    rdfs:domain hpc:Pingtestresult;
+    rdfs:range xsd:string.
+hpc:PingTestResult/error rdf:DatatypeProperty;
+    rdfs:domain hpc:

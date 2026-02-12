@@ -1,0 +1,51 @@
+hpc:Priofactorvalue a owl:Class .
+hpc:Summarizedjobreason a owl:Class .
+hpc:Jobfilter a owl:Class .
+hpc:Jobstate a owl:Class .
+hpc:Format a owl:Class .
+
+hpc:Haspriorityfactorvalue an rdfs:domain hpc:Job .
+hpc:Hassummarizedreason an rdfs:domain hpc:Job .
+hpc:Belongstofilter an rdfs:domain hpc:Jobfilter .
+hpc:Hasjobstate an rdfs:domain hpc:Job .
+hpc:Hasformat an rdfs:domain hpc:Job .
+
+hpc:Priofactorvalue rdfs:subClassOf xsd:decimal .
+hpc:Summarizedreason rdfs:subClassOf hpc:Reason .
+hpc:Jobfilter rdfs:subClassOf rdf:List .
+hpc:Jobstate rdfs:subClassOf xsd:string .
+hpc:Format rdfs:subClassOf xsd:string .
+
+hpc:bjobs a owl:ObjectProperty .
+hpc:Bjobs rdfs:domain hpc:Jobfilter .
+hpc:Bjobs rdfs:range hpc:Job .
+
+hpc:displaysPrioFactors a hpc:bjobs .
+hpc:displaysSummarizedReasons a hpc:bjobs .
+hpc:requiresFurtherDetails a hpc:bqueues .
+hpc:requiresUserPriorityDetails a hpc:bjobs .
+hpc:priorOption a hpc:bjobs .
+hpc:psumOption a hpc:bjobs .
+hpc:filterOption a hpc:bjobs .
+hpc:formatOption a hpc:bjobs .
+hpc:stateOption a hpc:bjobs .
+
+hpc:conflictingoptions a owl:ObjectProperty .
+hpc:Conflictingoptions rdfs:domain hpc:Bjobs .
+hpc:Conflictingoptions rdfs:range hpc:Filteroption .
+
+hpc:allUsers a hpc:User .
+hpc:specificUser a hpc:User .
+hpc:userGroup a hpc:UserGroup .
+hpc:securedJobInfoLevel a hpc:Parameter .
+
+hpc:eligibleReason a hpc:SummarizedReason .
+hpc:ineligibleReason a hpc:SummarizedReason .
+hpc:hostReason a hpc:SummarizedReason .
+hpc:resourceReservationReason a hpc:SummarizedReason .
+hpc:schedulingWaitReason a hpc:SummarizedReason .
+
+hpc:loadInformationUnavailable a hpc:SummarizedReason .
+hpc:closedByAdmin a hpc:SummarizedReason .
+hpc:notSpecifiedInSubmission a hpc:SummarizedReason .
+hpc:resourceRequirementNotSatisfied a hpc:SummarizedReason .

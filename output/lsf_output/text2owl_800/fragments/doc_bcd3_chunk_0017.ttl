@@ -1,0 +1,28 @@
+hpc:Bslots a owl:Class .
+hpc:hasslot a owl:ObjectProperty ;
+    rdfs:domain hpc:Bslots ;
+    rdfs:range hpc:Slot .
+hpc:Slot a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf owl:NamedIndividual ] .
+hpc:hasruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Slot .
+hpc:Backfillwindow a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf owl:NamedIndividual ] .
+hpc:hasbackfillwindow a owl:DatatypeProperty ;
+    rdfs:domain hpc:Backfillwindow .
+hpc:Noreservedslots a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf owl:NamedIndividual ] .
+hpc:hasnoreservedslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Noreservedslots .
+hpc:Unlimited a xsd:string ;
+    rdfs:range xsd:string .
+hpc:Backfillrequirement a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf owl:NamedIndividual ] .
+hpc:hasslotrequirement a owl:DatatypeProperty ;
+    rdfs:domain hpc:Backfillrequirement .
+hpc:hasruntimerequirement a owl:DatatypeProperty ;
+    rdfs:domain hpc:Backfillrequirement .

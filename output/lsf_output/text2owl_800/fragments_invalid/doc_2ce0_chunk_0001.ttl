@@ -1,0 +1,34 @@
+hpc:Fstab cgroup rdfs:domain hpc:Fstab .
+hpc:Fstab cgroup rdfs:range xsd:string .
+hpc:Fstab mount rdfs:domain hpc:Fstab .
+hpc:Fstab mount rdfs:range xsd:string .
+hpc:Fstab aotu rdfs:subClassOf hpc:Fstab .
+hpc:Aotu a owl:Class .
+hpc:Aotu command rdfs:domain hpc:Aotu .
+hpc:Aotu command rdfs:range xsd:string .
+hpc:Aotu root rdfs:domain hpc:Aotu .
+hpc:Aotu root rdfs:range xsd:string .
+hpc:Lsfadmin a owl:Class .
+hpc:Lsfenvdir a owl:Class .
+hpc:Lsfconf a owl:Class .
+hpc:lsbresourceenforce a owl:ObjectProperty .
+hpc:Lsbresourceenforce rdfs:domain hpc:Lsfenvdir .
+hpc:Lsbresourceenforce rdfs:range xsd:string .
+hpc:lsfrestart a owl:ObjectProperty .
+hpc:Lsfrestart rdfs:domain hpc:Lsfadmin .
+hpc:Lsfrestart rdfs:range xsd:string .
+hpc:Job a owl:Class .
+hpc:Job memory rdfs:domain hpc:Job .
+hpc:Job memory rdfs:range xsd:string .
+hpc:Job swap rdfs:domain hpc:Job .
+hpc:Job swap rdfs:range xsd:string .
+hpc:Queue a owl:Class .
+hpc:Queue memlimit rdfs:domain hpc:Queue .
+hpc:Queue memlimit rdfs:range xsd:string .
+hpc:Queue swaplimit rdfs:domain hpc:Queue .
+hpc:Queue swaplimit rdfs:range xsd:string .
+hpc:Applicationprofile a owl:Class .
+hpc:Applicationprofile memlimit rdfs:domain hpc:Applicationprofile .
+hpc:Applicationprofile memlimit rdfs:range xsd:string .
+hpc:Applicationprofile swaplimit rdfs:domain hpc:Applicationprofile .
+hpc:Applicationprofile swaplimit rdfs:range xsd:string .

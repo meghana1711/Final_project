@@ -1,0 +1,42 @@
+hpc:LsbInteractive a owl:Class ;
+    rdfs:comment "Indicates an interactive job." ;
+    rdfs:subClassOf <http://example.org/hpc#Job> ;
+    rdfs:domain lsb_job .
+
+hpc:haslsbInteractive a owl:ObjectProperty ;
+    rdfs:domain lsb_job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Valid values: LSB_INTERACTIVE=Y (if the job is interactive)" .
+
+hpc:DefaultlsbInteractive a owl:Class ;
+    rdfs:comment "Not deﬁned (if the job is not interactive)" .
+
+hpc:setbylsbInteractive a owl:ObjectProperty ;
+    rdfs:domain sbatchd ;
+    rdfs:range lsb_job ;
+    rdfs:comment "Where deﬁned" .
+
+hpc:LsbJobaffReq a owl:Class ;
+    rdfs:comment "Afﬁnity preferences for the job as speciﬁed by the bsub -jobaff command option." ;
+    rdfs:subClassOf <http://example.org/hpc#Job> ;
+    rdfs:domain lsb_job .
+
+hpc:LsbJobIncludePostproc a owl:Class ;
+    rdfs:comment "Enables the post-execution processing of the job to be included as part of the job." ;
+    rdfs:subClassOf <http://example.org/hpc#Job> ;
+    rdfs:domain lsb_job .
+
+hpc:haslsbJobIncludePostproc a owl:ObjectProperty ;
+    rdfs:domain lsb_job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "From the command line." .
+
+hpc:LsbJobexitInfo a owl:Class ;
+    rdfs:comment "Contains information about signal that caused a job to exit." ;
+    rdfs:subClassOf <http://example.org/hpc#PostExecutionCommand> ;
+    rdfs:domain post_execution_command .
+
+hpc:haslsbJobexitInfo a owl:ObjectProperty ;
+    rdfs:domain post_execution_command ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Applies to post-execution commands." .

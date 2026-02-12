@@ -1,0 +1,56 @@
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Workload ;
+    rdfs:comment "Represents a job in LSF." .
+
+hpc:Normalizationhost a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Represents a host name or host model used for normalization in LSF." .
+
+hpc:runtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "The absolute run time of a job." .
+
+hpc:normalizedruntime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "The normalized run time of a job." .
+
+hpc:cpufactornormalizationhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Normalizationhost ;
+    rdfs:range hpc:Normalizationhost ;
+    rdfs:comment "The host used for normalization when running a job." .
+
+hpc:cpufactorexecutehost a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Normalizationhost ;
+    rdfs:comment "The host where the job is executed for calculating the normalized run time." .
+
+hpc:normalizedruntimeformula a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The formula used by LSF to calculate the normalized run time." .
+
+hpc:defaultnormalizationhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Normalizationhost ;
+    rdfs:comment "The default normalization host for a queue." .
+
+hpc:defaultclusternormalizationhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Normalizationhost ;
+    rdfs:comment "The default normalization host for a cluster." .
+
+hpc:submissionhostnormalizationhost a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Normalizationhost ;
+    rdfs:comment "The submission host used as the normalization host when no other host is specified." .
+
+hpc:Hostspec a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Represents a host name or host model with the runtime estimate." .
+
+hpc:slash a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostspec ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The slash character used to separate the minutes value and the host name or model." .

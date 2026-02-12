@@ -1,0 +1,50 @@
+hpc:Jobsubmission a owl:Class .
+hpc:PendingReason an owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:string .
+
+hpc:Hierarchicalgrouppath a owl:Class ;
+    rdfs:subClassOf hpc:Jobsubmission .
+
+hpc:requireslsfversion a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hierarchicalgrouppath ;
+    rdfs:range xsd:string .
+
+hpc:Projectmode a owl:Class ;
+    rdfs:subClassOf hpc:Jobsubmission .
+
+hpc:demandlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Projectmode ;
+    rdfs:range xsd:integer .
+
+hpc:Clustermode a owl:Class ;
+    rdfs:subClassOf hpc:Jobsubmission .
+
+hpc:allocationbuffer a owl:DatatypeProperty ;
+    rdfs:domain hpc:Clustermode ;
+    rdfs:range xsd:integer .
+
+hpc:Preemption a owl:Class .
+
+hpc:Overpreemption a owl:Class ;
+    rdfs:subClassOf hpc:Preemption .
+
+hpc:Feature a owl:Class .
+
+hpc:dynamicduration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Feature ;
+    rdfs:range xsd:string .
+
+hpc:Reservedafterrestart a owl:Class .
+
+hpc:filedescriptorlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:integer .
+
+hpc:lsMaxTaskmanSessions a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:integer .
+
+hpc:Egoenvironmentvariablesremoval a owl:Class .
+
+hpc:Installation a owl:Class .

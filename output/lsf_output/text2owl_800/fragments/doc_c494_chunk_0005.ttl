@@ -1,0 +1,42 @@
+hpc:BeginSSchedScript
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsessionschedulerjob ;
+    rdfs:range hpc:Lsfsessionschedulercommand .
+
+hpc:EndSSchedScript
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsessionschedulerjob ;
+    rdfs:range hpc:Lsfsessionschedulercommand .
+
+hpc:LSFSessionSchedulerCommand
+    a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:LSFSessionSchedulerJob
+    a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual .
+
+hpc:hasOutputFile
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsessionschedulercommand ;
+    rdfs:range xsd:string .
+
+hpc:hasNumberOfSlots
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfsessionschedulercommand ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hasJobName
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsessionschedulercommand ;
+    rdfs:range xsd:string .
+
+hpc:hasStandardBsubOptions
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfsessionschedulercommand ;
+    rdfs:range xsd:string .
+
+hpc:bjobsCommand
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsessionschedulerjob ;
+    rdfs:range hpc:Lsfsessionschedulercommand .

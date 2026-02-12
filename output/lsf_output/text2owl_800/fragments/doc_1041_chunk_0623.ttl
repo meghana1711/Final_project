@@ -1,0 +1,42 @@
+hpc:Gpujob a owl:Class .
+hpc:affbinding a owl:ObjectProperty .
+hpc:blockdistribution a owl:ObjectProperty .
+hpc:packscheduling a owl:ObjectProperty .
+
+hpc:Affbinding rdfs:domain hpc:Gpujob ;
+    rdfs:range xsd:boolean .
+hpc:Blockdistribution rdfs:domain hpc:Gpujob ;
+    rdfs:range xsd:boolean .
+hpc:Packscheduling rdfs:domain hpc:Gpujob ;
+    rdfs:range xsd:boolean .
+
+hpc:Gpujob rdfs:subClassOf rdf:Resource .
+
+hpc:affBinding rdfs:subPropertyOf owl:ObjectProperty .
+hpc:blockDistribution rdfs:subPropertyOf owl:ObjectProperty .
+hpc:packScheduling rdfs:subPropertyOf owl:ObjectProperty .
+
+hpc:affBinding rdfs:subPropertyOf owl:FunctionalProperty ;
+    rdfs:domain hpc:Gpujob ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Specifies whether to maintain strict GPU-CPU affinity binding." .
+
+hpc:blockDistribution rdfs:subPropertyOf owl:FunctionalProperty ;
+    rdfs:domain hpc:Gpujob ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Specifies whether to enable block distribution of allocated GPUs." .
+
+hpc:packScheduling rdfs:subPropertyOf owl:FunctionalProperty ;
+    rdfs:domain hpc:Gpujob ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "For shared mode jobs only. Specifies whether to enable pack scheduling." .
+
+hpc:affBinding rdfs:subPropertyOf owl:InverseFunctionalProperty ;
+    rdfs:domain hpc:Gpujob ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "If aff=yes and block=yes are both specified in the GPU requirements string, the block=yes setting takes precedence and strict CPU-GPU affinity binding is disabled." .
+
+hpc:blockDistribution rdfs:subPropertyOf owl:InverseFunctionalProperty ;
+    rdfs:domain hpc:Gpujob ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "The block=yes setting conflicts with aff=yes (strict CPU-GPU affinity binding)." .

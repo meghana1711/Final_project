@@ -1,0 +1,36 @@
+hpc:Threadlimit a owl:Class;
+    rdfs:subClassOf owl:QuantitativeProperty .
+
+hpc:defaultThreadLimit a hpc:ThreadLimit;
+    rdfs:range xsd:integer .
+
+hpc:maxThreadLimit a hpc:ThreadLimit;
+    rdfs:range xsd:integer .
+
+hpc:Job a owl:Class .
+
+hpc:memorylimit a owl:DatatypeProperty;
+    rdfs:domain hpc:Job;
+    rdfs:range xsd:integer .
+
+hpc:runtimelimit a owl:DatatypeProperty;
+    rdfs:domain hpc:Job;
+    rdfs:range xsd:duration .
+
+hpc:maxthreads a owl:ObjectProperty;
+    rdfs:domain hpc:Job;
+    rdfs:range xsd:integer .
+
+hpc:Cputimenormalization a owl:Class .
+
+hpc:platformindependentcputimelimit a owl:DatatypeProperty;
+    rdfs:domain hpc:Cputimenormalization;
+    rdfs:range xsd:duration .
+
+hpc:normalizationhost a owl:ObjectProperty .
+hpc:executionhost a owl:ObjectProperty .
+
+hpc:Absrunlimit a owl:Class .
+hpc:absoluteruntimelimit a owl:DatatypeProperty;
+    rdfs:domain hpc:Absrunlimit;
+    rdfs:range xsd:duration .

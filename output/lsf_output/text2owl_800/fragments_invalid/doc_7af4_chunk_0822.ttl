@@ -1,0 +1,30 @@
+hpc:lsfimageinfoexpireinterval a owl:DatatypeProperty .
+hpc:Lsfimageinfoexpireinterval rdfs:domain hpc:Lsfconfiguration .
+hpc:Lsfimageinfoexpireinterval rdfs:range xsd:integer .
+hpc:LSFImageInfoExpireInterval rdfs:comment "If the container image information is older than this specified value, the image information expires. Default 86400 seconds (1 day)" .
+
+hpc:lsfimageinfopublishinterval a owl:DatatypeProperty .
+hpc:Lsfimageinfopublishinterval rdfs:domain hpc:Lsfconfiguration .
+hpc:Lsfimageinfopublishinterval rdfs:range xsd:integer .
+hpc:LSFImageInfoPublishInterval rdfs:minValue "10" .
+hpc:LSFImageInfoPublishInterval rdfs:maxValue "600" .
+hpc:LSFImageInfoPublishInterval rdfs:comment "Specifies the interval, in seconds, for the lim process to fork a new process to collect host Docker container image information. Default LSF_IMAGE_INFO_PUBLISH_INTERVAL=86400 seconds (1 day)" .
+
+hpc:lsfincludeclustername a owl:ObjectProperty .
+hpc:Lsfincludeclustername rdfs:domain hpc:Lsfconfiguration .
+hpc:Lsfincludeclustername rdfs:range xsd:string .
+hpc:LSFIncludeClusterName rdfs:comment "Specifies whether LSF shows the cluster name (in addition to the hostname) when running the bjobs and bhist commands. If set to LSF_INCLUDE_CLUSTERNAME=N, LSF shows the hostname in the output for bjobs and bhist commands. This is the default. If set to LSF_INCLUDE_CLUSTERNAME=Y, LSF shows the hostname and the cluster name in the output for bjobs and bhist commands." .
+
+hpc:lsfincludedir a owl:DatatypeProperty .
+hpc:Lsfincludedir rdfs:domain hpc:Lsfconfiguration .
+hpc:Lsfincludedir rdfs:range xsd:string .
+hpc:LSFIncludeDir rdfs:comment "Directory under which the LSF API header files lsf.h and lsbatch.h are installed. Default LSF_INCLUDEDIR=LSF_INDEP/include" .
+
+hpc:Lsfindep a owl:Class .
+hpc:Lsfindep rdfs:subClassOf owl:Class .
+hpc:LSFIndep rdfs:comment "Specifies the default top-level directory for all machine-independent LSF files. This includes man pages, configuration files, working directories, and examples. For example, defining LSF_INDEP as /usr/share/lsf/mnt places man pages in /usr/share/lsf/mnt/man, configuration files in /usr/share/lsf/mnt/conf, and so on. The files in LSF_INDEP can be shared by all machines in the cluster." .
+
+hpc:lsfindep a owl:ObjectProperty .
+hpc:Lsfindep rdfs:domain hpc:Lsfconfiguration .
+hpc:Lsfindep rdfs:range hpc:Lsfindep .
+h

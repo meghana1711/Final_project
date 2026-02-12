@@ -1,0 +1,23 @@
+hpc:Managementhost a owl:Class .
+hpc:Candidatemanagementhost a owl:Class .
+hpc:Electedmanagementhost a owl:Class .
+hpc:Serveronlyhost a owl:Class .
+
+hpc:hasloadindices a owl:ObjectProperty .
+hpc:isElectedManagementHost rdfs:subPropertyOf hpc:hasLoadIndices .
+hpc:isCandidateManagementHost rdfs:subPropertyOf hpc:hasLoadIndices .
+hpc:isServerOnlyHost rdfs:subPropertyOf hpc:hasLoadIndices .
+
+hpc:lsfclusterclustername a owl:DatatypeProperty, rdfs:domain hpc:managementhost .
+hpc:lsfshared a owl:DatatypeProperty, rdfs:domain hpc:managementhost .
+hpc:Numberofloadindices rdfs:range xsd:nonNegativeInteger .
+
+hpc:limlogmanagementhostname a owl:DatatypeProperty, rdfs:domain hpc:managementhost .
+hpc:limlognewmanagementhostname a owl:DatatypeProperty, rdfs:domain hpc:managementhost .
+
+hpc:dnshostcachefile a owl:DatatypeProperty, rdfs:domain hpc:managementhost .
+hpc:hostsdnscachefile a owl:DatatypeProperty, rdfs:domain hpc:managementhost .
+
+hpc:ipaddress a owl:DatatypeProperty, rdfs:range xsd:string .
+hpc:officialname a owl:DatatypeProperty, rdfs:range xsd:string .
+hpc:aliasname a owl:DatatypeProperty, rdfs:range xsd:string .

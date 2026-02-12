@@ -1,0 +1,63 @@
+hpc:Swptempspace a owl:Class .
+hpc:Swptempspace rdfs:subClassOf owl:QuantitativeResource .
+hpc:Swptempspace rdfs:domain hpc:Resourcelimit .
+hpc:Swptempspace rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsfunitforlimits a owl:ObjectProperty .
+hpc:Lsfunitforlimits rdfs:domain hpc:Resourcelimit .
+hpc:Lsfunitforlimits rdfs:range xsd:string .
+
+hpc:Tmpresource a owl:Class .
+hpc:Tmpresource rdfs:subClassOf owl:SharedResource .
+
+hpc:Jobdispatchlimit a owl:Class .
+hpc:Jobdispatchlimit rdfs:subClassOf owl:QuantitativeResource .
+hpc:Jobdispatchlimit rdfs:domain hpc:Resourcelimit .
+hpc:Jobdispatchlimit rdfs:range xsd:nonNegativeInteger .
+
+hpc:Users a owl:Class .
+hpc:Users rdfs:subClassOf owl:UserGroup .
+
+hpc:Queues a owl:Class .
+hpc:Queues rdfs:subClassOf owl:Queue .
+
+hpc:Projects a owl:Class .
+hpc:Projects rdfs:subClassOf owl:Project .
+
+hpc:Peruser a owl:Class .
+hpc:Peruser rdfs:subClassOf hpc:Userlimit .
+hpc:Peruser rdfs:domain hpc:Users .
+
+hpc:Perqueue a owl:Class .
+hpc:Perqueue rdfs:subClassOf hpc:Queuelimit .
+hpc:Perqueue rdfs:domain hpc:Queues .
+
+hpc:Perhost a owl:Class .
+hpc:Perhost rdfs:subClassOf hpc:Hostlimit .
+hpc:Perhost rdfs:domain hpc:Hosts .
+
+hpc:Perproject a owl:Class .
+hpc:Perproject rdfs:subClassOf hpc:Projectlimit .
+hpc:Perproject rdfs:domain hpc:Projects .
+
+hpc:lsfenabletmpunit a owl:ObjectProperty .
+hpc:Lsfenabletmpunit rdfs:domain hpc:Lsfconfiguration .
+hpc:Lsfenabletmpunit rdfs:range xsd:boolean .
+
+hpc:Consumerparameters a owl:Class .
+hpc:Consumerparameters rdfs:subClassOf owl:ResourceLimit .
+
+hpc:submittedjobs a owl:DatatypeProperty .
+hpc:Submittedjobs rdfs:domain hpc:Consumerparameters .
+hpc:Submittedjobs rdfs:range xsd:string .
+
+hpc:usersspecified a owl:ObjectProperty .
+hpc:Usersspecified rdfs:domain hpc:Consumerparameters .
+hpc:Usersspecified rdfs:range hpc:Users .
+
+hpc:queuesspecified a owl:ObjectProperty .
+hpc:Queuesspecified rdfs:domain hpc:Consumerparameters .
+hpc:Queuesspecified rdfs:range hpc:Queues .
+
+hpc:hostsspecified a owl:ObjectProperty .
+hpc:

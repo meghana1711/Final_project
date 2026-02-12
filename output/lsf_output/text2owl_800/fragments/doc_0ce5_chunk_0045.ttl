@@ -1,0 +1,70 @@
+hpc:maxInfoDirs a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Number of subdirectories to create under the LSF_SHAREDIR/cluster_name/logdir/info directory." .
+
+hpc:Numsubdirs a owl:Class ;
+    rdfs:subClassOf xsd:nonNegativeInteger .
+
+hpc:MAX_INFO_DIRS_NotDefined a hpc:numSubdirs ;
+    rdfs:comment "By default, MAX_INFO_DIRS is not defined." .
+
+hpc:validvalue a owl:ObjectProperty ;
+    rdfs:domain hpc:Numsubdirs ;
+    rdfs:range hpc:Validvalue ;
+    rdfs:comment "Valid values are positive integers between 1 and 1024." .
+
+hpc:Validvalue a owl:Class ;
+    rdfs:subClassOf xsd:integer .
+
+hpc:minValidValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Validvalue ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Minimum valid value for MAX_INFO_DIRS." .
+
+hpc:maxValidValue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Validvalue ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Maximum valid value for MAX_INFO_DIRS." .
+
+hpc:reconfigure a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range hpc:Reconfigure .
+
+hpc:Reconfigure a owl:Class .
+
+hpc:duplicateeventlogging a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range hpc:Boolean .
+
+hpc:restartmbatchd a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range hpc:Restartmbatchd .
+
+hpc:Restartmbatchd a owl:Class .
+
+hpc:bparams a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range hpc:Bparams .
+
+hpc:Bparams a owl:Class .
+
+hpc:displayvalue a owl:ObjectProperty ;
+    rdfs:domain hpc:Bparams ;
+    rdfs:range hpc:Displayvalue .
+
+hpc:Displayvalue a owl:Class .
+
+hpc:jobinfodir a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range hpc:Jobinfodir .
+
+hpc:Highperformanceiofilesystem a owl:Class ;
+    rdfs:comment "High performance I/O file systems." .
+
+hpc:lsfJobinfoDir a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range hpc:Directory .
+
+hpc:Directory a owl:Class ;
+    rdfs:subClassOf xsd:string .

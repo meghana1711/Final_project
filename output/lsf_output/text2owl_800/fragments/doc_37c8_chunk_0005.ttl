@@ -1,0 +1,52 @@
+hpc:Lsf a owl:Class .
+hpc:Job a owl:Class .
+hpc:Container a owl:Class .
+hpc:Enrootcontainer a owl:Class .
+hpc:Dockercontainer a owl:Class .
+
+hpc:manages a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Job .
+
+hpc:providesbenefit a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Benefit .
+
+hpc:Benefit a owl:Class .
+hpc:resolvesSecurityConcern a hpc:Benefit ;
+    rdfs:comment "Resolves Docker security concerns" .
+
+hpc:Dockersecurityconcern a owl:Class .
+hpc:privilegeescalation a owl:ObjectProperty ;
+    rdfs:domain hpc:Dockersecurityconcern ;
+    rdfs:range xsd:string .
+
+hpc:Executionuser a owl:Class .
+
+hpc:administers a owl:ObjectProperty ;
+    rdfs:domain hpc:Administrator ;
+    rdfs:range hpc:Dockerimage .
+
+hpc:Dockerimage a owl:Class .
+hpc:register a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dockerimage ;
+    rdfs:range xsd:string .
+hpc:configuredname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dockerimage ;
+    rdfs:range xsd:string .
+hpc:version a owl:DatatypeProperty ;
+    rdfs:domain hpc:Dockerimage ;
+    rdfs:range xsd:string .
+
+hpc:forbids a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Commonclusteruser .
+
+hpc:schedules a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range hpc:Dockerjob .
+
+hpc:Dockerhost a owl:Class .
+hpc:dockerservicestarted a owl:ObjectProperty ;
+    rdfs:domain hpc:Dockerhost ;
+    rdfs:range xsd:boolean .

@@ -1,0 +1,20 @@
+hpc:lsflicschedhosts a owl:ObjectProperty.
+hpc:licschedulerport a owl:DatatypeProperty.
+hpc:liccollectorname a owl:DatatypeProperty.
+hpc:hostlist a owl:ObjectProperty.
+
+hpc:Lsflicschedhosts rdfs:domain hpc:Lsf.
+hpc:Licschedulerport rdfs:domain hpc:Lsflicschedhosts.
+hpc:Liccollectorname rdfs:domain hpc:Lsflicschedhosts.
+hpc:Hostlist rdfs:domain hpc:Blcollect.
+
+hpc:Blcollect a owl:Class.
+hpc:Blcollect rdfs:subClassOf hpc:Command.
+
+hpc:Blcollect rdfs:range rdf:List.
+hpc:Blcollect hpc:Hostlist rdfs:range xsd:string.
+hpc:Blcollect hpc:Licschedulerport rdfs:range xsd:integer.
+hpc:Blcollect hpc:Liccollectorname rdfs:range xsd:string.
+
+hpc:Blcollect hpc:Hostlist rdfs:range a rdf:List .
+hpc:

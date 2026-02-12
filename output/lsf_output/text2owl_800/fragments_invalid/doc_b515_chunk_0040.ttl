@@ -1,0 +1,35 @@
+hpc:Hosttype a owl:Class .
+hpc:Hostmodel a owl:Class .
+hpc:hastype a owl:ObjectProperty .
+hpc:hasmodel a owl:ObjectProperty .
+
+hpc:Hosttype rdfs:subClassOf owl:Class .
+hpc:Hostmodel rdfs:subClassOf owl:Class .
+hpc:Hastype rdfs:domain hpc:Hosttype ;
+                        rdfs:range xsd:string .
+hpc:Hasmodel rdfs:domain hpc:Hostmodel ;
+                     rdfs:range xsd:string .
+
+hpc:Linux a hpc:HostType .
+hpc:HP a hpc:HostType .
+hpc:PC233 a hpc:HostModel .
+hpc:PC1133 a hpc:HostModel .
+
+hpc:Hastype hpc:linux rdfs:subPropertyOf hpc:hasType .
+hpc:Hastype hpc:hp rdfs:subPropertyOf hpc:hasType .
+hpc:Hasmodel hpc:pc233 rdfs:subPropertyOf hpc:hasModel .
+hpc:Hasmodel hpc:pc1133 rdfs:subPropertyOf hpc:hasModel .
+
+hpc:sametype a owl:ObjectProperty .
+hpc:samemodel a owl:ObjectProperty .
+hpc:Sametype rdfs:domain hpc:Hosttype ;
+                 rdfs:range rdf:Resource .
+hpc:Samemodel rdfs:domain hpc:Hostmodel ;
+                rdfs:range rdf:Resource .
+
+hpc:ptile a owl:DatatypeProperty .
+hpc:Ptile rdfs:domain hpc:Span ;
+           rdfs:range xsd:nonNegativeInteger .
+
+hpc:Span a owl:Class .
+hpc:Span rdfs:subClassOf owl:Class .

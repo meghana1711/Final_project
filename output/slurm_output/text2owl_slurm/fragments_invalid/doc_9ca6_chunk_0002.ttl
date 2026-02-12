@@ -1,0 +1,19 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Layer a owl:Class .
+hpc:Resource a owl:Class .
+hpc:Joballocation a owl:Class .
+hpc:Node a owl:Class .
+
+hpc:Haslayer rdfs:domain hpc:Layer ;
+    rdfs:range hpc:Layer .
+hpc:Hasresource rdfs:domain hpc:Layer ;
+    rdfs:range hpc:Resource .
+hpc:Hasjoballocation rdfs:domain hpc:Layer ;
+    rdfs:range hpc:Joballocation .
+hpc:Hasnode rdfs:domain hpc:Joballocation ;
+    rdfs:range h

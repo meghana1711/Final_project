@@ -1,0 +1,43 @@
+hpc:User a owl:Class .
+hpc:Job a owl:Class .
+hpc:Group a owl:Class .
+hpc:hasjob a owl:ObjectProperty .
+hpc:isuseringroup a owl:ObjectProperty .
+
+hpc:User rdfs:subClassOf owl:Class .
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Group rdfs:subClassOf owl:Class .
+hpc:Hasjob rdfs:domain hpc:User ;
+                        rdfs:range hpc:Job .
+hpc:Isuseringroup rdfs:domain hpc:User ;
+                     rdfs:range hpc:Group .
+
+hpc:LoadSched rdf:type hpc:Job ;
+             rdfs:label "loadSched" .
+hpc:LoadStop rdf:type hpc:Job ;
+             rdfs:label "loadStop" .
+
+hpc:Combined rdf:type hpc:ResourceRequirement ;
+             rdfs:label "Combined" ;
+             rdfs:subClassOf hpc:Resourcerequirementdetail .
+hpc:Effective rdf:type hpc:ResourceRequirement ;
+             rdfs:label "Effective" ;
+             rdfs:subClassOf hpc:Resourcerequirementdetail .
+
+hpc:ResourceRequirementDetail rdf:type owl:Class ;
+                               rdfs:subClassOf hpc:Jobrequirement .
+hpc:JobRequirement rdf:type owl:Class .
+
+hpc:Resourcerequirementdetail rdfs:domain hpc:Job ;
+                               rdfs:range hpc:Select .
+hpc:Select rdf:type owl:Class .
+hpc:hasType rdf:type owl:ObjectProperty ;
+             rdfs:domain hpc:Select ;
+             rdfs:range hpc:Type .
+hpc:hasOrder rdf:type owl:ObjectProperty ;
+             rdfs:domain hpc:Select ;
+             rdfs:range hpc:Order .
+
+hpc:Type rdf:type owl:Class ;
+       rdfs:subClassOf xsd:string .
+hpc:Order rdf:type owl:Class .

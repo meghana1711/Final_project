@@ -1,0 +1,77 @@
+hpc:Options a owl:Class .
+hpc:prints a owl:ObjectProperty ;
+    rdfs:domain hpc:Options ;
+    rdfs:range rdf:Resource .
+
+hpc:printsversion a owl:ObjectProperty ;
+    rdfs:domain hpc:Options ;
+    rdfs:range xsd:string .
+
+hpc:Blstat a owl:Class .
+hpc:blstatusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Blstat ;
+    rdfs:range rdf:Resource .
+
+hpc:blstatversion a owl:ObjectProperty ;
+    rdfs:domain hpc:Blstat ;
+    rdfs:range xsd:string .
+
+hpc:blstatdynamic a owl:ObjectProperty ;
+    rdfs:domain hpc:Blstat ;
+    rdfs:range rdf:Resource .
+
+hpc:blstatsynopsis a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blstat ;
+    rdfs:range xsd:string .
+
+hpc:servicedomainname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blstatdynamic ;
+    rdfs:range xsd:string .
+
+hpc:tokenname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blstatdynamic ;
+    rdfs:range xsd:string .
+
+hpc:outputalpha a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blstatdynamic ;
+    rdfs:range xsd:string .
+
+hpc:total a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blstatdynamic ;
+    rdfs:range xsd:string .
+
+hpc:available a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blstatdynamic ;
+    rdfs:range xsd:string .
+
+hpc:featuregroup a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blstatdynamic ;
+    rdfs:range xsd:string .
+
+hpc:slots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blstatdynamic ;
+    rdfs:range xsd:boolean .
+
+hpc:all a owl:ObjectProperty ;
+    rdfs:domain hpc:Blstat ;
+    rdfs:range rdf:Resource .
+
+hpc:tokennametoken a owl:ObjectProperty ;
+    rdfs:domain hpc:All ;
+    rdfs:range xsd:string .
+
+hpc:lsprojectname a owl:DatatypeProperty ;
+    rdfs:domain hpc:All ;
+    rdfs:range xsd:string .
+
+hpc:fieldname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Blstat ;
+    rdfs:range xsd:string .
+
+hpc:outputwidth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Fieldname ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:a a owl:ObjectProperty ;
+    rdfs:domain hpc:Blstat ;
+    rdfs:range hpc:Blstat .

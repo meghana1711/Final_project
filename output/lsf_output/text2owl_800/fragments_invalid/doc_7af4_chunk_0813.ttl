@@ -1,0 +1,23 @@
+hpc:Lsfeventreceiver a owl:Class .
+hpc:LsfEventProgram hpc:Lsfeventreceiver rdfs:domain rdf:String ;
+    rdfs:range xsd:string .
+
+hpc:LsfExtServerdir a owl:Class .
+hpc:LsfExtServerdir rdfs:subClassOf hpc:Directorypath .
+
+hpc:Directorypath a owl:Class .
+hpc:Directorypath rdfs:subClassOf owl:Class .
+
+hpc:LsfExtServerdir rdfs:domain rdf:String ;
+    rdfs:range xsd:string .
+
+hpc:LsfGetConf a owl:Class .
+hpc:LsfGetConf rdfs:subClassOf owl:Class .
+
+hpc:LsfGetConf rdfs:domain rdf:String ;
+    rdfs:range xsd:string .
+
+hpc:LsfGetpasswdRetryCount a owl:Class .
+hpc:LsfGetpasswdRetryCount rdfs:subClassOf owl:Class .
+
+hpc:LsfGetpasswdRetryCount rdfs:domain xsd:integer .

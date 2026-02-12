@@ -1,0 +1,24 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Checkpointmethod a owl:Class .
+hpc:Container a owl:Class .
+hpc:chkpntmethod a owl:DatatypeProperty .
+hpc:container a owl:ObjectProperty .
+hpc:Image a owl:Class .
+hpc:options a owl:ObjectProperty .
+hpc:Podman a owl:Class .
+hpc:Docker a owl:Class .
+hpc:Nvidiadocker a owl:Class .
+hpc:Shifter a owl:Class .
+hpc:Singularity a owl:Class .
+hpc:Apptainer a owl:Class .
+hpc:Enroot a owl:Class .
+
+hpc:Chkpntmethod rdfs:domain hpc:Job .
+hpc:Container rdfs:domain hpc:Applicationprofile .
+hpc:Image rdfs:range xsd:string .
+hpc:Options rdfs:domain hpc:Container .
+hpc:Options rdfs:range xsd:string .

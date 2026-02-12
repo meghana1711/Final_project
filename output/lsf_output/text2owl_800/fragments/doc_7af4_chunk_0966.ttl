@@ -1,0 +1,48 @@
+hpc:Lsfadvancededitionmegacluster a owl:Class .
+hpc:Submissioncluster a owl:Class ;
+    rdfs:subClassOf hpc:Lsfadvancededitionmegacluster .
+hpc:Executioncluster a owl:Class ;
+    rdfs:subClassOf hpc:Lsfadvancededitionmegacluster .
+
+hpc:interval a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadvancededitionmegacluster ;
+    rdfs:range xsd:integer .
+
+hpc:preemptorder a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadvancededitionmegacluster ;
+    rdfs:range xsd:string .
+hpc:PreemptOrderByOwnership a hpc:PreemptOrder .
+
+hpc:preemptreserve a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadvancededitionmegacluster ;
+    rdfs:range xsd:boolean .
+
+hpc:PreemptReserveY a hpc:PreemptReserve .
+hpc:PreemptReserveN a hpc:PreemptReserve .
+
+hpc:Preemptablereservedlicenses a owl:Class ;
+    rdfs:subClassOf xsd:boolean .
+
+hpc:PreemptableReservedLicensesTrue a hpc:PreemptableReservedLicenses .
+
+hpc:Preemptablelicenses a owl:Class ;
+    rdfs:subClassOf xsd:boolean .
+
+hpc:PreemptableLicensesTrue a hpc:PreemptableLicenses .
+
+hpc:Preemptablenotlicenses a owl:Class ;
+    rdfs:subClassOf xsd:boolean .
+
+hpc:PreemptableNotLicensesFalse a hpc:PreemptableNotLicenses .
+
+hpc:preemptorderprojectmode a owl:ObjectProperty ;
+    rdfs:domain hpc:Preemptorder ;
+    rdfs:range xsd:string .
+
+hpc:preemptreserveprojectmode a owl:ObjectProperty ;
+    rdfs:domain hpc:Preemptreserve ;
+    rdfs:range xsd:string .
+
+hpc:retentionfactor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfadvancededitionmegacluster ;
+    rdfs:range xsd:decimal .

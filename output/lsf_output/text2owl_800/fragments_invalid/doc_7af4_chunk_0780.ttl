@@ -1,0 +1,35 @@
+hpc:lsfClearcaseWrapperRetryInterval a owl:DatatypeProperty .
+hpc:LsfClearcaseWrapperRetryInterval rdfs:domain hpc:Daemonwrapper .
+hpc:LsfClearcaseWrapperRetryInterval rdfs:range xsd:nonNegativeInteger .
+hpc:LSF_CLEARCASE_WRAPPER_RETRY_INTERVAL rdfs:minCardinality 1 .
+
+hpc:lsfClearcaseWrapperRetry a owl:ObjectProperty .
+hpc:LsfClearcaseWrapperRetry rdfs:domain hpc:Daemonwrapper .
+hpc:LsfClearcaseWrapperRetry rdfs:range hpc:LsfClearcaseWrapperRetryInterval .
+
+hpc:LSF_CLEARCASE_WRAPPER_RETRY_INTERVAL_MIN 1 .
+hpc:LSF_CLEARCASE_WRAPPER_RETRY_INTERVAL_MIN a xsd:integer .
+
+hpc:LSF_CLEARCASE_WRAPPER_RETRY_INTERVAL_DEFINED rdf:nil .
+hpc:LsfClearcaseWrapperRetryIntervalDefined a owl:Class .
+
+hpc:lsfCmdLogMask a owl:DatatypeProperty .
+hpc:LsfCmdLogMask rdfs:domain hpc:Command .
+hpc:LsfCmdLogMask rdfs:range xsd:string .
+
+hpc:lsfCloudUi a owl:DatatypeProperty .
+hpc:LsfCloudUi rdfs:domain hpc:Cluster .
+hpc:LsfCloudUi rdfs:range xsd:string .
+
+hpc:LSF_CLOUD_UI_Y a xsd:string .
+hpc:LSF_CLOUD_UI_Y "Y" .
+
+hpc:LSF_CLOUD_UI_N a xsd:string .
+hpc:LSF_CLOUD_UI_N "N" .
+
+hpc:LSF_CMD_LOG_MASK_LOG_DEBUG a xsd:string .
+hpc:LSF_CMD_LOG_MASK_LOG_DEBUG "LOG_DEBUG" .
+
+hpc:lsfLogMask a owl:DatatypeProperty .
+hpc:LsfLogMask rdfs:domain hpc:Daemon .
+hpc:LsfLogMask rdfs:range xsd:string .

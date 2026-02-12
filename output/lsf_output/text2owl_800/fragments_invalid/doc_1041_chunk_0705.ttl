@@ -1,0 +1,64 @@
+hpc:emailaddress a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Multiple email addresses can be specified using quotation marks and separating each address with a space. The total length of the address string cannot be longer than 512 characters." .
+
+hpc:Operatingsystem a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents an operating system." .
+
+hpc:Unixlikeoperatingsystem a owl:Class ;
+    rdfs:subClassOf hpc:Operatingsystem ;
+    rdfs:comment "Represents a Unix-like operating system." .
+
+hpc:Linux a owl:Class ;
+    rdfs:subClassOf hpc:Unixlikeoperatingsystem ;
+    rdfs:comment "Represents the Linux operating system." .
+
+hpc:Windows a owl:Class ;
+    rdfs:subClassOf hpc:Operatingsystem ;
+    rdfs:comment "Represents the Windows operating system." .
+
+hpc:Jobsubmissionlimit a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents the limits for job submission." .
+
+hpc:jobsubmissionusershelllimits a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmissionlimit ;
+    rdfs:range hpc:User ;
+    rdfs:comment "Passes the current operating system user shell limits for the job submission user to the execution host." .
+
+hpc:Limitcategory a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a category of limits." .
+
+hpc:Limit a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Represents a limit." .
+
+hpc:Jobruntimelimit a owl:Class ;
+    rdfs:subClassOf hpc:Limit ;
+    rdfs:comment "Represents a limit for job runtime." .
+
+hpc:perprocesssoftcorefilesizelimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobruntimelimit ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Represents the per-process (soft) core file size limit." .
+
+hpc:cpulimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobruntimelimit ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Represents the CPU limit." .
+
+hpc:perprocesssoftdatasegmentsizelimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobruntimelimit ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Represents the per-process (soft) data segment size limit." .
+
+hpc:filelimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobruntimelimit ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Represents the file limit." .
+
+hpc:perprocesssoftmemorylimit a owl:ObjectProperty ;
+    rdfs:

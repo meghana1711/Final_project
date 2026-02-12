@@ -1,0 +1,15 @@
+hpc:checkoutfromfirsthostonly a owl:DatatypeProperty .
+hpc:Hascheckoutfromfirsthostonly rdfs:domain hpc:Job .
+hpc:Hascheckoutfromfirsthostonly rdfs:range xsd:boolean .
+
+hpc:clustermode a owl:ObjectProperty .
+hpc:Hasclustermode rdfs:domain hpc:Scheduler .
+hpc:Hasclustermode rdfs:range xsd:boolean .
+
+hpc:demandlimit a owl:DatatypeProperty .
+hpc:Hasdemandlimit rdfs:domain hpc:Project .
+hpc:Hasdemandlimit rdfs:range xsd:integer .
+
+hpc:Scheduler a owl:Class .
+hpc:Job a owl:Class .
+hpc:Project a owl:Class .

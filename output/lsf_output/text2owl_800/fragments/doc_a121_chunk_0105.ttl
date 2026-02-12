@@ -1,0 +1,56 @@
+hpc:Job a owl:Class .
+hpc:Requeuedjob a owl:Class .
+hpc:exitcode a owl:DatatypeProperty .
+hpc:requeueexitvalues a owl:ObjectProperty .
+
+hpc:Job rdfs:subClassOf hpc:Requeuedjob .
+
+hpc:Requeueexitvalues rdfs:domain hpc:Job .
+hpc:Requeueexitvalues rdfs:range xsd:nonNegativeInteger .
+
+hpc:Exitcode rdfs:domain hpc:Job .
+hpc:Exitcode rdfs:range xsd:nonNegativeInteger .
+
+hpc:Allexitcodes a owl:Class .
+hpc:Specificexitcodes a owl:Class .
+hpc:Excludedexitcodes a owl:Class .
+
+hpc:Allexitcodes rdfs:subClassOf hpc:Exitcodes .
+hpc:Specificexitcodes rdfs:subClassOf hpc:Exitcodes .
+hpc:Excludedexitcodes rdfs:subClassOf hpc:Exitcodes .
+
+hpc:ExitCodes rdf:type owl:Class .
+hpc:RequeueExitValues rdf:type owl:ObjectProperty .
+hpc:ExitCode rdf:type owl:DatatypeProperty .
+
+hpc:Terminatedbysignal a owl:Class .
+hpc:Terminatedbysignal rdfs:subClassOf hpc:Job .
+
+hpc:Notifiedbymail a owl:Class .
+hpc:Notifiedbymail rdfs:subClassOf hpc:Job .
+
+hpc:Savedoutput a owl:Class .
+hpc:Savedoutput rdfs:subClassOf hpc:Job .
+
+hpc:Requeueonfailure a owl:Class .
+hpc:Requeueonfailure rdfs:subClassOf hpc:Job .
+
+hpc:Queuedefinition a owl:Class .
+hpc:Applicationprofile a owl:Class .
+
+hpc:configureautomaticjobrequeue a owl:ObjectProperty .
+hpc:Configureautomaticjobrequeue rdfs:domain hpc:Queuedefinition .
+hpc:Configureautomaticjobrequeue rdfs:range hpc:Requeueonfailure .
+
+hpc:Applicationlevelexitvalues a owl:Class .
+hpc:Applicationlevelexitvalues rdfs:subClassOf hpc:Requeueonfailure .
+
+hpc:Joblevelexitvalues a owl:Class .
+hpc:Joblevelexitvalues rdfs:subClassOf hpc:Requeueonfailure .
+
+hpc:Queuelevelexitvalues a owl:Class .
+hpc:Queuelevelexitvalues rdfs:subClassOf hpc:Requeueonfailure .
+
+hpc:override a owl:ObjectProperty .
+hpc:Override rdfs:domain hpc:Requeueonfailure .
+hpc:Override rdfs:range hpc:Requeueonfailure .

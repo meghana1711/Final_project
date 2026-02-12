@@ -1,0 +1,39 @@
+hpc:Ami a owl:Class ;
+    rdfs:subClassOf hpc:Awsresource .
+
+hpc:Awsresource a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:Ec2instance a owl:Class ;
+    rdfs:subClassOf hpc:Awsresource .
+
+hpc:Lsfserverhost a owl:Class ;
+    rdfs:subClassOf hpc:Awsresource .
+
+hpc:prepares a owl:ObjectProperty ;
+    rdfs:domain hpc:Awsresource ;
+    rdfs:range hpc:Preparation .
+
+hpc:Preparation a owl:Class .
+
+hpc:launches a owl:ObjectProperty ;
+    rdfs:domain hpc:Awsresource ;
+    rdfs:range hpc:Instance .
+
+hpc:Instance a owl:Class .
+
+hpc:hassecuritygroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Awsresource ;
+    rdfs:range hpc:Securitygroup .
+
+hpc:Securitygroup a owl:Class .
+
+hpc:hasport a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfserverhost ;
+    rdfs:range xsd:integer .
+
+hpc:hasprivileges a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+
+hpc:User a owl:Class .

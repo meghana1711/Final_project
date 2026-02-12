@@ -1,0 +1,13 @@
+hpc:Loginshell a owl:Class.
+hpc:spawnedbysrunpty a owl:ObjectProperty.
+hpc:runinownsession a owl:ObjectProperty.
+hpc:hasownpgid a owl:ObjectProperty.
+hpc:LoginShell rdf:type owl:ObjectProperty;
+    rdfs:domain hpc:Loginshell;
+    rdfs:range xsd:integer.
+hpc:LoginShell rdf:type owl:ObjectProperty;
+    rdfs:domain hpc:Loginshell;
+    rdfs:range hpc:Session.
+hpc:LoginShell rdf:type owl:ObjectProperty;
+    rdfs:domain hpc:Srun;
+    rdfs:range hpc:Loginshell.

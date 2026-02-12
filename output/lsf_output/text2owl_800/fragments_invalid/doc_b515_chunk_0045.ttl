@@ -1,0 +1,55 @@
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A queue with a task limit." .
+
+hpc:hastasklimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Defaultqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "The default queue for job submission." .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A job to be executed on the HPC system." .
+
+hpc:hasnumberoftasks a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:minimumtasklimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maximumtasklimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:queueA a hpc:Queue ;
+    hpc:hasTaskLimit 1 1 ;
+    rdfs:comment "Queue with TASKLIMIT=1." .
+
+hpc:queueB a hpc:Queue ;
+    hpc:hasTaskLimit 2 2 ;
+    rdfs:comment "Queue with TASKLIMIT=2." .
+
+hpc:queueC a hpc:Queue ;
+    hpc:hasTaskLimit 4 4 ;
+    rdfs:comment "Queue with TASKLIMIT=4." .
+
+hpc:queueD a hpc:Queue ;
+    hpc:hasTaskLimit 8 8 ;
+    rdfs:comment "Queue with TASKLIMIT=8." .
+
+hpc:queueE a hpc:Queue ;
+    hpc:hasTaskLimit 16 16 ;
+    rdfs:comment "Queue with TASKLIMIT=16." .
+
+hpc:Lsbparams a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Parameters for the LSB (LSF) system." .
+
+hpc:DEFAULT_QUEUE rdf:Datatype rdfs:Literal ;
+    rdf:datatype xsd:string ;
+    rdfs:comment "The default queue for job submission." .

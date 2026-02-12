@@ -1,0 +1,29 @@
+hpc:Client a owl:Class .
+hpc:lsfMasterList a owl:DatatypeProperty .
+hpc:lsfServerHosts a owl:ObjectProperty .
+hpc:lsfTardir a owl:DatatypeProperty .
+hpc:lsfLocalResources a owl:DatatypeProperty .
+
+rdfs:domain hpc:Client rdf:Property .
+rdfs:domain hpc:LsfMasterList xsd:string .
+rdfs:domain hpc:LsfServerHosts xsd:string .
+rdfs:domain hpc:LsfTardir xsd:string .
+rdfs:domain hpc:LsfLocalResources xsd:string .
+
+rdfs:range hpc:LsfMasterList rdf:List .
+rdfs:range hpc:LsfServerHosts rdf:List .
+
+hpc:Resource a owl:Class .
+hpc:Resourcemap a owl:Class .
+hpc:resourcename a owl:DatatypeProperty .
+hpc:resourcevalue a owl:DatatypeProperty .
+
+rdfs:subClassOf hpc:Resource hpc:Resourcemap .
+rdfs:subClassOf hpc:Resource hpc:Booleanresource .
+rdfs:subClassOf hpc:Resource hpc:Numericresource .
+
+rdfs:domain hpc:Resource hpc:Resourcename .
+rdfs:range hpc:Resourcename xsd:string .
+
+rdfs:domain hpc:Resourcemap hpc:Resourcevalue .
+rdfs:range hpc:Resourcevalue xsd:string .

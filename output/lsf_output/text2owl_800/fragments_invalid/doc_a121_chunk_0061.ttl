@@ -1,0 +1,79 @@
+hpc:Jsonfile a owl:Class ;
+    rdfs:subClassOf hpc:Jobsubmissionfile .
+
+hpc:Yamlfile a owl:Class ;
+    rdfs:subClassOf hpc:Jobsubmissionfile .
+
+hpc:Jsdlfile a owl:Class ;
+    rdfs:subClassOf hpc:Jobsubmissionfile .
+
+# Job submission file submission
+hpc:bsubJson a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range hpc:Jsonfile .
+
+hpc:bsubYaml a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range hpc:Yamlfile .
+
+hpc:bsubJsdl a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range hpc:Jsdlfile .
+
+# Job submission options
+hpc:Jobsubmissionoption a owl:Class .
+
+hpc:optionname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmissionoption .
+
+hpc:value a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmissionoption .
+
+hpc:command a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmissionoption .
+
+hpc:script a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmissionoption .
+
+hpc:category a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmissionoption .
+
+# Job submission
+hpc:Jobsubmission a owl:Class .
+hpc:jobsubmission a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range hpc:Jobsubmission .
+
+# Job submission options categories
+hpc:BsubOption a owl:Class ;
+    rdfs:subClassOf hpc:Jobsubmissionoption ;
+    rdfs:subClassOf hpc:Category .
+
+hpc:Input a owl:Class ;
+    rdfs:subClassOf hpc:BsubOption .
+
+hpc:Output a owl:Class ;
+    rdfs:subClassOf hpc:BsubOption .
+
+hpc:Resources a owl:Class ;
+    rdfs:subClassOf hpc:BsubOption .
+
+hpc:Time a owl:Class ;
+    rdfs:subClassOf hpc:BsubOption .
+
+hpc:Host a owl:Class ;
+    rdfs:subClassOf hpc:BsubOption .
+
+# Job command or script
+hpc:Command a owl:Class ;
+    rdfs:subClassOf hpc:Jobsubmissionoption ;
+    rdfs:subClassOf hpc:Script .
+
+hpc:Script a owl:Class .
+
+# Job submission option values
+hpc:null a xsd:string ;
+    rdfs:value "" .
+
+hpc:empty a xsd:string ;
+    rdfs:value "" .

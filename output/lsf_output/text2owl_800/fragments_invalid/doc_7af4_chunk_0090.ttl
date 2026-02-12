@@ -1,0 +1,29 @@
+hpc:Memorylimit a owl:Class ;
+    rdfs:comment "Controlled by LSF_HPC_EXTENSIONS=TASK_MEMLIMIT, LSB_JOB_MEMLIMIT, LSB_MEMLIMIT_ENFORCE" .
+
+hpc:Mig a owl:Class ;
+    rdfs:comment "Enables automatic job migration and specifies the migration threshold for checkpointable or rerunnable jobs, in minutes" ;
+    rdfs:subClassOf hpc:Jobproperty .
+
+hpc:Mig rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Name a owl:Class ;
+    rdfs:comment "Required. Unique name for the application profile. Specify any ASCII string up to 60 characters long" ;
+    rdfs:subClassOf rdf:String .
+
+hpc:Hasmig hpc:objectproperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Job a owl:Class ;
+    rdfs:subClassOf rdf:List .
+
+hpc:Chunkjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:isCheckpointable or hpc:isRerunnable owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:isForwardedToRemoteCluster owl:ObjectProperty ;
+    rdfs:domain hpc:Job .

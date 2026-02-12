@@ -1,0 +1,59 @@
+hpc:Warningmessage a owl:Class ;
+    rdfs:subClassOf owl:Event .
+
+hpc:Logfile a owl:Class ;
+    rdfs:subClassOf owl:Resource .
+
+hpc:MBatchdLogFile a hpc:LogFile ;
+    rdfs:label "mbatchd log file" .
+
+hpc:LSFStartedEvent a hpc:WarningMessage ;
+    rdfs:label "LSF started event" ;
+    rdfs:subClassOf hpc:Warningmessage ;
+    rdfs:comment "A warning message is logged to the mbatchd log file when LSF is started." .
+
+hpc:Jobsubmission a owl:Class ;
+    rdfs:subClassOf owl:Event .
+
+hpc:NoLimitSpecified a hpc:JobSubmission ;
+    rdfs:label "No limit specified at job submission" ;
+    rdfs:subClassOf hpc:Jobsubmission ;
+    rdfs:comment "If no limit is specified at job submission, then the following apply to all jobs submitted to the queue:" .
+
+hpc:defaultlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:NonNegativeInteger ;
+    rdfs:label "default limit" .
+
+hpc:maximumlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range xsd:NonNegativeInteger ;
+    rdfs:label "maximum limit" .
+
+hpc:Enforcedlimit a owl:Class ;
+    rdfs:subClassOf owl:Resource .
+
+hpc:DefaultIgnoredEnforcedLimit a hpc:EnforcedLimit ;
+    rdfs:label "default is ignored and the maximum limit is enforced" ;
+    rdfs:subClassOf hpc:Enforcedlimit ;
+    rdfs:comment "The default limit is not correct. The default is ignored and the maximum limit is enforced." .
+
+hpc:BothDefaultAndMaximumLimitsIncorrect a hpc:JobSubmission ;
+    rdfs:label "both default and maximum limits are incorrect" ;
+    rdfs:subClassOf hpc:Jobsubmission ;
+    rdfs:comment "Both default and maximum limits are not correct. The default and maximum are ignored and no limit is enforced." .
+
+hpc:ResourceUsageLimitExceeded a hpc:WarningMessage ;
+    rdfs:label "resource usage limit exceeded" ;
+    rdfs:subClassOf hpc:Warningmessage ;
+    rdfs:comment "Resource usage limits specified at job submission must be less than the maximum specified in lsb.queues. The job submission is rejected if the user-specified limit is greater than the queue-level maximum, and the following message is issued:" .
+
+hpc:CannotExceedQueueHardLimit a hpc:ResourceUsageLimitExceeded ;
+    rdfs:label "cannot exceed queue’s hard limit(s)" .
+
+hpc:JobNotSubmitted a hpc:ResourceUsageLimitExceeded ;
+    rdfs:label "job not submitted" .
+
+hpc:lsfunitforlimits a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconfiguration ;
+    rdfs:range

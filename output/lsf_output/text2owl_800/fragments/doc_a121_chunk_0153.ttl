@@ -1,0 +1,28 @@
+hpc:Jobstarter a owl:Class .
+
+# Command-Level Job Starter Object Property
+hpc:hascommand a owl:ObjectProperty .
+hpc:Hascommand rdfs:domain hpc:Jobstarter ;
+                 rdfs:range xsd:string .
+
+# Queue-Level Job Starter Object Property
+hpc:isqueuejobstarter a owl:ObjectProperty .
+hpc:Isqueuejobstarter rdfs:domain hpc:Jobstarter ;
+                      rdfs:range xsd:boolean .
+
+# LSF_JOB_STARTER Environment Variable Object Property
+hpc:useslsfjobstarter a owl:ObjectProperty .
+hpc:Useslsfjobstarter rdfs:domain hpc:Jobstarter ;
+                      rdfs:range xsd:string .
+
+# Command-Line Execution of Job Starter Datatype Property
+hpc:commandlineexecution a owl:DatatypeProperty .
+hpc:Commandlineexecution rdfs:domain hpc:Jobstarter ;
+                          rdfs:range xsd:string .
+
+# Subclass relations
+hpc:Commandleveljobstarter a owl:Class ;
+                            rdfs:subClassOf hpc:Jobstarter .
+
+hpc:Queueleveljobstarter a owl:Class ;
+                           rdfs:subClassOf hpc:Jobstarter .

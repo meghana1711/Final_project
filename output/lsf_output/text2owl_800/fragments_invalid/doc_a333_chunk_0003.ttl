@@ -1,0 +1,61 @@
+hpc:Lsfsimulator a owl:Class .
+hpc:Fixpack a owl:Class .
+hpc:Operatingsystem a owl:Class .
+hpc:Browser a owl:Class .
+hpc:Software a owl:Class .
+
+hpc:hasFixPack rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsimulator ;
+    rdfs:range hpc:Fixpack .
+
+hpc:supportsOperatingSystem rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Fixpack ;
+    rdfs:range hpc:Operatingsystem .
+
+hpc:supportsBrowser rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Fixpack ;
+    rdfs:range hpc:Browser .
+
+hpc:includesSoftware rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfsimulator ;
+    rdfs:range hpc:Software .
+
+hpc:upgradedTo rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Software ;
+    rdfs:range xsd:string .
+
+hpc:LSFSimulator10_1 a hpc:LSFSimulator .
+hpc:FixPack15 a hpc:FixPack ;
+    hpc:Hasfixpack hpc:lsfsimulator101 .
+
+hpc:RHEL8_10 a hpc:OperatingSystem .
+hpc:RHEL9_5 a hpc:OperatingSystem .
+hpc:Windows10 a hpc:OperatingSystem .
+hpc:Windows11 a hpc:OperatingSystem .
+
+hpc:GoogleChrome a hpc:Browser .
+hpc:MozillaFirefox a hpc:Browser .
+hpc:MicrosoftEdge a hpc:Browser .
+
+hpc:Click a hpc:Software .
+hpc:Flask a hpc:Software .
+hpc:Gunicorn a hpc:Software .
+hpc:Jinja2 a hpc:Software .
+hpc:MatplotSafe a hpc:Software .
+hpc:NumPy a hpc:Software .
+hpc:Pandas a hpc:Software .
+hpc:Python a hpc:Software .
+hpc:RedHatContainerImage8_10 a hpc:Software .
+hpc:SciPy a hpc:Software .
+hpc:Urllib3 a hpc:Software .
+
+hpc:Click_8_1_7 rdf:type xsd:string ;
+    hpc:upgradedTo "8.1.7" .
+hpc:Flask_3_1_0 rdf:type xsd:string ;
+    hpc:upgradedTo "3.1.0" .
+hpc:Gunicorn_23_0_0 rdf:type xsd:string ;
+    hpc:upgradedTo "23.0.0" .
+hpc:Jinja2_3_1_4 rdf:type xsd:string ;
+    hpc:upgradedTo "3.1.4" .
+hpc:MatplotSafe_3_0_2 rdf:type xsd:string ;
+    hpc:upgradedTo "3.

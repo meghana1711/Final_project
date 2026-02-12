@@ -1,0 +1,50 @@
+hpc:Command a owl:Class .
+hpc:subcommand a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Subcommand .
+
+hpc:bgmod a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:List .
+
+hpc:bgadd a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:List .
+
+hpc:bgdel a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:List .
+
+hpc:bjgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:List .
+
+hpc:bgpinfo a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range rdf:List .
+
+hpc:conf a owl:ObjectProperty ;
+    rdfs:domain hpc:Bgpinfo ;
+    rdfs:range rdf:List .
+
+hpc:fsload a owl:ObjectProperty ;
+    rdfs:domain hpc:Bgpinfo ;
+    rdfs:range rdf:List .
+
+hpc:policy a owl:ObjectProperty ;
+    rdfs:domain hpc:Bgpinfo ;
+    rdfs:range rdf:List .
+
+hpc:resource a owl:ObjectProperty ;
+    rdfs:domain hpc:Bgpinfo ;
+    rdfs:range rdf:List .
+
+hpc:status a owl:ObjectProperty ;
+    rdfs:domain hpc:Bgpinfo ;
+    rdfs:range rdf:List .
+
+hpc:Globalpolicyname a owl:Class ;
+    rdfs:subClassOf rdf:List .
+
+hpc:Clustername a owl:Class ;
+    rdfs:subClassOf rdf:List .

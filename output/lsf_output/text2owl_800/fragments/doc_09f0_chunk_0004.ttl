@@ -1,0 +1,25 @@
+hpc:Jobspooldirectory a owl:Class ;
+    rdfs:comment "Directory where LSF creates job script files and redirects job standard output and error files." .
+
+hpc:hasjobspooldirectory a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Jobspooldirectory ;
+    rdfs:comment "Defines the job spool directory for a cluster." .
+
+hpc:Isscalableparallelfilesystem a owl:Class ;
+    rdfs:subClassOf hpc:Jobspooldirectory ;
+    rdfs:comment "Job spool directory on a scalable parallel file system." .
+
+hpc:Istemporarydiskspace a owl:Class ;
+    rdfs:subClassOf hpc:Jobspooldirectory ;
+    rdfs:comment "Job spool directory on the local host to reduce I/O competition from multiple jobs." .
+
+hpc:mustexist a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobspooldirectory ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the directory defined in JOB_SPOOL_DIR must already exist." .
+
+hpc:mustbeaccessiblebyallcomputenodes a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobspooldirectory ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the directory defined in JOB_SPOOL_DIR must be accessible by all compute nodes in the cluster." .

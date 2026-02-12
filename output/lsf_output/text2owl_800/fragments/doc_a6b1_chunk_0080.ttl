@@ -1,0 +1,67 @@
+hpc:Host a owl:Class .
+hpc:Host rdfs:subClassOf owl:Class .
+
+hpc:Hostinformation a owl:Class .
+hpc:Hostinformation rdfs:subClassOf owl:Class .
+
+hpc:Hostname rdfs:domain hpc:Host .
+hpc:Hostname rdfs:range xsd:string .
+
+hpc:Job a owl:Class .
+hpc:Job rdfs:subClassOf owl:Class .
+
+hpc:Jobid rdfs:domain hpc:Job .
+hpc:Jobid rdfs:range xsd:string .
+
+hpc:Jobexceptiontype a owl:Class .
+hpc:Jobexceptiontype rdfs:subClassOf owl:Class .
+hpc:Jobexceptiontype rdfs:subClassOf hpc:Exceptiontype .
+
+hpc:Overrun rdfs:subClassOf hpc:Jobexceptiontype .
+hpc:Underrun rdfs:subClassOf hpc:Jobexceptiontype .
+hpc:Idlejob rdfs:subClassOf hpc:Jobexceptiontype .
+
+hpc:Jobinformation a owl:Class .
+hpc:Jobinformation rdfs:subClassOf owl:Class .
+
+hpc:Jobexitrate rdfs:domain hpc:Host .
+hpc:Jobexitrate rdfs:range xsd:decimal .
+
+hpc:Globaljobexitrate rdfs:domain owl:Thing .
+hpc:Globaljobexitrate rdfs:range xsd:decimal .
+
+hpc:eadminaction a owl:ObjectProperty .
+hpc:Eadminaction rdfs:domain hpc:Host .
+hpc:Eadminaction rdfs:range hpc:Event .
+
+hpc:emailsent a owl:ObjectProperty .
+hpc:Emailsent rdfs:domain hpc:Lsfadministrator .
+hpc:Emailsent rdfs:range hpc:Email .
+
+hpc:Email a owl:Class .
+hpc:Email rdfs:subClassOf owl:Class .
+
+hpc:Emailcontent rdfs:domain hpc:Email .
+hpc:Emailcontent rdfs:range xsd:string .
+
+hpc:Exceptiontype rdfs:domain hpc:Jobexceptiontype .
+hpc:Exceptiontype rdfs:range xsd:string .
+
+hpc:Frequency rdfs:domain hpc:Lsfadministrator .
+hpc:Frequency rdfs:range xsd:duration .
+
+hpc:Eadmintriggerduration rdfs:subClassOf hpc:Frequency .
+
+hpc:Exitratetype a owl:Class .
+hpc:Exitratetype rdfs:subClassOf owl:Class .
+
+hpc:Strict rdfs:subClassOf hpc:Exitratetype .
+
+hpc:Includejobinitializationfailures rdfs:domain hpc:Exitratetype .
+hpc:Includejobinitializationfailures rdfs:range xsd:boolean .
+
+hpc:Event a owl:Class .
+hpc:Event rdfs:subClassOf owl:Class .
+
+hpc:Closedhostevent rdfs:subClassOf hpc:Event .
+hpc:Closedhostevent rdfs:subClassOf hpc:Hostevent .

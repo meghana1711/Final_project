@@ -1,0 +1,33 @@
+hpc:Usergroupadmin a owl:Class .
+hpc:hasusergroupadmin a owl:ObjectProperty .
+hpc:Hasusergroupadmin rdfs:domain hpc:Usergroup .
+hpc:Hasusergroupadmin rdfs:range hpc:User .
+hpc:hasusergroupadminrights a owl:DatatypeProperty .
+hpc:Hasusergroupadminrights rdfs:domain hpc:Usergroupadmin .
+hpc:Hasusergroupadminrights rdfs:range xsd:string .
+hpc:ismembergroup a owl:ObjectProperty .
+hpc:Ismembergroup rdfs:domain hpc:Usergroup .
+hpc:Ismembergroup rdfs:range hpc:Usergroup .
+hpc:hasstrictugcontrol a owl:DatatypeProperty .
+hpc:Hasstrictugcontrol rdfs:domain hpc:Usergroup .
+hpc:Hasstrictugcontrol rdfs:range xsd:boolean .
+hpc:hasprivileges a owl:ObjectProperty .
+hpc:Hasprivileges rdfs:domain hpc:Usergroupadmin .
+hpc:Hasprivileges rdfs:range hpc:Privilege .
+hpc:cancontroljob a owl:ObjectProperty .
+hpc:Cancontroljob rdfs:domain hpc:Usergroupadmin .
+hpc:Cancontroljob rdfs:range hpc:Job .
+hpc:canresumestoppedjob a owl:ObjectProperty .
+hpc:Canresumestoppedjob rdfs:domain hpc:Usergroupadmin .
+hpc:Canresumestoppedjob rdfs:range hpc:Job .
+hpc:inheritsrights a owl:ObjectProperty .
+hpc:Inheritsrights rdfs:domain hpc:Usergroupadmin .
+hpc:Inheritsrights rdfs:range hpc:Usergroupadmin .
+
+hpc:Usergroup a owl:Class .
+hpc:User a owl:Class .
+hpc:Job a owl:Class .
+hpc:Privilege a owl:Class .
+
+
+This ontology fragment defines classes for `UserGroup`, `User`, `Job`, and `Privilege`. It also defines object properties for `hasUserGroupAdmin`, `isMemberGroup`, `hasStrictUGControl`, `hasPrivileges`, `canControlJob`, `canResumeStoppedJob`, and `inheritsRights`. Additionally, it defines a datatype property for `hasUserGroupAdminRights` and `hasPrivileges`. The properties have their domains and ranges defined as well.

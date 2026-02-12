@@ -1,0 +1,33 @@
+hpc:egoDaemonControl a owl:DatatypeProperty .
+hpc:Hasegodaemoncontrolvalue rdfs:domain hpc:Cluster .
+hpc:Hasegodaemoncontrolvalue rdfs:range xsd:string .
+
+hpc:EGO_DAEMON_CONTROL_Y a owl:NamedIndividual .
+hpc:EGO_DAEMON_CONTROL_Y rdf:value "Y" .
+hpc:EGO_DAEMON_CONTROL_N a owl:NamedIndividual .
+hpc:EGO_DAEMON_CONTROL_N rdf:value "N" .
+
+hpc:enablingEgo a owl:ObjectProperty .
+hpc:EnablingEgo rdfs:domain hpc:Cluster .
+hpc:EnablingEgo rdfs:range hpc:EgoDaemonControl .
+
+hpc:ENABLE_EGO_Y a owl:NamedIndividual .
+hpc:ENABLE_EGO_Y rdf:value "Y" .
+hpc:ENABLE_EGO_N a owl:NamedIndividual .
+hpc:ENABLE_EGO_N rdf:value "N" .
+
+hpc:ENABLE_EGO_Y_LSF_EGO_ENVDIR rdf:value "uncomment" .
+hpc:ENABLE_EGO_Y_LSF_ENABLE_EGO rdf:value "Y" .
+hpc:ENABLE_EGO_N_LSF_EGO_ENVDIR rdf:value "comment out" .
+hpc:ENABLE_EGO_N_LSF_ENABLE_EGO rdf:value "N" .
+
+hpc:ENABLE_EGO_Y_LSF_FEATURES rdf:value "LSF daemon control by the EGO service controller, EGO enabled SLA scheduling" .
+
+hpc:epBackup a owl:DatatypeProperty .
+hpc:Hasepbackupvalue rdfs:domain hpc:Cluster .
+hpc:Hasepbackupvalue rdfs:range xsd:string .
+
+hpc:EP_BACKUP_Y a owl:NamedIndividual .
+hpc:EP_BACKUP_Y rdf:value "Y" .
+hpc:EP_BACKUP_N a owl:NamedIndividual .
+hpc:EP_BACKUP_N rdf:value "N" .

@@ -1,0 +1,60 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Queue a owl:Class .
+hpc:Queue rdfs:subClassOf owl:Class .
+
+hpc:Queueparameters a owl:Class .
+hpc:Queueparameters rdfs:subClassOf owl:Class .
+
+hpc:priority a owl:DatatypeProperty .
+hpc:Priority rdfs:domain hpc:Queue .
+hpc:Priority rdfs:range xsd:integer .
+
+hpc:nice a owl:DatatypeProperty .
+hpc:Nice rdfs:domain hpc:Queue .
+hpc:Nice rdfs:range xsd:integer .
+
+hpc:status a owl:DatatypeProperty .
+hpc:Status rdfs:domain hpc:Queue .
+hpc:Status rdfs:range xsd:string .
+
+hpc:maxjlU a owl:DatatypeProperty .
+hpc:MaxjlU rdfs:domain hpc:Queue .
+hpc:MaxjlU rdfs:range xsd:integer .
+
+hpc:maxjlP a owl:DatatypeProperty .
+hpc:MaxjlP rdfs:domain hpc:Queue .
+hpc:MaxjlP rdfs:range xsd:integer .
+
+hpc:maxjlH a owl:DatatypeProperty .
+hpc:MaxjlH rdfs:domain hpc:Queue .
+hpc:MaxjlH rdfs:range xsd:integer .
+
+hpc:njobs a owl:DatatypeProperty .
+hpc:Njobs rdfs:domain hpc:Queue .
+hpc:Njobs rdfs:range xsd:integer .
+
+hpc:pending a owl:DatatypeProperty .
+hpc:Pending rdfs:domain hpc:Queue .
+hpc:Pending rdfs:range xsd:integer .
+
+hpc:run a owl:DatatypeProperty .
+hpc:Run rdfs:domain hpc:Queue .
+hpc:Run rdfs:range xsd:integer .
+
+hpc:ssusp a owl:DatatypeProperty .
+hpc:Ssusp rdfs:domain hpc:Queue .
+hpc:Ssusp rdfs:range xsd:integer .
+
+hpc:ususp a owl:DatatypeProperty .
+hpc:Ususp rdfs:domain hpc:Queue .
+hpc:Ususp rdfs:range xsd:integer .
+
+hpc:rsv a owl:DatatypeProperty .
+hpc:Rsv rdfs:domain hpc:Queue .
+hpc:Rsv rdfs:range xsd:integer .
+
+hpc:Threadlimit a owl:Class .

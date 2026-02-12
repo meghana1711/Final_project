@@ -1,0 +1,19 @@
+hpc:LsfConf a owl:Class .
+hpc:HaslsfConfdir hpc:lsfConf hpc:confDir xsd:string .
+hpc:HaslsfGetConf hpc:lsfConf hpc:getConf xsd:string .
+hpc:HaslsfLimPort hpc:lsfConf hpc:limPort xsd:integer .
+hpc:HaslsfLocalResources hpc:lsfConf hpc:localResources rdf:List .
+hpc:HaslsfServerHosts hpc:lsfConf hpc:serverHosts rdf:List .
+hpc:HaslsfVersion hpc:lsfConf hpc:version xsd:string .
+
+hpc:Dynamichostparameter a owl:Class .
+hpc:Hasname hpc:Dynamichostparameter rdfs:domain hpc:Dynamichostparameter ;
+                                      rdfs:range xsd:string .
+
+hpc:lsfDynamicHostWaitTime a owl:DatatypeProperty ;
+                                 rdfs:domain hpc:LsfConf ;
+                                 rdfs:range xsd:nonNegativeInteger .
+
+hpc:lsfDynamicHostTimeout a owl:DatatypeProperty ;
+                                rdfs:domain hpc:LsfConf ;
+                                rdfs:range xsd:nonNegativeInteger .

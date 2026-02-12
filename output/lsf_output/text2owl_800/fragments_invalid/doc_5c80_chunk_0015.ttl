@@ -1,0 +1,54 @@
+hpc:Job a owl:Class .
+hpc:JobID rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:JobGroup rdf:type owl:Class .
+
+hpc:terminatejob a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:forceremoval a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:removefromsystem a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:suspendjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:resumejob a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .
+
+hpc:Usersuspendedjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:RunState rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Job .
+hpc:UsuspState rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Job .
+hpc:SsuspState rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:IgnoreOption rdf:type owl:Class .
+hpc:DOption rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Ignoreoption .
+hpc:ROption rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Ignoreoption .
+hpc:SOption rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Ignoreoption .
+
+hpc:OnlyEffectiveForStartedJob rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Doption ;
+    rdfs:range hpc:Jobstate .
+
+hpc:JobState rdf:type owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+
+This ontology fragment represents the classes and properties related to job management in an HPC system, as described in the provided documentation. It includes classes for Job, JobGroup, TerminateJob, ForceRemoval, RemoveFromSystem, SuspendJob, ResumeJob, UserSuspendedJob, RunState, UsuspState, SsuspState, IgnoreOption, DOption, ROption, SOption, and OnlyEffectiveForStartedJob. The properties have been defined with their domains and ranges.

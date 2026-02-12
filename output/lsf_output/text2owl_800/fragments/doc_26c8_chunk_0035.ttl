@@ -1,0 +1,49 @@
+hpc:Attributetype a owl:Class .
+hpc:Attributetype rdfs:subClassOf owl:Class .
+
+hpc:Booleanattribute a owl:Class ;
+    rdfs:subClassOf hpc:Attributetype .
+
+hpc:Stringattribute a owl:Class ;
+    rdfs:subClassOf hpc:Attributetype .
+
+hpc:Numericattribute a owl:Class ;
+    rdfs:subClassOf hpc:Attributetype .
+
+hpc:hasattributetype a owl:ObjectProperty .
+
+hpc:hasattributevalue a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resource ;
+    rdfs:range xsd:string .
+
+hpc:Booleanvalue a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:Numericvalue a owl:Class ;
+    rdfs:subClassOf xsd:string .
+
+hpc:numericvaluerange a owl:DatatypeProperty ;
+    rdfs:domain hpc:Numericvalue ;
+    rdfs:range xsd:string .
+
+hpc:Template a owl:Class .
+
+hpc:hosttype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string .
+
+hpc:ncpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:integer .
+
+hpc:gpuextend a owl:ObjectProperty .
+
+hpc:Gputopology a owl:Class .
+
+hpc:gpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gputopology ;
+    rdfs:range xsd:integer .
+
+hpc:gpusrange a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpus ;
+    rdfs:range xsd:string .

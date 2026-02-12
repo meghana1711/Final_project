@@ -1,0 +1,25 @@
+hpc:Licensescheduler a owl:Class .
+hpc:applicationcheckoutbehavior a owl:ObjectProperty .
+hpc:Servicedomain a owl:Class .
+hpc:Lanservicedomain a rdfs:subClassOf hpc:Servicedomain .
+hpc:Wanservicedomain a rdfs:subClassOf hpc:Servicedomain .
+hpc:Job a owl:Class .
+hpc:Paralleljob a rdfs:subClassOf hpc:Job .
+hpc:Userhostkey a owl:Class .
+hpc:checkout a owl:ObjectProperty .
+hpc:Servicedomain rdfs:domain hpc:Job .
+hpc:Userhost rdfs:range hpc:Userhostkey .
+hpc:Projectmode rdfs:domain hpc:Paralleljob .
+hpc:Feature rdfs:range rdf:Resource .
+hpc:Token rdfs:range xsd:integer .
+hpc:Totalinuse rdfs:domain hpc:Feature .
+hpc:Totalreserve rdfs:domain hpc:Feature .
+hpc:Totalfree rdfs:domain hpc:Feature .
+hpc:Others rdfs:domain hpc:Feature .
+hpc:Projectshare rdfs:domain hpc:Feature .
+hpc:Own rdfs:domain hpc:Projectshare .
+hpc:Inuse rdfs:domain hpc:Projectshare .
+hpc:Reserve rdfs:domain hpc:Projectshare .
+hpc:Free rdfs:domain hpc:Projectshare .
+hpc:Demand rdfs:domain hpc:Projectshare .
+hpc:mergebyservicedomain a owl:ObjectProperty .

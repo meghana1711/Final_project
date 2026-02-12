@@ -1,0 +1,70 @@
+hpc:Lsfjob a owl:Class .
+hpc:submitjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range hpc:Submission .
+
+hpc:Submission a owl:Class .
+
+hpc:expertmode a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfjob ;
+    rdfs:range xsd:boolean .
+
+hpc:csm a owl:ObjectProperty ;
+    rdfs:domain hpc:Submission ;
+    rdfs:range xsd:boolean .
+
+hpc:jobstepmanagement a owl:ObjectProperty ;
+    rdfs:domain hpc:Submission ;
+    rdfs:range xsd:boolean .
+
+hpc:stepcgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Submission ;
+    rdfs:range xsd:boolean .
+
+hpc:coreisolation a owl:ObjectProperty ;
+    rdfs:domain hpc:Submission ;
+    rdfs:range xsd:integer .
+
+hpc:corememory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Submission ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:allocflags a owl:DatatypeProperty ;
+    rdfs:domain hpc:Submission ;
+    rdfs:range xsd:string .
+
+hpc:smt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Submission ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:outputfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Submission ;
+    rdfs:range xsd:string .
+
+hpc:errorfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Submission ;
+    rdfs:range xsd:string .
+
+hpc:resourcerequirement a owl:DatatypeProperty ;
+    rdfs:domain hpc:Submission ;
+    rdfs:range xsd:string .
+
+hpc:Queue a owl:Class .
+hpc:queueresourcerequirement a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Resourcerequirement .
+
+hpc:Resourcerequirement a owl:Class .
+hpc:mandatory a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:boolean .
+
+hpc:csmBatch a ows:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string .
+
+hpc:Easymodejob a owl:Class ;
+    rdfs:subClassOf hpc:Lsfjob .
+
+hpc:Compoundresourcerequirement a owl:Class ;
+    rdfs:subClassOf hpc:Resourcerequirement .

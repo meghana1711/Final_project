@@ -1,0 +1,30 @@
+hpc:Timewindow a owl:Class .
+hpc:hasstarttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Timewindow ;
+    rdfs:range xsd:time .
+hpc:hasendtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Timewindow ;
+    rdfs:range xsd:time .
+hpc:hastimezone a owl:ObjectProperty ;
+    rdfs:domain hpc:Timewindow ;
+    rdfs:range xsd:string .
+hpc:User a owl:Class .
+hpc:isusername a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+hpc:isusergroup a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+hpc:isallusers a owl:DatatypeProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range xsd:string .
+hpc:Timewindowdisjoint a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:hasStartTime ;
+                        owl:allValuesFrom xsd:dateTime ] .
+hpc:Timewindowoverlapping a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty [ a owl:ObjectOneOf ;
+                                            owl:someValuesFrom (hpc:TimeWindow hpc:hasEndTime ?endTime) ] ;
+                        owl:allValuesFrom [ hpc:TimeWindow hpc:hasStartTime ?startTime ;
+                                            xsd:lessThan ?endTime ] ] .

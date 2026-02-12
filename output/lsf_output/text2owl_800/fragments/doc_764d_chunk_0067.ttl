@@ -1,0 +1,9 @@
+hpc:Queue a owl:Class .
+hpc:SndjobsTo hpc:a owl:ObjectProperty .
+hpc:ImptSlotbklg hpc:a owl:DatatypeProperty .
+
+hpc:Queue rdfs:subClassOf rdf:Resource .
+hpc:SndjobsTo rdfs:domain hpc:Queue ;
+                 rdfs:range rdf:List .
+hpc:ImptSlotbklg rdfs:domain hpc:Queue ;
+                 rdfs:range xsd:integer .

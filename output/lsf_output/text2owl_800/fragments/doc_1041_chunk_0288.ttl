@@ -1,0 +1,31 @@
+hpc:gpuNum a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:gpuMode a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:jExclusive a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:gpuAlloc a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:nthreads a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:hrusage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourceusage ;
+    rdfs:range xsd:decimal .
+
+hpc:minReqProc a owl:DatatypeProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range xsd:integer .
+
+hpc:maxReqProc a owl:DatatypeProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range xsd:integer .

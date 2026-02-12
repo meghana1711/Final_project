@@ -1,0 +1,40 @@
+hpc:groupmember a owl:ObjectProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range hpc:User .
+hpc:groupadmin a owl:ObjectProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range hpc:Usergroup .
+hpc:User a owl:Class .
+hpc:Usergroupmember a owl:Class ;
+    rdfs:subClassOf hpc:User .
+hpc:strictugcontrol a owl:DatatypeProperty ;
+    rdfs:domain hpc:Usergroup ;
+    rdfs:range xsd:boolean .
+
+hpc:UserGroupMember (user1) a hpc:UserGroupMember .
+hpc:UserGroupMember (user2) a hpc:UserGroupMember .
+hpc:UserGroupMember (user3) a hpc:UserGroupMember .
+hpc:UserGroupMember (shelley) a hpc:UserGroupMember .
+hpc:UserGroupMember (john) a hpc:UserGroupMember .
+hpc:UserGroupMember (Steve) a hpc:UserGroupMember .
+hpc:UserGroupMember (Toby) a hpc:UserGroupMember .
+hpc:UserGroupMember (all) a hpc:UserGroupMember .
+hpc:UserGroupMember (ugA) a hpc:UserGroupMember .
+hpc:UserGroupMember (ugAdmins) a hpc:UserGroupMember .
+
+hpc:UserGroup (ugAdmins) a hpc:UserGroup ;
+    hpc:GroupMember (Toby) ;
+    hpc:GroupMember (Steve) ;
+    hpc:GroupAdmin (Toby) ;
+    hpc:GroupAdmin (Steve) .
+hpc:UserGroup (marketing) a hpc:UserGroup ;
+    hpc:GroupMember (user1) ;
+    hpc:GroupMember (user2) ;
+    hpc:GroupAdmin (shelley) ;
+    hpc:GroupAdmin (ugAdmins) .
+hpc:UserGroup (financial) a hpc:UserGroup ;
+    hpc:GroupMember (user3) ;
+    hpc:GroupMember (user1) ;
+    hpc:GroupAdmin (john) .
+hpc:UserGroup (engineering) a hpc:UserGroup ;
+    hpc:GroupMember (all) .

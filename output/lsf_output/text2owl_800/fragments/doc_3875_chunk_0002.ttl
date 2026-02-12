@@ -1,0 +1,56 @@
+hpc:Installation
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "The act of installing software." .
+
+hpc:InstallationPackageInstallation
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Installation ] ;
+    rdfs:range [ rdf:type hpc:Installationpackage ] ;
+    rdfs:comment "The installation of a specific installation package." .
+
+hpc:Update
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Installation ] ;
+    rdfs:range [ rdf:type hpc:Installationpackage ] ;
+    rdfs:comment "The act of updating an installation with a new version of an installation package." .
+
+hpc:Start
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Installation ] ;
+    rdfs:range [ rdf:type xsd:boolean ] ;
+    rdfs:comment "The act of starting an installation." .
+
+hpc:Stop
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Installation ] ;
+    rdfs:range [ rdf:type xsd:boolean ] ;
+    rdfs:comment "The act of stopping an installation." .
+
+hpc:Uninstall
+    a owl:ObjectProperty ;
+    rdfs:domain [ rdf:type hpc:Installation ] ;
+    rdfs:range [ rdf:type xsd:boolean ] ;
+    rdfs:comment "The act of uninstalling an installation." .
+
+hpc:Data
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Information related to predictions, experiments, LSF configurations, and workload snapshots." .
+
+hpc:DataDirectory
+    a owl:DatatypeProperty ;
+    rdfs:domain [ rdf:type hpc:Installation ] ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The directory where data related to predictions, experiments, LSF configurations, and workload snapshots are saved." .
+
+hpc:Log
+    a owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Class ] ;
+    rdfs:comment "Service daemon logs and event files." .
+
+hpc:LogDirectory
+    a owl:DatatypeProperty ;
+    rdfs:domain [ rdf:type hpc:Installation ] ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The directory where service daemon logs and event files are saved." .

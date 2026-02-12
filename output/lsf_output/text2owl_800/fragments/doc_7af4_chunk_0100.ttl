@@ -1,0 +1,37 @@
+hpc:Host a owl:Class .
+hpc:RC_ACCOUNT rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string .
+hpc:RC_RECLAIM_ACTION rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:action .
+hpc:action rdf:type owl:Class .
+hpc:TERMINATE rdf:type hpc:action ;
+    rdfs:label "TERMINATE" .
+hpc:REQUEUE rdf:type hpc:action ;
+    rdfs:label "REQUEUE" .
+hpc:RC_RECLAIM_ACTION_DEFAULT rdf:type xsd:string ;
+    rdfs:value "TERMINATE for interactive jobs. REQUEUE for all other jobs." .
+hpc:RC_RECLAIM_ACTION_TERMINATE rdf:type xsd:string ;
+    rdfs:value "TERMINATE" .
+hpc:RC_RECLAIM_ACTION_REQUEUE rdf:type xsd:string ;
+    rdfs:value "REQUEUE" .
+hpc:RC_RECLAIM_ACTION_SYNTAX rdf:type rdfs:Literal ;
+    rdfs:datatype xsd:string .
+hpc:RC_ACCOUNT_DEFAULT rdf:type xsd:string ;
+    rdfs:value "No account deﬁned for the application proﬁle" .
+hpc:RC_RECLAIM_ACTION_CONTROL rdf:type rdfs:Property ;
+    rdfs:label "Controls how the LSF resource connector takes action on jobs that are running on a host when that host is reclaimed." .
+hpc:REMOTE_MAX_PREEXEC_RETRY rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:integer .
+hpc:REMOTE_MAX_PREEXEC_RETRY_SYNTAX rdf:type rdfs:Literal ;
+    rdfs:datatype xsd:string .
+hpc:REMOTE_MAX_PREEXEC_RETRY_DEFAULT rdf:type xsd:integer .
+hpc:REQUEUE_EXIT_VALUES rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf hpc:exitValues .
+hpc:exitValues rdf:type owl:Class .
+hpc:exit_code rdf:type xsd:string .

@@ -1,0 +1,21 @@
+hpc:Jobtag a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "A tag used by IBM Spectrum LSF Data Manager for job file staging." .
+
+hpc:hasjobid a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobtag ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The job ID associated with the tag." .
+
+hpc:hasusergroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobtag ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The user group associated with the tag." .
+
+hpc:changegroup a owl:ObjectProperty ;
+    rdfs:domain xsd:string ;
+    rdfs:range hpc:Jobtag ;
+    rdfs:comment "The command to change the group associated with a tag." .
+
+hpc:CACHE_ACCESS_CONTROL a xsd:boolean ;
+    rdfs:comment "A parameter in the lsf.datamanager file that controls file access for tagged files." .

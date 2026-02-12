@@ -1,0 +1,27 @@
+hpc:User a owl:Class .
+hpc:Lsfadministrator rdfs:subClassOf hpc:User .
+
+hpc:Command a owl:Class .
+hpc:Multiclustercapability a owl:Class .
+hpc:timinglevel a owl:DatatypeProperty .
+hpc:logfilename a owl:DatatypeProperty .
+hpc:hostname a owl:DatatypeProperty .
+hpc:timingleveloption a owl:ObjectProperty .
+
+hpc:Timingleveldomain rdfs:domain hpc:Command .
+hpc:TimingLevelRange xsd:nonNegativeInteger .
+hpc:Logfilenamedomain rdfs:domain hpc:Command .
+hpc:LogfileNameRange rdf:resource "http://example.org/hpc#daemon_name.log.{?hostName}" .
+hpc:Hostnamedomain rdfs:domain hpc:Command .
+hpc:HostNameRange xsd:string .
+hpc:Timingleveloptiondomain rdfs:domain hpc:Command .
+hpc:TimingLevelOptionRange rdf:resource "http://example.org/hpc#TimingLevel" .
+
+hpc:TimingLevel "no" rdf:value xsd:string .
+hpc:TimingLevel "1" rdf:value xsd:nonNegativeInteger .
+hpc:TimingLevel "2" rdf:value xsd:nonNegativeInteger .
+hpc:TimingLevel "3" rdf:value xsd:nonNegativeInteger .
+hpc:TimingLevel "4" rdf:value xsd:nonNegativeInteger .
+hpc:TimingLevel "5" rdf:value xsd:nonNegativeInteger .
+
+hpc:Host "local" rdf:value xsd:string .

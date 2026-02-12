@@ -1,0 +1,15 @@
+hpc:Jobgroup a owl:Class .
+hpc:Job a owl:Class .
+hpc:Subgroup a owl:Class .
+hpc:Rootjobgroup a owl:Class .
+hpc:jobgroupowner a owl:ObjectProperty .
+hpc:jobcontrol a owl:ObjectProperty .
+
+hpc:Jobgroup rdfs:subClassOf hpc:Jobgroup .
+hpc:Subgroup rdfs:subClassOf hpc:Jobgroup .
+hpc:Rootjobgroup rdfs:subClassOf hpc:Jobgroup .
+
+hpc:Jobgroup rdfs:domain xsd:string .
+hpc:Jobgroupowner rdfs:domain hpc:Jobgroup .
+hpc:Jobgroupowner rdfs:range xsd:string .
+hpc:Jobcontrol rdfs:domain hpc:Jobgroup .

@@ -1,0 +1,31 @@
+hpc:Preempttype a owl:Class .
+hpc:Preempttype rdfs:subClassOf owl:Class .
+
+hpc:preemptNone a owl:NamedIndividual ;
+    rdfs:label "Job preemption is disabled (default)"@en ;
+    rdfs:comment "Job preemption is disabled (default)" .
+
+hpc:preemptPartitionPrio a owl:NamedIndividual ;
+    rdfs:label "Job preemption is based upon partition PriorityTier. Jobs in higher PriorityTier partitions may preempt jobs from lower PriorityTier partitions. This is not compatible with PreemptMode=OFF."@en ;
+    rdfs:comment "Job preemption is based upon partition PriorityTier. Jobs in higher PriorityTier partitions may preempt jobs from lower PriorityTier partitions. This is not compatible with PreemptMode=OFF." .
+
+hpc:preemptQOS a owl:NamedIndividual ;
+    rdfs:label "Job preemption rules are specified by Quality Of Service (QOS) specifications in the Slurm database. In the case of PreemptMode=SUSPEND, a preempting job needs to be submitted to a partition with a higher PriorityTier or to the same partition. This option is not compatible with PreemptMode=OFF. A configuration of PreemptMode=SUSPEND is only supported by the SelectType=select/cons_tres plugin. See the sacctmgr man page to configure the options of preempt/qos."@en ;
+    rdfs:comment "Job preemption rules are specified by Quality Of Service (QOS) specifications in the Slurm database. In the case of PreemptMode=SUSPEND, a preempting job needs to be submitted to a partition with a higher PriorityTier or to the same partition. This option is not compatible with PreemptMode=OFF. A configuration of PreemptMode=SUSPEND is only supported by the SelectType=select/cons_tres plugin. See the sacctmgr man page to configure the options of preempt/qos." .
+
+hpc:Prioritytier a owl:Class .
+hpc:Prioritytier rdfs:subClassOf owl:Class .
+
+hpc:Preempttype rdfs:domain hpc:Preempttype ;
+    rdfs:range rdf:Resource .
+
+hpc:preemptType rdfs:subPropertyOf hpc:hasPreemptType .
+
+hpc:haspreempttype a owl:ObjectProperty .
+
+hpc:preempteligibletime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Job a owl:Class .
+hpc:Job rdfs:subClassOf owl:Class .

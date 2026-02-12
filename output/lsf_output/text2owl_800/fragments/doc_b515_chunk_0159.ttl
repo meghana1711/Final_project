@@ -1,0 +1,44 @@
+hpc:Fairsharescheduling a owl:Class .
+hpc:Usershareassignments a owl:Class .
+hpc:Dynamicsharepriority a owl:Class .
+hpc:Jobdispatchorder a owl:Class .
+
+hpc:configures a owl:ObjectProperty ;
+    rdfs:domain hpc:Fairsharescheduling ;
+    rdfs:range hpc:Fairshareconfiguration .
+
+hpc:atlevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Fairshareconfiguration ;
+    rdfs:range xsd:string .
+
+hpc:hierarchical a owl:ObjectProperty ;
+    rdfs:domain hpc:Fairshareconfiguration .
+
+hpc:hasrestriction a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobsubmission ;
+    rdfs:range hpc:Restriction .
+
+hpc:relaxjobdispatchorder a owl:ObjectProperty ;
+    rdfs:domain hpc:Fairshareconfiguration ;
+    rdfs:range xsd:boolean .
+
+hpc:Firstcomefirstserved a owl:Class .
+hpc:Userbasedfairshare a owl:Class .
+hpc:Timedecay a owl:Class .
+hpc:Committedruntime a owl:Class .
+
+hpc:affectsdispatchorder a owl:ObjectProperty ;
+    rdfs:domain hpc:Fairsharepolicy ;
+    rdfs:range hpc:Jobdispatchorder .
+
+hpc:Hostpartitionuserbasedfairshare a owl:Class ;
+    rdfs:subClassOf hpc:Userbasedfairshare .
+
+hpc:handlescontention a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostpartitionuserbasedfairshare ;
+    rdfs:range xsd:string .
+
+hpc:Queuefairsharepolicy a owl:Class ;
+    rdfs:subClassOf hpc:Fairsharepolicy .
+
+hpc:Hostpartition a owl:Class .

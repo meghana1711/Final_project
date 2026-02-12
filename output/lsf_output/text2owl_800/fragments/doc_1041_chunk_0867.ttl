@@ -1,0 +1,46 @@
+hpc:Patch a owl:Class ;
+    rdfs:subClassOf owl:Class .
+
+hpc:overwrittenfiles a owl:ObjectProperty ;
+    rdfs:domain hpc:Patch ;
+    rdfs:range rdf:List .
+
+hpc:addedfiles a owl:ObjectProperty ;
+    rdfs:domain hpc:Patch ;
+    rdfs:range rdf:List .
+
+hpc:envFile a owl:ObjectProperty ;
+    rdfs:domain hpc:Patch ;
+    rdfs:range xsd:string .
+
+hpc:cannotsetenvironment a owl:ObjectProperty ;
+    rdfs:domain hpc:Patch ;
+    rdfs:range xsd:boolean .
+
+hpc:lsfTopfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:EnvFile ;
+    rdfs:range xsd:string .
+
+hpc:commandusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Patch ;
+    rdfs:range xsd:string .
+
+hpc:rollback a owl:ObjectProperty ;
+    rdfs:domain hpc:Patch ;
+    rdfs:range xsd:boolean .
+
+hpc:mostrecentlyinstalledpatch a owl:DatatypeProperty ;
+    rdfs:domain hpc:Patch ;
+    rdfs:range xsd:string .
+
+hpc:packagebuildnumber a owl:DatatypeProperty ;
+    rdfs:domain hpc:Mostrecentlyinstalledpatch ;
+    rdfs:range xsd:string .
+
+hpc:checkpackages a owl:ObjectProperty ;
+    rdfs:domain hpc:Patch ;
+    rdfs:range rdf:List .
+
+hpc:reverttopreviouspatchlevel a owl:ObjectProperty ;
+    rdfs:domain hpc:Patch ;
+    rdfs:range xsd:boolean .

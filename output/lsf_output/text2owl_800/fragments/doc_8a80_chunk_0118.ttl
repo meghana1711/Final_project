@@ -1,0 +1,47 @@
+hpc:Job a owl:Class .
+hpc:Resource a owl:Class .
+hpc:Rusage a owl:Class .
+hpc:Servicedomain a owl:Class .
+hpc:Inuse a owl:Class .
+hpc:Effectiveproject a owl:Class .
+
+hpc:hasresource a owl:ObjectProperty .
+hpc:hasrusage a owl:ObjectProperty .
+hpc:providesservicedomain a owl:ObjectProperty .
+hpc:isinuse a owl:ObjectProperty .
+hpc:iseffectiveproject a owl:ObjectProperty .
+
+hpc:Resource rdfs:domain hpc:Job .
+hpc:Rusage rdfs:domain hpc:Job .
+hpc:Servicedomain rdfs:domain hpc:Job .
+hpc:Inuse rdfs:domain hpc:Job .
+hpc:Effectiveproject rdfs:domain hpc:Job .
+
+hpc:Resource rdfs:range rdf:Literal .
+hpc:Rusage rdfs:range xsd:nonNegativeInteger .
+hpc:Servicedomain rdfs:range rdf:Literal .
+hpc:Inuse rdfs:range xsd:nonNegativeInteger .
+hpc:Effectiveproject rdfs:range rdf:Literal .
+
+hpc:Unknownservicedomain a owl:Class .
+
+hpc:Otherusage a owl:Class .
+hpc:Display a owl:Class .
+hpc:hasotherusage a owl:ObjectProperty .
+hpc:hasdisplay a owl:ObjectProperty .
+
+hpc:Otherusage rdfs:domain hpc:Job .
+hpc:Display rdfs:domain hpc:Job .
+hpc:Otherusage rdfs:range rdf:Literal .
+hpc:Display rdfs:range rdf:Literal .
+
+hpc:Nonmanagedworkload a owl:Class .
+hpc:Noinformation a owl:Class .
+
+hpc:hasnonmanagedworkload a owl:ObjectProperty .
+hpc:hasnoinformation a owl:ObjectProperty .
+
+hpc:Hasnonmanagedworkload rdfs:domain hpc:Job .
+hpc:Hasnoinformation rdfs:domain hpc:Display .
+hpc:Hasnonmanagedworkload rdfs:range rdf:Literal .
+hpc:Hasnoinformation rdfs:range rdf:Literal .

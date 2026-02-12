@@ -1,0 +1,33 @@
+hpc:Lsf a owl:Class .
+hpc:Ego a owl:Class .
+
+hpc:defaultport a owl:DatatypeProperty .
+hpc:connectionports a owl:ObjectProperty .
+hpc:baseport a owl:DatatypeProperty .
+
+hpc:Lsf rdfs:subClassOf hpc:Defaultport .
+hpc:Ego rdfs:subClassOf hpc:Defaultport .
+
+hpc:LSF_LIM_PORT rdf:type hpc:DefaultPort ;
+    rdfs:range xsd:integer ;
+    rdfs:domain hpc:Lsf .
+hpc:EGO_BasePort rdf:type hpc:BasePort ;
+    rdfs:range xsd:integer ;
+    rdfs:domain hpc:Ego .
+hpc:EGO_ConnectionPorts rdf:type hpc:ConnectionPorts ;
+    rdfs:domain hpc:Ego .
+
+hpc:Preversion7Lsf a owl:Class ;
+    rdfs:subClassOf hpc:Lsf .
+hpc:Postversion7Lsf a owl:Class ;
+    rdfs:subClassOf hpc:Lsf .
+
+hpc:preVersion7_LSF_LIM_PORT rdf:type hpc:DefaultPort ;
+    rdfs:range xsd:integer ;
+    rdfs:domain hpc:Preversion7Lsf .
+hpc:postVersion7_LSF_LIM_PORT rdf:type hpc:DefaultPort ;
+    rdfs:range xsd:integer ;
+    rdfs:domain hpc:Postversion7Lsf .
+
+hpc:preVersion7_LSF_LIM_PORT_Value xsd:integer "6879" .
+hpc:postVersion7_LSF_LIM_PORT_Value xsd:integer "7869" .

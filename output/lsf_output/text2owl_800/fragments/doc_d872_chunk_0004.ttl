@@ -1,0 +1,30 @@
+hpc:Host a owl:Class .
+hpc:Serverhost a owl:Class ;
+    rdfs:subClassOf hpc:Host ;
+    rdfs:comment "Capable of submitting and running jobs. Runs sbatchd to execute server requests and apply local policies." .
+hpc:Serverhost rdfs:domain hpc:Host .
+hpc:isserver a owl:ObjectProperty ;
+    rdfs:range xsd:boolean ;
+    rdfs:domain hpc:Host .
+hpc:hasservervalue a owl:DatatypeProperty ;
+    rdfs:range xsd:boolean .
+
+hpc:Clienthost a owl:Class ;
+    rdfs:subClassOf hpc:Host ;
+    rdfs:comment "Capable of submitting jobs to the cluster. Run LSF commands and act only as submission hosts; they do not execute jobs or run LSF daemons." .
+hpc:Clienthost rdfs:domain hpc:Host .
+hpc:isclient a owl:ObjectProperty ;
+    rdfs:range xsd:boolean ;
+    rdfs:domain hpc:Host .
+
+hpc:Managementhost a owl:Class ;
+    rdfs:subClassOf hpc:Host ;
+    rdfs:comment "An LSF server host that acts as the overall coordinator for that cluster." .
+hpc:Managementhost rdfs:domain hpc:Host .
+
+hpc:runslsfdaemons a owl:ObjectProperty ;
+    rdfs:range hpc:Host ;
+    rdfs:domain hpc:Managementhost .
+hpc:ismanagementhost a owl:ObjectProperty ;
+    rdfs:range xsd:boolean ;
+    rdfs:domain hpc:Host .

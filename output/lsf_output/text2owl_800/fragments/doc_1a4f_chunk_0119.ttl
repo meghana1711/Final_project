@@ -1,0 +1,39 @@
+hpc:Application a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer ;
+    rdfs:comment "An application in the context of resource management." .
+
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer ;
+    rdfs:comment "A queue in the context of resource management." .
+
+hpc:Cluster a owl:Class ;
+    rdfs:subClassOf hpc:Resourceconsumer ;
+    rdfs:comment "A cluster in the context of resource management." .
+
+hpc:Plan a owl:Class ;
+    rdfs:subClassOf hpc:Objectproperty ;
+    rdfs:domain hpc:Resourceconsumer ;
+    rdfs:range hpc:Maxjobs ;
+    rdfs:comment "The plan parameter setting at the application, queue, or cluster level." .
+
+hpc:maxjobs a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The maximum number of jobs that can be scheduled." .
+
+hpc:Allocationplanner a owl:Class ;
+    rdfs:subClassOf hpc:Objectproperty ;
+    rdfs:domain hpc:Resourceconsumer ;
+    rdfs:range hpc:Window ;
+    rdfs:comment "Allows adjusting the scheduling window." .
+
+hpc:window a owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The minutes of the scheduling window." .
+
+hpc:Resourceconsumer a owl:Class ;
+    rdfs:subClassOf hpc:Usergroup ;
+    rdfs:comment "A resource consumer in the context of LSF." .
+
+hpc:Usergroup a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "A group of users in the context of LSF." .

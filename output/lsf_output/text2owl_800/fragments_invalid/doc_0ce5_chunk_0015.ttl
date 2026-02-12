@@ -1,0 +1,58 @@
+hpc:Lsf a owl:Class .
+hpc:supportsMultithreadBatchQueries an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:bjobsQuery an owl:Class ;
+    rdfs:subClassOf hpc:Batchquerycommand .
+
+hpc:otherBatchQueryCommands an owl:Class ;
+    rdfs:subClassOf hpc:Batchquerycommand ;
+    rdfs:subClassOf hpc:Nonmultithreadbatchquerycommand .
+
+hpc:Nonmultithreadbatchquerycommand a owl:Class .
+hpc:hasQueryCommand an owl:ObjectProperty ;
+    rdfs:domain hpc:Nonmultithreadbatchquerycommand ;
+    rdfs:range rdf:PlainLiteral ;
+    rdfs:range rdf:List .
+
+hpc:Batchquerycommand a owl:Class .
+
+hpc:breadQuery an owl:Class ;
+    rdfs:subClassOf hpc:Nonmultithreadbatchquerycommand .
+
+hpc:bstatusQuery an owl:Class ;
+    rdfs:subClassOf hpc:Nonmultithreadbatchquerycommand .
+
+hpc:tspeekQuery an owl:Class ;
+    rdfs:subClassOf hpc:Nonmultithreadbatchquerycommand .
+
+hpc:LSB_QUERY_ENH an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:mbatchdSystemQueryMonitoring an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:boolean .
+
+hpc:dedicatedQueryPort an owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf .
+
+hpc:UNIXandLinuxSystemsThatSupportThreadProgramming an owl:Class .
+
+hpc:primaryLSFAdministrator an owl:Class .
+hpc:editsLSFConf an owl:ObjectProperty ;
+    rdfs:domain hpc:Primarylsfadministrator ;
+    rdfs:range hpc:Lsfconf .
+
+hpc:LSFConf an owl:Class .
+hpc:hasLSB_QUERY_PORT an owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconf .
+
+hpc:mbatchdForksChildMBatchd an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfconf ;
+    rdfs:range xsd:boolean .
+
+hpc:LSB_QUERY_PORT an owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfconf ;
+    rdfs:range xsd:integer .

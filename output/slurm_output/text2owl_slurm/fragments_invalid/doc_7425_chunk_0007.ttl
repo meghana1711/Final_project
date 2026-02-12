@@ -1,0 +1,18 @@
+hpc:V0043node a owl:Class .
+
+hpc:certflags a owl:DatatypeProperty;
+    rdfs:domain hpc:V0043node;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf hpc:property .
+
+hpc:freemem a owl:DatatypeProperty;
+    rdfs:comment "Total memory in MB currently free as reported by the OS (64 bit integer number with flags)" ;
+    rdfs:domain hpc:V0043node .
+
+hpc:lastbusy a owl:DatatypeProperty;
+    rdfs:comment "Time when the node was last busy (UNIX timestamp) (UNIX timestamp or time string recognized by Slurm (e.g., '[MM/DD[/YY]-]hpc:MM[:SS]'); may also be infinite or unset) (64 bit integer number with flags)" ;
+    rdfs:domain hpc:V0043node .
+
+hpc:nextstateafterreboot a owl:ObjectProperty;
+    rdfs:domain hpc:V0043node;
+    rdfs:range rdf:List

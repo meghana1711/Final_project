@@ -1,0 +1,64 @@
+hpc:Lsfproxyddaemon a owl:Class .
+hpc:manages rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfproxyddaemon ;
+    rdfs:range hpc:Lim .
+
+hpc:bindsTo rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfproxyddaemon ;
+    rdfs:range xsd:integer .
+
+hpc:Lim a owl:Class .
+
+hpc:starts rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lim ;
+    rdfs:range hpc:Lsfhost .
+
+hpc:restarts rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lim ;
+    rdfs:range hpc:Lsfproxyddaemon .
+
+hpc:Lsfhost a owl:Class .
+
+hpc:LSF_PROXY_PORT rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf.conf .
+
+hpc:LSF_PROXY_HOSTS rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsf.conf .
+
+hpc:Mbschd a owl:Class .
+hpc:worksWith rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Mbschd ;
+    rdfs:range hpc:Mbatchd .
+
+hpc:makesDecisions rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Mbschd .
+
+hpc:sendsDecisions rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Mbschd ;
+    rdfs:range hpc:Mbatchd .
+
+hpc:Mbatchd a owl:Class .
+
+hpc:Sbatchd a owl:Class .
+hpc:runsOn rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchd ;
+    rdfs:range hpc:Serverhost .
+
+hpc:enforcesLocalPolicies rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchd .
+
+hpc:maintainsState rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchd .
+
+hpc:forksChild rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Sbatchd .
+
+hpc:runsInstance rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Childsbatchd ;
+    rdfs:range hpc:Executionenvironment .
+
+hpc:Childsbatchd a owl:Class .
+hpc:exitsWhenJobIsComplete rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Childsbatchd .
+
+hpc:Serverhost a owl:Class .

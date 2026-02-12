@@ -1,0 +1,27 @@
+hpc:Limitsection a owl:Class .
+hpc:verticallimitformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Limitsection ;
+    rdfs:range hpc:Verticallimit .
+hpc:horizontallimitformat a owl:ObjectProperty ;
+    rdfs:domain hpc:Limitsection ;
+    rdfs:range hpc:Horizontallimit .
+hpc:Resourcetype a owl:Class ;
+    rdfs:subClassOf hpc:Limitresource .
+hpc:slots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcetype ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:mem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcetype ;
+    rdfs:range xsd:decimal .
+hpc:swp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcetype ;
+    rdfs:range xsd:decimal .
+hpc:tmp a owl:DatatypeProperty ;
+    rdfs:domain hpc:Resourcetype ;
+    rdfs:range xsd:decimal .
+hpc:Limit a owl:Class ;
+    rdfs:subClassOf hpc:Limitsection ;
+    rdfs:subClassOf rdf:List .
+hpc:Limit_ a hpc:Limit ;
+    hpc:resource rdf:first ?resource ;
+    hpc:limit rdf:first ?limit .

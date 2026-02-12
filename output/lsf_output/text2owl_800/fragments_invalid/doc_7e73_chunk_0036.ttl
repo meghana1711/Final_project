@@ -1,0 +1,28 @@
+hpc:Awsmanagementhost a owl:Class .
+hpc:Awsresourceconnector a owl:Class .
+hpc:awsfedcredentialscript a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awsmanagementhost ;
+    rdfs:range xsd:string .
+hpc:Awsfedaccount a owl:Class .
+hpc:Awsfedaccountconfiguration a owl:Class .
+hpc:awsprovconfigfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Awsresourceconnector ;
+    rdfs:range xsd:string .
+hpc:AwsFedCredentialScript rdfs:range xsd:string .
+hpc:AwsCredentialFile rdfs:range xsd:string .
+hpc:AwsCredentialScriptRequiredForFederatedAccounts hpc:awsmanagementhost owl:implies hpc:noAWS_FED_CREDENTIAL_SCRIPT .
+hpc:AwsCredentialFileNotRequiredForFederatedAccounts hpc:Awsresourceconnector rdfs:subClassOf hpc:Awsprovconfigfile .
+hpc:AwsCredentialFileNotRequiredForFederatedAccounts rdfs:subClassOf hpc:Awsprovconfigfile ;
+    rdfs:subClassOf hpc:Awsresourceconnector .
+hpc:AwsFedCredentialScriptRequired hpc:Awsmanagementhost rdfs:subClassOf hpc:Awsmanagementhost .
+hpc:AwsFedCredentialScriptRequired rdfs:subClassOf hpc:Awsmanagementhost ;
+    rdfs:subClassOf hpc:Awsmanagementhost ;
+    rdfs:subClassOf hpc:AwsFedCredentialScriptRequiredForFederatedAccounts .
+hpc:AwsFedCredentialScriptLocation rdfs:domain hpc:AwsFedCredentialScript ;
+    rdfs:range xsd:string .
+hpc:AwsFedCredentialScriptLocationOnLocalLsfManagementHost hpc:awsFedCredentialScript owl:implies hpc:AWS_FED_CREDENTIAL_SCRIPT_LOCATION .
+hpc:AwsFedCredentialScriptLocationOnLocalLsfManagementHost rdfs:subClassOf hpc:AwsFedCredentialScriptLocation ;
+    rdfs:subClassOf hpc:AwsFedCredentialScript ;
+    rdfs:subClassOf hpc:AwsFedCredentialScriptLocation ;
+    rdfs:subClassOf hpc:AwsFedCredentialScriptRequiredForFederatedAccounts .
+hpc:AWS_FED

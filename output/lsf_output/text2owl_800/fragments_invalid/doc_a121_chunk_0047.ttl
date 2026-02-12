@@ -1,0 +1,53 @@
+hpc:Job a owl:Class .
+hpc:Parentjob a owl:Class .
+hpc:Childjob a owl:Class .
+hpc:Orphanjob a owl:Class .
+
+hpc:requeueJob an owl:ObjectProperty .
+hpc:Hasparentjob rdfs:domain hpc:Childjob ;
+                  rdfs:range hpc:Parentjob .
+hpc:Hasorphanjob rdfs:domain hpc:Parentjob ;
+                 rdfs:range hpc:Orphanjob .
+
+hpc:manualrequeue a owl:ObjectProperty ;
+                    rdfs:domain hpc:Parentjob ;
+                    rdfs:range hpc:Job .
+hpc:automaticrequeue a owl:ObjectProperty ;
+                      rdfs:domain hpc:Parentjob ;
+                      rdfs:range hpc:Job .
+
+hpc:terminatedOrphanJob an owl:ObjectProperty ;
+                          rdfs:domain hpc:Parentjob ;
+                          rdfs:range hpc:Orphanjob .
+
+hpc:dependentjob a owl:ObjectProperty ;
+                 rdfs:domain hpc:Job ;
+                 rdfs:range hpc:Job .
+
+hpc:bjdepinfocommand a owl:ObjectProperty ;
+                       rdfs:domain hpc:Job ;
+                       rdfs:range xsd:string .
+
+hpc:reasoninvalid a owl:DatatypeProperty ;
+                    rdfs:domain hpc:Job .
+hpc:reasonneversatisfied a owl:DatatypeProperty ;
+                         rdfs:domain hpc:Job .
+hpc:reasonnotsatisfied a owl:DatatypeProperty ;
+                         rdfs:domain hpc:Job .
+
+hpc:checkpointedjob a owl:ObjectProperty ;
+                      rdfs:domain hpc:Job ;
+                      rdfs:range hpc:Job .
+
+hpc:orphanterminationenabled a owl:ObjectProperty ;
+                               rdfs:domain hpc:Job ;
+                               rdfs:range xsd:boolean .
+
+hpc:TERM_ORPHAN_SYSTEM xsd:string .
+
+hpc:CleanPeriod xsd:nonNegativeInteger .
+
+hpc:Job subClassOf owl:Class .
+hpc:ParentJob subClassOf hpc:Job .
+hpc:ChildJob subClassOf hpc:Job .
+hpc:OrphanJob subClassOf hpc:Job .

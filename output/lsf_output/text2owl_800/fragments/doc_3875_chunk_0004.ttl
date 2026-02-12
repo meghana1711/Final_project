@@ -1,0 +1,5 @@
+hpc:Bestpractices a owl:Class .
+hpc:Tip a owl:Class .
+
+hpc:Useslsf rdfs:domain hpc:Bestpractices;
+    rdfs:range hpc:Tip .

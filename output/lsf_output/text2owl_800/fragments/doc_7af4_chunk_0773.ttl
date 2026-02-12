@@ -1,0 +1,28 @@
+hpc:LsfAddonHosts a owl:Class .
+hpc:hashost a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfAddonHosts ;
+    rdfs:range xsd:string .
+hpc:isPrivilegedRequestHost rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfAddonHosts ;
+    rdfs:range xsd:boolean .
+hpc:defaultValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfAddonHosts ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Default value if not defined." .
+hpc:Relatedconcept a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Related concepts for LSF_ADDON_HOSTS." .
+hpc:Offloadingmbatchddaemon a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Related concept for offloading the mbatchd daemon using the LSF rate limiter." .
+hpc:LsfAmOptions a owl:Class .
+hpc:amfirst a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfAmOptions ;
+    rdfs:range xsd:string .
+hpc:amnever a owl:ObjectProperty ;
+    rdfs:domain hpc:LsfAmOptions ;
+    rdfs:range xsd:string .
+hpc:strategy rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfAmOptions ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Determines the order of file path resolution when setting the user’s home directory." .

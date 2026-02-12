@@ -1,0 +1,53 @@
+hpc:Scriptoutput a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "Output from a script used as container startup options." .
+
+hpc:preexecutionscriptfailure a owl:ObjectProperty ;
+    rdfs:domain hpc:Scriptoutput ;
+    rdfs:range xsd:int ;
+    rdfs:comment "The exit code from the pre-execution script if it failed." .
+
+hpc:externalstatusmessage a owl:DatatypeProperty ;
+    rdfs:domain hpc:Scriptoutput ;
+    rdfs:range xsd:string ;
+    rdfs:comment "An external status message sent to inform the user that the job exited because of script execution failure." .
+
+hpc:maxoptions a owl:DatatypeProperty ;
+    rdfs:domain hpc:Scriptoutput ;
+    rdfs:range xsd:int ;
+    rdfs:comment "The maximum number of options that LSF keeps if the script output contains more than 512 options." .
+
+hpc:containerjobexit a owl:ObjectProperty ;
+    rdfs:domain hpc:Scriptoutput ;
+    rdfs:range hpc:Containerjob ;
+    rdfs:comment "The container job that exits with the same exit code from the script." .
+
+hpc:ignoredoptions a owl:DatatypeProperty ;
+    rdfs:domain hpc:Scriptoutput ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The options that are ignored if the script output contains more than 512 options." .
+
+hpc:validscriptoutput a owl:ObjectProperty ;
+    rdfs:domain hpc:Scriptoutput ;
+    rdfs:range hpc:Containerjob ;
+    rdfs:comment "The container job that runs with the valid output from the script." .
+
+hpc:scriptposition a owl:DatatypeProperty ;
+    rdfs:domain hpc:Scriptoutput ;
+    rdfs:range xsd:int ;
+    rdfs:comment "The position of the output from the script in the options." .
+
+hpc:dockerjobrunoptions a owl:DatatypeProperty ;
+    rdfs:domain hpc:Containerjob ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The Docker job run options for the docker run command, which are passed to the job container." .
+
+hpc:reservedoptions a owl:ObjectProperty ;
+    rdfs:domain hpc:Dockerjobrunoptions ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The --cgroup-parent and --user (or -u) options that are reserved for LSF internal use." .
+
+hpc:jobfailurewithreservedoptions a owl:ObjectProperty ;
+    rdfs:domain hpc:Containerjob ;
+    rdfs:range hpc:Preexecutionscriptfailure ;
+    rdfs:comment "The container job fails if the output of the pre-execution script contains --cgroup-parent, --user, or -u." .

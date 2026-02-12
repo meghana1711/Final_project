@@ -1,0 +1,22 @@
+hpc:Remotecluster a owl:Class ;
+    rdfs:subClassOf hpc:Cluster .
+
+hpc:clustername a owl:DatatypeProperty ;
+    rdfs:domain hpc:Remotecluster ;
+    rdfs:range xsd:string .
+
+hpc:eqiv a owl:ObjectProperty ;
+    rdfs:domain hpc:Remotecluster ;
+    rdfs:range xsd:boolean .
+
+hpc:cacheinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Remotecluster ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:recvfrom a owl:ObjectProperty ;
+    rdfs:domain hpc:Remotecluster ;
+    rdfs:range xsd:boolean .
+
+hpc:auth a owl:DatatypeProperty ;
+    rdfs:domain hpc:Remotecluster ;
+    rdfs:range xsd:string .

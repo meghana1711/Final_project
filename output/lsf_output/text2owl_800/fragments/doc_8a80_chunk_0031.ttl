@@ -1,0 +1,51 @@
+hpc:Remotelicenseserver a owl:Class ;
+    rdfs:subClassOf hpc:Licenseserver ;
+    rdfs:comment "A license server that does not run on the same domain as the license collector." .
+
+hpc:Remoteagenthost a owl:Class ;
+    rdfs:subClassOf hpc:Licenseserver ;
+    rdfs:comment "Serves remote license servers within the same domain." .
+
+hpc:serves rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Remoteagenthost ;
+    rdfs:range hpc:Licenseserver ;
+    rdfs:comment "The remote agent host serves the specified license servers." .
+
+hpc:inSameSubnet rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Remoteagenthost ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the remote license servers are in the same subnet as the agent host." .
+
+hpc:definedInLicServers rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Remotelicenseserver ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the remote license server is defined in LIC_SERVERS." .
+
+hpc:ignored rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Remotelicenseserver ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether a remote license server is ignored because it is not defined in LIC_SERVERS." .
+
+hpc:remoteAgentHostWithoutServers rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Remotelicenseserver ;
+    rdfs:comment "A remote license server with itself as the remote agent host." .
+
+hpc:connectedTo rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Licensecollector ;
+    rdfs:range hpc:Remoteagenthost ;
+    rdfs:comment "The license collector connects to the remote agent host." .
+
+hpc:collectsLicenseInfo rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Licensecollector ;
+    rdfs:range hpc:Remoteagenthost ;
+    rdfs:comment "The license collector collects license information from the remote agent host." .
+
+hpc:usedForProjectMode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Remotelicenseserver ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the remote license server is used for project mode." .
+
+hpc:usedForClusterMode rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Remotelicenseserver ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Indicates whether the remote license server is used for cluster mode." .

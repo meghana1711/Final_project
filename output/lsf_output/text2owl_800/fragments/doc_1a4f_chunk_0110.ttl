@@ -1,0 +1,34 @@
+hpc:Allocationplanner a owl:Class ;
+    rdfs:subClassOf owl:DatatypeProperty ;
+    rdfs:domain hpc:Schedulingconfiguration ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Parameter to adjust the plan-based scheduling window." .
+
+hpc:Planbasedscheduling a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Schedulingconfiguration ;
+    rdfs:range hpc:Boolean ;
+    rdfs:comment "Indicates whether plan-based scheduling is enabled." .
+
+hpc:Reservation a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Schedulingconfiguration ;
+    rdfs:range hpc:Boolean ;
+    rdfs:comment "Indicates whether reservations are enabled." .
+
+hpc:Candidatejobs a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Schedulingconfiguration ;
+    rdfs:range hpc:Jobset ;
+    rdfs:comment "Identifies sets of jobs as candidates for the scheduling planner." .
+
+hpc:backfill a owl:ObjectProperty ;
+    rdfs:domain hpc:Queueconfiguration ;
+    rdfs:range hpc:Boolean ;
+    rdfs:comment "Recommended to enable for plan-based scheduling." .
+
+hpc:Allocationplan a owl:Class ;
+    rdfs:subClassOf owl:ObjectProperty ;
+    rdfs:domain hpc:Schedulingconfiguration ;
+    rdfs:range hpc:Allocation ;
+    rdfs:comment "Required for plan-based scheduling and reservations." .

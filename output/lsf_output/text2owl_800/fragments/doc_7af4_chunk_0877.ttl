@@ -1,0 +1,17 @@
+hpc:LsfResAcctdir a owl:Class .
+hpc:LsfResAcct a owl:Class .
+hpc:lsfResActiveTime a owl:DatatypeProperty .
+hpc:lsfResAliveTimeout a owl:DatatypeProperty .
+hpc:lsfResClientTimeout a owl:DatatypeProperty .
+
+hpc:LsfResAcctdir rdfs:subClassOf owl:String .
+hpc:LsfResActiveTime rdfs:domain hpc:LsfResAcct ;
+    rdfs:range xsd:nonNegativeInteger ;
+    owl:minCardinality 1 .
+hpc:LsfResAliveTimeout rdfs:domain hpc:LsfResAcct ;
+    rdfs:range xsd:nonNegativeInteger ;
+    owl:minCardinality 1 .
+hpc:LsfResClientTimeout rdfs:domain hpc:LsfResAcct ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:LsfResAcct rdfs:subClassOf owl:NamedIndividual .

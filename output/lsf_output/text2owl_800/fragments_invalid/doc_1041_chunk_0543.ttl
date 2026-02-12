@@ -1,0 +1,73 @@
+hpc:Lsfadministeredjob a owl:Class .
+hpc:forcejobrun a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadministeredjob ;
+    rdfs:range xsd:boolean .
+
+hpc:Checkpointablejob a owl:Class ;
+    rdfs:subClassOf hpc:Lsfadministeredjob .
+
+hpc:Jobreservation a owl:Class ;
+    rdfs:subClassOf hpc:Lsfadministeredjob .
+
+hpc:jobtimewindow a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobreservation ;
+    rdfs:range xsd:duration .
+
+hpc:jobrunlimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobreservation ;
+    rdfs:range xsd:duration .
+
+hpc:Host a owl:Class .
+
+hpc:hostcpucount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Jobslot a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+hpc:jobslotdistributionstrategy a owl:ObjectProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range rdfs:List .
+
+hpc:staticcpucountdistribution a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:JobSlotDistributionStrategy ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range rdfs:List .
+
+hpc:freecpucountdistribution a owl:ObjectProperty ;
+    rdfs:subPropertyOf hpc:JobSlotDistributionStrategy ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range rdfs:List .
+
+hpc:hostslotcount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:hostslotusage a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range rdfs:List .
+
+hpc:jobsuspension a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadministeredjob ;
+    rdfs:range xsd:boolean .
+
+hpc:runwindow a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadministeredjob ;
+    rdfs:range xsd:duration .
+
+hpc:submithost a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadministeredjob ;
+    rdfs:range rdfs:List .
+
+hpc:hostname a owl:DatatypeProperty ;
+    rdfs:domain hdfs:SubmitHost ;
+    rdfs:range xsd:string .
+
+hpc:numcpus a owl:DatatypeProperty ;
+    rdfs:domain hdfs:SubmitHost ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:clustername a owl:DatatypeProperty ;
+    rdfs:domain hdfs:SubmitHost ;
+    rdfs:range xsd:string

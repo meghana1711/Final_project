@@ -1,0 +1,45 @@
+hpc:jobgrouplimit a owl:ObjectProperty .
+hpc:Jobgroup a owl:Class .
+hpc:Jobgrouplimit rdfs:domain hpc:Jobgroup .
+hpc:Jobgrouplimit rdfs:range xsd:integer .
+hpc:NoLimit a owl:NamedIndividual .
+hpc:NoLimit rdf:value "no limit" .
+hpc:jobgrouplimitwithnolimit a owl:ObjectProperty .
+hpc:Jobgrouplimitwithnolimit rdfs:domain hpc:Jobgroup .
+hpc:Jobgrouplimitwithnolimit rdfs:range hpc:Nolimit .
+hpc:jobgrouplimitwithparentlimit a owl:ObjectProperty .
+hpc:Jobgrouplimitwithparentlimit rdfs:domain hpc:Jobgroup .
+hpc:Jobgrouplimitwithparentlimit rdfs:range hpc:Jobgroup .
+hpc:jobgroupowner a owl:ObjectProperty .
+hpc:Jobgroupowner rdfs:domain hpc:Jobgroup .
+hpc:Jobgroupowner rdfs:range xsd:string .
+hpc:Windowsuseraccount a owl:Class .
+hpc:Windowsuseraccount rdfs:subClassOf xsd:string .
+hpc:jobgrouppath a owl:DatatypeProperty .
+hpc:Jobgrouppath rdfs:domain hpc:Jobgroup .
+hpc:Jobgrouppath rdfs:range xsd:string .
+hpc:CommandUsageError a owl:NamedIndividual .
+hpc:CommandUsageError rdf:value "command usage error" .
+hpc:LSFVersion a owl:NamedIndividual .
+hpc:LSFVersion rdf:value "LSF release version" .
+hpc:jobgrouplimitremoval a owl:ObjectProperty .
+hpc:Jobgrouplimitremoval rdfs:domain hpc:Jobgroup .
+hpc:Jobgrouplimitremoval rdfs:range hpc:Nolimit .
+hpc:jobgroupinheritance a owl:ObjectProperty .
+hpc:Jobgroupinheritance rdfs:domain hpc:Jobgroup .
+hpc:Jobgroupinheritance rdfs:range hpc:Jobgroup .
+hpc:GlobalLimitScheduling a owl:NamedIndividual .
+hpc:GlobalLimitScheduling rdf:value "global limit scheduling" .
+hpc:JobGroupLimitPerJob a owl:NamedIndividual .
+hpc:JobGroupLimitPerJob rdf:value "per job, not per slots used by the job" .
+hpc:jobgrouplimitremovalbyuser a owl:ObjectProperty .
+hpc:Jobgrouplimitremovalbyuser rdfs:domain hpc:Jobgroup .
+hpc:Jobgrouplimitremovalbyuser rdfs:range xsd:string .
+hpc:Restricteduser a owl:Class .
+hpc:Restricteduser rdfs:subClassOf xsd:string .
+hpc:RootUser a owl:NamedIndividual .
+hpc:RootUser rdf:value "root" .
+hpc:PrimaryLSFAdministrator a owl:NamedIndividual .
+hpc:PrimaryLSFAdministrator rdf:value "Primary LSF administrator" .
+hpc:ParentJobGroupOwner a owl:NamedIndividual .
+hpc:ParentJobGroupOwner rdf:value "

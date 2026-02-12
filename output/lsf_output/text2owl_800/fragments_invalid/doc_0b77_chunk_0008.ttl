@@ -1,0 +1,39 @@
+hpc:Site a owl:Class .
+hpc:throughput a owl:DatatypeProperty ;
+    rdfs:domain hpc:Site ;
+    rdfs:range xsd:integer .
+hpc:dailythroughput a owl:ObjectProperty ;
+    rdfs:domain hpc:Site .
+hpc:ACCT_ARCHIVE_TIME a xsd:time .
+hpc:ACCT_ARCHIVE_AGE a xsd:nonNegativeInteger .
+hpc:ACCT_ARCHIVE_SIZE a xsd:nonNegativeInteger .
+hpc:MAX_ACCT_ARCHIVE_FILE a xsd:nonNegativeInteger .
+
+hpc:Site a rdfs:subClass [ a owl:Restriction ;
+                             owl:onProperty hpc:DailyThroughput ;
+                             owl:hasValue 800000 ;
+                             owl:allValuesFrom xsd:integer ] .
+
+hpc:Site a rdfs:subClass [ a owl:Restriction ;
+                             owl:onProperty hpc:ACCT_ARCHIVE_TIME ;
+                             owl:hasValue "_:time" ;
+                             owl:allValuesFrom xsd:time ] .
+
+hpc:Site a rdfs:subClass [ a owl:Restriction ;
+                             owl:onProperty hpc:MAX_ACCT_ARCHIVE_FILE ;
+                             owl:hasValue 10 ;
+                             owl:cardinalityMin 1 ] .
+
+hpc:Site a rdfs:subClass [ a owl:Restriction ;
+                             owl:onProperty hpc:ACCT_ARCHIVE_AGE ;
+                             owl:hasValue 30 ;
+                             owl:cardinalityMin 1 ] .
+
+hpc:Site a rdfs:subClass [ a owl:Restriction ;
+                             owl:onProperty hpc:ACCT_ARCHIVE_SIZE ;
+                             owl:hasValue 500000 ;
+                             owl:cardinalityMin 1 ] .
+
+hpc:Site a rdfs:subClass [ a owl:Restriction ;
+                             owl:onProperty hpc:ACCT_ARCHIVE_SIZE ;
+                             owl:maxCardinality 24 ] .

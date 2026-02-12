@@ -1,0 +1,5 @@
+hpc:Badmin a owl:Class .
+hpc:qact a owl:ObjectProperty .
+hpc:Badmin rdfs:subClassOf owl:Thing .
+hpc:Qact rdfs:domain hpc:Badmin ;
+                          rdfs:range owl:Certainty .

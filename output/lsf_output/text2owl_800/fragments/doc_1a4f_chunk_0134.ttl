@@ -1,0 +1,52 @@
+hpc:Lsfadmin a owl:Class .
+hpc:Lsfhostsfile a owl:Class .
+hpc:mapping a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfhostsfile ;
+    rdfs:range hpc:Mappingentry .
+
+hpc:Mappingentry a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:unionOf (hpc:LocalUserMapping hpc:RemoteUserMapping hpc:AnyUserMapping) ] ;
+    rdfs:domain hpc:Mapping ;
+    rdfs:range xsd:string .
+
+hpc:Localusermapping a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:intersectionOf (hpc:MappingEntry hpc:LocalUserCanSendJobs hpc:LocalUserCanReceiveJobs) ] .
+
+hpc:Remoteusermapping a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:intersectionOf (hpc:MappingEntry hpc:RemoteUserCanSendJobs hpc:RemoteUserCanReceiveJobs) ] .
+
+hpc:Anyusermapping a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:intersectionOf (hpc:MappingEntry hpc:AnyUserCanSendJobs hpc:AnyUserCanReceiveJobs) ] .
+
+hpc:localusercansendjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Localusermapping ;
+    rdfs:range hpc:Remoteusermapping .
+
+hpc:localusercanreceivejobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Localusermapping ;
+    rdfs:range hpc:Anyusermapping .
+
+hpc:remoteusercansendjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Remoteusermapping ;
+    rdfs:range hpc:Localusermapping .
+
+hpc:anyusercansendjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Anyusermapping ;
+    rdfs:range hpc:Localusermapping .
+
+hpc:anyusercanreceivejobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Anyusermapping ;
+    rdfs:range hpc:Anyusermapping .
+
+hpc:Windowsworkgroupaccountmapping a owl:Class .
+hpc:Lsbparamsfile a owl:Class .
+hpc:systemmappingaccount a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsbparamsfile .
+
+hpc:windowslocaluseraccountsrunjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Windowsworkgroupaccountmapping ;
+    rdfs:range xsd:boolean .

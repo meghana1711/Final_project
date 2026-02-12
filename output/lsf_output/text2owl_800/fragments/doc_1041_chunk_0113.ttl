@@ -1,0 +1,40 @@
+hpc:Job a owl:Class .
+hpc:JobID rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:IndexList rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Jobid ;
+    rdfs:range xsd:string .
+
+hpc:Position rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:queueposition a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queueposition .
+
+hpc:Queueposition a owl:Class .
+hpc:Jobarray a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Fairsharejob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Administratorjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Userjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:jobpositioncontrolbyadmin a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:boolean .
+
+hpc:Absolutepriorityschedulingqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue .
+
+hpc:dispatchorder a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Job .

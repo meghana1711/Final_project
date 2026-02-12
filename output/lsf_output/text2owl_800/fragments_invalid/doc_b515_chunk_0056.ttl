@@ -1,0 +1,36 @@
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Schedulingqueue ;
+    rdfs:comment "Queues for resource reservation and backfill." .
+
+hpc:ReservationBackfillQueue a hpc:Queue ;
+    rdfs:comment "Queue for resource reservation and backfill." ;
+    rdfs:label "reservation_backfill" ;
+    hpc:description "For resource reservation and backfill" ;
+    hpc:priority xsd:integer "40" .
+
+hpc:memoryreservation a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Time ;
+    rdfs:comment "Resource reservation time." .
+
+hpc:backfill a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Enables backfill scheduling." .
+
+hpc:MaxReserveTime a xsd:duration ;
+    rdfs:comment "Maximum reservation time." .
+
+hpc:Sequentialjob a owl:Class ;
+    rdfs:subClassOf hpc:Job ;
+    rdfs:comment "Sequential jobs." .
+
+hpc:memoryrequirement a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sequentialjob ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Memory requirement for a sequential job." .
+
+hpc:runtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sequentialjob ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Runtime for a sequential job." .

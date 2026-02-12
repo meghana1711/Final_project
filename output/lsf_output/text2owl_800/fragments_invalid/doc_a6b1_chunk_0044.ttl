@@ -1,0 +1,18 @@
+hpc:Managementhost a owl:Class .
+hpc:Lsfcluster a owl:Class .
+hpc:Hasmanagementhost rdfs:domain hpc:Lsfcluster ;
+    rdfs:range hpc:Managementhost .
+hpc:Usessharedfilesystem rdfs:domain hpc:Lsfcluster ;
+    rdfs:range xsd:boolean .
+hpc:lsfmasterlist a owl:ObjectProperty .
+hpc:Lsfmasterlist rdfs:domain hpc:Managementhost ;
+    rdfs:range xsd:string .
+hpc:hasclustername a owl:ObjectProperty .
+hpc:Hasclustername rdfs:domain hpc:Managementhost ;
+    rdfs:range xsd:string .
+hpc:hasworkingdirectory a owl:DatatypeProperty .
+hpc:Hasworkingdirectory rdfs:domain hpc:Managementhost ;
+    rdfs:range xsd:string .
+hpc:Lsfcluster a rdfs:subClassOf [ a owl:Class ;
+    owl:disjointWith hpc:SharedFileSystemCluster ] .
+hpc:Nonsharedfilesystemcluster a rdfs:subClassOf hpc:Lsfcluster .

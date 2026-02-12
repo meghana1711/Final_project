@@ -1,0 +1,29 @@
+hpc:LmType a owl:Class .
+hpc:LmType rdfs:subClassOf xsd:string .
+hpc:LmType rdfs:domain hpc:Licensemanagersystem .
+hpc:LmType rdfs:range ^("FLEXLM"|"RLM") .
+
+hpc:lmTypeDefault a owl:DatatypeProperty .
+hpc:LmTypeDefault rdfs:domain hpc:Licensemanagersystem .
+hpc:LmTypeDefault rdfs:range ^"FLEXLM" .
+
+hpc:lmremoveSuspJobs a owl:DatatypeProperty .
+hpc:LmremoveSuspJobs rdfs:domain hpc:Licensemanagersystem .
+hpc:LmremoveSuspJobs rdfs:range xsd:decimal .
+
+hpc:lmremoveSuspJobsInterval a owl:DatatypeProperty .
+hpc:LmremoveSuspJobsInterval rdfs:domain hpc:Licensemanagersystem .
+hpc:LmremoveSuspJobsInterval rdfs:range xsd:decimal .
+
+hpc:LmremoveSuspJobsIntervalObsolete a owl:Class .
+hpc:LmremoveSuspJobsIntervalObsolete rdfs:subClassOf xsd:string .
+hpc:LmremoveSuspJobsIntervalObsolete rdfs:domain hpc:Licensemanagersystem .
+hpc:LmremoveSuspJobsIntervalObsolete rdfs:range xsd:decimal .
+
+hpc:lmstatPath a owl:DatatypeProperty .
+hpc:LmstatPath rdfs:domain hpc:Licensemanagersystem .
+hpc:LmstatPath rdfs:range xsd:string .
+
+hpc:logEvent a owl:DatatypeProperty .
+hpc:LogEvent rdfs:domain hpc:Licensemanagersystem .
+hpc:LogEvent rdfs:range xsd:boolean .

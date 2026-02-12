@@ -1,0 +1,17 @@
+@prefix hpc: <http://example.org/hpc#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Queue a owl:Class .
+hpc:Queue rdfs:subClassOf owl:Class .
+hpc:queuename a owl:ObjectProperty .
+hpc:Queuename rdfs:domain hpc:Queue .
+hpc:Queuename rdfs:range xsd:string .
+hpc:priority a owl:DatatypeProperty .
+hpc:Priority rdfs:domain hpc:Queue .
+hpc:Priority rdfs:range xsd:integer .
+hpc:datatransfer a owl:DatatypeProperty .
+hpc:Datatransfer rdfs:domain hpc:Queue .
+hpc:Datatransfer rdfs:range xsd:boolean

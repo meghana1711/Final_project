@@ -1,0 +1,21 @@
+hpc:NoPreemptRunTime a owl:Class .
+hpc:hasruntime a owl:ObjectProperty ;
+    rdfs:domain hpc:NoPreemptRunTime ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:NoPreemptRunTimeMinutes rdfs:subClassOf hpc:NoPreemptRunTime ;
+    rdfs:comment "Represents NO_PREEMPT_RUN_TIME in minutes." .
+
+hpc:NoPreemptRunTimePercentage rdfs:subClassOf hpc:NoPreemptRunTime ;
+    rdfs:comment "Represents NO_PREEMPT_RUN_TIME as a percentage." .
+    rdfs:domain hpc:NoPreemptRunTimePercentage rdf:Type xsd:decimal .
+    rdfs:range xsd:decimal .
+    rdfs:rangeMinInclusive xsd:1 .
+    rdfs:rangeMaxInclusive xsd:99 .
+
+hpc:PendTimeLimit a owl:Class .
+hpc:PendTimeLimitHourMinute rdfs:subClassOf hpc:PendTimeLimit ;
+    rdfs:comment "Represents PEND_TIME_LIMIT in the form of [hour:]minute." .
+    rdfs:domain hpc:PendTimeLimitHourMinute rdf:Type xsd:string .
+    rdfs:range xsd:string .
+    rdfs:rangeMinInclusive xsd:59 .

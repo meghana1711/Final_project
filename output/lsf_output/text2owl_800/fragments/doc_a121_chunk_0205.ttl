@@ -1,0 +1,40 @@
+hpc:Batchfile a owl:Class .
+hpc:submissionoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Batchfile ;
+    rdfs:range rdf:Bag .
+
+hpc:standardinput a owl:ObjectProperty ;
+    rdfs:domain hpc:Batchfile ;
+    rdfs:range rdf:Bag .
+
+hpc:commandline a owl:DatatypeProperty ;
+    rdfs:domain hpc:Commandline ;
+    rdfs:range xsd:string .
+
+hpc:Queue a owl:Class .
+hpc:Job a owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+hpc:jobsubmission a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Queue .
+
+hpc:joboptionsfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:commandjoboption a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Commandline .
+
+hpc:jobname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:embeddedoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Commandline ;
+    rdfs:range hpc:Submissionoption .
+
+hpc:commandoverridesembeddedoption a owl:ObjectProperty ;
+    rdfs:domain hpc:Commandline ;
+    rdfs:range hpc:Submissionoption .

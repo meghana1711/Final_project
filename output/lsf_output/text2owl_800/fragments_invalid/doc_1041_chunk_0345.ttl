@@ -1,0 +1,43 @@
+hpc:debuglevel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loggingconfiguration ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Specifies the level of detail in debug messages. The higher the number, the more detail that is logged." .
+
+hpc:logfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Loggingconfiguration ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "The current LSF system log file in the LSF system log file directory." .
+
+hpc:collectorname a owl:ObjectProperty ;
+    rdfs:domain hpc:Loggingconfiguration ;
+    rdfs:range rdf:Literal ;
+    rdfs:comment "The default collector name." .
+
+hpc:Logginglevel a owl:Class ;
+    rdfs:subClassOf owl:Enum ;
+    rdfs:comment "Level of detail in debug messages. Higher levels include all lower logging levels." .
+
+hpc:LoggingLevel1 a hpc:LoggingLevel ;
+    rdfs:comment "LOG_DEBUG1 level for extended logging." .
+
+hpc:LoggingLevel2 a hpc:LoggingLevel ;
+    rdfs:comment "LOG_DEBUG2 level for extended logging." .
+
+hpc:LoggingLevel3 a hpc:LoggingLevel ;
+    rdfs:comment "LOG_DEBUG3 level for extended logging." .
+
+hpc:Defaultloggingconfiguration a owl:Class ;
+    rdfs:subClassOf hpc:Loggingconfiguration ;
+    rdfs:comment "Default values used when the bladmin blcdebug command is used without any options." .
+
+hpc:DefaultLoggingLevel rdf:value "0" ;
+    hpc:LoggingLevel rdf:type hpc:LoggingLevel ;
+    rdfs:comment "The default value for LOG_DEBUG level in the LS_LOG_MASK parameter." .
+
+hpc:DefaultLogFile rdf:value "daemon_name.log.host_name" ;
+    rdf:type rdf:Literal ;
+    rdfs:comment "The default value for logfile_name." .
+
+hpc:DefaultCollectorName rdf:value "default" ;
+    rdf:type rdf:Literal ;
+    rdfs:comment "The default value for collector_name." .

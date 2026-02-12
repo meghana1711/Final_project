@@ -1,0 +1,19 @@
+hpc:Containerjob a owl:Class.
+hpc:Step a owl:Class.
+hpc:requestcontainerjob a owl:ObjectProperty.
+hpc:containerruntime a owl:DatatypeProperty.
+hpc:Containerbundle a owl:Class.
+hpc:commandpath a owl:DatatypeProperty.
+hpc:Batchstep a owl:Class; rdfs:subClassOf hpc:Step.
+hpc:Interactivestep a owl:Class; rdfs:subClassOf hpc:Step.
+hpc:Job a owl:Class; rdfs:subClassOf hpc:Containerjob.
+hpc:hasstep a owl:ObjectProperty;
+             rdfs:domain hpc:Containerjob;
+             rdfs:range hpc:Step.
+hpc:usescontainerruntime a owl:ObjectProperty;
+                          rdfs:domain hpc:Containerjob;
+                          rdfs:range xsd:string.
+hpc:hascommandpath a owl:ObjectProperty;
+                     rdfs:domain hpc:Containerbundle;
+                     rdfs:range xsd:string.
+hpc:Batchjob a owl:Class; rdfs:subClassOf hpc

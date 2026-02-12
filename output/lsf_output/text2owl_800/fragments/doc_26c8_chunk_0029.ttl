@@ -1,0 +1,41 @@
+hpc:Template a owl:Class ;
+    rdfs:subClassOf hpc:Resource ;
+    rdfs:comment "Represents a job template with replacement rules." .
+
+hpc:hasprovidername a owl:ObjectProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies a resource provider name for the template." .
+
+hpc:hastemplatename a owl:ObjectProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies a template name under the provider." .
+
+hpc:factor a owl:DatatypeProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Number of hosts to be replaced." .
+
+hpc:Replacementrule a owl:Class ;
+    rdfs:subClassOf hpc:Template ;
+    rdfs:comment "Represents a rule for replacing hosts in a job template." .
+
+hpc:replacedby a owl:ObjectProperty ;
+    rdfs:domain hpc:Replacementrule ;
+    rdfs:range hpc:Template ;
+    rdfs:comment "The template that replaces the original hosts." .
+
+hpc:rcDemandPolicy a owl:ObjectProperty ;
+    rdfs:domain hpc:Template ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The LSF RC_DEMAND_POLICY parameter for the template." .
+
+hpc:Optimization a owl:Class ;
+    rdfs:subClassOf hpc:Replacementrule ;
+    rdfs:comment "Represents an optimization in a replacement rule." .
+
+hpc:optimizationDisplay a owl:ObjectProperty ;
+    rdfs:domain hpc:Optimization ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The display output of the optimization." .

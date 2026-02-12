@@ -1,0 +1,13 @@
+hpc:lsbDisableRerunPostExec a owl:ObjectProperty .
+hpc:LsbDisableSuspendArJobs a owl:Class .
+hpc:lsbDisableSuspendForOpenAr a owl:ObjectProperty .
+hpc:lsbDispatchCheckResumeIntvl a owl:ObjectProperty .
+
+hpc:LsbDisableRerunPostExec rdfs:domain hpc:Job .
+hpc:LsbDisableSuspendArJobs rdfs:subClassOf hpc:Job .
+hpc:LsbDisableSuspendForOpenAr rdfs:domain hpc:Arjob .
+hpc:LsbDispatchCheckResumeIntvl rdfs:domain hpc:Host .
+
+hpc:LsbDisableSuspendArJobs rdfs:range xsd:boolean .
+hpc:LsbDisableSuspendForOpenAr rdfs:range xsd:boolean .
+hpc:LsbDispatchCheckResumeIntvl rdfs:range xsd:boolean .

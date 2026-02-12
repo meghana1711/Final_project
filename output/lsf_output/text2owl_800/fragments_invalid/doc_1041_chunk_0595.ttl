@@ -1,0 +1,41 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Job a owl:Class .
+hpc:Cluster a owl:Class .
+hpc:Resource a owl:Class .
+hpc:Localcluster rdfs:subClassOf hpc:Cluster .
+hpc:Remotecluster rdfs:subClassOf hpc:Cluster .
+hpc:computeunitrequirement a owl:DatatypeProperty .
+hpc:memoryrequirement a owl:DatatypeProperty .
+hpc:coreisolation a owl:ObjectProperty .
+
+rdfs:domain hpc:Computeunitrequirement hpc:Job .
+rdfs:domain hpc:Memoryrequirement hpc:Job .
+rdfs:domain hpc:Coreisolation hpc:Job .
+
+rdfs:range hpc:Computeunitrequirement xsd:string .
+rdfs:range hpc:Memoryrequirement xsd:nonNegativeInteger .
+rdfs:range hpc:Coreisolation xsd:nonNegativeInteger .
+
+hpc:bsub a owl:ObjectProperty .
+
+hpc:BsubClusters rdfs:domain hpc:Bsub .
+hpc:BsubClusters rdfs:range hpc:Cluster* .
+
+hpc:BsubCnCu rdfs:domain hpc:Bsub .
+hpc:BsubCnCu rdfs:range hpc:Computeunitrequirement .
+
+hpc:BsubCnMem rdfs:domain hpc:Bsub .
+hpc:BsubCnMem rdfs:range hpc:Memoryrequirement .
+
+hpc:BsubCoreIsolation rdfs:domain hpc:Bsub .
+hpc:BsubCoreIsolation rdfs:range xsd:nonNegativeInteger .
+
+hpc:BsubIgnoresLocalCluster rdfs:subClassOf hpc:Bsub .
+hpc:BsubTriesRemoteClusters rdfs:subClassOf hpc:Bsub .
+hpc:BsubTriesLocalThenRemote rdfs:subClassOf hpc:Bsub .
+hpc:BsubTriesLocalThenRemoteExceptRmtC1 rdfs:subClassOf hpc:Bsub .
+hpc:BsubTriesOnlyRemote rdfs:subClassOf hpc:Bsub .

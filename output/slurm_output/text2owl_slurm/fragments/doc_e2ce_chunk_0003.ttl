@@ -1,0 +1,12 @@
+hpc:Topology a owl:Class .
+hpc:Dynamicnode a owl:Class .
+hpc:sortingconstraint a owl:ObjectProperty .
+
+hpc:Sortingconstraint rdfs:domain hpc:Dynamicnode ;
+                       rdfs:range rdf:Boolean .
+
+hpc:Topologyinconsistency a owl:Class ;
+                            rdfs:subClassOf hpc:Problem .
+
+hpc:Suboptimaljoballocation a owl:Class ;
+                              rdfs:subClassOf hpc:Topologyinconsistency .

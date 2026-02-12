@@ -1,0 +1,28 @@
+hpc:instanceid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:string .
+
+hpc:instancetags a owl:ObjectProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range rdf:Bag ;
+    rdfs:subPropertyOf hpc:hasTag .
+
+hpc:hastag a owl:ObjectProperty ;
+    rdfs:domain rdf:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf rdf:type .
+
+hpc:Instance a owl:Class .
+
+hpc:Ebsvolume a owl:Class ;
+    rdfs:subClassOf hpc:Storagedevice .
+
+hpc:ebsoptimized a owl:DatatypeProperty ;
+    rdfs:domain hpc:Instance ;
+    rdfs:range xsd:boolean .
+
+hpc:supportsebsoptimization a owl:ObjectProperty ;
+    rdfs:domain hpc:Instancetype ;
+    rdfs:range xsd:boolean .
+
+hpc:Instancetype a owl:Class .

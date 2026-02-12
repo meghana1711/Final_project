@@ -1,0 +1,47 @@
+hpc:Host a owl:Class .
+hpc:Core a owl:Class .
+hpc:Socket a owl:Class .
+hpc:cpuList a owl:DatatypeProperty .
+hpc:Task a owl:Class .
+hpc:cpuTaskList a owl:DatatypeProperty .
+hpc:numThreads a owl:DatatypeProperty .
+
+hpc:Host rdfs:subClassOf owl:Class .
+hpc:Core rdfs:subClassOf hpc:Host .
+hpc:Socket rdfs:subClassOf hpc:Host .
+
+hpc:CpuList rdfs:domain hpc:Host .
+hpc:CpuList rdfs:range xsd:string .
+hpc:CpuTaskList rdfs:domain hpc:Task .
+hpc:CpuTaskList rdfs:range xsd:string .
+hpc:NumThreads rdfs:domain hpc:Task .
+hpc:NumThreads rdfs:range xsd:integer .
+
+hpc:Host1 a hpc:Host ;
+    hpc:CPU_List "0,2,4,6" ;
+    hpc:Contents [
+        a hpc:Core ;
+            hpc:ID "0" ;
+            hpc:Core_Number 24 ;
+            hpc:Host_Core "Host1" .
+        ...
+    ] .
+hpc:Host1_Task1 a hpc:Task ;
+    hpc:CPU_Task_List "0,2,20,22" ;
+    hpc:Num_Threads 2 .
+hpc:Host1_Task2 a hpc:Task ;
+    hpc:CPU_Task_List "4,6,16,18" ;
+    hpc:Num_Threads 2 .
+
+hpc:Host2 a hpc:Host ;
+    hpc:CPU_List "..." ;
+    hpc:Contents [
+        a hpc:Core ;
+            hpc:ID "..." ;
+            hpc:Core_Number "..." ;
+            hpc:Host_Core "Host2" .
+        ...
+    ] .
+
+
+This output is a fragment of an OWL ontology that represents the information provided in the documentation. It includes classes for Host, Core, Socket, Task, and properties for CPU_List, CPU_Task_List, and Num_Threads. The ontology also includes instances of Host, Core, and Task, as well as their properties. The ellipses (`...`) represent that the actual values for the Host2 and its cores are not provided in the documentation. You should replace them with the appropriate values.

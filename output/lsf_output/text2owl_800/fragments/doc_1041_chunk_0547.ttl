@@ -1,0 +1,58 @@
+hpc:Throughput
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "For throughput goals, the configured job throughput (finished jobs per hour) for the service class." .
+
+hpc:SLAThroughput
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Throughput ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The current throughput for the SLA finished jobs per clean period." .
+
+hpc:EstimatedFinishTime
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Sla ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "For goals with a time window, estimated finish time of the SLA." .
+
+hpc:OnTime
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Estimatedfinishtime ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "If the service class status is on time, the finish time is before the configured deadline." .
+
+hpc:Delayed
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Estimatedfinishtime ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "If the service class status is delayed, the service class is missing its goal and the bsla command shows a finish time later than the deadline." .
+
+hpc:OptimumNumberOfRunningJobs
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Sla ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "For goals with a time window, the optimum number of jobs that must be running in the service class for the SLA to meet its goal." .
+
+hpc:NJobs
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The current number of jobs in the specified service class." .
+
+hpc:PendingJobs
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of pending jobs in the specified service class." .
+
+hpc:RunningJobs
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of running jobs in the specified service class." .
+
+hpc:SystemSuspendedJobs
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "The number of system-suspended jobs in the service class." .

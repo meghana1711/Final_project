@@ -1,0 +1,47 @@
+hpc:Job a owl:Class .
+hpc:Allocationrequest a owl:Class .
+hpc:Resizerequest a owl:Class .
+hpc:Jobpriorityadjustment a owl:Class .
+hpc:Runningjob a owl:Class .
+hpc:Dispatchedjob a owl:Class .
+hpc:Requeuedjob a owl:Class .
+hpc:Rerunjob a owl:Class .
+hpc:Migratedjob a owl:Class .
+
+hpc:hasassociatedresizerequest a owl:ObjectProperty .
+hpc:hasupdatedjobpriority a owl:ObjectProperty .
+hpc:isdispatched a owl:ObjectProperty .
+hpc:isrequeued a owl:ObjectProperty .
+hpc:isrerun a owl:ObjectProperty .
+hpc:ismigrated a owl:ObjectProperty .
+hpc:hasdynamicpriorityvalue a owl:DatatypeProperty .
+hpc:hasoriginaldynamicpriorityvalue a owl:DatatypeProperty .
+
+hpc:Jobpriorityescalation a owl:Class .
+hpc:configurejobpriorityescalation a owl:ObjectProperty .
+hpc:jobPriorityOverTime a owl:DatatypeProperty .
+hpc:JobPriorityOverTime rdfs:domain hpc:Jobpriorityescalation .
+hpc:JobPriorityOverTime rdfs:range xsd:integer .
+
+hpc:Jobpriorityadjustment rdfs:subClassOf hpc:Event .
+hpc:Jobpriorityadjustment rdfs:subClassOf rdf:Statement .
+hpc:Jobpriorityadjustment rdfs:subClassOf rdf:Subject-Predicate-Object .
+hpc:Jobpriorityadjustment rdfs:subClassOf rdf:Triple .
+hpc:Jobpriorityadjustment rdfs:subClassOf rdf:Resource .
+
+hpc:Resizerequest rdfs:subClassOf hpc:Event .
+hpc:Resizerequest rdfs:subClassOf rdf:Statement .
+hpc:Resizerequest rdfs:subClassOf rdf:Subject-Predicate-Object .
+hpc:Resizerequest rdfs:subClassOf rdf:Triple .
+hpc:Resizerequest rdfs:subClassOf rdf:Resource .
+
+hpc:Runningjob rdfs:subClassOf hpc:Job .
+hpc:Runningjob rdfs:subClassOf rdf:Resource .
+hpc:Runningjob rdfs:subClassOf rdf:Statement .
+hpc:Runningjob rdfs:subClassOf rdf:Subject-Predicate-Object .
+hpc:Runningjob rdfs:subClassOf hpc:Event .
+
+hpc:Dispatchedjob rdfs:subClassOf hpc:Job .
+hpc:Dispatchedjob rdfs:subClassOf rdf:Resource .
+hpc:Dispatchedjob rdfs:subClassOf rdf:Statement .
+hpc:Dispatchedjob rdfs:subClassOf rdf:Subject-Predicate-Object .

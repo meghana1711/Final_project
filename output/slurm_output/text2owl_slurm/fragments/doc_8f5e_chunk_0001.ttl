@@ -1,0 +1,26 @@
+hpc:Slurmversion a owl:Class .
+hpc:Majorrelease rdfs:subClassOf hpc:Slurmversion .
+hpc:Maintenancerelease rdfs:subClassOf hpc:Slurmversion .
+
+hpc:compatiblepriorversion a owl:ObjectProperty .
+hpc:Compatiblepriorversion rdfs:domain hpc:Slurmversion .
+hpc:Compatiblepriorversion rdfs:range hpc:Slurmversion .
+
+hpc:endofsupport a owl:DatatypeProperty .
+hpc:Endofsupport rdfs:domain hpc:Slurmversion .
+hpc:Endofsupport rdfs:range xsd:date .
+
+hpc:Slurmrelease a owl:Class .
+hpc:Slurmrelease rdfs:subClassOf hpc:Slurmversion .
+
+hpc:Slurmdbd a owl:Class .
+hpc:Slurmctld a owl:Class .
+hpc:Slurmd a owl:Class .
+hpc:Otherslurmcommands a owl:Class .
+hpc:Customizedslurmplugins a owl:Class .
+hpc:Seamlessupgrades a owl:Class .
+
+hpc:Preupgradebackup a owl:Class .
+hpc:Accountingdatabaseserver a owl:Class .
+hpc:Controller a owl:Class .
+hpc:Computenode a owl:Class .

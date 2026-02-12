@@ -1,0 +1,63 @@
+hpc:GlobalConfigurationFile
+    a owl:Class ;
+    rdfs:subClassOf hpc:Lsfclusterconfigurationfile ;
+    rdfs:comment "Files describing the configuration and operation of the cluster." ;
+    rdfs:domain hpc:Lsfclusterconfigurationfile ;
+    rdfs:range [ a owl:Class ;
+                  rdfs:label "File" ] .
+
+hpc:GlobalConfigurationFile/ego/cluster1
+    a owl:Class ;
+    rdfs:subClassOf hpc:Globalconfigurationfile ;
+    rdfs:comment "Location of global configuration files for a specific cluster." ;
+    rdfs:domain hpc:Globalconfigurationfile ;
+    rdfs:range [ a owl:Class ;
+                  rdfs:label "Path" ] .
+
+hpc:egoConf
+    a owl:Class ;
+    rdfs:subClassOf hpc:Globalconfigurationfile/ego/cluster1 ;
+    rdfs:comment "File containing LSF cluster configuration." .
+
+hpc:lsfConf
+    a owl:Class ;
+    rdfs:subClassOf hpc:Globalconfigurationfile/ego/cluster1 ;
+    rdfs:comment "File containing LSF configuration." .
+
+hpc:KeywordDefinitionFile
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "File defining keywords for all clusters." .
+
+hpc:ClusterConfigurationFile
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "File defining hosts, administrators, and location of site-defined shared resources." ;
+    rdfs:domain hpc:Lsfclusterconfigurationfile ;
+    rdfs:range [ a owl:Class ;
+                  rdfs:label "File" ] .
+
+hpc:lsfClusterConf
+    a owl:Class ;
+    rdfs:subClassOf hpc:Clusterconfigurationfile ;
+    rdfs:comment "File containing LSF cluster configuration." .
+
+hpc:LSFBatchWorkloadSystemConfigurationFile
+    a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:comment "Files owned by the primary LSF administrator and readable by all cluster users." .
+
+hpc:ServerHostAttributesFile
+    a owl:Class ;
+    rdfs:subClassOf hpc:Lsfbatchworkloadsystemconfigurationfile ;
+    rdfs:comment "File containing server hosts and their attributes." ;
+    rdfs:domain hpc:Lsfbatchworkloadsystemconfigurationfile ;
+    rdfs:range [ a owl:Class ;
+                  rdfs:label "File" ] .
+
+hpc:ApplicationProfileFile
+    a owl:Class ;
+    rdfs:subClassOf hpc:Lsfbatchworkloadsystemconfigurationfile ;
+    rdfs:comment "File containing common parameters for the same type of jobs." ;
+    rdfs:domain hdfs:LSFBatchWorkloadSystemConfigurationFile ;
+    rdfs:range [ a owl:Class ;

@@ -1,0 +1,31 @@
+hpc:Linux418Package a owl:Class .
+hpc:Productoffering a owl:Class .
+hpc:packagename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Linux418Package ;
+    rdfs:range xsd:string .
+hpc:IBM_Spectrum_LSF a hpc:Linux4_18_Package ;
+    hpc:PackageName "lsf10.1_lnx418-lib228-x86_64.tar. Z" .
+hpc:IBM_Spectrum_LSF_Data_Manager a hpc:Linux4_18_Package ;
+    hpc:PackageName "lsf10.1_data_mgr-lnx418-x64.tar. Z" .
+hpc:IBM_Spectrum_LSF_License_Scheduler a hpc:Linux4_18_Package ;
+    hpc:PackageName "lsf10.1_licsched_lnx418-x64.tar. Z" .
+hpc:requiresLsfInstaller a owl:ObjectProperty ;
+    rdfs:domain hpc:Linux418Package ;
+    rdfs:range hpc:Linux418Package .
+hpc:OperatingsystemRequirement a owl:Class .
+hpc:libtirpcPackage a owl:ObjectProperty ;
+    rdfs:domain hpc:OperatingsystemRequirement ;
+    rdfs:range hpc:Linux418Package ;
+    rdfs:comment "Package to install libtirpc" .
+hpc:libnslPackage a owl:ObjectProperty ;
+    rdfs:domain hpc:OperatingsystemRequirement ;
+    rdfs:range hpc:Linux418Package ;
+    rdfs:comment "Package to install libnsl" .
+hpc:Linux26Package a owl:Class .
+hpc:noLongerAvailable a owl:ObjectProperty ;
+    rdfs:domain hpc:Linux26Package ;
+    rdfs:range xsd:boolean .
+hpc:IbmSpectrumLsfWebServices a owl:Class .
+hpc:LSF_Web_Services a hpc:IBM_Spectrum_LSF_Web_Services .
+hpc:NewLsfdServiceFile a owl:Class .
+hpc:ObsoleteLsfdServiceFile a owl:Class .

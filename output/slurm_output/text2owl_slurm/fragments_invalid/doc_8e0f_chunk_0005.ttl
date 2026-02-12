@@ -1,0 +1,9 @@
+hpc:Slurmentity a owl:Class. .
+hpc:Node a owl:Class. .
+hpc:Partition a owl:Class. .
+
+hpc:hascpus a owl:ObjectProperty. .
+hpc:hastmpdisk a owl:DatatypeProperty; rdfs:range xsd:integer. .
+hpc:hasrealmemory a owl:DatatypeProperty; rdfs:range xsd:integer. .
+hpc:hasstate a owl:DatatypeProperty; rdfs:range xsd:string. .
+hpc:hasweight a owl:DatatypeProperty; rdfs:range xsd:integer

@@ -1,0 +1,9 @@
+hpc:Lsf a owl:Class .
+hpc:rcGetHostMethod a owl:ObjectProperty .
+hpc:rcMaxRequests a owl:DatatypeProperty .
+
+hpc:Lsf rdfs:subClassOf owl:Class .
+hpc:RcGetHostMethod rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:string .
+hpc:RcMaxRequests rdfs:domain hpc:Lsf ;
+    rdfs:range xsd:integer .

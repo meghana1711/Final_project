@@ -1,0 +1,40 @@
+hpc:Querylog a owl:Class ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The default name for the log file is query_info.querylog.<host_name>." .
+
+hpc:logfileowner a owl:ObjectProperty ;
+    rdfs:domain hpc:Querylog ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "The owner of the log file is the user who is specified in the LSF_ADMIN parameter." .
+
+hpc:logfilepermissions a owl:ObjectProperty ;
+    rdfs:domain hpc:Querylog ;
+    rdfs:range rdf:List ;
+    rdfs:comment "The log file permissions are the same as mbatchd daemon log permissions." .
+
+hpc:Logfilepermissionsvalue a owl:Class ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Everyone has read and execute access, but the LSF_ADMIN user has write, read, and execute access." .
+
+hpc:logfilelocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Querylog ;
+    rdfs:range rdf:Resource ;
+    rdfs:comment "If you specify the log file in the lsb.params file and then later specify a different log file in the command line, the one in the command line takes precedence." .
+
+hpc:loggingduration a owl:DatatypeProperty ;
+    rdfs:domain hpc:Querylog ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Logging continues until the speciﬁed duration is over, or until you stop dynamic logging. It then switches back to the static log file location." .
+
+hpc:LoggingDurationDefault a xsd:integer ;
+    rdfs:value "infinite" .
+
+hpc:stopdynamiclogging a owl:ObjectProperty ;
+    rdfs:domain hpc:Querylog ;
+    rdfs:range rdf:Boolean ;
+    rdfs:comment "Turns off dynamic diagnosis (stop logging)." .
+
+hpc:enablediagnose a owl:ObjectProperty ;
+    rdfs:domain hpc:Querylog ;
+    rdfs:range rdf:Boolean ;
+    rdfs:comment "If the ENABLE_DIAGNOSE=query parameter is configured, it returns to the static configuration." .

@@ -1,0 +1,69 @@
+hpc:hasName
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range xsd:string .
+
+hpc:hasType
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range xsd:string .
+
+hpc:resSelect
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range xsd:string .
+
+hpc:hosts
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range xsd:string .
+
+hpc:distribution
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range rdf:List .
+
+hpc:Distribution
+    a owl:Class ;
+    rdfs:subClassOf rdf:List ;
+    rdfs:comment "A distribution of services and their respective resource allocations in a pool." .
+
+hpc:serviceClass
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Distribution ;
+    rdfs:range xsd:string .
+
+hpc:numPackages
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Distribution ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:loanPolicies
+    a owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteedresourcepool ;
+    rdfs:range rdf:List .
+
+hpc:LoanPolicies
+    a owl:Class ;
+    rdfs:subClassOf rdf:List ;
+    rdfs:comment "Policies governing the loaning of resources from a pool." .
+
+hpc:queue
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loanpolicies ;
+    rdfs:range xsd:string .
+
+hpc:idleBuffer
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loanpolicies ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:duration
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loanpolicies ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:closeOnDemand
+    a owl:DatatypeProperty ;
+    rdfs:domain hpc:Loanpolicies ;
+    rdfs:range xsd:boolean .

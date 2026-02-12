@@ -1,0 +1,60 @@
+hpc:Sshinteractivexwindowlimitations a owl:Class .
+
+# Cannot be used with job arrays or job chunks
+hpc:cannotBeUsedWithJobArraysOrJobChunks rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Sshinteractivexwindowlimitations ;
+    rdfs:range xsd:boolean .
+
+# Private user keys must have no password set
+hpc:privateUserKeysMustHaveNoPasswordSet rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Sshinteractivexwindowlimitations ;
+    rdfs:range xsd:boolean .
+
+# You cannot run with -K , -r, or -XF
+hpc:cannotRunWithK rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Sshinteractivexwindowlimitations ;
+    rdfs:range xsd:string .
+hpc:cannotRunWithr rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Sshinteractivexwindowlimitations ;
+    rdfs:range xsd:string .
+hpc:cannotRunWithXF rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Sshinteractivexwindowlimitations ;
+    rdfs:range xsd:string .
+
+# bjobs, bkill, bqueues, bhosts, bmgroup, bmod, bchkpnt, brestart, bgadd, bgdel, bjgroup, sh, getrlimit, sbrk, libckpt.a, lsb.users, lsb.queues,
+# lsb.params, lsb.hosts, lsb.serviceclasses, mbatchd, bsubmit are related resources
+hpc:relatedResources rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Resource .
+
+# bsubmit command
+hpc:Bsubmitcommand a owl:Class ;
+    rdfs:subClassOf hpc:Command .
+
+# Synopsis
+hpc:synopsis rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bsubmitcommand ;
+    rdfs:range xsd:string .
+
+# Description
+hpc:description rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Bsubmitcommand ;
+    rdfs:range xsd:string .
+
+# lsf.usermapping configuration file
+hpc:Lsfusermappingconfigurationfile a owl:Class .
+
+# lsf.usermapping allows user mapping policy for the bsubmit command
+hpc:allowsUserMappingPolicyForBsubmitCommand rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfusermappingconfigurationfile ;
+    rdfs:range hpc:Usermappingpolicy .
+
+# UserMappingPolicy
+hpc:Usermappingpolicy a owl:Class .
+
+# UserMappingPolicy means that the submission user can submit jobs as execution users or groups
+hpc:meansThatSubmissionUserCanSubmitJobsAsExecutionUsersOrGroups rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Usermappingpolicy ;
+    rdfs:range hpc:Usermapping .
+
+# UserMapping
+hpc:UserMapping a owl:

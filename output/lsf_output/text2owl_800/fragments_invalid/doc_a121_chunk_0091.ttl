@@ -1,0 +1,60 @@
+hpc:Job a owl:Class .
+hpc:Resourcerequirement a owl:Class .
+hpc:Compoundresourcerequirement a owl:Class .
+hpc:Alternativeresourcerequirement a owl:Class .
+hpc:mem a owl:DatatypeProperty .
+hpc:swap a owl:DatatypeProperty .
+hpc:factor a owl:DatatypeProperty .
+hpc:proc a owl:DatatypeProperty .
+hpc:jpriority a owl:DatatypeProperty .
+hpc:qpriority a owl:DatatypeProperty .
+hpc:fs a owl:DatatypeProperty .
+hpc:App a owl:Class .
+
+hpc:Resourcerequirement rdfs:subClassOf hpc:Job .
+hpc:Compoundresourcerequirement rdfs:subClassOf hpc:Resourcerequirement .
+hpc:Alternativeresourcerequirement rdfs:subClassOf hpc:Resourcerequirement .
+
+hpc:Mem rdfs:domain hpc:Compoundresourcerequirement ;
+    rdfs:range xsd:decimal .
+hpc:Swap rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range xsd:decimal .
+hpc:Factor rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Proc rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:Jpriority rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+hpc:Qpriority rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+hpc:Fs rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:hasmem a owl:ObjectProperty ;
+    rdfs:domain hpc:Compoundresourcerequirement ;
+    rdfs:range hpc:Mem .
+hpc:hasswap a owl:ObjectProperty ;
+    rdfs:domain hpc:Resourcerequirement ;
+    rdfs:range hpc:Swap .
+hpc:hasfactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Factor .
+hpc:hasproc a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Proc .
+hpc:hasjpriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Jpriority .
+hpc:hasqpriority a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Qpriority .
+hpc:hasfs a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Fs .
+
+hpc:ResourceReservePerTask rdf:type owl:ObjectProperty .
+hpc:Resourcereservepertask rdfs:domain hpc:Compoundresourcerequirement ;
+    rdfs:range xsd:boolean .
+
+hpc:MEMCalculationRule rdf:type owl:ObjectProperty .
+hpc:Memcalculationrule rdfs:domain h

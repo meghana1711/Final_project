@@ -1,0 +1,47 @@
+hpc:Guaranteepolicy a owl:Class .
+hpc:Serviceclass a owl:Class .
+hpc:Resourcepool a owl:Class .
+hpc:Job a owl:Class .
+
+hpc:hasGuaranteePolicy rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range hpc:Guaranteepolicy .
+
+hpc:hasResourcePool rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range hpc:Resourcepool .
+
+hpc:hasJobPriority rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:hasQueuePriority rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer .
+
+hpc:hasFairShare rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:decimal .
+
+hpc:hasMinimumResources rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Guaranteepolicy ;
+    rdfs:range xsd:decimal .
+
+hpc:hasMaximumResources rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Guaranteepolicy ;
+    rdfs:range xsd:decimal .
+
+hpc:canBorrowResources rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Guaranteepolicy ;
+    rdfs:range xsd:boolean .
+
+hpc:ServiceclassHasstrictparameters a owl:Class ;
+    rdfs:subClassOf hpc:Serviceclass .
+
+hpc:ServiceClass_hasStrictParameters rdf:type owl:Class ;
+    rdfs:subClassOf hpc:Serviceclass ;
+    rdfs:comment "Service classes with strict parameters." .
+
+hpc:hasStrictParameters rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Serviceclass ;
+    rdfs:range hpc:ServiceclassHasstrictparameters .

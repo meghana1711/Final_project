@@ -1,0 +1,36 @@
+hpc:Multiclusterqueue a owl:Class .
+hpc:fwdUsers a owl:ObjectProperty .
+hpc:Samestring a owl:Class .
+hpc:Advancereservation a owl:Class .
+hpc:brsvaddR a owl:ObjectProperty .
+hpc:brsvmodR a owl:ObjectProperty .
+hpc:Apspriorityscheduling a owl:Class .
+hpc:priority a owl:ObjectProperty .
+hpc:Applicationprofile a owl:Class .
+hpc:User a owl:Class .
+hpc:Usergroup a owl:Class .
+hpc:Apslimit a owl:Class .
+hpc:bjobsPrio a owl:ObjectProperty .
+hpc:busers a owl:ObjectProperty .
+hpc:bugroup a owl:ObjectProperty .
+
+hpc:Multiclusterqueue rdfs:subClassOf hpc:Queue .
+hpc:FwdUsers rdfs:domain hpc:LsbQueues ;
+                 rdfs:range xsd:string .
+hpc:Samestring rdfs:subClassOf xsd:string .
+hpc:Advancereservation rdfs:subClassOf hpc:Reservation .
+hpc:BrsvaddR rdfs:domain hpc:Advancereservation ;
+                 rdfs:range hpc:Samestring .
+hpc:BrsvmodR rdfs:domain hpc:Advancereservation ;
+                 rdfs:range hpc:Samestring .
+hpc:Apspriorityscheduling rdfs:subClassOf hpc:Schedulingpolicy .
+hpc:Priority rdfs:domain [ a hpc:Apspriorityscheduling ;
+                                   rdfs:range (hpc:Applicationprofile |
+                                               hpc:User | hpc:UserGroup) ] .
+hpc:Applicationprofile rdfs:subClassOf hpc:Profile .
+hpc:User rdfs:subClassOf hpc:Useraccount .
+hpc:Usergroup rdfs:subClassOf hpc:Group .
+hpc:Apslimit rdfs:subClassOf hpc:Joblimit .
+hpc:BjobsPrio rdfs:domain hpc:Job .
+hpc:Busers rdfs:domain hpc:User .
+hpc:Bugroup rdfs:domain hpc:Group .

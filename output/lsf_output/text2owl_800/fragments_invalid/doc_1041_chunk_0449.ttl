@@ -1,0 +1,66 @@
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf owl:Class ;
+    rdfs:subClassOf (hpc:Openqueue | hpc:Closedqueue) ;
+    rdfs:subClassOf (hpc:Activequeue | hpc:Inactivequeue) ;
+    rdfs:subClassOf owl:NamedIndividual ;
+    rdfs:comment "The status of the queue." .
+
+hpc:Openqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "The queue can accept jobs." .
+
+hpc:Closedqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "The queue cannot accept jobs." .
+
+hpc:Activequeue a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:subClassOf (hpc:Openqueue | hpc:Closedqueue) ;
+    rdfs:comment "Jobs in the queue can be started." .
+
+hpc:Inactivequeue a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:subClassOf (hpc:Openqueue | hpc:Closedqueue) ;
+    rdfs:comment "Jobs in the queue cannot be started." .
+
+hpc:canAcceptJobs an owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "The queue can accept jobs." .
+
+hpc:canStartJobs an owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "Jobs in the queue can be started." .
+
+hpc:isActive an owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "The queue is active." .
+
+hpc:isInactive an owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "The queue is inactive." .
+
+hpc:badminCommand an owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The queue can be opened, closed, inactivated, and reactivated with the badmin command." .
+
+hpc:dispatchWindow an owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "The queue can become inactive when its dispatch window is closed." .
+
+hpc:runWindow an owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:boolean ;
+    rdfs:comment "The queue can become inactive when its run window is closed." .
+
+hpc:initialState an owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The queue is open at LSF startup." .
+
+hpc:

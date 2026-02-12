@@ -1,0 +1,34 @@
+hpc:Job a owl:Class .
+hpc:Dataprovenance a owl:Class .
+hpc:Filesystem a owl:Class .
+hpc:IBMSpectrumScale a hpc:FileSystem .
+
+hpc:requiresdataprovenance a owl:ObjectProperty .
+hpc:Requiresdataprovenance rdfs:domain hpc:Job ;
+                             rdfs:range hpc:Dataprovenance .
+
+hpc:usesenvironmentvariable a owl:ObjectProperty .
+hpc:Usesenvironmentvariable rdfs:domain hpc:Job ;
+                               rdfs:range xsd:string .
+
+hpc:Environmentvariable a owl:Class .
+hpc:LSB_DATA_PROVENANCE a hpc:EnvironmentVariable .
+hpc:LSB_DEBUG a hpc:EnvironmentVariable .
+hpc:LSB_DEBUG_CMD a hpc:EnvironmentVariable .
+hpc:LSB_DEBUG_MBD a hpc:EnvironmentVariable .
+hpc:LSB_DEBUG_SBD a hpc:EnvironmentVariable .
+hpc:LSB_DEBUG_SCH a hpc:EnvironmentVariable .
+
+hpc:isenabledbyapplication a owl:ObjectProperty .
+hpc:Isenabledbyapplication rdfs:domain hpc:Environmentvariable ;
+                                 rdfs:range hpc:Dataprovenance .
+
+hpc:issetbycommandline a owl:ObjectProperty .
+hpc:Issetbycommandline rdfs:domain hpc:Environmentvariable .
+
+hpc:issetbylsfconfig a owl:ObjectProperty .
+hpc:Issetbylsfconfig rdfs:domain hpc:Environmentvariable .
+
+hpc:requiresibmspectrumscale a owl:ObjectProperty .
+hpc:Requiresibmspectrumscale rdfs:domain hpc:Filesystem ;
+                                      rdfs:range hpc:Job .

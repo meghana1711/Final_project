@@ -1,0 +1,57 @@
+hpc:Lsfdatamanagementconfiguration a owl:Class .
+hpc:admins a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:string .
+hpc:cacheinputgraceperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:cacheoutputgraceperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:cachepermissions a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:string .
+hpc:fileprocessingnthreads a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:filetransfercmd a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:string .
+hpc:lsbtimedmd a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:lsfdatahosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:string .
+hpc:lsfdataport a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:port .
+hpc:lsflogdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:string .
+hpc:lsflogmask a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:querynthreads a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:remotecacherefreshinterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:stagingarea a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:string .
+
+hpc:enabledatarequirementfiletransfer a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range hpc:Lsfdatamanagementconfiguration .
+
+hpc:lsbesubmethod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range xsd:string .
+
+hpc:esubdatamanager a owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfdatamanagementconfiguration ;
+    rdfs:range hpc:Script .
+
+hpc:l

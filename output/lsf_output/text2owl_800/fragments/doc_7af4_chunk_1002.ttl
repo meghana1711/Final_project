@@ -1,0 +1,8 @@
+hpc:EgoDaemonControl a owl:Class .
+hpc:hasvalue a owl:ObjectProperty ;
+    rdfs:domain hpc:EgoDaemonControl ;
+    rdfs:range xsd:string .
+hpc:egoDaemonControlControl a owl:DatatypeProperty ;
+    rdfs:domain hpc:EgoDaemonControl ;
+    rdfs:range xsd:boolean .
+hpc:EGO_DAEMON_CONTROL_description rdf:PlainLiteral "Enables EGO to control the LSF res and sbatchd daemons. Syntax EGO_DAEMON_CONTROL=\"Y\" | \"N\". Description Set the value to \"Y\" if you want the EGO service controller to start the res and sbatchd daemons, and restart if they fail. All hosts in the cluster must use the same value for this parameter. Therefore, the value of the EGO_DAEMON_CONTROL parameter in the server.conﬁg file must be the same as the specification for the EGO_DAEMON_CONTROL parameter in the install.conﬁg file). To avoid conflicts, leave this parameter undeﬁned if you use a script to start the LSF daemons. Note: If you specify ENABLE_EGO=\"N\", this parameter is ignored."@en .

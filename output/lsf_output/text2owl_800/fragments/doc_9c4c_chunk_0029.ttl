@@ -1,0 +1,27 @@
+hpc:Installationconfig a owl:Class .
+hpc:reconfigurelim a owl:ObjectProperty ;
+    rdfs:domain hpc:Installationconfig ;
+    rdfs:range rdf:Resource .
+
+hpc:reconfigurembatchd a owl:ObjectProperty ;
+    rdfs:domain hpc:Installationconfig ;
+    rdfs:range rdf:Resource .
+
+hpc:restartalldaemons a owl:ObjectProperty ;
+    rdfs:domain hpc:Installationconfig ;
+    rdfs:range rdf:Resource .
+
+hpc:installwithoptions a owl:ObjectProperty ;
+    rdfs:domain hpc:Installationconfig ;
+    rdfs:range rdf:Resource .
+
+hpc:Installationtemplate a owl:Class ;
+    rdfs:subClassOf hpc:Installationconfig .
+
+hpc:templatelocation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Installationtemplate ;
+    rdfs:range xsd:string .
+
+hpc:installationdirectory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Installationconfig ;
+    rdfs:range xsd:string .

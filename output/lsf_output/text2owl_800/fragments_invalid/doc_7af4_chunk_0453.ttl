@@ -1,0 +1,41 @@
+hpc:jobactionwarningtime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "Specifies the amount of time before a job control action occurs that a job warning action is to be taken. Syntax JOB_ACTION_WARNING_TIME=[hour:]minute" .
+
+hpc:jobcontrols a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Jobcontrolaction ;
+    rdfs:comment "Changes the behavior of the SUSPEND, RESUME, and TERMINATE actions in LSF" .
+
+hpc:Jobcontrolaction a owl:Class ;
+    rdfs:subClassOf owl:Object ;
+    rdfs:comment "Represents a job control action in LSF" .
+
+hpc:SuspendAction a JobControlAction ;
+    rdfs:subClassOf JobControlAction ;
+    rdfs:comment "Represents a SUSPEND action in LSF" .
+    owl:hasValue rdfs:literal "signal" ;
+    owl:hasValue rdfs:literal "command" ;
+    owl:hasValue rdfs:literal "CHKPNT" .
+
+hpc:ResumeAction a JobControlAction ;
+    rdfs:subClassOf JobControlAction ;
+    rdfs:comment "Represents a RESUME action in LSF" .
+    owl:hasValue rdfs:literal "signal" ;
+    owl:hasValue rdfs:literal "command" .
+
+hpc:TerminateAction a JobControlAction ;
+    rdfs:subClassOf JobControlAction ;
+    rdfs:comment "Represents a TERMINATE action in LSF" .
+    owl:hasValue rdfs:literal "signal" ;
+    owl:hasValue rdfs:literal "command" ;
+    owl:hasValue rdfs:literal "CHKPNT" .
+
+hpc:Signal a owl:Datatype ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Represents a UNIX signal name" .
+
+hpc:Command a owl:Datatype ;
+    rdfs:subClassOf xsd:string ;
+    rdfs:comment "Represents a /bin/sh command line" .

@@ -1,0 +1,58 @@
+hpc:Thirdpartyuserspacegovernor a owl:Class .
+hpc:Cpuspeed a owl:Class ;
+    rdfs:subClassOf hpc:Thirdpartyuserspacegovernor .
+
+hpc:nicejobscaling a owl:ObjectProperty ;
+    rdfs:domain hpc:Thirdpartyuserspacegovernor ;
+    rdfs:range xsd:boolean .
+
+hpc:Powerconsumptiongovernor a owl:Class ;
+    rdfs:subClassOf hpc:Thirdpartyuserspacegovernor .
+
+hpc:ignorenicejobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Powerconsumptiongovernor .
+
+hpc:allownicelsfjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:Powerconsumptiongovernor .
+
+hpc:Ospartitioning a owl:Class .
+hpc:Oraclesolaris a owl:Class ;
+    rdfs:subClassOf hpc:Ospartitioning .
+hpc:Ibmaix a owl:Class ;
+    rdfs:subClassOf hpc:Ospartitioning .
+
+hpc:Solariscontainer a owl:Class ;
+    rdfs:subClassOf hpc:Oraclesolaris .
+
+hpc:Aixpartition a owl:Class ;
+    rdfs:subClassOf hpc:Ibmaix .
+
+hpc:Lpar a owl:Class ;
+    rdfs:subClassOf hpc:Aixpartition .
+
+hpc:Dlpar a owl:Class ;
+    rdfs:subClassOf hpc:Aixpartition .
+
+hpc:Micropartition a owl:Class ;
+    rdfs:subClassOf hpc:Aixpartition .
+
+hpc:Lsfdaemon a owl:Class .
+
+hpc:lsfjobdispatching a owl:ObjectProperty ;
+    rdfs:domain (hpc:Lpar hpc:Dlpar hpc:Micropartition) ;
+    rdfs:range hpc:Lsfdaemon .
+
+hpc:Cpupartitionutilizationreporting a owl:Class ;
+    rdfs:subClassOf hpc:Aixpartition .
+
+hpc:Sharedprocessorcpupartition a owl:Class ;
+    rdfs:subClassOf hpc:Cpupartitionutilizationreporting .
+
+hpc:entitledcapacity a owl:DatatypeProperty ;
+    rdfs:domain hpc:Sharedprocessorcpupartition .
+
+hpc:Wspar a owl:Class ;
+    rdfs:subClassOf hpc:Aixpartition .
+
+hpc:cannotrunlsfonwpar a owl:ObjectProperty ;
+    rdfs:domain hpc:Wspar .

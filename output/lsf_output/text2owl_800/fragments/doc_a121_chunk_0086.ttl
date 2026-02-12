@@ -1,0 +1,36 @@
+hpc:Aps a owl:Class .
+hpc:Apsqueuegroup a owl:Class .
+
+hpc:hasapsfactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Aps ;
+    rdfs:range hpc:Apsfactor .
+
+hpc:Apsfactor a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf hpc:Factor ] .
+
+hpc:hasapssubfactor a owl:ObjectProperty ;
+    rdfs:domain hpc:Apsfactor ;
+    rdfs:range hpc:Apssubfactor .
+
+hpc:Apssubfactor a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+        rdfs:subClassOf hpc:Subfactor ] .
+
+hpc:hasapsweight a owl:DatatypeProperty ;
+    rdfs:domain hpc:Apsfactor ;
+    rdfs:range xsd:decimal .
+
+hpc:hasapslimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Apsfactor ;
+    rdfs:range xsd:decimal .
+
+hpc:hasapsgraaceperiod a owl:DatatypeProperty ;
+    rdfs:domain hpc:Apsfactor ;
+    rdfs:range xsd:duration .
+
+hpc:hasapsqueuegroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Aps .
+
+hpc:apsPriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue .

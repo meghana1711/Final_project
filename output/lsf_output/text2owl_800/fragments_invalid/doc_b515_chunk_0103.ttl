@@ -1,0 +1,28 @@
+hpc:Blaunch a owl:Class .
+hpc:Lsf a owl:Class .
+hpc:Mpi a owl:Class .
+hpc:taskgeometry a owl:ObjectProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range hpc:Taskgroup .
+hpc:resourceusagelimit a owl:ObjectProperty ;
+    rdfs:domain hpc:Paralleljob ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:blanchdistributedapplicationframework a owl:ObjectProperty ;
+    rdfs:domain hpc:Mpi ;
+    rdfs:range hpc:Blanch .
+hpc:Blanch a owl:Class ;
+    rdfs:subClassOf hpc:Command .
+hpc:Blanch rdfs:subClassOf hpc:Lsf .
+hpc:Blanch supports rdfs:range rsh .
+hpc:Blanch supports rdfs:range ssh .
+hpc:Blanch -z rdfs:domain rsh .
+hpc:Blanch -z rdfs:domain ssh .
+hpc:Blanch onlyWorksIn rdfs:range hpc:Job .
+hpc:Blanch exitCode rdfs:range xsd:integer .
+hpc:Taskgroup a owl:Class .
+hpc:rsh a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Host .
+hpc:ssh a owl:ObjectProperty ;
+    rdfs:domain hpc:Command ;
+    rdfs:range hpc:Host .

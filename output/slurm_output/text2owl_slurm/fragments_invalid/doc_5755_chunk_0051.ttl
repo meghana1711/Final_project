@@ -1,0 +1,10 @@
+hpc:Epilogslurmctld a hpc:class .
+hpc:hasexitcode a owl:ObjectProperty .
+hpc:Haslog a hpc:datatypeproperty .
+hpc:Hasjobid a hpc:datatypeproperty .
+hpc:requeuejob a owl:ObjectProperty .
+hpc:SpecialExit a rdf:PlainLiteral "SpecialExit"^^xsd:string .
+hpc:SlurmJobExitCode2 a hpc:datatypeproperty .
+hpc:SlurmJobId a hpc:datatypeproperty .
+hpc:RequeueExitCode a hpc:datatypeproperty .
+hpc:Job

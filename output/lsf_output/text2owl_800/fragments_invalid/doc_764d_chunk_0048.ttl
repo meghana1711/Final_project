@@ -1,0 +1,35 @@
+hpc:Queue a owl:Class ;
+    rdfs:subClassOf hpc:Remoteonlyqueue .
+
+hpc:Remoteonlyqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue ;
+    rdfs:comment "A queue that only runs jobs in remote clusters." ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Queue .
+
+hpc:sndjobsTo a owl:ObjectProperty ;
+    rdfs:domain hpc:Remoteonlyqueue ;
+    rdfs:range hpc:Queue ;
+    rdfs:comment "Specifies that the queue can forward jobs to specified remote execution queues." .
+
+hpc:hosts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Specifies that the queue uses no local hosts." .
+
+hpc:rcvjobsFrom a owl:ObjectProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range hpc:Cluster ;
+    rdfs:comment "Specifies that the receive-jobs queue accepts jobs from the specified submission cluster." .
+
+hpc:MAX_RSCHED_TIME a xsd:duration ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "Maximum scheduling time for jobs in the queue." .
+
+hpc:Queue1 a hpc:Queue ;
+    hpc:NAME "queue1" ;
+    hpc:HOSTS none ;
+    hpc:SNDJOBS_TO queue2@cluster2 ;
+    hpc:MAX_RSCHED_TIME "infinit"^^xsd:duration ;
+    hpc:DESCRIPTION "A remote-only queue that sends jobs to cluster2." .

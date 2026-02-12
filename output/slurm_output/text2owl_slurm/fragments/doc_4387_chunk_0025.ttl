@@ -1,0 +1,36 @@
+hpc:Job a owl:Class .
+hpc:Task a owl:Class .
+hpc:Step a owl:Class .
+hpc:Process a owl:Class .
+hpc:Node a owl:Class .
+
+hpc:Hasjob rdfs:domain hpc:Task ;
+          rdfs:range hpc:Job .
+
+hpc:Isinstep rdfs:domain hpc:Task ;
+             rdfs:range hpc:Step .
+
+hpc:Isinnode rdfs:domain hpc:Process ;
+             rdfs:range hpc:Node .
+
+hpc:tresusageintot a owl:DatatypeProperty ;
+                    rdfs:domain hpc:Step ;
+                    rdfs:range xsd:decimal .
+
+hpc:tresusageinave a owl:DatatypeProperty ;
+                    rdfs:domain hpc:Step ;
+                    rdfs:range xsd:decimal .
+
+hpc:tresusageinmax a owl:DatatypeProperty ;
+                    rdfs:domain hpc:Step ;
+                    rdfs:range xsd:decimal .
+
+hpc:Hasoutliertask rdfs:domain hpc:Step ;
+                    rdfs:range hpc:Task .
+
+hpc:Profiling a owl:Class .
+hpc:Hasprofilingplugin rdfs:domain hpc:Profiling ;
+                        rdfs:range rdf:Resource .
+
+hpc:HDF5Plugin a rdf:Resource .
+hpc:InfluxDBPlugin a rdf:Resource .

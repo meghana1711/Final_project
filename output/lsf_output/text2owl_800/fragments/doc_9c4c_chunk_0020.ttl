@@ -1,0 +1,43 @@
+hpc:Hostsetup a owl:Class .
+hpc:Badmin rdf:type hpc:ExecutableFile ;
+    rdfs:subClassOf hpc:Hostsetup .
+hpc:Lsadmin rdf:type hpc:ExecutableFile ;
+    rdfs:subClassOf hpc:Hostsetup .
+hpc:Egosh rdf:type hpc:ExecutableFile ;
+    rdfs:subClassOf hpc:Hostsetup .
+hpc:Utmpreg rdf:type hpc:ExecutableFile ;
+    rdfs:subClassOf hpc:Hostsetup .
+hpc:Swtbl_Api rdf:type hpc:ExecutableFile ;
+    rdfs:subClassOf hpc:Hostsetup .
+hpc:Ntbl_Api rdf:type hpc:ExecutableFile ;
+    rdfs:subClassOf hpc:Hostsetup .
+hpc:Lstbl_Nid rdf:type hpc:ExecutableFile ;
+    rdfs:subClassOf hpc:Hostsetup .
+hpc:Swtbl_Poe rdf:type hpc:ExecutableFile ;
+    rdfs:subClassOf hpc:Hostsetup .
+
+hpc:addhosttocluster a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostsetup ;
+    rdfs:range xsd:boolean .
+
+hpc:setuid a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostsetup .
+
+hpc:topdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostsetup .
+
+hpc:boot a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostsetup .
+
+hpc:silentinstallation a owl:ObjectProperty ;
+    rdfs:domain hpc:Hostsetup .
+
+hpc:Rhostsetup a owl:Class .
+hpc:RshCmd rdf:type hpc:RhostsetupProperty ;
+    rdfs:subClassOf hpc:Rhostsetup .
+hpc:Hosts rdf:type hpc:RhostsetupProperty ;
+    rdfs:subClassOf hpc:Rhostsetup .
+hpc:TopDir rdf:type hpc:RhostsetupProperty ;
+    rdfs:subClassOf hpc:Rhostsetup .
+hpc:Boot rdf:type hpc:RhostsetupProperty ;
+    rdfs:subClassOf hpc:Rhostsetup .

@@ -1,0 +1,46 @@
+hpc:reconfigurelim a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Host .
+
+hpc:mbatchdrestart a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Host .
+
+hpc:hostsetup a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Host .
+
+hpc:top a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostsetup ;
+    rdfs:range xsd:string .
+
+hpc:boot a owl:DatatypeProperty ;
+    rdfs:domain hpc:Hostsetup ;
+    rdfs:range xsd:boolean .
+
+hpc:startlsf a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Bctrld .
+
+hpc:Bctrld a owl:Class .
+
+hpc:Lim a owl:Class ;
+    rdfs:subClassOf hpc:Bctrld .
+
+hpc:Res a owl:Class ;
+    rdfs:subClassOf hpc:Bctrld .
+
+hpc:Sbd a owl:Class ;
+    rdfs:subClassOf hpc:Bctrld .
+
+hpc:bhosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hp:Host .
+
+hpc:lshosts a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Host .
+
+hpc:lsiinstall a owl:ObjectProperty ;
+    rdfs:domain hpc:Host ;
+    rdfs:range hpc:Hosttype .

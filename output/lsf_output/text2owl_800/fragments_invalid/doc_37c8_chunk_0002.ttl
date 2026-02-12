@@ -1,0 +1,74 @@
+hpc:Tesla-12G a owl:Class .
+hpc:Teslak80 a owl:Class .
+hpc:Teslap100 a owl:Class .
+hpc:Nvidiamig a owl:Class .
+hpc:Exclusiveprocess a owl:Class .
+
+hpc:hasmemory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpu .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:numofgpus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:gpumodel a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range hpc:Gpu .
+
+hpc:gpumemory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Gpu .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:numofgpusperhost a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:gtile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:glink a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:boolean .
+
+hpc:miginstancesize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:computeinstancesize a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:mode a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range hpc:Gpumode .
+
+hpc:Exclusiveprocess a owl:Class .
+hpc:exclusiveprocessmode a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range hpc:Exclusiveprocess .
+
+hpc:numaaffinity a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:numacore a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:numatask a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:numaptile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:numaaffinitycore a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range hpc:Core .
+
+hpc:Job a owl:Class .
+hpc:Gpu a owl:Class .
+hpc:Gpumode a owl:Class

@@ -1,0 +1,33 @@
+hpc:Jobslot a owl:Class .
+hpc:Job a owl:Class .
+hpc:User a owl:Class .
+hpc:Usergroup a owl:Class .
+hpc:maxjlpcupus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cpuhost .
+    rdfs:range xsd:decimal .
+
+hpc:maxjobslotsperuser a owl:DatatypeProperty ;
+    rdfs:domain hpc:User .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maxpendingjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:User .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:maxpendingjobslots a owl:ObjectProperty ;
+    rdfs:domain hpc:User .
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:enforceoneuglimits a owl:ObjectProperty ;
+    rdfs:domain hpc:Cpuhost .
+    rdfs:range xsd:boolean .
+
+hpc:priority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:integer .
+
+hpc:User rdfs:subClassOf owl:Class .
+hpc:Cpuhost rdfs:subClassOf owl:Class .
+hpc:Jobslot rdfs:subClassOf hpc:Job .
+hpc:Job rdfs:subClassOf owl:Class .
+hpc:Usergroup rdfs:subClassOf owl:Class .

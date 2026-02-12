@@ -1,0 +1,50 @@
+hpc:Cu a owl:Class .
+hpc:cuStr a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cu ;
+    rdfs:range xsd:string .
+
+hpc:allocFlags a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cu ;
+    rdfs:range xsd:string .
+
+hpc:smt a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cu ;
+    rdfs:range xsd:integer .
+
+hpc:OtherBsubOptions a owl:Class .
+
+hpc:jsrun a owl:ObjectProperty ;
+    rdfs:domain hpc:Cu ;
+    rdfs:range hpc:OutFile .
+
+hpc:jsm a owl:ObjectProperty ;
+    rdfs:domain hpc:Cu ;
+    rdfs:range xsd:string .
+
+hpc:enablesJsm a owl:ObjectProperty ;
+    rdfs:domain hpc:Jsm ;
+    rdfs:range xsd:string .
+
+hpc:stepCgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Cu ;
+    rdfs:range xsd:string .
+
+hpc:createsCgroup a owl:ObjectProperty ;
+    rdfs:domain hpc:StepCgroup ;
+    rdfs:range xsd:string .
+
+hpc:coreIsolation a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cu ;
+    rdfs:range xsd:integer .
+
+hpc:lnSlots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cu ;
+    rdfs:range xsd:integer .
+
+hpc:lnMem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cu ;
+    rdfs:range xsd:string .
+
+hpc:nnodes a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cu ;
+    rdfs:range xsd:integer .

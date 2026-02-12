@@ -1,0 +1,26 @@
+hpc:Federationparameters a owl:Class .
+hpc:feddisplay a owl:ObjectProperty .
+
+hpc:Slurmconf a owl:Class .
+hpc:squeue a owl:ObjectProperty .
+hpc:sibling a owl:ObjectProperty .
+hpc:-local a owl:ObjectProperty .
+hpc:-clusters a owl:ObjectProperty .
+hpc:-sibling a owl:ObjectProperty .
+hpc:siblingsactiveraw a owl:DatatypeProperty .
+hpc:siblingsviable a owl:DatatypeProperty .
+hpc:siblingsviableraw a owl:DatatypeProperty .
+hpc:cluster a owl:DatatypeProperty .
+
+hpc:Slurmconf rdfs:subClassOf hpc:Federationparameters .
+
+hpc:Feddisplay rdfs:domain hpc:Federationparameters ;
+    rdfs:range xsd:boolean .
+
+hpc:Squeue rdfs:domain hpc:Slurmconf ;
+    rdfs:range rdf:Resource .
+
+hpc:-local rdfs:domain hpc:Squeue ;
+    rdfs:range xsd:boolean .
+
+hpc:-clusters rdfs:domain h

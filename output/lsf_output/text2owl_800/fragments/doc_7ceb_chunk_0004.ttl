@@ -1,0 +1,13 @@
+hpc:Job a owl:Class .
+hpc:hasjobfile a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Jobfile .
+hpc:Jobfile a owl:Class .
+hpc:isinteractivebatchjob a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Interactivebatchjob .
+hpc:Interactivebatchjob a owl:Class .
+hpc:Jobfile rdfs:subClassOf hpc:Jobfile ;
+    rdfs:comment "On UNIX, the job file is a Bourne shell script that is run at execution time. On Windows, the job file is a batch file that is processed at execution time." .
+hpc:Interactivebatchjob rdfs:subClassOf hpc:Job ;
+    rdfs:comment "An interactive batch job is a batch job that allows you to interact with the application and still take advantage of LSF scheduling policies and fault tolerance. All input and output are through the terminal that you used to type the job submission command." .

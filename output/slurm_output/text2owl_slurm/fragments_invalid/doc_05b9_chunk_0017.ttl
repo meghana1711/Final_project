@@ -1,0 +1,16 @@
+hpc:Tresv0043OpenapiTresResp a owl:Class;
+    rdfs:subClassOf [ rdf:type owl:Class ] .
+
+hpc:Tresv0043OpenapiUsersResp a owl:Class;
+    rdfs:subClassOf [ rdf:type owl:Class ] .
+
+hpc:slurmdbv0043getuser a owl:ObjectProperty;
+    rdfs:domain [ rdf:type hpc:Tresv0043openapitresresp ] ;
+    rdfs:range [ rdf:type hpc:Tresv0043openapiusersresp ] .
+
+hpc:slurmdbv0043getusers a owl:ObjectProperty;
+    rdfs:domain [ rdf:type hpc:Tresv0043openapitresresp ] ;
+    rdfs:range [ rdf:type hpc:Tresv0043openapiusersresp ] .
+
+hpc:slurmdbv0043getwckey a owl:ObjectProperty;
+    rdfs:domain [ rdf:type hpc:Tresv0

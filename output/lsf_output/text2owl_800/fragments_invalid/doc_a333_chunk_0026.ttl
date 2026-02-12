@@ -1,0 +1,27 @@
+hpc:Lsfdirectory a owl:Class .
+hpc:Lsfsimulatorcommand a owl:Class .
+hpc:Workloadsnapshot a owl:Class .
+hpc:workloadsnapshotimport a owl:ObjectProperty .
+hpc:Workloadsnapshotimportdomain rdfs:domain hpc:Workloadsnapshot .
+hpc:Workloadsnapshotimportrange rdfs:range xsd:string .
+hpc:workloadsnapshotname a owl:ObjectProperty .
+hpc:Workloadsnapshotnamedomain rdfs:domain hpc:Workloadsnapshot .
+hpc:Workloadsnapshotnamerange rdfs:range xsd:string .
+hpc:workloadsnapshotlogdir a owl:DatatypeProperty .
+hpc:Workloadsnapshotlogdirdomain rdfs:domain hpc:Workloadsnapshot .
+hpc:Workloadsnapshotlogdirrange rdfs:range xsd:string .
+hpc:Workloadselectionformodification a owl:Class .
+hpc:workloadmodificationfilters a owl:ObjectProperty .
+hpc:Workloadmodificationfiltersdomain rdfs:domain hpc:Workloadselectionformodification .
+hpc:Workloadmodificationfiltersrange rdfs:range xsd:string .
+hpc:modifyoptions a owl:ObjectProperty .
+hpc:Modifyoptionsdomain rdfs:domain hpc:Workloadselectionformodification .
+hpc:Modifyoptionsrange rdfs:range xsd:boolean .
+hpc:Workloadsnapshotmodificationscript a owl:Class .
+hpc:Workloadsnapshotmodificationplugin a owl:Class .
+hpc:Workloadsnapshot a owl:subClassOf [ a owl:Class ;
+                                         rdfs:subClassOf owl:NamedIndividual ] .
+hpc:Workloadsnapshotmodificationscript a owl:subClassOf [ a owl:Class ;
+                                                            rdfs:subClassOf owl:NamedIndividual ] .
+hpc:Workloadsnapshotmodificationplugin a owl:subClassOf [ a owl:Class ;
+                                                             rdfs:subClassOf owl:NamedIndividual ] .

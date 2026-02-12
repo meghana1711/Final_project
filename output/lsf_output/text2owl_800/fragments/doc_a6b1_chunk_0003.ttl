@@ -1,0 +1,47 @@
+hpc:Badminsecurityview a owl:Class .
+hpc:detaileddescription a owl:ObjectProperty .
+hpc:changestomake a owl:DatatypeProperty .
+
+hpc:Spectrumlsfconfiguration a owl:Class .
+hpc:errorlogging a owl:ObjectProperty .
+hpc:eventlogging a owl:ObjectProperty .
+hpc:advancedfeatures a owl:ObjectProperty .
+
+hpc:Lsferrorlog a owl:Class .
+hpc:systemdirectories a owl:ObjectProperty .
+hpc:logfiles a owl:ObjectProperty .
+hpc:temporaryworkfiles a owl:ObjectProperty .
+hpc:transactionfiles a owl:ObjectProperty .
+hpc:jobspoolingfiles a owl:ObjectProperty .
+hpc:errorlogmanagement a owl:ObjectProperty .
+hpc:duplicatelogging a owl:ObjectProperty .
+hpc:daemonmessageloglevels a owl:ObjectProperty .
+hpc:daemontiminglevels a owl:ObjectProperty .
+hpc:lsfjobterminationreasonlogging a owl:ObjectProperty .
+hpc:Lsfjobexitcodes a owl:Class .
+
+hpc:Eventgeneration a owl:Class .
+hpc:eventdetection a owl:ObjectProperty .
+hpc:snmptraps a owl:ObjectProperty .
+hpc:eventprogram a owl:ObjectProperty .
+hpc:eventnumber a owl:DatatypeProperty .
+
+hpc:Batchcommandmessages a owl:Class .
+hpc:hostmodels a owl:ObjectProperty .
+hpc:hosttypes a owl:ObjectProperty .
+
+hpc:Sharedfileaccess a owl:Class .
+hpc:sharedconfigurationfilecontent a owl:ObjectProperty .
+hpc:includedirective a owl:ObjectProperty .
+
+hpc:Authenticationauthorization a owl:Class .
+hpc:jobexceptions a owl:ObjectProperty .
+
+hpc:Cpufactors a owl:Class .
+hpc:cleanperiodfordonejobs a owl:DatatypeProperty .
+
+hpc:Hostbasedresources a owl:Class .
+hpc:portablehardwarelocality a owl:ObjectProperty .
+hpc:Lsfgpuusage a owl:Class .
+hpc:nvidiagpu a owl:ObjectProperty .
+hpc:intelxeonphi a owl:ObjectProperty .

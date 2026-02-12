@@ -1,0 +1,59 @@
+hpc:Bsuboption a owl:Class .
+hpc:Joboption a owl:Class .
+hpc:Preexecoption a owl:Class .
+hpc:Postexecoption a owl:Class .
+hpc:Applicationleveloption a owl:Class .
+hpc:Queueleveloption a owl:Class .
+hpc:Cmdoption a owl:Class .
+hpc:Cwdoption a owl:Class .
+hpc:Outputfileoption a owl:Class .
+hpc:Errorfileoption a owl:Class .
+hpc:Resourcelimitoption a owl:Class .
+hpc:Runlimitoption a owl:Class .
+hpc:Rerunnablejoboption a owl:Class .
+hpc:Resourcerequirementoption a owl:Class .
+hpc:Cpulimitoption a owl:Class .
+hpc:Memorylimitoption a owl:Class .
+hpc:Lsbmodalljobs a owl:Class .
+
+# Object Properties
+hpc:appliesto a owl:ObjectProperty .
+hpc:hasdelimiter a owl:ObjectProperty .
+hpc:hasvalue a owl:ObjectProperty .
+hpc:hasmodification a owl:ObjectProperty .
+hpc:haslimit a owl:ObjectProperty .
+hpc:hasrunlimit a owl:ObjectProperty .
+hpc:isrerunnable a owl:ObjectProperty .
+hpc:requiresresource a owl:ObjectProperty .
+hpc:hasstandardoutputfile a owl:ObjectProperty .
+hpc:hasstandarderrorfile a owl:ObjectProperty .
+hpc:overwritesoutputfile a owl:ObjectProperty .
+hpc:overwriteserrorfile a owl:ObjectProperty .
+
+# Datatype Properties
+hpc:hasdelimitervalue a owl:DatatypeProperty .
+hpc:hascmd a owl:DatatypeProperty .
+hpc:hascwd a owl:DatatypeProperty .
+hpc:hasoutputfile a owl:DatatypeProperty .
+hpc:haserrorfile a owl:DatatypeProperty .
+hpc:haslimitvalue a owl:DatatypeProperty .
+hpc:hasrunlimitvalue a owl:DatatypeProperty .
+hpc:isrerunnablevalue a owl:DatatypeProperty .
+hpc:requiresresourcevalue a owl:DatatypeProperty .
+hpc:hasstandardoutputfilename a owl:DatatypeProperty .
+hpc:hasstandarderrorfilename a owl:DatatypeProperty .
+hpc:overwritesoutputfilename a owl:DatatypeProperty .
+hpc:overwriteserrorfilename a owl:DatatypeProperty .
+
+# Domain and Range
+hpc:Appliesto rdfs:domain hpc:Bsuboption ;
+    rdfs:range hpc:Joboption .
+hpc:Hasdelimiter rdfs:domain hpc:Bsuboption ;
+    rdfs:range xsd:string .
+hpc:Hasvalue rdfs:domain hpc:Joboption ;
+    rdfs:range hpc:Cmdoption .
+hpc:Hascmd rdfs:domain hpc:Cmdoption ;
+    rdfs:range xsd:string .
+hpc:Hascwd rdfs:domain hpc:Cwdoption ;
+    rdfs:range xsd:string .
+hpc:hasOutputFile r

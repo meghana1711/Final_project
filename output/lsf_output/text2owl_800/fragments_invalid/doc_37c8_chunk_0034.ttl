@@ -1,0 +1,52 @@
+hpc:Execdriver a owl:Class .
+hpc:Execdriver rdfs:subClassOf owl:Class .
+hpc:ExecDriver rdfs:comment "Represents the executable driver for Podman jobs." .
+
+hpc:hasfileperms a owl:ObjectProperty .
+hpc:Hasfileperms rdfs:domain hpc:Execdriver .
+hpc:Hasfileperms rdfs:range xsd:integer .
+hpc:hasFilePerms rdfs:comment "Indicates the file permissions of the starter and controller scripts for Podman jobs." .
+
+hpc:Starter a owl:Class .
+hpc:Starter rdfs:subClassOf hpc:Execdriver .
+hpc:starter rdfs:comment "Represents the starter script for Podman jobs." .
+
+hpc:Controller a owl:Class .
+hpc:Controller rdfs:subClassOf hpc:Execdriver .
+hpc:controller rdfs:comment "Represents the controller script for Podman jobs." .
+
+hpc:Serverdir a owl:Class .
+hpc:Serverdir rdfs:subClassOf owl:Class .
+hpc:serverDir rdfs:comment "Represents the directory containing the server files." .
+
+hpc:location a owl:DatatypeProperty .
+hpc:Location rdfs:domain hpc:Serverdir .
+hpc:Location rdfs:range xsd:string .
+hpc:location rdfs:comment "Indicates the location of the LSF_SERVERDIR directory." .
+
+hpc:hasfilepermsfor a owl:ObjectProperty .
+hpc:Hasfilepermsfor rdfs:domain hpc:Execdriver .
+hpc:Hasfilepermsfor rdfs:range xsd:integer .
+hpc:hasFilePermsFor rdfs:comment "Indicates the file permissions of the starter and controller scripts for Podman jobs, as specified in the lsb.applications or lsb.queues files." .
+
+hpc:Podmanappprofile a owl:Class .
+hpc:Podmanappprofile rdfs:subClassOf owl:Class .
+hpc:PodmanAppProfile rdfs:comment "Represents a Podman application profile." .
+
+hpc:container a owl:DatatypeProperty .
+hpc:Container rdfs:domain hpc:Podmanappprofile .
+hpc:Container rdfs:range xsd:string .
+hpc:CONTAINER rdfs:comment "Indicates the container for the Podman application profile." .
+
+hpc:Podmanqueue a owl:Class .
+hpc:Podmanqueue rdfs:subClassOf owl:Class .
+hpc:PodmanQueue rdfs:comment "Represents a Podman queue." .
+
+hpc:container a owl:DatatypeProperty .
+hpc:Container rdfs:domain hpc:Podmanqueue .
+hpc:Container rdfs:range xsd:string .
+hpc:CONTAINER rdfs:comment "Indicates the container for the Podman queue." .
+
+hpc:Jobsubmission a owl:Class .
+hpc:Jobsubmission rdfs:subClassOf owl:Class .
+hpc:jobSubmission rdfs:comment "Represents a

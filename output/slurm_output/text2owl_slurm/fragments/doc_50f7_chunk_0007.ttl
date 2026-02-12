@@ -1,0 +1,73 @@
+hpc:nodeaddr a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:nodehostname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:version a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:os a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:realmemory a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:integer .
+
+hpc:allocmem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:integer .
+
+hpc:sockets a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:integer .
+
+hpc:boards a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:integer .
+
+hpc:state a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:threadspercore a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:integer .
+
+hpc:tmpdisk a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:integer .
+
+hpc:weight a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:integer .
+
+hpc:owner a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:mcsLabel a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:string .
+
+hpc:boottime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:dateTime .
+
+hpc:slurmdstarttime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:dateTime .
+
+hpc:currentwatts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:integer .
+
+hpc:avewatts a owl:DatatypeProperty ;
+    rdfs:domain hpc:Node ;
+    rdfs:range xsd:integer .
+
+hpc:Node a owl:Class .

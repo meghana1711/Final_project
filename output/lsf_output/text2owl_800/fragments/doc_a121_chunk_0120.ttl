@@ -1,0 +1,36 @@
+hpc:Host           a owl:Class .
+hpc:Attribute      a owl:Class .
+hpc:Hostattribute  a owl:Class ;
+                    rdfs:subClassOf hpc:Attribute .
+
+hpc:hashost        a owl:ObjectProperty ;
+                    rdfs:domain hpc:Host ;
+                    rdfs:range hpc:Hostattribute .
+
+hpc:hasattribute   a owl:ObjectProperty ;
+                    rdfs:domain hpc:Hostattribute ;
+                    rdfs:range xsd:string .
+
+# Command Options
+
+hpc:Showcommand    a owl:Class .
+hpc:wideformat     a owl:ObjectProperty ;
+                    rdfs:domain hpc:Showcommand .
+hpc:hostname       a owl:ObjectProperty ;
+                    rdfs:domain hpc:Showcommand .
+hpc:username       a owl:ObjectProperty ;
+                    rdfs:domain hpc:Showcommand .
+hpc:attributename  a owl:ObjectProperty ;
+                    rdfs:domain hpc:Showcommand .
+hpc:specifiedhosts a owl:ObjectProperty ;
+                    rdfs:domain hpc:Showcommand .
+
+hpc:Jobaffinity    a owl:Class .
+hpc:attributeaffinity a owl:ObjectProperty ;
+                    rdfs:domain hpc:Jobaffinity .
+hpc:negation      a owl:ObjectProperty ;
+                    rdfs:domain hpc:Attributeaffinity .
+hpc:value         a owl:ObjectProperty ;
+                    rdfs:domain hpc:Attributeaffinity .
+hpc:attributename2 a owl:DatatypeProperty ;
+                    rdfs:domain hpc:Jobaffinity .

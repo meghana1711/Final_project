@@ -1,0 +1,28 @@
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobarrayindex a owl:ObjectProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:Indexlist a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                        owl:onProperty hpc:JobArrayIndex ;
+                        owl:allValuesFrom xsd:nonNegativeInteger ] .
+
+hpc:startindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Indexlist ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:endindex a owl:DatatypeProperty ;
+    rdfs:domain hpc:Indexlist ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:step a owl:DatatypeProperty ;
+    rdfs:domain hpc:Indexlist ;
+    rdfs:range xsd:nonNegativeInteger .
+
+hpc:jobposition a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:positiveInteger .

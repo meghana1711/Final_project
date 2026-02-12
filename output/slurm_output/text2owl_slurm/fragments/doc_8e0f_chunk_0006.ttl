@@ -1,0 +1,39 @@
+hpc:State a owl:Class .
+hpc:State rdfs:subClassOf owl:Thing .
+hpc:State rdfs:subClassOf rdf:Property .
+hpc:State rdfs:comment "Default=YES" .
+
+hpc:Partition a owl:Class .
+hpc:Partition rdfs:subClassOf owl:Thing .
+
+hpc:partitionname a owl:DatatypeProperty .
+hpc:Partitionname rdfs:domain hpc:Partition .
+hpc:Partitionname rdfs:range xsd:string .
+
+hpc:nodes a owl:ObjectProperty .
+hpc:Nodes rdfs:domain hpc:Partition .
+hpc:Nodes rdfs:range xsd:string .
+
+hpc:allowgroups a owl:ObjectProperty .
+hpc:Allowgroups rdfs:domain hpc:Partition .
+hpc:Allowgroups rdfs:range xsd:string .
+
+hpc:maxtime a owl:DatatypeProperty .
+hpc:Maxtime rdfs:domain hpc:Partition .
+hpc:Maxtime rdfs:range xsd:nonNegativeInteger .
+
+hpc:maxnodes a owl:DatatypeProperty .
+hpc:Maxnodes rdfs:domain hpc:Partition .
+hpc:Maxnodes rdfs:range xsd:nonNegativeInteger .
+
+hpc:PartitionName_batch a owl:NamedIndividual .
+hpc:PartitionnameBatch hpc:partitionname "batch" .
+
+hpc:PartitionName_Nodes_0031-0040 a owl:NamedIndividual .
+hpc:PartitionName_Nodes_0031-0040 hpc:Nodes "lx[0031-0040]" .
+hpc:PartitionName_Nodes_0031-0040 hpc:AllowGroups "students" .
+
+hpc:PartitionName_DEFAULT a owl:NamedIndividual .
+hpc:PartitionnameDefault hpc:partitionname "DEFAULT" .
+hpc:PartitionnameDefault hpc:maxtime "UNLIMITED" .
+hpc:PartitionnameDefault hpc:maxnodes "4096" .

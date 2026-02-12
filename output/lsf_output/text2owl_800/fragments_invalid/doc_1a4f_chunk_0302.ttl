@@ -1,0 +1,40 @@
+hpc:Timeexpression a owl:Class .
+hpc:Hastimewindow hpc:objectproperty .
+hpc:Timewindow a owl:Class .
+hpc:Timewindow rdfs:domain hpc:Timeexpression .
+hpc:Timewindow rdfs:range xsd:time .
+hpc:Timewindow rdfs:subClassOf owl:Restriction .
+hpc:TimeWindow rdfs:subPropertyOf hpc:hasTimeWindow .
+hpc:TimeWindow rdfs:hasValue rdf:first xsd:time .
+hpc:TimeWindow rdfs:hasValue rdf:second xsd:integer .
+hpc:TimeWindow rdfs:hasValue rdf:minute xsd:integer .
+hpc:TimeWindow rdfs:hasValue rdf:hour xsd:integer .
+hpc:TimeWindow rdfs:hasValue rdf:day xsd:day .
+hpc:TimeWindow rdfs:hasValue rdf:month xsd:gYearMonth .
+hpc:TimeWindow rdfs:hasValue rdf:year xsd:gYear .
+hpc:TimeWindow rdfs:hasValue rdf:timezone xsd:string .
+hpc:TimeWindow rdfs:minValue xsd:time .
+hpc:TimeWindow rdfs:maxValue xsd:time .
+hpc:TimeWindow1 rdf:type hpc:TimeWindow .
+hpc:TimeWindow2 rdf:type hpc:TimeWindow .
+hpc:TimeWindow1 rdf:value "5:18:30"^^xsd:time ;
+                        rdf:value "1:8:30"^^xsd:time ;
+                        rdf:value "20:00"^^xsd:time ;
+                        rdf:value "8:30"^^xsd:time .
+hpc:TimeExpression1 rdf:type hpc:TimeExpression .
+hpc:Timeexpression1 hpc:hastimewindow hpc:TimeWindow1 .
+hpc:TimeExpression2 rdf:type hpc:TimeExpression .
+hpc:Timeexpression2 hpc:hastimewindow hpc:TimeWindow2 .
+hpc:TimeExpression3 rdf:type hpc:TimeExpression .
+hpc:Timeexpression3 hpc:hastimewindow (hpc:TimeWindow4 hpc:hasValue "5:18:30"^^xsd:time ;
+                                                 hpc:hasValue "1:8:30"^^xsd:time) .
+hpc:TimeExpression4 rdf:type hpc:TimeExpression .
+hpc:Timeexpression4 hpc:hastimewindow (hpc:TimeWindow5 hpc:hasValue "20:00"^^xsd:time ;
+                                                 hpc:hasValue "8:30"^^xsd:time) .
+hpc:TimeExpression5 rdf:type hpc:TimeExpression .
+hpc:Timeexpression5 hpc:hastimewindow hpc:TimeWindow6 .
+hpc:TimeWindow6 rdf:type hpc:TimeWindow .
+hpc:TimeWindow6 rdf:value "20:00"^^xsd:time ;
+                        rdf:value "8:30"^^xsd:time .
+hpc:TimeExpression6 rdf:type hpc:TimeExpression .
+hpc:Timeexpression6 hpc:hastimewindow hpc:Time

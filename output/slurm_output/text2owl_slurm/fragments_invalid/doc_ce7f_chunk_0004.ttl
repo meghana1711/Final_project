@@ -1,0 +1,24 @@
+hpc:Slurmbuildrequirement a owl:Class .
+hpc:BuildEssential a hpc:SlurmBuildRequirement ;
+    rdfs:label "build-essential" ;
+    rdfs:comment "Basic Debian package build requirements." .
+
+hpc:Fakeroot a hpc:SlurmBuildRequirement ;
+    rdfs:label "fakeroot" ;
+    rdfs:comment "Used for building packages." .
+
+hpc:Devscripts a hpc:SlurmBuildRequirement ;
+    rdfs:label "devscripts" ;
+    rdfs:comment "Used for building packages." .
+
+hpc:Equivs a hpc:SlurmBuildRequirement ;
+    rdfs:label "equivs" ;
+    rdfs:comment "Used for building packages." .
+
+hpc:tarballunpacking a owl:ObjectProperty ;
+    rdfs:domain hpc:Slurm ;
+    rdfs:range xsd:string ;
+    rdfs:label "tarballUnpacking" ;
+    rdfs:comment "Unpacking the distributed tarball." .
+
+hpc:Slurmsourcedirectory a o

@@ -1,0 +1,38 @@
+hpc:User a owl:Class .
+hpc:Reservation a owl:Class .
+hpc:Job a owl:Class .
+hpc:Jobarray a owl:Class .
+hpc:Accountingstatistics a owl:Class .
+hpc:Submissioncluster a owl:Class .
+hpc:Executioncluster a owl:Class .
+
+hpc:hasUser rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:User .
+
+hpc:hasID rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Reservation ;
+    rdfs:range xsd:integer .
+
+hpc:isLocal rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Executioncluster .
+
+hpc:isSubmission rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Submissioncluster .
+
+hpc:JobArrayMember rdf:type owl:ObjectProperty ;
+    rdfs:domain hpc:Jobarray ;
+    rdfs:range hpc:Job .
+
+hpc:hasAlias rdf:type owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:Jobarray rdfs:subClassOf hpc:Job .
+hpc:Localjob a owl:Class ;
+    rdfs:subClassOf hpc:Job .
+
+hpc:Remotereservation a owl:Class ;
+    rdfs:subClassOf hpc:Reservation .

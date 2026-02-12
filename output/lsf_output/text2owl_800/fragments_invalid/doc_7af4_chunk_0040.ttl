@@ -1,0 +1,61 @@
+hpc:loggedtime a owl:DatatypeProperty .
+hpc:Loggedtime rdfs:domain hpc:Reservation .
+hpc:Loggedtime rdfs:range xsd:integer .
+
+hpc:reservationcreationtime a owl:DatatypeProperty .
+hpc:Reservationcreationtime rdfs:domain hpc:Reservation .
+hpc:Reservationcreationtime rdfs:range xsd:integer .
+
+hpc:reservationtype a owl:ObjectProperty .
+hpc:Reservationtype rdfs:domain hpc:Reservation .
+hpc:Reservationtype rdfs:range hpc:Reservationtypeenum .
+
+hpc:Reservationtypeenum a owl:Class .
+hpc:Reservationtypeenum rdfs:subClassOf xsd:integer .
+hpc:RSV_OPTION_USER a hpc:ReservationTypeEnum .
+hpc:RSV_OPTION_GROUP a hpc:ReservationTypeEnum .
+hpc:RSV_OPTION_SYSTEM a hpc:ReservationTypeEnum .
+hpc:RSV_OPTION_RECUR a hpc:ReservationTypeEnum .
+
+hpc:creatorid a owl:DatatypeProperty .
+hpc:Creatorid rdfs:domain hpc:Reservation .
+hpc:Creatorid rdfs:range xsd:integer .
+
+hpc:reservationid a owl:DatatypeProperty .
+hpc:Reservationid rdfs:domain hpc:Reservation .
+hpc:Reservationid rdfs:range xsd:string .
+
+hpc:username a owl:DatatypeProperty .
+hpc:Username rdfs:domain hpc:Reservation .
+hpc:Username rdfs:range xsd:string .
+
+hpc:timewindow a owl:ObjectProperty .
+hpc:Timewindow rdfs:domain hpc:Reservation .
+hpc:Timewindow rdfs:range xsd:string .
+
+hpc:creatorname a owl:DatatypeProperty .
+hpc:Creatorname rdfs:domain hpc:Reservation .
+hpc:Creatorname rdfs:range xsd:string .
+
+hpc:duration a owl:DatatypeProperty .
+hpc:Duration rdfs:domain hpc:Reservation .
+hpc:Duration rdfs:range xsd:duration .
+
+hpc:numberofresources a owl:DatatypeProperty .
+hpc:Numberofresources rdfs:domain hpc:Reservation .
+hpc:Numberofresources rdfs:range xsd:integer .
+
+hpc:hostname a owl:DatatypeProperty .
+hpc:Hostname rdfs:domain hpc:Reservation .
+hpc:Hostname rdfs:range xsd:string .
+
+hpc:numberofcpus a owl:DatatypeProperty .
+hpc:Numberofcpus rdfs:domain hpc:Reservation .
+hpc:Numberofcpus rdfs:range xsd:integer .
+
+hpc:jobResize a owl:ObjectProperty .
+hpc:JobResize rdfs:domain hpc:Reservation .
+hpc:JobResize rdfs:range hpc:JobResizeEvent .
+
+hpc:JobResizeEvent a owl:Class .
+hpc:

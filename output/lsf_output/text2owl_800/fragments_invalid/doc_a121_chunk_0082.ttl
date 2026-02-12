@@ -1,0 +1,34 @@
+hpc:maxuserpriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The maximum priority that a user can assign to a job." .
+
+hpc:jobpriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The priority of a job." .
+
+hpc:submitjob a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "The action of submitting a job." .
+
+hpc:modifyjob a owl:ObjectProperty ;
+    rdfs:domain hpc:User ;
+    rdfs:range hpc:Job ;
+    rdfs:comment "The action of modifying a job." .
+
+hpc:Maxuserpriorityvalue a owl:Class ;
+    rdfs:subClassOf xsd:integer .
+
+hpc:Jobpriorityvalue a owl:Class ;
+    rdfs:subClassOf xsd:integer ;
+    rdfs:minInclusive 1 ;
+    rdfs:maxInclusive (MAX_USER_PRIORITY as xsd:integer) ;
+    rdfs:comment "Valid values for job priority." .
+
+hpc:Queue a owl:Class .
+
+hpc:Job a owl:Class .
+
+hpc:User a owl:Class .

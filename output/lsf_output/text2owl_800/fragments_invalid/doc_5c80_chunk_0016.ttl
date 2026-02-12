@@ -1,0 +1,33 @@
+hpc:Usersuspendedjob a owl:Class .
+hpc:Ssuspjob a owl:Class ;
+    rdfs:subClassOf hpc:Usersuspendedjob .
+
+hpc:issuspendedby a owl:ObjectProperty ;
+    rdfs:domain hpc:Usersuspendedjob ;
+    rdfs:range hpc:Job .
+
+hpc:hasschedulingthreshold a owl:ObjectProperty ;
+    rdfs:domain hpc:Ssuspjob .
+
+hpc:Preemptivequeue a owl:Class .
+
+hpc:isinpreemptivequeue a owl:ObjectProperty ;
+    rdfs:domain hpc:Job .
+
+hpc:signaltype a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+    rdfs:range xsd:string .
+
+hpc:LSB_SIGSTOP a xsd:string .
+
+hpc:ENABLE_USER_RESUME a xsd:boolean .
+
+hpc:bresume a xsd:string .
+
+hpc:bstop a xsd:string ;
+    hpc:signalType xsd:SIGTSTP .
+
+hpc:bstopSequential a xsd:string ;
+    hpc:signalType xsd:SIGSTOP .
+
+hpc:bbot a xsd:string .

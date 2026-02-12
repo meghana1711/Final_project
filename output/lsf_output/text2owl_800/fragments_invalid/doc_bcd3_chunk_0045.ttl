@@ -1,0 +1,18 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:Serviceclass a owl:Class .
+hpc:haspriority a owl:ObjectProperty .
+hpc:hasusergroup a owl:ObjectProperty .
+hpc:hasgoal a owl:ObjectProperty .
+hpc:activewindow a owl:DatatypeProperty .
+hpc:status a owl:DatatypeProperty .
+hpc:slathroughput a owl:DatatypeProperty .
+hpc:optimumnumberofrunningjobs a owl:DatatypeProperty .
+hpc:Njobspendrunssuspususffinish a owl:Class .
+
+hpc:Duncan a hpc:ServiceClass ;
+    hpc:hasPriority 23 ;
+    hpc:hasUserGroup "user1" "user

@@ -1,0 +1,64 @@
+hpc:Lsfserver a owl:Class .
+hpc:RootUser an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfserver ;
+    rdfs:range xsd:string .
+
+hpc:PrimaryAdmin an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfserver ;
+    rdfs:range xsd:string .
+
+hpc:Lsfcommand a owl:Class .
+hpc:reconfig an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcommand ;
+    rdfs:range xsd:string .
+
+hpc:lsbEventsFile an owl:DatatypeProperty ;
+    rdfs:domain hpc:Lsfcommand ;
+    rdfs:range xsd:string .
+
+hpc:checkStatus an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfcommand ;
+    rdfs:range xsd:string .
+
+hpc:Lsfadmincommand a owl:Class .
+hpc:adminCommand an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadmincommand ;
+    rdfs:range xsd:string .
+
+hpc:mbdrestart an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfadmincommand ;
+    rdfs:range xsd:string .
+
+hpc:LSFConfigurationFile an owl:Class .
+
+hpc:Lsfconfiguration a owl:Class ;
+    rdfs:subClassOf hpc:Lsfconfigurationfile .
+
+hpc:Lsfcluster a owl:Class .
+hpc:Lsfhost a owl:Class ;
+    rdfs:subClassOf hpc:Lsfcluster .
+
+hpc:Lsfdaemon a owl:Class .
+
+hpc:Limdaemon a owl:Class ;
+    rdfs:subClassOf hpc:Lsfdaemon .
+
+hpc:Resdaemon a owl:Class ;
+    rdfs:subClassOf hpc:Lsfdaemon .
+
+hpc:Batchworkloadsystem a owl:Class ;
+hpc:badminCommand an owl:ObjectProperty ;
+    rdfs:domain hpc:Batchworkloadsystem ;
+    rdfs:range xsd:string .
+
+hpc:Lsfenvironment a owl:Class .
+hpc:lsadminCommand an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfenvironment ;
+    rdfs:range xsd:string .
+
+hpc:Lsfloadlevel a owl:Class .
+hpc:lsidCommand an owl:ObjectProperty ;
+    rdfs:domain hpc:Lsfenvironment ;
+    rdfs:range xsd:string .
+
+hpc:Lsfstatus a owl:Class .

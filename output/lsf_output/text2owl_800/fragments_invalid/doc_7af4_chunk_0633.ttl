@@ -1,0 +1,39 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix owl: <http://www.w3.org/2002/07/owl#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+hpc:LsfHostCacheDisable a owl:Class .
+hpc:lsfHostCacheNttl a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfHostCacheDisable ;
+    rdfs:range xsd:integer .
+hpc:lsfHostCachePttl a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfHostCacheNttl ;
+    rdfs:range xsd:integer .
+hpc:LsfHostMaxGpu a owl:Class .
+hpc:LsfHpcExtensions a owl:Class .
+hpc:lsfHpcPjlLoadenvTimeout a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfHpcExtensions ;
+    rdfs:range xsd:integer .
+hpc:LsfHwlocDynamic a owl:Class .
+hpc:lsfIdPort a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfHwlocDynamic .
+hpc:lsfImageInfoExpireInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfImageInfoPublishInterval ;
+    rdfs:range xsd:integer .
+hpc:lsfImageInfoPublishInterval a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfImageInfoExpireInterval ;
+    rdfs:range xsd:integer .
+hpc:LsfIncludeClustername a owl:Class .
+hpc:LsfIncludedir a owl:Class .
+hpc:LsfIndep a owl:Class .
+hpc:LsfIntelligentCpuBind a owl:Class .
+hpc:LsfInteractiveStderr a owl:Class .
+hpc:lsfLimMulticoreAdjust a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfLimMulticoreAdjust ;
+    rdfs:range xsd:integer .
+hpc:lsfJobDaemonNice a owl:DatatypeProperty ;
+    rdfs:domain hpc:LsfIntelligentCpuBind .
+hpc:LsfLdSecurity a owl:Class .
+hpc:LsfLibdir a owl:Class .
+hpc:LSF_LIC_SCHED_CLUSTER_AL

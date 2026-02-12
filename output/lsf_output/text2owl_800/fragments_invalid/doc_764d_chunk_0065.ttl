@@ -1,0 +1,44 @@
+hpc:hastotalslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:integer .
+hpc:getqueue a owl:ObjectProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range hpc:Queue .
+hpc:hasqueuepriority a owl:DatatypeProperty ;
+    rdfs:domain hpc:Queue ;
+    rdfs:range xsd:integer .
+hpc:hasrunningslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:integer .
+hpc:haspendingslots a owl:DatatypeProperty ;
+    rdfs:domain hpc:Cluster ;
+    rdfs:range xsd:integer .
+hpc:Highpriorityqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue .
+hpc:Lowpriorityqueue a owl:Class ;
+    rdfs:subClassOf hpc:Queue .
+
+hpc:Cluster2 a hpc:Cluster ;
+    hpc:hasTotalSlots "100"^^xsd:integer ;
+    hpc:Getqueue hpc:highpriorityqueue ;
+        hpc:hasRunningSlots "20"^^xsd:integer ;
+        hpc:hasPendingSlots "20"^^xsd:integer ;
+        hpc:hasQueuePriority "50"^^xsd:integer ;
+    hpc:Getqueue hpc:lowpriorityqueue ;
+        hpc:hasRunningSlots "0"^^xsd:integer ;
+        hpc:hasPendingSlots "0"^^xsd:integer ;
+        hpc:hasQueuePriority "30"^^xsd:integer .
+
+hpc:Cluster3 a hpc:Cluster ;
+    hpc:hasTotalSlots "100"^^xsd:integer ;
+    hpc:Getqueue hpc:highpriorityqueue ;
+        hpc:hasRunningSlots "30"^^xsd:integer ;
+        hpc:hasPendingSlots "15"^^xsd:integer ;
+        hpc:hasQueuePriority "50"^^xsd:integer ;
+    hpc:Getqueue hpc:lowpriorityqueue ;
+        hpc:hasRunningSlots "80"^^xsd:integer ;
+        hpc:hasPendingSlots "0"^^xsd:integer ;
+        hpc:hasQueuePriority "20"^^xsd:integer .
+
+
+This ontology fragment represents the clusters and their properties as described in the documentation. It includes classes for Cluster and Queue, as well as properties for total slots, queues, queue priority, running slots, and pending slots. The specific instances of Cluster2 and Cluster3 are also included with their properties.

@@ -1,0 +1,52 @@
+hpc:Usergroup a owl:Class .
+hpc:Job a owl:Class .
+hpc:inputfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:outputdir a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:corelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:cputimelimit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:dateTime .
+hpc:computenodemem a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:nonNegativeInteger .
+hpc:hostfile a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:queuename a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:rerun a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:hold a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:usergroup a owl:ObjectProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range hpc:Usergroup .
+hpc:notifyjobdone a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:notifyjobexit a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+hpc:mailuser a owl:DatatypeProperty ;
+    rdfs:domain hpc:Notifyjobexit ;
+    rdfs:range xsd:string .
+hpc:command a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job ;
+    rdfs:range xsd:string .
+
+hpc:UserGroup
+    a owl:Class ;
+    rdfs:subClassOf [ a owl:Class ;
+                       owl:equivalentClass [ a rdf:List ;
+                                             rdf:first hpc:user ;
+                                             rdf:rest rdf:nil ] ] .
+hpc:user a owl:DatatypeProperty ;

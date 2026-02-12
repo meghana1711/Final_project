@@ -1,0 +1,24 @@
+hpc:Interactivejob a owl:Class .
+hpc:jobid a owl:DatatypeProperty ;
+    rdfs:domain hpc:Interactivejob ;
+    rdfs:range xsd:string .
+
+hpc:jobstatus a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:Jobstatus rdfs:range xsd:string .
+
+hpc:jobname a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:Jobname rdfs:range xsd:string .
+
+hpc:Queue a owl:Class .
+hpc:Host a owl:Class .
+hpc:submittime a owl:DatatypeProperty ;
+    rdfs:domain hpc:Job .
+hpc:Submittime rdfs:range xsd:dateTime .
+
+hpc:bsub a owl:ObjectProperty ;
+    rdfs:domain hpc:Interactivejob .
+
+hpc:bjobs a owl:ObjectProperty ;
+    rdfs:domain hpc:User .

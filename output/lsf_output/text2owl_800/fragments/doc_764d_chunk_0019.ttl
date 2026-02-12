@@ -1,0 +1,34 @@
+hpc:Cluster a owl:Class .
+hpc:Eauth a owl:Class .
+hpc:Remotecluster a owl:Class .
+hpc:Authenticationmethod a owl:Class .
+
+hpc:Hasauthenticationmethod rdfs:domain hpc:Cluster .
+hpc:Hasauthenticationmethod rdfs:range hpc:Authenticationmethod .
+
+hpc:Usesauthenticationmethod rdfs:domain hpc:Remotecluster .
+hpc:Usesauthenticationmethod rdfs:range hpc:Authenticationmethod .
+
+hpc:Haspreferredauthentication rdfs:domain hpc:Remotecluster .
+hpc:Haspreferredauthentication rdfs:range xsd:string .
+
+hpc:Eauth_LSF a hpc:Eauth .
+hpc:Eauth_MultiCluster rdf:type hpc:Eauth .
+
+hpc:Kerberos a hpc:AuthenticationMethod .
+
+hpc:Cluster1 a hpc:Cluster .
+hpc:Cluster2 a hpc:Cluster .
+hpc:Cluster3 a hpc:Cluster .
+
+hpc:RemoteClusters rdf:type rdfs:Property .
+hpc:Remoteclusters rdfs:domain hpc:Cluster .
+hpc:Remoteclusters rdfs:range rdf:List .
+
+hpc:AUTH rdf:type rdfs:Property .
+hpc:Auth rdfs:domain rdf:List .
+hpc:Auth rdfs:range hpc:Eauth .
+
+hpc:RECV_FROM rdf:type rdfs:Property .
+hpc:RecvFrom rdfs:domain hpc:Cluster .
+hpc:RecvFrom rdfs:range xsd:boolean .
