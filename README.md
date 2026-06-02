@@ -104,23 +104,23 @@ python -m spacy download en_core_web_sm
 ### Technologies Used
 1. **Programming Languages:** Python
 2. **Libraries/Frameworks:**  
-    • SpaCy – sentence segmentation, lemmatization, POS tagging
-    • Scikit-learn - TF-IDF
-    • PyTorch – deep learning framework used for model execution
-    • Hugging Face Transformers – loading and running LLM models
+    - SpaCy – sentence segmentation, lemmatization, POS tagging
+    - Scikit-learn - TF-IDF
+    - PyTorch – deep learning framework used for model execution
+    - Hugging Face Transformers – loading and running LLM models
 3. **Ontology and Knowledge Representation:**
-    • RDF – representation of ontology triples
-    • RDFS – subclass and schema-level representation
-    • OWL – ontology modeling and axiom representation
-    • Turtle – serialization format for generated ontology files
+    - RDF – representation of ontology triples
+    - RDFS – subclass and schema-level representation
+    - OWL – ontology modeling and axiom representation
+    - Turtle – serialization format for generated ontology files
 4. **Databases:**  
-    • SQLite – lightweight relational database used for storing and querying processed data  
+    - SQLite – lightweight relational database used for storing and querying processed data  
 5. **Tools & Platforms:**  
-    • VScode – experimentation and analysis
-    • Git and GitHub for version control
-    • GraphDB – ontology visualization 
+    - VScode – experimentation and analysis
+    - Git and GitHub for version control
+    - GraphDB – ontology visualization 
 6. **LLM Models used:**  
-    • mistralai/Mistral-7B-Instruct-v0.3  
+    - mistralai/Mistral-7B-Instruct-v0.3  
 
 ## Evaluation
 The generated ontologies are evaluated using the following dimensions:
@@ -132,12 +132,12 @@ The generated ontologies are evaluated using the following dimensions:
 
 ## Output
 The project produces:
-• cleaned and processed HPC documentation
-• contextual chunks
-• extracted domain terms, taxonomy relations, non-taxonomic relations
-• OWL/RDF axioms
-• Turtle ontology files (.ttl files)
-• SQLite databases
+- cleaned and processed HPC documentation
+- contextual chunks
+- extracted domain terms, taxonomy relations, non-taxonomic relations
+- OWL/RDF axioms
+- Turtle ontology files (.ttl files)
+- SQLite databases
 
 ### Example Turtle output:
 :ComputeNode rdf:type owl:Class .
