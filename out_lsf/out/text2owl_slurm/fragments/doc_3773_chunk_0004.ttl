@@ -1,7 +1,0 @@
-hpc:Prioritycalcperiod a owl:Class .
-hpc:siteFactorPUpdate a owl:ObjectProperty .
-hpc:Prioritycalcperiod rdfs:subClassOf [ a owl:Class ;
-                                         rdfs:subClassOf owl:TopObjectProperty ;
-                                         rdfs:domain hpc:Prioritycalcperiod ] .
-hpc:SiteFactorPUpdate rdfs:domain hpc:Prioritycalcperiod ;
-                          rdfs:range xsd:nonNegativeInteger .

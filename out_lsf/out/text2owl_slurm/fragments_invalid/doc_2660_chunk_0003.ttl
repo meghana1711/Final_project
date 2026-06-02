@@ -1,8 +1,0 @@
-hpc:Pamslurmadopt a owl:Class.
-hpc:pamslurmadopthints a owl:ObjectProperty.
-hpc:Pamslurmadoptsessioncontext a owl:Class.
-hpc:jobLandingInSameContext a rdf:PlainLiteral "false"^^xsd:boolean.
-hpc:Pamslurmadopthints rdfs:domain hpc:Pamslurmadopt; rdfs:range hpc:Pamslurmadopthints.
-hpc:Pamslurmadopt rdfs:subClassOf hpc:Hpcresource.
-hpc:Pamslurmadoptsessioncontext rdfs:subClassOf hpc:Sessioncontext.
-.

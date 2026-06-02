@@ -1,9 +1,0 @@
-hpc:Template a owl:Class .
-hpc:name a owl:ObjectProperty ;
-    rdfs:domain hpc:Template ;
-    rdfs:range xsd:string .
-hpc:attributes a owl:ObjectProperty ;
-    rdfs:domain hpc:Template .
-
-
-This ontology fragment defines a class `hpc:Template` with two properties: `hpc:name` and `hpc:attributes`. The `hpc:name` property is an object property that has a domain of `hpc:Template` and a range of `xsd:string`. The `hpc:attributes` property is an object property that has a domain of `hpc:Template`. This ontology fragment represents the basic structure of a template in the context of the provided documentation.

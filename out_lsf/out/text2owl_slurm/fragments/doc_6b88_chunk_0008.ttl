@@ -1,7 +1,0 @@
-hpc:Jwt a owl:Class .
-hpc:signingkey a owl:ObjectProperty ;
-    rdfs:domain hpc:Jwt ;
-    rdfs:range xsd:base64Binary .
-hpc:decode a owl:ObjectProperty ;
-    rdfs:domain hpc:Jwt ;
-    rdfs:range xsd:string .

@@ -1,9 +1,0 @@
-hpc:User a owl:Class .
-hpc:allowspecresourcesusage a owl:DatatypeProperty ;
-    rdfs:domain hpc:User ;
-    rdfs:range xsd:integer .
-hpc:Allowspecresourcesusagevalue a owl:Class ;
-    rdfs:subClassOf [ a owl:Restriction ;
-                        owl:onProperty hpc:AllowSpecResourcesUsage ;
-                        owl:hasValue 1 ;
-                        owl:allValuesFrom xsd:integer ] .

@@ -1,9 +1,0 @@
-hpc:Intelmpi a owl:Class .
-hpc:Mpich2 a owl:Class .
-hpc:Mvapich2 a owl:Class .
-hpc:Openmpi a owl:Class .
-
-hpc:Hasmpiimplementation rdfs:domain hpc:Mpiimplementation .
-hpc:Hasmpiimplementation rdfs:range rdf:Resource .
-
-hpc:Mpiimplementation a owl:Class .

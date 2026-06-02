@@ -1,9 +1,0 @@
-hpc:lastdeficit a owl:DatatypeProperty ;
-    rdfs:domain hpc:Someclass ;
-    rdfs:range xsd:integer .
-
-hpc:lastupdate a owl:DatatypeProperty ;
-    rdfs:domain hpc:Someclass ;
-    rdfs:range xsd:dateTime .
-
-hpc:Someclass a owl:Class .

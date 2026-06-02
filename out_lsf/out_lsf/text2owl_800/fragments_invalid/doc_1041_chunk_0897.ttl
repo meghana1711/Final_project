@@ -1,9 +1,0 @@
-hpc:Workgroup a owl:Class .
-hpc:Host a owl:Class .
-hpc:Operationstatus a owl:Class .
-hpc:OperationStatus rdf:type xsd:string .
-hpc:Operation rdf:type owl:ObjectProperty .
-hpc:Operation rdfs:domain hpc:Workgroup .
-hpc:Operation rdfs:range hpc:Operationresult .
-hpc:Operationresult a owl:Class .
-hpc:Operationresult hpc:Operationstatus rdfs:range hpc:Operationstatus .

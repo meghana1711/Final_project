@@ -1,9 +1,0 @@
-hpc:gpuAllocCompat a owl:DatatypeProperty .
-hpc:gpuMemRsv a owl:DatatypeProperty .
-hpc:Jobresizenotifyaccept a owl:Class .
-
-hpc:GpuAllocCompat rdfs:domain hpc:Jobresizenotifyaccept .
-hpc:GpuMemRsv rdfs:domain hpc:Jobresizenotifyaccept .
-
-hpc:GpuAllocCompat rdfs:range xsd:string .
-hpc:GpuMemRsv rdfs:range xsd:double .

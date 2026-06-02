@@ -1,9 +1,0 @@
-hpc:User a owl:Class .
-
-hpc:Haskeycloakusername an rdfs:subClassOf owl:ObjectProperty .
-hpc:Haskeycloakusername rdfs:domain hpc:User .
-hpc:Haskeycloakusername rdfs:range xsd:string .
-
-hpc:Hasldapusername an rdfs:subClassOf owl:ObjectProperty .
-hpc:Hasldapusername rdfs:domain hpc:User .
-hpc:Hasldapusername rdfs:range xsd:string .

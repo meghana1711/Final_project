@@ -1,8 +1,0 @@
-hpc:Host a owl:Class .
-
-hpc:maketime a owl:DatatypeProperty ;
-    rdfs:domain hpc:Host ;
-    rdfs:range xsd:duration .
-
-hpc:numhosts a owl:ObjectProperty ;
-    rdfs:domain hpc:Host .

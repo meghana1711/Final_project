@@ -1,9 +1,0 @@
-hpc:maxuserpriority a owl:DatatypeProperty ;
-    rdfs:domain hpc:Queue ;
-    rdfs:range xsd:integer ;
-    rdfs:comment "Specifies the maximum priority a user can assign to a job." .
-
-hpc:fwdjobfactor a owl:DatatypeProperty ;
-    rdfs:domain (hpc:Queue | hpc:Lsbparams) ;
-    rdfs:range xsd:decimal ;
-    rdfs:comment "Parameters for including forwarded jobs in the fair share calculations for the LSF multicluster capability." .

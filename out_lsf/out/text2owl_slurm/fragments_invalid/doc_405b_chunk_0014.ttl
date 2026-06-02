@@ -1,9 +1,0 @@
-hpc:Qosmaxbbpernode        a owl:Class ;
-                            rdfs:subClassOf   hpc:Qosmaxbbperuser ;
-                            rdfs:domain     hpc:Joballocation ;
-                            rdfs:range     xsd:integer .
-hpc:Qosmaxbbperuser        a owl:Class ;
-                            rdfs:subClassOf   hpc:Qosmaxbbpernode ;
-                            rdfs:domain     hpc:User ;
-                            rdfs:range     xsd:integer .
-hpc:Qosmax

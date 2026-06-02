@@ -1,9 +1,0 @@
-hpc:Interactivejobsubmission a owl:Class .
-hpc:jobscript a owl:ObjectProperty .
-hpc:jobsubmissionfile a owl:DatatypeProperty .
-
-hpc:Interactivejobsubmission rdfs:subClassOf hpc:Jobsubmission .
-hpc:Jobscript rdfs:domain hpc:Interactivejobsubmission ;
-    rdfs:range xsd:string .
-hpc:Jobsubmissionfile rdfs:domain hpc:Jobsubmission ;
-    rdfs:range xsd:string .

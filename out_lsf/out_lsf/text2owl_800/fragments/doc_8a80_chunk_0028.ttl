@@ -1,9 +1,0 @@
-hpc:Licensescheduler a owl:Class .
-hpc:lmStatInterval a owl:DatatypeProperty .
-hpc:lmStatPerFeature a owl:ObjectProperty .
-
-hpc:Licensescheduler rdfs:subClassOf owl:Class .
-hpc:LmStatInterval rdfs:domain hpc:Licensescheduler ;
-                      rdfs:range xsd:integer .
-hpc:LmStatPerFeature rdfs:domain hpc:Licensescheduler ;
-                        rdfs:range xsd:boolean .

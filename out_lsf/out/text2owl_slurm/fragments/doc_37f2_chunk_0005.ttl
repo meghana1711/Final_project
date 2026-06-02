@@ -1,9 +1,0 @@
-hpc:Prioritycalcperiod a owl:Class .
-hpc:Iteration a owl:Class .
-hpc:waituntilnextiteration a owl:ObjectProperty .
-
-hpc:Waituntilnextiteration rdfs:domain hpc:Iteration .
-hpc:Waituntilnextiteration rdfs:range hpc:Iteration .
-hpc:waitUntilNextIteration rdfs:subPropertyOf owl:ObjectProperty .
-
-hpc:Iteration rdfs:subClassOf rdf:Resource .

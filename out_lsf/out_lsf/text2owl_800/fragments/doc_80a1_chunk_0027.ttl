@@ -1,6 +1,0 @@
-hpc:Lsfserverhost a owl:Class .
-hpc:login a owl:ObjectProperty .
-hpc:Login rdfs:domain hpc:Lsfserverhost .
-hpc:Login rdfs:range xsd:boolean .
-hpc:Root a owl:Class .
-hpc:Root rdfs:subClassOf hpc:Lsfserverhost .

@@ -1,6 +1,0 @@
-hpc:Exclusiveprocess a owl:Class .
-hpc:hasgpuusage a owl:ObjectProperty .
-hpc:Exclusiveprocess rdfs:subClassOf [ rdf:type owl:Class ;
-                                      rdfs:subClassOf hpc:Process ] .
-hpc:Hasgpuusage rdfs:domain hpc:Exclusiveprocess ;
-                 rdfs:range xsd:decimal .

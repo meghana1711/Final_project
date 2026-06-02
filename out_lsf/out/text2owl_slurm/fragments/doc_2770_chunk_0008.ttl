@@ -1,7 +1,0 @@
-hpc:Defaultvalue a owl:Class ;
-    rdfs:subClassOf owl:NamedIndividual ;
-    rdfs:comment "Represents the default value, which is 500,000 microseconds (0.5 seconds)." .
-
-hpc:defaultvalue a owl:DatatypeProperty ;
-    rdfs:domain hpc:Defaultvalue ;
-    rdfs:range xsd:decimal .

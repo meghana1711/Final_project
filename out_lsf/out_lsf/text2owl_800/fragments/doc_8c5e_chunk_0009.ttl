@@ -1,8 +1,0 @@
-hpc:Lsbhosts a owl:Class .
-hpc:Usershares a owl:Class .
-
-hpc:Lsbhosts rdfs:subClassOf owl:Class .
-hpc:Usershares rdfs:subClassOf owl:Class .
-
-hpc:hasUserShares rdf:type owl:ObjectProperty .
-hpc:hasLsbHosts rdf:type owl:ObjectProperty .

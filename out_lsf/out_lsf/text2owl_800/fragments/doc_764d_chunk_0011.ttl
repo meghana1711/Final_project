@@ -1,7 +1,0 @@
-hpc:Cluster a owl:Class .
-hpc:clustername a owl:DatatypeProperty ;
-    rdfs:domain hpc:Cluster ;
-    rdfs:range xsd:string .
-hpc:servers a owl:ObjectProperty ;
-    rdfs:domain hpc:Cluster ;
-    rdfs:range xsd:string .

@@ -1,9 +1,0 @@
-hpc:Session a owl:Class ;
-  rdfs:subClassOf [ rdf:type owl:Class ;
-                     owl:equivalentClass [ rdf:type owl:Restriction ;
-                                            owl:onProperty hpc:associatedJob ;
-                                            owl:allValuesFrom hpc:SlurmJob ] ] ;
-  rdfs:subClassOf [ rdf:type owl:Class ;
-                     owl:equivalentClass [ rdf:type owl:Restriction ;
-                                            owl:onProperty hpc:context ;
-                                            owl:hasValue hpc:SlurmContext ]
