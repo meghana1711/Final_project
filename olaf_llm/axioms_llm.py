@@ -397,7 +397,6 @@ BANNED_CLASS_KEYS = {
     "class",
     "entity", "unknown", "informationobject", "information_object",
     "action", "ability", "resource", "literal",
-    # common noise tokens that appear as "classes" in docs
     "--nodes", "--clusters",
 }
 
@@ -416,6 +415,11 @@ BANNED_PREDICATES = {
     "make", "made", "create", "created",
     "add", "add_to", "use", "uses",
     "set", "sets", "enable", "enabled", "disable", "disabled",
+}
+
+GENERIC_OBJECTS = {
+    "number", "value", "thing", "data", "information", "message", "result",
+    "request", "maximum", "minimum", "system", "option", "parameter"
 }
 
 
@@ -506,6 +510,32 @@ def load_evidence_for_predicate(
         if len(out) >= k:
             break
 
+    return out
+
+
+def load_assertion_triples(
+    conn: sqlite3.Connection,
+    non_tax_table: str,
+    subj_col: str,
+    pred_col: str,
+    obj_col: str,
+    *,
+    allowed_predicates: Set[str],
+) -> List[Tuple[str, str, str]]:
+    q = f"""
+    SELECT {subj_col}, {pred_col}, {obj_col}
+    FROM {non_tax_table};
+    """
+    out: List[Tuple[str, str, str]] = []
+    for s, p, o in conn.execute(q).fetchall():
+        s0 = norm(s) or ""
+        p0 = (norm(p) or "").strip().lower()
+        o0 = norm(o) or ""
+        if not s0 or not p0 or not o0:
+            continue
+        if p0 not in allowed_predicates:
+            continue
+        out.append((s0, p0, o0))
     return out
 
 
@@ -745,11 +775,50 @@ def clamp_to_class(
     return None
 
 
+def keep_llm_assertion_triple(
+    subj: str,
+    pred: str,
+    obj: str,
+    predicate_axiom_map: Dict[str, Dict[str, Any]],
+    canonical_map: Dict[str, TermInfo],
+    surface_to_canonical: Dict[str, str],
+    class_set: Set[str],
+) -> bool:
+    s = (subj or "").strip()
+    p = (pred or "").strip().lower()
+    o = (obj or "").strip()
+
+    if not s or not p or not o:
+        return False
+    if s.lower() == o.lower():
+        return False
+    if p not in predicate_axiom_map:
+        return False
+
+    ax = predicate_axiom_map[p]
+    prop = ax.get("property", {}) if isinstance(ax.get("property"), dict) else {}
+    kind = str(prop.get("kind") or "ObjectProperty").strip()
+
+    s_can = resolve_to_canonical(s, canonical_map, surface_to_canonical)
+    if s_can not in class_set:
+        return False
+
+    if kind == "ObjectProperty":
+        o_can = resolve_to_canonical(o, canonical_map, surface_to_canonical)
+        if o_can not in class_set:
+            return False
+        if o_can in GENERIC_OBJECTS:
+            return False
+
+    return True
+
+
 # -----------------------------
-# TTL export (DEFAULT GRAPH) — FIXED + TAXONOMY
+# TTL export (DEFAULT GRAPH)
 #   - Omits domain/range when unknown (no owl:Thing hubs)
 #   - Supports DatatypeProperty with xsd ranges
-#   - Writes rdfs:subClassOf edges (so classes actually connect!)
+#   - Writes rdfs:subClassOf edges
+#   - Writes actual non-taxonomic assertions
 #   - Collision-safe localnames
 # -----------------------------
 
@@ -777,8 +846,10 @@ def write_ttl(
     base_iri: str,
     class_terms: Sequence[str],
     canonical_map: Dict[str, TermInfo],
+    surface_to_canonical: Dict[str, str],
     taxonomy_edges: Sequence[Tuple[str, str]],
     predicate_axioms: Sequence[Dict[str, Any]],
+    assertion_triples: Sequence[Tuple[str, str, str]],
     known_predicates: Set[str],
 ) -> None:
     if not (base_iri.endswith("#") or base_iri.endswith("/")):
@@ -812,7 +883,6 @@ def write_ttl(
         lines.append("")
 
     lines.append("### Taxonomy (rdfs:subClassOf)")
-    # only write edges if both endpoints are in our class set and not banned
     class_set_norm = {c.strip().lower() for c in class_terms if c and c.strip().lower() not in BANNED_CLASS_KEYS}
     seen_sc: Set[Tuple[str, str]] = set()
     for child, parent in taxonomy_edges:
@@ -853,12 +923,10 @@ def write_ttl(
         dom_k = dom.strip().lower()
         rng_k = rng.strip().lower()
 
-        # domain: omit if owl:Thing or banned
         if dom and dom != "owl:Thing" and dom_k not in BANNED_CLASS_KEYS:
             if dom_k in class_set_norm:
                 lines.append(f"  ; rdfs:domain hpc:{iri_class(dom_k)}")
 
-        # range
         if kind == "DatatypeProperty":
             if isinstance(dt_iri, str) and dt_iri.startswith("http://www.w3.org/2001/XMLSchema#"):
                 dt_local = dt_iri.rsplit("#", 1)[-1]
@@ -885,6 +953,66 @@ def write_ttl(
 
         lines.append("")
 
+    lines.append("### Non-taxonomic assertions")
+    predicate_axiom_map = {
+        str(ax.get("predicate") or "").strip().lower(): ax
+        for ax in predicate_axioms
+        if str(ax.get("predicate") or "").strip()
+    }
+
+    seen_assertions: Set[Tuple[str, str, str]] = set()
+
+    for subj, pred, obj in assertion_triples:
+        p = pred.strip().lower()
+        if p not in predicate_axiom_map:
+            continue
+
+        ax = predicate_axiom_map[p]
+        prop = ax.get("property", {}) if isinstance(ax.get("property"), dict) else {}
+        kind = str(prop.get("kind") or "ObjectProperty").strip()
+
+        s_can = resolve_to_canonical(subj, canonical_map, surface_to_canonical)
+        if s_can not in class_set_norm:
+            continue
+
+        local_s = iri_class(s_can)
+        local_p = iri_prop(p)
+
+        if kind == "DatatypeProperty":
+            lit_type = _guess_literal_type(obj)
+            raw = obj.strip().strip('"').strip("'")
+            key = (s_can, p, raw)
+            if key in seen_assertions:
+                continue
+            seen_assertions.add(key)
+
+            if lit_type == "integer":
+                lines.append(f'hpc:{local_s} hpc:{local_p} "{raw}"^^xsd:integer .')
+            elif lit_type == "decimal":
+                lines.append(f'hpc:{local_s} hpc:{local_p} "{raw}"^^xsd:decimal .')
+            elif lit_type == "boolean":
+                norm_bool = raw.lower()
+                if norm_bool in {"true", "yes", "on", "1"}:
+                    lines.append(f'hpc:{local_s} hpc:{local_p} "true"^^xsd:boolean .')
+                elif norm_bool in {"false", "no", "off", "0"}:
+                    lines.append(f'hpc:{local_s} hpc:{local_p} "false"^^xsd:boolean .')
+                else:
+                    lines.append(f'hpc:{local_s} hpc:{local_p} "{ttl_escape(raw)}"^^xsd:string .')
+            else:
+                lines.append(f'hpc:{local_s} hpc:{local_p} "{ttl_escape(raw)}"^^xsd:string .')
+        else:
+            o_can = resolve_to_canonical(obj, canonical_map, surface_to_canonical)
+            if o_can not in class_set_norm:
+                continue
+            key = (s_can, p, o_can)
+            if key in seen_assertions:
+                continue
+            seen_assertions.add(key)
+            local_o = iri_class(o_can)
+            lines.append(f"hpc:{local_s} hpc:{local_p} hpc:{local_o} .")
+
+    lines.append("")
+
     with open(out_path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
 
@@ -894,7 +1022,7 @@ def write_ttl(
 # -----------------------------
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="Generate TBox axioms (TTL) using LOCAL transformers only (fixed).")
+    ap = argparse.ArgumentParser(description="Generate TBox + non-tax assertions (TTL) using LOCAL transformers.")
 
     ap.add_argument("--db", required=True)
     ap.add_argument("--out_dir", required=True)
@@ -925,7 +1053,6 @@ def main() -> None:
     ap.add_argument("--no_resume", dest="resume", action="store_false")
     ap.add_argument("--prompt_config", default="prompts/axioms_llm.yaml")
 
-    # Optional allowlist: YAML with allowed_predicates: [..]
     ap.add_argument("--schema_config", default="", help="Optional YAML with allowed_predicates list/map.")
     ap.add_argument("--seed", type=int, default=13)
 
@@ -937,7 +1064,6 @@ def main() -> None:
     args = ap.parse_args()
     ensure_dir(args.out_dir)
 
-    # YAML prompt config
     try:
         yaml_cfg = load_yaml(args.prompt_config)
     except ModuleNotFoundError:
@@ -945,7 +1071,6 @@ def main() -> None:
     except Exception as e:
         raise RuntimeError(f"Failed to load YAML prompt_config: {e}") from e
 
-    # Optional schema allowlist
     allow_predicates: Optional[Set[str]] = None
     if args.schema_config:
         cfg = load_yaml(args.schema_config)
@@ -1055,18 +1180,16 @@ def main() -> None:
                 max_retries=2,
             )
 
-            # normalize property
             prop = obj.get("property", {}) if isinstance(obj.get("property"), dict) else {}
             pname = str(prop.get("name") or pred).strip().lower()
             if not snake_ok(pname):
                 pname = pred
             prop["name"] = pname
             prop["label"] = str(prop.get("label") or pred).strip()
-            prop["kind"] = inferred_kind  # override noisy LLM
+            prop["kind"] = inferred_kind
             obj["property"] = prop
             obj["datatype_iri"] = inferred_dt if inferred_kind == "DatatypeProperty" else None
 
-            # clamp domain/range to real classes (not Unknown/Thing)
             suggested_dom = str(obj.get("domain_class") or "").strip()
             suggested_rng = str(obj.get("range_class") or "").strip()
 
@@ -1079,7 +1202,6 @@ def main() -> None:
             if inferred_kind == "ObjectProperty":
                 rng_class = clamp_to_class(rng_can, canonical_map, class_set, parents)
 
-            # backoff from evidence endpoints
             if dom_class is None:
                 for sc in [resolve_to_canonical(e.subj, canonical_map, surface_to_canonical) for e in ev]:
                     dom_class = clamp_to_class(sc, canonical_map, class_set, parents)
@@ -1092,11 +1214,9 @@ def main() -> None:
                     if rng_class:
                         break
 
-            # store for audit (TTL writer will OMIT owl:Thing)
             obj["domain_class"] = dom_class if dom_class else "owl:Thing"
             obj["range_class"] = (rng_class if rng_class else "owl:Thing") if inferred_kind == "ObjectProperty" else "owl:Thing"
 
-            # subPropertyOf / inverseOf (keep only known)
             subs = obj.get("subPropertyOf", [])
             invs = obj.get("inverseOf", [])
             obj["subPropertyOf"] = [str(s).strip().lower() for s in subs if isinstance(s, str) and s.strip().lower() in known_predicates] if isinstance(subs, list) else []
@@ -1112,7 +1232,6 @@ def main() -> None:
             mark_run(conn, args.runs_table, pred, "error", str(e))
             print(f"[WARN] predicate={pred} failed: {e}")
 
-    # Load all stored axioms
     all_axioms: List[Dict[str, Any]] = []
     for (_pred, ax_json) in conn.execute(f"SELECT predicate, axiom_json FROM {args.axioms_table} ORDER BY predicate;").fetchall():
         try:
@@ -1122,16 +1241,46 @@ def main() -> None:
         except Exception:
             continue
 
+    predicate_axiom_map = {
+        str(ax.get("predicate") or "").strip().lower(): ax
+        for ax in all_axioms
+        if str(ax.get("predicate") or "").strip()
+    }
+
+    raw_assertion_triples = load_assertion_triples(
+        conn=conn,
+        non_tax_table=args.non_tax_table,
+        subj_col=args.subj_col,
+        pred_col=args.pred_col,
+        obj_col=args.obj_col,
+        allowed_predicates=set(predicate_axiom_map.keys()),
+    )
+
+    assertion_triples: List[Tuple[str, str, str]] = []
+    for s, p, o in raw_assertion_triples:
+        if keep_llm_assertion_triple(
+            s, p, o,
+            predicate_axiom_map=predicate_axiom_map,
+            canonical_map=canonical_map,
+            surface_to_canonical=surface_to_canonical,
+            class_set=class_set,
+        ):
+            assertion_triples.append((s, p, o))
+
+    print(f"[INFO] Assertion triples kept for export: {len(assertion_triples)}")
+
     class_terms = sorted(class_set)
 
-    ttl_path = os.path.join(args.out_dir, "tbox_axioms_llm.ttl")
+    ttl_path = os.path.join(args.out_dir, "hpc_ontology.ttl")
     write_ttl(
         ttl_path,
         base_iri=args.base_iri,
         class_terms=class_terms,
         canonical_map=canonical_map,
+        surface_to_canonical=surface_to_canonical,
         taxonomy_edges=taxonomy_edges,
         predicate_axioms=all_axioms,
+        assertion_triples=assertion_triples,
         known_predicates=known_predicates,
     )
 
@@ -1150,6 +1299,7 @@ def main() -> None:
         "examples_per_predicate": args.examples_per_predicate,
         "axiom_count": len(all_axioms),
         "class_count": len(class_terms),
+        "assertion_triple_count": len(assertion_triples),
         "axioms": all_axioms,
     }
     with open(merged_path, "w", encoding="utf-8") as f:

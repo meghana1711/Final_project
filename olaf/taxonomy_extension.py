@@ -11,6 +11,7 @@ Output (LLM-labeled):      taxonomy_is_a_final
 from __future__ import annotations
 
 import argparse
+import yaml
 import json
 import re
 import sqlite3
@@ -39,18 +40,24 @@ def load_textgen(model_name: str):
 # -----------------------------
 def load_prompt_config(path: str) -> Tuple[str, List[Dict]]:
     with open(path, "r", encoding="utf-8") as f:
-        cfg = json.load(f)
+        cfg = yaml.safe_load(f)
+    if not isinstance(cfg, dict):
+        raise ValueError(f"Prompt config must be a YAML object: {path}")
+
     system = (cfg.get("system_prompt") or "").strip()
     few = cfg.get("few_shots") or []
+
     if not system:
         raise ValueError(f"prompt_config missing system_prompt: {path}")
+
     if not isinstance(few, list):
         raise ValueError("prompt_config few_shots must be a list")
+
     for i, ex in enumerate(few[:50]):
         if not isinstance(ex, dict) or "input" not in ex or "output" not in ex:
             raise ValueError(f"few_shots[{i}] must have input/output objects")
-    return system, few
 
+    return system, few
 
 # -----------------------------
 # Evidence retrieval
@@ -551,7 +558,7 @@ def main():
     ap.add_argument("--out_table", default="taxonomy_is_a_final")
 
     ap.add_argument("--model", required=True, help="HF model name/path")
-    ap.add_argument("--prompt_config", default="prompts/taxonomy_extension.json")
+    ap.add_argument("--prompt_config", default="prompts/taxonomy_extension.yaml")
     ap.add_argument("--few_shots_k", type=int, default=6)
 
     ap.add_argument("--max_rows", type=int, default=0, help="0=all rows")

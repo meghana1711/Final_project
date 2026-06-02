@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import yaml
 import json
 import re
 import sqlite3
@@ -12,8 +13,11 @@ from typing import Any, Dict, List, Optional, Tuple
 # Prompt config loader
 # -----------------------------
 def load_prompt_config(path: str) -> dict:
+    """Load prompt configuration from a YAML file."""
     with open(path, "r", encoding="utf-8") as f:
-        cfg = json.load(f)
+        cfg = yaml.safe_load(f)
+    if not isinstance(cfg, dict):
+        raise ValueError("prompt_config must be a YAML mapping/object")
     if "system_prompt" not in cfg:
         raise ValueError("prompt_config missing required key: system_prompt")
     return cfg
@@ -352,7 +356,7 @@ def parse_args():
     ap.add_argument("--model", required=True, help="HF model id")
     ap.add_argument("--device", default="auto", help="HF device_map: auto/cuda/cpu")
 
-    ap.add_argument("--non_tax_config", default="prompts/non_tax_extension.json")
+    ap.add_argument("--non_tax_config", default="prompts/non_tax_extension.yaml")
 
     ap.add_argument("--limit", type=int, default=0, help="Limit edges (0=all)")
     ap.add_argument("--batch_size", type=int, default=6)

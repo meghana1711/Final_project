@@ -1,5 +1,6 @@
 import argparse
 import json
+import yaml
 import re
 import sqlite3
 from dataclasses import dataclass
@@ -31,9 +32,14 @@ def clamp01(x: float) -> float:
 # -----------------------------
 
 def load_prompt_config(path: str) -> Tuple[str, List[Dict[str, Any]]]:
-    cfg = json.load(open(path, "r", encoding="utf-8"))
+    with open(path, "r", encoding="utf-8") as f:
+        if path.lower().endswith((".yaml", ".yml")):
+            cfg = yaml.safe_load(f)
+        else:
+            cfg = json.load(f)
+
     if not isinstance(cfg, dict):
-        raise ValueError("prompt_config must be a JSON object")
+        raise ValueError("prompt_config must be a YAML/JSON object")
 
     system = str(cfg.get("system_prompt", "")).strip()
     if not system:
@@ -44,11 +50,14 @@ def load_prompt_config(path: str) -> Tuple[str, List[Dict[str, Any]]]:
         raise ValueError("'fewshot' must be a list")
 
     cleaned: List[Dict[str, Any]] = []
+
     for ex in fewshot:
         if not isinstance(ex, dict):
             continue
+
         term = str(ex.get("term", "")).strip()
         js = ex.get("json", {})
+
         if term and isinstance(js, dict):
             cleaned.append({
                 "term": term,
@@ -451,8 +460,7 @@ def main():
     ap.add_argument("--sentences_table", default="sentence_lemmatized")
     ap.add_argument("--cleaned_version", type=int, default=1)
 
-    ap.add_argument("--prompt_config", required=True, help="JSON with {system_prompt, fewshot}")
-
+    ap.add_argument("--prompt_config", default="prompts/term_enrich_extension.yaml")
     ap.add_argument("--hf_model", required=True)
     ap.add_argument("--dtype", default="auto", choices=["auto", "float16", "bfloat16"])
     ap.add_argument("--device", default="auto")

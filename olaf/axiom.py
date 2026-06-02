@@ -1,16 +1,15 @@
 """
-olaf/axiom.py (UPDATED v3)
+olaf/axiom.py (UPDATED v4)
 
-Adds robust cycle handling:
-- New flag: --break_cycles
-- If enabled, detects cycles in taxonomy and removes cycle-causing edges using a specificity heuristic,
-  instead of crashing (e.g., job -> heterogeneous job -> job).
+Fixes zero non-taxonomic relations by exporting actual non-taxonomic assertions
+(subject, predicate, object) in addition to schema-level property axioms.
 
-Also keeps your earlier improvements:
-- Explicit default table/column names
-- Safe WHERE filters
-- Drops OWL/RDF/XSD meta-vocabulary from becoming HPC classes
-- Exports GraphDB-friendly Turtle (requires rdflib)
+Still includes:
+- cycle handling with --break_cycles
+- explicit default table/column names
+- safe WHERE filters
+- OWL/RDF/XSD meta-vocabulary filtering
+- GraphDB-friendly Turtle export
 """
 
 from __future__ import annotations
@@ -90,7 +89,7 @@ def _rewrite_where(where: Optional[str], child_col: str, parent_col: str) -> Opt
 
 
 # ============================================================
-# Column detection (aligned to your schema)
+# Column detection
 # ============================================================
 
 def detect_taxonomy_columns(
@@ -317,14 +316,10 @@ def lca(nodes: List[str], parents: Dict[str, Set[str]], depth: Dict[str, int]) -
 
 
 # ============================================================
-# NEW: Cycle breaking (heuristic)
+# Cycle breaking
 # ============================================================
 
 def _is_more_specific(a: str, b: str) -> bool:
-    """
-    Return True if 'a' looks more specific than 'b' (heuristic).
-    e.g., "heterogeneous job" more specific than "job".
-    """
     a0 = a.strip().lower()
     b0 = b.strip().lower()
     if a0 == b0:
@@ -337,10 +332,6 @@ def _is_more_specific(a: str, b: str) -> bool:
 
 
 def break_taxonomy_cycles(edges: List[Tuple[str, str]]) -> Tuple[List[Tuple[str, str]], List[Tuple[str, str]]]:
-    """
-    Iteratively detects a cycle and removes one edge from it using specificity heuristic.
-    Returns (kept_edges, removed_edges).
-    """
     kept = edges[:]
     removed: List[Tuple[str, str]] = []
 
@@ -350,10 +341,8 @@ def break_taxonomy_cycles(edges: List[Tuple[str, str]]) -> Tuple[List[Tuple[str,
         if not cyc:
             break
 
-        # cyc like [job, heterogeneous job, job]
         cycle_nodes = cyc[:-1]
         if len(cycle_nodes) < 2:
-            # fallback: remove something arbitrary
             to_remove = kept[-1]
             kept.remove(to_remove)
             removed.append(to_remove)
@@ -362,22 +351,19 @@ def break_taxonomy_cycles(edges: List[Tuple[str, str]]) -> Tuple[List[Tuple[str,
         cycle_edges = [(cycle_nodes[i], cycle_nodes[i + 1]) for i in range(len(cycle_nodes) - 1)]
         cycle_edges.append((cycle_nodes[-1], cycle_nodes[0]))
 
-        # Remove reversed edge: general -> specific
         to_remove = None
         for c, p in cycle_edges:
-            if _is_more_specific(p, c):  # parent is more specific than child => reversed
+            if _is_more_specific(p, c):
                 to_remove = (c, p)
                 break
 
         if to_remove is None:
             to_remove = cycle_edges[-1]
 
-        # ensure edge exists in kept (cycle edge should, but be safe)
         if to_remove in kept:
             kept.remove(to_remove)
             removed.append(to_remove)
         else:
-            # try any edge in cycle that exists
             fallback = None
             for e in cycle_edges:
                 if e in kept:
@@ -393,7 +379,7 @@ def break_taxonomy_cycles(edges: List[Tuple[str, str]]) -> Tuple[List[Tuple[str,
 
 
 # ============================================================
-# Typing from term_enrichment_exten
+# Typing from term enrichment
 # ============================================================
 
 @dataclass
@@ -468,7 +454,6 @@ INSTANCE_LIKE_PARENTS = {
     "srun", "sbatch", "salloc", "sacct", "scontrol", "squeue", "sinfo",
 }
 
-# ✅ Drop OWL/RDF/XSD meta vocabulary from becoming classes
 RESERVED_OWL_TERMS = {
     "thing", "nothing", "literal",
     "resource", "class", "property",
@@ -599,7 +584,7 @@ class DomainRangeAxiom:
     evidence_examples: List[Tuple[str, str, str]]
     subject_type_hist: Dict[str, int]
     object_type_hist: Dict[str, int]
-    property_kind: str  # "object" or "datatype"
+    property_kind: str
     datatype_iri: Optional[str] = None
 
 
@@ -871,7 +856,47 @@ def compute_domain_range_for_relation(
 
 
 # ============================================================
-# OWL export (GraphDB friendly Turtle)
+# NEW: Triple assertion filtering
+# ============================================================
+
+GENERIC_OBJECTS = {
+    "number", "value", "thing", "data", "information", "message", "result",
+    "request", "maximum", "minimum", "system", "option", "parameter"
+}
+
+
+def keep_non_taxonomic_triple(
+    s: str,
+    r: str,
+    o: str,
+    dr_by_property: Dict[str, DomainRangeAxiom],
+    type_info: Optional[Dict[str, TermTypeInfo]],
+) -> bool:
+    if not s or not r or not o:
+        return False
+    if s.strip().lower() == o.strip().lower():
+        return False
+    if r not in dr_by_property:
+        return False
+
+    ax = dr_by_property[r]
+    if ax.status != "accepted":
+        return False
+
+    if not keep_as_class(s, type_info):
+        return False
+
+    if ax.property_kind == "object":
+        if o.strip().lower() in GENERIC_OBJECTS:
+            return False
+        if not keep_as_class(o, type_info):
+            return False
+
+    return True
+
+
+# ============================================================
+# OWL export
 # ============================================================
 
 def export_to_owl(
@@ -879,15 +904,17 @@ def export_to_owl(
     classes: Set[str],
     subclass_axioms: List[SubClassOfAxiom],
     dr_axioms: List[DomainRangeAxiom],
+    triples: List[Tuple[str, str, str]],
+    type_info: Optional[Dict[str, TermTypeInfo]],
     base_iri: str,
     use_hash_iris: bool,
-) -> None:
+) -> Dict[str, int]:
     try:
         from rdflib import Graph, Namespace, RDF, RDFS, OWL, URIRef, Literal
     except Exception as e:
         print("[WARN] rdflib not installed; skipping OWL export.")
         print(f"       Install with: pip install rdflib\n       Error: {e}")
-        return
+        return {"exported_non_taxonomic_assertions": 0}
 
     g = Graph()
     NS = Namespace(base_iri)
@@ -914,16 +941,10 @@ def export_to_owl(
 
     def iri_for_class(label: str) -> URIRef:
         frag = pascalize(label)
-        if use_hash_iris:
-            h = hashlib.md5(label.encode("utf-8")).hexdigest()[:8]
-            frag = f"{frag}_{h}"
         return NS[frag]
 
     def iri_for_property(rel_key: str) -> URIRef:
         frag = pascalize(rel_key.replace("_", " "))
-        if use_hash_iris:
-            h = hashlib.md5(rel_key.encode("utf-8")).hexdigest()[:8]
-            frag = f"{frag}_{h}"
         return NS[frag]
 
     def declare_class(label: str) -> URIRef:
@@ -944,6 +965,32 @@ def export_to_owl(
         g.add((u, RDFS.label, Literal(rel_key)))
         return u
 
+    def literal_for_object(obj: str, datatype_iri: Optional[str]):
+        t = _guess_literal_type(obj)
+        raw = obj.strip().strip('"').strip("'")
+
+        if datatype_iri == XSD["integer"] or t == "integer":
+            try:
+                return Literal(int(raw), datatype=URIRef(XSD["integer"]))
+            except Exception:
+                return Literal(raw, datatype=URIRef(XSD["string"]))
+
+        if datatype_iri == XSD["decimal"] or t == "decimal":
+            try:
+                return Literal(float(raw), datatype=URIRef(XSD["decimal"]))
+            except Exception:
+                return Literal(raw, datatype=URIRef(XSD["string"]))
+
+        if datatype_iri == XSD["boolean"] or t == "boolean":
+            norm = raw.lower()
+            if norm in {"true", "yes", "on", "1"}:
+                return Literal(True, datatype=URIRef(XSD["boolean"]))
+            if norm in {"false", "no", "off", "0"}:
+                return Literal(False, datatype=URIRef(XSD["boolean"]))
+            return Literal(raw, datatype=URIRef(XSD["string"]))
+
+        return Literal(raw, datatype=URIRef(datatype_iri or XSD["string"]))
+
     for c in sorted(classes):
         if keep_as_class(c, None):
             declare_class(c)
@@ -954,6 +1001,8 @@ def export_to_owl(
         if not keep_as_class(ax.child, None) or not keep_as_class(ax.parent, None):
             continue
         g.add((declare_class(ax.child), RDFS.subClassOf, declare_class(ax.parent)))
+
+    dr_by_property: Dict[str, DomainRangeAxiom] = {ax.property: ax for ax in dr_axioms}
 
     for ax in dr_axioms:
         if ax.status != "accepted":
@@ -979,8 +1028,36 @@ def export_to_owl(
             if ran and ran != "Literal" and keep_as_class(ran, None):
                 g.add((pu, RDFS.range, declare_class(ran)))
 
+    exported_non_tax_assertions = 0
+    skipped_non_tax_assertions = 0
+
+    for s, r, o in triples:
+        if not keep_non_taxonomic_triple(s, r, o, dr_by_property, type_info):
+            skipped_non_tax_assertions += 1
+            continue
+
+        ax = dr_by_property[r]
+        su = iri_for_class(s)
+        pu = iri_for_property(r)
+
+        if ax.property_kind == "datatype":
+            obj_node = literal_for_object(o, ax.datatype_iri)
+            g.add((su, pu, obj_node))
+            exported_non_tax_assertions += 1
+        else:
+            ou = iri_for_class(o)
+            g.add((su, pu, ou))
+            exported_non_tax_assertions += 1
+
     g.serialize(destination=out_path, format="turtle")
     print(f"[OK] OWL/Turtle exported to: {out_path}")
+    print(f"[INFO] Exported non-taxonomic assertions: {exported_non_tax_assertions}")
+    print(f"[INFO] Skipped non-taxonomic assertions: {skipped_non_tax_assertions}")
+
+    return {
+        "exported_non_taxonomic_assertions": exported_non_tax_assertions,
+        "skipped_non_taxonomic_assertions": skipped_non_tax_assertions,
+    }
 
 
 # ============================================================
@@ -993,7 +1070,6 @@ def main() -> None:
     ap.add_argument("--db", required=True)
     ap.add_argument("--out_dir", required=True)
 
-    # Defaults aligned to your pipeline/tables
     ap.add_argument("--taxonomy_table", default="taxonomy_is_a_final")
     ap.add_argument("--triple_table", default="non_taxonomic_edges_accept")
     ap.add_argument("--types_table", default="term_enrichment_exten")
@@ -1077,7 +1153,6 @@ def main() -> None:
             "Fix: set --tax_child_col/--tax_parent_col and adjust --taxonomy_where."
         )
 
-    # ✅ Break cycles if requested
     if args.break_cycles:
         tax_edges, removed_cycle_edges = break_taxonomy_cycles(tax_edges)
         if removed_cycle_edges:
@@ -1104,7 +1179,6 @@ def main() -> None:
         print(f"[INFO] triple_where: {args.triple_where}")
     print(f"[INFO] Triples loaded: {len(triples)}")
 
-    # Build classes + subclass axioms
     classes: Set[str] = set()
     subclass_axioms: List[SubClassOfAxiom] = []
 
@@ -1164,14 +1238,17 @@ def main() -> None:
 
     if args.export_owl:
         out_ttl = os.path.join(args.out_dir, "hpc_ontology.ttl")
-        export_to_owl(
+        export_stats = export_to_owl(
             out_path=out_ttl,
             classes=classes,
             subclass_axioms=subclass_axioms,
             dr_axioms=dr_axioms,
+            triples=triples,
+            type_info=type_info,
             base_iri=args.base_iri,
             use_hash_iris=(not args.no_hash_iris),
         )
+        write_json(os.path.join(args.out_dir, "export_stats.json"), export_stats)
 
     conn.close()
     print(f"[OK] Done. Outputs in: {args.out_dir}")

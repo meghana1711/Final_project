@@ -811,7 +811,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--hf_device", default="auto")
 
     # Prompt configs
-    ap.add_argument("--term_enrich_prompt_config", default="prompts/term_enrichment_extension.json")
+    ap.add_argument("--term_enrich_prompt_config", default="prompts/term_enrich_extension.yaml")
     ap.add_argument("--max_terms_llm", type=int, default=0)   # 0=all
     ap.add_argument("--max_evidence_sents", type=int, default=3)
     ap.add_argument("--log_every", type=int, default=1000)
@@ -839,7 +839,7 @@ def parse_args() -> argparse.Namespace:
 
     ap.add_argument("--taxonomy_final_table", default="taxonomy_is_a_final")
     ap.add_argument("--llm_taxonomy_model", default="mistralai/Mistral-7B-Instruct-v0.2")
-    ap.add_argument("--taxonomy_prompt_config", default="prompts/taxonomy_extension.json")
+    ap.add_argument("--taxonomy_prompt_config", default="prompts/taxonomy_extension.yaml")
     ap.add_argument("--taxonomy_llm_max_new_tokens", type=int, default=240)
     ap.add_argument("--taxonomy_llm_few_shots_k", type=int, default=6)
     ap.add_argument("--taxonomy_llm_max_rows", type=int, default=0)
@@ -864,7 +864,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--use_llm_non_taxonomy", dest="use_llm_non_taxonomy", action="store_true", default=True)
     ap.add_argument("--no_llm_non_taxonomy", dest="use_llm_non_taxonomy", action="store_false")
     ap.add_argument("--llm_non_tax_model", default="mistralai/Mistral-7B-Instruct-v0.2")
-    ap.add_argument("--non_tax_prompt_config", default="prompts/non_tax_extension.json")
+    ap.add_argument("--non_tax_prompt_config", default="prompts/non_tax_extension.yaml")
     ap.add_argument("--non_tax_final_table", default="non_taxonomic_edges_final")
     ap.add_argument("--non_tax_llm_batch_size", type=int, default=10)
     ap.add_argument("--non_tax_llm_max_new_tokens", type=int, default=220)
