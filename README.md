@@ -68,7 +68,7 @@ docker run --rm -it -v "${PWD}:/app" -w /app final_project:dev/cuda
 **Usage:**
 1. Run the Full Ontology Learning Pipeline
 ```
-docker run --rm -it -v "${PWD}:/app" -w /app final_project:dev python -m pipeline.pipeline_processing --db onto_db/slurm.db --input data/slurm --next olaf_hybrid --out_dir_root output/slurm_output --axiom_out_dir axiom_slurm_hybrid --stop_on_fail
+docker run --rm -it -v "${PWD}:/app" -w /app final_project:dev python -m pipeline.pipeline_ontology --db onto_db/slurm.db --input data/slurm --next olaf_hybrid --out_dir_root output/slurm_output --axiom_out_dir axiom_slurm_hybrid --stop_on_fail
 ```
 2. Run Ontology Evaluation
 ```
@@ -140,7 +140,7 @@ The project produces:
 - SQLite databases
 
 ### Example Turtle output:
-:ComputeNode rdf:type owl:Class .
+:ComputeNode rdf:type owl:Class . 
 :Node rdf:type owl:Class .
 :ComputeNode rdfs:subClassOf :Node .
 
