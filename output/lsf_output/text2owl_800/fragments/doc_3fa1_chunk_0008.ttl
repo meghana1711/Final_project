@@ -1,7 +1,0 @@
-hpc:Jobsubmissionfile a owl:Class .
-hpc:jobpack a owl:ObjectProperty .
-
-hpc:Jobsubmissionfile rdfs:subClassOf owl:Resource .
-hpc:Jobpack rdfs:domain hpc:Jobsubmissionfile ;
-                               rdfs:range xsd:string .
-hpc:JobPack rdfs:subPropertyOf rdf:type .

@@ -1,7 +1,0 @@
-hpc:Workloadsnapshotmodificationscript a owl:Class .
-hpc:begintime a owl:DatatypeProperty ;
-    rdfs:domain hpc:Workloadsnapshotmodificationscript ;
-    rdfs:range xsd:integer .
-hpc:checkpointdirectory a owl:ObjectProperty ;
-    rdfs:domain hpc:Workloadsnapshotmodificationscript ;
-    rdfs:range xsd:string .

@@ -1,7 +1,0 @@
-hpc:Partition a owl:Class .
-hpc:Topology a owl:Class .
-hpc:hastopology a owl:ObjectProperty .
-hpc:cluster_default a hpc:Topology .
-hpc:Topology rdfs:subClassOf hpc:Partition .
-hpc:Hastopology rdfs:domain hpc:Partition .
-hpc:Hastopology rdfs:range hpc:Topology .

@@ -1,8 +1,0 @@
-hpc:Jobforwardinginformation a owl:Class .
-hpc:Localqueue a owl:Class .
-
-hpc:Hasjobforwardinginformation hpc:localqueue rdf:type owl:ObjectProperty .
-hpc:Hasjobforwardinginformation rdfs:domain hpc:Localqueue .
-hpc:Hasjobforwardinginformation rdfs:range hpc:Jobforwardinginformation .
-
-hpc:JobForwardingInformation rdf:type owl:Class .

@@ -1,5 +1,0 @@
-hpc:Prioritysitefactorplugin a owl:Class .
-hpc:prioritycalcperiod a owl:DatatypeProperty .
-hpc:Prioritysitefactorplugin rdfs:subClassOf owl:Class .
-hpc:Prioritycalcperiod rdfs:domain hpc:Prioritysitefactorplugin ;
-                          rdfs:range xsd:nonNegativeInteger .

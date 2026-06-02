@@ -1,8 +1,0 @@
-hpc:Problemsituation a owl:Class .
-hpc:Notproblemsituation a owl:Class .
-hpc:hasindication a owl:ObjectProperty .
-
-hpc:Problemsituation rdfs:subClassOf owl:Class .
-hpc:Notproblemsituation rdfs:subClassOf owl:Class .
-hpc:Hasindication rdfs:domain hpc:Problemsituation ;
-                          rdfs:range rdf:Resource .

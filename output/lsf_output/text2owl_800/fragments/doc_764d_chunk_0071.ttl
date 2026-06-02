@@ -1,9 +1,0 @@
-hpc:Multiclusterjob a owl:Class .
-hpc:mcPendingReasonUpdateInterval a owl:DatatypeProperty .
-hpc:mcPendingReasonPkgSize a owl:DatatypeProperty .
-
-hpc:Multiclusterjob rdfs:subClassOf rdf:Resource .
-hpc:McPendingReasonUpdateInterval rdfs:domain hpc:Multiclusterjob ;
-                                          rdfs:range xsd:integer .
-hpc:McPendingReasonPkgSize rdfs:domain hpc:Multiclusterjob ;
-                                     rdfs:range xsd:integer .

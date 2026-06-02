@@ -1,6 +1,0 @@
-hpc:Taskprolog a owl:Class.
-hpc:Taskprolog rdfs:subClassOf hpc:Job.
-
-hpc:executedinsidecontainer a owl:ObjectProperty.
-hpc:Executedinsidecontainer rdfs:domain hpc:Taskprolog ;
-                                 rdfs:range rdf:Resource.

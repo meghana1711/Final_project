@@ -1,5 +1,0 @@
-hpc:Globalresource a owl:Class .
-hpc:bhostscommandoption a owl:ObjectProperty .
-hpc:Displays a rdfs:subClassOf owl:ObjectProperty .
-hpc:Displays rdfs:domain hpc:Bhostscommandoption ;
-                          rdfs:range hpc:Globalresource .

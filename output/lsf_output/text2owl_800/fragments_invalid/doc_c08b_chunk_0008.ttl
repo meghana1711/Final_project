@@ -1,6 +1,0 @@
-hpc:Job a owl:Class.
-hpc:Housekeeping a owl:Class.
-hpc:Job a owl:Class .
-    hpc:Job hpc:doesnotperform rdf:type owl:ObjectProperty;
-    hpc:Job hpc:Doesnotperform rdfs:domain hpc:Job;
-    hpc:Job hpc:Doesnotperform rdfs:range hpc:Housekeeping.

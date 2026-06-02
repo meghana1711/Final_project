@@ -1,9 +1,0 @@
-hpc:Sbatchdjob a owl:Class .
-hpc:lsbRestartPgid a owl:ObjectProperty .
-hpc:lsbRestartPid a owl:ObjectProperty .
-
-hpc:Sbatchdjob rdfs:subClassOf owl:Class .
-hpc:LsbRestartPgid rdfs:domain hpc:Sbatchdjob ;
-    rdfs:range xsd:integer .
-hpc:LsbRestartPid rdfs:domain hpc:Sbatchdjob ;
-    rdfs:range xsd:integer .

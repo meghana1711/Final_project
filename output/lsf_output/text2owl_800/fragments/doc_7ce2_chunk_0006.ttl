@@ -1,6 +1,0 @@
-hpc:Script a owl:Class .
-hpc:parsesjobinformation a owl:ObjectProperty .
-
-hpc:Script rdfs:subClassOf owl:Class .
-hpc:Parsesjobinformation rdfs:domain hpc:Script ;
-                          rdfs:range rdf:Resource .

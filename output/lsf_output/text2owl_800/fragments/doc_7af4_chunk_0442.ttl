@@ -1,7 +1,0 @@
-hpc:hjobLimit a owl:DatatypeProperty .
-hpc:HjobLimit rdfs:domain hpc:Queue .
-hpc:HjobLimit rdfs:range xsd:integer .
-
-hpc:hostPostExec a owl:ObjectProperty .
-hpc:HostPostExec rdfs:domain hpc:Queue .
-hpc:HostPostExec rdfs:range xsd:string .

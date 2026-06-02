@@ -1,7 +1,0 @@
-hpc:Slurmstepd a owl:Class .
-hpc:hasnode a owl:ObjectProperty .
-hpc:Hasnode rdfs:domain hpc:Slurmstepd ;
-    rdfs:range rdf:Resource .
-hpc:runstask a owl:ObjectProperty .
-hpc:Runstask rdfs:domain hpc:Slurmstepd ;
-    rdfs:range rdf:List .

@@ -1,8 +1,0 @@
-hpc:Authenticationmechanism a owl:Class.
-hpc:InstallationGuidance a rdf:Resource.
-
-hpc:Authenticationmechanism a owl:Class; rdfs:subClassOf owl:Thing.
-hpc:Installationguidance a rdf:Resource; rdfs:subClassOf rdfs:Resource.
-
-hpc:hasinstallationguidance a owl:ObjectProperty.
-hpc:Hasinstallationguidance rdfs:domain hpc:Authenticationmechanism; rdfs:range rdf:Resource.

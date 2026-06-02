@@ -1,6 +1,0 @@
-hpc:User a owl:Class .
-hpc:mapuser a owl:ObjectProperty .
-
-hpc:User rdfs:subClassOf owl:Class .
-hpc:Mapuser rdfs:domain hpc:User ;
-    rdfs:range hpc:User .

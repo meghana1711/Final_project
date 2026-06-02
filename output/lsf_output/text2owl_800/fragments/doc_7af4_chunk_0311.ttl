@@ -1,9 +1,0 @@
-hpc:JobDepLastSub a owl:Class ;
-    rdfs:comment "Used only with job dependency scheduling. If set to 1, whenever dependency conditions use a job name that belongs to multiple jobs, LSF evaluates only the most recently submitted job. Otherwise, all the jobs with the specified name must satisfy the dependency condition. Running jobs are not affected when JOB_DEP_LAST_SUB is changed. To reevaluate job dependencies after changing JOB_DEP_LAST_SUB, run badmin reconfig.";
-    rdfs:subClassOf owl:Boolean .
-
-hpc:jobDispatchPackSize a owl:DatatypeProperty ;
-    rdfs:domain hpc:Jobscheduler ;
-    rdfs:range xsd:nonNegativeInteger ;
-    rdfs:comment "The maximum number of job decisions that can accumulate before publishing the job decisions in a decision package. If there are not enough accumulated job decisions, the decisions are published at the end of the scheduling cycle. This parameter allows LSF to make more job decisions in a scheduling cycle without blocking the mbatchd daemon too long at the end of the scheduling cycle, because mbatchd can process job decisions that are published before the end of the scheduling cycle. Dispatching jobs early can also decrease the slot idle time. Decrease this parameter value if mbatchd cannot process the decision package within one second.";
-    rdfs:subPropertyOf rdf:type .

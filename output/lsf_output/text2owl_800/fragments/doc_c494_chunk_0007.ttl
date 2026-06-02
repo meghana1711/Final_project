@@ -1,6 +1,0 @@
-hpc:Jobsubmission a owl:Class .
-hpc:checkjobsubmissionprocedure a owl:ObjectProperty .
-
-hpc:Jobsubmission rdfs:subClassOf owl:NamedIndividual .
-hpc:Checkjobsubmissionprocedure rdfs:domain hpc:Jobsubmission ;
-                                  rdfs:range rdf:Procedure .

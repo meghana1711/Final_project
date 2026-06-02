@@ -1,8 +1,0 @@
-{
-  "system_prompt": "You are an ontology engineering assistant. You must follow the output rules exactly.",
-  "user_template": "Generate an OWL ontology fragment in Turtle syntax from the documentation chunk below.\n\nTEXT:\n{chunk}\n\nSTRICT OUTPUT RULES (MUST FOLLOW):\n- Output ONLY Turtle statements (no explanations, no markdown, no code fences like ```).\n- Use ONLY these prefixes in triples: hpc:, rdf:, rdfs:, owl:, xsd: (do not invent others).\n- Every statement MUST end with a period '.'\n- Do NOT use 'rdf:Type' anywhere.\n- Never write 'a ... xsd:*' (xsd:* is ONLY allowed as the object of rdfs:range).\n- After 'a' (rdf:type) you may use ONLY: owl:Class, owl:ObjectProperty, owl:DatatypeProperty.\n- Do not chain with ',' after 'a owl:Class' (i.e., do NOT write 'a owl:Class, ...').\n\nMODELING RULES:\n- Declare classes with: hpc:ClassName a owl:Class .\n- Declare object properties with: hpc:propName a owl:ObjectProperty .\n- Declare datatype properties with: hpc:propName a owl:DatatypeProperty .\n- Use rdfs:subClassOf for subclass relations.\n- Use rdfs:domain and rdfs:range for properties.\n- Use CamelCase for classes and lowerCamelCase for properties.\n- If the text does not contain ontology-worthy facts, output nothing (empty output is allowed).\n\nBASE IRI:\n- Use this base IRI conceptually for hpc:* terms: {base_iri}\n- Assume prefixes already exist: {prefixes}\n\nOUTPUT:\nReturn ONLY Turtle triples/statements.",
-  "defaults": {
-    "base_iri": "http://example.org/hpc#",
-    "prefixes": "hpc:, rdf:, rdfs:, owl:, xsd:"
-  }
-}
