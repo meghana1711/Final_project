@@ -72,7 +72,7 @@ docker run --rm -it -v "${PWD}:/app" -w /app final_project:dev python -m pipelin
 ```
 2. Run Ontology Evaluation
 ```
-docker run --rm -it -v "${PWD}:/app" -w /app final_project:dev python -m eval.evaluation --ttl output/slurm_output/axiom_slurm_llm/hpc_ontology.ttl --report report_final/llm_slurm.md --concept-eval-csv precision/llm_slurm/concept.csv --taxonomy-eval-csv precision/llm_slurm/taxonomy.csv --relation-eval-csv precision/llm_slurm/non_taxonomy.csv
+docker run --rm -it -v "${PWD}:/app" -w /app final_project:dev python -m evaluate.evaluation --ttl output/slurm_output/axiom_slurm_llm/hpc_ontology.ttl --report report_final/llm_slurm.md --concept-eval-csv precision/llm_slurm/concept.csv --taxonomy-eval-csv precision/llm_slurm/taxonomy.csv --relation-eval-csv precision/llm_slurm/non_taxonomy.csv
 ```
 **The command takes the following arguments:**
 - `--db` sets the SQLite database path where intermediate and final pipeline outputs are stored.
